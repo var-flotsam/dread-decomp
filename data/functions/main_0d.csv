@@ -2475,9 +2475,9 @@ address,size,name,name_source,subsystem,status
 0x7100d424a4,92,fn_7100d424a4,unknown,unknown,O
 0x7100d42500,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::At,reflection,engine/reflection,O
 0x7100d4250c,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::Find,reflection,engine/reflection,O
-0x7100d42530,40,fn_7100d42530,unknown,unknown,O
-0x7100d42558,40,fn_7100d42558,unknown,unknown,O
-0x7100d42580,76,fn_7100d42580,unknown,unknown,O
+0x7100d42530,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::SetCopy,reflection,engine/reflection,O
+0x7100d42558,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::SetMove,reflection,engine/reflection,O
+0x7100d42580,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::Equals,reflection,engine/reflection,O
 0x7100d425cc,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::Hash,reflection,engine/reflection,O
 0x7100d425d4,12,fn_7100d425d4,unknown,unknown,O
 0x7100d425e0,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::Construct,reflection,engine/reflection,O
@@ -2488,7 +2488,7 @@ address,size,name,name_source,subsystem,status
 0x7100d42820,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::MoveAssign,reflection,engine/reflection,O
 0x7100d4286c,432,base::global::CRntVector<game::logic::collision::CCollider*>::InsertCopy,reflection,engine/base,O
 0x7100d42a1c,432,base::global::CRntVector<game::logic::collision::CCollider*>::InsertMove,reflection,engine/base,O
-0x7100d42bcc,336,fn_7100d42bcc,unknown,unknown,O
+0x7100d42bcc,336,base::global::CRntVector<game::logic::collision::CCollider*>::GrowAt,reflection,engine/base,O
 0x7100d42d1c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::Begin,reflection,engine/reflection,O
 0x7100d42d28,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::End,reflection,engine/reflection,O
 0x7100d42d3c,168,fn_7100d42d3c,unknown,unknown,O
@@ -4010,9 +4010,9 @@ address,size,name,name_source,subsystem,status
 0x7100d8525c,92,fn_7100d8525c,unknown,unknown,O
 0x7100d852b8,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::At,reflection,engine/reflection,O
 0x7100d852c4,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::Find,reflection,engine/reflection,O
-0x7100d852e8,40,fn_7100d852e8,unknown,unknown,O
-0x7100d85310,40,fn_7100d85310,unknown,unknown,O
-0x7100d85338,76,fn_7100d85338,unknown,unknown,O
+0x7100d852e8,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::SetCopy,reflection,engine/reflection,O
+0x7100d85310,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::SetMove,reflection,engine/reflection,O
+0x7100d85338,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::Equals,reflection,engine/reflection,O
 0x7100d85384,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::Hash,reflection,engine/reflection,O
 0x7100d8538c,12,fn_7100d8538c,unknown,unknown,O
 0x7100d85398,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::Construct,reflection,engine/reflection,O

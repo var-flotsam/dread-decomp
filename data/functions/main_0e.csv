@@ -3125,8 +3125,8 @@ address,size,name,name_source,subsystem,status
 0x7100eb22d0,92,fn_7100eb22d0,unknown,unknown,O
 0x7100eb232c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::At,reflection,engine/reflection,O
 0x7100eb2338,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::Find,reflection,engine/reflection,O
-0x7100eb235c,40,fn_7100eb235c,unknown,unknown,O
-0x7100eb2384,40,fn_7100eb2384,unknown,unknown,O
+0x7100eb235c,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::SetCopy,reflection,engine/reflection,O
+0x7100eb2384,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::SetMove,reflection,engine/reflection,O
 0x7100eb23ac,76,fn_7100eb23ac,unknown,unknown,O
 0x7100eb23f8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::Hash,reflection,engine/reflection,O
 0x7100eb2400,12,fn_7100eb2400,unknown,unknown,O
@@ -3138,7 +3138,7 @@ address,size,name,name_source,subsystem,status
 0x7100eb264c,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::MoveAssign,reflection,engine/reflection,O
 0x7100eb2698,432,base::global::CRntVector<EMapTutoType>::InsertCopy,reflection,engine/base,O
 0x7100eb2848,432,base::global::CRntVector<EMapTutoType>::InsertMove,reflection,engine/base,O
-0x7100eb29f8,336,fn_7100eb29f8,unknown,unknown,O
+0x7100eb29f8,336,base::global::CRntVector<EMapTutoType>::GrowAt,reflection,engine/base,O
 0x7100eb2b48,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::Begin,reflection,engine/reflection,O
 0x7100eb2b54,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::End,reflection,engine/reflection,O
 0x7100eb2b68,168,fn_7100eb2b68,unknown,unknown,O

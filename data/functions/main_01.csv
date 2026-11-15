@@ -1432,9 +1432,9 @@ address,size,name,name_source,subsystem,status
 0x710013f5cc,92,fn_710013f5cc,unknown,unknown,O
 0x710013f628,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::At,reflection,engine/reflection,O
 0x710013f634,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::Find,reflection,engine/reflection,O
-0x710013f658,40,fn_710013f658,unknown,unknown,O
-0x710013f680,40,fn_710013f680,unknown,unknown,O
-0x710013f6a8,76,fn_710013f6a8,unknown,unknown,O
+0x710013f658,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::SetCopy,reflection,engine/reflection,O
+0x710013f680,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::SetMove,reflection,engine/reflection,O
+0x710013f6a8,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::Equals,reflection,engine/reflection,O
 0x710013f6f4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::Hash,reflection,engine/reflection,O
 0x710013f6fc,12,fn_710013f6fc,unknown,unknown,O
 0x710013f708,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::Construct,reflection,engine/reflection,O
@@ -1445,7 +1445,7 @@ address,size,name,name_source,subsystem,status
 0x710013f948,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::MoveAssign,reflection,engine/reflection,O
 0x710013f994,432,base::global::CRntVector<base::tunable::CTunableManager*>::InsertCopy,reflection,engine/base,O
 0x710013fb44,432,base::global::CRntVector<base::tunable::CTunableManager*>::InsertMove,reflection,engine/base,O
-0x710013fcf4,336,fn_710013fcf4,unknown,unknown,O
+0x710013fcf4,336,base::global::CRntVector<base::tunable::CTunableManager*>::GrowAt,reflection,engine/base,O
 0x710013fe44,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::Begin,reflection,engine/reflection,O
 0x710013fe50,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::End,reflection,engine/reflection,O
 0x710013fe64,168,fn_710013fe64,unknown,unknown,O
@@ -4746,7 +4746,7 @@ address,size,name,name_source,subsystem,status
 0x71001fbeec,728,fn_71001fbeec,unknown,unknown,m
 0x71001fc1c4,636,fn_71001fc1c4,unknown,unknown,U
 0x71001fc440,268,fn_71001fc440,unknown,unknown,O
-0x71001fc54c,336,fn_71001fc54c,unknown,unknown,O
+0x71001fc54c,336,base::global::CRntVector<engine::scene::CSceneSlot*>::GrowAt,reflection,engine/base,O
 0x71001fc69c,56,fn_71001fc69c,unknown,unknown,O
 0x71001fc6d4,124,fn_71001fc6d4,unknown,unknown,O
 0x71001fc750,108,fn_71001fc750,unknown,unknown,O
