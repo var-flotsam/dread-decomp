@@ -154,6 +154,14 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Plain types' value operations from the same template (2026-11-15).** The C++ number types the game reflects
+(`bool`, `char`, `signed char`, `unsigned char`, `short`, `unsigned short`, `int`, `unsigned`, `long`, `unsigned
+long`, `long long`, `unsigned long long`, `float`, `double`) have their nine CType slot functions from `ValueOps<T>`,
+like the enums. Their hashes show the engine hashes only some plain types by value: `bool`, `int`, `unsigned`, `long`
+and `unsigned long` return the value, the rest -1 (`ValueOps.h`, `HashedByValue`). `TypeOf` tail-calls the type's getter, which Clang 9 does only when both return a `const CType&`: a `TypeOf` that dereferences a pointer-returning getter gets a `dereferenceable` return the call lacks and stays a call (as a pointer type's does, matching its original). So `refl_GetPrimitiveType<G>` now returns a reference; its own bytes are the same.
+`UnkReflPrimitiveTraits` now names its slots by role (`construct`, ..., `type_of`, and `add_attributes` for
+CType+0x70). The plain classes (`CStrId`, `CVector3D`, the colours, ...) keep the address form until their own
+operators are written.
 **Lean batch lean-b1: 98 ready functions, whole units to a worker (2026-11-15).** The first batch on the
 rewritten kit since workers take several functions of one unit. Queue: 98 `U` functions of 400 bytes or less
 from `tools/hubs.py --ready`, taken as whole units (13 units with four or more ready functions each, boot-slice
