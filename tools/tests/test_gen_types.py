@@ -270,6 +270,21 @@ class TypeNames(unittest.TestCase):
         self.assertIn('    static constexpr const char* name = "CFoo const*";', out)
 
 
+    def test_iterator_value_type(self):
+        name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName> >::TElementIterator"
+        canon, node = gt.pointer_value_type(name)
+        self.assertEqual(canon, "base::reflection::CollectionTypeMapper<"
+                                "base::global::CRntVector<base::core::AssetName>>::TElementIterator")
+        self.assertEqual(gt.type_declarations(node), [
+            "namespace base::core { class AssetName; }",
+            "namespace base::global { template <class> class CRntVector; }"])
+        self.assertEqual(gt.pointer_value_type(canon)[0], canon)
+        self.assertIsNone(gt.pointer_value_type(
+            "base::reflection::CollectionTypeMapper<base::global::CRntVector<X>>::TKeyElementIterator"))
+        self.assertIsNone(gt.pointer_value_type("CFoo"))
+        self.assertEqual(gt.pointer_value_type("unsigned int*")[0], "unsigned int*")
+
+
 class Declarations(unittest.TestCase):
     DECLS = {"void fn_7100000010();", "extern base::reflection::CType g_unk_7100000020;",
              "void fn_7100000030();"}

@@ -154,6 +154,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Element iterators' value operations from the same template (2026-11-15).** Every collection's element
+iterator (`CollectionTypeMapper<C>::TElementIterator` and `TElementConstIterator`) is eight bytes: the element it
+is at, null at the end, copied whole and compared by the element. Each collection kind lays it out the same way;
+only `increment` (the element's stride) and `get`/`set` differ, and those stay as they are.
+`include/base/reflection/CollectionTypeMapper.h` writes the two iterators once, with the element untyped because
+reflection reaches it only through the pointee's descriptor. Their nine slot functions are `ValueOps<iterator>`, as
+a plain pointer type's are. A collection whose name has a `std::` type or a non-type argument (`CArray<T, N, E>`)
+keeps the address form, as does a template named with two argument counts. The key-element iterators hold the key
+and element as they are read, are laid out per collection kind, and are not written yet. Checked here on
+`CRntVector<base::core::AssetName>`: eight of the nine are byte-identical to the lifted ones, and `TypeOf` is the
+pointer types' form.
+
 **Flag sets' value operations from the same template (2026-11-15).** The 8 flag sets (`TEventPropsFlags`,
 `base::global::timeline::TLayers`, ...) share the enums' slot shapes but hash to -1, as classes do; `ValueOps`
 now hashes an enum to its value, a pointer to its address's low word and anything else to -1. Only the alias name
