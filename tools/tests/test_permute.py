@@ -36,6 +36,28 @@ void fn_7100000200() {
 
 
 class Text(unittest.TestCase):
+    def test_a_template_member_found_by_its_name(self):
+        header = ["template <class T>", "struct CVec {",
+                  "    explicit CVec(u32 flags) : m_flags(flags) {}",
+                  "    CVec(const CVec& other) : m_flags(other.m_flags) {",
+                  "        Reserve(other.m_n);",
+                  "    }",
+                  "    void Grow() {",
+                  "        if (Reserve(m_n + 1)) {",
+                  "            m_n++;",
+                  "        }",
+                  "    }",
+                  "    bool Reserve(u32 n);",
+                  "};",
+                  "template <class T>",
+                  "bool CVec<T>::Reserve(u32 n) {",
+                  "    return n != 0;",
+                  "}"]
+        self.assertEqual(permute.body_span(header, "7100000900", "ns::CVec<int>::Reserve"), (15, 15))
+        self.assertEqual(permute.body_span(header, "7100000900", "ns::CVec<int>::CVec"), (4, 4))
+        self.assertEqual(permute.body_span(header, "7100000900", "ns::CVec<int>::Grow"), (7, 9))
+        self.assertIsNone(permute.body_span(header, "7100000900"))
+
     def test_the_definition_is_found_not_the_declaration_or_the_call(self):
         self.assertEqual(permute.definition_line(SRC, "7100000100"), 4)
         self.assertEqual(permute.body_span(SRC, "7100000100"), (5, 11))

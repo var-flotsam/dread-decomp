@@ -28,6 +28,12 @@ It is not a general permuter and is not meant to grow into one. On 2026-11-12 it
 registers-only functions (11%; docs/JOURNAL.md), all of them one to three lines from the original, in about an
 hour of CPU and no model tokens. Use it before another model attempt on a near-match, not instead of one.
 
+A function the file does not define under fn_<addr> is looked for under its data/functions/ name (a class
+template's member), first in the file and then in the include/ headers it includes. A body in a header is
+permuted in a copy of the header that the unchanged source finds first (-iquote); --write leaves the header
+alone (every user of the template shares it) and points at build/permute/<addr>.h to copy in by hand, after
+which check.py runs over the whole tree.
+
 Usage:
   python tools/permute.py --version 2.1.0 FILE.cpp [...]      # every registers-only function of these files
   python tools/permute.py --version 2.1.0 FILE.cpp:ADDR       # one function
@@ -75,35 +81,57 @@ KINDS = ("swap", "swap", "move", "split", "merge", "commute", "commute", "compar
 
 # --- the text side (no compiler: tools/tests/test_permute.py) ----------------------------------------
 
-def definition_line(lines: list[str], addr: str) -> int | None:
-    """The index of the line that starts the definition of fn_<addr> (not a declaration or a call)."""
-    pat = re.compile(rf"^[^\s/#][^;]*\bfn_{addr}\s*\(")
+def member_name(name: str) -> str:
+    """The unqualified name of a data/functions/ name: `base::global::CRntVector<T>::Reserve` -> `Reserve`."""
+    while True:
+        bare = re.sub(r"<[^<>]*>", "", name)
+        if bare == name:
+            return name.split("::")[-1]
+        name = bare
+
+
+def definition_lines(lines: list[str], addr: str, name: str | None = None):
+    """The indices of the lines that start a definition of fn_<addr> (not a declaration or a call). With
+    `name` (its data/functions/ name, for a class template's member defined in a header), a definition under
+    its unqualified name counts too, indented in a class body or not; overloads all count."""
+    pats = [re.compile(rf"^[^\s/#][^;]*\bfn_{addr}\s*\(")]
+    if name and not name.startswith("fn_"):
+        bare = re.escape(member_name(name))
+        lead = r"(?:\b|(?<=[\s:&*]))" if not member_name(name)[:1].isalnum() else r"\b"
+        pats.append(re.compile(rf"^\s*(?!(?:return|if|else|while|for|switch|do|case|delete)\b)[^;()=/#{{}}]*?"
+                               rf"{lead}(?:\w+(?:<[^;(){{}}]*>)?::)*{bare}\s*\("))
     for i, line in enumerate(lines):
-        if not pat.match(line):
+        if not any(p.match(line) for p in pats):
             continue
         for j in range(i, len(lines)):
             if "{" in lines[j]:
-                return i
+                yield i
+                break
             if lines[j].rstrip().endswith(";"):
                 break
-    return None
 
 
-def body_span(lines: list[str], addr: str) -> tuple[int, int] | None:
-    """(first, last) line indices inside the braces of fn_<addr>'s definition, or None."""
-    i = definition_line(lines, addr)
-    if i is None:
-        return None
-    depth, opened = 0, False
-    for j in range(i, len(lines)):
-        for ch in lines[j]:
-            if ch == "{":
-                depth += 1
-                opened = True
-            elif ch == "}":
-                depth -= 1
-        if opened and depth == 0:
-            return (i + 1, j - 1) if j - 1 >= i + 1 else None
+def definition_line(lines: list[str], addr: str, name: str | None = None) -> int | None:
+    """The first of definition_lines(), or None."""
+    return next(definition_lines(lines, addr, name), None)
+
+
+def body_span(lines: list[str], addr: str, name: str | None = None) -> tuple[int, int] | None:
+    """(first, last) line indices inside the braces of fn_<addr>'s definition, or None. Of overloads (found
+    by name), the first with a body of a line or more: a one-line `{}` has nothing to permute."""
+    for i in definition_lines(lines, addr, name):
+        depth, opened = 0, False
+        for j in range(i, len(lines)):
+            for ch in lines[j]:
+                if ch == "{":
+                    depth += 1
+                    opened = True
+                elif ch == "}":
+                    depth -= 1
+            if opened and depth == 0:
+                if j - 1 >= i + 1:
+                    return i + 1, j - 1
+                break
     return None
 
 
@@ -161,10 +189,11 @@ def mutate(lines: list[str], lo: int, hi: int, rnd: random.Random, kind: str | N
     return out
 
 
-def search(lines: list[str], addr: str, cost, iterations: int, rnd: random.Random) -> dict:
+def search(lines: list[str], addr: str, cost, iterations: int, rnd: random.Random,
+           name: str | None = None) -> dict:
     """Hill climbing over mutate(). `cost(lines)` returns (number, matched) or (None, False) for text that does
     not build. Returns {start, best, matched, tries, built, lines} (lines: the match, else the best seen)."""
-    span = body_span(lines, addr)
+    span = body_span(lines, addr, name)
     start, matched = cost(lines)
     row = {"start": start, "best": start, "matched": matched, "tries": 0, "built": 0, "lines": lines}
     if span is None or start is None or matched:
@@ -236,13 +265,13 @@ def minimise(orig: list[str], match: list[str], matches) -> list[str]:
             return cur
 
 
-def merge_declarations(lines: list[str], addr: str, matches) -> list[str]:
+def merge_declarations(lines: list[str], addr: str, matches, name: str | None = None) -> list[str]:
     """Every `T x;` of the body whose first later use is `x = e;` becomes `T x = e;` there, where the result
     still satisfies `matches(lines)`."""
     changed = True
     while changed:
         changed = False
-        span = body_span(lines, addr)
+        span = body_span(lines, addr, name)
         if span is None:
             break
         lo, hi = span
@@ -293,6 +322,25 @@ def _init(version: str) -> None:
     _state["orig"] = asmdiff.Original(version)
     rows, _ = check.load_csv()
     _state["by_name"] = check.csv_by_name(rows)
+    _state["names"] = {int(a, 16): r["name"] for a, r in rows.items()}
+
+
+def defining_header(src: Path, addr: str, name: str | None) -> str | None:
+    """The include/ header (its path under include/) that the source includes, directly or not, and that
+    holds the definition of fn_<addr> under `name`; None when there is none."""
+    todo = re.findall(r'^#include "([^"]+)"', src.read_text(encoding="utf-8"), re.M)
+    seen: set[str] = set()
+    while todo:
+        rel = todo.pop(0)
+        h = ROOT / "include" / rel
+        if rel in seen or not h.is_file():
+            continue
+        seen.add(rel)
+        text = h.read_text(encoding="utf-8").replace("\r\n", "\n")
+        if body_span(text.split("\n"), addr, name) is not None:
+            return rel
+        todo += re.findall(r'^#include "([^"]+)"', text, re.M)
+    return None
 
 
 def prepared(src: Path) -> list[str]:
@@ -321,12 +369,19 @@ def builds(src: Path, obj: Path, extra: list[str] | tuple = ()) -> bool:
     return subprocess.run(buildcfg.cxx_command(src, obj) + list(extra), capture_output=True, text=True).returncode == 0
 
 
-def compiled_cost(lines: list[str], work: Path, addr: str, extra: list[str] | tuple = ()) -> tuple[int | None, bool]:
+def compiled_cost(lines: list[str], work: Path, addr: str, extra: list[str] | tuple = (),
+                  header: tuple[str, list[str]] | None = None) -> tuple[int | None, bool]:
     """(differing instructions plus a penalty for another size, matched) for fn_<addr> of this text; matched
     needs the same bytes and no relocation that names another target. (None, False) when it does not build
-    with the extra flags."""
+    with the extra flags. With `header` ((its path under include/, the source's lines)), `lines` is that
+    header's text: a copy of it under the work folder is found first (-iquote) by the unchanged source."""
     asmdiff, check = _state["asmdiff"], _state["check"]
     src, obj = work / "t.cpp", work / "t.o"
+    if header is not None:
+        copy = work / "iquote" / header[0]
+        copy.parent.mkdir(parents=True, exist_ok=True)
+        copy.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+        lines, extra = header[1], [*extra, "-iquote", str(work / "iquote")]
     src.write_text("\n".join(lines), encoding="utf-8", newline="\n")
     if not builds(src, obj, extra):
         return None, False
@@ -368,31 +423,43 @@ def run(job: tuple) -> dict:
     work = OUT / "work" / addr
     work.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
+    name = _state["names"].get(int(addr, 16))
     orig = prepared(src)
+    # a class template's member is defined in its header: permute a copy of the header
+    header = None
+    if body_span(orig, addr, name) is None and (rel := defining_header(src, addr, name)):
+        header = (rel, orig)
+        orig = (ROOT / "include" / rel).read_text(encoding="utf-8").replace("\r\n", "\n").split("\n")
 
     # the check for a read before a set, unless the file's own text already has one somewhere
-    strict = STRICT if compiled_cost(orig, work, addr, STRICT)[0] is not None else []
+    strict = STRICT if compiled_cost(orig, work, addr, STRICT, header)[0] is not None else []
 
     def cost(lines):
-        return compiled_cost(lines, work, addr, strict)
+        return compiled_cost(lines, work, addr, strict, header)
 
     def matches(lines):
         return cost(lines)[1]
-    row = search(orig, addr, cost, iterations, random.Random(seed))
+    row = search(orig, addr, cost, iterations, random.Random(seed), name)
     lines = row.pop("lines")
     if row["matched"] and not row.get("note"):
-        lines = merge_declarations(minimise(orig, lines, matches), addr, matches)
+        lines = merge_declarations(minimise(orig, lines, matches), addr, matches, name)
         assert matches(lines), addr
-        (OUT / f"{addr}.cpp").write_text("\n".join(unprepared(lines, src)), encoding="utf-8", newline="\n")
+        out = OUT / (f"{addr}.h" if header else f"{addr}.cpp")
+        out.write_text("\n".join(lines if header else unprepared(lines, src)), encoding="utf-8", newline="\n")
         row["changes"] = [d for d in difflib.unified_diff(orig, lines, lineterm="", n=0)
                           if d[:1] in "+-" and d[:3] not in ("+++", "---")]
-    return {"file": path, "address": addr, "seconds": round(time.time() - t0, 1), "checked": bool(strict), **row}
+    return {"file": path, "address": addr, "seconds": round(time.time() - t0, 1), "checked": bool(strict),
+            **({"header": f"include/{header[0]}"} if header else {}), **row}
 
 
 def write_back(rows: list[dict]) -> None:
     done = []
     for r in rows:
         if not r["matched"] or r.get("note"):
+            continue
+        if r.get("header"):  # shared by every user of the template: put it in by hand, then check.py in full
+            print(f"not written  {r['address']}  {r['header']}: build/permute/{r['address']}.h has the header "
+                  "with the match; copy the body in by hand and run check.py over the whole tree")
             continue
         p = ROOT / r["file"]
         raw = p.read_bytes()

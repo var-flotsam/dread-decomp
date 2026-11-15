@@ -38,6 +38,17 @@ class ReturnType(unittest.TestCase):
         self.assertEqual(equiv_test.return_type(text, 0x7100000700), "s32")
         self.assertIsNone(equiv_test.return_type("void fn_7100000800();\n", 0x7100000800))
 
+    def test_a_template_member_found_by_its_name(self):
+        text = ("template <class T>\nstruct CVec {\n    CVec(const CVec& other) : m_n(other.m_n) {\n    }\n"
+                "    bool operator==(const CVec& other) const;\n    int m_n;\n};\n"
+                "template <class T>\nbool CVec<T>::operator==(const CVec& other) const {\n    return true;\n}\n"
+                "template <class T>\nvoid ns::CVec<T>::Reserve(int n) {\n}\n"
+                "void user() {\n    CVec<int>(other);\n}\n")
+        self.assertEqual(equiv_test.return_type(text, 0x7100000900, "ns::CVec<int>::CVec"), "void")
+        self.assertEqual(equiv_test.return_type(text, 0x7100000a00, "ns::CVec<int>::operator=="), "bool")
+        self.assertEqual(equiv_test.return_type(text, 0x7100000b00, "ns::CVec<int>::Reserve"), "void")
+        self.assertIsNone(equiv_test.return_type(text, 0x7100000c00, "ns::CVec<int>::Missing"))
+
     def test_what_is_compared_as_the_result(self):
         self.assertIsNone(equiv_test.result_kind("void"))
         self.assertIsNone(equiv_test.result_kind(None))

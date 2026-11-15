@@ -135,8 +135,11 @@ def return_type(text: str, address: int, name: str | None = None) -> str | None:
     header), a definition of its unqualified name counts too."""
     text = DROPPED.sub(" ", COMMENT.sub(" ", text))
     found = rf"fn_{address:x}"
+    constructor = False
     if name and not name.startswith("fn_"):
         found = rf"(?:fn_{address:x}|{re.escape(member_name(name))})"
+        parts = re.sub(r"<[^<>]*>", "", re.sub(r"<[^<>]*>", "", name)).split("::")
+        constructor = len(parts) > 1 and parts[-1] == parts[-2]
     for m in re.finditer(rf"^([^;{{}}()=#]*?)\b(?:\w+::)*{found}\s*\(", text, re.M):
         depth, i = 1, m.end()
         while depth and i < len(text):  # to the end of the parameter list
@@ -144,8 +147,14 @@ def return_type(text: str, address: int, name: str | None = None) -> str | None:
             i += 1
         rest = text[i:i + 80].lstrip()
         rtype = " ".join(m.group(1).split())
+        # an out-of-class member of a template: its template header and its class's qualifier
+        rtype = re.sub(r"^template\s*<[^{};]*?>\s*", "", rtype)
+        rtype = re.sub(r"\s*(?:\w+(?:<[^<>;]*>)?::)+$", "", rtype)
         if rtype and rest.startswith(("{", "const {", "noexcept {", "const noexcept {")):
             return rtype
+        # a constructor has no return type, and may start with its member initialisers
+        if constructor and rtype in ("", "explicit", "inline", "constexpr") and rest.startswith(("{", ":")):
+            return "void"
     return None
 
 
