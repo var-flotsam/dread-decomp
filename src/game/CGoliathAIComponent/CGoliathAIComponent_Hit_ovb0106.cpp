@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CCollisionComponent.h"
 #include "game/UnkTU0.h"
@@ -95,7 +96,6 @@ struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
 
-extern base::reflection::UnkTunable g_unk_7172716160;
 struct UnkGlobal2;
 
 // A reflected field (0xb0 bytes).

@@ -18,7 +18,6 @@ void fn_7100154380(UnkObj_71001541a0* self, u32 a, u32 b);
 void fn_7100154270(UnkObj_71001541a0* self);
 void fn_71001542f0(UnkObj_71001541a0* self, u32 a, u32 b, const void* data);
 void fn_71001542d0(UnkObj_71001541a0* self);
-extern UnkMatrix44 g_unk_7101a1a680;
 extern char g_unk_7101a1e0d8[];
 extern char g_unk_7101a1e138[];
 extern u32 g_unk_7101a1e180;

@@ -1882,7 +1882,7 @@ address,size,name,name_source,subsystem,status
 0x7100b5b038,12,fn_7100b5b038,unknown,gui?,O
 0x7100b5b044,8,fn_7100b5b044,unknown,gui?,O
 0x7100b5b04c,8,fn_7100b5b04c,unknown,gui?,O
-0x7100b5b054,200,fn_7100b5b054,unknown,gui?,U
+0x7100b5b054,200,fn_7100b5b054,unknown,gui?,O
 0x7100b5b11c,60,fn_7100b5b11c,unknown,gui?,O
 0x7100b5b158,272,fn_7100b5b158,unknown,gui?,O
 0x7100b5b268,180,fn_7100b5b268,unknown,gui?,O

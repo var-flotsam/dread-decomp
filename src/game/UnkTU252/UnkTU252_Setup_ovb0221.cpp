@@ -17,7 +17,6 @@ struct UnkBillboardDrawable;
 struct UnkStruct_710019ab0c;
 struct UnkPass213Activate;
 void fn_71001bef34(UnkPassOwner252* self, u32 index, u32 width, u32 height);
-extern UnkMatrix44 g_unk_7101a1a680;
 
 struct UnkSlotRef252 {
     void* holder;

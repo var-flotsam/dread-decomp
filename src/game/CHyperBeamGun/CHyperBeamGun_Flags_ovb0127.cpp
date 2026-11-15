@@ -186,7 +186,6 @@ UnkHyperBeamEntry_ovb0127* fn_7100848ab8(UnkHyperBeamEntries_ovb0127* self, u32 
 struct UnkTree;
 struct UnkShape;
 struct UnkMtx44;
-extern UnkMatrix44 g_unk_7101a1a680;  // the identity matrix
 
 struct __attribute__((packed)) UnkBeamHitRecord_ovb0127 {
     UnkRefObject* field_0x0;

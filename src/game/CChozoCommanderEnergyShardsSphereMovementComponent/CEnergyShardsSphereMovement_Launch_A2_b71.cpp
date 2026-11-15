@@ -5,13 +5,13 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkRequest;
-extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726c9e00 __attribute__((visibility("hidden")));
 
 struct UnkShardsSphereMover_A2_b71 {

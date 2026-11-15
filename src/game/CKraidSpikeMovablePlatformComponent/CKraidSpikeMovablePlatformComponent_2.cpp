@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2553.h"
@@ -129,7 +130,6 @@ struct UnkKraidSpikePlatform {
     f32 field_0x26c;
 };
 
-extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726f4628 __attribute__((visibility("hidden")));
 bool fn_7100952694();
 

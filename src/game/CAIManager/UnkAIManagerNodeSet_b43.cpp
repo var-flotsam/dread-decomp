@@ -78,7 +78,6 @@ void fn_7100475394(UnkNodeSet_b43a1* self, u64 v) { self->Add(v); }
 // Unit 695's set has three more members after the list; its constructor builds the list with
 // room for 3 nodes per block (fn_71003fa9fc: block size, flags 0, allocation flags 0x13, the
 // default allocator) and clears them.
-void fn_71003fa9fc(void* list, u32 block, u32 flags, u32 alloc_flags, base::UnkAllocator* allocator);
 extern void* g_unk_7101a394b0[];
 
 // A reference-counted object (count at +8; the virtual at 0x10 disposes of it at zero).

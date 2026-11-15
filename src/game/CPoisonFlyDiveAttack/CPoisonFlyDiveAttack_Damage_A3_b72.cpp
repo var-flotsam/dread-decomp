@@ -7,13 +7,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726f98b8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_71726f98c0 __attribute__((visibility("hidden")));
 

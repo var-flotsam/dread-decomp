@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/CProjectileMovement.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
@@ -30,7 +31,6 @@ struct UnkScorpiusSpitMovement {
     UnkReflObject* field_0x5d0;
 };
 
-extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_7172704510 __attribute__((visibility("hidden")));
 
 bool fn_7100698ff4(UnkScorpiusSpitMovement* self, UnkKraidCreatureArg* arg) {

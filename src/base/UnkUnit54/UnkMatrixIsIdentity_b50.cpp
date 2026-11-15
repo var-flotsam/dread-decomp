@@ -3,8 +3,6 @@
 #include "base/UnkMatrix44.h"
 #include "types.h"
 
-extern UnkMatrix44 g_unk_7101a1a680;
-
 bool fn_7100076a5c(const UnkMatrix44* m) {
     return __builtin_memcmp(m, &g_unk_7101a1a680, sizeof(UnkMatrix44)) == 0;
 }

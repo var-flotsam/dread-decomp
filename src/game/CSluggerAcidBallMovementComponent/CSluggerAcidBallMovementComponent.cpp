@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/CProjectileMovement.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
@@ -19,7 +20,6 @@ struct UnkSluggerAcidBallMovement {
 };
 
 struct UnkRequest;
-extern base::reflection::UnkTunable g_unk_7172716160;
 struct UnkKraidBouncingCreaturesMovement2;
 struct UnkKraidCreatureArg;
 
