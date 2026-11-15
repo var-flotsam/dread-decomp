@@ -367,14 +367,14 @@ def declare_in(scope: str, decl: str) -> str:
     return f"namespace {scope} {{ {decl} }}" if scope else decl
 
 
-def type_declarations(node) -> list[str]:
-    """Declarations of the classes and templates a parsed type names; an enclosing class is declared as
-    a namespace, which mangles the same."""
+def type_declarations(node, enums: frozenset[str] = frozenset()) -> list[str]:
+    """Declarations of the classes and templates a parsed type names, `enums` declared as the enums they
+    are (enum_declaration); an enclosing class is declared as a namespace, which mangles the same."""
     classes, templates = type_names(node)
     out = []
     for c in sorted(classes):
         scope, _, leaf = c.rpartition("::")
-        out.append(declare_in(scope, f"class {leaf};"))
+        out.append(enum_declaration(c) if c in enums else declare_in(scope, f"class {leaf};"))
     for t, n in sorted(templates.items()):
         scope, _, leaf = t.rpartition("::")
         out.append(declare_in(scope, f"template <{', '.join(['class'] * n)}> class {leaf};"))
@@ -393,7 +393,7 @@ def pointer_slots(orig: asmdiff.Original, init: int) -> dict[int, int] | None:
     return out
 
 
-def named_pointers(orig: asmdiff.Original, pairs: list) -> dict[int, str]:
+def named_pointers(orig: asmdiff.Original, pairs: list, enums: frozenset[str] = frozenset()) -> dict[int, str]:
     """{getter: name} of the plain pointer types (`T*`, `T const*`) whose value operations can come from
     ValueOps.h: a name that parses, every CType slot a function, and no class that a name in the set
     also uses as a scope (the two declarations would collide)."""
@@ -406,9 +406,11 @@ def named_pointers(orig: asmdiff.Original, pairs: list) -> dict[int, str]:
         parts = full.split("::")
         return {"::".join(parts[:k]) for k in range(1, len(parts))}
 
+    # The enums count too: their declarations share the scope (and the candidates' translation unit).
     refs = {g: (lambda c, t: c | set(t))(*type_names(n)) for g, n in cands.items()}
-    types = set().union(*refs.values()) if refs else set()
-    clash = types & set().union(*(scopes_of(f) for r in refs.values() for f in r)) if refs else set()
+    names = list(refs.values()) + [{e} for e in enums]
+    types = set().union(*names) if names else set()
+    clash = types & set().union(*(scopes_of(f) for r in names for f in r)) if names else set()
     out: dict[int, str] = {}
     for g, node in cands.items():
         canon = render_type(node)
@@ -417,7 +419,8 @@ def named_pointers(orig: asmdiff.Original, pairs: list) -> dict[int, str]:
     return out
 
 
-def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: str) -> list[str]:
+def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: str,
+                     enums: frozenset[str] = frozenset()) -> list[str]:
     """A plain pointer type's description with its CType slots from ValueOps<T> (ValueOps.h), T spelled
     `canon`; the pointer-specific slots (get, set, increment) and the getter (whose string is `name`)
     stay as they are."""
@@ -433,7 +436,7 @@ def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: 
            f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) "
            f"{{ return *base::reflection::refl_GetPointerType<UnkRefl_fn_{getter:x}>(); }}",
            f"template struct base::reflection::ValueOps<{name}>;"]
-    return type_declarations(parse_type(canon)) + out[:head] + ops + out[head:]
+    return type_declarations(parse_type(canon), enums) + out[:head] + ops + out[head:]
 
 
 def pointer_ops_names(orig: asmdiff.Original, init: int, name: str) -> dict[int, str]:
@@ -521,11 +524,13 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
                for m in ENUM_OPS_RE.finditer(f.read_text(encoding="utf-8"))}
     pairs, _, enums, _ = scan(orig)
     out = {}
-    for init, (name, _) in enum_names(orig, version, enums).items():
+    named = enum_names(orig, version, enums)
+    for init, (name, _) in named.items():
         if name in written:
             out.update(enum_ops_names(orig, init, name))
     inits = {g: i for g, _, i, _ in pairs}
-    for g, canon in named_pointers(orig, pairs).items():
+    known = frozenset(name for name, _ in named.values())
+    for g, canon in named_pointers(orig, pairs, known).items():
         if canon in written:
             out.update(pointer_ops_names(orig, inits[g], canon))
     return out
@@ -904,6 +909,8 @@ def main() -> int:
     # Enums named by their static initialisers get their value operations from ValueOps.h; a name
     # two descriptors share, or a named form that does not match, keeps the address form.
     named = enum_names(orig, args.version, enums)
+    # A pointer type's name may mention an enum (a dictionary of them): declared as the enum it is.
+    enum_names_known = frozenset(name for name, _ in named.values())
     counts: dict[str, int] = {}
     for name, _ in named.values():
         counts[name] = counts.get(name, 0) + 1
@@ -911,11 +918,11 @@ def main() -> int:
     for _, o in named.values():
         decls.add(f"extern base::reflection::CType g_unk_{o:x};")
 
-    named_ptrs = named_pointers(orig, pairs)
+    named_ptrs = named_pointers(orig, pairs, enum_names_known)
 
     def pointer_block(getter: int, name: str, init: int, body: list[str]) -> list[str]:
         if getter in named_ptrs:
-            return emit_pointer_ops(getter, name, init, body, named_ptrs[getter])
+            return emit_pointer_ops(getter, name, init, body, named_ptrs[getter], enum_names_known)
         return emit(getter, name, init, body)
 
     def enum_block(init: int, body: list[str]) -> list[str]:
