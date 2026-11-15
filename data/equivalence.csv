@@ -21,6 +21,8 @@ address,digest,verdict,rules,detail
 0x71000fef18,46e87f5e64ba9eba8d926888024b1384,pass,2,
 0x7100100088,33ef273ca2ceea46eeef3511b9c3517d,pass,2,
 0x7100110420,bfeb95e7cbcf15507626ede5eb508242,pass,2,
+0x7100110cd4,cf5d92614e119b13a89c9be7318c4615,pass,2,
+0x7100110db8,addd71e7f1aa74b44990f648d7c92585,pass,2,
 0x710011ec5c,88fe1b9031af625ce292c29badada502,pass,2,
 0x710012436c,4ccf526e05b76ea7d5a76da86a8bf0aa,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
 0x71001243ac,5082395eb2918925be5fb35b2289a792,pass,2,
@@ -45,11 +47,14 @@ address,digest,verdict,rules,detail
 0x71001d6c58,5e376fc54992238c5c6485e7a1e30ded,inconclusive,2,only 90% of the original's instructions ran
 0x71001def5c,678020462d6b9dffa6d30d8bc85a927a,inconclusive,2,only 31% of the original's instructions ran
 0x7100206078,a8a9625d4bffb020cb4358b46fa2f288,fail,2,input 2: call 0 to 0x2: argument v0 (0x41200000 vs 0x1)
+0x7100216568,9d5819b29aaa14cdffe97a1dee3d0213,pass,2,both runs faulted; on different accesses
+0x7100216698,ba9319342c60e06c89ec25a9c1c55b74,pass,2,
 0x710021688c,cbd0ad11d3e1511ce8aab8f793590b5b,pass,2,
 0x710023b424,969cca954272de5fa2098bfd510be899,pass,2,
 0x710024657c,f867b4a21c73dac11accd22bf2bd1caf,pass,2,
 0x710025fdf4,d273febb0112307f30a0f741971c9183,inconclusive,2,unresolved UnkEntry_710025fdf4::UnkEntry_710025fdf4(UnkEntry_710025fdf4 const&)
 0x710027c134,c50ebccf88a437c8062838debe803df9,inconclusive,2,only 91% of the original's instructions ran
+0x7100289ec0,403d76c2b038cd33fbe16f5fc5ddb3ff,pass,2,
 0x71002b0880,023818d70de12db412d4cb51c956c426,inconclusive,2,only 32% of the original's instructions ran
 0x71002b27d4,31c00b0999f87c5e8ab4bd7c42300e50,pass,2,
 0x71002b2f68,a24f80fcbb3b776777ba8ae3d18ee7b8,inconclusive,2,only 92% of the original's instructions ran
@@ -162,14 +167,20 @@ address,digest,verdict,rules,detail
 0x7101053aa4,bcd1548c2d7ebe19c4ae3e73ba1e9be4,pass,2,
 0x7101059530,c71253ff60d5dbd515e40c1467fa8c6b,pass,2,
 0x710106b2bc,112cf8d14fa662df9e091193279f87ae,pass,2,
+0x710106bbb4,2fd59d9e96824e543027e7b4ed2adb44,pass,2,
 0x71010bf400,b52bb19a6538b8000fcf7397bb49b128,inconclusive,2,only 17% of the original's instructions ran
 0x7101110e18,4b2fe63a056e9abba149030bf2075366,pass,2,
 0x710111c0fc,97c43128e4cb8d48d04eda9473f44f4f,inconclusive,2,only 79% of the original's instructions ran
+0x71011579c8,888c28114180fb4d4219e746f3c0f42d,pass,2,both runs were cut off
 0x710117e5b0,015028da5a71252479c1fe1d0ac23362,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x71011b7e7c,274dcd780552faf03754d378cf2de86b,pass,2,both runs were cut off
 0x71011b7fc8,870cfedad1877e58e1d6de99ffb4fd06,pass,2,both runs were cut off
+0x7101213600,42c5cc5db299421a23f866d195f9801e,pass,2,
+0x7101213640,c0efa34c44f6dca97f6d97761b538738,pass,2,
 0x7101213858,04792d204afbcaef21f98a1514806588,pass,2,
 0x7101215464,f6e5699454957d50fb6cd1edbe55d576,pass,2,
+0x710122cc20,df8a8c8fb0f263eec69993217f4be4ff,pass,2,
 0x710122f380,9f109320c45a0da48defbd67e11c068c,pass,2,
 0x710122f3f0,4c2223414cf4dc354c185f99bd8ac9e2,pass,2,
+0x71012306e0,823b02d30b3c17b5d50619b32dc6bf0a,pass,2,
 0x7101230a00,74ce25ae78de4fb1b744bd9fd1959a36,pass,2,
