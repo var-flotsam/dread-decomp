@@ -2,7 +2,7 @@
 // fn_7100ec7aec, pointer at g_unk_71729dc210). When its flag at 0x59 is set, starts an effect on the game
 // manager's effect player (fn_7101053850) at the origin, then runs the singleton's step fn_7100ec9640.
 // Names and layout are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2595.h"
 #include "game/UnkTU2656.h"

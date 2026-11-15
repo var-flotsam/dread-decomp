@@ -2,7 +2,7 @@
 // listener, releases its members, destroys the seven states and the state machine, and runs
 // the base destructor.
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderKiGrabAttack.h"
 #include "game/CPullOffGrapplePointComponent.h"

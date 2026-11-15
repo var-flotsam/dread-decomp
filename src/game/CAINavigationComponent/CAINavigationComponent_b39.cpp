@@ -2,7 +2,7 @@
 // itself from the owner of the counted link at +0x18 (fn_7101137c84) and drops the link's reference
 // (released through vtable slot 0x10 at zero); fn_71006f538c is the deleting form, freeing the object with
 // fn_7100083c00. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAINavigationComponent.h"
 #include "game/CAttackComponent.h"
 #include "types.h"

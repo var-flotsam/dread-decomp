@@ -2,7 +2,7 @@
 // of an object whose +0x10 points back at itself, with a sphere at +0x20 (game/UnkSphere.h,
 // fn_710021685c), an array at +0x80 and the value 30 at +0xc0; the same shape as unit 254's
 // (src/game/UnkUnit254/fn_71001c33cc.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU308.h"
 #include "types.h"
 
@@ -18,7 +18,7 @@ struct UnkUnit241Object {
     bool field_0x70;
     u8 pad_0x71[7];
     u64 field_0x78;
-    base::UnkVector<void*> items;  // 0x80
+    base::global::CRntVector<void*> items;  // 0x80
     u32 field_0xa8;
     u8 pad_0xac[4];
     u64 field_0xb0;
@@ -38,7 +38,7 @@ void fn_71001b3ebc(UnkUnit241Object* self) {
     fn_710021685c(self->sphere);
     self->field_0x70 = false;
     self->field_0x78 = 0;
-    new (&self->items) base::UnkVector<void*>(0xf);
+    new (&self->items) base::global::CRntVector<void*>(0xf);
     self->field_0xa8 = 0;
     self->field_0xb0 = 0;
     self->field_0xb8 = 0;

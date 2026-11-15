@@ -1,10 +1,10 @@
-// Reserve of a growable array of refcounted pointers (base::UnkVector's layout), one copy per unit
+// Reserve of a growable array of refcounted pointers (base::global::CRntVector's layout), one copy per unit
 // (CActor's, CAimComponent's and one more): when the capacity is below the request, a new array is
 // allocated, each pointer moved over (the new slot cleared, then assigned: the object's count
 // raised, the slot's previous one released; then the old slot released) and the old array freed.
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 

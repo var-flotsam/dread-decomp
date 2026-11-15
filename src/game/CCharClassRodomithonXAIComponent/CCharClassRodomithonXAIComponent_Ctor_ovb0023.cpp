@@ -2,7 +2,7 @@
 // (fn_710066faa8), the vtable g_unk_7101a5d0b8, two -1 values, an empty array with growth step 10 and
 // flags 0xf on the default allocator, the list at +0x660 (fn_7100664224), then its own vf_0x18.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkRodotukDef2;

@@ -4,7 +4,7 @@
 // and a cleared owner. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CSaveGameLogicAction.h"
 #include "game/CTriggerLogicAction.h"
@@ -20,7 +20,7 @@ struct UnkSaveGameCallable_b52;
 
 struct UnkSaveGameCallbackSet_b52 {
     void* vtable;
-    base::UnkVector<UnkSaveGameCallable_b52*> items;
+    base::global::CRntVector<UnkSaveGameCallable_b52*> items;
     u32 field_0x30;
     void* owner;
 };
@@ -40,7 +40,7 @@ void fn_7100a41410(UnkSaveGameLogicAction_b52* self) {
         base::global::UnkEnsureStringPool();
     self->id.data = &g_unk_7101d47108->empty;
     self->callbacks.vtable = g_unk_7101a20998 + 2;
-    new (&self->callbacks.items) base::UnkVector<UnkSaveGameCallable_b52*>(0xf);
+    new (&self->callbacks.items) base::global::CRntVector<UnkSaveGameCallable_b52*>(0xf);
     self->callbacks.field_0x30 = 0;
     self->callbacks.vtable = g_unk_7101a20950 + 2;
     self->callbacks.owner = nullptr;

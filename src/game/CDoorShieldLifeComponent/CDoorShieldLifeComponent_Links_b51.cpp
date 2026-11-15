@@ -1,5 +1,5 @@
 // CDoorShieldLifeComponent (unit 1377): dropping the navigation links the component added.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkNavMeshManager.h"
 
 struct UnkNode;

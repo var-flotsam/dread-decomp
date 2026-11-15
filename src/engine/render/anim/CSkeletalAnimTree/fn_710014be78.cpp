@@ -16,7 +16,7 @@ struct UnkFloatChild {
     virtual void vf_0x30(f32 arg);
 };
 
-// base::UnkVector's leading fields.
+// base::global::CRntVector's leading fields.
 template <class T>
 struct UnkChildArray {
     T** data;
@@ -157,7 +157,7 @@ void fn_7100224ebc(UnkChildOwner60* self) { PassEach<fn_710021b8e0>(self); }
 
 void fn_7100224ef4(UnkChildOwner60* self) { PassEach<fn_710021b944>(self); }
 
-// Passes each 0x48-byte element of an array (base::UnkVector's leading fields) to fn_7100119d3c
+// Passes each 0x48-byte element of an array (base::global::CRntVector's leading fields) to fn_7100119d3c
 // with a flag (fn_7100125338).
 struct UnkElem_0x48 {
     u8 data[0x48];

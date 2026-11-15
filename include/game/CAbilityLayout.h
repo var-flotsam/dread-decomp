@@ -13,7 +13,7 @@
 // The class names and sizes come from reflection (src/reflection/); the member names and everything the
 // members point to are placeholders. The owning actor (the component's +0x30) is left as the base
 // component's untyped slot: each source still reads it through its own view, until the actor has one layout.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CStrId.h"
 #include "game/UnkComponent.h"
@@ -138,7 +138,7 @@ inline T* OwnerOf(const UnkBaseComponent* component) {
 }
 
 struct CAbilityComponent : UnkBaseComponent {
-    base::UnkVector<CAbility*> abilities;  // 0x40
+    base::global::CRntVector<CAbility*> abilities;  // 0x40
     CAbility* current;                     // 0x68; the selected ability
     UnkAbilityHold hold;                   // 0x70
     UnkAbilityInputListener input;         // 0x78

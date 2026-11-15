@@ -5,7 +5,7 @@
 // of it). Written with explicit vtable stores and offset-named members, like the destructors
 // in game_5821e4/CAttackDtor.h; the base constructor (fn_710036069c) is called out of line.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CBigkranXSpitAttack.h"
 #include "types.h"
@@ -34,7 +34,7 @@ struct UnkBigkranXSpitAttack {
     u8 pad_0xcc[0x10];
     f32 field_0xdc[3];
     u64 field_0xe8[3];
-    base::UnkVector<void*> field_0x100;
+    base::global::CRntVector<void*> field_0x100;
 };
 static_assert(sizeof(UnkBigkranXSpitAttack) == 0x128, "UnkBigkranXSpitAttack layout");
 
@@ -60,5 +60,5 @@ __attribute__((always_inline)) inline void UnkBigkranXSpitAttackInit(UnkBigkranX
     self->field_0xe8[0] = 0;
     self->field_0xe8[1] = 0;
     self->field_0xe8[2] = 0;
-    new (&self->field_0x100) base::UnkVector<void*>(0xf);
+    new (&self->field_0x100) base::global::CRntVector<void*>(0xf);
 }

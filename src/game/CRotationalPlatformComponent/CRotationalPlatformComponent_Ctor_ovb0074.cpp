@@ -4,7 +4,7 @@
 // cleared word and flag, the floats 0 and -90 at +0x8c, the member at +0x98 (fn_71009d92b4), a link at
 // +0xd0 (0, the component and the callback fn_71009d9638), then the post-construction virtual call
 // (slot 3). The fields are addressed by offset. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
 #include "game/UnkTU341.h"

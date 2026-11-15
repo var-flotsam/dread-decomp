@@ -1,6 +1,6 @@
 // Destructor of a string id followed by an array of string ids (four copies).
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;

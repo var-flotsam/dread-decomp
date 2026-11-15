@@ -1,4 +1,4 @@
-// An erase by index from a base::UnkVector of owning pointers (game_s2/UnkOwnedList.h's UnkOwnedPtr,
+// An erase by index from a base::global::CRntVector of owning pointers (game_s2/UnkOwnedList.h's UnkOwnedPtr,
 // each destroyed through its vtable slot 0x10), one copy per element type: when the index is in range,
 // the entry is destroyed, each later one is moved down a slot (the moved-from slot destroyed, now
 // empty) and the count decremented; the loop is the one of fn_71005dae94. The first is in the
@@ -17,7 +17,7 @@ inline void MoveInto_b41a1(UnkOwnedPtr* dst, UnkOwnedPtr* src) {
 
 }  // namespace
 
-struct UnkOwnedPtrVector_b41a1 : base::UnkVector<UnkOwnedPtr> {};
+struct UnkOwnedPtrVector_b41a1 : base::global::CRntVector<UnkOwnedPtr> {};
 
 static inline __attribute__((always_inline)) void Erase_b41a1(UnkOwnedPtrVector_b41a1* self, const u32* index) {
     u32 at = *index;

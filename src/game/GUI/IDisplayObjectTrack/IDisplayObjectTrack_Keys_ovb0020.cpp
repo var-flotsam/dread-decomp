@@ -1,11 +1,11 @@
-// GUI::IDisplayObjectTrack unit (tools/tu_map.py unit 1671): arrays (base::UnkVector's layout) of track keys, a
+// GUI::IDisplayObjectTrack unit (tools/tu_map.py unit 1671): arrays (base::global::CRntVector's layout) of track keys, a
 // time and a float (fn_7100b172f8, fn_7100b175ec) or a flag (fn_7100b18bfc, fn_7100b18dc8): the growing element
 // accessor (an index past the end grows the array to the next multiple of the step, then to exactly index + 1,
 // filling it with zeroed keys) and the copy constructor (the capacity first, then each key appended). Elements are
 // copied bitwise, one by one. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // A key of a float track: a time and a value.
@@ -24,7 +24,7 @@ struct UnkFlagKey_ovb0020 {
     UnkFlagKey_ovb0020() : time(0), value(false) {}
 };
 
-// base::UnkVector's layout, with its own growing element accessor.
+// base::global::CRntVector's layout, with its own growing element accessor.
 template <class T>
 struct UnkKeyArray_ovb0020 {
     T* data;

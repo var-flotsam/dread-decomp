@@ -3,7 +3,7 @@
 // (fn_71010c4194); the deleting one then frees the object.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game/CCharClassShelmitAIComponent.h"
 #include "game/CCharClassSluggerSpitAttack.h"

@@ -1,7 +1,7 @@
-// UnkVector::GrowAt (base/UnkVector.h) for a polymorphic 0x88-byte element: grows the array
+// CRntVector::GrowAt (base/global/CRntVector.h) for a polymorphic 0x88-byte element: grows the array
 // past `index` when allowed and returns the element. New elements are value-initialised: zeroed,
 // then constructed by fn_71007a8db0 (the element's implicit default constructor, out of line).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkElem_0x88 {
     UnkElem_0x88(UnkElem_0x88&& other);  // fn_71007abba4
@@ -15,8 +15,8 @@ void fn_71007a8db0(UnkElem_0x88* elem);
 
 namespace {
 
-// UnkVector's private MoveTo/Reallocate for this element.
-inline void Reallocate(base::UnkVector<UnkElem_0x88>* v, u32 new_capacity) {
+// CRntVector's private MoveTo/Reallocate for this element.
+inline void Reallocate(base::global::CRntVector<UnkElem_0x88>* v, u32 new_capacity) {
     auto* p = static_cast<UnkElem_0x88*>(
         v->allocator->vf_0x40((u64)new_capacity * sizeof(UnkElem_0x88), 8, v->flags));
     if (v->data) {
@@ -37,7 +37,7 @@ inline void Reallocate(base::UnkVector<UnkElem_0x88>* v, u32 new_capacity) {
 // NON_MATCHING(minor): register allocation and scheduling only: the move loop copies the next
 // source pointer after the count compare instead of before it, and the value-initialising
 // loop swaps the registers of its counter and offset (the header's GrowAt gives the same code).
-UnkElem_0x88& fn_71007a6b58(base::UnkVector<UnkElem_0x88>* v, u32 index) {
+UnkElem_0x88& fn_71007a6b58(base::global::CRntVector<UnkElem_0x88>* v, u32 index) {
     if (v->field_0x14 && v->count <= index) {
         u32 cap = v->capacity;
         if (cap <= index && v->step != 0) {

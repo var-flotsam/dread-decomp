@@ -3,7 +3,7 @@
 // string id.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -18,7 +18,7 @@ struct UnkEntryBlock_0x60 {
     f32 field_0x14;
     bool field_0x18[14];
     bool field_0x26;
-    base::UnkVector<void*> field_0x28;
+    base::global::CRntVector<void*> field_0x28;
     void* field_0x50;
     UnkStrIdBase field_0x58;
 
@@ -38,8 +38,8 @@ struct UnkEntry_0x150 {
     u32 field_0x28;
     u32 field_0x2c;
     bool field_0x30;
-    base::UnkVector<void*> field_0x38;
-    base::UnkVector<void*> field_0x60;
+    base::global::CRntVector<void*> field_0x38;
+    base::global::CRntVector<void*> field_0x60;
     UnkEntryBlock_0x60 blocks[2];  // +0x88
 };
 
@@ -53,7 +53,7 @@ void fn_7100fd10cc(UnkEntry_0x150* self, s32 kind) {
     self->field_0x30 = false;
     self->vtable = &g_unk_7101cac0c0[2];
     self->field_0x8 = nullptr;
-    new (&self->field_0x38) base::UnkVector<void*>(0xf);
-    new (&self->field_0x60) base::UnkVector<void*>(0xf);
+    new (&self->field_0x38) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0x60) base::global::CRntVector<void*>(0xf);
     new (self->blocks) UnkEntryBlock_0x60[2];
 }

@@ -3,7 +3,7 @@
 // built and synced inline, copied to the output unless it is the output, the output synced out of
 // line, and the temporary's variant reset (state 1 owns an object, fn_7100ef1e1c destroys it and
 // fn_7100083c00 frees it). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <int Tag>

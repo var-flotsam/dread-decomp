@@ -7,7 +7,7 @@
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/operator_new.h"
 #include "types.h"
 
@@ -26,7 +26,7 @@ struct UnkRumbleEffect_b0068 {
 
 struct UnkTunableRumbleManager_b0068 {
     u8 pad_0x0[0x2158];
-    base::UnkVector<UnkRumbleEffect_b0068*> effects;  // 0x2158
+    base::global::CRntVector<UnkRumbleEffect_b0068*> effects;  // 0x2158
     u8 pad_0x2180[0x10];
     UnkBlockFreeList effect_blocks;  // 0x2190
     u8 pad_0x21b8[0x28];

@@ -4,7 +4,7 @@
 // constructor. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/SCameraRailNode.h"
 #include "game/UnkCallbackSetVector.h"
 #include "game/UnkTU341.h"
@@ -34,7 +34,7 @@ void fn_7100c0778c(void* dst, const void* src) {
 // then its own vtable and no owner.
 struct UnkCallbackSetRaw_b42a3 {
     void* vtable;
-    base::UnkVector<void*> callbacks;
+    base::global::CRntVector<void*> callbacks;
     u32 field_0x30;
     void* owner;
 };
@@ -53,7 +53,7 @@ void fn_7100c07710(UnkCameraRailNodeRaw_b42a3* self) {
     self->field_0xc = 0;
     self->field_0x10 = 0;
     self->set.vtable = g_unk_7101a20998 + 2;
-    new (&self->set.callbacks) base::UnkVector<void*>(0xf);
+    new (&self->set.callbacks) base::global::CRntVector<void*>(0xf);
     self->set.field_0x30 = 0;
     self->set.vtable = g_unk_7101a20950 + 2;
     self->set.owner = nullptr;

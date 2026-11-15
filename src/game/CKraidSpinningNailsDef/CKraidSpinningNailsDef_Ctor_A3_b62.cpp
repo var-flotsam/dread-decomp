@@ -1,7 +1,7 @@
 // CKraidSpinningNailsDef unit: fn_71005eaafc constructs a launch pattern on the shared base (constructor
 // fn_71005dbdd4, as CAcidBlobsLaunchPattern.cpp) with two growing arrays (capacity 10, growth 15, default
 // allocator) at 0xf0 and 0x118. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassKraidAttack.h"
 #include "game/CKraidSpinningNailsDef.h"
 #include "types.h"

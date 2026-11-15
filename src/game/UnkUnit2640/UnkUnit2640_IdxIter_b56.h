@@ -3,12 +3,12 @@
 // Unit 2640 (tools/tu_map.py; no reflected class): (index, element) iterators over arrays whose
 // current element is kept in a two-state variant (the shape of
 // src/game/CLightManager/UnkListIterVariantNext_b43.cpp). State 1 holds an object with an array
-// (base::UnkVector) of 0x18-byte records led by a file path id at +0x10 of the object, destroyed
+// (base::global::CRntVector) of 0x18-byte records led by a file path id at +0x10 of the object, destroyed
 // inline (the ids released, the array freed); src/game/UnkUnit2640/UnkUnit2640_VariantReset_b55.cpp
 // resets them. Sync makes the variant the pair {iterator, element} when there is an element, else
 // resets it. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkIdRecord18_b56 {
@@ -23,7 +23,7 @@ struct UnkRecordsIdxIter_b56 {
     union {
         struct {
             u8 unk_0x0[0x10];
-            base::UnkVector<UnkIdRecord18_b56> items;
+            base::global::CRntVector<UnkIdRecord18_b56> items;
             u8 unk_tail[0x20];
         } object;
         struct {

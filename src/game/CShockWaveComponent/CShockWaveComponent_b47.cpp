@@ -2,7 +2,7 @@
 // the member at 0x40 is assigned a freshly constructed one (fn_71009f35b0, fn_71009f3bf8), the node list at
 // 0x250 is freed and emptied, and the fields after it are cleared. The layout follows
 // CShockWaveComponent_2.cpp. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CComponent.h"
 #include "game/CShockWaveComponent.h"

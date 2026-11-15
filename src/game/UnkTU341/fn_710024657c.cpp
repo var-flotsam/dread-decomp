@@ -1,10 +1,10 @@
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
-using UnkSetVector_b2 = base::UnkVector<UnkHalf_cu>;
+using UnkSetVector_b2 = base::global::CRntVector<UnkHalf_cu>;
 
 static inline void EraseAt(UnkSetVector_b2* self, u32 index) {
     if (index < self->count) {

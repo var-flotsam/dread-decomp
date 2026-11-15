@@ -1,6 +1,6 @@
 // CElectricGeneratorComponent's unit (tools/tu_map.py unit 1587): the destructor (fn_7100a7c7b0: the
 // string id at +0x570, the array of string ids at +0x540, then the base destructor fn_7100a9e6bc) and
-// the element-at-index of an array of 0x188-byte records (fn_7100a7cd10, UnkVector::GrowAt; the records
+// the element-at-index of an array of 0x188-byte records (fn_7100a7cd10, CRntVector::GrowAt; the records
 // are built, moved and destroyed out of line); and the update (fn_7100a7d594): after the base update
 // (fn_7100aa3264) it raises the render parameter BLACKOUT_LEVEL's x or y (mode 0 or 1 at +0x578) to 1,
 // then places the owner's scenario object (fn_7100774014) relative to the player: the player's position
@@ -10,7 +10,7 @@
 #include <new>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "game/CCharClassStartPointComponent.h"
@@ -29,7 +29,7 @@ extern void* g_unk_7101a90bd0[];
 struct UnkElectricGenerator_ovb0120 {
     char* vtable;
     u8 pad_0x8[0x538];
-    base::UnkVector<base::UnkStrIdMember> ids;  // 0x540
+    base::global::CRntVector<base::UnkStrIdMember> ids;  // 0x540
     u8 pad_0x568[0x8];
     base::UnkStrIdMember id;  // 0x570
 };
@@ -54,7 +54,7 @@ struct UnkGeneratorRecord_ovb0120 {
     ~UnkGeneratorRecord_ovb0120() { fn_7100faa3d8(reinterpret_cast<UnkSubAreaRecord_0x188*>(this)); }
 };
 
-UnkGeneratorRecord_ovb0120* fn_7100a7cd10(base::UnkVector<UnkGeneratorRecord_ovb0120>* self, u32 index) {
+UnkGeneratorRecord_ovb0120* fn_7100a7cd10(base::global::CRntVector<UnkGeneratorRecord_ovb0120>* self, u32 index) {
     return &self->GrowAt(index);
 }
 

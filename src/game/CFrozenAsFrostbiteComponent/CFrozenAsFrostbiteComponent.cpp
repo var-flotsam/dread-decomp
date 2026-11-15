@@ -2,7 +2,7 @@
 // fn_71007f8bc0, the vtable, cleared fields, a link at +0x3c8 (owner and the callback fn_71007f5d24), the default
 // -1 values, an empty array at +0x3e8 (step 10, flags 0xf, default allocator), then the
 // post-construction virtual call (slot 3). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CFrozenComponent.h"
 #include "types.h"
 

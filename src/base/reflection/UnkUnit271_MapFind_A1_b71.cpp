@@ -2,7 +2,7 @@
 // 64-bit id (bucket = (high ^ low) % capacity over a base::global::CRntVector of buckets, next node at
 // +0x20): one hands the value found to fn_71001f9e8c with the owner, the other clears the value's
 // word at +0xc0. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU253.h"
 #include "types.h"

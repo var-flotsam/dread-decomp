@@ -5,7 +5,7 @@
 // input member (+0x210) is unregistered, the callbacks of the array at +0x1d8 run (dropping empty
 // slots), the camera is marked done (+0xbe0), the render manager is told (fn_7100219d4c) and the
 // camera key is removed from the world. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCameraCtrl.h"
 #include "game/CInputComponent.h"
@@ -48,7 +48,7 @@ struct UnkPhotoModeCameraCtrl_ovb0134 {
     u8 pad_0x20[0x90];
     UnkPhotoOwner_ovb0134* owner;  // 0xb0
     u8 pad_0xb8[0x120];
-    base::UnkVector<UnkPhotoCallback_ovb0134*> list;  // 0x1d8
+    base::global::CRntVector<UnkPhotoCallback_ovb0134*> list;  // 0x1d8
     u8 pad_0x200[0x10];
     u8 member[0x9b8];   // 0x210
     u8 saved_a[0xc];    // 0xbc8
@@ -61,7 +61,7 @@ static_assert(__builtin_offsetof(UnkPhotoModeCameraCtrl_ovb0134, angle) == 0xbe4
 
 static inline UnkPhotoCallback_ovb0134** At(UnkPhotoModeCameraCtrl_ovb0134* self, u32 i) {
     return reinterpret_cast<UnkPhotoCallback_ovb0134**>(fn_71009cb3e0(
-        reinterpret_cast<base::UnkVector<UnkFreeCameraCallback_b0058*>*>(&self->list), i));
+        reinterpret_cast<base::global::CRntVector<UnkFreeCameraCallback_b0058*>*>(&self->list), i));
 }
 
 void fn_71009cb260(UnkPhotoModeCameraCtrl_ovb0134* self) {

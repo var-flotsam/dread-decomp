@@ -1,7 +1,7 @@
 // Constructor tail of an Autclast charge attack's component: runs the base (fn_71003606c8), takes the
 // current navigation mesh of the navmesh manager (game/UnkNavMeshManager.h; created first when there
 // is none) and, given an owner's object, stores it cast to the attack class (null when it is not one).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkNavMeshManager.h"

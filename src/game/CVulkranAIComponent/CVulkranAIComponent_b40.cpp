@@ -3,7 +3,7 @@
 // its object at +0x220, resets its entries 0xb and 6 (fn_7101178e08) and sets entry 8 (fn_710117662c),
 // the third argument telling whether the object at +0x218 is in a state other than 4. Ends with
 // fn_71006dd25c. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"

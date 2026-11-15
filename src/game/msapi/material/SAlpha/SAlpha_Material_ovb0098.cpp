@@ -7,7 +7,7 @@
 
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
@@ -147,7 +147,7 @@ void fn_71001a8f48(UnkMatStage_ovb0098* self) {
 
 // ---- fn_71001a7a2c: growing a pass's stage array ----
 
-struct UnkMatStageVector_ovb0098 : base::UnkVector<UnkMatStage_ovb0098> {};
+struct UnkMatStageVector_ovb0098 : base::global::CRntVector<UnkMatStage_ovb0098> {};
 
 // Grows the array to hold n stages, moving them over and destroying the old ones.
 void fn_71001a7a2c(UnkMatStageVector_ovb0098* v, u32 n) {
@@ -176,8 +176,8 @@ extern char unk_7101a1e358[];
 struct UnkMatPass_ovb0098 {
     char* vtable;
     u64 field_0x8;
-    base::UnkVector<UnkMatPolyValue_ovb0098> values;  // 0x10
-    base::UnkVector<UnkMatPolyStage_ovb0098> stages;  // 0x38
+    base::global::CRntVector<UnkMatPolyValue_ovb0098> values;  // 0x10
+    base::global::CRntVector<UnkMatPolyStage_ovb0098> stages;  // 0x38
 };
 static_assert(sizeof(UnkMatPass_ovb0098) == 0x60, "UnkMatPass_ovb0098 placeholder layout");
 
@@ -214,8 +214,8 @@ struct UnkMaterialValues {
 };
 static_assert(sizeof(UnkMaterialValues) == 0x38, "UnkMaterialValues placeholder layout");
 
-// The array (base/UnkVector.h's layout), as src/game/msapi/material/SAlpha.cpp defines it.
-struct UnkMaterialValuesVector : base::UnkVector<UnkMaterialValues> {
+// The array (base/global/CRntVector.h's layout), as src/game/msapi/material/SAlpha.cpp defines it.
+struct UnkMaterialValuesVector : base::global::CRntVector<UnkMaterialValues> {
     // Grows the array to hold n elements, copying them over and destroying the old ones.
     void Reserve(u32 n) {
         if (capacity < n) {
@@ -265,14 +265,14 @@ struct UnkMaterialReset_ovb0098 {
     void* vtable;
     UnkCountedResource* resource;  // 0x8
     u8 pad_0x10[0x320];
-    base::UnkVector<UnkMatPolyValue_ovb0098> values;  // 0x330
-    base::UnkVector<UnkMatPolyPass_ovb0098> passes;   // 0x358
+    base::global::CRntVector<UnkMatPolyValue_ovb0098> values;  // 0x330
+    base::global::CRntVector<UnkMatPolyPass_ovb0098> passes;   // 0x358
     UnkCountedResource* field_0x380;
     UnkCountedResource* field_0x388;
     void* handle;              // 0x390
     base::UnkStrIdMember key;  // 0x398
     u8 pad_0x3a0[0x8];
-    base::UnkVector<CStrId> ids;  // 0x3a8
+    base::global::CRntVector<CStrId> ids;  // 0x3a8
 };
 static_assert(__builtin_offsetof(UnkMaterialReset_ovb0098, ids) == 0x3a8, "UnkMaterialReset_ovb0098 layout");
 
@@ -297,9 +297,9 @@ void fn_71001a6418(UnkMaterialReset_ovb0098* self) {
 // 0x358 and the ids at 0x3a8.
 struct UnkMaterial {
     u8 pad_0x0[0x358];
-    base::UnkVector<UnkMatPass_ovb0098> passes;
+    base::global::CRntVector<UnkMatPass_ovb0098> passes;
     u8 pad_0x380[0x28];
-    base::UnkVector<CStrId> ids;  // 0x3a8
+    base::global::CRntVector<CStrId> ids;  // 0x3a8
 };
 static_assert(__builtin_offsetof(UnkMaterial, ids) == 0x3a8, "UnkMaterial placeholder layout");
 
@@ -309,7 +309,7 @@ void fn_71001a76cc(UnkMaterial* self) {
         self->ids.data[i].Reset();
     self->ids.count = 0;
     for (UnkMatPass_ovb0098* p = self->passes.data; p != self->passes.data + self->passes.count; ++p)
-        fn_71001a836c(self, reinterpret_cast<base::UnkVector<u64>*>(&p->stages));
+        fn_71001a836c(self, reinterpret_cast<base::global::CRntVector<u64>*>(&p->stages));
 }
 
 // ---- fn_71001a7f50: setting a value block list's uniforms ----

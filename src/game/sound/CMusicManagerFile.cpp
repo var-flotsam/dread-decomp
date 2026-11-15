@@ -94,8 +94,8 @@ struct UnkMusicFile {
 };
 
 // The files, released before the request's name.
-struct UnkMusicFiles : base::UnkVector<UnkMusicFile> {
-    explicit UnkMusicFiles(u32 flags) : base::UnkVector<UnkMusicFile>(flags) {}
+struct UnkMusicFiles : base::global::CRntVector<UnkMusicFile> {
+    explicit UnkMusicFiles(u32 flags) : base::global::CRntVector<UnkMusicFile>(flags) {}
     ~UnkMusicFiles() { Free(); }
 };
 

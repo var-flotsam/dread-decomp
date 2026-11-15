@@ -5,7 +5,7 @@
 #include "game/UnkTU2578.h"
 #include "types.h"
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 struct UnkStruct_0x128;
 
 struct UnkUnit2596_A6_b72 {

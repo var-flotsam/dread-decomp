@@ -3,7 +3,7 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char g_unk_7101a1ecf8[];
@@ -38,8 +38,8 @@ struct UnkHolder_b0247 {
     u8 field_0xc8;
     u8 pad_0xc9[7];
     u64 field_0xd0;
-    base::UnkVector<void*> list_0xd8;
-    base::UnkVector<void*> list_0x100;
+    base::global::CRntVector<void*> list_0xd8;
+    base::global::CRntVector<void*> list_0x100;
     u8 pad_0x128[0x10];
     UnkAuxObject_b0247* aux;  // 0x138
 };
@@ -66,8 +66,8 @@ void fn_71001e74bc(UnkHolder_b0247* self) {
     self->field_0xc8 = 0;
     self->vtable = g_unk_7101a1ecf8 + 0x10;
     self->field_0xd0 = 0;
-    new (&self->list_0xd8) base::UnkVector<void*>(8);
-    new (&self->list_0x100) base::UnkVector<void*>(8);
+    new (&self->list_0xd8) base::global::CRntVector<void*>(8);
+    new (&self->list_0x100) base::global::CRntVector<void*>(8);
     UnkAuxObject_b0247* aux = static_cast<UnkAuxObject_b0247*>(fn_71000839a0(0x10, 0x38));
     fn_710020e93c(aux);
     self->aux = aux;

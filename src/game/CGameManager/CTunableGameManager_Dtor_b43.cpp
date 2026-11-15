@@ -2,7 +2,7 @@
 // record tables (at +0x8 and +0x38): each is cleared out of line (fn_7100ae31f8, fn_7100e050b0), then
 // its two arrays are freed through its allocator, the second first. Names and layouts are placeholders.
 #include "base/UnkKeyedStrIds.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "types.h"
 

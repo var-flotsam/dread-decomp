@@ -5,7 +5,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
@@ -23,7 +23,7 @@ void fn_7100e1d538(UnkUnit2560Record* self);
 struct UnkCharClassBillboardLists_ovb0020;
 void fn_71007302e4(UnkCharClassBillboardLists_ovb0020* self, char* item);
 
-// base::UnkVector's layout; the elements of the u32 and u8 arrays are copied inline.
+// base::global::CRntVector's layout; the elements of the u32 and u8 arrays are copied inline.
 template <class T>
 struct UnkArray_b218 {
     T* data;

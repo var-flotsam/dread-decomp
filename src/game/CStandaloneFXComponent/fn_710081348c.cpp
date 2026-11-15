@@ -1,7 +1,7 @@
 // Releases an object: returns the handle at field_0x38 (if any) to a lazily created manager,
 // with an id taken from the description at field_0x0, then releases the path id at field_0x8.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CStandaloneFXComponent.h"
 #include "game/UnkTU2739.h"
 #include "types.h"

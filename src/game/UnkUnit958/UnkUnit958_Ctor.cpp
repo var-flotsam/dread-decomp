@@ -3,7 +3,7 @@
 // its vtable, an empty array at +0x8 (allocator flags 0xf) reserved for 6 entries (fn_710063cb28),
 // a container at +0x30 set up by fn_710059c644, and cleared fields at +0xa0 and +0xb0. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU852.h"
 #include "game/UnkTU958.h"
 #include "types.h"

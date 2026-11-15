@@ -2,7 +2,7 @@
 // string-id nodes (base part, allocator at +0x20) and an embedded list of strings (vtable at +0x30,
 // allocator at +0x50): the strings are destroyed and freed, then the ids released and freed. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/nx/CDeviceNX.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

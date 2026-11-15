@@ -3,7 +3,7 @@
 // (fn_7100eb3814) and node destructor (fn_7100eb3d9c). Unlinks the node from its bucket, moves
 // the first non-empty bucket and first node on if they were this one's, destroys the node's
 // value and frees the node; a stale iterator is reset to the end first.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/UnkStringPool.h"
 #include "game/UnkTU2566.h"
 

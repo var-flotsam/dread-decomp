@@ -65,7 +65,7 @@ s32 fn_71001bab30(const UnkFrustumView* self, UnkBoundSphere* sphere) {
 
 // ---- The view's cull object (fn_71001b7a60) ----
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkSphere.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);

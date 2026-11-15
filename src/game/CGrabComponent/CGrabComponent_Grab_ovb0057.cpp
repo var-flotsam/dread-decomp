@@ -10,7 +10,7 @@
 
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkSList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -201,9 +201,9 @@ struct UnkGrabComponent_ovb0057 {
     u8 pad_0x8[0x28];
     UnkGrabActor_ovb0057* owner;  // 0x30
     u8 pad_0x38[0x8];
-    base::UnkVector<UnkGrabEntry_ovb0057*> field_0x40;
-    base::UnkVector<UnkGrabEntry_ovb0057*> field_0x68;
-    base::UnkVector<UnkGrabEntry_ovb0057*> field_0x90;
+    base::global::CRntVector<UnkGrabEntry_ovb0057*> field_0x40;
+    base::global::CRntVector<UnkGrabEntry_ovb0057*> field_0x68;
+    base::global::CRntVector<UnkGrabEntry_ovb0057*> field_0x90;
     bool field_0xb8;
     u8 pad_0xb9[7];
     f32 field_0xc0;
@@ -376,9 +376,9 @@ __attribute__((noinline)) void fn_710113af2c(UnkGrabParams_ovb0057* self) {
 void fn_710113adb4(UnkGrabComponent_ovb0057* self) {
     fn_71010c4148(reinterpret_cast<UnkStateObject*>(self));
     self->vtable = &g_unk_7101cb3230[2];
-    new (&self->field_0x40) base::UnkVector<UnkGrabEntry_ovb0057*>(0xf);
-    new (&self->field_0x68) base::UnkVector<UnkGrabEntry_ovb0057*>(0xf);
-    new (&self->field_0x90) base::UnkVector<UnkGrabEntry_ovb0057*>(0xf);
+    new (&self->field_0x40) base::global::CRntVector<UnkGrabEntry_ovb0057*>(0xf);
+    new (&self->field_0x68) base::global::CRntVector<UnkGrabEntry_ovb0057*>(0xf);
+    new (&self->field_0x90) base::global::CRntVector<UnkGrabEntry_ovb0057*>(0xf);
     self->field_0xb8 = false;
     self->field_0xc0 = -1.0f;
     self->field_0xc4 = 1;

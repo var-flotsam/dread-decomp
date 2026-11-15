@@ -2,7 +2,7 @@
 // moved out of an array and in an entry holder, and a named map copied. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -33,7 +33,7 @@ struct UnkPathRecord_ovb0214 {
     u32 field_0x10;
 };
 
-// The array of path records (base::UnkVector's layout; flags 0xf when created here). The tag
+// The array of path records (base::global::CRntVector's layout; flags 0xf when created here). The tag
 // constructor leaves the fields for a move constructor to fill.
 struct UnkNoInit_ovb0214 {};
 
@@ -48,8 +48,8 @@ struct UnkPathRecords_ovb0214 {
 
     explicit UnkPathRecords_ovb0214(UnkNoInit_ovb0214) {}
 
-    base::UnkVector<UnkPathRecord_ovb0214>& vec() {
-        return *reinterpret_cast<base::UnkVector<UnkPathRecord_ovb0214>*>(this);
+    base::global::CRntVector<UnkPathRecord_ovb0214>& vec() {
+        return *reinterpret_cast<base::global::CRntVector<UnkPathRecord_ovb0214>*>(this);
     }
 };
 
@@ -79,7 +79,7 @@ struct UnkRecord_ovb0214 {
     }
     UnkRecord_ovb0214& operator=(UnkRecord_ovb0214&& other) {
         field_0x0 = other.field_0x0;
-        records.vec() = static_cast<base::UnkVector<UnkPathRecord_ovb0214>&&>(other.records.vec());
+        records.vec() = static_cast<base::global::CRntVector<UnkPathRecord_ovb0214>&&>(other.records.vec());
         __builtin_memcpy(&tail, &other.tail, sizeof(tail));
         return *this;
     }
@@ -90,7 +90,7 @@ static_assert(sizeof(UnkRecord_ovb0214) == 0x50, "UnkRecord layout");
 struct UnkCollection_U2640x50_A6_b67;
 
 void fn_7100ffdac8(UnkCollection_U2640x50_A6_b67* self, u32 index) {
-    auto* v = reinterpret_cast<base::UnkVector<UnkRecord_ovb0214>*>(self);
+    auto* v = reinterpret_cast<base::global::CRntVector<UnkRecord_ovb0214>*>(self);
     if (index >= v->count)
         return;
     v->data[index].~UnkRecord_ovb0214();
@@ -175,7 +175,7 @@ struct UnkNamedMap_ovb0214 {
     base::UnkAllocator* allocator;
     u32 flags;
     u32 count;
-    base::UnkVector<void*> buckets;
+    base::global::CRntVector<void*> buckets;
     UnkMapNode_ovb0214* tail;
     UnkMapNode_ovb0214* head;
 

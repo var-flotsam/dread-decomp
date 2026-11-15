@@ -4,7 +4,7 @@
 // id at 0x10.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU83.h"
@@ -17,7 +17,7 @@ struct UnkPart0 {
 };
 inline UnkPart0::UnkPart0(const UnkPart0& other) { fn_710011d8b4(this, &other); }
 
-// base::UnkVector's layout, copied out of line.
+// base::global::CRntVector's layout, copied out of line.
 struct UnkPart48 {
     void* data;
     u32 count;
@@ -31,7 +31,7 @@ struct UnkPart48 {
 };
 inline UnkPart48::UnkPart48(const UnkPart48& other) { fn_71000cbae4(this, &other); }
 
-// base::UnkVector<u16>'s layout.
+// base::global::CRntVector<u16>'s layout.
 struct UnkU16Array {
     u16* data;
     u32 count;

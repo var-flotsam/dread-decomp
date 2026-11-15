@@ -1,11 +1,11 @@
 // CCooldownXBossLavaDropsMovementDef's unit (tools/tu_map.py): the reflected-array helpers of
-// base::global::CRntVector<CCooldownXBossLavaDropsMovementDef> (base/UnkVector.h): its begin
+// base::global::CRntVector<CCooldownXBossLavaDropsMovementDef> (base/global/CRntVector.h): its begin
 // iterator, erase, grow-to-index and copy constructor. The element is 0x18 bytes: a vtable
 // (unk_7101a3e068) and three words, of which the default constructor sets the last two (3.5, 1.0).
 // Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCooldownXBossLavaDropsMovementDef.h"
 #include "types.h"
 
@@ -49,13 +49,13 @@ struct UnkLavaMoveDefWords_ovb0072 {
 
 
 
-using UnkLavaMoveDefVector_ovb0072 = base::UnkVector<UnkLavaMoveDef_ovb0072>;
+using UnkLavaMoveDefVector_ovb0072 = base::global::CRntVector<UnkLavaMoveDef_ovb0072>;
 
-void fn_71004b2f98(const base::UnkVector<UnkLavaMoveDefWords_ovb0072>* v, base::UnkCollectionIter<UnkLavaMoveDefWords_ovb0072>* out) {
+void fn_71004b2f98(const base::global::CRntVector<UnkLavaMoveDefWords_ovb0072>* v, base::UnkCollectionIter<UnkLavaMoveDefWords_ovb0072>* out) {
     base::refl_Begin(v, out);
 }
 
-// UnkVector::EraseAt, written as fn_71004bf588 (src/game/CCooldownXBossFireBallDef/): the moved-from
+// CRntVector::EraseAt, written as fn_71004bf588 (src/game/CCooldownXBossFireBallDef/): the moved-from
 // element is destroyed through a reload of the array.
 static inline void EraseAt(UnkLavaMoveDefVector_ovb0072* self, u32 index) {
     if (index < self->count) {

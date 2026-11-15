@@ -3,7 +3,7 @@
 // its weak-reference records. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"

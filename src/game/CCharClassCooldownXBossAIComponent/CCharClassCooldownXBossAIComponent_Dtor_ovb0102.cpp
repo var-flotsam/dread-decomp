@@ -2,7 +2,7 @@
 // fn_71004ce858 constructs (src/game/CCharClassCooldownXBossAIComponent/fn_71004ce858.cpp): the
 // sub-object at +0xc78, the owned objects at +0xc40, the sub-objects from +0xb38 down to +0x528, then
 // the base destructor. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBossAIComponent.h"
 #include "game/CCharClassCooldownXBossAIComponent.h"
 #include "game/CDamageSourceFactor.h"

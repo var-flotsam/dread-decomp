@@ -5,7 +5,7 @@
 // object and fn_7100a54184. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CSPRTutoLogicAction.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU341.h"
@@ -19,13 +19,13 @@ struct UnkSPRTutoCallable_b52;
 
 struct UnkSPRTutoCallbackSet_b52 {
     void* vtable;
-    base::UnkVector<UnkSPRTutoCallable_b52*> items;
+    base::global::CRntVector<UnkSPRTutoCallable_b52*> items;
     u32 field_0x30;
     void* owner;
 
     __attribute__((always_inline)) void Init() {
         vtable = g_unk_7101a20998 + 2;
-        new (&items) base::UnkVector<UnkSPRTutoCallable_b52*>(0xf);
+        new (&items) base::global::CRntVector<UnkSPRTutoCallable_b52*>(0xf);
         field_0x30 = 0;
         vtable = g_unk_7101a20950 + 2;
         owner = nullptr;
@@ -37,7 +37,7 @@ struct UnkSPRTutoLogicAction_b52 {
     u8 unk_0x8[0x8];
     UnkSPRTutoCallbackSet_b52 first;   // 0x10
     UnkSPRTutoCallbackSet_b52 second;  // 0x50
-    base::UnkVector<void*> items;      // 0x90
+    base::global::CRntVector<void*> items;      // 0x90
     bool field_0xb8;
     bool field_0xb9;
     bool field_0xba;
@@ -60,7 +60,7 @@ __attribute__((always_inline)) static inline void Construct_b52(UnkSPRTutoLogicA
     self->vtable = g_unk_7101a8f458 + 0x10;
     self->first.Init();
     self->second.Init();
-    new (&self->items) base::UnkVector<void*>(0xf);
+    new (&self->items) base::global::CRntVector<void*>(0xf);
     self->field_0xb8 = false;
     self->field_0xb9 = true;
     self->field_0xba = false;

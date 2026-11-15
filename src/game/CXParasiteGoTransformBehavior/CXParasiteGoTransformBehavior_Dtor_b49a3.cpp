@@ -1,7 +1,7 @@
 // CXParasiteGoTransformBehavior unit (tools/tu_map.py unit 1228). fn_71007cd87c: a destructor: the
 // vtable, the array of 0x40-byte polymorphic entries at +0x60 (each destroyed through its vtable, then
 // the array freed), then the member at +0x20 (fn_710023ae38). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CXParasiteGoTransformBehavior.h"
 #include "types.h"
 
@@ -16,7 +16,7 @@ struct UnkXParasiteGoTransformBehavior_b49a3 {
     void** vtable;
     u8 pad_0x8[0x18];
     u8 field_0x20[0x40];
-    base::UnkVector<UnkGoTransformEntry_b49a3> entries;  // 0x60
+    base::global::CRntVector<UnkGoTransformEntry_b49a3> entries;  // 0x60
 };
 
 void fn_71007cd87c(UnkXParasiteGoTransformBehavior_b49a3* self) {

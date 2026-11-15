@@ -1,7 +1,7 @@
 // CPullOffGrapplePointComponent unit (tools/tu_map.py unit 1296): copies of the listener destructors in
 // src/game/CAINavigationComponent/CAINavigationComponent_b39.cpp (fn_71006f4344, fn_71006f538c) with this
 // unit's vtable and detach call (fn_7100a2d4d0). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CPullOffGrapplePointComponent.h"
 #include "game/CTimelineComponent.h"
 #include "types.h"

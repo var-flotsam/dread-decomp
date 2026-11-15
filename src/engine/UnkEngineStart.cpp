@@ -6,7 +6,7 @@
 // Names and layouts are placeholders inferred from the code.
 
 #include "base/UnkRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/file/CPackManagerDevice.h"

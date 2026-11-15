@@ -2,7 +2,7 @@
 // boss AI component's base, the vtable, an array of owned objects at +0x528 (allocator flags 4), four
 // tuning floats, the members from +0x578 (each by its own constructor), and the flags at +0x409,
 // +0x40b, +0x4dc and +0x4fc. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassHydrogigaAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
@@ -32,7 +32,7 @@ void fn_71005b23bc(void* member);
 void fn_71005b279c(void* member);
 
 struct UnkCharClassHydrogigaAIComponent : UnkBossAIComponent {
-    base::UnkVector<UnkOwnedPtr_hg> field_0x528;
+    base::global::CRntVector<UnkOwnedPtr_hg> field_0x528;
     f32 field_0x550[3];
     u8 pad_0x55c[4];
     f32 field_0x560;
@@ -51,7 +51,7 @@ struct UnkCharClassHydrogigaAIComponent : UnkBossAIComponent {
 void fn_71005b981c(UnkCharClassHydrogigaAIComponent* self) {
     fn_710041a198(self);
     self->vtable = g_unk_7101a50aa0 + 2;
-    new (&self->field_0x528) base::UnkVector<UnkOwnedPtr_hg>(4);
+    new (&self->field_0x528) base::global::CRntVector<UnkOwnedPtr_hg>(4);
     self->field_0x550[0] = 5.0f;
     self->field_0x550[1] = 5.0f;
     self->field_0x550[2] = 5.0f;

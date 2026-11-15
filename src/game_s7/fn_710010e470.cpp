@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <new>
 #include "../../lib/libcxx/sort.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkVec2_710010e470 {
@@ -82,7 +82,7 @@ void fn_710010f4b0()
 
 // ---- fn_710010d9fc: building the box tree ----
 
-// The boxes and the tree's nodes (base/UnkVector.h's layout); fn_710010e364 resizes either.
+// The boxes and the tree's nodes (base/global/CRntVector.h's layout); fn_710010e364 resizes either.
 struct UnkBoxArray_710010e470 {
     E* data;
     u32 count;

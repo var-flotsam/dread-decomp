@@ -1,13 +1,13 @@
 #pragma once
 
 // A polymorphic element holding a string id (in its base class, which has its own vtable) and
-// a T: UnkVector's resize, grow-at and copy constructor over it (fn_7100f79bb0, fn_7100f44150,
+// a T: CRntVector's resize, grow-at and copy constructor over it (fn_7100f79bb0, fn_7100f44150,
 // fn_7100f5fa48 and their copies) and insert (fn_7100f601b8). The id is held raw, as a union member, so its copy and
 // stores follow the original's order; the destructor is the vtable's second slot. Default construction zero-fills the element first, as value-initialisation does.
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -68,7 +68,7 @@ struct UnkStrIdValueElem {
 };
 
 template <class Tag, class T>
-inline void refl_StrIdValueReallocate(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
+inline void refl_StrIdValueReallocate(global::CRntVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
     using E = UnkStrIdValueElem<Tag, T>;
     E* p = static_cast<E*>(v->allocator->vf_0x40((u64)n * sizeof(E), 8, v->flags));
     if (E* s = v->data) {
@@ -84,7 +84,7 @@ inline void refl_StrIdValueReallocate(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u
 }
 
 template <class Tag, class T>
-void refl_StrIdValueResize(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
+void refl_StrIdValueResize(global::CRntVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
     using E = UnkStrIdValueElem<Tag, T>;
     if (v->capacity < n)
         refl_StrIdValueReallocate(v, n);
@@ -97,7 +97,7 @@ void refl_StrIdValueResize(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 n) {
 // refl_StrIdValueGrowAt is the out-of-line copy (fn_7100f44150 and the like).
 template <class Tag, class T>
 __attribute__((always_inline)) inline UnkStrIdValueElem<Tag, T>& refl_StrIdValueGrowAtInline(
-    UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 index) {
+    global::CRntVector<UnkStrIdValueElem<Tag, T>>* v, u32 index) {
     if (v->field_0x14 && v->count <= index) {
         u32 cap = v->capacity;
         if (cap <= index && v->step != 0) {
@@ -111,7 +111,7 @@ __attribute__((always_inline)) inline UnkStrIdValueElem<Tag, T>& refl_StrIdValue
 }
 
 template <class Tag, class T>
-UnkStrIdValueElem<Tag, T>& refl_StrIdValueGrowAt(UnkVector<UnkStrIdValueElem<Tag, T>>* v, u32 index) {
+UnkStrIdValueElem<Tag, T>& refl_StrIdValueGrowAt(global::CRntVector<UnkStrIdValueElem<Tag, T>>* v, u32 index) {
     return refl_StrIdValueGrowAtInline(v, index);
 }
 
@@ -120,7 +120,7 @@ UnkStrIdValueElem<Tag, T>& refl_StrIdValueGrowAt(UnkVector<UnkStrIdValueElem<Tag
 // grow-at accessor on both sides, Traits::grow_at: inline for some element types, an out-of-line
 // copy (fn_7100f44150 and the like) for the others.
 template <class Tag, class T>
-__attribute__((always_inline)) inline void refl_StrIdValueAssign(UnkVector<UnkStrIdValueElem<Tag, T>>* self, UnkVector<UnkStrIdValueElem<Tag, T>>* other) {
+__attribute__((always_inline)) inline void refl_StrIdValueAssign(global::CRntVector<UnkStrIdValueElem<Tag, T>>* self, global::CRntVector<UnkStrIdValueElem<Tag, T>>* other) {
     using Traits = UnkStrIdValueTraits<Tag>;
     u32 n = other->count;
     if (self->count < n) {
@@ -135,8 +135,8 @@ __attribute__((always_inline)) inline void refl_StrIdValueAssign(UnkVector<UnkSt
 }
 
 template <class Tag, class T>
-void refl_StrIdValueVecCopy(UnkVector<UnkStrIdValueElem<Tag, T>>* self,
-                            const UnkVector<UnkStrIdValueElem<Tag, T>>* other) {
+void refl_StrIdValueVecCopy(global::CRntVector<UnkStrIdValueElem<Tag, T>>* self,
+                            const global::CRntVector<UnkStrIdValueElem<Tag, T>>* other) {
     using E = UnkStrIdValueElem<Tag, T>;
     self->data = nullptr;
     self->count = 0;
@@ -152,11 +152,11 @@ void refl_StrIdValueVecCopy(UnkVector<UnkStrIdValueElem<Tag, T>>* self,
 }
 
 // Copies `value` in at `index`, shifting the later elements up (fn_7100f601b8 and its copies).
-// Appending grows like UnkVector::PushBack, hang included; each branch constructs the element
+// Appending grows like CRntVector::PushBack, hang included; each branch constructs the element
 // itself. A copy that calls its push-back for the append (fn_7100f5ff2c) allocates one register
 // differently in the shared tail and isn't matched yet.
 template <class Tag, class T>
-void refl_StrIdValueInsert(UnkVector<UnkStrIdValueElem<Tag, T>>* v, const UnkStrIdValueElem<Tag, T>& value,
+void refl_StrIdValueInsert(global::CRntVector<UnkStrIdValueElem<Tag, T>>* v, const UnkStrIdValueElem<Tag, T>& value,
                            u32 index) {
     using E = UnkStrIdValueElem<Tag, T>;
     u32 cap = v->capacity;

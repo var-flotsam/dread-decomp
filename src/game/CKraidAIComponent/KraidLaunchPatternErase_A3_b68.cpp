@@ -5,7 +5,7 @@
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
-struct UnkOwnedPtrVector_A3_b68 : base::UnkVector<UnkOwnedPtr> {};
+struct UnkOwnedPtrVector_A3_b68 : base::global::CRntVector<UnkOwnedPtr> {};
 
 static inline __attribute__((always_inline)) void Erase_A3_b68(UnkOwnedPtrVector_A3_b68* self, const u32* index) {
     u32 at = *index;

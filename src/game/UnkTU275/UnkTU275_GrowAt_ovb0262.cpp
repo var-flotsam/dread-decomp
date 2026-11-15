@@ -1,7 +1,7 @@
 // Unit 275: the element accessor of a growable array of 16-byte elements that are copied word by
-// word and start out zeroed (base/UnkVector.h, GrowAt). Names are placeholders.
+// word and start out zeroed (base/global/CRntVector.h, GrowAt). Names are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 typedef u32 __attribute__((may_alias)) a_u32_ovb0262r;
@@ -21,4 +21,4 @@ struct UnkWords_ovb0262r {
     }
 };
 
-UnkWords_ovb0262r* fn_71001f7f78(base::UnkVector<UnkWords_ovb0262r>* self, u32 index) { return &self->GrowAt(index); }
+UnkWords_ovb0262r* fn_71001f7f78(base::global::CRntVector<UnkWords_ovb0262r>* self, u32 index) { return &self->GrowAt(index); }

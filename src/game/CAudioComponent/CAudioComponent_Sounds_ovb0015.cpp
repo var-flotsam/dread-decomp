@@ -8,7 +8,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CAudioComponent.h"
@@ -288,7 +288,7 @@ struct UnkAudioLink_ovb0015 {
 };
 static_assert(sizeof(UnkAudioLink_ovb0015) == 0xb0, "UnkAudioLink_ovb0015 layout");
 
-// The engine's growable array (base/UnkVector.h) over the slots and the links.
+// The engine's growable array (base/global/CRntVector.h) over the slots and the links.
 template <class T>
 struct UnkAudioVector_ovb0015 {
     T* data;

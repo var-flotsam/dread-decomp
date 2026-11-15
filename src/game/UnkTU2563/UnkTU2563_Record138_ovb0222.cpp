@@ -1,10 +1,10 @@
 // CMinimapData's unit (tools/tu_map.py unit 2563, no reliable name): sets the record at an index in a
-// base::UnkVector of 0x138-byte area records (destructor fn_7100e4e310 and move constructor fn_7100e51078,
+// base::global::CRntVector of 0x138-byte area records (destructor fn_7100e4e310 and move constructor fn_7100e51078,
 // both out of line): the array grows to the index (moving the records over) and the record is copy-assigned
 // member by member. Names and layouts are placeholders (siblings: src/game/CMinimapData/).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2563.h"
 #include "types.h"
@@ -36,7 +36,7 @@ struct alignas(8) UnkRecord138_ovb0222 {
 };
 static_assert(sizeof(UnkRecord138_ovb0222) == 0x138, "layout");
 
-void fn_7100e62084(base::UnkVector<UnkRecord138_ovb0222>* self, const u32* indexp, const UnkRecord138_ovb0222* item) {
+void fn_7100e62084(base::global::CRntVector<UnkRecord138_ovb0222>* self, const u32* indexp, const UnkRecord138_ovb0222* item) {
     u32 index = *indexp;
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;

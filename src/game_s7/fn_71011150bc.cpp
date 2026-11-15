@@ -3,7 +3,7 @@
 // at the first element or one past the last, its cached value re-pointed by the iterator's sync
 // function), Reserve, Truncate, Erase and Insert of a moved element.
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CChangeStateDoorsLogicAction.h"
 #include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkCallbackSetVector.h"

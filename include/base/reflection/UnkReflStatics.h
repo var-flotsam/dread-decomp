@@ -5,7 +5,7 @@
 // registered with __cxa_atexit. G is a tag naming one instantiation (tools/gen_statics.py);
 // UnkReflStatic<G> gives its constants.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkTimelineCalls.h"
@@ -77,7 +77,7 @@ UnkReflObject* refl_FindTypedHidden(void* owner) {
 
 // A list that items register themselves in (allocation flags 0xf, not the default 0x3e).
 struct UnkReflRegistry {
-    base::UnkVector<void*> items;
+    base::global::CRntVector<void*> items;
 
     explicit UnkReflRegistry(u32 flags) : items(flags) {}
     ~UnkReflRegistry();

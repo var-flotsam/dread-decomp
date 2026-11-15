@@ -4,7 +4,7 @@
 // 0x7100537bf0-0x710056a378). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkListedItem;
@@ -43,5 +43,5 @@ extern void* g_unk_7101a48c20[];
 extern char g_unk_71726e20a8[] __attribute__((visibility("hidden")));
 void fn_7100546a30(UnkEmmyRelaxAI_b59* self, u32 state, UnkActor* other, void* arg);
 extern base::global::CStrId g_unk_71726e1f68 __attribute__((visibility("hidden")));
-base::UnkVector<UnkListedItem*>* fn_7100552d7c();
+base::global::CRntVector<UnkListedItem*>* fn_7100552d7c();
 void fn_71005479a0(UnkEmmyRelaxAI_b59* self);

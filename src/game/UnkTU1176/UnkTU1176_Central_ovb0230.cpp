@@ -10,7 +10,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/CClass.h"
@@ -69,7 +69,7 @@ struct UnkEntry_cu {
     u8 data[0x80];
     ~UnkEntry_cu() asm("fn_7100778228");
 };
-void fn_710077a630(base::UnkVector<UnkEntry_cu>* self, u32 n);
+void fn_710077a630(base::global::CRntVector<UnkEntry_cu>* self, u32 n);
 
 __attribute__((always_inline)) static inline void DestroyEntry_b0230(UnkSetPair_b0230* pair) {
     reinterpret_cast<UnkEntry_cu*>(pair)->~UnkEntry_cu();
@@ -84,7 +84,7 @@ void CopyPair_b0230(UnkSetPair_b0230* self, const UnkSetPair_b0230* other) {
     new (self) UnkSetPair_b0230(*other);
 }
 
-void fn_710077a700(base::UnkVector<UnkEntry_cu>* vec, const UnkEntry_cu* element) {
+void fn_710077a700(base::global::CRntVector<UnkEntry_cu>* vec, const UnkEntry_cu* element) {
     UnkPairVec_b0230* self = reinterpret_cast<UnkPairVec_b0230*>(vec);
     const UnkSetPair_b0230* value = reinterpret_cast<const UnkSetPair_b0230*>(element);
     u32 n = self->count;
@@ -120,7 +120,7 @@ void fn_710077a700(base::UnkVector<UnkEntry_cu>* vec, const UnkEntry_cu* element
 
 // Makes the array hold `n` entries, default-constructing the new ones (after fn_710077a630 has made room).
 void fn_710077ae90(UnkPairVec_b0230* self, u32 n) {
-    fn_710077a630(reinterpret_cast<base::UnkVector<UnkEntry_cu>*>(self), n);
+    fn_710077a630(reinterpret_cast<base::global::CRntVector<UnkEntry_cu>*>(self), n);
     for (u32 i = self->count; i < n; ++i)
         new (&self->data[i]) UnkSetPair_b0230();
     self->count = n;
@@ -566,7 +566,7 @@ void fn_7100775358(UnkCentralUnit_b49* unit) {
 void fn_710077a96c(UnkPairVec_b0230* self, const UnkSetPair_b0230* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_710077a700(reinterpret_cast<base::UnkVector<UnkEntry_cu>*>(self), reinterpret_cast<const UnkEntry_cu*>(value));
+        fn_710077a700(reinterpret_cast<base::global::CRntVector<UnkEntry_cu>*>(self), reinterpret_cast<const UnkEntry_cu*>(value));
         return;
     }
     u32 cap = self->capacity;

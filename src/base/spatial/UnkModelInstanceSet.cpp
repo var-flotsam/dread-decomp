@@ -8,7 +8,7 @@
 
 #include "base/UnkCountedResource.h"
 #include "base/UnkPairArrays.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU324.h"

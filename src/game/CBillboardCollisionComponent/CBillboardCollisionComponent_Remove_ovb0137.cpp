@@ -1,7 +1,7 @@
 // CBillboardCollisionComponent's unit (tools/tu_map.py): taking an entry out of the flat map at +0x140 (as src/game/CBillboardCollisionComponent/CBillboardCollisionComponent_Move_b66a4.cpp moves one) and the per-frame placement of the colliders.
 // Names and layouts are placeholders.
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU1159.h"
@@ -11,7 +11,7 @@
 
 struct UnkClone_fn_710008c504;
 using UnkCounter_b66a4 = UnkCloneElem<UnkClone_fn_710008c504, 4>;
-extern template UnkCounter_b66a4& base::UnkVector<UnkCounter_b66a4>::GrowAt(u32);
+extern template UnkCounter_b66a4& base::global::CRntVector<UnkCounter_b66a4>::GrowAt(u32);
 
 struct UnkBillboardInfo_ovb0137 {
     u8 pad_0x0[0x20];
@@ -98,7 +98,7 @@ struct UnkBillboardCollision_ovb0137 {
     u8 pad_0x0[0x30];
     UnkBillboardOwner_ovb0137* owner;  // 0x30
     u8 pad_0x38[0x10];
-    base::UnkVector<UnkCollisionRecord> records;  // 0x48
+    base::global::CRntVector<UnkCollisionRecord> records;  // 0x48
     u8 pad_0x70[0x58];
     bool enabled;  // 0xc8
     u8 pad_0xc9[0x67];
@@ -106,8 +106,8 @@ struct UnkBillboardCollision_ovb0137 {
     UnkBillboardSet_ovb0137* field_0x138;
     UnkBillboardMap_ovb0137 map;  // 0x140
     u8 pad_0x158[0x10];
-    base::UnkVector<UnkEntry*> removed;  // 0x168
-    base::UnkVector<UnkCounter_b66a4> counters;  // 0x190
+    base::global::CRntVector<UnkEntry*> removed;  // 0x168
+    base::global::CRntVector<UnkCounter_b66a4> counters;  // 0x190
 };
 
 // Takes the entry at `p` out of the map: it goes on the removed list, its bucket's counter drops, it

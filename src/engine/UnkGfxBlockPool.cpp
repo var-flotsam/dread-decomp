@@ -3,7 +3,7 @@
 // whose first g_unk_716e29ab40 entries are the live ones (src/game_lo/fn_71001541a0.cpp returns a
 // record to the pool). fn_7100153f40 creates the pool during the device set-up (fn_71001587f0).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU174.h"
 #include "types.h"
 

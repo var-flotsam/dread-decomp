@@ -4,7 +4,7 @@
 // then the base destructor (fn_71009516e0) runs. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern void* g_unk_7101a849b8[];  // vtable

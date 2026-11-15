@@ -3,7 +3,7 @@
 // src/base/UnkTunableRegistry.cpp), unless the id is the empty one. Names and layouts are placeholders.
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU99.h"

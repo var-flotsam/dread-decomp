@@ -1,7 +1,7 @@
 // The destructors of two reflected classes with the same members (tools/tu_map.py: COffset
-// fn_710060ef24, CTentacle fn_7100708a38): after the vtable, the string-id array at +0x10 (UnkVector) is
+// fn_710060ef24, CTentacle fn_7100708a38): after the vtable, the string-id array at +0x10 (CRntVector) is
 // freed, then the string id at +0x8 released. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -31,7 +31,7 @@ template <int Which>
 struct UnkNamedIdList_b65a4 {
     void** vtable;
     UnkReleasedId_b65a4 name;                    // 0x8
-    base::UnkVector<UnkReleasedId_b65a4> ids;    // 0x10
+    base::global::CRntVector<UnkReleasedId_b65a4> ids;    // 0x10
 
     __attribute__((always_inline)) ~UnkNamedIdList_b65a4() {
         vtable = reinterpret_cast<void**>(

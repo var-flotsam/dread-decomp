@@ -1,7 +1,7 @@
 // Unit 88 (tools/tu_map.py): adds a value at the front of (fn_71000ea374) and removes the first node of a singly linked queue (count +0x150, head +0x158,
 // tail +0x160), freeing it through the allocator at +0x168; the tail follows the head when the queue
 // empties. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkQueueNode_b47 {
     void* value;

@@ -1,7 +1,7 @@
 // The logic path's unit (SLogicPathNode; translation unit 2657 of data/tu_map.csv): a path holds
 // an array of 0x20-byte polymorphic nodes whose vf_0x18 gives the node's position.
 // fn_7101059530 measures the path up to a node.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "types.h"
 
@@ -22,7 +22,7 @@ static_assert(sizeof(UnkLogicPathNode) == 0x20, "UnkLogicPathNode layout");
 
 struct UnkLogicPath {
     void** vtable;
-    base::UnkVector<UnkLogicPathNode> nodes;
+    base::global::CRntVector<UnkLogicPathNode> nodes;
 };
 
 static inline f32 Distance(const CVector3D* a, const CVector3D* b) {

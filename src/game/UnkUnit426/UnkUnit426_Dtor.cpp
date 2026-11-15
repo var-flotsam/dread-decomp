@@ -4,7 +4,7 @@
 // +0x10 (fn_71002f6ac0, the buffer at +0x10, the allocator at +0x30). Names and layouts are
 // placeholders.
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU426.h"
 #include "types.h"
 

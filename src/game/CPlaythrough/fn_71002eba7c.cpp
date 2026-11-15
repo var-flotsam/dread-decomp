@@ -4,7 +4,7 @@
 // growable array of ids (+0xb0, flags 0xf). The base's constructor (fn_7100016ad8) runs first.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -35,7 +35,7 @@ struct UnkIdHolder {
     CFilePathStrId field_0x68;
     UnkModeArray field_0x70;
     CStrId field_0xa8;
-    base::UnkVector<void*> field_0xb0;
+    base::global::CRntVector<void*> field_0xb0;
     u64 field_0xd8;
     u64 field_0xe0[2];
     u64 field_0xf0;
@@ -57,7 +57,7 @@ void fn_71002eba7c(UnkIdHolder* self) {
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->field_0xa8.data = &g_unk_7101d47108->empty;
-    new (&self->field_0xb0) base::UnkVector<void*>(0xf);
+    new (&self->field_0xb0) base::global::CRntVector<void*>(0xf);
     self->field_0xd8 = 0;
     self->field_0xf0 = 0;
     self->field_0xf8 = 0;

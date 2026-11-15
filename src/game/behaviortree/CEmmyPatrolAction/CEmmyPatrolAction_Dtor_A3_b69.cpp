@@ -6,7 +6,7 @@
 // elements at +0x18); then the base's destructor fn_7100393ea0. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkNodeOwner.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/behaviortree/CBaseAction.h"
 #include "game/behaviortree/CEmmyPatrolAction.h"
 #include "types.h"
@@ -36,7 +36,7 @@ struct UnkPatrolMemberElem_A3_b69 {
 
 struct UnkPatrolMemberVector_A3_b69 {
     static void Release(char* self) {
-        reinterpret_cast<base::UnkVector<UnkPatrolMemberElem_A3_b69>*>(self + 0x18)->Free();
+        reinterpret_cast<base::global::CRntVector<UnkPatrolMemberElem_A3_b69>*>(self + 0x18)->Free();
     }
 };
 
@@ -66,7 +66,7 @@ struct UnkPatrolRegistration_A3_b69 {
 
 template <u32 Offset>
 struct UnkPatrolValues_A3_b69 {
-    static void Release(char* self) { reinterpret_cast<base::UnkVector<u64>*>(self + Offset)->Free(); }
+    static void Release(char* self) { reinterpret_cast<base::global::CRntVector<u64>*>(self + Offset)->Free(); }
 };
 
 __attribute__((always_inline)) inline void UnkPatrolNoNodeDtor_A3_b69(UnkListNode<8>*) {}

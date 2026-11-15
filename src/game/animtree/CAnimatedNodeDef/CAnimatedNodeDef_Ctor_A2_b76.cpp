@@ -6,7 +6,7 @@
 // src/reflection/animtree_CAnimatedNodeDef.cpp declares. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/animtree/CAnimatedNodeDef.h"
 
@@ -16,8 +16,8 @@ struct UnkAnimatedNodeDef_A2_b76 {
     char* vtable;
     CStrId name;                      // 0x8
     u64 field_0x10;
-    base::UnkVector<u64> field_0x18;  // 0x18
-    base::UnkVector<u64> field_0x40;  // 0x40
+    base::global::CRntVector<u64> field_0x18;  // 0x18
+    base::global::CRntVector<u64> field_0x40;  // 0x40
     u64 field_0x68;
 };
 
@@ -27,6 +27,6 @@ void fn_71002d403c_A2_b76(UnkAnimatedNodeDef_A2_b76* self) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a21718) + 0x10;
     new (&self->name) CStrId(g_unk_7101d470e0);
     self->vtable = reinterpret_cast<char*>(g_unk_7101a216e8) + 0x10;
-    new (&self->field_0x18) base::UnkVector<u64>(0xf);
-    new (&self->field_0x40) base::UnkVector<u64>(0xf);
+    new (&self->field_0x18) base::global::CRntVector<u64>(0xf);
+    new (&self->field_0x40) base::global::CRntVector<u64>(0xf);
 }

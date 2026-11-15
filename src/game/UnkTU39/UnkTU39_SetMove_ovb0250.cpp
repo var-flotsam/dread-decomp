@@ -6,16 +6,16 @@
 
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
-using base::UnkVector;
+using base::global::CRntVector;
 
 void fn_710003017c(UnkDeferredSet<UnkDeferredCallback<f32>>* self, UnkDeferredSet<UnkDeferredCallback<f32>>* other) {
-    new (&self->items) UnkVector<UnkDeferredCallback<f32>*>(0xf);
-    new (&self->pending_add) UnkVector<UnkDeferredCallback<f32>*>(0xf);
-    new (&self->pending_remove) UnkVector<UnkDeferredCallback<f32>*>(0xf);
+    new (&self->items) CRntVector<UnkDeferredCallback<f32>*>(0xf);
+    new (&self->pending_add) CRntVector<UnkDeferredCallback<f32>*>(0xf);
+    new (&self->pending_remove) CRntVector<UnkDeferredCallback<f32>*>(0xf);
     self->locked = other->locked;
     for (UnkDeferredCallback<f32>**it = other->items.data, **end = it + other->items.count; it != end; ++it) {
         UnkDeferredCallback<f32>* cb = *it;

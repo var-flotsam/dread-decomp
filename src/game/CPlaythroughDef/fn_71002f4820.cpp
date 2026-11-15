@@ -3,7 +3,7 @@
 // third empty-string id at +0xa0 and a growable array at +0xa8 (flags 0xf).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CPlaythroughDef.h"
@@ -18,7 +18,7 @@ struct UnkStorage {
     u32 field_0x50;
     u8 pad_0x54[4];
     UnkStringData* field_0x58;
-    base::UnkVector<void*> field_0x60;
+    base::global::CRntVector<void*> field_0x60;
 };
 
 struct UnkNode {
@@ -50,5 +50,5 @@ void fn_71002f4820(UnkNode* self) {
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
     self->field_0x48.field_0x58 = &g_unk_7101d47108->empty;
-    new (&self->field_0x48.field_0x60) base::UnkVector<void*>(0xf);
+    new (&self->field_0x48.field_0x60) base::global::CRntVector<void*>(0xf);
 }

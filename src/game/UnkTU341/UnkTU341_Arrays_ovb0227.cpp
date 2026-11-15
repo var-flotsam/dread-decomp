@@ -1,4 +1,4 @@
-// Unit 341 (no reliable name; hint 'CActor'): insertion into engine arrays (base::UnkVector's layout) of
+// Unit 341 (no reliable name; hint 'CActor'): insertion into engine arrays (base::global::CRntVector's layout) of
 // ref-counted pointers (fn_7100241ddc, fn_7100241fbc; growth out of line in fn_7100241b30) and of callback
 // sets (vtable 0x7101a20950, 0x40 bytes; Insert, GrowAt and the copying insert fn_7100246eb8 grow in place,
 // moving elements with the set's move constructor fn_71002458a4 and destroying them through its first
@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkCallbackSet_7101a20950.h"
@@ -202,7 +202,7 @@ struct UnkEntry_b41a1;
 void fn_7100246eb8(UnkSetArray* self, const UnkCallbackSet_7101a20950* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_7100246ba8(reinterpret_cast<base::UnkVector<UnkEntry_b41a1>*>(self),
+        fn_7100246ba8(reinterpret_cast<base::global::CRntVector<UnkEntry_b41a1>*>(self),
                       reinterpret_cast<const UnkEntry_b41a1*>(value));
         return;
     }
@@ -231,7 +231,7 @@ using base::global::CRntString;
 
 void fn_7100228ca0(base::reflection::UnkReflList<CRntString>* self, const CRntString* items, u64 size, u32 step,
                    base::UnkAllocator* allocator, u32 flags) {
-    auto* v = reinterpret_cast<base::UnkVector<CRntString>*>(self);
+    auto* v = reinterpret_cast<base::global::CRntVector<CRntString>*>(self);
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

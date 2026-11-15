@@ -7,7 +7,7 @@
 // Names and layouts are placeholders.
 #include "../../game_s7/UnkPropBagS7.h"
 #include "base/UnkAtExit.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/CPackManagerDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"

@@ -2,7 +2,7 @@
 // the base constructor fn_71009000bc, its vtable (g_unk_7101a80ed8), two arrays (flags 0xf) around a
 // string-id list (fn_710090b950, refl_StrIdListCtor), a copy of the empty string id, a few cleared
 // members, then the object's own slot 3 (vf_0x18). Names and layout are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassWaterPoolComponent.h"
 #include "types.h"
@@ -38,7 +38,7 @@ struct UnkWaterPoolComponent_b53 {
     bool field_0xd48;
 };
 
-// An array (base/UnkVector.h, flags 0xf) built in place member by member: written as flat members, the
+// An array (base/global/CRntVector.h, flags 0xf) built in place member by member: written as flat members, the
 // flag at +0x14 is stored at its own offset rather than through the array's base address.
 #define INIT_ARRAY_B53(o)                          \
     self->field_##o##_data = nullptr;              \

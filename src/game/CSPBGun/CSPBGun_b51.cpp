@@ -2,7 +2,7 @@
 // the effect cache of the lazily created model manager, once (flag at +0x1870). Names and layouts
 // are placeholders. fn_710085e328 unregisters them again.
 #include "base/global/CFilePathStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU2739.h"

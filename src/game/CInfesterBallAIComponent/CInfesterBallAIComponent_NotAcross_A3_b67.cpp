@@ -2,7 +2,7 @@
 // is not on a navigation-mesh side whose neighbouring cell is `cell`: true without movement, without a
 // valid hit (virtual 0x2d8) or without a mesh. UnkNavMeshHit as in src/game/navmesh/CNavMesh.cpp.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkNavMeshCell.h"

@@ -1,5 +1,5 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100eef488: finds the entry of the array at +0x888 (owned entries of 0x30 bytes) whose key is the argument's, else builds one (fn_7100f9e7fc) and inserts it at the given index (fn_7100ef1f24), or appends it when the key's count at +0x30 equals the array's. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkNamedIds;
@@ -40,13 +40,13 @@ struct UnkEntry_b190 {
 
 struct UnkSubAreaMgr_b190 {
     u8 pad_0x0[0x888];
-    base::UnkVector<UnkOwnedEntry_b190> entries;  // 0x888
+    base::global::CRntVector<UnkOwnedEntry_b190> entries;  // 0x888
 };
 static_assert(__builtin_offsetof(UnkSubAreaMgr_b190, entries) == 0x888, "layout");
 
-UnkOwnedEntry_b190& fn_7100eef244(base::UnkVector<UnkOwnedEntry_b190>* v, u32 index);
+UnkOwnedEntry_b190& fn_7100eef244(base::global::CRntVector<UnkOwnedEntry_b190>* v, u32 index);
 void fn_7100f9e7fc(UnkEntry_b190* self, const UnkKeyRef_b190* key);
-void fn_7100ef1f24(base::UnkVector<UnkOwnedEntry_b190>* v, UnkOwnedEntry_b190&& value, u32 index);
+void fn_7100ef1f24(base::global::CRntVector<UnkOwnedEntry_b190>* v, UnkOwnedEntry_b190&& value, u32 index);
 
 void* fn_7100eef488(char* self, u32 index, void* arg) {
     UnkSubAreaMgr_b190* mgr = reinterpret_cast<UnkSubAreaMgr_b190*>(self);

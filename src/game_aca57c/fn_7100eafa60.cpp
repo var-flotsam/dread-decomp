@@ -1,9 +1,9 @@
-// Copy constructor of an array (base::UnkVector's layout) of string ids with two values each,
+// Copy constructor of an array (base::global::CRntVector's layout) of string ids with two values each,
 // through an out-of-line Reserve (fn_7100b48af4): takes the source's settings, reserves its
 // capacity and appends each element, growing like PushBack (including its hang).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU1689.h"
 #include "types.h"

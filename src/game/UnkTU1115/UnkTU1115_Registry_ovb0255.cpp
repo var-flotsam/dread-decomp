@@ -5,7 +5,7 @@
 // constructor (fn_71006f8ca0), an object constructor (fn_71006f84a8) and the count of entries over
 // copies of the records (fn_71006fa894). Names and layouts are placeholders.
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU1115.h"
 #include "types.h"
@@ -32,8 +32,8 @@ struct UnkRegObj_b0255 {
     u32 id;                              // 0x8
     u32 field_0xc;                       // 0xc
     base::global::CStrId name;           // 0x10
-    base::UnkVector<u32> ids;            // 0x18
-    base::UnkVector<u64> names_storage;  // 0x40, a base::UnkStrIdVec
+    base::global::CRntVector<u32> ids;            // 0x18
+    base::global::CRntVector<u64> names_storage;  // 0x40, a base::UnkStrIdVec
     UnkRegistry_b0255* registry;         // 0x68
 
     base::UnkStrIdVec& names() { return *reinterpret_cast<base::UnkStrIdVec*>(&names_storage); }
@@ -57,9 +57,9 @@ struct UnkRegistry_b0255 {
     u8 field_0x10;                              // 0x10
     UnkTable_b0255 records;                     // 0x18
     UnkPairVec_b0255 index;                     // 0x40
-    base::UnkVector<UnkRegObj_b0255*> objects;  // 0x68
+    base::global::CRntVector<UnkRegObj_b0255*> objects;  // 0x68
     u64 field_0x90;                             // 0x90
-    base::UnkVector<u32> field_0x98;            // 0x98
+    base::global::CRntVector<u32> field_0x98;            // 0x98
     u32 field_0xc0;                             // 0xc0
     u32 field_0xc4;                             // 0xc4
     void* graph;                                // 0xc8
@@ -111,8 +111,8 @@ struct UnkIdMap_b0255 {
     u8 unk_0x0[8];
     u32 index;                     // 0x8
     u64 key;                       // 0x10
-    base::UnkVector<u32> indices;  // 0x18
-    base::UnkVector<u64> ids;      // 0x40
+    base::global::CRntVector<u32> indices;  // 0x18
+    base::global::CRntVector<u64> ids;      // 0x40
     UnkIdMapOwner_b0255* owner;    // 0x68
 };
 static_assert(__builtin_offsetof(UnkIdMap_b0255, owner) == 0x68, "layout");
@@ -189,7 +189,7 @@ void fn_71006f8ca0(UnkRegistry_b0255* self, UnkRegistry_b0255* other) {
 
 // Constructs an object over copies of the given names and ids.
 void fn_71006f84a8(UnkRegObj_b0255* self, UnkRegistry_b0255* registry, const base::global::CStrId* name, u32 id,
-                   const base::UnkStrIdVec* names, const base::UnkVector<u32>* ids, u32 field_0xc) {
+                   const base::UnkStrIdVec* names, const base::global::CRntVector<u32>* ids, u32 field_0xc) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a6b7f8) + 0x10;
     self->id = id;
     self->field_0xc = field_0xc;
@@ -210,10 +210,10 @@ void fn_71006f84a8(UnkRegObj_b0255* self, UnkRegistry_b0255* registry, const bas
 
 // The number of entries in all the records, counted over copies of them (the records are arrays of arrays).
 struct UnkInnerVec {
-    base::UnkVector<u32> v;
+    base::global::CRntVector<u32> v;
     ~UnkInnerVec() { v.Free(); }
 };
-typedef base::UnkVector<UnkInnerVec> UnkOuterVec;
+typedef base::global::CRntVector<UnkInnerVec> UnkOuterVec;
 void fn_71006fb3f4(UnkOuterVec* self, const UnkOuterVec* other);
 
 struct UnkRecord_b0255 {

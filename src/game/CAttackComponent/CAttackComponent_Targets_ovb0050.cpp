@@ -5,13 +5,13 @@
 // pointer to the arrays): once the counter is back to zero, the entries recorded at +0x28 leave the
 // array at +0x50 and those at +0x0 join it, and both are emptied. Elements are read through the
 // array's out-of-line accessor fn_71011384e0. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkAttackTargets_ovb0050 {
-    base::UnkVector<void*> field_0x0;
-    base::UnkVector<void*> field_0x28;
-    base::UnkVector<void*> field_0x50;
+    base::global::CRntVector<void*> field_0x0;
+    base::global::CRntVector<void*> field_0x28;
+    base::global::CRntVector<void*> field_0x50;
     // A union member: the original reloads the holder's pointer and the counter after the
     // decrement (no type-based alias info).
     union {
@@ -20,8 +20,8 @@ struct UnkAttackTargets_ovb0050 {
 };
 static_assert(__builtin_offsetof(UnkAttackTargets_ovb0050, lock) == 0x78, "layout");
 
-// base::UnkVector<void*>::GrowAt, out of line.
-void** fn_71011384e0(base::UnkVector<void*>* self, u32 index);
+// base::global::CRntVector<void*>::GrowAt, out of line.
+void** fn_71011384e0(base::global::CRntVector<void*>* self, u32 index);
 
 struct UnkAttackTargetsLock_ovb0050 {
     UnkAttackTargets_ovb0050* targets;

@@ -2,7 +2,7 @@
 // two arrays of refcounted pointers at +0x14760 and +0x14738, a string id at +0x14710, a plain array at
 // +0x146e8, then the base's destructor fn_7100369380. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "types.h"
 
@@ -18,14 +18,14 @@ struct base::UnkDtorTraits<UnkVulkranDtor_A4_b70> {
 
 template <class T, u32 Offset>
 struct UnkVulkranVec_A4_b70 {
-    static void Release(char* self) { reinterpret_cast<base::UnkVector<T>*>(self + Offset)->Free(); }
+    static void Release(char* self) { reinterpret_cast<base::global::CRntVector<T>*>(self + Offset)->Free(); }
 };
 
 // The arrays of refcounted pointers.
 template <u32 Offset>
 struct UnkVulkranRefs_A4_b70 {
     static void Release(char* self) {
-        auto* v = reinterpret_cast<base::UnkVector<base::UnkRefPtrMember>*>(self + Offset);
+        auto* v = reinterpret_cast<base::global::CRntVector<base::UnkRefPtrMember>*>(self + Offset);
         if (v->data) {
             for (u64 i = 0; i < v->count; ++i) {
                 // The count is a plain int access, so the decrement may alias the array's count.

@@ -1,9 +1,9 @@
 // Sorts a list of render entries into five pointer lists by entry type (the lists are emptied
 // first; null entries are skipped).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
-using base::UnkVector;
+using base::global::CRntVector;
 
 struct UnkRenderParams {
     u8 pad_0x0[0xa9];
@@ -38,18 +38,18 @@ struct UnkRenderEntry {
 
 struct UnkRenderLists {
     u8 pad_0x0[0x8];
-    UnkVector<UnkRenderObject*> field_0x8;
-    UnkVector<UnkRenderEntry*> field_0x30;
-    UnkVector<UnkRenderEntry*> field_0x58;
-    UnkVector<UnkRenderEntry*> field_0x80;
-    UnkVector<UnkRenderEntry*> field_0xa8;
+    CRntVector<UnkRenderObject*> field_0x8;
+    CRntVector<UnkRenderEntry*> field_0x30;
+    CRntVector<UnkRenderEntry*> field_0x58;
+    CRntVector<UnkRenderEntry*> field_0x80;
+    CRntVector<UnkRenderEntry*> field_0xa8;
 };
 static_assert(__builtin_offsetof(UnkRenderLists, field_0xa8) == 0xa8, "");
 
 
-// UnkVector::PushBack, with growth expected to be rare.
+// CRntVector::PushBack, with growth expected to be rare.
 template <class T>
-__attribute__((always_inline)) inline void Push(UnkVector<T>& v, T value) {
+__attribute__((always_inline)) inline void Push(CRntVector<T>& v, T value) {
     u32 n = v.count;
     u32 old_capacity = v.capacity;
     u32 new_capacity = old_capacity;

@@ -1,7 +1,7 @@
 // One more copy of fn_7100336b54 (src/game/CActor/UnkRefPtrSlotReserve_b42.cpp), the reserve of a
 // growable array of refcounted pointers, in CArenaManager's unit. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 

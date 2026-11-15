@@ -10,7 +10,7 @@
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -63,8 +63,8 @@ void refl_PathRecordCopyCtor(char* self, const char* other) {
     *reinterpret_cast<char**>(self) = Traits::vtable() + 0x10;
 }
 
-// A vector of string ids (UnkVector's layout) whose Reserve is out of line (fn_710000542c).
-// PushBack grows by the step as UnkVector::PushBack does and stores the id bitwise, so the
+// A vector of string ids (CRntVector's layout) whose Reserve is out of line (fn_710000542c).
+// PushBack grows by the step as CRntVector::PushBack does and stores the id bitwise, so the
 // count is reloaded after the retain.
 struct UnkStrIdVec {
     global::CStrId* data;
@@ -144,7 +144,7 @@ void refl_AddFunctionHolder(void* a0, void* a1, const std::function<void()>& f, 
 // The vector loop counts in u32, as the original does.
 template <class Tag>
 struct UnkKeyedVecArray {
-    UnkVector<u8>* values;
+    global::CRntVector<u8>* values;
     UnkStrIdMember* keys;
     u32 count;
 
@@ -161,7 +161,7 @@ struct UnkKeyedVecArray {
 
 // A keyed array (values of `Size` bytes with an out-of-line destructor, string-id keys) moved
 // into: the keys are released and the values destroyed (the old arrays are not freed, as in
-// UnkVector's move assignment), then other's fields are taken (fn_71000d8428 and its copies).
+// CRntVector's move assignment), then other's fields are taken (fn_71000d8428 and its copies).
 // Clear alone is out of line too (fn_71000d78ec and its copies).
 template <class Tag, u64 Size>
 struct UnkKeyedMoveArray {
@@ -210,7 +210,7 @@ struct UnkStrIdVecVariant {
     union {
         struct {
             UnkStrIdMember id;
-            UnkVector<u8> vec;
+            global::CRntVector<u8> vec;
         } named;
         Pair pair;
     };

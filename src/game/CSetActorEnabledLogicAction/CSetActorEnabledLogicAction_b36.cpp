@@ -2,7 +2,7 @@
 // vtable, the container at +0x10 (base vtable, empty array with step 10 and flags 0xf, the default
 // allocator, final vtable), then a cleared word and flag after it. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU341.h"
 #include "types.h"

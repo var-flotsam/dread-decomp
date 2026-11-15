@@ -6,7 +6,7 @@
 // fn_7100ca2978 (the tiles a shape touches).
 #include "base/UnkDeferredSet.h"
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -287,7 +287,7 @@ bool fn_7100c9e2a8(UnkQueryObj* self) {
         }
     }
     bool result = true;
-    base::UnkVector<UnkListedItem*>* items = fn_7100552d7c();
+    base::global::CRntVector<UnkListedItem*>* items = fn_7100552d7c();
     for (UnkListedItem **it = items->data, **end = it + items->count; it != end; ++it) {
         UnkListedOwner* owner = (*it)->field_0x10->field_0x30;
         if (owner && owner->field_0x1b8)
@@ -508,7 +508,7 @@ struct UnkTilePoint {
     f32 x, y, z;
 };
 struct UnkTileOutline {
-    base::UnkVector<UnkTilePoint> points;
+    base::global::CRntVector<UnkTilePoint> points;
     f32 field_0x28;
     bool field_0x2c;
     bool field_0x2d;

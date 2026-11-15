@@ -7,7 +7,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/UnkTU2622.h"
 #include "types.h"
@@ -15,7 +15,7 @@
 struct UnkStringList_b49 {
     u64 field_0x0;
     u64 field_0x8;
-    base::global::CRntString* data;  // the base::UnkVector fields from here
+    base::global::CRntString* data;  // the base::global::CRntVector fields from here
     u32 count;
     u32 capacity;
     u32 step;
@@ -26,8 +26,8 @@ struct UnkStringList_b49 {
     UnkStringList_b49()
         : field_0x0(0), field_0x8(0), data(nullptr), count(0), capacity(0), step(1),
           field_0x24(true), flags(0xf), allocator(fn_7100083990()) {}
-    base::UnkVector<base::global::CRntString>& Strings() {
-        return *reinterpret_cast<base::UnkVector<base::global::CRntString>*>(&data);
+    base::global::CRntVector<base::global::CRntString>& Strings() {
+        return *reinterpret_cast<base::global::CRntVector<base::global::CRntString>*>(&data);
     }
 };
 

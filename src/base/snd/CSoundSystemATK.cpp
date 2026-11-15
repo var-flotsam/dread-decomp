@@ -502,7 +502,7 @@ f32 fn_71000fe1f8(UnkSoundSystemATK* self, const CFilePathStrId& path) {
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkChainedMap.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 // A sub-object at 0x278 whose constructor (fn_71001045c0) builds the array at its +8.
 struct UnkSoundSub_0x278 {
@@ -511,7 +511,7 @@ struct UnkSoundSub_0x278 {
 void fn_71001045c0(UnkSoundSub_0x278* self);
 
 // An array of words with a growth step and the room for `n` of them reserved.
-static inline void UnkInitWords(base::UnkVector<u64>* v, u32 step, u32 n) {
+static inline void UnkInitWords(base::global::CRntVector<u64>* v, u32 step, u32 n) {
     v->data = nullptr;
     v->count = 0;
     v->capacity = 0;
@@ -527,7 +527,7 @@ struct UnkSoundSub_0x388 {
     u64 field_0x0;
     u8 pad_0x8[8];
     UnkBlockFreeList list;
-    base::UnkVector<u64> field_0x38;
+    base::global::CRntVector<u64> field_0x38;
 };
 
 // What the constructor sets (placeholder names; the command queue of base/snd/UnkSoundSystemATK.h
@@ -564,17 +564,17 @@ struct UnkSoundSystemMembers {
     u8 pad_0x384[4];
     UnkSoundSub_0x388 field_0x388;
     u8 pad_0x3e8[8];
-    base::UnkVector<u64> field_0x3f0;
-    base::UnkVector<u64> field_0x418;
-    base::UnkVector<u64> field_0x440;
-    base::UnkVector<u64> field_0x468;
-    base::UnkVector<u64> field_0x490;
+    base::global::CRntVector<u64> field_0x3f0;
+    base::global::CRntVector<u64> field_0x418;
+    base::global::CRntVector<u64> field_0x440;
+    base::global::CRntVector<u64> field_0x468;
+    base::global::CRntVector<u64> field_0x490;
     UnkChainedMap field_0x4b8;
     u8 pad_0x500[0x400788 - 0x500];
     UnkChainedMap field_0x400788;
     UnkChainedMap field_0x4007d0;  // the streams (fn_71000fe1f8 walks it)
-    base::UnkVector<u64> field_0x400818;
-    base::UnkVector<u64> field_0x400840;
+    base::global::CRntVector<u64> field_0x400818;
+    base::global::CRntVector<u64> field_0x400840;
     u8 pad_0x400868[8];
     u64 field_0x400870;
     u64 field_0x400878;
@@ -619,12 +619,12 @@ void fn_71000f68bc(UnkSoundSystemATK* object) {
     UnkSoundSub_0x388* sub = &self->field_0x388;
     sub->field_0x0 = 0;
     fn_710008377c(&sub->list);
-    new (&sub->field_0x38) base::UnkVector<u64>(0xf);
+    new (&sub->field_0x38) base::global::CRntVector<u64>(0xf);
     UnkInitWords(&self->field_0x3f0, 0x10, 0x20);
     UnkInitWords(&self->field_0x418, 0x10, 0x20);
     UnkInitWords(&self->field_0x440, 0x10, 0x20);
     UnkInitWords(&self->field_0x468, 0x200, 0x800);
-    new (&self->field_0x490) base::UnkVector<u64>(0xf);
+    new (&self->field_0x490) base::global::CRntVector<u64>(0xf);
     new (&self->field_0x4b8) UnkChainedMap();
     self->field_0x4b8.ResizeBucketsPtrFirst(11);
     new (&self->field_0x400788) UnkChainedMap();
@@ -632,7 +632,7 @@ void fn_71000f68bc(UnkSoundSystemATK* object) {
     new (&self->field_0x4007d0) UnkChainedMap();
     self->field_0x4007d0.ResizeBucketsPtrFirst(11);
     UnkInitWords(&self->field_0x400818, 0x200, 0x800);
-    new (&self->field_0x400840) base::UnkVector<u64>(0xf);
+    new (&self->field_0x400840) base::global::CRntVector<u64>(0xf);
     self->field_0x400870 = 0;
     self->field_0x400878 = 0;
 }
@@ -1507,7 +1507,7 @@ struct UnkSoundSystemStarts {
     u8 pool[0x28];       // +0x398
     u8 stats[0x28];      // +0x3c0
     u64 released;        // +0x3e8
-    base::UnkVector<UnkSoundStartedVoice*> flagged;  // +0x3f0
+    base::global::CRntVector<UnkSoundStartedVoice*> flagged;  // +0x3f0
 };
 static_assert(__builtin_offsetof(UnkSoundSystemStarts, flagged) == 0x3f0, "");
 

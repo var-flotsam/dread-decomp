@@ -2,10 +2,10 @@
 // array of arrays, the same code as fn_71006fb3f4 (unit 1115) with this unit's append
 // (fn_7100d43e70). Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
-// An inner array: base::UnkVector's layout with a move that leaves the source empty.
+// An inner array: base::global::CRntVector's layout with a move that leaves the source empty.
 struct UnkInnerVec_col {
     void* data;
     u32 count;
@@ -42,7 +42,7 @@ struct UnkInnerVec_col {
     }
 };
 
-typedef base::UnkVector<UnkInnerVec_col> UnkOuterVec_col;
+typedef base::global::CRntVector<UnkInnerVec_col> UnkOuterVec_col;
 
 // Appends a copy of an inner array.
 void fn_7100d43e70(UnkOuterVec_col* self, const UnkInnerVec_col* value) {

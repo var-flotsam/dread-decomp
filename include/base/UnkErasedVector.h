@@ -1,13 +1,13 @@
 #pragma once
 
-// The engine array (base::UnkVector's layout) of 16-byte type-erased values: a storage word and
+// The engine array (base::global::CRntVector's layout) of 16-byte type-erased values: a storage word and
 // the value's function table, whose copy, move and destroy entries the array uses. Neither name
 // is known; the layout is what fn_710023b29c and its callers read. The table pointer is a union
 // member: the original reloads the array's fields after storing it. UnkErasedVector itself has
 // no constructor or destructor (fn_71007abba4 builds one field by field); the owning form the
 // callback sets hold is UnkOwnedErasedVector.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkErasedValue_0x10;

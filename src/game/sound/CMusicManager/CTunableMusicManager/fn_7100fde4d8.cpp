@@ -2,7 +2,7 @@
 // then default-constructs each added entry. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -21,13 +21,13 @@ struct UnkNewEntry_0x60 {
     u8 field_0x24 = 0;
     u8 field_0x25 = 0;
     bool field_0x26 = true;
-    base::UnkVector<u8[0x18]> field_0x28{0xf};
+    base::global::CRntVector<u8[0x18]> field_0x28{0xf};
     u64 field_0x50 = 0;
     base::global::CStrId field_0x58{"", true};
 };
 
-void fn_7100fde4d8(base::UnkVector<UnkNewEntry_0x60>* v, u32 n) {
-    fn_7100fddcb4(reinterpret_cast<base::UnkVector<UnkMusicEntry_0x60>*>(v), n);  // reserve
+void fn_7100fde4d8(base::global::CRntVector<UnkNewEntry_0x60>* v, u32 n) {
+    fn_7100fddcb4(reinterpret_cast<base::global::CRntVector<UnkMusicEntry_0x60>*>(v), n);  // reserve
     for (u32 i = v->count; i < n; ++i)
         new (&v->data[i]) UnkNewEntry_0x60;
     v->count = n;

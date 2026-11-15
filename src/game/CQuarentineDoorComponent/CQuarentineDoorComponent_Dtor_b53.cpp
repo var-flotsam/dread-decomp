@@ -4,7 +4,7 @@
 // as base::refl_ValueHolderDtor), the zeroed member at +0xa0 (as base::refl_ZeroedCtor builds it),
 // then the activatable component's destructor (fn_71007d70d8). Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 

@@ -5,7 +5,7 @@
 #include "types.h"
 #include <new>
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game_s2/UnkOwnedList.h"
 
 using base::global::CFilePathStrId;
@@ -135,9 +135,9 @@ static_assert(sizeof(UnkElem_b0246) == 0x60, "UnkElem_b0246 layout");
 
 }  // namespace
 
-void fn_7100b8a5d8(base::UnkVector<u8>* vector, u32 capacity) {
+void fn_7100b8a5d8(base::global::CRntVector<u8>* vector, u32 capacity) {
     using T = UnkElem_b0246;
-    auto* self = reinterpret_cast<base::UnkVector<T>*>(vector);
+    auto* self = reinterpret_cast<base::global::CRntVector<T>*>(vector);
     if (self->capacity < capacity) {
         auto* p = static_cast<T*>(self->allocator->vf_0x40((u64)capacity * sizeof(T), 8, self->flags));
         if (self->data) {
@@ -164,7 +164,7 @@ struct UnkElem28_b0246 {
 
 struct UnkTimelineThing_b0246 {
     base::global::CStrId name;  // 0x0
-    base::UnkVector<UnkElem28_b0246> elements;  // 0x8
+    base::global::CRntVector<UnkElem28_b0246> elements;  // 0x8
     u8 pad_0x30[0xc8];
     UnkOwnedList owned;  // 0xf8
 };

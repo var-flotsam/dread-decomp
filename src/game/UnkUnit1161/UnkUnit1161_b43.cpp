@@ -2,7 +2,7 @@
 // (src/game/UnkUnit1161/UnkUnit1161_b42.cpp): the vtable, then the member at +0xe8 (fn_7100745804
 // destroys it) and the array of pointers at +0xb8 (freed when it holds one), then the object is freed.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU1160.h"
 #include "types.h"
 
@@ -14,7 +14,7 @@ struct UnkMember_e8_b42;
 struct UnkHolder_1161_b43a2 {
     void** vtable;
     u8 pad_0x8[0xb0];
-    base::UnkVector<void*> items;  // 0xb8
+    base::global::CRntVector<void*> items;  // 0xb8
     u8 pad_0xe0[0x8];
     UnkMember_e8_b42* member() { return reinterpret_cast<UnkMember_e8_b42*>(reinterpret_cast<char*>(this) + 0xe8); }
 };

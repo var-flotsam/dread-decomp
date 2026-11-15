@@ -1,7 +1,7 @@
 // Move constructor of a record of two string ids, plain fields and an array: the moved-from ids
 // become the empty string and the moved-from array gives up its buffer.
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 using base::global::UnkStringData;
 

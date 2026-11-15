@@ -4,7 +4,7 @@
 #include <cstdio>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
@@ -67,10 +67,10 @@ struct UnkRecord_7101147868 {
     // keeps their final stores (as references to temporaries, those stores are dropped).
     UnkRecord_7101147868(CStrId name, CStrId value) asm("fn_7100ec4240");
 };
-void fn_71003af880(base::UnkVector<UnkRecord_7101147868>* self, UnkRecord_7101147868&& value);
+void fn_71003af880(base::global::CRntVector<UnkRecord_7101147868>* self, UnkRecord_7101147868&& value);
 
 
-void fn_7101147868(UnkInventory_7101147868* self, base::UnkVector<UnkRecord_7101147868>* records) {
+void fn_7101147868(UnkInventory_7101147868* self, base::global::CRntVector<UnkRecord_7101147868>* records) {
     int has_0 = HasItem(self, g_unk_717275a518);
     int has_1 = HasItem(self, g_unk_717275a9d8);
     int has_2 = HasItem(self, g_unk_717275aa58);

@@ -4,7 +4,7 @@
 // reads the object as that type. Names and layouts are placeholders.
 #include "../../../lib/lua/lua.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
@@ -72,7 +72,7 @@ struct UnkLuaArgs_b0249 {
     };
     u64 pad_0x20;
     union {
-        base::UnkVector<base::UnkStrIdMember> names;  // 0x28
+        base::global::CRntVector<base::UnkStrIdMember> names;  // 0x28
     };
 
     UnkLuaArgs_b0249(lua_State* L_, u32 first_) { fn_7100fc17d0(this, L_, first_); }

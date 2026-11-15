@@ -3,7 +3,7 @@
 // the array (the deleting one then frees the object).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/SCameraRailNode.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
@@ -18,7 +18,7 @@ struct UnkPolyElem_0x20 {
 
 struct UnkPolyArrayOwner_710105a224 {
     void** vtable;
-    base::UnkVector<UnkPolyElem_0x20> elems;
+    base::global::CRntVector<UnkPolyElem_0x20> elems;
 
     ~UnkPolyArrayOwner_710105a224() {
         vtable = &g_unk_7101cac938[2];
@@ -45,7 +45,7 @@ struct UnkPolyElem_0x58 {
 
 struct UnkPolyArrayOwner_7100c0461c {
     void** vtable;
-    base::UnkVector<UnkPolyElem_0x58> elems;
+    base::global::CRntVector<UnkPolyElem_0x58> elems;
 
     ~UnkPolyArrayOwner_7100c0461c() {
         vtable = &g_unk_7101aa28d8[2];

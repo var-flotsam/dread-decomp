@@ -1,7 +1,7 @@
 // Prepares an entry (a count-prefixed list of up to 16 pairs of 32-bit values and one 64-bit
 // value) and appends a copy of it to the array at +0x317a9e0, growing the array as
-// UnkVector::EmplaceBack does but with copy construction; fn_71001cdd18 drops the last one.
-#include "base/UnkVector.h"
+// CRntVector::EmplaceBack does but with copy construction; fn_71001cdd18 drops the last one.
+#include "base/global/CRntVector.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
 #include "game/UnkTU259.h"
@@ -28,11 +28,11 @@ static_assert(sizeof(UnkEntry_71001cdba4) == 0x90, "entry size");
 
 struct UnkOwner_71001cdba4 {
     u8 pad_0x0[0x317a9e0];
-    base::UnkVector<UnkEntry_71001cdba4> entries;
+    base::global::CRntVector<UnkEntry_71001cdba4> entries;
 };
 
 void fn_71001cdba4(UnkOwner_71001cdba4* self, UnkEntry_71001cdba4* entry) {
-    base::UnkVector<UnkEntry_71001cdba4>& v = self->entries;
+    base::global::CRntVector<UnkEntry_71001cdba4>& v = self->entries;
     fn_710015c2d0(entry);
     u32 n = v.count;
     u32 old_capacity = v.capacity;
@@ -64,7 +64,7 @@ void fn_71001cdba4(UnkOwner_71001cdba4* self, UnkEntry_71001cdba4* entry) {
 
 // Drops the last entry and binds the one before it, or the default set when none is left.
 void fn_71001cdd18(UnkOwner_71001cdba4* self) {
-    base::UnkVector<UnkEntry_71001cdba4>& v = self->entries;
+    base::global::CRntVector<UnkEntry_71001cdba4>& v = self->entries;
     u32 n = v.count - 1;
     // The entry's destructor (its count cleared), as a word that may alias the array's fields: the
     // original reloads the array after it.

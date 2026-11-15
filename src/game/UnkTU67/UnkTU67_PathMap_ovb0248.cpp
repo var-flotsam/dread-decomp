@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
@@ -64,7 +64,7 @@ struct UnkPooledPathMap_b0248 {
     base::UnkAllocator* allocator;  // 0x0
     u32 flags;                      // 0x8
     u32 count;                      // 0xc
-    base::UnkVector<UnkPathNode_b0248*> buckets;  // 0x10 (data, count, capacity, ..., allocator at 0x30)
+    base::global::CRntVector<UnkPathNode_b0248*> buckets;  // 0x10 (data, count, capacity, ..., allocator at 0x30)
     UnkPathNode_b0248* tail;  // 0x38
     UnkPathNode_b0248* head;  // 0x40
     void* vtable;                         // 0x48

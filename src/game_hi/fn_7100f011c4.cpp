@@ -1,6 +1,6 @@
 // Drops the entries registered under an id from two keyed lists (notifying each entry's object
 // first and hiding two items for flagged ids), then forwards the id to fn_7100f00f4c.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTU324.h"

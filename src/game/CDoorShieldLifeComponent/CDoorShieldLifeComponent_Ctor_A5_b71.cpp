@@ -5,7 +5,7 @@
 // symbol src/reflection/CDoorShieldLifeComponent.cpp declares. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CDoorShieldLifeComponent.h"
 #include "game/CItemLifeComponent.h"
@@ -52,7 +52,7 @@ struct UnkDoorShieldLifeCtor_A5_b71 {
 };
 static_assert(__builtin_offsetof(UnkDoorShieldLifeCtor_A5_b71, field_0x490) == 0x490, "layout");
 
-// An engine array (base/UnkVector.h, flags 0xf) built member by member: written as flat members, the flag at
+// An engine array (base/global/CRntVector.h, flags 0xf) built member by member: written as flat members, the flag at
 // +0x14 is stored at its own offset rather than through the array's base address (as in
 // CCharClassWaterPoolComponent_Ctor_b53.cpp).
 #define INIT_LIST_A5_B71(o)               \

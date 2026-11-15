@@ -1,6 +1,6 @@
 // Unit 22 (tools/tu_map.py): adds a (name, value) pair to an enum type's value list at +0xf0 (the
 // enum registrations in src/clones/ call it once per value). The list grows like
-// base::UnkVector::PushBack, through its own reserve (fn_7100014a48). Names and layouts are
+// base::global::CRntVector::PushBack, through its own reserve (fn_7100014a48). Names and layouts are
 // placeholders.
 #include <new>
 

@@ -2,7 +2,7 @@
 // (+0x118, string ids released in two steps) and the functions (+0x110, 0xb8 bytes each, destroyed through
 // their vtable) are freed, then the member fields (+0xe8, keys +0xf0; records destroyed by fn_71000e70c4),
 // each array through its allocator; then the CType part (fn_710009cc04). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CType.h"
 #include "base/reflection/UnkReflTypeDtors.h"

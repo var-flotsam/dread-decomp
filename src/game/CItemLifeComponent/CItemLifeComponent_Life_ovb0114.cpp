@@ -1,7 +1,7 @@
 // CItemLifeComponent's unit (tools/tu_map.py): the life component's constructor (fn_71008e04e8) and its
 // update (fn_71008e1174), which steps a colour towards its goal and hands it to a target object. Names
 // and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector4D.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CItemLifeComponent.h"
@@ -16,7 +16,7 @@ struct UnkItemLifeCtor_ovb0114 {
     u64 field_0x248;
     u64 field_0x250;
     char list[0x38];  // 0x258
-    base::UnkVector<void*> lists[3];  // 0x290, flags 0xf
+    base::global::CRntVector<void*> lists[3];  // 0x290, flags 0xf
     bool field_0x308;
     u8 pad_0x309[0xf];
     void* inner_vtable;  // 0x318
@@ -52,7 +52,7 @@ void fn_71008e04e8(UnkLifeComponent_A5_b71* component) {
     self->field_0x250 = 0;
     fn_71008e266c(self->list);
     for (u32 i = 0; i < 3; ++i)
-        new (&self->lists[i]) base::UnkVector<void*>(0xf);
+        new (&self->lists[i]) base::global::CRntVector<void*>(0xf);
     self->field_0x308 = false;
     self->inner_vtable = reinterpret_cast<char*>(g_unk_7101a22d48) + 0x10;
     self->field_0x320 = 0;

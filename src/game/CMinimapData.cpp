@@ -7,7 +7,7 @@
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/SLogicPathNode.h"
@@ -35,7 +35,7 @@ static_assert(sizeof(UnkMinimapEntry_0x138) == 0x138, "UnkMinimapEntry_0x138 lay
 // Resizes the array to `n` entries: the array grows to exactly `n` when it is too small (the
 // entries are moved over), and the new entries are value-initialised (zeroed, then constructed).
 // Shrinking only lowers the count.
-void fn_7100e62e24(base::UnkVector<UnkMinimapEntry_0x138>* self, u32 n) {
+void fn_7100e62e24(base::global::CRntVector<UnkMinimapEntry_0x138>* self, u32 n) {
     self->Reserve(n);
     for (u32 i = self->count; i < n; ++i) {
         UnkMinimapEntry_0x138* entry = &self->data[i];
@@ -149,7 +149,7 @@ static_assert(sizeof(UnkMinimapPathNode) == 0x20, "UnkMinimapPathNode placeholde
 // src/game/SLogicPathNode/).
 struct UnkMinimapPath {
     void** vtable;
-    base::UnkVector<UnkMinimapPathNode> nodes;
+    base::global::CRntVector<UnkMinimapPathNode> nodes;
     bool dirty;
     f32 bounds[6];
 

@@ -6,7 +6,7 @@
 // (fn_710009d020, fn_710009d1ec); the "AssetHash" attribute (fn_710009ea3c). Names and layouts
 // are placeholders.
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/CType.h"
@@ -38,7 +38,7 @@ struct UnkTypeVirtuals_ovb0053 {
     virtual void vf_0x18();
     virtual void vf_0x20();
     virtual void vf_0x28();
-    virtual void vf_0x30(base::UnkVector<CType*>* out, bool flag);
+    virtual void vf_0x30(base::global::CRntVector<CType*>* out, bool flag);
     virtual s32 vf_0x38();
 };
 
@@ -307,12 +307,12 @@ UnkReflValue fn_710009da40(const CType* type, const UnkTypedRef* src, const CTyp
 }
 
 // Adds the type's parent, if any, to `out`.
-void fn_710009d020(const CType* self, base::UnkVector<const CType*>* out) {
+void fn_710009d020(const CType* self, base::global::CRntVector<const CType*>* out) {
     if (self->m_parent)
         out->PushBack(self->m_parent);
 }
 
-static inline bool Contains_ovb0053(const base::UnkVector<CType*>* v, const CType* t) {
+static inline bool Contains_ovb0053(const base::global::CRntVector<CType*>* v, const CType* t) {
     for (u64 i = 0; i < v->count; ++i) {
         if (v->data[i] == t)
             return true;
@@ -322,8 +322,8 @@ static inline bool Contains_ovb0053(const base::UnkVector<CType*>* v, const CTyp
 
 // Adds every type `type` refers to (its vtable slot 0x30), and recursively the types those refer to, to
 // `out`, each once.
-void fn_710009d1ec(CType* type, base::UnkVector<CType*>* out, bool flag) {
-    base::UnkVector<CType*> refs(0xf);
+void fn_710009d1ec(CType* type, base::global::CRntVector<CType*>* out, bool flag) {
+    base::global::CRntVector<CType*> refs(0xf);
     reinterpret_cast<UnkTypeVirtuals_ovb0053*>(type)->vf_0x30(&refs, flag);
     CType** begin = refs.data;
     CType** end = begin + refs.count;
@@ -366,7 +366,7 @@ static inline s32 OwnHash_ovb0053(CType* type) {
 // Stores the "AssetHash" attribute: the type's own hash combined with those of every type it refers to.
 void fn_710009ea3c(CType* type) {
     u32 hash = OwnHash_ovb0053(type);
-    base::UnkVector<CType*> refs(0xf);
+    base::global::CRntVector<CType*> refs(0xf);
     fn_710009d1ec(type, &refs, true);
     CType** begin = refs.data;
     CType** end = begin + refs.count;

@@ -3,7 +3,7 @@
 // allocator, then empty the list (the deleting ones free the object instead).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CRodotukSuckAttack.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkTU852.h"

@@ -8,7 +8,7 @@
 // Also the clear of such a list with plain nodes (fn_710023fe88). fn_71011aaf80 is a relative.
 
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CChozoCommanderKiGrabAttack.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"

@@ -9,7 +9,7 @@
 
 #include "../game_aca57c/UnkBufferString.h"
 #include "base/UnkNamedRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/math/CVector.h"
@@ -340,7 +340,7 @@ struct UnkMinimapOwner {
     u8 unk_0xd641c4[0x1c];
     UnkMinimapPtrVector<UnkMinimapMarker> markers;
     u8 unk_0xd64208[0xc0];
-    base::UnkVector<base::global::CStrId> hidden_kinds;
+    base::global::CRntVector<base::global::CStrId> hidden_kinds;
     u8 unk_0xd642f0[0x28];
     UnkMinimapItemList pass_items[2];
     u8 unk_0xd64368[0x50];
@@ -722,7 +722,7 @@ void fn_7100ea4504(UnkMinimapOwner* self) {
 // Removes a kind from the hidden ones (`count` ids at `data`) and refreshes the map when it was
 // there.
 __attribute__((always_inline)) inline void UnkMinimapShowKind(UnkMinimapOwner* self,
-                                                             base::UnkVector<base::global::CStrId>* kinds,
+                                                             base::global::CRntVector<base::global::CStrId>* kinds,
                                                              base::global::CStrId* data, u32 count,
                                                              const base::global::CStrId& kind) {
     base::global::CStrId* it = data;
@@ -743,7 +743,7 @@ __attribute__((always_inline)) inline void UnkMinimapShowKind(UnkMinimapOwner* s
 void fn_7100e9d1f8(UnkMinimapOwner* self, s32 kind) {
     if (self->field_0x110.data == &g_unk_7101d47108->empty)
         return;
-    base::UnkVector<base::global::CStrId>* kinds = &self->hidden_kinds;
+    base::global::CRntVector<base::global::CStrId>* kinds = &self->hidden_kinds;
     base::global::CStrId* data = kinds->data;
     u32 count = kinds->count;
     switch (kind) {
@@ -915,7 +915,7 @@ static_assert(sizeof(UnkMinimapModifierHead) == 0x50, "UnkMinimapModifierHead la
 // A set over a block pool (as base/UnkHashMap.h's chained set): the buckets, a cursor, the nodes'
 // allocator, flags and counts, then the pool (vtable g_unk_7101a1a4c8).
 struct UnkMinimapPooledSet {
-    base::UnkVector<void*> buckets;  // flags 0xe
+    base::global::CRntVector<void*> buckets;  // flags 0xe
     s32 field_0x28;
     u64 field_0x30;
     base::UnkAllocator* allocator;
@@ -946,7 +946,7 @@ struct UnkMinimapManager {
     UnkMinimapEmptyId field_0xd63ce0;
     UnkMinimapEmptyRect field_0xd63ce8;
     UnkMinimapEmptyRect field_0xd63cf8;
-    base::UnkVector<void*> field_0xd63d08;  // flags 0xf
+    base::global::CRntVector<void*> field_0xd63d08;  // flags 0xf
     UnkMinimapEmptyRect view;  // 0xd63d30
     UnkMinimapEmptyRect field_0xd63d40;
     u64 offset;  // 0xd63d50
@@ -963,7 +963,7 @@ struct UnkMinimapManager {
     void* field_0xd63f40;
     void* camera;
     void* viewport;
-    base::UnkVector<void*> field_0xd63f58;  // flags 0xf, 32 reserved
+    base::global::CRntVector<void*> field_0xd63f58;  // flags 0xf, 32 reserved
     u64 field_0xd63f80[9];
     u32 field_0xd63fc8;
     u32 pass_layer;
@@ -979,17 +979,17 @@ struct UnkMinimapManager {
     u64 field_0xd641c8;
     UnkMinimapEmptyId field_0xd641d0;
     u64 field_0xd641d8;
-    base::UnkVector<void*> markers;  // 0xd641e0, flags 0xf
+    base::global::CRntVector<void*> markers;  // 0xd641e0, flags 0xf
     UnkMinimapEmptyId field_0xd64208;
     UnkMinimapPooledSet field_0xd64210;
     u64 field_0xd642a0;
     UnkMinimapBuffer field_0xd642a8;
-    base::UnkVector<void*> hidden_kinds;  // 0xd642c8, flags 0xf
-    base::UnkVector<void*> field_0xd642f0;
-    base::UnkVector<void*> pass_items[2];  // 0xd64318
+    base::global::CRntVector<void*> hidden_kinds;  // 0xd642c8, flags 0xf
+    base::global::CRntVector<void*> field_0xd642f0;
+    base::global::CRntVector<void*> pass_items[2];  // 0xd64318
     u64 field_0xd64368;
     UnkMinimapBuffer field_0xd64370;
-    base::UnkVector<void*> field_0xd64390;
+    base::global::CRntVector<void*> field_0xd64390;
     u64 field_0xd643b8;  // the regions
     UnkMinimapBuffer field_0xd643c0;
     u8 unk_0xd643e0[0x4];
@@ -998,8 +998,8 @@ struct UnkMinimapManager {
     u64 field_0xd643f0;
     UnkMinimapBuffer field_0xd643f8;
     u32 field_0xd64418;
-    base::UnkVector<void*> field_0xd64420;
-    base::UnkVector<void*> field_0xd64448;
+    base::global::CRntVector<void*> field_0xd64420;
+    base::global::CRntVector<void*> field_0xd64448;
     UnkMinimapModifier field_0xd64470;
     UnkMinimapModifier field_0xd64548;
     UnkMinimapModifierHead field_0xd64620;
@@ -1053,7 +1053,7 @@ void fn_7100e8c114(UnkMinimapManager* self) {
     new (&self->field_0xd63ce0) UnkMinimapEmptyId;
     new (&self->field_0xd63ce8) UnkMinimapEmptyRect;
     new (&self->field_0xd63cf8) UnkMinimapEmptyRect;
-    new (&self->field_0xd63d08) base::UnkVector<void*>(0xf);
+    new (&self->field_0xd63d08) base::global::CRntVector<void*>(0xf);
     new (&self->view) UnkMinimapEmptyRect;
     new (&self->field_0xd63d40) UnkMinimapEmptyRect;
     self->offset = 0;
@@ -1081,7 +1081,7 @@ void fn_7100e8c114(UnkMinimapManager* self) {
     self->field_0xd63f40 = nullptr;
     self->camera = nullptr;
     self->viewport = nullptr;
-    new (&self->field_0xd63f58) base::UnkVector<void*>(0xf);
+    new (&self->field_0xd63f58) base::global::CRntVector<void*>(0xf);
     self->field_0xd63f58.Reserve(32);
     for (u64& v : self->field_0xd63f80)
         v = 0;
@@ -1116,11 +1116,11 @@ void fn_7100e8c114(UnkMinimapManager* self) {
     self->field_0xd641c7 = false;
     self->field_0xd641c8 = 0;
     new (&self->field_0xd641d0) UnkMinimapEmptyId;
-    new (&self->markers) base::UnkVector<void*>(0xf);
+    new (&self->markers) base::global::CRntVector<void*>(0xf);
     new (&self->field_0xd64208) UnkMinimapEmptyId;
 
     UnkMinimapPooledSet& set = self->field_0xd64210;
-    new (&set.buckets) base::UnkVector<void*>(0xe);
+    new (&set.buckets) base::global::CRntVector<void*>(0xe);
     set.field_0x28 = -1;
     set.field_0x30 = 0;
     set.allocator = fn_7100083990();
@@ -1136,21 +1136,21 @@ void fn_7100e8c114(UnkMinimapManager* self) {
 
     self->field_0xd642a0 = 0;
     new (&self->field_0xd642a8) UnkMinimapBuffer;
-    new (&self->hidden_kinds) base::UnkVector<void*>(0xf);
-    new (&self->field_0xd642f0) base::UnkVector<void*>(0xf);
-    new (&self->pass_items[0]) base::UnkVector<void*>(0xf);
-    new (&self->pass_items[1]) base::UnkVector<void*>(0xf);
+    new (&self->hidden_kinds) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0xd642f0) base::global::CRntVector<void*>(0xf);
+    new (&self->pass_items[0]) base::global::CRntVector<void*>(0xf);
+    new (&self->pass_items[1]) base::global::CRntVector<void*>(0xf);
     self->field_0xd64368 = 0;
     new (&self->field_0xd64370) UnkMinimapBuffer;
-    new (&self->field_0xd64390) base::UnkVector<void*>(0xf);
+    new (&self->field_0xd64390) base::global::CRntVector<void*>(0xf);
     self->field_0xd643b8 = 0;
     new (&self->field_0xd643c0) UnkMinimapBuffer;
     self->scale = 1.0f;
     self->field_0xd643f0 = 0;
     new (&self->field_0xd643f8) UnkMinimapBuffer;
     self->field_0xd64418 = 1;
-    new (&self->field_0xd64420) base::UnkVector<void*>(0xf);
-    new (&self->field_0xd64448) base::UnkVector<void*>(0xf);
+    new (&self->field_0xd64420) base::global::CRntVector<void*>(0xf);
+    new (&self->field_0xd64448) base::global::CRntVector<void*>(0xf);
     new (&self->field_0xd64470) UnkMinimapModifier;
     new (&self->field_0xd64548) UnkMinimapModifier;
     new (&self->field_0xd64620) UnkMinimapModifierHead;

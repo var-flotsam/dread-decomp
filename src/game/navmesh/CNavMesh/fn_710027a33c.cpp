@@ -3,7 +3,7 @@
 // past the end grows the array (the reserve fn_7100279600 is called twice: to the next multiple of
 // the step, then to the key) and constructs the new cells (fn_71002af630). Only the low 16 bits of the
 // key are the index. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkTU367.h"
 #include "game/navmesh/CNavMesh.h"
@@ -36,7 +36,7 @@ UnkNavMeshCell* fn_710027a33c(UnkNavMesh* mesh, u16 key) {
             u32 capacity = cells->capacity;
             if (capacity <= index && cells->step != 0)
                 capacity = (index / cells->step + 1) * cells->step;
-            auto* vector = reinterpret_cast<base::UnkVector<UnkNavLoadCell>*>(cells);
+            auto* vector = reinterpret_cast<base::global::CRntVector<UnkNavLoadCell>*>(cells);
             fn_7100279600(vector, capacity);
             fn_7100279600(vector, index + 1);
             u32 count = cells->count;

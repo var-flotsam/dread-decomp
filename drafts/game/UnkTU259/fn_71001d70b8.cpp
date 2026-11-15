@@ -1,4 +1,4 @@
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -24,7 +24,7 @@ struct UnkViewport_b0154v {
 
 struct UnkGfxV_b0154 {
     u8 pad_0x0[0x317a9e0];
-    base::UnkVector<UnkEntry_b0154v> entries;  // 0x317a9e0
+    base::global::CRntVector<UnkEntry_b0154v> entries;  // 0x317a9e0
 };
 
 extern CStrId g_unk_716e595b98 __attribute__((visibility("hidden")));
@@ -81,7 +81,7 @@ void fn_71001d70b8(UnkGfxV_b0154* self, void** object_ref, u64* value_ref, bool 
     fn_7100160990(0, mode, 1);
     fn_71001d4dbc(self, object, &viewport);
     fn_710015f770(0, nullptr, 1);
-    base::UnkVector<UnkEntry_b0154v>& v = self->entries;
+    base::global::CRntVector<UnkEntry_b0154v>& v = self->entries;
     u32 n = v.count - 1;
     typedef u32 __attribute__((may_alias)) UnkAliasCount;
     *reinterpret_cast<UnkAliasCount*>(&v.data[(s32)n].count) = 0;

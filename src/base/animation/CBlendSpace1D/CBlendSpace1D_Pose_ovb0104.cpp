@@ -7,7 +7,7 @@
 #include <functional>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpace1D.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU23.h"

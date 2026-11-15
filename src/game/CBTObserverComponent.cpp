@@ -6,7 +6,7 @@
 #include "base/UnkChainedMap.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkPairArrays.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBTObserverComponent.h"
 #include "types.h"
 

@@ -1,7 +1,7 @@
 // CSpittailMagmaBallMovementComponent's unit (tools/tu_map.py, unit 1069): the pool's factory for the ball's
 // model (fn_71006cae2c), the ball's handle appended to its spawner's list (fn_71006ca2ac) and the set-up
 // that creates its model (fn_71006ca3fc). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -131,7 +131,7 @@ struct UnkHandleRef_ovb0130 {
 
 struct UnkVulkranAI_ovb0130 {
     u8 pad_0x0[0x14760];
-    base::UnkVector<UnkHandlePtr_ovb0130> balls;  // 0x14760
+    base::global::CRntVector<UnkHandlePtr_ovb0130> balls;  // 0x14760
 };
 
 struct UnkSpittailActor_ovb0130 {
@@ -164,7 +164,7 @@ void fn_71006ca2ac(UnkSpittailMovement_ovb0130* self) {
     UnkReflObject* o = link->actor->ai;
     if (!o || !fn_710009d50c(o->vf_0x0(), fn_71006db2b8()))
         return;
-    base::UnkVector<UnkHandlePtr_ovb0130>& v = reinterpret_cast<UnkVulkranAI_ovb0130*>(o)->balls;
+    base::global::CRntVector<UnkHandlePtr_ovb0130>& v = reinterpret_cast<UnkVulkranAI_ovb0130*>(o)->balls;
     UnkHandleRef_ovb0130 ref(fn_7100d78378(self->owner));
     u32 n = v.count;
     u32 capacity = v.capacity;

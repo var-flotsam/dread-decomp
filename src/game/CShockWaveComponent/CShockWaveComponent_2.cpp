@@ -3,7 +3,7 @@
 // constructor fn_71010c4148, the vtable, the member at 0x40 (fn_71009f35b0), the empty node list at
 // 0x250 (vtable, default allocator, 0x13) and cleared fields after it. The layout follows
 // CShockWaveComponent.cpp. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CComponent.h"
 #include "game/CShockWaveComponent.h"
 #include "game/UnkTU604.h"

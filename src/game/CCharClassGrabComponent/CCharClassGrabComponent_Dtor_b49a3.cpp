@@ -1,7 +1,7 @@
 // CCharClassGrabComponent unit (tools/tu_map.py, reflection hint). fn_7100790e78: the deleting
 // destructor; the body of fn_7100790da8 (CCharClassGrabComponent_b43.cpp) followed by operator delete.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassGrabComponent.h"

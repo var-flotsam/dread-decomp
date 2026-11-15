@@ -8,7 +8,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/snd/UnkSoundSystemATK.h"
 
@@ -75,10 +75,10 @@ struct UnkSndSys_b0185 {
     u32 field_0x348;
     s32 field_0x34c[8];
     u8 pad_0x36c[0x3f0 - 0x36c];
-    base::UnkVector<UnkSndVoice_b0185*> voices_a;  // 0x3f0
-    base::UnkVector<UnkSndVoice_b0185*> voices_b;  // 0x418
-    base::UnkVector<UnkSndVoice_b0185*> active;    // 0x440
-    base::UnkVector<u64> file_keys;                // 0x468
+    base::global::CRntVector<UnkSndVoice_b0185*> voices_a;  // 0x3f0
+    base::global::CRntVector<UnkSndVoice_b0185*> voices_b;  // 0x418
+    base::global::CRntVector<UnkSndVoice_b0185*> active;    // 0x440
+    base::global::CRntVector<u64> file_keys;                // 0x468
     u8 pad_0x490[0x4c8 - 0x490];
     UnkSndFileNode_b0185** files;  // 0x4c8
     u32 files_used;                // 0x4d0
@@ -88,8 +88,8 @@ struct UnkSndSys_b0185 {
     u8 pad_0x400568[0x400788 - 0x400568 - sizeof(nn::os::MutexType)];
     UnkSndMap_b0185<u32> sounds_a;  // 0x400788
     UnkSndMap_b0185<u32> sounds_b;  // 0x4007d0
-    base::UnkVector<u64> keys_c;    // 0x400818
-    base::UnkVector<u64> keys_d;    // 0x400840
+    base::global::CRntVector<u64> keys_c;    // 0x400818
+    base::global::CRntVector<u64> keys_d;    // 0x400840
     UnkSndMap_b0185<u64>* map_c;    // 0x400868
     u8 pad_0x400870[8];
     UnkSndMap_b0185<u64>* map_d;    // 0x400878
@@ -352,7 +352,7 @@ static inline UnkSndFileNode_b0185* GetFile_b0185(UnkSndSys_b0185* self, u64 key
 // ---- releasing and retaining a sound file ----
 
 // Drops `key` from the list of loaded files' keys.
-static inline void RemoveKey_b0185(base::UnkVector<u64>& keys, u64 key) {
+static inline void RemoveKey_b0185(base::global::CRntVector<u64>& keys, u64 key) {
     u32 count = keys.count;
     for (u32 i = 0; i < count; ++i) {
         u64* data = keys.data;
@@ -455,8 +455,8 @@ struct UnkSndChannels_b0185 {
     u32 mask;            // 0x348
     s32 levels[8];       // 0x34c
     u8 pad_0x36c[0x3f0 - 0x36c];
-    base::UnkVector<UnkSndChannelVoice_b0185*> voices_a;  // 0x3f0
-    base::UnkVector<UnkSndChannelVoice_b0185*> voices_b;  // 0x418
+    base::global::CRntVector<UnkSndChannelVoice_b0185*> voices_a;  // 0x3f0
+    base::global::CRntVector<UnkSndChannelVoice_b0185*> voices_b;  // 0x418
     u8 pad_0x440[0x400568 - 0x440];
     nn::os::MutexType mutex;  // 0x400568
 };
@@ -561,7 +561,7 @@ struct UnkSndUses_b0185 {
 
 struct UnkSndLoadedSys_b0185 {
     u8 pad_0x0[0x400840];
-    base::UnkVector<u64> loaded;  // 0x400840
+    base::global::CRntVector<u64> loaded;  // 0x400840
     u8 pad_0x400868[0x400878 - 0x400868];
     UnkSndMap_b0185<u64>* uses;  // 0x400878
 };
@@ -575,7 +575,7 @@ static inline void FreeSound_b0185(void* sound) {
 }
 
 // Takes `key` out of the list of loaded keys by moving the last one over it.
-static inline void RemoveLoaded_b0185(base::UnkVector<u64>& keys, u64 key) {
+static inline void RemoveLoaded_b0185(base::global::CRntVector<u64>& keys, u64 key) {
     for (u32 i = 0; i < keys.count; ++i) {
         if (keys.data[i] == key) {
             u32 last = keys.count - 1;

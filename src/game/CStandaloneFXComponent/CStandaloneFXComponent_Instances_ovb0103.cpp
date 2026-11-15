@@ -7,7 +7,7 @@
 // visibility, release the cached files), adding an instance (fn_7100813278), the reflected array's set and
 // iterator move, and the scale setter. Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkOneVector3.h"
 #include "base/reflection/UnkReflValue.h"
 #include "base/global/CFilePathStrId.h"

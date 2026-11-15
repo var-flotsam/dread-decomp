@@ -3,7 +3,7 @@
 // with fn_71002dba54 and keeps what that returns at +0x28. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU23.h"
 #include "types.h"
 

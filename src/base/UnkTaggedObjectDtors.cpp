@@ -7,7 +7,7 @@
 // two-base ones also through the second base (the pointer is that base's). The vtables are
 // g_unk_<addr> + 0x10 (the second base's further on). Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU116.h"
 #include "game/UnkTU125.h"
 #include "game/UnkTU127.h"

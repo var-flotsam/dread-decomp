@@ -1,9 +1,9 @@
 // CChozoRobotSoldierAIComponent's unit (tools/tu_map.py unit 694): the out-of-line element accessor
-// (base/UnkVector.h, GrowAt) of a vector of navigation-mesh hits, the 12-byte records of
+// (base/global/CRntVector.h, GrowAt) of a vector of navigation-mesh hits, the 12-byte records of
 // src/game/navmesh/CNavMesh.cpp (constructed by fn_7100287598, destroyed by fn_710028760c).
 // Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "types.h"
 
@@ -30,6 +30,6 @@ struct UnkNavMeshHit {
 };
 static_assert(sizeof(UnkNavMeshHit) == 0xc, "UnkNavMeshHit layout");
 
-UnkNavMeshHit* fn_710046fb88(base::UnkVector<UnkNavMeshHit>* hits, u32 index) {
+UnkNavMeshHit* fn_710046fb88(base::global::CRntVector<UnkNavMeshHit>* hits, u32 index) {
     return &hits->GrowAt(index);
 }

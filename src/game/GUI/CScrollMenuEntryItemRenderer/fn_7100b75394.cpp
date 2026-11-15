@@ -1,7 +1,7 @@
 // Deleting destructor of a GUI object (vtable 0x7101a9ebd8) with a node list at 0x238 (its own
 // vtable 0x7101a9ee50; the nodes are freed through the list's allocator), then the base's
 // destructor (fn_71011d8e90).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/GUI/CScrollMenuEntryItemRenderer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"

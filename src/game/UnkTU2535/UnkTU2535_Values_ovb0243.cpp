@@ -1,7 +1,7 @@
 // Unit 2535 of tools/tu_map.py (no name hint): reflected invokers over an array of type-erased values built from
 // the object at +8 of the call's object (fn_7100ad2fac): one returns it as a value of the list type of the class
 // attribute, the other joins it into a string id. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
@@ -43,7 +43,7 @@ struct UnkValue_a5368 {
 // The values the callee builds in place.
 struct UnkValueList_a5368 {
     union {
-        base::UnkVector<UnkValue_a5368> values;
+        base::global::CRntVector<UnkValue_a5368> values;
     };
     UnkValueList_a5368() {}
     ~UnkValueList_a5368() { values.Free(); }
@@ -87,7 +87,7 @@ struct UnkValue_a5184 {
 // The values the callee builds in place.
 struct UnkValueList_a5184 {
     union {
-        base::UnkVector<UnkValue_a5184> values;
+        base::global::CRntVector<UnkValue_a5184> values;
     };
     UnkValueList_a5184() {}
     ~UnkValueList_a5184() { values.Free(); }

@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
@@ -25,7 +25,7 @@ struct UnkScriptCaller {
     u8 field_0x0[0x30];
     void* field_0x30;
     u8 field_0x38[0x8];
-    base::UnkVector<UnkNameHash> missing;  // +0x40
+    base::global::CRntVector<UnkNameHash> missing;  // +0x40
     u8 field_0x68[0x30];
     const char* prefix;  // +0x98
 };

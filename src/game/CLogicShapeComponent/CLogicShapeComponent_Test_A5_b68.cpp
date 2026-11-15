@@ -2,7 +2,7 @@
 // projected to 2D by fn_710007b430) hits the shape at +0x30, through the lazily created shape tester
 // (g_unk_71726a47a0, 8 bytes, built by fn_7100d5134c; fn_7100d572f8 with the zero vector). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/UnkTU2509.h"

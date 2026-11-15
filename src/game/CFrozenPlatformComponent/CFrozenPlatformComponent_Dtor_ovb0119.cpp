@@ -4,7 +4,7 @@
 // +0x40); the deferred-set entry at +0x40 is removed (fn_71004f3ea4); then the component's base
 // destructor runs (fn_71010c4194). Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CFrozenPlatformComponent.h"
 #include "game/UnkComponent.h"
@@ -32,7 +32,7 @@ struct UnkCallback_b0119 {
 
 struct UnkCallbackList_b0119 {
     void** vtable;
-    base::UnkVector<UnkCallback_b0119> callbacks;  // +0x8
+    base::global::CRntVector<UnkCallback_b0119> callbacks;  // +0x8
     u8 pad_0x30[0x8];
     UnkRefObject* ref;  // +0x38
 };

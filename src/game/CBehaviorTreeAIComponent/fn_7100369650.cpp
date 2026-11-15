@@ -1,7 +1,7 @@
 // Runs fn_71010fa290 on the object, then, when both flags at +0x4fc/+0x4fd of the object it
 // holds at +0x146b8 are set, passes a global instance (0x108 bytes, created on first use with
 // allocation flags 0x3f) to fn_71011a710c.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkBehaviorTree.h"
 #include "types.h"

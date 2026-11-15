@@ -6,7 +6,7 @@
 #include <new>
 
 #include "UnkPtrArrayHolder_b70.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU226.h"
 #include "game/UnkTU27.h"
 #include "types.h"
@@ -37,7 +37,7 @@ struct UnkObject211_b70a1 {
     u32 field_0x30;
     u64 field_0x38;
     u64 field_0x40;
-    base::UnkVector<u8> v0;  // 0x48
+    base::global::CRntVector<u8> v0;  // 0x48
     u64 field_0x70;
     u64 field_0x78;
     f32 field_0x80;

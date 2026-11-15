@@ -1,7 +1,7 @@
-// GUI::CHUD unit: appends an owned object to an array of owning pointers (base::UnkVector's
+// GUI::CHUD unit: appends an owned object to an array of owning pointers (base::global::CRntVector's
 // EmplaceBack): the pointer is taken over and the moved-from slots destroy what they still hold
 // through vtable slot 0x10. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkHudOwned {
@@ -29,6 +29,6 @@ struct UnkHudOwnedPtr {
     }
 };
 
-void fn_71011e7700(base::UnkVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value) {
+void fn_71011e7700(base::global::CRntVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value) {
     self->EmplaceBack(static_cast<UnkHudOwnedPtr&&>(*value));
 }

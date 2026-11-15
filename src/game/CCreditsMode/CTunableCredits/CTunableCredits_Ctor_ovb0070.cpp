@@ -1,7 +1,7 @@
 // CCreditsMode::CTunableCredits's unit (tools/tu_map.py unit 2724): the constructor of the credits
 // object whose destructors are fn_7101185dd4 (CTunableCredits_Dtor_b44.cpp) and fn_7101185ea8. Names
 // and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CCreditsMode/CTunableCredits.h"
 #include "game/CPhotoModeCameraCtrl.h"

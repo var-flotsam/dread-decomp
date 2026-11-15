@@ -5,7 +5,7 @@
 // "DC_Root" nodes (fn_7101065450). Names and layouts are placeholders inferred from the code.
 #include <algorithm>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -138,7 +138,7 @@ struct UnkNamedNode {
     u8 pad_0x0[0x60];
     void* payload;
     base::global::CStrId name;
-    base::UnkVector<UnkNamedNode*> children;
+    base::global::CRntVector<UnkNamedNode*> children;
 };
 static_assert(sizeof(UnkNamedNode) == 0x98, "UnkNamedNode placeholder layout");
 
@@ -211,7 +211,7 @@ struct UnkNodeArrayCopy {
     u32 count;
     base::UnkAllocator* allocator;
 
-    explicit UnkNodeArrayCopy(const base::UnkVector<UnkNamedNode*>& other) {
+    explicit UnkNodeArrayCopy(const base::global::CRntVector<UnkNamedNode*>& other) {
         allocator = other.allocator;
         data = other.capacity ? static_cast<UnkNamedNode**>(
                                     allocator->vf_0x40((u64)other.capacity * sizeof(UnkNamedNode*), 8, other.flags))

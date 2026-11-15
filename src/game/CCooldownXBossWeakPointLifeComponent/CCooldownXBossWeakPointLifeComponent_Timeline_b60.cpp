@@ -3,7 +3,7 @@
 // src/game/CBehaviorTreeAIComponent/fn_7100369650.cpp) and, through its +0x100 object's +0x10 actor's
 // timeline (+0x2e8), sets the id at +0x280 to the all-flags mask. Returns the result.
 // Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"

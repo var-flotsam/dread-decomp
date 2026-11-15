@@ -6,7 +6,7 @@
 // Names and layouts are placeholders.
 #include "../../game_5821e4/CAttackDtor.h"
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBigkranXAIComponent.h"
 #include "game/UnkXformNode.h"
@@ -41,7 +41,7 @@ struct UnkBigkranXAIComponent_ovb0125 {
     UnkMagmaRainAttack_ovb0125 field_0x149c0;
     u8 pad_0x14a18[0x8];
     u8 field_0x14a20[0x138];  // the spit attack
-    base::UnkVector<void*> field_0x14b58;
+    base::global::CRntVector<void*> field_0x14b58;
     UnkAttackStrIdRaw field_0x14b80;
 };
 static_assert(__builtin_offsetof(UnkBigkranXAIComponent_ovb0125, field_0x14b80) == 0x14b80, "layout");
@@ -74,7 +74,7 @@ struct UnkBigkranXOwner_ovb0125 {
 };
 
 // The entries' array, assigned out of line (fn_71002cbddc).
-struct UnkBigkranXEntries_ovb0125 : base::UnkVector<UnkBigkranXEntry_ovb0125> {
+struct UnkBigkranXEntries_ovb0125 : base::global::CRntVector<UnkBigkranXEntry_ovb0125> {
     UnkBigkranXEntries_ovb0125& operator=(const UnkBigkranXEntries_ovb0125& other) asm("fn_71002cbddc");
 };
 

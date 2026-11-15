@@ -3,7 +3,7 @@
 // then destroys the member's base, an array of callback slots freed through its allocator.
 // The record sits at `Record` with the state after it (fn_7100c05060 and its copies).
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkAllocator;

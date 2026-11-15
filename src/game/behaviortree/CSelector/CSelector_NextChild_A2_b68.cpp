@@ -3,13 +3,13 @@
 // while one exists (children array at +0x30, fetched through its GrowAt, fn_710039657c) it is started on the tree
 // (+0x10, fn_71003aab64), the state becomes 2 and the result is 4; otherwise 6. Names and layouts are placeholders.
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/behaviortree/CBehaviorTree.h"
 #include "types.h"
 
 struct UnkClone_fn_710039657c;
 using UnkSelectorChild_A2_b68 = UnkCloneElem<UnkClone_fn_710039657c, 8>;
-extern template UnkSelectorChild_A2_b68& base::UnkVector<UnkSelectorChild_A2_b68>::GrowAt(u32);
+extern template UnkSelectorChild_A2_b68& base::global::CRntVector<UnkSelectorChild_A2_b68>::GrowAt(u32);
 
 struct UnkSelectorTree_A2_b68;
 struct UnkSelectorNode_A2_b68;
@@ -18,7 +18,7 @@ struct UnkSelector_A2_b68 {
     u8 pad_0x0[0x10];
     UnkSelectorTree_A2_b68* tree;
     u8 pad_0x18[0x18];
-    base::UnkVector<UnkSelectorChild_A2_b68> children;
+    base::global::CRntVector<UnkSelectorChild_A2_b68> children;
     s32 current;
     s32 state;
 };

@@ -1,9 +1,9 @@
 // From unit 1115 of tools/tu_map.py (0x71006f8120-0x71006fbadc, no reflected class): the copy of an
 // array of arrays. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
-// An inner array: base::UnkVector's layout with a move that leaves the source empty.
+// An inner array: base::global::CRntVector's layout with a move that leaves the source empty.
 struct UnkInnerVec {
     void* data;
     u32 count;
@@ -22,7 +22,7 @@ struct UnkInnerVec {
     }
 };
 
-typedef base::UnkVector<UnkInnerVec> UnkOuterVec;
+typedef base::global::CRntVector<UnkInnerVec> UnkOuterVec;
 
 // Appends a copy of an inner array.
 void fn_710056041c(UnkOuterVec* self, const UnkInnerVec* value);

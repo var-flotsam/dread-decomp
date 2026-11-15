@@ -1,6 +1,6 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/media/CMediaStream.h"
 #include "types.h"
@@ -34,11 +34,11 @@ struct UnkMediaObject_b0217 {
     UnkStrIdPathPair source;       // 0x10
     base::global::CStrId id;       // 0x20
     u8 pad_0x28[0x38];
-    base::UnkVector<UnkMovieTrack_b0217*> tracks;  // 0x60
+    base::global::CRntVector<UnkMovieTrack_b0217*> tracks;  // 0x60
     u8 pad_0x88[0x648];
-    base::UnkVector<u8> list_0x6d0;
-    base::UnkVector<u8> list_0x6f8;
-    base::UnkVector<u8> list_0x720;
+    base::global::CRntVector<u8> list_0x6d0;
+    base::global::CRntVector<u8> list_0x6f8;
+    base::global::CRntVector<u8> list_0x720;
     u8 thread[0x1f8];  // 0x748
     nn::os::MutexType listener_lock;  // 0x940
     nn::os::MutexType lock;           // 0x960

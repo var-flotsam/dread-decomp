@@ -5,7 +5,7 @@
 // destructor fn_7100369380. Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -37,7 +37,7 @@ struct UnkNailongIdRecord_A4_b70 {
 
 template <class T, u32 Offset>
 struct UnkNailongIds_A4_b70 {
-    static void Release(char* self) { reinterpret_cast<base::UnkVector<T>*>(self + Offset)->Free(); }
+    static void Release(char* self) { reinterpret_cast<base::global::CRntVector<T>*>(self + Offset)->Free(); }
 };
 
 struct UnkNailongList_A4_b70 {

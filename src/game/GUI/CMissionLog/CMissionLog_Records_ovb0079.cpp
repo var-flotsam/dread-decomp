@@ -4,7 +4,7 @@
 // record held by value or by reference (fn_7100b5b158), and the lookup of the last record with a given
 // id (fn_7100b59b58). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU83.h"
 #include "types.h"

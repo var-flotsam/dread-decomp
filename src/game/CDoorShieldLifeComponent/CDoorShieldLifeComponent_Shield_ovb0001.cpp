@@ -10,7 +10,7 @@
 // when its life runs out. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/math/CVector4D.h"
 #include "game/CActorComponent.h"
@@ -41,7 +41,7 @@ struct UnkDoorShieldLifeObj_ovb0001 {
     s64 field_0x3f8;
     u32 field_0x400;
     u8 pad_0x404[0x4];
-    base::UnkVector<void**> lists[3];  // 0x408
+    base::global::CRntVector<void**> lists[3];  // 0x408
     bool field_0x480;
     u8 pad_0x481[0x7];
     u64 field_0x488;
@@ -58,8 +58,8 @@ void fn_71008de2fc(UnkDoorShieldLifeObj_ovb0001* self) {
     self->field_0x3f0 = 0;
     self->field_0x3f8 = -1;
     self->field_0x400 = 0;
-    for (base::UnkVector<void**>& list : self->lists)
-        new (&list) base::UnkVector<void**>(0xf);
+    for (base::global::CRntVector<void**>& list : self->lists)
+        new (&list) base::global::CRntVector<void**>(0xf);
     self->field_0x480 = false;
     self->field_0x488 = 0;
     self->field_0x490 = true;
@@ -67,10 +67,10 @@ void fn_71008de2fc(UnkDoorShieldLifeObj_ovb0001* self) {
 
 void fn_71008de3e0(UnkDoorShieldLifeObj_ovb0001* self) {
     self->vtable = &g_unk_7101a7ebf8[2];
-    base::UnkVector<void**>& links = self->lists[0];
+    base::global::CRntVector<void**>& links = self->lists[0];
     for (void*** it = links.data, ***end = links.data + links.count; it != end; ++it)
         **it = nullptr;
-    for (base::UnkVector<void**>& list : self->lists)
+    for (base::global::CRntVector<void**>& list : self->lists)
         list.Clear();
     self->lists[2].Free();
     self->lists[1].Free();

@@ -4,7 +4,7 @@
 // global instance (0x108 bytes, created on first use) and, when its component at +0x240 is the
 // commander AI component, hands it to the commander's action (fn_71004565f0, fn_71004554d8).
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CChozoCommanderAIComponent.h"

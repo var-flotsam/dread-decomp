@@ -1,9 +1,9 @@
 // CThermalDeviceComponent's unit (unit 1601): the component's constructor. The base constructor runs, the
-// device list (a base::UnkVector written as flat members) is emptied with step 10 and flags 0xf, the five
+// device list (a base::global::CRntVector written as flat members) is emptied with step 10 and flags 0xf, the five
 // ids start empty, and the component's vf_0x18 finishes. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkTU1601.h"

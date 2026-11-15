@@ -2,7 +2,7 @@
 // candidate points; the closer usable one, pushed along the segment normal, becomes the aim point,
 // unless it jumped away from the last one while a candidate sits near it. Names and layouts are placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkActor.h"

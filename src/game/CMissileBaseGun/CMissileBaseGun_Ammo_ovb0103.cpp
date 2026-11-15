@@ -7,7 +7,7 @@
 #include "game/CGun.h"
 #include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU2553.h"

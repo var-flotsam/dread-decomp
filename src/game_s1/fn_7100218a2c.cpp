@@ -5,7 +5,7 @@
 // the stores emptying the list are dropped. fn_71010cf1e8 is the same for another object. Called
 // only through the vtable.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 extern char unk_7101a20260[];

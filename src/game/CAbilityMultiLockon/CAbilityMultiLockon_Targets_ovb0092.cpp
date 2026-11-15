@@ -6,7 +6,7 @@
 // timelines and appends its handle; a new mark starts fully visible (fn_710031c7b8); the per-frame
 // update (fn_7100319958) drops faded marks from the back and fades the others (alpha of the mark's
 // model). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -65,7 +65,7 @@ struct UnkLockonMark_ovb0092 {
     UnkLockonModel_ovb0092* model;  // 0x1b8
 };
 
-// base::UnkVector's layout, with a growing element accessor and an append (as
+// base::global::CRntVector's layout, with a growing element accessor and an append (as
 // src/game/GUI/IDisplayObjectTrack/IDisplayObjectTrack_Keys_ovb0020.cpp).
 template <class T>
 struct UnkGrowArray_ovb0092 {
@@ -150,7 +150,7 @@ struct UnkHandleRef_ovb0092 {
 struct UnkMultiLockon_ovb0092 {
     u8 pad_0x0[0x3a0];
     UnkLockonSlot_ovb0092* slots[5];               // 0x3a0
-    base::UnkVector<UnkHandlePtr_ovb0092> locked;  // 0x3c8
+    base::global::CRntVector<UnkHandlePtr_ovb0092> locked;  // 0x3c8
     u8 pad_0x3f0[0x310];
     UnkLockonMarks_ovb0092 marks;                  // 0x700
 };
@@ -245,7 +245,7 @@ void fn_710031a13c(UnkMultiLockon_ovb0092* self, UnkActor* actor, bool flag) {
     fn_7100d7c94c(actor, &g_unk_7101648e08);
     fn_7100d7c828(actor, flag ? &g_unk_7101648e20 : &g_unk_7101648dc0, false);
     UnkHandleRef_ovb0092 ref(fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(actor)));
-    base::UnkVector<UnkHandlePtr_ovb0092>& v = self->locked;
+    base::global::CRntVector<UnkHandlePtr_ovb0092>& v = self->locked;
     u32 n = v.count;
     u32 capacity = v.capacity;
     if (capacity <= n && v.step != 0)

@@ -2,7 +2,7 @@
 // page (fn_7100fb9564: fires the pending callback once nothing is queued, fades the voice out and marks the dialog
 // done) and the dialog's end (fn_7100fb927c: fades the voice, releases the queued string ids, sends "OnExit" to the
 // dialog target and restores the music level). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/snd/UnkSound.h"
 #include "game/CBossAIComponent.h"

@@ -2,7 +2,7 @@
 // collider (named after the owner, configured from `shape`) and a second collision object that is
 // registered with the tracker. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"

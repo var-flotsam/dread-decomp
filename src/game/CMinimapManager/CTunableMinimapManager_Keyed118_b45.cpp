@@ -4,7 +4,7 @@
 // and End (+0x168). Shaped like src/base/reflection/UnkReflKeyedB0_b44.cpp. The records are
 // destroyed by fn_7100ea7034. Names and layouts are placeholders.
 #include "../../base/reflection/UnkTempIterValue_b44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2566.h"
 #include "types.h"
 

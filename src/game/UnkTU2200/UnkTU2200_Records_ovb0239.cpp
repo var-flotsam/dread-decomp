@@ -2,7 +2,7 @@
 // record (a string id, a number, a path id, three string ids, a 64-bit number and a number), the 0xa0-byte
 // record that holds two arrays and a map of ids, a vector of path ids, and the reflected copies of take
 // records read from a direct or an indirect source. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU2200.h"
 #include "game/UnkTU83.h"
@@ -149,7 +149,7 @@ static inline __attribute__((always_inline)) void AppendAll_b239(UnkPathArray_b2
         if ((s32)n >= (s32)capacity)
             for (;;) {
             }
-        fn_7100c8c210(reinterpret_cast<base::UnkVector<UnkFXPathEntry_b0068>*>(self), capacity);
+        fn_7100c8c210(reinterpret_cast<base::global::CRntVector<UnkFXPathEntry_b0068>*>(self), capacity);
         UnkPathEntry_b239* d = &self->data[self->count];
         new (&d->path) CFilePathStrId(it->path);
         __builtin_memcpy(&d->value, &it->value, sizeof(u64));
@@ -165,7 +165,7 @@ void fn_7100c8c108(UnkPathArray_b239* self, const UnkPathArray_b239* other) {
     self->field_0x14 = other->field_0x14;
     self->field_0x18 = other->field_0x18;
     self->field_0x20 = other->field_0x20;
-    fn_7100c8c210(reinterpret_cast<base::UnkVector<UnkFXPathEntry_b0068>*>(self), other->capacity);
+    fn_7100c8c210(reinterpret_cast<base::global::CRntVector<UnkFXPathEntry_b0068>*>(self), other->capacity);
     AppendAll_b239(self, other);
 }
 
@@ -174,7 +174,7 @@ UnkPathArray_b239* fn_7100c8cc78(UnkPathArray_b239* self, const UnkPathArray_b23
         for (u64 i = 0; i < self->count; ++i)
             ResetFilePath(self->data[i].path);
         self->count = 0;
-        fn_7100c8c210(reinterpret_cast<base::UnkVector<UnkFXPathEntry_b0068>*>(self), other->capacity);
+        fn_7100c8c210(reinterpret_cast<base::global::CRntVector<UnkFXPathEntry_b0068>*>(self), other->capacity);
         AppendAll_b239(self, other);
     }
     return self;

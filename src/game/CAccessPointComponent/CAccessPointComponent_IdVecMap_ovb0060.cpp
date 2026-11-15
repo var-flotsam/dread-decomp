@@ -8,7 +8,7 @@
 #include <new>
 
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -30,7 +30,7 @@ struct UnkIdElem_ovb0060 : base::global::UnkStrIdBase {
     }
 };
 
-using UnkIdVector_ovb0060 = base::UnkVector<UnkIdElem_ovb0060>;
+using UnkIdVector_ovb0060 = base::global::CRntVector<UnkIdElem_ovb0060>;
 
 struct UnkHashView_ovb0060 {
     u8 pad_0x0[0x30];

@@ -2,7 +2,7 @@
 // pointers at +0xf8, +0x90 and +0x88, then destroys the embedded listener (+0x38) and CAttack's
 // part (fn_71003606c0).
 #include "../../game_5821e4/CAttackDtor.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBigkranXSpitAttack.h"
 
 struct UnkSpitAttackDtor {
@@ -14,7 +14,7 @@ struct UnkSpitAttackDtor {
     UnkAttackRefPtrRaw field_0x90;
     u8 pad_0x98[0x60];
     UnkAttackRefPtrRaw field_0xf8;
-    base::UnkVector<void*> field_0x100;
+    base::global::CRntVector<void*> field_0x100;
 
     __attribute__((always_inline)) void Destroy() {
         vtable = g_unk_7101a31348 + 2;

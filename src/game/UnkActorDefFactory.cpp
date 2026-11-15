@@ -9,7 +9,7 @@
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/global/CFilePathStrId.h"
@@ -45,7 +45,7 @@ struct UnkActorDefMapNode {
 // A chained hash map with its own node pool (0x90 bytes): the buckets, the first used bucket and
 // its first node, the nodes' allocator, the flags and count, and a version that every change bumps.
 struct UnkActorDefMap {
-    base::UnkVector<UnkActorDefMapNode*> buckets;
+    base::global::CRntVector<UnkActorDefMapNode*> buckets;
     u32 first_bucket;
     UnkActorDefMapNode* first_node;
     base::UnkAllocator* allocator;

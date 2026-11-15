@@ -1,7 +1,7 @@
 // Once the global manager exists and isn't ready (0x110 clear), a state at 0x448 of 1 or 2
 // clears the counter at 0x44c; then the counter at 0x484 is cleared, the flag at 0x49b set and
 // fn_71002f9460 called with 0.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbility.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"

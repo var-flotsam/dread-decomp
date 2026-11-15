@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "types.h"
 
@@ -15,10 +15,10 @@ using base::math::CVector2D;
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
-// base::global::CRntVector (the engine's growable array, base/UnkVector.h's layout) with its
+// base::global::CRntVector (the engine's growable array, base/global/CRntVector.h's layout) with its
 // bounds-checked element access and its resize.
 template <class T>
-struct UnkFrameVector : base::UnkVector<T> {
+struct UnkFrameVector : base::global::CRntVector<T> {
     const T& operator[](u32 i) const {
         if (!(i < this->count))
             __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");

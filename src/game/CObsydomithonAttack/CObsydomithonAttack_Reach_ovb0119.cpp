@@ -6,7 +6,7 @@
 // layouts are placeholders.
 #include <math.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CObsydomithonAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU394.h"

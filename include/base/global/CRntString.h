@@ -11,7 +11,7 @@
 // `borrowed` is set: then it points at memory the string doesn't own (fn_710007ecb4) and
 // assignments leave it alone. An empty string is null or points at g_unk_7101647847.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // The empty string the copies use; never freed.

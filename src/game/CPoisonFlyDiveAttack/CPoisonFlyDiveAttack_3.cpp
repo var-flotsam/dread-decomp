@@ -3,7 +3,7 @@
 // and drops the handle; clears the words at +0x5c and +0x54 and lets the part at +0x80 of the
 // manager g_unk_71726af468 (created on first use, flags 3) forget the actor (fn_710063a748) and
 // update (fn_710063c670). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"

@@ -2,7 +2,7 @@
 // the user data's owner fills before it starts a scenario load (src/game/UnkUserDataOwner.cpp).
 // Names and layouts are placeholders.
 // Holds fn_7100fc7920.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "types.h"
@@ -65,13 +65,13 @@ struct UnkScenarioLoadRequest {
     u32 kind;
     bool flag;
     void (*fn)();
-    base::UnkVector<UnkScenarioLoadEntry> entries;  // 0x10
+    base::global::CRntVector<UnkScenarioLoadEntry> entries;  // 0x10
     bool pending;  // 0x38
 };
 static_assert(__builtin_offsetof(UnkScenarioLoadRequest, pending) == 0x38, "UnkScenarioLoadRequest placeholder layout");
 
 // Adds an entry at the end and returns it.
-UnkScenarioLoadEntry* fn_7100fc77b0(base::UnkVector<UnkScenarioLoadEntry>* entries);
+UnkScenarioLoadEntry* fn_7100fc77b0(base::global::CRntVector<UnkScenarioLoadEntry>* entries);
 
 // Replaces the request with one entry built from the arguments and marks it pending.
 void fn_7100fc7920(void* loader, u32 kind, const CRntString* scenario, const CRntString* name,

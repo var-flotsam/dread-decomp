@@ -10,7 +10,7 @@
 // use (fn_7100aa2570), the user's (+0xe0) smart object (fn_710033dc00, fn_7100a0a08c), the owner's +0x2a0
 // object (fn_7100861148), the player's +0x1f0 object gets a fixed position (vtable slot 0x1b0) and the
 // owner's +0x228 object is switched off (fn_710024fa0c). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "game/CActorComponent.h"

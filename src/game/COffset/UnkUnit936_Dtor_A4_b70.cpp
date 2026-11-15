@@ -3,7 +3,7 @@
 // (fn_71006241c4) and +0x510 (fn_710060a5c8), then the base's destructor fn_7100416e80. Names are
 // placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game/UnkTU936.h"
 #include "game_s2/UnkOwnedList.h"
@@ -23,7 +23,7 @@ struct base::UnkDtorTraits<UnkUnit936Dtor_A4_b70> {
 
 template <u32 Offset>
 struct UnkUnit936Owned_A4_b70 {
-    static void Release(char* self) { reinterpret_cast<base::UnkVector<UnkOwnedPtr>*>(self + Offset)->Free(); }
+    static void Release(char* self) { reinterpret_cast<base::global::CRntVector<UnkOwnedPtr>*>(self + Offset)->Free(); }
 };
 
 struct UnkUnit936Members_A4_b70 {

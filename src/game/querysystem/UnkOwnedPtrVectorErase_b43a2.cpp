@@ -1,5 +1,5 @@
 // Copies of fn_710036828c (src/game/querysystem/UnkOwnedPtrVectorErase_b41.cpp) in six more units: an
-// erase by index from a base::UnkVector of owning pointers (game_s2/UnkOwnedList.h's UnkOwnedPtr, each
+// erase by index from a base::global::CRntVector of owning pointers (game_s2/UnkOwnedList.h's UnkOwnedPtr, each
 // destroyed through its vtable slot 0x10). When the index is in range, the entry is destroyed, each later
 // one is moved down a slot (the moved-from slot destroyed, now empty) and the count decremented.
 #include "game_s2/UnkOwnedList.h"
@@ -16,7 +16,7 @@ inline void MoveInto_b43a2(UnkOwnedPtr* dst, UnkOwnedPtr* src) {
 
 }  // namespace
 
-struct UnkOwnedPtrVector_b43a2 : base::UnkVector<UnkOwnedPtr> {};
+struct UnkOwnedPtrVector_b43a2 : base::global::CRntVector<UnkOwnedPtr> {};
 
 static inline __attribute__((always_inline)) void Erase_b43a2(UnkOwnedPtrVector_b43a2* self, const u32* index) {
     u32 at = *index;

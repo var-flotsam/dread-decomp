@@ -9,7 +9,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkKeyedStrIds.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameBlackboard.h"
 #include "types.h"
@@ -127,7 +127,7 @@ struct UnkOutOfLineValue28 : T {
 using UnkValue28A = UnkOutOfLineValue28<UnkKeyedStrIds, fn_71000df388>;
 using UnkValue28B = UnkOutOfLineValue28<UnkSecondPtrArray<UnkFreedVectorPair>, fn_7100e493f4>;
 
-// A table of 0x60-byte records holding two arrays (base::UnkVector's layout, freed when
+// A table of 0x60-byte records holding two arrays (base::global::CRntVector's layout, freed when
 // destroyed) and four words.
 struct UnkFreedArray {
     void* data;

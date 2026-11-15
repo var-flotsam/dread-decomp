@@ -2,7 +2,7 @@
 // two growable arrays (growth step 10, flags 0x57), followed by cleared state words.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU39.h"
@@ -23,8 +23,8 @@ struct UnkRecord {
     u8 pad_0x14[4];
     UnkSub* field_0x18;
     u8 pad_0x20[0xa8];
-    base::UnkVector<UnkElem> field_0xc8;
-    base::UnkVector<UnkElem> field_0xf0;
+    base::global::CRntVector<UnkElem> field_0xc8;
+    base::global::CRntVector<UnkElem> field_0xf0;
     u64 field_0x118;
     u64 field_0x120;
     u8 pad_0x128[0xc0];
@@ -44,8 +44,8 @@ void fn_71002b2e9c(UnkRecord* self) {
     new (&self->field_0x8) CStrId(g_unk_7101d470e0);
     self->field_0x10 = -1;
     fn_710002f4e4(reinterpret_cast<UnkSub*>(reinterpret_cast<char*>(self) + 0x18));
-    new (&self->field_0xc8) base::UnkVector<UnkElem>(0x57);
-    new (&self->field_0xf0) base::UnkVector<UnkElem>(0x57);
+    new (&self->field_0xc8) base::global::CRntVector<UnkElem>(0x57);
+    new (&self->field_0xf0) base::global::CRntVector<UnkElem>(0x57);
     self->field_0x118 = 0;
     self->field_0x120 = 0;
     self->field_0x1e8 = 0;

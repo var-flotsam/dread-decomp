@@ -54,7 +54,7 @@ struct UnkAttackAllocator {
     virtual void Free(void* p);
 };
 
-// A growable array of ref-counted pointers (UnkVector's layout): its destructor releases each
+// A growable array of ref-counted pointers (CRntVector's layout): its destructor releases each
 // element, then frees the storage.
 struct UnkAttackRefArray {
     UnkAttackOwner** data;

@@ -2,7 +2,7 @@
 // string-id keys, a copy of fn_7100093dd0 (src/base/reflection/UnkReflAttrs_Reserve_b49.cpp) for the
 // records of src/base/reflection/UnkReflKeyedB0_b44.cpp: each record moved (fn_7100097d18) and the old
 // one destroyed (fn_71000e70c4), each key moved over and the old one released. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU85.h"
 #include "types.h"

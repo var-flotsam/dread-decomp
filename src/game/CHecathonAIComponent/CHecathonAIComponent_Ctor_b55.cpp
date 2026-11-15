@@ -3,7 +3,7 @@
 // +0x146c8: a pair of 1.0 scales, two allocator-backed lists (the 0x48-byte object of
 // src/game/CAIComponent/UnkAIDeviceList.cpp, base vtable 0x7101a20998, final 0x7101a20950) and two
 // cleared runs, then the virtual at slot 3. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CHecathonAIComponent.h"
 #include "game/UnkTU341.h"

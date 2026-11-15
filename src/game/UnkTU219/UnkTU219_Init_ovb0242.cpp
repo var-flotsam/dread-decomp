@@ -3,7 +3,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkEntry16_b0242 {
@@ -13,7 +13,7 @@ struct UnkEntry16_b0242 {
 };
 
 struct UnkOwnerList_b0242 {
-    base::UnkVector<UnkEntry16_b0242> entries;
+    base::global::CRntVector<UnkEntry16_b0242> entries;
     void* owner;  // 0x28
     bool field_0x30;
     bool field_0x31;
@@ -22,7 +22,7 @@ struct UnkOwnerList_b0242 {
 static_assert(__builtin_offsetof(UnkOwnerList_b0242, owner) == 0x28, "layout");
 
 void fn_7100199fcc(UnkOwnerList_b0242* self, void* owner) {
-    new (&self->entries) base::UnkVector<UnkEntry16_b0242>(0x32);
+    new (&self->entries) base::global::CRntVector<UnkEntry16_b0242>(0x32);
     self->entries.Reserve(5);
     self->owner = owner;
     self->field_0x32 = true;

@@ -1,7 +1,7 @@
 // Two functions that fill a list of 64-bit name hashes by the height difference between two
 // positions (fn_71003f2a8c, and fn_71006c26fc with one more hash). Names and layouts are
 // placeholders; the hashes are kept as numbers.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace unk_hash_list {
@@ -16,7 +16,7 @@ struct UnkPos {
     float z;
 };
 
-// The layout of base::UnkVector, with another PushBack: the old elements are copied one by one
+// The layout of base::global::CRntVector, with another PushBack: the old elements are copied one by one
 // through a pointer (the original reloads the count after each), and the new one bitwise.
 struct UnkHashList {
     UnkHash* data;

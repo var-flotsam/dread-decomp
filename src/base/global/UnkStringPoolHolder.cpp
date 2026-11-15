@@ -12,7 +12,7 @@
 
 using base::UnkNamedEntry;
 using base::UnkAllocator;
-using base::UnkVector;
+using base::global::CRntVector;
 using base::global::UnkPoolNode;
 using base::global::UnkPoolSetWithNodes;
 using base::global::UnkStringPool;
@@ -51,7 +51,7 @@ UnkStringPoolHolder::UnkStringPoolHolder(u32 a, UnkStringPool** pool) {
     asm("" : "+r"(state));
     state->empty.tail.copy = true;
     state->empty.tail.field_0x44 = 0;
-    new (&state->set.buckets) UnkVector<char*>(0x25);
+    new (&state->set.buckets) CRntVector<char*>(0x25);
     state->set.first_node = nullptr;
     state->set.first_bucket = -1;
     state->set.node_allocator = fn_7100083990();
@@ -147,7 +147,7 @@ void fn_7100080578(UnkPoolSetWithNodes* set, u32 buckets, u32 nodes) {
         fn_710008378c(&set->nodes.blocks, memory, (u64)nodes * sizeof(UnkPoolNode), sizeof(UnkPoolNode));
     }
     set->node_allocator = reinterpret_cast<UnkAllocator*>(&set->nodes);
-    UnkVector<char*>& v = set->buckets;
+    CRntVector<char*>& v = set->buckets;
     u32 count = v.count;
     if (count < buckets) {
         if (v.capacity < buckets) {

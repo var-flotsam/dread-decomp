@@ -3,7 +3,7 @@
 // fn_71002874dc), frees the storage through the allocator at +0x28 and zeroes count and capacity.
 // Names and layouts are placeholders.
 #include "base/UnkEmptyDtorElem.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkElem_7100286624;

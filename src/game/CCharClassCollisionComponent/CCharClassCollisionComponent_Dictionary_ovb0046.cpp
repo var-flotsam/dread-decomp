@@ -8,7 +8,7 @@
 
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassCollisionComponent.h"
 #include "game/CCharClassComponent.h"

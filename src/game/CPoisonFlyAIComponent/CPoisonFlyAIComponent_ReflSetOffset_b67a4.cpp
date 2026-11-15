@@ -2,7 +2,7 @@
 // invoker. Hands its two float arguments to the registry at +0x80 of the manager g_unk_71726af468
 // (created on first use, as CPoisonFlyRequestAttackOffset_Update_b65a4.cpp does) through
 // fn_710063c7a4; returns an empty value. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"

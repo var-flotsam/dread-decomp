@@ -1,7 +1,7 @@
 // Removes the first node holding `value` from the singly linked list at +0x8 (count, head,
 // tail, allocator), clearing head and tail when it becomes empty, and frees the node; the same
 // shape as fn_7100872908 for another owner.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkNode_710070f240 {

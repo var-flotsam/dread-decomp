@@ -1,6 +1,6 @@
 // CAnimationComponent unit (tools/tu_map.py, the name from reflection). Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkOwner_710070f240;  // src/game_lo/fn_710070f240.cpp
@@ -44,9 +44,9 @@ struct UnkAnimResRef_b52 {
     }
 };
 
-// Grows the array of resource references to `capacity` elements (base::UnkVector's Reserve, written
+// Grows the array of resource references to `capacity` elements (base::global::CRntVector's Reserve, written
 // out: the element type's move and destroy).
-void fn_710117c2e4(base::UnkVector<UnkAnimResRef_b52>* self, u32 capacity) {
+void fn_710117c2e4(base::global::CRntVector<UnkAnimResRef_b52>* self, u32 capacity) {
     if (self->capacity < capacity) {
         auto* p = static_cast<UnkAnimResRef_b52*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkAnimResRef_b52), 8, self->flags));
@@ -66,14 +66,14 @@ void fn_710117c2e4(base::UnkVector<UnkAnimResRef_b52>* self, u32 capacity) {
 
 // Three pointer lists and a lock count (+0x78).
 struct UnkAnimListeners_b52 {
-    base::UnkVector<void*> active;   // 0x0
-    base::UnkVector<void*> pending;  // 0x28
-    base::UnkVector<void*> queued;   // 0x50
+    base::global::CRntVector<void*> active;   // 0x0
+    base::global::CRntVector<void*> pending;  // 0x28
+    base::global::CRntVector<void*> queued;   // 0x50
     s32 lock;                        // 0x78
 };
 
 // Removes the first `value` from the array (data, count), shifting the rest down.
-static inline __attribute__((always_inline)) void RemoveFirst(base::UnkVector<void*>& v, void* value) {
+static inline __attribute__((always_inline)) void RemoveFirst(base::global::CRntVector<void*>& v, void* value) {
     u32 count = v.count;
     if (count == 0)
         return;

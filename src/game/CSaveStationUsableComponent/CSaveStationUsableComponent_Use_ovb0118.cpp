@@ -6,7 +6,7 @@
 // music manager is still playing the char class's music (fn_7100fd6f74) and the tunable wait is set and
 // not yet over, has the object g_unk_7101d47368 run fn_7100d8e0a0, plays the user's timeline id and
 // calls its own slot 0x2b8. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"

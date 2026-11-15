@@ -1,11 +1,11 @@
-// Unit 936 (tools/tu_map.py): a base::UnkVector of 0x20-byte polymorphic entries (a vtable, a string id
+// Unit 936 (tools/tu_map.py): a base::global::CRntVector of 0x20-byte polymorphic entries (a vtable, a string id
 // and two words): the entries' copy, destruction through vtable slot 1, and the vector's copy, assignment,
 // PushBack and Insert; three more copies of the owning-pointer vector erase by index
 // (src/game/querysystem/UnkOwnedPtrVectorErase_b41.cpp); and a constructor (fn_7100416db8's derived class
 // with two empty arrays and the post-construction virtual call). Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBehaviorTreeAIComponent.h"
 #include "game/UnkTU936.h"
 #include "game_s2/UnkOwnedList.h"
@@ -31,7 +31,7 @@ struct UnkEntry_ovb0219 {
 
 using Entry = UnkEntry_ovb0219;
 
-__attribute__((always_inline)) static inline Entry* MoveTo(base::UnkVector<Entry>* self, u32 capacity) {
+__attribute__((always_inline)) static inline Entry* MoveTo(base::global::CRntVector<Entry>* self, u32 capacity) {
     Entry* p = static_cast<Entry*>(self->allocator->vf_0x40((u64)capacity * sizeof(Entry), 8, self->flags));
     if (self->data) {
         Entry* src = self->data;
@@ -45,9 +45,9 @@ __attribute__((always_inline)) static inline Entry* MoveTo(base::UnkVector<Entry
     return p;
 }
 
-__attribute__((noinline)) void fn_710061c9ec(base::UnkVector<Entry>* self, const Entry* value);
+__attribute__((noinline)) void fn_710061c9ec(base::global::CRntVector<Entry>* self, const Entry* value);
 
-void fn_710061c9ec(base::UnkVector<Entry>* self, const Entry* value) {
+void fn_710061c9ec(base::global::CRntVector<Entry>* self, const Entry* value) {
     u32 n = self->count;
     u32 old_capacity = self->capacity;
     u32 new_capacity = old_capacity;
@@ -67,7 +67,7 @@ void fn_710061c9ec(base::UnkVector<Entry>* self, const Entry* value) {
 }
 
 // The copy constructor: the other's settings, its capacity reserved and each entry pushed.
-void fn_710061c898(base::UnkVector<Entry>* self, const base::UnkVector<Entry>* other) {
+void fn_710061c898(base::global::CRntVector<Entry>* self, const base::global::CRntVector<Entry>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -85,7 +85,7 @@ void fn_710061c898(base::UnkVector<Entry>* self, const base::UnkVector<Entry>* o
 }
 
 // Copy assignment: the entries are destroyed, the other's capacity reserved and each entry pushed.
-base::UnkVector<Entry>* fn_710061cb84(base::UnkVector<Entry>* self, const base::UnkVector<Entry>* other) {
+base::global::CRntVector<Entry>* fn_710061cb84(base::global::CRntVector<Entry>* self, const base::global::CRntVector<Entry>* other) {
     if (self != other) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].~Entry();
@@ -102,7 +102,7 @@ base::UnkVector<Entry>* fn_710061cb84(base::UnkVector<Entry>* self, const base::
     return self;
 }
 
-void fn_710061cd0c(base::UnkVector<Entry>* self, const Entry* value, u32 index) {
+void fn_710061cd0c(base::global::CRntVector<Entry>* self, const Entry* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
         fn_710061c9ec(self, value);
@@ -141,7 +141,7 @@ inline void MoveInto_ovb0219(UnkOwnedPtr* dst, UnkOwnedPtr* src) {
 
 }  // namespace
 
-struct UnkOwnedPtrVector_ovb0219 : base::UnkVector<UnkOwnedPtr> {};
+struct UnkOwnedPtrVector_ovb0219 : base::global::CRntVector<UnkOwnedPtr> {};
 
 static inline __attribute__((always_inline)) void Erase_ovb0219(UnkOwnedPtrVector_ovb0219* self, const u32* index) {
     u32 at = *index;

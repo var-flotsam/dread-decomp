@@ -2,7 +2,7 @@
 // out while its target handle is gone, fades the music (fn_7100fd7af8 on the music manager singleton),
 // notifies the game manager's object at +0x2278 and fires its stored callback once. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/GUI/CSubtitleComposition.h"
 #include "game/sound/CMusicManager.h"

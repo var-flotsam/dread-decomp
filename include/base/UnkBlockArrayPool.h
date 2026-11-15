@@ -7,7 +7,7 @@
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkBlockArrayEntry {
@@ -19,7 +19,7 @@ struct UnkBlockArrayPool {
     base::UnkAllocator* allocator;  // owns the buffer
     u32 flags;
     UnkBlockFreeList list;                         // +0x10
-    base::UnkVector<UnkBlockArrayEntry> entries;  // +0x38
+    base::global::CRntVector<UnkBlockArrayEntry> entries;  // +0x38
     u64 count;                                     // +0x60
 };
 

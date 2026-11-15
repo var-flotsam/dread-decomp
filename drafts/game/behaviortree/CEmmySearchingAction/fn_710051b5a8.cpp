@@ -2,7 +2,7 @@
 // behind the direction from the index-th tracked entry's target to the entry itself.
 // Names and layouts are placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 #include <math.h>
@@ -56,7 +56,7 @@ struct UnkSearcher {
     UnkEntryList field_0x12b08;
 };
 
-void fn_710051b5a8(UnkSearcher* self, u32 index, base::UnkVector<UnkPoint*>* points) {
+void fn_710051b5a8(UnkSearcher* self, u32 index, base::global::CRntVector<UnkPoint*>* points) {
     UnkEntryList& entries = self->field_0x12b08;
 
     base::UnkAllocator* copy_allocator = points->allocator;
@@ -83,7 +83,7 @@ void fn_710051b5a8(UnkSearcher* self, u32 index, base::UnkVector<UnkPoint*>* poi
             dir_y /= len;
         }
 
-        base::UnkVector<f32> scores(0xf);
+        base::global::CRntVector<f32> scores(0xf);
         f32 best = -1.0f;
         for (UnkPoint** it = points->data, **end = it + points->count; it != end; ++it) {
             UnkPoint* point = *it;

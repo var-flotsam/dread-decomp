@@ -3,7 +3,7 @@
 // shared out-of-line copy in src/clones/), a stack of up to 100 entry arrays at +0x48 with its depth
 // at +0xfe8, and the object at +0x28 that draws them. The members are placeholders.
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkGlobal_710b372a98.h"
@@ -21,7 +21,7 @@ struct UnkSceneItem {
 
 struct UnkClone_fn_71001fc54c;
 using UnkSceneSlot = UnkCloneElem<UnkClone_fn_71001fc54c, 8>;
-extern template UnkSceneSlot& base::UnkVector<UnkSceneSlot>::GrowAt(u32);
+extern template UnkSceneSlot& base::global::CRntVector<UnkSceneSlot>::GrowAt(u32);
 
 // A rectangle of the display and a depth range.
 struct UnkSceneRect {
@@ -59,12 +59,12 @@ struct UnkSceneDrawer {
 };
 
 // One of the stacked arrays.
-struct UnkSceneLayer : base::UnkVector<UnkSceneEntry> {
-    UnkSceneLayer() : base::UnkVector<UnkSceneEntry>(0xf) {}
+struct UnkSceneLayer : base::global::CRntVector<UnkSceneEntry> {
+    UnkSceneLayer() : base::global::CRntVector<UnkSceneEntry>(0xf) {}
 };
 
 struct UnkSceneManager {
-    base::UnkVector<UnkSceneSlot> items{0x39};
+    base::global::CRntVector<UnkSceneSlot> items{0x39};
     UnkSceneDrawer* field_0x28 = nullptr;
     bool field_0x30 = true;
     u8 pad_0x31[0x7];
@@ -125,7 +125,7 @@ void fn_71001fcca0(UnkSceneManager* self, f32 dt) {
 }
 
 void fn_71001cb588(UnkGlobal_710b372a98* self);
-UnkSceneEntry* fn_71001fca5c(base::UnkVector<UnkSceneEntry>* self, u32 index);  // grows to `index` like GrowAt
+UnkSceneEntry* fn_71001fca5c(base::global::CRntVector<UnkSceneEntry>* self, u32 index);  // grows to `index` like GrowAt
 bool fn_7100200158(UnkSceneItem* item);  // the flag at +0x141
 void fn_710020017c(UnkSceneItem* item, const UnkSceneEntry* entry);
 
@@ -133,7 +133,7 @@ void fn_710020017c(UnkSceneItem* item, const UnkSceneEntry* entry);
 // the drawer, when there is one and it is enabled, cover the display in white.
 void fn_71001fc940(UnkSceneManager* self) {
     fn_71001cb588(g_unk_710b372a98);
-    base::UnkVector<UnkSceneEntry>* top = &self->layers[self->layer_count - 1];
+    base::global::CRntVector<UnkSceneEntry>* top = &self->layers[self->layer_count - 1];
     u32 n = top->count;
     for (u32 i = 0; i != n; ++i) {
         UnkSceneEntry* entry = fn_71001fca5c(top, i);
@@ -213,7 +213,7 @@ void fn_71001fbeec(UnkSceneManager* self, bool flag) {
     g_unk_716e598008 = self;
     u32 width = fn_7100132f80();
     u32 height = fn_7100132f90();
-    base::UnkVector<UnkSceneEntry> entries(0xf);
+    base::global::CRntVector<UnkSceneEntry> entries(0xf);
     UnkSceneEntry entry;
     entry.item_id = 0;
     entry.field_0x8 = -1;

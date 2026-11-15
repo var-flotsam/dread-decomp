@@ -10,7 +10,7 @@
 #include "base/UnkRefHandle.h"
 #include "base/UnkSList.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -656,7 +656,7 @@ struct UnkNodeMap_710025ad0c;
 
 struct UnkNodeBody_71002486a8 {
     base::global::CStrId key;
-    base::UnkVector<UnkSet_71002486a8> sets;  // 0x8
+    base::global::CRntVector<UnkSet_71002486a8> sets;  // 0x8
 };
 
 struct UnkMapBody_71002486a8 {

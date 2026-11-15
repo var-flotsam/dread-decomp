@@ -1,6 +1,6 @@
 // Removes a 64-bit key from the hash set at +8 (buckets indexed by the key's low 32 bits modulo
 // the bucket capacity) and appends it to the array at +0x90. Returns whether the key was there.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU225.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
@@ -35,7 +35,7 @@ struct UnkKeyOwner {
     u8 field_0x0[0x8];
     UnkKeySet set;  // +0x8
     u8 field_0x28[0x68];
-    base::UnkVector<u64> removed;  // +0x90
+    base::global::CRntVector<u64> removed;  // +0x90
 };
 
 void* fn_710019e268(UnkKeySet* set, const u64* key);  // erases the key

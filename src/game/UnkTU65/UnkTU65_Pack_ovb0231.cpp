@@ -4,7 +4,7 @@
 // file (its vf_0x8), takes the pack off the serial counter and releases the path id. Names and layouts are
 // placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU65.h"
 #include "types.h"
 

@@ -3,7 +3,7 @@
 // render-target slots it sets up. Names and layouts are placeholders.
 // Holds fn_7100223c2c.
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU182.h"
 #include "types.h"
 
@@ -16,9 +16,9 @@ struct UnkRenderTargetSlot {
 };
 static_assert(sizeof(UnkRenderTargetSlot) == 0x18, "UnkRenderTargetSlot placeholder layout");
 
-// The slots' array (base::UnkVector's layout). Its elements are copied as raw words (the original's
+// The slots' array (base::global::CRntVector's layout). Its elements are copied as raw words (the original's
 // stores may alias the array's own fields: its count is read again after each one).
-struct UnkRenderTargetSlots : base::UnkVector<UnkRenderTargetSlot> {
+struct UnkRenderTargetSlots : base::global::CRntVector<UnkRenderTargetSlot> {
     __attribute__((always_inline)) void Grow(u32 n) {
         auto* p = static_cast<UnkRenderTargetSlot*>(allocator->vf_0x40((u64)n * sizeof(UnkRenderTargetSlot), 8, flags));
         if (data) {

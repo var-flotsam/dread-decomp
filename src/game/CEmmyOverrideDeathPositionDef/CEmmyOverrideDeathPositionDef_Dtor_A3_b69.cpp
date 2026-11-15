@@ -3,7 +3,7 @@
 // the vtables src/clones/clones_00.cpp gives fn_710023ac4c's copy) at +8 and +0x48, destroyed in reverse
 // order. Names are placeholders.
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkObject_0x100.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -45,10 +45,10 @@ static_assert(sizeof(UnkDefBElem_A3_b69) == 0x40, "UnkDefBElem_A3_b69 layout");
 struct UnkDefBDtor_A3_b69 {
     char* vtable;
     base::UnkCallbackListShort<UnkDeathPositionLists_A3_b69> first;
-    base::UnkVector<UnkDefBElem_A3_b69> elems;
+    base::global::CRntVector<UnkDefBElem_A3_b69> elems;
     base::UnkCallbackListShort<UnkDeathPositionLists_A3_b69> second;
     bool flag;
-    base::UnkVector<UnkObject_0x100> objects;
+    base::global::CRntVector<UnkObject_0x100> objects;
     void Destroy() {
         vtable = reinterpret_cast<char*>(g_unk_7101a48298) + 0x10;
         objects.Free();
@@ -69,8 +69,8 @@ struct UnkDefCDtor_A3_b69 {
     char* vtable;
     base::UnkCallbackListShort<UnkDeathPositionLists_A3_b69> first;
     base::UnkCallbackListShort<UnkDeathPositionLists_A3_b69> second;
-    base::UnkVector<UnkDefBElem_A3_b69> elems;
-    base::UnkVector<base::UnkStrIdMember> ids;
+    base::global::CRntVector<UnkDefBElem_A3_b69> elems;
+    base::global::CRntVector<base::UnkStrIdMember> ids;
     void Destroy() {
         vtable = reinterpret_cast<char*>(g_unk_7101a48270) + 0x10;
         ids.Free();

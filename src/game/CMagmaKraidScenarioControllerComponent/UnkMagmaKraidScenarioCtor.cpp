@@ -3,7 +3,7 @@
 // array with step 10 and flags 0xf, final vtable, allocator), then the post-construction virtual
 // call (slot 3). The container is laid out as in CAutsharpSpawnPointComponent.cpp. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
 #include "game/CMagmaKraidScenarioControllerComponent.h"

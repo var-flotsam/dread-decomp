@@ -3,7 +3,7 @@
 // "NavComponentStateMachinePool".
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkManager_71726af468.h"
 #include "types.h"
@@ -115,13 +115,13 @@ struct UnkNavComponent {
     u32 field_0x2418 = 0;
     bool field_0x241c = false;
     u32 field_0x2420 = 0;
-    base::UnkVector<void*> field_0x2428{0xf};
-    base::UnkVector<void*> field_0x2450{0xf};
-    base::UnkVector<void*> field_0x2478{0xf};
+    base::global::CRntVector<void*> field_0x2428{0xf};
+    base::global::CRntVector<void*> field_0x2450{0xf};
+    base::global::CRntVector<void*> field_0x2478{0xf};
     bool field_0x24a0 = false;
-    base::UnkVector<void*> field_0x24a8{0xf};
-    base::UnkVector<void*> field_0x24d0{0xf};
-    base::UnkVector<void*> field_0x24f8{0xf};
+    base::global::CRntVector<void*> field_0x24a8{0xf};
+    base::global::CRntVector<void*> field_0x24d0{0xf};
+    base::global::CRntVector<void*> field_0x24f8{0xf};
     bool field_0x2520 = false;
     UnkMember_0x2528 field_0x2528{0x20, 0, 4, nullptr};
     bool field_0x2598 = false;

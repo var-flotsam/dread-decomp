@@ -2,7 +2,7 @@
 // the class's vtable is set, the array's ids are released and the array freed, the id at 0x18
 // is released, then the base destructor (fn_710006b5dc) runs. Also two destructors of a key
 // with an array of id/word records.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CTrack.h"
 #include "game/CCharClassCooldownXBossDamageShapesTrack.h"

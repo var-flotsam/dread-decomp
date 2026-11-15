@@ -2,7 +2,7 @@
 // (the comments are adapted from the original's): fn_710011ab88, fn_710011ac48, fn_710011b010, fn_710011b0d0. A value
 // and an optional external array, with a pair referring to both: assignment copies the value and the array pointer and
 // rebinds the pair. The in-place array (followed by 0x20 more bytes) frees its storage.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <class X, class Y>
@@ -46,7 +46,7 @@ struct UnkValuePairRef {
 };
 
 template <class T>
-struct UnkFreedVector : base::UnkVector<T> {
+struct UnkFreedVector : base::global::CRntVector<T> {
     ~UnkFreedVector() { this->Free(); }
 };
 

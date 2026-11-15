@@ -4,7 +4,7 @@
 // spawns its effect (g_unk_7172706450) at the point, turned half a turn when the transform's z axis points left.
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/CAnimationComponent.h"
 #include "game/CAutclastChargeAttack.h"

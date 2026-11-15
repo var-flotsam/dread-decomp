@@ -8,7 +8,7 @@
 // on. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"

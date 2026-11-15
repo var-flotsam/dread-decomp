@@ -10,10 +10,10 @@ struct UnkElem138_b56 {
     ~UnkElem138_b56() { fn_7100e4e310(reinterpret_cast<char*>(this)); }
 };
 
-void fn_7100e62f54(const base::UnkVector<UnkElem138_b56>* v, base::UnkCollectionIter<UnkElem138_b56>* out) {
+void fn_7100e62f54(const base::global::CRntVector<UnkElem138_b56>* v, base::UnkCollectionIter<UnkElem138_b56>* out) {
     base::refl_Begin(v, out);
 }
 
-void fn_7100e63034(const base::UnkVector<UnkElem138_b56>* v, base::UnkCollectionIter<UnkElem138_b56>* out) {
+void fn_7100e63034(const base::global::CRntVector<UnkElem138_b56>* v, base::UnkCollectionIter<UnkElem138_b56>* out) {
     base::refl_End(v, out);
 }

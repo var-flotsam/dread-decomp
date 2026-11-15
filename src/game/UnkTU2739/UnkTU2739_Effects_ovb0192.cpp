@@ -11,7 +11,7 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkResKey.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CAutclastChargeAttack.h"
 #include "game/CDemolitionBlockSonarTargetComponent.h"
@@ -62,7 +62,7 @@ void fn_71011a96d4(char* self) {
 
 struct UnkFxObjectPool_ovb0192 {
     u8 pad_0x0[0x10];
-    base::UnkVector<UnkFxPooledObject*> objects;  // 0x10
+    base::global::CRntVector<UnkFxPooledObject*> objects;  // 0x10
     u32 used;                                     // 0x38
 };
 

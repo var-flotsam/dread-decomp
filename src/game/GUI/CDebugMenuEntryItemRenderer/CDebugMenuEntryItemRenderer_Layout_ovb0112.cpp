@@ -7,7 +7,7 @@
 // (+0x238); otherwise the text takes the whole row and the marker is hidden. Names and layouts are
 // placeholders.
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"
@@ -48,7 +48,7 @@ void fn_7100affe40(UnkGuiRoot* root, UnkDebugMenuItem_ovb0112* item, const CStrI
 
 struct UnkClone_fn_7100affc6c;
 using UnkMenuEntrySlot_ovb0112 = UnkCloneElem<UnkClone_fn_7100affc6c, 8>;
-extern template UnkMenuEntrySlot_ovb0112& base::UnkVector<UnkMenuEntrySlot_ovb0112>::GrowAt(u32);
+extern template UnkMenuEntrySlot_ovb0112& base::global::CRntVector<UnkMenuEntrySlot_ovb0112>::GrowAt(u32);
 
 struct UnkSprite_spr;
 
@@ -68,7 +68,7 @@ struct UnkMenuEntryData_ovb0112 {
     virtual u32 Count();                // vf_0x38
     virtual CRntString Label(u32 index);  // vf_0x40
     u8 pad_0x8[0x8];
-    base::UnkVector<UnkMenuEntrySlot_ovb0112> entries;  // 0x10
+    base::global::CRntVector<UnkMenuEntrySlot_ovb0112> entries;  // 0x10
 };
 
 struct UnkDebugMenuEntryItemRenderer_ovb0112 {

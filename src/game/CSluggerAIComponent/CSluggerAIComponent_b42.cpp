@@ -2,12 +2,12 @@
 // fn_71002f75ac in src/base/UnkUnit27/UnkBucketTable_Ctor_b41.cpp). Names and layouts are placeholders.
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkBucket_b42a2;
 
-// base::UnkVector's layout, without its member initialisers.
+// base::global::CRntVector's layout, without its member initialisers.
 struct UnkBucketArray_b42a2 {
     UnkBucket_b42a2** data;
     u32 count;

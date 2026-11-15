@@ -3,7 +3,7 @@
 // polymorphic elements at +0x2a700, then the base's destructor fn_710053f510. Names are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CEmmySancAIComponent.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU811.h"
@@ -40,7 +40,7 @@ struct UnkSancList_A3_b69 {
 
 struct UnkSancElems_A3_b69 {
     static void Release(char* self) {
-        reinterpret_cast<base::UnkVector<UnkSancElem_A3_b69>*>(self + 0x2a700)->Free();
+        reinterpret_cast<base::global::CRntVector<UnkSancElem_A3_b69>*>(self + 0x2a700)->Free();
     }
 };
 

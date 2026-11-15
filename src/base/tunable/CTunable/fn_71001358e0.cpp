@@ -3,7 +3,7 @@
 // The same code for 14 maps; fn_7100b48944 (src/game_aca57c/fn_7100eb1824.cpp) is another copy.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChangeStageNavMeshItemComponent.h"
 #include "game_s2/UnkOwnedList.h"

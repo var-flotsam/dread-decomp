@@ -6,7 +6,7 @@
 // tools/tu_map.py puts fn_71004f11f8 in the unit it names after CEmmyCaveAIComponent. The names
 // and the layout are placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

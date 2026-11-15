@@ -1,11 +1,11 @@
 // CGoliathXBurstProjectionBombMovement unit (tools/tu_map.py): the constructor of an array of 12-byte
-// values (base::UnkVector's layout) from `count` values at `values`: its step, flags and allocator (the
+// values (base::global::CRntVector's layout) from `count` values at `values`: its step, flags and allocator (the
 // default one, fn_7100083990, when none is given), room for all of them, then each appended through
 // the out-of-line PushBack (fn_710058c768, as src/game_s7/fn_7100121f78.cpp declares it). Names and
 // layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "types.h"
 

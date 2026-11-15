@@ -4,7 +4,7 @@
 // the set's first bucket and node right), and fn_71000eb628 takes a resource out of the registry: its path
 // leaves the path set, then the type node's, and the type node goes when it has no paths left. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/UnkCache.h"
 #include "base/UnkResKey.h"
 #include "base/reflection/CClass.h"
@@ -17,7 +17,7 @@
 
 struct UnkSetNode_b257j {
     base::global::CStrId name;  // 0x0
-    base::UnkVector<void*> list;  // 0x8
+    base::global::CRntVector<void*> list;  // 0x8
     u8 pad_0x30[0x28];
     UnkSetNode_b257j* next;  // 0x58
 };

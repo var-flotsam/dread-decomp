@@ -3,7 +3,7 @@
 // fn_7100030300 (src/game_s7/fn_7100030300.cpp): fn_710006c974, fn_710008883c. Destructors (complete, and two deleting)
 // of objects that hold a list of string-id nodes: restore the vtable, release each node's id and free the node through
 // the list's allocator.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU63.h"

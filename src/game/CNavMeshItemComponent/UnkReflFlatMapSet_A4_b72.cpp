@@ -2,7 +2,7 @@
 // copy; src/reflection_types/collection_types_00.cpp), copies of the CBreakableTileGroupComponent pair
 // (src/game/CBreakableTileGroupComponent/UnkReflFlatMapMoveSet_A5_b71.cpp) with 8-byte elements in the copied
 // arrays. Keys are 8-byte words, values 0x28-byte growable arrays. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkTileArray_A4_b72 {
@@ -57,7 +57,7 @@ void fn_71009c3c94(UnkTileFlatMap_A4_b72* self, const u64* key, UnkTileArray_A4_
 struct UnkTileElem_A4_b72 {
     u64 a;
 };
-using UnkTileVector_A4_b72 = base::UnkVector<UnkTileElem_A4_b72>;
+using UnkTileVector_A4_b72 = base::global::CRntVector<UnkTileElem_A4_b72>;
 
 struct UnkTileVecFlatMap_A4_b72 {
     UnkTileVector_A4_b72* values;

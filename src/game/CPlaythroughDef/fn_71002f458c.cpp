@@ -3,7 +3,7 @@
 // object's virtual function in slot 3 is called at the end.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
 #include "game/CPlaythroughDef.h"
@@ -15,7 +15,7 @@ struct UnkIdArrayHolder {
     u8 pad_0x8[0x50];
     CStrId field_0x58;
     CStrId field_0x60;
-    base::UnkVector<void*> field_0x68;
+    base::global::CRntVector<void*> field_0x68;
 };
 
 void fn_71002f458c(UnkIdArrayHolder* self) {
@@ -23,6 +23,6 @@ void fn_71002f458c(UnkIdArrayHolder* self) {
     self->vtable = g_unk_7101a22240 + 2;
     new (&self->field_0x58) CStrId(g_unk_7101d470e0);
     new (&self->field_0x60) CStrId(g_unk_7101d470e0);
-    new (&self->field_0x68) base::UnkVector<void*>(0xf);
+    new (&self->field_0x68) base::global::CRntVector<void*>(0xf);
     reinterpret_cast<void (*)(UnkIdArrayHolder*)>(self->vtable[3])(self);
 }

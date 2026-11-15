@@ -3,7 +3,7 @@
 // and frees the object.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCreditsMode/CTunableCredits.h"
 #include "types.h"
 

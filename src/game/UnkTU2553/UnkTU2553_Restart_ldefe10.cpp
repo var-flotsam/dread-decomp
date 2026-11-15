@@ -1,7 +1,7 @@
 // CGameManager::CTunableGameManager's unit (tools/tu_map.py unit 2553): restarts the current level: quiets the
 // sound, rumble and effects, tears the game down (fn_7100def930), rebuilds the level's .bmssd path and drops
 // the pending file path. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"

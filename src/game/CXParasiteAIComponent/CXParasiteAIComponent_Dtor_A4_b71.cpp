@@ -32,7 +32,7 @@ void fn_71006e6184(UnkXParasiteAI* self) {
     if (bindings.values)
         bindings.allocator->vf_0x48(bindings.values);
 
-    base::UnkVector<UnkWeakHandle*>& entries = self->entries;
+    base::global::CRntVector<UnkWeakHandle*>& entries = self->entries;
     if (entries.data) {
         for (u64 i = 0; i < entries.count; ++i)
             Release(entries.data[i]);

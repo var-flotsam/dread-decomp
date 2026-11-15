@@ -9,7 +9,7 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkStateObject;
 extern void* g_unk_7101a72d70[];

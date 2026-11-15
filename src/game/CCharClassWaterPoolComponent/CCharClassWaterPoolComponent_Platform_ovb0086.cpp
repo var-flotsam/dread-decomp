@@ -5,7 +5,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CCharClassWaterPoolComponent.h"
@@ -148,7 +148,7 @@ static inline UnkManager_7100863a8c* CollisionManager() {
     return g_unk_71726a4788;
 }
 
-// An engine array (base::UnkVector's layout) whose elements need no destructor here.
+// An engine array (base::global::CRntVector's layout) whose elements need no destructor here.
 struct UnkWaterPoolArray_b0086 {
     void* data;
     u32 count;

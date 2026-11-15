@@ -14,7 +14,7 @@
 //   than 1.5 times its body reach the dive starts (fn_71006314b4) in state 3, otherwise it gives up
 //   (state 6, fn_7100632204); state 3 moves to state 4 as fn_7100632204 does (a kind-5 block carrying
 //   the vector at +0x48 for the owner's +0x298).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

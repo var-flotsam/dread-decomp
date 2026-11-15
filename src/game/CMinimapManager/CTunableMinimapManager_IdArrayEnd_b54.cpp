@@ -5,13 +5,13 @@
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU2566.h"
 
 struct UnkIdRecordOwner_0xf0;
 using UnkIdElem_b54 = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 0x10, UnkCloneStrId<UnkIdRecordOwner_0xf0>>;
 
-void fn_7100eb02a4(const base::UnkVector<UnkIdElem_b54>* v, base::UnkCollectionIter<UnkIdElem_b54>* out) {
+void fn_7100eb02a4(const base::global::CRntVector<UnkIdElem_b54>* v, base::UnkCollectionIter<UnkIdElem_b54>* out) {
     base::UnkCollectionIter<UnkIdElem_b54> it(v->count, v->data + v->count);
     if (out != &it) {
         out->index = it.index;

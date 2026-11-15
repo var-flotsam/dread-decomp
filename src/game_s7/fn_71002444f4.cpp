@@ -9,7 +9,7 @@
 #include <new>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -32,7 +32,7 @@ struct UnkMovedVec {
         other.capacity = 0;
     }
     // From the engine's vector (the same layout).
-    UnkMovedVec(base::UnkVector<u8>&& other)
+    UnkMovedVec(base::global::CRntVector<u8>&& other)
         : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
           field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
         other.data = nullptr;
@@ -50,7 +50,7 @@ struct UnkStrIdVecMoveVariant {
         Named named;
         struct {
             UnkStrIdMember* id;
-            base::UnkVector<u8>* vec;
+            base::global::CRntVector<u8>* vec;
         } refs;
     };
     u32 state;
@@ -65,9 +65,9 @@ struct UnkStrIdVecMoveVariant {
         case 2: {
             state = 1;
             UnkStrIdMember* id = other.refs.id;
-            base::UnkVector<u8>* vec = other.refs.vec;
+            base::global::CRntVector<u8>* vec = other.refs.vec;
             new (&named.id) UnkStrIdMember(static_cast<UnkStrIdMember&&>(*id));
-            new (&named.vec) UnkMovedVec(static_cast<base::UnkVector<u8>&&>(*vec));
+            new (&named.vec) UnkMovedVec(static_cast<base::global::CRntVector<u8>&&>(*vec));
             break;
         }
         }

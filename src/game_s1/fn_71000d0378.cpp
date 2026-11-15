@@ -10,7 +10,7 @@
 // and of values holding a word, a file path id and a counted resource (fn_710000da34).
 #include "base/UnkCollectionIter.h"
 #include "base/UnkCountedResource.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

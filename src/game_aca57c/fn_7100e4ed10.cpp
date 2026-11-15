@@ -2,7 +2,7 @@
 // are destroyed, then each record (its arrays freed, its string id released). One container type
 // per record size (0xa8 and 0x80 bytes; their copy constructors are fn_7100e509a4 and
 // fn_7100e5190c).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -28,7 +28,7 @@ struct UnkReleasedStrId {
 };
 
 // The arrays' elements are plain values; only their storage is freed.
-struct UnkArray : base::UnkVector<u32> {
+struct UnkArray : base::global::CRntVector<u32> {
     ~UnkArray() { Free(); }
 };
 

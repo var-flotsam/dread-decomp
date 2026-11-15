@@ -2,7 +2,7 @@
 // game manager's tutorial composition (+0x2270) unless it is empty, then (unless the message id at +0x18 is empty) logs it as a
 // kind 2 message to the game manager's callback set at +0x2128. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/GUI/CTutorialComposition.h"
@@ -38,7 +38,7 @@ struct UnkMlogText_ovb0139 : base::global::UnkStrIdBase {
 struct UnkMlogMessage_ovb0139 {
     u32 kind;
     UnkMlogText_ovb0139 text;
-    base::UnkVector<base::UnkStrIdMember> args;
+    base::global::CRntVector<base::UnkStrIdMember> args;
 
     __attribute__((always_inline)) UnkMlogMessage_ovb0139(u32 k, const CStrId& t) : kind(k), text(t), args(0xc) {}
     __attribute__((always_inline)) ~UnkMlogMessage_ovb0139() { args.Free(); }

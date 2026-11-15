@@ -2,7 +2,7 @@
 // The step is scaled by the game manager's time scale; the input deltas are cleared, read again
 // (fn_71011b3990) unless input is blocked, and kept as the previous frame's. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2768.h"

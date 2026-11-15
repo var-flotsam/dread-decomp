@@ -1,8 +1,8 @@
-// Insert and copy-assignment of a growable array of reference-counted pointers (base::UnkVector's
+// Insert and copy-assignment of a growable array of reference-counted pointers (base::global::CRntVector's
 // layout) with an out-of-line Reserve: appending grows like PushBack (including its hang);
 // inserting shifts the later elements up by copying each into the next slot and releasing the
 // old one. Two array types (one Reserve each) have two Insert copies each.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // A reference-counted object released through vf_0x10. The count is a union member (no

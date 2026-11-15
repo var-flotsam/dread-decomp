@@ -6,7 +6,7 @@
 
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU39.h"

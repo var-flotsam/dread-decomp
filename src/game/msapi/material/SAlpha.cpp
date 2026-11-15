@@ -6,7 +6,7 @@
 // Holds fn_71001a6f54.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
@@ -41,8 +41,8 @@ struct UnkMaterialValues {
 };
 static_assert(sizeof(UnkMaterialValues) == 0x38, "UnkMaterialValues placeholder layout");
 
-// The array (base/UnkVector.h's layout); fn_71001a9bd0 resizes it.
-struct UnkMaterialValuesVector : base::UnkVector<UnkMaterialValues> {
+// The array (base/global/CRntVector.h's layout); fn_71001a9bd0 resizes it.
+struct UnkMaterialValuesVector : base::global::CRntVector<UnkMaterialValues> {
     // Grows the array to hold n elements, copying them over and destroying the old ones.
     void Reserve(u32 n) {
         if (capacity < n) {
@@ -111,7 +111,7 @@ struct UnkMaterialPass {
     char* vtable;
     u64 field_0x8;
     UnkMaterialValuesVector values;      // 0x10
-    base::UnkVector<u64> field_0x38;
+    base::global::CRntVector<u64> field_0x38;
 };
 static_assert(sizeof(UnkMaterialPass) == 0x60, "UnkMaterialPass placeholder layout");
 extern char unk_7101a1e358[];
@@ -120,9 +120,9 @@ extern char unk_7101a1e358[];
 // 0x330, the passes at 0x358 and the ids at 0x3a8 that are emptied after the read.
 struct UnkMaterial {
     u8 pad_0x0[0x358];
-    base::UnkVector<UnkMaterialPass> passes;
+    base::global::CRntVector<UnkMaterialPass> passes;
     u8 pad_0x380[0x28];
-    base::UnkVector<CStrId> ids;  // 0x3a8
+    base::global::CRntVector<CStrId> ids;  // 0x3a8
 };
 static_assert(__builtin_offsetof(UnkMaterial, ids) == 0x3a8, "UnkMaterial placeholder layout");
 
@@ -135,8 +135,8 @@ static inline T& At(UnkMaterial* self, u64 offset) {
 // a pass's second array, and the steps after the passes.
 void fn_71001a69a0(void*, CRntFile* file, void* dst);
 void fn_71001a6b5c(UnkMaterial* self);
-void fn_71001a71b8(base::UnkVector<UnkMaterialPass>* passes, u32 n);  // Reserve
-void fn_71001a7310(UnkMaterial* self, CRntFile* file, base::UnkVector<u64>* list);
+void fn_71001a71b8(base::global::CRntVector<UnkMaterialPass>* passes, u32 n);  // Reserve
+void fn_71001a7310(UnkMaterial* self, CRntFile* file, base::global::CRntVector<u64>* list);
 void fn_71001a7410(UnkMaterial* self);
 
 // Reads the material from `file`: its header blocks (copied to their places), its values, then
@@ -182,8 +182,8 @@ void fn_71001a6644(UnkMaterial* self, CRntFile* file) {
             UnkMaterialPass* p = &self->passes.data[k];
             fn_7100023838(p);
             p->vtable = unk_7101a1e358 + 0x10;
-            new (&p->values) base::UnkVector<UnkMaterialValues>(0x35);
-            new (&p->field_0x38) base::UnkVector<u64>(0x35);
+            new (&p->values) base::global::CRntVector<UnkMaterialValues>(0x35);
+            new (&p->field_0x38) base::global::CRntVector<u64>(0x35);
         }
         self->passes.count = n;
         UnkMaterialPass* pass = n ? &self->passes.data[n - 1] : self->passes.data;

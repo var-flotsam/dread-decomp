@@ -3,7 +3,7 @@
 // the member at +0x80 (fn_71007b15f4), a listener at +0xc0 and two empty arrays (step 10, flags
 // 0xf, default allocator), then the post-construction virtual call (slot 3). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCharClassActivatableComponent.h"
 #include "game/CComponent.h"

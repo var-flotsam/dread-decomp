@@ -3,7 +3,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU57.h"
 
@@ -19,7 +19,7 @@ struct UnkStruct_71011ebdb4 {
     u32 field_0x18c;
     u32 field_0x190;
     u8 unk_0x194[0x4];
-    base::UnkVector<void*> field_0x198[3];
+    base::global::CRntVector<void*> field_0x198[3];
     bool field_0x210;
     u8 unk_0x211[0x7];
     UnkWideStr_0x20 field_0x218;
@@ -72,7 +72,7 @@ void fn_71011ebdb4(UnkStruct_71011ebdb4* self) {
     self->field_0x18c = 0;
     self->field_0x190 = 0;
     for (u32 i = 0; i < 3; ++i)
-        new (&self->field_0x198[i]) base::UnkVector<void*>(0xf);
+        new (&self->field_0x198[i]) base::global::CRntVector<void*>(0xf);
     self->field_0x210 = false;
     fn_7100066b38(&self->field_0x218, "");
     fn_7100066b38(&self->field_0x238, "");

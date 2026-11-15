@@ -4,7 +4,7 @@
 // addressed by offset; their types are unknown.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassCooldownXBossAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"

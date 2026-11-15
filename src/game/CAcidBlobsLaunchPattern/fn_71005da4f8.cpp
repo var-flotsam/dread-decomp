@@ -6,7 +6,7 @@
 #include "base/UnkCollectionIter.h"
 #include "game_s2/UnkOwnedList.h"
 
-using UnkLists = base::UnkVector<UnkOwnedList>;
+using UnkLists = base::global::CRntVector<UnkOwnedList>;
 using UnkListIter = base::UnkCollectionIter<UnkOwnedList>;
 
 namespace {
@@ -44,7 +44,7 @@ __attribute__((always_inline)) inline void EraseAt(UnkLists* self, u32 index) {
 
 }  // namespace
 
-// The move-assignments are flattened: with three users in the file, UnkVector's operator= would
+// The move-assignments are flattened: with three users in the file, CRntVector's operator= would
 // otherwise stay out of line.
 
 void fn_71005da4f8(UnkLists* self) { self->Clear(); }

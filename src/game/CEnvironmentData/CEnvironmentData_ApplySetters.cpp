@@ -7,7 +7,7 @@
 // pointer for 9 or more entries or kind 1) and returns an empty result of kind 2. Names and layouts are
 // placeholders.
 #include "base/global/CFilePathStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection.h"
 #include "game/UnkTU0.h"

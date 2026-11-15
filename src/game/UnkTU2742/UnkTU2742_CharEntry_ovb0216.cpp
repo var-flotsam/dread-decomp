@@ -1,7 +1,7 @@
 // Unit 2742 (no reliable name): the destructor of the character class table's entry (read by
 // fn_71011ad60c, src/game/CCharClassComponent/CCharClassComponent_Read_ovb0127.cpp): its property bag is
 // destroyed and freed, then the command, then the string id is released. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2685.h"
 #include "types.h"

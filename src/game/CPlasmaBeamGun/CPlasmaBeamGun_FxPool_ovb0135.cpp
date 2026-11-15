@@ -4,7 +4,7 @@
 // (fn_7100339d48 for switch objects, fn_7100339900 for models), put on layer 0 (fn_7100219ae0) and
 // switched off; its bit in the in-use mask is cleared. Names and layouts are placeholders.
 #include <new>
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilitySonar.h"
@@ -29,7 +29,7 @@ void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarMod
 
 struct UnkFxObjectPool_ovb0135 {
     u8 pad_0x0[0x10];
-    base::UnkVector<UnkFxPooledObject*> objects;  // 0x10
+    base::global::CRntVector<UnkFxPooledObject*> objects;  // 0x10
     u32 used;                                     // 0x38
 };
 

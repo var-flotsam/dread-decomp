@@ -1,7 +1,7 @@
 // Constructors of a hash map with 11 buckets: a bucket array of node pointers (an engine array
 // with growth step 10) and the node allocator and flags, both taking the given allocator or the
 // default one. The buckets are resized to 11 empty ones (fn_7100d93e5c and its copies).
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkAllocator;

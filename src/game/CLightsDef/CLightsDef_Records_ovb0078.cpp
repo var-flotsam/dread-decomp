@@ -1,11 +1,11 @@
-// CLightsDef's unit (tools/tu_map.py): the unit's array (base::UnkVector's layout) of 0x60-byte records
+// CLightsDef's unit (tools/tu_map.py): the unit's array (base::global::CRntVector's layout) of 0x60-byte records
 // with two string ids at +0x8 and +0x10 (src/game/CLightsDef/CLightsDef_b42.cpp has its setters):
 // its reallocation (fn_7100da1508), its shrinking resize (fn_7100da0870) and the move-insert
-// (fn_7100da18e4), base::UnkVector's code with the record moved by fn_7100d9b18c and its ids released
+// (fn_7100da18e4), base::global::CRntVector's code with the record moved by fn_7100d9b18c and its ids released
 // in two steps. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CLightsDef.h"
 #include "types.h"
@@ -67,7 +67,7 @@ struct UnkLightsRecord_ovb0078 {
 };
 
 void fn_7100da1508(UnkLightsArray_b42a3* self, u32 capacity) {
-    reinterpret_cast<base::UnkVector<UnkLightsRecord_ovb0078>*>(self)->Reserve(capacity);
+    reinterpret_cast<base::global::CRntVector<UnkLightsRecord_ovb0078>*>(self)->Reserve(capacity);
 }
 
 // As src/game/CLightManager/fn_7100e0ccf8.cpp declares it.
@@ -94,7 +94,7 @@ static inline UnkLightsRecord_ovb0078* Records(UnkLightsArray_b42a3* self) {
     return reinterpret_cast<UnkLightsRecord_ovb0078*>(self->data);
 }
 
-// Moves `value` in at `index`, shifting the later records up (base::UnkVector::Insert, with the
+// Moves `value` in at `index`, shifting the later records up (base::global::CRntVector::Insert, with the
 // reallocation out of line).
 void fn_7100da18e4(UnkLightsArray_b42a3* self, UnkLightsRecord_ovb0078* value, u32 index) {
     u32 cap = self->capacity;

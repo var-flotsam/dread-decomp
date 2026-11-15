@@ -2,7 +2,7 @@
 // 0x7101a58cd8): refcounted pointers at +0xa8 and +0xa0, the node owner at +0x30 (fn_710059c7b8), then an
 // array of 0x30-byte polymorphic elements at +8. Names are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU852.h"
 #include "game/UnkTU958.h"
 #include "types.h"
@@ -26,7 +26,7 @@ struct UnkUnit958Nodes_A4_b70 {
 
 struct UnkUnit958Elems_A4_b70 {
     static void Release(char* self) {
-        reinterpret_cast<base::UnkVector<UnkUnit958Elem_A4_b70>*>(self + 8)->Free();
+        reinterpret_cast<base::global::CRntVector<UnkUnit958Elem_A4_b70>*>(self + 8)->Free();
     }
 };
 

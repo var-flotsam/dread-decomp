@@ -3,7 +3,7 @@
 // its final vtable and finishes in fn_7100023854.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "types.h"
 
@@ -12,7 +12,7 @@ struct UnkNode {
     u8 pad_0x8[0x20];
     u64 field_0x28;
     u64 field_0x30;
-    base::UnkVector<void*> field_0x38;
+    base::global::CRntVector<void*> field_0x38;
     u64 field_0x60;
     u32 field_0x68;
 };
@@ -26,7 +26,7 @@ void fn_71002e4894(UnkNode* self) {
     self->vtable = g_unk_7101a21948 + 2;
     self->field_0x28 = 0;
     self->field_0x30 = 0;
-    new (&self->field_0x38) base::UnkVector<void*>(0x40);
+    new (&self->field_0x38) base::global::CRntVector<void*>(0x40);
     self->field_0x38.Reserve(2);
     self->field_0x60 = 0;
     self->vtable = g_unk_7101a21d78 + 2;

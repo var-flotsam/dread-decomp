@@ -1,7 +1,7 @@
 // Destructors (complete and deleting, each also entered through the secondary base at 8) of an
 // object with a table member at 0x68: restore the vtables, clear the table (fn_710102bcf8) and
 // free its two arrays, then the secondary base clears its array (fn_710102be04) and frees it.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/sound/CSoundManager.h"
 #include "types.h"
 
@@ -14,7 +14,7 @@ struct UnkSecondaryBase_0x30;
 struct UnkSecondaryBase_0x30 {
     void** vtable;
     union {
-        base::UnkVector<u64> array;
+        base::global::CRntVector<u64> array;
     };
 
     ~UnkSecondaryBase_0x30() {

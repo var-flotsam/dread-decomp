@@ -1,7 +1,7 @@
 // CSpitclawkAIComponent unit (tools/tu_map.py unit 1067). Its destructors: the vtable, the array of
 // counted references at +0x146f8 (each dropped, then the array freed), then the base destructor
 // fn_710067c3f8; fn_71006c8a28 also frees the object. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -21,7 +21,7 @@ extern void* g_unk_7101a65cd8[];
 struct UnkSpitclawkAIComponent_b49a3 {
     void** vtable;
     u8 pad_0x8[0x146f0];
-    base::UnkVector<UnkRefSlot_b49a3> refs;  // 0x146f8
+    base::global::CRntVector<UnkRefSlot_b49a3> refs;  // 0x146f8
 };
 
 void fn_710067c3f8(UnkSpitclawkAIComponent_b49a3* self);

@@ -3,7 +3,7 @@
 // (fn_71010ed7e8), the reset that calls the script function named at +0xd0 (fn_71010edd64), the pose
 // snapshot (fn_71010ee0f8) and a distance factor towards the player (fn_71010ee560). Names and layouts
 // are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CCameraCtrl.h"
@@ -60,9 +60,9 @@ struct UnkStringEntry_ovb0049 {
 
 // Three arrays (growth step 10, allocator flags 0xf) and a flag.
 struct UnkCameraLists_ovb0049 {
-    base::UnkVector<void*> field_0x0;
-    base::UnkVector<void*> field_0x28;
-    base::UnkVector<void*> field_0x50;
+    base::global::CRntVector<void*> field_0x0;
+    base::global::CRntVector<void*> field_0x28;
+    base::global::CRntVector<void*> field_0x50;
     bool field_0x78;
 };
 static_assert(sizeof(UnkCameraLists_ovb0049) == 0x80, "lists layout");

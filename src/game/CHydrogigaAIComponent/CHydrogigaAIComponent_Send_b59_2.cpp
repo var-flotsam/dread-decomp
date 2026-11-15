@@ -4,7 +4,7 @@
 // and makes two calls of fn_7100fdcf2c on the music manager (game/sound/CMusicManager.h) with 0.2.
 // Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"

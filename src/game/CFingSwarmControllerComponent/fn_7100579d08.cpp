@@ -3,7 +3,7 @@
 // float at +0x6c, clears the byte at +0x180, finds the billboard component under the owner's +0xe8
 // and starts the effect keyed by the value at +0x30 of its +0xd0 (creating the global manager on first
 // use), and sets the float at +0x64 to 1.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CDizzeanSwarmControllerComponent.h"

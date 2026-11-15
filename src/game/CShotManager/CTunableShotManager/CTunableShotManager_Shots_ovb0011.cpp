@@ -6,7 +6,7 @@
 #include <new>
 
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/CLightManager.h"
@@ -76,14 +76,14 @@ struct UnkPtrList;
 
 struct UnkShotManager_b0011 {
     u8 pad_0x0[0x30];
-    base::UnkVector<UnkShotEffect_b0011> field_0x30;
+    base::global::CRntVector<UnkShotEffect_b0011> field_0x30;
     u8 pad_0x58[0x148];
     void** field_0x1a0[5][2][2];  // the render instances per type and variant, and of their second part
     UnkShotGfx_b0011* field_0x240[5][5];
     u8 pad_0x308[0x3c0];
     UnkShotSound_b0011 field_0x6c8[5][8];
     u8 pad_0xa88[0x7b0];
-    base::UnkVector<UnkListedObj*> field_0x1238;  // the shot lights
+    base::global::CRntVector<UnkListedObj*> field_0x1238;  // the shot lights
     u32 field_0x1260;
 
     bool HasPath(u32 type, u32 variant) { return field_0x6c8[type][variant].ids.path.data != &g_unk_7101d47200->empty; }
@@ -226,7 +226,7 @@ void fn_7100ed7634(UnkShotManager_b0011* self) {
 }
 
 // Appends a copy of an effect.
-void fn_7100ede44c(base::UnkVector<UnkShotEffect_b0011>* self, const UnkShotEffect_b0011* effect) {
+void fn_7100ede44c(base::global::CRntVector<UnkShotEffect_b0011>* self, const UnkShotEffect_b0011* effect) {
     self->PushBackCopy(*effect);
 }
 
@@ -412,7 +412,7 @@ struct UnkRefPtr_b0011 {
     }
 };
 
-// Growable arrays (base::UnkVector's layout) whose Reserve stays out of line; copied by
+// Growable arrays (base::global::CRntVector's layout) whose Reserve stays out of line; copied by
 // reserving the other's capacity and appending each element with PushBack's growth.
 template <class T>
 struct UnkCopyVec_b0011 {
@@ -497,8 +497,8 @@ struct UnkShotWeakRef_b0011 {
 };
 
 // Copy assignment: cleared, reserved to the other's capacity, and each element appended.
-base::UnkVector<UnkShotWeakRef_b0011>* fn_7100eddaac(base::UnkVector<UnkShotWeakRef_b0011>* self,
-                                                     const base::UnkVector<UnkShotWeakRef_b0011>* other) {
+base::global::CRntVector<UnkShotWeakRef_b0011>* fn_7100eddaac(base::global::CRntVector<UnkShotWeakRef_b0011>* self,
+                                                     const base::global::CRntVector<UnkShotWeakRef_b0011>* other) {
     if (self != other) {
         self->Clear();
         self->Reserve(other->capacity);
@@ -516,7 +516,7 @@ struct UnkObj290_b43a3 {
 static_assert(sizeof(UnkObj290_b43a3) == 0x290, "UnkObj290_b43a3 layout");
 
 // Reallocates to n shots, moving each over and destroying the old one.
-static inline void ReallocShots_b0011(base::UnkVector<UnkObj290_b43a3>* self, u32 n) {
+static inline void ReallocShots_b0011(base::global::CRntVector<UnkObj290_b43a3>* self, u32 n) {
     UnkObj290_b43a3* p =
         static_cast<UnkObj290_b43a3*>(self->allocator->vf_0x40((u64)n * sizeof(UnkObj290_b43a3), 8, self->flags));
     if (UnkObj290_b43a3* old = self->data) {
@@ -535,8 +535,8 @@ static inline void ReallocShots_b0011(base::UnkVector<UnkObj290_b43a3>* self, u3
 
 // Copy assignment of the shots: each is destroyed, then the array is grown to the other's
 // capacity and the other's shots appended (with PushBack's growth).
-base::UnkVector<UnkObj290_b43a3>* fn_7100edd784(base::UnkVector<UnkObj290_b43a3>* self,
-                                               base::UnkVector<UnkObj290_b43a3>* other) {
+base::global::CRntVector<UnkObj290_b43a3>* fn_7100edd784(base::global::CRntVector<UnkObj290_b43a3>* self,
+                                               base::global::CRntVector<UnkObj290_b43a3>* other) {
     if (self != other) {
         for (u64 i = 0; i < self->count; ++i)
             self->data[i].vf_0x0();

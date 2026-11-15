@@ -4,7 +4,7 @@
 // src/base/UnkUnit204/UnkPooledCreate_b54.cpp does. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU204.h"
 #include "types.h"
 

@@ -4,7 +4,7 @@
 // layouts are placeholders. Also the string record's constructor (fn_7100ec4240).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -16,7 +16,7 @@ struct UnkPlayReportRecord_b49 {
 };
 
 // Assigns another record array (out of line).
-void* fn_7100ec55ac(base::UnkVector<UnkPlayReportRecord_b49>* self, const base::UnkVector<UnkPlayReportRecord_b49>* other);
+void* fn_7100ec55ac(base::global::CRntVector<UnkPlayReportRecord_b49>* self, const base::global::CRntVector<UnkPlayReportRecord_b49>* other);
 
 // An empty id: the string id constructor for "" (the length folded) inlined.
 __attribute__((always_inline)) static inline void InitEmptyId(CStrId* id) {
@@ -30,13 +30,13 @@ struct UnkPlayReportCopy {
     u32 field_0x0;
     CStrId field_0x8;
     CStrId field_0x10;
-    base::UnkVector<UnkPlayReportRecord_b49> records;  // 0x18
+    base::global::CRntVector<UnkPlayReportRecord_b49> records;  // 0x18
 };
 
 void fn_7100ec536c(UnkPlayReportCopy* self, const UnkPlayReportCopy* other) {
     InitEmptyId(&self->field_0x8);
     InitEmptyId(&self->field_0x10);
-    new (&self->records) base::UnkVector<UnkPlayReportRecord_b49>(0xf);
+    new (&self->records) base::global::CRntVector<UnkPlayReportRecord_b49>(0xf);
     self->field_0x0 = other->field_0x0;
     self->field_0x8 = other->field_0x8;
     self->field_0x10 = other->field_0x10;

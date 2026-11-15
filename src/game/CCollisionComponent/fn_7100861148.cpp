@@ -1,7 +1,7 @@
 // When a pending flag is set: hands each registered collider (array at +0x98) to its owner,
 // as a CColliderGroup or a CCollider depending on its class, then calls one virtual with 4 on
 // each entry of the array at +0x48, and clears the flag.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -20,9 +20,9 @@ struct UnkStruct_7100861148_Collider : UnkReflObject {
 
 struct UnkStruct_7100861148 {
     u8 pad_0x0[0x48];
-    base::UnkVector<UnkCollisionRecord> field_0x48;
+    base::global::CRntVector<UnkCollisionRecord> field_0x48;
     u8 pad_0x70[0x28];
-    base::UnkVector<UnkReflObject*> field_0x98;
+    base::global::CRntVector<UnkReflObject*> field_0x98;
     u8 pad_0xc0[0x8];
     bool field_0xc8;
 };

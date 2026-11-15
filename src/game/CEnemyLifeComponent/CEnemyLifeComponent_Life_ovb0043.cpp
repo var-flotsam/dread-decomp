@@ -2,7 +2,7 @@
 // the AI overrides of the base value and step (fn_710115b0f4, fn_710115bdcc), the frostbite test
 // (fn_710115bd60) and the link-list holder's destructor (fn_710115a6e8). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAIManager/CTunableAIManager.h"
@@ -27,9 +27,9 @@ struct UnkLinked_ovb0043 {
 // A holder of three arrays whose first one points at objects that keep a back pointer in their first
 // word; the same destructor as fn_71008e03dc's (UnkLinkLists_A4_b75).
 struct UnkLinkLists_ovb0043 {
-    base::UnkVector<UnkLinked_ovb0043*> linked;  // 0x0
-    base::UnkVector<u64> field_0x28;
-    base::UnkVector<u64> field_0x50;
+    base::global::CRntVector<UnkLinked_ovb0043*> linked;  // 0x0
+    base::global::CRntVector<u64> field_0x28;
+    base::global::CRntVector<u64> field_0x50;
 };
 
 // Clears every back pointer, empties the three arrays and frees them in reverse order.

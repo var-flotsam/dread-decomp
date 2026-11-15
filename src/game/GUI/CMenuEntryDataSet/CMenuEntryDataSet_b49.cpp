@@ -2,7 +2,7 @@
 // whose name (the first word of the entry) equals `name` (fn_710007f120), or -1. The element accessor
 // is the shared out-of-line copy (src/clones/, fn_7100affc6c). Names and layout are placeholders.
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -11,11 +11,11 @@ struct UnkCompared_0x30;
 
 struct UnkClone_fn_7100affc6c;
 using UnkMenuEntrySlot_b49a6 = UnkCloneElem<UnkClone_fn_7100affc6c, 8>;
-extern template UnkMenuEntrySlot_b49a6& base::UnkVector<UnkMenuEntrySlot_b49a6>::GrowAt(u32);
+extern template UnkMenuEntrySlot_b49a6& base::global::CRntVector<UnkMenuEntrySlot_b49a6>::GrowAt(u32);
 
 struct UnkMenuEntryDataSet_b49a6 {
     u8 pad_0x0[0x10];
-    base::UnkVector<UnkMenuEntrySlot_b49a6> entries;  // 0x10
+    base::global::CRntVector<UnkMenuEntrySlot_b49a6> entries;  // 0x10
 };
 
 s32 fn_710120201c(UnkMenuEntryDataSet_b49a6* self, const UnkCompared_0x30* name) {

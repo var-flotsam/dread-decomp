@@ -5,6 +5,6 @@
 
 // NON_MATCHING(minor): the three zero stores of the moved element (0x34, 0x3c, 0x44) are emitted in
 // ascending order, the original has the first and last swapped
-void fn_71004dccac(base::UnkVector<UnkItem>* self, const UnkItem* value) {
+void fn_71004dccac(base::global::CRntVector<UnkItem>* self, const UnkItem* value) {
     self->PushBackCopy(*value);
 }

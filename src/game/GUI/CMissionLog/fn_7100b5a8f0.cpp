@@ -2,7 +2,7 @@
 // at offset `Offset` of the object: the ids in the vector are released and the vector freed,
 // then the leading id is released (fn_7100b5a8f0 and its copies).
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkAllocator;

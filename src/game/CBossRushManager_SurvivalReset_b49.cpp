@@ -2,7 +2,7 @@
 // rush reader in src/game/CBossRushManager.cpp (fn_7100dc82b4): resets the survival record (-1) and
 // its time (0), stores both in the user data's section (unless the data is locked), then tells the
 // user data's owner (fn_7101203854). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"

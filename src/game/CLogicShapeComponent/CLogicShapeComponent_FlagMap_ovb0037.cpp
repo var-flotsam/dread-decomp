@@ -7,7 +7,7 @@
 // builds the shape at +0x30; a shape of kind 0x10 gets its flag at +0x98 set) and a reflected
 // invoker answering whether an object lies in the shape (the test of
 // CLogicShapeComponent_Test_A5_b68.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"

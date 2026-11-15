@@ -9,7 +9,7 @@
 // layout are placeholders.
 
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/input/UnkHidVibration.h"
 #include "types.h"
 

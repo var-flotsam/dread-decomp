@@ -3,7 +3,7 @@
 // (fn_71008e756c). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -82,7 +82,7 @@ struct UnkLightingComponentDtor_ovb0061 {
     u8 pad_0x8[0x38];
     base::UnkStrIdMemberOf<g_unk_7101d47200> field_0x40;
     UnkLightPath_ovb0061 path;                     // +0x48
-    base::UnkVector<UnkLight_ovb0061*> lights;     // +0x60
+    base::global::CRntVector<UnkLight_ovb0061*> lights;     // +0x60
 };
 static_assert(__builtin_offsetof(UnkLightingComponentDtor_ovb0061, lights) == 0x60, "layout");
 

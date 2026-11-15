@@ -1,18 +1,18 @@
 // CBTObserverComponent's unit (tools/tu_map.py unit 2216): appends an entry under a u32 key to the
 // keyed array of 0x80-byte entries (entries at +0x0, keys at +0x8, count +0x10, capacity +0x14, step
 // +0x18), growing it by the step when full (fn_7100ca9158), and returns the new entry: three empty
-// arrays (base::UnkVector, allocation flags 0xf) and a cleared flag. Names and layouts are placeholders.
+// arrays (base::global::CRntVector, allocation flags 0xf) and a cleared flag. Names and layouts are placeholders.
 #include <new>
 
 #include "base/UnkPairArrays.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBTObserverComponent.h"
 #include "types.h"
 
 struct UnkBTObserverEntry {
-    base::UnkVector<void*> field_0x0{0xf};
-    base::UnkVector<void*> field_0x28{0xf};
-    base::UnkVector<void*> field_0x50{0xf};
+    base::global::CRntVector<void*> field_0x0{0xf};
+    base::global::CRntVector<void*> field_0x28{0xf};
+    base::global::CRntVector<void*> field_0x50{0xf};
     bool field_0x78 = false;
 };
 static_assert(sizeof(UnkBTObserverEntry) == 0x80, "UnkBTObserverEntry layout");

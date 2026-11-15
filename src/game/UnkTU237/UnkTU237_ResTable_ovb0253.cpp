@@ -1,7 +1,7 @@
 // Unit 237 (a table of indexed resources, no reliable name): the constructor of a table with three
 // index arrays (by kind) and a chained map of 11 buckets. Names and layouts are placeholders.
 #include "base/UnkChainedMap.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkKindA_b0253;

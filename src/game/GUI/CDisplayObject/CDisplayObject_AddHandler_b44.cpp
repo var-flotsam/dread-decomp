@@ -5,7 +5,7 @@
 // handle (0x10 bytes, fn_7100b33f90), and adds the handle to the object's handler lists at +0xb8
 // under the event kind named by the first argument (fn_7101202300, src/game/GUI/UnkGuiEvent.cpp;
 // fn_7100b1e34c, src/game/UnkUnit1674/UnkUnit1674_Push.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU1686.h"

@@ -5,7 +5,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"

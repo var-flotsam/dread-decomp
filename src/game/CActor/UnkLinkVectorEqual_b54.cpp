@@ -4,7 +4,7 @@
 // state set to 2; links are equal when their handles' targets (+0x10) are. Names and layouts are
 // placeholders.
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -34,7 +34,7 @@ struct UnkLink_b54a1 {
 };
 static_assert(sizeof(UnkLink_b54a1) == 0x40, "UnkLink_b54a1 layout");
 
-bool fn_710024693c(base::UnkVector<UnkLink_b54a1>* self, base::UnkVector<UnkLink_b54a1>* other) {
+bool fn_710024693c(base::global::CRntVector<UnkLink_b54a1>* self, base::global::CRntVector<UnkLink_b54a1>* other) {
     if (self->count != other->count)
         return false;
     for (u64 i = 0; i < self->count; ++i) {

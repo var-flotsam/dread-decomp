@@ -1,7 +1,7 @@
 // Shrink-to-fit of a container of two parallel arrays (0x118-byte records and u32 values)
 // sharing a count and capacity: both are reallocated to exactly `count`, the records moved over
 // (each source destroyed by fn_7100ea7034, also here), the values copied and the old arrays freed.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2566.h"

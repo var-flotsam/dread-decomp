@@ -2,7 +2,7 @@
 // must have the same lengths and hold the same object pointers.
 #include "game_s2/UnkOwnedList.h"
 
-bool fn_71004a8ddc(const base::UnkVector<UnkOwnedList>* self, const base::UnkVector<UnkOwnedList>* other) {
+bool fn_71004a8ddc(const base::global::CRntVector<UnkOwnedList>* self, const base::global::CRntVector<UnkOwnedList>* other) {
     if (self->count != other->count)
         return false;
     for (u32 i = 0; i < self->count; ++i) {

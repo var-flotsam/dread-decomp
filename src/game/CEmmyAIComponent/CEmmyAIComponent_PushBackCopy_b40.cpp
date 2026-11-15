@@ -1,10 +1,10 @@
 // CEmmyAIComponent unit (tools/tu_map.py unit 811): appends a copy of an inner array to an array of
 // arrays, the same code as fn_7100d43e70 (src/game/CCollider/CCollider_CopyArrays.cpp); its caller is
 // fn_71006fb3f4 (unit 1115). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
-// An inner array: base::UnkVector's layout with a move that leaves the source empty.
+// An inner array: base::global::CRntVector's layout with a move that leaves the source empty.
 struct UnkInnerVec {
     void* data;
     u32 count;
@@ -41,7 +41,7 @@ struct UnkInnerVec {
     }
 };
 
-typedef base::UnkVector<UnkInnerVec> UnkOuterVec;
+typedef base::global::CRntVector<UnkInnerVec> UnkOuterVec;
 
 void fn_710056041c(UnkOuterVec* self, const UnkInnerVec* value) {
     self->PushBackCopy(*value);

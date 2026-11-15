@@ -14,7 +14,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
@@ -73,7 +73,7 @@ static_assert(sizeof(UnkSndMap_b0185<u32>) == 0x48, "layout");
 
 struct UnkSndSys_b0185 {
     u8 pad_0x0[0x418];
-    base::UnkVector<UnkSndVoice_b0185*> voices_b;  // 0x418
+    base::global::CRntVector<UnkSndVoice_b0185*> voices_b;  // 0x418
     u8 pad_0x440[0x400568 - 0x440];
     nn::os::MutexType mutex;  // 0x400568
     u8 pad_0x400568[0x400788 - 0x400568 - sizeof(nn::os::MutexType)];

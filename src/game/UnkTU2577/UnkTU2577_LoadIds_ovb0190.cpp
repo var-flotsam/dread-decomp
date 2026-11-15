@@ -1,6 +1,6 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100ee96f0: loads a list of ids: each is passed to the GUI cache (fn_710119e4ec) and added to the loaded list at +0x338, then every spawn group component of the entities (fn_7101119514) is told about each id (fn_710111b040). Names and layouts are placeholders.
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

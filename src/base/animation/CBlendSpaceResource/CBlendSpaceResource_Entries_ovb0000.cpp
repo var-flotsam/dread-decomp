@@ -1,5 +1,5 @@
 // base::animation::CBlendSpaceResource's unit (tools/tu_map.py unit 14): the resource's array of 0x18-byte entries
-// (a value, a file-path id and a counted resource reference, base::UnkVector's layout) with its out-of-line reserve
+// (a value, a file-path id and a counted resource reference, base::global::CRntVector's layout) with its out-of-line reserve
 // (fn_710000e610), push-back (fn_710000e7a4), copy-assignment (fn_710000e890), inserts by copy (fn_710000e9c0) and by
 // move (fn_710000ebe0), erase by index (fn_710000ee20) and by index iterator (fn_710000e08c), growing element access
 // (fn_710000efe0), and the resource's destructor (fn_710000b66c). Names and layouts are placeholders.
@@ -7,7 +7,7 @@
 
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
@@ -80,7 +80,7 @@ struct UnkBlendEntry_ovb0000 {
 };
 static_assert(sizeof(UnkBlendEntry_ovb0000) == 0x18, "entry layout");
 
-using UnkBlendEntries_ovb0000 = base::UnkVector<UnkBlendEntry_ovb0000>;
+using UnkBlendEntries_ovb0000 = base::global::CRntVector<UnkBlendEntry_ovb0000>;
 
 // As src/base/animation/CBlendSpaceResource/fn_710000e2ec.cpp declares them (UnkElem18 is the entry).
 struct UnkElem18;

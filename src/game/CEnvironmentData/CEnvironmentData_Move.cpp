@@ -18,7 +18,7 @@
 #include "types.h"
 
 using base::UnkStrIdValueElem;
-using base::UnkVector;
+using base::global::CRntVector;
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
@@ -158,7 +158,7 @@ struct UnkTransitionTag {};
 #define DREAD_INLINE_TRANSITION(ID, T, VTABLE, RESIZE)                                                  \
     template <>                                                                                         \
     struct base::UnkStrIdValueTraits<UnkTransitionTag<ID, T>> {                                        \
-        using Vec = UnkVector<UnkStrIdValueElem<UnkTransitionTag<ID, T>, T>>;                           \
+        using Vec = CRntVector<UnkStrIdValueElem<UnkTransitionTag<ID, T>, T>>;                           \
         static char* base_vtable() { return g_unk_7101cab1f8; }                                         \
         static char* vtable() { return VTABLE; }                                                        \
         static void resize(Vec* v, u32 n) { RESIZE(v, n); }                                             \
@@ -171,7 +171,7 @@ struct UnkTransitionTag {};
 #define DREAD_CALLED_TRANSITION(ID, T, RESIZE, GROW_AT)                                                 \
     template <>                                                                                         \
     struct base::UnkStrIdValueTraits<UnkTransitionTag<ID, T>> {                                        \
-        using Vec = UnkVector<UnkStrIdValueElem<UnkTransitionTag<ID, T>, T>>;                           \
+        using Vec = CRntVector<UnkStrIdValueElem<UnkTransitionTag<ID, T>, T>>;                           \
         static void resize(Vec* v, u32 n) { RESIZE(v, n); }                                             \
         static UnkStrIdValueElem<UnkTransitionTag<ID, T>, T>& grow_at(Vec* v, u32 i) {                  \
             return *reinterpret_cast<UnkStrIdValueElem<UnkTransitionTag<ID, T>, T>*>(GROW_AT(v, i));    \
@@ -200,8 +200,8 @@ namespace env_move {
 // A transition vector: the engine's array with allocation flags 0x53; copy-assigned element by
 // element (it has no move of its own).
 template <int Id, class T>
-struct UnkTransitions : UnkVector<UnkStrIdValueElem<UnkTransitionTag<Id, T>, T>> {
-    UnkTransitions() : UnkVector<UnkStrIdValueElem<UnkTransitionTag<Id, T>, T>>(0x53) {}
+struct UnkTransitions : CRntVector<UnkStrIdValueElem<UnkTransitionTag<Id, T>, T>> {
+    UnkTransitions() : CRntVector<UnkStrIdValueElem<UnkTransitionTag<Id, T>, T>>(0x53) {}
     __attribute__((always_inline)) void Assign(UnkTransitions& other) { base::refl_StrIdValueAssign(this, &other); }
 };
 

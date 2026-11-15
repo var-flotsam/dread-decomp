@@ -4,7 +4,7 @@
 #include <new>
 
 #include "base/UnkDefaultAllocator.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace movie {
@@ -30,14 +30,14 @@ struct UnkAudioStreamBuffers {
     s32 chunks;      // 0xc5c
     s32 chunk_size;  // 0xc60
     u8 pad_0xc64[0xc70 - 0xc64];
-    base::UnkVector<movie::Buffer> queued;   // 0xc70
-    base::UnkVector<movie::Buffer> pending;  // 0xc98
+    base::global::CRntVector<movie::Buffer> queued;   // 0xc70
+    base::global::CRntVector<movie::Buffer> pending;  // 0xc98
     u8 pad_0xcc0[0xcd8 - 0xcc0];
     nn::os::MutexType mutex;  // 0xcd8
 };
 static_assert(__builtin_offsetof(UnkAudioStreamBuffers, mutex) == 0xcd8, "UnkAudioStreamBuffers layout");
 
-static inline void DestroyAll(base::UnkVector<movie::Buffer>& list) {
+static inline void DestroyAll(base::global::CRntVector<movie::Buffer>& list) {
     for (u64 i = 0; i < list.count; ++i)
         list.data[i].~Buffer();
     list.count = 0;

@@ -31,7 +31,7 @@ struct UnkTriggerOwned_b56 {
     f32 field_0x20;
     u32 field_0x24;
     u32 field_0x28;
-    base::UnkVector<UnkOwnedPtr> entries;  // 0x30
+    base::global::CRntVector<UnkOwnedPtr> entries;  // 0x30
     bool field_0x58;
 
     // The memberwise move-assignment, out of line (fn_7100a6340c).

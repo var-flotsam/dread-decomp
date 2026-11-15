@@ -1,6 +1,6 @@
 // Looks up an object in a chained hash map at +0xd0 (keyed by the object pointer, hashed by
 // two words of the object) and returns its value, inserting a newly built one if missing.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -41,7 +41,7 @@ struct UnkStruct_71003327a4_Iter {
     UnkStruct_71003327a4_Iter(const UnkStruct_71003327a4_Iter& o);
 };
 
-using UnkMap_71003327a4 = base::UnkVector<UnkStruct_71003327a4_Node*>;
+using UnkMap_71003327a4 = base::global::CRntVector<UnkStruct_71003327a4_Node*>;
 
 UnkStruct_71003327a4_Node** fn_7100332978(UnkMap_71003327a4* map, u32 index);
 UnkStruct_71003327a4_Iter fn_7100332b54(UnkMap_71003327a4* map, UnkStruct_71003327a4_Key** key,

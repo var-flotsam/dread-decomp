@@ -3,7 +3,7 @@
 // their vtable and the reflected value, fn_71000a1c60) and the zeroed member at +0x58 (vtable
 // unk_7101a70cb0), then the component base destructor (fn_71010c4194). Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkComponent.h"

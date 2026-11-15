@@ -1,7 +1,7 @@
 // Constructor and destructor of five groups of three arrays: each group first unlinks the objects of its first
 // array (clearing their back-pointers) and empties all three, then frees them. fn_7100a9dbac and
 // fn_7100a9dd78 are identical copies.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkLinked {
     void* owner;

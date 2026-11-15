@@ -9,7 +9,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CDefinition.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CFilePathStrId.h"
@@ -26,9 +26,9 @@ extern void* g_unk_7101a20bf8[];  // the class's vtable
 struct UnkActorDefData_ovb0118 {
     void** vtable;
     u8 pad_0x8[0x68];
-    base::UnkVector<base::UnkStrIdMember> names;  // 0x70
+    base::global::CRntVector<base::UnkStrIdMember> names;  // 0x70
     base::UnkStrIdMember name;                    // 0x98
-    base::UnkVector<void*> items;                 // 0xa0
+    base::global::CRntVector<void*> items;                 // 0xa0
 };
 static_assert(__builtin_offsetof(UnkActorDefData_ovb0118, items) == 0xa0, "UnkActorDefData_ovb0118 layout");
 
@@ -62,9 +62,9 @@ struct UnkActorDefUser_ovb0118 {
     u8 pad_0x8[0x48];
     bool keep_parts;  // 0x50
     u8 pad_0x51[0x1f];
-    base::UnkVector<base::UnkStrIdMember> names;     // 0x70
+    base::global::CRntVector<base::UnkStrIdMember> names;     // 0x70
     base::UnkStrIdMember name;                       // 0x98
-    base::UnkVector<UnkActorDefPart_ovb0118*> parts;  // 0xa0
+    base::global::CRntVector<UnkActorDefPart_ovb0118*> parts;  // 0xa0
 };
 
 // Typed as src/game/CCharClass/CCharClass_Paths_ovb0066.cpp declares it.
@@ -173,9 +173,9 @@ struct UnkActorDefLoad_ovb0118 {
     virtual void vf_0x40();
     virtual bool vf_0x48();
     u8 pad_0x8[0x68];
-    base::UnkVector<CStrId> names;  // 0x70
+    base::global::CRntVector<CStrId> names;  // 0x70
     base::UnkStrIdMember name;      // 0x98
-    base::UnkVector<UnkActorDefPart2_ovb0118*> parts;  // 0xa0
+    base::global::CRntVector<UnkActorDefPart2_ovb0118*> parts;  // 0xa0
 };
 
 bool fn_7100254fdc(UnkActorDefLoad_ovb0118* self, UnkActorDefContext_ovb0118* context) {

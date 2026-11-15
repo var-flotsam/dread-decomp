@@ -3,7 +3,7 @@
 // fn_7100a73ec8, freed through the map's allocator, and the node after it in the list is returned.
 // CAccessPointComponent unit (tools/tu_map.py, unit 1581). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

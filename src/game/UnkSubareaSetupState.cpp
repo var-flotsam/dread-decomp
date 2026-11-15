@@ -8,7 +8,7 @@
 // Holds fn_7100fac2d4 (switches one kind on or off), fn_7100facbe8 (hands one kind over between
 // two setups' ids) and fn_7100faba64 (applies the chain of setups the blackboard names).
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"

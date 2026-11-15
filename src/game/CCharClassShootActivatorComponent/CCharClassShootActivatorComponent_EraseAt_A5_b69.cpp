@@ -1,11 +1,11 @@
 // CCharClassShootActivatorComponent's unit (fn_7100894c50) and CBeamBoxComponent's (fn_71008aaab4, identical):
-// reflected collection erase (slot 0x128) for a base::UnkVector of 0x48-byte callback entries (a callback list
+// reflected collection erase (slot 0x128) for a base::global::CRntVector of 0x48-byte callback entries (a callback list
 // with the vtables g_unk_7101a33fa0 over g_unk_7101a20998, then a string id). The entry an index iterator names
 // is destroyed inline, each later entry is moved down one (the list through fn_71007b1928, the id inline) and
 // the moved-from one destroyed. The index goes through a byte offset from the vector itself
 // (build/b67/b67a6.md). Names are placeholders.
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "game/UnkTU341.h"
@@ -15,7 +15,7 @@
 // (the out-of-line copy is base::UnkCallbackEntry's, fn_71008933d4).
 struct UnkCallbackListBase_A5_b69 {
     char* vtable;
-    base::UnkVector<base::UnkCallable> callables;
+    base::global::CRntVector<base::UnkCallable> callables;
     __attribute__((always_inline)) ~UnkCallbackListBase_A5_b69() {
         vtable = reinterpret_cast<char*>(g_unk_7101a20998) + 0x10;
         if (callables.data) {
@@ -48,7 +48,7 @@ static inline __attribute__((always_inline)) void MoveEntry_A5_b69(UnkCallbackEn
     src->id.data = &g_unk_7101d47108->empty;
 }
 
-static inline __attribute__((always_inline)) void EraseAt_A5_b69(base::UnkVector<UnkCallbackEntry_A5_b69>* self,
+static inline __attribute__((always_inline)) void EraseAt_A5_b69(base::global::CRntVector<UnkCallbackEntry_A5_b69>* self,
                                                                  u32 index) {
     if (index >= self->count)
         return;
@@ -61,7 +61,7 @@ static inline __attribute__((always_inline)) void EraseAt_A5_b69(base::UnkVector
     self->count = self->count - 1;
 }
 
-static inline __attribute__((always_inline)) void EraseAtIter_A5_b69(base::UnkVector<UnkCallbackEntry_A5_b69>* self,
+static inline __attribute__((always_inline)) void EraseAtIter_A5_b69(base::global::CRntVector<UnkCallbackEntry_A5_b69>* self,
                                                                      const u32* it) {
     UnkCallbackEntry_A5_b69* base = reinterpret_cast<UnkCallbackEntry_A5_b69*>(self);
     u64 offset = (u64)*it * sizeof(UnkCallbackEntry_A5_b69);
@@ -70,10 +70,10 @@ static inline __attribute__((always_inline)) void EraseAtIter_A5_b69(base::UnkVe
     EraseAt_A5_b69(self, (u32)(p - base));
 }
 
-void fn_7100894c50(base::UnkVector<UnkCallbackEntry_A5_b69>* self, const u32* it) {
+void fn_7100894c50(base::global::CRntVector<UnkCallbackEntry_A5_b69>* self, const u32* it) {
     EraseAtIter_A5_b69(self, it);
 }
 
-void fn_71008aaab4(base::UnkVector<UnkCallbackEntry_A5_b69>* self, const u32* it) {
+void fn_71008aaab4(base::global::CRntVector<UnkCallbackEntry_A5_b69>* self, const u32* it) {
     EraseAtIter_A5_b69(self, it);
 }

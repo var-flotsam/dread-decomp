@@ -2,7 +2,7 @@
 // (its payload is released through the game manager or deleted) and setting the count to zero.
 // Names and layouts are placeholders.
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU341.h"

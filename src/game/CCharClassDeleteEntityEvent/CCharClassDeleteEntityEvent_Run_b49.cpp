@@ -4,7 +4,7 @@
 // g_unk_71726af468 (created on first use) has a node at +0x228 (fn_7100475564). Otherwise a delay
 // (+0xc) within 0.001 of zero deletes it now (fn_7100232c68), any other after that delay. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBossAIComponent.h"

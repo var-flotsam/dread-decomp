@@ -2,7 +2,7 @@
 // destructor of a class over fn_710019e82c's (vtable unk_7101a1dfe8): while active (+0x38) it
 // returns its two pooled objects (+0x28, +0x30) and clears them and the word at +0x20. Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU174.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU226.h"

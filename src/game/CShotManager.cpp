@@ -8,7 +8,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
@@ -69,9 +69,9 @@ struct UnkShotModel {
 
 struct UnkShotManager {
     u8 pad_0x0[0x8];
-    base::UnkVector<UnkShot> field_0x8;
-    base::UnkVector<UnkShotEffect> field_0x30;
-    base::UnkVector<UnkShot*> field_0x58;  // the live shots first, then null
+    base::global::CRntVector<UnkShot> field_0x8;
+    base::global::CRntVector<UnkShotEffect> field_0x30;
+    base::global::CRntVector<UnkShot*> field_0x58;  // the live shots first, then null
     u32 field_0x80;                        // how many shots are live
     u8 pad_0x84[0x4];
     UnkShotModel field_0x88[5][2];
@@ -83,7 +83,7 @@ struct UnkShotManager {
     u8 pad_0x308[0xf00];
     f32 field_0x1208;
     u8 pad_0x120c[0x4];
-    base::UnkVector<UnkShotWeakRef> field_0x1210;
+    base::global::CRntVector<UnkShotWeakRef> field_0x1210;
     u8 pad_0x1238[0x38];
     bool field_0x1270;  // reset everything on the next update
 };
@@ -101,7 +101,7 @@ void fn_7100de13ac(void* self, UnkShotEffect* effect);
 void fn_7100ecca00(UnkShot* self, f32 dt);
 void fn_7100ecfa10(UnkShotModel* self, const UnkVec3f* pos, UnkVec3f* angle, UnkVec3f* scale, f32 t, s32);
 bool fn_7100ecfa84(UnkShotModel* self);
-UnkShot** fn_7100ed4b68(base::UnkVector<UnkShot*>* self, u32 i);
+UnkShot** fn_7100ed4b68(base::global::CRntVector<UnkShot*>* self, u32 i);
 void fn_7100ed7144(UnkShotManager* self);
 void fn_7100ed7270(UnkShotManager* self, f32 dt);
 
@@ -127,7 +127,7 @@ static inline void ClearDrawCounts(UnkShotManager* self) {
 }
 
 // Removes element i, moving the later ones down.
-static inline void EraseAt(base::UnkVector<UnkShotWeakRef>* v, u32 i) {
+static inline void EraseAt(base::global::CRntVector<UnkShotWeakRef>* v, u32 i) {
     if (i < v->count) {
         for (u32 j = i; j < v->count - 1; ++j)
             v->data[j] = v->data[j + 1];

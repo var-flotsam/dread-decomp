@@ -1,10 +1,10 @@
-// SCameraRailNode's unit (tools/tu_map.py): the copy constructor of an array (base::UnkVector's
+// SCameraRailNode's unit (tools/tu_map.py): the copy constructor of an array (base::global::CRntVector's
 // layout) of camera-rail nodes (0x58 bytes, src/game/SCameraRailNode/SCameraRailNode_b42.cpp): reset,
 // copy the step, flags and allocator, reserve the other's capacity (each node moved over: its vtable,
 // three words and its callback set moved with fn_71002458a4; the old one destroyed through its vf_0x8),
 // then append a copy of each node (fn_7100c090cc). The shape of fn_7100246a94
 // (src/game/CActor/CActor_VectorCopy_b41.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/SCameraRailNode.h"
 #include "types.h"
 
@@ -33,7 +33,7 @@ struct UnkRailNodeRaw_b43a3 {
     UnkHalf_cu set;
 };
 
-void fn_7100c08f8c(base::UnkVector<UnkRailNode_b43a3>* self, const base::UnkVector<UnkRailNode_b43a3>* other) {
+void fn_7100c08f8c(base::global::CRntVector<UnkRailNode_b43a3>* self, const base::global::CRntVector<UnkRailNode_b43a3>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;

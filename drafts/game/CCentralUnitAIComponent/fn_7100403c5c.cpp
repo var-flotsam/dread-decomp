@@ -1,7 +1,7 @@
 // CCentralUnitAIComponent's unit (tools/tu_map.py, unit 614): after the base step, tells the owner's
 // sub-object at +0x220 two things (the id table's id with 2 unless an animation already uses it, then a
 // zero), switches the game manager's music id and fades music, then stops channel 7. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkAnimationComponent.h"

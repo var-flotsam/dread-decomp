@@ -1,11 +1,11 @@
 // Copies of fn_7100d400b8 (src/game/logic/collision/CCollider/fn_7100d400b8.cpp) for another array type, naming their own callees and data
 // (the comments are adapted from the original's): fn_710024158c, fn_7100241690. Assignment at an index of a growable
-// array of pointer-sized slots (base::UnkVector's layout, Reserve out of line): when the array may grow (+0x14) and the
+// array of pointer-sized slots (base::global::CRntVector's layout, Reserve out of line): when the array may grow (+0x14) and the
 // index is past the end, it reserves (rounded up to the step), then exactly enough, fills the new slots with nulls and
 // takes the new count; the slot is then assigned (out of line, fn_7100234f78).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <class Tag>

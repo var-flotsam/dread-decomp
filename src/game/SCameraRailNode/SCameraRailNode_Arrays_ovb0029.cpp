@@ -9,7 +9,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -243,12 +243,12 @@ struct UnkRailRecord_b29 {
 
 struct UnkRailElem_b29 {
     void* vtable;
-    base::UnkVector<UnkRailRecord_b29> records;
+    base::global::CRntVector<UnkRailRecord_b29> records;
     bool field_0x30;
     u32 field_0x34[6];
 
     UnkRailElem_b29& operator=(UnkRailElem_b29&& other) {
-        records = static_cast<base::UnkVector<UnkRailRecord_b29>&&>(other.records);
+        records = static_cast<base::global::CRntVector<UnkRailRecord_b29>&&>(other.records);
         field_0x30 = other.field_0x30;
         return *this;
     }
@@ -315,12 +315,12 @@ struct UnkRailNodeIter_b29 {
     }
 };
 
-void fn_7100c09774(const base::UnkVector<UnkRailNodeC_b29>* v, UnkRailNodeIter_b29* out) {
+void fn_7100c09774(const base::global::CRntVector<UnkRailNodeC_b29>* v, UnkRailNodeIter_b29* out) {
     *out = UnkRailNodeIter_b29(0, v->data);
 }
 
 // The braces evaluate the count before the data, as the original does.
-void fn_7100c098c0(const base::UnkVector<UnkRailNodeC_b29>* v, UnkRailNodeIter_b29* out) {
+void fn_7100c098c0(const base::global::CRntVector<UnkRailNodeC_b29>* v, UnkRailNodeIter_b29* out) {
     *out = UnkRailNodeIter_b29{v->count, v->data + v->count};
 }
 
@@ -390,7 +390,7 @@ struct UnkWordPair_b29 {
     }
 };
 
-// An engine array (base::UnkVector's layout) of word pairs.
+// An engine array (base::global::CRntVector's layout) of word pairs.
 struct UnkWordPairVector_b29 {
     UnkWordPair_b29* data;
     u32 count;
@@ -429,7 +429,7 @@ struct UnkWordPairVector_b29 {
             u32 new_capacity = capacity;
             if (new_capacity <= n && step != 0)
                 new_capacity = (n / step + 1) * step;
-            if ((s32)n >= (s32)new_capacity)  // hangs, as UnkVector::PushBack does
+            if ((s32)n >= (s32)new_capacity)  // hangs, as CRntVector::PushBack does
                 for (;;) {
                 }
             Reserve(new_capacity);
@@ -451,7 +451,7 @@ struct UnkWordPairVector_b29 {
         u32 n = capacity;
         if (n <= count && step != 0)
             n = (count / step + 1) * step;
-        if ((s32)count >= (s32)n)  // hangs, as UnkVector::PushBack does
+        if ((s32)count >= (s32)n)  // hangs, as CRntVector::PushBack does
             for (;;) {
             }
         Reserve(n);

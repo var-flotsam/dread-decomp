@@ -4,7 +4,7 @@
 // cleared owner. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CMarkMinimapLogicAction.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/UnkTU341.h"
@@ -17,13 +17,13 @@ struct UnkMarkMinimapCallable_b52;
 
 struct UnkMarkMinimapCallbackSet_b52 {
     void* vtable;
-    base::UnkVector<UnkMarkMinimapCallable_b52*> items;
+    base::global::CRntVector<UnkMarkMinimapCallable_b52*> items;
     u32 field_0x30;
     void* owner;
 
     __attribute__((always_inline)) void Init() {
         vtable = g_unk_7101a20998 + 2;
-        new (&items) base::UnkVector<UnkMarkMinimapCallable_b52*>(0xf);
+        new (&items) base::global::CRntVector<UnkMarkMinimapCallable_b52*>(0xf);
         field_0x30 = 0;
         vtable = g_unk_7101a20950 + 2;
         owner = nullptr;

@@ -3,7 +3,7 @@
 // back. Names and layouts are placeholders.
 #include <string.h>
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -359,7 +359,7 @@ struct UnkMlogText_b0164 : base::global::UnkStrIdBase {
 struct UnkMlogMessage_b0164 {
     u32 kind;
     UnkMlogText_b0164 text;
-    base::UnkVector<base::UnkStrIdMember> args;
+    base::global::CRntVector<base::UnkStrIdMember> args;
 
     __attribute__((always_inline)) UnkMlogMessage_b0164(const CStrId& t) : kind(0), text(t), args(0xc) {}
     __attribute__((always_inline)) ~UnkMlogMessage_b0164() { args.Free(); }

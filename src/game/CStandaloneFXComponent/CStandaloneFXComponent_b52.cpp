@@ -1,6 +1,6 @@
 // CStandaloneFXComponent (unit 1274): setting the effect's path. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CActorComponent.h"
 #include "game/CStandaloneFXComponent.h"
 #include "game/UnkModelManager.h"

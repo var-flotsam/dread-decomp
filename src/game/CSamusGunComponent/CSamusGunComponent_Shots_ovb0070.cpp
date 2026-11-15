@@ -2,7 +2,7 @@
 // (a counted reference, a word and a u32). Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGunComponent.h"
 #include "game/UnkTU2523.h"

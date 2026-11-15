@@ -6,7 +6,7 @@
 #include "UnkClone.h"
 #include "base/UnkCloneCalls.h"
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU83.h"
 
 struct UnkIdRecordOwner_0xf0;
@@ -15,7 +15,7 @@ using UnkIdElem = UnkCloneStrIdElem<UnkIdRecordOwner_0xf0, 0, 8, UnkCloneStrId<U
 
 // External linkage, inlined by the compiler: forced or internal, the first two loads swap.
 template <class Elem, void (*Sync)(void*)>
-void UnkIdArrayEnd_b49(const base::UnkVector<Elem>* v, base::UnkCollectionIter<Elem>* out) {
+void UnkIdArrayEnd_b49(const base::global::CRntVector<Elem>* v, base::UnkCollectionIter<Elem>* out) {
     base::UnkCollectionIter<Elem> it(v->count, v->data + v->count);
     if (out != &it) {
         out->index = it.index;
@@ -24,10 +24,10 @@ void UnkIdArrayEnd_b49(const base::UnkVector<Elem>* v, base::UnkCollectionIter<E
     }
 }
 
-void fn_71000d0ff4(const base::UnkVector<UnkFilePathIdElem>* v, base::UnkCollectionIter<UnkFilePathIdElem>* out) {
+void fn_71000d0ff4(const base::global::CRntVector<UnkFilePathIdElem>* v, base::UnkCollectionIter<UnkFilePathIdElem>* out) {
     UnkIdArrayEnd_b49<UnkFilePathIdElem, fn_71000be6c0>(v, out);
 }
 
-void fn_71000ce990(const base::UnkVector<UnkIdElem>* v, base::UnkCollectionIter<UnkIdElem>* out) {
+void fn_71000ce990(const base::global::CRntVector<UnkIdElem>* v, base::UnkCollectionIter<UnkIdElem>* out) {
     UnkIdArrayEnd_b49<UnkIdElem, fn_71000bce50>(v, out);
 }

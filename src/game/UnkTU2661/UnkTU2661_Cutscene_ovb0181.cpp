@@ -3,7 +3,7 @@
 // creating the entries' objects, finding an entry's object by name (the name's text found inside the
 // entry key's text before its first underscore), a string-id holder's vector appends and moves, and the
 // big settings record's copy assignment. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -156,7 +156,7 @@ struct UnkHolder_b0181 {
 void fn_7101065c4c(UnkHolder_b0181* slot, void* a, void* b);
 
 // Appends a holder built by fn_7101065c4c and returns it.
-UnkHolder_b0181* fn_7101068b1c(base::UnkVector<UnkHolder_b0181>* self, void* a, void* b) {
+UnkHolder_b0181* fn_7101068b1c(base::global::CRntVector<UnkHolder_b0181>* self, void* a, void* b) {
     u32 n = self->count;
     u32 new_capacity;
     UnkHolder_b0181* end;
@@ -213,7 +213,7 @@ struct UnkNodeEntry_b0181 {
 void fn_7100b74b9c(UnkRenderPool* pool, void* name, UnkSceneNode** out, const CStrId* id);
 
 // Appends an entry whose node the render pool creates for the owner, and returns it.
-UnkNodeEntry_b0181* fn_7101068980(base::UnkVector<UnkNodeEntry_b0181>* self, UnkSceneObject_b0181* owner,
+UnkNodeEntry_b0181* fn_7101068980(base::global::CRntVector<UnkNodeEntry_b0181>* self, UnkSceneObject_b0181* owner,
                                   const u32* a, const u32* b) {
     u32 n = self->count;
     u32 new_capacity;

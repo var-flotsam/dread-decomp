@@ -1,6 +1,6 @@
 // CFreezeRoomComponent's unit (tools/tu_map.py unit 1537). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection.h"

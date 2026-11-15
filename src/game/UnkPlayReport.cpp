@@ -5,7 +5,7 @@
 // a new UUID the first time), two times, a count, a mode and the session id. Names and layouts
 // are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -49,16 +49,16 @@ struct UnkRecord_7101147868 {
 static_assert(sizeof(UnkRecord_7101147868) == 0x20, "UnkRecord_7101147868 placeholder layout");
 
 // Grows the array to hold `capacity` records (out of line).
-void fn_7100ec51e8(base::UnkVector<UnkRecord_7101147868>* self, u32 capacity);
+void fn_7100ec51e8(base::global::CRntVector<UnkRecord_7101147868>* self, u32 capacity);
 
 // The report: its records at +0x18.
 struct UnkPlayReport {
     u8 pad_0x0[0x18];
-    base::UnkVector<UnkRecord_7101147868> records;
+    base::global::CRntVector<UnkRecord_7101147868> records;
 };
 
 // Appends `record`, moving its ids (the moved-from ones get the empty id).
-static inline void Append(base::UnkVector<UnkRecord_7101147868>* v, UnkRecord_7101147868&& record) {
+static inline void Append(base::global::CRntVector<UnkRecord_7101147868>* v, UnkRecord_7101147868&& record) {
     u32 n = v->count;
     u32 capacity = v->capacity;
     if (capacity <= n && v->step != 0)
@@ -194,7 +194,7 @@ bool fn_7100ec32c0(UnkPlayReport* self, bool fixed_mode) {
     if (id.IsEmpty())
         return false;
 
-    base::UnkVector<UnkRecord_7101147868>* records = &self->records;
+    base::global::CRntVector<UnkRecord_7101147868>* records = &self->records;
     Append(records, UnkRecord_7101147868(g_unk_71729ce0a0, CStrId(id.str.data, true)));
     Append(records, UnkRecord_7101147868(g_unk_71729ce0a8, (s64)time_a));
     Append(records, UnkRecord_7101147868(g_unk_71729ce0b0, (s64)time_b));

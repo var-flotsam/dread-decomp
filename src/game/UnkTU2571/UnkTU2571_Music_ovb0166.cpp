@@ -3,7 +3,7 @@
 // music manager created on first use as src/game/GUI/CPowerDescriptionComposition/
 // CPowerDescriptionComposition_Show_ovb0087.cpp), and a store of counters (enabled flag at +0x8) kept in the game manager's
 // blackboard (fn_7100ec78e8 writes true under a name). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"

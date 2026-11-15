@@ -2,7 +2,7 @@
 // kd-tree builder (the box is in src/game_s7/fn_710010e470.cpp). fn_710010e364 sets the number of boxes in their array
 // (constructing the new ones with fn_710010d604) and fn_710010ddc4 reads the array from a file: a count, then for each
 // box a word and four floats. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "types.h"
 
@@ -27,7 +27,7 @@ struct UnkRect_b0236 {
 void fn_710010d604(UnkBox_b0236* box);
 void fn_710010d640(UnkBox_b0236* box, u32 word, const UnkRect_b0236& rect);
 
-// The boxes' array, with the layout of base::UnkVector.
+// The boxes' array, with the layout of base::global::CRntVector.
 struct UnkBoxVector_b0236 {
     UnkBox_b0236* data;  // 0x0
     u32 count;           // 0x8

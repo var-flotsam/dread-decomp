@@ -1,6 +1,6 @@
 // lua_bind::ResetEmmyPhase1Mode: resets every listed entity (the list fn_7100552d7c returns).
 #include "../../lib/lua/lua.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU811.h"
 #include "types.h"
 
@@ -15,7 +15,7 @@ struct UnkResetEmmyItem_A6_b70 {
 void fn_7100544a24(void* entity);
 
 int fn_7100fbb670(lua_State* L) {
-    base::UnkVector<UnkListedItem*>* items = fn_7100552d7c();
+    base::global::CRntVector<UnkListedItem*>* items = fn_7100552d7c();
     UnkListedItem** it = items->data;
     UnkListedItem** end = it + items->count;
     for (; it != end; ++it) {

@@ -1,5 +1,5 @@
 // CFootstepPlatformComponent (unit 1255): the constructor. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"

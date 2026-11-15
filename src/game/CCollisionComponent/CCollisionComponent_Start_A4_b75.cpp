@@ -44,7 +44,7 @@ struct UnkCollisionStart_A4_b75 {
     u8 pad_0x18[0x18];
     char* owner;
     u8 pad_0x38[0x10];
-    base::UnkVector<UnkCollisionRecord> records;  // 0x48
+    base::global::CRntVector<UnkCollisionRecord> records;  // 0x48
     u8 pad_0x70[0x50];
     UnkReflObject* cast;  // 0xc0
     u8 pad_0xc8[0x1];

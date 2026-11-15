@@ -1,14 +1,14 @@
 // Copies the path ids of a hash map's values into a new list (returned): the list reserves the
 // map's size, then each value's id is appended while the map is unchanged (its modification
 // count still the one read at the start). fn_7100d94220 and its copies take the map at 8.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
-struct UnkPathIdList_7100d94220 : base::UnkVector<CFilePathStrId> {
-    explicit UnkPathIdList_7100d94220(u32 flags) : base::UnkVector<CFilePathStrId>(flags) {}
+struct UnkPathIdList_7100d94220 : base::global::CRntVector<CFilePathStrId> {
+    explicit UnkPathIdList_7100d94220(u32 flags) : base::global::CRntVector<CFilePathStrId>(flags) {}
 
     UnkPathIdList_7100d94220(UnkPathIdList_7100d94220&&);  // elided (returned in place)
     void Reserve(u32 capacity);  // fn_7100018450

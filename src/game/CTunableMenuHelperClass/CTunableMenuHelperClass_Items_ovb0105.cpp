@@ -3,7 +3,7 @@
 // two ids, and the helper's list collected with an empty path. Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
 #include "types.h"
@@ -28,7 +28,7 @@ struct UnkTunableMenuItem_b0105 {
         CStrId field_0x20;
     };
     union {
-        base::UnkVector<UnkTunableMenuItem_b0105> children;  // 0x28
+        base::global::CRntVector<UnkTunableMenuItem_b0105> children;  // 0x28
     };
     bool field_0x50;
     bool field_0x51;
@@ -67,7 +67,7 @@ inline UnkTunableMenuItem_b0105::UnkTunableMenuItem_b0105(UnkTunableMenuItem_b01
 }
 
 // Grows the child array to at least n items.
-__attribute__((noinline)) void fn_7100aded3c(base::UnkVector<UnkTunableMenuItem_b0105>* self, u32 n) {
+__attribute__((noinline)) void fn_7100aded3c(base::global::CRntVector<UnkTunableMenuItem_b0105>* self, u32 n) {
     if (self->capacity < n) {
         auto* p = static_cast<UnkTunableMenuItem_b0105*>(
             self->allocator->vf_0x40((u64)n * sizeof(UnkTunableMenuItem_b0105), 8, self->flags));
@@ -110,7 +110,7 @@ void fn_7100addddc(UnkTunableMenuEntry_b0105* self, const CStrId& a, const CStrI
     self->field_0x20 = b;
 }
 
-// What fn_7100ade544 returns (0x28 bytes): an array header like base::UnkVector's with its own
+// What fn_7100ade544 returns (0x28 bytes): an array header like base::global::CRntVector's with its own
 // field order. Names are placeholders.
 struct UnkTunableMenuList_b0105 {
     void* data = nullptr;
@@ -132,12 +132,12 @@ struct UnkTunableMenuPathId_b0105 {
 
 struct UnkTunableMenuHelper_b0105;
 void fn_7100addec4(UnkTunableMenuHelper_b0105* self, UnkTunableMenuList_b0105* out,
-                   base::UnkVector<UnkTunableMenuPathId_b0105>* path);
+                   base::global::CRntVector<UnkTunableMenuPathId_b0105>* path);
 
 // Collects the helper's list with an empty path.
 UnkTunableMenuList_b0105 fn_7100ade544(UnkTunableMenuHelper_b0105* self) {
     UnkTunableMenuList_b0105 out;
-    base::UnkVector<UnkTunableMenuPathId_b0105> path(0xf);
+    base::global::CRntVector<UnkTunableMenuPathId_b0105> path(0xf);
     fn_7100addec4(self, &out, &path);
     path.Free();
     return out;

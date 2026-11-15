@@ -1,6 +1,6 @@
 #include <new>
 #include "base/UnkResKey.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"

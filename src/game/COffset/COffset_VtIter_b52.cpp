@@ -5,7 +5,7 @@
 // base vtable unk_7101a56178 stored, the id released). Names are placeholders.
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU936.h"
 
 void fn_7100617f20(void* it);
@@ -19,10 +19,10 @@ struct base::UnkVtIterTraits<UnkOffsetElemTag_b52> {
 
 using UnkOffsetElem_b52 = base::UnkStrIdVtElem<UnkOffsetElemTag_b52, 0x20>;
 
-void fn_710061d54c(const base::UnkVector<UnkOffsetElem_b52>* v, base::UnkCollectionIter<UnkOffsetElem_b52>* out) {
+void fn_710061d54c(const base::global::CRntVector<UnkOffsetElem_b52>* v, base::UnkCollectionIter<UnkOffsetElem_b52>* out) {
     base::refl_VtBegin(v, out);
 }
 
-void fn_710061d634(const base::UnkVector<UnkOffsetElem_b52>* v, base::UnkCollectionIter<UnkOffsetElem_b52>* out) {
+void fn_710061d634(const base::global::CRntVector<UnkOffsetElem_b52>* v, base::UnkCollectionIter<UnkOffsetElem_b52>* out) {
     base::refl_VtEnd(v, out);
 }

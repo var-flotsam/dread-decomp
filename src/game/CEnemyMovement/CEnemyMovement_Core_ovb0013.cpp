@@ -5,7 +5,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "UnkClone.h"
 #include "base/UnkMatrix44.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbilityGhostAura.h"
@@ -68,7 +68,7 @@ static_assert(__builtin_offsetof(UnkStateMachineShell_t<0>, requested) == 0xa4, 
 
 struct UnkVectorSet_t {
     void** vtable;
-    base::UnkVector<void*> lists[3];  // 0x8, 0x30, 0x58
+    base::global::CRntVector<void*> lists[3];  // 0x8, 0x30, 0x58
 };
 
 struct UnkVec3_t {
@@ -143,9 +143,9 @@ void fn_71010c7920(UnkEnemyMovement_t* self) {
     self->field_0x6fc = true;
     self->actions.Init(&g_unk_7101cb05f0[2]);
     self->vectors.vtable = &g_unk_7101cb0720[2];
-    new (&self->vectors.lists[0]) base::UnkVector<void*>(0xf);
-    new (&self->vectors.lists[1]) base::UnkVector<void*>(0xf);
-    new (&self->vectors.lists[2]) base::UnkVector<void*>(0xf);
+    new (&self->vectors.lists[0]) base::global::CRntVector<void*>(0xf);
+    new (&self->vectors.lists[1]) base::global::CRntVector<void*>(0xf);
+    new (&self->vectors.lists[2]) base::global::CRntVector<void*>(0xf);
     self->field_0x830 = 0;
     self->machine.Init(&g_unk_7101cb0688[2]);
     fn_7100969ff4(self->field_0x8e8, 1);
@@ -220,7 +220,7 @@ struct UnkStateMachineShell_s {
 
 struct UnkVectorSet_s {
     void** vtable;
-    base::UnkVector<void*> lists[3];  // 0x8, 0x30, 0x58
+    base::global::CRntVector<void*> lists[3];  // 0x8, 0x30, 0x58
 };
 
 struct UnkTrackListener_s {
@@ -903,9 +903,9 @@ bool fn_71010c9338(UnkEnemyMovement_q* self, UnkMessage_q* message) {
 // fn_71010ce798: removes an item from a list whose changes are deferred while it is locked (+0x78).
 // A list of pointers whose changes are deferred while it is locked (the counter at +0x78).
 struct UnkLockedList {
-    base::UnkVector<void*> pending_add;     // 0x0
-    base::UnkVector<void*> pending_remove;  // 0x28
-    base::UnkVector<void*> items;           // 0x50
+    base::global::CRntVector<void*> pending_add;     // 0x0
+    base::global::CRntVector<void*> pending_remove;  // 0x28
+    base::global::CRntVector<void*> items;           // 0x50
     s32 lock;                               // 0x78
 };
 static_assert(__builtin_offsetof(UnkLockedList, lock) == 0x78, "layout");
@@ -922,12 +922,12 @@ void fn_71010ce798(UnkLockedList* self, void* item) {
 // fn_71010ce92c: unlocks such a list (through its lock holder) and applies the pending removals and additions.
 struct UnkClone_fn_71010ceaf0;
 using UnkPendingElem = UnkCloneElem<UnkClone_fn_71010ceaf0, 8>;
-extern template UnkPendingElem& base::UnkVector<UnkPendingElem>::GrowAt(u32);
+extern template UnkPendingElem& base::global::CRntVector<UnkPendingElem>::GrowAt(u32);
 
 struct UnkLockedListPending {
-    base::UnkVector<UnkPendingElem> pending_add;     // 0x0
-    base::UnkVector<UnkPendingElem> pending_remove;  // 0x28
-    base::UnkVector<void*> items;                    // 0x50
+    base::global::CRntVector<UnkPendingElem> pending_add;     // 0x0
+    base::global::CRntVector<UnkPendingElem> pending_remove;  // 0x28
+    base::global::CRntVector<void*> items;                    // 0x50
     union {
         s32 lock;  // 0x78
     };

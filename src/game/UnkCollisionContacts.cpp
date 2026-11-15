@@ -10,7 +10,7 @@
 // two more words, 0x10 polygon collection, 0x40 oriented shape. Names and layouts are placeholders.
 // Definitions stay in address order: the dead-argument pass works through them in that order, which
 // decides which unused first arguments callers still pass.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/spatial/COBox2D.h"
@@ -121,8 +121,8 @@ struct UnkShape {
     u8 unk_0x78[0x30];
 };
 
-// UnkVector::PushBack over contact points, out of line.
-void fn_7100d574c4(base::UnkVector<UnkContactPoint>* self, const UnkContactPoint* value);
+// CRntVector::PushBack over contact points, out of line.
+void fn_7100d574c4(base::global::CRntVector<UnkContactPoint>* self, const UnkContactPoint* value);
 
 UnkContact fn_7100d53d24(const UnkContactSpan* points, const CVector3D* offset, u16 flags, UnkContactSink* sink);
 
@@ -317,7 +317,7 @@ UnkContact fn_7100d538fc(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkSh
 
 UnkContact fn_7100d53b2c(UnkCollider*, const UnkContactSpan* points, UnkShape* a, void* ta, UnkShape* b, void* tb,
                          UnkContactSink* sink, const CVector3D* offset, u16 flags) {
-    base::UnkVector<UnkContactPoint> kept(0xf);
+    base::global::CRntVector<UnkContactPoint> kept(0xf);
     u32 n = (u32)points->count;
     kept.Reserve(n);
     if (!(flags & 4)) {

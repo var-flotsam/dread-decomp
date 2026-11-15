@@ -2,7 +2,7 @@
 // destroys and frees its array of 16-byte type-erased values, releases the string id and
 // frees the byte buffer.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCutsceneComponent.h"
 #include "types.h"
 
@@ -33,7 +33,7 @@ public:
     virtual void vf_0x0();
     ~UnkSubBase_71007a8eec() { values.Free(); }
 
-    base::UnkVector<UnkValue_71007a8eec> values;
+    base::global::CRntVector<UnkValue_71007a8eec> values;
     u32 field_0x68;
 };
 
@@ -50,7 +50,7 @@ public:
     __attribute__((always_inline)) ~UnkStruct_71007a8eec() {}
 
     struct Buffer {
-        base::UnkVector<u8> v;
+        base::global::CRntVector<u8> v;
         ~Buffer() { v.Free(); }
     } buffer;
     base::UnkStrIdMember id;

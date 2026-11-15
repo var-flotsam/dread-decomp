@@ -1,8 +1,8 @@
 // CChozoCommanderZeroLaserGroundedAttack (tools/tu_map.py): two identical constructors on the attack base
-// (fn_710042baa8): the vtable, a cleared run at +0x5c-0x70, the array at +0x78 (base::UnkVector, flags 0xf)
+// (fn_710042baa8): the vtable, a cleared run at +0x5c-0x70, the array at +0x78 (base::global::CRntVector, flags 0xf)
 // and the listener at +0xa0 (vtable g_unk_7101a22d48) with its fields cleared. The destructors are in
 // CChozoCommanderZeroLaserGroundedAttack_Dtor_b49.cpp. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CChozoCommanderGroundAttack.h"
 #include "types.h"
@@ -22,7 +22,7 @@ struct UnkZeroLaserGroundedAttack_b67a2 {
     u8 field_0x5c[0x10];
     u32 field_0x6c;
     u8 pad_0x70[8];
-    base::UnkVector<u64> field_0x78;
+    base::global::CRntVector<u64> field_0x78;
     UnkZeroLaserListener_b67a2 listener;
 };
 
@@ -34,7 +34,7 @@ static inline __attribute__((always_inline)) void Construct(UnkZeroLaserGrounded
     self->vtable = &g_unk_7101a36718[2];
     self->field_0x6c = 0;
     __builtin_memset(self->field_0x5c, 0, sizeof(self->field_0x5c));
-    new (&self->field_0x78) base::UnkVector<u64>(0xf);
+    new (&self->field_0x78) base::global::CRntVector<u64>(0xf);
     self->listener.vtable = &g_unk_7101a22d48[2];
     self->listener.field_0x8 = 0;
     self->listener.field_0x10 = 0;

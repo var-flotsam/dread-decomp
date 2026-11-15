@@ -1,7 +1,7 @@
 // SCameraRailNode's unit: builds a temporary argument object (a position and an empty callback set),
 // hands it to the insert function, sets the owner's dirty flag, and runs a follow-up on the inserted
 // target. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/SCameraRailNode.h"
 #include "game/UnkCallbackSetVector.h"
 #include "game/UnkTU341.h"

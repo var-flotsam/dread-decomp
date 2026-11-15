@@ -7,7 +7,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "types.h"

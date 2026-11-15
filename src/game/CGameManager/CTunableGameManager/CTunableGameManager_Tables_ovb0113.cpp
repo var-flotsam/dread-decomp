@@ -4,7 +4,7 @@
 // tables (fn_7100e04f2c), as fn_7100e04e80 (CTunableGameManager_Dtor_b43.cpp) with that Clear inlined.
 // Names and layouts are placeholders.
 #include "base/UnkKeyedStrIds.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "types.h"

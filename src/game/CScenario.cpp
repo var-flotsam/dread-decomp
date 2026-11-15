@@ -379,7 +379,7 @@ struct UnkCollisionFileReader {
     u8 unk_0x0[0x18];
 };
 
-// The scenario's array of weak references to its collision objects (+0x828; base::UnkVector's
+// The scenario's array of weak references to its collision objects (+0x828; base::global::CRntVector's
 // layout, Reserve out of line as in src/game/logic/collision/CCollider/fn_7100d407c0.cpp).
 template <class Tag>
 struct UnkSlotArray {
@@ -425,7 +425,7 @@ void fn_71011a224c(UnkGameManagerSub_0x608* self, const char* path) {
     fn_71011a1d00();
     UnkCollisionFileReader reader;
     fn_7100d45fc4(&reader, self);
-    base::UnkVector<UnkCollisionRecord> records(7);
+    base::global::CRntVector<UnkCollisionRecord> records(7);
     fn_7100860830(&reader, path, &records, false, nullptr);
     auto* colliders = &reinterpret_cast<UnkScenarioColliders*>(self)->colliders;
     for (u64 i = 0; i < records.count; ++i) {

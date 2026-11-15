@@ -2,7 +2,7 @@
 // state at +0x1140 (1 or 2): a parameter block is built on the stack and handed to the owner's object at
 // +0x218, the object at +0x228 is called six times with a name each, and the manager's current index
 // selects a float that is passed to fn_7100dcdce4 together with its integer part.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CBossAIComponent.h"
 #include "game/CEnemyMovement.h"

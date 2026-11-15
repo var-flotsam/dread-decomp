@@ -2,7 +2,7 @@
 // either differs from the lists collected into temporaries (or `force` is set), storing the new
 // lists in that case. Names and layouts are placeholders.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -24,7 +24,7 @@ struct UnkListId : base::global::UnkStrIdBase {
     }
 };
 
-using UnkIdList = base::UnkVector<UnkListId>;
+using UnkIdList = base::global::CRntVector<UnkListId>;
 
 inline bool Contains(const UnkIdList& list, const UnkListId& id) {
     for (const UnkListId *it = list.data, *end = it + list.count; it != end; ++it) {

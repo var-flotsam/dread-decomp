@@ -9,7 +9,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkParallelFind.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CFilePathStrId.h"

@@ -7,7 +7,7 @@
 // +0x288 and the two callbacks at +0x248 and +0x230 (each leaving its deferred set, fn_71004f3ea4); then the
 // display object's destructor (fn_71011d8e90). Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/GUI/CMainMenu.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -76,7 +76,7 @@ struct UnkMainMenuString_ovb0126 {
     }
 };
 
-struct UnkMainMenuPtrList_ovb0126 : base::UnkVector<void*> {
+struct UnkMainMenuPtrList_ovb0126 : base::global::CRntVector<void*> {
     __attribute__((always_inline)) ~UnkMainMenuPtrList_ovb0126() { Free(); }
 };
 

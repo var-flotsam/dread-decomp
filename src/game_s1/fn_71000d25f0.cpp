@@ -1,14 +1,14 @@
-// Copies of generated helpers for other element types. Equality of two arrays (base::UnkVector's
+// Copies of generated helpers for other element types. Equality of two arrays (base::global::CRntVector's
 // layout), element by element, as base::refl_VectorEqual (the generated fn_7100d42580) does for
 // words: words (fn_71000d25f0), halfwords (fn_71000d16d8), floats (fn_71000d4404) and bytes (fn_71000e17a8). Set of a value
 // by key in a keyed array (u64 keys, u32 values), as base::refl_KeyedSet (the generated
 // fn_7100251a80) does for words: fn_71000dee28, fn_71000dee9c.
 #include "base/UnkCloneCalls.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 template <class T>
-__attribute__((always_inline)) static inline bool Equal(const base::UnkVector<T>* a, const base::UnkVector<T>* b) {
+__attribute__((always_inline)) static inline bool Equal(const base::global::CRntVector<T>* a, const base::global::CRntVector<T>* b) {
     if (a->count != b->count)
         return false;
     const T* pa = a->data;
@@ -19,19 +19,19 @@ __attribute__((always_inline)) static inline bool Equal(const base::UnkVector<T>
     return true;
 }
 
-bool fn_71000d25f0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
+bool fn_71000d25f0(const base::global::CRntVector<u32>* a, const base::global::CRntVector<u32>* b) { return Equal(a, b); }
 
 // Identical copies: fn_7100a352f0, fn_7100a361d0, fn_7100adb2e0, fn_7100eb23ac.
-bool fn_7100a352f0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
-bool fn_7100a361d0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
-bool fn_7100adb2e0(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
-bool fn_7100eb23ac(const base::UnkVector<u32>* a, const base::UnkVector<u32>* b) { return Equal(a, b); }
+bool fn_7100a352f0(const base::global::CRntVector<u32>* a, const base::global::CRntVector<u32>* b) { return Equal(a, b); }
+bool fn_7100a361d0(const base::global::CRntVector<u32>* a, const base::global::CRntVector<u32>* b) { return Equal(a, b); }
+bool fn_7100adb2e0(const base::global::CRntVector<u32>* a, const base::global::CRntVector<u32>* b) { return Equal(a, b); }
+bool fn_7100eb23ac(const base::global::CRntVector<u32>* a, const base::global::CRntVector<u32>* b) { return Equal(a, b); }
 
-bool fn_71000d16d8(const base::UnkVector<u16>* a, const base::UnkVector<u16>* b) { return Equal(a, b); }
+bool fn_71000d16d8(const base::global::CRntVector<u16>* a, const base::global::CRntVector<u16>* b) { return Equal(a, b); }
 
-bool fn_71000d4404(const base::UnkVector<f32>* a, const base::UnkVector<f32>* b) { return Equal(a, b); }
+bool fn_71000d4404(const base::global::CRntVector<f32>* a, const base::global::CRntVector<f32>* b) { return Equal(a, b); }
 
-bool fn_71000e17a8(const base::UnkVector<u8>* a, const base::UnkVector<u8>* b) { return Equal(a, b); }
+bool fn_71000e17a8(const base::global::CRntVector<u8>* a, const base::global::CRntVector<u8>* b) { return Equal(a, b); }
 
 struct UnkKeyedWords;
 using UnkWordsByKey = base::UnkKeyedArray<UnkKeyedWords, u64, u32>;

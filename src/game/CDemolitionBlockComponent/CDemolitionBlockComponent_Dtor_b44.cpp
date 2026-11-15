@@ -7,7 +7,7 @@
 // then the base destructor runs (fn_71010c4194, the component's). Names and layout are
 // placeholders.
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassActivatableComponent.h"
 #include "game/CCharClassLiquidPoolComponent.h"

@@ -2,7 +2,7 @@
 // the copy constructor of an array of 0x80-byte objects (moved by fn_7100acf988, copied by fn_7100acfb14,
 // destroyed by fn_7100ad04c4): the other's step, flags and allocator, its capacity reserved, then each object
 // appended. Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU1629.h"
 #include "types.h"
 
@@ -19,7 +19,7 @@ struct UnkObject0x80_A5_b72 {
 };
 static_assert(sizeof(UnkObject0x80_A5_b72) == 0x80, "UnkObject0x80_A5_b72 layout");
 
-using UnkObjects0x80_A5_b72 = base::UnkVector<UnkObject0x80_A5_b72>;
+using UnkObjects0x80_A5_b72 = base::global::CRntVector<UnkObject0x80_A5_b72>;
 
 void fn_7100ad20a8(UnkObjects0x80_A5_b72* self, const UnkObjects0x80_A5_b72* other) {
     self->data = nullptr;

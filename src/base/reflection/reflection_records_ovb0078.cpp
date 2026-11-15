@@ -1,6 +1,6 @@
 // base::reflection unit (tools/tu_map.py): three helpers of reflected records. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -100,7 +100,7 @@ struct UnkPathEntries_ovb0078 {
     u32 field_0x0 = 0;
     CFilePathStrId path{g_unk_710162e2ed, true};
     u64 field_0x10 = 0;
-    base::UnkVector<u64> values{0xc};
+    base::global::CRntVector<u64> values{0xc};
 
     UnkPathEntries_ovb0078() { values.Reserve(0x28); }
 };

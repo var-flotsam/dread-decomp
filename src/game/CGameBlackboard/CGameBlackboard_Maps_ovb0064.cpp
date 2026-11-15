@@ -11,7 +11,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkParallelFind.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "game/CBlackboard.h"

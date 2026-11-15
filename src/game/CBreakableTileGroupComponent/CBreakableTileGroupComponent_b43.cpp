@@ -1,11 +1,11 @@
 // CBreakableTileGroupComponent unit (tools/tu_map.py): the moving "set element at index" function
-// (slot 0x148 of the reflected collection type) of an array (base::UnkVector's layout) of the 0x48-byte
+// (slot 0x148 of the reflected collection type) of an array (base::global::CRntVector's layout) of the 0x48-byte
 // records of CBreakableTileGroupComponent_b40.cpp; a copy of fn_7100da11e4
 // (src/game/CLightsDef/CLightsDef_b42.cpp). An index past the end of a growable array first reserves
 // its capacity (grown to the next multiple of the step when the index reaches it, fn_71007613d8) and
 // then index + 1 elements, constructs the new ones (fn_71007582a4) and extends the count; then the
 // element is move-assigned (fn_7100758388). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // Defined in src/game/CBreakableTileGroupComponent/CBreakableTileGroupComponent_b40.cpp.

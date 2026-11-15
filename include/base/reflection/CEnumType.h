@@ -29,7 +29,7 @@ public:
 
     const CType* m_underlying;
     const void* field_0xe8;
-    base::UnkVector<void*> m_values;
+    base::global::CRntVector<void*> m_values;
 };
 static_assert(sizeof(CEnumType) == 0x118, "CEnumType layout");
 

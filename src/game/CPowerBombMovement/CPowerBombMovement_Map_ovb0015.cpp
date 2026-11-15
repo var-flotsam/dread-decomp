@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkHashMap.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/CBombMovement.h"
 #include "game/CComponent.h"
@@ -58,7 +58,7 @@ struct UnkPbListener_ovb0015 {
     UnkPbCounted_ovb0015* link;  // 0x18
 };
 
-// The map's bucket array (base/UnkVector.h's layout).
+// The map's bucket array (base/global/CRntVector.h's layout).
 struct UnkPbBuckets_ovb0015 {
     void** data;
     u32 count;
@@ -203,7 +203,7 @@ void fn_7100ab0944(UnkPbMovement_ovb0015* self) {
 // As src/game/CCollisionComponent/fn_71008651c8.cpp declares it.
 struct UnkStruct_71008651c8_Entry;
 struct UnkStruct_71008651c8;
-using UnkOut_71008651c8 = base::UnkVector<UnkStruct_71008651c8_Entry*>;
+using UnkOut_71008651c8 = base::global::CRntVector<UnkStruct_71008651c8_Entry*>;
 void fn_71008651c8(UnkStruct_71008651c8* self, void* const* key, UnkOut_71008651c8* out);
 
 extern void* const g_unk_7172753e28 __attribute__((visibility("hidden")));            // the colliders' key

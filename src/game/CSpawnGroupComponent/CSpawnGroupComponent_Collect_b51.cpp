@@ -1,7 +1,7 @@
 // From unit 2703 of tools/tu_map.py (CSpawnGroupComponent): fills a temporary list (vtable
 // g_unk_7101a32680, nodes from the default allocator with flags 0x13) through fn_710111b230 and
 // frees it again. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU604.h"
 #include "types.h"
 

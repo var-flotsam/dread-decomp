@@ -3,7 +3,7 @@
 // release each node's id and free the node through the list's allocator, then free the object.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CFXComponent.h"
 #include "game/CModelUpdaterComponent.h"

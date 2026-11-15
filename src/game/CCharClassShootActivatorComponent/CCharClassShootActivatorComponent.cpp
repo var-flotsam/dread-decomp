@@ -1,7 +1,7 @@
 // A callback list (base/UnkCloneHelpers.h's UnkCallbackList layout) with a string id at +0x40: its
 // constructor (fn_7100893dc8). The base sets its vtable and an empty array of callables (step 10,
 // flags 0xf), the list clears its fields, stores its own vtable and default-constructs the id.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU341.h"

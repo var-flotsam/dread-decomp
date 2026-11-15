@@ -1,6 +1,6 @@
 // CCollisionComponent unit: creates a 0x330-byte record, appends it to the component's list and
 // stores an owner plus a shared string id in it. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 
 using base::global::UnkStringData;

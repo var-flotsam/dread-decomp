@@ -2,7 +2,7 @@
 // The boss rush setup: for each of twelve stages, its string ids, flags and hash, then two arrays
 // of (item, amount) pairs, every push inlined.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -59,8 +59,8 @@ struct UnkBossRushStage {
     f32 unk_0x40;
     u64 unk_0x48;  // a CRC64
     f32 unk_0x50;
-    base::UnkVector<UnkItemAmount> unk_0x58;
-    base::UnkVector<UnkItemAmount> unk_0x80;
+    base::global::CRntVector<UnkItemAmount> unk_0x58;
+    base::global::CRntVector<UnkItemAmount> unk_0x80;
 };
 static_assert(sizeof(UnkBossRushStage) == 0xa8, "stage layout");
 

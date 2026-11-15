@@ -1,7 +1,7 @@
 // CGoliathAIComponent's unit (tools/tu_map.py): the hit check against the unit's static id, the super
 // Goliath's environment setup, and tunable values read and written by name through reflection (the
 // field whose name hash matches, among the tunable class's fields). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"

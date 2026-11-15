@@ -2,7 +2,7 @@
 // some TUs' data has function records after the header, and collection and vector types are
 // registered for the reflected containers.
 #include "base/UnkStrIdRegistry.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
@@ -594,7 +594,7 @@ struct UnkElem188 {
 
 void fn_7100c77cd0() {
     InitHeader(g_unk_7172791e70);
-    new (&g_unk_7172791e48) base::UnkVector<UnkElem188>(0xf);
+    new (&g_unk_7172791e48) base::global::CRntVector<UnkElem188>(0xf);
     g_unk_7172791e48.Reserve(50);
     fn_7100000250(fn_7100c66ab0, &g_unk_7172791e48, &g_unk_7101a19000);
     new (&g_unk_7172791e88) CStrId("ConeCollisionScene", true);

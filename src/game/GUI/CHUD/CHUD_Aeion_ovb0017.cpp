@@ -5,7 +5,7 @@
 // handle). Names and layouts are placeholders.
 #include <initializer_list>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CSpecialEnergyComponent.h"
@@ -202,7 +202,7 @@ bool fn_71011e4b4c(UnkHud_ovb0017* self) {
     return true;
 }
 
-// A string id with a value (base::UnkVector's element in fn_71011df420).
+// A string id with a value (base::global::CRntVector's element in fn_71011df420).
 struct UnkHudIdValue_ovb0017 {
     CStrId id;
     u64 value;
@@ -214,7 +214,7 @@ struct UnkHudIdValue_ovb0017 {
     }
 };
 
-using UnkHudIdValueVector_ovb0017 = base::UnkVector<UnkHudIdValue_ovb0017>;
+using UnkHudIdValueVector_ovb0017 = base::global::CRntVector<UnkHudIdValue_ovb0017>;
 
 // Grows the array to at least `capacity` elements.
 void fn_71011e7ac8(UnkHudIdValueVector_ovb0017* self, u32 capacity);
@@ -271,16 +271,16 @@ struct UnkHudOwnedRef_ovb0017 {
 };
 
 struct UnkHudOwnedPtr;
-void fn_71011e7700(base::UnkVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value);
+void fn_71011e7700(base::global::CRntVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value);
 
-using UnkHudOwnedVector_ovb0017 = base::UnkVector<UnkHudOwnedRef_ovb0017>;
+using UnkHudOwnedVector_ovb0017 = base::global::CRntVector<UnkHudOwnedRef_ovb0017>;
 
-// base::UnkVector's Insert on the array of owned tasks, appending through the out-of-line
+// base::global::CRntVector's Insert on the array of owned tasks, appending through the out-of-line
 // EmplaceBack (fn_71011e7700).
 void fn_71011e755c(UnkHudOwnedVector_ovb0017* self, UnkHudOwnedRef_ovb0017* value, u32 index) {
     u32 n = self->count;
     if (n == index) {
-        fn_71011e7700(reinterpret_cast<base::UnkVector<UnkHudOwnedPtr>*>(self),
+        fn_71011e7700(reinterpret_cast<base::global::CRntVector<UnkHudOwnedPtr>*>(self),
                       reinterpret_cast<UnkHudOwnedPtr*>(value));
         return;
     }

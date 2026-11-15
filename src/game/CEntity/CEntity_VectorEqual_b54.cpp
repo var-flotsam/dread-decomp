@@ -5,7 +5,7 @@
 // layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU437.h"
 #include "types.h"
 
@@ -41,8 +41,8 @@ struct UnkCompared_0x28b {
 };
 
 bool fn_7100d883f0(const UnkCompared_0x28b* a, const UnkCompared_0x28b* b) {
-    auto* self = reinterpret_cast<base::UnkVector<UnkEntityLink_b54>*>(const_cast<UnkCompared_0x28b*>(a));
-    auto* other = reinterpret_cast<base::UnkVector<UnkEntityLink_b54>*>(const_cast<UnkCompared_0x28b*>(b));
+    auto* self = reinterpret_cast<base::global::CRntVector<UnkEntityLink_b54>*>(const_cast<UnkCompared_0x28b*>(a));
+    auto* other = reinterpret_cast<base::global::CRntVector<UnkEntityLink_b54>*>(const_cast<UnkCompared_0x28b*>(b));
     if (self->count != other->count)
         return false;
     for (u64 i = 0; i < self->count; ++i) {

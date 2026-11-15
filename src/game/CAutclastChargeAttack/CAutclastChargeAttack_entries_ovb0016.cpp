@@ -1,4 +1,4 @@
-// CAutclastChargeAttack (tools/tu_map.py): the attack's list of charge entries at +0x90 (base/UnkVector.h's
+// CAutclastChargeAttack (tools/tu_map.py): the attack's list of charge entries at +0x90 (base/global/CRntVector.h's
 // layout; 0x28-byte entries, a position, five words and a counted reference at +0x20): growing it
 // (fn_71003b78f8, copying each entry over and destroying the old one), appending a copy (fn_71003b7a64), and
 // the attack's destructor (fn_71003b457c: the list, the listener at +0x38, then CAttack's destructor).
@@ -6,7 +6,7 @@
 #include <new>
 
 #include "../../game_5821e4/CAttackDtor.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAutclastChargeAttack.h"
 #include "game/CEnemyMovement.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -38,7 +38,7 @@ struct UnkChargeEntry_ovb0016 {
     }
 };
 
-using UnkChargeEntries_ovb0016 = base::UnkVector<UnkChargeEntry_ovb0016>;
+using UnkChargeEntries_ovb0016 = base::global::CRntVector<UnkChargeEntry_ovb0016>;
 
 void fn_71003b78f8(UnkChargeEntries_ovb0016* entries, u32 n) {
     if (entries->capacity >= n)

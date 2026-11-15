@@ -6,7 +6,7 @@
 // inferred from the code.
 
 #include "UnkClone.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -90,7 +90,7 @@ void refl_CastThenCallArg(void*, char* obj) {
 // Finds the first element whose leading u32 equals the key (argument K, counted from 0) and
 // forwards all arguments to call() with it (fn_71001fc7bc and its copies).
 template <class Tag, u32 K, class... A>
-void refl_FindByIdCall(UnkVector<u32*>* v, A... a) {
+void refl_FindByIdCall(global::CRntVector<u32*>* v, A... a) {
     u64 args[] = {(u64)a...};
     u32 key = (u32)args[K];
     u32* p = nullptr;
@@ -124,7 +124,7 @@ reflection::UnkReflValue refl_CallArgReturnOne(void*, char* obj, reflection::Unk
 // The address of element i of an array of `Size`-byte elements; the index arrives as a u64 and
 // is truncated (fn_7100246624 and its copies).
 template <class Tag, u64 Size>
-UnkCloneElem<Tag, Size>* refl_ElemAt(UnkVector<UnkCloneElem<Tag, Size>>* v, u64 i) {
+UnkCloneElem<Tag, Size>* refl_ElemAt(global::CRntVector<UnkCloneElem<Tag, Size>>* v, u64 i) {
     return &v->data[(u32)i];
 }
 
@@ -354,7 +354,7 @@ void refl_KeyedArrayCopy(UnkKeyedCopyArray<Tag, Size>* self, const UnkKeyedCopyA
 template <class Tag, u32 Offset>
 void refl_StrIdVecDtor(char* self) {
     *reinterpret_cast<char**>(self) = UnkCallTraits<Tag>::vtable() + 0x10;
-    reinterpret_cast<UnkVector<UnkCloneStrId<Tag>>*>(self + Offset)->Free();
+    reinterpret_cast<global::CRntVector<UnkCloneStrId<Tag>>*>(self + Offset)->Free();
     UnkCallTraits<Tag>::base(self);
 }
 

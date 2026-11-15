@@ -1,9 +1,9 @@
 // animtree::CAnimTreeDef's unit: the "set element at index" functions (slots 0x140 and 0x148 of
-// the reflected collection type) of an array (base::UnkVector's layout) of pairs of string ids, in
+// the reflected collection type) of an array (base::global::CRntVector's layout) of pairs of string ids, in
 // the shape of src/game/CLightsDef/CLightsDef_b42.cpp: an index past the end of a growable array
 // first reserves (fn_71002da674) and constructs the new pairs (zeroed, then fn_71002dacc0), then
 // the pair is assigned member by member. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/animtree/CAnimTreeDef.h"
 #include "types.h"

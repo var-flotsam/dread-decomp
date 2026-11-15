@@ -2,7 +2,7 @@
 // layouts are placeholders.
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CGameObject.h"
 #include "types.h"

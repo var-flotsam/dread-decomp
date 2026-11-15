@@ -6,7 +6,7 @@
 #include <string.h>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU223.h"
 #include "types.h"
@@ -124,7 +124,7 @@ struct UnkSoundIdRegistry {
     UnkAllocator* allocator;  // the map's nodes'
     u32 flags;
     u32 count;
-    base::UnkVector<UnkSoundIdEntry*> buckets;  // 0x10
+    base::global::CRntVector<UnkSoundIdEntry*> buckets;  // 0x10
     UnkSoundIdEntry* field_0x38;
     UnkSoundIdEntry* first;  // 0x40: the list of all nodes
     u8 pad_0x48[0x8];

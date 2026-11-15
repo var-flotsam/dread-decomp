@@ -2,7 +2,7 @@
 // CEmmyAIComponent unit (fn_7100560d14, its own node vtable and query): empties a node list, asks the
 // owner's source (+0x8) for its items into a temporary array (flags 0xf), and appends one node per
 // item that records the item, the owner and the owner's +0x18 value. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU811.h"
 #include "game/behaviortree/CEmmySearchingAction.h"
 #include "types.h"
@@ -36,10 +36,10 @@ struct UnkCollectOwner_A3_b70 {
     float field_0x18;
 };
 
-void fn_7100ad0380(void* source, bool flag, u32 mode, base::UnkVector<void*>* out);
-void fn_71006fb09c(void* source, bool flag, u32 mode, base::UnkVector<void*>* out);
+void fn_7100ad0380(void* source, bool flag, u32 mode, base::global::CRntVector<void*>* out);
+void fn_71006fb09c(void* source, bool flag, u32 mode, base::global::CRntVector<void*>* out);
 
-template <void (*Query)(void*, bool, u32, base::UnkVector<void*>*)>
+template <void (*Query)(void*, bool, u32, base::global::CRntVector<void*>*)>
 static inline __attribute__((always_inline)) void Collect_A3_b70(UnkCollectOwner_A3_b70* self, bool flag, u32 mode,
                                                                  UnkCollectList_A3_b70* list, void* vtable) {
     UnkCollectNode_A3_b70** ends = &list->head;
@@ -52,7 +52,7 @@ static inline __attribute__((always_inline)) void Collect_A3_b70(UnkCollectOwner
     list->count = 0;
     ends[0] = nullptr;
     ends[1] = nullptr;
-    base::UnkVector<void*> items(0xf);
+    base::global::CRntVector<void*> items(0xf);
     Query(self->source, flag, mode, &items);
     for (void **it = items.data, **end = items.data + items.count; it != end; ++it) {
         void* item = *it;

@@ -131,7 +131,7 @@ struct UnkPresetMap {
     base::UnkAllocator* allocator;
     u32 flags;
     u32 count;
-    base::UnkVector<char*> buckets;
+    base::global::CRntVector<char*> buckets;
     char* field_0x38;
     char* field_0x40;
 

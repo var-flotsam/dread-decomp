@@ -4,7 +4,7 @@
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp, and copies the sub-area manager's
 // (g_unk_7101d47360, created on first use) id at +0x3f0, or the empty id, to +0x40. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "game/CAbilityGhostAura.h"

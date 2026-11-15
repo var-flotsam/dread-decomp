@@ -3,7 +3,7 @@
 // (each hit handed to fn_71008472d4, then the shape to the hit manager). Names and layouts are placeholders.
 // GrowAt is inlined into its out-of-line accessor here.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CDroppableComponent.h"
 #include "game/CFXComponent.h"
@@ -166,7 +166,7 @@ struct UnkHyperBeamEntry_ovb0127 {
     }
 };
 
-using UnkHyperBeamEntries_ovb0127 = base::UnkVector<UnkHyperBeamEntry_ovb0127>;
+using UnkHyperBeamEntries_ovb0127 = base::global::CRntVector<UnkHyperBeamEntry_ovb0127>;
 
 __attribute__((flatten)) UnkHyperBeamEntries_ovb0127* fn_710084888c(UnkHyperBeamEntries_ovb0127* self,
                                                                     const UnkHyperBeamEntries_ovb0127* other) {

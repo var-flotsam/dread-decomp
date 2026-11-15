@@ -3,7 +3,7 @@
 // manager g_unk_7101d47360 (created on first use): pop through fn_7100eea334, push through fn_7100eea3fc,
 // as in src/game/CChangeSetupLogicAction/CChangeSetupLogicAction_Step_b53.cpp. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"

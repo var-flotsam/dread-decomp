@@ -5,7 +5,7 @@
 // base/UnkCloneHelpers.h). One file for the family. Names are placeholders.
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 void fn_7100f49724(void* it);
 void fn_7100f81c98(void* it);
@@ -17,11 +17,11 @@ void fn_7100f81c98(void* it);
         static char* base_vtable() { return g_unk_7101cab1f8; }                                        \
         static void sync(void* it) { Sync(it); }                                                       \
     };                                                                                                 \
-    void BeginFn(const base::UnkVector<base::UnkStrIdVtElem<Tag, 0x20>>* v,                            \
+    void BeginFn(const base::global::CRntVector<base::UnkStrIdVtElem<Tag, 0x20>>* v,                            \
                  base::UnkCollectionIter<base::UnkStrIdVtElem<Tag, 0x20>>* out) {                      \
         base::refl_VtBegin(v, out);                                                                    \
     }                                                                                                  \
-    void EndFn(const base::UnkVector<base::UnkStrIdVtElem<Tag, 0x20>>* v,                              \
+    void EndFn(const base::global::CRntVector<base::UnkStrIdVtElem<Tag, 0x20>>* v,                              \
                base::UnkCollectionIter<base::UnkStrIdVtElem<Tag, 0x20>>* out) {                        \
         base::refl_VtEnd(v, out);                                                                      \
     }

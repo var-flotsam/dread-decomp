@@ -2,7 +2,7 @@
 // allocated, each value copied across and destroyed (its payload released through the game manager
 // or deleted), and the old block freed. Names and layouts are placeholders.
 #include "base/UnkHashStream.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"

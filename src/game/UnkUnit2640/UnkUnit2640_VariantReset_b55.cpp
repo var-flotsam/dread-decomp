@@ -1,9 +1,9 @@
 // Unit 2640 (tools/tu_map.py; no reflected class): Reset of two-state variants whose state-1 object
-// holds an array (base::UnkVector) of 0x18-byte records led by a file path id, destroyed inline (the
+// holds an array (base::global::CRntVector) of 0x18-byte records led by a file path id, destroyed inline (the
 // ids released, the array freed). The array sits at +0x20 (state at +0x68) or +0x10 (state at
 // +0x58). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkIdRecord18_b55 {
@@ -14,7 +14,7 @@ struct UnkIdRecord18_b55 {
 template <int Tag, u32 Pre>
 struct UnkIdRecordsObject_b55 {
     u8 unk_0x0[Pre];
-    base::UnkVector<UnkIdRecord18_b55> items;
+    base::global::CRntVector<UnkIdRecord18_b55> items;
     u8 unk_tail[0x20];
 };
 

@@ -5,7 +5,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkKeyedStrIds.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 using base::UnkStrIdMember;
@@ -34,7 +34,7 @@ struct UnkTreeOwner_b0249 {
     u8 pad_0x8[0x68];
     UnkPolymorphic_b0249* owned;  // 0x70
     UnkKeyedStrIds objects;       // 0x78
-    base::UnkVector<UnkPolymorphic_b0249*> list;  // 0xa0
+    base::global::CRntVector<UnkPolymorphic_b0249*> list;  // 0xa0
     UnkPlainPair_b0249 pair_a;    // 0xc8
     UnkPlainPair_b0249 pair_b;    // 0xf0
     UnkCountedResource* resource; // 0x118

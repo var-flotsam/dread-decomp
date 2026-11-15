@@ -3,7 +3,7 @@
 // (fn_7100e5dd0c, declared in UnkTU2563_Records_ovb0223.cpp). Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

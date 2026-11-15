@@ -3,7 +3,7 @@
 // Shrink-to-fit of a container of two parallel arrays (pointer-sized values and string ids)
 // sharing a count and capacity: both are reallocated to exactly `count`, the values copied,
 // the ids copied and destroyed one by one, the old arrays freed.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

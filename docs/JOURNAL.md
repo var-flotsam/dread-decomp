@@ -154,6 +154,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`base::UnkVector` is `base::global::CRntVector` (2026-11-15).** The reflected collections name the engine's
+growable array (`CollectionTypeMapper<base::global::CRntVector<T>>`), and their descriptors' constructors build
+exactly `UnkVector`'s 0x28 bytes: the array and count at 0 and 8, growth step 10 at 0x10, the flag byte at 0x14,
+the allocator flags at 0x18 (0xf for the reflected vectors) and the allocator at 0x20. The class is renamed
+everywhere, with its header now `include/base/global/CRntVector.h`; no code changes. Earlier entries keep the old
+name. The allocator interface keeps its placeholder.
+
 **Element iterators' value operations from the same template (2026-11-15).** Every collection's element
 iterator (`CollectionTypeMapper<C>::TElementIterator` and `TElementConstIterator`) is eight bytes: the element it
 is at, null at the end, copied whole and compared by the element. Each collection kind lays it out the same way;

@@ -2,7 +2,7 @@
 // entry array (fn_7100314c88), the per-frame update (fn_7100309570) and dash/stop steps (fn_710030d260,
 // fn_710031410c, fn_7100314288), the reaction to a "ghost aura" message (fn_7100314508) and the target
 // visitor that keeps the closest target (fn_7100314e54). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbility.h"
@@ -403,7 +403,7 @@ struct UnkGhostAuraEntry_b0040 {
     }
 };
 
-void fn_7100314c88(base::UnkVector<UnkGhostAuraEntry_b0040>* self, u32 n) {
+void fn_7100314c88(base::global::CRntVector<UnkGhostAuraEntry_b0040>* self, u32 n) {
     self->Reserve(n);
     for (u32 i = self->count; i < n; ++i)
         new (&self->data[i]) UnkGhostAuraEntry_b0040();

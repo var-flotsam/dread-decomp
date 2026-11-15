@@ -23,7 +23,7 @@ struct UnkTip {
 };
 static_assert(sizeof(UnkTip) == 0x18, "UnkTip placeholder layout");
 
-// The list (an UnkVector-shaped array of tips at +0).
+// The list (an CRntVector-shaped array of tips at +0).
 struct UnkTipList {
     UnkTip* data;
     u32 count;

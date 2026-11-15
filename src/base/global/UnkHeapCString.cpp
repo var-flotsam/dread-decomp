@@ -4,7 +4,7 @@
 // copy but leaves the pointer as it was (fn_710007b8f0). Names are placeholders.
 #include <string.h>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 void fn_710007b8f0(char** self, const char* str) {

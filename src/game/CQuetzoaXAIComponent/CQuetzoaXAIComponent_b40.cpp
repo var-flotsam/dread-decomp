@@ -4,7 +4,7 @@
 // vtable g_unk_7101a22d48 at 0x14c08, then the post-construction virtual call (slot 3). The same container
 // as fn_7100a1482c (src/game/CAutsharpSpawnPointComponent/CAutsharpSpawnPointComponent.cpp). Names and
 // layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CQuetzoaXAIComponent.h"
 #include "game/UnkTU341.h"

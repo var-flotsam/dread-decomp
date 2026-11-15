@@ -1,5 +1,5 @@
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/input/UnkRumbleManager.h"
 #include "types.h"
 
@@ -11,7 +11,7 @@ void fn_710019e58c(UnkPooledChainedMap* map, u32 buckets, u32 nodes);
 struct UnkMapOwner_b260 {
     char* vtable;
     UnkPooledChainedMap map;        // 0x8
-    base::UnkVector<void*> list;    // 0x90
+    base::global::CRntVector<void*> list;    // 0x90
 };
 static_assert(__builtin_offsetof(UnkMapOwner_b260, list) == 0x90, "layout");
 
@@ -38,7 +38,7 @@ void fn_710019dcac(UnkMapOwner_b260* self) {
     m->field_0x80 = 0;
     m->field_0x84 = false;
     fn_710019e58c(m, 0x400, 0x4000);
-    new (&self->list) base::UnkVector<void*>(0xf);
+    new (&self->list) base::global::CRntVector<void*>(0xf);
     self->list.Reserve(0x1000);
     if (*reinterpret_cast<u32*>(mb + 0xc)) {
         char* node = reinterpret_cast<char*>(m->field_0x40);

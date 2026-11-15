@@ -4,4 +4,4 @@
 
 using UnkListIter = base::UnkCollectionIter<UnkOwnedList>;
 
-void fn_71004a9990(const base::UnkVector<UnkOwnedList>* v, UnkListIter* out) { *out = UnkListIter(0, v->data); }
+void fn_71004a9990(const base::global::CRntVector<UnkOwnedList>* v, UnkListIter* out) { *out = UnkListIter(0, v->data); }

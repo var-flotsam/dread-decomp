@@ -5,7 +5,7 @@
 // manager's pass parameter (channels 3, 18) or to its colour setters (channels 4, 6), back into the object
 // (channel 13, which flags its parameter block), or, for channel 9, into the environment manager's light
 // object. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"

@@ -3,7 +3,7 @@
 // placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCameraCtrl.h"
 #include "game/CPhotoModeCameraCtrl.h"
 #include "types.h"
@@ -16,7 +16,7 @@ struct UnkPhotoModeCameraCtrl_A4_b76 {
     u8 pad_0x8[0x20];
     u32 field_0x28;
     u8 pad_0x2c[0x1d8 - 0x2c];
-    base::UnkVector<u8> list;  // 0x1d8
+    base::global::CRntVector<u8> list;  // 0x1d8
     f32 field_0x200;
     f32 field_0x204;
     u32 field_0x208;
@@ -40,7 +40,7 @@ static_assert(__builtin_offsetof(UnkPhotoModeCameraCtrl_A4_b76, field_0xbe4) == 
 void fn_71009ca94c(UnkPhotoModeCameraCtrl_A4_b76* self) {
     fn_71010ed044(reinterpret_cast<UnkBase_7100763ed4*>(self));
     self->vtable = &g_unk_7101a89018[2];
-    new (&self->list) base::UnkVector<u8>(0xf);
+    new (&self->list) base::global::CRntVector<u8>(0xf);
     self->field_0x200 = 1500.0f;
     self->field_0x204 = 1800.0f;
     self->field_0x208 = 0;

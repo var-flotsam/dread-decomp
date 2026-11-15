@@ -2,7 +2,7 @@
 // (fn_7100a55ac8), then hands every non-empty id of the list at +0x10 to the GUI composition at +0x10
 // of the game manager's +0x2258 entry (fn_7100b5fd6c). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CTriggerLogicAction.h"
 #include "game/GUI/CPopUpComposition.h"
@@ -10,7 +10,7 @@
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-base::UnkStrIdMember* fn_71000ce740(base::UnkVector<base::UnkStrIdMember>* self, u32 index);
+base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMember>* self, u32 index);
 
 struct UnkPopUpEntry_b48 {
     u8 pad_0x0[0x10];
@@ -19,7 +19,7 @@ struct UnkPopUpEntry_b48 {
 
 struct UnkShowPopUpAction_b48 {
     u8 pad_0x0[0x10];
-    base::UnkVector<base::UnkStrIdMember> ids;
+    base::global::CRntVector<base::UnkStrIdMember> ids;
 };
 
 void fn_7100a3fff4(UnkShowPopUpAction_b48* self) {

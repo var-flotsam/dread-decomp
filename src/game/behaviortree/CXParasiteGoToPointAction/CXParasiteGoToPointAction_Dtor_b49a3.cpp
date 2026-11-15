@@ -3,14 +3,14 @@
 // base's destructor fn_7100393ea0 (as behaviortree::CGoToPointAction's, CGoToPointAction_Dtor_b45.cpp).
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU1095.h"
 #include "game/behaviortree/CBaseAction.h"
 #include "types.h"
 
 // An array of plain values: freeing it destroys nothing.
 struct UnkPlainArrayMember_b49a3 {
-    base::UnkVector<u64> array;
+    base::global::CRntVector<u64> array;
     ~UnkPlainArrayMember_b49a3() { array.Free(); }
 };
 

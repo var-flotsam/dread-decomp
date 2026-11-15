@@ -4,7 +4,7 @@
 // fn_7100023464's static) and has a constructor (+0x28), a block of the class's size (+0x18) is
 // taken from the default allocator and constructed; then each 0xb0-byte field entry of the class
 // (+0xe8) is copied over by fn_71000239a8 (also with no block). Names are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"

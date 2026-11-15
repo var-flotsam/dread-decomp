@@ -1,7 +1,7 @@
 // From unit 2744 of tools/tu_map.py (the GUI scripts unit, gui/scripts/guimanager.lua): removes a
 // named entry from a map of owned objects keyed by string id, destroying and freeing the object.
 // Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

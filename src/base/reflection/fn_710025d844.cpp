@@ -1,11 +1,11 @@
-// Reflection construct functions (class slot 0x28) of two array types with UnkVector's layout
+// Reflection construct functions (class slot 0x28) of two array types with CRntVector's layout
 // and allocation flags 0xf: fn_710025d844 and fn_71000e20d0 value-initialise one in place, so the
 // object is zero-filled before the member initialisers run (the second zero store at 0x10 and the
 // one at 0x20 in the original).
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkVector_0xf {

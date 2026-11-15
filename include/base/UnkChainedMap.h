@@ -2,10 +2,10 @@
 
 // The chained hash map's header and its 11-bucket start, as base/UnkHashMap.h describes the
 // layout: an allocator at +0, the flags word 0xe at +8, the entry count at +0xc, the bucket array
-// (an UnkVector with flags 0xe) at +0x10 and the first and last node at +0x38 and +0x40. Placeholder
+// (an CRntVector with flags 0xe) at +0x10 and the first and last node at +0x38 and +0x40. Placeholder
 // names inferred from fn_7100e1bca4 and fn_71011a870c.
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkMapNode;
@@ -14,7 +14,7 @@ struct UnkChainedMap {
     base::UnkAllocator* allocator;
     u32 flags;
     u32 count;
-    base::UnkVector<UnkMapNode*> buckets;
+    base::global::CRntVector<UnkMapNode*> buckets;
     UnkMapNode* head;
     UnkMapNode* tail;
 

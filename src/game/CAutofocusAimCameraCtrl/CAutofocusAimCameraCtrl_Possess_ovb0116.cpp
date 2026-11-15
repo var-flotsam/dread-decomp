@@ -11,7 +11,7 @@
 // lazily created central-unit registry g_unk_71726bee10 is told (fn_7100ddbb7c). Names and layouts
 // are placeholders.
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkReflAttributes.h"

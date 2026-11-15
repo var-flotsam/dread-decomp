@@ -2,7 +2,7 @@
 // fn_7100a1482c in CAutsharpSpawnPointComponent.cpp): base constructor, vtable, the container at +0xac0
 // (base vtable, empty array with step 10 and flags 0xf, final vtable, allocator), two flags, then the
 // post-construction virtual call (slot 3). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCharClassBaseTriggerComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"

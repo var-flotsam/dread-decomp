@@ -16,7 +16,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkMatrix44.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -49,9 +49,9 @@ namespace base {
 // Three arrays: pointers to slots that are cleared on reset, and two more of unknown elements.
 template <class Tag>
 struct UnkSlotPool {
-    UnkVector<void**> slots;
-    UnkVector<UnkCloneWord<Tag>> field_0x28;
-    UnkVector<UnkCloneWord<Tag>> field_0x50;
+    global::CRntVector<void**> slots;
+    global::CRntVector<UnkCloneWord<Tag>> field_0x28;
+    global::CRntVector<UnkCloneWord<Tag>> field_0x50;
 
     ~UnkSlotPool() {
         for (void** *p = slots.data, ***end = slots.data + slots.count; p != end; ++p)
@@ -77,7 +77,7 @@ namespace base {
 // Compares two arrays of 8-byte elements by count and contents (fn_71000cddd8 and its identical
 // copies).
 template <class Tag>
-bool refl_VectorEqual(const UnkVector<UnkCloneWord<Tag>>* a, const UnkVector<UnkCloneWord<Tag>>* b) {
+bool refl_VectorEqual(const global::CRntVector<UnkCloneWord<Tag>>* a, const global::CRntVector<UnkCloneWord<Tag>>* b) {
     if (a->count != b->count)
         return false;
     const UnkCloneWord<Tag>* pa = a->data;
@@ -163,7 +163,7 @@ UnkIterValue<T, K>& refl_IterValueMoveAssign(UnkIterValue<T, K>* self, UnkIterVa
 // An element holding an array of owning pointers, freed when destroyed.
 template <class Tag>
 struct UnkCloneOwnerVec {
-    base::UnkVector<UnkCloneOwner<Tag>> v;
+    base::global::CRntVector<UnkCloneOwner<Tag>> v;
     ~UnkCloneOwnerVec() { v.Free(); }
 };
 
@@ -209,9 +209,9 @@ namespace base {
 
 template <class Tag>
 struct UnkCountedDeferredSet {
-    UnkVector<Tag*> items;
-    UnkVector<Tag*> pending_a;
-    UnkVector<Tag*> pending_b;
+    global::CRntVector<Tag*> items;
+    global::CRntVector<Tag*> pending_a;
+    global::CRntVector<Tag*> pending_b;
     s32 lock;
 };
 
@@ -343,7 +343,7 @@ void refl_StrIdMemberCtor(char* self) {
 // identical copies; owning-pointer elements).
 namespace base {
 template <class T>
-void refl_ClearWide(UnkVector<T>* v) {
+void refl_ClearWide(global::CRntVector<T>* v) {
     for (u64 i = 0; i < v->count; ++i)
         v->data[i].~T();
     v->count = 0;
@@ -425,7 +425,7 @@ struct UnkCallable {
 template <class Tag>
 struct UnkCallbackListBase {
     char* vtable;
-    UnkVector<UnkCallable> callables;
+    global::CRntVector<UnkCallable> callables;
     ~UnkCallbackListBase() {
         vtable = UnkCallbackTraits<Tag>::base_vtable() + 0x10;
         if (callables.data) {
@@ -578,7 +578,7 @@ struct UnkCloneSubVec {
 // elements and clearing the moved-from ones with memset, so the count is reloaded each step),
 // then default-constructs the new elements (flags 0xf) (fn_710065b1b0 and its identical copies).
 template <class Tag>
-void refl_ResizeSubVecs(UnkVector<UnkCloneSubVec<Tag>>* v, u32 n) {
+void refl_ResizeSubVecs(global::CRntVector<UnkCloneSubVec<Tag>>* v, u32 n) {
     using E = UnkCloneSubVec<Tag>;
     if (v->capacity < n) {
         E* d = static_cast<E*>(v->allocator->vf_0x40((u64)n * sizeof(E), 8, v->flags));
@@ -649,7 +649,7 @@ struct UnkStrIdArray {
 };
 }  // namespace base
 
-// A 0x28-byte array header moved field by field; UnkVector::EmplaceBack over it is fn_71004a940c
+// A 0x28-byte array header moved field by field; CRntVector::EmplaceBack over it is fn_71004a940c
 // and its identical copies.
 template <class Tag>
 struct UnkCloneVecHandle {
@@ -680,14 +680,14 @@ struct UnkClonePoly64 {
 };
 template <class Tag>
 struct UnkClonePolyVec {
-    base::UnkVector<UnkClonePoly64<Tag>> v;
+    base::global::CRntVector<UnkClonePoly64<Tag>> v;
     ~UnkClonePolyVec() { v.Free(); }
 };
 // The same followed by 8-byte words up to `Size` (iterator values keyed by a string id at the
 // end of a larger key, fn_710075abfc and its copies).
 template <class Tag, u64 Size>
 struct UnkClonePolyVecPad {
-    base::UnkVector<UnkClonePoly64<Tag>> v;
+    base::global::CRntVector<UnkClonePoly64<Tag>> v;
     u64 pad[(Size - 0x28) / 8];
     ~UnkClonePolyVecPad() { v.Free(); }
 };
@@ -895,7 +895,7 @@ struct UnkPushPairTraits;
 
 template <class Tag>
 void refl_PushPair(char* self) {
-    auto* v = reinterpret_cast<UnkVector<void*>*>(self + 8);
+    auto* v = reinterpret_cast<global::CRntVector<void*>*>(self + 8);
     v->PushBack(UnkPushPairTraits<Tag>::first());
     v->PushBack(UnkPushPairTraits<Tag>::second());
 }
@@ -1287,7 +1287,7 @@ struct UnkIdValueElem {
 };
 
 template <class Tag, class V>
-inline void refl_IdValueMoveTo(UnkVector<UnkIdValueElem<Tag, V>>* v, u32 new_capacity) {
+inline void refl_IdValueMoveTo(global::CRntVector<UnkIdValueElem<Tag, V>>* v, u32 new_capacity) {
     using T = UnkIdValueElem<Tag, V>;
     T* p = static_cast<T*>(v->allocator->vf_0x40((u64)new_capacity * sizeof(T), 8, v->flags));
     if (v->data) {
@@ -1303,10 +1303,10 @@ inline void refl_IdValueMoveTo(UnkVector<UnkIdValueElem<Tag, V>>* v, u32 new_cap
     v->capacity = new_capacity;
 }
 
-// UnkVector::PushBack for elements copied one by one: the growth (and hang) of PushBack, the
+// CRntVector::PushBack for elements copied one by one: the growth (and hang) of PushBack, the
 // old elements copied over and destroyed through their vtables.
 template <class Tag, class V>
-void refl_IdValuePushBack(UnkVector<UnkIdValueElem<Tag, V>>* v, const UnkIdValueElem<Tag, V>& value) {
+void refl_IdValuePushBack(global::CRntVector<UnkIdValueElem<Tag, V>>* v, const UnkIdValueElem<Tag, V>& value) {
     using T = UnkIdValueElem<Tag, V>;
     u32 n = v->count;
     u32 old_capacity = v->capacity;
@@ -1327,8 +1327,8 @@ void refl_IdValuePushBack(UnkVector<UnkIdValueElem<Tag, V>>* v, const UnkIdValue
 // The array's copy-assignment (fn_7100f5fd88 and its shape copies): destroys the elements,
 // grows to the other's capacity and pushes a copy of each of its elements.
 template <class Tag, class V>
-UnkVector<UnkIdValueElem<Tag, V>>* refl_IdValueAssign(UnkVector<UnkIdValueElem<Tag, V>>* v,
-                                                      const UnkVector<UnkIdValueElem<Tag, V>>* other) {
+global::CRntVector<UnkIdValueElem<Tag, V>>* refl_IdValueAssign(global::CRntVector<UnkIdValueElem<Tag, V>>* v,
+                                                      const global::CRntVector<UnkIdValueElem<Tag, V>>* other) {
     using T = UnkIdValueElem<Tag, V>;
     if (v != other) {
         for (u64 i = 0; i < v->count; ++i)
@@ -1454,7 +1454,7 @@ struct UnkPushNextTraits;
 template <class Tag>
 void refl_PushThenNext(char* self) {
     using Traits = UnkPushNextTraits<Tag>;
-    reinterpret_cast<UnkVector<const reflection::CType*>*>(self + 8)->PushBack(Traits::get());
+    reinterpret_cast<global::CRntVector<const reflection::CType*>*>(self + 8)->PushBack(Traits::get());
     Traits::next(self);
 }
 
@@ -1487,7 +1487,7 @@ void refl_HashMapInit(char* self, u32 buckets, u32 nodes) {
         fn_710008378c(reinterpret_cast<UnkBlockFreeList*>(self + 0x58), block, size, NodeSize);
     }
     *reinterpret_cast<char**>(self) = self + 0x48;
-    UnkVector<void*>* v = reinterpret_cast<UnkVector<void*>*>(self + 0x10);
+    global::CRntVector<void*>* v = reinterpret_cast<global::CRntVector<void*>*>(self + 0x10);
     u32 count = v->count;
     if (count < buckets) {
         if (v->capacity < buckets) {
@@ -1526,7 +1526,7 @@ struct UnkPushTwoTraits;
 template <class Tag>
 void refl_PushTwoTypes(char* self) {
     using Traits = UnkPushTwoTraits<Tag>;
-    UnkVector<const reflection::CType*>* v = reinterpret_cast<UnkVector<const reflection::CType*>*>(self + 8);
+    global::CRntVector<const reflection::CType*>* v = reinterpret_cast<global::CRntVector<const reflection::CType*>*>(self + 8);
     v->PushBack(Traits::first());
     v->PushBack(Traits::get());
 }
@@ -1611,13 +1611,13 @@ inline void refl_VtIterAssign(UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>* out,
 }
 
 template <class Tag, u64 Size>
-void refl_VtBegin(const UnkVector<UnkStrIdVtElem<Tag, Size>>* v, UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>* out) {
+void refl_VtBegin(const global::CRntVector<UnkStrIdVtElem<Tag, Size>>* v, UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>* out) {
     UnkCollectionIter<UnkStrIdVtElem<Tag, Size>> it(0, v->data);
     refl_VtIterAssign(out, it);
 }
 
 template <class Tag, u64 Size>
-void refl_VtEnd(const UnkVector<UnkStrIdVtElem<Tag, Size>>* v, UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>* out) {
+void refl_VtEnd(const global::CRntVector<UnkStrIdVtElem<Tag, Size>>* v, UnkCollectionIter<UnkStrIdVtElem<Tag, Size>>* out) {
     UnkCollectionIter<UnkStrIdVtElem<Tag, Size>> it(v->count, v->data + v->count);
     refl_VtIterAssign(out, it);
 }
@@ -1636,7 +1636,7 @@ template <class Tag>
 struct UnkCloneOwnerVecHandle : UnkCloneVecHandle<Tag> {
     UnkCloneOwnerVecHandle(UnkCloneOwnerVecHandle&& other)
         : UnkCloneVecHandle<Tag>(static_cast<UnkCloneVecHandle<Tag>&&>(other)) {}
-    ~UnkCloneOwnerVecHandle() { reinterpret_cast<base::UnkVector<UnkCloneOwner<Tag>>*>(this)->Free(); }
+    ~UnkCloneOwnerVecHandle() { reinterpret_cast<base::global::CRntVector<UnkCloneOwner<Tag>>*>(this)->Free(); }
 };
 
 namespace base {
@@ -1645,7 +1645,7 @@ template <class Tag>
 struct UnkOwnerVecInsertTraits;
 
 template <class Tag>
-void refl_OwnerVecInsert(UnkVector<UnkCloneOwnerVecHandle<Tag>>* v, UnkCloneOwnerVecHandle<Tag>* e, u32 index) {
+void refl_OwnerVecInsert(global::CRntVector<UnkCloneOwnerVecHandle<Tag>>* v, UnkCloneOwnerVecHandle<Tag>* e, u32 index) {
     using E = UnkCloneOwnerVecHandle<Tag>;
     u32 n = v->count;
     if (n == index) {

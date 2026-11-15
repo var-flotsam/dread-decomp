@@ -3,7 +3,7 @@
 // vtable: it frees its array at +0xe8, clears the count at +0xa8 and destroys its listener
 // (+0x70); its base (vtable 0x7101a57430) destroys a second listener (+0x30), then CAttack's.
 #include "../../game_5821e4/CAttackDtor.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 
@@ -19,7 +19,7 @@ struct UnkAttack_710062c778 {
     u8 pad_0x90[0x18];
     u32 field_0xa8;
     u8 pad_0xac[0x3c];
-    base::UnkVector<u64> field_0xe8;
+    base::global::CRntVector<u64> field_0xe8;
 
     __attribute__((always_inline)) void Destroy() {
         field_0xe8.Free();

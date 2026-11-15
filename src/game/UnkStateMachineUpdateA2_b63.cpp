@@ -12,7 +12,7 @@
 #include "game/UnkTU2702.h"
 #include "types.h"
 #include "game_s2/UnkSpitAttack.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "game/UnkGameManager.h"

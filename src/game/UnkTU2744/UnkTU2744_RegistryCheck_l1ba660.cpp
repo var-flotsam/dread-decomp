@@ -3,7 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntString.h"

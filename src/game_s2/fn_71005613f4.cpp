@@ -1,7 +1,7 @@
 // Constructor of an object holding two records of the same layout (a vtable pair, cleared
 // words, defaults 10, 1 and 15, and a pointer from fn_7100083990), the second one without
 // its first vtable.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 

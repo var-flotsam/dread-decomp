@@ -2,7 +2,7 @@
 // array of owning pointers, as base::refl_Begin and refl_End (base/UnkCollectionIter.h). An owner
 // lets go of its object, which is told first (vf_0x90) and then deleted. Names are placeholders.
 #include "base/UnkCollectionIter.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkActorOwnedObject_b49a1 {
@@ -39,10 +39,10 @@ struct UnkActorOwner_b49a1 {
     }
 };
 
-void fn_7100244148(const base::UnkVector<UnkActorOwner_b49a1>* v, base::UnkCollectionIter<UnkActorOwner_b49a1>* out) {
+void fn_7100244148(const base::global::CRntVector<UnkActorOwner_b49a1>* v, base::UnkCollectionIter<UnkActorOwner_b49a1>* out) {
     base::refl_Begin(v, out);
 }
 
-void fn_7100244290(const base::UnkVector<UnkActorOwner_b49a1>* v, base::UnkCollectionIter<UnkActorOwner_b49a1>* out) {
+void fn_7100244290(const base::global::CRntVector<UnkActorOwner_b49a1>* v, base::UnkCollectionIter<UnkActorOwner_b49a1>* out) {
     base::refl_End(v, out);
 }

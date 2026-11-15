@@ -6,7 +6,7 @@
 
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU23.h"
 #include "types.h"
 
@@ -60,14 +60,14 @@ extern char unk_7101a1ce30[];
 struct UnkArrayHolder_710014abcc {
     char* vtable;
     u64 field_0x8;
-    base::UnkVector<void*> array;
+    base::global::CRntVector<void*> array;
     u32 field_0x38;
 };
 
 void fn_710014abcc(UnkArrayHolder_710014abcc* self) {
     self->vtable = unk_7101a1cd10 + 0x10;
     self->field_0x8 = 0;
-    new (&self->array) base::UnkVector<void*>(10);
+    new (&self->array) base::global::CRntVector<void*>(10);
     self->field_0x38 = 0;
     self->vtable = unk_7101a1ce30 + 0x10;
 }
@@ -216,24 +216,24 @@ struct UnkTwoBasesInit_710014b810 {
     char* vtable;
     char* base_vtable;
     u64 field_0x10;
-    base::UnkVector<void*> array;
-    base::UnkVector<UnkOwnedObject*> objects;
+    base::global::CRntVector<void*> array;
+    base::global::CRntVector<UnkOwnedObject*> objects;
     bool field_0x68;
     u64 field_0x70;
     u64 field_0x78;
-    base::UnkVector<void*> array_0x80;
+    base::global::CRntVector<void*> array_0x80;
     base::UnkAllocator* list_allocator;
     u32 list_field_0x8;
     u32 list_size;
-    base::UnkVector<void*> buckets;
+    base::global::CRntVector<void*> buckets;
     void* list_tail;
     void* list_head;
-    base::UnkVector<void*> array_0xf0;
+    base::global::CRntVector<void*> array_0xf0;
 };
 static_assert(offsetof(UnkTwoBasesInit_710014b810, array_0xf0) == 0xf0, "layout");
 
 template <class T>
-__attribute__((always_inline)) static inline void ResizeZeroed(base::UnkVector<T>* v, u32 n) {
+__attribute__((always_inline)) static inline void ResizeZeroed(base::global::CRntVector<T>* v, u32 n) {
     if (v->count < n) {
         v->Reserve(n);
         __builtin_memset(v->data + v->count, 0, (u64)(n - v->count) * sizeof(T));
@@ -247,22 +247,22 @@ void fn_710014b810(UnkTwoBasesInit_710014b810* self) {
     self->vtable = unk_7101a1d208 + 0x10;
     self->base_vtable = unk_7101a1cd10 + 0x10;
     self->field_0x10 = 0;
-    new (&self->array) base::UnkVector<void*>(10);
+    new (&self->array) base::global::CRntVector<void*>(10);
     self->array.Reserve(1);
     self->base_vtable = unk_7101a1d258 + 0x10;
-    new (&self->objects) base::UnkVector<UnkOwnedObject*>(0x40);
+    new (&self->objects) base::global::CRntVector<UnkOwnedObject*>(0x40);
     self->field_0x68 = true;
     self->field_0x70 = 0;
     self->field_0x78 = 0;
     self->vtable = unk_7101a1d150 + 0x10;
     self->base_vtable = unk_7101a1d150 + 0x60;
-    new (&self->array_0x80) base::UnkVector<void*>(0x40);
+    new (&self->array_0x80) base::global::CRntVector<void*>(0x40);
     self->list_allocator = fn_7100083990();
     self->list_field_0x8 = 0xe;
     self->list_size = 0;
-    new (&self->buckets) base::UnkVector<void*>(0xe);
+    new (&self->buckets) base::global::CRntVector<void*>(0xe);
     self->list_tail = nullptr;
     self->list_head = nullptr;
     ResizeZeroed(&self->buckets, 11);
-    new (&self->array_0xf0) base::UnkVector<void*>(0xf);
+    new (&self->array_0xf0) base::global::CRntVector<void*>(0xf);
 }

@@ -5,7 +5,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CItemLifeComponent.h"
@@ -31,7 +31,7 @@ struct UnkBeamBoxListener_ovb0134 {
 struct UnkBeamBox_ovb0134 {
     void** vtable;
     u8 pad_0x8[0x380];
-    base::UnkVector<void*> list;  // 0x388
+    base::global::CRntVector<void*> list;  // 0x388
     u8 field_0x3b0[0x38];
     UnkBeamBoxListener_ovb0134 listener_0x3e8;
     UnkBeamBoxListener_ovb0134 listener_0x408;
@@ -58,7 +58,7 @@ static_assert(__builtin_offsetof(UnkBeamBox_ovb0134, id) == 0x478, "layout");
 void fn_71008a5fb0(UnkBeamBox_ovb0134* self) {
     fn_71008e04e8(reinterpret_cast<UnkLifeComponent_A5_b71*>(self));
     self->vtable = &g_unk_7101a7d4e0[2];
-    new (&self->list) base::UnkVector<void*>(0xf);
+    new (&self->list) base::global::CRntVector<void*>(0xf);
     fn_71008a99e4(self->field_0x3b0);
     self->listener_0x3e8.vtable = &g_unk_7101a22d48[2];
     self->listener_0x3e8.field_0x8 = 0;

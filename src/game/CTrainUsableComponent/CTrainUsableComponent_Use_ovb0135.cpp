@@ -3,7 +3,7 @@
 // (g_unk_71726bc560, created on first use) switches channels 0xc over 1.5 seconds and the game manager
 // runs fn_7100e015b8; the player's input component (+0x1d8) is then re-enabled. The mask types are
 // src/game/UnkLoadingScreen.cpp's. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkAnimationComponent.h"

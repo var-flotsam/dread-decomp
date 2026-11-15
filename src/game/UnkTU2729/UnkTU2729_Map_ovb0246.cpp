@@ -1,6 +1,6 @@
 // Unit 2729 (no reliable name): a cache of pooled hash maps, its node release and erase. Names and layouts are placeholders.
 #include "base/UnkBlockFreeList.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2729.h"
 #include "types.h"
@@ -71,7 +71,7 @@ void fn_71011951e8(void* map);
 
 // A hash map of nodes over a block pool (0x90 bytes): the bucket array first, then the pool.
 struct UnkPooledMap_b0246 {
-    base::UnkVector<u8> buckets;  // 0x0
+    base::global::CRntVector<u8> buckets;  // 0x0
     u8 pad_0x28[0x10];
     u64 field_0x38;  // 0x38
     u8 pad_0x40[0x10];

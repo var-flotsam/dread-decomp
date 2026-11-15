@@ -1,7 +1,7 @@
 // Constructor of a GUI object: runs the base constructor (fn_71011d8d24), sets the vtable and
 // default-initialises the rest, including two arrays, ten callbacks bound to itself and two
 // string ids copied from the global defaults.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -29,13 +29,13 @@ struct UnkGuiObject_71011df648 {
     UnkBoundCall field_0x240;
     bool field_0x258;
     void* field_0x260[18];
-    base::UnkVector<void*> field_0x2f0;
+    base::global::CRntVector<void*> field_0x2f0;
     void* field_0x318;
     void* field_0x320;
     void* field_0x328;
     void* field_0x330;
     s64 field_0x338;
-    base::UnkVector<void*> field_0x340;
+    base::global::CRntVector<void*> field_0x340;
     UnkBoundCall field_0x368;
     UnkBoundCall field_0x380;
     void* field_0x398[9];
@@ -84,13 +84,13 @@ void fn_71011df648(UnkGuiObject_71011df648* self) {
     self->field_0x258 = false;
     for (s32 i = 0; i < 18; ++i)
         self->field_0x260[i] = nullptr;
-    new (&self->field_0x2f0) base::UnkVector<void*>(0xf);
+    new (&self->field_0x2f0) base::global::CRntVector<void*>(0xf);
     self->field_0x318 = nullptr;
     self->field_0x320 = nullptr;
     self->field_0x328 = nullptr;
     self->field_0x330 = nullptr;
     self->field_0x338 = -1;
-    new (&self->field_0x340) base::UnkVector<void*>(0xf);
+    new (&self->field_0x340) base::global::CRntVector<void*>(0xf);
     Bind(&self->field_0x368, self, fn_71011e7bf8);
     Bind(&self->field_0x380, self, fn_71011e7c10);
     for (s32 i = 0; i < 9; ++i)

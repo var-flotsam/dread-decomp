@@ -4,7 +4,7 @@
 // freed, the id released, then the base destructor; fn_7100d9ef14 also frees the object. Names and
 // layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "game/CLightsDef.h"
 #include "types.h"
@@ -21,7 +21,7 @@ struct UnkLightsDefBase_b52 {
     __attribute__((always_inline)) ~UnkLightsDefBase_b52() { fn_7100016f88(this); }
 };
 
-// base::UnkVector's layout; cleared out of line before its storage is freed.
+// base::global::CRntVector's layout; cleared out of line before its storage is freed.
 struct UnkLightsDefArray_b52 {
     void* data;
     u32 count;

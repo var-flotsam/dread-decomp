@@ -5,7 +5,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkMember_b40 {
@@ -26,7 +26,7 @@ struct UnkCountedRef_b40 {
 
 // An owned array: its elements destroyed, then the storage handed back to its allocator.
 template <class T>
-struct UnkOwnedVector_b40 : base::UnkVector<T> {
+struct UnkOwnedVector_b40 : base::global::CRntVector<T> {
     __attribute__((always_inline)) ~UnkOwnedVector_b40() { this->Free(); }
 };
 

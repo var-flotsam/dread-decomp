@@ -13,7 +13,7 @@
 // component's destructor body (the parts, the id table at +0x80, the id at +0x78 and the target link at
 // +0x50 destroyed, then the component base's fn_71010c4194). Names and layouts are placeholders.
 #include "base/UnkStrIdTable.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityGhostAura.h"
@@ -275,7 +275,7 @@ struct UnkTunnelTrapMorphballComponent_ovb0136 {
     u8 pad_0x70[0x8];
     UnkTunnelTrapId_ovb0136 id;                             // 0x78
     UnkTunnelTrapTable_ovb0136 table;                       // 0x80
-    base::UnkVector<UnkTunnelTrapPart2_ovb0136> parts;      // 0xa8
+    base::global::CRntVector<UnkTunnelTrapPart2_ovb0136> parts;      // 0xa8
 
     __attribute__((always_inline)) ~UnkTunnelTrapMorphballComponent_ovb0136() {
         vtable = g_unk_7101a8e700 + 2;

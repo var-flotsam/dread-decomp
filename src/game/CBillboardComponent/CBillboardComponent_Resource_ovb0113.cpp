@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/UnkResKey.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 // A holder's assignment from a resource known to be there.

@@ -5,7 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBeamBoxComponent.h"
 #include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkCallbackBase.h"
@@ -214,7 +214,7 @@ struct UnkEntryVector {
             u32 new_capacity = capacity;
             if (new_capacity <= n && step != 0)
                 new_capacity = (n / step + 1) * step;
-            if ((s32)n >= (s32)new_capacity)  // hangs, as UnkVector::PushBack does
+            if ((s32)n >= (s32)new_capacity)  // hangs, as CRntVector::PushBack does
                 for (;;) {
                 }
             Reserve(this, new_capacity);

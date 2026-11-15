@@ -1,11 +1,11 @@
-// animtree::CAnimTreeDef's unit (tools/tu_map.py unit 401): an array (base::UnkVector's layout) of pairs
+// animtree::CAnimTreeDef's unit (tools/tu_map.py unit 401): an array (base::global::CRntVector's layout) of pairs
 // of string ids, reserved out of line (fn_71002da674): its copy constructor (fn_71002da558) and copy
 // assignment (fn_71002da7a4), each pair appended with both ids retained; the copy (fn_71002d9808) and move
 // (fn_71002d9994) assignments of a record holding a word and a pair of ids, both out of line in mode 2;
 // and a definition's destructor (fn_71002d8010: the pairs, two lists of owned objects and two string
 // ids, the last in the base with vtable g_unk_7101a21718). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/animtree/CAnimTreeDef.h"
 #include "game/animtree/CAnimatedNodeDef.h"
@@ -146,7 +146,7 @@ void* fn_71002d9994(void* dst, void* src) {
 
 extern void* g_unk_7101a21898[];
 
-// An array of pairs of string ids (base::UnkVector's layout), truncated out of line.
+// An array of pairs of string ids (base::global::CRntVector's layout), truncated out of line.
 struct UnkTreeIdPairs_ovb0120 {
     void* data;
     u32 count;

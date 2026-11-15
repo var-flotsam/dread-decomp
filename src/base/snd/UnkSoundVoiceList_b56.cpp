@@ -1,10 +1,10 @@
 // Unit 99 (the sound system's): stop a playing voice. The voice must be in one of the system's two
 // lists of live voices (at +0x3f0 with a flag, command 1; at +0x418, command 3); it is queued for the
-// sound thread, taken out of the list (a base::UnkVector), its key use and slot counters are dropped and it goes back to
+// sound thread, taken out of the list (a base::global::CRntVector), its key use and slot counters are dropped and it goes back to
 // the voice pool. Names and layouts are placeholders.
 #include <cstring>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU101.h"
@@ -34,7 +34,7 @@ struct UnkVoiceStat_b56 {
 struct UnkVoiceStats_b56;
 UnkVoiceStat_b56& fn_7100103da0(UnkVoiceStats_b56* self, u32 index);
 
-using UnkVoiceList_b56 = base::UnkVector<UnkSoundVoice2_b56*>;
+using UnkVoiceList_b56 = base::global::CRntVector<UnkSoundVoice2_b56*>;
 
 static inline bool Contains_b56(UnkVoiceList_b56& list, UnkSoundVoice2_b56* voice) {
     for (u32 i = 0; i < list.count; i++)

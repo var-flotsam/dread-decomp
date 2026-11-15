@@ -4,14 +4,14 @@
 // the immediate path.
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CTimelineComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 // Appends to the engine's array, copy-constructing the elements one by one.
-static inline void AppendCopy(base::UnkVector<UnkPendingAdd>& a, const UnkPendingAdd& value) {
+static inline void AppendCopy(base::global::CRntVector<UnkPendingAdd>& a, const UnkPendingAdd& value) {
     u32 n = a.count;
     u32 old_capacity = a.capacity;
     u32 new_capacity = old_capacity;

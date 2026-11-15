@@ -1,6 +1,6 @@
 // Unit 2630 (tools/tu_map.py): a callback that starts the music manager's playback (fn_7100fdb9e0)
 // while its state is 5. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"

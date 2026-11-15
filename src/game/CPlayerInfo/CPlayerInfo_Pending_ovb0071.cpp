@@ -6,7 +6,7 @@
 // finished empty ones; fn_7100f0dd3c stops the effect behind the handle at +0x260 and frees +0x138;
 // fn_7100f0bc50 resets everything. Names and layouts are placeholders.
 #include "base/UnkKeyedStrIds.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CInventoryComponent.h"

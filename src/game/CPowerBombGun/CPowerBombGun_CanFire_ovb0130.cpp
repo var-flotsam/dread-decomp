@@ -1,5 +1,5 @@
 // CPowerBombGun's unit (tools/tu_map.py, unit 1313). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBombGun.h"
 #include "game/CInventoryComponent.h"

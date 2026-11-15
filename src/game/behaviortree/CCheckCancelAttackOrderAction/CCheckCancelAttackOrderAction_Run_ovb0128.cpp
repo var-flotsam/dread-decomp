@@ -5,7 +5,7 @@
 // fails, the owner is passed to the global instance's fn_71011a75f0 (the instance created on first use, as
 // src/game/CBehaviorTreeAIComponent/fn_7100369650.cpp does). Always returns 2. Names and layouts are
 // placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU394.h"

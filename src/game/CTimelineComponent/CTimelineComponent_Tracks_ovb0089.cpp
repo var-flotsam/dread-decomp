@@ -7,7 +7,7 @@
 #include <new>
 #include <utility>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU1134.h"
@@ -48,11 +48,11 @@ struct UnkTimelineComponentFull_ovb0089 {
     u8 pad_0x48[0x20];
     UnkTimelineTrackTable_ovb0089 tracks;  // 0x68
     u8 pad_0x90[0x8];
-    base::UnkVector<UnkPendingAdd> pending_add;  // 0x98
-    base::UnkVector<u64> pending_remove;         // 0xc0
+    base::global::CRntVector<UnkPendingAdd> pending_add;  // 0x98
+    base::global::CRntVector<u64> pending_remove;         // 0xc0
     u8 pad_0xe8[0x8];
     char* listeners_vtable;               // 0xf0
-    base::UnkVector<void*> listeners[3];  // 0xf8
+    base::global::CRntVector<void*> listeners[3];  // 0xf8
     s32 listeners_lock;                   // 0x170
     char* timed_vtable;                   // 0x178
     u32 timed_count;                      // 0x180

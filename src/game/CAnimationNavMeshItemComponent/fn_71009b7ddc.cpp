@@ -1,7 +1,7 @@
 // Creates a child object (0x110 bytes), constructed with its index in the owner's child array, and
 // appends it to that array of owning pointers. Four copies, one per owner type, each with its own
 // child constructor.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkChild {
     virtual void vf0();
@@ -37,7 +37,7 @@ struct UnkOwnedPtrVector {
     u32 flags;
     base::UnkAllocator* allocator;
 
-    // A capacity that doesn't grow past the count (no step) hangs, as UnkVector::PushBack does.
+    // A capacity that doesn't grow past the count (no step) hangs, as CRntVector::PushBack does.
     // Pointers are stored bitwise: the original reloads `count` after each store.
     __attribute__((always_inline)) void PushBack(UnkChild* child) {
         u32 n = count;

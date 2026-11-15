@@ -240,18 +240,18 @@ struct CSubAreaManager {
     u8 pad_0x114[0x44];
     UnkIdSet field_0x158;
     u8 pad_0x248[0xf0];
-    base::UnkVector<base::UnkStrIdMember> field_0x338;
-    base::UnkVector<UnkPathIdMember> field_0x360;
-    base::UnkVector<UnkPathIdMember> field_0x388;
+    base::global::CRntVector<base::UnkStrIdMember> field_0x338;
+    base::global::CRntVector<UnkPathIdMember> field_0x360;
+    base::global::CRntVector<UnkPathIdMember> field_0x388;
     u8 pad_0x3b0[0x40];
     UnkSubArea* field_0x3f0;  // the current sub-area
     UnkSubArea* field_0x3f8;  // the previous one
     u8 pad_0x400[0x18];
     UnkSubAreaRequestQueue field_0x418;
-    base::UnkVector<UnkSubAreaObjectPtr> field_0x830;
+    base::global::CRntVector<UnkSubAreaObjectPtr> field_0x830;
     UnkSubArea* field_0x858;
-    base::UnkVector<UnkSubAreaRecord_0x188> field_0x860;
-    base::UnkVector<UnkNamedIdsPtr> field_0x888;
+    base::global::CRntVector<UnkSubAreaRecord_0x188> field_0x860;
+    base::global::CRntVector<UnkNamedIdsPtr> field_0x888;
     u8 pad_0x8b0[0x28];
     UnkSubAreaColliders field_0x8d8;
     u8 pad_0x920[0x10];
@@ -520,8 +520,8 @@ extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
-// The file-path id array's element accessor (UnkVector::GrowAt, out of line).
-UnkPathIdMember* fn_710008c174(base::UnkVector<UnkPathIdMember>* self, u32 index);
+// The file-path id array's element accessor (CRntVector::GrowAt, out of line).
+UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* self, u32 index);
 
 void fn_7100ee48ec(CSubAreaManager* self);
 void fn_710109d0c0();
@@ -660,7 +660,7 @@ void fn_7100ee34f0(CSubAreaManager* self) {
         fn_71000893a8(device);
         g_unk_7101d4d828 = device;
     }
-    base::UnkVector<UnkPathIdMember>* paths = &self->field_0x388;
+    base::global::CRntVector<UnkPathIdMember>* paths = &self->field_0x388;
     for (s32 i = (s32)paths->count - 1; i != -1; --i) {
         fn_710008987c(device, reinterpret_cast<const CFilePathStrId*>(fn_710008c174(paths, i)), 0);
         fn_7100108c94(g_unk_7101d4d820, reinterpret_cast<const CFilePathStrId*>(fn_710008c174(paths, i)));
@@ -794,7 +794,7 @@ UnkKeyedNode* fn_7100d41b00(UnkKeyedMap<UnkKeyedNode>* self, const CStrId& key, 
 void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
     UnkCollisionFileReader reader;
     fn_7100d45fc4(&reader, nullptr);
-    base::UnkVector<UnkCollisionRecord> records(0xf);
+    base::global::CRntVector<UnkCollisionRecord> records(0xf);
     fn_7100860830(&reader, path, &records, true, nullptr);
     for (u64 i = 0; i < records.count; ++i) {
         auto* object = reinterpret_cast<UnkSubAreaCollision*>(records.data[i].field_0x28);

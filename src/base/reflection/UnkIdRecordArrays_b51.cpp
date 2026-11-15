@@ -1,7 +1,7 @@
 // Two parallel arrays (0x18-byte records that start with an id, and a CStrId per record) that
 // share a count, a capacity and allocation flags; the same shape as the tunables' registry
 // (fn_710013ec80, src/base/UnkTunableRegistry.cpp). Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

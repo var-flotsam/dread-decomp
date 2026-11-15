@@ -1,6 +1,6 @@
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 void fn_71007b1928(void*, void*);
@@ -15,9 +15,9 @@ struct UnkSetElem_b0220c {
 };
 static_assert(sizeof(UnkSetElem_b0220c) == 0x40, "layout");
 
-using UnkSetVector_b0220c = base::UnkVector<UnkSetElem_b0220c>;
+using UnkSetVector_b0220c = base::global::CRntVector<UnkSetElem_b0220c>;
 
-// UnkVector's reallocation with the old element advanced where it is destroyed.
+// CRntVector's reallocation with the old element advanced where it is destroyed.
 static inline __attribute__((always_inline)) UnkSetElem_b0220c* MoveTo_b0220(UnkSetVector_b0220c* v,
                                                                            u32 new_capacity) {
     UnkSetElem_b0220c* p =

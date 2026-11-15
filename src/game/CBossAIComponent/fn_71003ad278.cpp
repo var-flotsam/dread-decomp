@@ -2,7 +2,7 @@
 // polymorphic elements at +0x146c8, then (unless the owner at +0x14908 says otherwise)
 // re-applies each stored value through the linked object (once with the value, once with
 // zero) and marks the object at +0x30.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkSlots.h"
@@ -51,7 +51,7 @@ struct UnkEntry_71003ad278 {
 struct UnkObject_71003ad278 : UnkBehaviorTreeAI {
     UnkLink_71003ad278* Link() const { return static_cast<UnkLink_71003ad278*>(field_0x30); }
     u8 pad_0x38[0x146c8 - 0x38];
-    base::UnkVector<UnkElem_71003ad278> elems;  // 0x146c8
+    base::global::CRntVector<UnkElem_71003ad278> elems;  // 0x146c8
     u8 pad_0x146f0[0x147e9 - 0x146f0];
     bool field_0x147e9;
     u8 pad_0x147ea[0x2];

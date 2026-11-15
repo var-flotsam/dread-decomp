@@ -4,7 +4,7 @@
 #include <new>
 
 #include "base/UnkDestructors.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkTU212.h"
 #include "types.h"
 
@@ -13,7 +13,7 @@ struct UnkObject_710019506c {
     void* block_0x58;
     void* block_0x60;
     base::UnkStrIdMember id;
-    base::UnkVector<u32> values;
+    base::global::CRntVector<u32> values;
 
     __attribute__((always_inline)) ~UnkObject_710019506c() {
         if (block_0x60) {

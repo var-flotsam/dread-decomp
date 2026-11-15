@@ -795,7 +795,7 @@ struct UnkPtrList {
     }
 };
 
-// A vector of strings (base::UnkVector's layout) whose growth moves the strings across.
+// A vector of strings (base::global::CRntVector's layout) whose growth moves the strings across.
 struct UnkStrVector {
     CRntString* data;
     u32 count;

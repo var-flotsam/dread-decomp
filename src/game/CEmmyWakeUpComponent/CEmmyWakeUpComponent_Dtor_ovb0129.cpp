@@ -2,7 +2,7 @@
 // +0xc0 unregisters from its link's owner (fn_710117b3f0) and drops the link, the callback set at +0x80 drops its
 // reference and destroys its values, then the base destructor (fn_71007d70d8). Names and layouts are placeholders.
 #include "base/UnkErasedVector.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CEmmyWakeUpComponent.h"
 #include "game/UnkTU341.h"

@@ -1,9 +1,9 @@
-// Copy-assignments of growable arrays (base::UnkVector's layout) of plain elements copied one
+// Copy-assignments of growable arrays (base::global::CRntVector's layout) of plain elements copied one
 // by one: the array is emptied, reserves the other's capacity and appends each element,
 // growing like PushBack (including its hang).
 #include <new>
 
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
 #include "game/UnkTU2563.h"
 #include "types.h"

@@ -180,7 +180,7 @@ void fn_7100b29fbc(UnkGlobalMapOwner_A6_b64* self, f32 dt) {
 
 // Passes a flag (+0x50) and dt to the lazily created object of unit 2727 (g_unk_71727bc260; layout as in
 // src/game/UnkUnit2727/UnkUnit2727_c2_1.cpp), then updates.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 
 struct UnkObj_71011a50cc {
     u8 unk_0x0[0x98];

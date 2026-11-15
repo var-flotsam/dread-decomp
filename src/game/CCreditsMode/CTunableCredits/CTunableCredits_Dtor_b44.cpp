@@ -2,7 +2,7 @@
 // CCreditsMode::CTunableCredits by tools/tu_map.py): restores the vtable, releases two references,
 // destroys a member (fn_710119ad3c) and a list of plain nodes, then runs the base destructor
 // (fn_71011867d4). Names and layouts are placeholders, as in fn_7101185ea8.cpp.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/CCreditsMode/CTunableCredits.h"
 #include "game/UnkTU2725.h"
 #include "game/UnkTU2732.h"

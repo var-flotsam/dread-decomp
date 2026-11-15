@@ -1,7 +1,7 @@
 // Unit 2624: reading the id lists of a drop-target record (fn_7101025974) and handing a record's ids over
 // (fn_7101025984), moving them out of the record. Names and layouts are placeholders.
 #include "base/UnkResPathVec.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU0.h"

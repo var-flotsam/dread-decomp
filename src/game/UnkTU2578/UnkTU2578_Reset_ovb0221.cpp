@@ -2,7 +2,7 @@
 // src/game/UnkSoundIdRegistry.cpp describes): the instances playing under its ids are stopped (fn_710021fafc), the
 // registrations removed (fn_7100f004dc) and the two coloured items released to the render manager after the
 // last blend id (the stack at +0x128) is applied to them. Names and layouts are placeholders.
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU287.h"
 #include "game/UnkTU324.h"

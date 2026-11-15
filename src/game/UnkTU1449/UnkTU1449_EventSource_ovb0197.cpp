@@ -4,7 +4,7 @@
 // src/game/UnkUnit1452/UnkEventHolder_Dtor_A4_b74.cpp), and the constructor of a string-id vector from an
 // array of ids. Names and layouts are placeholders.
 #include "base/UnkCloneRecords.h"
-#include "base/UnkVector.h"
+#include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkTU1449.h"
