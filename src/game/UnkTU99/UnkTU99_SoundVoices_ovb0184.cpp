@@ -191,14 +191,6 @@ void fn_7100100734(void* self, u32 id, u32 kind) {
     }
 }
 
-bool fn_7101234580(void* effect);
-bool fn_7101233f24(void* effect);
-bool fn_7101234dc4(void* effect);
-extern u8 g_unk_7108b6ae38[] __attribute__((visibility("hidden")));
-extern u8 g_unk_7108b6afe8[] __attribute__((visibility("hidden")));
-extern u8 g_unk_7108b6adb0[] __attribute__((visibility("hidden")));
-extern u8 g_unk_7108b6af50[] __attribute__((visibility("hidden")));
-
 struct UnkTunableFlags_b0184 {
     u8 pad_0x0[0x36c];
     u8 field_0x36c;
