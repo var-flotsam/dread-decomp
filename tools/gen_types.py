@@ -992,7 +992,8 @@ def main() -> int:
                  [note, "// Descriptor constructors of flag sets, byte-identical to the original."])
     write_chunks("primitive_types", [emit_primitive(*p) for p in good_prims], decls,
                  [note, "// Getters (refl_GetType<T>) of plain CType descriptors, byte-identical to the original."])
-    print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical; "
+    print(f"pointer types: {len(pairs)} getter/constructor candidates, {len(good)} pairs byte-identical "
+          f"({sum(p[0] in named_ptrs for p in good)} with named value operations); "
           f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical "
           f"({sum(e[0] in named for e in good_enums)} with named value operations); "
           f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical; "
