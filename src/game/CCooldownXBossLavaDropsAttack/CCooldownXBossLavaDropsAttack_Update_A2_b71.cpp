@@ -6,13 +6,13 @@
 // the unit's static string id at +0xb8. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726d7cc8 __attribute__((visibility("hidden")));
 
 struct UnkRequest;

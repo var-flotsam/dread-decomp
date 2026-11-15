@@ -3,9 +3,8 @@
 // 0x10-byte polymorphic elements. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
+#include "game/CPlayerInfo.h"
 #include "types.h"
-
-extern void* g_unk_7101caa4b0[];
 
 struct UnkPlayerInfoElem_A6_b72 {
     virtual ~UnkPlayerInfoElem_A6_b72();

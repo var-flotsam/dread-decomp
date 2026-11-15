@@ -3,6 +3,7 @@
 // id at +0xb8, picked by the word at +0x5dc. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/UnkTU1370.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ struct UnkNailongThornMovement2 {
     u32 field_0x5dc;
 };
 
-extern base::reflection::UnkTunable g_unk_7172716160;
 extern CStrId g_unk_71726f8138 __attribute__((visibility("hidden")));
 extern CStrId g_unk_71726f8140 __attribute__((visibility("hidden")));
 

@@ -2532,7 +2532,7 @@ address,size,name,name_source,subsystem,status
 0x710077f768,41912,CCharClassAttackComponent::CTunableCharClassAttackComponent::refl_AddFields,reflection,game/characters,O
 0x7100789b20,388,CCharClassAttackComponent::CTunableCharClassAttackComponent::refl_InitClass,reflection,game/characters,O
 0x7100789ca4,696,fn_7100789ca4,unknown,game/characters?,O
-0x7100789f5c,244,fn_7100789f5c,unknown,game/characters?,U
+0x7100789f5c,244,fn_7100789f5c,unknown,game/characters?,O
 0x710078a050,4,CCharClassAttackComponent::refl_AddAttributes,reflection,game/characters,O
 0x710078a054,244,CCharClassAttackComponent::refl_GetClass,reflection,game/characters,O
 0x710078a148,7416,CCharClassAttackComponent::refl_AddFields,reflection,game/characters,O
@@ -2548,7 +2548,7 @@ address,size,name,name_source,subsystem,status
 0x710078cba4,372,fn_710078cba4,unknown,game/characters?,O
 0x710078cd18,380,fn_710078cd18,unknown,game/characters?,O
 0x710078ce94,380,fn_710078ce94,unknown,game/characters?,O
-0x710078d010,308,fn_710078d010,unknown,game/characters?,U
+0x710078d010,308,fn_710078d010,unknown,game/characters?,O
 0x710078d144,772,fn_710078d144,unknown,game/characters?,U
 0x710078d448,36,fn_710078d448,unknown,game/characters?,O
 0x710078d46c,184,fn_710078d46c,unknown,game/characters?,U

@@ -3,10 +3,10 @@
 // g_unk_7101647790, cleared fields up to +0x6c and a member at +0x70 (vtable g_unk_7101a2aef8) with
 // its fields cleared. Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
+#include "game/CAttack.h"
 #include "game/CAutclastChargeAttack.h"
 #include "types.h"
 
-void fn_710036069c(void* self);
 extern void* g_unk_7101a57f68[];
 
 struct UnkPoisonFlyDiveVec {

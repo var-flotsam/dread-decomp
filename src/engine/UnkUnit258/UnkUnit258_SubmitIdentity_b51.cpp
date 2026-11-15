@@ -7,8 +7,6 @@
 #include "game/UnkTU259.h"
 #include "types.h"
 
-extern UnkMatrix44 g_unk_7101a1a680;
-
 struct UnkGfxItemPtrList {
     u8 pad_0x0[0x28];
     u32 count;

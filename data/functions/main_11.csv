@@ -878,7 +878,7 @@ address,size,name,name_source,subsystem,status
 0x71011336b4,244,CAIAttackComponent::refl_GetClass,reflection,game/ai,O
 0x71011337a8,4,CAIAttackComponent::refl_AddFields,reflection,game/ai,O
 0x71011337ac,352,CAIAttackComponent::refl_InitClass,reflection,game/ai,O
-0x710113390c,388,fn_710113390c,unknown,game/ai?,U
+0x710113390c,388,fn_710113390c,unknown,game/ai?,O
 0x7101133a90,200,fn_7101133a90,unknown,game/ai?,O
 0x7101133b58,476,fn_7101133b58,unknown,game/ai?,U
 0x7101133d34,36,fn_7101133d34,unknown,game/ai?,O
