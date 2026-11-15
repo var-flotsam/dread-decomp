@@ -4,10 +4,10 @@
 // placeholders.
 #include <memory>
 
+#include "game/UnkTU341.h"
 #include "types.h"
 
 extern char g_unk_7101aa50e0[];
-extern char g_unk_7101a20a08[];
 
 struct UnkSharedPtrHolder_A5_b69 {
     char* vtable;

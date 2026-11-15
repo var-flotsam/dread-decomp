@@ -2,11 +2,11 @@
 // entry (id words not -1 and not 0xff), else 0 (also without a target or its holder at 0x1f8).
 // The entry is returned by vf_0x2d8 and destroyed afterwards.
 #include "game/UnkActor.h"
+#include "game/UnkTU362.h"
 #include "types.h"
 
 struct UnkEntry;
 struct UnkElem_7100286624;
-void fn_710028760c(UnkElem_7100286624* self);  // its destructor
 
 // Not trivially destructible, so it is returned in memory.
 struct UnkEntry {

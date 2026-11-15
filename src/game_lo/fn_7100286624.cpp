@@ -2,6 +2,7 @@
 // clears the count, then releases the refcounted pointer at +0x58.
 #include "base/UnkDestructors.h"
 #include "game/UnkTU357.h"
+#include "game/UnkTU362.h"
 #include "types.h"
 
 using base::UnkRefPtrMember;
@@ -9,7 +10,6 @@ using base::UnkRefPtrMember;
 struct UnkElem_7100286624 {
     u8 unk_0x0[0xc];
 };
-void fn_710028760c(UnkElem_7100286624* self);  // the element's destructor (empty)
 
 struct UnkStruct_7100286624 {
     u8 unk_0x0[0x58];

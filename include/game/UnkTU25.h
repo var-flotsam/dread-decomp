@@ -5,8 +5,10 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkStrIdPathPairVec_b45a1;
 struct UnkInlineString;
 struct UnkPathIds;
 struct UnkPathPairTemp_b45a1;
 void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 UnkPathPairTemp_b45a1 fn_710001ab24(void* path);
+void fn_710001e4e8(UnkStrIdPathPairVec_b45a1* self, u32 capacity);

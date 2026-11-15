@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU362.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -18,8 +19,6 @@ using base::math::CVector2D;
 // From src/game/navmesh/CNavMesh.cpp (the same definitions).
 struct UnkNavMeshHit;
 struct UnkElem_7100286624;  // the same 12-byte record (src/game_lo/fn_7100286624.cpp)
-void fn_7100287598(UnkNavMeshHit* self);
-void fn_710028760c(UnkElem_7100286624* self);
 
 struct UnkNavMeshHit {
     u16 cell;

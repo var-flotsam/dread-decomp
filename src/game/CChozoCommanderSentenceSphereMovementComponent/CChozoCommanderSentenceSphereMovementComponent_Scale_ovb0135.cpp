@@ -9,6 +9,7 @@
 #include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU362.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCircleShape2D.h"
 #include "types.h"
@@ -44,7 +45,6 @@ struct UnkSpherePart_ovb0135 {
 
 struct UnkNavMeshHit;
 struct UnkElem_7100286624;
-void fn_710028760c(UnkElem_7100286624* self);
 
 struct UnkNavMeshHit {
     u16 cell;

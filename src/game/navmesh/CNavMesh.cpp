@@ -19,6 +19,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU107.h"
 #include "game/UnkTU2568.h"
+#include "game/UnkTU362.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU376.h"
 #include "game/UnkTU55.h"
@@ -258,8 +259,6 @@ struct UnkNavMeshRay {
 // (fn_7100287598) and destructor (fn_710028760c, empty) are out of line; it is copied word by word.
 struct UnkNavMeshHit;
 struct UnkElem_7100286624;  // the same 12-byte record (src/game_lo/fn_7100286624.cpp)
-void fn_7100287598(UnkNavMeshHit* self);
-void fn_710028760c(UnkElem_7100286624* self);
 
 struct UnkNavMeshHit {
     u16 cell;
