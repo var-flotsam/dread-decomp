@@ -10,218 +10,106 @@ using base::reflection::CType;
 using base::reflection::UnkFn;
 const base::reflection::CType* fn_7100005178();
 extern base::reflection::CType g_unk_7101d57cf8;
+extern base::reflection::CType g_unk_7101d57e58;
 extern base::reflection::CType g_unk_7101d57f90;
+extern base::reflection::CType g_unk_7101d580f0;
 extern base::reflection::CType g_unk_71726b0410;
+extern base::reflection::CType g_unk_71726b0570;
 extern base::reflection::CType g_unk_71726b06a8;
+extern base::reflection::CType g_unk_71726b0808;
 extern base::reflection::CType g_unk_717270e1e8;
+extern base::reflection::CType g_unk_717270e348;
 extern base::reflection::CType g_unk_7172758838;
+extern base::reflection::CType g_unk_7172758998;
 extern base::reflection::CType g_unk_7172769498;
+extern base::reflection::CType g_unk_71727695f8;
 extern base::reflection::CType g_unk_71727c0bc0;
-void fn_710006a194();
-void fn_710006a1a8();
-void fn_710006a1b0();
-void fn_710006a1bc();
-void fn_710006a1c4();
-void fn_710006a1d0();
-void fn_710006a1dc();
-void fn_710006a1e0();
-void fn_710006a1f4();
-void fn_710006aac8();
-void fn_710006aadc();
-void fn_710006aae4();
-void fn_710006aaf0();
-void fn_710006aaf8();
-void fn_710006ab04();
-void fn_710006ab10();
-void fn_710006ab14();
-void fn_710006ab28();
-void fn_7100331f24();
-void fn_7100331f38();
-void fn_7100331f40();
-void fn_7100331f4c();
-void fn_7100331f54();
-void fn_7100331f60();
-void fn_7100331f6c();
-void fn_7100331f70();
-void fn_7100331f84();
-void fn_710033200c();
-void fn_7100332020();
-void fn_7100332028();
-void fn_7100332034();
-void fn_710033203c();
-void fn_7100332048();
-void fn_7100332054();
-void fn_7100332058();
-void fn_710033206c();
-void fn_71007102dc();
-void fn_71007102f0();
-void fn_71007102f8();
-void fn_7100710304();
-void fn_710071030c();
-void fn_7100710318();
-void fn_7100710324();
-void fn_7100710328();
-void fn_710071033c();
-void fn_7100adf6fc();
-void fn_7100adf710();
-void fn_7100adf718();
-void fn_7100adf724();
-void fn_7100adf72c();
-void fn_7100adf738();
-void fn_7100adf744();
-void fn_7100adf748();
-void fn_7100adf75c();
-void fn_7100b8e3b0();
-void fn_7100b8e3c4();
-void fn_7100b8e3cc();
-void fn_7100b8e3d8();
-void fn_7100b8e3e0();
-void fn_7100b8e3ec();
-void fn_7100b8e3f8();
-void fn_7100b8e3fc();
-void fn_7100b8e410();
-void fn_7100e1b684();
-void fn_7100e1b698();
-void fn_7100e1b6a0();
-void fn_7100e1b6ac();
-void fn_7100e1b6b4();
-void fn_7100e1b6c0();
-void fn_7100e1b6cc();
-void fn_7100e1b6d0();
-void fn_7100e1b6e4();
-struct UnkRefl_fn_7100069fa0;
+extern base::reflection::CType g_unk_71727c0d20;
+struct TEventPropsFlags { u32 bits = 0; bool operator==(const TEventPropsFlags& other) const { return bits == other.bits; } };
 template <>
-struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100069fa0> {
+const CType& base::reflection::ValueOps<TEventPropsFlags>::TypeOf(const void*) { return g_unk_7101d57e58; }
+template struct base::reflection::ValueOps<TEventPropsFlags>;
+template <>
+struct base::reflection::FlagsetTypeDescription<TEventPropsFlags> : base::reflection::ValueOpsDescription<TEventPropsFlags> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_710006a1bc;
-    static constexpr UnkFn copy_construct = &fn_710006a1c4;
-    static constexpr UnkFn move_construct = &fn_710006a1d0;
-    static constexpr UnkFn destroy = &fn_710006a1dc;
-    static constexpr UnkFn copy_assign = &fn_710006a1e0;
-    static constexpr UnkFn move_assign = &fn_710006a1f4;
-    static constexpr UnkFn equals = &fn_710006a194;
-    static constexpr UnkFn hash = &fn_710006a1a8;
-    static constexpr UnkFn type_of = &fn_710006a1b0;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7101d57cf8; }
 };
-template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100069fa0*);
-struct UnkRefl_fn_710006a8d4;
+template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, TEventPropsFlags*);
+namespace base::global::timeline { struct TLayers { u32 bits = 0; bool operator==(const TLayers& other) const { return bits == other.bits; } }; }
 template <>
-struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_710006a8d4> {
+const CType& base::reflection::ValueOps<base::global::timeline::TLayers>::TypeOf(const void*) { return g_unk_7101d580f0; }
+template struct base::reflection::ValueOps<base::global::timeline::TLayers>;
+template <>
+struct base::reflection::FlagsetTypeDescription<base::global::timeline::TLayers> : base::reflection::ValueOpsDescription<base::global::timeline::TLayers> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_710006aaf0;
-    static constexpr UnkFn copy_construct = &fn_710006aaf8;
-    static constexpr UnkFn move_construct = &fn_710006ab04;
-    static constexpr UnkFn destroy = &fn_710006ab10;
-    static constexpr UnkFn copy_assign = &fn_710006ab14;
-    static constexpr UnkFn move_assign = &fn_710006ab28;
-    static constexpr UnkFn equals = &fn_710006aac8;
-    static constexpr UnkFn hash = &fn_710006aadc;
-    static constexpr UnkFn type_of = &fn_710006aae4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7101d57f90; }
 };
-template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_710006a8d4*);
-struct UnkRefl_fn_7100327808;
+template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, base::global::timeline::TLayers*);
+struct TShinesparkTravellingDirectionFlagSet { u32 bits = 0; bool operator==(const TShinesparkTravellingDirectionFlagSet& other) const { return bits == other.bits; } };
 template <>
-struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100327808> {
+const CType& base::reflection::ValueOps<TShinesparkTravellingDirectionFlagSet>::TypeOf(const void*) { return g_unk_71726b0570; }
+template struct base::reflection::ValueOps<TShinesparkTravellingDirectionFlagSet>;
+template <>
+struct base::reflection::FlagsetTypeDescription<TShinesparkTravellingDirectionFlagSet> : base::reflection::ValueOpsDescription<TShinesparkTravellingDirectionFlagSet> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100331f4c;
-    static constexpr UnkFn copy_construct = &fn_7100331f54;
-    static constexpr UnkFn move_construct = &fn_7100331f60;
-    static constexpr UnkFn destroy = &fn_7100331f6c;
-    static constexpr UnkFn copy_assign = &fn_7100331f70;
-    static constexpr UnkFn move_assign = &fn_7100331f84;
-    static constexpr UnkFn equals = &fn_7100331f24;
-    static constexpr UnkFn hash = &fn_7100331f38;
-    static constexpr UnkFn type_of = &fn_7100331f40;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71726b0410; }
 };
-template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100327808*);
-struct UnkRefl_fn_7100327bc4;
+template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, TShinesparkTravellingDirectionFlagSet*);
+struct TCoolShinesparkSituation { u32 bits = 0; bool operator==(const TCoolShinesparkSituation& other) const { return bits == other.bits; } };
 template <>
-struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100327bc4> {
+const CType& base::reflection::ValueOps<TCoolShinesparkSituation>::TypeOf(const void*) { return g_unk_71726b0808; }
+template struct base::reflection::ValueOps<TCoolShinesparkSituation>;
+template <>
+struct base::reflection::FlagsetTypeDescription<TCoolShinesparkSituation> : base::reflection::ValueOpsDescription<TCoolShinesparkSituation> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100332034;
-    static constexpr UnkFn copy_construct = &fn_710033203c;
-    static constexpr UnkFn move_construct = &fn_7100332048;
-    static constexpr UnkFn destroy = &fn_7100332054;
-    static constexpr UnkFn copy_assign = &fn_7100332058;
-    static constexpr UnkFn move_assign = &fn_710033206c;
-    static constexpr UnkFn equals = &fn_710033200c;
-    static constexpr UnkFn hash = &fn_7100332020;
-    static constexpr UnkFn type_of = &fn_7100332028;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71726b06a8; }
 };
-template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100327bc4*);
-struct UnkRefl_fn_71007100e8;
+template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, TCoolShinesparkSituation*);
+struct TAnimationTagFlagSet { u32 bits = 0; bool operator==(const TAnimationTagFlagSet& other) const { return bits == other.bits; } };
 template <>
-struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_71007100e8> {
+const CType& base::reflection::ValueOps<TAnimationTagFlagSet>::TypeOf(const void*) { return g_unk_717270e348; }
+template struct base::reflection::ValueOps<TAnimationTagFlagSet>;
+template <>
+struct base::reflection::FlagsetTypeDescription<TAnimationTagFlagSet> : base::reflection::ValueOpsDescription<TAnimationTagFlagSet> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100710304;
-    static constexpr UnkFn copy_construct = &fn_710071030c;
-    static constexpr UnkFn move_construct = &fn_7100710318;
-    static constexpr UnkFn destroy = &fn_7100710324;
-    static constexpr UnkFn copy_assign = &fn_7100710328;
-    static constexpr UnkFn move_assign = &fn_710071033c;
-    static constexpr UnkFn equals = &fn_71007102dc;
-    static constexpr UnkFn hash = &fn_71007102f0;
-    static constexpr UnkFn type_of = &fn_71007102f8;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_717270e1e8; }
 };
-template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_71007100e8*);
-struct UnkRefl_fn_7100adf508;
+template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, TAnimationTagFlagSet*);
+struct TPickingModeFlagSet { u32 bits = 0; bool operator==(const TPickingModeFlagSet& other) const { return bits == other.bits; } };
 template <>
-struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100adf508> {
+const CType& base::reflection::ValueOps<TPickingModeFlagSet>::TypeOf(const void*) { return g_unk_7172758998; }
+template struct base::reflection::ValueOps<TPickingModeFlagSet>;
+template <>
+struct base::reflection::FlagsetTypeDescription<TPickingModeFlagSet> : base::reflection::ValueOpsDescription<TPickingModeFlagSet> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100adf724;
-    static constexpr UnkFn copy_construct = &fn_7100adf72c;
-    static constexpr UnkFn move_construct = &fn_7100adf738;
-    static constexpr UnkFn destroy = &fn_7100adf744;
-    static constexpr UnkFn copy_assign = &fn_7100adf748;
-    static constexpr UnkFn move_assign = &fn_7100adf75c;
-    static constexpr UnkFn equals = &fn_7100adf6fc;
-    static constexpr UnkFn hash = &fn_7100adf710;
-    static constexpr UnkFn type_of = &fn_7100adf718;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7172758838; }
 };
-template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100adf508*);
-struct UnkRefl_fn_7100b8dd9c;
+template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, TPickingModeFlagSet*);
+struct TActionInsertFlagset { u32 bits = 0; bool operator==(const TActionInsertFlagset& other) const { return bits == other.bits; } };
 template <>
-struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100b8dd9c> {
+const CType& base::reflection::ValueOps<TActionInsertFlagset>::TypeOf(const void*) { return g_unk_71727695f8; }
+template struct base::reflection::ValueOps<TActionInsertFlagset>;
+template <>
+struct base::reflection::FlagsetTypeDescription<TActionInsertFlagset> : base::reflection::ValueOpsDescription<TActionInsertFlagset> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100b8e3d8;
-    static constexpr UnkFn copy_construct = &fn_7100b8e3e0;
-    static constexpr UnkFn move_construct = &fn_7100b8e3ec;
-    static constexpr UnkFn destroy = &fn_7100b8e3f8;
-    static constexpr UnkFn copy_assign = &fn_7100b8e3fc;
-    static constexpr UnkFn move_assign = &fn_7100b8e410;
-    static constexpr UnkFn equals = &fn_7100b8e3b0;
-    static constexpr UnkFn hash = &fn_7100b8e3c4;
-    static constexpr UnkFn type_of = &fn_7100b8e3cc;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7172769498; }
 };
-template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100b8dd9c*);
-struct UnkRefl_fn_7100e177ec;
+template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, TActionInsertFlagset*);
+struct TTooltipConditions { u32 bits = 0; bool operator==(const TTooltipConditions& other) const { return bits == other.bits; } };
 template <>
-struct base::reflection::FlagsetTypeDescription<UnkRefl_fn_7100e177ec> {
+const CType& base::reflection::ValueOps<TTooltipConditions>::TypeOf(const void*) { return g_unk_71727c0d20; }
+template struct base::reflection::ValueOps<TTooltipConditions>;
+template <>
+struct base::reflection::FlagsetTypeDescription<TTooltipConditions> : base::reflection::ValueOpsDescription<TTooltipConditions> {
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_7100e1b6ac;
-    static constexpr UnkFn copy_construct = &fn_7100e1b6b4;
-    static constexpr UnkFn move_construct = &fn_7100e1b6c0;
-    static constexpr UnkFn destroy = &fn_7100e1b6cc;
-    static constexpr UnkFn copy_assign = &fn_7100e1b6d0;
-    static constexpr UnkFn move_assign = &fn_7100e1b6e4;
-    static constexpr UnkFn equals = &fn_7100e1b684;
-    static constexpr UnkFn hash = &fn_7100e1b698;
-    static constexpr UnkFn type_of = &fn_7100e1b6a0;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71727c0bc0; }
 };
-template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, UnkRefl_fn_7100e177ec*);
+template base::reflection::CFlagsetType::CFlagsetType(const base::global::CStrId&, TTooltipConditions*);
