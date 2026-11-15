@@ -167,6 +167,53 @@ vector by value; the same form, applied by hand, matched the fourth and all four
 and every copy moved there (`tools/hub_migrate.py` with a hand plan; extra declaration copies 1,042 -> 1,014).
 Recommendation: finish a family by hand once one worker finds its form, before filing the rest as drafts.
 
+**Vector descriptor slots from CollectionTypeMapper (2026-11-15).** The functions a vector's
+CCollectionType descriptor points to are now static members of `base::reflection::CollectionTypeMapper<C>`
+(`include/base/reflection/CollectionTypeMapper.h`): the CType slots `Construct` … `Hash` (with `TypeOf`
+declared, to be specialised per type) and the accessors `Count`, `Clear`, `AddCopy`, `AddMove`, `At`, `Find`,
+`Begin` and `End`. `Erase`, `SetCopy`, `SetMove`, `ConstBegin`, `ConstEnd` and the bodies of `Equals` are not
+written yet (none of their originals is lifted). They were checked with no dump, against the lifted copies of
+the originals. The lifted text compiles to the original's bytes, so compiling it is a reference: AssetName's 15
+lifted slots and all 178 lifted slots of 12 vectors of pointers and enums match byte for byte, relocations
+naming the same callees. Findings:
+- Reflection builds its vectors with allocation flags 0xf (`Construct` is `C(0xf)`). Making 0xf the default
+  and giving `CType`'s own member an explicit 0x3e shifts the registers of 476 `CEnumType` constructors, so
+  the default stays 0x3e.
+- `Clear()` is `Truncate(0)`. AssetName's slots call `Truncate` out of line, and pointer vectors inline it.
+  None of the 6013 sources that include the header (generated ones included) changes.
+- The copy constructor and the new `Assign` (the copy assignment's body, fn_710001e744 for AssetName) are
+  defined out of class. In class, they get the inline hint and are inlined into `CopyConstruct` and
+  `CopyAssign`, which the original calls. For trivially copyable elements, both reserve the source's capacity
+  and `memcpy` the elements: inlined into the slots, as in the original. Otherwise they append one element at
+  a time with the growth test written out. `PushBackCopy` called from the loop is inlined later, so the
+  constructor would look cheap enough to inline.
+- Instantiating the mapper must not need `C::value_type` at class scope: the generated iterator types
+  instantiate `CollectionTypeMapper<C>` for dictionaries and incomplete elements too.
+
+**CRntVector pilot: AssetName's helpers from the template (2026-11-15).** Pilot for generating the vector collection descriptors' slots from readable templates, on
+`base::global::CRntVector<base::core::AssetName>` (descriptor constructor 0x7100019dcc). New members of
+`include/base/global/CRntVector.h`: a copy constructor (reserve the source's capacity, append copies),
+`operator==`, `Truncate`, `InsertCopy` and the trial `InsertMove`; `Reserve` now holds the growth body
+itself and `PushBackCopy` grows through it. `check.py` is unchanged (O 94743, no regression). Per helper,
+with the addresses named after the members in a local copy of `data/functions/`:
+`Truncate` (0x710001e62c) matches; `Reserve` (0x710001e4e8, 84%), the copy constructor (0x710001e3b4,
+93.5%) and `operator==` (0x710001e1d0, 56%) differ in registers only; `InsertCopy` (0x710001e870, 39%) and
+`InsertMove` (0x710001ead8, 6%) differ in block placement. Findings: for a non-trivial element every
+growth is one out-of-line `Reserve` call (the callers don't test the capacity first); AssetName's ids
+release in two steps and share one base holding the string, so a store to the path makes the id reload
+(CStrId and CFilePathStrId, whose destructors release in one step, give 50% on `Truncate`); the members
+map to their addresses only by name, so the route is naming them in `data/functions/` as the ValueOps work
+did. The pilot source is `drafts/base/global/CRntVector/AssetName_pilot.cpp`.
+Follow-up the same day: `base::core::AssetName` has its own header (`include/base/core/AssetName.h`), with ids
+`base::UnkPooledStrId<Pool>` (`include/base/UnkPooledStrId.h`): two-step release over one base shared by every
+pool. Giving `base::UnkStrIdMemberOf` a base for its string, shared or per pool, breaks three of CActor's
+functions (fn_7100248e50, fn_710024b290, fn_710024b780): they need the string held as the id's own member.
+So `UnkStrIdPathPair`, the same layout with `UnkStrIdMemberOf` ids and 83 users, is not yet an alias of
+`AssetName`. The two inserts did not move with the branches swapped (`index < count` or `count != index`
+first: 9% and 39%), with one shared construct tail (6% and 7%), or with the slot taken as a pointer and a
+loop that stops when the counter wraps (14% and 7%): the original also hoists the path pool's address to
+the top. `permute.py` and `equiv_test.py` find a function only as `fn_<addr>` in the source (a body
+to permute) or in the object (a symbol to run), so neither takes a template member yet.
 **Lean batch lean-b4: 98 ready functions of 16 more units (2026-11-15).** Same shape (units 2686, 2688, 811, 111,
 2647, 25, 36, 2540, 1163, 2666, 208, 1428, 2200, 1671, 2544, 2503); 16 Sonnet workers, budget 3, reference matches
 for 71 of 98. Results: 18 matches (10 on the first graded attempt, 2 on the second, 6 on the third), 15

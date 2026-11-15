@@ -586,6 +586,14 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
         value_type = primitive_value_type(body)
         if value_type and value_type in written:
             out.update(primitive_ops_names(body, value_type))
+    mapped = {m.group(1) for f in OUT.glob("collection_types_*.cpp")
+              for m in MAPPER_DESC_RE.finditer(f.read_text(encoding="utf-8"))}
+    named_ptrs = named_pointers(orig, pairs, known)
+    colls, _ = scan_collections(orig, set())
+    for _, body in colls:
+        v = mapped_vector(body, named_ptrs, frozenset(name for name, _ in named.values()))
+        if v and v[0] in mapped:
+            out.update(collection_ops_names(orig, body, *v))
     return out
 
 
@@ -660,6 +668,83 @@ def emit_collection(init: int, body: list[str]) -> list[str]:
             "};",
             f"template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, "
             f"UnkRefl_fn_{init:x}*, void*);"]
+
+
+# A vector's collection descriptor written from CollectionTypeMapper<C> (base/reflection/CollectionTypeMapper.h):
+# description member -> the mapper's function. The other slots keep their addresses until written.
+MAPPER_SLOTS = {"construct": "Construct", "copy_construct": "CopyConstruct", "move_construct": "MoveConstruct",
+                "destroy": "Destroy", "copy_assign": "CopyAssign", "move_assign": "MoveAssign", "hash": "Hash",
+                "count": "Count", "clear": "Clear", "add_copy": "AddCopy", "add_move": "AddMove", "at": "At",
+                "find": "Find", "begin": "Begin", "end": "End"}
+# The CRntVector members those call out of line, by the slot that calls them (its tail call).
+MAPPER_HELPERS = {"add_copy": "InsertCopy", "add_move": "InsertMove"}
+VECTOR_RE = re.compile(r"base::global::CRntVector<(.+)>")
+MAPPER_DESC_RE = re.compile(r": base::reflection::CollectionMapperDescription<(.+)> \{$", re.M)
+
+
+def collection_slots(body: list[str]) -> dict[str, int]:
+    """{description member: function} of a collection's address-form traits."""
+    return {m: int(a, 16) for m, a in re.findall(r" (\w+) = &fn_([0-9a-f]+);", "\n".join(body))}
+
+
+def mapped_vector(body: list[str], named_ptrs: dict[int, str], enums: frozenset[str]) -> tuple[str, str] | None:
+    """(C, element) of a vector collection whose slots CollectionTypeMapper<C> writes today: kind 1 and 0x28
+    bytes, C named by its element iterator's named form (named_pointers), every mapper slot a function, and an
+    element that is a pointer, an enum or a plain number. Elements that are classes need their own headers."""
+    text = "\n".join(body)
+    if "size = 0x28;" not in text or "kind = 0x1;" not in text:
+        return None
+    m = re.search(r"static const CType\* iterator\(\) \{ return fn_([0-9a-f]+)\(\); \}", text)
+    canon = named_ptrs.get(int(m.group(1), 16)) if m else None
+    it = ITERATOR_RE.fullmatch(canon) if canon else None
+    v = VECTOR_RE.fullmatch(it.group(1)) if it and it.group(2) == "TElementIterator" else None
+    if v is None or not set(MAPPER_SLOTS) <= set(collection_slots(body)):
+        return None
+    element = v.group(1)
+    if element.endswith("*") or element in enums or element in PRIMITIVE_VALUE_TYPES.values():
+        return it.group(1), element
+    return None
+
+
+def tail_call(orig: asmdiff.Original, addr: int) -> int | None:
+    """The target of the branch a function ends with, if it ends with one."""
+    insns = disasm(orig, addr)
+    if insns and insns[-1].mnemonic == "b" and insns[-1].operands[0].type == capstone.arm64.ARM64_OP_IMM:
+        return insns[-1].operands[0].imm
+    return None
+
+
+def collection_ops_names(orig: asmdiff.Original, body: list[str], vector: str, element: str) -> dict[int, str]:
+    """data/functions/ names of a vector collection's mapper functions and of the CRntVector members they call."""
+    slots = collection_slots(body)
+    out = {slots[d]: f"base::reflection::CollectionTypeMapper<{vector}>::{m}" for d, m in MAPPER_SLOTS.items()}
+    for d, helper in MAPPER_HELPERS.items():
+        target = tail_call(orig, slots[d])
+        if target is not None:
+            out[target] = f"base::global::CRntVector<{element}>::{helper}"
+    return out
+
+
+def emit_collection_ops(init: int, body: list[str], vector: str, element: str,
+                        enums: frozenset[str] = frozenset()) -> list[str]:
+    """A vector collection's description with the mapper's functions (CollectionMapperDescription<C>); the
+    CRntVector members they call are declared instantiated elsewhere, so that only the slots are emitted."""
+    rest = [line for line in body if not any(f" {d} = " in line for d in MAPPER_SLOTS)]
+    out = emit_collection(init, rest)
+    desc = f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> {{"
+    out[out.index(desc)] = (f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> "
+                            f": base::reflection::CollectionMapperDescription<{vector}> {{")
+    node = pointer_value_type(f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator")[1]
+    helpers = [f"extern template void base::global::CRntVector<{element}>::InsertCopy({element} const&, u32);",
+               f"extern template void base::global::CRntVector<{element}>::InsertMove({element}&&, u32);"]
+    return type_declarations(node, enums) + helpers + out
+
+
+def defined_by_hand() -> set[int]:
+    """Functions defined in src/ outside the generators' outputs (tools/gen_lift.py's scan): a slot one
+    of them defines keeps its address."""
+    import gen_lift
+    return gen_lift.defined_outside(gen_lift.OUT, also=gen_lift.TAGGED_DIRS)
 
 
 _KIND_CALLERS: dict[int, list[int]] = {}
@@ -942,7 +1027,8 @@ def scan_primitives(orig: asmdiff.Original, decls: set[str]) -> tuple[list, list
     return out, ptrs
 
 
-PRELUDE = ['#include "base/reflection/CCollectionType.h"',
+PRELUDE = ['#include "base/global/CRntVector.h"',
+           '#include "base/reflection/CCollectionType.h"',
            '#include "base/reflection/CEnumType.h"',
            '#include "base/reflection/CFlagsetType.h"',
            '#include "base/reflection/CollectionTypeMapper.h"',
@@ -1050,6 +1136,17 @@ def main() -> int:
     named_ptrs = named_pointers(orig, pairs, enum_names_known | {name for name, _ in named_flags.values()})
     named_prims = {g: v for g, b in prims if (v := primitive_value_type(b))}
     prim_bodies = dict(prims)
+    known_types = enum_names_known | {name for name, _ in named_flags.values()}
+    by_hand = defined_by_hand()
+    # a slot or helper the mapper would name that a hand-written source defines keeps the vector by address
+    named_colls = {i: v for i, b in colls if (v := mapped_vector(b, named_ptrs, enum_names_known))
+                   and not set(collection_ops_names(orig, b, *v)) & by_hand}
+    coll_bodies = dict(colls)
+
+    def collection_block(init: int, body: list[str]) -> list[str]:
+        if init in named_colls:
+            return emit_collection_ops(init, body, *named_colls[init], known_types)
+        return emit_collection(init, body)
 
     def flagset_block(init: int, body: list[str]) -> list[str]:
         if init in named_flags:
@@ -1073,7 +1170,7 @@ def main() -> int:
     for attempt in range(2):
         text = (PRELUDE + sorted(decls) + [line for p in pairs for line in pointer_block(*p)]
                 + [line for i, b in enums for line in enum_block(i, b)]
-                + [line for i, b in colls for line in emit_collection(i, b)]
+                + [line for i, b in colls for line in collection_block(i, b)]
                 + [line for g, b in prims for line in emit_primitive(g, b, named_prims.get(g))]
                 + [line for p in inline_ptrs for line in emit_inline_pointer(*p)]
                 + [line for i, b in flagsets for line in flagset_block(i, b)])
@@ -1089,6 +1186,8 @@ def main() -> int:
         expected.update({n: a for g, canon in named_ptrs.items()
                          for a, n in pointer_ops_names(orig, inits[g], canon).items()})
         expected.update({n: a for g, v in named_prims.items() for a, n in primitive_ops_names(prim_bodies[g], v).items()})
+        coll_names = {i: collection_ops_names(orig, coll_bodies[i], *v) for i, v in named_colls.items()}
+        expected.update({n: a for names in coll_names.values() for a, n in names.items()})
         expected.update({alias: a for n, a in list(expected.items()) for alias in asmdiff.name_aliases(n)})
         symbols = [f.symbol for f in asmdiff.read_object(obj)]
         demangled = asmdiff.demangle(symbols)
@@ -1102,7 +1201,10 @@ def main() -> int:
         failed_flags = {i for i, (name, _) in named_flags.items() if not set(enum_ops_names(orig, i, name)) <= ok}
         failed_prims = {g for g, v in named_prims.items()
                         if not set(primitive_ops_names(prim_bodies[g], v)) | {g} <= ok}
-        if not failed and not failed_ptrs and not failed_flags and not failed_prims:
+        # the helpers are not emitted: the slots that call them match only if the call names them
+        failed_colls = {i for i in named_colls
+                        if not set(collection_slots(coll_bodies[i])[d] for d in MAPPER_SLOTS) | {i} <= ok}
+        if not failed and not failed_ptrs and not failed_flags and not failed_prims and not failed_colls:
             break
         print(f"named forms that do not match, kept by address: enums {' '.join(f'{i:x}' for i in sorted(failed))}; "
               f"pointer types {' '.join(f'{g:x}' for g in sorted(failed_ptrs))}")
@@ -1110,6 +1212,9 @@ def main() -> int:
         named_ptrs = {g: v for g, v in named_ptrs.items() if g not in failed_ptrs}
         named_flags = {i: v for i, v in named_flags.items() if i not in failed_flags}
         named_prims = {g: v for g, v in named_prims.items() if g not in failed_prims}
+        named_colls = {i: v for i, v in named_colls.items() if i not in failed_colls}
+        if failed_colls:
+            print(f"vector collections kept by address: {' '.join(f'{i:x}' for i in sorted(failed_colls))}")
         if failed_prims:
             print(f"plain types kept by address: {' '.join(f'{g:x}' for g in sorted(failed_prims))}")
         if failed_flags:
@@ -1132,7 +1237,7 @@ def main() -> int:
                   "// types, byte-identical to the original."])
     write_chunks("enum_types", [enum_block(*e) for e in good_enums], decls,
                  [note, "// Descriptor constructors (refl_InitType<E>) of enums, byte-identical to the original."])
-    write_chunks("collection_types", [emit_collection(*c) for c in good_colls], decls,
+    write_chunks("collection_types", [collection_block(*c) for c in good_colls], decls,
                  [note, "// Descriptor constructors of collection types (globals built by static initialisers),",
                   "// byte-identical to the original."])
     write_chunks("flagset_types", [flagset_block(*f) for f in good_flagsets], decls,
@@ -1143,7 +1248,8 @@ def main() -> int:
           f"({sum(p[0] in named_ptrs for p in good)} with named value operations); "
           f"enums: {len(enums)} constructor candidates, {len(good_enums)} byte-identical "
           f"({sum(e[0] in named for e in good_enums)} with named value operations); "
-          f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical; "
+          f"collections: {len(colls)} constructor candidates, {len(good_colls)} byte-identical "
+          f"({sum(c[0] in named_colls for c in good_colls)} with the mapper's functions); "
           f"plain types: {len(prims)} getter candidates, {len(good_prims)} byte-identical "
           f"({sum(p[0] in named_prims for p in good_prims)} with named value operations); "
           f"pointer types with an inlined constructor: {len(inline_ptrs)} getter candidates, "

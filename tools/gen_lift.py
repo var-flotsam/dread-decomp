@@ -3484,11 +3484,13 @@ def defining_macros(text: str) -> set[str]:
     return names
 
 
-def defined_outside(out: Path) -> set[int]:
-    """Functions defined in src/ outside `out`, by name or by tag."""
+def defined_outside(out: Path, also: tuple[str, ...] = ()) -> set[int]:
+    """Functions defined in src/ outside `out` (and outside the src/ directories `also` names), by name or
+    by tag."""
     skip = set()
+    skipped = [out, *(ROOT / "src" / d for d in also)]
     for f in (ROOT / "src").rglob("*.cpp"):
-        if out not in f.parents:
+        if not any(d in f.parents for d in skipped):
             text = f.read_text(encoding="utf-8")
             lines = [ln.split("//", 1)[0] for ln in text.splitlines()]  # comments don't count
             macros = defining_macros(text)
@@ -3518,25 +3520,33 @@ def defined_outside(out: Path) -> set[int]:
                 # source: the addresses data/functions/ gives those names.
                 for t in VALUE_OPS_RE.findall(text):
                     skip |= named_value_ops().get(t, set())
+                # A vector collection's functions, from CollectionTypeMapper<C> (base/reflection/CollectionTypeMapper.h).
+                for c in MAPPER_DESC_RE.findall(text):
+                    skip |= named_value_ops().get(("mapper", c), set())
     return skip
 
 
 VALUE_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$", re.M)
+MAPPER_DESC_RE = re.compile(r": base::reflection::CollectionMapperDescription<(.+)> \{$", re.M)
 _VALUE_OPS: dict[str, set[int]] | None = None
 
 
-def named_value_ops() -> dict[str, set[int]]:
-    """{type: addresses} of the functions data/functions/ names ValueOps<T>::<op> or refl_InitType<T>."""
+def named_value_ops() -> dict:
+    """{type: addresses} of the functions data/functions/ names ValueOps<T>::<op> or refl_InitType<T>, and
+    {("mapper", C): addresses} of those it names CollectionTypeMapper<C>::<op>."""
     global _VALUE_OPS
     if _VALUE_OPS is None:
         _VALUE_OPS = {}
         pat = re.compile(r"^base::reflection::(?:ValueOps<(.+)>::\w+|refl_InitType<(.+)>)$")
+        mapper = re.compile(r"^base::reflection::CollectionTypeMapper<(.+)>::\w+$")
         for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
             with f.open(newline="", encoding="utf-8") as fh:
                 for r in csv.DictReader(fh):
                     m = pat.match(r["name"])
                     if m:
                         _VALUE_OPS.setdefault(m.group(1) or m.group(2), set()).add(int(r["address"], 16))
+                    elif m := mapper.match(r["name"]):
+                        _VALUE_OPS.setdefault(("mapper", m.group(1)), set()).add(int(r["address"], 16))
     return _VALUE_OPS
 
 
