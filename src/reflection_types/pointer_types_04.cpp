@@ -288,15 +288,6 @@ void fn_7100f909ec();
 void fn_7100f94ff0();
 void fn_7100f95050();
 void fn_7100f9505c();
-void fn_7100f9506c();
-void fn_7100f95080();
-void fn_7100f95088();
-void fn_7100f9509c();
-void fn_7100f950a4();
-void fn_7100f950b0();
-void fn_7100f950bc();
-void fn_7100f950c0();
-void fn_7100f950d4();
 void fn_7100f95254();
 void fn_7100f95294();
 void fn_7100f95298();
@@ -372,15 +363,6 @@ void fn_7100f9627c();
 void fn_7100f9c61c();
 void fn_7100f9c67c();
 void fn_7100f9c688();
-void fn_7100f9c698();
-void fn_7100f9c6ac();
-void fn_7100f9c6b4();
-void fn_7100f9c6c8();
-void fn_7100f9c6d0();
-void fn_7100f9c6dc();
-void fn_7100f9c6e8();
-void fn_7100f9c6ec();
-void fn_7100f9c700();
 void fn_7100f9eca4();
 void fn_7100f9ed04();
 void fn_7100f9ed44();
@@ -454,15 +436,6 @@ void fn_7100f9fc88();
 void fn_7100fa6ea8();
 void fn_7100fa6f08();
 void fn_7100fa6f14();
-void fn_7100fa6f24();
-void fn_7100fa6f38();
-void fn_7100fa6f40();
-void fn_7100fa6f54();
-void fn_7100fa6f5c();
-void fn_7100fa6f68();
-void fn_7100fa6f74();
-void fn_7100fa6f78();
-void fn_7100fa6f8c();
 void fn_7100fa7240();
 void fn_7100fa7298();
 void fn_7100fa72a4();
@@ -658,27 +631,9 @@ void fn_7100fb64b4();
 void fn_7100fbca78();
 void fn_7100fbcad0();
 void fn_7100fbcadc();
-void fn_7100fbcaec();
-void fn_7100fbcb00();
-void fn_7100fbcb08();
-void fn_7100fbcb1c();
-void fn_7100fbcb24();
-void fn_7100fbcb30();
-void fn_7100fbcb3c();
-void fn_7100fbcb40();
-void fn_7100fbcb54();
 void fn_7100fc05b0();
 void fn_7100fc0608();
 void fn_7100fc0614();
-void fn_7100fc0624();
-void fn_7100fc0638();
-void fn_7100fc0640();
-void fn_7100fc0654();
-void fn_7100fc065c();
-void fn_7100fc0668();
-void fn_7100fc0674();
-void fn_7100fc0678();
-void fn_7100fc068c();
 void fn_7100fc1264();
 void fn_7100fc12bc();
 void fn_7100fc13dc();
@@ -694,27 +649,9 @@ void fn_7100fc1538();
 void fn_7100fef284();
 void fn_7100fef2e4();
 void fn_7100fef2f0();
-void fn_7100fef300();
-void fn_7100fef314();
-void fn_7100fef31c();
-void fn_7100fef330();
-void fn_7100fef338();
-void fn_7100fef344();
-void fn_7100fef350();
-void fn_7100fef354();
-void fn_7100fef368();
 void fn_7100fef4e8();
 void fn_7100fef548();
 void fn_7100fef554();
-void fn_7100fef564();
-void fn_7100fef578();
-void fn_7100fef580();
-void fn_7100fef594();
-void fn_7100fef59c();
-void fn_7100fef5a8();
-void fn_7100fef5b4();
-void fn_7100fef5b8();
-void fn_7100fef5cc();
 void fn_7100fef74c();
 void fn_7100fef7ac();
 void fn_7100fef7b8();
@@ -766,51 +703,15 @@ void fn_7100ff01e8();
 void fn_7100ff04a4();
 void fn_7100ff0504();
 void fn_7100ff0510();
-void fn_7100ff0520();
-void fn_7100ff0534();
-void fn_7100ff053c();
-void fn_7100ff0550();
-void fn_7100ff0558();
-void fn_7100ff0564();
-void fn_7100ff0570();
-void fn_7100ff0574();
-void fn_7100ff0588();
 void fn_7100ff0708();
 void fn_7100ff0768();
 void fn_7100ff0774();
-void fn_7100ff0784();
-void fn_7100ff0798();
-void fn_7100ff07a0();
-void fn_7100ff07b4();
-void fn_7100ff07bc();
-void fn_7100ff07c8();
-void fn_7100ff07d4();
-void fn_7100ff07d8();
-void fn_7100ff07ec();
 void fn_7100ff096c();
 void fn_7100ff09cc();
 void fn_7100ff09d8();
-void fn_7100ff09e8();
-void fn_7100ff09fc();
-void fn_7100ff0a04();
-void fn_7100ff0a18();
-void fn_7100ff0a20();
-void fn_7100ff0a2c();
-void fn_7100ff0a38();
-void fn_7100ff0a3c();
-void fn_7100ff0a50();
 void fn_7100ff0bd0();
 void fn_7100ff0c30();
 void fn_7100ff0c3c();
-void fn_7100ff0c4c();
-void fn_7100ff0c60();
-void fn_7100ff0c68();
-void fn_7100ff0c7c();
-void fn_7100ff0c84();
-void fn_7100ff0c90();
-void fn_7100ff0c9c();
-void fn_7100ff0ca0();
-void fn_7100ff0cb4();
 void fn_7100ff0e34();
 void fn_7100ff0e94();
 void fn_7100ff0ea0();
@@ -862,51 +763,15 @@ void fn_7100ff1a5c();
 void fn_7100ff1dcc();
 void fn_7100ff1e2c();
 void fn_7100ff1e38();
-void fn_7100ff1e48();
-void fn_7100ff1e5c();
-void fn_7100ff1e64();
-void fn_7100ff1e78();
-void fn_7100ff1e80();
-void fn_7100ff1e8c();
-void fn_7100ff1e98();
-void fn_7100ff1e9c();
-void fn_7100ff1eb0();
 void fn_7100ff2030();
 void fn_7100ff2090();
 void fn_7100ff209c();
-void fn_7100ff20ac();
-void fn_7100ff20c0();
-void fn_7100ff20c8();
-void fn_7100ff20dc();
-void fn_7100ff20e4();
-void fn_7100ff20f0();
-void fn_7100ff20fc();
-void fn_7100ff2100();
-void fn_7100ff2114();
 void fn_7100ff2294();
 void fn_7100ff22f4();
 void fn_7100ff2300();
-void fn_7100ff2310();
-void fn_7100ff2324();
-void fn_7100ff232c();
-void fn_7100ff2340();
-void fn_7100ff2348();
-void fn_7100ff2354();
-void fn_7100ff2360();
-void fn_7100ff2364();
-void fn_7100ff2378();
 void fn_7100ff24f8();
 void fn_7100ff2558();
 void fn_7100ff2564();
-void fn_7100ff2574();
-void fn_7100ff2588();
-void fn_7100ff2590();
-void fn_7100ff25a4();
-void fn_7100ff25ac();
-void fn_7100ff25b8();
-void fn_7100ff25c4();
-void fn_7100ff25c8();
-void fn_7100ff25dc();
 void fn_7100ff275c();
 void fn_7100ff27bc();
 void fn_7100ff27c8();
@@ -958,51 +823,15 @@ void fn_7100ff30e0();
 void fn_7100ff32a4();
 void fn_7100ff3304();
 void fn_7100ff3310();
-void fn_7100ff3320();
-void fn_7100ff3334();
-void fn_7100ff333c();
-void fn_7100ff3350();
-void fn_7100ff3358();
-void fn_7100ff3364();
-void fn_7100ff3370();
-void fn_7100ff3374();
-void fn_7100ff3388();
 void fn_7100ff3508();
 void fn_7100ff3568();
 void fn_7100ff3574();
-void fn_7100ff3584();
-void fn_7100ff3598();
-void fn_7100ff35a0();
-void fn_7100ff35b4();
-void fn_7100ff35bc();
-void fn_7100ff35c8();
-void fn_7100ff35d4();
-void fn_7100ff35d8();
-void fn_7100ff35ec();
 void fn_7100ff376c();
 void fn_7100ff37cc();
 void fn_7100ff37d8();
-void fn_7100ff37e8();
-void fn_7100ff37fc();
-void fn_7100ff3804();
-void fn_7100ff3818();
-void fn_7100ff3820();
-void fn_7100ff382c();
-void fn_7100ff3838();
-void fn_7100ff383c();
-void fn_7100ff3850();
 void fn_7100ff39d0();
 void fn_7100ff3a30();
 void fn_7100ff3a3c();
-void fn_7100ff3a4c();
-void fn_7100ff3a60();
-void fn_7100ff3a68();
-void fn_7100ff3a7c();
-void fn_7100ff3a84();
-void fn_7100ff3a90();
-void fn_7100ff3a9c();
-void fn_7100ff3aa0();
-void fn_7100ff3ab4();
 void fn_7100ff3c34();
 void fn_7100ff3c74();
 void fn_7100ff3c78();
@@ -1054,51 +883,15 @@ void fn_7100ff47b8();
 void fn_7100ff4a94();
 void fn_7100ff4af4();
 void fn_7100ff4b00();
-void fn_7100ff4b10();
-void fn_7100ff4b24();
-void fn_7100ff4b2c();
-void fn_7100ff4b40();
-void fn_7100ff4b48();
-void fn_7100ff4b54();
-void fn_7100ff4b60();
-void fn_7100ff4b64();
-void fn_7100ff4b78();
 void fn_7100ff4cf8();
 void fn_7100ff4d58();
 void fn_7100ff4d64();
-void fn_7100ff4d74();
-void fn_7100ff4d88();
-void fn_7100ff4d90();
-void fn_7100ff4da4();
-void fn_7100ff4dac();
-void fn_7100ff4db8();
-void fn_7100ff4dc4();
-void fn_7100ff4dc8();
-void fn_7100ff4ddc();
 void fn_7100ff4f5c();
 void fn_7100ff4fbc();
 void fn_7100ff4fc8();
-void fn_7100ff4fd8();
-void fn_7100ff4fec();
-void fn_7100ff4ff4();
-void fn_7100ff5008();
-void fn_7100ff5010();
-void fn_7100ff501c();
-void fn_7100ff5028();
-void fn_7100ff502c();
-void fn_7100ff5040();
 void fn_7100ff51c0();
 void fn_7100ff5220();
 void fn_7100ff522c();
-void fn_7100ff523c();
-void fn_7100ff5250();
-void fn_7100ff5258();
-void fn_7100ff526c();
-void fn_7100ff5274();
-void fn_7100ff5280();
-void fn_7100ff528c();
-void fn_7100ff5290();
-void fn_7100ff52a4();
 void fn_7100ff5424();
 void fn_7100ff5484();
 void fn_7100ff5490();
@@ -1150,51 +943,15 @@ void fn_7100ff5fc8();
 void fn_7100ff62b4();
 void fn_7100ff6314();
 void fn_7100ff6320();
-void fn_7100ff6330();
-void fn_7100ff6344();
-void fn_7100ff634c();
-void fn_7100ff6360();
-void fn_7100ff6368();
-void fn_7100ff6374();
-void fn_7100ff6380();
-void fn_7100ff6384();
-void fn_7100ff6398();
 void fn_7100ff6518();
 void fn_7100ff6578();
 void fn_7100ff6584();
-void fn_7100ff6594();
-void fn_7100ff65a8();
-void fn_7100ff65b0();
-void fn_7100ff65c4();
-void fn_7100ff65cc();
-void fn_7100ff65d8();
-void fn_7100ff65e4();
-void fn_7100ff65e8();
-void fn_7100ff65fc();
 void fn_7100ff677c();
 void fn_7100ff67dc();
 void fn_7100ff67e8();
-void fn_7100ff67f8();
-void fn_7100ff680c();
-void fn_7100ff6814();
-void fn_7100ff6828();
-void fn_7100ff6830();
-void fn_7100ff683c();
-void fn_7100ff6848();
-void fn_7100ff684c();
-void fn_7100ff6860();
 void fn_7100ff69e0();
 void fn_7100ff6a40();
 void fn_7100ff6a4c();
-void fn_7100ff6a5c();
-void fn_7100ff6a70();
-void fn_7100ff6a78();
-void fn_7100ff6a8c();
-void fn_7100ff6a94();
-void fn_7100ff6aa0();
-void fn_7100ff6aac();
-void fn_7100ff6ab0();
-void fn_7100ff6ac4();
 void fn_7100ff6c44();
 void fn_7100ff6c84();
 void fn_7100ff6c88();
@@ -1246,51 +1003,15 @@ void fn_7100ff779c();
 void fn_7100ff7a4c();
 void fn_7100ff7aac();
 void fn_7100ff7ab8();
-void fn_7100ff7ac8();
-void fn_7100ff7adc();
-void fn_7100ff7ae4();
-void fn_7100ff7af8();
-void fn_7100ff7b00();
-void fn_7100ff7b0c();
-void fn_7100ff7b18();
-void fn_7100ff7b1c();
-void fn_7100ff7b30();
 void fn_7100ff7cb0();
 void fn_7100ff7d10();
 void fn_7100ff7d1c();
-void fn_7100ff7d2c();
-void fn_7100ff7d40();
-void fn_7100ff7d48();
-void fn_7100ff7d5c();
-void fn_7100ff7d64();
-void fn_7100ff7d70();
-void fn_7100ff7d7c();
-void fn_7100ff7d80();
-void fn_7100ff7d94();
 void fn_7100ff7f14();
 void fn_7100ff7f74();
 void fn_7100ff7f80();
-void fn_7100ff7f90();
-void fn_7100ff7fa4();
-void fn_7100ff7fac();
-void fn_7100ff7fc0();
-void fn_7100ff7fc8();
-void fn_7100ff7fd4();
-void fn_7100ff7fe0();
-void fn_7100ff7fe4();
-void fn_7100ff7ff8();
 void fn_7100ff8178();
 void fn_7100ff81d8();
 void fn_7100ff81e4();
-void fn_7100ff81f4();
-void fn_7100ff8208();
-void fn_7100ff8210();
-void fn_7100ff8224();
-void fn_7100ff822c();
-void fn_7100ff8238();
-void fn_7100ff8244();
-void fn_7100ff8248();
-void fn_7100ff825c();
 void fn_7100ff83dc();
 void fn_7100ff841c();
 void fn_7100ff8420();
@@ -1342,51 +1063,15 @@ void fn_7100ff8df4();
 void fn_7100ff90bc();
 void fn_7100ff911c();
 void fn_7100ff9128();
-void fn_7100ff9138();
-void fn_7100ff914c();
-void fn_7100ff9154();
-void fn_7100ff9168();
-void fn_7100ff9170();
-void fn_7100ff917c();
-void fn_7100ff9188();
-void fn_7100ff918c();
-void fn_7100ff91a0();
 void fn_7100ff9320();
 void fn_7100ff9380();
 void fn_7100ff938c();
-void fn_7100ff939c();
-void fn_7100ff93b0();
-void fn_7100ff93b8();
-void fn_7100ff93cc();
-void fn_7100ff93d4();
-void fn_7100ff93e0();
-void fn_7100ff93ec();
-void fn_7100ff93f0();
-void fn_7100ff9404();
 void fn_7100ff9584();
 void fn_7100ff95e4();
 void fn_7100ff95f0();
-void fn_7100ff9600();
-void fn_7100ff9614();
-void fn_7100ff961c();
-void fn_7100ff9630();
-void fn_7100ff9638();
-void fn_7100ff9644();
-void fn_7100ff9650();
-void fn_7100ff9654();
-void fn_7100ff9668();
 void fn_7100ff97e8();
 void fn_7100ff9848();
 void fn_7100ff9854();
-void fn_7100ff9864();
-void fn_7100ff9878();
-void fn_7100ff9880();
-void fn_7100ff9894();
-void fn_7100ff989c();
-void fn_7100ff98a8();
-void fn_7100ff98b4();
-void fn_7100ff98b8();
-void fn_7100ff98cc();
 void fn_7100ff9a4c();
 void fn_7100ff9a8c();
 void fn_7100ff9a90();
@@ -1438,39 +1123,12 @@ void fn_7100ffa464();
 void fn_7100ffa72c();
 void fn_7100ffa78c();
 void fn_7100ffa798();
-void fn_7100ffa7a8();
-void fn_7100ffa7bc();
-void fn_7100ffa7c4();
-void fn_7100ffa7d8();
-void fn_7100ffa7e0();
-void fn_7100ffa7ec();
-void fn_7100ffa7f8();
-void fn_7100ffa7fc();
-void fn_7100ffa810();
 void fn_7100ffa990();
 void fn_7100ffa9f0();
 void fn_7100ffa9fc();
-void fn_7100ffaa0c();
-void fn_7100ffaa20();
-void fn_7100ffaa28();
-void fn_7100ffaa3c();
-void fn_7100ffaa44();
-void fn_7100ffaa50();
-void fn_7100ffaa5c();
-void fn_7100ffaa60();
-void fn_7100ffaa74();
 void fn_7101026568();
 void fn_71010265c8();
 void fn_71010265d4();
-void fn_71010265e4();
-void fn_71010265f8();
-void fn_7101026600();
-void fn_7101026614();
-void fn_710102661c();
-void fn_7101026628();
-void fn_7101026634();
-void fn_7101026638();
-void fn_710102664c();
 void fn_71010267cc();
 void fn_710102682c();
 void fn_7101026838();
@@ -1570,51 +1228,15 @@ void fn_7101028134();
 void fn_71010380f0();
 void fn_7101038150();
 void fn_710103815c();
-void fn_710103816c();
-void fn_7101038180();
-void fn_7101038188();
-void fn_710103819c();
-void fn_71010381a4();
-void fn_71010381b0();
-void fn_71010381bc();
-void fn_71010381c0();
-void fn_71010381d4();
 void fn_7101038354();
 void fn_71010383b4();
 void fn_71010383c0();
-void fn_71010383d0();
-void fn_71010383e4();
-void fn_71010383ec();
-void fn_7101038400();
-void fn_7101038408();
-void fn_7101038414();
-void fn_7101038420();
-void fn_7101038424();
-void fn_7101038438();
 void fn_71010385b8();
 void fn_7101038618();
 void fn_7101038624();
-void fn_7101038634();
-void fn_7101038648();
-void fn_7101038650();
-void fn_7101038664();
-void fn_710103866c();
-void fn_7101038678();
-void fn_7101038684();
-void fn_7101038688();
-void fn_710103869c();
 void fn_710103881c();
 void fn_710103887c();
 void fn_7101038888();
-void fn_7101038898();
-void fn_71010388ac();
-void fn_71010388b4();
-void fn_71010388c8();
-void fn_71010388d0();
-void fn_71010388dc();
-void fn_71010388e8();
-void fn_71010388ec();
-void fn_7101038900();
 void fn_7101038f60();
 void fn_7101038fc0();
 void fn_7101038fcc();
@@ -1690,15 +1312,6 @@ void fn_710103a0ac();
 void fn_710104045c();
 void fn_71010404bc();
 void fn_71010404c8();
-void fn_71010404d8();
-void fn_71010404ec();
-void fn_71010404f4();
-void fn_7101040508();
-void fn_7101040510();
-void fn_710104051c();
-void fn_7101040528();
-void fn_710104052c();
-void fn_7101040540();
 void fn_71010406bc();
 void fn_71010406f8();
 void fn_71010406fc();
@@ -1750,27 +1363,9 @@ void fn_71010410c8();
 void fn_7101041390();
 void fn_71010413f0();
 void fn_71010413fc();
-void fn_710104140c();
-void fn_7101041420();
-void fn_7101041428();
-void fn_710104143c();
-void fn_7101041444();
-void fn_7101041450();
-void fn_710104145c();
-void fn_7101041460();
-void fn_7101041474();
 void fn_71010415f4();
 void fn_7101041654();
 void fn_7101041660();
-void fn_7101041670();
-void fn_7101041684();
-void fn_710104168c();
-void fn_71010416a0();
-void fn_71010416a8();
-void fn_71010416b4();
-void fn_71010416c0();
-void fn_71010416c4();
-void fn_71010416d8();
 void fn_7101048e5c();
 void fn_7101048eb4();
 void fn_7101048ec0();
@@ -1798,15 +1393,6 @@ void fn_7101049190();
 void fn_7101049310();
 void fn_7101049370();
 void fn_710104937c();
-void fn_710104938c();
-void fn_71010493a0();
-void fn_71010493a8();
-void fn_71010493bc();
-void fn_71010493c4();
-void fn_71010493d0();
-void fn_71010493dc();
-void fn_71010493e0();
-void fn_71010493f4();
 void fn_7101049574();
 void fn_71010495b0();
 void fn_71010495b4();
@@ -1834,15 +1420,6 @@ void fn_7101049b50();
 void fn_7101049d64();
 void fn_7101049dc4();
 void fn_7101049dd0();
-void fn_7101049de0();
-void fn_7101049df4();
-void fn_7101049dfc();
-void fn_7101049e10();
-void fn_7101049e18();
-void fn_7101049e24();
-void fn_7101049e30();
-void fn_7101049e34();
-void fn_7101049e48();
 void fn_710104e554();
 void fn_710104e590();
 void fn_710104e594();
@@ -2062,15 +1639,6 @@ void fn_710106e978();
 void fn_7101076158();
 void fn_71010761b0();
 void fn_71010761bc();
-void fn_71010761cc();
-void fn_71010761e0();
-void fn_71010761e8();
-void fn_71010761fc();
-void fn_7101076204();
-void fn_7101076210();
-void fn_710107621c();
-void fn_7101076220();
-void fn_7101076234();
 void fn_71010c4980();
 void fn_71010c49d8();
 void fn_71010c49e4();
@@ -2122,27 +1690,9 @@ void fn_71010c5410();
 void fn_71010c5624();
 void fn_71010c5684();
 void fn_71010c5690();
-void fn_71010c56a0();
-void fn_71010c56b4();
-void fn_71010c56bc();
-void fn_71010c56d0();
-void fn_71010c56d8();
-void fn_71010c56e4();
-void fn_71010c56f0();
-void fn_71010c56f4();
-void fn_71010c5708();
 void fn_71010e6a9c();
 void fn_71010e6af4();
 void fn_71010e6b00();
-void fn_71010e6b10();
-void fn_71010e6b24();
-void fn_71010e6b2c();
-void fn_71010e6b40();
-void fn_71010e6b48();
-void fn_71010e6b54();
-void fn_71010e6b60();
-void fn_71010e6b64();
-void fn_71010e6b78();
 void fn_71011123a4();
 void fn_7101112404();
 void fn_7101112410();
@@ -2206,15 +1756,6 @@ void fn_71011206fc();
 void fn_710112cb0c();
 void fn_710112cb6c();
 void fn_710112cb78();
-void fn_710112cb88();
-void fn_710112cb9c();
-void fn_710112cba4();
-void fn_710112cbb8();
-void fn_710112cbc0();
-void fn_710112cbcc();
-void fn_710112cbd8();
-void fn_710112cbdc();
-void fn_710112cbf0();
 void fn_710112cd70();
 void fn_710112cdd0();
 void fn_710112cddc();
@@ -2525,6 +2066,33 @@ void fn_71011e6690();
 void fn_71011e66b8();
 void fn_71011e6704();
 void fn_71011e67b4();
+class CCameraCtrl;
+class CComponent;
+class CEnvironmentSoundPresets;
+class CEnvironmentVisualPresets;
+class CSpawnerActorBlueprint;
+class CSubareaInfo;
+class luaDisplayObject;
+class luaGameObject;
+namespace CBlackboard { class CSection; }
+namespace CBlackboard { class TSectionContainer; }
+namespace GUI { class CDisplayObject; }
+namespace base::global { class CStrId; }
+namespace base::global { template <class, class> class CRntDictionary; }
+namespace base::global { template <class, class> class CRntSmallDictionary; }
+namespace base::global { template <class> class CRntVector; }
+namespace sound { class CAudioMaterial; }
+namespace sound { class CAudioPreset; }
+namespace sound { class CAudioPresetModifier; }
+namespace sound { class CAudioPresets; }
+namespace sound { class SStateFadeOut; }
+namespace sound { class TBossMusicPreset; }
+namespace sound { class TBossMusicSpawnGroupConfig; }
+namespace sound { class TBossMusicSubStateConfig; }
+namespace sound { class TBossMusicTrack; }
+namespace sound { class TMusicFile; }
+namespace sound { class TMusicTrack; }
+namespace sound { class TScenarioMusicPreset; }
 struct UnkRefl_fn_7100f8f474;
 struct UnkRefl_fn_7100f8c864;
 template <>
@@ -2717,18 +2285,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100f94e84;
 struct UnkRefl_fn_7100f935c8;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100f94e84> {
+const CType& base::reflection::ValueOps<CEnvironmentSoundPresets const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100f935c8>(); }
+template struct base::reflection::ValueOps<CEnvironmentSoundPresets const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100f94e84> : base::reflection::ValueOpsDescription<CEnvironmentSoundPresets const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100f9509c;
-    static constexpr UnkFn copy_construct = &fn_7100f950a4;
-    static constexpr UnkFn move_construct = &fn_7100f950b0;
-    static constexpr UnkFn destroy = &fn_7100f950bc;
-    static constexpr UnkFn copy_assign = &fn_7100f950c0;
-    static constexpr UnkFn move_assign = &fn_7100f950d4;
-    static constexpr UnkFn equals = &fn_7100f9506c;
-    static constexpr UnkFn hash = &fn_7100f95080;
-    static constexpr UnkFn type_of = &fn_7100f95088;
     static constexpr UnkFn get = &fn_7100f94ff0;
     static constexpr UnkFn set = &fn_7100f95050;
     static constexpr UnkFn increment = &fn_7100f9505c;
@@ -2906,18 +2468,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100f9c4b0;
 struct UnkRefl_fn_7100f9beb0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100f9c4b0> {
+const CType& base::reflection::ValueOps<CEnvironmentVisualPresets const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100f9beb0>(); }
+template struct base::reflection::ValueOps<CEnvironmentVisualPresets const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100f9c4b0> : base::reflection::ValueOpsDescription<CEnvironmentVisualPresets const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100f9c6c8;
-    static constexpr UnkFn copy_construct = &fn_7100f9c6d0;
-    static constexpr UnkFn move_construct = &fn_7100f9c6dc;
-    static constexpr UnkFn destroy = &fn_7100f9c6e8;
-    static constexpr UnkFn copy_assign = &fn_7100f9c6ec;
-    static constexpr UnkFn move_assign = &fn_7100f9c700;
-    static constexpr UnkFn equals = &fn_7100f9c698;
-    static constexpr UnkFn hash = &fn_7100f9c6ac;
-    static constexpr UnkFn type_of = &fn_7100f9c6b4;
     static constexpr UnkFn get = &fn_7100f9c61c;
     static constexpr UnkFn set = &fn_7100f9c67c;
     static constexpr UnkFn increment = &fn_7100f9c688;
@@ -3068,18 +2624,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100fa6d3c;
 struct UnkRefl_fn_7100fa3288;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fa6d3c> {
+const CType& base::reflection::ValueOps<CSubareaInfo*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fa3288>(); }
+template struct base::reflection::ValueOps<CSubareaInfo*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fa6d3c> : base::reflection::ValueOpsDescription<CSubareaInfo*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100fa6f54;
-    static constexpr UnkFn copy_construct = &fn_7100fa6f5c;
-    static constexpr UnkFn move_construct = &fn_7100fa6f68;
-    static constexpr UnkFn destroy = &fn_7100fa6f74;
-    static constexpr UnkFn copy_assign = &fn_7100fa6f78;
-    static constexpr UnkFn move_assign = &fn_7100fa6f8c;
-    static constexpr UnkFn equals = &fn_7100fa6f24;
-    static constexpr UnkFn hash = &fn_7100fa6f38;
-    static constexpr UnkFn type_of = &fn_7100fa6f40;
     static constexpr UnkFn get = &fn_7100fa6ea8;
     static constexpr UnkFn set = &fn_7100fa6f08;
     static constexpr UnkFn increment = &fn_7100fa6f14;
@@ -3527,18 +3077,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100fbc910;
 struct UnkRefl_fn_7100fbc390;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fbc910> {
+const CType& base::reflection::ValueOps<luaGameObject*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fbc390>(); }
+template struct base::reflection::ValueOps<luaGameObject*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fbc910> : base::reflection::ValueOpsDescription<luaGameObject*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100fbcb1c;
-    static constexpr UnkFn copy_construct = &fn_7100fbcb24;
-    static constexpr UnkFn move_construct = &fn_7100fbcb30;
-    static constexpr UnkFn destroy = &fn_7100fbcb3c;
-    static constexpr UnkFn copy_assign = &fn_7100fbcb40;
-    static constexpr UnkFn move_assign = &fn_7100fbcb54;
-    static constexpr UnkFn equals = &fn_7100fbcaec;
-    static constexpr UnkFn hash = &fn_7100fbcb00;
-    static constexpr UnkFn type_of = &fn_7100fbcb08;
     static constexpr UnkFn get = &fn_7100fbca78;
     static constexpr UnkFn set = &fn_7100fbcad0;
     static constexpr UnkFn increment = &fn_7100fbcadc;
@@ -3554,18 +3098,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100fc0448;
 struct UnkRefl_fn_7100fc036c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fc0448> {
+const CType& base::reflection::ValueOps<GUI::CDisplayObject*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fc036c>(); }
+template struct base::reflection::ValueOps<GUI::CDisplayObject*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fc0448> : base::reflection::ValueOpsDescription<GUI::CDisplayObject*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100fc0654;
-    static constexpr UnkFn copy_construct = &fn_7100fc065c;
-    static constexpr UnkFn move_construct = &fn_7100fc0668;
-    static constexpr UnkFn destroy = &fn_7100fc0674;
-    static constexpr UnkFn copy_assign = &fn_7100fc0678;
-    static constexpr UnkFn move_assign = &fn_7100fc068c;
-    static constexpr UnkFn equals = &fn_7100fc0624;
-    static constexpr UnkFn hash = &fn_7100fc0638;
-    static constexpr UnkFn type_of = &fn_7100fc0640;
     static constexpr UnkFn get = &fn_7100fc05b0;
     static constexpr UnkFn set = &fn_7100fc0608;
     static constexpr UnkFn increment = &fn_7100fc0614;
@@ -3608,18 +3146,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100fef118;
 struct UnkRefl_fn_7100fe150c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fef118> {
+const CType& base::reflection::ValueOps<sound::TMusicFile*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe150c>(); }
+template struct base::reflection::ValueOps<sound::TMusicFile*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fef118> : base::reflection::ValueOpsDescription<sound::TMusicFile*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100fef330;
-    static constexpr UnkFn copy_construct = &fn_7100fef338;
-    static constexpr UnkFn move_construct = &fn_7100fef344;
-    static constexpr UnkFn destroy = &fn_7100fef350;
-    static constexpr UnkFn copy_assign = &fn_7100fef354;
-    static constexpr UnkFn move_assign = &fn_7100fef368;
-    static constexpr UnkFn equals = &fn_7100fef300;
-    static constexpr UnkFn hash = &fn_7100fef314;
-    static constexpr UnkFn type_of = &fn_7100fef31c;
     static constexpr UnkFn get = &fn_7100fef284;
     static constexpr UnkFn set = &fn_7100fef2e4;
     static constexpr UnkFn increment = &fn_7100fef2f0;
@@ -3635,18 +3167,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100fef37c;
 struct UnkRefl_fn_7100fe15e8;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fef37c> {
+const CType& base::reflection::ValueOps<sound::TMusicFile const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe15e8>(); }
+template struct base::reflection::ValueOps<sound::TMusicFile const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fef37c> : base::reflection::ValueOpsDescription<sound::TMusicFile const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100fef594;
-    static constexpr UnkFn copy_construct = &fn_7100fef59c;
-    static constexpr UnkFn move_construct = &fn_7100fef5a8;
-    static constexpr UnkFn destroy = &fn_7100fef5b4;
-    static constexpr UnkFn copy_assign = &fn_7100fef5b8;
-    static constexpr UnkFn move_assign = &fn_7100fef5cc;
-    static constexpr UnkFn equals = &fn_7100fef564;
-    static constexpr UnkFn hash = &fn_7100fef578;
-    static constexpr UnkFn type_of = &fn_7100fef580;
     static constexpr UnkFn get = &fn_7100fef4e8;
     static constexpr UnkFn set = &fn_7100fef548;
     static constexpr UnkFn increment = &fn_7100fef554;
@@ -3770,18 +3296,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff0338;
 struct UnkRefl_fn_7100fe2638;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff0338> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe2638>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff0338> : base::reflection::ValueOpsDescription<base::global::CRntVector<sound::TMusicFile>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff0550;
-    static constexpr UnkFn copy_construct = &fn_7100ff0558;
-    static constexpr UnkFn move_construct = &fn_7100ff0564;
-    static constexpr UnkFn destroy = &fn_7100ff0570;
-    static constexpr UnkFn copy_assign = &fn_7100ff0574;
-    static constexpr UnkFn move_assign = &fn_7100ff0588;
-    static constexpr UnkFn equals = &fn_7100ff0520;
-    static constexpr UnkFn hash = &fn_7100ff0534;
-    static constexpr UnkFn type_of = &fn_7100ff053c;
     static constexpr UnkFn get = &fn_7100ff04a4;
     static constexpr UnkFn set = &fn_7100ff0504;
     static constexpr UnkFn increment = &fn_7100ff0510;
@@ -3797,18 +3317,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff059c;
 struct UnkRefl_fn_7100fe2714;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff059c> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe2714>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<sound::TMusicFile> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff059c> : base::reflection::ValueOpsDescription<base::global::CRntVector<sound::TMusicFile> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff07b4;
-    static constexpr UnkFn copy_construct = &fn_7100ff07bc;
-    static constexpr UnkFn move_construct = &fn_7100ff07c8;
-    static constexpr UnkFn destroy = &fn_7100ff07d4;
-    static constexpr UnkFn copy_assign = &fn_7100ff07d8;
-    static constexpr UnkFn move_assign = &fn_7100ff07ec;
-    static constexpr UnkFn equals = &fn_7100ff0784;
-    static constexpr UnkFn hash = &fn_7100ff0798;
-    static constexpr UnkFn type_of = &fn_7100ff07a0;
     static constexpr UnkFn get = &fn_7100ff0708;
     static constexpr UnkFn set = &fn_7100ff0768;
     static constexpr UnkFn increment = &fn_7100ff0774;
@@ -3824,18 +3338,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff0800;
 struct UnkRefl_fn_7100fe2e00;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff0800> {
+const CType& base::reflection::ValueOps<sound::TMusicTrack*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe2e00>(); }
+template struct base::reflection::ValueOps<sound::TMusicTrack*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff0800> : base::reflection::ValueOpsDescription<sound::TMusicTrack*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff0a18;
-    static constexpr UnkFn copy_construct = &fn_7100ff0a20;
-    static constexpr UnkFn move_construct = &fn_7100ff0a2c;
-    static constexpr UnkFn destroy = &fn_7100ff0a38;
-    static constexpr UnkFn copy_assign = &fn_7100ff0a3c;
-    static constexpr UnkFn move_assign = &fn_7100ff0a50;
-    static constexpr UnkFn equals = &fn_7100ff09e8;
-    static constexpr UnkFn hash = &fn_7100ff09fc;
-    static constexpr UnkFn type_of = &fn_7100ff0a04;
     static constexpr UnkFn get = &fn_7100ff096c;
     static constexpr UnkFn set = &fn_7100ff09cc;
     static constexpr UnkFn increment = &fn_7100ff09d8;
@@ -3851,18 +3359,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff0a64;
 struct UnkRefl_fn_7100fe2edc;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff0a64> {
+const CType& base::reflection::ValueOps<sound::TMusicTrack const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe2edc>(); }
+template struct base::reflection::ValueOps<sound::TMusicTrack const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff0a64> : base::reflection::ValueOpsDescription<sound::TMusicTrack const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff0c7c;
-    static constexpr UnkFn copy_construct = &fn_7100ff0c84;
-    static constexpr UnkFn move_construct = &fn_7100ff0c90;
-    static constexpr UnkFn destroy = &fn_7100ff0c9c;
-    static constexpr UnkFn copy_assign = &fn_7100ff0ca0;
-    static constexpr UnkFn move_assign = &fn_7100ff0cb4;
-    static constexpr UnkFn equals = &fn_7100ff0c4c;
-    static constexpr UnkFn hash = &fn_7100ff0c60;
-    static constexpr UnkFn type_of = &fn_7100ff0c68;
     static constexpr UnkFn get = &fn_7100ff0bd0;
     static constexpr UnkFn set = &fn_7100ff0c30;
     static constexpr UnkFn increment = &fn_7100ff0c3c;
@@ -3986,18 +3488,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff1c60;
 struct UnkRefl_fn_7100fe3f2c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff1c60> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe3f2c>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff1c60> : base::reflection::ValueOpsDescription<base::global::CRntVector<sound::TMusicTrack>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff1e78;
-    static constexpr UnkFn copy_construct = &fn_7100ff1e80;
-    static constexpr UnkFn move_construct = &fn_7100ff1e8c;
-    static constexpr UnkFn destroy = &fn_7100ff1e98;
-    static constexpr UnkFn copy_assign = &fn_7100ff1e9c;
-    static constexpr UnkFn move_assign = &fn_7100ff1eb0;
-    static constexpr UnkFn equals = &fn_7100ff1e48;
-    static constexpr UnkFn hash = &fn_7100ff1e5c;
-    static constexpr UnkFn type_of = &fn_7100ff1e64;
     static constexpr UnkFn get = &fn_7100ff1dcc;
     static constexpr UnkFn set = &fn_7100ff1e2c;
     static constexpr UnkFn increment = &fn_7100ff1e38;
@@ -4013,18 +3509,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff1ec4;
 struct UnkRefl_fn_7100fe4008;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff1ec4> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe4008>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<sound::TMusicTrack> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff1ec4> : base::reflection::ValueOpsDescription<base::global::CRntVector<sound::TMusicTrack> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff20dc;
-    static constexpr UnkFn copy_construct = &fn_7100ff20e4;
-    static constexpr UnkFn move_construct = &fn_7100ff20f0;
-    static constexpr UnkFn destroy = &fn_7100ff20fc;
-    static constexpr UnkFn copy_assign = &fn_7100ff2100;
-    static constexpr UnkFn move_assign = &fn_7100ff2114;
-    static constexpr UnkFn equals = &fn_7100ff20ac;
-    static constexpr UnkFn hash = &fn_7100ff20c0;
-    static constexpr UnkFn type_of = &fn_7100ff20c8;
     static constexpr UnkFn get = &fn_7100ff2030;
     static constexpr UnkFn set = &fn_7100ff2090;
     static constexpr UnkFn increment = &fn_7100ff209c;
@@ -4040,18 +3530,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff2128;
 struct UnkRefl_fn_7100fe4374;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff2128> {
+const CType& base::reflection::ValueOps<sound::SStateFadeOut*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe4374>(); }
+template struct base::reflection::ValueOps<sound::SStateFadeOut*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff2128> : base::reflection::ValueOpsDescription<sound::SStateFadeOut*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff2340;
-    static constexpr UnkFn copy_construct = &fn_7100ff2348;
-    static constexpr UnkFn move_construct = &fn_7100ff2354;
-    static constexpr UnkFn destroy = &fn_7100ff2360;
-    static constexpr UnkFn copy_assign = &fn_7100ff2364;
-    static constexpr UnkFn move_assign = &fn_7100ff2378;
-    static constexpr UnkFn equals = &fn_7100ff2310;
-    static constexpr UnkFn hash = &fn_7100ff2324;
-    static constexpr UnkFn type_of = &fn_7100ff232c;
     static constexpr UnkFn get = &fn_7100ff2294;
     static constexpr UnkFn set = &fn_7100ff22f4;
     static constexpr UnkFn increment = &fn_7100ff2300;
@@ -4067,18 +3551,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff238c;
 struct UnkRefl_fn_7100fe4450;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff238c> {
+const CType& base::reflection::ValueOps<sound::SStateFadeOut const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe4450>(); }
+template struct base::reflection::ValueOps<sound::SStateFadeOut const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff238c> : base::reflection::ValueOpsDescription<sound::SStateFadeOut const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff25a4;
-    static constexpr UnkFn copy_construct = &fn_7100ff25ac;
-    static constexpr UnkFn move_construct = &fn_7100ff25b8;
-    static constexpr UnkFn destroy = &fn_7100ff25c4;
-    static constexpr UnkFn copy_assign = &fn_7100ff25c8;
-    static constexpr UnkFn move_assign = &fn_7100ff25dc;
-    static constexpr UnkFn equals = &fn_7100ff2574;
-    static constexpr UnkFn hash = &fn_7100ff2588;
-    static constexpr UnkFn type_of = &fn_7100ff2590;
     static constexpr UnkFn get = &fn_7100ff24f8;
     static constexpr UnkFn set = &fn_7100ff2558;
     static constexpr UnkFn increment = &fn_7100ff2564;
@@ -4202,18 +3680,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff3138;
 struct UnkRefl_fn_7100fe54a0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff3138> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe54a0>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff3138> : base::reflection::ValueOpsDescription<base::global::CRntVector<sound::SStateFadeOut>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff3350;
-    static constexpr UnkFn copy_construct = &fn_7100ff3358;
-    static constexpr UnkFn move_construct = &fn_7100ff3364;
-    static constexpr UnkFn destroy = &fn_7100ff3370;
-    static constexpr UnkFn copy_assign = &fn_7100ff3374;
-    static constexpr UnkFn move_assign = &fn_7100ff3388;
-    static constexpr UnkFn equals = &fn_7100ff3320;
-    static constexpr UnkFn hash = &fn_7100ff3334;
-    static constexpr UnkFn type_of = &fn_7100ff333c;
     static constexpr UnkFn get = &fn_7100ff32a4;
     static constexpr UnkFn set = &fn_7100ff3304;
     static constexpr UnkFn increment = &fn_7100ff3310;
@@ -4229,18 +3701,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff339c;
 struct UnkRefl_fn_7100fe557c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff339c> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe557c>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<sound::SStateFadeOut> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff339c> : base::reflection::ValueOpsDescription<base::global::CRntVector<sound::SStateFadeOut> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff35b4;
-    static constexpr UnkFn copy_construct = &fn_7100ff35bc;
-    static constexpr UnkFn move_construct = &fn_7100ff35c8;
-    static constexpr UnkFn destroy = &fn_7100ff35d4;
-    static constexpr UnkFn copy_assign = &fn_7100ff35d8;
-    static constexpr UnkFn move_assign = &fn_7100ff35ec;
-    static constexpr UnkFn equals = &fn_7100ff3584;
-    static constexpr UnkFn hash = &fn_7100ff3598;
-    static constexpr UnkFn type_of = &fn_7100ff35a0;
     static constexpr UnkFn get = &fn_7100ff3508;
     static constexpr UnkFn set = &fn_7100ff3568;
     static constexpr UnkFn increment = &fn_7100ff3574;
@@ -4256,18 +3722,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff3600;
 struct UnkRefl_fn_7100fe5bd4;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff3600> {
+const CType& base::reflection::ValueOps<sound::TScenarioMusicPreset*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe5bd4>(); }
+template struct base::reflection::ValueOps<sound::TScenarioMusicPreset*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff3600> : base::reflection::ValueOpsDescription<sound::TScenarioMusicPreset*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff3818;
-    static constexpr UnkFn copy_construct = &fn_7100ff3820;
-    static constexpr UnkFn move_construct = &fn_7100ff382c;
-    static constexpr UnkFn destroy = &fn_7100ff3838;
-    static constexpr UnkFn copy_assign = &fn_7100ff383c;
-    static constexpr UnkFn move_assign = &fn_7100ff3850;
-    static constexpr UnkFn equals = &fn_7100ff37e8;
-    static constexpr UnkFn hash = &fn_7100ff37fc;
-    static constexpr UnkFn type_of = &fn_7100ff3804;
     static constexpr UnkFn get = &fn_7100ff376c;
     static constexpr UnkFn set = &fn_7100ff37cc;
     static constexpr UnkFn increment = &fn_7100ff37d8;
@@ -4283,18 +3743,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff3864;
 struct UnkRefl_fn_7100fe5cb0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff3864> {
+const CType& base::reflection::ValueOps<sound::TScenarioMusicPreset const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe5cb0>(); }
+template struct base::reflection::ValueOps<sound::TScenarioMusicPreset const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff3864> : base::reflection::ValueOpsDescription<sound::TScenarioMusicPreset const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff3a7c;
-    static constexpr UnkFn copy_construct = &fn_7100ff3a84;
-    static constexpr UnkFn move_construct = &fn_7100ff3a90;
-    static constexpr UnkFn destroy = &fn_7100ff3a9c;
-    static constexpr UnkFn copy_assign = &fn_7100ff3aa0;
-    static constexpr UnkFn move_assign = &fn_7100ff3ab4;
-    static constexpr UnkFn equals = &fn_7100ff3a4c;
-    static constexpr UnkFn hash = &fn_7100ff3a60;
-    static constexpr UnkFn type_of = &fn_7100ff3a68;
     static constexpr UnkFn get = &fn_7100ff39d0;
     static constexpr UnkFn set = &fn_7100ff3a30;
     static constexpr UnkFn increment = &fn_7100ff3a3c;
@@ -4418,18 +3872,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff4928;
 struct UnkRefl_fn_7100fe6ce0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff4928> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe6ce0>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff4928> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff4b40;
-    static constexpr UnkFn copy_construct = &fn_7100ff4b48;
-    static constexpr UnkFn move_construct = &fn_7100ff4b54;
-    static constexpr UnkFn destroy = &fn_7100ff4b60;
-    static constexpr UnkFn copy_assign = &fn_7100ff4b64;
-    static constexpr UnkFn move_assign = &fn_7100ff4b78;
-    static constexpr UnkFn equals = &fn_7100ff4b10;
-    static constexpr UnkFn hash = &fn_7100ff4b24;
-    static constexpr UnkFn type_of = &fn_7100ff4b2c;
     static constexpr UnkFn get = &fn_7100ff4a94;
     static constexpr UnkFn set = &fn_7100ff4af4;
     static constexpr UnkFn increment = &fn_7100ff4b00;
@@ -4445,18 +3893,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff4b8c;
 struct UnkRefl_fn_7100fe6dbc;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff4b8c> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe6dbc>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff4b8c> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff4da4;
-    static constexpr UnkFn copy_construct = &fn_7100ff4dac;
-    static constexpr UnkFn move_construct = &fn_7100ff4db8;
-    static constexpr UnkFn destroy = &fn_7100ff4dc4;
-    static constexpr UnkFn copy_assign = &fn_7100ff4dc8;
-    static constexpr UnkFn move_assign = &fn_7100ff4ddc;
-    static constexpr UnkFn equals = &fn_7100ff4d74;
-    static constexpr UnkFn hash = &fn_7100ff4d88;
-    static constexpr UnkFn type_of = &fn_7100ff4d90;
     static constexpr UnkFn get = &fn_7100ff4cf8;
     static constexpr UnkFn set = &fn_7100ff4d58;
     static constexpr UnkFn increment = &fn_7100ff4d64;
@@ -4472,18 +3914,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff4df0;
 struct UnkRefl_fn_7100fe7128;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff4df0> {
+const CType& base::reflection::ValueOps<sound::TBossMusicTrack*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe7128>(); }
+template struct base::reflection::ValueOps<sound::TBossMusicTrack*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff4df0> : base::reflection::ValueOpsDescription<sound::TBossMusicTrack*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff5008;
-    static constexpr UnkFn copy_construct = &fn_7100ff5010;
-    static constexpr UnkFn move_construct = &fn_7100ff501c;
-    static constexpr UnkFn destroy = &fn_7100ff5028;
-    static constexpr UnkFn copy_assign = &fn_7100ff502c;
-    static constexpr UnkFn move_assign = &fn_7100ff5040;
-    static constexpr UnkFn equals = &fn_7100ff4fd8;
-    static constexpr UnkFn hash = &fn_7100ff4fec;
-    static constexpr UnkFn type_of = &fn_7100ff4ff4;
     static constexpr UnkFn get = &fn_7100ff4f5c;
     static constexpr UnkFn set = &fn_7100ff4fbc;
     static constexpr UnkFn increment = &fn_7100ff4fc8;
@@ -4499,18 +3935,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff5054;
 struct UnkRefl_fn_7100fe7204;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff5054> {
+const CType& base::reflection::ValueOps<sound::TBossMusicTrack const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe7204>(); }
+template struct base::reflection::ValueOps<sound::TBossMusicTrack const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff5054> : base::reflection::ValueOpsDescription<sound::TBossMusicTrack const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff526c;
-    static constexpr UnkFn copy_construct = &fn_7100ff5274;
-    static constexpr UnkFn move_construct = &fn_7100ff5280;
-    static constexpr UnkFn destroy = &fn_7100ff528c;
-    static constexpr UnkFn copy_assign = &fn_7100ff5290;
-    static constexpr UnkFn move_assign = &fn_7100ff52a4;
-    static constexpr UnkFn equals = &fn_7100ff523c;
-    static constexpr UnkFn hash = &fn_7100ff5250;
-    static constexpr UnkFn type_of = &fn_7100ff5258;
     static constexpr UnkFn get = &fn_7100ff51c0;
     static constexpr UnkFn set = &fn_7100ff5220;
     static constexpr UnkFn increment = &fn_7100ff522c;
@@ -4634,18 +4064,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff6148;
 struct UnkRefl_fn_7100fe8254;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff6148> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe8254>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff6148> : base::reflection::ValueOpsDescription<base::global::CRntVector<sound::TBossMusicTrack>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff6360;
-    static constexpr UnkFn copy_construct = &fn_7100ff6368;
-    static constexpr UnkFn move_construct = &fn_7100ff6374;
-    static constexpr UnkFn destroy = &fn_7100ff6380;
-    static constexpr UnkFn copy_assign = &fn_7100ff6384;
-    static constexpr UnkFn move_assign = &fn_7100ff6398;
-    static constexpr UnkFn equals = &fn_7100ff6330;
-    static constexpr UnkFn hash = &fn_7100ff6344;
-    static constexpr UnkFn type_of = &fn_7100ff634c;
     static constexpr UnkFn get = &fn_7100ff62b4;
     static constexpr UnkFn set = &fn_7100ff6314;
     static constexpr UnkFn increment = &fn_7100ff6320;
@@ -4661,18 +4085,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff63ac;
 struct UnkRefl_fn_7100fe8330;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff63ac> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe8330>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<sound::TBossMusicTrack> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff63ac> : base::reflection::ValueOpsDescription<base::global::CRntVector<sound::TBossMusicTrack> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff65c4;
-    static constexpr UnkFn copy_construct = &fn_7100ff65cc;
-    static constexpr UnkFn move_construct = &fn_7100ff65d8;
-    static constexpr UnkFn destroy = &fn_7100ff65e4;
-    static constexpr UnkFn copy_assign = &fn_7100ff65e8;
-    static constexpr UnkFn move_assign = &fn_7100ff65fc;
-    static constexpr UnkFn equals = &fn_7100ff6594;
-    static constexpr UnkFn hash = &fn_7100ff65a8;
-    static constexpr UnkFn type_of = &fn_7100ff65b0;
     static constexpr UnkFn get = &fn_7100ff6518;
     static constexpr UnkFn set = &fn_7100ff6578;
     static constexpr UnkFn increment = &fn_7100ff6584;
@@ -4688,18 +4106,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff6610;
 struct UnkRefl_fn_7100fe869c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff6610> {
+const CType& base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe869c>(); }
+template struct base::reflection::ValueOps<sound::TBossMusicSubStateConfig*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff6610> : base::reflection::ValueOpsDescription<sound::TBossMusicSubStateConfig*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff6828;
-    static constexpr UnkFn copy_construct = &fn_7100ff6830;
-    static constexpr UnkFn move_construct = &fn_7100ff683c;
-    static constexpr UnkFn destroy = &fn_7100ff6848;
-    static constexpr UnkFn copy_assign = &fn_7100ff684c;
-    static constexpr UnkFn move_assign = &fn_7100ff6860;
-    static constexpr UnkFn equals = &fn_7100ff67f8;
-    static constexpr UnkFn hash = &fn_7100ff680c;
-    static constexpr UnkFn type_of = &fn_7100ff6814;
     static constexpr UnkFn get = &fn_7100ff677c;
     static constexpr UnkFn set = &fn_7100ff67dc;
     static constexpr UnkFn increment = &fn_7100ff67e8;
@@ -4715,18 +4127,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff6874;
 struct UnkRefl_fn_7100fe8778;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff6874> {
+const CType& base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe8778>(); }
+template struct base::reflection::ValueOps<sound::TBossMusicSubStateConfig const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff6874> : base::reflection::ValueOpsDescription<sound::TBossMusicSubStateConfig const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff6a8c;
-    static constexpr UnkFn copy_construct = &fn_7100ff6a94;
-    static constexpr UnkFn move_construct = &fn_7100ff6aa0;
-    static constexpr UnkFn destroy = &fn_7100ff6aac;
-    static constexpr UnkFn copy_assign = &fn_7100ff6ab0;
-    static constexpr UnkFn move_assign = &fn_7100ff6ac4;
-    static constexpr UnkFn equals = &fn_7100ff6a5c;
-    static constexpr UnkFn hash = &fn_7100ff6a70;
-    static constexpr UnkFn type_of = &fn_7100ff6a78;
     static constexpr UnkFn get = &fn_7100ff69e0;
     static constexpr UnkFn set = &fn_7100ff6a40;
     static constexpr UnkFn increment = &fn_7100ff6a4c;
@@ -4850,18 +4256,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff78e0;
 struct UnkRefl_fn_7100fe97a8;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff78e0> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe97a8>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff78e0> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff7af8;
-    static constexpr UnkFn copy_construct = &fn_7100ff7b00;
-    static constexpr UnkFn move_construct = &fn_7100ff7b0c;
-    static constexpr UnkFn destroy = &fn_7100ff7b18;
-    static constexpr UnkFn copy_assign = &fn_7100ff7b1c;
-    static constexpr UnkFn move_assign = &fn_7100ff7b30;
-    static constexpr UnkFn equals = &fn_7100ff7ac8;
-    static constexpr UnkFn hash = &fn_7100ff7adc;
-    static constexpr UnkFn type_of = &fn_7100ff7ae4;
     static constexpr UnkFn get = &fn_7100ff7a4c;
     static constexpr UnkFn set = &fn_7100ff7aac;
     static constexpr UnkFn increment = &fn_7100ff7ab8;
@@ -4877,18 +4277,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff7b44;
 struct UnkRefl_fn_7100fe9884;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff7b44> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fe9884>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff7b44> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff7d5c;
-    static constexpr UnkFn copy_construct = &fn_7100ff7d64;
-    static constexpr UnkFn move_construct = &fn_7100ff7d70;
-    static constexpr UnkFn destroy = &fn_7100ff7d7c;
-    static constexpr UnkFn copy_assign = &fn_7100ff7d80;
-    static constexpr UnkFn move_assign = &fn_7100ff7d94;
-    static constexpr UnkFn equals = &fn_7100ff7d2c;
-    static constexpr UnkFn hash = &fn_7100ff7d40;
-    static constexpr UnkFn type_of = &fn_7100ff7d48;
     static constexpr UnkFn get = &fn_7100ff7cb0;
     static constexpr UnkFn set = &fn_7100ff7d10;
     static constexpr UnkFn increment = &fn_7100ff7d1c;
@@ -4904,18 +4298,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff7da8;
 struct UnkRefl_fn_7100fea510;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff7da8> {
+const CType& base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fea510>(); }
+template struct base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff7da8> : base::reflection::ValueOpsDescription<sound::TBossMusicSpawnGroupConfig*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff7fc0;
-    static constexpr UnkFn copy_construct = &fn_7100ff7fc8;
-    static constexpr UnkFn move_construct = &fn_7100ff7fd4;
-    static constexpr UnkFn destroy = &fn_7100ff7fe0;
-    static constexpr UnkFn copy_assign = &fn_7100ff7fe4;
-    static constexpr UnkFn move_assign = &fn_7100ff7ff8;
-    static constexpr UnkFn equals = &fn_7100ff7f90;
-    static constexpr UnkFn hash = &fn_7100ff7fa4;
-    static constexpr UnkFn type_of = &fn_7100ff7fac;
     static constexpr UnkFn get = &fn_7100ff7f14;
     static constexpr UnkFn set = &fn_7100ff7f74;
     static constexpr UnkFn increment = &fn_7100ff7f80;
@@ -4931,18 +4319,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff800c;
 struct UnkRefl_fn_7100fea5ec;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff800c> {
+const CType& base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fea5ec>(); }
+template struct base::reflection::ValueOps<sound::TBossMusicSpawnGroupConfig const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff800c> : base::reflection::ValueOpsDescription<sound::TBossMusicSpawnGroupConfig const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff8224;
-    static constexpr UnkFn copy_construct = &fn_7100ff822c;
-    static constexpr UnkFn move_construct = &fn_7100ff8238;
-    static constexpr UnkFn destroy = &fn_7100ff8244;
-    static constexpr UnkFn copy_assign = &fn_7100ff8248;
-    static constexpr UnkFn move_assign = &fn_7100ff825c;
-    static constexpr UnkFn equals = &fn_7100ff81f4;
-    static constexpr UnkFn hash = &fn_7100ff8208;
-    static constexpr UnkFn type_of = &fn_7100ff8210;
     static constexpr UnkFn get = &fn_7100ff8178;
     static constexpr UnkFn set = &fn_7100ff81d8;
     static constexpr UnkFn increment = &fn_7100ff81e4;
@@ -5066,18 +4448,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff8f50;
 struct UnkRefl_fn_7100feb61c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff8f50> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100feb61c>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff8f50> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff9168;
-    static constexpr UnkFn copy_construct = &fn_7100ff9170;
-    static constexpr UnkFn move_construct = &fn_7100ff917c;
-    static constexpr UnkFn destroy = &fn_7100ff9188;
-    static constexpr UnkFn copy_assign = &fn_7100ff918c;
-    static constexpr UnkFn move_assign = &fn_7100ff91a0;
-    static constexpr UnkFn equals = &fn_7100ff9138;
-    static constexpr UnkFn hash = &fn_7100ff914c;
-    static constexpr UnkFn type_of = &fn_7100ff9154;
     static constexpr UnkFn get = &fn_7100ff90bc;
     static constexpr UnkFn set = &fn_7100ff911c;
     static constexpr UnkFn increment = &fn_7100ff9128;
@@ -5093,18 +4469,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff91b4;
 struct UnkRefl_fn_7100feb6f8;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff91b4> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100feb6f8>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff91b4> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff93cc;
-    static constexpr UnkFn copy_construct = &fn_7100ff93d4;
-    static constexpr UnkFn move_construct = &fn_7100ff93e0;
-    static constexpr UnkFn destroy = &fn_7100ff93ec;
-    static constexpr UnkFn copy_assign = &fn_7100ff93f0;
-    static constexpr UnkFn move_assign = &fn_7100ff9404;
-    static constexpr UnkFn equals = &fn_7100ff939c;
-    static constexpr UnkFn hash = &fn_7100ff93b0;
-    static constexpr UnkFn type_of = &fn_7100ff93b8;
     static constexpr UnkFn get = &fn_7100ff9320;
     static constexpr UnkFn set = &fn_7100ff9380;
     static constexpr UnkFn increment = &fn_7100ff938c;
@@ -5120,18 +4490,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff9418;
 struct UnkRefl_fn_7100fec384;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff9418> {
+const CType& base::reflection::ValueOps<sound::TBossMusicPreset*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fec384>(); }
+template struct base::reflection::ValueOps<sound::TBossMusicPreset*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff9418> : base::reflection::ValueOpsDescription<sound::TBossMusicPreset*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff9630;
-    static constexpr UnkFn copy_construct = &fn_7100ff9638;
-    static constexpr UnkFn move_construct = &fn_7100ff9644;
-    static constexpr UnkFn destroy = &fn_7100ff9650;
-    static constexpr UnkFn copy_assign = &fn_7100ff9654;
-    static constexpr UnkFn move_assign = &fn_7100ff9668;
-    static constexpr UnkFn equals = &fn_7100ff9600;
-    static constexpr UnkFn hash = &fn_7100ff9614;
-    static constexpr UnkFn type_of = &fn_7100ff961c;
     static constexpr UnkFn get = &fn_7100ff9584;
     static constexpr UnkFn set = &fn_7100ff95e4;
     static constexpr UnkFn increment = &fn_7100ff95f0;
@@ -5147,18 +4511,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ff967c;
 struct UnkRefl_fn_7100fec460;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff967c> {
+const CType& base::reflection::ValueOps<sound::TBossMusicPreset const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fec460>(); }
+template struct base::reflection::ValueOps<sound::TBossMusicPreset const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ff967c> : base::reflection::ValueOpsDescription<sound::TBossMusicPreset const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ff9894;
-    static constexpr UnkFn copy_construct = &fn_7100ff989c;
-    static constexpr UnkFn move_construct = &fn_7100ff98a8;
-    static constexpr UnkFn destroy = &fn_7100ff98b4;
-    static constexpr UnkFn copy_assign = &fn_7100ff98b8;
-    static constexpr UnkFn move_assign = &fn_7100ff98cc;
-    static constexpr UnkFn equals = &fn_7100ff9864;
-    static constexpr UnkFn hash = &fn_7100ff9878;
-    static constexpr UnkFn type_of = &fn_7100ff9880;
     static constexpr UnkFn get = &fn_7100ff97e8;
     static constexpr UnkFn set = &fn_7100ff9848;
     static constexpr UnkFn increment = &fn_7100ff9854;
@@ -5282,18 +4640,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ffa5c0;
 struct UnkRefl_fn_7100fed490;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ffa5c0> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fed490>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ffa5c0> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ffa7d8;
-    static constexpr UnkFn copy_construct = &fn_7100ffa7e0;
-    static constexpr UnkFn move_construct = &fn_7100ffa7ec;
-    static constexpr UnkFn destroy = &fn_7100ffa7f8;
-    static constexpr UnkFn copy_assign = &fn_7100ffa7fc;
-    static constexpr UnkFn move_assign = &fn_7100ffa810;
-    static constexpr UnkFn equals = &fn_7100ffa7a8;
-    static constexpr UnkFn hash = &fn_7100ffa7bc;
-    static constexpr UnkFn type_of = &fn_7100ffa7c4;
     static constexpr UnkFn get = &fn_7100ffa72c;
     static constexpr UnkFn set = &fn_7100ffa78c;
     static constexpr UnkFn increment = &fn_7100ffa798;
@@ -5309,18 +4661,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ffa824;
 struct UnkRefl_fn_7100fed56c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ffa824> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100fed56c>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ffa824> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ffaa3c;
-    static constexpr UnkFn copy_construct = &fn_7100ffaa44;
-    static constexpr UnkFn move_construct = &fn_7100ffaa50;
-    static constexpr UnkFn destroy = &fn_7100ffaa5c;
-    static constexpr UnkFn copy_assign = &fn_7100ffaa60;
-    static constexpr UnkFn move_assign = &fn_7100ffaa74;
-    static constexpr UnkFn equals = &fn_7100ffaa0c;
-    static constexpr UnkFn hash = &fn_7100ffaa20;
-    static constexpr UnkFn type_of = &fn_7100ffaa28;
     static constexpr UnkFn get = &fn_7100ffa990;
     static constexpr UnkFn set = &fn_7100ffa9f0;
     static constexpr UnkFn increment = &fn_7100ffa9fc;
@@ -5336,18 +4682,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_71010263fc;
 struct UnkRefl_fn_7101020ac0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010263fc> {
+const CType& base::reflection::ValueOps<sound::CAudioPresets*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7101020ac0>(); }
+template struct base::reflection::ValueOps<sound::CAudioPresets*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010263fc> : base::reflection::ValueOpsDescription<sound::CAudioPresets*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7101026614;
-    static constexpr UnkFn copy_construct = &fn_710102661c;
-    static constexpr UnkFn move_construct = &fn_7101026628;
-    static constexpr UnkFn destroy = &fn_7101026634;
-    static constexpr UnkFn copy_assign = &fn_7101026638;
-    static constexpr UnkFn move_assign = &fn_710102664c;
-    static constexpr UnkFn equals = &fn_71010265e4;
-    static constexpr UnkFn hash = &fn_71010265f8;
-    static constexpr UnkFn type_of = &fn_7101026600;
     static constexpr UnkFn get = &fn_7101026568;
     static constexpr UnkFn set = &fn_71010265c8;
     static constexpr UnkFn increment = &fn_71010265d4;
@@ -5579,18 +4919,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7101037f84;
 struct UnkRefl_fn_710102d244;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101037f84> {
+const CType& base::reflection::ValueOps<sound::CAudioMaterial*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710102d244>(); }
+template struct base::reflection::ValueOps<sound::CAudioMaterial*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101037f84> : base::reflection::ValueOpsDescription<sound::CAudioMaterial*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710103819c;
-    static constexpr UnkFn copy_construct = &fn_71010381a4;
-    static constexpr UnkFn move_construct = &fn_71010381b0;
-    static constexpr UnkFn destroy = &fn_71010381bc;
-    static constexpr UnkFn copy_assign = &fn_71010381c0;
-    static constexpr UnkFn move_assign = &fn_71010381d4;
-    static constexpr UnkFn equals = &fn_710103816c;
-    static constexpr UnkFn hash = &fn_7101038180;
-    static constexpr UnkFn type_of = &fn_7101038188;
     static constexpr UnkFn get = &fn_71010380f0;
     static constexpr UnkFn set = &fn_7101038150;
     static constexpr UnkFn increment = &fn_710103815c;
@@ -5606,18 +4940,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_71010381e8;
 struct UnkRefl_fn_710102d320;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010381e8> {
+const CType& base::reflection::ValueOps<sound::CAudioMaterial const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710102d320>(); }
+template struct base::reflection::ValueOps<sound::CAudioMaterial const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010381e8> : base::reflection::ValueOpsDescription<sound::CAudioMaterial const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7101038400;
-    static constexpr UnkFn copy_construct = &fn_7101038408;
-    static constexpr UnkFn move_construct = &fn_7101038414;
-    static constexpr UnkFn destroy = &fn_7101038420;
-    static constexpr UnkFn copy_assign = &fn_7101038424;
-    static constexpr UnkFn move_assign = &fn_7101038438;
-    static constexpr UnkFn equals = &fn_71010383d0;
-    static constexpr UnkFn hash = &fn_71010383e4;
-    static constexpr UnkFn type_of = &fn_71010383ec;
     static constexpr UnkFn get = &fn_7101038354;
     static constexpr UnkFn set = &fn_71010383b4;
     static constexpr UnkFn increment = &fn_71010383c0;
@@ -5633,18 +4961,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_710103844c;
 struct UnkRefl_fn_710102dd5c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710103844c> {
+const CType& base::reflection::ValueOps<sound::CAudioPresetModifier*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710102dd5c>(); }
+template struct base::reflection::ValueOps<sound::CAudioPresetModifier*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_710103844c> : base::reflection::ValueOpsDescription<sound::CAudioPresetModifier*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7101038664;
-    static constexpr UnkFn copy_construct = &fn_710103866c;
-    static constexpr UnkFn move_construct = &fn_7101038678;
-    static constexpr UnkFn destroy = &fn_7101038684;
-    static constexpr UnkFn copy_assign = &fn_7101038688;
-    static constexpr UnkFn move_assign = &fn_710103869c;
-    static constexpr UnkFn equals = &fn_7101038634;
-    static constexpr UnkFn hash = &fn_7101038648;
-    static constexpr UnkFn type_of = &fn_7101038650;
     static constexpr UnkFn get = &fn_71010385b8;
     static constexpr UnkFn set = &fn_7101038618;
     static constexpr UnkFn increment = &fn_7101038624;
@@ -5660,18 +4982,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_71010386b0;
 struct UnkRefl_fn_710102de38;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010386b0> {
+const CType& base::reflection::ValueOps<sound::CAudioPresetModifier const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710102de38>(); }
+template struct base::reflection::ValueOps<sound::CAudioPresetModifier const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010386b0> : base::reflection::ValueOpsDescription<sound::CAudioPresetModifier const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010388c8;
-    static constexpr UnkFn copy_construct = &fn_71010388d0;
-    static constexpr UnkFn move_construct = &fn_71010388dc;
-    static constexpr UnkFn destroy = &fn_71010388e8;
-    static constexpr UnkFn copy_assign = &fn_71010388ec;
-    static constexpr UnkFn move_assign = &fn_7101038900;
-    static constexpr UnkFn equals = &fn_7101038898;
-    static constexpr UnkFn hash = &fn_71010388ac;
-    static constexpr UnkFn type_of = &fn_71010388b4;
     static constexpr UnkFn get = &fn_710103881c;
     static constexpr UnkFn set = &fn_710103887c;
     static constexpr UnkFn increment = &fn_7101038888;
@@ -5849,18 +5165,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_71010402f0;
 struct UnkRefl_fn_710103dbdc;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010402f0> {
+const CType& base::reflection::ValueOps<sound::CAudioPresets const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710103dbdc>(); }
+template struct base::reflection::ValueOps<sound::CAudioPresets const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010402f0> : base::reflection::ValueOpsDescription<sound::CAudioPresets const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7101040508;
-    static constexpr UnkFn copy_construct = &fn_7101040510;
-    static constexpr UnkFn move_construct = &fn_710104051c;
-    static constexpr UnkFn destroy = &fn_7101040528;
-    static constexpr UnkFn copy_assign = &fn_710104052c;
-    static constexpr UnkFn move_assign = &fn_7101040540;
-    static constexpr UnkFn equals = &fn_71010404d8;
-    static constexpr UnkFn hash = &fn_71010404ec;
-    static constexpr UnkFn type_of = &fn_71010404f4;
     static constexpr UnkFn get = &fn_710104045c;
     static constexpr UnkFn set = &fn_71010404bc;
     static constexpr UnkFn increment = &fn_71010404c8;
@@ -5984,18 +5294,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7101041224;
 struct UnkRefl_fn_710103ec08;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101041224> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710103ec08>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101041224> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710104143c;
-    static constexpr UnkFn copy_construct = &fn_7101041444;
-    static constexpr UnkFn move_construct = &fn_7101041450;
-    static constexpr UnkFn destroy = &fn_710104145c;
-    static constexpr UnkFn copy_assign = &fn_7101041460;
-    static constexpr UnkFn move_assign = &fn_7101041474;
-    static constexpr UnkFn equals = &fn_710104140c;
-    static constexpr UnkFn hash = &fn_7101041420;
-    static constexpr UnkFn type_of = &fn_7101041428;
     static constexpr UnkFn get = &fn_7101041390;
     static constexpr UnkFn set = &fn_71010413f0;
     static constexpr UnkFn increment = &fn_71010413fc;
@@ -6011,18 +5315,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7101041488;
 struct UnkRefl_fn_710103ece4;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101041488> {
+const CType& base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710103ece4>(); }
+template struct base::reflection::ValueOps<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101041488> : base::reflection::ValueOpsDescription<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010416a0;
-    static constexpr UnkFn copy_construct = &fn_71010416a8;
-    static constexpr UnkFn move_construct = &fn_71010416b4;
-    static constexpr UnkFn destroy = &fn_71010416c0;
-    static constexpr UnkFn copy_assign = &fn_71010416c4;
-    static constexpr UnkFn move_assign = &fn_71010416d8;
-    static constexpr UnkFn equals = &fn_7101041670;
-    static constexpr UnkFn hash = &fn_7101041684;
-    static constexpr UnkFn type_of = &fn_710104168c;
     static constexpr UnkFn get = &fn_71010415f4;
     static constexpr UnkFn set = &fn_7101041654;
     static constexpr UnkFn increment = &fn_7101041660;
@@ -6092,18 +5390,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_71010491a4;
 struct UnkRefl_fn_7101045d7c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010491a4> {
+const CType& base::reflection::ValueOps<CBlackboard::CSection*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7101045d7c>(); }
+template struct base::reflection::ValueOps<CBlackboard::CSection*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010491a4> : base::reflection::ValueOpsDescription<CBlackboard::CSection*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010493bc;
-    static constexpr UnkFn copy_construct = &fn_71010493c4;
-    static constexpr UnkFn move_construct = &fn_71010493d0;
-    static constexpr UnkFn destroy = &fn_71010493dc;
-    static constexpr UnkFn copy_assign = &fn_71010493e0;
-    static constexpr UnkFn move_assign = &fn_71010493f4;
-    static constexpr UnkFn equals = &fn_710104938c;
-    static constexpr UnkFn hash = &fn_71010493a0;
-    static constexpr UnkFn type_of = &fn_71010493a8;
     static constexpr UnkFn get = &fn_7101049310;
     static constexpr UnkFn set = &fn_7101049370;
     static constexpr UnkFn increment = &fn_710104937c;
@@ -6173,18 +5465,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7101049bf8;
 struct UnkRefl_fn_710104670c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101049bf8> {
+const CType& base::reflection::ValueOps<CBlackboard::TSectionContainer*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710104670c>(); }
+template struct base::reflection::ValueOps<CBlackboard::TSectionContainer*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101049bf8> : base::reflection::ValueOpsDescription<CBlackboard::TSectionContainer*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7101049e10;
-    static constexpr UnkFn copy_construct = &fn_7101049e18;
-    static constexpr UnkFn move_construct = &fn_7101049e24;
-    static constexpr UnkFn destroy = &fn_7101049e30;
-    static constexpr UnkFn copy_assign = &fn_7101049e34;
-    static constexpr UnkFn move_assign = &fn_7101049e48;
-    static constexpr UnkFn equals = &fn_7101049de0;
-    static constexpr UnkFn hash = &fn_7101049df4;
-    static constexpr UnkFn type_of = &fn_7101049dfc;
     static constexpr UnkFn get = &fn_7101049d64;
     static constexpr UnkFn set = &fn_7101049dc4;
     static constexpr UnkFn increment = &fn_7101049dd0;
@@ -6686,18 +5972,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7101075ff0;
 struct UnkRefl_fn_7101075710;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101075ff0> {
+const CType& base::reflection::ValueOps<luaDisplayObject*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7101075710>(); }
+template struct base::reflection::ValueOps<luaDisplayObject*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101075ff0> : base::reflection::ValueOpsDescription<luaDisplayObject*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010761fc;
-    static constexpr UnkFn copy_construct = &fn_7101076204;
-    static constexpr UnkFn move_construct = &fn_7101076210;
-    static constexpr UnkFn destroy = &fn_710107621c;
-    static constexpr UnkFn copy_assign = &fn_7101076220;
-    static constexpr UnkFn move_assign = &fn_7101076234;
-    static constexpr UnkFn equals = &fn_71010761cc;
-    static constexpr UnkFn hash = &fn_71010761e0;
-    static constexpr UnkFn type_of = &fn_71010761e8;
     static constexpr UnkFn get = &fn_7101076158;
     static constexpr UnkFn set = &fn_71010761b0;
     static constexpr UnkFn increment = &fn_71010761bc;
@@ -6821,18 +6101,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_71010c54b8;
 struct UnkRefl_fn_71010c406c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010c54b8> {
+const CType& base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71010c406c>(); }
+template struct base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010c54b8> : base::reflection::ValueOpsDescription<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010c56d0;
-    static constexpr UnkFn copy_construct = &fn_71010c56d8;
-    static constexpr UnkFn move_construct = &fn_71010c56e4;
-    static constexpr UnkFn destroy = &fn_71010c56f0;
-    static constexpr UnkFn copy_assign = &fn_71010c56f4;
-    static constexpr UnkFn move_assign = &fn_71010c5708;
-    static constexpr UnkFn equals = &fn_71010c56a0;
-    static constexpr UnkFn hash = &fn_71010c56b4;
-    static constexpr UnkFn type_of = &fn_71010c56bc;
     static constexpr UnkFn get = &fn_71010c5624;
     static constexpr UnkFn set = &fn_71010c5684;
     static constexpr UnkFn increment = &fn_71010c5690;
@@ -6848,18 +6122,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_71010e6934;
 struct UnkRefl_fn_71010df6c0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010e6934> {
+const CType& base::reflection::ValueOps<CCameraCtrl*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71010df6c0>(); }
+template struct base::reflection::ValueOps<CCameraCtrl*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010e6934> : base::reflection::ValueOpsDescription<CCameraCtrl*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010e6b40;
-    static constexpr UnkFn copy_construct = &fn_71010e6b48;
-    static constexpr UnkFn move_construct = &fn_71010e6b54;
-    static constexpr UnkFn destroy = &fn_71010e6b60;
-    static constexpr UnkFn copy_assign = &fn_71010e6b64;
-    static constexpr UnkFn move_assign = &fn_71010e6b78;
-    static constexpr UnkFn equals = &fn_71010e6b10;
-    static constexpr UnkFn hash = &fn_71010e6b24;
-    static constexpr UnkFn type_of = &fn_71010e6b2c;
     static constexpr UnkFn get = &fn_71010e6a9c;
     static constexpr UnkFn set = &fn_71010e6af4;
     static constexpr UnkFn increment = &fn_71010e6b00;
@@ -7010,18 +6278,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_710112c9a0;
 struct UnkRefl_fn_7101120dc0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710112c9a0> {
+const CType& base::reflection::ValueOps<CSpawnerActorBlueprint*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7101120dc0>(); }
+template struct base::reflection::ValueOps<CSpawnerActorBlueprint*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_710112c9a0> : base::reflection::ValueOpsDescription<CSpawnerActorBlueprint*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710112cbb8;
-    static constexpr UnkFn copy_construct = &fn_710112cbc0;
-    static constexpr UnkFn move_construct = &fn_710112cbcc;
-    static constexpr UnkFn destroy = &fn_710112cbd8;
-    static constexpr UnkFn copy_assign = &fn_710112cbdc;
-    static constexpr UnkFn move_assign = &fn_710112cbf0;
-    static constexpr UnkFn equals = &fn_710112cb88;
-    static constexpr UnkFn hash = &fn_710112cb9c;
-    static constexpr UnkFn type_of = &fn_710112cba4;
     static constexpr UnkFn get = &fn_710112cb0c;
     static constexpr UnkFn set = &fn_710112cb6c;
     static constexpr UnkFn increment = &fn_710112cb78;

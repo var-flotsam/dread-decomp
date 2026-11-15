@@ -211,7 +211,206 @@ extern base::reflection::CType g_unk_71727b8dd8;
 extern base::reflection::CType g_unk_71727b8ef8;
 extern base::reflection::CType g_unk_71727ba2e0;
 void fn_7100014a48(void* values, u32 count);
+enum class EAIAnimationStates : u32;
+enum class EActionInsertFlags : u32;
+enum class EActionPlayMode : u32;
+enum class EActionProps : u32;
+enum class EActionSegmentType : u32;
+enum class EActorLayer : u32;
+enum class EAimDirection : u32;
+enum class EAnimationTag : u32;
+enum class EAutsharpSpawnPointDir : u32;
+enum class EAutsniperSpawnPointDir : u32;
+enum class EBreakableTileType : u32;
+enum class ECaterzillaSpawnPointDir : u32;
+enum class ECaterzillaSpawnPointOrder : u32;
+enum class ECoolShinesparkSituation : u32;
+enum class ECutPathMode : u32;
+enum class EDamageStrength : u32;
+enum class EDamageType : u32;
+enum class EDemolitionPhase : u32;
+enum class EElevatorDirection : u32;
+enum class EEmmyAlertLevel : u32;
+enum class EEventProps : u32;
+enum class EExecutionReturnValue : u32;
+enum class EFXType : u32;
+enum class EFollowInPathOrientation : u32;
+enum class EFollowPathRotationMode : u32;
+enum class EForceOpticCamouflageMode : u32;
+enum class EForcedDamageMode : u32;
+enum class EGrabEmmySamusQTEMode : u32;
+enum class EIceMode : u32;
+enum class EInFrustumMode : u32;
+enum class EInputAction : u32;
+enum class EInputAimDir : u32;
+enum class EJumpType : u32;
+enum class ELavaCarpetState : u32;
+enum class ELavaDropArm : u32;
+enum class ELavaDropArmPos : u32;
+enum class ELightType : u32;
+enum class ELinkType : u32;
+enum class EMinimapMode : u32;
+enum class ENavMeshItemType : u32;
+enum class ENavigablePathType : u32;
+enum class EOnActionEnd : u32;
+enum class EPickingMode : u32;
+enum class ERotationDirection : u32;
+enum class ESamusUsingGrapplePullPointStatePullStage : u32;
+enum class EShellState : u32;
+enum class EShieldAction : u32;
+enum class EShinesparkTravellingDirection : u32;
+enum class ESlidleOutSpawnPointDir : u32;
+enum class ESpinningNailsSpeed : u32;
+enum class ESpinningNailsState : u32;
+enum class ESwifterSpawnGroupDirection : u32;
+enum class ESwifterSpawnGroupSpawnMode : u32;
+enum class ETeleporterColorSphere : u32;
+enum class EThermalFreezeRoomType : u32;
+enum class EThermalHeatRoomType : u32;
+enum class ETrainDirection : u32;
+enum class EWalkInputMode : u32;
+enum class EWings : u32;
+enum class EXpawnAngPolicy : u32;
+enum class eDoorStateLogicAction : u32;
+namespace CAbilityMultiLockon { enum class SSubState : u32; }
+namespace CAbilityOpticCamouflage { enum class ESelectionInput : u32; }
+namespace CAbilityOpticCamouflage { enum class ESelectionMode : u32; }
+namespace CAnimationPrefix::SPrefix { enum class Enum : u32; }
+namespace CAutoolAIComponent { enum class EThrusterMode : u32; }
+namespace CAutsniperShootAttack { enum class EAutsniperState : u32; }
+namespace CAutsniperShootAttack { enum class ELaserState : u32; }
+namespace CBigFistAttack { enum class EBigFistAttackState : u32; }
+namespace CBigkranXMagmaRainAttack { enum class EState : u32; }
+namespace CBigkranXSpitAttack { enum class EState : u32; }
+namespace CCentralUnitCannonAIComponent { enum class EState : u32; }
+namespace CCentralUnitComponent { enum class ECentralUnitMode : u32; }
+namespace CCharClassAnalogAimTrack { enum class EAbortAnalogAimInput : u32; }
+namespace CCharClassDredhedAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassDropterAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassEnemyMovement { enum class ETurn180Mode : u32; }
+namespace CCharClassFlockingSwarmControllerComponent { enum class SRotationMode : u32; }
+namespace CCharClassGooplotAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassHecathonAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassInfesterAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassNailongThornsAttack { enum class EDepthornAttackType : u32; }
+namespace CCharClassPoisonFlyAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassProjectileMovement { enum class EProjectileMeleeHitReaction : u32; }
+namespace CCharClassQuetzoaAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassRodomithonXAIComponent::SFirePillarConfig { enum class EType : u32; }
+namespace CCharClassRodotukAIComponent::SAbsorbConfig { enum class EType : u32; }
+namespace CCharClassSabotoruAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassSetCameraNearEvent { enum class EDir : u32; }
+namespace CCharClassTakumakuAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassToStateTrack { enum class EMaintainFrameMode : u32; }
+namespace CCharClassVulkranAIComponent { enum class EDir : u32; }
+namespace CCharClassVulkranAIComponent { enum class ESubspecies : u32; }
+namespace CCharClassYamplotXAIComponent { enum class ESubspecies : u32; }
+namespace CChozoCommanderKiGrabAttack { enum class SState : u32; }
+namespace CChozoCommanderUltimateGrabAttack { enum class SState : u32; }
+namespace CChozoWarriorAIComponent { enum class ETransformationType : u32; }
+namespace CChozoWarriorXUltimateGrabAttack { enum class SState : u32; }
+namespace CChozoZombieXPoisonClawsAttack { enum class EState : u32; }
+namespace CDoorLifeComponent { enum class SState : u32; }
+namespace CDoorShieldLifeComponent { enum class EColor : u32; }
+namespace CDoorShieldLifeComponent { enum class EDoorsShieldType : u32; }
+namespace CElectricGeneratorComponent { enum class EBlackOutZone : u32; }
+namespace CEmmyAIComponent { enum class ETargetPerceptionType : u32; }
+namespace CEmmyStateOverrideLogicAction { enum class EMode : u32; }
+namespace CEscapeSequenceExplosionComponent { enum class EExplosionType : u32; }
+namespace CForbiddenEdgesLogicAction { enum class EState : u32; }
+namespace CForcedMovementAreaComponent { enum class EForcedDirection : u32; }
+namespace CGoliathAttack { enum class EGoliathAttackState : u32; }
+namespace CGrappleBeamGun { enum class ESelectionInput : u32; }
+namespace CGrappleBeamGun { enum class ESelectionMode : u32; }
+namespace CGroundShockerAttack { enum class EState : u32; }
+namespace CInfesterShootAttack { enum class EState : u32; }
+namespace CLiquidPoolBaseComponent { enum class ELiquidType : u32; }
+namespace CLockOnMissileMovement { enum class SSubState : u32; }
+namespace CMeleeComponent { enum class EMeleeTrailFXType : u32; }
+namespace CNailongAIComponent { enum class EType : u32; }
+namespace CNailongThornsAttack { enum class EState : u32; }
+namespace CNailuggerAcidBallsAttack { enum class EState : u32; }
+namespace CNavMeshItemStage { enum class ESide : u32; }
+namespace CObsydomithonAttack { enum class EState : u32; }
+namespace CPerceptionModifierLogicAction { enum class EMode : u32; }
+namespace CRinkaUnitComponent { enum class ECentralUnitType : u32; }
+namespace CRinkaUnitComponent { enum class ERinkaType : u32; }
+namespace CSabotoruTurnInDoorAttack { enum class EState : u32; }
+namespace CSamusMagnetGloveMovementState { enum class ESurfaceType : u32; }
+namespace CSamusMovement { enum class EUpdateCollisionsPhaseOrder : u32; }
+namespace CSaveGameLogicAction { enum class EDestination : u32; }
+namespace CScourgeTongueSlashAttack { enum class EState : u32; }
+namespace CShakernautDoubleGroundShockAttack { enum class ESide : u32; }
+namespace CShakernautDoubleGroundShockAttack { enum class EState : u32; }
+namespace CShakernautPiercingLaserAttack { enum class ESide : u32; }
+namespace CShakernautPiercingLaserAttack { enum class EState : u32; }
+namespace CShelmitPlasmaRayAttack { enum class EAttackState : u32; }
+namespace CSideEnemyMovement { enum class EDir : u32; }
+namespace CSluggerSpitAttack { enum class EState : u32; }
+namespace CTakumakuDashAttack { enum class EState : u32; }
+namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
+namespace CTimelineComponent { enum class ENextPolicy : u32; }
+namespace CTriggerComponent { enum class EEvent : u32; }
+namespace CXParasiteAIComponent { enum class EXParasiteBehaviorType : u32; }
+namespace GUI::CGlobalMapComposition { enum class SState : u32; }
+namespace GUI::CMapMenuController { enum class SState : u32; }
+namespace SDropProbabilities { enum class SDir : u32; }
+namespace SDropProbabilities { enum class SType : u32; }
+namespace animtree::CAnimatedNodeDef { enum class EAnimNodeType : u32; }
 namespace base::animation { enum class EBlendFunction : u32; }
+namespace base::curves { enum class EInterpMode : u32; }
+namespace base::curves { enum class EKeysType : u32; }
+namespace base::curves { enum class ETimeType : u32; }
+namespace base::global::timeline { enum class ELayer : u32; }
+namespace base::input { enum class ERumbleType : u32; }
+namespace base::math { enum class EMaxAxis : u32; }
+namespace base::math { enum class ETransformSpace : u32; }
+namespace base::reflection { enum class EAttributeTarget : u32; }
+namespace base::reflection { enum class ECollectionAccessMode : u32; }
+namespace base::serialization { enum class EDeserializeCollectionElementMode : u32; }
+namespace base::serialization { enum class EPersistence : u32; }
+namespace base::snd { enum class EAttenuationCurve : u32; }
+namespace base::snd { enum class ELowPassFilter : u32; }
+namespace base::snd { enum class EPositionalType : u32; }
+namespace base::snd { enum class EReverbIntensity : u32; }
+namespace base::snd { enum class ESndLogicId : u32; }
+namespace base::snd { enum class ESndPlayerId : u32; }
+namespace base::snd { enum class ESndType : u32; }
+namespace base::snd { enum class ESoundGroupIds : u32; }
+namespace base::snd { enum class ESoundSystemImGuiTabs : u32; }
+namespace behaviortree::CParallel { enum class EPolicy : u32; }
+namespace behaviortree::CScaredAction { enum class EState : u32; }
+namespace behaviortree::SCompareOperator { enum class Enum : u32; }
+namespace behaviortree::SStatus { enum class Enum : u32; }
+namespace cutscene { enum class EDevelopmentState : u32; }
+namespace cutscene { enum class ETakePlayMode : u32; }
+namespace darkness { enum class EDarknessPreset : u32; }
+namespace engine::scene::sceneItems { enum class EItemType : u32; }
+namespace engine::utils { enum class ELightPreset : u32; }
+namespace engine::utils { enum class EMaterialConstantColor : u32; }
+namespace game::curves { enum class EProcessorType : u32; }
+namespace game::logic::collision { enum class EColMat : u32; }
+namespace gameeditor { enum class EEditorModeDataFlow : u32; }
+namespace gameeditor { enum class EPersistenceTarget : u32; }
+namespace media { enum class EMovieStatus : u32; }
+namespace msapi::api::idx { enum class EDataType : u32; }
+namespace msapi::api::idx { enum class EPrimitiveType : u32; }
+namespace msapi::api::rs { enum class ERenderStateValue : u32; }
+namespace msapi::api::shdr { enum class EShaderType : u32; }
+namespace msapi::api::tex { enum class EArrangement : u32; }
+namespace msapi::api::tex { enum class EComponents : u32; }
+namespace msapi::api::tex { enum class EFiltering : u32; }
+namespace msapi::api::tex { enum class ETiling : u32; }
+namespace msapi::api::types::blendFactor { enum class EBlendFactor : u32; }
+namespace msapi::api::types::blendOp { enum class EBlendOp : u32; }
+namespace msapi::api::types::cmpMode { enum class ECmpMode : u32; }
+namespace msapi::api::types::cullMode { enum class ECullMode : u32; }
+namespace msapi::api::types::fillMode { enum class EFillMode : u32; }
+namespace msapi::api::types::stencilOp { enum class EStencilOp : u32; }
+namespace msapi::api::types::textureAddress { enum class ETextureAddress : u32; }
+namespace msapi::api::types::textureFilter { enum class ETextureFilter : u32; }
+namespace msapi::material { enum class ETranslucencyType : u32; }
+namespace navmesh { enum class ENavMeshGroup : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::animation::EBlendFunction>::TypeOf(const void*) { return g_unk_7101d4d5d0; }
 template struct base::reflection::ValueOps<base::animation::EBlendFunction>;
@@ -222,7 +421,6 @@ struct base::reflection::EnumTypeDescription<base::animation::EBlendFunction> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::animation::EBlendFunction*);
-namespace base::curves { enum class EKeysType : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::curves::EKeysType>::TypeOf(const void*) { return g_unk_7101d4ef10; }
 template struct base::reflection::ValueOps<base::curves::EKeysType>;
@@ -233,7 +431,6 @@ struct base::reflection::EnumTypeDescription<base::curves::EKeysType> : base::re
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::curves::EKeysType*);
-namespace base::curves { enum class ETimeType : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::curves::ETimeType>::TypeOf(const void*) { return g_unk_7101d4f070; }
 template struct base::reflection::ValueOps<base::curves::ETimeType>;
@@ -244,7 +441,6 @@ struct base::reflection::EnumTypeDescription<base::curves::ETimeType> : base::re
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::curves::ETimeType*);
-namespace base::curves { enum class EInterpMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::curves::EInterpMode>::TypeOf(const void*) { return g_unk_7101d4f1d0; }
 template struct base::reflection::ValueOps<base::curves::EInterpMode>;
@@ -255,7 +451,6 @@ struct base::reflection::EnumTypeDescription<base::curves::EInterpMode> : base::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::curves::EInterpMode*);
-namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <>
 const CType& base::reflection::ValueOps<gameeditor::EEditorModeDataFlow>::TypeOf(const void*) { return g_unk_7101d55008; }
 template struct base::reflection::ValueOps<gameeditor::EEditorModeDataFlow>;
@@ -266,7 +461,6 @@ struct base::reflection::EnumTypeDescription<gameeditor::EEditorModeDataFlow> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, gameeditor::EEditorModeDataFlow*);
-enum class EEventProps : u32;
 template <>
 const CType& base::reflection::ValueOps<EEventProps>::TypeOf(const void*) { return g_unk_7101d57cf8; }
 template struct base::reflection::ValueOps<EEventProps>;
@@ -277,7 +471,6 @@ struct base::reflection::EnumTypeDescription<EEventProps> : base::reflection::Va
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EEventProps*);
-namespace base::global::timeline { enum class ELayer : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::global::timeline::ELayer>::TypeOf(const void*) { return g_unk_7101d57f90; }
 template struct base::reflection::ValueOps<base::global::timeline::ELayer>;
@@ -288,7 +481,6 @@ struct base::reflection::EnumTypeDescription<base::global::timeline::ELayer> : b
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::global::timeline::ELayer*);
-namespace base::input { enum class ERumbleType : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::input::ERumbleType>::TypeOf(const void*) { return g_unk_7101d58410; }
 template struct base::reflection::ValueOps<base::input::ERumbleType>;
@@ -299,7 +491,6 @@ struct base::reflection::EnumTypeDescription<base::input::ERumbleType> : base::r
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::input::ERumbleType*);
-namespace base::math { enum class ETransformSpace : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::math::ETransformSpace>::TypeOf(const void*) { return g_unk_7101d58900; }
 template struct base::reflection::ValueOps<base::math::ETransformSpace>;
@@ -310,7 +501,6 @@ struct base::reflection::EnumTypeDescription<base::math::ETransformSpace> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::math::ETransformSpace*);
-namespace base::math { enum class EMaxAxis : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::math::EMaxAxis>::TypeOf(const void*) { return g_unk_7101d58a60; }
 template struct base::reflection::ValueOps<base::math::EMaxAxis>;
@@ -321,7 +511,6 @@ struct base::reflection::EnumTypeDescription<base::math::EMaxAxis> : base::refle
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::math::EMaxAxis*);
-namespace base::reflection { enum class EAttributeTarget : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::reflection::EAttributeTarget>::TypeOf(const void*) { return g_unk_7101d5a038; }
 template struct base::reflection::ValueOps<base::reflection::EAttributeTarget>;
@@ -332,7 +521,6 @@ struct base::reflection::EnumTypeDescription<base::reflection::EAttributeTarget>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::reflection::EAttributeTarget*);
-namespace base::reflection { enum class ECollectionAccessMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::reflection::ECollectionAccessMode>::TypeOf(const void*) { return g_unk_7101d5a330; }
 template struct base::reflection::ValueOps<base::reflection::ECollectionAccessMode>;
@@ -343,7 +531,6 @@ struct base::reflection::EnumTypeDescription<base::reflection::ECollectionAccess
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::reflection::ECollectionAccessMode*);
-enum class EExecutionReturnValue : u32;
 template <>
 const CType& base::reflection::ValueOps<EExecutionReturnValue>::TypeOf(const void*) { return g_unk_7101d5b720; }
 template struct base::reflection::ValueOps<EExecutionReturnValue>;
@@ -354,7 +541,6 @@ struct base::reflection::EnumTypeDescription<EExecutionReturnValue> : base::refl
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EExecutionReturnValue*);
-namespace base::serialization { enum class EPersistence : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::serialization::EPersistence>::TypeOf(const void*) { return g_unk_7101d679f0; }
 template struct base::reflection::ValueOps<base::serialization::EPersistence>;
@@ -365,7 +551,6 @@ struct base::reflection::EnumTypeDescription<base::serialization::EPersistence> 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::serialization::EPersistence*);
-namespace base::serialization { enum class EDeserializeCollectionElementMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::serialization::EDeserializeCollectionElementMode>::TypeOf(const void*) { return g_unk_7101d67c10; }
 template struct base::reflection::ValueOps<base::serialization::EDeserializeCollectionElementMode>;
@@ -376,7 +561,6 @@ struct base::reflection::EnumTypeDescription<base::serialization::EDeserializeCo
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::serialization::EDeserializeCollectionElementMode*);
-namespace base::snd { enum class ESoundSystemImGuiTabs : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::ESoundSystemImGuiTabs>::TypeOf(const void*) { return g_unk_7101d682e0; }
 template struct base::reflection::ValueOps<base::snd::ESoundSystemImGuiTabs>;
@@ -387,7 +571,6 @@ struct base::reflection::EnumTypeDescription<base::snd::ESoundSystemImGuiTabs> :
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::ESoundSystemImGuiTabs*);
-namespace base::snd { enum class ESoundGroupIds : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::ESoundGroupIds>::TypeOf(const void*) { return g_unk_7108b6c488; }
 template struct base::reflection::ValueOps<base::snd::ESoundGroupIds>;
@@ -398,7 +581,6 @@ struct base::reflection::EnumTypeDescription<base::snd::ESoundGroupIds> : base::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::ESoundGroupIds*);
-namespace base::snd { enum class ESndType : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::ESndType>::TypeOf(const void*) { return g_unk_7108b6c9c8; }
 template struct base::reflection::ValueOps<base::snd::ESndType>;
@@ -409,7 +591,6 @@ struct base::reflection::EnumTypeDescription<base::snd::ESndType> : base::reflec
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::ESndType*);
-namespace base::snd { enum class EAttenuationCurve : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::EAttenuationCurve>::TypeOf(const void*) { return g_unk_7108b6cb28; }
 template struct base::reflection::ValueOps<base::snd::EAttenuationCurve>;
@@ -420,7 +601,6 @@ struct base::reflection::EnumTypeDescription<base::snd::EAttenuationCurve> : bas
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::EAttenuationCurve*);
-namespace base::snd { enum class EReverbIntensity : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::EReverbIntensity>::TypeOf(const void*) { return g_unk_7108b6cc88; }
 template struct base::reflection::ValueOps<base::snd::EReverbIntensity>;
@@ -431,7 +611,6 @@ struct base::reflection::EnumTypeDescription<base::snd::EReverbIntensity> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::EReverbIntensity*);
-namespace base::snd { enum class ELowPassFilter : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::ELowPassFilter>::TypeOf(const void*) { return g_unk_7108b6cde8; }
 template struct base::reflection::ValueOps<base::snd::ELowPassFilter>;
@@ -442,7 +621,6 @@ struct base::reflection::EnumTypeDescription<base::snd::ELowPassFilter> : base::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::ELowPassFilter*);
-namespace base::snd { enum class EPositionalType : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::EPositionalType>::TypeOf(const void*) { return g_unk_7108b6cf48; }
 template struct base::reflection::ValueOps<base::snd::EPositionalType>;
@@ -453,7 +631,6 @@ struct base::reflection::EnumTypeDescription<base::snd::EPositionalType> : base:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::EPositionalType*);
-namespace base::snd { enum class ESndPlayerId : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::ESndPlayerId>::TypeOf(const void*) { return g_unk_7108b6d110; }
 template struct base::reflection::ValueOps<base::snd::ESndPlayerId>;
@@ -464,7 +641,6 @@ struct base::reflection::EnumTypeDescription<base::snd::ESndPlayerId> : base::re
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::ESndPlayerId*);
-namespace base::snd { enum class ESndLogicId : u32; }
 template <>
 const CType& base::reflection::ValueOps<base::snd::ESndLogicId>::TypeOf(const void*) { return g_unk_7108b6d270; }
 template struct base::reflection::ValueOps<base::snd::ESndLogicId>;
@@ -475,7 +651,6 @@ struct base::reflection::EnumTypeDescription<base::snd::ESndLogicId> : base::ref
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, base::snd::ESndLogicId*);
-namespace msapi::api::shdr { enum class EShaderType : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::shdr::EShaderType>::TypeOf(const void*) { return g_unk_716e34af70; }
 template struct base::reflection::ValueOps<msapi::api::shdr::EShaderType>;
@@ -486,7 +661,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::shdr::EShaderType> : ba
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::shdr::EShaderType*);
-namespace msapi::api::rs { enum class ERenderStateValue : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::rs::ERenderStateValue>::TypeOf(const void*) { return g_unk_716e34b0d0; }
 template struct base::reflection::ValueOps<msapi::api::rs::ERenderStateValue>;
@@ -497,7 +671,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::rs::ERenderStateValue> 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::rs::ERenderStateValue*);
-namespace msapi::api::idx { enum class EPrimitiveType : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::idx::EPrimitiveType>::TypeOf(const void*) { return g_unk_716e34b1f0; }
 template struct base::reflection::ValueOps<msapi::api::idx::EPrimitiveType>;
@@ -508,7 +681,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::idx::EPrimitiveType> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::idx::EPrimitiveType*);
-namespace msapi::api::idx { enum class EDataType : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::idx::EDataType>::TypeOf(const void*) { return g_unk_716e34b310; }
 template struct base::reflection::ValueOps<msapi::api::idx::EDataType>;
@@ -519,7 +691,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::idx::EDataType> : base:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::idx::EDataType*);
-namespace msapi::api::tex { enum class EComponents : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::tex::EComponents>::TypeOf(const void*) { return g_unk_716e34b430; }
 template struct base::reflection::ValueOps<msapi::api::tex::EComponents>;
@@ -530,7 +701,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::tex::EComponents> : bas
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::tex::EComponents*);
-namespace msapi::api::tex { enum class EArrangement : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::tex::EArrangement>::TypeOf(const void*) { return g_unk_716e34b550; }
 template struct base::reflection::ValueOps<msapi::api::tex::EArrangement>;
@@ -541,7 +711,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::tex::EArrangement> : ba
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::tex::EArrangement*);
-namespace msapi::api::tex { enum class ETiling : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::tex::ETiling>::TypeOf(const void*) { return g_unk_716e34b670; }
 template struct base::reflection::ValueOps<msapi::api::tex::ETiling>;
@@ -552,7 +721,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::tex::ETiling> : base::r
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::tex::ETiling*);
-namespace msapi::api::tex { enum class EFiltering : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::tex::EFiltering>::TypeOf(const void*) { return g_unk_716e34b790; }
 template struct base::reflection::ValueOps<msapi::api::tex::EFiltering>;
@@ -563,7 +731,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::tex::EFiltering> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::tex::EFiltering*);
-namespace msapi::api::types::blendOp { enum class EBlendOp : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::types::blendOp::EBlendOp>::TypeOf(const void*) { return g_unk_716e34b8b0; }
 template struct base::reflection::ValueOps<msapi::api::types::blendOp::EBlendOp>;
@@ -574,7 +741,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::types::blendOp::EBlendO
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::types::blendOp::EBlendOp*);
-namespace msapi::api::types::blendFactor { enum class EBlendFactor : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::types::blendFactor::EBlendFactor>::TypeOf(const void*) { return g_unk_716e34b9d0; }
 template struct base::reflection::ValueOps<msapi::api::types::blendFactor::EBlendFactor>;
@@ -585,7 +751,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::types::blendFactor::EBl
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::types::blendFactor::EBlendFactor*);
-namespace msapi::api::types::cullMode { enum class ECullMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::types::cullMode::ECullMode>::TypeOf(const void*) { return g_unk_716e34baf0; }
 template struct base::reflection::ValueOps<msapi::api::types::cullMode::ECullMode>;
@@ -596,7 +761,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::types::cullMode::ECullM
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::types::cullMode::ECullMode*);
-namespace msapi::api::types::cmpMode { enum class ECmpMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::types::cmpMode::ECmpMode>::TypeOf(const void*) { return g_unk_716e34bc10; }
 template struct base::reflection::ValueOps<msapi::api::types::cmpMode::ECmpMode>;
@@ -607,7 +771,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::types::cmpMode::ECmpMod
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::types::cmpMode::ECmpMode*);
-namespace msapi::api::types::stencilOp { enum class EStencilOp : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::types::stencilOp::EStencilOp>::TypeOf(const void*) { return g_unk_716e34bd30; }
 template struct base::reflection::ValueOps<msapi::api::types::stencilOp::EStencilOp>;
@@ -618,7 +781,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::types::stencilOp::ESten
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::types::stencilOp::EStencilOp*);
-namespace msapi::api::types::textureAddress { enum class ETextureAddress : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::types::textureAddress::ETextureAddress>::TypeOf(const void*) { return g_unk_716e34be50; }
 template struct base::reflection::ValueOps<msapi::api::types::textureAddress::ETextureAddress>;
@@ -629,7 +791,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::types::textureAddress::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::types::textureAddress::ETextureAddress*);
-namespace msapi::api::types::textureFilter { enum class ETextureFilter : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::types::textureFilter::ETextureFilter>::TypeOf(const void*) { return g_unk_716e34bf70; }
 template struct base::reflection::ValueOps<msapi::api::types::textureFilter::ETextureFilter>;
@@ -640,7 +801,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::types::textureFilter::E
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::types::textureFilter::ETextureFilter*);
-namespace msapi::api::types::fillMode { enum class EFillMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::api::types::fillMode::EFillMode>::TypeOf(const void*) { return g_unk_716e34c090; }
 template struct base::reflection::ValueOps<msapi::api::types::fillMode::EFillMode>;
@@ -651,7 +811,6 @@ struct base::reflection::EnumTypeDescription<msapi::api::types::fillMode::EFillM
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::api::types::fillMode::EFillMode*);
-namespace msapi::material { enum class ETranslucencyType : u32; }
 template <>
 const CType& base::reflection::ValueOps<msapi::material::ETranslucencyType>::TypeOf(const void*) { return g_unk_716e352788; }
 template struct base::reflection::ValueOps<msapi::material::ETranslucencyType>;
@@ -662,7 +821,6 @@ struct base::reflection::EnumTypeDescription<msapi::material::ETranslucencyType>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, msapi::material::ETranslucencyType*);
-namespace engine::scene::sceneItems { enum class EItemType : u32; }
 template <>
 const CType& base::reflection::ValueOps<engine::scene::sceneItems::EItemType>::TypeOf(const void*) { return g_unk_716e597878; }
 template struct base::reflection::ValueOps<engine::scene::sceneItems::EItemType>;
@@ -673,7 +831,6 @@ struct base::reflection::EnumTypeDescription<engine::scene::sceneItems::EItemTyp
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, engine::scene::sceneItems::EItemType*);
-namespace engine::utils { enum class EMaterialConstantColor : u32; }
 template <>
 const CType& base::reflection::ValueOps<engine::utils::EMaterialConstantColor>::TypeOf(const void*) { return g_unk_716e599140; }
 template struct base::reflection::ValueOps<engine::utils::EMaterialConstantColor>;
@@ -684,7 +841,6 @@ struct base::reflection::EnumTypeDescription<engine::utils::EMaterialConstantCol
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, engine::utils::EMaterialConstantColor*);
-namespace engine::utils { enum class ELightPreset : u32; }
 template <>
 const CType& base::reflection::ValueOps<engine::utils::ELightPreset>::TypeOf(const void*) { return g_unk_716e5992a0; }
 template struct base::reflection::ValueOps<engine::utils::ELightPreset>;
@@ -695,7 +851,6 @@ struct base::reflection::EnumTypeDescription<engine::utils::ELightPreset> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, engine::utils::ELightPreset*);
-namespace media { enum class EMovieStatus : u32; }
 template <>
 const CType& base::reflection::ValueOps<media::EMovieStatus>::TypeOf(const void*) { return g_unk_716e599948; }
 template struct base::reflection::ValueOps<media::EMovieStatus>;
@@ -706,7 +861,6 @@ struct base::reflection::EnumTypeDescription<media::EMovieStatus> : base::reflec
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, media::EMovieStatus*);
-enum class EActorLayer : u32;
 template <>
 const CType& base::reflection::ValueOps<EActorLayer>::TypeOf(const void*) { return g_unk_71726a0cd8; }
 template struct base::reflection::ValueOps<EActorLayer>;
@@ -717,7 +871,6 @@ struct base::reflection::EnumTypeDescription<EActorLayer> : base::reflection::Va
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EActorLayer*);
-namespace animtree::CAnimatedNodeDef { enum class EAnimNodeType : u32; }
 template <>
 const CType& base::reflection::ValueOps<animtree::CAnimatedNodeDef::EAnimNodeType>::TypeOf(const void*) { return g_unk_71726a8fa0; }
 template struct base::reflection::ValueOps<animtree::CAnimatedNodeDef::EAnimNodeType>;
@@ -728,7 +881,6 @@ struct base::reflection::EnumTypeDescription<animtree::CAnimatedNodeDef::EAnimNo
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, animtree::CAnimatedNodeDef::EAnimNodeType*);
-namespace CAbilityMultiLockon { enum class SSubState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CAbilityMultiLockon::SSubState>::TypeOf(const void*) { return g_unk_71726af748; }
 template struct base::reflection::ValueOps<CAbilityMultiLockon::SSubState>;
@@ -739,7 +891,6 @@ struct base::reflection::EnumTypeDescription<CAbilityMultiLockon::SSubState> : b
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAbilityMultiLockon::SSubState*);
-namespace CAbilityOpticCamouflage { enum class ESelectionMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CAbilityOpticCamouflage::ESelectionMode>::TypeOf(const void*) { return g_unk_71726afcf8; }
 template struct base::reflection::ValueOps<CAbilityOpticCamouflage::ESelectionMode>;
@@ -750,7 +901,6 @@ struct base::reflection::EnumTypeDescription<CAbilityOpticCamouflage::ESelection
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAbilityOpticCamouflage::ESelectionMode*);
-namespace CAbilityOpticCamouflage { enum class ESelectionInput : u32; }
 template <>
 const CType& base::reflection::ValueOps<CAbilityOpticCamouflage::ESelectionInput>::TypeOf(const void*) { return g_unk_71726afe58; }
 template struct base::reflection::ValueOps<CAbilityOpticCamouflage::ESelectionInput>;
@@ -761,7 +911,6 @@ struct base::reflection::EnumTypeDescription<CAbilityOpticCamouflage::ESelection
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAbilityOpticCamouflage::ESelectionInput*);
-enum class EShinesparkTravellingDirection : u32;
 template <>
 const CType& base::reflection::ValueOps<EShinesparkTravellingDirection>::TypeOf(const void*) { return g_unk_71726b0410; }
 template struct base::reflection::ValueOps<EShinesparkTravellingDirection>;
@@ -772,7 +921,6 @@ struct base::reflection::EnumTypeDescription<EShinesparkTravellingDirection> : b
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EShinesparkTravellingDirection*);
-enum class ECoolShinesparkSituation : u32;
 template <>
 const CType& base::reflection::ValueOps<ECoolShinesparkSituation>::TypeOf(const void*) { return g_unk_71726b06a8; }
 template struct base::reflection::ValueOps<ECoolShinesparkSituation>;
@@ -783,7 +931,6 @@ struct base::reflection::EnumTypeDescription<ECoolShinesparkSituation> : base::r
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ECoolShinesparkSituation*);
-enum class EInputAimDir : u32;
 template <>
 const CType& base::reflection::ValueOps<EInputAimDir>::TypeOf(const void*) { return g_unk_71726b1508; }
 template struct base::reflection::ValueOps<EInputAimDir>;
@@ -794,7 +941,6 @@ struct base::reflection::EnumTypeDescription<EInputAimDir> : base::reflection::V
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EInputAimDir*);
-enum class EAimDirection : u32;
 template <>
 const CType& base::reflection::ValueOps<EAimDirection>::TypeOf(const void*) { return g_unk_71726b1ad8; }
 template struct base::reflection::ValueOps<EAimDirection>;
@@ -805,7 +951,6 @@ struct base::reflection::EnumTypeDescription<EAimDirection> : base::reflection::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EAimDirection*);
-enum class ECutPathMode : u32;
 template <>
 const CType& base::reflection::ValueOps<ECutPathMode>::TypeOf(const void*) { return g_unk_71726b1db0; }
 template struct base::reflection::ValueOps<ECutPathMode>;
@@ -816,7 +961,6 @@ struct base::reflection::EnumTypeDescription<ECutPathMode> : base::reflection::V
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ECutPathMode*);
-enum class EXpawnAngPolicy : u32;
 template <>
 const CType& base::reflection::ValueOps<EXpawnAngPolicy>::TypeOf(const void*) { return g_unk_71726b1f10; }
 template struct base::reflection::ValueOps<EXpawnAngPolicy>;
@@ -827,7 +971,6 @@ struct base::reflection::EnumTypeDescription<EXpawnAngPolicy> : base::reflection
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EXpawnAngPolicy*);
-namespace behaviortree::CScaredAction { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<behaviortree::CScaredAction::EState>::TypeOf(const void*) { return g_unk_71726b7058; }
 template struct base::reflection::ValueOps<behaviortree::CScaredAction::EState>;
@@ -838,7 +981,6 @@ struct base::reflection::EnumTypeDescription<behaviortree::CScaredAction::EState
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, behaviortree::CScaredAction::EState*);
-namespace behaviortree::CParallel { enum class EPolicy : u32; }
 template <>
 const CType& base::reflection::ValueOps<behaviortree::CParallel::EPolicy>::TypeOf(const void*) { return g_unk_71726bbbb0; }
 template struct base::reflection::ValueOps<behaviortree::CParallel::EPolicy>;
@@ -849,7 +991,6 @@ struct base::reflection::EnumTypeDescription<behaviortree::CParallel::EPolicy> :
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, behaviortree::CParallel::EPolicy*);
-namespace behaviortree::SStatus { enum class Enum : u32; }
 template <>
 const CType& base::reflection::ValueOps<behaviortree::SStatus::Enum>::TypeOf(const void*) { return g_unk_71726bc130; }
 template struct base::reflection::ValueOps<behaviortree::SStatus::Enum>;
@@ -860,7 +1001,6 @@ struct base::reflection::EnumTypeDescription<behaviortree::SStatus::Enum> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, behaviortree::SStatus::Enum*);
-namespace behaviortree::SCompareOperator { enum class Enum : u32; }
 template <>
 const CType& base::reflection::ValueOps<behaviortree::SCompareOperator::Enum>::TypeOf(const void*) { return g_unk_71726bc290; }
 template struct base::reflection::ValueOps<behaviortree::SCompareOperator::Enum>;
@@ -871,7 +1011,6 @@ struct base::reflection::EnumTypeDescription<behaviortree::SCompareOperator::Enu
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, behaviortree::SCompareOperator::Enum*);
-enum class EJumpType : u32;
 template <>
 const CType& base::reflection::ValueOps<EJumpType>::TypeOf(const void*) { return g_unk_71726bd748; }
 template struct base::reflection::ValueOps<EJumpType>;
@@ -882,7 +1021,6 @@ struct base::reflection::EnumTypeDescription<EJumpType> : base::reflection::Valu
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EJumpType*);
-namespace CAutoolAIComponent { enum class EThrusterMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CAutoolAIComponent::EThrusterMode>::TypeOf(const void*) { return g_unk_71726be830; }
 template struct base::reflection::ValueOps<CAutoolAIComponent::EThrusterMode>;
@@ -893,7 +1031,6 @@ struct base::reflection::EnumTypeDescription<CAutoolAIComponent::EThrusterMode> 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAutoolAIComponent::EThrusterMode*);
-namespace CAutsniperShootAttack { enum class ELaserState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CAutsniperShootAttack::ELaserState>::TypeOf(const void*) { return g_unk_71726bf538; }
 template struct base::reflection::ValueOps<CAutsniperShootAttack::ELaserState>;
@@ -904,7 +1041,6 @@ struct base::reflection::EnumTypeDescription<CAutsniperShootAttack::ELaserState>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAutsniperShootAttack::ELaserState*);
-namespace CAutsniperShootAttack { enum class EAutsniperState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CAutsniperShootAttack::EAutsniperState>::TypeOf(const void*) { return g_unk_71726bf698; }
 template struct base::reflection::ValueOps<CAutsniperShootAttack::EAutsniperState>;
@@ -915,7 +1051,6 @@ struct base::reflection::EnumTypeDescription<CAutsniperShootAttack::EAutsniperSt
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAutsniperShootAttack::EAutsniperState*);
-namespace CBigFistAttack { enum class EBigFistAttackState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CBigFistAttack::EBigFistAttackState>::TypeOf(const void*) { return g_unk_71726c03b0; }
 template struct base::reflection::ValueOps<CBigFistAttack::EBigFistAttackState>;
@@ -926,7 +1061,6 @@ struct base::reflection::EnumTypeDescription<CBigFistAttack::EBigFistAttackState
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CBigFistAttack::EBigFistAttackState*);
-namespace CBigkranXMagmaRainAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CBigkranXMagmaRainAttack::EState>::TypeOf(const void*) { return g_unk_71726c16a0; }
 template struct base::reflection::ValueOps<CBigkranXMagmaRainAttack::EState>;
@@ -937,7 +1071,6 @@ struct base::reflection::EnumTypeDescription<CBigkranXMagmaRainAttack::EState> :
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CBigkranXMagmaRainAttack::EState*);
-namespace CBigkranXSpitAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CBigkranXSpitAttack::EState>::TypeOf(const void*) { return g_unk_71726c26f8; }
 template struct base::reflection::ValueOps<CBigkranXSpitAttack::EState>;
@@ -948,7 +1081,6 @@ struct base::reflection::EnumTypeDescription<CBigkranXSpitAttack::EState> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CBigkranXSpitAttack::EState*);
-namespace CCentralUnitCannonAIComponent { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCentralUnitCannonAIComponent::EState>::TypeOf(const void*) { return g_unk_71726c2f80; }
 template struct base::reflection::ValueOps<CCentralUnitCannonAIComponent::EState>;
@@ -959,7 +1091,6 @@ struct base::reflection::EnumTypeDescription<CCentralUnitCannonAIComponent::ESta
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCentralUnitCannonAIComponent::EState*);
-namespace CChozoCommanderKiGrabAttack { enum class SState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CChozoCommanderKiGrabAttack::SState>::TypeOf(const void*) { return g_unk_71726c7c70; }
 template struct base::reflection::ValueOps<CChozoCommanderKiGrabAttack::SState>;
@@ -970,7 +1101,6 @@ struct base::reflection::EnumTypeDescription<CChozoCommanderKiGrabAttack::SState
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CChozoCommanderKiGrabAttack::SState*);
-namespace CChozoCommanderUltimateGrabAttack { enum class SState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CChozoCommanderUltimateGrabAttack::SState>::TypeOf(const void*) { return g_unk_71726c8668; }
 template struct base::reflection::ValueOps<CChozoCommanderUltimateGrabAttack::SState>;
@@ -981,7 +1111,6 @@ struct base::reflection::EnumTypeDescription<CChozoCommanderUltimateGrabAttack::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CChozoCommanderUltimateGrabAttack::SState*);
-namespace CChozoWarriorXUltimateGrabAttack { enum class SState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CChozoWarriorXUltimateGrabAttack::SState>::TypeOf(const void*) { return g_unk_71726cf338; }
 template struct base::reflection::ValueOps<CChozoWarriorXUltimateGrabAttack::SState>;
@@ -992,7 +1121,6 @@ struct base::reflection::EnumTypeDescription<CChozoWarriorXUltimateGrabAttack::S
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CChozoWarriorXUltimateGrabAttack::SState*);
-namespace CChozoWarriorAIComponent { enum class ETransformationType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CChozoWarriorAIComponent::ETransformationType>::TypeOf(const void*) { return g_unk_71726d10e8; }
 template struct base::reflection::ValueOps<CChozoWarriorAIComponent::ETransformationType>;
@@ -1003,7 +1131,6 @@ struct base::reflection::EnumTypeDescription<CChozoWarriorAIComponent::ETransfor
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CChozoWarriorAIComponent::ETransformationType*);
-namespace CChozoZombieXPoisonClawsAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CChozoZombieXPoisonClawsAttack::EState>::TypeOf(const void*) { return g_unk_71726d1588; }
 template struct base::reflection::ValueOps<CChozoZombieXPoisonClawsAttack::EState>;
@@ -1014,7 +1141,6 @@ struct base::reflection::EnumTypeDescription<CChozoZombieXPoisonClawsAttack::ESt
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CChozoZombieXPoisonClawsAttack::EState*);
-enum class ELavaCarpetState : u32;
 template <>
 const CType& base::reflection::ValueOps<ELavaCarpetState>::TypeOf(const void*) { return g_unk_71726d1f78; }
 template struct base::reflection::ValueOps<ELavaCarpetState>;
@@ -1025,7 +1151,6 @@ struct base::reflection::EnumTypeDescription<ELavaCarpetState> : base::reflectio
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ELavaCarpetState*);
-enum class ELavaDropArm : u32;
 template <>
 const CType& base::reflection::ValueOps<ELavaDropArm>::TypeOf(const void*) { return g_unk_71726d37e8; }
 template struct base::reflection::ValueOps<ELavaDropArm>;
@@ -1036,7 +1161,6 @@ struct base::reflection::EnumTypeDescription<ELavaDropArm> : base::reflection::V
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ELavaDropArm*);
-enum class ELavaDropArmPos : u32;
 template <>
 const CType& base::reflection::ValueOps<ELavaDropArmPos>::TypeOf(const void*) { return g_unk_71726d3948; }
 template struct base::reflection::ValueOps<ELavaDropArmPos>;
@@ -1047,7 +1171,6 @@ struct base::reflection::EnumTypeDescription<ELavaDropArmPos> : base::reflection
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ELavaDropArmPos*);
-namespace CCharClassDredhedAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassDredhedAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_71726da478; }
 template struct base::reflection::ValueOps<CCharClassDredhedAIComponent::ESubspecies>;
@@ -1058,7 +1181,6 @@ struct base::reflection::EnumTypeDescription<CCharClassDredhedAIComponent::ESubs
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassDredhedAIComponent::ESubspecies*);
-namespace CCharClassDropterAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassDropterAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_71726dae18; }
 template struct base::reflection::ValueOps<CCharClassDropterAIComponent::ESubspecies>;
@@ -1069,7 +1191,6 @@ struct base::reflection::EnumTypeDescription<CCharClassDropterAIComponent::ESubs
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassDropterAIComponent::ESubspecies*);
-enum class EIceMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EIceMode>::TypeOf(const void*) { return g_unk_71726df9e0; }
 template struct base::reflection::ValueOps<EIceMode>;
@@ -1080,7 +1201,6 @@ struct base::reflection::EnumTypeDescription<EIceMode> : base::reflection::Value
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EIceMode*);
-enum class EMinimapMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EMinimapMode>::TypeOf(const void*) { return g_unk_71726dfb40; }
 template struct base::reflection::ValueOps<EMinimapMode>;
@@ -1091,7 +1211,6 @@ struct base::reflection::EnumTypeDescription<EMinimapMode> : base::reflection::V
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EMinimapMode*);
-namespace CEmmyAIComponent { enum class ETargetPerceptionType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CEmmyAIComponent::ETargetPerceptionType>::TypeOf(const void*) { return g_unk_71726dfca0; }
 template struct base::reflection::ValueOps<CEmmyAIComponent::ETargetPerceptionType>;
@@ -1102,7 +1221,6 @@ struct base::reflection::EnumTypeDescription<CEmmyAIComponent::ETargetPerception
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CEmmyAIComponent::ETargetPerceptionType*);
-enum class EEmmyAlertLevel : u32;
 template <>
 const CType& base::reflection::ValueOps<EEmmyAlertLevel>::TypeOf(const void*) { return g_unk_71726e30d0; }
 template struct base::reflection::ValueOps<EEmmyAlertLevel>;
@@ -1113,7 +1231,6 @@ struct base::reflection::EnumTypeDescription<EEmmyAlertLevel> : base::reflection
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EEmmyAlertLevel*);
-enum class EGrabEmmySamusQTEMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EGrabEmmySamusQTEMode>::TypeOf(const void*) { return g_unk_71726e3230; }
 template struct base::reflection::ValueOps<EGrabEmmySamusQTEMode>;
@@ -1124,7 +1241,6 @@ struct base::reflection::EnumTypeDescription<EGrabEmmySamusQTEMode> : base::refl
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EGrabEmmySamusQTEMode*);
-namespace CGoliathAttack { enum class EGoliathAttackState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CGoliathAttack::EGoliathAttackState>::TypeOf(const void*) { return g_unk_71726e6158; }
 template struct base::reflection::ValueOps<CGoliathAttack::EGoliathAttackState>;
@@ -1135,7 +1251,6 @@ struct base::reflection::EnumTypeDescription<CGoliathAttack::EGoliathAttackState
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CGoliathAttack::EGoliathAttackState*);
-namespace CCharClassGooplotAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassGooplotAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_71726e7318; }
 template struct base::reflection::ValueOps<CCharClassGooplotAIComponent::ESubspecies>;
@@ -1146,7 +1261,6 @@ struct base::reflection::EnumTypeDescription<CCharClassGooplotAIComponent::ESubs
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassGooplotAIComponent::ESubspecies*);
-namespace CGroundShockerAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CGroundShockerAttack::EState>::TypeOf(const void*) { return g_unk_71726e7ec8; }
 template struct base::reflection::ValueOps<CGroundShockerAttack::EState>;
@@ -1157,7 +1271,6 @@ struct base::reflection::EnumTypeDescription<CGroundShockerAttack::EState> : bas
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CGroundShockerAttack::EState*);
-namespace CCharClassHecathonAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassHecathonAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_71726e8b98; }
 template struct base::reflection::ValueOps<CCharClassHecathonAIComponent::ESubspecies>;
@@ -1168,7 +1281,6 @@ struct base::reflection::EnumTypeDescription<CCharClassHecathonAIComponent::ESub
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassHecathonAIComponent::ESubspecies*);
-namespace CInfesterShootAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CInfesterShootAttack::EState>::TypeOf(const void*) { return g_unk_71726eba60; }
 template struct base::reflection::ValueOps<CInfesterShootAttack::EState>;
@@ -1179,7 +1291,6 @@ struct base::reflection::EnumTypeDescription<CInfesterShootAttack::EState> : bas
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CInfesterShootAttack::EState*);
-namespace CCharClassInfesterAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassInfesterAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_71726ec150; }
 template struct base::reflection::ValueOps<CCharClassInfesterAIComponent::ESubspecies>;
@@ -1190,7 +1301,6 @@ struct base::reflection::EnumTypeDescription<CCharClassInfesterAIComponent::ESub
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassInfesterAIComponent::ESubspecies*);
-enum class ESpinningNailsState : u32;
 template <>
 const CType& base::reflection::ValueOps<ESpinningNailsState>::TypeOf(const void*) { return g_unk_71726f0b40; }
 template struct base::reflection::ValueOps<ESpinningNailsState>;
@@ -1201,7 +1311,6 @@ struct base::reflection::EnumTypeDescription<ESpinningNailsState> : base::reflec
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ESpinningNailsState*);
-enum class ESpinningNailsSpeed : u32;
 template <>
 const CType& base::reflection::ValueOps<ESpinningNailsSpeed>::TypeOf(const void*) { return g_unk_71726f0ca0; }
 template struct base::reflection::ValueOps<ESpinningNailsSpeed>;
@@ -1212,7 +1321,6 @@ struct base::reflection::EnumTypeDescription<ESpinningNailsSpeed> : base::reflec
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ESpinningNailsSpeed*);
-namespace CCharClassNailongThornsAttack { enum class EDepthornAttackType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassNailongThornsAttack::EDepthornAttackType>::TypeOf(const void*) { return g_unk_71726f48e0; }
 template struct base::reflection::ValueOps<CCharClassNailongThornsAttack::EDepthornAttackType>;
@@ -1223,7 +1331,6 @@ struct base::reflection::EnumTypeDescription<CCharClassNailongThornsAttack::EDep
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassNailongThornsAttack::EDepthornAttackType*);
-namespace CNailongThornsAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CNailongThornsAttack::EState>::TypeOf(const void*) { return g_unk_71726f4ba8; }
 template struct base::reflection::ValueOps<CNailongThornsAttack::EState>;
@@ -1234,7 +1341,6 @@ struct base::reflection::EnumTypeDescription<CNailongThornsAttack::EState> : bas
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CNailongThornsAttack::EState*);
-namespace CNailongAIComponent { enum class EType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CNailongAIComponent::EType>::TypeOf(const void*) { return g_unk_71726f7ce0; }
 template struct base::reflection::ValueOps<CNailongAIComponent::EType>;
@@ -1245,7 +1351,6 @@ struct base::reflection::EnumTypeDescription<CNailongAIComponent::EType> : base:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CNailongAIComponent::EType*);
-namespace CNailuggerAcidBallsAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CNailuggerAcidBallsAttack::EState>::TypeOf(const void*) { return g_unk_71726f83f0; }
 template struct base::reflection::ValueOps<CNailuggerAcidBallsAttack::EState>;
@@ -1256,7 +1361,6 @@ struct base::reflection::EnumTypeDescription<CNailuggerAcidBallsAttack::EState> 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CNailuggerAcidBallsAttack::EState*);
-namespace CObsydomithonAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CObsydomithonAttack::EState>::TypeOf(const void*) { return g_unk_71726f8c68; }
 template struct base::reflection::ValueOps<CObsydomithonAttack::EState>;
@@ -1267,7 +1371,6 @@ struct base::reflection::EnumTypeDescription<CObsydomithonAttack::EState> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CObsydomithonAttack::EState*);
-namespace CCharClassPoisonFlyAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassPoisonFlyAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_71726fa160; }
 template struct base::reflection::ValueOps<CCharClassPoisonFlyAIComponent::ESubspecies>;
@@ -1278,7 +1381,6 @@ struct base::reflection::EnumTypeDescription<CCharClassPoisonFlyAIComponent::ESu
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassPoisonFlyAIComponent::ESubspecies*);
-namespace CCharClassQuetzoaAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassQuetzoaAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_71726fbc20; }
 template struct base::reflection::ValueOps<CCharClassQuetzoaAIComponent::ESubspecies>;
@@ -1289,7 +1391,6 @@ struct base::reflection::EnumTypeDescription<CCharClassQuetzoaAIComponent::ESubs
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassQuetzoaAIComponent::ESubspecies*);
-namespace CRinkaUnitComponent { enum class ERinkaType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CRinkaUnitComponent::ERinkaType>::TypeOf(const void*) { return g_unk_71726fce30; }
 template struct base::reflection::ValueOps<CRinkaUnitComponent::ERinkaType>;
@@ -1300,7 +1401,6 @@ struct base::reflection::EnumTypeDescription<CRinkaUnitComponent::ERinkaType> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CRinkaUnitComponent::ERinkaType*);
-namespace CRinkaUnitComponent { enum class ECentralUnitType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CRinkaUnitComponent::ECentralUnitType>::TypeOf(const void*) { return g_unk_71726fcf90; }
 template struct base::reflection::ValueOps<CRinkaUnitComponent::ECentralUnitType>;
@@ -1311,7 +1411,6 @@ struct base::reflection::EnumTypeDescription<CRinkaUnitComponent::ECentralUnitTy
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CRinkaUnitComponent::ECentralUnitType*);
-namespace CCharClassRodomithonXAIComponent::SFirePillarConfig { enum class EType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassRodomithonXAIComponent::SFirePillarConfig::EType>::TypeOf(const void*) { return g_unk_71726fdc20; }
 template struct base::reflection::ValueOps<CCharClassRodomithonXAIComponent::SFirePillarConfig::EType>;
@@ -1322,7 +1421,6 @@ struct base::reflection::EnumTypeDescription<CCharClassRodomithonXAIComponent::S
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassRodomithonXAIComponent::SFirePillarConfig::EType*);
-namespace CCharClassRodotukAIComponent::SAbsorbConfig { enum class EType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassRodotukAIComponent::SAbsorbConfig::EType>::TypeOf(const void*) { return g_unk_71726fee48; }
 template struct base::reflection::ValueOps<CCharClassRodotukAIComponent::SAbsorbConfig::EType>;
@@ -1333,7 +1431,6 @@ struct base::reflection::EnumTypeDescription<CCharClassRodotukAIComponent::SAbso
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassRodotukAIComponent::SAbsorbConfig::EType*);
-namespace CSabotoruTurnInDoorAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CSabotoruTurnInDoorAttack::EState>::TypeOf(const void*) { return g_unk_71726ffe80; }
 template struct base::reflection::ValueOps<CSabotoruTurnInDoorAttack::EState>;
@@ -1344,7 +1441,6 @@ struct base::reflection::EnumTypeDescription<CSabotoruTurnInDoorAttack::EState> 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSabotoruTurnInDoorAttack::EState*);
-namespace CCharClassSabotoruAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassSabotoruAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_71727006c0; }
 template struct base::reflection::ValueOps<CCharClassSabotoruAIComponent::ESubspecies>;
@@ -1355,7 +1451,6 @@ struct base::reflection::EnumTypeDescription<CCharClassSabotoruAIComponent::ESub
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassSabotoruAIComponent::ESubspecies*);
-enum class EForceOpticCamouflageMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EForceOpticCamouflageMode>::TypeOf(const void*) { return g_unk_7172703d20; }
 template struct base::reflection::ValueOps<EForceOpticCamouflageMode>;
@@ -1366,7 +1461,6 @@ struct base::reflection::EnumTypeDescription<EForceOpticCamouflageMode> : base::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EForceOpticCamouflageMode*);
-namespace CScourgeTongueSlashAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CScourgeTongueSlashAttack::EState>::TypeOf(const void*) { return g_unk_71727047c8; }
 template struct base::reflection::ValueOps<CScourgeTongueSlashAttack::EState>;
@@ -1377,7 +1471,6 @@ struct base::reflection::EnumTypeDescription<CScourgeTongueSlashAttack::EState> 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CScourgeTongueSlashAttack::EState*);
-namespace CShakernautDoubleGroundShockAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CShakernautDoubleGroundShockAttack::EState>::TypeOf(const void*) { return g_unk_71727054e0; }
 template struct base::reflection::ValueOps<CShakernautDoubleGroundShockAttack::EState>;
@@ -1388,7 +1481,6 @@ struct base::reflection::EnumTypeDescription<CShakernautDoubleGroundShockAttack:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CShakernautDoubleGroundShockAttack::EState*);
-namespace CShakernautDoubleGroundShockAttack { enum class ESide : u32; }
 template <>
 const CType& base::reflection::ValueOps<CShakernautDoubleGroundShockAttack::ESide>::TypeOf(const void*) { return g_unk_7172705640; }
 template struct base::reflection::ValueOps<CShakernautDoubleGroundShockAttack::ESide>;
@@ -1399,7 +1491,6 @@ struct base::reflection::EnumTypeDescription<CShakernautDoubleGroundShockAttack:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CShakernautDoubleGroundShockAttack::ESide*);
-namespace CShakernautPiercingLaserAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CShakernautPiercingLaserAttack::EState>::TypeOf(const void*) { return g_unk_7172705990; }
 template struct base::reflection::ValueOps<CShakernautPiercingLaserAttack::EState>;
@@ -1410,7 +1501,6 @@ struct base::reflection::EnumTypeDescription<CShakernautPiercingLaserAttack::ESt
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CShakernautPiercingLaserAttack::EState*);
-namespace CShakernautPiercingLaserAttack { enum class ESide : u32; }
 template <>
 const CType& base::reflection::ValueOps<CShakernautPiercingLaserAttack::ESide>::TypeOf(const void*) { return g_unk_7172705af0; }
 template struct base::reflection::ValueOps<CShakernautPiercingLaserAttack::ESide>;
@@ -1421,7 +1511,6 @@ struct base::reflection::EnumTypeDescription<CShakernautPiercingLaserAttack::ESi
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CShakernautPiercingLaserAttack::ESide*);
-namespace CShelmitPlasmaRayAttack { enum class EAttackState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CShelmitPlasmaRayAttack::EAttackState>::TypeOf(const void*) { return g_unk_71727067c0; }
 template struct base::reflection::ValueOps<CShelmitPlasmaRayAttack::EAttackState>;
@@ -1432,7 +1521,6 @@ struct base::reflection::EnumTypeDescription<CShelmitPlasmaRayAttack::EAttackSta
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CShelmitPlasmaRayAttack::EAttackState*);
-enum class EShellState : u32;
 template <>
 const CType& base::reflection::ValueOps<EShellState>::TypeOf(const void*) { return g_unk_7172707020; }
 template struct base::reflection::ValueOps<EShellState>;
@@ -1443,7 +1531,6 @@ struct base::reflection::EnumTypeDescription<EShellState> : base::reflection::Va
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EShellState*);
-namespace CSluggerSpitAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CSluggerSpitAttack::EState>::TypeOf(const void*) { return g_unk_7172707a30; }
 template struct base::reflection::ValueOps<CSluggerSpitAttack::EState>;
@@ -1454,7 +1541,6 @@ struct base::reflection::EnumTypeDescription<CSluggerSpitAttack::EState> : base:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSluggerSpitAttack::EState*);
-namespace CTakumakuDashAttack { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CTakumakuDashAttack::EState>::TypeOf(const void*) { return g_unk_71727092e8; }
 template struct base::reflection::ValueOps<CTakumakuDashAttack::EState>;
@@ -1465,7 +1551,6 @@ struct base::reflection::EnumTypeDescription<CTakumakuDashAttack::EState> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CTakumakuDashAttack::EState*);
-namespace CCharClassTakumakuAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassTakumakuAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_7172709868; }
 template struct base::reflection::ValueOps<CCharClassTakumakuAIComponent::ESubspecies>;
@@ -1476,7 +1561,6 @@ struct base::reflection::EnumTypeDescription<CCharClassTakumakuAIComponent::ESub
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassTakumakuAIComponent::ESubspecies*);
-namespace CCharClassVulkranAIComponent { enum class EDir : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassVulkranAIComponent::EDir>::TypeOf(const void*) { return g_unk_717270a198; }
 template struct base::reflection::ValueOps<CCharClassVulkranAIComponent::EDir>;
@@ -1487,7 +1571,6 @@ struct base::reflection::EnumTypeDescription<CCharClassVulkranAIComponent::EDir>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassVulkranAIComponent::EDir*);
-namespace CCharClassVulkranAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassVulkranAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_717270a2f8; }
 template struct base::reflection::ValueOps<CCharClassVulkranAIComponent::ESubspecies>;
@@ -1498,7 +1581,6 @@ struct base::reflection::EnumTypeDescription<CCharClassVulkranAIComponent::ESubs
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassVulkranAIComponent::ESubspecies*);
-namespace CXParasiteAIComponent { enum class EXParasiteBehaviorType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CXParasiteAIComponent::EXParasiteBehaviorType>::TypeOf(const void*) { return g_unk_717270b710; }
 template struct base::reflection::ValueOps<CXParasiteAIComponent::EXParasiteBehaviorType>;
@@ -1509,7 +1591,6 @@ struct base::reflection::EnumTypeDescription<CXParasiteAIComponent::EXParasiteBe
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CXParasiteAIComponent::EXParasiteBehaviorType*);
-namespace CCharClassYamplotXAIComponent { enum class ESubspecies : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassYamplotXAIComponent::ESubspecies>::TypeOf(const void*) { return g_unk_717270c198; }
 template struct base::reflection::ValueOps<CCharClassYamplotXAIComponent::ESubspecies>;
@@ -1520,7 +1601,6 @@ struct base::reflection::EnumTypeDescription<CCharClassYamplotXAIComponent::ESub
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassYamplotXAIComponent::ESubspecies*);
-enum class ENavigablePathType : u32;
 template <>
 const CType& base::reflection::ValueOps<ENavigablePathType>::TypeOf(const void*) { return g_unk_717270c618; }
 template struct base::reflection::ValueOps<ENavigablePathType>;
@@ -1531,7 +1611,6 @@ struct base::reflection::EnumTypeDescription<ENavigablePathType> : base::reflect
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ENavigablePathType*);
-enum class EFollowPathRotationMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EFollowPathRotationMode>::TypeOf(const void*) { return g_unk_717270c900; }
 template struct base::reflection::ValueOps<EFollowPathRotationMode>;
@@ -1542,7 +1621,6 @@ struct base::reflection::EnumTypeDescription<EFollowPathRotationMode> : base::re
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EFollowPathRotationMode*);
-enum class EFollowInPathOrientation : u32;
 template <>
 const CType& base::reflection::ValueOps<EFollowInPathOrientation>::TypeOf(const void*) { return g_unk_717270ca60; }
 template struct base::reflection::ValueOps<EFollowInPathOrientation>;
@@ -1553,7 +1631,6 @@ struct base::reflection::EnumTypeDescription<EFollowInPathOrientation> : base::r
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EFollowInPathOrientation*);
-namespace CAnimationPrefix::SPrefix { enum class Enum : u32; }
 template <>
 const CType& base::reflection::ValueOps<CAnimationPrefix::SPrefix::Enum>::TypeOf(const void*) { return g_unk_717270dfd0; }
 template struct base::reflection::ValueOps<CAnimationPrefix::SPrefix::Enum>;
@@ -1564,7 +1641,6 @@ struct base::reflection::EnumTypeDescription<CAnimationPrefix::SPrefix::Enum> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CAnimationPrefix::SPrefix::Enum*);
-enum class EAnimationTag : u32;
 template <>
 const CType& base::reflection::ValueOps<EAnimationTag>::TypeOf(const void*) { return g_unk_717270e1e8; }
 template struct base::reflection::ValueOps<EAnimationTag>;
@@ -1575,7 +1651,6 @@ struct base::reflection::EnumTypeDescription<EAnimationTag> : base::reflection::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EAnimationTag*);
-namespace CCharClassFlockingSwarmControllerComponent { enum class SRotationMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassFlockingSwarmControllerComponent::SRotationMode>::TypeOf(const void*) { return g_unk_7172710398; }
 template struct base::reflection::ValueOps<CCharClassFlockingSwarmControllerComponent::SRotationMode>;
@@ -1586,7 +1661,6 @@ struct base::reflection::EnumTypeDescription<CCharClassFlockingSwarmControllerCo
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassFlockingSwarmControllerComponent::SRotationMode*);
-namespace CCentralUnitComponent { enum class ECentralUnitMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCentralUnitComponent::ECentralUnitMode>::TypeOf(const void*) { return g_unk_7172714248; }
 template struct base::reflection::ValueOps<CCentralUnitComponent::ECentralUnitMode>;
@@ -1597,7 +1671,6 @@ struct base::reflection::EnumTypeDescription<CCentralUnitComponent::ECentralUnit
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCentralUnitComponent::ECentralUnitMode*);
-namespace darkness { enum class EDarknessPreset : u32; }
 template <>
 const CType& base::reflection::ValueOps<darkness::EDarknessPreset>::TypeOf(const void*) { return g_unk_71727157e0; }
 template struct base::reflection::ValueOps<darkness::EDarknessPreset>;
@@ -1608,7 +1681,6 @@ struct base::reflection::EnumTypeDescription<darkness::EDarknessPreset> : base::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, darkness::EDarknessPreset*);
-namespace SDropProbabilities { enum class SDir : u32; }
 template <>
 const CType& base::reflection::ValueOps<SDropProbabilities::SDir>::TypeOf(const void*) { return g_unk_717271b970; }
 template struct base::reflection::ValueOps<SDropProbabilities::SDir>;
@@ -1619,7 +1691,6 @@ struct base::reflection::EnumTypeDescription<SDropProbabilities::SDir> : base::r
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, SDropProbabilities::SDir*);
-namespace SDropProbabilities { enum class SType : u32; }
 template <>
 const CType& base::reflection::ValueOps<SDropProbabilities::SType>::TypeOf(const void*) { return g_unk_717271bad0; }
 template struct base::reflection::ValueOps<SDropProbabilities::SType>;
@@ -1630,7 +1701,6 @@ struct base::reflection::EnumTypeDescription<SDropProbabilities::SType> : base::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, SDropProbabilities::SType*);
-namespace CEscapeSequenceExplosionComponent { enum class EExplosionType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CEscapeSequenceExplosionComponent::EExplosionType>::TypeOf(const void*) { return g_unk_717271e138; }
 template struct base::reflection::ValueOps<CEscapeSequenceExplosionComponent::EExplosionType>;
@@ -1641,7 +1711,6 @@ struct base::reflection::EnumTypeDescription<CEscapeSequenceExplosionComponent::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CEscapeSequenceExplosionComponent::EExplosionType*);
-namespace CForcedMovementAreaComponent { enum class EForcedDirection : u32; }
 template <>
 const CType& base::reflection::ValueOps<CForcedMovementAreaComponent::EForcedDirection>::TypeOf(const void*) { return g_unk_717271fc20; }
 template struct base::reflection::ValueOps<CForcedMovementAreaComponent::EForcedDirection>;
@@ -1652,7 +1721,6 @@ struct base::reflection::EnumTypeDescription<CForcedMovementAreaComponent::EForc
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CForcedMovementAreaComponent::EForcedDirection*);
-namespace CGrappleBeamGun { enum class ESelectionMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CGrappleBeamGun::ESelectionMode>::TypeOf(const void*) { return g_unk_7172725900; }
 template struct base::reflection::ValueOps<CGrappleBeamGun::ESelectionMode>;
@@ -1663,7 +1731,6 @@ struct base::reflection::EnumTypeDescription<CGrappleBeamGun::ESelectionMode> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CGrappleBeamGun::ESelectionMode*);
-namespace CGrappleBeamGun { enum class ESelectionInput : u32; }
 template <>
 const CType& base::reflection::ValueOps<CGrappleBeamGun::ESelectionInput>::TypeOf(const void*) { return g_unk_7172725a60; }
 template struct base::reflection::ValueOps<CGrappleBeamGun::ESelectionInput>;
@@ -1674,7 +1741,6 @@ struct base::reflection::EnumTypeDescription<CGrappleBeamGun::ESelectionInput> :
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CGrappleBeamGun::ESelectionInput*);
-enum class EInputAction : u32;
 template <>
 const CType& base::reflection::ValueOps<EInputAction>::TypeOf(const void*) { return g_unk_7172729bc0; }
 template struct base::reflection::ValueOps<EInputAction>;
@@ -1685,7 +1751,6 @@ struct base::reflection::EnumTypeDescription<EInputAction> : base::reflection::V
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EInputAction*);
-enum class EWalkInputMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EWalkInputMode>::TypeOf(const void*) { return g_unk_7172729ce0; }
 template struct base::reflection::ValueOps<EWalkInputMode>;
@@ -1696,7 +1761,6 @@ struct base::reflection::EnumTypeDescription<EWalkInputMode> : base::reflection:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EWalkInputMode*);
-enum class EDamageType : u32;
 template <>
 const CType& base::reflection::ValueOps<EDamageType>::TypeOf(const void*) { return g_unk_7172730420; }
 template struct base::reflection::ValueOps<EDamageType>;
@@ -1707,7 +1771,6 @@ struct base::reflection::EnumTypeDescription<EDamageType> : base::reflection::Va
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EDamageType*);
-enum class EForcedDamageMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EForcedDamageMode>::TypeOf(const void*) { return g_unk_7172730580; }
 template struct base::reflection::ValueOps<EForcedDamageMode>;
@@ -1718,7 +1781,6 @@ struct base::reflection::EnumTypeDescription<EForcedDamageMode> : base::reflecti
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EForcedDamageMode*);
-enum class EDamageStrength : u32;
 template <>
 const CType& base::reflection::ValueOps<EDamageStrength>::TypeOf(const void*) { return g_unk_7172730858; }
 template struct base::reflection::ValueOps<EDamageStrength>;
@@ -1729,7 +1791,6 @@ struct base::reflection::EnumTypeDescription<EDamageStrength> : base::reflection
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EDamageStrength*);
-enum class EDemolitionPhase : u32;
 template <>
 const CType& base::reflection::ValueOps<EDemolitionPhase>::TypeOf(const void*) { return g_unk_7172730b30; }
 template struct base::reflection::ValueOps<EDemolitionPhase>;
@@ -1740,7 +1801,6 @@ struct base::reflection::EnumTypeDescription<EDemolitionPhase> : base::reflectio
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EDemolitionPhase*);
-namespace CDoorLifeComponent { enum class SState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CDoorLifeComponent::SState>::TypeOf(const void*) { return g_unk_7172731200; }
 template struct base::reflection::ValueOps<CDoorLifeComponent::SState>;
@@ -1751,7 +1811,6 @@ struct base::reflection::EnumTypeDescription<CDoorLifeComponent::SState> : base:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CDoorLifeComponent::SState*);
-namespace CDoorShieldLifeComponent { enum class EColor : u32; }
 template <>
 const CType& base::reflection::ValueOps<CDoorShieldLifeComponent::EColor>::TypeOf(const void*) { return g_unk_7172731d68; }
 template struct base::reflection::ValueOps<CDoorShieldLifeComponent::EColor>;
@@ -1762,7 +1821,6 @@ struct base::reflection::EnumTypeDescription<CDoorShieldLifeComponent::EColor> :
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CDoorShieldLifeComponent::EColor*);
-namespace CDoorShieldLifeComponent { enum class EDoorsShieldType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CDoorShieldLifeComponent::EDoorsShieldType>::TypeOf(const void*) { return g_unk_7172731ec8; }
 template struct base::reflection::ValueOps<CDoorShieldLifeComponent::EDoorsShieldType>;
@@ -1773,7 +1831,6 @@ struct base::reflection::EnumTypeDescription<CDoorShieldLifeComponent::EDoorsShi
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CDoorShieldLifeComponent::EDoorsShieldType*);
-namespace CLiquidPoolBaseComponent { enum class ELiquidType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CLiquidPoolBaseComponent::ELiquidType>::TypeOf(const void*) { return g_unk_7172733be8; }
 template struct base::reflection::ValueOps<CLiquidPoolBaseComponent::ELiquidType>;
@@ -1784,7 +1841,6 @@ struct base::reflection::EnumTypeDescription<CLiquidPoolBaseComponent::ELiquidTy
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CLiquidPoolBaseComponent::ELiquidType*);
-namespace CMeleeComponent { enum class EMeleeTrailFXType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CMeleeComponent::EMeleeTrailFXType>::TypeOf(const void*) { return g_unk_7172738458; }
 template struct base::reflection::ValueOps<CMeleeComponent::EMeleeTrailFXType>;
@@ -1795,7 +1851,6 @@ struct base::reflection::EnumTypeDescription<CMeleeComponent::EMeleeTrailFXType>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CMeleeComponent::EMeleeTrailFXType*);
-enum class EAIAnimationStates : u32;
 template <>
 const CType& base::reflection::ValueOps<EAIAnimationStates>::TypeOf(const void*) { return g_unk_717273a108; }
 template struct base::reflection::ValueOps<EAIAnimationStates>;
@@ -1806,7 +1861,6 @@ struct base::reflection::EnumTypeDescription<EAIAnimationStates> : base::reflect
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EAIAnimationStates*);
-namespace CCharClassEnemyMovement { enum class ETurn180Mode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassEnemyMovement::ETurn180Mode>::TypeOf(const void*) { return g_unk_717273a2e0; }
 template struct base::reflection::ValueOps<CCharClassEnemyMovement::ETurn180Mode>;
@@ -1817,7 +1871,6 @@ struct base::reflection::EnumTypeDescription<CCharClassEnemyMovement::ETurn180Mo
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassEnemyMovement::ETurn180Mode*);
-enum class ESamusUsingGrapplePullPointStatePullStage : u32;
 template <>
 const CType& base::reflection::ValueOps<ESamusUsingGrapplePullPointStatePullStage>::TypeOf(const void*) { return g_unk_717273ae48; }
 template struct base::reflection::ValueOps<ESamusUsingGrapplePullPointStatePullStage>;
@@ -1828,7 +1881,6 @@ struct base::reflection::EnumTypeDescription<ESamusUsingGrapplePullPointStatePul
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ESamusUsingGrapplePullPointStatePullStage*);
-namespace CSamusMagnetGloveMovementState { enum class ESurfaceType : u32; }
 template <>
 const CType& base::reflection::ValueOps<CSamusMagnetGloveMovementState::ESurfaceType>::TypeOf(const void*) { return g_unk_717273c4e8; }
 template struct base::reflection::ValueOps<CSamusMagnetGloveMovementState::ESurfaceType>;
@@ -1839,7 +1891,6 @@ struct base::reflection::EnumTypeDescription<CSamusMagnetGloveMovementState::ESu
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSamusMagnetGloveMovementState::ESurfaceType*);
-namespace CSideEnemyMovement { enum class EDir : u32; }
 template <>
 const CType& base::reflection::ValueOps<CSideEnemyMovement::EDir>::TypeOf(const void*) { return g_unk_717273d020; }
 template struct base::reflection::ValueOps<CSideEnemyMovement::EDir>;
@@ -1850,7 +1901,6 @@ struct base::reflection::EnumTypeDescription<CSideEnemyMovement::EDir> : base::r
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSideEnemyMovement::EDir*);
-enum class ENavMeshItemType : u32;
 template <>
 const CType& base::reflection::ValueOps<ENavMeshItemType>::TypeOf(const void*) { return g_unk_717273d9d0; }
 template struct base::reflection::ValueOps<ENavMeshItemType>;
@@ -1861,7 +1911,6 @@ struct base::reflection::EnumTypeDescription<ENavMeshItemType> : base::reflectio
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ENavMeshItemType*);
-namespace CNavMeshItemStage { enum class ESide : u32; }
 template <>
 const CType& base::reflection::ValueOps<CNavMeshItemStage::ESide>::TypeOf(const void*) { return g_unk_717273ef58; }
 template struct base::reflection::ValueOps<CNavMeshItemStage::ESide>;
@@ -1872,7 +1921,6 @@ struct base::reflection::EnumTypeDescription<CNavMeshItemStage::ESide> : base::r
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CNavMeshItemStage::ESide*);
-enum class ERotationDirection : u32;
 template <>
 const CType& base::reflection::ValueOps<ERotationDirection>::TypeOf(const void*) { return g_unk_7172740788; }
 template struct base::reflection::ValueOps<ERotationDirection>;
@@ -1883,7 +1931,6 @@ struct base::reflection::EnumTypeDescription<ERotationDirection> : base::reflect
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ERotationDirection*);
-namespace CSamusMovement { enum class EUpdateCollisionsPhaseOrder : u32; }
 template <>
 const CType& base::reflection::ValueOps<CSamusMovement::EUpdateCollisionsPhaseOrder>::TypeOf(const void*) { return g_unk_7172740e68; }
 template struct base::reflection::ValueOps<CSamusMovement::EUpdateCollisionsPhaseOrder>;
@@ -1894,7 +1941,6 @@ struct base::reflection::EnumTypeDescription<CSamusMovement::EUpdateCollisionsPh
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSamusMovement::EUpdateCollisionsPhaseOrder*);
-enum class ESwifterSpawnGroupDirection : u32;
 template <>
 const CType& base::reflection::ValueOps<ESwifterSpawnGroupDirection>::TypeOf(const void*) { return g_unk_7172743e90; }
 template struct base::reflection::ValueOps<ESwifterSpawnGroupDirection>;
@@ -1905,7 +1951,6 @@ struct base::reflection::EnumTypeDescription<ESwifterSpawnGroupDirection> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ESwifterSpawnGroupDirection*);
-enum class ESwifterSpawnGroupSpawnMode : u32;
 template <>
 const CType& base::reflection::ValueOps<ESwifterSpawnGroupSpawnMode>::TypeOf(const void*) { return g_unk_7172743ff0; }
 template struct base::reflection::ValueOps<ESwifterSpawnGroupSpawnMode>;
@@ -1916,7 +1961,6 @@ struct base::reflection::EnumTypeDescription<ESwifterSpawnGroupSpawnMode> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ESwifterSpawnGroupSpawnMode*);
-enum class EAutsharpSpawnPointDir : u32;
 template <>
 const CType& base::reflection::ValueOps<EAutsharpSpawnPointDir>::TypeOf(const void*) { return g_unk_71727442b0; }
 template struct base::reflection::ValueOps<EAutsharpSpawnPointDir>;
@@ -1927,7 +1971,6 @@ struct base::reflection::EnumTypeDescription<EAutsharpSpawnPointDir> : base::ref
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EAutsharpSpawnPointDir*);
-enum class EAutsniperSpawnPointDir : u32;
 template <>
 const CType& base::reflection::ValueOps<EAutsniperSpawnPointDir>::TypeOf(const void*) { return g_unk_7172744578; }
 template struct base::reflection::ValueOps<EAutsniperSpawnPointDir>;
@@ -1938,7 +1981,6 @@ struct base::reflection::EnumTypeDescription<EAutsniperSpawnPointDir> : base::re
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EAutsniperSpawnPointDir*);
-enum class ECaterzillaSpawnPointDir : u32;
 template <>
 const CType& base::reflection::ValueOps<ECaterzillaSpawnPointDir>::TypeOf(const void*) { return g_unk_7172744838; }
 template struct base::reflection::ValueOps<ECaterzillaSpawnPointDir>;
@@ -1949,7 +1991,6 @@ struct base::reflection::EnumTypeDescription<ECaterzillaSpawnPointDir> : base::r
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ECaterzillaSpawnPointDir*);
-enum class ECaterzillaSpawnPointOrder : u32;
 template <>
 const CType& base::reflection::ValueOps<ECaterzillaSpawnPointOrder>::TypeOf(const void*) { return g_unk_7172744998; }
 template struct base::reflection::ValueOps<ECaterzillaSpawnPointOrder>;
@@ -1960,7 +2001,6 @@ struct base::reflection::EnumTypeDescription<ECaterzillaSpawnPointOrder> : base:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ECaterzillaSpawnPointOrder*);
-enum class ESlidleOutSpawnPointDir : u32;
 template <>
 const CType& base::reflection::ValueOps<ESlidleOutSpawnPointDir>::TypeOf(const void*) { return g_unk_7172745348; }
 template struct base::reflection::ValueOps<ESlidleOutSpawnPointDir>;
@@ -1971,7 +2011,6 @@ struct base::reflection::EnumTypeDescription<ESlidleOutSpawnPointDir> : base::re
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ESlidleOutSpawnPointDir*);
-enum class EThermalFreezeRoomType : u32;
 template <>
 const CType& base::reflection::ValueOps<EThermalFreezeRoomType>::TypeOf(const void*) { return g_unk_7172745c00; }
 template struct base::reflection::ValueOps<EThermalFreezeRoomType>;
@@ -1982,7 +2021,6 @@ struct base::reflection::EnumTypeDescription<EThermalFreezeRoomType> : base::ref
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EThermalFreezeRoomType*);
-enum class EThermalHeatRoomType : u32;
 template <>
 const CType& base::reflection::ValueOps<EThermalHeatRoomType>::TypeOf(const void*) { return g_unk_7172746390; }
 template struct base::reflection::ValueOps<EThermalHeatRoomType>;
@@ -1993,7 +2031,6 @@ struct base::reflection::EnumTypeDescription<EThermalHeatRoomType> : base::refle
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EThermalHeatRoomType*);
-namespace CTimelineComponent { enum class ENextPolicy : u32; }
 template <>
 const CType& base::reflection::ValueOps<CTimelineComponent::ENextPolicy>::TypeOf(const void*) { return g_unk_7172746d98; }
 template struct base::reflection::ValueOps<CTimelineComponent::ENextPolicy>;
@@ -2004,7 +2041,6 @@ struct base::reflection::EnumTypeDescription<CTimelineComponent::ENextPolicy> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CTimelineComponent::ENextPolicy*);
-enum class eDoorStateLogicAction : u32;
 template <>
 const CType& base::reflection::ValueOps<eDoorStateLogicAction>::TypeOf(const void*) { return g_unk_7172748800; }
 template struct base::reflection::ValueOps<eDoorStateLogicAction>;
@@ -2015,7 +2051,6 @@ struct base::reflection::EnumTypeDescription<eDoorStateLogicAction> : base::refl
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, eDoorStateLogicAction*);
-namespace CSaveGameLogicAction { enum class EDestination : u32; }
 template <>
 const CType& base::reflection::ValueOps<CSaveGameLogicAction::EDestination>::TypeOf(const void*) { return g_unk_717274a090; }
 template struct base::reflection::ValueOps<CSaveGameLogicAction::EDestination>;
@@ -2026,7 +2061,6 @@ struct base::reflection::EnumTypeDescription<CSaveGameLogicAction::EDestination>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CSaveGameLogicAction::EDestination*);
-namespace CEmmyStateOverrideLogicAction { enum class EMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CEmmyStateOverrideLogicAction::EMode>::TypeOf(const void*) { return g_unk_717274b478; }
 template struct base::reflection::ValueOps<CEmmyStateOverrideLogicAction::EMode>;
@@ -2037,7 +2071,6 @@ struct base::reflection::EnumTypeDescription<CEmmyStateOverrideLogicAction::EMod
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CEmmyStateOverrideLogicAction::EMode*);
-namespace navmesh { enum class ENavMeshGroup : u32; }
 template <>
 const CType& base::reflection::ValueOps<navmesh::ENavMeshGroup>::TypeOf(const void*) { return g_unk_717274b898; }
 template struct base::reflection::ValueOps<navmesh::ENavMeshGroup>;
@@ -2048,7 +2081,6 @@ struct base::reflection::EnumTypeDescription<navmesh::ENavMeshGroup> : base::ref
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, navmesh::ENavMeshGroup*);
-namespace CForbiddenEdgesLogicAction { enum class EState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CForbiddenEdgesLogicAction::EState>::TypeOf(const void*) { return g_unk_717274b9f8; }
 template struct base::reflection::ValueOps<CForbiddenEdgesLogicAction::EState>;
@@ -2059,7 +2091,6 @@ struct base::reflection::EnumTypeDescription<CForbiddenEdgesLogicAction::EState>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CForbiddenEdgesLogicAction::EState*);
-namespace CPerceptionModifierLogicAction { enum class EMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CPerceptionModifierLogicAction::EMode>::TypeOf(const void*) { return g_unk_717274bf98; }
 template struct base::reflection::ValueOps<CPerceptionModifierLogicAction::EMode>;
@@ -2070,7 +2101,6 @@ struct base::reflection::EnumTypeDescription<CPerceptionModifierLogicAction::EMo
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CPerceptionModifierLogicAction::EMode*);
-namespace CTriggerComponent { enum class EEvent : u32; }
 template <>
 const CType& base::reflection::ValueOps<CTriggerComponent::EEvent>::TypeOf(const void*) { return g_unk_717274dc70; }
 template struct base::reflection::ValueOps<CTriggerComponent::EEvent>;
@@ -2081,7 +2111,6 @@ struct base::reflection::EnumTypeDescription<CTriggerComponent::EEvent> : base::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CTriggerComponent::EEvent*);
-namespace CElectricGeneratorComponent { enum class EBlackOutZone : u32; }
 template <>
 const CType& base::reflection::ValueOps<CElectricGeneratorComponent::EBlackOutZone>::TypeOf(const void*) { return g_unk_7172750038; }
 template struct base::reflection::ValueOps<CElectricGeneratorComponent::EBlackOutZone>;
@@ -2092,7 +2121,6 @@ struct base::reflection::EnumTypeDescription<CElectricGeneratorComponent::EBlack
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CElectricGeneratorComponent::EBlackOutZone*);
-enum class EElevatorDirection : u32;
 template <>
 const CType& base::reflection::ValueOps<EElevatorDirection>::TypeOf(const void*) { return g_unk_7172750790; }
 template struct base::reflection::ValueOps<EElevatorDirection>;
@@ -2103,7 +2131,6 @@ struct base::reflection::EnumTypeDescription<EElevatorDirection> : base::reflect
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EElevatorDirection*);
-enum class ETeleporterColorSphere : u32;
 template <>
 const CType& base::reflection::ValueOps<ETeleporterColorSphere>::TypeOf(const void*) { return g_unk_7172751840; }
 template struct base::reflection::ValueOps<ETeleporterColorSphere>;
@@ -2114,7 +2141,6 @@ struct base::reflection::EnumTypeDescription<ETeleporterColorSphere> : base::ref
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ETeleporterColorSphere*);
-namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
 template <>
 const CType& base::reflection::ValueOps<CThermalDeviceComponent::EPipeGroup>::TypeOf(const void*) { return g_unk_7172752160; }
 template struct base::reflection::ValueOps<CThermalDeviceComponent::EPipeGroup>;
@@ -2125,7 +2151,6 @@ struct base::reflection::EnumTypeDescription<CThermalDeviceComponent::EPipeGroup
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CThermalDeviceComponent::EPipeGroup*);
-enum class ETrainDirection : u32;
 template <>
 const CType& base::reflection::ValueOps<ETrainDirection>::TypeOf(const void*) { return g_unk_7172752bb0; }
 template struct base::reflection::ValueOps<ETrainDirection>;
@@ -2136,7 +2161,6 @@ struct base::reflection::EnumTypeDescription<ETrainDirection> : base::reflection
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ETrainDirection*);
-namespace CLockOnMissileMovement { enum class SSubState : u32; }
 template <>
 const CType& base::reflection::ValueOps<CLockOnMissileMovement::SSubState>::TypeOf(const void*) { return g_unk_71727548d8; }
 template struct base::reflection::ValueOps<CLockOnMissileMovement::SSubState>;
@@ -2147,7 +2171,6 @@ struct base::reflection::EnumTypeDescription<CLockOnMissileMovement::SSubState> 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CLockOnMissileMovement::SSubState*);
-namespace CCharClassProjectileMovement { enum class EProjectileMeleeHitReaction : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassProjectileMovement::EProjectileMeleeHitReaction>::TypeOf(const void*) { return g_unk_7172755268; }
 template struct base::reflection::ValueOps<CCharClassProjectileMovement::EProjectileMeleeHitReaction>;
@@ -2158,7 +2181,6 @@ struct base::reflection::EnumTypeDescription<CCharClassProjectileMovement::EProj
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassProjectileMovement::EProjectileMeleeHitReaction*);
-namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <>
 const CType& base::reflection::ValueOps<gameeditor::EPersistenceTarget>::TypeOf(const void*) { return g_unk_7172756f90; }
 template struct base::reflection::ValueOps<gameeditor::EPersistenceTarget>;
@@ -2169,7 +2191,6 @@ struct base::reflection::EnumTypeDescription<gameeditor::EPersistenceTarget> : b
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, gameeditor::EPersistenceTarget*);
-enum class EPickingMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EPickingMode>::TypeOf(const void*) { return g_unk_7172758838; }
 template struct base::reflection::ValueOps<EPickingMode>;
@@ -2180,7 +2201,6 @@ struct base::reflection::EnumTypeDescription<EPickingMode> : base::reflection::V
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EPickingMode*);
-namespace GUI::CGlobalMapComposition { enum class SState : u32; }
 template <>
 const CType& base::reflection::ValueOps<GUI::CGlobalMapComposition::SState>::TypeOf(const void*) { return g_unk_7172762ba0; }
 template struct base::reflection::ValueOps<GUI::CGlobalMapComposition::SState>;
@@ -2191,7 +2211,6 @@ struct base::reflection::EnumTypeDescription<GUI::CGlobalMapComposition::SState>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, GUI::CGlobalMapComposition::SState*);
-namespace GUI::CMapMenuController { enum class SState : u32; }
 template <>
 const CType& base::reflection::ValueOps<GUI::CMapMenuController::SState>::TypeOf(const void*) { return g_unk_7172763a18; }
 template struct base::reflection::ValueOps<GUI::CMapMenuController::SState>;
@@ -2202,7 +2221,6 @@ struct base::reflection::EnumTypeDescription<GUI::CMapMenuController::SState> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, GUI::CMapMenuController::SState*);
-enum class EActionProps : u32;
 template <>
 const CType& base::reflection::ValueOps<EActionProps>::TypeOf(const void*) { return g_unk_7172768f18; }
 template struct base::reflection::ValueOps<EActionProps>;
@@ -2213,7 +2231,6 @@ struct base::reflection::EnumTypeDescription<EActionProps> : base::reflection::V
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EActionProps*);
-enum class EActionPlayMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EActionPlayMode>::TypeOf(const void*) { return g_unk_7172769078; }
 template struct base::reflection::ValueOps<EActionPlayMode>;
@@ -2224,7 +2241,6 @@ struct base::reflection::EnumTypeDescription<EActionPlayMode> : base::reflection
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EActionPlayMode*);
-enum class EOnActionEnd : u32;
 template <>
 const CType& base::reflection::ValueOps<EOnActionEnd>::TypeOf(const void*) { return g_unk_71727691d8; }
 template struct base::reflection::ValueOps<EOnActionEnd>;
@@ -2235,7 +2251,6 @@ struct base::reflection::EnumTypeDescription<EOnActionEnd> : base::reflection::V
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EOnActionEnd*);
-enum class EActionSegmentType : u32;
 template <>
 const CType& base::reflection::ValueOps<EActionSegmentType>::TypeOf(const void*) { return g_unk_7172769338; }
 template struct base::reflection::ValueOps<EActionSegmentType>;
@@ -2246,7 +2261,6 @@ struct base::reflection::EnumTypeDescription<EActionSegmentType> : base::reflect
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EActionSegmentType*);
-enum class EActionInsertFlags : u32;
 template <>
 const CType& base::reflection::ValueOps<EActionInsertFlags>::TypeOf(const void*) { return g_unk_7172769498; }
 template struct base::reflection::ValueOps<EActionInsertFlags>;
@@ -2257,7 +2271,6 @@ struct base::reflection::EnumTypeDescription<EActionInsertFlags> : base::reflect
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EActionInsertFlags*);
-enum class EShieldAction : u32;
 template <>
 const CType& base::reflection::ValueOps<EShieldAction>::TypeOf(const void*) { return g_unk_7172772bb0; }
 template struct base::reflection::ValueOps<EShieldAction>;
@@ -2268,7 +2281,6 @@ struct base::reflection::EnumTypeDescription<EShieldAction> : base::reflection::
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EShieldAction*);
-enum class EWings : u32;
 template <>
 const CType& base::reflection::ValueOps<EWings>::TypeOf(const void*) { return g_unk_717277df90; }
 template struct base::reflection::ValueOps<EWings>;
@@ -2279,7 +2291,6 @@ struct base::reflection::EnumTypeDescription<EWings> : base::reflection::ValueOp
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EWings*);
-namespace game::logic::collision { enum class EColMat : u32; }
 template <>
 const CType& base::reflection::ValueOps<game::logic::collision::EColMat>::TypeOf(const void*) { return g_unk_7172791c90; }
 template struct base::reflection::ValueOps<game::logic::collision::EColMat>;
@@ -2290,7 +2301,6 @@ struct base::reflection::EnumTypeDescription<game::logic::collision::EColMat> : 
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, game::logic::collision::EColMat*);
-namespace game::curves { enum class EProcessorType : u32; }
 template <>
 const CType& base::reflection::ValueOps<game::curves::EProcessorType>::TypeOf(const void*) { return g_unk_7172792008; }
 template struct base::reflection::ValueOps<game::curves::EProcessorType>;
@@ -2301,7 +2311,6 @@ struct base::reflection::EnumTypeDescription<game::curves::EProcessorType> : bas
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, game::curves::EProcessorType*);
-namespace cutscene { enum class ETakePlayMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<cutscene::ETakePlayMode>::TypeOf(const void*) { return g_unk_7172794fb0; }
 template struct base::reflection::ValueOps<cutscene::ETakePlayMode>;
@@ -2312,7 +2321,6 @@ struct base::reflection::EnumTypeDescription<cutscene::ETakePlayMode> : base::re
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, cutscene::ETakePlayMode*);
-namespace cutscene { enum class EDevelopmentState : u32; }
 template <>
 const CType& base::reflection::ValueOps<cutscene::EDevelopmentState>::TypeOf(const void*) { return g_unk_7172795110; }
 template struct base::reflection::ValueOps<cutscene::EDevelopmentState>;
@@ -2323,7 +2331,6 @@ struct base::reflection::EnumTypeDescription<cutscene::EDevelopmentState> : base
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, cutscene::EDevelopmentState*);
-enum class EInFrustumMode : u32;
 template <>
 const CType& base::reflection::ValueOps<EInFrustumMode>::TypeOf(const void*) { return g_unk_71727952a8; }
 template struct base::reflection::ValueOps<EInFrustumMode>;
@@ -2334,7 +2341,6 @@ struct base::reflection::EnumTypeDescription<EInFrustumMode> : base::reflection:
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EInFrustumMode*);
-enum class EBreakableTileType : u32;
 template <>
 const CType& base::reflection::ValueOps<EBreakableTileType>::TypeOf(const void*) { return g_unk_7172795ca8; }
 template struct base::reflection::ValueOps<EBreakableTileType>;
@@ -2345,7 +2351,6 @@ struct base::reflection::EnumTypeDescription<EBreakableTileType> : base::reflect
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EBreakableTileType*);
-namespace CCharClassSetCameraNearEvent { enum class EDir : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassSetCameraNearEvent::EDir>::TypeOf(const void*) { return g_unk_717279cb00; }
 template struct base::reflection::ValueOps<CCharClassSetCameraNearEvent::EDir>;
@@ -2356,7 +2361,6 @@ struct base::reflection::EnumTypeDescription<CCharClassSetCameraNearEvent::EDir>
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassSetCameraNearEvent::EDir*);
-namespace CCharClassAnalogAimTrack { enum class EAbortAnalogAimInput : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassAnalogAimTrack::EAbortAnalogAimInput>::TypeOf(const void*) { return g_unk_71727a0738; }
 template struct base::reflection::ValueOps<CCharClassAnalogAimTrack::EAbortAnalogAimInput>;
@@ -2367,7 +2371,6 @@ struct base::reflection::EnumTypeDescription<CCharClassAnalogAimTrack::EAbortAna
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassAnalogAimTrack::EAbortAnalogAimInput*);
-namespace CCharClassToStateTrack { enum class EMaintainFrameMode : u32; }
 template <>
 const CType& base::reflection::ValueOps<CCharClassToStateTrack::EMaintainFrameMode>::TypeOf(const void*) { return g_unk_71727adf10; }
 template struct base::reflection::ValueOps<CCharClassToStateTrack::EMaintainFrameMode>;
@@ -2378,7 +2381,6 @@ struct base::reflection::EnumTypeDescription<CCharClassToStateTrack::EMaintainFr
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, CCharClassToStateTrack::EMaintainFrameMode*);
-enum class EFXType : u32;
 template <>
 const CType& base::reflection::ValueOps<EFXType>::TypeOf(const void*) { return g_unk_71727b8dd8; }
 template struct base::reflection::ValueOps<EFXType>;
@@ -2389,7 +2391,6 @@ struct base::reflection::EnumTypeDescription<EFXType> : base::reflection::ValueO
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, EFXType*);
-enum class ELinkType : u32;
 template <>
 const CType& base::reflection::ValueOps<ELinkType>::TypeOf(const void*) { return g_unk_71727b8ef8; }
 template struct base::reflection::ValueOps<ELinkType>;
@@ -2400,7 +2401,6 @@ struct base::reflection::EnumTypeDescription<ELinkType> : base::reflection::Valu
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
 template base::reflection::CEnumType::CEnumType(const base::global::CStrId&, const void*, ELinkType*);
-enum class ELightType : u32;
 template <>
 const CType& base::reflection::ValueOps<ELightType>::TypeOf(const void*) { return g_unk_71727ba2e0; }
 template struct base::reflection::ValueOps<ELightType>;
