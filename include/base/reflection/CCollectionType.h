@@ -60,22 +60,22 @@ CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
             false),
       m_kind(CollectionTypeDescription<T>::kind), m_key(CollectionTypeDescription<T>::key()),
       m_element(CollectionTypeDescription<T>::element()), m_iterator(nullptr), m_const_iterator(nullptr),
-      m_count(CollectionTypeDescription<T>::count),
-      m_clear(CollectionTypeDescription<T>::clear),
-      m_add_copy(CollectionTypeDescription<T>::add_copy),
-      m_add_move(CollectionTypeDescription<T>::add_move),
-      m_erase(CollectionTypeDescription<T>::erase),
-      m_at(CollectionTypeDescription<T>::at),
-      m_find(CollectionTypeDescription<T>::find),
-      m_set_copy(CollectionTypeDescription<T>::set_copy),
-      m_set_move(CollectionTypeDescription<T>::set_move),
+      m_count(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::count)),
+      m_clear(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::clear)),
+      m_add_copy(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::add_copy)),
+      m_add_move(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::add_move)),
+      m_erase(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::erase)),
+      m_at(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::at)),
+      m_find(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::find)),
+      m_set_copy(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::set_copy)),
+      m_set_move(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::set_move)),
       m_begin(nullptr), m_end(nullptr), m_const_begin(nullptr), m_const_end(nullptr) {
     m_iterator = CollectionTypeDescription<T>::iterator();
-    m_begin = CollectionTypeDescription<T>::begin;
-    m_end = CollectionTypeDescription<T>::end;
+    m_begin = reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::begin);
+    m_end = reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::end);
     m_const_iterator = CollectionTypeDescription<T>::const_iterator();
-    m_const_begin = CollectionTypeDescription<T>::const_begin;
-    m_const_end = CollectionTypeDescription<T>::const_end;
+    m_const_begin = reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::const_begin);
+    m_const_end = reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::const_end);
 }
 
 }  // namespace base::reflection

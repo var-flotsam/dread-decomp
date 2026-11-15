@@ -314,6 +314,36 @@ class TypeNames(unittest.TestCase):
         self.assertIsNone(gt.primitive_value_type([line.replace('"unsigned"', '"CFoo"') for line in body]))
         self.assertIsNone(gt.primitive_value_type([line.replace("&fn_7100000044", "nullptr") for line in body]))
 
+    def test_vector_collection_named_form(self):
+        slots = ["construct", "copy_construct", "move_construct", "destroy", "copy_assign", "move_assign",
+                 "equals", "hash", "type_of"] + gt.COLLECTION_SLOTS
+        body = ["    static constexpr u64 size = 0x28;", "    static constexpr u32 kind = 0x1;",
+                "    static const CType* key() { return fn_7100000500(); }",
+                "    static const CType* element() { return fn_7100000510(); }",
+                "    static const CType* iterator() { return fn_7100000520(); }",
+                "    static const CType* const_iterator() { return fn_7100000530(); }"]
+        body += [f"    static constexpr UnkFn {m} = &fn_{0x7100000100 + 0x10 * i:x};" for i, m in enumerate(slots)]
+        vector = "base::global::CRntVector<CActor*>"
+        named = {0x7100000520: f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator"}
+        self.assertEqual(gt.mapped_vector(body, named, frozenset()), (vector, "CActor*"))
+        # a class element, a keyed collection, a const iterator or an unnamed iterator: not written yet
+        for other in ("base::global::CRntVector<CFoo>", "base::global::CRntDictionary<CFoo, CBar>"):
+            named_other = {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}
+            self.assertIsNone(gt.mapped_vector(body, named_other, frozenset()))
+        self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "EFoo")},
+                                          frozenset({"EFoo"})), ("base::global::CRntVector<EFoo>", "EFoo"))
+        self.assertIsNone(gt.mapped_vector(body, {0x7100000520: named[0x7100000520] + "x"}, frozenset()))
+        self.assertIsNone(gt.mapped_vector([line.replace("0x28", "0x48") for line in body], named, frozenset()))
+        out = gt.emit_collection_ops(0x7100000010, body, vector, "CActor*")
+        self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
+                      f": base::reflection::CollectionMapperDescription<{vector}> {{", out)
+        self.assertIn("class CActor;", out)
+        self.assertIn(f"extern template void {vector}::InsertCopy(CActor* const&, u32);", out)
+        self.assertIn("    static constexpr UnkFn erase = &fn_71000001d0;", out)
+        self.assertIn("    static constexpr UnkFn equals = &fn_7100000160;", out)
+        self.assertFalse(any(" count = " in line or " construct = " in line for line in out))
+        self.assertEqual(gt.MAPPER_DESC_RE.findall("\n".join(out)), [vector])
+
 
 class Declarations(unittest.TestCase):
     DECLS = {"void fn_7100000010();", "extern base::reflection::CType g_unk_7100000020;",
