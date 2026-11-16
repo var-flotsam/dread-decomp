@@ -7,11 +7,13 @@
 #include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkBehaviorNode_A2_b69;
 struct UnkInlineString_A2_b72;
 struct UnkStringEqualsCondition_A2_b72;
 struct UnkSelf;
 struct UnkStruct_0x68;
 void fn_7100394bd0(UnkStruct_0x68* self);
+s32 fn_7100394b30(UnkBehaviorNode_A2_b69* node, f32 value, s32 state);
 bool fn_7100394e2c(UnkSelf*, void*, f32*);  // Returns whether the property is set.
 void fn_71003954fc(UnkSelf* behavior, void* record, f32 value);
 extern base::global::CStrId g_unk_71726b7cb8;

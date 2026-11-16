@@ -3569,7 +3569,7 @@ address,size,name,name_source,subsystem,status
 0x7100288f28,368,navmesh::CNavMeshGenerator::refl_InitClass,reflection,ai/navmesh,O
 0x7100289098,144,fn_7100289098,unknown,unknown,O
 0x7100289128,236,fn_7100289128,unknown,unknown,O
-0x7100289214,304,fn_7100289214,unknown,unknown,U
+0x7100289214,304,fn_7100289214,unknown,unknown,O
 0x7100289344,420,fn_7100289344,unknown,unknown,U
 0x71002894e8,108,fn_71002894e8,unknown,unknown,O
 0x7100289554,276,fn_7100289554,unknown,unknown,O
