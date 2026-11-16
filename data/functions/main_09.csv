@@ -703,7 +703,7 @@ address,size,name,name_source,subsystem,status
 0x7100916764,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::MoveConstruct",reflection,engine/reflection,O
 0x71009167a8,4,fn_71009167a8,unknown,unknown,O
 0x71009167ac,48,fn_71009167ac,unknown,unknown,O
-0x71009167dc,260,fn_71009167dc,unknown,unknown,O
+0x71009167dc,260,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::MoveAssign",reflection,engine/reflection,O
 0x71009168e0,252,fn_71009168e0,unknown,unknown,O
 0x71009169dc,356,fn_71009169dc,unknown,unknown,O
 0x7100916b40,348,fn_7100916b40,unknown,unknown,O
