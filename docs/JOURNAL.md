@@ -154,6 +154,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**The copy vector in include/ and the music path list on it (2026-11-16).** `UnkCopyVec_b56` (a CRntVector-layout
+array with an out-of-line Reserve per element type) moved from `src/game/UnkUnit2601/` to
+`include/base/UnkCopyVec_b56.h`. The music manager's path list is now `UnkPathVec_b0019 = UnkCopyVec_b56<UnkPathRecord_b0019>`
+in `include/game/sound/UnkMusicPathVec.h` (reserve `fn_7100456980` declared there, `operator[]` now `PathAt`), and
+the pooled string id four sources copied is `include/base/global/UnkPooledId.h`. The record's id must be that pooled
+id: with `CFilePathStrId` the copy constructor still matches but the destructor differs. Still a draft:
+`fn_7100fddf18`. `fn_7100fddcb4.cpp` declares it as a `CRntVector`-based `UnkPathList`'s copy constructor, and
+rebuilding that list on `UnkPathVec_b0019` drops `fn_7100fddcb4` to 16% even with `CRntVector::Free`'s body
+(the schedule changes); making `UnkCopyVec_b56` a `CRntVector` subclass is worse.
+
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
 pointers or the holder's kind, as if the store of the empty id into the moved-from slot could change them;

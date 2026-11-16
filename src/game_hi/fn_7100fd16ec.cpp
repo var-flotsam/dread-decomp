@@ -3,28 +3,11 @@
 // the two string ids to the global default and the priority to the maximum.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkPooledId.h"
 #include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
-
-template <base::global::UnkStringPool** Pool>
-struct UnkPooledId {
-    base::global::UnkStringData* data;
-
-    ~UnkPooledId() {
-        if (base::global::UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 struct UnkPathEntry_0x18 {
     UnkPooledId<&g_unk_7101d47200> field_0x0;
