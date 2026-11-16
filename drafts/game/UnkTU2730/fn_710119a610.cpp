@@ -7,16 +7,12 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameBlackboard.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
 
 struct UnkStruct_71003327a4;
 
