@@ -1094,9 +1094,9 @@ address,size,name,name_source,subsystem,status
 0x7100228ca0,580,fn_7100228ca0,unknown,unknown,O
 0x7100228ee4,380,fn_7100228ee4,unknown,unknown,O
 0x7100229060,220,"base::reflection::refl_GetType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>",reflection,engine/reflection,O
-0x710022913c,376,fn_710022913c,unknown,unknown,O
-0x71002292b4,380,fn_71002292b4,unknown,unknown,O
-0x7100229430,380,fn_7100229430,unknown,unknown,O
+0x710022913c,376,fn_710022913c,unknown,engine/reflection?,O
+0x71002292b4,380,fn_71002292b4,unknown,engine/reflection?,O
+0x7100229430,380,fn_7100229430,unknown,engine/reflection?,O
 0x71002295ac,220,base::reflection::refl_GetType<CActor*>,reflection,engine/reflection,O
 0x7100229688,220,fn_7100229688,unknown,unknown,O
 0x7100229764,220,"base::reflection::refl_GetType<base::global::CRntDictionary<base::global::CStrId, CActor*>*>",reflection,engine/reflection,O
@@ -1256,9 +1256,9 @@ address,size,name,name_source,subsystem,status
 0x7100234400,8,fn_7100234400,unknown,unknown,O
 0x7100234410,260,fn_7100234410,unknown,unknown,O
 0x7100234514,364,"base::reflection::refl_InitType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>",reflection,engine/reflection,O
-0x7100234680,96,fn_7100234680,unknown,unknown,O
-0x71002346e0,12,fn_71002346e0,unknown,unknown,O
-0x71002346ec,16,fn_71002346ec,unknown,unknown,O
+0x7100234680,96,fn_7100234680,unknown,engine/reflection?,O
+0x71002346e0,12,fn_71002346e0,unknown,engine/reflection?,O
+0x71002346ec,16,fn_71002346ec,unknown,engine/reflection?,O
 0x71002346fc,20,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Equals",reflection,engine/reflection,O
 0x7100234710,8,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Hash",reflection,engine/reflection,O
 0x7100234718,20,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::TypeOf",reflection,engine/reflection,O
@@ -1268,7 +1268,7 @@ address,size,name,name_source,subsystem,status
 0x710023474c,4,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Destroy",reflection,engine/reflection,O
 0x7100234750,20,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::CopyAssign",reflection,engine/reflection,O
 0x7100234764,20,"base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::MoveAssign",reflection,engine/reflection,O
-0x7100234780,260,fn_7100234780,unknown,unknown,O
+0x7100234780,260,fn_7100234780,unknown,engine/reflection?,O
 0x7100234884,368,base::reflection::refl_InitType<CActor*>,reflection,engine/reflection,O
 0x71002349f4,104,fn_71002349f4,unknown,unknown,O
 0x7100234a5c,12,fn_7100234a5c,unknown,unknown,O

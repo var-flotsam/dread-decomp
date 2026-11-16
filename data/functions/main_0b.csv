@@ -2233,18 +2233,18 @@ address,size,name,name_source,subsystem,status
 0x7100b762b0,220,base::reflection::refl_GetType<GUI::CSkin*>,reflection,engine/reflection,O
 0x7100b7638c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementIterator>,reflection,engine/reflection,O
 0x7100b76468,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementConstIterator>,reflection,engine/reflection,O
-0x7100b76544,900,fn_7100b76544,unknown,unknown,O
-0x7100b768c8,388,fn_7100b768c8,unknown,unknown,O
+0x7100b76544,900,fn_7100b76544,unknown,engine/reflection?,O
+0x7100b768c8,388,fn_7100b768c8,unknown,engine/reflection?,O
 0x7100b76a4c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator>,reflection,engine/reflection,O
-0x7100b76b28,900,fn_7100b76b28,unknown,unknown,O
-0x7100b76eac,388,fn_7100b76eac,unknown,unknown,O
+0x7100b76b28,900,fn_7100b76b28,unknown,engine/reflection?,O
+0x7100b76eac,388,fn_7100b76eac,unknown,engine/reflection?,O
 0x7100b77030,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x7100b7710c,496,base::reflection::refl_InitType<base::global::CRntVector<GUI::CSkin*>>,reflection,engine/reflection,O
-0x7100b772fc,212,fn_7100b772fc,unknown,unknown,O
-0x7100b773d0,232,fn_7100b773d0,unknown,unknown,O
-0x7100b774b8,44,fn_7100b774b8,unknown,unknown,O
-0x7100b774e4,112,fn_7100b774e4,unknown,unknown,O
-0x7100b77554,112,fn_7100b77554,unknown,unknown,O
+0x7100b772fc,212,fn_7100b772fc,unknown,engine/reflection?,O
+0x7100b773d0,232,fn_7100b773d0,unknown,engine/reflection?,O
+0x7100b774b8,44,fn_7100b774b8,unknown,engine/reflection?,O
+0x7100b774e4,112,fn_7100b774e4,unknown,engine/reflection?,O
+0x7100b77554,112,fn_7100b77554,unknown,engine/reflection?,O
 0x7100b775c4,364,base::reflection::refl_InitType<GUI::CSkin*>,reflection,engine/reflection,O
 0x7100b77730,96,fn_7100b77730,unknown,unknown,O
 0x7100b77790,12,fn_7100b77790,unknown,unknown,O
@@ -2441,17 +2441,17 @@ address,size,name,name_source,subsystem,status
 0x7100b7d880,220,base::reflection::refl_GetType<GUI::CSpriteSheet*>,reflection,engine/reflection,O
 0x7100b7d95c,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementIterator>",reflection,engine/reflection,O
 0x7100b7da38,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementConstIterator>",reflection,engine/reflection,O
-0x7100b7db14,900,fn_7100b7db14,unknown,unknown,O
-0x7100b7de98,388,fn_7100b7de98,unknown,unknown,O
-0x7100b7e01c,220,fn_7100b7e01c,unknown,unknown,O
-0x7100b7e0f8,900,fn_7100b7e0f8,unknown,unknown,O
-0x7100b7e47c,388,fn_7100b7e47c,unknown,unknown,O
-0x7100b7e600,220,fn_7100b7e600,unknown,unknown,O
+0x7100b7db14,900,fn_7100b7db14,unknown,engine/reflection?,O
+0x7100b7de98,388,fn_7100b7de98,unknown,engine/reflection?,O
+0x7100b7e01c,220,fn_7100b7e01c,unknown,engine/reflection?,O
+0x7100b7e0f8,900,fn_7100b7e0f8,unknown,engine/reflection?,O
+0x7100b7e47c,388,fn_7100b7e47c,unknown,engine/reflection?,O
+0x7100b7e600,220,fn_7100b7e600,unknown,engine/reflection?,O
 0x7100b7e6dc,464,"base::reflection::refl_InitType<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>",reflection,engine/reflection,O
-0x7100b7e8ac,232,fn_7100b7e8ac,unknown,unknown,O
-0x7100b7e994,212,fn_7100b7e994,unknown,unknown,O
-0x7100b7ea68,256,fn_7100b7ea68,unknown,unknown,O
-0x7100b7eb68,108,fn_7100b7eb68,unknown,unknown,O
+0x7100b7e8ac,232,fn_7100b7e8ac,unknown,engine/reflection?,O
+0x7100b7e994,212,fn_7100b7e994,unknown,engine/reflection?,O
+0x7100b7ea68,256,fn_7100b7ea68,unknown,engine/reflection?,O
+0x7100b7eb68,108,fn_7100b7eb68,unknown,engine/reflection?,O
 0x7100b7ebd4,364,base::reflection::refl_InitType<GUI::CSpriteSheet*>,reflection,engine/reflection,O
 0x7100b7ed40,96,fn_7100b7ed40,unknown,unknown,O
 0x7100b7eda0,12,fn_7100b7eda0,unknown,unknown,O

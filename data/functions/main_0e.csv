@@ -3921,9 +3921,9 @@ address,size,name,name_source,subsystem,status
 0x7100ef0078,28,fn_7100ef0078,unknown,unknown,O
 0x7100ef0094,36,fn_7100ef0094,unknown,unknown,O
 0x7100ef00b8,364,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>> const*>",reflection,engine/reflection,O
-0x7100ef0224,96,fn_7100ef0224,unknown,unknown,O
-0x7100ef0284,12,fn_7100ef0284,unknown,unknown,O
-0x7100ef0290,16,fn_7100ef0290,unknown,unknown,O
+0x7100ef0224,96,fn_7100ef0224,unknown,engine/reflection?,O
+0x7100ef0284,12,fn_7100ef0284,unknown,engine/reflection?,O
+0x7100ef0290,16,fn_7100ef0290,unknown,engine/reflection?,O
 0x7100ef02a0,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>> const*>::Equals",reflection,engine/reflection,O
 0x7100ef02b4,8,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>> const*>::Hash",reflection,engine/reflection,O
 0x7100ef02bc,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>> const*>::TypeOf",reflection,engine/reflection,O
