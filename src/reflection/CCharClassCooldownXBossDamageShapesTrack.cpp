@@ -28,8 +28,8 @@ void fn_7100c13308();
 void fn_7100c12908(UnkReflFunction* fn, const char* name);
 namespace CCharClassCooldownXBossDamageShapesTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Activate Damage Logic Shapes");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("AI", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Activate Damage Logic Shapes");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLogicShapesEnabled_GetterFunction", true))) {

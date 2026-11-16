@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAlternativeActionPlayEvent
 namespace CCharClassAlternativeActionPlayEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Alternative Action Play");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "Actions");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Alternative Action Play");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Actions");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play"));

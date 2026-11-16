@@ -29,7 +29,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("pLogicShape", true), &g_unk_717269bb48, 0x10, -1, -1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     DREAD_REFLECTED_FIELD(f32, "fFactorToAdd", 0x50, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fFactorToMultiply", 0x54, (DefaultValue, 1.0f));
 }

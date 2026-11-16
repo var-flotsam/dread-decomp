@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent
 namespace CCharClassCooldownXBossEnableCoolShinesparkTriggerEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "CooldownXBoss Enable Cool Shinespark Trigger");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "Enemy own actions");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "CooldownXBoss Enable Cool Shinespark Trigger");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Enemy own actions");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnable", 0xc, (DefaultValue, true));

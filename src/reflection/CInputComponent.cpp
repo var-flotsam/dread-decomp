@@ -40,8 +40,8 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IgnoreInputFor", true))) {
         fn_7100870a5c(fn, "IgnoreInputFor");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Ignore input for"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Ignore input for"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bInputIgnored_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bInputIgnored_GetterFunction", true);

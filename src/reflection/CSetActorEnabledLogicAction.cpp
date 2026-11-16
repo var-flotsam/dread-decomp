@@ -26,7 +26,7 @@ namespace CSetActorEnabledLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpActor", true), &g_unk_717269bb48, 0x10, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x50, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

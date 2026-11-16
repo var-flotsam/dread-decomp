@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAutectorChangeColliderEvent
 namespace CCharClassAutectorChangeColliderEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Autector change hurt colliders");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Enemy own actions", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Autector change hurt colliders");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

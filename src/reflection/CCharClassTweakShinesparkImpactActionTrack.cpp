@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakShinesparkImpactActionTrack
 namespace CCharClassTweakShinesparkImpactActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Shinespark impact action");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("AI", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Shinespark impact action");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));

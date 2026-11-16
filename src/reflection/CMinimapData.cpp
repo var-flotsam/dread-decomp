@@ -26,7 +26,7 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100e51c54();
 namespace CMinimapData {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(u32, "uDataVersion", 0x58, (DefaultValue, 0));

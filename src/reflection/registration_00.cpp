@@ -11,6 +11,7 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/CPointerType.h"
+#include "base/reflection/ReflectedFields.h"
 class CActorComponent;
 extern template const base::reflection::CType* base::reflection::PointerType<CActorComponent*>::Get();
 namespace base::global { class CFilePathStrId; }
@@ -44,7 +45,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned long>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned short>::Get();
 
-const base::reflection::UnkReflAttrKey& fn_710001b9f0();
 void fn_710001d83c();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
@@ -54,12 +54,9 @@ void fn_710001d88c();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_710001db50();
 void fn_710001dba0();
-const base::reflection::UnkReflAttrKey& fn_7100026bf0();
 extern base::reflection::CType g_unk_7101d4dad8;
 void fn_7100027244();
 void fn_7100026684(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100005070();
-const base::reflection::UnkReflAttrKey& fn_7100011040();
 void fn_710007bdd8(UnkReflFunction* fn, const char* name);
 void fn_71000cb434();
 void fn_71000cb484();
@@ -153,26 +150,17 @@ void fn_710011d59c();
 void fn_71001111ec(UnkReflFunction* fn, const char* name);
 void fn_710011dcc4();
 void fn_710011242c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100075240();
-const base::reflection::UnkReflAttrKey& fn_7100090a20();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_710011dd98();
 void fn_710011ddac();
 extern base::reflection::CType g_unk_7108b6da30;
 void fn_710011df5c();
 void fn_710011ddc0(UnkReflFunction* fn);
-const base::reflection::UnkReflAttrKey& fn_710008f920();
-const base::reflection::UnkReflAttrKey& fn_71000903c0();
 void fn_710011e1e8();
 void fn_710011e050(UnkReflFunction* fn);
 void fn_71001125a8(UnkReflFunction* fn, const char* name);
 void fn_7100112724(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7108b6e1e8;
-const base::reflection::UnkReflAttrKey& fn_710008fd60();
-const base::reflection::UnkReflAttrKey& fn_710008fe70();
-const base::reflection::UnkReflAttrKey& fn_710008fc50();
-const base::reflection::UnkReflAttrKey& fn_710008fb40();
-const base::reflection::UnkReflAttrKey& fn_710008ff80();
 void fn_710011e3b8();
 void fn_71001128a0(UnkReflFunction* fn, const char* name);
 void fn_710011e5d4();
@@ -275,13 +263,8 @@ void fn_7100260e88();
 void fn_7100260ed8();
 extern base::reflection::CType g_unk_717269b1b8;
 void fn_7100263e80();
-const base::reflection::UnkReflAttrKey& fn_71000901a0();
-const base::reflection::UnkReflAttrKey& fn_7100234780();
-const base::reflection::UnkReflAttrKey& fn_7100092b10();
-const base::reflection::UnkReflAttrKey& fn_7100263720();
 extern base::reflection::CType g_unk_7172756f90;
 void fn_710026264c(UnkReflFunction* fn, const char* name);
-const base::reflection::UnkReflAttrKey& fn_7100007e80();
 void fn_7100262700(UnkReflFunction* fn, const char* name);
 void fn_71002643b8();
 void fn_710026421c(UnkReflFunction* fn);
@@ -486,16 +469,16 @@ void fn_7100778dc8();
 
 void fn_7100018a44(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sType", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x0, -1, -1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    field0->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x8, -1, -1);
-    field1->attrs.Add<bool>(fn_710001b9f0(), true);
+    field1->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
 }
 
 void fn_7100018d48(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sType", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x0, -1, -1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    field0->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sPath", true), &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x8, -1, -1);
-    field1->attrs.Add<bool>(fn_710001b9f0(), true);
+    field1->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
 }
 
 void fn_7100019204(CClass* cls) {
@@ -541,7 +524,7 @@ void fn_71000197e8(CClass* cls) {
 }
 
 void fn_71000262b8(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100026bf0(), "base::global::CRntString");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::sSerializationType(), "base::global::CRntString");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_assetID_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_assetID_GetterFunction", true);
         fn->return_type = &g_unk_7101d4dad8;
@@ -555,45 +538,45 @@ void fn_71000262b8(CClass* cls) {
 }
 
 void fn_7100065d24(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10001u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10001u);
 }
 
 void fn_710007149c(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10000u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10000u);
 }
 
 void fn_710007bb30(CClass* cls) {
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100011040(), CStrId("DumpBinary", true));
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::sBinaryDeserialize(), CStrId("DumpBinary", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DumpBinary", true)))
         fn_710007bdd8(fn, "DumpBinary");
 }
 
 void fn_7100088c50(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10004u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10004u);
 }
 
 void fn_710008b6d4(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10003u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10003u);
 }
 
 void fn_71000a7148(CClass* cls) {
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100026bf0(), CStrId("base::global::CRntString", true));
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::sSerializationType(), CStrId("base::global::CRntString", true));
 }
 
 void fn_71000a71f4(CClass* cls) {
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100026bf0(), CStrId("base::global::CRntString", true));
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::sSerializationType(), CStrId("base::global::CRntString", true));
 }
 
 void fn_71000a72a0(CClass* cls) {
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100026bf0(), CStrId("base::global::CRntString", true));
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::sSerializationType(), CStrId("base::global::CRntString", true));
 }
 
 void fn_71000a734c(CClass* cls) {
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100026bf0(), CStrId("base::global::CRntString", true));
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::sSerializationType(), CStrId("base::global::CRntString", true));
 }
 
 void fn_71000a73f8(CClass* cls) {
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100026bf0(), CStrId("base::global::CRntString", true));
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::sSerializationType(), CStrId("base::global::CRntString", true));
 }
 
 void fn_71000a79e0(CClass* cls) {
@@ -1395,11 +1378,11 @@ void fn_71000b9f2c(CClass* cls) {
 }
 
 void fn_71000f5680(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10000u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10000u);
 }
 
 void fn_71001043e4(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x1000cu);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x1000cu);
 }
 
 void fn_710010c194(CClass* cls) {
@@ -1487,8 +1470,8 @@ void fn_7100111368(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bClosed_SetterFunction", true)))
         fn_710011242c(fn, "_bClosed_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("bClosed", true), &base::reflection::PrimitiveType<bool>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<bool>(fn_7100075240(), false);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    field0->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
+    field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterSegmentDataDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterSegmentDataDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
@@ -1511,9 +1494,9 @@ void fn_7100111368(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710011df5c);
         fn_710011ddc0(fn);
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("vPos", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("InsertElement", true))) {
         fn->name = base::global::UnkStrId("InsertElement", true);
@@ -1523,25 +1506,25 @@ void fn_7100111368(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710011e1e8);
         fn_710011e050(fn);
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("rData", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("rData", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("EraseElement", true))) {
         fn_71001125a8(fn, "EraseElement");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
         fn_7100112724(fn, "DeleteElement");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
     UnkReflField* field1 = fn_7100096524(cls, CStrId("oSegmentData", true), &g_unk_7108b6e1e8, 0x0, -1, -1);
-    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
-    field1->attrs.Add<CStrId>(fn_710008fe70(), CStrId("InsertElement", true));
-    field1->attrs.Add<CStrId>(fn_710008fc50(), CStrId("EraseElement", true));
-    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
-    field1->attrs.Add<const char*>(fn_710008ff80(), "AfterSegmentDataDeserialization");
+    field1->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateElement", true));
+    field1->attrs.Add<CStrId>(base::reflection::attr::InsertElement(), CStrId("InsertElement", true));
+    field1->attrs.Add<CStrId>(base::reflection::attr::EraseElement(), CStrId("EraseElement", true));
+    field1->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteElement", true));
+    field1->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterSegmentDataDeserialization");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
@@ -1552,7 +1535,7 @@ void fn_7100111368(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_SetterFunction", true)))
         fn_71001128a0(fn, "_bOutwardsNormal_SetterFunction");
     UnkReflField* field2 = fn_7100096524(cls, CStrId("bOutwardsNormal", true), &base::reflection::PrimitiveType<bool>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field2->attrs.Add<bool>(fn_7100075240(), false);
+    field2->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
 }
 
 void fn_7100112a1c(CClass* cls) {
@@ -1566,7 +1549,7 @@ void fn_7100112a1c(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
         fn_7100112ddc(fn, "_vPos_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
+    field0->attrs.Add<base::math::CVector3D>(base::reflection::attr::DefaultValue(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
 }
 
 void fn_71001131ec(CClass* cls) {
@@ -1739,7 +1722,7 @@ void fn_7100116608(CClass* cls) {
 
 void fn_71001239b0(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vPolys", true), &g_unk_7108b6ddf0, 0x0, -1, -1);
-    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewPolyAt", true));
+    field0->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("AddNewPolyAt", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewPolyAt", true))) {
         fn->name = base::global::UnkStrId("AddNewPolyAt", true);
         fn->return_type = &g_unk_7108b6d8f0;
@@ -1748,9 +1731,9 @@ void fn_71001239b0(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710012580c);
         fn_7100125670(fn);
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("bClosed", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("bClosed", true));
     }
 }
 
@@ -1797,7 +1780,7 @@ void fn_7100136618(CClass* cls) {
 }
 
 void fn_71001395b8(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x800200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x800200u);
     UnkReflField* field0 = fn_7100096524(cls, CStrId("hashTunables", true), &g_unk_710b371338, 0x0, -1, -1);
 }
 
@@ -1844,35 +1827,35 @@ void fn_710013a054(CClass* cls) {
 }
 
 void fn_71001aa20c(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10004u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10004u);
 }
 
 void fn_71001aacb4(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x1000au);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x1000au);
 }
 
 void fn_71001ab774(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10004u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10004u);
 }
 
 void fn_71001ac034(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10007u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10007u);
 }
 
 void fn_71001acaf4(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x1003au);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x1003au);
 }
 
 void fn_71001aeb64(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10017u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10017u);
 }
 
 void fn_71001afb24(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10013u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10013u);
 }
 
 void fn_71001b3468(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10008u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10008u);
 }
 
 void fn_71001ecc9c(CClass* cls) {
@@ -1942,7 +1925,7 @@ void fn_71001fba88(CClass* cls) {
 }
 
 void fn_71001fe698(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10013u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10013u);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_pScene_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_pScene_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<engine::scene::CScene*>::Get();
@@ -2473,25 +2456,25 @@ void fn_7100261c94(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100263e80);
     }
     UnkReflField* field1 = fn_7100096524(cls, CStrId("dctActors", true), &g_unk_717269b1b8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNewActor", true));
-    field1->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteActorByName", true));
-    field1->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sName", true));
-    field1->attrs.Add<bool>(fn_7100234780(), true);
-    field1->attrs.Add<bool>(fn_7100092b10(), true);
-    field1->attrs.Add<s32>(fn_7100263720(), &g_unk_7172756f90, 1);
-    field1->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterActorDeserialization");
+    field1->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateNewActor", true));
+    field1->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteActorByName", true));
+    field1->attrs.Add<CStrId>(base::reflection::attr::ElementKeyVariable(), CStrId("sName", true));
+    field1->attrs.Add<bool>(base::reflection::attr::SetRenderItemSelectionIdCall(), true);
+    field1->attrs.Add<bool>(base::reflection::attr::DisableListAddRemove(), true);
+    field1->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &g_unk_7172756f90, 1);
+    field1->attrs_0x70.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterActorDeserialization");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewActor", true))) {
         fn_710026264c(fn, "CreateNewActor");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Actor");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Actor");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sName", true));
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("oActorDefLink", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sName", true));
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("oActorDefLink", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteActorByName", true))) {
         fn_7100262700(fn, "DeleteActorByName");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Actor");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete Actor");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sName", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sName", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterActorDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterActorDeserialization", true);
@@ -2673,17 +2656,17 @@ void fn_71002be2d8(CClass* cls) {
 
 void fn_71002c717c(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fAngleOffsetDegs", true), &base::reflection::PrimitiveType<float>::Get(), 0x0, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    field0->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
+    field0->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fSpeed", true), &base::reflection::PrimitiveType<float>::Get(), 0x4, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field1->attrs.Add<bool>(fn_710001b9f0(), true);
+    field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
+    field1->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fGravity", true), &base::reflection::PrimitiveType<float>::Get(), 0x8, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 2500.0f);
-    field2->attrs.Add<bool>(fn_710001b9f0(), true);
+    field2->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 2500.0f);
+    field2->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("fTimeForNextBall", true), &base::reflection::PrimitiveType<float>::Get(), 0xc, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field3->attrs.Add<bool>(fn_710001b9f0(), true);
+    field3->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
+    field3->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
 }
 
 void fn_71002c781c(CClass* cls) {
@@ -2730,20 +2713,20 @@ void fn_71002c7e00(CClass* cls) {
 
 void fn_71002c85d8(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fCombatMinTimeBetweenBalls", true), &base::reflection::PrimitiveType<float>::Get(), 0x30, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.2f);
+    field0->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.2f);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fCombatMaxTimeBetweenBalls", true), &base::reflection::PrimitiveType<float>::Get(), 0x34, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.3f);
+    field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.3f);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("tPattern", true), &g_unk_71726a79d0, 0x0, -1, -1);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x28, -1, -1);
-    field3->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field3->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(g_unk_7101d470e0));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("fFloorMinAngleDegs", true), &base::reflection::PrimitiveType<float>::Get(), 0x38, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field4->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
     UnkReflField* field5 = fn_7100096524(cls, CStrId("fFloorMaxAngleDegs", true), &base::reflection::PrimitiveType<float>::Get(), 0x3c, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field5->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("fFloorMinAngleDegs2", true), &base::reflection::PrimitiveType<float>::Get(), 0x40, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field6->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
     UnkReflField* field7 = fn_7100096524(cls, CStrId("fFloorMaxAngleDegs2", true), &base::reflection::PrimitiveType<float>::Get(), 0x44, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 0.0f);
+    field7->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
 }
 
 void fn_71002c8e88(CClass* cls) {
@@ -2832,13 +2815,13 @@ void fn_71002dc874(CClass* cls) {
 
 void fn_71002ea1d0(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sCheckpointDefID", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x8, -1, -1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    field0->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("oValidationInfo", true), &g_unk_71726ac9b8, 0x10, -1, -1);
 }
 
 void fn_71002ea494(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("nGameplayVersion", true), &base::reflection::PrimitiveType<int>::Get(), 0x0, -1, -1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    field0->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("uFormatHash", true), &base::reflection::PrimitiveType<unsigned long>::Get(), 0x8, -1, -1);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("uScenarioHash", true), &base::reflection::PrimitiveType<unsigned long>::Get(), 0x10, -1, -1);
 }
@@ -2971,14 +2954,14 @@ void fn_7100365174(CClass* cls) {
 
 void fn_71003eb5d4(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fHorizontalOffset", true), &base::reflection::PrimitiveType<float>::Get(), 0x0, -1, -1);
-    field0->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    field0->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
+    field0->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fVerticalOffset", true), &base::reflection::PrimitiveType<float>::Get(), 0x4, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 0.0f);
-    field1->attrs.Add<bool>(fn_710001b9f0(), true);
+    field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
+    field1->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fTimeForNextBall", true), &base::reflection::PrimitiveType<float>::Get(), 0x8, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), -1.0f);
-    field2->attrs.Add<bool>(fn_710001b9f0(), true);
+    field2->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
+    field2->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
 }
 
 void fn_71003ebba0(CClass* cls) {
@@ -3026,7 +3009,7 @@ void fn_71003ec184(CClass* cls) {
 void fn_71003ec95c(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tPattern", true), &g_unk_71726c1d20, 0x0, -1, -1);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x28, -1, -1);
-    field1->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(g_unk_7101d470e0));
 }
 
 void fn_710045d530(CClass* cls) {
@@ -3871,13 +3854,13 @@ void fn_71006139bc(CClass* cls) {
 
 void fn_71006656c4(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eType", true), &g_unk_71726fdc20, 0x0, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fdc20, 2147483647);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71726fdc20, 2147483647);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fFirePillarLength", true), &base::reflection::PrimitiveType<float>::Get(), 0x8, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 500.0f);
+    field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 500.0f);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fFirePillarWidth", true), &base::reflection::PrimitiveType<float>::Get(), 0x4, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 100.0f);
+    field2->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 100.0f);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("fFirePillarLengthOffset", true), &base::reflection::PrimitiveType<float>::Get(), 0xc, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 90.0f);
+    field3->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 90.0f);
 }
 
 void fn_7100665cc0(CClass* cls) {
@@ -3924,29 +3907,29 @@ void fn_71006662a4(CClass* cls) {
 
 void fn_710066e1d4(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eType", true), &g_unk_71726fee48, 0x0, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_71726fee48, 2147483647);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71726fee48, 2147483647);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fBaseAbsorbDistance", true), &base::reflection::PrimitiveType<float>::Get(), 0x8, -1, -1);
-    field1->attrs.Add<f32>(fn_7100075240(), 600.0f);
+    field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 600.0f);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("fAngryAbsorbDistance", true), &base::reflection::PrimitiveType<float>::Get(), 0x24, -1, -1);
-    field2->attrs.Add<f32>(fn_7100075240(), 800.0f);
+    field2->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 800.0f);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("fBombAbsorbExtraHeight", true), &base::reflection::PrimitiveType<float>::Get(), 0xc, -1, -1);
-    field3->attrs.Add<f32>(fn_7100075240(), 50.0f);
+    field3->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 50.0f);
     UnkReflField* field4 = fn_7100096524(cls, CStrId("fBombAbsorbExtraWidth", true), &base::reflection::PrimitiveType<float>::Get(), 0x10, -1, -1);
-    field4->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    field4->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 20.0f);
     UnkReflField* field5 = fn_7100096524(cls, CStrId("fMaxAbsorbAngle", true), &base::reflection::PrimitiveType<float>::Get(), 0x4, -1, -1);
-    field5->attrs.Add<f32>(fn_7100075240(), 20.0f);
+    field5->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 20.0f);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("fAbsorbBaseSpeed", true), &base::reflection::PrimitiveType<float>::Get(), 0x14, -1, -1);
-    field6->attrs.Add<f32>(fn_7100075240(), 550.0f);
+    field6->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 550.0f);
     UnkReflField* field7 = fn_7100096524(cls, CStrId("fAbsorbMaxSpeed", true), &base::reflection::PrimitiveType<float>::Get(), 0x18, -1, -1);
-    field7->attrs.Add<f32>(fn_7100075240(), 5000.0f);
+    field7->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 5000.0f);
     UnkReflField* field8 = fn_7100096524(cls, CStrId("fAbsorbTimeToLoseControl", true), &base::reflection::PrimitiveType<float>::Get(), 0x1c, -1, -1);
-    field8->attrs.Add<f32>(fn_7100075240(), 1.0f);
+    field8->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 1.0f);
     UnkReflField* field9 = fn_7100096524(cls, CStrId("fAbsorbAcceleration", true), &base::reflection::PrimitiveType<float>::Get(), 0x20, -1, -1);
-    field9->attrs.Add<f32>(fn_7100075240(), 400.0f);
+    field9->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 400.0f);
     UnkReflField* field10 = fn_7100096524(cls, CStrId("fBombAbsorbBaseSpeed", true), &base::reflection::PrimitiveType<float>::Get(), 0x28, -1, -1);
-    field10->attrs.Add<f32>(fn_7100075240(), 1500.0f);
+    field10->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 1500.0f);
     UnkReflField* field11 = fn_7100096524(cls, CStrId("fBombAbsorbAcceleration", true), &base::reflection::PrimitiveType<float>::Get(), 0x2c, -1, -1);
-    field11->attrs.Add<f32>(fn_7100075240(), 800.0f);
+    field11->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 800.0f);
 }
 
 void fn_710066ecec(CClass* cls) {
@@ -4035,8 +4018,8 @@ void fn_71007094c8(CClass* cls) {
 
 void fn_7100754738(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eTileType", true), &g_unk_7172795ca8, 0x0, -1, -1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172795ca8, 1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172795ca8, 1);
+    field0->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vGridCoords_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vGridCoords_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
@@ -4047,25 +4030,25 @@ void fn_7100754738(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vGridCoords_SetterFunction", true)))
         fn_7100754db8(fn, "_vGridCoords_SetterFunction");
     UnkReflField* field1 = fn_7100096524(cls, CStrId("vGridCoords", true), &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{-1.0f, -1.0f});
-    field1->attrs.Add<bool>(fn_710001b9f0(), true);
+    field1->attrs.Add<base::math::CVector2D>(base::reflection::attr::DefaultValue(), base::math::CVector2D{-1.0f, -1.0f});
+    field1->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("sHiddenSG", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x10, -1, -1);
-    field2->attrs.Add<bool>(fn_710001b9f0(), true);
+    field2->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("bIsHidingSecret", true), &base::reflection::PrimitiveType<bool>::Get(), 0x40, -1, -1);
-    field3->attrs.Add<bool>(fn_710001b9f0(), true);
-    field3->attrs.Add<bool>(fn_7100090a20(), false);
+    field3->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
+    field3->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field4 = fn_7100096524(cls, CStrId("aVignettes", true), &g_unk_717269bf08, 0x18, -1, -1);
 }
 
 void fn_7100754f34(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("fX", true), &base::reflection::PrimitiveType<float>::Get(), 0x0, -1, -1);
-    field0->attrs.Add<bool>(fn_710001b9f0(), true);
+    field0->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("fY", true), &base::reflection::PrimitiveType<float>::Get(), 0x4, -1, -1);
-    field1->attrs.Add<bool>(fn_710001b9f0(), true);
+    field1->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eTileType", true), &g_unk_7172795ca8, 0x8, -1, -1);
-    field2->attrs.Add<bool>(fn_710001b9f0(), true);
+    field2->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("uState", true), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xc, -1, -1);
-    field3->attrs.Add<bool>(fn_710001b9f0(), true);
+    field3->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
 }
 
 void fn_7100755530(CClass* cls) {

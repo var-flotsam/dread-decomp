@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // animtree::CLayerNodeDef
 namespace animtree::CLayerNodeDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Layer Node Definition");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Layer Node Definition");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFactor", 0x10, (DefaultValue, 0.0f), (Description, "Initial factor"));

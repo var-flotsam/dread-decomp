@@ -27,7 +27,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 // navmesh::CDynamicSmartLinkGroup
 namespace navmesh::CDynamicSmartLinkGroup {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bGenerateInNavMesh", 0x88);

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -35,7 +36,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eShellState_SetterFunction", true)))
         fn_71006b9d50(fn, "_m_eShellState_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eShellState", true), &g_unk_7172707020, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7172707020, 0);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172707020, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

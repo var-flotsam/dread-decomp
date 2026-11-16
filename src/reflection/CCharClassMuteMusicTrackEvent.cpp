@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassMuteMusicTrackEvent
 namespace CCharClassMuteMusicTrackEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Mute Music Track");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Sound", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Mute Music Track");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(u32, "uTrack", 0xc, (DefaultValue, 0), (MinValueI, 0), (MaxValueI, 1));

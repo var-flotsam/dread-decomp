@@ -29,8 +29,8 @@ void fn_7100d2ec10();
 void fn_7100d2e8d4(UnkReflFunction* fn, const char* name);
 namespace CCharClassTweakConvertToMorphBallVelocityTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Convert Velocity");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Player", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Convert Velocity");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Player", true));
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFrontDirection_GetterFunction", true))) {

@@ -27,8 +27,8 @@ void fn_7100c27bd8();
 void fn_7100c2736c(UnkReflFunction* fn, const char* name);
 namespace CCharClassIgnoreBumpFXTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "IgnoreBumpFX");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("State", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "IgnoreBumpFX");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sColliders_GetterFunction", true))) {

@@ -81,7 +81,7 @@ namespace CCharClassHydrogigaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0x528, -1, -1);
-    field0->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    field0->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaBraidAttack, "oHydrogigaBraidAttackDef", 0x738);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaMaelstormAttack, "oHydrogigaMaelstormAttackDef", 0x830);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaPolypsAttack, "oHydrogigaPolypsAttackDef", 0x920);

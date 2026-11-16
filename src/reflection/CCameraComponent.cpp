@@ -125,8 +125,8 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetLogicCameraController", true))) {
         fn_71010e15c8(fn, "GetLogicCameraController");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FIELD(bool, "bIgnoreSlomo", 0xc20);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetCtrl", true)))

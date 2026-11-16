@@ -32,7 +32,7 @@ void fn_71011d8af8(UnkReflFunction* fn, const char* name);
 void fn_71011d8bac(UnkReflFunction* fn, const char* name);
 namespace GUI::CDisplayObjectContainer {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10202u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10202u);
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddChild", true)))
@@ -52,18 +52,18 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddDisplayObj", true))) {
         fn_71011d8af8(fn, "AddDisplayObj");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create DO At Index");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create DO At Index");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("oType", true));
-        fn->ParamAttrs(1)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("oType", true));
+        fn->ParamAttrs(1)->Add<bool>(base::reflection::attr::Required(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteDO", true))) {
         fn_71011d8bac(fn, "DeleteDO");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete DO At Index");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete DO At Index");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
 }
 bool refl_Equals(const void*, const void*) { return false; }

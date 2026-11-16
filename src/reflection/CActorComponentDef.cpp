@@ -32,7 +32,7 @@ void fn_7100254784();
 void fn_7100253534(UnkReflFunction* fn, const char* name);
 namespace CActorComponentDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x70200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x70200u);
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartEnabled_GetterFunction", true))) {

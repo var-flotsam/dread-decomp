@@ -33,7 +33,7 @@ void fn_71002f0664(UnkReflFunction* fn, const char* name);
 void fn_71002f471c();
 namespace CPlaythroughDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x58, (XmlAttribute, true));
@@ -82,7 +82,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioID", 0x8, (XmlAttribute, true));
     DREAD_REFLECTED_FIELD(CStrId, "sCheckpointID", 0x10, (XmlAttribute, true));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("strDesc", true), &base::reflection::PrimitiveType<base::global::TRntString64>::Get(), 0x18, -1, -1);
-    field2->attrs.Add<bool>(fn_710001b9f0(), true);
+    field2->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     DREAD_REFLECTED_FIELD(CStrId, "sStartPoint", 0xa0, (XmlAttribute, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_strTags_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_strTags_GetterFunction", true);
@@ -94,7 +94,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_strTags_SetterFunction", true)))
         fn_71002f0f90(fn, "_strTags_SetterFunction");
     UnkReflField* field4 = fn_7100096524(cls, CStrId("strTags", true), &base::reflection::PrimitiveType<base::global::TRntString128>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field4->attrs.Add<bool>(fn_710001b9f0(), true);
+    field4->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("HasTag", true)))
         fn_71002f110c(fn, "HasTag");
 }

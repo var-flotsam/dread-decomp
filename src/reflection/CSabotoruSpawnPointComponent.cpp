@@ -40,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_wpDoor_SetterFunction", true)))
         fn_7100a1bef8(fn, "_m_wpDoor_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpDoor", true), &g_unk_71727b6270, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_wpHomeLandmark_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_wpHomeLandmark_GetterFunction", true);
         fn->return_type = &g_unk_717269bb48;
@@ -51,7 +51,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_wpHomeLandmark_SetterFunction", true)))
         fn_7100a1c06c(fn, "_m_wpHomeLandmark_SetterFunction");
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpHomeLandmark", true), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
     DREAD_REFLECTED_FIELD(bool, "bRightSideDoor", 0x438, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }

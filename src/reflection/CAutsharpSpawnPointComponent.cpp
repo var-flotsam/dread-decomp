@@ -28,7 +28,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EAutsharpSpawnPointDir", "eSpawnDir", 0x3b8, (DefaultValue, 2));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpSpawnShape", true), &g_unk_717269bb48, 0x3c0, -1, -1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

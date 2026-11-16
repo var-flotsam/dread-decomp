@@ -27,7 +27,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 // base::animation::CBlendSpaceResource
 namespace base::animation::CBlendSpaceResource {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10202u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10202u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sVarName", 0x58);
