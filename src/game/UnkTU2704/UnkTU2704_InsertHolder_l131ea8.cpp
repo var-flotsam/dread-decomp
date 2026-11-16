@@ -15,7 +15,7 @@ void fn_7101131ea8(base::global::CRntVector<UnkSpawnHolder>* self, const UnkSpaw
         return;
     }
     if (self->capacity <= n && self->step != 0) {
-        u32 capacity = (n / self->step + 1) * self->step;
+        u32 capacity = self->GrownCapacity(n);
         if (self->capacity < capacity) {
             UnkSpawnHolder* fresh = static_cast<UnkSpawnHolder*>(
                 self->allocator->vf_0x40((u64)capacity * sizeof(UnkSpawnHolder), 8, self->flags));

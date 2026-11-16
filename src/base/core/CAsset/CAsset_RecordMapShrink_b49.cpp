@@ -35,28 +35,10 @@ struct UnkAssetKeyedMap {
     }
 };
 
-struct UnkAssetPathIdVector {
-    UnkAssetPathId* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkAssetPathIdVector(UnkAssetPathIdVector&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-};
-
 struct UnkRecord80 {
     UnkAssetKeyedMap<UnkStrIdPathPair, UnkAssetPathId> field_0x0;
     UnkAssetKeyedMap<UnkStrIdPathPair, UnkAssetPathId> field_0x28;
-    UnkAssetPathIdVector field_0x50;
+    base::global::CRntVector<UnkAssetPathId> field_0x50;
     UnkAssetPathId field_0x78;
 
     UnkRecord80(UnkRecord80&& other) = default;

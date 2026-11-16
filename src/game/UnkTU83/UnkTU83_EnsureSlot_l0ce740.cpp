@@ -12,7 +12,7 @@ base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMembe
     if (list->field_0x14 && list->count <= index) {
         u32 capacity = list->capacity;
         if (capacity <= index && list->step != 0)
-            capacity = (index / list->step + 1) * list->step;
+            capacity = list->GrownCapacity(index);
         fn_710000542c(vec, capacity);
         u32 want = index + 1;
         fn_710000542c(vec, want);

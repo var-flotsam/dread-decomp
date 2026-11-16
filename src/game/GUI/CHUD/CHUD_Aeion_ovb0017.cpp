@@ -236,7 +236,7 @@ void fn_71011df420(UnkHudIdValueVector_ovb0017* self, std::initializer_list<UnkH
         u32 n = self->count;
         u32 new_capacity = self->capacity;
         if (new_capacity <= n && self->step != 0)
-            new_capacity = (n / self->step + 1) * self->step;
+            new_capacity = self->GrownCapacity(n);
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }
@@ -286,7 +286,7 @@ void fn_71011e755c(UnkHudOwnedVector_ovb0017* self, UnkHudOwnedRef_ovb0017* valu
     }
     u32 cap = self->capacity;
     if (cap <= n && self->step != 0) {
-        u32 grown = (n / self->step + 1) * self->step;
+        u32 grown = self->GrownCapacity(n);
         if (cap < grown) {
             auto* p = static_cast<UnkHudOwnedRef_ovb0017*>(
                 self->allocator->vf_0x40((u64)grown * sizeof(UnkHudOwnedRef_ovb0017), 8, self->flags));

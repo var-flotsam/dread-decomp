@@ -96,23 +96,13 @@ struct UnkIdPathPair_b62a1 {
     }
 };
 
-struct UnkIdPathPairs_b62a1 {
-    UnkIdPathPair_b62a1* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 // Signature as src/base/UnkUnit25/UnkStrIdPathPairVecReserve_b45.cpp defines it.
 struct UnkStrIdPathPairVec_b45a1;
 
-static inline void Grow_b62a1(UnkIdPathPairs_b62a1* self, u32 index) {
+static inline void Grow_b62a1(base::global::CRntVector<UnkIdPathPair_b62a1>* self, u32 index) {
     u32 capacity = self->capacity;
     if (capacity <= index && self->step != 0)
-        capacity = (index / self->step + 1) * self->step;
+        capacity = self->GrownCapacity(index);
     fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), capacity);
     u32 n = index + 1;
     fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
@@ -121,14 +111,15 @@ static inline void Grow_b62a1(UnkIdPathPairs_b62a1* self, u32 index) {
     self->count = n;
 }
 
-void fn_710001de1c(UnkIdPathPairs_b62a1* self, const u32* index, const UnkIdPathPair_b62a1* value) {
+void fn_710001de1c(base::global::CRntVector<UnkIdPathPair_b62a1>* self, const u32* index,
+                   const UnkIdPathPair_b62a1* value) {
     u32 i = *index;
     if (self->field_0x14 && self->count <= i)
         Grow_b62a1(self, i);
     self->data[i] = *value;
 }
 
-void fn_710001dffc(UnkIdPathPairs_b62a1* self, const u32* index, UnkIdPathPair_b62a1* value) {
+void fn_710001dffc(base::global::CRntVector<UnkIdPathPair_b62a1>* self, const u32* index, UnkIdPathPair_b62a1* value) {
     u32 i = *index;
     if (self->field_0x14 && self->count <= i)
         Grow_b62a1(self, i);

@@ -39,25 +39,7 @@ struct UnkIdValues {
     u32 field_0xc;
 };
 
-// base::global::CRntVector<UnkIdValues>'s layout, with a move constructor (used when the container
-// reallocates).
-struct UnkMovedIdValuesVector {
-    UnkIdValues* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkMovedIdValuesVector(UnkMovedIdValuesVector&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-};
+using UnkMovedIdValuesVector = base::global::CRntVector<UnkIdValues>;
 
 struct UnkIdValuesArrays {
     base::global::CRntVector<UnkIdValues>* records;

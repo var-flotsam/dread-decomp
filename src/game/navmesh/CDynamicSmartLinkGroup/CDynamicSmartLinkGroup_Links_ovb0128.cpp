@@ -89,7 +89,7 @@ static inline void AppendAll(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>
         u32 n = self->count;
         u32 cap = self->capacity;
         if (cap <= n && self->step != 0)
-            cap = (n / self->step + 1) * self->step;
+            cap = self->GrownCapacity(n);
         if ((s32)n >= (s32)cap)
             for (;;) {
             }
@@ -144,7 +144,7 @@ static inline void InsertAt(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>*
     u32 n = self->count;
     if (n == index) {
         if (cap <= n && self->step != 0)
-            cap = (index / self->step + 1) * self->step;
+            cap = self->GrownCapacity(index);
         if ((s32)cap <= (s32)index)
             for (;;) {
             }
@@ -152,7 +152,7 @@ static inline void InsertAt(base::global::CRntVector<UnkSmartLinkEntry_ovb0128>*
         new (&self->data[self->count]) UnkSmartLinkEntry_ovb0128(static_cast<V&&>(value));
     } else {
         if (cap <= n && self->step != 0)
-            cap = (n / self->step + 1) * self->step;
+            cap = self->GrownCapacity(n);
         Grow(self, cap);
         for (u32 i = self->count - 1; i >= index; --i) {
             UnkSmartLinkEntry_ovb0128* q = &self->data[i];
@@ -185,7 +185,7 @@ UnkSmartLinkEntry_ovb0128* fn_7100268c64(UnkSmartLinkMap_b49a1* map, u32 index) 
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0)
-            cap = (index / self->step + 1) * self->step;
+            cap = self->GrownCapacity(index);
         Grow(self, cap);
         u32 n = index + 1;
         Grow(self, n);
