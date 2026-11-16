@@ -12,6 +12,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1455.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -77,7 +78,6 @@ void fn_71009a609c(UnkAirRequest_B71a6* self);
 inline UnkAirRequest_B71a6::UnkAirRequest_B71a6() { fn_71009a609c(this); }
 bool fn_71009a64cc(UnkAirMoveState_B71a6* state, const UnkAirWords_B71a6* words, s32 a, UnkAirRequest_B71a6* req,
                    s32 b);
-void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
 
 static inline UnkAirMoveState_B71a6* FindState(UnkAirMove_B71a6* self, s32 kind) {
     u64 size = (u64)self->state_count * sizeof(UnkAirMoveState_B71a6*);

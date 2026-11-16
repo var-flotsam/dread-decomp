@@ -3,6 +3,7 @@
 // layouts are placeholders.
 #include "base/global/CRntFile.h"
 #include "base/reflection/CClass.h"
+#include "game/UnkTU80.h"
 #include "types.h"
 
 struct UnkWriterEntry_b0202 {
@@ -29,8 +30,6 @@ struct UnkWriteValue_b0202 {
     u8 pad_0x0[0xe8];
     base::reflection::UnkReflObject* object;  // 0xe8
 };
-
-const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 
 // Sets the entry count, clearing the entries that come into use.
 static inline void Resize(UnkWriter_b0202* self, u32 size) {

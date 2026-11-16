@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1455.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ extern UnkDesc_SpitSend g_unk_710164b958;
 extern UnkDesc_SpitSend g_unk_710164b968;
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
-void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
 
 struct UnkTrackTime_ovb0082 {
     u64 key;

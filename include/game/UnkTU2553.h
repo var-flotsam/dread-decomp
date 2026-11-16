@@ -72,7 +72,7 @@ const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 void fn_7100deac9c(UnkGameManager* manager, const base::global::CRntString& mode);
 base::global::CStrId fn_7100de9c30(UnkGameManager*);
 void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, base::global::CStrId id, bool c);
-void fn_7100df28d0(UnkGameManager* manager, const base::global::CRntString& a, const base::global::CRntString& b, const base::global::CRntString& c, const base::global::CStrId& id, bool flag, const base::global::CRntString& d, const base::global::CStrId& e, u32 f, void* g, f32 h);
+void fn_7100df28d0(UnkGameManager* manager, const base::global::CRntString& a, const base::global::CRntString& b, const base::global::CRntString& c, const base::global::CStrId& id, u32 flag, const base::global::CRntString& d, const base::global::CStrId& e, u32 f, void* g, f32 h);
 void fn_7100dfd174(UnkGameManager* self, base::global::CRntString* name, base::global::CRntString* tag, bool flag, u32 kind, const UnkSaveGamePair_b54& extra);
 UnkCamCtrl_ovb5* fn_7100df2404(UnkGameManager* manager, const base::global::CStrId& id);
 base::global::CRntString fn_7100dfb330(UnkGameManager* self);
