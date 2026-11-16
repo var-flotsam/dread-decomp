@@ -13,7 +13,7 @@ forms tools/fakematch.py sees in it.
   python tools/sample_review.py --since 2026-11-05 --count 20 --seed 2026-W46
 
 Writes build/review/sample_<seed>.md, a worksheet: one entry per function and the questions to answer for
-each. It records nothing itself: the reader's findings go at the top of docs/JOURNAL.md, with the seed, so
+each. It records nothing itself: the reader's findings go in the journal (a pull request's description), with the seed, so
 the sample can be drawn again. Needs tools/check.py's cache (build/check/<version>) to know which source
 defines a function; no dump.
 """
@@ -109,7 +109,7 @@ def worksheet(sample: list[dict], sources: dict[int, str], seed: str, since: str
              f"{len(sample)} of the {pool} hand-written functions that became O, m or M since {since}. For each, "
              "read the function in its file and answer:", ""]
     lines += [f"{i}. {q}" for i, q in enumerate(QUESTIONS, 1)]
-    lines += ["", "Record the findings at the top of docs/JOURNAL.md with this seed; a finding that holds for a "
+    lines += ["", "Record the findings in the journal (a pull request's description) with this seed; a finding that holds for a "
               "whole run or recipe matters more than one function's.", ""]
     for r in sample:
         address = int(r["address"], 16)

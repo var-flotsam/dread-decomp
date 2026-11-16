@@ -173,9 +173,11 @@ title ID `010093801237C000`. Project compiler: upstream Clang 9.0.1 with the fla
   declarations only), one pull request. Recipe: `include/game/UnkXParasiteAI.h` (journal, 2026-11-13).
 - **Bulk agent runs** on the lean kit need no go-ahead of their own when they keep the shape in
   `tools/batch/README.md` ("Batches") and pass every gate; each worker takes several functions of one unit.
-- **Logs go to `docs/JOURNAL.md`**, newest first, reusable findings in its index. Feature branches leave
-  `docs/HANDOFF.md` and `data/tu_status.csv` alone; the merging session regenerates them
-  (`tools/progress.py --slice boot --handoff`, `tools/status_card.py --write`, `tools/tu_status.py --write`).
+- **A pull request's description is its journal entry** ("What this changes": what matched, what did not and
+  why, anything reusable). Feature branches leave `docs/JOURNAL.md`, `docs/HANDOFF.md` and `data/tu_status.csv`
+  alone; the merging session runs `tools/journal_sync.py` (adds the merged descriptions to the journal, newest
+  first; it keeps the findings index by hand) and regenerates the others (`tools/progress.py --slice boot
+  --handoff`, `tools/status_card.py --write`, `tools/tu_status.py --write`).
 - **Commits and pull requests.** Commit messages say what changed, with no phase prefix. A pull request is one
   coherent piece of work (a class, a hub cluster, a tool change), with no minimum size.
 - **Generated sources** (`src/reflection/`, `src/reflection_types/`, `src/reflection_statics/`, `src/clones/`,

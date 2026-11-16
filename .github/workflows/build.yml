@@ -100,8 +100,29 @@ jobs:
           vars.SELF_HOSTED_CHECK != 'true' ||
           (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name != github.repository)
         run: python tools/check.py --compile-only -j 4
+      # ccache in front of the runner's clang++ for the port sweep: a clang++ link to ccache first on PATH,
+      # so tools/port_sweep.py finds it as before and ccache runs the real one. The cache is saved by pushes
+      # to main only and restored everywhere, so a pull request recompiles only what main has not compiled.
+      - name: Compiler cache for the port sweep (ccache)
+        run: |
+          command -v ccache >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq ccache >/dev/null; }
+          mkdir -p "$RUNNER_TEMP/ccache-bin"
+          ln -sf "$(command -v ccache)" "$RUNNER_TEMP/ccache-bin/clang++"
+          echo "$RUNNER_TEMP/ccache-bin" >> "$GITHUB_PATH"
+          {
+            echo "CCACHE_DIR=$HOME/.cache/ccache"
+            echo "CCACHE_BASEDIR=$GITHUB_WORKSPACE"
+            echo "CCACHE_COMPILERCHECK=content"
+            echo "CCACHE_MAXSIZE=2G"
+          } >> "$GITHUB_ENV"
+      - uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ccache
+          key: ccache-port-${{ github.sha }}
+          restore-keys: ccache-port-
       - name: Port sweep, x86-64 Linux (tools/port_sweep.py)
         run: |
+          ccache --zero-stats >/dev/null
           mkdir -p build/port   # the matching build above creates build/ when it runs
           python tools/port_sweep.py --version 2.1.0 --jobs 4 --json build/port/sweep.json > build/port_sweep.log 2>&1 || true
           tail -n 25 build/port_sweep.log
@@ -114,6 +135,14 @@ jobs:
               print("FAILED", f)
           sys.exit(1 if files["failed"] else 0)
           EOF
+      - name: Compiler cache statistics
+        if: always()
+        run: ccache --show-stats || true
+      - uses: actions/cache/save@v4
+        if: always() && github.event_name == 'push'
+        with:
+          path: ~/.cache/ccache
+          key: ccache-port-${{ github.sha }}
 
   # The tools are written and mostly run on Windows, and the job above tests them on Linux only. This runs
   # the same tests on Windows without the project compiler: the tests that need it skip here (they run above).
