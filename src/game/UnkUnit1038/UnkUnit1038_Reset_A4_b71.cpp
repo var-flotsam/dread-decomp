@@ -2,9 +2,8 @@
 // pointers at +0x260 and +0x2d8 (count, head, tail, allocator), releasing each pointer and freeing each
 // node; returns true. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/UnkTU1110.h"
 #include "types.h"
-
-void fn_71006f345c(void* self);
 
 struct UnkU1038Node_A4_b71 {
     base::UnkRefPtrMember ref;
