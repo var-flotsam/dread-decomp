@@ -21,23 +21,16 @@ using base::global::UnkFilePathStrIdBase;
 using base::global::UnkStringPool;
 using base::snd::UnkSoundSystemATK;
 
-// A file-path id's pooled data as this reads it: its text (whose CRC-64 is the file's key) and a count of
-// the reads of that text.
-struct UnkPathData_l100804 {
-    u8 pad_0x0[0x10];
-    CRntString text;  // 0x10
-    u32 field_0x40;
-    s32 reads;  // 0x44
-};
-
-static inline UnkPathData_l100804* PathData(const UnkFilePathStrIdBase& id) {
-    return reinterpret_cast<UnkPathData_l100804*>(id.data);
+// A file-path id's pooled string (whose CRC-64 is the file's key). It is a whole CRntString in the
+// original; UnkStringData lays out only its text and key.
+static inline const CRntString& PooledString(const UnkFilePathStrIdBase& id) {
+    return id.data->String();
 }
 
 // The text of a file-path id, counting the read.
 static inline const CRntString& PathString(const CFilePathStrId& id) {
-    ++PathData(id)->reads;
-    return PathData(id)->text;
+    ++id.data->reads;
+    return PooledString(id);
 }
 static inline const char* PathChars(const CFilePathStrId& id) {
     const char* s = PathString(id).data;
@@ -100,7 +93,7 @@ bool fn_7100100804(UnkSoundSystemATK* self, const CFilePathStrId& path) {
             }
             CFilePathStrId id(fn_71000f63b0(UnkBuiltPathId_l100804(name).Id()));
             if (files->used) {
-                u64 key = PathData(id)->text.key;
+                u64 key = PooledString(id).key;
                 u32 key32 = key;
                 UnkSoundFileNode_l100804** bucket = key32 % files->bucket_count + files->buckets;
                 if (bucket) {

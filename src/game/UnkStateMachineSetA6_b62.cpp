@@ -353,7 +353,6 @@ struct UnkSaveGamePair_b54 {
     u64 first;
     u64 second;
 };
-extern void* g_unk_7101a1b678[];
 using UnkString40_A6_b62 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
 typedef u32 __attribute__((may_alias)) UnkAliasU32_A6_b62;
