@@ -186,7 +186,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710024f71c,340,drafts/game/CActorComponent/fn_710024f71c.cpp,control flow,64.7,24,lean-b5,original duplicates the name release on each exit path and branches differ; release/tail shape
 0x7100251af0,152,drafts/game/CActorComponent/fn_7100251af0.cpp,operations,57.9,16,lean-b5,inner search loop form (original counts i against -count; hoists both maps loads)
 0x710027a5f0,288,drafts/game/navmesh/CNavMesh/fn_710027a5f0.cpp,control flow,2.8,68,lean-b5,prologue/loop shape differs (original keeps cell and &cell->sides in two registers; 5 saved pairs); crossing t
-0x710027da54,80,drafts/game/navmesh/CNavMesh/fn_710027da54.cpp,match,100.0,0,lean-b5,matches; held: declared with UnkNavMeshCellFlag367* (src/game/UnkNavMeshCell_SetFlag.cpp); a u16 cast changes the code
 0x710027e18c,176,drafts/game/navmesh/CNavMesh/fn_710027e18c.cpp,control flow,38.6,21,lean-b5,find loop indexed vs pointer-stepped; erase-after-find shape (idx vs end compare) not reproduced
 0x7100286420,236,drafts/game/UnkTU356/fn_7100286420.cpp,operations,11.3,52,pilot50,loop base register and pointer increment form differ
 0x710028659c,136,drafts/game/UnkTU357/fn_710028659c.cpp,operations,8.8,28,lean,

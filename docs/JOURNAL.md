@@ -195,6 +195,12 @@ copy, and from a packed cell and side plus a point through `fn_71002875bc`, now 
 initialisation `fn_71010d0b78` has one declaration in `game/CMovementComponent.h`, taking `CMovementComponent*`.
 `fn_71010cd6f4` and `fn_71010c80e0` (CEnemyMovement) moved from `drafts/` to `src/` as matches; every other user
 compiles to the same bytes.
+**A navigation cell's owner and flag in the shared layout (2026-11-16).** `UnkNavMeshCell`
+(`include/game/UnkNavMeshCell.h`) now lays out the owning mesh at +0x58 and the flag at +0x60, so the flag setter
+`fn_71002af93c` drops its private view (`UnkNavMeshCellFlag367`) and is declared once in `game/UnkTU367.h`. The mesh's
+callback `fn_710027da54` is declared in `game/navmesh/CNavMesh.h` and moved from `drafts/` to `src/` as a match. The
+cell's 16-bit id at +0x0 is read through an `Id()` accessor: a `u16` member there changes how `fn_71002afa48`
+(src/game/UnkNavMeshCellLoad.cpp) compiles, so the first eight bytes stay padding.
 
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
