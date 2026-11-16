@@ -103,7 +103,7 @@ address,size,name,name_source,subsystem,status
 0x7100305864,448,fn_7100305864,unknown,game?,U
 0x7100305a24,220,fn_7100305a24,unknown,game?,O
 0x7100305b00,292,fn_7100305b00,unknown,game?,O
-0x7100305c24,332,fn_7100305c24,unknown,game?,U
+0x7100305c24,332,fn_7100305c24,unknown,game?,O
 0x7100305d70,52,fn_7100305d70,unknown,game?,O
 0x7100305da4,28,fn_7100305da4,unknown,game?,O
 0x7100305dc0,1340,fn_7100305dc0,unknown,game?,U

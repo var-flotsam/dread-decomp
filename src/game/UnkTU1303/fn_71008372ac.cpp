@@ -2,6 +2,7 @@
 // +0x3c) has the entry set, gives its offset (a direction scaled by a strength, rolled between the
 // minimum and 1 when that is below 1) with the spread across the entries, and the scale and extra
 // values to go with it. Names and layouts are placeholders.
+#include "game/CAbilityEnergyWave.h"
 #include "types.h"
 
 extern "C" int rand();
@@ -14,7 +15,6 @@ struct UnkTunableValue_ovb0262g {
     u8 pad_0x0[0x2c];
     f32 value;  // 0x2c
 };
-extern UnkTunableValue_ovb0262g g_unk_71726af060;
 
 struct UnkSpreadEntry_ovb0262g {
     bool ok;  // 0x0

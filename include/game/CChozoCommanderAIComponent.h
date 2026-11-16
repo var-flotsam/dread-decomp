@@ -5,6 +5,11 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+namespace base::global {
+class CStrId;
+}
+extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_71726c9540;
+
 struct UnkPathRecord;
 struct UnkComponent;
 struct UnkMlogMessage_b42a1;
