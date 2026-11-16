@@ -28,6 +28,7 @@
 #include "game/UnkTU1176.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU1645.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2577.h"
@@ -710,7 +711,6 @@ void fn_710077045c() {
 
 struct UnkCentralUnit;
 struct UnkStrIdHandle;
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 struct UnkOwner;
 
 struct UnkCentralMode_b0230 {

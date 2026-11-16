@@ -167,7 +167,7 @@ address,size,name,name_source,subsystem,status
 0x7100f08560,180,fn_7100f08560,unknown,game/player?,O
 0x7100f08614,180,fn_7100f08614,unknown,game/player?,O
 0x7100f086c8,512,fn_7100f086c8,unknown,game/player?,O
-0x7100f088c8,556,fn_7100f088c8,unknown,game/player?,U
+0x7100f088c8,556,fn_7100f088c8,unknown,game/player?,O
 0x7100f08af4,36,fn_7100f08af4,unknown,game/player?,O
 0x7100f08b18,12596,fn_7100f08b18,unknown,game/player?,U
 0x7100f0bc4c,4,fn_7100f0bc4c,unknown,game/player?,O

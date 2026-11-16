@@ -451,8 +451,6 @@ void fn_710111bb74(UnkSpawnGroupNotify_ovb0065* self, const char* event, UnkSpaw
         fn_710111bc50(self);
 }
 
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-
 struct UnkSpawnGroupRead_ovb0065 {
     u8 pad_0x0[0x30];
     UnkSpawnActor_ovb0065* owner;  // 0x30

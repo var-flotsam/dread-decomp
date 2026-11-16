@@ -9,6 +9,8 @@
 #include "game/CCharClassAttackComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2510.h"
+#include "game/logic/collision/CCircleShape2D.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -23,9 +25,6 @@ struct UnkPlayerMovementCache;
 void* fn_71010d7a6c(UnkPlayerMovementCache* self);
 
 struct UnkLavaDropsShape_A2_b71;
-void fn_7100d6169c(UnkLavaDropsShape_A2_b71* self, const void* source, f32 size);
-void fn_7100d61750(UnkLavaDropsShape_A2_b71* self);
-bool fn_7100d57ca0(UnkLavaDropsShape_A2_b71* self, void* body, void* other, void* out, u32 flags);
 
 struct UnkLavaDropsShape_A2_b71 {
     u8 pad_0x0[0x8];

@@ -365,7 +365,6 @@ struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
     const u32* Chars() const { return *reinterpret_cast<const u32* const*>(unk_0x0 + 8); }
 };
-extern const u32 g_unk_7101648434[] __attribute__((visibility("hidden")));
 
 // A string with 0x100 bytes of inline storage (0x148 bytes), as in src/base/UnkLuaDoString_b50.cpp.
 struct UnkInlineString_dfb1b0 {
@@ -535,8 +534,6 @@ UnkStepCallback* fn_7100dfc428(UnkStepCallbacks* self, u32 index) { return &self
 // ("NumTanksPickedUp" / "NumTanksPickedUpMax", read from the blackboard section that field_0x1000
 // maps `id` to), 0 when there is no maximum. Names and layouts are placeholders.
 using base::global::CStrId;
-
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 
 // The property's qualified id, built on first use.
 static inline const UnkQualifiedId& Qid_dfbba8(UnkPropertyEx<>& item) {

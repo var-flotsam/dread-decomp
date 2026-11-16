@@ -108,8 +108,6 @@ struct UnkReportString {
     bool IsEmpty() const { return !str.data || !*str.data; }
 };
 
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-
 // The profile values: a count and the profile id (item property definitions,
 // src/game_s7/fn_7100ae39e0.cpp).
 

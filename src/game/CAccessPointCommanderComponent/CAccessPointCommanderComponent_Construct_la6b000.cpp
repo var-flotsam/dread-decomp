@@ -7,7 +7,8 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-void fn_7100a6c9f4(void* self);
+struct UnkAp_la6c9f4;
+void fn_7100a6c9f4(UnkAp_la6c9f4* self);  // the access point base constructor
 void fn_7100a6b0cc();
 void fn_7100a6b0d8();
 
@@ -36,7 +37,7 @@ struct UnkAccessPointCommander_la6b000 {
 static_assert(__builtin_offsetof(UnkAccessPointCommander_la6b000, field_0xa18) == 0xa18, "layout");
 
 void fn_7100a6b000(UnkAccessPointCommander_la6b000* self) {
-    fn_7100a6c9f4(self);
+    fn_7100a6c9f4(reinterpret_cast<UnkAp_la6c9f4*>(self));
     void* const* vt = reinterpret_cast<void* const*>(g_unk_7101a8fa30 + 0x10);
     void* const* base_vt = g_unk_7101a20998 + 2;
     self->vtable = const_cast<void**>(vt);

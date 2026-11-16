@@ -51,8 +51,6 @@ struct UnkCls_710117af10;
 struct UnkTrackBlend;
 struct UnkTrackAction_1444;
 
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
-
 // A request's mode (passed by value, through memory).
 struct UnkFlags_7101176ea8 {
     u32 value;

@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU394.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -99,7 +100,6 @@ struct UnkCheckCancelAttackOrder_ovb0128 {
 void* fn_7100362324(UnkCancelAttack_ovb0128* attack, u32 mode);
 
 // The instance, reached through the GOT.
-extern char* g_unk_71726b2398;
 
 u32 fn_7100377664(UnkCheckCancelAttackOrder_ovb0128* self) {
     UnkCancelOwner_ovb0128* owner = self->owner;

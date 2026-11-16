@@ -531,7 +531,6 @@ bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* co
 }
 
 // ---- fn_7100dffc58 / fn_7100dffe04
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 struct UnkTgmBlackboards_b205 {
     u8 pad_0x0[0x820];
     CBlackboard field_0x820;

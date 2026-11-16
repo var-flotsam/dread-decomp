@@ -13,7 +13,6 @@
 
 using base::global::CStrId;
 
-bool fn_7100395a30(CBlackboard::CSection*, const void*, s32*);
 struct UnkEntityState;
 
 struct UnkPersistenceKey_b49 {

@@ -141,8 +141,6 @@ struct UnkPtrArrays_ovb0034 {
     base::UnkAllocator* allocator;
 };
 
-void fn_7100d43e70(UnkPtrArrays_ovb0034* self, const UnkPtrArray_ovb0034* value);
-
 // Destroys the elements, grows the storage to the other array's capacity (moving the elements
 // over), then appends a copy of each of the other's elements.
 UnkPtrArrays_ovb0034* fn_7100d44054(UnkPtrArrays_ovb0034* self, const UnkPtrArrays_ovb0034* other) {

@@ -4,12 +4,12 @@
 #include "base/global/CRntVector.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkBufferStringPool.h"
 #include "types.h"
 
 void fn_71010fa290(char* self);
 
 // The instance, reached through the GOT.
-extern char* g_unk_71726b2398;
 
 void fn_7100369650(char* self) {
     fn_71010fa290(self);
