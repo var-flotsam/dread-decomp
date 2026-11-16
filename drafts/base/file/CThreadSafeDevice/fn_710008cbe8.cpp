@@ -78,18 +78,18 @@ inline void Reset(UnkPackIndex_l08cbe8* self) {
 
 // Adds an entry to the set, keeping track of the lowest non-empty bucket and its first node.
 inline void Insert(UnkFileCacheSet* set, u64 key, s32 begin, s32 end) {
-    ++set->field_0x48;
-    void* mem = set->allocator->vf_0x40(sizeof(UnkPackIndexNode_l08cbe8), 8, set->flags);
+    ++set->version;
+    void* mem = set->node_allocator->vf_0x40(sizeof(UnkPackIndexNode_l08cbe8), 8, set->node_flags);
     auto* node = new (mem) UnkPackIndexNode_l08cbe8(key, begin, end - begin);
     u32 index = set->buckets.count ? static_cast<u32>(key) % set->buckets.capacity : u32(-1);
-    u32 first = set->field_0x28;
-    set->field_0x28 = index < first ? index : first;
+    u32 first = set->first_bucket;
+    set->first_bucket = index < first ? index : first;
     if (index <= first)
-        set->field_0x30 = reinterpret_cast<UnkFileCacheSetNode*>(node);
+        set->first_node = reinterpret_cast<UnkFileCacheSetNode*>(node);
     auto** bucket = reinterpret_cast<UnkPackIndexNode_l08cbe8**>(fn_710008d0c4(reinterpret_cast<char*>(set), index));
     node->next = *bucket;
     *bucket = node;
-    ++set->count;
+    ++set->node_count;
 }
 
 }  // namespace

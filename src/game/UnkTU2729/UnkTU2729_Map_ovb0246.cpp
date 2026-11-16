@@ -2,6 +2,7 @@
 #include "base/UnkBlockFreeList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkBucketSet.h"
 #include "game/UnkTU2729.h"
 #include "types.h"
 
@@ -31,7 +32,7 @@ struct UnkMapNode_b0246 {
     UnkMapNode_b0246* next;  // 0x10
 };
 
-struct UnkMap_b0246;
+using UnkMap_b0246 = base::global::UnkBucketSet<UnkMapNode_b0246>;
 
 struct UnkMapIter_b0246 {
     UnkMapNode_b0246* node;  // 0x0
@@ -41,19 +42,6 @@ struct UnkMapIter_b0246 {
     u32 version;             // 0x1c
 };
 
-struct UnkMap_b0246 {
-    u8 pad_0x0[8];
-    u32 bucket_count;  // 0x8
-    u8 pad_0xc[0x1c];
-    u32 first_bucket;  // 0x28
-    u8 pad_0x2c[4];
-    UnkMapNode_b0246* first;  // 0x30
-    base::UnkAllocator* allocator;  // 0x38
-    u8 pad_0x40[4];
-    u32 count;  // 0x44
-    u32 version;  // 0x48
-};
-
 UnkMapNode_b0246** fn_7101194aa8(UnkMap_b0246* self, u32 bucket);
 
 void fn_71011957b0(UnkMap_b0246* self, UnkMapNode_b0246* node) {
@@ -61,7 +49,7 @@ void fn_71011957b0(UnkMap_b0246* self, UnkMapNode_b0246* node) {
         return;
     ResetId_b0246<&g_unk_7101d47200>(&node->path);
     ResetId_b0246<&g_unk_7101d47108>(&node->name);
-    self->allocator->vf_0x48(node);
+    self->node_allocator->vf_0x48(node);
     self->version++;
 }
 
@@ -69,33 +57,22 @@ void fn_7101192ee8(void* member);
 void fn_71011954cc(void* map);
 void fn_71011951e8(void* map);
 
-// A hash map of nodes over a block pool (0x90 bytes): the bucket array first, then the pool.
-struct UnkPooledMap_b0246 {
-    base::global::CRntVector<u8> buckets;  // 0x0
-    u8 pad_0x28[0x10];
-    u64 field_0x38;  // 0x38
-    u8 pad_0x40[0x10];
-    void* pool_vtable;  // 0x50
-    base::UnkAllocator* pool_allocator;  // 0x58
-    UnkBlockFreeList pool;  // 0x60
-    u8 pad_0x88[4];
-    bool dirty;  // 0x8c
-    u8 pad_0x8d[3];
-};
-static_assert(sizeof(UnkPooledMap_b0246) == 0x90, "UnkPooledMap_b0246 layout");
-static_assert(__builtin_offsetof(UnkPooledMap_b0246, pool) == 0x60, "UnkPooledMap_b0246 layout");
+// A hash map of nodes over a block pool (base/global/UnkBucketSet.h); nodes.field_0x3c is set once
+// it is being released.
+struct UnkPooledNode_b0246;
+using UnkPooledMap_b0246 = base::global::UnkPooledBucketSet<UnkPooledNode_b0246>;
 
 // Frees the pool's buffer through its allocator and the bucket array.
 static inline void Release_b0246(UnkPooledMap_b0246* map, void (*clear)(void*)) {
-    map->dirty = true;
+    map->nodes.field_0x3c = true;
     clear(map);
-    map->field_0x38 = 0;
-    void* buffer = map->pool.buffer;
-    map->pool_vtable = g_unk_7101a1a4c8 + 0x10;
+    map->node_allocator = nullptr;
+    void* buffer = map->nodes.blocks.buffer;
+    map->nodes.vtable = g_unk_7101a1a4c8 + 0x10;
     if (buffer) {
-        fn_71000837f4(&map->pool);
-        map->pool_allocator->vf_0x48(buffer);
-        map->pool_allocator = nullptr;
+        fn_71000837f4(&map->nodes.blocks);
+        map->nodes.parent->vf_0x48(buffer);
+        map->nodes.parent = nullptr;
     }
     clear(map);
     if (map->buckets.data) {
@@ -139,20 +116,20 @@ void fn_7101195e7c(UnkMap_b0246* self, UnkMapIter_b0246* it) {
     if (*slot == node) {
         *slot = node->next;
         if (bucket == self->first_bucket) {
-            while (bucket < self->bucket_count && !*fn_7101194aa8(self, bucket)) {
+            while (bucket < self->buckets.count && !*fn_7101194aa8(self, bucket)) {
                 bucket = self->first_bucket + 1;
                 self->first_bucket = bucket;
             }
-            if (node == self->first) {
+            if (node == self->first_node) {
                 UnkMapNode_b0246* next = nullptr;
-                if (self->first_bucket < self->bucket_count)
+                if (self->first_bucket < self->buckets.count)
                     next = *fn_7101194aa8(self, self->first_bucket);
-                self->first = next;
+                self->first_node = next;
             }
         }
     }
     if (prev)
         prev->next = node->next;
-    self->count--;
+    self->node_count--;
     fn_71011957b0(self, node);
 }

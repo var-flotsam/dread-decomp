@@ -2,6 +2,7 @@
 // value is destroyed, then the nodes are freed and the buckets emptied. Names and layouts are placeholders.
 #include "base/UnkHashMap.h"
 #include "base/file/CFileCacheDevice.h"
+#include "base/global/UnkBucketSet.h"
 #include "types.h"
 
 struct UnkCacheValue_l085d8c {
@@ -15,15 +16,7 @@ struct UnkCacheNode_l085d8c {
     UnkCacheNode_l085d8c* next;
 };
 
-struct UnkCacheSet_l085d8c {
-    UnkCacheNode_l085d8c** buckets;
-    u32 bucketCount;
-    u8 pad_0xc[0x28 - 0xc];
-    u32 bucket;
-    UnkCacheNode_l085d8c* node;
-    u8 pad_0x38[0x48 - 0x38];
-    u32 version;
-};
+using UnkCacheSet_l085d8c = base::global::UnkBucketSet<UnkCacheNode_l085d8c>;
 
 struct UnkCacheCursor_l085d8c {
     UnkCacheNode_l085d8c* node;
@@ -38,11 +31,11 @@ struct UnkCacheCursor_l085d8c {
         if (node)
             return;
         do {
-            if (++bucket >= set->bucketCount) {
+            if (++bucket >= set->buckets.count) {
                 node = nullptr;
                 return;
             }
-            node = set->buckets[bucket];
+            node = set->buckets.data[bucket];
         } while (!node);
     }
 };
@@ -54,7 +47,7 @@ template <> struct base::UnkChainedSetTraits<UnkTag_l085d8c> {
 struct UnkTrivialKey_l085d8c {};
 
 void fn_7100085d8c(UnkCacheSet_l085d8c* set) {
-    UnkCacheCursor_l085d8c cur(set->node, set, set->bucket);
+    UnkCacheCursor_l085d8c cur(set->first_node, set, set->first_bucket);
     for (; cur.node; cur.Next()) {
         if (cur.node->value) {
             cur.node->value->Delete();
