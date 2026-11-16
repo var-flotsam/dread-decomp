@@ -1,6 +1,7 @@
 // CSamusMovementState::CParams's unit (tools/tu_map.py): caching the parameters from a reflected value,
 // applying the movement offset (by itself, or added to the target's position) and the E.M.M.I. contact
 // check while standing still. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -54,19 +55,17 @@ void fn_71009b0adc(UnkSamusParamsHolder_b0105* self, UnkReflObject* obj) {
 struct UnkMovement_71010d08d4;
 struct UnkMovementVec_71010d08d4;
 
-struct UnkSamusVec_b0105 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkSamusMovementTarget_b0105 {
     u8 pad_0x0[0x1d8];
-    UnkSamusVec_b0105 position;  // 0x1d8
+    CVector3D position;  // 0x1d8
 };
 
 struct UnkSamusImpulseParams_b0105 {
     u8 pad_0x0[0x38];
     s32 mode;  // 0x38
-    UnkSamusVec_b0105 offset;  // 0x3c
+    CVector3D offset;  // 0x3c
 };
 
 static inline bool NearZero(f32 v) {
@@ -89,7 +88,7 @@ bool fn_71009b05c0(UnkSamusImpulseParams_b0105* self, UnkSamusMovementTarget_b01
         f32 x = target->position.x + self->offset.x;
         f32 y = target->position.y + self->offset.y;
         f32 z = target->position.z + self->offset.z;
-        UnkSamusVec_b0105 p;
+        CVector3D p;
         p.x = x;
         p.y = y;
         p.z = z;

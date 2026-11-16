@@ -3,7 +3,10 @@
 #include <math.h>
 
 #include "base/UnkMatrix44.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
+
+using base::math::CVector3D;
 
 static inline UnkMatrix44 Scaling(f32 x, f32 y, f32 z) {
     UnkMatrix44 s;
@@ -15,19 +18,15 @@ static inline UnkMatrix44 Scaling(f32 x, f32 y, f32 z) {
     return s;
 }
 
-static inline f32 Length(f32 x, f32 y, f32 z) {
-    return sqrtf(x * x + y * y + z * z);
-}
-
 static inline f32 Inverse(f32 len) {
     return len == 0.0f ? 1.0f : 1.0f / len;
 }
 
 UnkMatrix44 fn_7100076e30(const UnkMatrix44& src) {
     const f32* m = src.m;
-    f32 lx = Length(m[0], m[4], m[8]);
-    f32 ly = Length(m[1], m[5], m[9]);
-    f32 lz = Length(m[2], m[6], m[10]);
+    f32 lx = Length(CVector3D{m[0], m[4], m[8]});
+    f32 ly = Length(CVector3D{m[1], m[5], m[9]});
+    f32 lz = Length(CVector3D{m[2], m[6], m[10]});
     UnkMatrix44 result;
     UnkCopyMatrix(&result, src);
     result.m[3] = 0.0f;

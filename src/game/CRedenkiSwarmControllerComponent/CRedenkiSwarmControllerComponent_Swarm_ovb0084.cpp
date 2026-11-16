@@ -838,20 +838,17 @@ struct UnkRedenkiEffect_ovb0084 {
     f32 speed;  // 0x20
 };
 
-struct UnkRedenkiVec3_ovb0084 {
-    f32 x, y, z;
-};
 
 struct UnkRedenkiHome_ovb0084 {
     u8 pad_0x0[0x88];
-    UnkRedenkiVec3_ovb0084 position;  // 0x88
+    CVector3D position;  // 0x88
 };
 
 struct UnkRedenkiDart_ovb0084 {
     u8 pad_0x0[0x10];
     UnkRedenkiHome_ovb0084* home;  // 0x10
     u8 pad_0x18[0x38 - 0x18];
-    UnkRedenkiVec3_ovb0084 position;  // 0x38
+    CVector3D position;  // 0x38
     u8 pad_0x44[0x64 - 0x44];
     f32 duration;  // 0x64
     u8 pad_0x68[0x158 - 0x68];
@@ -888,7 +885,7 @@ void fn_710065a37c(UnkRedenkiFxCtrl_ovb0084* self, UnkRedenkiDart_ovb0084* membe
     member->duration = duration;
     member->field_0x181 = false;
     // Copied as raw words: the x and y together, then the z.
-    const UnkRedenkiVec3_ovb0084* from = &member->home->position;
+    const CVector3D* from = &member->home->position;
     u64 xy;
     u32 z;
     __builtin_memcpy(&xy, &from->x, sizeof(xy));

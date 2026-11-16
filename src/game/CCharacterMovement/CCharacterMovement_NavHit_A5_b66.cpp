@@ -10,15 +10,12 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-struct UnkNavPosition_A5_b66 {
-    f32 x, y, z;
-};
 
-__attribute__((always_inline)) static inline UnkNavPosition_A5_b66 Position_A5_b66(UnkActor* actor) {
+__attribute__((always_inline)) static inline CVector3D Position_A5_b66(UnkActor* actor) {
     f32 x = actor->field_0x44;
     f32 y = actor->field_0x54;
     f32 z = actor->field_0x64;
-    UnkNavPosition_A5_b66 pos;
+    CVector3D pos;
     pos.x = x;
     pos.y = y;
     pos.z = z;
@@ -31,8 +28,8 @@ struct UnkCharacterMovementNav_A5_b66 {
     UnkActor* owner;  // 0x30
 
     void* vf_0x2d0() { return reinterpret_cast<void* (*)(UnkCharacterMovementNav_A5_b66*)>(vtable[0x2d0 / 8])(this); }
-    UnkNavMeshHit vf_0x2e0(const UnkNavPosition_A5_b66& pos, bool flag) {
-        return reinterpret_cast<UnkNavMeshHit (*)(UnkCharacterMovementNav_A5_b66*, const UnkNavPosition_A5_b66*, bool)>(
+    UnkNavMeshHit vf_0x2e0(const CVector3D& pos, bool flag) {
+        return reinterpret_cast<UnkNavMeshHit (*)(UnkCharacterMovementNav_A5_b66*, const CVector3D*, bool)>(
             vtable[0x2e0 / 8])(this, &pos, flag);
     }
 };

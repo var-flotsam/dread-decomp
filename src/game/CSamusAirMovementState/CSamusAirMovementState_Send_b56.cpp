@@ -3,6 +3,7 @@
 // mode 1 (as UnkSpitSend, src/game_s2/UnkSpitSend.h, with the mode as a parameter), then stops the
 // object at +0x38 with a zero vector (fn_71010d08d4). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkTU1501.h"
@@ -30,9 +31,7 @@ struct UnkAirSend_b56 {
     void* field_0x38;
 };
 
-struct UnkAirSendVec_b56 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 void fn_710098d8b8(UnkAirSend_b56* self) {
     if (!fn_71009e75e8(static_cast<UnkFlagged*>(self->field_0x38)))
@@ -45,7 +44,7 @@ void fn_710098d8b8(UnkAirSend_b56* self) {
     mode.id = 1;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    UnkAirSendVec_b56 v;
+    CVector3D v;
     fn_7101176690(target, hash, 0xf4061ff25a2163d6, &mode, &g_unk_710164b958, &g_unk_7172769740, &mask);
     UnkMovement_71010d08d4* movement = static_cast<UnkMovement_71010d08d4*>(self->field_0x38);
     v = {0.0f, 0.0f, 0.0f};

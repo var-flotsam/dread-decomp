@@ -7,17 +7,16 @@
 
 #include "../../game_5821e4/CAttackDtor.h"
 #include "base/global/CRntVector.h"
+#include "base/math/CVector.h"
 #include "game/CAutclastChargeAttack.h"
 #include "game/CEnemyMovement.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkChargePos_ovb0016 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkChargeEntry_ovb0016 {
-    UnkChargePos_ovb0016 pos;
+    CVector3D pos;
     u32 field_0xc;
     u32 field_0x10;
     u32 field_0x14;

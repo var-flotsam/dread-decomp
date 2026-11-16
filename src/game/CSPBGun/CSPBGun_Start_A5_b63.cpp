@@ -4,6 +4,7 @@
 // +0x1874 at the owner's position (fn_7100ed6910, as src/game/CGrappleBeamGun/CGrappleBeamGun.cpp declares
 // it) and keeps the new handle. Returns whether it started. Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CShotManager/CTunableShotManager.h"
@@ -33,9 +34,6 @@ struct UnkSPBGun_A5_b63;
 bool fn_710085e6d4(UnkSPBGun_A5_b63* self);
 bool fn_710085e7e8(UnkSPBGun_A5_b63* self);
 
-struct UnkSPBPosition_A5_b63 {
-    f32 x, y, z;
-};
 
 struct UnkSPBGun_A5_b63 {
     u8 pad_0x0[0x18];
@@ -75,7 +73,7 @@ bool fn_710085e504(UnkSPBGun_A5_b63* self) {
         f32 x = actor->field_0x44;
         f32 y = actor->field_0x54;
         f32 z = actor->field_0x64;
-        UnkSPBPosition_A5_b63 pos;
+        CVector3D pos;
         pos.x = x;
         pos.y = y;
         pos.z = z;

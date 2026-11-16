@@ -6,6 +6,7 @@
 // squared distance to the actor the owner acts against, against the tunables' near (+0xfc) and far
 // (+0x100) radii, it sends one of three hashes. Names are placeholders.
 #include "base/global/CStrId.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBigkranXAIComponent.h"
@@ -99,13 +100,7 @@ struct UnkMagmaRainEvent_b59 {
     UnkMagmaRainEventData_b59* field_0x8;
 };
 
-struct UnkVec3_b59 {
-    f32 x, y, z;
-};
-
-static inline UnkVec3_b59 operator-(const UnkVec3_b59& a, const UnkVec3_b59& b) {
-    return {a.x - b.x, a.y - b.y, a.z - b.z};
-}
+using base::math::CVector3D;
 
 bool fn_71003eab78(UnkMagmaRain_b59* self, UnkMagmaRainEvent_b59* event) {
     const base::global::CStrId& id = event->field_0x8 && event->field_0x8->field_0x10
@@ -126,12 +121,12 @@ bool fn_71003eab78(UnkMagmaRain_b59* self, UnkMagmaRainEvent_b59* event) {
     if (!tunables)
         return true;
     UnkActor* me = reinterpret_cast<UnkActor*>(self->owner);
-    UnkVec3_b59 a = {actor->field_0x44, actor->field_0x54, actor->field_0x64};
+    CVector3D a = {actor->field_0x44, actor->field_0x54, actor->field_0x64};
 #if defined(__aarch64__)
     asm volatile("" : "+w"(a.z));  // keeps the original's load order; a no-op on other targets
 #endif
-    UnkVec3_b59 b = {me->field_0x44, me->field_0x54, me->field_0x64};
-    UnkVec3_b59 d = a - b;
+    CVector3D b = {me->field_0x44, me->field_0x54, me->field_0x64};
+    CVector3D d = a - b;
     f32 dx = d.x, dy = d.y, dz = d.z;
     f32 d2 = dx * dx + dy * dy + dz * dz;
     u64 hash;
