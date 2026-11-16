@@ -31,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(u32, "NumCaterzillas", 0x3c8, (DefaultValue, 5));
     DREAD_REFLECTED_FIELD(f32, "fTimeToGenerateNextWave", 0x3d4, (DefaultValue, 10.0f));
     UnkReflField* field4 = fn_7100096524(cls, CStrId("wpSpawnPointLinked", true), &g_unk_717269bb48, 0x3e0, -1, -1);
-    field4->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+    field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);
     DREAD_REFLECTED_FIELD(f32, "fTimeToRespawnAllCaterzillas", 0x428, (DefaultValue, 30.0f));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aHomeLandmarks", 0x438);
     DREAD_REFLECTED_FIELD(bool, "bInOutSpawnPoint", 0x3d1, (DefaultValue, false));

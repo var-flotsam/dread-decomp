@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPlayRandomTimelineEvent
 namespace CCharClassPlayRandomTimelineEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Play Random Timeline action");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Timelines", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Random Timeline action");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Timelines", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(u32, "uTimelineCount", 0xc, (DefaultValue, u32(0x1u)));

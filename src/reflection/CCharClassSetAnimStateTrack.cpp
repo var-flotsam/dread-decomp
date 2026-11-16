@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetAnimStateTrack
 namespace CCharClassSetAnimStateTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Anim State");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Tweak", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Anim State");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Tweak", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAnimState", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));

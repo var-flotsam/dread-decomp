@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDashMeleeTrack
 namespace CCharClassDashMeleeTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Dash Melee");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Melee", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Dash Melee");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Melee", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

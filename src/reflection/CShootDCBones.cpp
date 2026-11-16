@@ -30,7 +30,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("tBoneNames", true), &g_unk_7101d5c998, 0x10, -1, -1);
-    field1->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -97,7 +97,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sPatternName", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("tOffsets", true), &g_unk_71726f5ac0, 0x10, -1, -1);
-    field1->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -148,9 +148,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSlowMaxTargetDistanceToAccelerateCloseToTarget", 0x768, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fSlowMotionSpeed", 0x76c, (DefaultValue, 250.0f));
     UnkReflField* field16 = fn_7100096524(cls, CStrId("tShootDCBones", true), &g_unk_71726f5280, 0x770, -1, -1);
-    field16->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    field16->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     UnkReflField* field17 = fn_7100096524(cls, CStrId("tLaunchConfig", true), &g_unk_71726f5eb8, 0x798, -1, -1);
-    field17->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    field17->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

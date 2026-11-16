@@ -29,8 +29,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewFXInstance", true))) {
         fn_7100812860(fn, "AddNewFXInstance");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
     }
     DREAD_REFLECTED_FIELD(u32, "uPoolSize", 0x48);
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vScale", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));

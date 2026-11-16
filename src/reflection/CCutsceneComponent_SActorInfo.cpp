@@ -44,8 +44,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_lnkActor_SetterFunction", true)))
         fn_71007a2ac8(fn, "_m_lnkActor_SetterFunction");
     UnkReflField* field1 = fn_7100096524(cls, CStrId("lnkActor", true), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
-    field1->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"sId"}, 0xa, nullptr, 0xf)));
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"sId"}, 0xa, nullptr, 0xf)));
     DREAD_REFLECTED_FIELD(bool, "bStartingVisibleState", 0x81, (EditorVisible, false), (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bReceiveLogicUpdate", 0x82, (DefaultValue, true));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<bool>", "vctVisibilityPerTake", 0x8);

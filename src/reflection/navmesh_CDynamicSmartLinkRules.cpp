@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // navmesh::CDynamicSmartLinkRules
 namespace navmesh::CDynamicSmartLinkRules {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x1001fu);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x1001fu);
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void*, const void*) { return false; }

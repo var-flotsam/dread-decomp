@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -32,18 +33,18 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAction", true))) {
         fn_71011753bc(fn, "SetAction");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetDefaultLoop", true))) {
         fn_7101175470(fn, "SetDefaultLoop");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("HasTrack", true))) {
         fn_7101175524(fn, "HasTrack");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayingAnim", true)))
         fn_71011755d8(fn, "IsPlayingAnim");

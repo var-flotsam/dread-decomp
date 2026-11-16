@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -30,11 +31,11 @@ namespace CWorldGraph {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tNodes", true), &g_unk_7172756230, 0x30, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "World Graph Nodes");
-    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateNode", true));
-    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteNode", true));
-    field0->attrs.Add<const char*>(fn_710008ff80(), "AfterNodesCollectionDeserialization");
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "World Graph Nodes");
+    field0->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateNode", true));
+    field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteNode", true));
+    field0->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterNodesCollectionDeserialization");
+    field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodesCollectionDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterNodesCollectionDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
@@ -49,18 +50,18 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100accfc8);
         fn_7100acceec(fn);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Node At Index");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("vPos", true));
-        fn->ParamAttrs(2)->Add<CStrId>(fn_710008f920(), CStrId("sID", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
+        fn->ParamAttrs(2)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sID", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteNode", true))) {
         fn_7100acbea0(fn, "DeleteNode");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Node At Index");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete Node At Index");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
 }
 bool refl_Equals(const void*, const void*) { return false; }

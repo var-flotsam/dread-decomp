@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassHideMessageEvent
 namespace CCharClassHideMessageEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Hide Tutorial Message");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("GUI", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Hide Tutorial Message");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("GUI", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sMissionLogTutoId", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));

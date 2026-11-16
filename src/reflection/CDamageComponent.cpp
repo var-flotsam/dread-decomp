@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -25,8 +26,8 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DamageValues", true))) {
         fn_71007aecb8(fn, "DamageValues");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Initialize From File"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Initialize From File"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
 bool refl_Equals(const void*, const void*) { return false; }

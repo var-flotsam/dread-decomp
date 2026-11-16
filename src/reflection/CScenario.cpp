@@ -29,7 +29,7 @@ void fn_71011a4aa4();
 extern base::reflection::CType g_unk_7101d5c998;
 namespace CScenario {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x310200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x310200u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CWeakPtr<game::logic::collision::CCollider>>", "awpScenarioColliders", 0x828, (Persistence, 0), (EditorModeDataFlow, 1));
@@ -43,9 +43,9 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011a4a54);
     }
     UnkReflField* field3 = fn_7100096524(cls, CStrId("rEntitiesLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field3->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Entities"));
-    field3->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 1);
-    field3->attrs.Add<s32>(fn_7100263720(), &g_unk_7172756f90, 0);
+    field3->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Entities"));
+    field3->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 1);
+    field3->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &g_unk_7172756f90, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_rSoundsLayer_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_rSoundsLayer_GetterFunction", true);
         fn->return_type = &g_unk_71726a07a0;
@@ -54,9 +54,9 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011a4a7c);
     }
     UnkReflField* field4 = fn_7100096524(cls, CStrId("rSoundsLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field4->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Sounds"));
-    field4->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 1);
-    field4->attrs.Add<s32>(fn_7100263720(), &g_unk_7172756f90, 0);
+    field4->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Sounds"));
+    field4->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 1);
+    field4->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &g_unk_7172756f90, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_rLightsLayer_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_rLightsLayer_GetterFunction", true);
         fn->return_type = &g_unk_71726a07a0;
@@ -65,11 +65,11 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011a4aa4);
     }
     UnkReflField* field5 = fn_7100096524(cls, CStrId("rLightsLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field5->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Lights"));
-    field5->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 1);
-    field5->attrs.Add<s32>(fn_7100263720(), &g_unk_7172756f90, 0);
+    field5->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Lights"));
+    field5->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 1);
+    field5->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &g_unk_7172756f90, 0);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("vLayerFiles", true), &g_unk_7101d5c998, 0x278, -1, -1);
-    field6->attrs.Add<s32>(fn_710025d990(), &g_unk_7172756f90, 0);
+    field6->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

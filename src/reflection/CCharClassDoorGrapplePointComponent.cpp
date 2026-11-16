@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -24,7 +25,7 @@ namespace CCharClassDoorGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sGrappleColliderNames", true), &g_unk_7101d5c998, 0x78, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "List of valid grapple collider names");
+    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "List of valid grapple collider names");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

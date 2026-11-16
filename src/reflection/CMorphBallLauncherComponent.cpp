@@ -26,7 +26,7 @@ namespace CMorphBallLauncherComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpLauncherExit", true), &g_unk_71727b6270, 0x2b8, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 11);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 11);
     DREAD_REFLECTED_FIELD(CStrId, "sTravellingAction", 0x2f8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play on the morphball to travel towards the exit"));
     DREAD_REFLECTED_FIELD(bool, "bManualActivation", 0x300, (DefaultValue, true), (Description, "Whether we require a bomb to start launch sequence"));
 }

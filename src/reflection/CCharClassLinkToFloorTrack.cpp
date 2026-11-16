@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassLinkToFloorTrack
 namespace CCharClassLinkToFloorTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Link To Floor");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Movement", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Link To Floor");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Movement", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDistanceFromEdge", 0x18, (DefaultValue, 38.5f));

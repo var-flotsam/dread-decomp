@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassEmmyDeathShowMessageEvent
 namespace CCharClassEmmyDeathShowMessageEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Emmy Death Show Message");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Emmy", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Emmy Death Show Message");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Emmy", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sOnMessageSkippedLuaCallback", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -25,7 +26,7 @@ namespace CFreeAimTutoLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpItemToDestroy", true), &g_unk_71727b6270, 0x10, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

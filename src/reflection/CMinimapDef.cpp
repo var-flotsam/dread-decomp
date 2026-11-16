@@ -27,7 +27,7 @@ void fn_7100e6e81c();
 void fn_7100e6e850();
 namespace CMinimapDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oMinimapIconsMatLink", true), &g_unk_7101d4ec50, 0x60, -1, -1);

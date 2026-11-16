@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakTurnActionTrack
 namespace CCharClassTweakTurnActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Turn Action");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Tweak", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Turn Action");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Tweak", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bKeepViewDir", 0x34, (DefaultValue, false), (Description, "Whether to keep pre-turn ViewDir. Useful when tweaked turn action isn't a turn itself"));

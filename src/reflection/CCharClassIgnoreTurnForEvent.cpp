@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassIgnoreTurnForEvent
 namespace CCharClassIgnoreTurnForEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Ignore Turn For");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Samus", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Turn For");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Samus", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTime", 0xc, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 100.0f));

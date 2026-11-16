@@ -32,7 +32,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sRootNode", 0x10);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("aNodes", true), &g_unk_71726aa3a0, 0x18, -1, -1);
-    field1->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterNodeDefDeserialization", true));
+    field1->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterNodeDefDeserialization", true));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>", "aControls", 0x48);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>", "aLinks", 0x78);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodeDefDeserialization", true)))

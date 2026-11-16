@@ -44,10 +44,10 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
         fn_7100bfef1c(fn, "_vPos_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Position"));
+    field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
+    field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Position"));
     field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
-    field0->attrs.Add<bool>(fn_71000924b0(), true);
+    field0->attrs.Add<bool>(base::reflection::attr::bEditorModeDataFlowInit(), true);
     DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>", "wpLogicCamera", 0x18);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -102,11 +102,11 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
         fn_7100bfff5c(fn, "CreateElement");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create Node At Index");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("vPos", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("InsertElement", true))) {
         fn->name = base::global::UnkStrId("InsertElement", true);
@@ -115,22 +115,22 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c07eb0);
         fn_7100c07d10(fn);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Insert Node At Index");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Insert Node At Index");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("rData", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("rData", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("EraseElement", true))) {
         fn_7100c0001c(fn, "EraseElement");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Erase Node At Index");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Erase Node At Index");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
         fn_7100c00198(fn, "DeleteElement");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete Node At Index");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete Node At Index");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
     }
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SCameraRailNode>", "tNodes", 0x8, (DisableListAddRemove, true), (EditorVisible, true), (Description, base::global::CRntString("CameraRailNode")), (CreateElement, CStrId("CreateElement", true)), (InsertElement, CStrId("InsertElement", true)), (EraseElement, CStrId("EraseElement", true)), (DeleteElement, CStrId("DeleteElement", true)), (AfterElementDeserialization, CStrId("AfterNodesDeserialization", true)));
 }
