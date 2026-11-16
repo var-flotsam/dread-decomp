@@ -6,6 +6,7 @@
 #include "types.h"
 
 struct UnkArraysRecord;
+struct UnkDashMesh;
 struct UnkPolyValues;
 struct UnkPolyVector;
 struct UnkRecord60;
@@ -21,3 +22,5 @@ void fn_7100e56814(void*, u32);
 extern void* g_unk_7101aa9d38[];
 // Grows both arrays to `capacity`.
 void fn_7100e5ba88(void*, u32);
+// Brings the mesh's bounds up to date with its vertices (their x and y).
+void fn_7100e3e1c0(UnkDashMesh* mesh);
