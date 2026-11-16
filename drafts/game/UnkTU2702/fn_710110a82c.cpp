@@ -1,0 +1,111 @@
+// CAIComponent unit (tools/tu_map.py unit 2702): stores a reflected value (a float, bool, int, vector or,
+// converted, a string) under `name` in the default section of the AI's blackboard at +0x1260, unless the
+// blackboard is locked. Names and layouts are placeholders.
+#include "base/global/CRntString.h"
+#include "base/global/CStrId.h"
+#include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflValue.h"
+#include "game/CAbilityShinespark.h"
+#include "game/CBlackboard.h"
+#include "game/UnkTypedValue.h"
+#include "game/behaviortree/CBehavior.h"
+#include "types.h"
+
+using base::reflection::CType;
+using base::reflection::UnkReflValue;
+
+
+struct UnkReflForwardValue {
+    u8 pad_0x0[0x8];
+    void* object;  // 0x8
+};
+
+UnkReflValue fn_71000a20f4(const UnkReflForwardValue* self, void* extra);
+
+struct UnkEnumType;
+UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
+
+struct UnkAIBlackboardOwner_l10a82c {
+    u8 pad_0x0[0x1260];
+    CBlackboard blackboard;
+};
+
+// A string with 0x100 bytes of inline storage (base::global::TRntString256).
+struct UnkString256_l10a82c {
+    alignas(8) u8 str[0x30];
+    void** storage_vtable;
+    u8 storage[0x100];
+    u64 field_0x138;
+    u32 field_0x140;
+
+    base::global::CRntString* Str() { return reinterpret_cast<base::global::CRntString*>(str); }
+
+    explicit UnkString256_l10a82c(const char* text) {
+        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
+        field_0x138 = 0;
+        field_0x140 = 0;
+        storage_vtable = g_unk_7101a194b8 + 2;
+        fn_710007e77c(Str(), text);
+    }
+    ~UnkString256_l10a82c() {
+        fn_710007ed40(Str());
+        fn_710007ecd4(Str());
+    }
+};
+
+// Where a reflected value's data is: none without a type, else inline when it fits in 8 bytes.
+template <class T>
+static inline T* ValueData(UnkReflValue* value) {
+    if (!value->type)
+        return nullptr;
+    if (value->field_0x14 == 1 || *reinterpret_cast<const u64*>(value->type + 0x18) > 8)
+        return static_cast<T*>(value->field_0x0);
+    return reinterpret_cast<T*>(value);
+}
+
+// Stores a copy of the C string `str` as a string with inline storage.
+inline void SetString(CBlackboard* blackboard, UnkPropertyName* name, const char** str) {
+    if (CBlackboard::CSection* s = fn_71010472e0(blackboard, g_unk_71726b7cb8)) {
+        if (!blackboard->field_0xe8) {
+            UnkTypedValue v;
+            UnkString256_l10a82c copy(*str);
+            v.type = reinterpret_cast<const CType*>(fn_710009ffd4());
+            v.value = &copy;
+            fn_7100332c80(s, name, &v);
+        }
+    }
+}
+
+template <const CType* (*Type)()>
+inline void SetValue(CBlackboard* blackboard, UnkPropertyName* name, void* data) {
+    if (CBlackboard::CSection* s = fn_71010472e0(blackboard, g_unk_71726b7cb8)) {
+        if (!blackboard->field_0xe8) {
+            UnkTypedValue v = {Type(), data};
+            fn_7100332c80(s, name, &v);
+        }
+    }
+}
+
+bool fn_710110a82c(char* self, void* a, void* b) {
+    UnkAIBlackboardOwner_l10a82c* owner = reinterpret_cast<UnkAIBlackboardOwner_l10a82c*>(self);
+    UnkPropertyName* name = static_cast<UnkPropertyName*>(a);
+    UnkReflValue* value = static_cast<UnkReflValue*>(b);
+    const CType* type = reinterpret_cast<const CType*>(value->type);
+    if (type == fn_710000abbc()) {
+        SetValue<fn_710000abbc>(&owner->blackboard, name, ValueData<void>(value));
+    } else if (reinterpret_cast<const CType*>(value->type) == fn_710000d228()) {
+        SetValue<fn_710000d228>(&owner->blackboard, name, ValueData<void>(value));
+    } else if (reinterpret_cast<const CType*>(value->type) == fn_7100014768()) {
+        SetValue<fn_7100014768>(&owner->blackboard, name, ValueData<void>(value));
+    } else if (reinterpret_cast<const CType*>(value->type) == fn_71000246e4()) {
+        SetValue<fn_71000246e4>(&owner->blackboard, name, ValueData<void>(value));
+    } else if (fn_710009d52c(reinterpret_cast<const CType*>(value->type), fn_71000081e8())) {
+        CBlackboard* blackboard = &owner->blackboard;
+        UnkReflValue text =
+            fn_71000a20f4(reinterpret_cast<const UnkReflForwardValue*>(value), const_cast<CType*>(fn_71000081e8()));
+        SetString(blackboard, name, ValueData<const char*>(&text));
+        fn_71000a1c60(&text);
+    }
+    return false;
+}
