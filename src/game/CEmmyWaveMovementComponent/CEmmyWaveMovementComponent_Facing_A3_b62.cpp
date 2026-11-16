@@ -1,7 +1,7 @@
 // CEmmyWaveMovementComponent unit: fn_7100502998 answers whether the player lies ahead of the movement's
 // direction (+0x40): the 2D dot product of that direction and the owner-to-player offset is not negative.
 // Names and layouts are placeholders.
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -34,5 +34,5 @@ bool fn_7100502998(UnkWaveMovement_b62a3* self) {
     f32 ox = owner->x, oy = owner->y, oz = owner->z;
     base::math::CVector3D d = {px - ox, py - oy, pz - oz};
     fn_710007b430(&off, &d);
-    return !(dir.x * off.x + dir.y * off.y < 0.0f);
+    return !(Dot(dir, off) < 0.0f);
 }

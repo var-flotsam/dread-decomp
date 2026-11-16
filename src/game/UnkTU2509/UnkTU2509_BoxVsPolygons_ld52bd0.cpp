@@ -4,6 +4,7 @@
 // box's centre. Names and layouts are placeholders.
 #include "game/UnkTU108.h"
 #include "game/UnkTU365.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CShape.h"
@@ -47,11 +48,6 @@ struct UnkPoint2D_d52bd0 {
     UnkPoint2D_d52bd0(f32 x_, f32 y_) : x(x_), y(y_) {}
     UnkPoint2D_d52bd0(const UnkPoint2D_d52bd0& o) : x(o.x), y(o.y) {}
 };
-
-// The sum of two vectors. Not static, so that each component is read where it is added.
-inline UnkVec3f Sum_d52bd0(const UnkVec3f& a, const UnkVec3f& b) {
-    return UnkVec3f(a.x + b.x, a.y + b.y, a.z + b.z);
-}
 
 // A 2D point on the collision plane as a 3D position.
 static inline UnkVec3f ToVec3(const UnkPoint2D_d52bd0& p) {
@@ -111,7 +107,7 @@ struct UnkLocalQuery_d52bd0 {
     UnkColliderResult Report(s32 id, const UnkVec3f& at, const UnkPolygon_d52bd0& poly) {
         if (sink) {
             return sink->vf_0x10(
-                UnkContactHit(id, Sum_d52bd0(Sum_d52bd0(at, offset), UnkVec3f(0.0f, 0.0f, poly.height * 0.5f))));
+                UnkContactHit(id, at + offset + UnkVec3f(0.0f, 0.0f, poly.height * 0.5f)));
         }
         return MakeContact(1);
     }
@@ -202,13 +198,13 @@ UnkColliderResult fn_7100d52bd0(UnkShapeTester_A5_b68* self, UnkShape* a, void* 
             if (local.Contains(*poly->points)) {
                 if (!sink)
                     return MakeContact(3);
-                UnkVec3f at = Sum_d52bd0(ToVec3(*poly->points), origin);
+                UnkVec3f at = ToVec3(*poly->points) + origin;
                 result.bits = query.Report(index << 16, at, *poly).bits | result.bits;
             } else if (collection->field_0x98 && poly->field_0x2c &&
                        fn_7100116de0(reinterpret_cast<UnkEntry*>(poly), &centre, 1, 1, 1.0f)) {
                 if (!sink)
                     return MakeContact(3);
-                UnkVec3f at = Sum_d52bd0(ToVec3(local.Corner()), origin);
+                UnkVec3f at = ToVec3(local.Corner()) + origin;
                 result.bits = query.Report(index << 16, at, *poly).bits | result.bits;
                 break;
             }

@@ -4,6 +4,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU54.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -22,7 +23,7 @@ struct UnkRotator_710016c83c {
 static inline void Rotate(UnkRotator_710016c83c* self, u32 index) {
     const UnkVec3f& old = self->positions->values[index];
     UnkVec3f p = fn_7100077c04(self->rotation, old);
-    self->deltas->values[index] = UnkVec3f(p.x - old.x, p.y - old.y, p.z - old.z);
+    self->deltas->values[index] = p - old;
     self->positions->values[index] = p;
 }
 
