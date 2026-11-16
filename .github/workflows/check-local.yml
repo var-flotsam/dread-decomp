@@ -232,6 +232,16 @@ jobs:
             Write-Output "::error::data/functions/ differs from what check.py --update derives; run it locally and commit the CSVs"
             exit 1
           }
+      # Counts only (no code): the day's matched and finished shares, computed from the cache the check just
+      # wrote, so the daily record (tools/daily.py) has a fresh "finished" figure without a commit to main.
+      - name: Daily progress (counts only)
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        shell: powershell
+        run: |
+          $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
+          & $py tools/daily.py --ref HEAD --days 1 --now | Tee-Object -Variable out
+          $out | Out-File -Append -Encoding utf8 $env:GITHUB_STEP_SUMMARY
 
   # A hosted job, so nothing from the self-hosted runner is uploaded: an empty marker whose cache key is the
   # hash of the inputs the check just passed with (see `changes`). Caches are visible to the same pull
