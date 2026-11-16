@@ -7,6 +7,7 @@
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
+struct UnkIdsArraysRecord;
 struct UnkIdValuesArray;
 struct UnkMapMenuControllerClose;
 void fn_7100b3e5ac(UnkMapMenuControllerClose* self, s32 entry, u32 mode);
@@ -17,3 +18,4 @@ extern void* g_unk_7101a9cb48[];  // The object's vtable.
 extern base::global::CStrId g_unk_7172763d98 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<> g_unk_71727639d0;
 extern void* g_unk_7101a9c888[];  // The vtable of a second class with the pointer and a string id.
+void fn_7100b47fb0(UnkIdsArraysRecord* self);

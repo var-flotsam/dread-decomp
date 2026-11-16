@@ -7,6 +7,7 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "base/UnkNoArg.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
@@ -132,7 +133,6 @@ static inline T& At(UnkMaterial* self, u64 offset) {
 
 // The unit's readers: a block at `dst` (the first argument is not read), the material's own fields,
 // a pass's second array, and the steps after the passes.
-void fn_71001a69a0(void*, CRntFile* file, void* dst);
 void fn_71001a6b5c(UnkMaterial* self);
 void fn_71001a71b8(base::global::CRntVector<UnkMaterialPass>* passes, u32 n);  // Reserve
 void fn_71001a7310(UnkMaterial* self, CRntFile* file, base::global::CRntVector<u64>* list);
@@ -150,15 +150,15 @@ void fn_71001a6644(UnkMaterial* self, CRntFile* file) {
     At<u64>(self, 0x1f0) = 0;
     At<u64>(self, 0x1f8) = 0;
     fn_710007c00c(file, 8, 0);
-    fn_71001a69a0(nullptr, file, self);
+    fn_71001a69a0(UnkNoArg(), file, self);
     fn_71001a6b5c(self);
     At<u32>(self, 0x148) = At<u32>(self, 0x18);
-    fn_71001a69a0(nullptr, file, &At<u8>(self, 0xb8));
-    fn_71001a69a0(nullptr, file, &At<u8>(self, 0xd0));
-    fn_71001a69a0(nullptr, file, &At<u8>(self, 0xe0));
-    fn_71001a69a0(nullptr, file, &At<u8>(self, 0x108));
-    fn_71001a69a0(nullptr, file, &At<u8>(self, 0x120));
-    fn_71001a69a0(nullptr, file, &At<u8>(self, 0x130));
+    fn_71001a69a0(UnkNoArg(), file, &At<u8>(self, 0xb8));
+    fn_71001a69a0(UnkNoArg(), file, &At<u8>(self, 0xd0));
+    fn_71001a69a0(UnkNoArg(), file, &At<u8>(self, 0xe0));
+    fn_71001a69a0(UnkNoArg(), file, &At<u8>(self, 0x108));
+    fn_71001a69a0(UnkNoArg(), file, &At<u8>(self, 0x120));
+    fn_71001a69a0(UnkNoArg(), file, &At<u8>(self, 0x130));
     At<u64>(self, 0x30) = At<u64>(self, 0xc0);
     At<u64>(self, 0x38) = At<u64>(self, 0xc8);
     At<u32>(self, 0x48) = At<u32>(self, 0xd8);
@@ -186,7 +186,7 @@ void fn_71001a6644(UnkMaterial* self, CRntFile* file) {
         }
         self->passes.count = n;
         UnkMaterialPass* pass = n ? &self->passes.data[n - 1] : self->passes.data;
-        fn_71001a69a0(nullptr, file, pass);
+        fn_71001a69a0(UnkNoArg(), file, pass);
         fn_71001a6f54(nullptr, file, nullptr, &pass->values);
         fn_71001a7310(self, file, &pass->field_0x38);
     }

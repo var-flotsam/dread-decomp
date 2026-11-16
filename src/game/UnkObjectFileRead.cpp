@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
@@ -20,9 +21,6 @@
 // The id and path pair (base/UnkStrIdPathPair.h) the caller passes.
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path,
-                   const base::global::CRntString* mode);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_7172a000d0 __attribute__((visibility("hidden")));

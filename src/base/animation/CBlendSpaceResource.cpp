@@ -14,6 +14,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU2620.h"
 #include "game/UnkTU27.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTU85.h"
 #include "types.h"
@@ -117,7 +118,6 @@ void fn_7100fc3320(const UnkParseContext* ctx, const CType* type) {
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 // The parse (its result, nonzero on success, is not in the other files' declaration).
 static inline s32 ParseRoot(UnkParseContext* ctx, void* root) {
     return reinterpret_cast<s32 (*)(UnkParseContext*, void*)>(&fn_710000f750)(ctx, root);

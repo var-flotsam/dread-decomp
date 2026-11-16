@@ -9,11 +9,13 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/UnkTU782.h"
 #include "game/CBlackboard.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
+#include "game/UnkTU1689.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
@@ -47,7 +49,6 @@ static_assert(__builtin_offsetof(UnkMapMarkers, values) == 0x62a8, "UnkMapMarker
 // A key and its record, destroyed out of line (fn_7100b47fb0, src/game_aca57c/fn_7100e4ed10.cpp,
 // which sees the pair as UnkIdsArraysRecord).
 struct UnkIdsArraysRecord;
-void fn_7100b47fb0(UnkIdsArraysRecord* self);
 struct UnkMapMarkerEntry {
     CStrId key;
     UnkMapMarker marker;
@@ -130,9 +131,7 @@ struct UnkMapMenuController {
 UnkGuiObj* fn_7100b4190c(UnkMapMenuController* self, const CStrId* key, CStrId name);
 // The blackboard property name of a marker: fn_71004f1748 builds it in place, as it builds the
 // registry tables' values (base/reflection/UnkReflStatics.h), from an owner and the marker's key:
-// 16 bytes, the name's string first, then the owner.
-void fn_71004f1748(base::reflection::UnkReflRegistryMap::Value* value, base::reflection::UnkReflRegistryItem* item,
-                   const base::global::CStrId& name);
+// 16 bytes, the name's string first, then the owner (declared in game/UnkTU782.h).
 
 // Lays out the markers of the current map.
 // NON_MATCHING(minor): register allocation and scheduling: the original knows fn_7100b4190c (its

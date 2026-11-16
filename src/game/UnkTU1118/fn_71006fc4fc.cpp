@@ -1,12 +1,12 @@
 // Unit 1118: constructor of a large AI object: runs the base constructor, sets both vtables and clears
 // every member. Names and layouts are placeholders.
+#include "game/behaviortree/CFlyingFollowPathAction.h"
 #include "types.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU1124.h"
 #include "game/navmesh/SNavMeshPath.h"
 
 extern char g_unk_7101a6b910[];
-extern char g_unk_7101a264d0[];
 
 struct UnkTU1118Slot {
     u32 field_0x0;

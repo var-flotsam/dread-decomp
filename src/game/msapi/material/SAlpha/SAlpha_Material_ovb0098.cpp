@@ -3,6 +3,7 @@
 // its passes (vtable unk_7101a1e358) and their texture stages (vtable unk_7101a1e328), the render
 // state and uniforms it applies, reading a reflected object field by field, and the unit's static
 // initialiser. Names and layouts are placeholders (see src/game/msapi/material/SAlpha.cpp).
+#include "base/UnkNoArg.h"
 #include <new>
 
 #include "base/UnkCountedResource.h"
@@ -561,7 +562,7 @@ static inline bool Readable(UnkReadField_ovb0098* f) {
 
 // Reads the object's fields from the file in order: strings (char const*) as their text, plain
 // values, enums and flag sets as their bytes. The first argument is not read.
-void fn_71001a69a0(void*, CRntFile* file, void* dst) {
+void fn_71001a69a0(UnkNoArg, CRntFile* file, void* dst) {
     UnkReadObject_ovb0098* obj = static_cast<UnkReadObject_ovb0098*>(dst);
     UnkReadClass_ovb0098* cls = obj->GetClass();
     for (UnkReadField_ovb0098* f = cls->fields; f != cls->fields + cls->count; ++f) {

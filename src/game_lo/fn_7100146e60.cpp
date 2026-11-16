@@ -3,10 +3,9 @@
 #include "base/UnkCloneCalls.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
+#include "game/UnkTU211.h"
 #include "game/UnkTU285.h"
 #include "types.h"
-
-void fn_7100192f08(void* obj, bool flag);
 
 static void Reset(UnkSwitchObject* self, bool enable) {
     if (enable) {

@@ -6068,7 +6068,7 @@ address,size,name,name_source,subsystem,status
 0x71006ff330,780,fn_71006ff330,unknown,unknown,U
 0x71006ff63c,32,fn_71006ff63c,unknown,unknown,O
 0x71006ff660,140,fn_71006ff660,unknown,unknown,O
-0x71006ff6ec,456,fn_71006ff6ec,unknown,unknown,U
+0x71006ff6ec,456,fn_71006ff6ec,unknown,unknown,O
 0x71006ff8b4,108,fn_71006ff8b4,unknown,unknown,O
 0x71006ff920,116,fn_71006ff920,unknown,unknown,O
 0x71006ff994,44,fn_71006ff994,unknown,unknown,O
