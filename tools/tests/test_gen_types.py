@@ -385,6 +385,30 @@ class TypeNames(unittest.TestCase):
         self.assertFalse(any(" count = " in line or " construct = " in line for line in out))
         self.assertEqual(gt.MAPPER_DESC_RE.findall("\n".join(out)), [dict_])
 
+    def test_dictionary_named_form(self):
+        slots = ["construct", "copy_construct", "move_construct", "destroy", "copy_assign", "move_assign",
+                 "equals", "hash", "type_of"] + gt.COLLECTION_SLOTS
+        body = ["    static constexpr u64 size = 0x48;", "    static constexpr u32 kind = 0x2;",
+                "    static const CType* iterator() { return fn_7100000520(); }"]
+        body += [f"    static constexpr UnkFn {m} = &fn_{0x7100000100 + 0x10 * i:x};" for i, m in enumerate(slots)
+                 if m not in ("copy_construct", "move_construct", "copy_assign", "move_assign")]
+        dict_ = "base::global::CRntDictionary<base::global::CStrId, CActor*>"
+        named = {0x7100000520: f"base::reflection::CollectionTypeMapper<{dict_}>::TElementIterator"}
+        self.assertEqual(gt.mapped_collection(body, named, frozenset()), (dict_, "CActor*"))
+        self.assertEqual(gt.mapper_slots(dict_), gt.DICT_SLOTS + gt.DICT_FIND_SLOTS)
+        # a class value is not whole here: no Find; a CName key does not hash
+        preset = "base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>"
+        self.assertEqual(gt.mapper_slots(preset), gt.DICT_SLOTS)
+        cname = "base::global::CRntDictionary<base::global::CName, CActor*>"
+        self.assertIsNone(gt.mapped_collection(
+            body, {0x7100000520: f"base::reflection::CollectionTypeMapper<{cname}>::TElementIterator"}, frozenset()))
+        out = gt.emit_collection_ops(0x7100000010, body, dict_, "CActor*", frozenset(gt.mapper_slots(dict_)))
+        self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
+                      f": base::reflection::DictionaryFindMapperDescription<{dict_}> {{", out)
+        self.assertIn('#include "base/global/CRntDictionary.h"', out)
+        self.assertIn('#include "base/global/CStrId.h"', out)
+        self.assertEqual(gt.MAPPER_DESC_RE.findall("\n".join(out)), [dict_])
+
 
 class Declarations(unittest.TestCase):
     DECLS = {"void fn_7100000010();", "extern base::reflection::CType g_unk_7100000020;",

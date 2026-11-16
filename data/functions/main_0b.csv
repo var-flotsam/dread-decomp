@@ -2567,24 +2567,24 @@ address,size,name,name_source,subsystem,status
 0x7100b80b08,8,fn_7100b80b08,unknown,unknown,O
 0x7100b80b10,80,fn_7100b80b10,unknown,unknown,O
 0x7100b80b60,84,fn_7100b80b60,unknown,unknown,O
-0x7100b80bb4,8,fn_7100b80bb4,unknown,unknown,O
+0x7100b80bb4,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Count",reflection,engine/reflection,O
 0x7100b80bbc,208,fn_7100b80bbc,unknown,unknown,O
 0x7100b80c8c,252,fn_7100b80c8c,unknown,unknown,O
 0x7100b80d88,252,fn_7100b80d88,unknown,unknown,O
 0x7100b80e84,4,fn_7100b80e84,unknown,unknown,O
 0x7100b80e88,48,fn_7100b80e88,unknown,unknown,O
-0x7100b80eb8,88,fn_7100b80eb8,unknown,unknown,O
-0x7100b80f10,88,fn_7100b80f10,unknown,unknown,O
-0x7100b80f68,88,fn_7100b80f68,unknown,unknown,O
-0x7100b80fc0,12,fn_7100b80fc0,unknown,unknown,O
-0x7100b80fcc,8,fn_7100b80fcc,unknown,unknown,O
+0x7100b80eb8,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Find",reflection,engine/reflection,O
+0x7100b80f10,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::SetCopy",reflection,engine/reflection,O
+0x7100b80f68,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::SetMove",reflection,engine/reflection,O
+0x7100b80fc0,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Equals",reflection,engine/reflection,O
+0x7100b80fcc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Hash",reflection,engine/reflection,O
 0x7100b80fd4,12,fn_7100b80fd4,unknown,unknown,O
-0x7100b80fe0,4,fn_7100b80fe0,unknown,unknown,O
+0x7100b80fe0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Construct",reflection,engine/reflection,O
 0x7100b80fe4,4,fn_7100b80fe4,unknown,unknown,O
 0x7100b80fe8,240,fn_7100b80fe8,unknown,unknown,O
 0x7100b810d8,384,fn_7100b810d8,unknown,unknown,O
-0x7100b81258,12,fn_7100b81258,unknown,unknown,O
-0x7100b81264,8,fn_7100b81264,unknown,unknown,O
+0x7100b81258,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Begin",reflection,engine/reflection,O
+0x7100b81264,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::End",reflection,engine/reflection,O
 0x7100b8126c,16,fn_7100b8126c,unknown,unknown,O
 0x7100b8127c,12,fn_7100b8127c,unknown,unknown,O
 0x7100b81290,912,fn_7100b81290,unknown,unknown,O

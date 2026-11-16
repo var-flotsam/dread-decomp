@@ -872,24 +872,24 @@ address,size,name,name_source,subsystem,status
 0x7100120d88,8,fn_7100120d88,unknown,unknown,O
 0x7100120d90,80,fn_7100120d90,unknown,unknown,O
 0x7100120de0,84,fn_7100120de0,unknown,unknown,O
-0x7100120e34,8,fn_7100120e34,unknown,unknown,O
+0x7100120e34,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::Count",reflection,engine/reflection,O
 0x7100120e3c,208,fn_7100120e3c,unknown,unknown,O
 0x7100120f0c,252,fn_7100120f0c,unknown,unknown,O
 0x7100121008,252,fn_7100121008,unknown,unknown,O
 0x7100121104,4,fn_7100121104,unknown,unknown,O
 0x7100121108,48,fn_7100121108,unknown,unknown,O
-0x7100121138,88,fn_7100121138,unknown,unknown,O
-0x7100121190,88,fn_7100121190,unknown,unknown,O
-0x71001211e8,88,fn_71001211e8,unknown,unknown,O
-0x7100121240,12,fn_7100121240,unknown,unknown,O
-0x710012124c,8,fn_710012124c,unknown,unknown,O
+0x7100121138,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::Find",reflection,engine/reflection,O
+0x7100121190,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::SetCopy",reflection,engine/reflection,O
+0x71001211e8,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::SetMove",reflection,engine/reflection,O
+0x7100121240,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::Equals",reflection,engine/reflection,O
+0x710012124c,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::Hash",reflection,engine/reflection,O
 0x7100121254,12,fn_7100121254,unknown,unknown,O
-0x7100121260,4,fn_7100121260,unknown,unknown,O
+0x7100121260,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::Construct",reflection,engine/reflection,O
 0x7100121264,4,fn_7100121264,unknown,unknown,O
 0x7100121268,240,fn_7100121268,unknown,unknown,O
 0x7100121358,384,fn_7100121358,unknown,unknown,O
-0x71001214d8,12,fn_71001214d8,unknown,unknown,O
-0x71001214e4,8,fn_71001214e4,unknown,unknown,O
+0x71001214d8,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::Begin",reflection,engine/reflection,O
+0x71001214e4,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::End",reflection,engine/reflection,O
 0x71001214ec,16,fn_71001214ec,unknown,unknown,O
 0x71001214fc,12,fn_71001214fc,unknown,unknown,O
 0x7100121508,228,fn_7100121508,unknown,unknown,O
