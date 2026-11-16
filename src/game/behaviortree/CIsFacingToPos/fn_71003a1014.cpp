@@ -3,6 +3,7 @@
 // front of the object at +0x18, i.e. the vector to it from there has a positive component along
 // the object's facing (the third column of its matrix).
 #include "base/UnkMatrix44.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 #include "base/math/UnkZeroVector3.h"
 
@@ -25,8 +26,6 @@ struct UnkSelf {
     u8 field_0x38[8];
     CVector3D field_0x40;
 };
-
-bool fn_710039525c(UnkSelf* self, void* arg, CVector3D* out);
 
 #define UNK_NEAR(a, b) ((a) - 0.001f <= (b) && (a) + 0.001f >= (b))
 

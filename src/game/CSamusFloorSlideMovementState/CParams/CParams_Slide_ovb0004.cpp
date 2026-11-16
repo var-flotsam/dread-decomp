@@ -15,6 +15,7 @@
 #include "game/CActorComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/CInventoryComponent.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameBlackboard.h"
@@ -58,7 +59,6 @@ struct UnkShape;
 struct CSamusMovementState;
 bool fn_71009b2d0c(CSamusMovementState* self);
 struct UnkGroundPlayer_b52;
-bool fn_71010d1598(UnkGroundPlayer_b52*);
 struct UnkInventory;
 struct UnkStandState_A6_b70;
 void fn_710099d6f0(UnkStandState_A6_b70* self);

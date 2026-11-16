@@ -2733,7 +2733,7 @@ address,size,name,name_source,subsystem,status
 0x7101077850,104,lua_bind::GetCurrentLanguageSuffix,string,script/bindings,O
 0x71010778c0,104,lua_bind::GetCurrentLanguage,string,script/bindings,O
 0x7101077930,312,lua_bind::SetCurrentLanguage,string,script/bindings,O
-0x7101077a70,456,lua_bind::SetLanguageAndRegionDebug,string,script/bindings,U
+0x7101077a70,456,lua_bind::SetLanguageAndRegionDebug,string,script/bindings,O
 0x7101077c40,184,lua_bind::QuitGame,string,script/bindings,O
 0x7101077d00,80,lua_bind::StopEnvironmentSound,string,script/bindings,O
 0x7101077d50,316,lua_bind::GoToMainMenu,string,script/bindings,O

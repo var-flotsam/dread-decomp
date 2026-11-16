@@ -1,6 +1,7 @@
 address,digest,verdict,rules,detail
 0x7100017ce8,68cbb625b718552ac1235f662d6148fb,pass,2,both runs were cut off
 0x710002d3e0,ccf33efee148de0fd9c99dd3b31d2492,pass,2,
+0x710006981c,8d9dbacc33d1630fac3a014c8b53b7a7,pass,2,both runs were cut off
 0x710006cd9c,e0d3c6ac3d1574487fb23bd532041934,pass,2,
 0x71000708c8,81506c18b14baabb966729e413c9fdda,pass,2,
 0x7100076920,7a0a4dae1eb6b5515a43eab8d8003dc3,pass,2,
