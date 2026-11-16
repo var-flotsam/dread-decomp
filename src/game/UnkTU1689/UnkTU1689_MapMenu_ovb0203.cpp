@@ -766,7 +766,8 @@ struct UnkRefObject_ovb0203 {
         u32 field_0x44;
     };
 };
-bool fn_71010c0e70(UnkGuiDisplayObject* target, const char* name, ...);
+// Calls a script function (src/base/UnkLuaCall.cpp); here its first argument is the marker's display object.
+bool fn_71010c0e70(const char* name, const char* fmt, ...);
 
 struct UnkMapMenuTail_ovb0203 {
     u8 pad_0x0[0xfa8];
@@ -809,7 +810,7 @@ void fn_7100b42ff0(void* obj, u32 a, u32 b) {
             if (tail->field_0x10a0 != &g_unk_7101d47108->empty) {
                 UnkRefObject_ovb0203* held = reinterpret_cast<UnkRefObject_ovb0203*>(tail->field_0x10a0);
                 ++held->field_0x44;
-                fn_71010c0e70(reinterpret_cast<UnkRefObject_ovb0203*>(tail->field_0x10a0)->target, "b", true);
+                fn_71010c0e70(reinterpret_cast<const char*>(reinterpret_cast<UnkRefObject_ovb0203*>(tail->field_0x10a0)->target), "b", true);
             }
         }
 }

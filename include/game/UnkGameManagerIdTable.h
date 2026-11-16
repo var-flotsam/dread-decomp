@@ -18,7 +18,9 @@ struct UnkGameManagerIdTable {
     base::global::CStrId field_0x628;
     u8 pad_0x630[0x7c8 - 0x630];
     base::global::CStrId field_0x7c8;
-    u8 pad_0x7d0[0x8b8 - 0x7d0];
+    u8 pad_0x7d0[0x8a8 - 0x7d0];
+    base::global::CStrId field_0x8a8;
+    u8 pad_0x8b0[0x8b8 - 0x8b0];
     base::global::CStrId field_0x8b8;
     u8 pad_0x8c0[0x8e8 - 0x8c0];
     base::global::CStrId field_0x8e8;
@@ -56,7 +58,9 @@ struct UnkGameManagerIdTable {
     base::global::CStrId field_0x13f8;
     u8 pad_0x1400[0x1570 - 0x1400];
     base::global::CStrId field_0x1570;
-    u8 pad_0x1578[0x1640 - 0x1578];
+    u8 pad_0x1578[0x1588 - 0x1578];
+    base::global::CStrId field_0x1588;
+    u8 pad_0x1590[0x1640 - 0x1590];
     base::global::CStrId field_0x1640;
     u8 pad_0x1648[0x1650 - 0x1648];
     base::global::CStrId field_0x1650;  // "damage"

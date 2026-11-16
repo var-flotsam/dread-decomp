@@ -49,7 +49,9 @@ struct UnkStepper {
 
 bool fn_71005528fc(UnkStepper* self, const CVector2D* point);
 void fn_7100552a34(UnkStepper* self, bool a, bool b);
-void fn_7100544fb8(UnkStepper* self, u32 arg);
+// Updates whether the owner can reach its target and returns it (src/game/UnkTU811/UnkTU811_UpdateReach_l544fb8.cpp).
+struct UnkEmmyAI_l544fb8;
+bool fn_7100544fb8(UnkEmmyAI_l544fb8* self, bool arg);
 
 struct UnkPos {
     u32 x;
@@ -82,6 +84,6 @@ bool fn_71005416bc(UnkStepper* self, bool flag) {
         return false;
     if (self->field_0x14c34)
         return true;
-    fn_7100544fb8(self, 0);
+    fn_7100544fb8(reinterpret_cast<UnkEmmyAI_l544fb8*>(self), false);
     return self->field_0x14c35 != 0;
 }

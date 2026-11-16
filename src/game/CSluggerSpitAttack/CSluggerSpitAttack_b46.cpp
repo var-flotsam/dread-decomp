@@ -36,7 +36,7 @@ struct UnkSluggerSpitAttack_b46a2 {
     f32 angle;
 };
 
-void fn_71006c0e38(UnkSluggerSpitAttack_b46a2* self, u32 mode, UnkVec3f* angles);
+void fn_71006c0e38(UnkSluggerSpitAttack_b46a2* self, bool mode, UnkVec3f* angles);
 
 void fn_71006c25d0(UnkSluggerSpitAttack_b46a2* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);
