@@ -22,6 +22,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2744.h"
 #include "game/UnkTU2747.h"
+#include "game/UnkTU56.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "UnkClone.h"
@@ -244,8 +245,6 @@ void fn_71011b732c(UnkGuiRoot* root, UnkGuiDisplayObject* object, bool notify) {
 // src/game_hi/fn_71011b69d8.cpp names it.
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_7172a0d128 __attribute__((visibility("hidden")));

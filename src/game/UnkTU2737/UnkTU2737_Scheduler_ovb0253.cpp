@@ -3,6 +3,7 @@
 // destruction of the finished objects and the destructor. Names and layouts are placeholders.
 #include "base/UnkSList.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2662.h"
 #include "types.h"
 
 struct UnkTimed_b0253 {
@@ -29,7 +30,6 @@ struct UnkScheduler_b0253 {
 static_assert(sizeof(UnkList_b0253) == 0x30, "UnkList_b0253 layout");
 static_assert(__builtin_offsetof(UnkScheduler_b0253, next_id) == 0x90, "UnkScheduler_b0253 layout");
 
-void fn_7101073bcc(UnkTimed_b0253* object);
 extern char g_unk_7101cb5598[];  // the list base's vtable
 
 // The position of a value in a list, or -1.

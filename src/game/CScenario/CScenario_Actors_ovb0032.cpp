@@ -15,6 +15,7 @@
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
+#include "game/UnkTU341.h"
 #include "game/UnkTU57.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -54,7 +55,6 @@ static_assert(__builtin_offsetof(UnkScenario_ovb0032, field_0x3f0) == 0x3f0, "Un
 struct UnkScenarioLists_b52;
 void fn_71011a28e8(UnkScenarioLists_b52* self, void* object);
 void fn_71011a2c40(UnkScenarioLists_b52* self, void* object);
-void fn_71002337d0(UnkScenarioObject_ovb0032* object, UnkScenario_ovb0032* scenario);
 
 // Removes the first node holding `value` and frees it (as src/game/CScenario/CScenario_Lists_b52.cpp).
 static inline __attribute__((always_inline)) void Remove_ovb0032(UnkScenarioList_ovb0032& list, u64 value) {

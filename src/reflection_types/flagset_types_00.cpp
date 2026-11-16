@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/ValueOps.h"
 using base::reflection::CType;
-using base::reflection::UnkFn;
+using base::reflection::SlotFn;
 const base::reflection::CType* fn_7100005178();
 extern base::reflection::CType g_unk_7101d57cf8;
 extern base::reflection::CType g_unk_7101d57e58;
@@ -33,7 +33,6 @@ const CType& base::reflection::ValueOps<TEventPropsFlags>::TypeOf(const void*) {
 template struct base::reflection::ValueOps<TEventPropsFlags>;
 template <>
 struct base::reflection::FlagsetTypeDescription<TEventPropsFlags> : base::reflection::ValueOpsDescription<TEventPropsFlags> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7101d57cf8; }
 };
@@ -44,7 +43,6 @@ const CType& base::reflection::ValueOps<base::global::timeline::TLayers>::TypeOf
 template struct base::reflection::ValueOps<base::global::timeline::TLayers>;
 template <>
 struct base::reflection::FlagsetTypeDescription<base::global::timeline::TLayers> : base::reflection::ValueOpsDescription<base::global::timeline::TLayers> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7101d57f90; }
 };
@@ -55,7 +53,6 @@ const CType& base::reflection::ValueOps<TShinesparkTravellingDirectionFlagSet>::
 template struct base::reflection::ValueOps<TShinesparkTravellingDirectionFlagSet>;
 template <>
 struct base::reflection::FlagsetTypeDescription<TShinesparkTravellingDirectionFlagSet> : base::reflection::ValueOpsDescription<TShinesparkTravellingDirectionFlagSet> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71726b0410; }
 };
@@ -66,7 +63,6 @@ const CType& base::reflection::ValueOps<TCoolShinesparkSituation>::TypeOf(const 
 template struct base::reflection::ValueOps<TCoolShinesparkSituation>;
 template <>
 struct base::reflection::FlagsetTypeDescription<TCoolShinesparkSituation> : base::reflection::ValueOpsDescription<TCoolShinesparkSituation> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71726b06a8; }
 };
@@ -77,7 +73,6 @@ const CType& base::reflection::ValueOps<TAnimationTagFlagSet>::TypeOf(const void
 template struct base::reflection::ValueOps<TAnimationTagFlagSet>;
 template <>
 struct base::reflection::FlagsetTypeDescription<TAnimationTagFlagSet> : base::reflection::ValueOpsDescription<TAnimationTagFlagSet> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_717270e1e8; }
 };
@@ -88,7 +83,6 @@ const CType& base::reflection::ValueOps<TPickingModeFlagSet>::TypeOf(const void*
 template struct base::reflection::ValueOps<TPickingModeFlagSet>;
 template <>
 struct base::reflection::FlagsetTypeDescription<TPickingModeFlagSet> : base::reflection::ValueOpsDescription<TPickingModeFlagSet> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7172758838; }
 };
@@ -99,7 +93,6 @@ const CType& base::reflection::ValueOps<TActionInsertFlagset>::TypeOf(const void
 template struct base::reflection::ValueOps<TActionInsertFlagset>;
 template <>
 struct base::reflection::FlagsetTypeDescription<TActionInsertFlagset> : base::reflection::ValueOpsDescription<TActionInsertFlagset> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_7172769498; }
 };
@@ -110,7 +103,6 @@ const CType& base::reflection::ValueOps<TTooltipConditions>::TypeOf(const void*)
 template struct base::reflection::ValueOps<TTooltipConditions>;
 template <>
 struct base::reflection::FlagsetTypeDescription<TTooltipConditions> : base::reflection::ValueOpsDescription<TTooltipConditions> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static const CType* field_0xe8() { return &g_unk_71727c0bc0; }
 };

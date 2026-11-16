@@ -67,22 +67,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002dd038> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = true;
-    static constexpr UnkFn construct = &fn_71002dd258;
-    static constexpr UnkFn copy_construct = nullptr;
-    static constexpr UnkFn move_construct = &fn_71002dd260;
-    static constexpr UnkFn destroy = &fn_71002dd270;
-    static constexpr UnkFn copy_assign = nullptr;
-    static constexpr UnkFn move_assign = &fn_71002dd290;
-    static constexpr UnkFn equals = &fn_71002dd228;
-    static constexpr UnkFn hash = &fn_71002dd23c;
-    static constexpr UnkFn type_of = &fn_71002dd244;
-    static constexpr UnkFn get = &fn_71002dd198;
-    static constexpr UnkFn set = &fn_71002dd200;
-    static constexpr UnkFn increment = &fn_71002dd224;
+    static constexpr SlotFn construct = &fn_71002dd258;
+    static constexpr SlotFn copy_construct = nullptr;
+    static constexpr SlotFn move_construct = &fn_71002dd260;
+    static constexpr SlotFn destroy = &fn_71002dd270;
+    static constexpr SlotFn copy_assign = nullptr;
+    static constexpr SlotFn move_assign = &fn_71002dd290;
+    static constexpr SlotFn equals = &fn_71002dd228;
+    static constexpr SlotFn hash = &fn_71002dd23c;
+    static constexpr SlotFn type_of = &fn_71002dd244;
+    static constexpr SlotFn get = &fn_71002dd198;
+    static constexpr SlotFn set = &fn_71002dd200;
+    static constexpr SlotFn increment = &fn_71002dd224;
     static const CType* pointee() { return animtree::CAnimTreeElementDef::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002dbffc> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002dbffc> {
     static constexpr const char* name = "std::unique_ptr<animtree::CAnimTreeElementDef>";
     using Init = UnkRefl_fn_71002dd038;
 };

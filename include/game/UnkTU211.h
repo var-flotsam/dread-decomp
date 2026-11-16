@@ -10,3 +10,5 @@ struct UnkEntryListA1_134;
 struct UnkDecalResourceMgr;
 extern UnkDecalResourceMgr* g_unk_716e352450;
 bool fn_7100193410(UnkEntryListA1_134* list, u32 index, u32 slot, const base::math::UnkVector4D& value, u32 flag);
+void fn_7100192f08(void* obj, bool flag);
+void fn_71001933cc(void*);

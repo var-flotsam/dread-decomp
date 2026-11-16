@@ -16,8 +16,8 @@ using base::global::CStrId;
 using base::reflection::CClass;
 
 DREAD_REFL_TAG(71000e872c);
-extern template CClass::CClass(const CStrId&, const CClass*, base::reflection::UnkFn_0x70,
-                               base::reflection::UnkFn_0x70, UnkRefl_fn_71000e872c*);
+extern template CClass::CClass(const CStrId&, const CClass*, base::reflection::ClassSetupFn,
+                               base::reflection::ClassSetupFn, UnkRefl_fn_71000e872c*);
 
 void fn_71000e8728(CClass*);
 extern CClass g_unk_7101d67598;

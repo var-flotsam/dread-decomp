@@ -70,32 +70,7 @@ struct UnkComponent_71011415f4 {
     void Apply(void* section_data);  // fn_710114433c
 };
 
-extern CStrId g_unk_7172a092b8 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a092c0 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a092c8 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a092d0 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a092d8 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a092e0 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a092e8 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a092f0 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a092f8 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09300 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09308 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09310 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09318 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09320 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09328 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09330 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09338 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09340 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09348 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09350 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09358 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09360 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09368 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a09370 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09378 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172a09380 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a093a8 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a093b0 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a093b8 __attribute__((visibility("hidden")));

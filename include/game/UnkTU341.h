@@ -8,6 +8,8 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkScenarioObject_ovb0032;
+struct UnkScenario_ovb0032;
 struct UnkEntry_b41a1;
 struct UnkStruct_7100233684;
 struct UnkEntityState;
@@ -65,3 +67,4 @@ struct UnkHalf_cu {
 };
 static_assert(sizeof(UnkHalf_cu) == 0x40, "UnkHalf_cu layout");
 extern char g_unk_7101a20a08[];
+void fn_71002337d0(UnkScenarioObject_ovb0032* object, UnkScenario_ovb0032* scenario);

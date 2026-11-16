@@ -77,22 +77,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101051e90> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010521cc;
-    static constexpr UnkFn copy_construct = &fn_71010521d4;
-    static constexpr UnkFn move_construct = &fn_7101052230;
-    static constexpr UnkFn destroy = &fn_710105228c;
-    static constexpr UnkFn copy_assign = &fn_71010522b4;
-    static constexpr UnkFn move_assign = &fn_71010522e4;
-    static constexpr UnkFn equals = &fn_710105218c;
-    static constexpr UnkFn hash = &fn_71010521b0;
-    static constexpr UnkFn type_of = &fn_71010521b8;
-    static constexpr UnkFn get = &fn_7101052000;
-    static constexpr UnkFn set = &fn_7101052068;
-    static constexpr UnkFn increment = &fn_7101052188;
+    static constexpr SlotFn construct = &fn_71010521cc;
+    static constexpr SlotFn copy_construct = &fn_71010521d4;
+    static constexpr SlotFn move_construct = &fn_7101052230;
+    static constexpr SlotFn destroy = &fn_710105228c;
+    static constexpr SlotFn copy_assign = &fn_71010522b4;
+    static constexpr SlotFn move_assign = &fn_71010522e4;
+    static constexpr SlotFn equals = &fn_710105218c;
+    static constexpr SlotFn hash = &fn_71010521b0;
+    static constexpr SlotFn type_of = &fn_71010521b8;
+    static constexpr SlotFn get = &fn_7101052000;
+    static constexpr SlotFn set = &fn_7101052068;
+    static constexpr SlotFn increment = &fn_7101052188;
     static const CType* pointee() { return CLogicCamera::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010510b4> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71010510b4> {
     static constexpr const char* name = "base::global::CWeakPtr<CLogicCamera>";
     using Init = UnkRefl_fn_7101051e90;
 };

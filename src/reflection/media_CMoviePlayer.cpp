@@ -93,22 +93,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_710021dfc0> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710021e250;
-    static constexpr UnkFn copy_construct = &fn_710021e258;
-    static constexpr UnkFn move_construct = &fn_710021e2c8;
-    static constexpr UnkFn destroy = &fn_710021e338;
-    static constexpr UnkFn copy_assign = &fn_710021e36c;
-    static constexpr UnkFn move_assign = &fn_710021e3f0;
-    static constexpr UnkFn equals = &fn_710021e214;
-    static constexpr UnkFn hash = &fn_710021e234;
-    static constexpr UnkFn type_of = &fn_710021e23c;
-    static constexpr UnkFn get = &fn_710021e130;
-    static constexpr UnkFn set = &fn_710021e198;
-    static constexpr UnkFn increment = &fn_710021e210;
+    static constexpr SlotFn construct = &fn_710021e250;
+    static constexpr SlotFn copy_construct = &fn_710021e258;
+    static constexpr SlotFn move_construct = &fn_710021e2c8;
+    static constexpr SlotFn destroy = &fn_710021e338;
+    static constexpr SlotFn copy_assign = &fn_710021e36c;
+    static constexpr SlotFn move_assign = &fn_710021e3f0;
+    static constexpr SlotFn equals = &fn_710021e214;
+    static constexpr SlotFn hash = &fn_710021e234;
+    static constexpr SlotFn type_of = &fn_710021e23c;
+    static constexpr SlotFn get = &fn_710021e130;
+    static constexpr SlotFn set = &fn_710021e198;
+    static constexpr SlotFn increment = &fn_710021e210;
     static const CType* pointee() { return media::CMoviePlayer::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710021dee4> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_710021dee4> {
     static constexpr const char* name = "base::global::CSmartPtr<media::CMoviePlayer>";
     using Init = UnkRefl_fn_710021dfc0;
 };

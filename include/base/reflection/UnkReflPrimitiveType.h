@@ -15,20 +15,20 @@ namespace base::reflection {
 // cast at the use site (null when the type lacks that function). A named plain type takes the
 // value operations from ValueOpsDescription<T>.
 template <class G>
-struct UnkReflPrimitiveTraits;
+struct PrimitiveTypeDescription;
 
 // Builds the descriptor in place (a prvalue, so the static is constructed directly). The name
 // is built by the caller before the kind is hashed, as in the original.
 template <class G>
 inline CType refl_MakePrimitiveType(const base::global::CStrId& name) {
-    using Tr = UnkReflPrimitiveTraits<G>;
-    return CType(fn_7100001570(Tr::name, Tr::length), name, Tr::size, reinterpret_cast<UnkFn_0x58>(Tr::equals),
-                 reinterpret_cast<UnkFn_0x60>(Tr::hash), reinterpret_cast<UnkFn_0x68>(Tr::type_of),
-                 reinterpret_cast<UnkFn_0x70>(Tr::add_attributes), nullptr,
-                 {reinterpret_cast<UnkFn>(Tr::construct), reinterpret_cast<UnkFn_0x30>(Tr::copy_construct),
-                  reinterpret_cast<UnkFn_0x30>(Tr::move_construct),
-                  reinterpret_cast<UnkFn_0x40>(Tr::destroy), reinterpret_cast<UnkFn_0x48>(Tr::copy_assign),
-                  reinterpret_cast<UnkFn_0x48>(Tr::move_assign)},
+    using Tr = PrimitiveTypeDescription<G>;
+    return CType(fn_7100001570(Tr::name, Tr::length), name, Tr::size, reinterpret_cast<EqualsFn>(Tr::equals),
+                 reinterpret_cast<HashFn>(Tr::hash), reinterpret_cast<TypeOfFn>(Tr::type_of),
+                 reinterpret_cast<ClassSetupFn>(Tr::add_attributes), nullptr,
+                 {reinterpret_cast<SlotFn>(Tr::construct), reinterpret_cast<CopyConstructFn>(Tr::copy_construct),
+                  reinterpret_cast<CopyConstructFn>(Tr::move_construct),
+                  reinterpret_cast<DestroyFn>(Tr::destroy), reinterpret_cast<AssignFn>(Tr::copy_assign),
+                  reinterpret_cast<AssignFn>(Tr::move_assign)},
                  false);
 }
 
@@ -38,7 +38,7 @@ inline CType refl_MakePrimitiveType(const base::global::CStrId& name) {
 // pointer-returning getter, calls it instead).
 template <class G>
 const CType& refl_GetPrimitiveType() {
-    static CType s_type = refl_MakePrimitiveType<G>(base::global::CStrId(UnkReflPrimitiveTraits<G>::name, true));
+    static CType s_type = refl_MakePrimitiveType<G>(base::global::CStrId(PrimitiveTypeDescription<G>::name, true));
     return s_type;
 }
 

@@ -87,22 +87,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6c368> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100d6c58c;
-    static constexpr UnkFn copy_construct = &fn_7100d6c594;
-    static constexpr UnkFn move_construct = &fn_7100d6c5a0;
-    static constexpr UnkFn destroy = &fn_7100d6c5ac;
-    static constexpr UnkFn copy_assign = &fn_7100d6c5b0;
-    static constexpr UnkFn move_assign = &fn_7100d6c5c4;
-    static constexpr UnkFn equals = &fn_7100d6c55c;
-    static constexpr UnkFn hash = &fn_7100d6c570;
-    static constexpr UnkFn type_of = &fn_7100d6c578;
-    static constexpr UnkFn get = &fn_7100d6c4d8;
-    static constexpr UnkFn set = &fn_7100d6c540;
-    static constexpr UnkFn increment = &fn_7100d6c54c;
+    static constexpr SlotFn construct = &fn_7100d6c58c;
+    static constexpr SlotFn copy_construct = &fn_7100d6c594;
+    static constexpr SlotFn move_construct = &fn_7100d6c5a0;
+    static constexpr SlotFn destroy = &fn_7100d6c5ac;
+    static constexpr SlotFn copy_assign = &fn_7100d6c5b0;
+    static constexpr SlotFn move_assign = &fn_7100d6c5c4;
+    static constexpr SlotFn equals = &fn_7100d6c55c;
+    static constexpr SlotFn hash = &fn_7100d6c570;
+    static constexpr SlotFn type_of = &fn_7100d6c578;
+    static constexpr SlotFn get = &fn_7100d6c4d8;
+    static constexpr SlotFn set = &fn_7100d6c540;
+    static constexpr SlotFn increment = &fn_7100d6c54c;
     static const CType* pointee() { return game::logic::collision::CShape::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100d6a05c> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100d6a05c> {
     static constexpr const char* name = "game::logic::collision::CShape const*";
     using Init = UnkRefl_fn_7100d6c368;
 };

@@ -170,22 +170,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002f3edc> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71002f4150;
-    static constexpr UnkFn copy_construct = &fn_71002f4158;
-    static constexpr UnkFn move_construct = &fn_71002f41ac;
-    static constexpr UnkFn destroy = &fn_71002f4200;
-    static constexpr UnkFn copy_assign = &fn_71002f4220;
-    static constexpr UnkFn move_assign = &fn_71002f4288;
-    static constexpr UnkFn equals = &fn_71002f4114;
-    static constexpr UnkFn hash = &fn_71002f4134;
-    static constexpr UnkFn type_of = &fn_71002f413c;
-    static constexpr UnkFn get = &fn_71002f404c;
-    static constexpr UnkFn set = &fn_71002f40b4;
-    static constexpr UnkFn increment = &fn_71002f4110;
+    static constexpr SlotFn construct = &fn_71002f4150;
+    static constexpr SlotFn copy_construct = &fn_71002f4158;
+    static constexpr SlotFn move_construct = &fn_71002f41ac;
+    static constexpr SlotFn destroy = &fn_71002f4200;
+    static constexpr SlotFn copy_assign = &fn_71002f4220;
+    static constexpr SlotFn move_assign = &fn_71002f4288;
+    static constexpr SlotFn equals = &fn_71002f4114;
+    static constexpr SlotFn hash = &fn_71002f4134;
+    static constexpr SlotFn type_of = &fn_71002f413c;
+    static constexpr SlotFn get = &fn_71002f404c;
+    static constexpr SlotFn set = &fn_71002f40b4;
+    static constexpr SlotFn increment = &fn_71002f4110;
     static const CType* pointee() { return CPlaythroughDef::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002f22c0> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002f22c0> {
     static constexpr const char* name = "base::global::CSmartPtr<const CPlaythroughDef>";
     using Init = UnkRefl_fn_71002f3edc;
 };
@@ -197,22 +197,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002f338c> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = true;
-    static constexpr UnkFn construct = &fn_71002f35ac;
-    static constexpr UnkFn copy_construct = nullptr;
-    static constexpr UnkFn move_construct = &fn_71002f35b4;
-    static constexpr UnkFn destroy = &fn_71002f35c4;
-    static constexpr UnkFn copy_assign = nullptr;
-    static constexpr UnkFn move_assign = &fn_71002f35e4;
-    static constexpr UnkFn equals = &fn_71002f357c;
-    static constexpr UnkFn hash = &fn_71002f3590;
-    static constexpr UnkFn type_of = &fn_71002f3598;
-    static constexpr UnkFn get = &fn_71002f34ec;
-    static constexpr UnkFn set = &fn_71002f3554;
-    static constexpr UnkFn increment = &fn_71002f3578;
+    static constexpr SlotFn construct = &fn_71002f35ac;
+    static constexpr SlotFn copy_construct = nullptr;
+    static constexpr SlotFn move_construct = &fn_71002f35b4;
+    static constexpr SlotFn destroy = &fn_71002f35c4;
+    static constexpr SlotFn copy_assign = nullptr;
+    static constexpr SlotFn move_assign = &fn_71002f35e4;
+    static constexpr SlotFn equals = &fn_71002f357c;
+    static constexpr SlotFn hash = &fn_71002f3590;
+    static constexpr SlotFn type_of = &fn_71002f3598;
+    static constexpr SlotFn get = &fn_71002f34ec;
+    static constexpr SlotFn set = &fn_71002f3554;
+    static constexpr SlotFn increment = &fn_71002f3578;
     static const CType* pointee() { return CPlaythroughDef::SCheckpointDef::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002f1944> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002f1944> {
     static constexpr const char* name = "std::unique_ptr<CPlaythroughDef::SCheckpointDef>";
     using Init = UnkRefl_fn_71002f338c;
 };
@@ -224,22 +224,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002f42f0> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71002f4514;
-    static constexpr UnkFn copy_construct = &fn_71002f451c;
-    static constexpr UnkFn move_construct = &fn_71002f4528;
-    static constexpr UnkFn destroy = &fn_71002f4534;
-    static constexpr UnkFn copy_assign = &fn_71002f4538;
-    static constexpr UnkFn move_assign = &fn_71002f454c;
-    static constexpr UnkFn equals = &fn_71002f44e4;
-    static constexpr UnkFn hash = &fn_71002f44f8;
-    static constexpr UnkFn type_of = &fn_71002f4500;
-    static constexpr UnkFn get = &fn_71002f4460;
-    static constexpr UnkFn set = &fn_71002f44c8;
-    static constexpr UnkFn increment = &fn_71002f44d4;
+    static constexpr SlotFn construct = &fn_71002f4514;
+    static constexpr SlotFn copy_construct = &fn_71002f451c;
+    static constexpr SlotFn move_construct = &fn_71002f4528;
+    static constexpr SlotFn destroy = &fn_71002f4534;
+    static constexpr SlotFn copy_assign = &fn_71002f4538;
+    static constexpr SlotFn move_assign = &fn_71002f454c;
+    static constexpr SlotFn equals = &fn_71002f44e4;
+    static constexpr SlotFn hash = &fn_71002f44f8;
+    static constexpr SlotFn type_of = &fn_71002f4500;
+    static constexpr SlotFn get = &fn_71002f4460;
+    static constexpr SlotFn set = &fn_71002f44c8;
+    static constexpr SlotFn increment = &fn_71002f44d4;
     static const CType* pointee() { return CPlaythroughDef::SCheckpointDef::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71002f239c> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002f239c> {
     static constexpr const char* name = "const CPlaythroughDef::SCheckpointDef*";
     using Init = UnkRefl_fn_71002f42f0;
 };

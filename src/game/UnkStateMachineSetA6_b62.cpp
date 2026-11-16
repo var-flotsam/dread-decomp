@@ -8,6 +8,7 @@
 #include "game/CElectricReactionComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/GUI/CDisplayObjectContainer.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"

@@ -51,7 +51,7 @@ void fn_7100a0f7b4(UnkSonarTarget_ovb0054& self) {
 struct UnkDemolitionModelHolder;
 
 // Constructs the model named `name`.
-void* fn_710014569c(void* self, base::global::CStrId* name);
+void fn_710014569c(void* self, base::global::CStrId* name);
 bool fn_7100a0fff0(UnkDemolitionModelHolder* self, const CFilePathStrId& path);
 
 struct UnkSonarModel_ovb0054 {

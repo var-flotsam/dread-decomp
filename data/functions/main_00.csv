@@ -991,7 +991,7 @@ address,size,name,name_source,subsystem,status
 0x7100025508,28,base::core::CDefinition::refl_TypeOf,reflection,engine/base,O
 0x7100025524,12,base::core::CDefinition::refl_Destroy,reflection,engine/base,O
 0x7100025530,148,fn_7100025530,unknown,unknown,O
-0x71000255c4,96,fn_71000255c4,unknown,unknown,U
+0x71000255c4,96,fn_71000255c4,unknown,unknown,O
 0x7100025624,264,fn_7100025624,unknown,unknown,O
 0x710002572c,180,fn_710002572c,unknown,unknown,O
 0x71000257e0,164,fn_71000257e0,unknown,unknown,O

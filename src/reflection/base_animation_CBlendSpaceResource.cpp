@@ -149,22 +149,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_710000baa0> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710000bcc4;
-    static constexpr UnkFn copy_construct = &fn_710000bccc;
-    static constexpr UnkFn move_construct = &fn_710000bcd8;
-    static constexpr UnkFn destroy = &fn_710000bce4;
-    static constexpr UnkFn copy_assign = &fn_710000bce8;
-    static constexpr UnkFn move_assign = &fn_710000bcfc;
-    static constexpr UnkFn equals = &fn_710000bc94;
-    static constexpr UnkFn hash = &fn_710000bca8;
-    static constexpr UnkFn type_of = &fn_710000bcb0;
-    static constexpr UnkFn get = &fn_710000bc10;
-    static constexpr UnkFn set = &fn_710000bc78;
-    static constexpr UnkFn increment = &fn_710000bc84;
+    static constexpr SlotFn construct = &fn_710000bcc4;
+    static constexpr SlotFn copy_construct = &fn_710000bccc;
+    static constexpr SlotFn move_construct = &fn_710000bcd8;
+    static constexpr SlotFn destroy = &fn_710000bce4;
+    static constexpr SlotFn copy_assign = &fn_710000bce8;
+    static constexpr SlotFn move_assign = &fn_710000bcfc;
+    static constexpr SlotFn equals = &fn_710000bc94;
+    static constexpr SlotFn hash = &fn_710000bca8;
+    static constexpr SlotFn type_of = &fn_710000bcb0;
+    static constexpr SlotFn get = &fn_710000bc10;
+    static constexpr SlotFn set = &fn_710000bc78;
+    static constexpr SlotFn increment = &fn_710000bc84;
     static const CType* pointee() { return base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100009838> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100009838> {
     static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::animation::CBlendSpaceResource::SBlendTarget>>::TElementIterator";
     using Init = UnkRefl_fn_710000baa0;
 };
@@ -176,22 +176,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_710000bd10> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710000bf34;
-    static constexpr UnkFn copy_construct = &fn_710000bf3c;
-    static constexpr UnkFn move_construct = &fn_710000bf48;
-    static constexpr UnkFn destroy = &fn_710000bf54;
-    static constexpr UnkFn copy_assign = &fn_710000bf58;
-    static constexpr UnkFn move_assign = &fn_710000bf6c;
-    static constexpr UnkFn equals = &fn_710000bf04;
-    static constexpr UnkFn hash = &fn_710000bf18;
-    static constexpr UnkFn type_of = &fn_710000bf20;
-    static constexpr UnkFn get = &fn_710000be80;
-    static constexpr UnkFn set = &fn_710000bee8;
-    static constexpr UnkFn increment = &fn_710000bef4;
+    static constexpr SlotFn construct = &fn_710000bf34;
+    static constexpr SlotFn copy_construct = &fn_710000bf3c;
+    static constexpr SlotFn move_construct = &fn_710000bf48;
+    static constexpr SlotFn destroy = &fn_710000bf54;
+    static constexpr SlotFn copy_assign = &fn_710000bf58;
+    static constexpr SlotFn move_assign = &fn_710000bf6c;
+    static constexpr SlotFn equals = &fn_710000bf04;
+    static constexpr SlotFn hash = &fn_710000bf18;
+    static constexpr SlotFn type_of = &fn_710000bf20;
+    static constexpr SlotFn get = &fn_710000be80;
+    static constexpr SlotFn set = &fn_710000bee8;
+    static constexpr SlotFn increment = &fn_710000bef4;
     static const CType* pointee() { return base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100009914> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100009914> {
     static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::animation::CBlendSpaceResource::SBlendTarget>>::TElementConstIterator";
     using Init = UnkRefl_fn_710000bd10;
 };
@@ -202,32 +202,32 @@ template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710000a5d0> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x1;
-    static constexpr UnkFn construct = &fn_710000e2ac;
-    static constexpr UnkFn copy_construct = &fn_710000e2ec;
-    static constexpr UnkFn move_construct = &fn_710000e36c;
-    static constexpr UnkFn destroy = &fn_710000e3ac;
-    static constexpr UnkFn copy_assign = &fn_710000e4ac;
-    static constexpr UnkFn move_assign = &fn_710000e4dc;
-    static constexpr UnkFn equals = &fn_710000e28c;
-    static constexpr UnkFn hash = &fn_710000e298;
-    static constexpr UnkFn type_of = &fn_710000e2a0;
+    static constexpr SlotFn construct = &fn_710000e2ac;
+    static constexpr SlotFn copy_construct = &fn_710000e2ec;
+    static constexpr SlotFn move_construct = &fn_710000e36c;
+    static constexpr SlotFn destroy = &fn_710000e3ac;
+    static constexpr SlotFn copy_assign = &fn_710000e4ac;
+    static constexpr SlotFn move_assign = &fn_710000e4dc;
+    static constexpr SlotFn equals = &fn_710000e28c;
+    static constexpr SlotFn hash = &fn_710000e298;
+    static constexpr SlotFn type_of = &fn_710000e2a0;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(); }
     static const CType* iterator() { return fn_7100009838(); }
     static const CType* const_iterator() { return fn_7100009f04(); }
-    static constexpr UnkFn count = &fn_710000df7c;
-    static constexpr UnkFn clear = &fn_710000df84;
-    static constexpr UnkFn add_copy = &fn_710000e06c;
-    static constexpr UnkFn add_move = &fn_710000e07c;
-    static constexpr UnkFn erase = &fn_710000e08c;
-    static constexpr UnkFn at = &fn_710000e0a4;
-    static constexpr UnkFn find = &fn_710000e0b8;
-    static constexpr UnkFn set_copy = &fn_710000e0e0;
-    static constexpr UnkFn set_move = &fn_710000e1b8;
-    static constexpr UnkFn begin = &fn_710000f140;
-    static constexpr UnkFn end = &fn_710000f14c;
-    static constexpr UnkFn const_begin = &fn_710000f164;
-    static constexpr UnkFn const_end = &fn_710000f244;
+    static constexpr SlotFn count = &fn_710000df7c;
+    static constexpr SlotFn clear = &fn_710000df84;
+    static constexpr SlotFn add_copy = &fn_710000e06c;
+    static constexpr SlotFn add_move = &fn_710000e07c;
+    static constexpr SlotFn erase = &fn_710000e08c;
+    static constexpr SlotFn at = &fn_710000e0a4;
+    static constexpr SlotFn find = &fn_710000e0b8;
+    static constexpr SlotFn set_copy = &fn_710000e0e0;
+    static constexpr SlotFn set_move = &fn_710000e1b8;
+    static constexpr SlotFn begin = &fn_710000f140;
+    static constexpr SlotFn end = &fn_710000f14c;
+    static constexpr SlotFn const_begin = &fn_710000f164;
+    static constexpr SlotFn const_end = &fn_710000f244;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710000a5d0*, void*);
 #include "base/reflection/UnkReflAttributes.h"

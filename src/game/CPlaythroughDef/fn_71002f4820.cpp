@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CPlaythroughDef.h"
+#include "game/UnkBufferStringPool.h"
 #include "types.h"
 
 using base::global::UnkStringData;

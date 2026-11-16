@@ -14,6 +14,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
@@ -167,9 +168,7 @@ void fn_710119c208(UnkLanguage* self, bool keep_texts) {
 
 // The file reader the language file is read with: the file held in memory and two words.
 // The id and path pair (base/UnkStrIdPathPair.h) fn_710008d680 builds from a path.
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 // Closes the file.
-void fn_710007c144(UnkHashStream_0x38* s);
 // Reads values from the file's position as the format says ("s" a string, "w" a UTF-32 string);
 // returns the bytes read.
 u64 fn_710007d788(base::global::CRntFile* file, const char* format, ...);

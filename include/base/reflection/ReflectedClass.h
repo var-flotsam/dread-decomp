@@ -123,5 +123,5 @@ inline void DestroyDestructorFirst(void* obj) {
 #define DREAD_REFLECTED_DESCRIPTOR(T)                                                                   \
     template base::reflection::CClass::CClass(const base::global::CStrId&,                             \
                                               const base::reflection::CClass*,                         \
-                                              base::reflection::UnkFn_0x70,                            \
-                                              base::reflection::UnkFn_0x70, T::refl_Description*)
+                                              base::reflection::ClassSetupFn,                            \
+                                              base::reflection::ClassSetupFn, T::refl_Description*)

@@ -32,8 +32,6 @@ struct UnkCounters_ovb0259 {
 };
 
 struct UnkFileReader;
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710007c144(UnkHashStream_0x38* s);
 extern const char* g_unk_7101a1bd30;
 
 __attribute__((noinline)) UnkCounter_ovb0259* fn_71001047e0(base::global::CRntVector<UnkCounter_ovb0259>* v, u32 index) {
