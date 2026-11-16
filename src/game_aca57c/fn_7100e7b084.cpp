@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection.h"
+#include "game/UnkBufferStringPool.h"
 #include "types.h"
 
 using UnkString200 = UnkBufferString<0x200, g_unk_7101a1a5a8>;
@@ -85,7 +86,6 @@ UnkString100 fn_7100adc570(UnkFormatSource* self) {
 
 // A record of three floats (all 1 by default), a string with 0x20 bytes of storage and a word:
 // its value-initialising constructor and its copy constructor.
-extern void* g_unk_7101a1b5a0[];
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 struct UnkFloat3 {

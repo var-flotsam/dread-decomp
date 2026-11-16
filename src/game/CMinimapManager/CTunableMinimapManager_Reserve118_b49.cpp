@@ -10,6 +10,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU2566.h"
 #include "types.h"
 
@@ -50,7 +51,6 @@ struct UnkPad118 {
     __attribute__((always_inline)) UnkPad118(UnkPad118&&) {}
 };
 
-extern void* g_unk_7101a1b5a0[];
 using UnkString20_118 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 struct UnkRecord118_b49 {
