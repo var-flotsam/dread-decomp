@@ -366,10 +366,10 @@ struct UnkMlogMessage_b0164 {
 };
 
 struct UnkMlogMessage_b42a1;
-void fn_7100e00cc0(UnkGameManager* self, u8 flag);
+void fn_7100e00cc0(UnkGameManager* self, bool flag);
 
 s32 fn_7101081c50(lua_State* L) {
-    u8 flag;
+    bool flag;
     if (fn_71010c0270(L, "b", &flag)) {
         fn_7100e00cc0(g_unk_7101d47310, flag);
         if (!flag) {

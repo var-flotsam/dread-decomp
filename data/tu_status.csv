@@ -98,7 +98,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 96,0x71000f3490,0x71000f3510,UnkTU96,high,unknown,matched,1,128,1,0,0,0,0,0,0,128,128
 97,0x71000f3510,0x71000f35d0,UnkTU97,high,unknown,matched,1,192,1,0,0,0,0,0,0,192,192
 98,0x71000f35d0,0x71000f43c0,UnkTU98,high,unknown,partial,24,3568,21,0,0,0,0,3,0,1980,1980
-99,0x71000f43c0,0x71001043e4,base::snd::CSoundSystemATK::CTunableSoundSystemATK,medium,unknown,partial,206,65520,150,10,5,1,0,45,1,22996,24512
+99,0x71000f43c0,0x71001043e4,base::snd::CSoundSystemATK::CTunableSoundSystemATK,medium,unknown,partial,206,65520,152,10,5,1,0,43,1,24288,25804
 100,0x71001043e4,0x7100104ef4,UnkTU100,high,unknown,matched,18,2820,18,0,0,0,0,0,0,2820,2820
 101,0x7100104ef4,0x71001061f4,UnkTU101,high,unknown,partial,25,4852,20,0,0,0,0,5,0,1948,1948
 102,0x71001061f4,0x7100106b64,UnkTU102,high,unknown,matched,16,2416,16,0,0,0,0,0,0,2416,2416
@@ -664,7 +664,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 662,0x7100449060,0x710044b72c,behaviortree::CHyperDashAttackAction,high,ai/behaviortree,partial,32,9924,21,0,0,0,0,11,0,2544,2544
 663,0x710044b72c,0x710044bd20,behaviortree::CCanUseHyperDashCondition,high,ai/behaviortree,matched,18,1516,18,0,0,0,0,0,0,1516,1516
 664,0x710044bd20,0x710044e704,CCharClassChozoCommanderAIComponent,high,game/characters,matched,34,10716,34,0,0,0,0,0,0,10716,10716
-665,0x710044e704,0x71004578ec,CChozoCommanderAIComponent,high,game/ai,partial,81,37352,54,1,0,0,0,26,0,7640,7640
+665,0x710044e704,0x71004578ec,CChozoCommanderAIComponent,high,game/ai,partial,81,37352,57,1,0,0,0,23,0,9504,9504
 666,0x71004578ec,0x7100457ce0,CCharClassChozoCommanderSentenceSphereLifeComponent,high,game/characters,matched,16,1012,16,0,0,0,0,0,0,1012,1012
 667,0x7100457ce0,0x71004580e0,CCharClassChozoCommanderEnergyShardsFragmentMovementComponent,high,game/characters,matched,16,1012,16,0,0,0,0,0,0,1012,1012
 668,0x71004580e0,0x7100458900,CCharClassChozoCommanderEnergyShardsSphereMovementComponent,high,game/characters,matched,16,2068,16,0,0,0,0,0,0,2068,2068
@@ -1500,7 +1500,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 1498,0x71009d7ac0,0x71009d99d0,CRotationalPlatformComponent,high,game/components,partial,50,7952,46,0,0,0,0,4,0,5192,5192
 1499,0x71009d99d0,0x71009d9dc0,CCharClassRumbleComponent,high,game/characters,matched,17,1008,17,0,0,0,0,0,0,1008,1008
 1500,0x71009d9dc0,0x71009dc3bc,CRumbleComponent,high,game/components,partial,37,9716,28,0,0,0,0,9,0,4940,4940
-1501,0x71009dc3bc,0x71009f16a8,CSamusMovement,medium,unknown,partial,218,86760,166,2,1,0,0,50,0,29448,29716
+1501,0x71009dc3bc,0x71009f16a8,CSamusMovement,medium,unknown,partial,218,86760,166,3,2,0,0,49,0,29448,30164
 1502,0x71009f16a8,0x71009f1b20,CSceneComponent,high,game/components,done,19,1132,18,1,1,0,0,0,1,1072,1132
 1503,0x71009f1b20,0x71009f2a20,CCharClassSceneModelAnimationComponent,high,game/characters,partial,20,3824,19,0,0,0,0,1,0,2448,2448
 1504,0x71009f2a20,0x71009f35b0,CSceneModelAnimationComponent,high,game/components,matched,22,2956,22,0,0,0,0,0,0,2956,2956
@@ -2552,7 +2552,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2550,0x7100dde0c8,0x7100ddebbc,UnkTU2550,high,unknown,partial,9,2792,5,0,0,0,0,4,0,616,616
 2551,0x7100ddebbc,0x7100dded9c,UnkTU2551,high,unknown,matched,8,476,8,0,0,0,0,0,0,476,476
 2552,0x7100dded9c,0x7100de277c,CExplosionGfx,high,game,partial,65,14808,60,0,0,0,0,5,0,9060,9060
-2553,0x7100de277c,0x7100e04d68,CGameManager::CTunableGameManager,medium,unknown,partial,290,140748,225,6,0,0,0,59,0,58088,58088
+2553,0x7100de277c,0x7100e04d68,CGameManager::CTunableGameManager,medium,unknown,partial,290,140748,227,6,0,0,0,57,0,59528,59528
 2554,0x7100e04d68,0x7100e06ce0,CGameManager::CTunableGameManager,high,unknown,partial,86,8040,84,0,0,0,0,2,0,5532,5532
 2555,0x7100e06ce0,0x7100e07b60,UnkTU2555,high,unknown,matched,25,3712,25,0,0,0,0,0,0,3712,3712
 2556,0x7100e07b60,0x7100e0f028,CLightManager,high,unknown,partial,188,29892,180,0,0,0,0,8,0,23144,23144
@@ -2565,7 +2565,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1229,16,3,0,0,39,0,158296,159440
 2564,0x7100e65204,0x7100e768b0,CMinimapDef,medium,unknown,partial,293,71332,282,3,1,0,0,8,0,55820,56048
 2565,0x7100e768b0,0x7100e7cdfc,UnkTU2565,high,unknown,partial,150,25924,138,0,0,0,0,12,0,17304,17304
-2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,746,15,7,0,0,87,0,123012,125948
+2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,747,15,7,0,0,86,0,123604,126540
 2567,0x7100eb695c,0x7100ebf278,UnkTU2567,high,unknown,partial,45,35028,31,1,0,1,0,12,0,4720,4720
 2568,0x7100ebf278,0x7100ec32c0,UnkTU2568,high,unknown,partial,36,16440,27,0,0,0,0,9,0,5172,5172
 2569,0x7100ec32c0,0x7100ec5a2c,UnkTU2569,high,unknown,partial,13,10092,9,1,0,0,0,3,0,3980,3980

@@ -7,6 +7,7 @@
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU1691.h"
 #include "game/UnkTU1734.h"
 #include "game/UnkTU2725.h"
@@ -14,7 +15,6 @@
 
 using base::global::CRntString;
 
-extern void* g_unk_7101a1b5a0[];
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 // The music trigger base as this file sees it (src/game/sound/UnkMusicTrigger.cpp defines it and its

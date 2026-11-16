@@ -2,6 +2,7 @@
 // appended, and then with "_border" appended as well.
 #include "UnkBufferString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -9,7 +10,6 @@ using base::global::UnkStrIdBase;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern void* g_unk_7101a1b5a0[];
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 // A string id made from a string (fn_7100000850) and moved into place, so never destroyed.

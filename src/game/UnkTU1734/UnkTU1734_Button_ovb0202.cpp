@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBossAIComponent.h"
 #include "game/GUI/CButton.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2544.h"
@@ -24,7 +25,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-extern void* g_unk_7101a1b5a0[];
 using UnkButtonName_ovb0108 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 struct UnkButtonTemplate_ovb0108 {

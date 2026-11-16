@@ -2,6 +2,7 @@
 // fn_710010aaa0, capped at 16000 (-1 also meaning 16000): with a zero time it jumps there and
 // tells the listener the new value, otherwise it starts a transition from the current value.
 #include "game/UnkTU101.h"
+#include "game/UnkTU104.h"
 #include "game/UnkTU99.h"
 #include "types.h"
 
@@ -18,8 +19,6 @@ struct UnkInterp_7100105f94 {
     u8 pad_0x80[0x60];
     s32 field_0xe0;
 };
-
-s32 fn_710010aaa0(s32 level);
 
 void fn_7100105f94(UnkInterp_7100105f94* self, s32 level, f32 time) {
     s32 value = fn_710010aaa0(level);
