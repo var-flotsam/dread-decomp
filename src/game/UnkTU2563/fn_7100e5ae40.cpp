@@ -47,28 +47,17 @@ struct UnkWordsIdEntry_le5ae40 {
 };
 static_assert(sizeof(UnkWordsIdEntry_le5ae40) == 0x28, "UnkWordsIdEntry_le5ae40 layout");
 
-// Releases `dst` and takes `src`'s string; `src` gets the empty id. The moved-from id is cleared through a
-// union (the original reloads what follows).
-inline void TakeId_le5ae40(CStrId& dst, CStrId& src) {
-    dst.Reset();
-    dst.data = src.data;
-    union Slot {
-        base::global::UnkStringData* p;
-    };
-    reinterpret_cast<Slot*>(&src.data)->p = &g_unk_7101d47108->empty;
-}
-
 using UnkWordsIdValue_le5ae40 = base::UnkIterValue<UnkWordsIdEntry_le5ae40, CStrId>;
 
 
 // Moves the pair `other` holds or refers to into the one `self` holds or refers to.
 UnkWordsIdValue_le5ae40* fn_7100e5ae40(UnkWordsIdValue_le5ae40* self, UnkWordsIdValue_le5ae40* other) {
     if (other->state == 1) {
-        TakeId_le5ae40(self->Index(), other->value.index);
+        self->Index().ReleaseAndTakeReloading(other->value.index);
         self->Element() = static_cast<UnkWordsIdEntry_le5ae40&&>(other->value.element);
     } else if (other->state == 2) {
         CStrId& key = *const_cast<CStrId*>(other->ref.index);
-        TakeId_le5ae40(self->Index(), key);
+        self->Index().ReleaseAndTakeReloading(key);
         UnkWordsIdEntry_le5ae40& src = *other->ref.element;
         self->Element() = static_cast<UnkWordsIdEntry_le5ae40&&>(src);
     }
