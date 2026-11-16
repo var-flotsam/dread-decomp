@@ -1831,7 +1831,7 @@ address,size,name,name_source,subsystem,status
 0x7100e610e0,252,fn_7100e610e0,unknown,unknown,O
 0x7100e611dc,756,fn_7100e611dc,unknown,unknown,U
 0x7100e614d0,380,fn_7100e614d0,unknown,unknown,O
-0x7100e6164c,796,fn_7100e6164c,unknown,unknown,U
+0x7100e6164c,796,fn_7100e6164c,unknown,unknown,O
 0x7100e61968,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::STransportSignData>>::Begin",reflection,engine/reflection,O
 0x7100e61974,20,fn_7100e61974,unknown,unknown,O
 0x7100e61988,100,fn_7100e61988,unknown,unknown,O
@@ -2490,7 +2490,7 @@ address,size,name,name_source,subsystem,status
 0x7100e98090,408,fn_7100e98090,unknown,unknown,U
 0x7100e98228,288,fn_7100e98228,unknown,unknown,O
 0x7100e98348,348,fn_7100e98348,unknown,unknown,O
-0x7100e984a4,436,fn_7100e984a4,unknown,unknown,O
+0x7100e984a4,436,fn_7100e984a4,unknown,unknown,U
 0x7100e98658,36,fn_7100e98658,unknown,unknown,O
 0x7100e9867c,236,fn_7100e9867c,unknown,unknown,O
 0x7100e98768,720,fn_7100e98768,unknown,unknown,U
