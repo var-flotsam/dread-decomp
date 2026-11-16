@@ -75,10 +75,9 @@ with other registers; no further model attempt is spent on it) or `differs`. Eve
     no type name gained a second, different definition), `PY tools/name_check.py --version 2.1.0 --strict`,
     `PY tools/policy_check.py --base origin/main`, `PY tools/port_sweep.py --version 2.1.0 --jobs 8`, the tool tests. A
     `REFS` line on a registers-only function is a wrong callee or global: fix it or send the file back.
-12. **Pull request.** Commit (`<run>: ...`, with your session's own attribution lines), add the
-    run's entry at the top of `docs/JOURNAL.md`, regenerate `docs/HANDOFF.md`'s table and the status card
-    (`tools/progress.py --slice boot --handoff`, `tools/status_card.py --write`), push the branch and open
-    the pull request with the template's headings. You are the coordinator of this work, so you merge it
+12. **Pull request.** Commit (`<run>: ...`, with your session's own attribution lines), push the branch
+    and open the pull request with the template's headings; its "What this changes" is the run's journal
+    entry (`docs/JOURNAL.md` is filled from it after the merge, so the branch leaves the journal alone). You are the coordinator of this work, so you merge it
     once the required checks are green (`gh pr merge <n> --merge`, never `--admin`).
 13. **Report.** `PY tools/batch/lean/usage.py` and `coord.py stats`: matches, registers-only results and
     what became of them (matched by the permuter, verified, held and why), the attempt each match came on

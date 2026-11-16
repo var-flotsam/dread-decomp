@@ -47,7 +47,11 @@
 #     The check runs when one of them is an input of the matching build or its statuses (DECOMP_PATHS
 #     below: src/, include/, lib/, data/functions/, the toolchain pins, check.py and the tools it
 #     imports, this file). Otherwise it is skipped, which a required check counts as passing, the
-#     same mechanism as for forks above. If `changes` itself fails, the check runs.
+#     same mechanism as for forks above. If `changes` itself fails, the check runs. It is also skipped
+#     when a check with the same inputs (the hash of every DECOMP_PATHS file at the commit under test)
+#     already passed, on this pull request or on main: a branch that merges main again after main changed
+#     only other files does not wait for the runner a second time (the `record` job keeps those hashes in
+#     the Actions cache, as empty markers; nothing from the runner is uploaded).
 #   - push to main: the same filter over the pushed range (before..after), since a merge whose pull
 #     request changed no input was already shown not to matter. A push that git cannot diff (a new
 #     branch, a force push whose old commit is gone) runs the check.
@@ -91,7 +95,8 @@ jobs:
     if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
-      decomp: ${{ steps.diff.outputs.decomp }}
+      decomp: ${{ steps.decide.outputs.decomp }}
+      inputs: ${{ steps.inputs.outputs.hash }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -111,16 +116,43 @@ jobs:
             range="$BEFORE..$AFTER"
           else
             echo "the push's old commit ($BEFORE) is not in the history: the check runs"
-            echo "decomp=true" >> "$GITHUB_OUTPUT"
+            echo "paths=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git diff --name-only "$range" > "$RUNNER_TEMP/changed.txt"
           echo "$(wc -l < "$RUNNER_TEMP/changed.txt") files changed; the ones the check depends on:"
           if grep -E "$DECOMP_PATHS" "$RUNNER_TEMP/changed.txt"; then
-            echo "decomp=true" >> "$GITHUB_OUTPUT"
+            echo "paths=true" >> "$GITHUB_OUTPUT"
           else
             echo "(none: the check is skipped, which counts as passing)"
+            echo "paths=false" >> "$GITHUB_OUTPUT"
+          fi
+      # Every input of the check at the commit under test (for a pull request, its merge with the base),
+      # as one hash: the blob or submodule commit of each tracked path in DECOMP_PATHS. A run that passed
+      # records it (the `record` job below), so a branch that merges main again without a change to any
+      # input, only documentation say, skips the check it already passed.
+      - id: inputs
+        run: |
+          hash=$(git ls-tree -r HEAD | awk -F '\t' '$2 ~ ENVIRON["DECOMP_PATHS"]' | sha256sum | cut -c1-64)
+          echo "inputs: $hash"
+          echo "hash=$hash" >> "$GITHUB_OUTPUT"
+      - id: passed
+        if: steps.diff.outputs.paths == 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: .check-passed
+          key: check-passed-${{ steps.inputs.outputs.hash }}
+          lookup-only: true
+      - id: decide
+        env:
+          PATHS: ${{ steps.diff.outputs.paths }}
+          PASSED: ${{ steps.passed.outputs.cache-hit }}
+        run: |
+          if [ "$PATHS" = true ] && [ "$PASSED" = true ]; then
+            echo "a check with these exact inputs already passed: skipped, which counts as passing"
             echo "decomp=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "decomp=$PATHS" >> "$GITHUB_OUTPUT"
           fi
 
   check:
@@ -200,3 +232,18 @@ jobs:
             Write-Output "::error::data/functions/ differs from what check.py --update derives; run it locally and commit the CSVs"
             exit 1
           }
+
+  # A hosted job, so nothing from the self-hosted runner is uploaded: an empty marker whose cache key is the
+  # hash of the inputs the check just passed with (see `changes`). Caches are visible to the same pull
+  # request and, from main, to every pull request.
+  record:
+    name: record check inputs
+    needs: [changes, check]
+    if: needs.check.result == 'success' && needs.changes.outputs.inputs != ''
+    runs-on: ubuntu-latest
+    steps:
+      - run: mkdir -p .check-passed && echo "${{ needs.changes.outputs.inputs }}" > .check-passed/inputs
+      - uses: actions/cache/save@v4
+        with:
+          path: .check-passed
+          key: check-passed-${{ needs.changes.outputs.inputs }}
