@@ -77,8 +77,6 @@ struct UnkGunComponent_l839b00 {
 };
 static_assert(__builtin_offsetof(UnkGunComponent_l839b00, grab) == 0x2c8, "UnkGunComponent_l839b00 layout");
 
-void fn_710083d27c(UnkSamusGunComponent* gun, bool flag);
-
 void fn_7100839b00(char* self_, bool value) {
     auto* self = reinterpret_cast<UnkGunComponent_l839b00*>(self_);
     if (self->field_0x181) {

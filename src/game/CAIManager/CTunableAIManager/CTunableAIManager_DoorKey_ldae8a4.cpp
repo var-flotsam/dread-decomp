@@ -5,6 +5,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CDoorEmmyFXComponent.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU39.h"
 #include "types.h"
@@ -33,7 +34,6 @@ struct UnkDoorEntries_dae8a4 {
 // The registered door life and door Emmy FX components.
 UnkDoorEntries_dae8a4* fn_71008cdf6c();
 struct UnkDoorList_b0193;
-UnkDoorList_b0193* fn_71007b5d90();
 
 struct UnkDoorOwner_dae8a4 {
     u8 unk_0x0[0x2a0];

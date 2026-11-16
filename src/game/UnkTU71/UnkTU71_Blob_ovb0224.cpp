@@ -1,9 +1,11 @@
 // Unit 71 of tools/tu_map.py (0x7100094910-0x7100094db4; no reliable class name): a block that is either
 // owned or borrowed (copy assignment, and decoding base64 text into it), and the reflection type
 // descriptor for a value-type id. Names and layouts are placeholders.
+#include "base/core/CBaseObject.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 // A block that is either owned (copied on assignment) or borrowed.
@@ -42,9 +44,6 @@ UnkBlob_u71* fn_7100094910(UnkBlob_u71* self, const UnkBlob_u71* other) {
 #include "base/reflection/UnkReflAttributes.h"
 
 using base::reflection::CType;
-
-const CType* fn_7100024324();
-extern CType g_unk_7101d4dad8;
 
 // Not a tail call in the original (probably a conversion in the source); disable_tail_calls stands in.
 __attribute__((disable_tail_calls)) const CType* fn_7100094cf0(u32 id) {

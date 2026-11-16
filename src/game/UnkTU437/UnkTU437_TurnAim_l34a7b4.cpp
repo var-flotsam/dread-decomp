@@ -3,6 +3,7 @@
 // towards its target (+0x33c, or a CCharClassForceAnalogInputAngTrack's) by the tunable's speed times `value`
 // and wraps it into [0, 2pi). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGunComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU54.h"
@@ -10,8 +11,6 @@
 
 struct UnkAimUpdate_b49;
 struct UnkSamusGunComponent;
-
-bool fn_710084088c(UnkSamusGunComponent*);
 
 struct UnkAimPlayer_l34a7b4 {
     u8 pad_0x0[0x3a8];

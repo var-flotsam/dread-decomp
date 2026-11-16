@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CGunComponent.h"
+#include "game/UnkTU1455.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
 
@@ -17,7 +18,6 @@ bool fn_71009b05c0(UnkSamusImpulseParams_b0105* self, UnkSamusMovementTarget_b01
 
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
-void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
 
 struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     u64 kind;

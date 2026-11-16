@@ -6,9 +6,8 @@
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CSamusMovementState/CParams.h"
 #include "types.h"
-
-extern void* g_unk_7101a87850[];
 
 // Three arrays and a flag (twice in the member at +0x48).
 struct UnkSamusParamsArrays_l9b06dc {

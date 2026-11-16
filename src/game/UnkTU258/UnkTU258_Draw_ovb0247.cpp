@@ -15,6 +15,7 @@
 #include "game/UnkTU194.h"
 #include "game/UnkTU230.h"
 #include "game/UnkTU259.h"
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 struct UnkRenderItem_b0247 {
@@ -109,7 +110,6 @@ struct UnkGfx258_b0247 {
     u8 field_0x318366b;
 };
 
-void fn_71001a7bfc(UnkRenderItem_b0247* item, u32 mode);
 bool fn_7100196e80(UnkRenderCmd_b0247* cmd);
 // Binds a render item (src/game/UnkTU259/UnkTU259_BindItem_l1d010c.cpp lays out the two types it reads).
 struct UnkGfx_l1d010c;

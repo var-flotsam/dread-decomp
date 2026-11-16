@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
+#include "game/UnkTU80.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
@@ -18,7 +19,6 @@ using base::reflection::CType;
 using base::reflection::UnkTypedRef;
 
 struct UnkVersionEntry;
-const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 bool fn_710000fbb0(CRntFile* file, u32 kind, UnkTypedRef* value, const base::global::CStrId* name);
 
 // Reads the id named `name` (kind 0 the object's own, 1 its pointee's type) into `id`.

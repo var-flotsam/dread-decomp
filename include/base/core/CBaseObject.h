@@ -13,3 +13,4 @@ void fn_7100023838(void* self);
 void fn_710002384c(void* self);  // The base destructor of the unit's polymorphic elements.
 bool fn_7100023d00(const UnkCameraCtrl* object, const base::reflection::CClass* cls);
 s32 fn_7100024140(const base::reflection::CType* type);
+const base::reflection::CType* fn_7100024324();

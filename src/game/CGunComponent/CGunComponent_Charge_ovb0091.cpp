@@ -181,7 +181,6 @@ struct UnkChargeTimes_ovb0091 {
 };
 const UnkChargeTimes_ovb0091* fn_7100837220(s32 mode);
 bool fn_710113db74(void* object);
-void fn_710083d27c(UnkSamusGunComponent* gun, bool flag);
 void fn_710083a034(UnkGun_ovb0091* self, bool flag, bool now);
 void* fn_71007bad34(void* object);
 void fn_710034f374(void* object);

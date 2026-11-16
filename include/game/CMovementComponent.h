@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkSteeringMovement_ovb0023;
 struct UnkGroundPlayer_b52;
 struct CMovementComponent;
 struct UnkProbeResult;
@@ -21,3 +22,4 @@ bool fn_71010d15d0(char* self, const base::math::CVector3D* pos, UnkProbeResult*
 bool fn_71010d1598(UnkGroundPlayer_b52*);
 // The movement component's own initialisation; derived movements run it first.
 void fn_71010d0b78(CMovementComponent* self);
+void fn_71010d1b60(UnkSteeringMovement_ovb0023* self, f32 dt);

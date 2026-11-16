@@ -6,6 +6,8 @@
 #include "game/UnkTU177.h"
 #include "game/UnkTU180.h"
 #include "game/UnkTU230.h"
+#include "game/UnkTU259.h"
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -21,9 +23,6 @@ extern void* g_unk_716e595c98 __attribute__((visibility("hidden")));
 extern CVector3D g_unk_7101647b3c __attribute__((visibility("hidden")));
 
 // Binds the program; true when it was bound anew (other files declare it void).
-bool fn_71001cc608(UnkGraphicsSystem* self, void* program);
-void fn_71001a7bfc(UnkRenderItem_b0247* item, u32 mode);
-void fn_710015e2d0(void* state, u32 stage, u64 location, u32 a, u32 count, u64 data);
 
 struct UnkDrawItem_l1d010c;
 void fn_71001d2fc0(UnkGraphicsSystem* self, UnkDrawItem_l1d010c* item);

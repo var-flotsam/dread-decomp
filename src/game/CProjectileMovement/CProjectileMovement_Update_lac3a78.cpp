@@ -4,6 +4,7 @@
 // to the new angles. Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMovementComponent.h"
 #include "game/CProjectileMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU341.h"
@@ -11,7 +12,6 @@
 #include "types.h"
 
 struct UnkSteeringMovement_ovb0023;
-void fn_71010d1b60(UnkSteeringMovement_ovb0023* self, f32 dt);
 struct UnkVec3;
 void fn_71009fa8fc(UnkVec3* out, f32 dirY, f32 dirX, f32 speed, f32 gravity, f32 t);
 void fn_7100ac3d74(UnkNailongThornMovement* self, f32 dt);

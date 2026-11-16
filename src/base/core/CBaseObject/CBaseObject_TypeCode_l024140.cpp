@@ -7,14 +7,13 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU25.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
 
-const CType* fn_7100024324();
 bool fn_710009d760(const UnkReflObject* obj, const CType* type);
-extern CType g_unk_7101d4dad8;
 
 s32 fn_7100024140(const CType* type) {
     if (type == fn_710000d228())

@@ -143,6 +143,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100136f38,352,drafts/base/tunable/CTunable/fn_7100136f38.cpp,control flow,56.8,34,lean-b4,stack slot order of the two temp strings; empty-first path and tail layout
 0x7100138880,288,drafts/base/tunable/CTunable/fn_7100138880.cpp,registers or order,93.1,5,lean-b4,instruction order of keys-pointer load vs index computation
 0x7100138bbc,264,drafts/base/tunable/CTunable/fn_7100138bbc.cpp,operations,39.4,40,lean-b4,outer index kept 64-bit (madd vs umaddl) and loop-entry register copy
+0x710013c834,632,drafts/game/UnkTU112/fn_710013c834.cpp,match,100.0,0,lean-oc1,matches; held: a fifth different UnkTunableLine (needs one shared layout with its constructors)
 0x71001421e0,444,drafts/game/UnkTU122/fn_71001421e0.cpp,calls,75.0,24,lean-ob1,case 20 (vtable slot 3 call) not tail-merged into the virtual-delete case's blr; block order around cases 18-2
 0x710014cff0,344,drafts/game/UnkTU151/fn_710014cff0.cpp,operations,12.8,74,lean-oc1,same loops and calls; original keeps items base (+0x7d0) live across both loops (one more saved register); shi
 0x71001515ec,152,drafts/game/UnkTU168/fn_71001515ec.cpp,control flow,31.6,15,lean-ob3,list-walk loop: original decrements by (old node != null) with ccmp exit; loop form not found
@@ -449,6 +450,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100b4c684,596,drafts/game/UnkTU1691/fn_7100b4c684.cpp,conditions,98.7,2,overnight,
 0x7100b5ccec,212,drafts/game/GUI/CMissionLog/fn_7100b5ccec.cpp,build fails,,,lean-b5,element destructor call: original computes the destroy argument early (x19+0x10) before the stores; ours later
 0x7100b5cdc0,224,drafts/game/GUI/CMissionLog/fn_7100b5cdc0.cpp,build fails,,,lean-b5,same: destroy argument address hoisted in the original
+0x7100b5fde0,944,drafts/game/GUI/CPopUpComposition/fn_7100b5fde0.cpp,match,100.0,0,lean-oc1,matches; held: adds a 14th copy of fn_71011d9508's declaration (UnkGuiObj); which no header declares yet
 0x7100b72380,292,drafts/game/GUI/CScene3D/fn_7100b72380.cpp,operations,46.6,37,test40,store merging/scheduling of 0x3ac-0x3c0 and GOT load order
 0x7100b8af0c,228,drafts/game/UnkTU1728/fn_7100b8af0c.cpp,operations,54.4,20,lean-ob3,binary search: original keeps (end-begin)/12 as an unsigned divide of count*12 (cbz on bytes; umulh); ours fol
 0x7100b8aff0,236,drafts/game/UnkTU1728/fn_7100b8aff0.cpp,operations,47.5,25,lean-ob3,only the search length differs: original divides count*12 bytes by 12 (cbz on bytes; umulh); ours folds to cou
@@ -811,7 +813,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710119a110,528,drafts/game/UnkTU2730/fn_710119a110.cpp,control flow,31.6,90,lean-o1,find-by-path loop block layout (end vs it register; exit branch direction); erase loop index form
 0x710119a610,612,drafts/game/UnkTU2730/fn_710119a610.cpp,registers or order,79.1,32,lean-o1,x19/x20 swapped (self vs path/node); uses a union read counter in the pooled-text view as in CAttack_Entries_o
 0x710119aee8,252,drafts/game/UnkTU2732/fn_710119aee8.cpp,control flow,1.1,50,lean-ob3,60-slot construction loop fully unrolled (original: a loop unrolled by 2); attempt 1 lost to a missing file of
-0x710119d040,732,drafts/game/UnkTU2733/fn_710119d040.cpp,operations,59.0,74,lean-oc1,key/id data load placement around the bucket-count check (original loads the count first; the id is reloaded f
 0x71011a5798,448,drafts/game/UnkTU2737/fn_71011a5798.cpp,registers or order,98.2,2,overnight,
 0x71011a5ac0,264,drafts/game/UnkTU2737/fn_71011a5ac0.cpp,registers or order,97.0,2,overnight,
 0x71011a6bc0,220,drafts/game/CTeamManager/CTunableTeamManager/fn_71011a6bc0.cpp,control flow,20.0,41,test40,null-check order and loop exit layout differ

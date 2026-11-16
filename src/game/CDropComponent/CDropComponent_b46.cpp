@@ -4,6 +4,7 @@
 // at +0x14728 so that it takes the tunable's share (+0x40 of the drop tunable) of the total. Names
 // and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CDropComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
@@ -11,7 +12,6 @@
 #include "types.h"
 
 struct UnkInventory;
-extern UnkTunable g_unk_717271b668;
 
 struct UnkDropLife_b46a2 {
     u8 pad_0x0[0x50];

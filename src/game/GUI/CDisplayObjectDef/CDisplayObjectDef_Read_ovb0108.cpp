@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU80.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTU92.h"
 #include "types.h"
@@ -16,7 +17,6 @@
 struct UnkReadArg_b0026;
 struct UnkVersionRegistry;
 struct UnkVersionEntry;
-const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 
 // A typed pointer to a value the reader fills (a CName id here); UnkReadArg_b0026's layout.
 struct UnkDisplayReadArg_ovb0108 {

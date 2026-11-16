@@ -1,9 +1,8 @@
 // CWaterTriggerChangeComponent unit (unit 1579 of tools/tu_map.py): the water level at the current
 // time of a change, eased (fn_7100076850) between the start and end levels. Names and layouts are
 // placeholders.
+#include "game/UnkTU53.h"
 #include "types.h"
-
-f32 fn_7100076850(f32 t);
 
 struct UnkWaterLevelChange {
     u8 pad_0x0[0x40];

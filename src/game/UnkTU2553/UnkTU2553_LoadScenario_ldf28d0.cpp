@@ -3,6 +3,7 @@
 // pending and tells the GUI scripts (guicallbacks.OnLoadScenarioRequest). Names and layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CDropComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
@@ -18,8 +19,6 @@ struct UnkTunable;
 UnkRecord_df25a0* fn_7100df25a0(UnkRecord_df25a0* self, const UnkRecord_df25a0* other);
 void fn_7100ad8550(UnkReflRecord_ovb0106* self);
 void fn_7100ad8864(UnkReflRecord_ovb0106* self);
-
-extern UnkTunable g_unk_717271b668;
 
 // The load record's members this function sets.
 struct UnkLoadRecordFields_df28d0 {

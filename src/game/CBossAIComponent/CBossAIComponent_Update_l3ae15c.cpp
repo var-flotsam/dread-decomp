@@ -3,6 +3,7 @@
 // stays near its landmark height, then runs the behaviour tree's step. Names and layouts are placeholders.
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkGameManager.h"
@@ -20,8 +21,6 @@ struct UnkRenderItemPair_b64a2;
 void fn_71003adb60(UnkBossColorAI_ovb0102* self, f32 dt, bool counting);
 void fn_71003ad7ec(UnkBossAITimers_ovb0102* self, f32 dt);
 void fn_71003ae858(UnkBossBlinkAI_ovb0102* self, f32 dt);
-void fn_71003ae428(UnkStruct_71003ae428*, bool, bool, bool);
-bool fn_71003ad4dc(UnkSelf* self, f32 value, s32 index);
 void fn_710035d558(UnkRenderItemPair_b64a2* self);
 void fn_710035d5c4(UnkRenderItemPair_b64a2* self, f32 value);
 bool fn_71010e390c(void* menu, const CStrId* id);

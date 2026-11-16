@@ -3179,7 +3179,7 @@ address,size,name,name_source,subsystem,status
 0x71009b03fc,388,CSamusMovementState::CParams::refl_InitClass,reflection,game/player,O
 0x71009b0580,64,fn_71009b0580,unknown,game/player?,O
 0x71009b05c0,284,fn_71009b05c0,unknown,game/player?,O
-0x71009b06dc,292,fn_71009b06dc,unknown,game/player?,U
+0x71009b06dc,292,fn_71009b06dc,unknown,game/player?,O
 0x71009b0800,200,fn_71009b0800,unknown,game/player?,O
 0x71009b08c8,508,fn_71009b08c8,unknown,game/player?,O
 0x71009b0ac4,4,fn_71009b0ac4,unknown,linker,L
@@ -3191,7 +3191,7 @@ address,size,name,name_source,subsystem,status
 0x71009b0ce0,4,fn_71009b0ce0,unknown,game/player?,O
 0x71009b0ce4,60,fn_71009b0ce4,unknown,game/player?,O
 0x71009b0d20,4,fn_71009b0d20,unknown,game/player?,O
-0x71009b0d24,512,fn_71009b0d24,unknown,game/player?,U
+0x71009b0d24,512,fn_71009b0d24,unknown,game/player?,O
 0x71009b0f24,968,fn_71009b0f24,unknown,game/player?,U
 0x71009b12ec,188,fn_71009b12ec,unknown,game/player?,O
 0x71009b13a8,784,fn_71009b13a8,unknown,game/player?,U
