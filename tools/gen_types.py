@@ -442,14 +442,25 @@ def pointer_slots(orig: asmdiff.Original, init: int) -> dict[int, int] | None:
 
 # An element iterator's descriptor (base/reflection/CollectionTypeMapper.h), named for its collection.
 ITERATOR_RE = re.compile(r"base::reflection::CollectionTypeMapper<(.+)>::(TElementIterator|TElementConstIterator)")
+# A vector's key-element iterator (base::UnkCollectionIter), which holds a copy of an element.
+KEY_ITERATOR_RE = re.compile(r"base::reflection::CollectionTypeMapper<(.+)>::(TKeyElementIterator|TKeyElementConstIterator)")
 
 
-def pointer_value_type(name: str):
+def pointer_value_type(name: str, enums: frozenset[str] = frozenset()):
     """(the name as llvm-cxxfilt prints it, the parsed type whose names it declares) of a pointer type
-    whose value operations can come from ValueOps.h: a plain pointer (`T*`, `T const*`) or an element
-    iterator of a collection whose name parses; None for anything else."""
+    whose value operations can come from ValueOps.h: a plain pointer (`T*`, `T const*`), an element
+    iterator of a collection whose name parses, or a key-element iterator of a vector whose element the
+    generated file has whole (whole_element, `enums` the enums it declares); None for anything else."""
     # spaces go, except one between two words (`CShape const*`)
-    m = ITERATOR_RE.fullmatch(re.sub(r"(?<=\w)\s+(?=\w)", " ", re.sub(r"\s+(?!\w)|(?<!\w)\s+", "", name)))
+    name = re.sub(r"(?<=\w)\s+(?=\w)", " ", re.sub(r"\s+(?!\w)|(?<!\w)\s+", "", name))
+    k = KEY_ITERATOR_RE.fullmatch(name)
+    if k:
+        node = parse_type(k.group(1))
+        v = VECTOR_RE.fullmatch(render_type(node)) if node and not node[2] else None
+        if v and whole_element(v.group(1), enums, CLASS_ELEMENT_HEADERS):
+            return f"base::reflection::CollectionTypeMapper<{render_type(node)}>::{k.group(2)}", node
+        return None
+    m = ITERATOR_RE.fullmatch(name)
     if m:
         node = parse_type(m.group(1))
         if node and not node[2]:
@@ -486,13 +497,16 @@ def named_pointers(orig: asmdiff.Original, pairs: list, enums: frozenset[str] = 
     ValueOps.h: a name that parses, every CType slot a function, and no name whose declaration would
     collide with another's (declaration_clashes). The plain pointers are taken first, all together;
     each element iterator then joins only if it adds no collision."""
+    by_hand = defined_by_hand()
     cands = {}
     for g, name, init, _ in pairs:
-        vt = pointer_value_type(name)
-        if vt and pointer_slots(orig, init):
+        vt = pointer_value_type(name, enums)
+        slots = pointer_slots(orig, init)
+        # a slot a hand-written source defines keeps its address, and with it the whole type
+        if vt and slots and not set(slots.values()) & by_hand:
             cands[g] = vt
     refs = {g: (lambda c, t: c | set(t))(*type_names(n)) for g, (_, n) in cands.items()}
-    plain = {g for g, (canon, _) in cands.items() if not ITERATOR_RE.fullmatch(canon)}
+    plain = {g for g, (canon, _) in cands.items() if not (ITERATOR_RE.fullmatch(canon) or KEY_ITERATOR_RE.fullmatch(canon))}
     clash = declaration_clashes([cands[g][1] for g in plain], enums)
     out: dict[int, str] = {}
     for g in plain:
@@ -527,7 +541,7 @@ def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: 
            f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) "
            f"{{ return *base::reflection::refl_GetPointerType<UnkRefl_fn_{getter:x}>(); }}",
            f"template struct base::reflection::ValueOps<{name}>;"]
-    return type_declarations(pointer_value_type(canon)[1], enums) + out[:head] + ops + out[head:]
+    return type_declarations(pointer_value_type(canon, enums)[1], enums) + out[:head] + ops + out[head:]
 
 
 def pointer_ops_names(orig: asmdiff.Original, init: int, name: str) -> dict[int, str]:
@@ -1012,11 +1026,17 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
     return type_declarations(node, enums) + include + helpers + type_of + out
 
 
+_BY_HAND: set[int] | None = None
+
+
 def defined_by_hand() -> set[int]:
-    """Functions defined in src/ outside the generators' outputs (tools/gen_lift.py's scan): a slot one
-    of them defines keeps its address."""
-    import gen_lift
-    return gen_lift.defined_outside(gen_lift.OUT, also=gen_lift.TAGGED_DIRS)
+    """Functions defined in src/ outside the generators' outputs (tools/gen_lift.py's scan, read once): a
+    slot one of them defines keeps its address."""
+    global _BY_HAND
+    if _BY_HAND is None:
+        import gen_lift
+        _BY_HAND = gen_lift.defined_outside(gen_lift.OUT, also=gen_lift.TAGGED_DIRS)
+    return _BY_HAND
 
 
 _KIND_CALLERS: dict[int, list[int]] = {}
