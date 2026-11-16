@@ -31,6 +31,7 @@
 #include "game/UnkTU83.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -278,12 +279,6 @@ void fn_7100ea5960(UnkMmOwner2_b0199* self, u32 key, u32 value) {
 
 // ---- fn_7100ea585c ----
 // Publishes the owner keyed table (+0xd643f0) under the current scenario section in the blackboard.
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
-using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
-const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 extern UnkPropertyEx<> g_unk_71727ca190;
 extern base::reflection::CType g_unk_71727cb000;
