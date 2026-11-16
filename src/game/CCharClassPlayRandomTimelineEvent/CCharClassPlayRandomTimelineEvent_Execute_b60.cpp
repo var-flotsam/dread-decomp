@@ -16,19 +16,13 @@ struct UnkModeCondition;
 struct UnkModeActor;
 bool fn_7100bc77ec(const UnkModeCondition<0x18>* self, UnkModeActor* actor);
 
-struct UnkTimelineNameData_b60c {
-    base::global::UnkStringData base;
-    u8 unk_0xc[0x24];
-    u64 hash;
-};
-
 struct UnkPlayRandomTimelineEvent_b60 {
     u8 unk_0x0[0xc];
     u32 count;
     f32 min_delay;
     f32 max_delay;
     u8 unk_0x18[0x10];
-    UnkTimelineNameData_b60c* ids[7];
+    base::global::UnkStringData* ids[7];
 };
 
 struct UnkPlayRandomTimelineTarget_b60 {
@@ -48,7 +42,7 @@ void fn_7100bc7628(UnkPlayRandomTimelineEvent_b60* self, UnkPlayRandomTimelineTa
         count = 1;
     if (count >= 8)
         count = 8;
-    UnkTimelineNameData_b60c* const* id;
+    base::global::UnkStringData* const* id;
     if (count == 1) {
         id = &self->ids[0];
     } else {
@@ -75,12 +69,12 @@ void fn_7100bc7628(UnkPlayRandomTimelineEvent_b60* self, UnkPlayRandomTimelineTa
             id = &self->ids[6];
             break;
         default:
-            id = reinterpret_cast<UnkTimelineNameData_b60c* const*>(&g_unk_7101d470e0);
+            id = reinterpret_cast<base::global::UnkStringData* const*>(&g_unk_7101d470e0);
             break;
         }
     }
     alignas(8) u32 mask;
-    u64 key = (*id)->hash;
+    u64 key = (*id)->Key();
     f32 lo = self->min_delay;
     f32 hi = self->max_delay;
     f32 r = (f32)((rand() & 0x7fff) * (1.0 / 32767.0));

@@ -27,12 +27,6 @@ struct UnkParasiteBehavior_b0282 : base::reflection::UnkReflObject {
     virtual s32 vf_0x18();
 };
 
-struct UnkParasiteNameData_b0282 {
-    base::global::UnkStringData base;
-    u8 unk_0xc[0x24];
-    u64 hash;  // 0x30
-};
-
 struct UnkXParasiteMode_A3_b75;
 void fn_71006ea584(UnkXParasiteAI* self, void* inner);
 CStrId fn_71007cd398(void* behavior);
@@ -62,7 +56,7 @@ void XParasiteAI_ApplyBehavior(UnkXParasiteAI* self, UnkParasiteBehavior_b0282* 
         {
             CStrId name = fn_71007cd398(cast);
             u32 kv = g_unk_71727bebb8;
-            key = reinterpret_cast<UnkParasiteNameData_b0282*>(name.data)->hash;
+            key = name.data->Key();
             kind_value = kv;
             entity = fn_7100debbc8(manager, &key, &kind_value);
         }

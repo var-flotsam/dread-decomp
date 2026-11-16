@@ -3699,7 +3699,7 @@ address,size,name,name_source,subsystem,status
 0x71001b3fb8,1508,fn_71001b3fb8,unknown,unknown,U
 0x71001b459c,336,fn_71001b459c,unknown,unknown,O
 0x71001b46ec,200,fn_71001b46ec,unknown,unknown,O
-0x71001b47b4,400,fn_71001b47b4,unknown,unknown,U
+0x71001b47b4,400,fn_71001b47b4,unknown,unknown,O
 0x71001b4950,140,fn_71001b4950,unknown,unknown,O
 0x71001b49dc,64,fn_71001b49dc,unknown,unknown,O
 0x71001b4a20,140,fn_71001b4a20,unknown,unknown,O

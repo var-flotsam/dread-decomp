@@ -66,8 +66,6 @@ struct UnkPlaythroughStorage_ovb0123 {
     u32 field_0x50;
 };
 
-extern void* g_unk_7101a1b678[];  // the storage's vtable
-
 // A string whose storage object follows it.
 struct UnkPlaythroughText_ovb0123 {
     u8 raw[0x30];                           // the string

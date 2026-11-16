@@ -21,21 +21,10 @@ using base::global::UnkStringPool;
 
 namespace {
 
-// A pooled file path: its text (a CRntString at +0x10) and how often the text was read (+0x44).
-struct UnkPooledPath_l08d99c {
-    u8 pad_0x0[0x10];
-    CRntString text;
-    u32 field_0x40;
-    s32 reads;
-};
-static_assert(__builtin_offsetof(UnkPooledPath_l08d99c, reads) == 0x44, "UnkPooledPath layout");
-
-// The path's text, counting the read.
+// The path's text, counting the read (UnkStrIdBase::Text, on a file-path id).
 inline const char* Chars(const CFilePathStrId& id) {
-    auto* data = reinterpret_cast<UnkPooledPath_l08d99c*>(id.data);
-    ++data->reads;
-    const char* s = data->text.data;
-    return s ? s : g_unk_710162e2ed;
+    ++id.data->reads;
+    return id.data->text ? id.data->text : g_unk_710162e2ed;
 }
 
 using UnkString200_l08d99c = UnkBufferString<0x200, g_unk_7101a1a5a8>;
@@ -84,17 +73,19 @@ inline void ReleaseAndTake(Id* id, Other&& other) {
 
 }  // namespace
 
-void fn_710008d99c(const CFilePathStrId* path, CStrId* id, CFilePathStrId* file) {
+// Splits `path` at its device colon into the device id and the file path. It returns true on every
+// path; the callers ignore the result.
+bool fn_710008d99c(const CFilePathStrId* path, CStrId* id, CFilePathStrId* file) {
     if (path->data == &g_unk_7101d47200->empty) {
         *id = g_unk_7101d592c8;
         *file = g_unk_7101d470e8;
-        return;
+        return true;
     }
     const char* colon = strchr(Chars(*path), ':');
     if (!colon) {
         *id = g_unk_7101d592c8;
         *file = *path;
-        return;
+        return true;
     }
     UnkString200_l08d99c full(Chars(*path));
     u32 length = colon - Chars(*path);
@@ -104,4 +95,5 @@ void fn_710008d99c(const CFilePathStrId* path, CStrId* id, CFilePathStrId* file)
     UnkPart200_l08d99c device(text, length);
     ReleaseAndTake<g_unk_7101d47108>(id, UnkTextStrId_l08d99c(*device.Str()));
     ReleaseAndTake<g_unk_7101d47200>(file, CFilePathStrId(colon + 1, true));
+    return true;
 }

@@ -3,6 +3,7 @@
 // is loaded (or found in the cache), a new effect is set up from the params with that file and started,
 // and a handle to its slot is returned; otherwise the null handle. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CStrId.h"
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkTU50.h"
 #include "game/operator_new.h"
@@ -36,16 +37,6 @@ void fn_71000722c4(UnkUnit50Object* self);
 // The slot vector's GrowAt (base::global::CRntVector<..>::GrowAt, instantiated in src/clones as
 // UnkClone_fn_7100075b9c).
 UnkHandleTarget* fn_7100075b9c(void* slots, u32 index);
-
-// A pooled path string as this function reads it: its text and a use count. (The original reloads the
-// params' path after the count's store, as if the count had no type-based alias info; a union around it
-// reproduces that.)
-struct UnkRumblePathString_l074354 {
-    u8 pad_0x0[0x10];
-    const char* text;  // 0x10
-    u8 pad_0x18[0x44 - 0x18];
-    u32 uses;  // 0x44
-};
 
 // A loaded rumble file as this function reads it: its path.
 struct UnkRumbleFile_l074354 {
@@ -93,9 +84,9 @@ UnkHandle fn_7100074354(UnkRumbleManager* manager, const UnkRumbleParams* desc) 
     auto* params = reinterpret_cast<const UnkRumbleParams_l074354*>(desc);
     if (!self->enabled || !self->free_effects)
         return g_unk_7101d586c0;
-    auto* string = reinterpret_cast<UnkRumblePathString_l074354*>(params->path.data);
-    ++string->uses;
-    const char* name = string->text;
+    // The path's text, counting the read (UnkStrIdBase::Text on the file-path id).
+    ++params->path.data->reads;
+    const char* name = params->path.data->text;
     auto* file = reinterpret_cast<UnkRumbleFile_l074354*>(fn_710007454c(manager, name ? name : g_unk_710162e2ed));
     if (!file)
         return g_unk_7101d586c0;

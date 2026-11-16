@@ -118,7 +118,6 @@ struct UnkMovedStrId {
     }
 };
 
-extern void* g_unk_7101a1b678[];
 using UnkString40 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
 // Copied as a block.

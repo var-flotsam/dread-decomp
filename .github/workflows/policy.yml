@@ -40,6 +40,13 @@ jobs:
       - name: Type definitions (vs base branch)
         if: github.event_name == 'pull_request'
         run: python tools/struct_check.py --base "origin/${{ github.base_ref }}"
+      # No matched function lost (owner, 2026-11-16, approved during the rule freeze after #482 reached main):
+      # every function that is O in data/functions/ on the base branch must still be O in the merge this
+      # pull request makes. check.py compares a branch with itself, so a branch committed from a stale tree
+      # passes it. An intended demotion is a row this pull request adds to data/demotions.csv.
+      - name: No lost matches (vs base branch)
+        if: github.event_name == 'pull_request'
+        run: python tools/lost_matches.py --base "origin/${{ github.base_ref }}"
       # The name map (data/names.csv, tools/rename.py): valid rows, carried by data/functions/, and no
       # hand-written code still using a renamed function's fn_<addr> placeholder.
       - name: Name map
