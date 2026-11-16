@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassIgnoreFloorSlide45Track
 namespace CCharClassIgnoreFloorSlide45Track {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Floor Slide 45 Slope");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Ignore");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Floor Slide 45 Slope");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Ignore");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

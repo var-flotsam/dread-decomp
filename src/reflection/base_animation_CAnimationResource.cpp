@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // base::animation::CAnimationResource
 namespace base::animation::CAnimationResource {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x1000au);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x1000au);
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void*, const void*) { return false; }

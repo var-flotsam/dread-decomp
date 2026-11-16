@@ -24,16 +24,16 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_7101d5c998;
 namespace animtree::CAnimatedNodeDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Animated Node Definition");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Animated Node Definition");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("animtree::CAnimatedNodeDef::EAnimNodeType", "eNodeType", 0x10, (DefaultValue, 0), (Description, "Animated Node Type"));
     DREAD_REFLECTED_FIELD(f32, "fEventsWeightThreshold", 0x14, (DefaultValue, 0.0f), (Description, "Events Weight Threshold"));
     DREAD_REFLECTED_FIELD(bool, "bLaunchEvents", 0x68, (DefaultValue, true), (Description, "Can Launch Events"));
     DREAD_REFLECTED_FIELD(bool, "bAllowRootMotion", 0x69, (DefaultValue, true), (Description, "Allow Root Motion"));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vBones", true), &g_unk_7101d5c998, 0x18, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("vBones", true), &g_unk_7101d5c998, 0x18, -1, -1);
     field4->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone filters");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("vBoneHierarchies", true), &g_unk_7101d5c998, 0x40, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &g_unk_7101d5c998, 0x40, -1, -1);
     field5->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone hierarchies filters");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

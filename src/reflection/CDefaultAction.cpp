@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // CDefaultAction
 namespace CDefaultAction {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Default Action");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Default Action");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

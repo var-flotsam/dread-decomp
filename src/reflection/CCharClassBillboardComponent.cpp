@@ -50,120 +50,120 @@ void fn_710072f028(UnkReflFunction* fn, const char* name);
 namespace CCharClassBillboardComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupRadius_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fGroupRadius_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fGroupRadius_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100730cc0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupRadius_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fGroupRadius_SetterFunction")
         fn_710072e150(fn, "_m_fGroupRadius_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fGroupRadius", (DefaultValue, 10.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardRadius_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fBillboardRadius_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fBillboardRadius_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100730d50);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardRadius_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fBillboardRadius_SetterFunction")
         fn_710072e2cc(fn, "_m_fBillboardRadius_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fBillboardRadius", (DefaultValue, 10.0f));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x68, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sBgPath", 0x70, (DefaultValue, ""));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureWidth_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_iTextureWidth_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_iTextureWidth_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100730de0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureWidth_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_iTextureWidth_SetterFunction")
         fn_710072e448(fn, "_m_iTextureWidth_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iTextureWidth", (DefaultValue, 1));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureHeight_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_iTextureHeight_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_iTextureHeight_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100730e70);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iTextureHeight_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_iTextureHeight_SetterFunction")
         fn_710072e5c4(fn, "_m_iTextureHeight_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iTextureHeight", (DefaultValue, 1));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vInitialColor_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_vInitialColor_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_vInitialColor_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100730f00);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vInitialColor_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_vInitialColor_SetterFunction")
         fn_710072e740(fn, "_m_vInitialColor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vInitialColor", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fUniformColorOffset_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fUniformColorOffset_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fUniformColorOffset_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100730f98);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fUniformColorOffset_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fUniformColorOffset_SetterFunction")
         fn_710072e8bc(fn, "_m_fUniformColorOffset_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fUniformColorOffset", (DefaultValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorOffset_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_vColorOffset_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_vColorOffset_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100731028);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorOffset_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_vColorOffset_SetterFunction")
         fn_710072ea38(fn, "_m_vColorOffset_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorOffset", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fInitialAlpha_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fInitialAlpha_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fInitialAlpha_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007310c0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fInitialAlpha_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fInitialAlpha_SetterFunction")
         fn_710072ebb4(fn, "_m_fInitialAlpha_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fInitialAlpha", (DefaultValue, 1.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAlphaOffset_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fAlphaOffset_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fAlphaOffset_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100731150);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAlphaOffset_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fAlphaOffset_SetterFunction")
         fn_710072ed30(fn, "_m_fAlphaOffset_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAlphaOffset", (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sBillboardDefaultLoop", 0xa8, (DefaultValue, "relax"));
     DREAD_REFLECTED_FIELD(CStrId, "sBillboardMotionDefaultLoop", 0xb0, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(CStrId, "sGroupMotionDefaultLoop", 0xc0, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(bool, "bUseRotation", 0xcc, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardMotionDefaultScale_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fBillboardMotionDefaultScale_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fBillboardMotionDefaultScale_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007311e0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBillboardMotionDefaultScale_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fBillboardMotionDefaultScale_SetterFunction")
         fn_710072eeac(fn, "_m_fBillboardMotionDefaultScale_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fBillboardMotionDefaultScale", (DefaultValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupMotionDefaultScale_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fGroupMotionDefaultScale_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fGroupMotionDefaultScale_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100731270);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGroupMotionDefaultScale_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fGroupMotionDefaultScale_SetterFunction")
         fn_710072f028(fn, "_m_fGroupMotionDefaultScale_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fGroupMotionDefaultScale", (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sSoundLoopLot", 0x130, (DefaultValue, ""));

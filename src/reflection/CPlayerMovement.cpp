@@ -29,7 +29,7 @@ void fn_71010d7624(UnkReflFunction* fn, const char* name);
 namespace CPlayerMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForcedAnalogInput_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bForcedAnalogInput_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bForcedAnalogInput_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
@@ -43,17 +43,17 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fImpactHardImpulseX", 0x7d8, (DefaultValue, 2000.0f), (Description, "Impact hard impulse X"));
     DREAD_REFLECTED_FIELD(f32, "fImpactHardImpulseY", 0x7dc, (DefaultValue, 3400.0f), (Description, "Impact hard impulse Y"));
     DREAD_REFLECTED_FIELD(f32, "fImpactHardAirImpulseY", 0x7e0, (DefaultValue, 2400.0f), (Description, "Impact hard impulse Y (on air)"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetRunEnabled", true))) {
+    DREAD_REFLECTED_FUNCTION("SetRunEnabled") {
         fn_71010d74bc(fn, "SetRunEnabled");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartForcedAnalogInput", true))) {
+    DREAD_REFLECTED_FUNCTION("StartForcedAnalogInput") {
         fn_71010d7570(fn, "StartForcedAnalogInput");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopForcedAnalogInput", true))) {
+    DREAD_REFLECTED_FUNCTION("StopForcedAnalogInput") {
         fn_71010d7624(fn, "StopForcedAnalogInput");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

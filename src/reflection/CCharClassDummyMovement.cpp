@@ -27,14 +27,14 @@ void fn_710078ed14(UnkReflFunction* fn, const char* name);
 namespace CCharClassDummyMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanFall_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bCanFall_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bCanFall_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078ef60);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanFall_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bCanFall_SetterFunction")
         fn_710078ed14(fn, "_m_bCanFall_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCanFall", (DefaultValue, true), (Description, "Can Fall"));
 }

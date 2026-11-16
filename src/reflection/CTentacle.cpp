@@ -28,7 +28,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(f32, "fExtraNodeLengthFactor", 0x38, (DefaultValue, -1.0f));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("tTentacleNodes", true), &g_unk_7101d5c998, 0x10, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("tTentacleNodes", true), &g_unk_7101d5c998, 0x10, -1, -1);
     field2->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_FIELD(bool, "bAllowTrail", 0x3c, (DefaultValue, false));
 }

@@ -27,18 +27,18 @@ void fn_7100beee0c();
 void fn_7100bee960(UnkReflFunction* fn, const char* name);
 namespace ICharClassPlayAudioPresetEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Preset Iterface");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Preset Iterface");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPresetUniqueID_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sPresetUniqueID_GetterFunction") {
         fn->name = base::global::UnkStrId("_sPresetUniqueID_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100beee0c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPresetUniqueID_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sPresetUniqueID_SetterFunction")
         fn_7100bee960(fn, "_sPresetUniqueID_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPresetUniqueID", (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0x30, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));

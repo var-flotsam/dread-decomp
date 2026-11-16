@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassIgnoreGoingToGrapplePointImpulseTrack
 namespace CCharClassIgnoreGoingToGrapplePointImpulseTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Going To Grapple Point Impulse");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Ignore");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Going To Grapple Point Impulse");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Ignore");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fIgnoredImpulseMultiplier", 0x18, (DefaultValue, 1.0f), (Description, "When ignoring impulse stops, the accumulated impulse gets multiplied by this"));

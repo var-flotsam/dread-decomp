@@ -36,30 +36,30 @@ void fn_7100a5d0f4(UnkReflFunction* fn, const char* name);
 namespace CTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayerInside", true))) {
+    DREAD_REFLECTED_FUNCTION("IsPlayerInside") {
         fn_7100a5cbcc(fn, "IsPlayerInside");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FIELD(bool, "bCallEntityLuaCallback", 0x3d, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iReverb_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_iReverb_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_iReverb_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a6463c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iReverb_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_iReverb_SetterFunction")
         fn_7100a5cc80(fn, "_m_iReverb_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iReverb", (DefaultValue, -1));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a646ec);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_SetterFunction")
         fn_7100a5cdfc(fn, "_m_iLowPassFilter_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iLowPassFilter", (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(CStrId, "sOnEnable", 0x1f0, (DefaultValue, CStrId(g_unk_7101d470e0)));
@@ -69,19 +69,19 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x418, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x204, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bPersistentState", 0x278, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSfxType_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sSfxType_GetterFunction") {
         fn->name = base::global::UnkStrId("_sSfxType_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a64790);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSfxType_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sSfxType_SetterFunction")
         fn_7100a5cf78(fn, "_sSfxType_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("lstActivationConditions", true), &g_unk_717274dad8, 0x250, -1, -1);
+    UnkReflField* field11 = AddReflectedField(cls, CStrId("lstActivationConditions", true), &g_unk_717274dad8, 0x250, -1, -1);
     field11->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterActivationConditionDeserialization", true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterActivationConditionDeserialization", true)))
+    DREAD_REFLECTED_FUNCTION("AfterActivationConditionDeserialization")
         fn_7100a5d0f4(fn, "AfterActivationConditionDeserialization");
 }
 bool refl_Equals(const void*, const void*) { return false; }

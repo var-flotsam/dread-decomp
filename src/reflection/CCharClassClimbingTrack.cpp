@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassClimbingTrack
 namespace CCharClassClimbingTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Climbing");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Climbing");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

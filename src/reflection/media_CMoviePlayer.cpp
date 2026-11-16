@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -30,28 +31,28 @@ void fn_710021e5d8();
 namespace media::CMoviePlayer {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Start", true))) {
+    DREAD_REFLECTED_FUNCTION("Start") {
         fn->name = base::global::UnkStrId("Start", true);
         fn->return_type = &g_unk_716e599948;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710021e50c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Stop", true))) {
+    DREAD_REFLECTED_FUNCTION("Stop") {
         fn->name = base::global::UnkStrId("Stop", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710021e558);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Pause", true))) {
+    DREAD_REFLECTED_FUNCTION("Pause") {
         fn->name = base::global::UnkStrId("Pause", true);
         fn->return_type = &g_unk_716e599948;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710021e58c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Resume", true))) {
+    DREAD_REFLECTED_FUNCTION("Resume") {
         fn->name = base::global::UnkStrId("Resume", true);
         fn->return_type = &g_unk_716e599948;
         fn->field_0xb2 = 0;

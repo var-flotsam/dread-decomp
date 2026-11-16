@@ -98,7 +98,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossStrongWhipAttack, "oCooldownXBossStrongWhipAttackDef", 0x8e8);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossWindTunnelAttack, "oCooldownXBossWindTunnelAttackDef", 0x9f0);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossLaserBiteAttack, "oCooldownXBossLaserBiteAttackDef", 0xb38);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0xc40, -1, -1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0xc40, -1, -1);
     field6->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_FIELD(f32, "fMinTimeToRelaxAction", 0xc68, (DefaultValue, 30.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxTimeToRelaxAction", 0xc6c, (DefaultValue, 50.0f));

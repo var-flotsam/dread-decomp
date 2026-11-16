@@ -100,324 +100,324 @@ void fn_7101035240(UnkReflFunction* fn, const char* name);
 namespace sound::CAudioPreset {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sUniqueId_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sUniqueId_GetterFunction") {
         fn->name = base::global::UnkStrId("_sUniqueId_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103aa44);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sUniqueId_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sUniqueId_SetterFunction")
         fn_7101032464(fn, "_sUniqueId_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sUniqueId");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodeToAttach_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sNodeToAttach_GetterFunction") {
         fn->name = base::global::UnkStrId("_sNodeToAttach_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ab44);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodeToAttach_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sNodeToAttach_SetterFunction")
         fn_71010325e0(fn, "_sNodeToAttach_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sNodeToAttach");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_arrMatFiles_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_arrMatFiles_GetterFunction") {
         fn->name = base::global::UnkStrId("_arrMatFiles_GetterFunction", true);
         fn->return_type = &g_unk_71729fa4e8;
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ac44);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_arrMatFiles_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_arrMatFiles_SetterFunction")
         fn_710103275c(fn, "_arrMatFiles_SetterFunction");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("arrMatFiles", true), &g_unk_71729fa4e8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ePlayerId_GetterFunction", true))) {
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("arrMatFiles", true), &g_unk_71729fa4e8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_FUNCTION("_ePlayerId_GetterFunction") {
         fn->name = base::global::UnkStrId("_ePlayerId_GetterFunction", true);
         fn->return_type = &g_unk_7108b6d110;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103acd4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ePlayerId_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_ePlayerId_SetterFunction")
         fn_71010328d0(fn, "_ePlayerId_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("ePlayerId", true), &g_unk_7108b6d110, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_eLogicId_GetterFunction", true))) {
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("ePlayerId", true), &g_unk_7108b6d110, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_FUNCTION("_eLogicId_GetterFunction") {
         fn->name = base::global::UnkStrId("_eLogicId_GetterFunction", true);
         fn->return_type = &g_unk_7108b6d270;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ad60);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_eLogicId_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_eLogicId_SetterFunction")
         fn_7101032a44(fn, "_eLogicId_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("eLogicId", true), &g_unk_7108b6d270, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_eAttCurve_GetterFunction", true))) {
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLogicId", true), &g_unk_7108b6d270, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_FUNCTION("_eAttCurve_GetterFunction") {
         fn->name = base::global::UnkStrId("_eAttCurve_GetterFunction", true);
         fn->return_type = &g_unk_7108b6cb28;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103adec);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_eAttCurve_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_eAttCurve_SetterFunction")
         fn_7101032bb8(fn, "_eAttCurve_SetterFunction");
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("eAttCurve", true), &g_unk_7108b6cb28, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ePositional_GetterFunction", true))) {
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("eAttCurve", true), &g_unk_7108b6cb28, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_FUNCTION("_ePositional_GetterFunction") {
         fn->name = base::global::UnkStrId("_ePositional_GetterFunction", true);
         fn->return_type = &g_unk_7108b6cf48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ae78);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ePositional_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_ePositional_SetterFunction")
         fn_7101032d2c(fn, "_ePositional_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("ePositional", true), &g_unk_7108b6cf48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iInstanceLimit_GetterFunction", true))) {
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePositional", true), &g_unk_7108b6cf48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    DREAD_REFLECTED_FUNCTION("_iInstanceLimit_GetterFunction") {
         fn->name = base::global::UnkStrId("_iInstanceLimit_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103af04);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iInstanceLimit_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_iInstanceLimit_SetterFunction")
         fn_7101032ea0(fn, "_iInstanceLimit_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iInstanceLimit", (DefaultValue, -1), (MinValueI, -1));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInBetweenTime_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fInBetweenTime_GetterFunction") {
         fn->name = base::global::UnkStrId("_fInBetweenTime_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103af94);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInBetweenTime_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fInBetweenTime_SetterFunction")
         fn_710103301c(fn, "_fInBetweenTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fInBetweenTime", (DefaultValue, 0.0f), (MinValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMaxRange_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAttMaxRange_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAttMaxRange_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b024);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMaxRange_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAttMaxRange_SetterFunction")
         fn_7101033198(fn, "_fAttMaxRange_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttMaxRange", (DefaultValue, 1200.0f), (MinValue, -1.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMinRange_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAttMinRange_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAttMinRange_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b0b4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMinRange_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAttMinRange_SetterFunction")
         fn_7101033314(fn, "_fAttMinRange_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttMinRange", (DefaultValue, 500.0f), (MinValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolume_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fVolume_GetterFunction") {
         fn->name = base::global::UnkStrId("_fVolume_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b144);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolume_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fVolume_SetterFunction")
         fn_7101033490(fn, "_fVolume_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fVolume", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolumeRange_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fVolumeRange_GetterFunction") {
         fn->name = base::global::UnkStrId("_fVolumeRange_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b1d4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolumeRange_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fVolumeRange_SetterFunction")
         fn_710103360c(fn, "_fVolumeRange_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fVolumeRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitch_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fPitch_GetterFunction") {
         fn->name = base::global::UnkStrId("_fPitch_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b264);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitch_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fPitch_SetterFunction")
         fn_7101033788(fn, "_fPitch_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPitch", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitchRange_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fPitchRange_GetterFunction") {
         fn->name = base::global::UnkStrId("_fPitchRange_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b2f4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitchRange_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fPitchRange_SetterFunction")
         fn_7101033904(fn, "_fPitchRange_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPitchRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPan_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fPan_GetterFunction") {
         fn->name = base::global::UnkStrId("_fPan_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b384);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPan_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fPan_SetterFunction")
         fn_7101033a80(fn, "_fPan_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPan", (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPanRange_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fPanRange_GetterFunction") {
         fn->name = base::global::UnkStrId("_fPanRange_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b414);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPanRange_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fPanRange_SetterFunction")
         fn_7101033bfc(fn, "_fPanRange_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPanRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeIn_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fFadeIn_GetterFunction") {
         fn->name = base::global::UnkStrId("_fFadeIn_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b4a4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeIn_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fFadeIn_SetterFunction")
         fn_7101033d78(fn, "_fFadeIn_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fFadeIn", (DefaultValue, 0.0f), (MinValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeOut_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fFadeOut_GetterFunction") {
         fn->name = base::global::UnkStrId("_fFadeOut_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b534);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeOut_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fFadeOut_SetterFunction")
         fn_7101033ef4(fn, "_fFadeOut_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fFadeOut", (DefaultValue, 0.0f), (MinValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmptyPercentage_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fEmptyPercentage_GetterFunction") {
         fn->name = base::global::UnkStrId("_fEmptyPercentage_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b5c4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmptyPercentage_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fEmptyPercentage_SetterFunction")
         fn_7101034070(fn, "_fEmptyPercentage_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fEmptyPercentage", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStartDelayed_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fStartDelayed_GetterFunction") {
         fn->name = base::global::UnkStrId("_fStartDelayed_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b654);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStartDelayed_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fStartDelayed_SetterFunction")
         fn_71010341ec(fn, "_fStartDelayed_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fStartDelayed", (DefaultValue, 0.0f), (MinValue, -1.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bLoop_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bLoop_GetterFunction") {
         fn->name = base::global::UnkStrId("_bLoop_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b6e4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bLoop_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bLoop_SetterFunction")
         fn_7101034368(fn, "_bLoop_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bLoop", (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bAttachToActor_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bAttachToActor_GetterFunction") {
         fn->name = base::global::UnkStrId("_bAttachToActor_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b774);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bAttachToActor_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bAttachToActor_SetterFunction")
         fn_71010344e4(fn, "_bAttachToActor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAttachToActor", (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpChgAnim_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bStpChgAnim_GetterFunction") {
         fn->name = base::global::UnkStrId("_bStpChgAnim_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b804);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpChgAnim_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bStpChgAnim_SetterFunction")
         fn_7101034660(fn, "_bStpChgAnim_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bStpChgAnim", (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpEntDead_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bStpEntDead_GetterFunction") {
         fn->name = base::global::UnkStrId("_bStpEntDead_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b894);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpEntDead_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bStpEntDead_SetterFunction")
         fn_71010347dc(fn, "_bStpEntDead_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bStpEntDead", (DefaultValue, true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bManaged_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bManaged_GetterFunction") {
         fn->name = base::global::UnkStrId("_bManaged_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b924);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bManaged_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bManaged_SetterFunction")
         fn_7101034958(fn, "_bManaged_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bManaged", (DefaultValue, true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bRumbleSync_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bRumbleSync_GetterFunction") {
         fn->name = base::global::UnkStrId("_bRumbleSync_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b9b4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bRumbleSync_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bRumbleSync_SetterFunction")
         fn_7101034ad4(fn, "_bRumbleSync_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bRumbleSync", (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRumbleGainOverride_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fRumbleGainOverride_GetterFunction") {
         fn->name = base::global::UnkStrId("_fRumbleGainOverride_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ba44);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRumbleGainOverride_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fRumbleGainOverride_SetterFunction")
         fn_7101034c50(fn, "_fRumbleGainOverride_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fRumbleGainOverride", (DefaultValue, -1.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRelativeVolume_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fDimRelativeVolume_GetterFunction") {
         fn->name = base::global::UnkStrId("_fDimRelativeVolume_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103bad4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRelativeVolume_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fDimRelativeVolume_SetterFunction")
         fn_7101034dcc(fn, "_fDimRelativeVolume_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDimRelativeVolume", (DefaultValue, 0.6f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimTime_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fDimTime_GetterFunction") {
         fn->name = base::global::UnkStrId("_fDimTime_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103bb64);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimTime_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fDimTime_SetterFunction")
         fn_7101034f48(fn, "_fDimTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDimTime", (DefaultValue, 10.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimFadeTime_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fDimFadeTime_GetterFunction") {
         fn->name = base::global::UnkStrId("_fDimFadeTime_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103bbf4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimFadeTime_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fDimFadeTime_SetterFunction")
         fn_71010350c4(fn, "_fDimFadeTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDimFadeTime", (DefaultValue, 20.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRecoverTime_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fDimRecoverTime_GetterFunction") {
         fn->name = base::global::UnkStrId("_fDimRecoverTime_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103bc84);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRecoverTime_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fDimRecoverTime_SetterFunction")
         fn_7101035240(fn, "_fDimRecoverTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDimRecoverTime", (DefaultValue, 10.0f));
 }

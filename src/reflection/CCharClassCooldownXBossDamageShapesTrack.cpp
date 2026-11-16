@@ -28,18 +28,18 @@ void fn_7100c13308();
 void fn_7100c12908(UnkReflFunction* fn, const char* name);
 namespace CCharClassCooldownXBossDamageShapesTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Activate Damage Logic Shapes");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Activate Damage Logic Shapes");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLogicShapesEnabled_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sLogicShapesEnabled_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sLogicShapesEnabled_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c13308);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sLogicShapesEnabled_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sLogicShapesEnabled_SetterFunction")
         fn_7100c12908(fn, "_m_sLogicShapesEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sLogicShapesEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Logic Shapes Enabled"));
     DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));

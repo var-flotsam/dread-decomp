@@ -33,7 +33,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "reflection_fields.csv"
 TYPES = ROOT / "data" / "reflection_types.csv"
-FIELD = re.compile(r'fn_7100096524\(cls, CStrId\("([^"]+)", true\), ([^,]+), (0x[0-9a-f]+|\d+), ')
+FIELD = re.compile(r'AddReflectedField\(cls, CStrId\("([^"]+)", true\), ([^,]+), (0x[0-9a-f]+|\d+), ')
 FUNCTION = re.compile(r"^void fn_(71[0-9a-f]{8})\((?:base::reflection::)?CClass\* cls\) \{\n(.*?)^\}", re.M | re.S)
 GETTER = re.compile(r"DREAD_REFL_(?:ROOT_)?CLASS_GETTER(?:_INLINE_NAME)?\(([^)]*)\)")
 NAMED = re.compile(r'(?:PointerTypeGetter|PrimitiveTypeDescription)<UnkRefl_fn_(71[0-9a-f]{8})>(?: : [^{]*)? \{\s*static constexpr const char\* name = "([^"]*)";')

@@ -23,11 +23,11 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_717277df90;
 namespace CCharClassCommanderWingsTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Commander Wings");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Commander", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Commander Wings");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Commander", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eWings", true), &g_unk_717277df90, 0x18, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eWings", true), &g_unk_717277df90, 0x18, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_717277df90, 0);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

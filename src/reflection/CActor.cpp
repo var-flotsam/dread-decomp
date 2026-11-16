@@ -49,22 +49,22 @@ void fn_710023e998();
 void fn_7100229430(UnkReflFunction* fn, const char* name);
 namespace CActor {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::UniqueId(), CStrId("sName", true));
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::UniqueId(), CStrId("sName", true));
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sName_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sName_GetterFunction") {
         fn->name = base::global::UnkStrId("_sName_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e0f8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sName_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sName_SetterFunction")
         fn_71002289a8(fn, "_sName_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sName", (Description, base::global::CRntString("Actor Name")), (DisplayName, CStrId("Name", true)), (WidgetReadOnly, true));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oActorDefLink", true), &g_unk_7101d4ec50, 0x18, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("oActorDefLink", true), &g_unk_7101d4ec50, 0x18, -1, -1);
     field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), true);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sActorDefName_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sActorDefName_GetterFunction") {
         fn->name = base::global::UnkStrId("_sActorDefName_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
@@ -72,46 +72,46 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710023e1ac);
     }
     DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sActorDefName", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_vPos_GetterFunction") {
         fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e278);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7100228b24(fn, "_vPos_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field3->attrs.Add<base::math::CVector3D>(base::reflection::attr::DefaultValue(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
     field3->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"oBBox"}, 0xa, nullptr, 0xf)));
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Position");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAng_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_vAng_GetterFunction") {
         fn->name = base::global::UnkStrId("_vAng_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e348);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAng_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_vAng_SetterFunction")
         fn_7100228ee4(fn, "_vAng_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vAng", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Angle"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_pComponents_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_pComponents_GetterFunction") {
         fn->name = base::global::UnkStrId("_pComponents_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e44c);
     }
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("pComponents", true), base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("pComponents", true), base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field5->attrs.Add<bool>(base::reflection::attr::SetRenderItemSelectionIdCall(), true);
     field5->attrs.Add<const char*>(base::reflection::attr::Description(), "List of entity components");
     field5->attrs.Add<bool>(base::reflection::attr::FixedCollection(), true);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetComponentByName", true))) {
+    DREAD_REFLECTED_FUNCTION("GetComponentByName") {
         fn_710022913c(fn, "GetComponentByName");
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sName", true));
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("RequestDelete", true))) {
+    DREAD_REFLECTED_FUNCTION("RequestDelete") {
         fn->name = base::global::UnkStrId("RequestDelete", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -119,21 +119,21 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710023e8b4);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Request the destruction of the actor");
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetWantsEnabled", true))) {
+    DREAD_REFLECTED_FUNCTION("SetWantsEnabled") {
         fn_71002292b4(fn, "SetWantsEnabled");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Enables or disables the actor");
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bEnabled_GetterFunction") {
         fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e998);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bEnabled_SetterFunction")
         fn_71002292b4(fn, "_bEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bEnabled", (DefaultValue, true), (Description, base::global::CRntString("Actor Enabled?")), (DefaultValue, true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetVisible", true))) {
+    DREAD_REFLECTED_FUNCTION("SetVisible") {
         fn_7100229430(fn, "SetVisible");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Makes the actor visible or invisible");
     }

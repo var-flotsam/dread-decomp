@@ -30,9 +30,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vDoorsToChange", 0x898);
     DREAD_REFLECTED_FIELD(CStrId, "sInteractionLiteralID", 0x588, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>", "tCaptionList", 0x5a0);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpThermalDevice", true), &g_unk_71727b6270, 0x540, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpThermalDevice", true), &g_unk_71727b6270, 0x540, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ActiveDialogue", true))) {
+    DREAD_REFLECTED_FUNCTION("ActiveDialogue") {
         fn_7100a6bc44(fn, "ActiveDialogue");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Active Dialogue in Access Point"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

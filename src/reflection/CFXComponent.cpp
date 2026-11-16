@@ -27,12 +27,12 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSelectedHighRadius", 0x118, (DefaultValue, 250.0f));
     DREAD_REFLECTED_FIELD(f32, "fSelectedLowRadius", 0x114, (DefaultValue, 350.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetEffectEmissionEnabled", true))) {
+    DREAD_REFLECTED_FUNCTION("SetEffectEmissionEnabled") {
         fn_710114dc08(fn, "SetEffectEmissionEnabled");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetEffectEnabled", true))) {
+    DREAD_REFLECTED_FUNCTION("SetEffectEnabled") {
         fn_710114dcbc(fn, "SetEffectEnabled");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

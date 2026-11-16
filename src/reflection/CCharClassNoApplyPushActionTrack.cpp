@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassNoApplyPushActionTrack
 namespace CCharClassNoApplyPushActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Dont apply push action");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Dont apply push action");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

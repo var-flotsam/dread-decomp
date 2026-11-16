@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassBorderUpTrack
 namespace CCharClassBorderUpTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Border Up");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "State");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Border Up");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "State");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

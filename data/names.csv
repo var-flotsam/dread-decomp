@@ -1,4 +1,7 @@
 address,name,name_source,reason
+0x7100096524,AddReflectedField,inferred,"registers a member field of a class descriptor by name, type and offset, and returns its description"
+0x7100097550,AddReflectedFunction,inferred,adds a function of the given name to a class descriptor and returns its description; null if the class already has one by that name
+0x710009dd6c,TypeAttributes,inferred,"returns a type's attribute container (CType+0x80), creating it on first use"
 0x71006e6d10,XParasiteAI_Reset,inferred,"runs the base's reset, then puts every member of the component back to its starting value"
 0x71006e73f4,XParasiteAI_PickWeightedChoice,inferred,picks one of four choices at random by the weights at +0x14728 and their mask
 0x71006e8208,XParasiteAI_SetEffectActive,inferred,starts (on) or stops (off) the effect of the current binding on the owner

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassLuaCommandEvent
 namespace CCharClassLuaCommandEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Lua Command");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Lua", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Lua Command");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Lua", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sLUAFunction", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

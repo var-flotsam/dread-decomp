@@ -27,20 +27,20 @@ void fn_7100e082bc(UnkReflFunction* fn, const char* name);
 void fn_7100e08438(UnkReflFunction* fn, const char* name);
 namespace CLightManager {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("dicLightDefs", true), &g_unk_71727bfc38, 0x148, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("dicLightDefs", true), &g_unk_71727bfc38, 0x148, -1, -1);
     field0->attrs.Add<CStrId>(base::reflection::attr::ElementKeyVariable(), CStrId("sPath", true));
     field0->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateElement", true));
     field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteElement", true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
+    DREAD_REFLECTED_FUNCTION("CreateElement") {
         fn_7100e082bc(fn, "CreateElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create LightDef");
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(base::reflection::attr::Name(), base::global::CFilePathStrId("sPath", true));
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
+    DREAD_REFLECTED_FUNCTION("DeleteElement") {
         fn_7100e08438(fn, "DeleteElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete LightDef");
         fn_710009ae5c(fn, fn->params.count);

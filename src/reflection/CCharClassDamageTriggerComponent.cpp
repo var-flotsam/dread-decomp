@@ -35,14 +35,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fInitTimeDamageIncrease", 0x7c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageIncreaseAmount", 0x80, (DefaultValue, 10.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDamage", 0x84, (DefaultValue, 100.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sDamageSource_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sDamageSource_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a4b3d8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sDamageSource_SetterFunction")
         fn_7100a4a448(fn, "_m_sDamageSource_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId("LAVA", true)), (Description, "Damage source"));
     DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x88, (DefaultValue, CStrId("Lava Pool", true)));

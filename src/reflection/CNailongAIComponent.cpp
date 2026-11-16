@@ -26,9 +26,9 @@ extern base::reflection::CType g_unk_71727bb8e8;
 namespace CNailongAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x147e8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x147e8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("ePatrolPathType", true), &g_unk_71727bb8e8, 0x14828, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("ePatrolPathType", true), &g_unk_71727bb8e8, 0x14828, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
 }
 bool refl_Equals(const void*, const void*) { return false; }

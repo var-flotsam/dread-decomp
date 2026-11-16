@@ -36,44 +36,44 @@ void fn_7101174a28();
 namespace CModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultModelPath_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sDefaultModelPath_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sDefaultModelPath_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101174534);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultModelPath_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sDefaultModelPath_SetterFunction")
         fn_71011704b4(fn, "_m_sDefaultModelPath_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sDefaultModelPath", (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetMeshVisible", true))) {
+    DREAD_REFLECTED_FUNCTION("SetMeshVisible") {
         fn_7101170630(fn, "SetMeshVisible");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set mesh visible"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("LinkTo", true))) {
+    DREAD_REFLECTED_FUNCTION("LinkTo") {
         fn_71011706e4(fn, "LinkTo");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Link To Model"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Unlink", true))) {
+    DREAD_REFLECTED_FUNCTION("Unlink") {
         fn_7101170798(fn, "Unlink");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Unlink From Model"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetPosWorldOffset", true))) {
+    DREAD_REFLECTED_FUNCTION("SetPosWorldOffset") {
         fn_710117084c(fn, "SetPosWorldOffset");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Position offset"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAngWorldOffset", true))) {
+    DREAD_REFLECTED_FUNCTION("SetAngWorldOffset") {
         fn_7101170900(fn, "SetAngWorldOffset");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Angle offset"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetNodePosition", true)))
+    DREAD_REFLECTED_FUNCTION("GetNodePosition")
         fn_71011709b4(fn, "GetNodePosition");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceUpdate", true))) {
+    DREAD_REFLECTED_FUNCTION("ForceUpdate") {
         fn->name = base::global::UnkStrId("ForceUpdate", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

@@ -25,7 +25,7 @@ void fn_7100024edc();
 namespace base::core::CBaseObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("PrintTypeLists", true))) {
+    DREAD_REFLECTED_FUNCTION("PrintTypeLists") {
         fn->name = base::global::UnkStrId("PrintTypeLists", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

@@ -42,93 +42,93 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CCentralUnitComponent::ECentralUnitMode", "eMode", 0x3f0, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x6d0, (DefaultValue, false));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpBossSpawnPoint", true), &g_unk_71727b6270, 0x3f8, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpBossSpawnPoint", true), &g_unk_71727b6270, 0x3f8, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpCentralUnitAI", true), &g_unk_71727b6270, 0x438, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpCentralUnitAI", true), &g_unk_71727b6270, 0x438, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("wpBossAlive", true), &g_unk_71727b6270, 0x478, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("wpBossAlive", true), &g_unk_71727b6270, 0x478, -1, -1);
     field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field4->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("wpBossDestroyed", true), &g_unk_71727b6270, 0x4b8, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpBossDestroyed", true), &g_unk_71727b6270, 0x4b8, -1, -1);
     field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     field5->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("wpBossDoor", true), &g_unk_71727b6270, 0x4f8, -1, -1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("wpBossDoor", true), &g_unk_71727b6270, 0x4f8, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     DREAD_REFLECTED_FIELD(CStrId, "sBossCollisionCameraID", 0x538, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field8 = fn_7100096524(cls, CStrId("wpEmmySpawnPoint", true), &g_unk_71727b6270, 0x540, -1, -1);
+    UnkReflField* field8 = AddReflectedField(cls, CStrId("wpEmmySpawnPoint", true), &g_unk_71727b6270, 0x540, -1, -1);
     field8->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>", "tEmmyStartPointsInfo", 0x580);
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("wpEmmyZoneShape", true), &g_unk_717269bb48, 0x5a8, -1, -1);
+    UnkReflField* field10 = AddReflectedField(cls, CStrId("wpEmmyZoneShape", true), &g_unk_717269bb48, 0x5a8, -1, -1);
     field10->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("wpDestroySearchLandmark", true), &g_unk_717269bb48, 0x668, -1, -1);
+    UnkReflField* field11 = AddReflectedField(cls, CStrId("wpDestroySearchLandmark", true), &g_unk_717269bb48, 0x668, -1, -1);
     field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("tEmmyForbiddenShapes", true), &g_unk_717269bf08, 0x5e8, -1, -1);
+    UnkReflField* field12 = AddReflectedField(cls, CStrId("tEmmyForbiddenShapes", true), &g_unk_717269bf08, 0x5e8, -1, -1);
     field12->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>", "tEmmyWeightedShapes", 0x610);
     DREAD_REFLECTED_FIELD(bool, "bUnlockDoorsOnEmmyDead", 0x638, (DefaultValue, true));
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("tEmmyLockedDoors", true), &g_unk_71727b6630, 0x640, -1, -1);
+    UnkReflField* field15 = AddReflectedField(cls, CStrId("tEmmyLockedDoors", true), &g_unk_71727b6630, 0x640, -1, -1);
     field15->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Door to lock on emmy spawn"));
     field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "tEmmyPhase2DeactivatedActors", 0x6a8);
-    UnkReflField* field17 = fn_7100096524(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x970, -1, -1);
+    UnkReflField* field17 = AddReflectedField(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x970, -1, -1);
     field17->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x9b0, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field19 = fn_7100096524(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x9b8, -1, -1);
+    UnkReflField* field19 = AddReflectedField(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x9b8, -1, -1);
     field19->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddEmmySpawnPoint", true)))
+    DREAD_REFLECTED_FUNCTION("AddEmmySpawnPoint")
         fn_710076e66c(fn, "AddEmmySpawnPoint");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Activate", true))) {
+    DREAD_REFLECTED_FUNCTION("Activate") {
         fn->name = base::global::UnkStrId("Activate", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710077b704);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnEnergyPickedUp", true))) {
+    DREAD_REFLECTED_FUNCTION("OnEnergyPickedUp") {
         fn->name = base::global::UnkStrId("OnEnergyPickedUp", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710077b740);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("LockDoors", true))) {
+    DREAD_REFLECTED_FUNCTION("LockDoors") {
         fn->name = base::global::UnkStrId("LockDoors", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710077b774);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("UnlockDoors", true))) {
+    DREAD_REFLECTED_FUNCTION("UnlockDoors") {
         fn->name = base::global::UnkStrId("UnlockDoors", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710077b7a8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartCentralUnitCombat", true))) {
+    DREAD_REFLECTED_FUNCTION("StartCentralUnitCombat") {
         fn->name = base::global::UnkStrId("StartCentralUnitCombat", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710077b7dc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceEmmyDeadState", true))) {
+    DREAD_REFLECTED_FUNCTION("ForceEmmyDeadState") {
         fn->name = base::global::UnkStrId("ForceEmmyDeadState", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710077b810);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnEmmyAbilityObtainedFadeOutCompleted", true))) {
+    DREAD_REFLECTED_FUNCTION("OnEmmyAbilityObtainedFadeOutCompleted") {
         fn->name = base::global::UnkStrId("OnEmmyAbilityObtainedFadeOutCompleted", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710077b844);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AllowAlarm", true)))
+    DREAD_REFLECTED_FUNCTION("AllowAlarm")
         fn_710076e7e8(fn, "AllowAlarm");
 }
 bool refl_Equals(const void*, const void*) { return false; }

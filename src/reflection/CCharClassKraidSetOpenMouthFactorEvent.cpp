@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassKraidSetOpenMouthFactorEvent
 namespace CCharClassKraidSetOpenMouthFactorEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Open Mouth Factor");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Kraid", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Open Mouth Factor");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Kraid", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFactor", 0xc, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));

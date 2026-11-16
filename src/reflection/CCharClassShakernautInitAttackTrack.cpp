@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassShakernautInitAttackTrack
 namespace CCharClassShakernautInitAttackTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Shakernaut attack init action");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Shakernaut attack init action");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sInPosAction", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));

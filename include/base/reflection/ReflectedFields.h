@@ -38,6 +38,11 @@
     DREAD_REFL_FIELD_TYPED_(base::reflection::TypeConstant<base::reflection::TypeNamed(TYPE_NAME)>::value, \
                             NAME, OFFSET, -1, -1, __VA_ARGS__)
 
+// A reflected function of the class, named NAME: the statement or block that follows describes it through
+// `fn` (its name, return type, parameters, invoker and attributes), and runs unless the class already has one by that name.
+#define DREAD_REFLECTED_FUNCTION(NAME) \
+    if (base::reflection::UnkReflFunction* fn = AddReflectedFunction(cls, base::global::CStrId(NAME, true)))
+
 // A field holding an object of reflected class T (its descriptor from T::refl_GetClass).
 #define DREAD_REFLECTED_CLASS_FIELD(T, NAME, OFFSET, ...)                                              \
     DREAD_REFL_FIELD_OF_(T::refl_GetClass(), NAME, OFFSET, -1, -1, __VA_ARGS__)
@@ -49,7 +54,7 @@
         [[maybe_unused]] constexpr const base::reflection::CType* field_type_ = nullptr;                \
         constexpr bool field_typed_ = false;                                                           \
         [[maybe_unused]] base::reflection::UnkReflField* field_ =                                      \
-            fn_7100096524(cls, base::global::CStrId(NAME, true), TYPE, OFFSET, GETTER, SETTER);        \
+            AddReflectedField(cls, base::global::CStrId(NAME, true), TYPE, OFFSET, GETTER, SETTER);        \
         DREAD_REFL_ATTRS_(DREAD_REFL_NARGS_(__VA_ARGS__), __VA_ARGS__)                                 \
     } while (false)
 #define DREAD_REFL_FIELD_TYPED_(TYPE, NAME, OFFSET, GETTER, SETTER, ...)                               \
@@ -57,7 +62,7 @@
         [[maybe_unused]] constexpr const base::reflection::CType* field_type_ = TYPE;                   \
         constexpr bool field_typed_ = true;                                                            \
         [[maybe_unused]] base::reflection::UnkReflField* field_ =                                      \
-            fn_7100096524(cls, base::global::CStrId(NAME, true), field_type_, OFFSET, GETTER, SETTER); \
+            AddReflectedField(cls, base::global::CStrId(NAME, true), field_type_, OFFSET, GETTER, SETTER); \
         DREAD_REFL_ATTRS_(DREAD_REFL_NARGS_(__VA_ARGS__), __VA_ARGS__)                                 \
     } while (false)
 
