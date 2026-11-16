@@ -288,22 +288,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_710105a548> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710105a76c;
-    static constexpr UnkFn copy_construct = &fn_710105a774;
-    static constexpr UnkFn move_construct = &fn_710105a780;
-    static constexpr UnkFn destroy = &fn_710105a78c;
-    static constexpr UnkFn copy_assign = &fn_710105a790;
-    static constexpr UnkFn move_assign = &fn_710105a7a4;
-    static constexpr UnkFn equals = &fn_710105a73c;
-    static constexpr UnkFn hash = &fn_710105a750;
-    static constexpr UnkFn type_of = &fn_710105a758;
-    static constexpr UnkFn get = &fn_710105a6b8;
-    static constexpr UnkFn set = &fn_710105a720;
-    static constexpr UnkFn increment = &fn_710105a72c;
+    static constexpr SlotFn construct = &fn_710105a76c;
+    static constexpr SlotFn copy_construct = &fn_710105a774;
+    static constexpr SlotFn move_construct = &fn_710105a780;
+    static constexpr SlotFn destroy = &fn_710105a78c;
+    static constexpr SlotFn copy_assign = &fn_710105a790;
+    static constexpr SlotFn move_assign = &fn_710105a7a4;
+    static constexpr SlotFn equals = &fn_710105a73c;
+    static constexpr SlotFn hash = &fn_710105a750;
+    static constexpr SlotFn type_of = &fn_710105a758;
+    static constexpr SlotFn get = &fn_710105a6b8;
+    static constexpr SlotFn set = &fn_710105a720;
+    static constexpr SlotFn increment = &fn_710105a72c;
     static const CType* pointee() { return SLogicPathNode::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010561fc> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71010561fc> {
     static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SLogicPathNode>>::TElementIterator";
     using Init = UnkRefl_fn_710105a548;
 };
@@ -315,22 +315,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_710105a7b8> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710105a9dc;
-    static constexpr UnkFn copy_construct = &fn_710105a9e4;
-    static constexpr UnkFn move_construct = &fn_710105a9f0;
-    static constexpr UnkFn destroy = &fn_710105a9fc;
-    static constexpr UnkFn copy_assign = &fn_710105aa00;
-    static constexpr UnkFn move_assign = &fn_710105aa14;
-    static constexpr UnkFn equals = &fn_710105a9ac;
-    static constexpr UnkFn hash = &fn_710105a9c0;
-    static constexpr UnkFn type_of = &fn_710105a9c8;
-    static constexpr UnkFn get = &fn_710105a928;
-    static constexpr UnkFn set = &fn_710105a990;
-    static constexpr UnkFn increment = &fn_710105a99c;
+    static constexpr SlotFn construct = &fn_710105a9dc;
+    static constexpr SlotFn copy_construct = &fn_710105a9e4;
+    static constexpr SlotFn move_construct = &fn_710105a9f0;
+    static constexpr SlotFn destroy = &fn_710105a9fc;
+    static constexpr SlotFn copy_assign = &fn_710105aa00;
+    static constexpr SlotFn move_assign = &fn_710105aa14;
+    static constexpr SlotFn equals = &fn_710105a9ac;
+    static constexpr SlotFn hash = &fn_710105a9c0;
+    static constexpr SlotFn type_of = &fn_710105a9c8;
+    static constexpr SlotFn get = &fn_710105a928;
+    static constexpr SlotFn set = &fn_710105a990;
+    static constexpr SlotFn increment = &fn_710105a99c;
     static const CType* pointee() { return SLogicPathNode::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010562d8> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71010562d8> {
     static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SLogicPathNode>>::TElementConstIterator";
     using Init = UnkRefl_fn_710105a7b8;
 };
@@ -341,32 +341,32 @@ template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101056f94> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x1;
-    static constexpr UnkFn construct = &fn_710105e258;
-    static constexpr UnkFn copy_construct = &fn_710105e298;
-    static constexpr UnkFn move_construct = &fn_710105e29c;
-    static constexpr UnkFn destroy = &fn_710105e2dc;
-    static constexpr UnkFn copy_assign = &fn_710105e378;
-    static constexpr UnkFn move_assign = &fn_710105e3a8;
-    static constexpr UnkFn equals = &fn_710105e238;
-    static constexpr UnkFn hash = &fn_710105e244;
-    static constexpr UnkFn type_of = &fn_710105e24c;
+    static constexpr SlotFn construct = &fn_710105e258;
+    static constexpr SlotFn copy_construct = &fn_710105e298;
+    static constexpr SlotFn move_construct = &fn_710105e29c;
+    static constexpr SlotFn destroy = &fn_710105e2dc;
+    static constexpr SlotFn copy_assign = &fn_710105e378;
+    static constexpr SlotFn move_assign = &fn_710105e3a8;
+    static constexpr SlotFn equals = &fn_710105e238;
+    static constexpr SlotFn hash = &fn_710105e244;
+    static constexpr SlotFn type_of = &fn_710105e24c;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return SLogicPathNode::refl_GetClass(); }
     static const CType* iterator() { return fn_71010561fc(); }
     static const CType* const_iterator() { return fn_71010568c8(); }
-    static constexpr UnkFn count = &fn_710105ddd4;
-    static constexpr UnkFn clear = &fn_710105dddc;
-    static constexpr UnkFn add_copy = &fn_710105de3c;
-    static constexpr UnkFn add_move = &fn_710105de4c;
-    static constexpr UnkFn erase = &fn_710105de5c;
-    static constexpr UnkFn at = &fn_710105df24;
-    static constexpr UnkFn find = &fn_710105df34;
-    static constexpr UnkFn set_copy = &fn_710105df58;
-    static constexpr UnkFn set_move = &fn_710105e0c0;
-    static constexpr UnkFn begin = &fn_710105e454;
-    static constexpr UnkFn end = &fn_710105e460;
-    static constexpr UnkFn const_begin = &fn_710105e474;
-    static constexpr UnkFn const_end = &fn_710105e51c;
+    static constexpr SlotFn count = &fn_710105ddd4;
+    static constexpr SlotFn clear = &fn_710105dddc;
+    static constexpr SlotFn add_copy = &fn_710105de3c;
+    static constexpr SlotFn add_move = &fn_710105de4c;
+    static constexpr SlotFn erase = &fn_710105de5c;
+    static constexpr SlotFn at = &fn_710105df24;
+    static constexpr SlotFn find = &fn_710105df34;
+    static constexpr SlotFn set_copy = &fn_710105df58;
+    static constexpr SlotFn set_move = &fn_710105e0c0;
+    static constexpr SlotFn begin = &fn_710105e454;
+    static constexpr SlotFn end = &fn_710105e460;
+    static constexpr SlotFn const_begin = &fn_710105e474;
+    static constexpr SlotFn const_end = &fn_710105e51c;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7101056f94*, void*);
 struct UnkRefl_fn_710105b0a8;
@@ -375,22 +375,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_710105b0a8> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710105b2cc;
-    static constexpr UnkFn copy_construct = &fn_710105b2d4;
-    static constexpr UnkFn move_construct = &fn_710105b2e0;
-    static constexpr UnkFn destroy = &fn_710105b2ec;
-    static constexpr UnkFn copy_assign = &fn_710105b2f0;
-    static constexpr UnkFn move_assign = &fn_710105b304;
-    static constexpr UnkFn equals = &fn_710105b29c;
-    static constexpr UnkFn hash = &fn_710105b2b0;
-    static constexpr UnkFn type_of = &fn_710105b2b8;
-    static constexpr UnkFn get = &fn_710105b218;
-    static constexpr UnkFn set = &fn_710105b280;
-    static constexpr UnkFn increment = &fn_710105b28c;
+    static constexpr SlotFn construct = &fn_710105b2cc;
+    static constexpr SlotFn copy_construct = &fn_710105b2d4;
+    static constexpr SlotFn move_construct = &fn_710105b2e0;
+    static constexpr SlotFn destroy = &fn_710105b2ec;
+    static constexpr SlotFn copy_assign = &fn_710105b2f0;
+    static constexpr SlotFn move_assign = &fn_710105b304;
+    static constexpr SlotFn equals = &fn_710105b29c;
+    static constexpr SlotFn hash = &fn_710105b2b0;
+    static constexpr SlotFn type_of = &fn_710105b2b8;
+    static constexpr SlotFn get = &fn_710105b218;
+    static constexpr SlotFn set = &fn_710105b280;
+    static constexpr SlotFn increment = &fn_710105b28c;
     static const CType* pointee() { return SLogicSubPath::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_710105718c> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_710105718c> {
     static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SLogicSubPath>>::TElementIterator";
     using Init = UnkRefl_fn_710105b0a8;
 };
@@ -402,22 +402,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_710105b318> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710105b53c;
-    static constexpr UnkFn copy_construct = &fn_710105b544;
-    static constexpr UnkFn move_construct = &fn_710105b550;
-    static constexpr UnkFn destroy = &fn_710105b55c;
-    static constexpr UnkFn copy_assign = &fn_710105b560;
-    static constexpr UnkFn move_assign = &fn_710105b574;
-    static constexpr UnkFn equals = &fn_710105b50c;
-    static constexpr UnkFn hash = &fn_710105b520;
-    static constexpr UnkFn type_of = &fn_710105b528;
-    static constexpr UnkFn get = &fn_710105b488;
-    static constexpr UnkFn set = &fn_710105b4f0;
-    static constexpr UnkFn increment = &fn_710105b4fc;
+    static constexpr SlotFn construct = &fn_710105b53c;
+    static constexpr SlotFn copy_construct = &fn_710105b544;
+    static constexpr SlotFn move_construct = &fn_710105b550;
+    static constexpr SlotFn destroy = &fn_710105b55c;
+    static constexpr SlotFn copy_assign = &fn_710105b560;
+    static constexpr SlotFn move_assign = &fn_710105b574;
+    static constexpr SlotFn equals = &fn_710105b50c;
+    static constexpr SlotFn hash = &fn_710105b520;
+    static constexpr SlotFn type_of = &fn_710105b528;
+    static constexpr SlotFn get = &fn_710105b488;
+    static constexpr SlotFn set = &fn_710105b4f0;
+    static constexpr SlotFn increment = &fn_710105b4fc;
     static const CType* pointee() { return SLogicSubPath::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7101057268> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_7101057268> {
     static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SLogicSubPath>>::TElementConstIterator";
     using Init = UnkRefl_fn_710105b318;
 };
@@ -428,32 +428,32 @@ template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101057f24> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x1;
-    static constexpr UnkFn construct = &fn_710105f018;
-    static constexpr UnkFn copy_construct = &fn_710105f058;
-    static constexpr UnkFn move_construct = &fn_710105f05c;
-    static constexpr UnkFn destroy = &fn_710105f09c;
-    static constexpr UnkFn copy_assign = &fn_710105f138;
-    static constexpr UnkFn move_assign = &fn_710105f168;
-    static constexpr UnkFn equals = &fn_710105eff8;
-    static constexpr UnkFn hash = &fn_710105f004;
-    static constexpr UnkFn type_of = &fn_710105f00c;
+    static constexpr SlotFn construct = &fn_710105f018;
+    static constexpr SlotFn copy_construct = &fn_710105f058;
+    static constexpr SlotFn move_construct = &fn_710105f05c;
+    static constexpr SlotFn destroy = &fn_710105f09c;
+    static constexpr SlotFn copy_assign = &fn_710105f138;
+    static constexpr SlotFn move_assign = &fn_710105f168;
+    static constexpr SlotFn equals = &fn_710105eff8;
+    static constexpr SlotFn hash = &fn_710105f004;
+    static constexpr SlotFn type_of = &fn_710105f00c;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return SLogicSubPath::refl_GetClass(); }
     static const CType* iterator() { return fn_710105718c(); }
     static const CType* const_iterator() { return fn_7101057858(); }
-    static constexpr UnkFn count = &fn_710105ed30;
-    static constexpr UnkFn clear = &fn_710105ed38;
-    static constexpr UnkFn add_copy = &fn_710105ed98;
-    static constexpr UnkFn add_move = &fn_710105eda8;
-    static constexpr UnkFn erase = &fn_710105edb8;
-    static constexpr UnkFn at = &fn_710105eebc;
-    static constexpr UnkFn find = &fn_710105eed0;
-    static constexpr UnkFn set_copy = &fn_710105eef8;
-    static constexpr UnkFn set_move = &fn_710105ef34;
-    static constexpr UnkFn begin = &fn_710105faec;
-    static constexpr UnkFn end = &fn_710105faf8;
-    static constexpr UnkFn const_begin = &fn_710105fb10;
-    static constexpr UnkFn const_end = &fn_710105fc24;
+    static constexpr SlotFn count = &fn_710105ed30;
+    static constexpr SlotFn clear = &fn_710105ed38;
+    static constexpr SlotFn add_copy = &fn_710105ed98;
+    static constexpr SlotFn add_move = &fn_710105eda8;
+    static constexpr SlotFn erase = &fn_710105edb8;
+    static constexpr SlotFn at = &fn_710105eebc;
+    static constexpr SlotFn find = &fn_710105eed0;
+    static constexpr SlotFn set_copy = &fn_710105eef8;
+    static constexpr SlotFn set_move = &fn_710105ef34;
+    static constexpr SlotFn begin = &fn_710105faec;
+    static constexpr SlotFn end = &fn_710105faf8;
+    static constexpr SlotFn const_begin = &fn_710105fb10;
+    static constexpr SlotFn const_end = &fn_710105fc24;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7101057f24*, void*);
 #include "base/reflection/UnkReflAttributes.h"

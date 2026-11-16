@@ -11,7 +11,7 @@
 namespace base::reflection {
 
 // Per-type facts for CFlagsetType's constructor (generated): size, the CType function slots
-// (typed UnkFn and cast at the use site), the underlying type's getter and the second
+// (typed SlotFn and cast at the use site), the underlying type's getter and the second
 // descriptor.
 template <class T>
 struct FlagsetTypeDescription;
@@ -31,14 +31,14 @@ static_assert(sizeof(CFlagsetType) == 0xf0, "CFlagsetType layout");
 template <class T>
 CFlagsetType::CFlagsetType(const base::global::CStrId& name, T*)
     : CType(fn_7100001570("base::reflection::CFlagsetType", 0x1e), name, FlagsetTypeDescription<T>::size,
-            reinterpret_cast<UnkFn_0x58>(FlagsetTypeDescription<T>::equals),
-            reinterpret_cast<UnkFn_0x60>(FlagsetTypeDescription<T>::hash),
-            reinterpret_cast<UnkFn_0x68>(FlagsetTypeDescription<T>::type_of), nullptr, nullptr,
-            {reinterpret_cast<UnkFn>(FlagsetTypeDescription<T>::construct), reinterpret_cast<UnkFn_0x30>(FlagsetTypeDescription<T>::copy_construct),
-             reinterpret_cast<UnkFn_0x30>(FlagsetTypeDescription<T>::move_construct),
-             reinterpret_cast<UnkFn_0x40>(FlagsetTypeDescription<T>::destroy),
-             reinterpret_cast<UnkFn_0x48>(FlagsetTypeDescription<T>::copy_assign),
-             reinterpret_cast<UnkFn_0x48>(FlagsetTypeDescription<T>::move_assign)},
+            reinterpret_cast<EqualsFn>(FlagsetTypeDescription<T>::equals),
+            reinterpret_cast<HashFn>(FlagsetTypeDescription<T>::hash),
+            reinterpret_cast<TypeOfFn>(FlagsetTypeDescription<T>::type_of), nullptr, nullptr,
+            {reinterpret_cast<SlotFn>(FlagsetTypeDescription<T>::construct), reinterpret_cast<CopyConstructFn>(FlagsetTypeDescription<T>::copy_construct),
+             reinterpret_cast<CopyConstructFn>(FlagsetTypeDescription<T>::move_construct),
+             reinterpret_cast<DestroyFn>(FlagsetTypeDescription<T>::destroy),
+             reinterpret_cast<AssignFn>(FlagsetTypeDescription<T>::copy_assign),
+             reinterpret_cast<AssignFn>(FlagsetTypeDescription<T>::move_assign)},
             false),
       m_underlying(FlagsetTypeDescription<T>::underlying()), field_0xe8(FlagsetTypeDescription<T>::field_0xe8()) {}
 

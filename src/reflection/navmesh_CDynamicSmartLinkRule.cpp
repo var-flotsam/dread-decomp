@@ -55,22 +55,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026aa98> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710026acbc;
-    static constexpr UnkFn copy_construct = &fn_710026acc4;
-    static constexpr UnkFn move_construct = &fn_710026acd0;
-    static constexpr UnkFn destroy = &fn_710026acdc;
-    static constexpr UnkFn copy_assign = &fn_710026ace0;
-    static constexpr UnkFn move_assign = &fn_710026acf4;
-    static constexpr UnkFn equals = &fn_710026ac8c;
-    static constexpr UnkFn hash = &fn_710026aca0;
-    static constexpr UnkFn type_of = &fn_710026aca8;
-    static constexpr UnkFn get = &fn_710026ac08;
-    static constexpr UnkFn set = &fn_710026ac70;
-    static constexpr UnkFn increment = &fn_710026ac7c;
+    static constexpr SlotFn construct = &fn_710026acbc;
+    static constexpr SlotFn copy_construct = &fn_710026acc4;
+    static constexpr SlotFn move_construct = &fn_710026acd0;
+    static constexpr SlotFn destroy = &fn_710026acdc;
+    static constexpr SlotFn copy_assign = &fn_710026ace0;
+    static constexpr SlotFn move_assign = &fn_710026acf4;
+    static constexpr SlotFn equals = &fn_710026ac8c;
+    static constexpr SlotFn hash = &fn_710026aca0;
+    static constexpr SlotFn type_of = &fn_710026aca8;
+    static constexpr SlotFn get = &fn_710026ac08;
+    static constexpr SlotFn set = &fn_710026ac70;
+    static constexpr SlotFn increment = &fn_710026ac7c;
     static const CType* pointee() { return navmesh::CDynamicSmartLinkRule::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100269948> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100269948> {
     static constexpr const char* name = "navmesh::CDynamicSmartLinkRule*";
     using Init = UnkRefl_fn_710026aa98;
 };

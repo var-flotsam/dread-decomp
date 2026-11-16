@@ -29,53 +29,53 @@ public:
     // not arrays: an all-constant array initialiser would be copied from a table instead of
     // loaded through the GOT. The two pairs after m_iterator and m_const_iterator are set in
     // the constructor's body, after those types.
-    UnkFn m_count;       // the element count
-    UnkFn m_clear;
-    UnkFn m_add_copy;    // insert a value at a key (an array's index, or appended to a map);
-    UnkFn m_add_move;    // copy and move by analogy with m_set_copy and m_set_move
-    UnkFn m_erase;       // by key
-    UnkFn m_at;          // the element at a position, unchecked
-    UnkFn m_find;        // the element at a key, or null
-    UnkFn m_set_copy;    // assign the value at a key
-    UnkFn m_set_move;
-    UnkFn m_begin;       // write an iterator to the first, or past the last, element
-    UnkFn m_end;
-    UnkFn m_const_begin;
-    UnkFn m_const_end;
+    SlotFn m_count;       // the element count
+    SlotFn m_clear;
+    SlotFn m_add_copy;    // insert a value at a key (an array's index, or appended to a map);
+    SlotFn m_add_move;    // copy and move by analogy with m_set_copy and m_set_move
+    SlotFn m_erase;       // by key
+    SlotFn m_at;          // the element at a position, unchecked
+    SlotFn m_find;        // the element at a key, or null
+    SlotFn m_set_copy;    // assign the value at a key
+    SlotFn m_set_move;
+    SlotFn m_begin;       // write an iterator to the first, or past the last, element
+    SlotFn m_end;
+    SlotFn m_const_begin;
+    SlotFn m_const_end;
 };
 static_assert(sizeof(CCollectionType) == 0x170, "CCollectionType layout");
 
 template <class T>
 CCollectionType::CCollectionType(const base::global::CStrId& name, T*, void*)
     : CType(fn_7100001570("base::reflection::CCollectionType", 0x21), name, CollectionTypeDescription<T>::size,
-            reinterpret_cast<UnkFn_0x58>(CollectionTypeDescription<T>::equals),
-            reinterpret_cast<UnkFn_0x60>(CollectionTypeDescription<T>::hash),
-            reinterpret_cast<UnkFn_0x68>(CollectionTypeDescription<T>::type_of), nullptr, nullptr,
-            {reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::construct),
-             reinterpret_cast<UnkFn_0x30>(CollectionTypeDescription<T>::copy_construct),
-             reinterpret_cast<UnkFn_0x30>(CollectionTypeDescription<T>::move_construct),
-             reinterpret_cast<UnkFn_0x40>(CollectionTypeDescription<T>::destroy),
-             reinterpret_cast<UnkFn_0x48>(CollectionTypeDescription<T>::copy_assign),
-             reinterpret_cast<UnkFn_0x48>(CollectionTypeDescription<T>::move_assign)},
+            reinterpret_cast<EqualsFn>(CollectionTypeDescription<T>::equals),
+            reinterpret_cast<HashFn>(CollectionTypeDescription<T>::hash),
+            reinterpret_cast<TypeOfFn>(CollectionTypeDescription<T>::type_of), nullptr, nullptr,
+            {reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::construct),
+             reinterpret_cast<CopyConstructFn>(CollectionTypeDescription<T>::copy_construct),
+             reinterpret_cast<CopyConstructFn>(CollectionTypeDescription<T>::move_construct),
+             reinterpret_cast<DestroyFn>(CollectionTypeDescription<T>::destroy),
+             reinterpret_cast<AssignFn>(CollectionTypeDescription<T>::copy_assign),
+             reinterpret_cast<AssignFn>(CollectionTypeDescription<T>::move_assign)},
             false),
       m_kind(CollectionTypeDescription<T>::kind), m_key(CollectionTypeDescription<T>::key()),
       m_element(CollectionTypeDescription<T>::element()), m_iterator(nullptr), m_const_iterator(nullptr),
-      m_count(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::count)),
-      m_clear(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::clear)),
-      m_add_copy(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::add_copy)),
-      m_add_move(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::add_move)),
-      m_erase(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::erase)),
-      m_at(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::at)),
-      m_find(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::find)),
-      m_set_copy(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::set_copy)),
-      m_set_move(reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::set_move)),
+      m_count(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::count)),
+      m_clear(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::clear)),
+      m_add_copy(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::add_copy)),
+      m_add_move(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::add_move)),
+      m_erase(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::erase)),
+      m_at(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::at)),
+      m_find(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::find)),
+      m_set_copy(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::set_copy)),
+      m_set_move(reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::set_move)),
       m_begin(nullptr), m_end(nullptr), m_const_begin(nullptr), m_const_end(nullptr) {
     m_iterator = CollectionTypeDescription<T>::iterator();
-    m_begin = reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::begin);
-    m_end = reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::end);
+    m_begin = reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::begin);
+    m_end = reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::end);
     m_const_iterator = CollectionTypeDescription<T>::const_iterator();
-    m_const_begin = reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::const_begin);
-    m_const_end = reinterpret_cast<UnkFn>(CollectionTypeDescription<T>::const_end);
+    m_const_begin = reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::const_begin);
+    m_const_end = reinterpret_cast<SlotFn>(CollectionTypeDescription<T>::const_end);
 }
 
 }  // namespace base::reflection

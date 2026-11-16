@@ -18,12 +18,12 @@ char* fn_710009dcd8(char* type, void* obj) {
 
 // A new object of `type` from the default allocator, built in place by the type's constructor
 // (CType+0x28) and paired with its dynamic type; both null when the allocation fails or the type
-// has no constructor. CType declares that constructor without parameters (UnkFn), but it takes the
+// has no constructor. CType declares that constructor without parameters (SlotFn), but it takes the
 // object: the original leaves the allocation's result in x0 for it, which x86-64 does not forward.
 base::reflection::UnkReflTypedPtr fn_710009d6d0(const base::reflection::CType* type, u32 flags) {
     base::reflection::UnkReflTypedPtr r;
     void* obj = fn_7100083990()->vf_0x40(type->m_size, 8, flags);
-    base::reflection::UnkFn ctor = type->m_fn_0x28;
+    base::reflection::SlotFn ctor = type->m_fn_0x28;
     if (obj && ctor) {
         reinterpret_cast<void (*)(void*)>(ctor)(obj);
         r.type = type->m_fn_0x68

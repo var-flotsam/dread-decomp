@@ -23,11 +23,11 @@ DREAD_REFL_CLASS_GETTER(7100000400, 7100000500, "game::CNode", 7100000600, 71000
 DREAD_REFL_ROOT_CLASS_GETTER(7100000700, 7100000800, "game::CBase", 7100000100, 7100000300);
 '''
 TYPE_SOURCE = '''template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100000abc> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100000abc> {
     static constexpr const char* name = "float";
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100000def> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100000def> {
     static constexpr const char* name = "game::CBase*";
     using Init = UnkRefl_fn_7100000fff;
 };
