@@ -425,7 +425,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100d4ba54,280,drafts/game/UnkTU2506/fn_7100d4ba54.cpp,control flow,46.6,36,pilot50,control flow: loop-count phi and tail layout differ; load order of groups/count
 0x7100d56b08,484,drafts/game/UnkTU2509/fn_7100d56b08.cpp,operations,60.3,48,lean-ob2,stack slot layout off by 8 and box/contact store scheduling
 0x7100d570cc,556,drafts/game/UnkTU2509/fn_7100d570cc.cpp,operations,5.0,130,lean-ob2,original passes arg2 as a 4th arg to fn_710012bb00; whose src definition takes 3 (57.1% only with a 4th u32 pa
-0x7100d5925c,840,drafts/game/UnkTU2510/fn_7100d5925c.cpp,match,100.0,0,lean-ob2,matches; held: returns fn_7100d541c0's UnkContact where src/game/logic/collision/UnkCollisionWorld.cpp declares UnkColliderResult (unify the two first)
 0x7100d59dd8,1324,drafts/game/UnkTU2510/fn_7100d59dd8.cpp,control flow,11.8,288,fable1,
 0x7100d5b268,540,drafts/game/UnkTU2510/fn_7100d5b268.cpp,operations,22.2,89,pilot50,13-word copy gets merged into wide loads; init/store scheduling and hoisted out-slot compare differ
 0x7100d5be04,440,drafts/game/UnkTU2510/fn_7100d5be04.cpp,operations,19.1,88,pilot50,entry guard ccmp and loop shape; KIND operations
@@ -546,7 +545,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100eed550,608,drafts/game/UnkTU2577/fn_7100eed550.cpp,control flow,58.6,59,lean-o1,loop null check on list item dropped by clang; mask temp slots swapped
 0x7100eed7b0,172,drafts/game/UnkTU2577/fn_7100eed7b0.cpp,build fails,,,lean-b1,peeled first-element find loop and shared exit not reproduced
 0x7100eed85c,168,drafts/game/UnkTU2577/fn_7100eed85c.cpp,build fails,,,lean-b1,peeled first-element find loop and hash load order not reproduced
-0x7100eef694,272,drafts/game/UnkTU2577/fn_7100eef694.cpp,operations,97.1,2,lean-r1,matched with an 8-byte local result type; the shared UnkColliderResult is 4 bytes; so the result slot lands at sp+0xc instead of sp+8
 0x7100f00a24,208,drafts/game/UnkTU2578/fn_7100f00a24.cpp,registers or order,98.1,1,overnight,
 0x7100f0220c,184,drafts/game/UnkTU2578/fn_7100f0220c.cpp,registers or order,97.8,1,overnight,
 0x7100f04520,432,drafts/game/UnkTU2584/fn_7100f04520.cpp,calls,0.9,102,pilot50,calls: original has 4 (release path duplicated); ours 3

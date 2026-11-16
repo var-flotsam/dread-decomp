@@ -3913,7 +3913,7 @@ address,size,name,name_source,subsystem,status
 0x7100eef488,492,fn_7100eef488,unknown,unknown,O
 0x7100eef674,16,fn_7100eef674,unknown,unknown,O
 0x7100eef684,16,fn_7100eef684,unknown,unknown,O
-0x7100eef694,272,fn_7100eef694,unknown,unknown,U
+0x7100eef694,272,fn_7100eef694,unknown,unknown,O
 0x7100eef7a4,2200,fn_7100eef7a4,unknown,unknown,U
 0x7100ef003c,36,fn_7100ef003c,unknown,unknown,O
 0x7100ef0060,12,fn_7100ef0060,unknown,unknown,O
