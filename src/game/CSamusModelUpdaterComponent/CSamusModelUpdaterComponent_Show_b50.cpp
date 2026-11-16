@@ -10,8 +10,6 @@
 
 using base::global::CRntString;
 
-extern void* g_unk_7101a1b678[];
-
 void fn_710093a130(char* self, char* entry, CRntString* out);
 
 static inline __attribute__((always_inline)) void ShowPart(char* self, char* entry, bool value) {

@@ -12,20 +12,14 @@
 
 struct UnkPlayer;
 
-struct UnkTimelineNameData_b60b {
-    base::global::UnkStringData base;
-    u8 unk_0xc[0x24];
-    u64 hash;
-};
-
 struct UnkPlayPlayerTimelineEvent_b60 {
     u8 unk_0x0[0x10];
-    UnkTimelineNameData_b60b* timeline;
+    base::global::UnkStringData* timeline;
     s32 mode;
 };
 
 void fn_7100bc61c4(UnkPlayPlayerTimelineEvent_b60* self) {
-    if (&self->timeline->base == &g_unk_7101d47108->empty)
+    if (self->timeline == &g_unk_7101d47108->empty)
         return;
     UnkActor* player = reinterpret_cast<UnkActor*>(fn_7100dec788(g_unk_7101d47310));
     if (!player)
@@ -49,7 +43,7 @@ void fn_7100bc61c4(UnkPlayPlayerTimelineEvent_b60* self) {
         }
     }
     base::reflection::UnkReflTypeIdArg mask;
-    u64 key = self->timeline->hash;
+    u64 key = self->timeline->Key();
     mask.id = UnkAll_SpitSend().value;
     fn_7100a2cb7c(timeline, &key, &mask.id, false, -1.0f);
 }

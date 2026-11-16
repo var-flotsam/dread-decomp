@@ -36,6 +36,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTU2744.h"
@@ -723,8 +724,6 @@ s32 fn_710108af30(lua_State* L) {
 // ---- the attack list of the first actor's AI ----
 struct UnkAttackTarget_A2_b68;
 struct UnkAttackListSelf_b0143;
-CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name);
-s32 fn_71003623a4(CAttack* attack);
 
 struct UnkAttackEntry_b0162 {
     u8 pad_0x0[0x10];
