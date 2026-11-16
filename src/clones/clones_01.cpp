@@ -14,21 +14,6 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
-struct UnkClone_fn_7100327044;
-template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100327044>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
-struct UnkClone_fn_71003272fc;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_71003272fc(void* e) {
-    fn_7100014948(e, base::global::CStrId("No_Direction", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("Up", true), 0x1);
-    fn_7100014948(e, base::global::CStrId("UpRight", true), 0x2);
-    fn_7100014948(e, base::global::CStrId("UpLeft", true), 0x3);
-    fn_7100014948(e, base::global::CStrId("Right", true), 0x4);
-    fn_7100014948(e, base::global::CStrId("Left", true), 0x5);
-    fn_7100014948(e, base::global::CStrId("DownRight", true), 0x6);
-    fn_7100014948(e, base::global::CStrId("DownLeft", true), 0x7);
-    fn_7100014948(e, base::global::CStrId("Down", true), 0x8);
-}
 struct UnkClone_fn_7100327958;
 void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
 void fn_7100327958(void* e) {
@@ -5533,3 +5518,11 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71005e3738> {
     static const CType* type() { return reinterpret_cast<const CType*>(g_unk_71726eee58); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71005e3738, UnkCloneBlock<UnkClone_fn_71005e3738, 0x28>>(void*, char*);
+struct UnkClone_fn_71005e3d30;
+void fn_71005e3fb0(void*, void*);
+template <> struct base::UnkOwnerVecInsertTraits<UnkClone_fn_71005e3d30> {
+    static void append(void* v, void* e) { fn_71005e3fb0(v, e); }
+};
+template void base::refl_OwnerVecInsert(base::global::CRntVector<UnkCloneOwnerVecHandle<UnkClone_fn_71005e3d30>>*, UnkCloneOwnerVecHandle<UnkClone_fn_71005e3d30>*, u32);
+struct UnkClone_fn_71005e3fb0;
+template void base::global::CRntVector<UnkCloneVecHandle<UnkClone_fn_71005e3fb0>>::EmplaceBack(UnkCloneVecHandle<UnkClone_fn_71005e3fb0>&&);

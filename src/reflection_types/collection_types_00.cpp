@@ -769,7 +769,6 @@ void fn_71000d957c();
 void fn_71000d95bc();
 void fn_71000d9700();
 void fn_71000d9758();
-void fn_71000d9788();
 void fn_71000d9fe0();
 void fn_71000da0c0();
 void fn_71000daafc();
@@ -784,7 +783,6 @@ void fn_71000dafb0();
 void fn_71000daff0();
 void fn_71000db13c();
 void fn_71000db194();
-void fn_71000db1c4();
 void fn_71000dba2c();
 void fn_71000dbb10();
 void fn_71000dbe94();
@@ -1164,9 +1162,6 @@ void fn_7100251804();
 void fn_710025189c();
 void fn_7100251934();
 void fn_71002519a8();
-void fn_7100251a10();
-void fn_7100251a80();
-void fn_7100251af0();
 void fn_7100251b90();
 void fn_7100251bd0();
 void fn_7100251cd8();
@@ -2005,7 +2000,6 @@ void fn_710079c3a4();
 void fn_710079c41c();
 void fn_710079c488();
 void fn_710079c4fc();
-void fn_710079c570();
 void fn_710079c610();
 void fn_710079c650();
 void fn_710079c758();
@@ -2168,7 +2162,6 @@ void fn_7100916418();
 void fn_7100916488();
 void fn_71009164ec();
 void fn_7100916558();
-void fn_71009165c4();
 void fn_7100916664();
 void fn_71009166a4();
 void fn_71009167a8();
@@ -2682,9 +2675,6 @@ void fn_7100d86360();
 void fn_7100d863f8();
 void fn_7100d86490();
 void fn_7100d86504();
-void fn_7100d8656c();
-void fn_7100d865dc();
-void fn_7100d8664c();
 void fn_7100d866ec();
 void fn_7100d8672c();
 void fn_7100d86834();
@@ -2759,14 +2749,10 @@ void fn_7100dd0670();
 void fn_7100dd0674();
 void fn_7100dd0798();
 void fn_7100dd0858();
-void fn_7100dd08c0();
-void fn_7100dd0930();
-void fn_7100dd09a0();
 void fn_7100dd0a3c();
 void fn_7100dd0a7c();
 void fn_7100dd0ac4();
 void fn_7100dd0b1c();
-void fn_7100dd0b4c();
 void fn_7100dd0cf4();
 void fn_7100dd0d1c();
 void fn_7100e0e600();
@@ -3677,9 +3663,6 @@ void fn_71010c61a8();
 void fn_71010c6240();
 void fn_71010c62d8();
 void fn_71010c634c();
-void fn_71010c63b4();
-void fn_71010c6424();
-void fn_71010c6494();
 void fn_71010c6534();
 void fn_71010c6574();
 void fn_71010c667c();
@@ -4197,13 +4180,12 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include "base/global/CStrId.h"
 struct UnkRefl_fn_71000b3570;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b3570> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b3570> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_71000d95bc;
     static constexpr UnkFn destroy = &fn_71000d9700;
     static constexpr UnkFn copy_assign = &fn_71000d9758;
-    static constexpr UnkFn move_assign = &fn_71000d9788;
     static constexpr UnkFn equals = &fn_71000d94dc;
     static constexpr UnkFn type_of = &fn_71000d957c;
     static const CType* key() { return fn_7100009658(); }
@@ -4222,16 +4204,16 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b3570> : base
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b3570*, void*);
 #include "base/global/CRntSmallDictionary.h"
+#include "base/global/CStrId.h"
 #include "base/global/CFilePathStrId.h"
 struct UnkRefl_fn_71000b44e4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b44e4> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b44e4> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_71000daff0;
     static constexpr UnkFn destroy = &fn_71000db13c;
     static constexpr UnkFn copy_assign = &fn_71000db194;
-    static constexpr UnkFn move_assign = &fn_71000db1c4;
     static constexpr UnkFn equals = &fn_71000daf10;
     static constexpr UnkFn type_of = &fn_71000dafb0;
     static const CType* key() { return fn_7100009658(); }
@@ -4349,9 +4331,10 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b76b8> {
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b76b8*, void*);
 #include "base/global/CRntSmallDictionary.h"
+#include "base/global/CStrId.h"
 struct UnkRefl_fn_71000b862c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b862c> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, float>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b862c> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, float>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_71000defec;
@@ -4900,16 +4883,16 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002315fc> {
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71002315fc*, void*);
 #include "base/global/CRntSmallDictionary.h"
+#include "base/global/CStrId.h"
 struct UnkRefl_fn_710024f3c4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710024f3c4> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710024f3c4> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_7100251bd0;
     static constexpr UnkFn destroy = &fn_7100251cd8;
     static constexpr UnkFn copy_assign = &fn_7100251cdc;
     static constexpr UnkFn move_assign = &fn_7100251d0c;
-    static constexpr UnkFn equals = &fn_7100251af0;
     static constexpr UnkFn type_of = &fn_7100251b90;
     static const CType* key() { return fn_7100009658(); }
     static const CType* element() { return fn_710023e498(); }
@@ -4920,8 +4903,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710024f3c4> : base
     static constexpr UnkFn add_move = &fn_710025189c;
     static constexpr UnkFn erase = &fn_7100251934;
     static constexpr UnkFn find = &fn_71002519a8;
-    static constexpr UnkFn set_copy = &fn_7100251a10;
-    static constexpr UnkFn set_move = &fn_7100251a80;
     static constexpr UnkFn const_begin = &fn_71002520fc;
     static constexpr UnkFn const_end = &fn_7100252194;
 };
@@ -6263,16 +6244,16 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710076ca6c> {
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710076ca6c*, void*);
 #include "base/global/CRntSmallDictionary.h"
+#include "base/global/CStrId.h"
 struct UnkRefl_fn_7100799f40;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100799f40> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100799f40> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_710079c650;
     static constexpr UnkFn destroy = &fn_710079c758;
     static constexpr UnkFn copy_assign = &fn_710079c75c;
     static constexpr UnkFn move_assign = &fn_710079c78c;
-    static constexpr UnkFn equals = &fn_710079c570;
     static constexpr UnkFn type_of = &fn_710079c610;
     static const CType* key() { return fn_7100009658(); }
     static const CType* element() { return &g_unk_7172791c90; }
@@ -6521,16 +6502,16 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100908230> {
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100908230*, void*);
 #include "base/global/CRntSmallDictionary.h"
+#include "base/global/CStrId.h"
 struct UnkRefl_fn_710091403c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710091403c> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, bool>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710091403c> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, bool>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_71009166a4;
     static constexpr UnkFn destroy = &fn_71009167a8;
     static constexpr UnkFn copy_assign = &fn_71009167ac;
     static constexpr UnkFn move_assign = &fn_71009167dc;
-    static constexpr UnkFn equals = &fn_71009165c4;
     static constexpr UnkFn type_of = &fn_7100916664;
     static const CType* key() { return fn_7100009658(); }
     static const CType* element() { return fn_710000d228(); }
@@ -7473,16 +7454,16 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d74a6c> : base
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d74a6c*, void*);
 #include "base/global/CRntSmallDictionary.h"
+#include "base/global/CStrId.h"
 struct UnkRefl_fn_7100d759dc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d759dc> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d759dc> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_7100d8672c;
     static constexpr UnkFn destroy = &fn_7100d86834;
     static constexpr UnkFn copy_assign = &fn_7100d86838;
     static constexpr UnkFn move_assign = &fn_7100d86868;
-    static constexpr UnkFn equals = &fn_7100d8664c;
     static constexpr UnkFn type_of = &fn_7100d866ec;
     static const CType* key() { return fn_7100009658(); }
     static const CType* element() { return fn_7100a0536c(); }
@@ -7493,8 +7474,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d759dc> : base
     static constexpr UnkFn add_move = &fn_7100d863f8;
     static constexpr UnkFn erase = &fn_7100d86490;
     static constexpr UnkFn find = &fn_7100d86504;
-    static constexpr UnkFn set_copy = &fn_7100d8656c;
-    static constexpr UnkFn set_move = &fn_7100d865dc;
     static constexpr UnkFn const_begin = &fn_7100d86fe8;
     static constexpr UnkFn const_end = &fn_7100d87080;
 };
@@ -7601,14 +7580,12 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include "base/global/CRntSmallDictionary.h"
 struct UnkRefl_fn_7100db58e8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100db58e8> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<int, float>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100db58e8> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<int, float>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_7100dd0a7c;
     static constexpr UnkFn destroy = &fn_7100dd0ac4;
     static constexpr UnkFn copy_assign = &fn_7100dd0b1c;
-    static constexpr UnkFn move_assign = &fn_7100dd0b4c;
-    static constexpr UnkFn equals = &fn_7100dd09a0;
     static constexpr UnkFn type_of = &fn_7100dd0a3c;
     static const CType* key() { return fn_7100014768(); }
     static const CType* element() { return fn_710000abbc(); }
@@ -7619,8 +7596,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100db58e8> : base
     static constexpr UnkFn add_move = &fn_7100dd0674;
     static constexpr UnkFn erase = &fn_7100dd0798;
     static constexpr UnkFn find = &fn_7100dd0858;
-    static constexpr UnkFn set_copy = &fn_7100dd08c0;
-    static constexpr UnkFn set_move = &fn_7100dd0930;
     static constexpr UnkFn const_begin = &fn_7100dd0cf4;
     static constexpr UnkFn const_end = &fn_7100dd0d1c;
 };
@@ -9078,16 +9053,16 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010643e4> : base
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71010643e4*, void*);
 #include "base/global/CRntSmallDictionary.h"
+#include "base/global/CStrId.h"
 struct UnkRefl_fn_71010c3e78;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010c3e78> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>> {
+struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010c3e78> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x2;
     static constexpr UnkFn copy_construct = &fn_71010c6574;
     static constexpr UnkFn destroy = &fn_71010c667c;
     static constexpr UnkFn copy_assign = &fn_71010c6680;
     static constexpr UnkFn move_assign = &fn_71010c66b0;
-    static constexpr UnkFn equals = &fn_71010c6494;
     static constexpr UnkFn type_of = &fn_71010c6534;
     static const CType* key() { return fn_7100009658(); }
     static const CType* element() { return fn_71010c301c(); }
@@ -9098,8 +9073,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010c3e78> : base
     static constexpr UnkFn add_move = &fn_71010c6240;
     static constexpr UnkFn erase = &fn_71010c62d8;
     static constexpr UnkFn find = &fn_71010c634c;
-    static constexpr UnkFn set_copy = &fn_71010c63b4;
-    static constexpr UnkFn set_move = &fn_71010c6424;
     static constexpr UnkFn const_begin = &fn_71010c6e30;
     static constexpr UnkFn const_end = &fn_71010c6ec8;
 };

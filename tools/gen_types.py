@@ -586,15 +586,19 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
         value_type = primitive_value_type(body)
         if value_type and value_type in written:
             out.update(primitive_ops_names(body, value_type))
-    mapped = {m.group(1) for f in OUT.glob("collection_types_*.cpp")
-              for m in MAPPER_DESC_RE.finditer(f.read_text(encoding="utf-8"))}
+    texts = [f.read_text(encoding="utf-8") for f in OUT.glob("collection_types_*.cpp")]
+    mapped = {m.group(1) for text in texts for m in MAPPER_DESC_RE.finditer(text)}
+    # a mapper slot the generated description keeps by address (it did not match) keeps its fn_ name
+    by_address = {int(a, 16) for text in texts for a in re.findall(r" = &fn_([0-9a-f]+);", text)}
     named_ptrs = named_pointers(orig, pairs, known)
     colls, _ = scan_collections(orig, set())
     by_hand = defined_by_hand()
     for _, body in colls:
         v = mapped_collection(body, named_ptrs, frozenset(name for name, _ in named.values()))
         if v and v[0] in mapped:
-            out.update(collection_ops_names(orig, body, *v, mapper_members(orig, body, by_hand, v[0])))
+            slots = collection_slots(body)
+            members = {d for d in mapper_members(orig, body, by_hand, v[0]) if slots[d] not in by_address}
+            out.update(collection_ops_names(orig, body, *v, members))
     return out
 
 
@@ -688,9 +692,13 @@ MAPPER_HELPERS = {"add_copy": ("InsertCopy", "void {C}::InsertCopy({E} const&, u
                   "set_move": ("GrowAt", "{E}& {C}::GrowAt(u32)")}
 VECTOR_RE = re.compile(r"base::global::CRntVector<(.+)>")
 SMALL_DICT_RE = re.compile(r"base::global::CRntSmallDictionary<(.+)>")
-MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|SmallDictionary)MapperDescription<(.+)> \{$", re.M)
+MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|SmallDictionary(?:Keyed)?)MapperDescription<(.+)> \{$", re.M)
 # The slots CollectionTypeMapper writes for a small dictionary so far (SmallDictionaryMapperDescription).
 SMALL_DICT_SLOTS = ("construct", "move_construct", "hash", "count", "at", "begin", "end")
+# And those that compare keys, for a key of DICT_KEY_TYPES or a plain number
+# (SmallDictionaryKeyedMapperDescription).
+SMALL_DICT_KEYED_SLOTS = ("move_assign", "equals", "find", "set_copy", "set_move")
+DICT_KEY_TYPES = ("base::global::CStrId",)
 # Value classes a small dictionary's mapper needs whole (At and End take their size), and their headers.
 DICT_VALUE_HEADERS = {"base::global::CStrId": "base/global/CStrId.h",
                       "base::global::CFilePathStrId": "base/global/CFilePathStrId.h"}
@@ -768,9 +776,20 @@ def mapped_collection(body: list[str], named_ptrs: dict[int, str], enums: frozen
     return mapped_vector(body, named_ptrs, enums) or mapped_small_dictionary(body, named_ptrs, enums)
 
 
+def keyed_small_dictionary(collection: str) -> bool:
+    """Whether collection is a small dictionary whose keys compare (SMALL_DICT_KEYED_SLOTS)."""
+    d = SMALL_DICT_RE.fullmatch(collection)
+    if d is None:
+        return False
+    key = split_template_args(d.group(1))[0]
+    return key in DICT_KEY_TYPES or key in PRIMITIVE_VALUE_TYPES.values()
+
+
 def mapper_slots(collection: str) -> tuple[str, ...]:
     """The description members CollectionTypeMapper<collection> can write."""
-    return SMALL_DICT_SLOTS if SMALL_DICT_RE.fullmatch(collection) else tuple(MAPPER_SLOTS)
+    if SMALL_DICT_RE.fullmatch(collection):
+        return SMALL_DICT_SLOTS + (SMALL_DICT_KEYED_SLOTS if keyed_small_dictionary(collection) else ())
+    return tuple(MAPPER_SLOTS)
 
 
 def call_target(orig: asmdiff.Original, addr: int) -> int | None:
@@ -783,8 +802,11 @@ def call_target(orig: asmdiff.Original, addr: int) -> int | None:
     return calls[0] if len(calls) == 1 else None
 
 
-def mapper_helpers(orig: asmdiff.Original, body: list[str], members) -> dict[str, int]:
-    """{member: the CRntVector member it calls} for the members of `members` that call one."""
+def mapper_helpers(orig: asmdiff.Original, body: list[str], members, collection: str = "") -> dict[str, int]:
+    """{member: the CRntVector member it calls} for the members of `members` that call one (none for a small
+    dictionary's)."""
+    if SMALL_DICT_RE.fullmatch(collection):
+        return {}
     slots = collection_slots(body)
     return {d: t for d in members if d in MAPPER_HELPERS and (t := call_target(orig, slots[d])) is not None}
 
@@ -794,8 +816,8 @@ def mapper_members(orig: asmdiff.Original, body: list[str], by_hand: set[int],
     """The description members the mapper writes for a collection: every one of mapper_slots whose slot, and
     the CRntVector member it calls, no hand-written source defines (those keep their addresses)."""
     slots = collection_slots(body)
-    free = {d for d in mapper_slots(collection) if slots[d] not in by_hand}
-    helpers = mapper_helpers(orig, body, free)
+    free = {d for d in mapper_slots(collection) if d in slots and slots[d] not in by_hand}
+    helpers = mapper_helpers(orig, body, free, collection)
     return frozenset(d for d in free if helpers.get(d) not in by_hand)
 
 
@@ -805,7 +827,7 @@ def collection_ops_names(orig: asmdiff.Original, body: list[str], vector: str, e
     members they call."""
     slots = collection_slots(body)
     out = {slots[d]: f"base::reflection::CollectionTypeMapper<{vector}>::{MAPPER_SLOTS[d]}" for d in members}
-    for d, target in mapper_helpers(orig, body, members).items():
+    for d, target in mapper_helpers(orig, body, members, vector).items():
         out[target] = f"base::global::CRntVector<{element}>::{MAPPER_HELPERS[d][0]}"
     return out
 
@@ -819,15 +841,19 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
     out = emit_collection(init, rest)
     desc = f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> {{"
     small_dict = SMALL_DICT_RE.fullmatch(vector) is not None
-    base = "SmallDictionaryMapperDescription" if small_dict else "CollectionMapperDescription"
+    base = ("SmallDictionaryKeyedMapperDescription" if keyed_small_dictionary(vector)
+            else "SmallDictionaryMapperDescription" if small_dict else "CollectionMapperDescription")
     out[out.index(desc)] = (f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> "
                             f": base::reflection::{base}<{vector}> {{")
     node = pointer_value_type(f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator")[1]
     helpers = sorted({"extern template " + MAPPER_HELPERS[d][1].format(C=vector, E=element) + ";"
-                      for d in members if d in MAPPER_HELPERS})
-    headers = {**DICT_VALUE_HEADERS} if small_dict else CLASS_ELEMENT_HEADERS
-    include = (['#include "base/global/CRntSmallDictionary.h"'] if small_dict else []) + (
-        [f'#include "{headers[element]}"'] if element in headers else [])
+                      for d in members if d in MAPPER_HELPERS and not small_dict})
+    if small_dict:
+        key = split_template_args(SMALL_DICT_RE.fullmatch(vector).group(1))[0]
+        include = ['#include "base/global/CRntSmallDictionary.h"'] + [
+            f'#include "{DICT_VALUE_HEADERS[t]}"' for t in dict.fromkeys((key, element)) if t in DICT_VALUE_HEADERS]
+    else:
+        include = [f'#include "{CLASS_ELEMENT_HEADERS[element]}"'] if element in CLASS_ELEMENT_HEADERS else []
     return type_declarations(node, enums) + include + helpers + out
 
 
@@ -1309,7 +1335,7 @@ def main() -> int:
         named_colls = {i: (*v[:2], v[2] - failed_colls.get(i, frozenset())) for i, v in named_colls.items()}
         named_colls = {i: v for i, v in named_colls.items() if v[2] and i in ok}
         if failed_colls:
-            print("vector collection slots kept by address: " + "; ".join(
+            print("collection slots kept by address: " + "; ".join(
                 f"{i:x} {' '.join(sorted(bad)) or '(constructor)'}" for i, bad in sorted(failed_colls.items())))
         if failed_prims:
             print(f"plain types kept by address: {' '.join(f'{g:x}' for g in sorted(failed_prims))}")

@@ -199,6 +199,9 @@ public:
         };
         reinterpret_cast<Slot*>(&other.data)->p = &g_unk_7101d47108->empty;
     }
+
+    // Ids are equal when they share the pooled string.
+    bool operator==(const CStrId& other) const { return data == other.data; }
 };
 
 // The id type of a reflected function's name (UnkReflFunction+0x30). It is built by the same

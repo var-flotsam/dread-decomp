@@ -3399,10 +3399,6 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71002516fc> {
     static const CType* type() { return fn_710023e498(); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71002516fc, UnkCloneBlock<UnkClone_fn_71002516fc, 0x8>>(void*, char*);
-struct UnkClone_fn_7100251a10;
-template void base::refl_KeyedSet(base::UnkKeyedArray<UnkClone_fn_7100251a10, u64, u64>*, const u64*, const u64*);
-struct UnkClone_fn_7100251a80;
-template void base::refl_KeyedSet(base::UnkKeyedArray<UnkClone_fn_7100251a80, u64, u64>*, const u64*, const u64*);
 struct UnkClone_fn_7100251d0c;
 template base::UnkStrIdArray<UnkClone_fn_7100251d0c>& base::UnkStrIdArray<UnkClone_fn_7100251d0c>::operator=(base::UnkStrIdArray<UnkClone_fn_7100251d0c>&&);
 struct UnkClone_fn_710025373c;
@@ -4708,3 +4704,18 @@ void fn_71003207b8(void* e) {
 }
 struct UnkClone_fn_71003232d8;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71003232d8>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
+struct UnkClone_fn_7100327044;
+template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_7100327044>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
+struct UnkClone_fn_71003272fc;
+void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
+void fn_71003272fc(void* e) {
+    fn_7100014948(e, base::global::CStrId("No_Direction", true), 0x0);
+    fn_7100014948(e, base::global::CStrId("Up", true), 0x1);
+    fn_7100014948(e, base::global::CStrId("UpRight", true), 0x2);
+    fn_7100014948(e, base::global::CStrId("UpLeft", true), 0x3);
+    fn_7100014948(e, base::global::CStrId("Right", true), 0x4);
+    fn_7100014948(e, base::global::CStrId("Left", true), 0x5);
+    fn_7100014948(e, base::global::CStrId("DownRight", true), 0x6);
+    fn_7100014948(e, base::global::CStrId("DownLeft", true), 0x7);
+    fn_7100014948(e, base::global::CStrId("Down", true), 0x8);
+}

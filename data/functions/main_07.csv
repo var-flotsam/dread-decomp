@@ -3079,7 +3079,7 @@ address,size,name,name_source,subsystem,status
 0x710079c41c,108,fn_710079c41c,unknown,unknown,O
 0x710079c488,116,fn_710079c488,unknown,unknown,O
 0x710079c4fc,116,fn_710079c4fc,unknown,unknown,O
-0x710079c570,152,fn_710079c570,unknown,unknown,U
+0x710079c570,152,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::Equals",reflection,engine/reflection,O
 0x710079c608,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::Hash",reflection,engine/reflection,O
 0x710079c610,12,fn_710079c610,unknown,unknown,O
 0x710079c61c,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::Construct",reflection,engine/reflection,O

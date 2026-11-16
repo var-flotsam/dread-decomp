@@ -15,18 +15,6 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
-struct UnkClone_fn_71008dbca8;
-extern char g_unk_7101a7eae0[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71008dbca8> {
-    static char* vtable() { return g_unk_7101a7eae0; }
-};
-template void base::refl_RefPairArrayDeletingDtor<UnkClone_fn_71008dbca8, 0xc, 0x48, 0, 8>(char*);
-struct UnkClone_fn_71008dc010;
-const base::reflection::CType* fn_710000abbc();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc010> {
-    static const CType* type() { return fn_710000abbc(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc010, u32, 0x410>(void*, char*);
 struct UnkClone_fn_71008dc0a8;
 const base::reflection::CType* fn_710000d228();
 template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc0a8> {
@@ -5243,3 +5231,20 @@ struct UnkClone_fn_7100b844f8;
 template void base::global::CRntVector<UnkCloneElem<UnkClone_fn_7100b844f8, 8>>::Insert(UnkCloneElem<UnkClone_fn_7100b844f8, 8>&&, u32);
 struct UnkClone_fn_7100b846a8;
 template UnkCloneElem<UnkClone_fn_7100b846a8, 8>& base::global::CRntVector<UnkCloneElem<UnkClone_fn_7100b846a8, 8>>::GrowAt(u32);
+struct UnkClone_fn_7100b8ba50;
+extern char g_unk_7172768da0[] __attribute__((visibility("hidden")));
+extern const char g_unk_71016312b1[] __attribute__((visibility("hidden")));
+extern char g_unk_7172768c60[];
+extern char g_unk_7172768d98[];
+void fn_7100b892d4();
+void fn_7100b8932c(char*, const base::global::CStrId&, u64, u64, void (*)(), u64);
+template <> struct base::UnkTypeInitTraits<UnkClone_fn_7100b8ba50> {
+    static base::UnkTypeInitIds* ids() { return reinterpret_cast<base::UnkTypeInitIds*>(g_unk_7172768da0); }
+    static const char* name() { return g_unk_71016312b1; }
+    static char* type() { return g_unk_7172768c60; }
+    static char* list() { return g_unk_7172768d98; }
+    static void init(char* t, const base::global::CStrId& n) { fn_7100b8932c(t, n, 0, 0, fn_7100b892d4, 0); }
+};
+template void base::refl_TypeStaticInit<UnkClone_fn_7100b8ba50>();
+struct UnkClone_fn_7100b8c2cc;
+template void base::refl_HashMapInit<UnkClone_fn_7100b8c2cc, 0x1e8>(char*, u32, u32);

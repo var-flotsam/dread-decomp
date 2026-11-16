@@ -4076,9 +4076,9 @@ address,size,name,name_source,subsystem,status
 0x71010c62d8,104,fn_71010c62d8,unknown,unknown,O
 0x71010c6340,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::At",reflection,engine/reflection,O
 0x71010c634c,104,fn_71010c634c,unknown,unknown,O
-0x71010c63b4,112,fn_71010c63b4,unknown,unknown,O
-0x71010c6424,112,fn_71010c6424,unknown,unknown,O
-0x71010c6494,152,fn_71010c6494,unknown,unknown,U
+0x71010c63b4,112,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::SetCopy",reflection,engine/reflection,O
+0x71010c6424,112,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::SetMove",reflection,engine/reflection,O
+0x71010c6494,152,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Equals",reflection,engine/reflection,O
 0x71010c652c,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Hash",reflection,engine/reflection,O
 0x71010c6534,12,fn_71010c6534,unknown,unknown,O
 0x71010c6540,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Construct",reflection,engine/reflection,O

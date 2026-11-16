@@ -7,9 +7,9 @@
 #include "UnkBufferString.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBufferStringPool.h"
 #include "types.h"
 
-extern void* g_unk_7101a1b5a0[];
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 struct UnkMovedStrId {
