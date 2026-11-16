@@ -244,10 +244,27 @@ class TypeNames(unittest.TestCase):
                 self.assertEqual(gt.canonical_type(want), want)  # a canonical spelling parses back
 
     def test_unparsed_names(self):
-        for text in ("std::unique_ptr<CFoo>", "CArray<A, EnumClass<E>::Count, E>*", "A<B>::C*", "A<"):
+        for text in ("std::vector<CFoo>", "std::unique_ptr<CFoo, CDeleter>", "CArray<A, EnumClass<E>::Count, E>*",
+                     "A<B>::C*", "A<"):
             with self.subTest(text=text):
                 self.assertIsNone(gt.parse_type(text))
                 self.assertEqual(gt.canonical_type(text), text)
+
+    def test_unique_ptr(self):
+        # the one std:: template a name may use: <memory> declares it, and data/functions/ spells it as
+        # llvm-cxxfilt prints libc++'s instantiation
+        node = gt.parse_type("base::global::CRntVector<std::unique_ptr<CFoo::SBar>>")
+        self.assertEqual(gt.type_declarations(node), [
+            "namespace CFoo { class SBar; }", "namespace base::global { template <class> class CRntVector; }",
+            "#include <memory>"])
+        name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CFoo>>>::Count"
+        libcxx = ("base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CFoo, "
+                  "std::__1::default_delete<CFoo>>>>::Count")
+        self.assertEqual(gt.demangled_spelling(name), libcxx)
+        self.assertEqual(gt.source_spelling(libcxx), name)
+        self.assertEqual(gt.pointer_value_type(
+            "base::reflection::CollectionTypeMapper<base::global::CRntVector< std::unique_ptr<CFoo> >>::"
+            "TElementIterator")[0], name.replace("::Count", "::TElementIterator"))
 
     def test_declarations(self):
         node = gt.parse_type("base::global::CRntDictionary<base::global::CStrId, CFoo::SBar>*")
@@ -326,8 +343,8 @@ class TypeNames(unittest.TestCase):
         vector = "base::global::CRntVector<CActor*>"
         named = {0x7100000520: f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator"}
         self.assertEqual(gt.mapped_vector(body, named, frozenset()), (vector, "CActor*"))
-        # a keyed collection or a std:: element: not a vector written here
-        for other in ("base::global::CRntDictionary<CFoo, CBar>", "base::global::CRntVector<std::unique_ptr<CFoo>>"):
+        # a keyed collection or a std:: element other than a unique_ptr: not a vector written here
+        for other in ("base::global::CRntDictionary<CFoo, CBar>", "base::global::CRntVector<std::vector<CFoo>>"):
             named_other = {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}
             self.assertIsNone(gt.mapped_vector(body, named_other, frozenset()))
         # a class element only declared: the slots that touch the header alone
@@ -335,6 +352,9 @@ class TypeNames(unittest.TestCase):
         self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "CFoo")},
                                           frozenset()), (foo, "CFoo"))
         self.assertEqual(gt.mapper_slots(foo), gt.VECTOR_HEADER_SLOTS + ("type_of",))
+        owned = "base::global::CRntVector<std::unique_ptr<CFoo>>"
+        named_owned = {0x7100000520: named[0x7100000520].replace("CActor*", "std::unique_ptr<CFoo>")}
+        self.assertEqual(gt.mapped_vector(body, named_owned, frozenset()), (owned, "std::unique_ptr<CFoo>"))
         out = gt.emit_collection_ops(0x7100000010, body, foo, "CFoo", frozenset(gt.VECTOR_HEADER_SLOTS))
         self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
                       f": base::reflection::VectorHeaderMapperDescription<{foo}> {{", out)

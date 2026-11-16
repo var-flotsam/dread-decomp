@@ -3537,16 +3537,18 @@ def named_value_ops() -> dict:
     {("mapper", C): addresses} of those it names CollectionTypeMapper<C>::<op>."""
     global _VALUE_OPS
     if _VALUE_OPS is None:
+        from gen_types import source_spelling  # the sources' spelling of a std::unique_ptr
         _VALUE_OPS = {}
         pat = re.compile(r"^base::reflection::(?:ValueOps<(.+)>::\w+|refl_InitType<(.+)>)$")
         mapper = re.compile(r"^base::reflection::CollectionTypeMapper<(.+)>::\w+$")
         for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
             with f.open(newline="", encoding="utf-8") as fh:
                 for r in csv.DictReader(fh):
-                    m = pat.match(r["name"])
+                    name = source_spelling(r["name"])
+                    m = pat.match(name)
                     if m:
                         _VALUE_OPS.setdefault(m.group(1) or m.group(2), set()).add(int(r["address"], 16))
-                    elif m := mapper.match(r["name"]):
+                    elif m := mapper.match(name):
                         _VALUE_OPS.setdefault(("mapper", m.group(1)), set()).add(int(r["address"], 16))
     return _VALUE_OPS
 

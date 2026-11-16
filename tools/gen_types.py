@@ -325,9 +325,52 @@ def parse_type(text: str):
         node, end = one(0)
     except (ValueError, IndexError):
         return None
-    if end != len(toks) or any(n.startswith("std::") for n in type_names(node)[0] | set(type_names(node)[1])):
+    classes, templates = type_names(node)
+    if end != len(toks) or any(n.startswith("std::") for n in classes | set(templates) - {UNIQUE_PTR}):
+        return None
+    if templates.get(UNIQUE_PTR, 1) != 1:
         return None
     return node
+
+
+# The one std:: template a reflected name may use, as <memory> declares it.
+UNIQUE_PTR = "std::unique_ptr"
+
+
+def _top_level_args(text: str) -> list[str]:
+    """`text` split at its commas outside angle brackets."""
+    out, depth, start = [], 0, 0
+    for i, ch in enumerate(text):
+        depth += (ch == "<") - (ch == ">")
+        if ch == "," and depth == 0:
+            out.append(text[start:i].strip())
+            start = i + 1
+    return out + [text[start:].strip()]
+
+
+def _respell(name: str, head: str, spell) -> str:
+    """`name` with every `head<args>` replaced by spell(its argument list split at the top level)."""
+    i = name.find(head)
+    if i < 0:
+        return name
+    depth, k = 1, i + len(head)
+    while depth:
+        depth += (name[k] == "<") - (name[k] == ">")
+        k += 1
+    args = [_respell(a, head, spell) for a in _top_level_args(name[i + len(head):k - 1])]
+    return name[:i] + spell(args) + _respell(name[k:], head, spell)
+
+
+def demangled_spelling(name: str) -> str:
+    """A name written with `std::unique_ptr<T>` as llvm-cxxfilt prints its libc++ instantiation
+    (`std::__1::unique_ptr<T, std::__1::default_delete<T>>`), the spelling data/functions/ names use."""
+    return _respell(name, UNIQUE_PTR + "<",
+                    lambda a: f"std::__1::unique_ptr<{a[0]}, std::__1::default_delete<{a[0]}>>")
+
+
+def source_spelling(name: str) -> str:
+    """demangled_spelling's inverse: a data/functions/ name as the generated sources write it."""
+    return _respell(name, "std::__1::unique_ptr<", lambda a: f"{UNIQUE_PTR}<{a[0]}>")
 
 
 def type_names(node) -> tuple[set[str], dict[str, int]]:
@@ -377,6 +420,9 @@ def type_declarations(node, enums: frozenset[str] = frozenset()) -> list[str]:
         scope, _, leaf = c.rpartition("::")
         out.append(enum_declaration(c) if c in enums else declare_in(scope, f"class {leaf};"))
     for t, n in sorted(templates.items()):
+        if t == UNIQUE_PTR:
+            out.append("#include <memory>")
+            continue
         scope, _, leaf = t.rpartition("::")
         out.append(declare_in(scope, f"template <{', '.join(['class'] * n)}> class {leaf};"))
     return out
@@ -601,7 +647,7 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
             enums = frozenset(name for name, _ in named.values())
             members = {d for d in mapper_members(orig, body, by_hand, v[0], enums) if slots[d] not in by_address}
             out.update(collection_ops_names(orig, body, *v, members))
-    return out
+    return {a: demangled_spelling(n) for a, n in out.items()}
 
 
 COLLECTION_KIND = "base::reflection::CCollectionType"
@@ -736,9 +782,9 @@ def whole_element(element: str, enums: frozenset[str], headers) -> bool:
 
 
 def declarable_element(element: str) -> bool:
-    """Whether an element type the generated file only declares can be named there: it parses, and it is
-    not in std:: (libc++ mangles that as std::__1)."""
-    return parse_type(element) is not None and "std::" not in element
+    """Whether an element type the generated file only declares can be named there: it parses (in std::,
+    only a std::unique_ptr)."""
+    return parse_type(element) is not None
 
 
 def mapped_vector(body: list[str], named_ptrs: dict[int, str], enums: frozenset[str]) -> tuple[str, str] | None:
