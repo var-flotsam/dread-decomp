@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CSpecialEnergyComponent::CTunableSpecialEnergyComponent
 extern bool g_unk_71727457b0;
@@ -90,7 +93,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxEnergy_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fMaxEnergy_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a20250);
@@ -101,7 +104,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fEnergy", 0xffffffff, (DefaultValue, -1.0f), (Description, "Current energy"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEnergy_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fEnergy_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a202f8);
@@ -112,7 +115,7 @@ void refl_AddFields(CClass* cls) {
     fn_71000e8180(base::reflection::refl_FindField(cls, base::global::CName("fEnergy")), cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSpecialEnergyLocked_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bSpecialEnergyLocked_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a203a8);

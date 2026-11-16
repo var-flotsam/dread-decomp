@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CPlayerMovement::CTunablePlayerMovement
 extern bool g_unk_7172a03df0;
@@ -60,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToFrozenDamage", 0x64, (DefaultValue, 0.5f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iFocusMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iFocusMode_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010dce08);

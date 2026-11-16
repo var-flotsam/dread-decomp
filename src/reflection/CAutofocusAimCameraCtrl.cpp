@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CAutofocusAimCameraCtrl
 namespace CAutofocusAimCameraCtrl {
@@ -66,7 +69,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAimNewCameraDistance", 0x68, (DefaultValue, 600.0f), (ShowInConfig, true), (Description, "Distance"), (MinValue, 500.0f), (MaxValue, 5000.0f), (ControlFloatStep, 10.0f), (InternalTag, "Camera|Aim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAimNewCameraAng_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAimNewCameraAng_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007236e4);
@@ -82,7 +85,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAimNewCameraFreeAimInterpolationSpeed", 0x64, (DefaultValue, 100.0f), (ShowInConfig, true), (Description, "Free aim interpolation speed"), (MinValue, 1.0f), (MaxValue, 10000.0f), (ControlFloatStep, 1.0f), (InternalTag, "Camera|Aim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAimNewCameraInputMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iAimNewCameraInputMode_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710072378c);

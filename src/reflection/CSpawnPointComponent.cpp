@@ -21,6 +21,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CSpawnPointComponent
 extern base::reflection::CType g_unk_717269bb48;
@@ -88,7 +93,7 @@ void refl_AddFields(CClass* cls) {
     field24->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCharClass_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sCharClass_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011327d8);
@@ -99,14 +104,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CSpawnerActorBlueprint>", "voActorBlueprint", 0x390, (CreateElement, "AddNewActorBlueprintAt"), (DeleteElement, "DeleteActorBlueprintAt"), (AfterElementDeserialization, "AfterActorBlueprintDeserialization"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Activate", true))) {
         fn->name = base::global::UnkStrId("Activate", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011328d8);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Deactivate", true))) {
         fn->name = base::global::UnkStrId("Deactivate", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101132928);
@@ -120,7 +125,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteActorBlueprintAt", true))) {
         fn->name = base::global::UnkStrId("DeleteActorBlueprintAt", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011329bc);

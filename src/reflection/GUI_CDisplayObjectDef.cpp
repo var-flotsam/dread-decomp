@@ -20,10 +20,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+namespace GUI { class CDisplayObjectStateDef; }
+extern template const base::reflection::CType* base::reflection::PointerType<GUI::CDisplayObjectStateDef*>::Get();
 
 // GUI::CDisplayObjectDef
 extern base::reflection::CType g_unk_717275f310;
-const base::reflection::CType* fn_7100b08378();
 void fn_7100b086b8();
 void fn_7100b05218(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_717275e480;
@@ -38,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     field1->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterStateDeserialization", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewDOStateDef", true))) {
         fn->name = base::global::UnkStrId("AddNewDOStateDef", true);
-        fn->return_type = fn_7100b08378();
+        fn->return_type = base::reflection::PointerType<GUI::CDisplayObjectStateDef*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b086b8);

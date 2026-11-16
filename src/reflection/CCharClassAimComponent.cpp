@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassAimComponent
 void fn_710035c020();
@@ -39,7 +41,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimWidth_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAutoAimWidth_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710035c020);
@@ -49,7 +51,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimWidth", (DefaultValue, 50.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAutoAimLength_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710035c0b0);
@@ -59,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimLength", (DefaultValue, 2500.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimConeLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAutoAimConeLength_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710035c140);
@@ -69,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimConeLength", (DefaultValue, 210.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAutoAimInterp_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710035c1d0);
@@ -79,7 +81,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimInterp", (DefaultValue, 0.6f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockOnInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAutoAimLockOnInterp_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710035c260);
@@ -89,7 +91,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimLockOnInterp", (DefaultValue, 6.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockOnPredictionTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAutoAimLockOnPredictionTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710035c2f0);
@@ -99,7 +101,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimLockOnPredictionTime", (DefaultValue, 0.2f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAutoAimLockAfterDeadTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAutoAimLockAfterDeadTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710035c380);
