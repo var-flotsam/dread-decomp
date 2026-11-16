@@ -1,3 +1,4 @@
+#include "base/math/CVectorOps.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
@@ -92,22 +93,13 @@ static inline UnkPos2_b0194 operator-(const UnkPos2_b0194& a, const UnkPos2_b019
     return r;
 }
 
-struct UnkPos3_b0194 {
-    f32 x, y, z;
-};
-static inline UnkPos3_b0194 PosOf(const UnkActor* actor) {
-    UnkPos3_b0194 p;
+using base::math::CVector3D;
+static inline CVector3D PosOf(const UnkActor* actor) {
+    CVector3D p;
     p.x = actor->field_0x44;
     p.y = actor->field_0x54;
     p.z = actor->field_0x64;
     return p;
-}
-static inline UnkPos3_b0194 operator-(const UnkPos3_b0194& a, const UnkPos3_b0194& b) {
-    UnkPos3_b0194 r;
-    r.x = a.x - b.x;
-    r.y = a.y - b.y;
-    r.z = a.z - b.z;
-    return r;
 }
 
 void fn_7100558bcc(UnkFarAI_b0194* self, UnkFarEntity_b0194* entity) {

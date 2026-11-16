@@ -3,6 +3,7 @@
 // in the owner's blackboard section g_unk_71726fd2f8 unless the blackboard is locked. Names and layouts
 // are placeholders.
 #include "base/global/CStrId.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
@@ -19,13 +20,7 @@ extern CStrId g_unk_71726fd2f8;
 struct UnkRobotAI_l661fa8;
 void fn_71011088e4(UnkRobotAI_l661fa8* self);
 
-struct UnkRobotVec3_l661fa8 {
-    f32 x, y, z;
-};
-
-inline UnkRobotVec3_l661fa8 operator-(const UnkRobotVec3_l661fa8& a, const UnkRobotVec3_l661fa8& b) {
-    return {a.x - b.x, a.y - b.y, a.z - b.z};
-}
+using base::math::CVector3D;
 
 struct UnkRobotBlackboardOwner_l661fa8 {
     u8 pad_0x0[0x1260];
@@ -40,7 +35,7 @@ struct UnkRobotFacing_l661fa8 {
 struct UnkRobotActor_l661fa8 {
     u8 pad_0x0[0x38];
     f32 transform[3][4];
-    UnkRobotVec3_l661fa8 Position() const { return {transform[0][3], transform[1][3], transform[2][3]}; }
+    CVector3D Position() const { return {transform[0][3], transform[1][3], transform[2][3]}; }
     u8 pad_0x68[0x218 - 0x68];
     UnkRobotFacing_l661fa8* facing;
     u8 pad_0x220[0x240 - 0x220];
@@ -55,7 +50,7 @@ struct UnkRobotAI_l661fa8 {
 struct UnkRobotPlayer_l661fa8 {
     u8 pad_0x0[0x38];
     f32 transform[3][4];
-    UnkRobotVec3_l661fa8 Position() const { return {transform[0][3], transform[1][3], transform[2][3]}; }
+    CVector3D Position() const { return {transform[0][3], transform[1][3], transform[2][3]}; }
 };
 
 void fn_7100661fa8(UnkRobotAI_l661fa8* self) {
@@ -65,7 +60,7 @@ void fn_7100661fa8(UnkRobotAI_l661fa8* self) {
     UnkRobotFacing_l661fa8* facing = actor->facing;
     if (!facing || !actor)
         return;
-    UnkRobotVec3_l661fa8 delta = player->Position();
+    CVector3D delta = player->Position();
     delta = delta - actor->Position();
     if (!(facing->x * delta.x + facing->y * delta.y + facing->z * delta.z > 0.0f))
         return;

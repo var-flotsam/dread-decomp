@@ -21,14 +21,11 @@ struct UnkElectrifyingAreaA5_b61;
 
 bool fn_7100118be8(const UnkPolyline108_b67a1* self);
 
-struct UnkAreaVertex_ov110 {
-    f32 x, y, z;
-};
 
 // A 2D polygon: its vertices, whether it is closed, and a bounding box kept up to date lazily
 // (the 0x48-byte layout of src/base/spatial/UnkPolygon2D.cpp).
 struct UnkAreaPolygon_ov110 {
-    base::global::CRntVector<UnkAreaVertex_ov110> vertices{7};
+    base::global::CRntVector<CVector3D> vertices{7};
     u32 field_0x28 = 0;
     bool closed = false;    // 0x2c
     bool box_dirty = true;  // 0x2d

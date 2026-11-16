@@ -5,6 +5,7 @@
 // shape (fn_71007c1edc) and one drop spawn (fn_71007c3874). Names and layouts are placeholders.
 #include <math.h>
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
 #include "game/CDropComponent.h"
 #include "game/UnkGameManager.h"
@@ -280,9 +281,7 @@ void fn_71007c1edc(UnkDropComp_ovb0096* self) {
 struct UnkDropVec3_b44a2;
 void fn_71007c0284(void* a, void* b, const UnkDropVec3_b44a2* pos, void* d, bool e, bool f, f32 g, f32 h);
 
-struct UnkDropDir_ovb0096 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkDropSpawner_ovb0096 {
     void** vtable;
@@ -301,7 +300,7 @@ struct UnkDropComp3_ovb0096 {
 };
 
 void* fn_71007c4c94(UnkDropComp3_ovb0096* self, void* type, void* params, void* extra);
-void fn_71007c4a54(UnkDropComp3_ovb0096* self, void* params, UnkDropDir_ovb0096* dir, f32* speed, u32* slots);
+void fn_71007c4a54(UnkDropComp3_ovb0096* self, void* params, CVector3D* dir, f32* speed, u32* slots);
 struct UnkDropOwner_b45a2;
 f32 fn_71007c7e4c(UnkDropOwner_b45a2* self);
 
@@ -315,7 +314,7 @@ void fn_71007c3874(UnkDropComp3_ovb0096* self, const UnkDropVec3_b44a2* pos, voi
         drop = fn_71007c4c94(self, type, params, extra);
     if (!drop)
         return;
-    UnkDropDir_ovb0096 dir;
+    CVector3D dir;
     dir.x = 0;
     dir.y = 0;
     dir.z = 0;

@@ -6,6 +6,7 @@
 #include "base/UnkDeferredSet.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
@@ -311,9 +312,7 @@ struct UnkPickEntity_ovb0094 {
     f32 z;  // 0x64
 };
 
-struct UnkPickPoint_ovb0094 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkPickPlaced_ovb0094 {
     void** vtable;
@@ -351,7 +350,7 @@ void fn_71009d0404(UnkPickPlaced_ovb0094* self) {
     f32 x = entity->x;
     f32 y = entity->y;
     f32 z = entity->z;
-    UnkPickPoint_ovb0094 point = {x, y, z};
+    CVector3D point = {x, y, z};
     UnkGameManagerSub_0x1af8* tiles = g_unk_7101d47310->field_0x1af8;
     UnkPickTiles_ovb0094* list = reinterpret_cast<UnkPickTiles_ovb0094*>(tiles);
     for (base::reflection::UnkReflObject **it = list->groups, **end = it + list->group_count; it != end; ++it) {

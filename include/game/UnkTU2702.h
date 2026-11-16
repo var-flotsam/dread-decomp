@@ -40,6 +40,8 @@ class UnkSelf_7100369c44;
 struct UnkSluggerAI;
 struct UnkSluggerEvent;
 struct UnkWarLotusAI;
+struct UnkRobotSoldierAI_A2_b69;
+bool fn_71011057fc(UnkRobotSoldierAI_A2_b69* ai);
 struct CAttack;
 struct UnkAttackListSelf_b0143;
 // The attack of the list named `name`.

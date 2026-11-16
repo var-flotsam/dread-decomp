@@ -1,7 +1,7 @@
 // Unit 110 (2D geometry): a moving box against a still one, as its centre swept against the still box
 // grown by its half size; the contact point is moved back onto the moving box's face and kept inside
 // the still box. Names and layouts are placeholders.
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "game/malloc.h"
 #include "types.h"
 
@@ -123,9 +123,7 @@ bool fn_710012dbd0(const UnkBox2D* a, void* x5, const void* b, UnkContactPoint* 
     } else {
         contact->SetPoint(contact->point.x + half.y * (move->x / move->y), half.y + contact->point.y);
     }
-    contact->normal_a.x = -contact->normal_b.x;
-    contact->normal_a.y = -contact->normal_b.y;
-    contact->normal_a.z = -contact->normal_b.z;
+    contact->normal_a = -contact->normal_b;
     contact->flags |= 0x20;
 
     // Kept inside the still box.

@@ -10,13 +10,10 @@
 // target), so the registers differ. No way of writing the distance changed that. Same behaviour.
 #include <algorithm>
 #include "../../game_s7/UnkIter.h"
+#include "base/math/CVector.h"
 #include "types.h"
 
-struct UnkVec3_7100336ca0 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkTransform_7100336ca0 {
     u8 unk_0x0[0x38];
@@ -70,14 +67,14 @@ __attribute__((always_inline)) inline void swap(UnkHandle_7100336ca0& x, UnkHand
 
 namespace {
 struct UnkNearer_7100336ca0 {
-    const UnkVec3_7100336ca0* target;
+    const CVector3D* target;
 
-    static UnkVec3_7100336ca0 Pos(const UnkHandle_7100336ca0& h) {
+    static CVector3D Pos(const UnkHandle_7100336ca0& h) {
         const UnkTransform_7100336ca0* t = h.ptr->obj->transform;
-        UnkVec3_7100336ca0 p = {t->mtx[0][3], t->mtx[1][3], t->mtx[2][3]};
+        CVector3D p = {t->mtx[0][3], t->mtx[1][3], t->mtx[2][3]};
         return p;
     }
-    f32 DistSq(const UnkVec3_7100336ca0& p) const {
+    f32 DistSq(const CVector3D& p) const {
         return (target->x - p.x) * (target->x - p.x) + (target->y - p.y) * (target->y - p.y) +
                (target->z - p.z) * (target->z - p.z);
     }

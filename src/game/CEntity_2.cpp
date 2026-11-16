@@ -2,6 +2,7 @@
 // its count at +0xb0) that is a CComponent.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
@@ -240,10 +241,8 @@ struct UnkEntityBounds {
 static inline UnkEntityBox EntityBox(const UnkEntityBounds* self) {
     base::math::CVector3D c = {self->x, self->y, self->z};
     c.y += self->field_0x394;
-    base::math::CVector3D h = {self->extents.x * 0.5f, self->extents.y * 0.5f, self->extents.z * 0.5f};
-    base::math::CVector3D lo = {c.x - h.x, c.y - h.y, c.z - h.z};
-    base::math::CVector3D hi = {c.x + h.x, c.y + h.y, c.z + h.z};
-    return {lo, hi};
+    base::math::CVector3D h = self->extents * 0.5f;
+    return {c - h, c + h};
 }
 
 UnkEntityBox fn_7100d7bc70(const UnkEntityBounds* self) { return EntityBox(self); }

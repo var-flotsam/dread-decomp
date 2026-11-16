@@ -11,7 +11,7 @@
 // Definitions stay in address order: the dead-argument pass works through them in that order, which
 // decides which unused first arguments callers still pass.
 #include "base/global/CRntVector.h"
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/spatial/COBox2D.h"
 #include "game/UnkTU2509.h"
@@ -143,14 +143,6 @@ static inline CVector3D MakeVec3(f32 x, f32 y, f32 z) {
     v.y = y;
     v.z = z;
     return v;
-}
-
-static inline CVector3D Negated(const CVector3D& v) {
-    CVector3D r;
-    r.x = -v.x;
-    r.y = -v.y;
-    r.z = -v.z;
-    return r;
 }
 
 static inline CVector3D Translation(const UnkXform* m) {
@@ -507,7 +499,7 @@ static inline UnkColliderResult QueryCollection(UnkShapeTester_A5_b68* self, Unk
     f32 dir_x = d->x;
     CVector3D dir = MakeVec3(dir_x, dir_y, 0.0f);
     if (swapped)
-        dir = Negated(dir);
+        dir = -dir;
     UnkLocalQuery query(MakeVec3(xb->m[0][3], xb->m[1][3], (xa->m[2][3] + xb->m[2][3]) * 0.5f), Geometry(b), x6);
     result = Merge(result, Query(b, &local, &dir, &query));
     return result;
@@ -540,7 +532,7 @@ UnkColliderResult fn_7100d54d78(UnkShapeTester_A5_b68* self, UnkShape* a, void* 
     f32 dir_x = d->x;
     CVector3D dir = MakeVec3(dir_x, dir_y, 0.0f);
     if (swapped)
-        dir = Negated(dir);
+        dir = -dir;
     UnkLocalQuery query(MakeVec3(xb->m[0][3], xb->m[1][3], (xa->m[2][3] + xb->m[2][3]) * 0.5f), Geometry(b), x6);
     result = Merge(result, fn_7100d64d3c(b, &local, &dir, &query));
     return result;

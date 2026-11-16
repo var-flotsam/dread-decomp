@@ -3,19 +3,16 @@
 // base::refl_IterValueMove: the (index, element) pair a value owns or refers to is copied in, the
 // element's vtable (unk_7101a3e068) set. Names are placeholders.
 #include "base/UnkCollectionIter.h"
+#include "base/math/CVector.h"
 #include "game/CCooldownXBossLavaDropsMovementDef.h"
 #include "types.h"
 
 // Three words copied as one 12-byte block (a vector, perhaps).
-struct UnkLavaDropsData_b52 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkLavaDropsElem_b52 {
     char* vtable;
-    UnkLavaDropsData_b52 data;  // 0x8
+    CVector3D data;  // 0x8
 
     UnkLavaDropsElem_b52(UnkLavaDropsElem_b52&& other) : vtable(g_unk_7101a3e068 + 0x10), data(other.data) {}
 };

@@ -177,6 +177,7 @@ void fn_7100132730() {
 #include <math.h>
 
 #include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/math/UnkSegment2D.h"
 
 using base::math::CVector2D;
@@ -323,28 +324,28 @@ bool fn_710012deb0(const UnkCircle2D* circle, const UnkVec2Result* delta, const 
                       box->Corner(1) - UnkVec2Result(r, 0.0f));
     if (fn_710012bcd0(&sweep, &edge, out)) {
         out->SetPoint(CVector3D{r + out->point.x, out->point.y, out->point.z});
-        out->SetNormalA(CVector3D{-out->normal_b.x, -out->normal_b.y, -out->normal_b.z});
+        out->SetNormalA(-out->normal_b);
         return true;
     }
     UnkAssign(&edge, UnkSegment2D(UnkVec2Result(0.0f, r) + box->Corner(1),
                                   UnkVec2Result(0.0f, r) + box->Corner(2)));
     if (fn_710012bcd0(&sweep, &edge, out)) {
         out->SetPoint(CVector3D{out->point.x, out->point.y - r, out->point.z});
-        out->SetNormalA(CVector3D{-out->normal_b.x, -out->normal_b.y, -out->normal_b.z});
+        out->SetNormalA(-out->normal_b);
         return true;
     }
     UnkAssign(&edge, UnkSegment2D(UnkVec2Result(r, 0.0f) + box->Corner(2),
                                   UnkVec2Result(r, 0.0f) + box->Corner(3)));
     if (fn_710012bcd0(&sweep, &edge, out)) {
         out->SetPoint(CVector3D{out->point.x - r, out->point.y, out->point.z});
-        out->SetNormalA(CVector3D{-out->normal_b.x, -out->normal_b.y, -out->normal_b.z});
+        out->SetNormalA(-out->normal_b);
         return true;
     }
     UnkAssign(&edge, UnkSegment2D(box->Corner(3) - UnkVec2Result(0.0f, r),
                                   box->Corner(0) - UnkVec2Result(0.0f, r)));
     if (fn_710012bcd0(&sweep, &edge, out)) {
         out->SetPoint(CVector3D{out->point.x, r + out->point.y, out->point.z});
-        out->SetNormalA(CVector3D{-out->normal_b.x, -out->normal_b.y, -out->normal_b.z});
+        out->SetNormalA(-out->normal_b);
         return true;
     }
 
@@ -513,7 +514,7 @@ bool fn_7100127bb0(const UnkOrientedBox2D* box, const UnkSegment2D* seg, UnkCont
 static inline void UnkSwapNormals(UnkContact2D* out, const CVector3D& point) {
     out->SetPoint(point);
     out->SetNormalA(out->normal_b);
-    out->SetNormalB(CVector3D{-out->normal_b.x, -out->normal_b.y, -out->normal_b.z});
+    out->SetNormalB(-out->normal_b);
 }
 
 // A box moving by `delta` against a circle: fn_710012deb0 with the circle moving the other way.
@@ -567,9 +568,9 @@ bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCir
                 oy = cy - p.y;
             }
             UnkVec2Result c = box->Corner(0);
-            CVector3D n = {-out->normal_b.x, -out->normal_b.y, -out->normal_b.z};
+            CVector3D n = -out->normal_b;
             out->SetPoint(CVector3D{ox + c.x, oy + c.y, 0.0f});
-            out->SetNormalA(CVector3D{-n.x, -n.y, -n.z});
+            out->SetNormalA(-n);
             out->SetNormalB(n);
             return true;
         }
@@ -586,9 +587,9 @@ bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCir
                 oy = cy - p.y;
             }
             UnkVec2Result c = box->Corner(3);
-            CVector3D n = {-out->normal_b.x, -out->normal_b.y, -out->normal_b.z};
+            CVector3D n = -out->normal_b;
             out->SetPoint(CVector3D{ox + c.x, oy + c.y, 0.0f});
-            out->SetNormalA(CVector3D{-n.x, -n.y, -n.z});
+            out->SetNormalA(-n);
             out->SetNormalB(n);
             return true;
         }
@@ -605,9 +606,9 @@ bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCir
                 oy = cy - p.y;
             }
             UnkVec2Result c = box->Corner(2);
-            CVector3D n = {-out->normal_b.x, -out->normal_b.y, -out->normal_b.z};
+            CVector3D n = -out->normal_b;
             out->SetPoint(CVector3D{ox + c.x, oy + c.y, 0.0f});
-            out->SetNormalA(CVector3D{-n.x, -n.y, -n.z});
+            out->SetNormalA(-n);
             out->SetNormalB(n);
             return true;
         }
@@ -624,9 +625,9 @@ bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCir
                 oy = cy - p.y;
             }
             UnkVec2Result c = box->Corner(1);
-            CVector3D n = {-out->normal_b.x, -out->normal_b.y, -out->normal_b.z};
+            CVector3D n = -out->normal_b;
             out->SetPoint(CVector3D{ox + c.x, oy + c.y, 0.0f});
-            out->SetNormalA(CVector3D{-n.x, -n.y, -n.z});
+            out->SetNormalA(-n);
             out->SetNormalB(n);
             return true;
         }
@@ -717,10 +718,6 @@ inline UnkSegment2D UnkOrientedBox2D::ToLocalSegment(const UnkSegment2D& seg) co
     return r;
 }
 
-static inline CVector3D operator+(const CVector3D& a, const CVector3D& b) {
-    return CVector3D{a.x + b.x, a.y + b.y, a.z + b.z};
-}
-
 // An oriented box moving by `delta` against a segment: fn_710012ce70 in the box's frame (the
 // segment moving the other way), then the contact moved along the step, its normals swapped and
 // taken back to the world's frame.
@@ -769,26 +766,14 @@ struct UnkPolygon {
 
 UnkPolygonVertex* fn_7100130ab0(UnkPolygon* self, u32 index);
 
-static inline CVector3D UnkSub(const CVector3D& a, const CVector3D& b) {
-    return CVector3D{a.x - b.x, a.y - b.y, a.z - b.z};
-}
-
-static inline f32 UnkDot(const CVector3D& a, const CVector3D& b) {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
-}
-
-static inline f32 UnkLength(const CVector3D& v) {
-    return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
-}
-
 // Stores at vertex `index` (at p) the angle between its edges to `next` and `prev`, turning the
 // way the polygon winds (pi for a straight or degenerate corner).
 static inline void UnkSetCornerAngle(UnkPolygon* self, u32 index, const CVector3D* p,
                                      const CVector3D* next, const CVector3D* prev) {
-    CVector3D a = UnkSub(*next, *p);
-    CVector3D b = UnkSub(*prev, *p);
+    CVector3D a = *next - *p;
+    CVector3D b = *prev - *p;
     f32 cross = a.y * b.x - a.x * b.y;
-    f32 c = UnkDot(a, b) / (UnkLength(b) * UnkLength(a));
+    f32 c = Dot(a, b) / (Length(b) * Length(a));
     f32 angle;
     if (c >= 1.0f)
         angle = 0.0f;

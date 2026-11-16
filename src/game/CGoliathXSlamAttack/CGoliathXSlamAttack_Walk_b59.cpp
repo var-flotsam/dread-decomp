@@ -9,6 +9,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
@@ -39,19 +40,9 @@ struct UnkGoliathXSlamWalk_b59a3 {
     bool field_0x78;
 };
 
-struct Vec_b59a3 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
-static inline Vec_b59a3 operator-(const Vec_b59a3& a, const Vec_b59a3& b) {
-    return {a.x - b.x, a.y - b.y, a.z - b.z};
-}
-
-static inline f32 Dot_b59a3(const Vec_b59a3& a, const Vec_b59a3& b) {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
-}
-
-__attribute__((always_inline)) static inline Vec_b59a3 Pos_b59a3(const UnkActor* actor) {
+__attribute__((always_inline)) static inline CVector3D Pos_b59a3(const UnkActor* actor) {
     return {actor->field_0x44, actor->field_0x54, actor->field_0x64};
 }
 
@@ -82,9 +73,9 @@ void fn_7100586d0c(UnkGoliathXSlamWalk_b59a3* self, f32 dt) {
         if (!other)
             goto ahead;
         const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(self->owner->field_0x38));
-        Vec_b59a3 facing = {m.m[2], m.m[6], m.m[10]};
-        Vec_b59a3 d = Pos_b59a3(other) - Pos_b59a3(self->owner);
-        if (!(Dot_b59a3(facing, d) < 0.0f))
+        CVector3D facing = {m.m[2], m.m[6], m.m[10]};
+        CVector3D d = Pos_b59a3(other) - Pos_b59a3(self->owner);
+        if (!(Dot(facing, d) < 0.0f))
             goto ahead;
     }
     base::reflection::UnkReflTypeIdArg mode1;

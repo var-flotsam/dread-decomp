@@ -5,6 +5,7 @@
 // despite their size, so the entry has its own always-inline swap with std::swap's steps. Names
 // and layouts are placeholders.
 #include <algorithm>
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 struct UnkObj_710081ccd0 {
@@ -144,35 +145,21 @@ static inline bool Near_710081ccd0(const f32& x, const f32& y) {
     return x - 0.1f <= y && x + 0.1f >= y;
 }
 
-struct UnkVec3_710081ccd0 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
-
-static inline f32 DistSq_710081ccd0(const UnkVec3_710081ccd0& p, const UnkVec3_710081ccd0& q) {
-    return (p.x - q.x) * (p.x - q.x) + (p.y - q.y) * (p.y - q.y) + (p.z - q.z) * (p.z - q.z);
-}
+using base::math::CVector3D;
 
 struct UnkCmp_710081ccd0 {
-    UnkVec3_710081ccd0 pos;
+    CVector3D pos;
     UnkMask_710081ccd0 mask;
-
-    // A member, not DistSq_710081ccd0: that keeps the order the original loads and computes in.
-    f32 DistSq(const UnkVec3_710081ccd0& p) const {
-        return (pos.x - p.x) * (pos.x - p.x) + (pos.y - p.y) * (pos.y - p.y) +
-               (pos.z - p.z) * (pos.z - p.z);
-    }
 
     bool Has(const UnkEntry_710081ccd0& e) const {
         return (e.a.ptr->field_0x10->vf_0x58() & mask.words[0]) != 0;
     }
     bool operator()(const UnkEntry_710081ccd0& a, const UnkEntry_710081ccd0& b) const {
-        UnkVec3_710081ccd0 pb = {b.x, b.y, 0.0f};
-        f32 db = DistSq(pb);
-        UnkVec3_710081ccd0 pa = {a.x, a.y, 0.0f};
-        f32 da = DistSq(pa);
-        f32 dab = DistSq_710081ccd0(pb, pa);
+        CVector3D pb = {b.x, b.y, 0.0f};
+        f32 db = DistanceSq(pos, pb);
+        CVector3D pa = {a.x, a.y, 0.0f};
+        f32 da = DistanceSq(pos, pa);
+        f32 dab = DistanceSq(pb, pa);
         if (Near_710081ccd0(dab, 0.0f)) {
             bool ha = Has(a);
             bool hb = Has(b);

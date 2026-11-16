@@ -1937,7 +1937,7 @@ address,size,name,name_source,subsystem,status
 0x7101059318,44,fn_7101059318,unknown,unknown,O
 0x7101059344,464,fn_7101059344,unknown,unknown,U
 0x7101059514,28,fn_7101059514,unknown,unknown,O
-0x7101059530,380,fn_7101059530,unknown,unknown,m
+0x7101059530,380,fn_7101059530,unknown,unknown,O
 0x71010596ac,232,fn_71010596ac,unknown,unknown,O
 0x7101059794,332,fn_7101059794,unknown,unknown,U
 0x71010598e0,236,fn_71010598e0,unknown,unknown,O

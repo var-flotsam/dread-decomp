@@ -2,13 +2,12 @@
 // the SDK player, then puts the fade, gains, flags and both modulations back to their defaults.
 // Layout placeholders (src/base/input/UnkRumblePlayer.cpp names the fields).
 #include "base/input/UnkHidVibration.h"
+#include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "types.h"
 
 
-struct UnkRumbleVec_b67a1 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkRumbleModulation_b67a1 {
     f32 amplitude_low;
@@ -24,7 +23,7 @@ struct UnkRumbleReset_b67a1 : nn::hid::VibrationPlayer {
     f32 to;        // 0x168
     f32 duration;
     f32 elapsed;   // 0x170
-    UnkRumbleVec_b67a1 offset;  // 0x174
+    CVector3D offset;  // 0x174
     f32 balance;   // 0x180
     f32 gain;
     f32 current;   // 0x188

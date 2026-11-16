@@ -1,23 +1,22 @@
 // From unit 108 of tools/tu_map.py (no class hint): whether any point of a list of 12-byte entries (x, y at
 // +0, +4) lies in the square of half-size `r` around `p`. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkUnit108Point_A1_b73 {
     f32 x, y;
 };
 
-struct UnkUnit108Entry_A1_b73 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkUnit108List_A1_b73 {
-    UnkUnit108Entry_A1_b73* data;
+    CVector3D* data;
     u32 count;
 };
 
 bool fn_7100118b1c(const UnkUnit108List_A1_b73* self, const UnkUnit108Point_A1_b73* p, f32 r) {
-    const UnkUnit108Entry_A1_b73* e = self->data;
-    const UnkUnit108Entry_A1_b73* end = e + self->count;
+    const CVector3D* e = self->data;
+    const CVector3D* end = e + self->count;
     f32 min_x = p->x - r;
     f32 max_x = p->x + r;
     f32 min_y = p->y - r;
