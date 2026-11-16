@@ -12,6 +12,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU32.h"
 #include "game/sound/CSoundManager.h"
@@ -57,8 +58,6 @@ void fn_7100fcb190(UnkSoundList_ovb56* self) {
     Destroy_ovb56(self);
     fn_7100083c00(self);
 }
-
-extern void* g_unk_7101a1b750[];
 
 // The selector: a name with 0x80 bytes of inline storage (the string, then its inline allocator)
 // and an array of 0x10-byte entries.

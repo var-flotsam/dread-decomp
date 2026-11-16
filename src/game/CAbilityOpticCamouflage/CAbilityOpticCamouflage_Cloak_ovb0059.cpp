@@ -17,6 +17,7 @@
 #include "game/UnkTU247.h"
 #include "game/UnkTU2712.h"
 #include "game/UnkTU39.h"
+#include "game/UnkTU432.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -197,7 +198,6 @@ struct UnkOpticHandlePtr_ovb0059 {
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 // The vector's copy constructor: the same growth settings and allocator, then each reference
 // appended (fn_710031da18 grows the array).

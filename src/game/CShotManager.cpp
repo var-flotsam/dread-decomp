@@ -13,6 +13,7 @@
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection.h"
+#include "game/CShotManager.h"
 #include "game/CSwarmControllerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -281,7 +282,6 @@ void fn_7100ed5f2c(UnkShotIdRecordSet* self) {
 extern UnkParseCallbacks g_unk_71729da548 __attribute__((visibility("hidden")));  // this unit's callbacks
 
 // The shot kinds (15) and the presets of each kind (8), as indices.
-extern const u32 g_unk_710164bec0[15];
 extern const u32 g_unk_710164befc[8];
 
 // A path string's ids (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp declares the builder so).

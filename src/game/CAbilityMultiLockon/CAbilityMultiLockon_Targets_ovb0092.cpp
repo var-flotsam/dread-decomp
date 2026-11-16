@@ -13,6 +13,7 @@
 #include "game/UnkTU252.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU432.h"
 #include "game/UnkTimelineComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -23,7 +24,6 @@ void fn_7100a2bc3c(void*);
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 // The lock timelines' ids.
 extern const u64 g_unk_7101648df8;

@@ -29,6 +29,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU432.h"
 #include "game/UnkTU604.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -368,8 +369,6 @@ void fn_710111abb8(UnkSpawnGroupUpdate_ovb0065* self, f32 dt) {
 // (CSpawnGroupComponent_StoreFlag_b49.cpp). Names and layouts are placeholders.
 
 
-extern UnkProperty g_unk_7172a06608;
-
 struct UnkSpawnGroupValue_ovb0065 {
     union {
         CStrId id;
@@ -696,7 +695,6 @@ struct UnkHandlePtr_ovb0008;
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 struct UnkSpawnHandlePtr_ovb0065 {
     UnkWeakHandle* p;

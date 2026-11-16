@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbilitySonar.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTUProperty.h"
@@ -14,7 +15,6 @@
 using namespace unk_static_init;
 
 struct UnkIdPathPair_7100333544;
-void fn_7100333544(UnkIdPathPair_7100333544* self);
 
 struct UnkStatics_71009f12f0 {
     HeaderIds ids;

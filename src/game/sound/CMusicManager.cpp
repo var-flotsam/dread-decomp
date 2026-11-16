@@ -9,9 +9,9 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkTU23.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 
 struct UnkSoundMgr;
-extern char g_unk_7101cac1e0[];  // the manager's vtable
 extern char g_unk_7101cac2d0[];  // the slot data object's vtable
 void fn_7100fd37f0();            // stored in the slot data object
 

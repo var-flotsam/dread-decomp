@@ -10,7 +10,7 @@ struct UnkMissionLog {
     u8 entries_0x270[0x28];
 };
 
-void fn_7100b59690(UnkMissionLog* self, bool flag);
+bool fn_7100b59690(UnkMissionLog* self, bool flag);
 
 void fn_7100b59c10(UnkMissionLog* self, const u32* entry) {
     u8* array = *entry != 2 ? self->entries_0x248 : self->entries_0x270;

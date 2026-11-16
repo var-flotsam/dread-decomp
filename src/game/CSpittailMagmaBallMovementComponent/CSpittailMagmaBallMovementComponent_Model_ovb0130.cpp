@@ -10,6 +10,7 @@
 #include "game/UnkTU127.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU291.h"
+#include "game/UnkTU432.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -108,7 +109,6 @@ using base::reflection::UnkReflObject;
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 struct UnkSpittailMovement_ovb0130;
 void fn_71006df774(UnkSpittailMovement_ovb0130* self);

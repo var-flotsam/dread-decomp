@@ -2,6 +2,7 @@
 // the record's ids and values back to their defaults. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
+#include "base/reflection.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkTU23.h"
 #include "types.h"
@@ -17,8 +18,6 @@ void fn_7100f949a8(UnkOwnedB_ld8d45c* self);
 void fn_7100d90040(UnkOwnedB_ld8d45c* self);
 struct UnkMusicPresets;
 void fn_7100f89678(UnkMusicPresets* self);
-void fn_7100d9012c(void* member);
-void fn_7100d90218(UnkOwnedC_ld8d45c* self);
 
 struct UnkOwnedA_ld8d45c {
     ~UnkOwnedA_ld8d45c() {

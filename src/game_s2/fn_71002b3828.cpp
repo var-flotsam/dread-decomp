@@ -3,6 +3,7 @@
 // through fn_71002b4538). Then looks every 24-byte entry at +0x128 up by its key, keeps a weak
 // reference to what it finds in the entry, and sets one of the flags at +0x1e8..+0x1ea from the kind
 // of the object's component.
+#include "game/CBreakableTileGroup.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU372.h"
@@ -47,7 +48,6 @@ struct UnkOwner {
 extern char g_unk_71726a4bc0[] __attribute__((visibility("hidden")));
 
 void* fn_7100ca719c(void* manager, u32 id);
-UnkEntryInfo* fn_7100ca1ea8(void* entry, u8 sub);
 void fn_71002b3aa0(UnkOwner* self, bool flag, void* arg);
 UnkLinkList* fn_7100ca7a64(void* manager, u32 id);
 void fn_71009c1130(void* component, u32 value, void* owner);

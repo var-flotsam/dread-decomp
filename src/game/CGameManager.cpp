@@ -6,12 +6,14 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBTObserverComponent.h"
+#include "game/CBlackboard.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCameraComponent.h"
 #include "game/CCharClassStartPointComponent.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "game/CScenario.h"
 #include "game/CTriggerComponent.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
@@ -1215,14 +1217,12 @@ void fn_7100dee46c(UnkGameManager* self) {
 #include "base/global/UnkStringPool.h"
 #include "game/UnkSubId_7100fc4b34.h"
 
-extern void* g_unk_7101a1b750[];
 extern u32 g_unk_7101a20300;  // the build number (fn_7100000980's first store)
 // The definitions of the values written (polymorphic property objects, game/UnkTUProperty.h).
 
 struct UnkEnumType;
 UnkEnumType* fn_710009fb38();  // refl_GetType<base::global::TRntString128>
 s32 fn_7100dfb930();
-bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
 
 // The current checkpoint (an object reference at +0x29b8): three words that name its start point.
 struct UnkCheckpoint {

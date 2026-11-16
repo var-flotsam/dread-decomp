@@ -3,14 +3,13 @@
 #include <string.h>
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 #include "../../game_aca57c/UnkBufferString.h"
-
-extern void* g_unk_7101a1b750[];
 
 // Copies `src` into `dst` with A-Z turned into a-z.
 static inline void CopyLower(char* dst, const char* src) {

@@ -4,6 +4,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTUInit.h"
 
 using namespace unk_static_init;
@@ -25,7 +26,6 @@ struct UnkBufferStr {
     u8 pad_0xc4[4];
 };
 void fn_71002eba1c(void* self);  // its destructor, as registered
-extern void* g_unk_7101a1b750[];
 
 __attribute__((always_inline)) inline void InitBufferStr(UnkBufferStr* b, const char* str) {
     auto* s = reinterpret_cast<base::global::CRntString*>(b);
