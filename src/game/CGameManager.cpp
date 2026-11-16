@@ -35,6 +35,7 @@
 #include "game/UnkTU99.h"
 #include "game/nn/time.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CStrId;
 
@@ -339,14 +340,7 @@ struct UnkListedPath {
     UnkListedPath* next;
 };
 // A list of path ids (its destructor is fn_7100087cf8).
-struct UnkFilePathList {
-    void** vtable;
-    u32 count;
-    UnkListedPath* head;
-    UnkListedPath* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;

@@ -3,6 +3,7 @@
 // loader's service of the request ring, and unmounting a pack set's packs. Names and layouts are
 // placeholders.
 #include <nn/os.h>
+#include "base/UnkVtableList.h"
 
 #include "base/CDeviceQueue.h"
 #include "base/UnkDefaultAllocator.h"
@@ -144,14 +145,7 @@ struct UnkListedPath {
     UnkListedPath* next;
 };
 // A list of path ids (as src/base/file/CPackManagerDevice.cpp has it).
-struct UnkFilePathList {
-    void** vtable;
-    u32 count;
-    UnkListedPath* head;
-    UnkListedPath* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;

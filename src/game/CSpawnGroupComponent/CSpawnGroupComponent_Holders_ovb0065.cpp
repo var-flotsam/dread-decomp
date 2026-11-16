@@ -3,6 +3,7 @@
 // weak handles, its update and its notifications. Each section below says what its functions do.
 // Names and layouts are placeholders.
 #include <new>
+#include "base/UnkVtableList.h"
 
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
@@ -46,7 +47,6 @@ using base::global::CStrId;
 // the component's holders (+0x68, count +0x70) to fn_710112bec4 while the flag at +0x139 is set, then
 // clears it. Names and layouts are
 // placeholders.
-
 
 struct UnkEnumType;
 UnkEnumType* fn_71011201e4();
@@ -147,7 +147,6 @@ void fn_710111f280(UnkSpawnGroupHolders_ovb0065* self, void* arg) {
     self->pending = false;
 }
 
-
 struct UnkActivatable_b48;
 void fn_710112bec0(void* object, void* arg);
 
@@ -230,18 +229,13 @@ void fn_710111952c(const u64* id, base::global::CRntVector<UnkSpawnGroupHolders_
 // allocator with flags 0x13) through fn_710111b230, frees it again and returns an empty value, as
 // fn_71011199cc (CSpawnGroupComponent_Collect_b51.cpp) does. Names and layouts are placeholders.
 
+struct UnkCollectList_ovb0065Node {
+    u64 value;
+    UnkCollectList_ovb0065Node* next;
+};
 
-struct UnkCollectList_ovb0065 {
-    struct Node {
-        u64 value;
-        Node* next;
-    };
-    char* vtable;
-    u32 count;
-    Node* head;
-    Node* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+struct UnkCollectList_ovb0065 : base::UnkVtableList<UnkCollectList_ovb0065Node> {
+    using Node = UnkCollectList_ovb0065Node;
 
     UnkCollectList_ovb0065() {
         vtable = reinterpret_cast<char*>(g_unk_7101a32680) + 0x10;
@@ -367,7 +361,6 @@ void fn_710111abb8(UnkSpawnGroupUpdate_ovb0065* self, f32 dt) {
 // current scenario, under its property (the name looked up in the key list at +0x3f8, count +0x400,
 // values at +0x3f0), unless the blackboard is locked; the shape of fn_7101119b7c
 // (CSpawnGroupComponent_StoreFlag_b49.cpp). Names and layouts are placeholders.
-
 
 struct UnkSpawnGroupValue_ovb0065 {
     union {
@@ -496,9 +489,7 @@ s32 fn_710111f07c(UnkSpawnGroupCount_ovb0065* self) {
 // the component with the game manager under the key g_unk_7172a067c0. Names and layouts are
 // placeholders.
 
-
 struct UnkParent;
-
 
 struct UnkSpawnOwner_ovb0065 {
     u8 pad_0x0[0x30];
@@ -568,7 +559,6 @@ void fn_710111c470(UnkSpawnGroupEach_ovb0065* self, UnkSpawnEachFn_ovb0065 fn) {
 // other is left empty (fn_7100ad3588). The shape of the callback sets' move
 // (src/game_s7/fn_71011141e8.cpp). Names and layouts are placeholders.
 
-
 struct UnkSpawnHolderBase_ovb0065 {
     char* vtable;
     UnkOwnedErasedVector callbacks;  // 0x8
@@ -608,7 +598,6 @@ void fn_710111fd80(UnkSpawnHolderMoved_ovb0065* self, UnkSpawnHolderMoved_ovb006
 // game manager's flag (+0x178) is set, and the group's two counters (+0x194, +0x198) drop by one
 // without going below 0. The actor's +0x240 is then told (vtable slot 0x170) and the actor handed to
 // fn_7100232c68. Names and layouts are placeholders.
-
 
 struct UnkSpawnActorState_ovb0065 {
     u8 pad_0x0[0x70];
@@ -704,7 +693,6 @@ struct UnkSpawnGroupList_ovb0065 {
     u8 pad_0x0[0x40];
     base::global::CRntVector<UnkSpawnHandlePtr_ovb0065> spawned;  // 0x40
 };
-
 
 void fn_710111aeb8(UnkSpawnGroupList_ovb0065* self);
 

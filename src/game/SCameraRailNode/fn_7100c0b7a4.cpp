@@ -2,6 +2,7 @@
 // by one: the array is emptied, reserves the other's capacity and appends each element,
 // growing like PushBack (including its hang).
 #include <new>
+#include "base/UnkVtableList.h"
 
 #include "base/global/CRntVector.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
@@ -229,14 +230,7 @@ struct UnkWordNode {
     };
 };
 
-struct UnkWordList {
-    u64 unk_0x0;
-    u32 count;
-    UnkWordNode* head;
-    UnkWordNode* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkWordList : base::UnkVtableList<UnkWordNode> {
     void PushBack(const u64& value) {
         auto* node = static_cast<UnkWordNode*>(allocator->vf_0x40(sizeof(UnkWordNode), 8, flags));
         if (node) {
@@ -256,14 +250,7 @@ struct UnkWordList {
 
     UnkWordList& operator=(const UnkWordList& other) {
         if (this != &other) {
-            for (UnkWordNode* node = head; node;) {
-                UnkWordNode* next = node->next;
-                allocator->vf_0x48(node);
-                node = next;
-            }
-            count = 0;
-            head = nullptr;
-            tail = nullptr;
+            Clear();
             for (UnkWordNode* node = other.head; node; node = node->next)
                 PushBack(node->value);
         }

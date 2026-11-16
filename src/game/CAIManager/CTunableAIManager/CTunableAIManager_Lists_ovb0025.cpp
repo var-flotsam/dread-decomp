@@ -4,6 +4,7 @@
 // about, a keyed table of named points at +0xbc8, six slot arrays from +0xbf8 (three kinds, two sides)
 // and a timed weak reference at +0x2410. The pool lists of render items (0x18- and 0x20-byte nodes)
 // drop each node's item from the render manager before freeing it. Names and layouts are placeholders.
+#include "base/UnkVtableList.h"
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
@@ -68,28 +69,21 @@ struct UnkItemNode18_b0025 {
 
 // The list's base class (its vtable is BaseVtable): releases and frees every node.
 template <class Node, char* BaseVtable>
-struct UnkItemListBase_b0025 {
-    char* vtable;
-    u32 count;
-    Node* head;
-    Node* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkItemListBase_b0025 : base::UnkVtableList<Node> {
     void FreeNodes() {
-        for (Node* n = head; n;) {
+        for (Node* n = this->head; n;) {
             Node* next = n->next;
             n->Release();
-            allocator->vf_0x48(n);
+            this->allocator->vf_0x48(n);
             n = next;
         }
     }
     __attribute__((always_inline)) ~UnkItemListBase_b0025() {
-        vtable = BaseVtable + 0x10;
+        this->vtable = BaseVtable + 0x10;
         FreeNodes();
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        this->count = 0;
+        this->head = nullptr;
+        this->tail = nullptr;
     }
 };
 

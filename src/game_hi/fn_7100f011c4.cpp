@@ -5,6 +5,7 @@
 #include "game/UnkTU2578.h"
 #include "game/UnkTU324.h"
 #include "types.h"
+#include "base/UnkLinkedList.h"
 
 struct UnkRefObj {
     virtual void vf_0x0();
@@ -38,41 +39,12 @@ struct UnkListNode {
     UnkListNode* next;
 };
 
-struct UnkList {
-    u32 count;
-    UnkListNode* head;
-    UnkListNode* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkList : base::UnkLinkedList<UnkListNode> {
     UnkListNode* Find(u32 key) {
         for (UnkListNode* n = head; n; n = n->next)
             if (n->key == key)
                 return n;
         return nullptr;
-    }
-    void Remove(UnkListNode* node) {
-        UnkListNode* prev = nullptr;
-        for (UnkListNode* n = head; n;) {
-            UnkListNode* next = n->next;
-            if (n == node) {
-                if (prev) {
-                    prev->next = next;
-                    if (tail == node)
-                        tail = prev;
-                } else {
-                    head = next;
-                }
-                if (--count == 0) {
-                    head = nullptr;
-                    tail = nullptr;
-                }
-                node->~UnkListNode();
-                allocator->vf_0x48(node);
-                return;
-            }
-            prev = n;
-            n = next;
-        }
     }
 };
 
@@ -97,9 +69,9 @@ struct UnkStruct_0x128 {
     u32 bucket_count;
     u8 pad_0x20[0x60];
     UnkList field_0x80;
-    u8 pad_0xa0[0x10];
+    u8 pad_0xa8[0x8];
     UnkList field_0xb0;
-    u8 pad_0xd0[0x38];
+    u8 pad_0xd8[0x30];
     UnkItemHolder* field_0x108;
     UnkItemHolder* field_0x110;
     u8 pad_0x118[0x9];

@@ -3,19 +3,14 @@
 // shape as fn_7100872908 for another owner.
 #include "base/global/CRntVector.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkNode_710070f240 {
     u32 value;
     UnkNode_710070f240* next;
 };
 
-struct UnkOwner_710070f240 {
-    u64 field_0x0;
-    u32 count;
-    UnkNode_710070f240* head;
-    UnkNode_710070f240* tail;
-    base::UnkAllocator* allocator;
-};
+struct UnkOwner_710070f240 : base::UnkVtableList<UnkNode_710070f240> {};
 
 void fn_710070f240(UnkOwner_710070f240* self, u32 value) {
     UnkNode_710070f240* node = self->head;

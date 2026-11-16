@@ -4,6 +4,7 @@
 #include "game/UnkGameManager.h"
 #include "../../../src/game_s7/UnkPropBagS7.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
@@ -41,17 +42,13 @@ struct UnkStrIdHandle_b0164 {
 // A temporary list of objects (vtable g_unk_7101a32680, nodes from the default allocator with flags 0x13).
 extern void* g_unk_7101a32680[];  // vtable (reached through the GOT)
 
-struct UnkList_b0164 {
-    struct Node {
-        void* value;
-        Node* next;
-    };
-    char* vtable;
-    u32 count;
-    Node* head;
-    Node* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+struct UnkList_b0164Node {
+    void* value;
+    UnkList_b0164Node* next;
+};
+
+struct UnkList_b0164 : base::UnkVtableList<UnkList_b0164Node> {
+    using Node = UnkList_b0164Node;
 
     UnkList_b0164() {
         vtable = reinterpret_cast<char*>(g_unk_7101a32680) + 0x10;

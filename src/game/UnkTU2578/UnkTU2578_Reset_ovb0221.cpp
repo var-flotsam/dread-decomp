@@ -7,6 +7,7 @@
 #include "game/UnkTU287.h"
 #include "game/UnkTU324.h"
 #include "types.h"
+#include "base/UnkLinkedList.h"
 
 struct UnkSoundIdInstance {
     virtual void vf_0x0();
@@ -39,14 +40,6 @@ struct UnkSoundIdListNode {
     UnkSoundIdListNode* next;
 };
 
-struct UnkSoundIdList {
-    u32 count;
-    UnkSoundIdListNode* head;
-    UnkSoundIdListNode* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-};
-
 struct UnkRefObj;
 struct UnkSoundIdRegistry;
 void fn_7100f004dc(UnkSoundIdRegistry* self);
@@ -58,7 +51,7 @@ struct UnkSoundIdItemHolder {
 
 struct UnkStruct_0x128 {
     u8 pad_0x0[0x80];
-    UnkSoundIdList field_0x80;
+    base::UnkLinkedList<UnkSoundIdListNode> field_0x80;
     u8 pad_0xa8[0x60];
     UnkSoundIdItemHolder* field_0x108;
     UnkSoundIdItemHolder* field_0x110;
