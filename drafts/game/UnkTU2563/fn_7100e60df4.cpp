@@ -58,8 +58,7 @@ void fn_7100e60df4(void* array, u32 new_capacity) {
     if (CStrId* old = self->ids) {
         CStrId* dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
-            new (dst) UnkStrIdBase(*old);
-            old->data = &g_unk_7101d47108->empty;
+            CStrId::MoveConstructReloading(dst, *old);
             old->Reset();
         }
         self->allocator->vf_0x48(self->ids);

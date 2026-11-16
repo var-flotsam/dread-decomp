@@ -30,15 +30,10 @@ UnkFreedVectorPair* fn_7100e57018(char* array, void* it) {
     self->records[index].~UnkFreedVectorPair();
     self->ids[index].Reset();
     if (self->count - 1 != index) {
-        UnkFreedVectorPair& last = self->records[self->count - 1];
-        new (&self->records[index]) UnkFreedVectorPair(static_cast<UnkFreedVectorPair&&>(last));
+        new (&self->records[index])
+            UnkFreedVectorPair(static_cast<UnkFreedVectorPair&&>(self->records[self->count - 1]));
         self->records[self->count - 1].~UnkFreedVectorPair();
-        CStrId& last_id = self->ids[self->count - 1];
-        self->ids[index].data = last_id.data;
-        union Slot {
-            base::global::UnkStringData* p;
-        };
-        reinterpret_cast<Slot*>(&last_id.data)->p = &g_unk_7101d47108->empty;
+        CStrId::MoveConstructReloading(&self->ids[index], self->ids[self->count - 1]);
         self->ids[self->count - 1].Reset();
     }
     --self->count;

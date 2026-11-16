@@ -1522,7 +1522,7 @@ address,size,name,name_source,subsystem,status
 0x7100e56a74,496,fn_7100e56a74,unknown,unknown,O
 0x7100e56c64,624,fn_7100e56c64,unknown,unknown,O
 0x7100e56ed4,324,fn_7100e56ed4,unknown,unknown,O
-0x7100e57018,668,fn_7100e57018,unknown,unknown,U
+0x7100e57018,668,fn_7100e57018,unknown,unknown,O
 0x7100e572b4,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>>::Begin",reflection,engine/reflection,O
 0x7100e572c0,24,fn_7100e572c0,unknown,unknown,O
 0x7100e572d8,216,fn_7100e572d8,unknown,unknown,O
@@ -1729,7 +1729,7 @@ address,size,name,name_source,subsystem,status
 0x7100e5d924,492,fn_7100e5d924,unknown,unknown,O
 0x7100e5db10,508,fn_7100e5db10,unknown,unknown,O
 0x7100e5dd0c,440,fn_7100e5dd0c,unknown,unknown,O
-0x7100e5dec4,760,fn_7100e5dec4,unknown,unknown,U
+0x7100e5dec4,760,fn_7100e5dec4,unknown,unknown,O
 0x7100e5e1bc,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>>::Begin",reflection,engine/reflection,O
 0x7100e5e1c8,24,fn_7100e5e1c8,unknown,unknown,O
 0x7100e5e1e0,100,fn_7100e5e1e0,unknown,unknown,O
@@ -3173,7 +3173,7 @@ address,size,name,name_source,subsystem,status
 0x7100eb39f0,536,fn_7100eb39f0,unknown,unknown,U
 0x7100eb3c08,404,fn_7100eb3c08,unknown,unknown,O
 0x7100eb3d9c,244,fn_7100eb3d9c,unknown,unknown,U
-0x7100eb3e90,508,fn_7100eb3e90,unknown,unknown,U
+0x7100eb3e90,508,fn_7100eb3e90,unknown,unknown,O
 0x7100eb408c,316,fn_7100eb408c,unknown,unknown,O
 0x7100eb41c8,436,fn_7100eb41c8,unknown,unknown,O
 0x7100eb437c,400,fn_7100eb437c,unknown,unknown,O
