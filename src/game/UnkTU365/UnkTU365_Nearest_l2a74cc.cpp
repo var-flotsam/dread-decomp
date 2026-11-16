@@ -2,6 +2,7 @@
 // the best one when there is none or it lies nearer to the point at +0x58; at equal distance, when a direction
 // is set, the one whose own direction (words 7 to 9) points further along it wins. Result 1 when taken, else
 // the guarded "skip" 0. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CAimComponent.h"
 #include "game/UnkTU365.h"
 #include "types.h"
@@ -25,18 +26,16 @@ static inline UnkVisitResult_b0040 Skip_l2a74cc() {
     return g_unk_71726a4778;
 }
 
-struct UnkPoint3_l2a74cc {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkNearest_l2a74cc {
     u8 pad_0x0[8];
     UnkAimTarget best;  // 0x8
     bool has_best;  // 0x50
     u8 pad_0x51[7];
-    UnkPoint3_l2a74cc point;  // 0x58
+    CVector3D point;  // 0x58
     u8 pad_0x64[4];
-    const UnkPoint3_l2a74cc* direction;  // 0x68, breaks ties when set
+    const CVector3D* direction;  // 0x68, breaks ties when set
 };
 static_assert(__builtin_offsetof(UnkNearest_l2a74cc, direction) == 0x68, "layout");
 
@@ -68,7 +67,7 @@ UnkVisitResult_b0040 fn_71002a74cc(UnkNearest_l2a74cc* self, UnkAimTarget* targe
         f32 newXy = newDyy + newDxx;
         f32 newDist = newXy + zz;
         s32 order = (s32)Sign_l2a74cc(oldDist - newDist);
-        const UnkPoint3_l2a74cc* dir = self->direction;
+        const CVector3D* dir = self->direction;
         if (dir && order == 0) {
             f32 bestAlong = DirX(self->best) * dir->x + DirY(self->best) * dir->y + DirZ(self->best) * dir->z;
             f32 newAlong = dir->x * DirX(*target) + dir->y * DirY(*target) + dir->z * DirZ(*target);

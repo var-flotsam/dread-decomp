@@ -20,6 +20,8 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
+using base::math::CVector3D;
+
 // fn_71010c7920: the constructor: after the base (fn_7100975d8c), the vtables, the two state machines
 // (+0x700, none 0x7fffffff; +0x838, none 5), the three arrays at +0x7b8, the sub-objects and the listener
 // at +0x1be8.
@@ -71,9 +73,6 @@ struct UnkVectorSet_t {
     base::global::CRntVector<void*> lists[3];  // 0x8, 0x30, 0x58
 };
 
-struct UnkVec3_t {
-    f32 x, y, z;
-};
 
 struct UnkEnemyMovement_t {
     void** vtable;
@@ -104,7 +103,7 @@ struct UnkEnemyMovement_t {
     void* field_0x19f0;
     bool field_0x19f8;
     bool field_0x19f9;
-    UnkVec3_t field_0x19fc;
+    CVector3D field_0x19fc;
     u8 field_0x1a08[0x8];
     u8 field_0x1a10[0x48];
     u8 field_0x1a58[0x48];
@@ -294,11 +293,6 @@ void fn_71010c7b70(UnkEnemyMovement_s* self) {
 
 // fn_71010c7de4: after fn_7100979854, sends itself (fn_71010c7e6c) a parameter block with the direction
 // from virtual slot 0x370 set.
-struct UnkVec3_7de4 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
 
 template <class T>
 struct UnkOpt_7de4 {
@@ -310,8 +304,8 @@ struct UnkSinkParams_7de4 {
     void** vtable;
     UnkOpt_7de4<u32> field_0x8;
     UnkOpt_7de4<f32> field_0x10;
-    UnkOpt_7de4<UnkVec3_7de4> field_0x18;
-    UnkOpt_7de4<UnkVec3_7de4> field_0x28;
+    UnkOpt_7de4<CVector3D> field_0x18;
+    UnkOpt_7de4<CVector3D> field_0x28;
     u32 kind;  // 0x38
 };
 
@@ -334,7 +328,7 @@ void fn_71010c7de4(UnkEnemyMovement_7de4* self, void* xform, const u32* changed)
     params.kind = 0;
     __builtin_memset(&params.field_0x28, 0, 13);
     UnkVec3f dir = self->vf_0x370();
-    __builtin_memcpy(&params.field_0x18.value, &dir, sizeof(UnkVec3_7de4));
+    __builtin_memcpy(&params.field_0x18.value, &dir, sizeof(CVector3D));
     params.field_0x18.has = true;
     fn_71010c7e6c(reinterpret_cast<UnkEffectSink*>(self), &params, 0);
 }
@@ -551,7 +545,6 @@ UnkVec3f fn_71010c9928(UnkEnemyMovement_k* self) {
 
 // fn_71010cd278: the ground probe (fn_7100977e50) of the character movement from virtual slot 0x2a8, from
 // the owner's position or `from`.
-using base::math::CVector3D;
 
 struct UnkCharacterMovement;
 struct UnkCollisionHit;

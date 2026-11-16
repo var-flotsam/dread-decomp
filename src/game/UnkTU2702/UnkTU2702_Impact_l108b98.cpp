@@ -4,15 +4,14 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-struct UnkImpactDir_l108b98 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkImpactOwner_l108b98 {
     u8 pad_0x0[0x38];
@@ -34,6 +33,6 @@ void fn_7101108b98(UnkImpactAI_l108b98* self) {
     CStrId id("MELEE_BLOCKED_WITH_IMPACT", true);
     const UnkMatrix44& m = fn_710002614c(&self->owner->transform);
     f32 x = m.m[2], y = m.m[6], z = m.m[10];
-    UnkImpactDir_l108b98 dir = {x, y, z};
+    CVector3D dir = {x, y, z};
     fn_7100e038b0(manager, &id, reinterpret_cast<UnkVec*>(&dir), 0);
 }

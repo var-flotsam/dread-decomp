@@ -2,14 +2,13 @@
 // +0x3c) has the entry set, gives its offset (a direction scaled by a strength, rolled between the
 // minimum and 1 when that is below 1) with the spread across the entries, and the scale and extra
 // values to go with it. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CAbilityEnergyWave.h"
 #include "types.h"
 
 extern "C" int rand();
 
-struct UnkVec3_ovb0262g {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkTunableValue_ovb0262g {
     u8 pad_0x0[0x2c];
@@ -18,7 +17,7 @@ struct UnkTunableValue_ovb0262g {
 
 struct UnkSpreadEntry_ovb0262g {
     bool ok;  // 0x0
-    UnkVec3_ovb0262g offset;  // 0x4
+    CVector3D offset;  // 0x4
     f32 scale;  // 0x10
     f32 extra;  // 0x14
     UnkSpreadEntry_ovb0262g() : ok(false), offset{0.0f, 0.0f, 0.0f}, scale(0.0f), extra(0.0f) {}
@@ -50,8 +49,8 @@ static inline f32 RandRange(f32 lo, f32 hi) {
 }
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
-UnkSpreadEntry_ovb0262g fn_71008372ac(UnkSpread_ovb0262g* self, u32 index, const UnkVec3_ovb0262g* direction,
-                                      const UnkVec3_ovb0262g* spread) {
+UnkSpreadEntry_ovb0262g fn_71008372ac(UnkSpread_ovb0262g* self, u32 index, const CVector3D* direction,
+                                      const CVector3D* spread) {
     f32 range = g_unk_71726af060.value;
     UnkSpreadEntry_ovb0262g result;
     if (self->disabled) {

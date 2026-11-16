@@ -112,9 +112,6 @@ struct UnkIceShard_ovb0122 {
     f32 field_0x4c;
 };
 
-struct UnkIcePos_ovb0122 {
-    f32 x, y, z;
-};
 
 void fn_7100dde3e4(UnkGameObject_0x150* self, const UnkIceShard_ovb0122* shard);
 
@@ -138,7 +135,7 @@ static inline UnkGameObject_0x150* Shards_ovb0122() {
 // Hands the shard manager (g_unk_7101d47370, created on first use) one shard of kind 1 at `pos`, raised by
 // a random 0..15, moving along `dir`, of a random size 100..150 and a random angle (0..6.28), with fixed
 // parameters otherwise.
-void fn_7100ab481c(void* self, const UnkIcePos_ovb0122* pos, const UnkIceVec3_ovb0122* dir) {
+void fn_7100ab481c(void* self, const CVector3D* pos, const UnkIceVec3_ovb0122* dir) {
     UnkIceShard_ovb0122 shard;
     f32 size = RandomRange_ovb0122(100.0f, 150.0f);
     shard.kind = 1;

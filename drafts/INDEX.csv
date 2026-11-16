@@ -357,7 +357,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71005c3160,372,drafts/game/UnkTU883/fn_71005c3160.cpp,registers or order,92.5,7,overnight,
 0x71005cfa94,812,drafts/game/CInfesterBallAIComponent/fn_71005cfa94.cpp,operations,4.8,193,lean-oc2,base register: original addresses the flags (+0x14704/08/0e) from self+0x146d0; ours keeps self+0x14704 from t
 0x71005cfdc0,528,drafts/game/CInfesterBallAIComponent/fn_71005cfdc0.cpp,operations,28.1,94,lean-oc2,facing (+0x146c8+0xb0) is two integer selects (csel; cset<<31) stored with stp; float; aggregate and const-glo
-0x710063ab04,448,drafts/game/UnkTU958/fn_710063ab04.cpp,registers or order,91.1,10,lean-oc2,scheduling of the z component load in the distance-squared sum
 0x71006444ac,724,drafts/game/CQuetzoaChargeAttack/fn_71006444ac.cpp,operations,22.2,139,lean-oc2,first transform built through a temporary copy instead of in place; transform and hit query look like one 0x98
 0x71006457c4,576,drafts/game/CQuetzoaEnergyWaveAttack/fn_71006457c4.cpp,control flow,20.8,114,lean-oc2,null-check exits: original zeroes the result before the actor checks and keeps the scenario-null exit separate
 0x7100656f3c,948,drafts/game/CRedenkiSwarmControllerComponent/fn_7100656f3c.cpp,operations,34.2,155,lean-oc1,frame 0x10 smaller and 10 fewer insns (spills/regs in loop); positions copied as words in original (UnkVec3f-l
@@ -658,7 +657,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e2a034,1792,drafts/game/UnkTU2562/fn_7100e2a034.cpp,control flow,7.9,412,lean-r2k,prologue/stack now match; CStrId move-assign of the X-Parasite id lays out its release blocks differently (poo
 0x7100e2a734,1784,drafts/game/UnkTU2562/fn_7100e2a734.cpp,operations,21.7,349,lean-r2kb,MATCHES once fn_7100e2c124 param 2 (void* self) becomes UnkNoArg; also needs g_unk_71727c13c8 declared as a CR
 0x7100e2d4ec,284,drafts/game/UnkTU2562/fn_7100e2d4ec.cpp,operations,9.9,57,lean-b5,box merge scheduling and loop shape differ; z loaded as integer word in original
-0x7100e2eef8,312,drafts/game/UnkTU2562/fn_7100e2eef8.cpp,registers or order,71.8,22,lean-b5,same instructions; register/order differences
+0x7100e2eef8,312,drafts/game/UnkTU2562/fn_7100e2eef8.cpp,registers or order,97.4,2,lean-b5,same instructions; register/order differences
 0x7100e2f030,220,drafts/game/UnkTU2562/fn_7100e2f030.cpp,operations,29.1,38,lean-b5,loop induction var: original keeps the active-byte pointer and post-index fuses slot address; ours uses flags/
 0x7100e2f398,292,drafts/game/UnkTU2562/fn_7100e2f398.cpp,operations,2.7,69,pilot50,operations: second loop strength-reduced; 2 insns off; first-loop counter register
 0x7100e3c6a0,812,drafts/game/UnkTU2563/fn_7100e3c6a0.cpp,registers or order,93.6,13,lean-ob3,scheduling of the first bounds stores (min/max box after fn_710007b444)

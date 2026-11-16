@@ -6,14 +6,13 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/input/UnkHidVibration.h"
+#include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "types.h"
 
 extern char unk_7101a1a3a8[];
 
-struct UnkRumbleVec_ovb0186 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 // A mutex finalized on destruction (initialised in the player's constructor body).
 struct UnkOwnedMutex_ovb0186 {
@@ -34,7 +33,7 @@ struct UnkVibrationPlayer_ovb0186 : UnkVibrationPlayerBase_ovb0186 {
     f32 to;                       // 0x168
     f32 duration;                 // 0x16c
     f32 elapsed;                  // 0x170
-    UnkRumbleVec_ovb0186 offset;  // 0x174
+    CVector3D offset;  // 0x174
     f32 balance;                  // 0x180
     f32 gain;
     f32 current;  // 0x188

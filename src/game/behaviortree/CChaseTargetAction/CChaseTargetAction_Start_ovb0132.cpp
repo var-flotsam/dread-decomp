@@ -6,6 +6,7 @@
 // possibly overridden by the filter (vf_0xb8) when that gives a positive one, at least the minimum at
 // +0xcc and replaced by the AI's vf_0x698 while +0x78 has a target; it is stored at +0x68 and in the AI
 // at +0x14690. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2702.h"
 #include "game/behaviortree/CBehavior.h"
@@ -80,9 +81,7 @@ struct UnkChaseRefSlot_ovb0132 {
     }
 };
 
-struct UnkChaseVec3_ovb0132 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkChaseAction_ovb0132 {
     u8 pad_0x0[0x18];
@@ -104,15 +103,15 @@ struct UnkChaseAction_ovb0132 {
     u8 pad_0x88[0x2c];
     u32 field_0xb4;
     u8 pad_0xb8[0x8];
-    UnkChaseVec3_ovb0132 field_0xc0;
+    CVector3D field_0xc0;
     f32 field_0xcc;  // the minimum size
-    UnkChaseVec3_ovb0132 field_0xd0;
+    CVector3D field_0xd0;
 };
 static_assert(__builtin_offsetof(UnkChaseAction_ovb0132, field_0xd0) == 0xd0, "layout");
 
 void fn_710037b5c4(UnkChaseAction_ovb0132* self, void* out);
 void fn_710037b7b4(UnkChaseAction_ovb0132* self, UnkChaseRefSlot_ovb0132* out);
-void fn_710037bb64(UnkChaseAction_ovb0132* self, UnkChaseVec3_ovb0132* a, f32* b, UnkChaseVec3_ovb0132* c);
+void fn_710037bb64(UnkChaseAction_ovb0132* self, CVector3D* a, f32* b, CVector3D* c);
 
 bool fn_710037a680(UnkChaseAction_ovb0132* self, UnkChaseSizeFilter_ovb0132* filter, u32 arg) {
     UnkActor* actor = self->actor;

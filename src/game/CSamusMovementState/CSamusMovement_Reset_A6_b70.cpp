@@ -1,5 +1,6 @@
 // Functions in the CSamusMovement unit that walk its state list (a u32 count at +0x2d18 followed
 // directly by the pointers, at +0x2d1c). Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CComponent.h"
 #include "game/UnkTU39.h"
 #include "game/navmesh/SNavMeshPath.h"
@@ -114,9 +115,7 @@ struct UnkSamusMoveStateB_A6_b70 {
     virtual void vf_0xb0();
 };
 
-struct UnkVec3_A6_b70 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 #pragma pack(push, 4)
 struct UnkSamusMoveB_A6_b70 {
@@ -124,7 +123,7 @@ struct UnkSamusMoveB_A6_b70 {
     u8 pad_0x8[0xf9 - 0x8];
     bool pending;
     u8 pad_0xfa[0x1d8 - 0xfa];
-    UnkVec3_A6_b70 field_0x1d8;
+    CVector3D field_0x1d8;
     u8 pad_0x1e4[0x7c8 - 0x1e4];
     f32 field_0x7c8;
     u8 pad_0x7cc[0x2290 - 0x7cc];
@@ -137,11 +136,11 @@ struct UnkSamusMoveB_A6_b70 {
     u32 field_0x2320;
     u16 field_0x2324;
     u8 pad_0x2326[0x2330 - 0x2326];
-    UnkVec3_A6_b70 field_0x2330;
+    CVector3D field_0x2330;
     u8 pad_0x233c[0x2340 - 0x233c];
     f32 field_0x2340;
     u8 pad_0x2344[0x2380 - 0x2344];
-    UnkVec3_A6_b70 field_0x2380;
+    CVector3D field_0x2380;
     u8 pad_0x238c[0x2d18 - 0x238c];
     u32 state_count;
     UnkSamusMoveStateB_A6_b70* states[1];  // 0x2d1c, 4-byte aligned

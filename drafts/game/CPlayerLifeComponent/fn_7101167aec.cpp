@@ -6,10 +6,11 @@
 //    local, and the two flags as locals joined by `||` inside the if. Untried: a form where the `ready`
 //    value is not inverted, e.g. an inline helper returning the bool, or `if (answer && ready)` nested
 //    around a separate `if (answer->vf_0x680(...))`.
-// 2. Normalise: the original has x * scale, y * scale, scale * z; this form has scale * y. Likely cause:
-//    `normal` starts its lifetime between the sqrtf call and the reloads of push. Building it through an
-//    inline helper returning UnkVec3f (`UnkVec3f normal = Normalized(push);`) was written in attempts 2
-//    and 3 but its effect was hidden behind the earlier difference, so it is unconfirmed.
+// 2. Normalise: the original has x * scale, y * scale, scale * z; this form has scale * y. Confirmed
+//    (2026-11-16): base::math::Normalized (include/base/math/CVectorOps.h) applied to push itself gives the
+//    original's normalise exactly (97.7%, only difference 1 left), but push is a UnkVec3f, so it needs the
+//    shared operations for UnkVec3f (or push as a CVector3D, which changes its word copies); a copy into a
+//    CVector3D first does not work (the original reloads push after the sqrtf call).
 // CPlayerLifeComponent (unit 2716): reacts to a hit. Picks the hit direction, lets the attacker's
 // component answer the hit, passes the resulting push to the player's movement and, for hit kinds
 // 4 and 5, sends the game manager an event with the push's direction.

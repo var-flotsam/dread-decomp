@@ -2,6 +2,7 @@
 // the vtable, a cleared word at +0x28, three vectors at +0x30, +0x3c and +0x48 set to the zero vector
 // g_unk_7101647790, cleared fields up to +0x6c and a member at +0x70 (vtable g_unk_7101a2aef8) with
 // its fields cleared. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CAttack.h"
 #include "game/CAutclastChargeAttack.h"
@@ -9,19 +10,15 @@
 
 extern void* g_unk_7101a57f68[];
 
-struct UnkPoisonFlyDiveVec {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkPoisonFlyDiveAttack {
     void** vtable;
     u8 pad_0x8[0x20];
     u64 field_0x28;
-    UnkPoisonFlyDiveVec field_0x30;
-    UnkPoisonFlyDiveVec field_0x3c;
-    UnkPoisonFlyDiveVec field_0x48;
+    CVector3D field_0x30;
+    CVector3D field_0x3c;
+    CVector3D field_0x48;
     u32 field_0x54;
     u8 pad_0x58[0x4];
     u32 field_0x5c[4];
@@ -37,7 +34,7 @@ __attribute__((always_inline)) static inline void Construct(UnkPoisonFlyDiveAtta
     self->vtable = g_unk_7101a57f68 + 2;
     self->field_0x28 = 0;
     // Copied word by word; the third word is read after the first two are stored.
-    const UnkPoisonFlyDiveVec& zero = *reinterpret_cast<const UnkPoisonFlyDiveVec*>(&g_unk_7101647790);
+    const CVector3D& zero = *reinterpret_cast<const CVector3D*>(&g_unk_7101647790);
     u32 x = reinterpret_cast<const u32*>(&zero)[0];
     u32 y = reinterpret_cast<const u32*>(&zero)[1];
     reinterpret_cast<u32*>(&self->field_0x30)[0] = x;

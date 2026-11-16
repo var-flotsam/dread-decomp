@@ -1,15 +1,14 @@
 // Unit 47 (tools/tu_map.py): the rumble manager's table of players. Stores a three-float vector at
 // +0x174 of the player registered under `key` and marks it changed (+0x1a4). Names and layouts are
 // placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
-struct UnkVec3_l070344 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkRumblePlayer_l070344 {
     u8 pad_0x0[0x174];
-    UnkVec3_l070344 vec;  // 0x174
+    CVector3D vec;  // 0x174
     u8 pad_0x180[0x24];
     u8 changed;  // 0x1a4
 };
@@ -37,7 +36,7 @@ struct UnkRumbleTable_l070344 {
     }
 };
 
-void fn_7100070344(UnkRumbleTable_l070344* self, u64 key, const UnkVec3_l070344* vec) {
+void fn_7100070344(UnkRumbleTable_l070344* self, u64 key, const CVector3D* vec) {
     if (!self->Has(key))
         return;
     if (UnkRumblePlayer_l070344* player = self->At(key)) {

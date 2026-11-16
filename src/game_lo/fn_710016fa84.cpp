@@ -2,7 +2,7 @@
 // up vector (columns 0/1, re-orthogonalised with cross products) or from fixed unit axes.
 #include <math.h>
 
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 
 using base::math::CVector3D;
 
@@ -30,15 +30,6 @@ static inline void Cross(CVector3D* out_, const CVector3D* a_, const CVector3D* 
     out[0] = a[1] * b[2] - a[2] * b[1];
     out[1] = a[2] * b[0] - a[0] * b[2];
     out[2] = a[0] * b[1] - a[1] * b[0];
-}
-
-static inline void Normalize(CVector3D* v) {
-    f32 len = sqrtf(v->x * v->x + v->y * v->y + v->z * v->z);
-    f32 inv = 1.0f / (len + 0.0001f);
-    f32 x = v->x, y = v->y, z = v->z;
-    v->x = x * inv;
-    v->y = y * inv;
-    v->z = inv * z;
 }
 
 // Fills the rotation matrix around the up vector, if this owner uses one.
@@ -69,7 +60,7 @@ void fn_710016fa84(UnkOwner_710016fa84* self, const CVector3D* up, const CVector
                 side->y = m.m[1][1];
                 side->z = m.m[2][1];
                 Cross(fwd, side, up);
-                Normalize(fwd);
+                *fwd = Normalized(*fwd);
             } else {
                 fwd->x = m.m[0][0];
                 fwd->y = m.m[1][0];
@@ -82,7 +73,7 @@ void fn_710016fa84(UnkOwner_710016fa84* self, const CVector3D* up, const CVector
     fn_710007a620(&unk_71016481b0, rot, side);
     if (self->field_0x438) {
         Cross(fwd, side, up);
-        Normalize(fwd);
+        *fwd = Normalized(*fwd);
     } else {
         fn_710007a620(&unk_71016481bc, rot, fwd);
     }

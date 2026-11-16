@@ -2,6 +2,7 @@
 // layouts are placeholders.
 #include <math.h>
 
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
@@ -29,9 +30,7 @@ struct UnkScratchAttack_ov110 {
     UnkScratchTunables_ov110* tunables;  // 0x50
 };
 
-struct UnkScratchPos_ov110 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 static inline u8 Flag_ov110(UnkScratchComponent_ov110* ai) {
     return reinterpret_cast<u8*>(ai)[0x15ed0];
@@ -39,7 +38,7 @@ static inline u8 Flag_ov110(UnkScratchComponent_ov110* ai) {
 
 // The point to scratch at: the actor's position with x moved to whichever of the commander's two
 // bounds (fn_71010fc31c, fn_71010fc284) is nearer to its target.
-bool fn_71004280e0(UnkScratchAttack_ov110* self, UnkScratchPos_ov110* out) {
+bool fn_71004280e0(UnkScratchAttack_ov110* self, CVector3D* out) {
     UnkScratchComponent_ov110* ai = static_cast<UnkScratchComponent_ov110*>(self->actor->field_0x240);
     if (!ai || !fn_710009d50c(ai->vf_0x0(), fn_710044e708()))
         return false;
