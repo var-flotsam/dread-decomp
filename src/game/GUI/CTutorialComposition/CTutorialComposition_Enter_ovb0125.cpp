@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/sound/SGUISoundEventsSelector.h"
@@ -15,7 +16,6 @@
 using base::global::CRntString;
 
 using UnkGuiObj = UnkGuiDisplayObject;
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 
 struct UnkStateSink;
 struct UnkStateKey;

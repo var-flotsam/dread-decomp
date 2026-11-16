@@ -3,22 +3,17 @@
 // placeholders.
 #include "base/UnkFileReader.h"
 #include "base/UnkHashStream.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CBlackboard.h"
 #include "game/UnkTU56.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-bool fn_710000ccd8(UnkFileReader* self);
-// Parses from a root node; nonzero on success (base/animation/CBlendSpaceResource.h declares it void).
-s32 fn_710000f750(UnkParseContext* self, void* root);
-
-// This unit's parser callbacks.
-extern UnkParseCallbacks g_unk_71729fd068 __attribute__((visibility("hidden")));
 
 static inline bool Parse(UnkFileReader* reader, UnkReadTarget* target) {
     UnkParseContext ctx(g_unk_71729fd068, reader, target);

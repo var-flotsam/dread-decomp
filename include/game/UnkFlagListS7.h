@@ -35,6 +35,12 @@ struct alignas(16) UnkFlagList {
     };
 
     UnkFlagList() : count(0), head(nullptr), tail(nullptr), allocator(fn_7100083990()), flags(0x13) {}
+    // A copy with the other list's allocator and flags, its values appended one by one.
+    UnkFlagList(const UnkFlagList& other)
+        : count(0), head(nullptr), tail(nullptr), allocator(other.allocator), flags(other.flags) {
+        for (Node* n = other.head; n; n = n->next)
+            PushBack(n->value);
+    }
     virtual void vf_0x0();
     ~UnkFlagList() {
         for (Node* n = head; n;) {
@@ -68,4 +74,4 @@ struct UnkFlagListKey;
 }  // namespace unk_flag_list
 
 void fn_71008724f8(void* target, unk_flag_list::UnkFlagListKey* key, unk_flag_list::UnkFlagList* values,
-                   u32 a, u32 b, u32 c, u32 d);
+                   bool a, bool b, bool c, bool d);

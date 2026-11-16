@@ -2,6 +2,7 @@
 // list of keyed 2D points, adding a node when the id has none, and notifies the listeners when the
 // point moved away from the last one. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -31,11 +32,7 @@ struct UnkPointNode_l06c598 {
 
 struct UnkPointList_l06c598 {
     u8 pad_0x0[0x8];
-    u32 count;                    // 0x8
-    UnkPointNode_l06c598* head;   // 0x10
-    UnkPointNode_l06c598* tail;   // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 alloc_flags;              // 0x28
+    base::UnkLinkedList<UnkPointNode_l06c598> points;  // 0x8
     base::UnkDeferredSet<base::UnkDeferredCallback<const void*>> listeners;  // 0x30
 };
 
@@ -49,9 +46,9 @@ static inline bool IsOutside(f32 value, f32 centre) {
 }
 
 void fn_710006c598(UnkPointList_l06c598* self, const base::global::CStrId& key, const UnkPoint_l06c598& point) {
-    UnkPoint_l06c598 last(self->count ? self->tail->point : g_unk_710164768c);
+    UnkPoint_l06c598 last(self->points.count ? self->points.tail->point : g_unk_710164768c);
 
-    UnkPointNode_l06c598* node = self->head;
+    UnkPointNode_l06c598* node = self->points.head;
     for (; node; node = node->next) {
         if (node->key == key)
             break;
@@ -63,23 +60,14 @@ void fn_710006c598(UnkPointList_l06c598* self, const base::global::CStrId& key, 
         base::global::CStrId id(key);
         UnkPoint_l06c598 value(point);
         node = static_cast<UnkPointNode_l06c598*>(
-            self->allocator->vf_0x40(sizeof(UnkPointNode_l06c598), 8, self->alloc_flags));
+            self->points.allocator->vf_0x40(sizeof(UnkPointNode_l06c598), 8, self->points.flags));
         if (node) {
             node->key.data = id.data;
             id.data = &g_unk_7101d47108->empty;
             node->point = value;
             node->weight = -1.0f;
             node->next = nullptr;
-            if (self->count) {
-                self->tail->next = node;
-                node->next = nullptr;
-                self->tail = node;
-                self->count++;
-            } else {
-                self->head = node;
-                self->tail = node;
-                self->count = 1;
-            }
+            self->points.PushBack(node);
         }
     }
 

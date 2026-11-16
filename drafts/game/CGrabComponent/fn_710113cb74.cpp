@@ -18,7 +18,6 @@ struct UnkMtx44_b46a2 {
     f32 m[16];
 };
 
-bool fn_7101179de0(UnkAnimActionSetsOwner* self, void* id, u64 key, f32 seconds, UnkMtx44_b46a2* out, u32 b);
 bool fn_7101179e68(void* anim, UnkCutsceneTimeline* timeline, u64 key, UnkMatrix44* out, u32 b);
 f32 fn_710117808c(UnkAnimationComponent* self, u64 key);
 
