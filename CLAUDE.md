@@ -86,6 +86,7 @@ python tools/data_map.py --address <addr>              # the unit a global belon
 python tools/gen_fields.py --class <Class>             # a reflected class's members by offset, bases included
 python tools/decl_check.py --strict --base origin/main # one declaration per shared symbol (CI)
 python tools/struct_check.py --base origin/main        # no type name with a second, different definition (CI)
+python tools/lost_matches.py --base origin/main        # no function O on main stops being O (CI); data/demotions.csv
 python tools/fakematch.py --base origin/main [--list]  # fake-match forms a branch adds; review before a PR
 python tools/equiv_test.py --version <ver> <file.cpp> [--write]   # tier 2: is a registers-only non-match equivalent?
 python tools/ref_check.py --version <ver> [<file.cpp>]  # wrong callees and globals in functions that do not match

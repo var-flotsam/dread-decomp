@@ -20,6 +20,8 @@ extern const char g_unk_7101647847[] __attribute__((visibility("hidden")));
 // `g_unk_7101a194b8 + 2` (the address point) after fn_710007e6e4. Reached through the GOT slot at
 // 0x7101cbb250, which is not itself the vtable.
 extern void* g_unk_7101a194b8[];
+// The same for a string with 0x40 bytes of inline storage.
+extern void* g_unk_7101a1b678[];
 
 namespace base::global {
 

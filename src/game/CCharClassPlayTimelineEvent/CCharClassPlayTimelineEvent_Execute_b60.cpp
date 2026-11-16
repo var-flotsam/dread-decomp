@@ -14,15 +14,9 @@ struct UnkModeCondition;
 struct UnkModeActor;
 bool fn_7100bc8e88(const UnkModeCondition<0x18>* self, UnkModeActor* actor);
 
-struct UnkTimelineNameData_b60 {
-    base::global::UnkStringData base;
-    u8 unk_0xc[0x24];
-    u64 hash;
-};
-
 struct UnkPlayTimelineEvent_b60 {
     u8 unk_0x0[0x10];
-    UnkTimelineNameData_b60* timeline;
+    base::global::UnkStringData* timeline;
 };
 
 struct UnkPlayTimelineTarget_b60 {
@@ -36,7 +30,7 @@ struct UnkTrackActionValue_b60 {
 };
 
 void fn_7100bc8d50(UnkPlayTimelineEvent_b60* self, UnkPlayTimelineTarget_b60* target) {
-    if (&self->timeline->base == &g_unk_7101d47108->empty)
+    if (self->timeline == &g_unk_7101d47108->empty)
         return;
     UnkActor* actor = target->actor;
     if (!actor)
@@ -47,7 +41,7 @@ void fn_7100bc8d50(UnkPlayTimelineEvent_b60* self, UnkPlayTimelineTarget_b60* ta
     if (!fn_7100bc8e88(reinterpret_cast<const UnkModeCondition<0x18>*>(self),
                        reinterpret_cast<UnkModeActor*>(actor)))
         return;
-    u64 key = self->timeline->hash;
+    u64 key = self->timeline->Key();
     const u32* value;
     if (target->track && fn_710070d500(target->track)) {
         value = &reinterpret_cast<UnkTrackActionValue_b60*>(fn_710070d500(target->track))->value;
