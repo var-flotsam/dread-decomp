@@ -161,6 +161,14 @@ match. Parked: the UnkTU2510 group (`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5
 result is 4 bytes in `UnkCollisionWorld.cpp` and 8 in `UnkTU2510_Collision_ovb0175.cpp` (the tester-result size
 question of `UnkShapeHit_A5_b68` again), and `UnkShape`, `UnkBox`, `UnkSubTree` and `UnkFlags` have 7, 7, 4 and 3
 different texts; that is a unit-wide pass of its own.
+**Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
+(`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;
+`fn_710054095c` declared in `game/UnkTU811.h`), unit 1501's ground-movement view
+(`include/game/UnkGroundMovement_ovb0138.h`, the ground state's members plus the draft's, with the actor and run
+information types; `fn_71009ea070` declared in `game/UnkTU1501.h`), and CMissionLog's 0x38-byte record array
+(`include/game/GUI/UnkMissionLogRecords.h`, replacing copies in six sources, with its reserve, append and destroy
+declared once). `fn_710054095c`, `fn_71009ea070` and `fn_7100b5af1c` moved from `drafts/` to `src/` as matches.
+Parked: `fn_71000e76dc` (unit 85): its types are `include/base/reflection/`'s, which another thread is changing.
 
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array

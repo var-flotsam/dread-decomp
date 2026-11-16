@@ -12,6 +12,7 @@ struct UnkActor;
 struct UnkEmmyRelaxAI_b59;
 struct UnkComponent;
 struct UnkEmmyAI;
+struct UnkEmmyAI2_b57a3;
 struct UnkEmmyAI2_b62a3;
 struct UnkEmmyAIComponent_b46a1;
 struct UnkEmmyAIView;
@@ -45,3 +46,5 @@ void fn_7100546a30(UnkEmmyRelaxAI_b59* self, u32 state, UnkActor* other, void* a
 extern base::global::CStrId g_unk_71726e1f68 __attribute__((visibility("hidden")));
 base::global::CRntVector<UnkListedItem*>* fn_7100552d7c();
 void fn_71005479a0(UnkEmmyRelaxAI_b59* self);
+// Hands the game manager the string id for the barrier state (the barrier or no-barrier name, or the default).
+void fn_710054095c(UnkEmmyAI2_b57a3* self);
