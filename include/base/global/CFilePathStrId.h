@@ -79,6 +79,22 @@ public:
         other.data = &g_unk_7101d47200->empty;
         return *this;
     }
+    // As CStrId's, on this pool: the new string gains a reference before the old one is released.
+    CFilePathStrId& operator=(const CFilePathStrId& other) {
+        if (data != other.data) {
+            UnkStringData* d = other.data;
+            UnkStringPool* pool = g_unk_7101d47200;
+            if (d != &pool->empty)
+                ++d->ref_count;
+            if (data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0)
+                    fn_71000803a4(pool, data);
+            }
+            data = d;
+        }
+        return *this;
+    }
     // The empty path, as the reflected default value builds it.
     CFilePathStrId() {
         data = nullptr;
@@ -97,6 +113,9 @@ public:
             data = &pool->empty;
         }
     }
+
+    // Ids are equal when they share the pooled string.
+    bool operator==(const CFilePathStrId& other) const { return data == other.data; }
 };
 
 }  // namespace base::global
