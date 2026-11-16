@@ -22,7 +22,6 @@
 #include "game/UnkTU437.h"
 #include "game/UnkTUProperty.h"
 #include "base/UnkDestructors.h"
-#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -46,6 +45,10 @@ struct UnkCountedA5_b76 : base::UnkRefCounted {
 
 using UnkRef = base::UnkRefPtrMember;
 
+struct UnkSubId_7100fc4b34 {
+    CStrId id;
+    u64 field_0x8;
+};
 const UnkSubId_7100fc4b34& fn_71008c0004(UnkQualifiedName* self, const char* name);
 extern UnkPropertyEx<0x160> g_unk_7172759848;
 

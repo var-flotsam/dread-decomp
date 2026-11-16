@@ -8,9 +8,8 @@
 #include "game/UnkTU167.h"
 #include "game/UnkTU275.h"
 #include "game/UnkTU308.h"
+#include "game/UnkWidgetVtable.h"
 #include "types.h"
-
-extern void* g_unk_7101a1f000[];
 
 struct UnkWidgetArg;
 struct UnkWidgetMember {

@@ -18,7 +18,6 @@
 #include "game/UnkTU2571.h"
 #include "game/UnkTU2578.h"
 #include "game/UnkTUProperty.h"
-#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -114,6 +113,13 @@ void fn_7100ec9640(UnkMusicList_b0166* self) {
 }
 
 // ---- the counters ----
+
+struct UnkSubId_7100fc4b34 {
+    CStrId id;
+    u64 field_0x8;
+};
+using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
+const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 extern UnkPropertyEx<0x160> g_unk_7172759680;
 

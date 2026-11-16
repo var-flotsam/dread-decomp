@@ -413,7 +413,6 @@ void fn_7100df026c(UnkGameManager* self, const CFilePathStrId& path) {
 
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGameBlackboard.h"
-#include "game/UnkSubId_7100fc4b34.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTypedValue.h"
 
@@ -432,7 +431,13 @@ static inline const UnkQualifiedId& Qid(UnkGameManagerDef& def) {
 }
 
 // A definition whose qualified id is kept as a string, with named sub-ids looked up in a map
-// (fn_71003327a4, game/UnkSubId_7100fc4b34.h).
+// (fn_71003327a4; the declaration is src/game_s7/fn_7100fc4b34.cpp's).
+struct UnkSubId_7100fc4b34 {
+    CStrId id;
+    u64 field_0x8;
+};
+using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
+const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 struct UnkGameManagerNamedDef : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
@@ -1214,7 +1219,6 @@ void fn_7100dee46c(UnkGameManager* self) {
 // The profile values written to the blackboard (fn_7100dfc638) and what it reads.
 #include "../game_aca57c/UnkBufferString.h"
 #include "base/global/UnkStringPool.h"
-#include "game/UnkSubId_7100fc4b34.h"
 
 extern void* g_unk_7101a1b750[];
 extern u32 g_unk_7101a20300;  // the build number (fn_7100000980's first store)

@@ -154,13 +154,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-**One sub-id for fn_71003327a4 (2026-11-16).** Fifteen sources and four drafts each copied the 16-byte sub-id
-(`UnkSubId_7100fc4b34`), a `UnkQualifiedName` alias and `fn_71003327a4`'s declaration, the same text everywhere;
-they are now `include/game/UnkSubId_7100fc4b34.h`. `fn_7100e984a4` (unit 2566) moved from `drafts/` to `src/` as a
-match. Parked: the UnkTU2510 group (`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5c1d0`, `fn_7100d5c370`): the query
-result is 4 bytes in `UnkCollisionWorld.cpp` and 8 in `UnkTU2510_Collision_ovb0175.cpp` (the tester-result size
-question of `UnkShapeHit_A5_b68` again), and `UnkShape`, `UnkBox`, `UnkSubTree` and `UnkFlags` have 7, 7, 4 and 3
-different texts; that is a unit-wide pass of its own.
+**Opus batch on the boot slice, lean-ob1 (2026-11-16).** 50 ready functions of 300 to 1,000 bytes reachable from
+`nnMain`, packed five to a worker across units (11 Opus workers, budget 4). 14 matched (28%; 3 on the first graded
+attempt, 7 on the second, 4 on the third) and 6 are registers-only; about 2.26 million tokens. Two matches wait in
+`drafts/`: `fn_710010e15c` (declared elsewhere returning a 20-byte struct where the original writes 12 bytes) and
+`fn_710020a18c` (matches only under the name `UnkWidget`, which five files define differently). `CStrId` gains
+`MoveConstructReloading`, the take into a slot that holds no id yet with the reloading store (`fn_71002a6d38` from
+this batch and `fn_7100e6164c` from lean-o2 match with it; `fn_7100e6164c`'s caller now declares the pointer it
+returns). The permuter matched `fn_71002211b4`. 15 functions into `src/`, about 150,000 tokens per match.
+Declarations: `g_unk_7101a1f000` (the tagged-object widgets' vtable) gets one declaration
+(`include/game/UnkWidgetVtable.h`, 15 copies moved), and two media files' `movie::MediaData` now declare the same
+members as the third. Recurring blocker for the next header decision: the use count at +0x44 of a pooled
+string's entry (`UnkStringEntry::tail.field_0x44`), which several originals reload after incrementing; the
+matched siblings write it with `__builtin_memcpy`.
 
 **Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
 (`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;
