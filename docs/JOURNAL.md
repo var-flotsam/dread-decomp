@@ -172,6 +172,15 @@ result is 4 bytes in `UnkCollisionWorld.cpp` and 8 in `UnkTU2510_Collision_ovb01
 question of `UnkShapeHit_A5_b68` again), and `UnkShape`, `UnkBox`, `UnkSubTree` and `UnkFlags` have 7, 7, 4 and 3
 different texts; that is a unit-wide pass of its own.
 
+**The copy vector in include/ and the music path list on it (2026-11-16).** `UnkCopyVec_b56` (a CRntVector-layout
+array with an out-of-line Reserve per element type) moved from `src/game/UnkUnit2601/` to
+`include/base/UnkCopyVec_b56.h`. The music manager's path list is now `UnkPathVec_b0019 = UnkCopyVec_b56<UnkPathRecord_b0019>`
+in `include/game/sound/UnkMusicPathVec.h` (reserve `fn_7100456980` declared there, `operator[]` now `PathAt`), and
+the pooled string id four sources copied is `include/base/global/UnkPooledId.h`. The record's id must be that pooled
+id: with `CFilePathStrId` the copy constructor still matches but the destructor differs. Still a draft:
+`fn_7100fddf18`. `fn_7100fddcb4.cpp` declares it as a `CRntVector`-based `UnkPathList`'s copy constructor, and
+rebuilding that list on `UnkPathVec_b0019` drops `fn_7100fddcb4` to 16% even with `CRntVector::Free`'s body
+(the schedule changes); making `UnkCopyVec_b56` a `CRntVector` subclass is worse.
 **Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
 (`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;
 `fn_710054095c` declared in `game/UnkTU811.h`), unit 1501's ground-movement view
