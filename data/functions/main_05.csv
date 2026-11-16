@@ -819,7 +819,7 @@ address,size,name,name_source,subsystem,status
 0x7100540384,172,fn_7100540384,unknown,unknown,O
 0x7100540430,992,fn_7100540430,unknown,unknown,U
 0x7100540810,332,fn_7100540810,unknown,unknown,O
-0x710054095c,376,fn_710054095c,unknown,unknown,U
+0x710054095c,376,fn_710054095c,unknown,unknown,O
 0x7100540ad4,764,fn_7100540ad4,unknown,unknown,U
 0x7100540dd0,1784,fn_7100540dd0,unknown,unknown,U
 0x71005414c8,456,fn_71005414c8,unknown,unknown,O

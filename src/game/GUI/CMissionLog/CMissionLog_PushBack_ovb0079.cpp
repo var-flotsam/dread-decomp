@@ -7,28 +7,10 @@
 #include "base/UnkCloneRecords.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/UnkMissionLogRecords.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkElem38 {
-    u8 unk_0x0[0x38];
-};
-
-template <class Elem>
-struct UnkElemArray {
-    Elem* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-using UnkElem38Array = UnkElemArray<UnkElem38>;
-
-void fn_7100b5c28c(UnkElem38Array* self, u32 capacity);
 
 struct UnkMissionLogRecord_ovb0079 {
     u32 field_0x0;

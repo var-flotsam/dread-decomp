@@ -4,14 +4,9 @@
 #include "base/global/CRntVector.h"
 #include "game/GUI/CMissionLog.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/GUI/UnkMissionLogRecords.h"
 #include "types.h"
 
-struct UnkElem38;
-template <class Elem>
-struct UnkElemArray;
-using UnkElem38Array = UnkElemArray<UnkElem38>;
-
-void fn_7100b5c28c(UnkElem38Array* self, u32 capacity);
 void fn_7100b5cea0();
 
 struct UnkMissionLogCtor_b5af1c {
