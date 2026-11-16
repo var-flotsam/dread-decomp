@@ -13,8 +13,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-extern u64 g_unk_710164b258;
-extern u64 g_unk_710164b260;
 
 struct UnkHuskCollider_A5_b62 {
     void** vtable;

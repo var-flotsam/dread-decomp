@@ -3,6 +3,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
@@ -13,7 +14,6 @@ using base::global::CRntString;
 
 // As src/game/GUI/CBoolTunableButton/CBoolTunableButton_Toggle_ovb0119.cpp declares them.
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;

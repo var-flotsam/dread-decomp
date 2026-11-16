@@ -1156,7 +1156,7 @@ address,size,name,name_source,subsystem,status
 0x7100925060,456,fn_7100925060,unknown,game/components?,O
 0x7100925228,28,fn_7100925228,unknown,game/components?,O
 0x7100925244,260,fn_7100925244,unknown,game/components?,O
-0x7100925348,648,fn_7100925348,unknown,game/components?,U
+0x7100925348,648,fn_7100925348,unknown,game/components?,O
 0x71009255d0,120,fn_71009255d0,unknown,game/components?,O
 0x7100925648,40,fn_7100925648,unknown,game/components?,O
 0x7100925670,4,fn_7100925670,unknown,game/components?,O
@@ -1506,7 +1506,7 @@ address,size,name,name_source,subsystem,status
 0x710093ab9c,268,fn_710093ab9c,unknown,game/player?,O
 0x710093aca8,124,fn_710093aca8,unknown,game/player?,O
 0x710093ad24,156,fn_710093ad24,unknown,game/player?,O
-0x710093adc0,536,fn_710093adc0,unknown,game/player?,U
+0x710093adc0,536,fn_710093adc0,unknown,game/player?,O
 0x710093afd8,28,fn_710093afd8,unknown,game/player?,O
 0x710093aff4,132,fn_710093aff4,unknown,game/player?,O
 0x710093b078,8,CSamusModelUpdaterComponent::refl_Equals,reflection,game/player,O

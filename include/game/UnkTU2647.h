@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSoundDef;
+struct UnkSoundDesc;
 struct UnkPathIdListPair_710103a240;
 void fn_7101036e34(void* value);  // The value's destructor.
 void fn_710103a240(UnkPathIdListPair_710103a240* self, const UnkPathIdListPair_710103a240* other);
+void fn_7101037bc0(UnkSoundDef* self, UnkSoundDesc* out, f32* scales, u32 index);

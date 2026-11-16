@@ -18,3 +18,4 @@ u32 fn_710027a320(UnkNavMesh* mesh);
 // Sends a cell's 16-bit id to one of the mesh's two deferred callback sets (+0x90 when `first`, else +0x110);
 // a cell calls it when its flag changes (src/game/UnkNavMeshCell_SetFlag.cpp).
 void fn_710027da54(UnkNavMesh_l27da54* self, const u16* value, bool first);
+void fn_710027e258(void* self, const void* other);

@@ -481,7 +481,6 @@ struct UnkView_ovb0014 {
 void fn_7100219bcc(UnkRenderManager* self, UnkScreenInfo_ovb0014* info, u32 a, u32 b);
 void fn_71001bad24(UnkCamera_ovb0014* camera, const UnkVec3f* screen, const UnkScreenInfo_ovb0014* info,
                    UnkVec3f* out);
-UnkMatrix44 fn_7100078314(const UnkMatrix44* m);
 void fn_7100149474(UnkSceneObject* object, const UnkVec3f* angle);
 void fn_7100149488(UnkSceneObject* object, const UnkVec3f* scale);
 

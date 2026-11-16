@@ -42,3 +42,4 @@ extern base::global::CStrId g_unk_7172a09360 __attribute__((visibility("hidden")
 extern base::global::CStrId g_unk_7172a09368 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_7172a09378 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_7172a09380 __attribute__((visibility("hidden")));
+s32 fn_71011442a0(UnkInventory* inventory, const UnkQualifiedId& item, s32 flag);

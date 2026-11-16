@@ -304,7 +304,6 @@ s32 fn_710107f640(lua_State*) {
 }
 
 // ---- the metroid counters ----
-s32 fn_71011442a0(UnkInventory* inventory, const UnkQualifiedId& item, s32 fallback);
 void fn_71011406b4(UnkInventory* inventory, const UnkQualifiedId& item, s32 amount, bool a, bool b, bool c, f32 extra);
 
 s32 fn_71010866b0(lua_State* L) {

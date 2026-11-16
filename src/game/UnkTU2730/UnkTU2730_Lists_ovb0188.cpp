@@ -20,6 +20,7 @@
 #include "game/UnkTU1643.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2661.h"
 #include "game/UnkTU2728.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2732.h"
@@ -74,7 +75,6 @@ void fn_7101196f4c(UnkRefList_b0188* self) {
     ReleaseAll(self);
 }
 
-void fn_710106838c(void* p);
 void fn_7101196ccc(void* self);
 
 struct UnkOwner_b0188 {

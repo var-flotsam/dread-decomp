@@ -4,6 +4,7 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2647.h"
 #include "game/UnkTU49.h"
 #include "types.h"
 
@@ -28,7 +29,6 @@ struct UnkRumbleDesc_l9dae9c {
 
 struct UnkSoundDef;
 struct UnkSoundDesc;
-void fn_7101037bc0(UnkSoundDef* self, UnkSoundDesc* out, f32* scales, u32 index);
 
 // A string id copied from another (retained), released in two steps.
 struct UnkSoundName_l9dae9c {

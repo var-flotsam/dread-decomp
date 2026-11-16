@@ -2410,7 +2410,7 @@ address,size,name,name_source,subsystem,status
 0x710015abd0,36,fn_710015abd0,unknown,unknown,O
 0x710015ac00,228,fn_710015ac00,unknown,unknown,O
 0x710015acf0,736,fn_710015acf0,unknown,unknown,U
-0x710015afd0,392,fn_710015afd0,unknown,unknown,U
+0x710015afd0,392,fn_710015afd0,unknown,unknown,O
 0x710015b160,1252,fn_710015b160,unknown,unknown,U
 0x710015b650,592,fn_710015b650,unknown,unknown,O
 0x710015b8a0,1240,fn_710015b8a0,unknown,unknown,U

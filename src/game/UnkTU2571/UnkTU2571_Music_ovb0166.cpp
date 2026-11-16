@@ -11,6 +11,7 @@
 #include "engine/scene/UnkToggle.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -74,7 +75,6 @@ struct UnkMusicList_b0166 {
 
 UnkMusicEntry_b0166* fn_7100ec9780(UnkMusicList_b0166* self, u32 index);
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 
 void fn_7100ec9a24(UnkMusicList_b0166* self) {
     for (u32 i = 0; i < self->count; ++i) {

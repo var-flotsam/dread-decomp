@@ -4,7 +4,11 @@
 // 0x7100408b28-0x71004169b0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkSource_7100286798;
+
 s32 fn_7100413fe0(void* self);
 u32 fn_7100414160();
 u32 fn_7100414070(const char* text);
 u32 fn_7100414168();  // The base character class's check (declared without its arguments in its generated definition).
+u32 fn_7100413fd8(UnkSource_7100286798* self);

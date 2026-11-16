@@ -2,13 +2,13 @@
 // placeholders; the cutscene is src/game/CCutscene.cpp's UnkCutscene.
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1134.h"
+#include "game/UnkTU2661.h"
 #include "types.h"
 
 struct UnkTrackObject_71011781f4;
 struct UnkObj_7101066878;
 void fn_7101066878(UnkObj_7101066878* self, f32 time, bool flag, bool flag2);
 struct UnkCutscene;
-void fn_710106b2bc(UnkCutscene* self, f32 frame);
 
 struct UnkCutsceneMode_b52 {
     u8 pad_0x0[0x8];

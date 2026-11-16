@@ -4611,7 +4611,7 @@ address,size,name,name_source,subsystem,status
 0x71008e0328,180,fn_71008e0328,unknown,game/components?,O
 0x71008e03dc,268,fn_71008e03dc,unknown,game/components?,O
 0x71008e04e8,256,fn_71008e04e8,unknown,game/components?,O
-0x71008e05e8,504,fn_71008e05e8,unknown,game/components?,U
+0x71008e05e8,504,fn_71008e05e8,unknown,game/components?,O
 0x71008e07e0,36,fn_71008e07e0,unknown,game/components?,O
 0x71008e0804,120,fn_71008e0804,unknown,game/components?,O
 0x71008e087c,152,fn_71008e087c,unknown,game/components?,O

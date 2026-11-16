@@ -4682,7 +4682,7 @@ address,size,name,name_source,subsystem,status
 0x71006c0930,284,fn_71006c0930,unknown,game/ai?,O
 0x71006c0a4c,332,fn_71006c0a4c,unknown,game/ai?,O
 0x71006c0b98,672,fn_71006c0b98,unknown,game/ai?,U
-0x71006c0e38,524,fn_71006c0e38,unknown,game/ai?,U
+0x71006c0e38,524,fn_71006c0e38,unknown,game/ai?,O
 0x71006c1044,196,fn_71006c1044,unknown,game/ai?,O
 0x71006c1108,480,fn_71006c1108,unknown,game/ai?,U
 0x71006c12e8,1960,fn_71006c12e8,unknown,game/ai?,U

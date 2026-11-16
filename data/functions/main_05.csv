@@ -846,7 +846,7 @@ address,size,name,name_source,subsystem,status
 0x71005447a0,644,fn_71005447a0,unknown,unknown,U
 0x7100544a24,16,fn_7100544a24,unknown,unknown,O
 0x7100544a34,1412,fn_7100544a34,unknown,unknown,U
-0x7100544fb8,384,fn_7100544fb8,unknown,unknown,U
+0x7100544fb8,384,fn_7100544fb8,unknown,unknown,O
 0x7100545138,380,fn_7100545138,unknown,unknown,O
 0x71005452b4,684,fn_71005452b4,unknown,unknown,U
 0x7100545560,16,fn_7100545560,unknown,unknown,O

@@ -5,5 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkV4_b47;
 struct UnkResetOwner;
 void fn_71001bc068(UnkResetOwner*);
+void fn_71001bc10c(void* p, const UnkV4_b47* colour, bool flag);

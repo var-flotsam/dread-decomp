@@ -2,11 +2,10 @@
 // value changes it stores it and runs the update fn_7100540dd0; it returns the empty value), and a
 // setter of the flag at +0x27720 that runs a virtual on change. Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_7100540dd0(char* self);
 
 UnkReflValue fn_71005658dc(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* arg = args[0];

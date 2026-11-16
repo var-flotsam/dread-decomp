@@ -1118,7 +1118,7 @@ address,size,name,name_source,subsystem,status
 0x7100b22840,160,fn_7100b22840,unknown,gui?,O
 0x7100b228e0,40,fn_7100b228e0,unknown,gui?,O
 0x7100b22910,1332,fn_7100b22910,unknown,gui?,U
-0x7100b22e50,572,fn_7100b22e50,unknown,gui?,U
+0x7100b22e50,572,fn_7100b22e50,unknown,gui?,O
 0x7100b23090,756,fn_7100b23090,unknown,gui?,U
 0x7100b23384,4,GUI::CGlobalMapComposition::refl_AddAttributes,reflection,gui,O
 0x7100b23388,244,GUI::CGlobalMapComposition::refl_GetClass,reflection,gui,O

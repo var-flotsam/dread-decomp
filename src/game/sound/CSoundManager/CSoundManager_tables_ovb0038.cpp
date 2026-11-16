@@ -735,9 +735,6 @@ struct UnkSoundRequest_b0038 {
     base::global::UnkStringData* path;
 };
 
-bool fn_710102423c(UnkDropTarget* self, UnkAudioPreset_b0038* preset);
-void fn_71010244a8(UnkDropTarget* self, UnkSoundHandle handle);
-
 UnkSoundHandle fn_710102540c(UnkDropTarget* self, const UnkStrIdPathPair* ids, const UnkSoundRequest_b0038* request) {
     UnkAudioPreset_b0038* preset = nullptr;
     if (ids->id.data != &g_unk_7101d47108->empty && ids->path.data != &g_unk_7101d47200->empty) {

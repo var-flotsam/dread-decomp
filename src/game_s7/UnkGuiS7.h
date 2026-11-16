@@ -86,7 +86,6 @@ UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 void fn_71011ccb28(UnkGuiObj* object, f32 value);
 void fn_71011cc844(UnkGuiObj* object, f32 value);
-void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 void fn_71011ed0f0(UnkGuiObj* label, s32 value);
 UnkText fn_7100af45b0(s32 seconds, bool show_plus);
 void fn_7100eb7358(void* object, u32 a, u32 b);

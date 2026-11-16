@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CComponent.h"
 #include "game/CInputComponent.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -121,7 +122,6 @@ void fn_71007daf04(UnkCountDown_ovb0259* self) {
 
 using UnkGuiObj = UnkGuiDisplayObject;
 UnkGuiObj* fn_71011d9508(UnkGuiObj*, const char* const*);
-void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 
 void fn_71007da730(UnkCountDown_ovb0259* self) {
     UnkCountDownGui_ovb0259* holder = self->field_0x80 ? self->field_0x80->gui : nullptr;

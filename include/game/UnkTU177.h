@@ -33,3 +33,6 @@ extern u8 g_unk_716e29c690;
 extern u8 g_unk_716e29c691;
 extern u8 g_unk_716e29c6cc[];
 extern bool g_unk_7101a1d7d8;
+extern s32 g_unk_7101a1d7f4;
+extern s32 g_unk_7101a1d7f8;
+extern s32 g_unk_7101a1d7fc;
