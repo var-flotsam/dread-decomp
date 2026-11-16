@@ -150,10 +150,13 @@ public:
         }
         return *this;
     }
+    // The count is decremented, then tested (the dictionaries' clears and move-assignments reload it after
+    // the store); where nothing is stored in between, both forms compile the same.
     ~CStrId() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
-                if (--data->ref_count == 0) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
                     pool = g_unk_7101d47108;
                 }
