@@ -391,11 +391,6 @@ UnkResult fn_7100da102c(char* p0, char* p1) {
     return ret;
 }
 
-u32 fn_7100da10b4(char* p0) {
-    u32 r0_0 = (u32)*(u32*)((char*)(p0) + 8);
-    return r0_0;
-}
-
 namespace callee { char* fn_7100da0870(char*, u32); }
 char* fn_7100da10bc(char* p0) {
     u32 r0_1 = (u32)(u64)(0);
@@ -444,56 +439,15 @@ bool fn_7100da12ac(char* p0, char* p1) {
     return r0_0;
 }
 
-u32 fn_7100da12b8() {
-    u32 r0_0 = 0xffffffff;
-    return r0_0;
-}
-
 extern char g_unk_71727bac20[];
 char* fn_7100da12c0() {
     char* r0_0 = (char*)g_unk_71727bac20;
     return r0_0;
 }
 
-namespace callee { char* fn_7100083990(); }
-char* fn_7100da12cc(char* p0) {
-    u32 r0_8 = 0xa;
-    *(u32*)((char*)(p0) + 16) = (u32)(u64)(r0_8);
-    u32 r2_8 = 0x1;
-    *(u64*)(((char*)(p0) + 0) + 0) = (u64)(u64)(0);
-    *(u64*)(((char*)(p0) + 0) + 8) = (u64)(u64)(0);
-    char* r5_19 = p0;
-    *(u8*)((char*)(p0) + 20) = (u8)(u64)(r2_8);
-    u32 r7_8 = 0xf;
-    *(u32*)((char*)(p0) + 24) = (u32)(u64)(r7_8);
-    char* r9_0 = callee::fn_7100083990();
-    *(u64*)((char*)(r5_19) + 32) = (u64)(u64)(r9_0);
-    return r9_0;
-}
-
 namespace callee { char* fn_7100da1438(char*, char*); }
 char* fn_7100da130c(char* p0, char* p1) {
     return callee::fn_7100da1438(p0, p1);
-}
-
-char* fn_7100da1310(char* p0, char* p1) {
-    u64 r0_8 = (u64)*(u64*)((char*)(p1) + 0);
-    *(u64*)((char*)(p0) + 0) = (u64)(u64)(r0_8);
-    u32 r2_8 = (u32)*(u32*)((char*)(p1) + 8);
-    *(u32*)((char*)(p0) + 8) = (u32)(u64)(r2_8);
-    u32 r4_8 = (u32)*(u32*)((char*)(p1) + 12);
-    *(u32*)((char*)(p0) + 12) = (u32)(u64)(r4_8);
-    u32 r6_8 = (u32)*(u32*)((char*)(p1) + 16);
-    *(u32*)((char*)(p0) + 16) = (u32)(u64)(r6_8);
-    u8 r8_8 = (u8)*(u8*)((char*)(p1) + 20);
-    *(u8*)((char*)(p0) + 20) = (u8)(u64)((u32)(u64)(r8_8));
-    u32 r10_8 = (u32)*(u32*)((char*)(p1) + 24);
-    *(u32*)((char*)(p0) + 24) = (u32)(u64)(r10_8);
-    u64 r12_8 = (u64)*(u64*)((char*)(p1) + 32);
-    *(u64*)((char*)(p0) + 32) = (u64)(u64)(r12_8);
-    *(u64*)(((char*)(p1) + 0) + 0) = (u64)(u64)(0);
-    *(u64*)(((char*)(p1) + 0) + 8) = (u64)(u64)(0);
-    return p0;
 }
 
 namespace callee { char* fn_7100da0870(char*, u32); }
@@ -557,12 +511,6 @@ char* fn_7100da13c4(char* p0, char* p1) {
     }
     char* r25_0 = r0_19;
     return r25_0;
-}
-
-char* fn_7100da1a8c(char* p0, char* p1) {
-    u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);
-    *(u64*)((char*)(p1) + 0) = (u64)(u64)(r0_8);
-    return p0;
 }
 
 char* fn_7100da1a98(char* p0, char* p1) {

@@ -1994,7 +1994,7 @@ address,size,name,name_source,subsystem,status
 0x71002412ec,8,fn_71002412ec,unknown,unknown,O
 0x71002412f4,80,fn_71002412f4,unknown,unknown,O
 0x7100241344,84,fn_7100241344,unknown,unknown,O
-0x7100241398,8,fn_7100241398,unknown,unknown,O
+0x7100241398,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::Count,reflection,engine/reflection,O
 0x71002413a0,128,fn_71002413a0,unknown,unknown,O
 0x7100241420,16,fn_7100241420,unknown,unknown,O
 0x7100241430,16,fn_7100241430,unknown,unknown,O
@@ -2004,11 +2004,11 @@ address,size,name,name_source,subsystem,status
 0x710024158c,260,fn_710024158c,unknown,unknown,O
 0x7100241690,260,fn_7100241690,unknown,unknown,O
 0x7100241794,92,fn_7100241794,unknown,unknown,O
-0x71002417f0,8,fn_71002417f0,unknown,unknown,O
+0x71002417f0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::Hash,reflection,engine/reflection,O
 0x71002417f8,12,fn_71002417f8,unknown,unknown,O
-0x7100241804,64,fn_7100241804,unknown,unknown,O
+0x7100241804,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::Construct,reflection,engine/reflection,O
 0x7100241844,4,fn_7100241844,unknown,unknown,O
-0x7100241848,64,fn_7100241848,unknown,unknown,O
+0x7100241848,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::MoveConstruct,reflection,engine/reflection,O
 0x7100241888,144,fn_7100241888,unknown,unknown,O
 0x7100241918,48,fn_7100241918,unknown,unknown,O
 0x7100241948,212,fn_7100241948,unknown,unknown,O
@@ -2017,7 +2017,7 @@ address,size,name,name_source,subsystem,status
 0x7100241c78,356,fn_7100241c78,unknown,unknown,O
 0x7100241ddc,480,fn_7100241ddc,unknown,unknown,O
 0x7100241fbc,480,fn_7100241fbc,unknown,unknown,O
-0x710024219c,12,fn_710024219c,unknown,unknown,O
+0x710024219c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::Begin,reflection,engine/reflection,O
 0x71002421a8,20,fn_71002421a8,unknown,unknown,O
 0x71002421bc,296,fn_71002421bc,unknown,unknown,O
 0x71002422e4,304,fn_71002422e4,unknown,unknown,O
@@ -2087,7 +2087,7 @@ address,size,name,name_source,subsystem,status
 0x7100243708,8,fn_7100243708,unknown,unknown,O
 0x7100243710,80,fn_7100243710,unknown,unknown,O
 0x7100243760,84,fn_7100243760,unknown,unknown,O
-0x71002437b4,8,fn_71002437b4,unknown,unknown,O
+0x71002437b4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Count,reflection,engine/reflection,O
 0x71002437bc,128,fn_71002437bc,unknown,unknown,O
 0x710024383c,4,fn_710024383c,unknown,unknown,O
 0x7100243840,16,fn_7100243840,unknown,unknown,O
@@ -2097,15 +2097,15 @@ address,size,name,name_source,subsystem,status
 0x7100243968,4,fn_7100243968,unknown,unknown,O
 0x710024396c,96,fn_710024396c,unknown,unknown,O
 0x71002439cc,76,fn_71002439cc,unknown,unknown,O
-0x7100243a18,8,fn_7100243a18,unknown,unknown,O
+0x7100243a18,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Hash,reflection,engine/reflection,O
 0x7100243a20,12,fn_7100243a20,unknown,unknown,O
-0x7100243a2c,64,fn_7100243a2c,unknown,unknown,O
-0x7100243a6c,64,fn_7100243a6c,unknown,unknown,O
+0x7100243a2c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Construct,reflection,engine/reflection,O
+0x7100243a6c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::MoveConstruct,reflection,engine/reflection,O
 0x7100243aac,172,fn_7100243aac,unknown,unknown,O
 0x7100243b58,204,fn_7100243b58,unknown,unknown,O
 0x7100243c24,672,fn_7100243c24,unknown,unknown,U
 0x7100243ec4,612,fn_7100243ec4,unknown,unknown,U
-0x7100244128,12,fn_7100244128,unknown,unknown,O
+0x7100244128,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Begin,reflection,engine/reflection,O
 0x7100244134,20,fn_7100244134,unknown,unknown,O
 0x7100244148,328,fn_7100244148,unknown,unknown,O
 0x7100244290,336,fn_7100244290,unknown,unknown,O
@@ -2190,7 +2190,7 @@ address,size,name,name_source,subsystem,status
 0x71002462dc,400,fn_71002462dc,unknown,unknown,O
 0x710024646c,80,fn_710024646c,unknown,unknown,O
 0x71002464bc,56,fn_71002464bc,unknown,unknown,O
-0x71002464f4,8,fn_71002464f4,unknown,unknown,O
+0x71002464f4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::Count,reflection,engine/reflection,O
 0x71002464fc,96,fn_71002464fc,unknown,unknown,O
 0x710024655c,16,fn_710024655c,unknown,unknown,O
 0x710024656c,16,fn_710024656c,unknown,unknown,O
@@ -2200,11 +2200,11 @@ address,size,name,name_source,subsystem,status
 0x7100246658,68,fn_7100246658,unknown,unknown,O
 0x710024669c,140,fn_710024669c,unknown,unknown,O
 0x7100246728,4,fn_7100246728,unknown,unknown,O
-0x710024672c,8,fn_710024672c,unknown,unknown,O
+0x710024672c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::Hash,reflection,engine/reflection,O
 0x7100246734,12,fn_7100246734,unknown,unknown,O
-0x7100246740,64,fn_7100246740,unknown,unknown,O
+0x7100246740,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::Construct,reflection,engine/reflection,O
 0x7100246780,4,fn_7100246780,unknown,unknown,O
-0x7100246784,64,fn_7100246784,unknown,unknown,O
+0x7100246784,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::MoveConstruct,reflection,engine/reflection,O
 0x71002467c4,156,fn_71002467c4,unknown,unknown,O
 0x7100246860,48,fn_7100246860,unknown,unknown,O
 0x7100246890,172,fn_7100246890,unknown,unknown,O
@@ -2215,7 +2215,7 @@ address,size,name,name_source,subsystem,status
 0x7100246eb8,564,fn_7100246eb8,unknown,unknown,O
 0x71002470ec,596,fn_71002470ec,unknown,unknown,O
 0x7100247340,592,fn_7100247340,unknown,unknown,O
-0x7100247590,12,fn_7100247590,unknown,unknown,O
+0x7100247590,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::Begin,reflection,engine/reflection,O
 0x710024759c,20,fn_710024759c,unknown,unknown,O
 0x71002475b0,316,fn_71002475b0,unknown,unknown,O
 0x71002476ec,324,fn_71002476ec,unknown,unknown,O
@@ -2764,7 +2764,7 @@ address,size,name,name_source,subsystem,status
 0x710025f664,8,fn_710025f664,unknown,unknown,O
 0x710025f66c,80,fn_710025f66c,unknown,unknown,O
 0x710025f6bc,56,fn_710025f6bc,unknown,unknown,O
-0x710025f6f4,8,fn_710025f6f4,unknown,unknown,O
+0x710025f6f4,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::Count",reflection,engine/reflection,O
 0x710025f6fc,260,fn_710025f6fc,unknown,unknown,O
 0x710025f800,160,fn_710025f800,unknown,unknown,O
 0x710025f8a0,160,fn_710025f8a0,unknown,unknown,O
@@ -2774,11 +2774,11 @@ address,size,name,name_source,subsystem,status
 0x710025fa3c,4,fn_710025fa3c,unknown,unknown,O
 0x710025fa40,144,fn_710025fa40,unknown,unknown,O
 0x710025fad0,12,fn_710025fad0,unknown,unknown,O
-0x710025fadc,8,fn_710025fadc,unknown,unknown,O
+0x710025fadc,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::Hash",reflection,engine/reflection,O
 0x710025fae4,12,fn_710025fae4,unknown,unknown,O
-0x710025faf0,52,fn_710025faf0,unknown,unknown,O
+0x710025faf0,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::Construct",reflection,engine/reflection,O
 0x710025fb24,236,fn_710025fb24,unknown,unknown,O
-0x710025fc10,68,fn_710025fc10,unknown,unknown,O
+0x710025fc10,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::MoveConstruct",reflection,engine/reflection,O
 0x710025fc54,320,fn_710025fc54,unknown,unknown,O
 0x710025fd94,48,fn_710025fd94,unknown,unknown,O
 0x710025fdc4,48,fn_710025fdc4,unknown,unknown,O
@@ -2786,7 +2786,7 @@ address,size,name,name_source,subsystem,status
 0x710025ff90,468,fn_710025ff90,unknown,unknown,O
 0x7100260164,428,fn_7100260164,unknown,unknown,O
 0x7100260310,340,fn_7100260310,unknown,unknown,O
-0x7100260464,12,fn_7100260464,unknown,unknown,O
+0x7100260464,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::Begin",reflection,engine/reflection,O
 0x7100260470,24,fn_7100260470,unknown,unknown,O
 0x7100260488,276,fn_7100260488,unknown,unknown,O
 0x710026059c,292,fn_710026059c,unknown,unknown,O
@@ -3362,7 +3362,7 @@ address,size,name,name_source,subsystem,status
 0x71002730e0,8,fn_71002730e0,unknown,unknown,O
 0x71002730e8,80,fn_71002730e8,unknown,unknown,O
 0x7100273138,56,fn_7100273138,unknown,unknown,O
-0x7100273170,8,fn_7100273170,unknown,unknown,O
+0x7100273170,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::Count,reflection,engine/reflection,O
 0x7100273178,88,fn_7100273178,unknown,unknown,O
 0x71002731d0,16,fn_71002731d0,unknown,unknown,O
 0x71002731e0,16,fn_71002731e0,unknown,unknown,O
@@ -3372,11 +3372,11 @@ address,size,name,name_source,subsystem,status
 0x7100273240,368,fn_7100273240,unknown,unknown,O
 0x71002733b0,508,fn_71002733b0,unknown,unknown,O
 0x71002735ac,12,fn_71002735ac,unknown,unknown,O
-0x71002735b8,8,fn_71002735b8,unknown,unknown,O
+0x71002735b8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::Hash,reflection,engine/reflection,O
 0x71002735c0,12,fn_71002735c0,unknown,unknown,O
-0x71002735cc,64,fn_71002735cc,unknown,unknown,O
+0x71002735cc,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::Construct,reflection,engine/reflection,O
 0x710027360c,4,fn_710027360c,unknown,unknown,O
-0x7100273610,64,fn_7100273610,unknown,unknown,O
+0x7100273610,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::MoveConstruct,reflection,engine/reflection,O
 0x7100273650,140,fn_7100273650,unknown,unknown,O
 0x71002736dc,48,fn_71002736dc,unknown,unknown,O
 0x710027370c,164,fn_710027370c,unknown,unknown,O
@@ -3384,7 +3384,7 @@ address,size,name,name_source,subsystem,status
 0x7100273940,404,fn_7100273940,unknown,unknown,O
 0x7100273ad4,220,fn_7100273ad4,unknown,unknown,O
 0x7100273bb0,272,fn_7100273bb0,unknown,unknown,U
-0x7100273cc0,12,fn_7100273cc0,unknown,unknown,O
+0x7100273cc0,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::Begin,reflection,engine/reflection,O
 0x7100273ccc,24,fn_7100273ccc,unknown,unknown,O
 0x7100273ce4,216,fn_7100273ce4,unknown,unknown,O
 0x7100273dbc,228,fn_7100273dbc,unknown,unknown,O

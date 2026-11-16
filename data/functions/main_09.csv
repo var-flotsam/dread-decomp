@@ -127,7 +127,7 @@ address,size,name,name_source,subsystem,status
 0x7100904398,8,fn_7100904398,unknown,game/components?,O
 0x71009043a0,80,fn_71009043a0,unknown,game/components?,O
 0x71009043f0,56,fn_71009043f0,unknown,game/components?,O
-0x7100904428,8,fn_7100904428,unknown,game/components?,O
+0x7100904428,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::Count",reflection,engine/reflection,O
 0x7100904430,172,fn_7100904430,unknown,game/components?,O
 0x71009044dc,180,fn_71009044dc,unknown,game/components?,O
 0x7100904590,180,fn_7100904590,unknown,game/components?,O
@@ -137,11 +137,11 @@ address,size,name,name_source,subsystem,status
 0x7100904728,140,fn_7100904728,unknown,game/components?,O
 0x71009047b4,140,fn_71009047b4,unknown,game/components?,O
 0x7100904840,4,fn_7100904840,unknown,game/components?,O
-0x7100904844,8,fn_7100904844,unknown,game/components?,O
+0x7100904844,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::Hash",reflection,engine/reflection,O
 0x710090484c,12,fn_710090484c,unknown,game/components?,O
-0x7100904858,52,fn_7100904858,unknown,game/components?,O
+0x7100904858,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::Construct",reflection,engine/reflection,O
 0x710090488c,4,fn_710090488c,unknown,game/components?,O
-0x7100904890,68,fn_7100904890,unknown,game/components?,O
+0x7100904890,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::MoveConstruct",reflection,engine/reflection,O
 0x71009048d4,4,fn_71009048d4,unknown,game/components?,O
 0x71009048d8,48,fn_71009048d8,unknown,game/components?,O
 0x7100904908,260,fn_7100904908,unknown,game/components?,O
@@ -150,7 +150,7 @@ address,size,name,name_source,subsystem,status
 0x7100904c48,404,fn_7100904c48,unknown,game/components?,O
 0x7100904ddc,416,fn_7100904ddc,unknown,game/components?,O
 0x7100904f7c,412,fn_7100904f7c,unknown,game/components?,O
-0x7100905118,12,fn_7100905118,unknown,game/components?,O
+0x7100905118,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::Begin",reflection,engine/reflection,O
 0x7100905124,20,fn_7100905124,unknown,game/components?,O
 0x7100905138,152,fn_7100905138,unknown,game/components?,O
 0x71009051d0,164,fn_71009051d0,unknown,game/components?,O
@@ -359,7 +359,7 @@ address,size,name,name_source,subsystem,status
 0x710090c7dc,420,fn_710090c7dc,unknown,unknown,U
 0x710090c980,80,fn_710090c980,unknown,unknown,O
 0x710090c9d0,56,fn_710090c9d0,unknown,unknown,O
-0x710090ca08,8,fn_710090ca08,unknown,unknown,O
+0x710090ca08,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::Count,reflection,engine/reflection,O
 0x710090ca10,8,fn_710090ca10,unknown,unknown,O
 0x710090ca18,16,fn_710090ca18,unknown,unknown,O
 0x710090ca28,16,fn_710090ca28,unknown,unknown,O
@@ -369,11 +369,11 @@ address,size,name,name_source,subsystem,status
 0x710090ca8c,376,fn_710090ca8c,unknown,unknown,O
 0x710090cc04,440,fn_710090cc04,unknown,unknown,O
 0x710090cdbc,12,fn_710090cdbc,unknown,unknown,O
-0x710090cdc8,8,fn_710090cdc8,unknown,unknown,O
+0x710090cdc8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::Hash,reflection,engine/reflection,O
 0x710090cdd0,12,fn_710090cdd0,unknown,unknown,O
-0x710090cddc,64,fn_710090cddc,unknown,unknown,O
+0x710090cddc,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::Construct,reflection,engine/reflection,O
 0x710090ce1c,128,fn_710090ce1c,unknown,unknown,O
-0x710090ce9c,64,fn_710090ce9c,unknown,unknown,O
+0x710090ce9c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::MoveConstruct,reflection,engine/reflection,O
 0x710090cedc,68,fn_710090cedc,unknown,unknown,O
 0x710090cf20,120,fn_710090cf20,unknown,unknown,O
 0x710090cf98,116,fn_710090cf98,unknown,unknown,O
@@ -383,7 +383,7 @@ address,size,name,name_source,subsystem,status
 0x710090d45c,696,fn_710090d45c,unknown,unknown,U
 0x710090d714,560,fn_710090d714,unknown,unknown,O
 0x710090d944,588,fn_710090d944,unknown,unknown,O
-0x710090db90,12,fn_710090db90,unknown,unknown,O
+0x710090db90,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::Begin,reflection,engine/reflection,O
 0x710090db9c,24,fn_710090db9c,unknown,unknown,O
 0x710090dbb4,316,fn_710090dbb4,unknown,unknown,O
 0x710090dcf0,328,fn_710090dcf0,unknown,unknown,O

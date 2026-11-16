@@ -1540,7 +1540,7 @@ address,size,name,name_source,subsystem,status
 0x7100a3b0c4,420,fn_7100a3b0c4,unknown,unknown,U
 0x7100a3b268,80,fn_7100a3b268,unknown,unknown,O
 0x7100a3b2b8,56,fn_7100a3b2b8,unknown,unknown,O
-0x7100a3b2f0,8,fn_7100a3b2f0,unknown,unknown,O
+0x7100a3b2f0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<DoorStateInfo>>::Count,reflection,engine/reflection,O
 0x7100a3b2f8,8,fn_7100a3b2f8,unknown,unknown,O
 0x7100a3b300,16,fn_7100a3b300,unknown,unknown,O
 0x7100a3b310,16,fn_7100a3b310,unknown,unknown,O
@@ -1550,11 +1550,11 @@ address,size,name,name_source,subsystem,status
 0x7100a3b374,364,fn_7100a3b374,unknown,unknown,O
 0x7100a3b4e0,432,fn_7100a3b4e0,unknown,unknown,O
 0x7100a3b690,12,fn_7100a3b690,unknown,unknown,O
-0x7100a3b69c,8,fn_7100a3b69c,unknown,unknown,O
+0x7100a3b69c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<DoorStateInfo>>::Hash,reflection,engine/reflection,O
 0x7100a3b6a4,12,fn_7100a3b6a4,unknown,unknown,O
-0x7100a3b6b0,64,fn_7100a3b6b0,unknown,unknown,O
+0x7100a3b6b0,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<DoorStateInfo>>::Construct,reflection,engine/reflection,O
 0x7100a3b6f0,128,fn_7100a3b6f0,unknown,unknown,O
-0x7100a3b770,64,fn_7100a3b770,unknown,unknown,O
+0x7100a3b770,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<DoorStateInfo>>::MoveConstruct,reflection,engine/reflection,O
 0x7100a3b7b0,68,fn_7100a3b7b0,unknown,unknown,O
 0x7100a3b7f4,120,fn_7100a3b7f4,unknown,unknown,O
 0x7100a3b86c,116,fn_7100a3b86c,unknown,unknown,O
@@ -1564,7 +1564,7 @@ address,size,name,name_source,subsystem,status
 0x7100a3bd30,696,fn_7100a3bd30,unknown,unknown,U
 0x7100a3bfe8,560,fn_7100a3bfe8,unknown,unknown,O
 0x7100a3c218,588,fn_7100a3c218,unknown,unknown,O
-0x7100a3c464,12,fn_7100a3c464,unknown,unknown,O
+0x7100a3c464,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<DoorStateInfo>>::Begin,reflection,engine/reflection,O
 0x7100a3c470,24,fn_7100a3c470,unknown,unknown,O
 0x7100a3c488,316,fn_7100a3c488,unknown,unknown,O
 0x7100a3c5c4,328,fn_7100a3c5c4,unknown,unknown,O
@@ -3734,7 +3734,7 @@ address,size,name,name_source,subsystem,status
 0x7100a94e9c,420,fn_7100a94e9c,unknown,unknown,U
 0x7100a95040,80,fn_7100a95040,unknown,unknown,O
 0x7100a95090,56,fn_7100a95090,unknown,unknown,O
-0x7100a950c8,8,fn_7100a950c8,unknown,unknown,O
+0x7100a950c8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<SDoorInfo>>::Count,reflection,engine/reflection,O
 0x7100a950d0,8,fn_7100a950d0,unknown,unknown,O
 0x7100a950d8,16,fn_7100a950d8,unknown,unknown,O
 0x7100a950e8,16,fn_7100a950e8,unknown,unknown,O
@@ -3744,11 +3744,11 @@ address,size,name,name_source,subsystem,status
 0x7100a9514c,364,fn_7100a9514c,unknown,unknown,O
 0x7100a952b8,432,fn_7100a952b8,unknown,unknown,O
 0x7100a95468,12,fn_7100a95468,unknown,unknown,O
-0x7100a95474,8,fn_7100a95474,unknown,unknown,O
+0x7100a95474,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<SDoorInfo>>::Hash,reflection,engine/reflection,O
 0x7100a9547c,12,fn_7100a9547c,unknown,unknown,O
-0x7100a95488,64,fn_7100a95488,unknown,unknown,O
+0x7100a95488,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SDoorInfo>>::Construct,reflection,engine/reflection,O
 0x7100a954c8,128,fn_7100a954c8,unknown,unknown,O
-0x7100a95548,64,fn_7100a95548,unknown,unknown,O
+0x7100a95548,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SDoorInfo>>::MoveConstruct,reflection,engine/reflection,O
 0x7100a95588,68,fn_7100a95588,unknown,unknown,O
 0x7100a955cc,120,fn_7100a955cc,unknown,unknown,O
 0x7100a95644,116,fn_7100a95644,unknown,unknown,O
@@ -3758,7 +3758,7 @@ address,size,name,name_source,subsystem,status
 0x7100a95b08,696,fn_7100a95b08,unknown,unknown,U
 0x7100a95dc0,560,fn_7100a95dc0,unknown,unknown,O
 0x7100a95ff0,588,fn_7100a95ff0,unknown,unknown,O
-0x7100a9623c,12,fn_7100a9623c,unknown,unknown,O
+0x7100a9623c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<SDoorInfo>>::Begin,reflection,engine/reflection,O
 0x7100a96248,24,fn_7100a96248,unknown,unknown,O
 0x7100a96260,316,fn_7100a96260,unknown,unknown,O
 0x7100a9639c,328,fn_7100a9639c,unknown,unknown,O
@@ -4971,7 +4971,7 @@ address,size,name,name_source,subsystem,status
 0x7100ad1c30,8,fn_7100ad1c30,unknown,unknown,O
 0x7100ad1c38,80,fn_7100ad1c38,unknown,unknown,O
 0x7100ad1c88,56,fn_7100ad1c88,unknown,unknown,O
-0x7100ad1cc0,8,fn_7100ad1cc0,unknown,unknown,O
+0x7100ad1cc0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::Count,reflection,engine/reflection,O
 0x7100ad1cc8,88,fn_7100ad1cc8,unknown,unknown,O
 0x7100ad1d20,16,fn_7100ad1d20,unknown,unknown,O
 0x7100ad1d30,16,fn_7100ad1d30,unknown,unknown,O
@@ -4981,18 +4981,18 @@ address,size,name,name_source,subsystem,status
 0x7100ad1e0c,40,fn_7100ad1e0c,unknown,unknown,O
 0x7100ad1e34,40,fn_7100ad1e34,unknown,unknown,O
 0x7100ad1e5c,84,fn_7100ad1e5c,unknown,unknown,O
-0x7100ad1eb0,8,fn_7100ad1eb0,unknown,unknown,O
+0x7100ad1eb0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::Hash,reflection,engine/reflection,O
 0x7100ad1eb8,12,fn_7100ad1eb8,unknown,unknown,O
-0x7100ad1ec4,64,fn_7100ad1ec4,unknown,unknown,O
+0x7100ad1ec4,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::Construct,reflection,engine/reflection,O
 0x7100ad1f04,4,fn_7100ad1f04,unknown,unknown,O
-0x7100ad1f08,64,fn_7100ad1f08,unknown,unknown,O
+0x7100ad1f08,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::MoveConstruct,reflection,engine/reflection,O
 0x7100ad1f48,140,fn_7100ad1f48,unknown,unknown,O
 0x7100ad1fd4,48,fn_7100ad1fd4,unknown,unknown,O
 0x7100ad2004,164,fn_7100ad2004,unknown,unknown,O
 0x7100ad20a8,508,fn_7100ad20a8,unknown,unknown,O
 0x7100ad22a4,556,fn_7100ad22a4,unknown,unknown,O
 0x7100ad24d0,568,fn_7100ad24d0,unknown,unknown,U
-0x7100ad2708,12,fn_7100ad2708,unknown,unknown,O
+0x7100ad2708,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::Begin,reflection,engine/reflection,O
 0x7100ad2714,20,fn_7100ad2714,unknown,unknown,O
 0x7100ad2728,216,fn_7100ad2728,unknown,unknown,O
 0x7100ad2800,224,fn_7100ad2800,unknown,unknown,O
@@ -5638,7 +5638,7 @@ address,size,name,name_source,subsystem,status
 0x7100aedd04,464,fn_7100aedd04,unknown,unknown,O
 0x7100aeded4,80,fn_7100aeded4,unknown,unknown,O
 0x7100aedf24,56,fn_7100aedf24,unknown,unknown,O
-0x7100aedf5c,8,fn_7100aedf5c,unknown,unknown,O
+0x7100aedf5c,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::Count",reflection,engine/reflection,O
 0x7100aedf64,244,fn_7100aedf64,unknown,unknown,O
 0x7100aee058,4,fn_7100aee058,unknown,unknown,O
 0x7100aee05c,216,fn_7100aee05c,unknown,unknown,O
@@ -5648,11 +5648,11 @@ address,size,name,name_source,subsystem,status
 0x7100aee230,144,fn_7100aee230,unknown,unknown,O
 0x7100aee2c0,364,fn_7100aee2c0,unknown,unknown,O
 0x7100aee42c,272,fn_7100aee42c,unknown,unknown,U
-0x7100aee53c,8,fn_7100aee53c,unknown,unknown,O
+0x7100aee53c,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::Hash",reflection,engine/reflection,O
 0x7100aee544,12,fn_7100aee544,unknown,unknown,O
-0x7100aee550,52,fn_7100aee550,unknown,unknown,O
+0x7100aee550,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::Construct",reflection,engine/reflection,O
 0x7100aee584,4,fn_7100aee584,unknown,unknown,O
-0x7100aee588,68,fn_7100aee588,unknown,unknown,O
+0x7100aee588,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::MoveConstruct",reflection,engine/reflection,O
 0x7100aee5cc,304,fn_7100aee5cc,unknown,unknown,O
 0x7100aee6fc,48,fn_7100aee6fc,unknown,unknown,O
 0x7100aee72c,48,fn_7100aee72c,unknown,unknown,O
@@ -5663,7 +5663,7 @@ address,size,name,name_source,subsystem,status
 0x7100aeef2c,324,fn_7100aeef2c,unknown,unknown,O
 0x7100aef070,360,fn_7100aef070,unknown,unknown,O
 0x7100aef1d8,416,fn_7100aef1d8,unknown,unknown,O
-0x7100aef378,12,fn_7100aef378,unknown,unknown,O
+0x7100aef378,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::Begin",reflection,engine/reflection,O
 0x7100aef384,24,fn_7100aef384,unknown,unknown,O
 0x7100aef39c,160,fn_7100aef39c,unknown,unknown,O
 0x7100aef43c,176,fn_7100aef43c,unknown,unknown,O

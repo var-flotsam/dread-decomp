@@ -3530,11 +3530,6 @@ UnkResult fn_7100d3fe20(char* p0, char* p1) {
     return ret;
 }
 
-u32 fn_7100d3fec4(char* p0) {
-    u32 r0_0 = (u32)*(u32*)((char*)(p0) + 8);
-    return r0_0;
-}
-
 namespace callee { char* fn_7100d407c0(char*, char*, u32); }
 char* fn_7100d3ff4c(char* p0, char* p1, char* p2) {
     char* r0_8 = p2;
