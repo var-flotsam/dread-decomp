@@ -6,7 +6,9 @@
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2560.h"
+#include "game/UnkTU2561.h"
 #include "game/UnkTU83.h"
+#include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CRntVector;
@@ -14,28 +16,11 @@ using base::global::CStrId;
 
 struct UnkRecord_b218;
 
-extern CStrId g_unk_71727c1080;
-extern CStrId g_unk_71727c1088[];  // the billboards' default ids
-
-void fn_7100e1cfec(void* self_, CStrId* key, UnkRecord_b218* record);
-
-// A key's offset: three words, moved one by one when the array grows.
-struct UnkOffset_e237f4 {
-    u32 v[3];
-
-    UnkOffset_e237f4() : v{0, 0, 0} {}
-    UnkOffset_e237f4(const UnkOffset_e237f4& other) {
-        v[0] = other.v[0];
-        v[1] = other.v[1];
-        v[2] = other.v[2];
-    }
-};
-
 // The record fn_7100e1cfec copies in: an id, a flag and one value per key in four arrays.
 struct UnkRecord_e237f4 {
     CStrId id;
     bool field_0x8;
-    CRntVector<UnkOffset_e237f4> offsets;  // 0x10
+    CRntVector<UnkVec3f> offsets;  // 0x10 (zero offsets)
     CRntVector<f32> scales;                // 0x38
     CRntVector<u8> flags;                  // 0x60
     CRntVector<f32> alphas;                // 0x88
@@ -71,7 +56,7 @@ void fn_7100e237f4() {
     record.field_0x8 = true;
     for (u32 i = 0; i < 20; ++i) {
         f32 t = i / 20.0f;
-        *reinterpret_cast<UnkOffset_e237f4*>(fn_71000cc374(&record.offsets, i)) = UnkOffset_e237f4();
+        *reinterpret_cast<UnkVec3f*>(fn_71000cc374(&record.offsets, i)) = UnkVec3f(0.0f, 0.0f, 0.0f);
         record.flags.GrowAt(i) = 0;
         record.scales.GrowAt(i) = t + 1.0f;
         record.alphas.GrowAt(i) = 1.0f - t;

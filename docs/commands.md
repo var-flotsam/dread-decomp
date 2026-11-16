@@ -338,6 +338,14 @@ python tools/progress.py --quality [--version 2.1.0]
 python tools/progress.py --units
 ```
 
+### `tools/daily.py`
+
+Daily progress from main's history: matched, finished, untouched and drafts, one row per day.
+
+```sh
+python tools/daily.py [--ref origin/main] [--days 14] [--now] [--csv FILE]
+```
+
 ### `tools/policy_check.py`
 
 Check tracked files against the content rules in CONTRIBUTING.md.

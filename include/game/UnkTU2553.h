@@ -70,6 +70,8 @@ void* fn_7100deab70(UnkGameManager*, const base::global::CRntString&);
 bool fn_7100dfaf88(UnkGameManager* self, void* name, const base::global::CRntString& tag, bool flag);
 const base::global::CStrId* fn_7100de9bf8(UnkGameManager* self);
 void fn_7100deac9c(UnkGameManager* manager, const base::global::CRntString& mode);
+// Loads the scenario `name` (with the second blackboard when asked).
+s32 fn_7100df78cc(UnkGameManager* manager, const base::global::CRntString& name, bool second_blackboard, bool flag);
 base::global::CStrId fn_7100de9c30(UnkGameManager*);
 void fn_7100df31b8(UnkGameManager* self, bool a, bool keep, u32 value, base::global::CStrId id, bool c);
 void fn_7100df28d0(UnkGameManager* manager, const base::global::CRntString& a, const base::global::CRntString& b, const base::global::CRntString& c, const base::global::CStrId& id, u32 flag, const base::global::CRntString& d, const base::global::CStrId& e, u32 f, void* g, f32 h);

@@ -11,10 +11,15 @@
 
 struct UnkSphere {
     void* vtable;
-    f32 radius;        // 0x8, also kept at 0x28 and 0x30, and times 5000 as an s64 at 0x38
+    f32 radius;        // 0x8, also kept at 0x28, and times 10000 as an s64 at 0x38
     UnkVec3f offset;   // 0xc: a point in the owner's space
     UnkVec3f pos;      // 0x18
-    u8 pad_0x24[0x1c];
+    u8 pad_0x24[4];
+    f32 field_0x28;    // the radius again
+    u8 pad_0x2c[4];
+    f32 base_radius;   // 0x30: the radius before fn_7100216d30's scale
+    u8 pad_0x34[4];
+    s64 radius_fixed;  // 0x38: the radius times 10000, truncated
     s32 cell[3];       // 0x40: pos times ten, truncated
     bool field_0x4c;   // the quantised radius is zero
     bool field_0x4d;
@@ -26,7 +31,7 @@ static_assert(sizeof(UnkSphere) == 0x50, "UnkSphere layout");
 void fn_7100216978(UnkSphere* self, const UnkVec3f* position);
 // Sets the radius (and its copies and quantised form). Not decompiled yet.
 void fn_710021693c(UnkSphere* self, f32 radius);
-// Another setter of the sphere, taking a scale factor (used by src/game_s1/fn_71001eaf3c.cpp). Not decompiled yet.
+// Sets the radius (and its copies and quantised form) to the base radius times `scale`.
 void fn_7100216d30(UnkSphere* self, f32 scale);
 
 // The sphere embedded at +0x80 of a transform node (inside UnkXformNode::pad_0x74).

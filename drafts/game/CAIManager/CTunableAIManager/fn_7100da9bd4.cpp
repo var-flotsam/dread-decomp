@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
@@ -94,32 +95,17 @@ struct UnkAITarget_da92b0 {
 
 struct UnkAIManager_da92b0 {
     u8 pad_0x0[0x2530];
-    u32 label_count;  // 0x2530
-    UnkAILabelNode_lda9bd4* label_head;  // 0x2538
-    UnkAILabelNode_lda9bd4* label_tail;  // 0x2540
-    base::UnkAllocator* label_allocator;  // 0x2548
-    u32 label_flags;  // 0x2550
-    u8 pad_0x2554[0x14];
+    base::UnkLinkedList<UnkAILabelNode_lda9bd4> labels;  // 0x2530
+    u8 pad_0x2558[0x10];
     u64 label_pool_size;  // 0x2568
 
     void PushLabel() {
-        auto* node = static_cast<UnkAILabelNode_lda9bd4*>(
-            label_allocator->vf_0x40(sizeof(UnkAILabelNode_lda9bd4), 8, label_flags));
-        if (node) {
-            new (node) UnkAILabelNode_lda9bd4();
-            if (label_count) {
-                label_tail->next = node;
-                node->next = nullptr;
-                ++label_count;
-                label_tail = node;
-            } else {
-                label_tail = node;
-                label_head = node;
-                label_count = 1;
-            }
-        }
+        void* mem = labels.allocator->vf_0x40(sizeof(UnkAILabelNode_lda9bd4), 8, labels.flags);
+        if (mem)
+            labels.PushBackTailFirst(new (mem) UnkAILabelNode_lda9bd4());
     }
 };
+static_assert(__builtin_offsetof(UnkAIManager_da92b0, label_pool_size) == 0x2568, "UnkAIManager_da92b0 layout");
 
 static inline UnkAITarget_da92b0* Target(UnkWeakHandle* handle) {
     return reinterpret_cast<UnkAITarget_da92b0*>(handle->target);
@@ -128,15 +114,15 @@ static inline UnkAITarget_da92b0* Target(UnkWeakHandle* handle) {
 void fn_7100da9bd4(UnkAIManager_da92b0* self, UnkAITarget_da92b0* object) {
     if (!object || !reinterpret_cast<UnkAITunables_lda9bd4*>(&g_unk_71727bc558)->show_labels)
         return;
-    for (UnkAILabelNode_lda9bd4* node = self->label_head; node; node = node->next) {
+    for (UnkAILabelNode_lda9bd4* node = self->labels.head; node; node = node->next) {
         if ((node->handle ? Target(node->handle) : nullptr) == object)
             return;
     }
-    if (self->label_count >= self->label_pool_size / sizeof(UnkAILabelNode_lda9bd4))
+    if (self->labels.count >= self->label_pool_size / sizeof(UnkAILabelNode_lda9bd4))
         return;
 
     self->PushLabel();
-    UnkAILabelNode_lda9bd4* node = self->label_tail;
+    UnkAILabelNode_lda9bd4* node = self->labels.tail;
     AssignRef(&node->handle, fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(object)));
 
     {

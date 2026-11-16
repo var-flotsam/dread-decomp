@@ -66,7 +66,11 @@ struct UnkDisplayObject_71011d9508 {
 void fn_71009319dc(const char* str, const char* sep, UnkTokenList_0x70* out);
 void fn_7100931c34(UnkTokenList_0x70* list);
 
-UnkDisplayObject_71011d9508* fn_71011d9508(UnkDisplayObject_71011d9508* self, const char* const* path) {
+static inline UnkDisplayObject_71011d9508* AsContainer(UnkGuiDisplayObject* object) {
+    return reinterpret_cast<UnkDisplayObject_71011d9508*>(object);
+}
+
+UnkGuiDisplayObject* fn_71011d9508(UnkGuiDisplayObject* self, const char* const* path) {
     UnkTokenList_0x70 list;
     list.field_0x8 = 0;
     list.head = nullptr;
@@ -80,7 +84,7 @@ UnkDisplayObject_71011d9508* fn_71011d9508(UnkDisplayObject_71011d9508* self, co
     list.field_0x68 = 0;
     list.field_0x6c = 0;
     fn_71009319dc(*path, ".", &list);
-    UnkDisplayObject_71011d9508* cur = self;
+    UnkDisplayObject_71011d9508* cur = AsContainer(self);
     for (UnkToken_71011d9508* tok = list.head; tok; tok = tok->next) {
         if (!cur)
             break;
@@ -102,16 +106,10 @@ UnkDisplayObject_71011d9508* fn_71011d9508(UnkDisplayObject_71011d9508* self, co
         cur = found;
     }
     fn_7100931c34(&list);
-    return cur;
+    return reinterpret_cast<UnkGuiDisplayObject*>(cur);
 }
 
 // ---- Lookups among a container's children (the list at +0x1d0) ----
-
-#include "game/UnkGuiDisplayObject.h"
-
-static inline UnkDisplayObject_71011d9508* AsContainer(UnkGuiDisplayObject* object) {
-    return reinterpret_cast<UnkDisplayObject_71011d9508*>(object);
-}
 
 // The direct child named `name`, or null.
 // NON_MATCHING(minor): the loop's exit test compares the link before the result (the original tests

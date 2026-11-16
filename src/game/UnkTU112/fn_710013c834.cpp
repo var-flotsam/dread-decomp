@@ -2,6 +2,7 @@
 // Names and layouts are placeholders.
 #include <string.h>
 
+#include "base/UnkTunableLine.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "game/UnkTU112.h"
@@ -9,42 +10,6 @@
 #include "types.h"
 
 using base::global::CRntString;
-
-// A string with 0x100 bytes of inline storage (0x148 bytes).
-struct UnkTunableLine {
-    u8 str[0x30];
-    char* storage_vtable;  // +0x30
-    u8 buffer[0x100];
-    u64 field_0x138;
-    u32 field_0x140;
-
-    CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
-
-    void Init() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
-        storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
-        field_0x138 = 0;
-        field_0x140 = 0;
-    }
-    explicit UnkTunableLine(const char* text) {
-        Init();
-        fn_710007e77c(Str(), text);
-    }
-    // The first `length` characters of `text`.
-    UnkTunableLine(const char* text, u32 length) {
-        Init();
-        fn_710007e7f8(Str(), text, length);
-    }
-    explicit UnkTunableLine(const CRntString& text) {
-        Init();
-        fn_710007eaa0(Str(), &text);
-    }
-    ~UnkTunableLine() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
-    }
-};
-static_assert(sizeof(UnkTunableLine) == 0x148, "");
 
 // The two strings' texts one after the other.
 static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }

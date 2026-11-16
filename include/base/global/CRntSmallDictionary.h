@@ -50,6 +50,27 @@ struct CRntSmallDictionary {
         return End();
     }
 
+    // Reallocates both arrays to new_capacity entries, copying the entries over bitwise (for keys and
+    // values that are plain words) and freeing the old arrays. The original tests the count, not the
+    // capacity, against new_capacity.
+    void Grow(u32 new_capacity) {
+        if (count >= new_capacity)
+            return;
+        V* new_values = static_cast<V*>(allocator->vf_0x40((u64)new_capacity * sizeof(V), 8, flags));
+        K* new_keys = static_cast<K*>(allocator->vf_0x40((u64)new_capacity * sizeof(K), 8, flags));
+        if (values) {
+            __builtin_memcpy(new_values, values, (u64)count * sizeof(V));
+            allocator->vf_0x48(values);
+        }
+        if (keys) {
+            __builtin_memcpy(new_keys, keys, (u64)count * sizeof(K));
+            allocator->vf_0x48(keys);
+        }
+        values = new_values;
+        keys = new_keys;
+        capacity = new_capacity;
+    }
+
     // Destroys the keys, then the values, keeping the arrays.
     void Clear() {
         if (keys) {

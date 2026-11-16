@@ -16,6 +16,7 @@
 #include <new>
 
 #include "../../game/CMinimapData/UnkStrIdIterBeginEnd_A6_b75.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -177,15 +178,7 @@ struct UnkMapRecord_ovb0036 {
 
 void fn_7100262f74(UnkMapRecord_ovb0036* self, UnkMapRecord_ovb0036* other);  // move constructor
 
-struct UnkRecordMap_ovb0036 {
-    UnkMapRecord_ovb0036* values;
-    UnkMapKey_ovb0036* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkRecordMap_ovb0036 = base::global::CRntSmallDictionary<UnkMapKey_ovb0036, UnkMapRecord_ovb0036>;
 
 UnkMapRecord_ovb0036* fn_71002613ac(UnkRecordMap_ovb0036* self, UnkMapRecord_ovb0036* it) {
     u32 index = static_cast<u32>(it - self->values);

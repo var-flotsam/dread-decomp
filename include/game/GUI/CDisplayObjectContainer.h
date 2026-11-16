@@ -22,3 +22,6 @@ void fn_71011d9ab4(UnkGuiButtonFocus_ovb0000* self);
 void fn_71011d9e90(void* a, void* b, void* c, bool d, bool e, bool f);
 extern char g_unk_7172a0f120[] __attribute__((visibility("hidden")));
 void fn_71011d99e4(UnkGuiDisplayObject* self, UnkGuiEvent_b49* event);
+// The display object at a dotted path below `self` (each part a child's name, every step but the last a
+// container), or null.
+UnkGuiDisplayObject* fn_71011d9508(UnkGuiDisplayObject* self, const char* const* path);

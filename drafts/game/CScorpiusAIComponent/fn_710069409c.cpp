@@ -2,7 +2,7 @@
 // `id` with the values `a` and `b` (b -1 for the default descriptor), then the same under the id's
 // name followed by "_taillayer" when the animation has that one, else again under the id. Names and
 // layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"

@@ -912,7 +912,6 @@ struct UnkLoadCheckPointSingleton_ovb0118;
 struct UnkMgr_0xf18;
 void fn_7101198978(void* gui);
 void fn_7101198c0c(void* gui);
-void fn_7101047068(CBlackboard* a, CBlackboard* b);
 void fn_7100dfe560(UnkGameManager* self, bool flag);
 void fn_7100ec7364(u8* self);
 void fn_7100fdd250(UnkMgr_0xf18* manager, u32 kind, f32 time);
@@ -1001,7 +1000,6 @@ struct UnkPopUpEvent_ovb0085;
 struct UnkTutorialComposition;
 struct UnkTutorialRequest;
 void fn_7100b5ed84(UnkPopUpComposition_ovb0085* self, UnkPopUpEvent_ovb0085* event);
-void fn_7101047ea8(void* self);
 
 // A blackboard seen through its vtable (called through a pointer, so the call stays virtual).
 struct UnkBoardCall_dfa010 {

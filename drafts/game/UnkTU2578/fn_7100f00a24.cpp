@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/UnkChainedMap.h"
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
@@ -39,20 +40,13 @@ struct UnkSoundIdListNode {
     UnkSoundIdListNode* next;
 };
 
-struct UnkSoundIdList {
-    u32 count;
-    UnkSoundIdListNode* head;
-    UnkSoundIdListNode* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    UnkSoundIdListNode* Find(u32 key) {
-        for (UnkSoundIdListNode* n = head; n; n = n->next)
-            if (n->key == key)
-                return n;
-        return nullptr;
-    }
-};
+// Finds the node holding `key`, or null.
+static UnkSoundIdListNode* FindSoundId(const base::UnkLinkedList<UnkSoundIdListNode>& list, u32 key) {
+    for (UnkSoundIdListNode* n = list.head; n; n = n->next)
+        if (n->key == key)
+            return n;
+    return nullptr;
+}
 
 struct UnkMedia324;
 u32 fn_710021f950(UnkMedia324* self);
@@ -61,12 +55,12 @@ void fn_710021fafc(UnkMedia324* self);
 
 struct UnkStruct_0x128 {
     u8 pad_0x0[0x80];
-    UnkSoundIdList field_0x80;
+    base::UnkLinkedList<UnkSoundIdListNode> field_0x80;
 };
 
 
 bool fn_7100f00a24(UnkStruct_0x128* self, u32 id) {
-    UnkSoundIdListNode* n = self->field_0x80.Find(id);
+    UnkSoundIdListNode* n = FindSoundId(self->field_0x80, id);
     if (!n)
         return false;
     UnkSoundIdRef ref = n->ref;

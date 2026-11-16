@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/UnkFreedVectorPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -11,15 +12,7 @@ using base::global::CStrId;
 typedef UnkSecondPtrArray<UnkFreedVectorPair> UnkPairRecords_le58bdc;
 
 // Record arrays keyed by string ids, in two parallel arrays.
-struct UnkPairRecordsMap_le58bdc {
-    UnkPairRecords_le58bdc* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkPairRecordsMap_le58bdc = base::global::CRntSmallDictionary<CStrId, UnkPairRecords_le58bdc>;
 
 UnkPairRecords_le58bdc* fn_7100e58bdc(UnkPairRecordsMap_le58bdc* self, UnkPairRecords_le58bdc* it) {
     u32 index = (u32)(it - self->values);

@@ -12,7 +12,7 @@ struct UnkSoundHandle;
 struct UnkStrIdPathPair;
 struct UnkDropPlayer_ovb0208;
 struct UnkDropTarget;
-void fn_7101024b28(UnkDropTarget* self, void* record, void* source, void* a, u32 b);
+UnkSoundHandle fn_7101024b28(UnkDropTarget* self, void* record, void* source, void* a, u32 b);
 void fn_7101023f04(UnkDropTarget* target, void* entry, UnkDropPlayer_ovb0208* player, void* arg4, u32 arg5);
 extern void* g_unk_7101cac5d8[];
 extern void* g_unk_7101cac688[];
