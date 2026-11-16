@@ -3,6 +3,7 @@
 // sources in src/game_s1/). Holds fn_7100206078, which moves the node's target along a velocity.
 // Names are placeholders inferred from the code.
 #include "game/UnkTU244.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -18,14 +19,6 @@ static inline UnkXformNodeVtbl_7100206078* UnkVtbl(UnkXformNode* self) {
     return *reinterpret_cast<UnkXformNodeVtbl_7100206078**>(self);
 }
 
-static inline UnkVec3f UnkScaled(const UnkVec3f& v, f32 s) {
-    return UnkVec3f(v.x * s, v.y * s, v.z * s);
-}
-
-static inline UnkVec3f UnkSum(const UnkVec3f& a, const UnkVec3f& b) {
-    return UnkVec3f(a.x + b.x, a.y + b.y, a.z + b.z);
-}
-
 // Hands the target the node's position and `to`, marks the node and updates it twice with no time.
 static inline void UnkMoveTo(UnkXformNode* self, const UnkVec3f& to) {
     UnkXformTarget* target = self->target_0x108;
@@ -38,8 +31,6 @@ static inline void UnkMoveTo(UnkXformNode* self, const UnkVec3f& to) {
 }
 
 // Moves the node's target from its position by ten times `velocity`.
-// NON_MATCHING(minor): instruction scheduling and register allocation before the first virtual call
-// (the original loads the velocity before the vtable and keeps 10.0 in s0).
 void fn_7100206078(UnkXformNode* self, const UnkVec3f* velocity) {
-    UnkMoveTo(self, UnkSum(UnkScaled(*velocity, 10.0f), UnkVtbl(self)->vf_0x98(self)));
+    UnkMoveTo(self, *velocity * 10.0f + UnkVtbl(self)->vf_0x98(self));
 }

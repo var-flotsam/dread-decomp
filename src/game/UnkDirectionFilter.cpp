@@ -3,7 +3,7 @@
 // direction (fn_71006f379c). Names and layout are placeholders inferred from the code.
 #include <math.h>
 
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/math/UnkSegment2D.h"
 #include "types.h"
 
@@ -32,11 +32,7 @@ bool fn_71006f379c(const UnkDirectionFilter* self, const UnkSegment2D* seg) {
     }
     CVector2D d;
     fn_710007b430(&d, &direction);
-    f32 length = sqrtf(d.x * d.x + d.y * d.y);
-    if (length != 0.0f) {
-        d.x /= length;
-        d.y /= length;
-    }
+    Normalize(d);
     UnkVec2Result normal = fn_7100125e78(seg);
     return normal.x * d.x + normal.y * d.y >= self->threshold;
 }
