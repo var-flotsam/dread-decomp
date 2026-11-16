@@ -22,6 +22,11 @@
 #include "base/UnkCollectionIter.h"
 #include "types.h"
 
+namespace base::global {
+template <class K, class V>
+struct CRntSmallDictionary;
+}  // namespace base::global
+
 namespace base::reflection {
 
 template <class C>
@@ -126,6 +131,53 @@ struct CollectionMapperDescription {
     static constexpr auto set_move = &CollectionTypeMapper<C>::SetMove;
     static constexpr auto const_begin = &CollectionTypeMapper<C>::ConstBegin;
     static constexpr auto const_end = &CollectionTypeMapper<C>::ConstEnd;
+};
+
+// A small dictionary's mapper (base/global/CRntSmallDictionary.h): its element iterators are a vector's,
+// and the slots written so far are those that need none of its growth, copies or removal.
+template <class K, class V>
+struct CollectionTypeMapper<global::CRntSmallDictionary<K, V>> {
+    using C = global::CRntSmallDictionary<K, V>;
+
+    struct TElementIterator {
+        void* m_element = nullptr;
+        bool operator==(const TElementIterator& other) const { return m_element == other.m_element; }
+    };
+    struct TElementConstIterator {
+        const void* m_element = nullptr;
+        bool operator==(const TElementConstIterator& other) const { return m_element == other.m_element; }
+    };
+    struct TKeyElementIterator;
+    struct TKeyElementConstIterator;
+
+    // Reflection creates its dictionaries with allocation flags 0xe.
+    static void Construct(void* obj) { new (obj) C(0xe); }
+    static void MoveConstruct(void* dst, void* src) { new (dst) C(std::move(*static_cast<C*>(src))); }
+    static s32 Hash(const void*) { return -1; }
+    static const class CType& TypeOf(const void* obj);
+
+    static u32 Count(const void* collection) { return static_cast<const C*>(collection)->count; }
+    static void* At(void* collection, u32 index) { return &static_cast<C*>(collection)->values[index]; }
+    static void Begin(void* collection, void* it) {
+        static_cast<TElementIterator*>(it)->m_element = static_cast<C*>(collection)->values;
+    }
+    static void End(void* collection, void* it) {
+        C* c = static_cast<C*>(collection);
+        static_cast<TElementIterator*>(it)->m_element = c->values + c->count;
+    }
+};
+
+// The members of a small dictionary C's description that its mapper writes.
+template <class C>
+struct SmallDictionaryMapperDescription {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto construct = &Mapper::Construct;
+    static constexpr auto move_construct = &Mapper::MoveConstruct;
+    static constexpr auto hash = &Mapper::Hash;
+    static constexpr auto count = &Mapper::Count;
+    static constexpr auto at = &Mapper::At;
+    static constexpr auto begin = &Mapper::Begin;
+    static constexpr auto end = &Mapper::End;
 };
 
 }  // namespace base::reflection
