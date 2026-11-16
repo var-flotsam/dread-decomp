@@ -17,6 +17,7 @@
 #include "game/UnkGuiLabel.h"
 #include "game/UnkTU1689.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -26,7 +27,6 @@ using UnkGuiObj = UnkGuiDisplayObject;
 using UnkVec2f = base::math::CVector2D;
 
 void fn_71011cfdb8(UnkGuiObj* object, const UnkVec2f* scale);
-void fn_71011cd5a0(UnkGuiObj* object);
 
 // A marker: its box on the map (from its first to its second corner) and its name.
 struct UnkMapMarker {

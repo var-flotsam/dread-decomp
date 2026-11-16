@@ -40,8 +40,7 @@ struct UnkStateKey;
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f01a8;
 struct UnkGlobalMapComposition;
-struct UnkGuiObj;
-void fn_71011cd5a0(UnkGuiObj* object);
+using UnkGuiObj = UnkGuiDisplayObject;
 
 // The world takes the area to show (the game manager's +0x2228).
 void fn_7100e9867c(void* world, const CStrId& area);

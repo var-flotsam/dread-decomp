@@ -130,8 +130,8 @@ class Emulate(unittest.TestCase):
         lines = gt.traits(fake(a), a.start, decls)
         self.assertEqual(lines[0], "    static constexpr u64 size = 0x10;")
         self.assertEqual(lines[1], "    static constexpr bool owned = true;")
-        self.assertIn("    static constexpr UnkFn construct = &fn_7100000040;", lines)
-        self.assertIn("    static constexpr UnkFn copy_construct = nullptr;", lines)
+        self.assertIn("    static constexpr SlotFn construct = &fn_7100000040;", lines)
+        self.assertIn("    static constexpr SlotFn copy_construct = nullptr;", lines)
         self.assertEqual(lines[-1], "    static const CType* pointee() { return fn_7100000080(); }")
         self.assertEqual(decls, {"void fn_7100000040();", "const base::reflection::CType* fn_7100000080();"})
 
@@ -190,7 +190,7 @@ class Emission(unittest.TestCase):
 
 class EnumValueOps(unittest.TestCase):
     BODY = ["    static constexpr u64 size = 0x4;",
-            "    static constexpr UnkFn construct = &fn_7100000040;",
+            "    static constexpr SlotFn construct = &fn_7100000040;",
             "    static const CType* underlying() { return fn_7100000050(); }"]
 
     def test_declaration_scopes_become_namespaces(self):
@@ -220,7 +220,7 @@ class EnumValueOps(unittest.TestCase):
                           "base::reflection::CFlagsetType::CFlagsetType<base::EFoo>"])
 
     def test_flagset_named_form(self):
-        body = ["    static constexpr u64 size = 0x4;", "    static constexpr UnkFn hash = &fn_7100000044;",
+        body = ["    static constexpr u64 size = 0x4;", "    static constexpr SlotFn hash = &fn_7100000044;",
                 "    static const CType* underlying() { return fn_7100000050(); }"]
         out = gt.emit_flagset_ops(0x7100000020, "a::TFlags", 0x7101000000, body)
         self.assertEqual(out[0], "namespace a { struct TFlags { u32 bits = 0; bool operator==(const TFlags& other) "
@@ -285,8 +285,8 @@ class TypeNames(unittest.TestCase):
             self.assertTrue(gt.TYPE_DECL_RE.match(line), line)
 
     def test_pointer_named_form(self):
-        body = ["    static constexpr u64 size = 0x8;", "    static constexpr UnkFn construct = &fn_7100000040;",
-                "    static constexpr UnkFn get = &fn_7100000044;"]
+        body = ["    static constexpr u64 size = 0x8;", "    static constexpr SlotFn construct = &fn_7100000040;",
+                "    static constexpr SlotFn get = &fn_7100000044;"]
         out = gt.emit_pointer_ops(0x7100000010, "CFoo const*", 0x7100000020, body, "CFoo const*")
         self.assertEqual(out[0], "class CFoo;")
         self.assertIn("template struct base::reflection::ValueOps<CFoo const*>;", out)
@@ -326,15 +326,15 @@ class TypeNames(unittest.TestCase):
     def test_primitive_named_form(self):
         body = ['    static constexpr const char* name = "unsigned";', "    static constexpr u64 length = 8;",
                 "    static constexpr u64 size = 0x4;"]
-        body += [f"    static constexpr UnkFn {m} = &fn_{0x7100000040 + 4 * i:x};"
+        body += [f"    static constexpr SlotFn {m} = &fn_{0x7100000040 + 4 * i:x};"
                  for i, m in enumerate(gt.PRIMITIVE_SLOTS.values())]
         self.assertEqual(gt.primitive_value_type(body), "unsigned int")
         out = gt.emit_primitive(0x7100000010, body, "unsigned int")
         self.assertIn("template struct base::reflection::ValueOps<unsigned int>;", out)
-        self.assertIn("struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100000010> "
+        self.assertIn("struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100000010> "
                       ": base::reflection::ValueOpsDescription<unsigned int> {", out)
         self.assertNotIn(body[3], out)
-        self.assertIn("    static constexpr UnkFn add_attributes = &fn_7100000064;", out)
+        self.assertIn("    static constexpr SlotFn add_attributes = &fn_7100000064;", out)
         names = gt.primitive_ops_names(body, "unsigned int")
         self.assertEqual(names[0x7100000040], "base::reflection::ValueOps<unsigned int>::Construct")
         self.assertEqual(len(names), 9)
@@ -349,7 +349,7 @@ class TypeNames(unittest.TestCase):
                 "    static const CType* element() { return fn_7100000510(); }",
                 "    static const CType* iterator() { return fn_7100000520(); }",
                 "    static const CType* const_iterator() { return fn_7100000530(); }"]
-        body += [f"    static constexpr UnkFn {m} = &fn_{0x7100000100 + 0x10 * i:x};" for i, m in enumerate(slots)]
+        body += [f"    static constexpr SlotFn {m} = &fn_{0x7100000100 + 0x10 * i:x};" for i, m in enumerate(slots)]
         vector = "base::global::CRntVector<CActor*>"
         named = {0x7100000520: f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator"}
         self.assertEqual(gt.mapped_vector(body, named, frozenset()), (vector, "CActor*"))
@@ -399,7 +399,7 @@ class TypeNames(unittest.TestCase):
                       f": base::reflection::CollectionMapperDescription<{vector}> {{", out)
         self.assertIn("class CActor;", out)
         self.assertIn(f"extern template void {vector}::InsertCopy(CActor* const&, u32);", out)
-        self.assertIn("    static constexpr UnkFn erase = &fn_71000001d0;", out)
+        self.assertIn("    static constexpr SlotFn erase = &fn_71000001d0;", out)
         self.assertIn(f"extern template CActor*& {vector}::GrowAt(u32);", out)
         self.assertFalse(any(" count = " in line or " construct = " in line or " equals = " in line for line in out))
         self.assertEqual(gt.MAPPER_DESC_RE.findall("\n".join(out)), [vector])
@@ -413,7 +413,7 @@ class TypeNames(unittest.TestCase):
                 "    static const CType* element() { return fn_7100000510(); }",
                 "    static const CType* iterator() { return fn_7100000520(); }",
                 "    static const CType* const_iterator() { return fn_7100000530(); }"]
-        body += [f"    static constexpr UnkFn {m} = &fn_{0x7100000100 + 0x10 * i:x};" for i, m in enumerate(slots)]
+        body += [f"    static constexpr SlotFn {m} = &fn_{0x7100000100 + 0x10 * i:x};" for i, m in enumerate(slots)]
         dict_ = "base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>"
         named = {0x7100000520: f"base::reflection::CollectionTypeMapper<{dict_}>::TElementIterator"}
         self.assertEqual(gt.mapped_collection(body, named, frozenset()), (dict_, "CEntity*"))
@@ -437,7 +437,7 @@ class TypeNames(unittest.TestCase):
                       f": base::reflection::SmallDictionaryKeyedMapperDescription<{dict_}> {{", out)
         self.assertIn('#include "base/global/CRntSmallDictionary.h"', out)
         self.assertIn('#include "base/global/CStrId.h"', out)
-        self.assertIn("    static constexpr UnkFn erase = &fn_71000001d0;", out)
+        self.assertIn("    static constexpr SlotFn erase = &fn_71000001d0;", out)
         self.assertFalse(any(" find = " in line or "extern template" in line for line in out))
         self.assertFalse(any(" count = " in line or " construct = " in line for line in out))
         self.assertEqual(gt.MAPPER_DESC_RE.findall("\n".join(out)), [dict_])
@@ -452,7 +452,7 @@ class TypeNames(unittest.TestCase):
                  "equals", "hash", "type_of"] + gt.COLLECTION_SLOTS
         body = ["    static constexpr u64 size = 0x48;", "    static constexpr u32 kind = 0x2;",
                 "    static const CType* iterator() { return fn_7100000520(); }"]
-        body += [f"    static constexpr UnkFn {m} = &fn_{0x7100000100 + 0x10 * i:x};" for i, m in enumerate(slots)
+        body += [f"    static constexpr SlotFn {m} = &fn_{0x7100000100 + 0x10 * i:x};" for i, m in enumerate(slots)
                  if m not in ("copy_construct", "move_construct", "copy_assign", "move_assign")]
         dict_ = "base::global::CRntDictionary<base::global::CStrId, CActor*>"
         named = {0x7100000520: f"base::reflection::CollectionTypeMapper<{dict_}>::TElementIterator"}

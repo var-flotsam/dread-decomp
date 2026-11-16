@@ -120,10 +120,11 @@ class ConstructorLines(unittest.TestCase):
         self.assertEqual(lines[1], "struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100000020> {")
         self.assertIn("    static constexpr u64 size = 0x50;", lines)
         self.assertIn("    static constexpr bool abstract = true;", lines)
-        self.assertIn("    static constexpr UnkFn_0x58 fn_0x58 = &fn_7100000058;", lines)
-        self.assertIn("    static constexpr UnkFn fn_0x28 = &fn_7100000028;", lines)
-        self.assertIn("    static constexpr UnkFn_0x60 fn_0x60 = nullptr;", lines)
-        self.assertEqual(sum(ln.startswith("    static constexpr Unk") for ln in lines), len(gr.TRAIT_SLOTS))
+        self.assertIn("    static constexpr EqualsFn fn_0x58 = &fn_7100000058;", lines)
+        self.assertIn("    static constexpr SlotFn fn_0x28 = &fn_7100000028;", lines)
+        self.assertIn("    static constexpr HashFn fn_0x60 = nullptr;", lines)
+        self.assertEqual(sum(ln.startswith("    static constexpr ") and " fn_0x" in ln for ln in lines),
+                         len(gr.TRAIT_SLOTS))
         self.assertTrue(lines[-1].endswith("UnkRefl_fn_7100000020*);"))
 
 

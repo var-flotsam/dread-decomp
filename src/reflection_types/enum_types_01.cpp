@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/ValueOps.h"
 using base::reflection::CType;
-using base::reflection::UnkFn;
+using base::reflection::SlotFn;
 const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_7100014768();
 extern base::reflection::CType g_unk_71727ba480;
@@ -94,7 +94,6 @@ const CType& base::reflection::ValueOps<ELightAttachment>::TypeOf(const void*) {
 template struct base::reflection::ValueOps<ELightAttachment>;
 template <>
 struct base::reflection::EnumTypeDescription<ELightAttachment> : base::reflection::ValueOpsDescription<ELightAttachment> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -104,7 +103,6 @@ const CType& base::reflection::ValueOps<IPath::EType>::TypeOf(const void*) { ret
 template struct base::reflection::ValueOps<IPath::EType>;
 template <>
 struct base::reflection::EnumTypeDescription<IPath::EType> : base::reflection::ValueOpsDescription<IPath::EType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -114,7 +112,6 @@ const CType& base::reflection::ValueOps<SLinkType::ELinkType>::TypeOf(const void
 template struct base::reflection::ValueOps<SLinkType::ELinkType>;
 template <>
 struct base::reflection::EnumTypeDescription<SLinkType::ELinkType> : base::reflection::ValueOpsDescription<SLinkType::ELinkType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -124,7 +121,6 @@ const CType& base::reflection::ValueOps<CAIManager::EAIGroup>::TypeOf(const void
 template struct base::reflection::ValueOps<CAIManager::EAIGroup>;
 template <>
 struct base::reflection::EnumTypeDescription<CAIManager::EAIGroup> : base::reflection::ValueOpsDescription<CAIManager::EAIGroup> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -134,7 +130,6 @@ const CType& base::reflection::ValueOps<CAIManager::EBumpMode>::TypeOf(const voi
 template struct base::reflection::ValueOps<CAIManager::EBumpMode>;
 template <>
 struct base::reflection::EnumTypeDescription<CAIManager::EBumpMode> : base::reflection::ValueOpsDescription<CAIManager::EBumpMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -144,7 +139,6 @@ const CType& base::reflection::ValueOps<EAmiibo>::TypeOf(const void*) { return g
 template struct base::reflection::ValueOps<EAmiibo>;
 template <>
 struct base::reflection::EnumTypeDescription<EAmiibo> : base::reflection::ValueOpsDescription<EAmiibo> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -154,7 +148,6 @@ const CType& base::reflection::ValueOps<CExplosionGfx::ETransitionOperationMode>
 template struct base::reflection::ValueOps<CExplosionGfx::ETransitionOperationMode>;
 template <>
 struct base::reflection::EnumTypeDescription<CExplosionGfx::ETransitionOperationMode> : base::reflection::ValueOpsDescription<CExplosionGfx::ETransitionOperationMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -164,7 +157,6 @@ const CType& base::reflection::ValueOps<SLoadScenarioRequest::EMode>::TypeOf(con
 template struct base::reflection::ValueOps<SLoadScenarioRequest::EMode>;
 template <>
 struct base::reflection::EnumTypeDescription<SLoadScenarioRequest::EMode> : base::reflection::ValueOpsDescription<SLoadScenarioRequest::EMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -174,7 +166,6 @@ const CType& base::reflection::ValueOps<EDifficultyMode>::TypeOf(const void*) { 
 template struct base::reflection::ValueOps<EDifficultyMode>;
 template <>
 struct base::reflection::EnumTypeDescription<EDifficultyMode> : base::reflection::ValueOpsDescription<EDifficultyMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -184,7 +175,6 @@ const CType& base::reflection::ValueOps<EEntryType>::TypeOf(const void*) { retur
 template struct base::reflection::ValueOps<EEntryType>;
 template <>
 struct base::reflection::EnumTypeDescription<EEntryType> : base::reflection::ValueOpsDescription<EEntryType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -194,7 +184,6 @@ const CType& base::reflection::ValueOps<ELoadingScreen>::TypeOf(const void*) { r
 template struct base::reflection::ValueOps<ELoadingScreen>;
 template <>
 struct base::reflection::EnumTypeDescription<ELoadingScreen> : base::reflection::ValueOpsDescription<ELoadingScreen> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -204,7 +193,6 @@ const CType& base::reflection::ValueOps<ETooltipCond>::TypeOf(const void*) { ret
 template struct base::reflection::ValueOps<ETooltipCond>;
 template <>
 struct base::reflection::EnumTypeDescription<ETooltipCond> : base::reflection::ValueOpsDescription<ETooltipCond> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -214,7 +202,6 @@ const CType& base::reflection::ValueOps<ETooltipType>::TypeOf(const void*) { ret
 template struct base::reflection::ValueOps<ETooltipType>;
 template <>
 struct base::reflection::EnumTypeDescription<ETooltipType> : base::reflection::ValueOpsDescription<ETooltipType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -224,7 +211,6 @@ const CType& base::reflection::ValueOps<EMinimapFowType>::TypeOf(const void*) { 
 template struct base::reflection::ValueOps<EMinimapFowType>;
 template <>
 struct base::reflection::EnumTypeDescription<EMinimapFowType> : base::reflection::ValueOpsDescription<EMinimapFowType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -234,7 +220,6 @@ const CType& base::reflection::ValueOps<EMarkerType>::TypeOf(const void*) { retu
 template struct base::reflection::ValueOps<EMarkerType>;
 template <>
 struct base::reflection::EnumTypeDescription<EMarkerType> : base::reflection::ValueOpsDescription<EMarkerType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -244,7 +229,6 @@ const CType& base::reflection::ValueOps<EMapTutoType>::TypeOf(const void*) { ret
 template struct base::reflection::ValueOps<EMapTutoType>;
 template <>
 struct base::reflection::EnumTypeDescription<EMapTutoType> : base::reflection::ValueOpsDescription<EMapTutoType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -254,7 +238,6 @@ const CType& base::reflection::ValueOps<minimap::EIconAnimID>::TypeOf(const void
 template struct base::reflection::ValueOps<minimap::EIconAnimID>;
 template <>
 struct base::reflection::EnumTypeDescription<minimap::EIconAnimID> : base::reflection::ValueOpsDescription<minimap::EIconAnimID> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -264,7 +247,6 @@ const CType& base::reflection::ValueOps<EWeaponType>::TypeOf(const void*) { retu
 template struct base::reflection::ValueOps<EWeaponType>;
 template <>
 struct base::reflection::EnumTypeDescription<EWeaponType> : base::reflection::ValueOpsDescription<EWeaponType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -274,7 +256,6 @@ const CType& base::reflection::ValueOps<EWeaponState>::TypeOf(const void*) { ret
 template struct base::reflection::ValueOps<EWeaponState>;
 template <>
 struct base::reflection::EnumTypeDescription<EWeaponState> : base::reflection::ValueOpsDescription<EWeaponState> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -284,7 +265,6 @@ const CType& base::reflection::ValueOps<CSubAreaManager::ETransitionType>::TypeO
 template struct base::reflection::ValueOps<CSubAreaManager::ETransitionType>;
 template <>
 struct base::reflection::EnumTypeDescription<CSubAreaManager::ETransitionType> : base::reflection::ValueOpsDescription<CSubAreaManager::ETransitionType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -294,7 +274,6 @@ const CType& base::reflection::ValueOps<CPrologueMode::SState>::TypeOf(const voi
 template struct base::reflection::ValueOps<CPrologueMode::SState>;
 template <>
 struct base::reflection::EnumTypeDescription<CPrologueMode::SState> : base::reflection::ValueOpsDescription<CPrologueMode::SState> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -304,7 +283,6 @@ const CType& base::reflection::ValueOps<ESubAreaItem>::TypeOf(const void*) { ret
 template struct base::reflection::ValueOps<ESubAreaItem>;
 template <>
 struct base::reflection::EnumTypeDescription<ESubAreaItem> : base::reflection::ValueOpsDescription<ESubAreaItem> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100005178(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -314,7 +292,6 @@ const CType& base::reflection::ValueOps<SMusicPlayFlag>::TypeOf(const void*) { r
 template struct base::reflection::ValueOps<SMusicPlayFlag>;
 template <>
 struct base::reflection::EnumTypeDescription<SMusicPlayFlag> : base::reflection::ValueOpsDescription<SMusicPlayFlag> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -324,7 +301,6 @@ const CType& base::reflection::ValueOps<SMusicStopFlag>::TypeOf(const void*) { r
 template struct base::reflection::ValueOps<SMusicStopFlag>;
 template <>
 struct base::reflection::EnumTypeDescription<SMusicStopFlag> : base::reflection::ValueOpsDescription<SMusicStopFlag> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -334,7 +310,6 @@ const CType& base::reflection::ValueOps<SMusicPriority>::TypeOf(const void*) { r
 template struct base::reflection::ValueOps<SMusicPriority>;
 template <>
 struct base::reflection::EnumTypeDescription<SMusicPriority> : base::reflection::ValueOpsDescription<SMusicPriority> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -344,7 +319,6 @@ const CType& base::reflection::ValueOps<SMusicManagerState>::TypeOf(const void*)
 template struct base::reflection::ValueOps<SMusicManagerState>;
 template <>
 struct base::reflection::EnumTypeDescription<SMusicManagerState> : base::reflection::ValueOpsDescription<SMusicManagerState> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -354,7 +328,6 @@ const CType& base::reflection::ValueOps<EMusicFadeType>::TypeOf(const void*) { r
 template struct base::reflection::ValueOps<EMusicFadeType>;
 template <>
 struct base::reflection::EnumTypeDescription<EMusicFadeType> : base::reflection::ValueOpsDescription<EMusicFadeType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -364,7 +337,6 @@ const CType& base::reflection::ValueOps<EMusicManagerInGameState>::TypeOf(const 
 template struct base::reflection::ValueOps<EMusicManagerInGameState>;
 template <>
 struct base::reflection::EnumTypeDescription<EMusicManagerInGameState> : base::reflection::ValueOpsDescription<EMusicManagerInGameState> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -374,7 +346,6 @@ const CType& base::reflection::ValueOps<ELOSMode>::TypeOf(const void*) { return 
 template struct base::reflection::ValueOps<ELOSMode>;
 template <>
 struct base::reflection::EnumTypeDescription<ELOSMode> : base::reflection::ValueOpsDescription<ELOSMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -384,7 +355,6 @@ const CType& base::reflection::ValueOps<ELOSCheckLevel>::TypeOf(const void*) { r
 template struct base::reflection::ValueOps<ELOSCheckLevel>;
 template <>
 struct base::reflection::EnumTypeDescription<ELOSCheckLevel> : base::reflection::ValueOpsDescription<ELOSCheckLevel> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -394,7 +364,6 @@ const CType& base::reflection::ValueOps<CAIComponent::PathLimitSelectionMode>::T
 template struct base::reflection::ValueOps<CAIComponent::PathLimitSelectionMode>;
 template <>
 struct base::reflection::EnumTypeDescription<CAIComponent::PathLimitSelectionMode> : base::reflection::ValueOpsDescription<CAIComponent::PathLimitSelectionMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -404,7 +373,6 @@ const CType& base::reflection::ValueOps<CSpawnPointComponent::EDynamicSpawnPosit
 template struct base::reflection::ValueOps<CSpawnPointComponent::EDynamicSpawnPositionMode>;
 template <>
 struct base::reflection::EnumTypeDescription<CSpawnPointComponent::EDynamicSpawnPositionMode> : base::reflection::ValueOpsDescription<CSpawnPointComponent::EDynamicSpawnPositionMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -414,7 +382,6 @@ const CType& base::reflection::ValueOps<CSpawnPointComponent::EXCellSpawnPositio
 template struct base::reflection::ValueOps<CSpawnPointComponent::EXCellSpawnPositionMode>;
 template <>
 struct base::reflection::EnumTypeDescription<CSpawnPointComponent::EXCellSpawnPositionMode> : base::reflection::ValueOpsDescription<CSpawnPointComponent::EXCellSpawnPositionMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -424,7 +391,6 @@ const CType& base::reflection::ValueOps<CGrabComponent::ELinkMode>::TypeOf(const
 template struct base::reflection::ValueOps<CGrabComponent::ELinkMode>;
 template <>
 struct base::reflection::EnumTypeDescription<CGrabComponent::ELinkMode> : base::reflection::ValueOpsDescription<CGrabComponent::ELinkMode> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -434,7 +400,6 @@ const CType& base::reflection::ValueOps<CInterpolationComponent::EInterpDirectio
 template struct base::reflection::ValueOps<CInterpolationComponent::EInterpDirection>;
 template <>
 struct base::reflection::EnumTypeDescription<CInterpolationComponent::EInterpDirection> : base::reflection::ValueOpsDescription<CInterpolationComponent::EInterpDirection> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -444,7 +409,6 @@ const CType& base::reflection::ValueOps<CInterpolationComponent::EInterpolationT
 template struct base::reflection::ValueOps<CInterpolationComponent::EInterpolationType>;
 template <>
 struct base::reflection::EnumTypeDescription<CInterpolationComponent::EInterpolationType> : base::reflection::ValueOpsDescription<CInterpolationComponent::EInterpolationType> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -454,7 +418,6 @@ const CType& base::reflection::ValueOps<GUI::CButton::TextAlign>::TypeOf(const v
 template struct base::reflection::ValueOps<GUI::CButton::TextAlign>;
 template <>
 struct base::reflection::EnumTypeDescription<GUI::CButton::TextAlign> : base::reflection::ValueOpsDescription<GUI::CButton::TextAlign> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };
@@ -464,7 +427,6 @@ const CType& base::reflection::ValueOps<GUI::CHUD::EForceVisibilityState>::TypeO
 template struct base::reflection::ValueOps<GUI::CHUD::EForceVisibilityState>;
 template <>
 struct base::reflection::EnumTypeDescription<GUI::CHUD::EForceVisibilityState> : base::reflection::ValueOpsDescription<GUI::CHUD::EForceVisibilityState> {
-    static constexpr u64 size = 0x4;
     static const CType* underlying() { return fn_7100014768(); }
     static void reserve(void* values, u32 count) { fn_7100014a48(values, count); }
 };

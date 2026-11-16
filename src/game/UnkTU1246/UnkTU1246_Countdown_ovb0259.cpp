@@ -19,6 +19,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2656.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU53.h"
 #include "game/UnkTU57.h"
@@ -118,10 +119,9 @@ void fn_71007daf04(UnkCountDown_ovb0259* self) {
     }
 }
 
-struct UnkGuiObj;
+using UnkGuiObj = UnkGuiDisplayObject;
 UnkGuiObj* fn_71011d9508(UnkGuiObj*, const char* const*);
 void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
-void fn_71011cd5a0(UnkGuiObj*);
 
 void fn_71007da730(UnkCountDown_ovb0259* self) {
     UnkCountDownGui_ovb0259* holder = self->field_0x80 ? self->field_0x80->gui : nullptr;

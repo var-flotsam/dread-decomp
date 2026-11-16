@@ -534,7 +534,6 @@ struct UnkSubAreaDropTargetView {
     virtual void vf_0x38(u32 a, u32 b);
 };
 
-extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 void fn_7100d7ae80(UnkComponentOwner* self);
 void fn_7101192a4c(void* self);

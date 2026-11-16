@@ -101,22 +101,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010c45a8> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010c47cc;
-    static constexpr UnkFn copy_construct = &fn_71010c47d4;
-    static constexpr UnkFn move_construct = &fn_71010c47e0;
-    static constexpr UnkFn destroy = &fn_71010c47ec;
-    static constexpr UnkFn copy_assign = &fn_71010c47f0;
-    static constexpr UnkFn move_assign = &fn_71010c4804;
-    static constexpr UnkFn equals = &fn_71010c479c;
-    static constexpr UnkFn hash = &fn_71010c47b0;
-    static constexpr UnkFn type_of = &fn_71010c47b8;
-    static constexpr UnkFn get = &fn_71010c4718;
-    static constexpr UnkFn set = &fn_71010c4780;
-    static constexpr UnkFn increment = &fn_71010c478c;
+    static constexpr SlotFn construct = &fn_71010c47cc;
+    static constexpr SlotFn copy_construct = &fn_71010c47d4;
+    static constexpr SlotFn move_construct = &fn_71010c47e0;
+    static constexpr SlotFn destroy = &fn_71010c47ec;
+    static constexpr SlotFn copy_assign = &fn_71010c47f0;
+    static constexpr SlotFn move_assign = &fn_71010c4804;
+    static constexpr SlotFn equals = &fn_71010c479c;
+    static constexpr SlotFn hash = &fn_71010c47b0;
+    static constexpr SlotFn type_of = &fn_71010c47b8;
+    static constexpr SlotFn get = &fn_71010c4718;
+    static constexpr SlotFn set = &fn_71010c4780;
+    static constexpr SlotFn increment = &fn_71010c478c;
     static const CType* pointee() { return CComponent::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010c301c> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71010c301c> {
     static constexpr const char* name = "CComponent*";
     using Init = UnkRefl_fn_71010c45a8;
 };

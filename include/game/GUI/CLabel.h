@@ -26,3 +26,4 @@ struct UnkLabelGlyph;
 using UnkGlyphVector = base::global::CRntVector<UnkLabelGlyph>;
 void fn_71011f05d4(UnkGlyphVector* self, u32 capacity);
 UnkGlyphVector* fn_71011ee3b4(UnkGlyphVector* self, const UnkGlyphVector* other);
+void fn_71011ecfbc(UnkGuiDisplayObject* label, const char32_t* text);  // Sets the label's text.

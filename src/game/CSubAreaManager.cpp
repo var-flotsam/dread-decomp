@@ -502,7 +502,6 @@ struct UnkSubAreaDropTargetView {
 };
 
 using base::input::UnkRumbleManager;
-extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).

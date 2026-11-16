@@ -15,6 +15,7 @@
 #include "game/CTutoEnterLogicAction.h"
 #include "game/GUI/CButton.h"
 #include "game/GUI/CDialogComposition.h"
+#include "game/GUI/CLabel.h"
 #include "game/GUI/CMissionLog.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
@@ -94,8 +95,6 @@ void fn_7100b59f20(UnkMissionLogEvent_ovb0079* self) {
     fn_7101202488(&event);
 }
 
-struct UnkGuiObj;
-void fn_71011ecfbc(UnkGuiObj*, const char32_t*);
 struct UnkMissionLogName_ovb0079;
 void fn_710007f688(UnkMissionLogName_ovb0079* self, u32 value);
 

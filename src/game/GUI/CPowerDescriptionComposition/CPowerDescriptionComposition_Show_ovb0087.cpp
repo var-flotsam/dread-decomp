@@ -211,7 +211,6 @@ void fn_7100b63ca4(UnkPowerDescCompositionShow* self) {
 }
 
 struct UnkTutorialRequest;
-void fn_71011cd5a0(UnkGuiObj*);
 
 struct UnkPowerDescMenuState {
     u8 pad_0x0[0x2c0];

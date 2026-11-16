@@ -20,6 +20,8 @@
 #include "game/UnkTU112.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU85.h"
+#include "game/UnkTunableFieldHandle.h"
+#include "game/UnkTunableReflValue.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
@@ -136,11 +138,6 @@ struct UnkTunableLine {
 };
 static_assert(sizeof(UnkTunableLine) == 0x148, "");
 
-// A reflected value that is released when it goes out of scope.
-struct UnkTunableReflValue : base::reflection::UnkReflValue {
-    ~UnkTunableReflValue() { fn_71000a1c60(this); }
-};
-
 // A reflected field (0xb0 bytes): its type at +0x10.
 struct UnkTunableField {
     u8 pad_0x0[0x10];
@@ -149,13 +146,7 @@ struct UnkTunableField {
 };
 static_assert(sizeof(UnkTunableField) == 0xb0, "");
 
-struct UnkTunableFieldHandle {
-    u8 pad_0x0[0x18];
-    void* field_0x18;
-};
-
 bool fn_71000e750c(UnkTunableFieldHandle* field);  // whether the field can be read
-UnkTunableReflValue fn_71000e76dc(UnkTunableFieldHandle* field, const UnkReflTypedPtr* obj);
 UnkTunableLine fn_710013a828(const UnkTunableReflValue* value);  // the value as text
 
 static inline __attribute__((always_inline)) UnkTunableLine EmptyLine() {
@@ -179,7 +170,7 @@ static inline __attribute__((always_inline)) UnkTunableReflValue Read(UnkTunable
 }
 
 UnkTunableLine fn_710013ab54(UnkTunableFieldHandle* field, const UnkReflTypedPtr* obj) {
-    if (field->field_0x18 || fn_71000e750c(field)) {
+    if (field->accessor || fn_71000e750c(field)) {
         UnkTunableReflValue value = Read(field, Refined(obj));
         return fn_710013a828(&value);
     }

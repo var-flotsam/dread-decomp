@@ -8,6 +8,8 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/SLogicPathNode.h"
+#include "game/UnkDashMesh.h"
+#include "game/UnkTU2563.h"
 #include "game/UnkTU55.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -43,19 +45,6 @@ static inline void Project(CVector2D* out, const UnkMinimapPathPoint& point) {
 static inline void Assign(CVector2D* out, const UnkMinimapPathPoint& point) {
     fn_710007b444(out, reinterpret_cast<const UnkVec3*>(&point.v));
 }
-
-// A vertex: a position and its depth (UnkVec3f of game/UnkXformNode.h, copied word by word).
-using UnkMeshVertex = UnkVec3f;
-
-struct UnkDashMesh {
-    base::global::CRntVector<UnkMeshVertex> vertices;
-    base::global::CRntVector<u16> indices;
-    f32 min_x;
-    f32 min_y;
-    f32 max_x;
-    f32 max_y;
-};
-static_assert(__builtin_offsetof(UnkDashMesh, min_x) == 0x50, "UnkDashMesh placeholder layout");
 
 // Appends a vertex (the vertex array's out-of-line PushBack).
 void fn_7100149810(base::global::CRntVector<UnkMeshVertex>* self, const UnkMeshVertex* v);
@@ -161,9 +150,6 @@ void fn_7100ebda30(void* path_, void* mesh_, u32 flags, f32 width, f32 dash, f32
 
 
 #include "base/math/UnkSegment2D.h"
-
-// Brings the mesh's bounds up to date with its vertices.
-void fn_7100e3e1c0(UnkDashMesh* mesh);
 
 // Adds the segment as a quad `width` wide across it, at depth `z`: four vertices (the start and
 // end, each moved half the width either way along the normal) and two triangles.

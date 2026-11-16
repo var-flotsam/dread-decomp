@@ -6,7 +6,7 @@
 // that the type's static initialiser builds, so TypeOf is specialised per type to return it.
 //
 // A type's description derives from ValueOpsDescription<T>, which names these functions under
-// the members the descriptor constructors read (construct, copy_construct, ..., type_of).
+// the members the descriptor constructors read (size, construct, copy_construct, ..., type_of).
 
 #include <new>
 #include <type_traits>
@@ -60,6 +60,7 @@ struct ValueOps {
 
 template <class T>
 struct ValueOpsDescription {
+    static constexpr u64 size = sizeof(T);
     static constexpr auto construct = &ValueOps<T>::Construct;
     static constexpr auto copy_construct = &ValueOps<T>::CopyConstruct;
     static constexpr auto move_construct = &ValueOps<T>::MoveConstruct;

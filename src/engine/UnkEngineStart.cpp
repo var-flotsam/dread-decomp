@@ -110,7 +110,6 @@ struct UnkSoundMgr {
 };
 void fn_710010790c(UnkSoundMgr* self);  // constructor
 
-extern UnkRumbleManager* g_unk_7101d47348;
 void fn_710007388c(UnkRumbleManager* self);
 
 // An object of unit 52 (0xf0 bytes).

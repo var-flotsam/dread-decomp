@@ -9,14 +9,14 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 
 using base::global::CRntString;
 
-struct UnkGuiObj;
+using UnkGuiObj = UnkGuiDisplayObject;
 void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
-void fn_71011cd5a0(UnkGuiObj*);
 
 struct UnkReflField;
 struct UnkReflFieldObject;
