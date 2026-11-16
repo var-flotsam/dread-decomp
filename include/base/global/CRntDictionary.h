@@ -3,7 +3,7 @@
 // The engine's dictionary, base::global::CRntDictionary (the name reflection gives it): a chained hash map
 // whose nodes are also linked in one list, the list reflection walks. Nodes come from the dictionary's
 // allocator; the buckets are a CRntVector of node pointers, indexed by the key's hash modulo their capacity.
-// Only what the reflection descriptors use is written; insertion, erase and destruction are still by address.
+// Only what the reflection descriptors use is written; insertion, removal and clearing are still by address.
 // Layout as base/UnkHashMap.h describes it.
 
 #include "base/global/CRntVector.h"
@@ -37,22 +37,6 @@ struct CRntDictionary {
             return nullptr;
         u32 index = key.Hash() % buckets.capacity;
         return buckets.data + index;
-    }
-
-    // Destroys and frees every node; the buckets stay, emptied.
-    void Clear() {
-        if (count == 0)
-            return;
-        for (TNode* node = first; node;) {
-            TNode* next = node->next;
-            node->~TNode();
-            allocator->vf_0x48(node);
-            node = next;
-        }
-        __builtin_memset(buckets.data, 0, (u64)buckets.capacity * sizeof(TNode*));
-        count = 0;
-        field_0x38 = nullptr;
-        first = nullptr;
     }
 
     // The value under key, or null.

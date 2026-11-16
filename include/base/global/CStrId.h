@@ -150,13 +150,10 @@ public:
         }
         return *this;
     }
-    // The count is decremented, then tested (the dictionaries' clears and move-assignments reload it after
-    // the store); where nothing is stored in between, both forms compile the same.
     ~CStrId() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
+                if (--data->ref_count == 0) {
                     fn_71000803a4(pool, data);
                     pool = g_unk_7101d47108;
                 }
@@ -203,6 +200,15 @@ public:
     void ReleaseAndTakeReloading(CStrId& other) {
         Reset();
         data = other.data;
+        union Slot {
+            UnkStringData* p;
+        };
+        reinterpret_cast<Slot*>(&other.data)->p = &g_unk_7101d47108->empty;
+    }
+    // The same take into a slot that holds no id yet (an array's grown or moved-into storage):
+    // nothing is released first (fn_71002a6d38, fn_7100e6164c).
+    static void MoveConstructReloading(CStrId* slot, CStrId& other) {
+        slot->data = other.data;
         union Slot {
             UnkStringData* p;
         };

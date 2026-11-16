@@ -15,6 +15,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+struct UnkClone_fn_71005e5404;
+template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71005e5404>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
+struct UnkClone_fn_71005e5d08;
+template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71005e5d08>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
+struct UnkClone_fn_71005e6ed4;
+template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71005e6ed4>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
 struct UnkClone_fn_71005e7880;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71005e7880>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
 struct UnkClone_fn_71005e7b38;
@@ -3348,6 +3354,8 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710079c188> {
     static const CType* type() { return reinterpret_cast<const CType*>(g_unk_7172791c90); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_710079c188, UnkCloneBlock<UnkClone_fn_710079c188, 0x8>>(void*, char*);
+struct UnkClone_fn_710079c78c;
+template base::UnkStrIdArray<UnkClone_fn_710079c78c>& base::UnkStrIdArray<UnkClone_fn_710079c78c>::operator=(base::UnkStrIdArray<UnkClone_fn_710079c78c>&&);
 struct UnkClone_fn_71007a6374;
 extern char g_unk_7101a70078[];
 void fn_71007a8eec(char*);
@@ -5780,23 +5788,3 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc010> {
     static const CType* type() { return fn_710000abbc(); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc010, u32, 0x410>(void*, char*);
-struct UnkClone_fn_71008dc0a8;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc0a8> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc0a8, u8, 0x418>(void*, char*);
-struct UnkClone_fn_71008dc150;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc150> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc150, u32, 0x654>(void*, char*);
-struct UnkClone_fn_71008dc19c;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71008dc19c, u32, 0x654>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71008dc1e0;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc1e0> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc1e0, u32, 0x658>(void*, char*);

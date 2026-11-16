@@ -7,9 +7,8 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU275.h"
+#include "game/UnkWidgetVtable.h"
 #include "types.h"
-
-extern void* g_unk_7101a1f000[];
 
 void fn_71001be078(char*);
 
