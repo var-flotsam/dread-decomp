@@ -3,6 +3,7 @@
 // named by the definition at +0x5d8 (its +0x30) and, when it is live, passes it the data at +0x4d8
 // (fn_7100146c50). Names and layouts are placeholders.
 #include "game/CFXComponent.h"
+#include "game/UnkTU134.h"
 #include "types.h"
 
 struct UnkWorld;
@@ -34,7 +35,6 @@ struct UnkMissileMovement {
 
 struct UnkPart;
 struct UnkObject;
-bool fn_7100146c50(UnkMissilePart* part, u32 a, void* data, u32 b);
 
 void fn_7100abaee8(UnkMissileMovement* self) {
     bool active = (self->field_0x3fc & 0x8000400) != 0;

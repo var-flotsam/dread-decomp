@@ -33,9 +33,15 @@ inline void Free(void* ptr) {
     fn_7100081420(&heap->allocator, ptr);
 }
 
+// Two words a key's target holds for the entry; cleared together when the entry goes.
+struct UnkEntryRef_l1010e8 {
+    u32 field_0x0 = 0;
+    u32 field_0x4 = 0;
+};
+
 struct UnkTarget_l1010e8 {
     u8 pad_0x0[0x18];
-    void* field_0x18;
+    UnkEntryRef_l1010e8 field_0x18;
 };
 
 struct UnkMapNode_l1010e8 {
@@ -53,10 +59,14 @@ struct UnkMap_l1010e8 {
 
     // The node of a key that is in the map.
     UnkMapNode_l1010e8* Get(u64 key) {
-        UnkMapNode_l1010e8* node = buckets[(u32)key % bucketCount];
-        while (node->key != key)
-            node = node->next;
-        return node;
+        u32 index = (u32)key % bucketCount;
+        UnkMapNode_l1010e8** link = &buckets[index];
+        for (;;) {
+            UnkMapNode_l1010e8* node = *link;
+            if (node->key == key)
+                return node;
+            link = &node->next;
+        }
     }
 };
 
@@ -132,7 +142,7 @@ bool fn_71001010e8(void* self, void* object) {
     list.Remove(entry->id);
     for (u32 i = 0; i < entry->key_count; ++i) {
         u64 key = entry->keys[i];
-        list.map->Get(key)->value->field_0x18 = nullptr;
+        list.map->Get(key)->value->field_0x18 = UnkEntryRef_l1010e8();
     }
     return true;
 }

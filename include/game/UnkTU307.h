@@ -5,5 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkPoolBox;
 struct UnkBounded;
 void fn_7100215f60(UnkBounded* self, const void* point);  // Grows the bounds to hold a point.
+void fn_7100215e1c(UnkPoolBox* self);

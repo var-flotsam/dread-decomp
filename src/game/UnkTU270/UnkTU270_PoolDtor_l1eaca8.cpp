@@ -1,15 +1,28 @@
 // Unit 270: the destructor of the pool of 25000 placed entries: frees the buffer of seen entries, clears and frees
 // the tree, then destroys every entry (box, then sphere), last first. Names and layouts are placeholders.
+#include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU270.h"
+#include "game/UnkTU307.h"
 #include "types.h"
 
-void fn_7100215e1c(char* box);
-void fn_7100216934(char* p);
+struct UnkPoolBox;  // the box class (src/game/UnkTU270/UnkTU270_Pool_ovb0254.cpp)
+
+// An entry's sphere and box, each with an out-of-line destructor.
+struct UnkPoolSphere_l1eaca8 {
+    char data[0x50];
+    ~UnkPoolSphere_l1eaca8() { fn_7100216934(data); }
+};
+
+struct UnkPoolBox_l1eaca8 {
+    char data[0x20];
+    ~UnkPoolBox_l1eaca8() { fn_7100215e1c(reinterpret_cast<UnkPoolBox*>(data)); }
+};
 
 struct UnkPoolEntry_l1eaca8 {
     u8 pad_0x0[0x48];
-    char sphere[0x50];  // 0x48
-    char box[0x20];     // 0x98
+    UnkPoolSphere_l1eaca8 sphere;  // 0x48
+    UnkPoolBox_l1eaca8 box;        // 0x98
     u8 pad_0xb8[0x28];
 };
 static_assert(sizeof(UnkPoolEntry_l1eaca8) == 0xe0, "entry layout");
@@ -17,12 +30,10 @@ static_assert(sizeof(UnkPoolEntry_l1eaca8) == 0xe0, "entry layout");
 struct UnkTreeNode_l1eaca8 {
     char box[0x20];
     u8 pad_0x20[0x20];
-    ~UnkTreeNode_l1eaca8() { fn_7100215e1c(box); }
+    ~UnkTreeNode_l1eaca8() { fn_7100215e1c(reinterpret_cast<UnkPoolBox*>(box)); }
 };
 
 void fn_710021273c(base::global::CRntVector<UnkTreeNode_l1eaca8>* self);
-
-extern char g_unk_7101a1eeb0[];  // the pool's vtable
 
 struct UnkPool_l1eaca8 {
     char* vtable;
@@ -46,9 +57,10 @@ void fn_71001eaca8(UnkPool_l1eaca8* self) {
     }
     fn_710021273c(&self->tree);
     self->tree.Free();
-    for (u32 i = 25000; i != 0; --i) {
-        UnkPoolEntry_l1eaca8& entry = self->entries[i - 1];
-        fn_7100215e1c(entry.box);
-        fn_7100216934(entry.sphere);
-    }
+    // The entries, last first.
+    UnkPoolEntry_l1eaca8* entry = &self->entries[25000];
+    do {
+        --entry;
+        entry->~UnkPoolEntry_l1eaca8();
+    } while (entry != self->entries);
 }

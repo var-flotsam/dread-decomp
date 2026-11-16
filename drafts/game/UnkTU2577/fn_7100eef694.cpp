@@ -79,13 +79,15 @@ bool fn_7100eef694() {
         reinterpret_cast<UnkZoneLogicShape_lef694*>(base::reflection::refl_FindTyped<UnkRefl_fn_7100a48b60>(zone));
     void* other = logic->field_0x30;
     UnkPlayerView_lef694* player = reinterpret_cast<UnkPlayerView_lef694*>(fn_7100dec788(g_unk_7101d47310));
-    if (!player || !player->field_0x1f8)
+    if (!player)
         return false;
-    UnkPlayerShape_lef694* shape = reinterpret_cast<UnkPlayerShape_lef694*>(fn_7100976588(player->field_0x1f8));
-    void* owner = shape->field_0x158;
-    UnkShapeTester_A5_b68* tester = GetTester_lef694();
-    UnkColliderResult result = fn_7100d51368(tester, owner, shape->vf_0x70(), other, g_unk_7101a1a680, nullptr, 0);
-    if (result.bits & 1)
-        return true;
+    if (player->field_0x1f8) {
+        UnkPlayerShape_lef694* shape = reinterpret_cast<UnkPlayerShape_lef694*>(fn_7100976588(player->field_0x1f8));
+        void* owner = shape->field_0x158;
+        UnkShapeTester_A5_b68* tester = GetTester_lef694();
+        UnkColliderResult result = fn_7100d51368(tester, owner, shape->vf_0x70(), other, g_unk_7101a1a680, nullptr, 0);
+        if (result.bits & 1)
+            return true;
+    }
     return false;
 }

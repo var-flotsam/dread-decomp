@@ -3,13 +3,12 @@
 // command's entries are copied in and playback restarts at the first entry. Names and layouts are placeholders.
 #include <new>
 
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkSoundCommand;
 // nn::atk (library): stopping a sound and a player, with a fade of `frames`, and releasing them.
-void fn_710120d54c(void* sound, u32 frames);
 void fn_7101209300(void** handle);
-void fn_7101206630(u8* player, u32 frames);
 void fn_7101206578(u8* player);
 void fn_7101206444(u8* player, void* target);
 
@@ -41,22 +40,31 @@ struct UnkSoundEntry_l0f44cc {
 // A list of up to eight entries with its count in front.
 struct UnkSoundEntries_l0f44cc {
     u32 count;
-    UnkSoundEntry_l0f44cc items[8];
+    // Storage for the entries; only the first `count` are constructed.
+    u8 storage[8 * sizeof(UnkSoundEntry_l0f44cc)];
+
+    UnkSoundEntry_l0f44cc* Data() { return reinterpret_cast<UnkSoundEntry_l0f44cc*>(storage); }
+    const UnkSoundEntry_l0f44cc* Data() const {
+        return reinterpret_cast<const UnkSoundEntry_l0f44cc*>(storage);
+    }
+
+    void PushBack(const UnkSoundEntry_l0f44cc& entry) {
+        new (&Data()[count]) UnkSoundEntry_l0f44cc(entry);
+        ++count;
+    }
 
     UnkSoundEntries_l0f44cc& operator=(const UnkSoundEntries_l0f44cc& other) {
         if (this != &other) {
             u32 n = count;
             if (n > other.count) {
                 for (u32 i = 0; i < other.count; ++i)
-                    items[i] = other.items[i];
+                    Data()[i] = other.Data()[i];
             } else {
                 for (u32 i = 0; i < n; ++i)
-                    items[i] = other.items[i];
+                    Data()[i] = other.Data()[i];
             }
-            for (; n < other.count; ++n) {
-                new (&items[n]) UnkSoundEntry_l0f44cc(other.items[n]);
-                count = n + 1;
-            }
+            for (; n < other.count; ++n)
+                PushBack(other.Data()[n]);
             count = other.count;
         }
         return *this;

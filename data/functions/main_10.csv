@@ -2,7 +2,7 @@ address,size,name,name_source,subsystem,status
 0x71010000d0,300,fn_71010000d0,unknown,unknown,O
 0x71010001fc,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>>::Begin",reflection,engine/reflection,O
 0x7101000208,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>>::End",reflection,engine/reflection,O
-0x7101000210,144,fn_7101000210,unknown,unknown,U
+0x7101000210,144,fn_7101000210,unknown,unknown,O
 0x71010002a0,64,fn_71010002a0,unknown,unknown,O
 0x71010002e0,12,fn_71010002e0,unknown,unknown,O
 0x71010002ec,8,fn_71010002ec,unknown,unknown,O
@@ -44,7 +44,7 @@ address,size,name,name_source,subsystem,status
 0x710100102c,32,fn_710100102c,unknown,unknown,O
 0x710100104c,20,fn_710100104c,unknown,unknown,O
 0x7101001060,40,fn_7101001060,unknown,unknown,O
-0x7101001088,360,fn_7101001088,unknown,unknown,U
+0x7101001088,360,fn_7101001088,unknown,unknown,O
 0x71010011f0,132,fn_71010011f0,unknown,unknown,O
 0x7101001274,12,fn_7101001274,unknown,unknown,O
 0x7101001280,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::Hash,reflection,engine/reflection,O
@@ -116,7 +116,7 @@ address,size,name,name_source,subsystem,status
 0x71010038a0,152,fn_71010038a0,unknown,unknown,O
 0x7101003938,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Begin",reflection,engine/reflection,O
 0x7101003944,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::End",reflection,engine/reflection,O
-0x710100394c,144,fn_710100394c,unknown,unknown,U
+0x710100394c,144,fn_710100394c,unknown,unknown,O
 0x71010039dc,64,fn_71010039dc,unknown,unknown,O
 0x7101003a1c,12,fn_7101003a1c,unknown,unknown,O
 0x7101003a28,8,fn_7101003a28,unknown,unknown,O
@@ -2733,7 +2733,7 @@ address,size,name,name_source,subsystem,status
 0x7101077850,104,lua_bind::GetCurrentLanguageSuffix,string,script/bindings,O
 0x71010778c0,104,lua_bind::GetCurrentLanguage,string,script/bindings,O
 0x7101077930,312,lua_bind::SetCurrentLanguage,string,script/bindings,O
-0x7101077a70,456,lua_bind::SetLanguageAndRegionDebug,string,script/bindings,U
+0x7101077a70,456,lua_bind::SetLanguageAndRegionDebug,string,script/bindings,O
 0x7101077c40,184,lua_bind::QuitGame,string,script/bindings,O
 0x7101077d00,80,lua_bind::StopEnvironmentSound,string,script/bindings,O
 0x7101077d50,316,lua_bind::GoToMainMenu,string,script/bindings,O

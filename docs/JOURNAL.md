@@ -156,6 +156,26 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 **Opus batch on the boot slice, lean-ob2 (2026-11-16).** The next 55 ready boot functions of 300 to 1,000 bytes, packed five to a worker across units. 17 matched (31%) and `fn_71006fc4fc` is verified equivalent; 14 go into `src/`. Three matches wait in `drafts/`: `fn_7100d5925c` (returns `fn_7100d541c0`'s contact where the shared declaration returns `UnkColliderResult`), `fn_7100b44344` and `fn_710006cea8` (each copies declarations of callees or globals that have no single header yet). `fn_710035d9e0` now returns its quad-tree node type in `game/UnkTU441.h`. Merging the lean-r1 branch with main moved `fn_7100eef694` back to `drafts/`: it matched with an 8-byte result type, and the shared `UnkColliderResult` is 4 bytes, so the result's stack slot moves by 4.
 
+**Opus retry of older near-miss drafts, lean-r2 (2026-11-16).** The 56 drafts from earlier runs (mostly the
+overnight batches of 2026-11-09 to 11-11) that scored 70% or more and differ in more than registers, same shape
+as lean-r1. 8 matched, 9 functions into `src/` with one verified by `tools/equiv_test.py` (its loop compare
+rewritten by the coordinator after the worker's run); about 2.06 million tokens, about 230,000 per match, half
+lean-r1's rate. Many old drafts held a union, barrier or field memcpy that the workers took out, and the readable
+text is further from the original than the old score showed. The remaining near-misses are mostly reloads after
+a store the original treats as aliasing, select or compare operand order (`fcsel` with swapped arms), and
+statics whose offsets depend on the rest of their unit. Recommendation: no further retries of old drafts.
+
+**Opus retry of near-miss drafts, lean-r1 (2026-11-16).** The 38 drafts of this session's batches that scored 70%
+or more and differ in more than registers, given back to Opus from their draft text (`prepare.py --drafts`, budget
+4); jobs of one function were packed five to a worker across units. 12 matched; one of them only with whole-element
+`__builtin_memcpy` copies of one-field structs, so it stays a draft. 11 functions into `src/`, about 1.32 million
+tokens, about 120,000 per match: cheaper than a new Opus batch at this point. What closed them: element copy
+constructors written as member-initializer lists, a variant's storage held in the iterator itself, colour channels
+computed into separate locals before the clamp, an inline `Lerp`, a local id type whose destructor has no null
+test (as the original's inlined one), and two callers' declarations brought to the definitions' types
+(`fn_710021e6e8`, `fn_7100146c50`). `fn_710100147c` now has one declaration in `include/game/UnkTU2640.h`.
+The draft near-misses that remain mostly need the original's reload after a store (a count, a tail, a kind) that
+readable source does not reproduce, or a static's place in the unit's data.
 **Unit 210's slots, the shot effect and CExplosionGfx (2026-11-16).** Unit 210's resource slot is
 `include/game/UnkSlot_b0235.h`, and its four shared globals (the slot table, its top, the release queue and its count)
 are declared once in `game/UnkTU210.h`. The release queue holds slots, so the emitter's store casts its `void*`.

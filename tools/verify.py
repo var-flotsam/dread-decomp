@@ -6,7 +6,10 @@ Runs, in order:
      (gen_class_getters, gen_reflection, gen_types, gen_statics, gen_clones, gen_tables,
      gen_lift; gen_class_getters writes include/base/reflection/UnkClassGetters.h from
      data/functions/ alone); without gen_lift, `gen_lift.py --prune` instead (seconds), which
-     drops lifted copies of functions that other sources now define;
+     drops lifted copies of functions that other sources now define. gen_types brings the rest of
+     its chain: gen_functions_csv (its named forms' names into data/functions/), gen_types again
+     (the named forms are compared through those names) and gen_clones (the clones of slots that
+     now have names drop out);
   2. tools/check.py --update (build src/, write O/m/M/W into data/functions/);
   3. tools/progress.py;
   4. the tools/policy_check.py rules, on tracked and untracked (not ignored) files;
@@ -94,7 +97,14 @@ def main() -> int:
             return 1
         print(f"NOTE baseline: none saved; built one from the current tree (O {len(baseline)})")
 
-    steps = [(g, ["--version", v]) for g in GENERATORS if g in wanted]
+    if "gen_types" in wanted:
+        wanted.add("gen_clones")
+    steps = []
+    for g in GENERATORS:
+        if g in wanted:
+            steps.append((g, ["--version", v]))
+            if g == "gen_types":
+                steps += [("gen_functions_csv", ["--version", v]), ("gen_types", ["--version", v])]
     if "gen_lift" not in wanted:
         steps.append(("gen_lift", ["--prune"]))
     for g, gargs in steps:
@@ -110,7 +120,8 @@ def main() -> int:
 
     if ok:
         rc, current, failed, summary, lines = check(v, update=True)
-        flagged = {ln.split()[1] for ln in lines if ln.endswith("REGRESSION (was O)")}
+        # "REGRESSION (was O)", or "REGRESSION (was O, no source defines it: ...)" for a lost definition
+        flagged = {ln.split()[1] for ln in lines if "REGRESSION (was O" in ln}
         lost = sorted((baseline - current) | flagged)
         if failed:
             ok = False

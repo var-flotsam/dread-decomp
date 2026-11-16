@@ -1,14 +1,13 @@
 // More copies of fn_710023a094 (src/game/CActor/UnkListIterVariantNext_b42.cpp), advancing an iterator over a
 // linked list whose current element is kept in a two-state variant, each with its own unit's destroy
 // (two in CLightManager's unit, four in unit 2640 of tools/tu_map.py). Names and layouts are placeholders.
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 // Signatures as src/clones/ declares them.
 void fn_7100e0ccf8(char*);
 void fn_7100e0d204(char*);
-void fn_7100ff4350(char*);
 void fn_7100ff4844(char*);
-void fn_7100ff7360(char*);
 void fn_7100ff7828(char*);
 
 // The element (and so the node's next pointer offset) is 0x98 bytes in CLightManager's copies and 0x38

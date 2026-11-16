@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "game/UnkTU2640.h"
 
 using base::global::CStrId;
 
@@ -28,7 +29,6 @@ struct UnkElemArray {
     base::UnkAllocator* allocator;
 };
 
-void fn_710100147c(UnkElemArray<UnkElem78>* self, u32 capacity);
 void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
 void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear
 

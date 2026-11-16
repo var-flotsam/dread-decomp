@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "game/GUI/UnkMissionLogRecords.h"
 #include "types.h"
+#include "game/UnkTU2640.h"
 
 template <class Elem, void (*Reserve)(UnkElemArray<Elem>*, u32), void (*PushBack)(UnkElemArray<Elem>*, const Elem*)>
 static inline void CopyConstruct(UnkElemArray<Elem>* self, const UnkElemArray<Elem>& other) {
@@ -28,7 +29,6 @@ struct UnkElem78 {
     u8 unk_0x0[0x78];
 };
 
-void fn_710100147c(UnkElemArray<UnkElem78>* self, u32 capacity);
 void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
 
 void fn_71010012d4(UnkElemArray<UnkElem78>* self, const UnkElemArray<UnkElem78>& other) {

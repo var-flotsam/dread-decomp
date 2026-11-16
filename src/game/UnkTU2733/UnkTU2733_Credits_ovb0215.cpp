@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/UnkTU2733.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -39,7 +40,6 @@ static_assert(__builtin_offsetof(UnkLanguage, field_0x2064) == 0x2064, "layout")
 extern u8 g_unk_7172a0be50[] HIDDEN;  // the unit's mutex
 extern const char* g_unk_7101cb5438[];  // the language files' paths
 s32 fn_710119c41c();
-void fn_710119cb44(UnkLanguage* self, const char* path, bool keep_texts);
 
 void fn_710119ca8c(UnkLanguage* self) {
     nn::os::LockMutex(reinterpret_cast<nn::os::MutexType*>(g_unk_7172a0be50));
