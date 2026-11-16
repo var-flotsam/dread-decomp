@@ -385,6 +385,11 @@ class TypeNames(unittest.TestCase):
         self.assertFalse(any(" count = " in line or " construct = " in line for line in out))
         self.assertEqual(gt.MAPPER_DESC_RE.findall("\n".join(out)), [dict_])
 
+    def test_iterator_name_keeps_a_space_between_words(self):
+        name = ("base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, "
+                "game::logic::collision::CShape const*>>::TElementIterator")
+        self.assertIn("CShape const*", gt.pointer_value_type(name)[0])
+
     def test_dictionary_named_form(self):
         slots = ["construct", "copy_construct", "move_construct", "destroy", "copy_assign", "move_assign",
                  "equals", "hash", "type_of"] + gt.COLLECTION_SLOTS

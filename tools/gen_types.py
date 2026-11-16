@@ -402,7 +402,8 @@ def pointer_value_type(name: str):
     """(the name as llvm-cxxfilt prints it, the parsed type whose names it declares) of a pointer type
     whose value operations can come from ValueOps.h: a plain pointer (`T*`, `T const*`) or an element
     iterator of a collection whose name parses; None for anything else."""
-    m = ITERATOR_RE.fullmatch(re.sub(r"\s+", "", name))
+    # spaces go, except one between two words (`CShape const*`)
+    m = ITERATOR_RE.fullmatch(re.sub(r"(?<=\w)\s+(?=\w)", " ", re.sub(r"\s+(?!\w)|(?<!\w)\s+", "", name)))
     if m:
         node = parse_type(m.group(1))
         if node and not node[2]:
