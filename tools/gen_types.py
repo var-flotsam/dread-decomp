@@ -1447,6 +1447,7 @@ def main() -> int:
         expected.update({n: a for g, v in named_prims.items() for a, n in primitive_ops_names(prim_bodies[g], v).items()})
         coll_names = {i: collection_ops_names(orig, coll_bodies[i], *v) for i, v in named_colls.items()}
         expected.update({n: a for names in coll_names.values() for a, n in names.items()})
+        expected = {demangled_spelling(n): a for n, a in expected.items()}
         expected.update({alias: a for n, a in list(expected.items()) for alias in asmdiff.name_aliases(n)})
         symbols = [f.symbol for f in asmdiff.read_object(obj)]
         demangled = asmdiff.demangle(symbols)
