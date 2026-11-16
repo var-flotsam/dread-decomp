@@ -182,6 +182,7 @@ record's non-trivial copy.
   `fn_7100d5bfbc` called `UnkShape`). The pair handlers' opaque `UnkCollider` self is the shape tester.
 `fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5c1d0`, `fn_7100d5c370` (the last two as `UnkSubTree::Query`) and
 `fn_7101126c34` moved from `drafts/` to `src/` as matches.
+
 **One sub-id for fn_71003327a4 (2026-11-16).** Fifteen sources and four drafts each copied the 16-byte sub-id
 (`UnkSubId_7100fc4b34`), a `UnkQualifiedName` alias and `fn_71003327a4`'s declaration, the same text everywhere;
 they are now `include/game/UnkSubId_7100fc4b34.h`. `fn_7100e984a4` (unit 2566) moved from `drafts/` to `src/` as a
@@ -199,6 +200,7 @@ id: with `CFilePathStrId` the copy constructor still matches but the destructor 
 `fn_7100fddf18`. `fn_7100fddcb4.cpp` declares it as a `CRntVector`-based `UnkPathList`'s copy constructor, and
 rebuilding that list on `UnkPathVec_b0019` drops `fn_7100fddcb4` to 16% even with `CRntVector::Free`'s body
 (the schedule changes); making `UnkCopyVec_b56` a `CRntVector` subclass is worse.
+
 **Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
 (`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;
 `fn_710054095c` declared in `game/UnkTU811.h`), unit 1501's ground-movement view
