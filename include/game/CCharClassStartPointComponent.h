@@ -9,4 +9,4 @@
 struct UnkGeneratorTarget_ovb0120;
 
 void fn_710116c5dc(void* target, void* object);
-void fn_710116c128(UnkGeneratorTarget_ovb0120* self, const UnkVec3f* offset, const UnkVec3f* angle, bool flag);
+bool fn_710116c128(UnkGeneratorTarget_ovb0120* self, const UnkVec3f* offset, const UnkVec3f* angle, bool flag);

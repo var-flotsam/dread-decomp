@@ -1314,7 +1314,7 @@ address,size,name,name_source,subsystem,status
 0x7100441134,644,fn_7100441134,unknown,game/ai?,U
 0x71004413b8,644,fn_71004413b8,unknown,game/ai?,U
 0x710044163c,28,fn_710044163c,unknown,game/ai?,O
-0x7100441658,772,fn_7100441658,unknown,game/ai?,U
+0x7100441658,772,fn_7100441658,unknown,game/ai?,O
 0x710044195c,36,fn_710044195c,unknown,game/ai?,O
 0x7100441980,12,fn_7100441980,unknown,game/ai?,O
 0x710044198c,12,fn_710044198c,unknown,game/ai?,O
@@ -4193,7 +4193,7 @@ address,size,name,name_source,subsystem,status
 0x71004b0b08,60,CCooldownXBossLavaDropsDef::refl_CopyAssign,reflection,game,O
 0x71004b0b44,60,CCooldownXBossLavaDropsDef::refl_MoveAssign,reflection,game,O
 0x71004b0b80,600,fn_71004b0b80,unknown,unknown,O
-0x71004b0dd8,656,fn_71004b0dd8,unknown,unknown,U
+0x71004b0dd8,656,fn_71004b0dd8,unknown,unknown,O
 0x71004b1068,144,fn_71004b1068,unknown,unknown,O
 0x71004b10f8,8,fn_71004b10f8,unknown,unknown,O
 0x71004b1100,12,fn_71004b1100,unknown,unknown,O
@@ -4278,8 +4278,8 @@ address,size,name,name_source,subsystem,status
 0x71004b267c,156,fn_71004b267c,unknown,unknown,O
 0x71004b2718,48,fn_71004b2718,unknown,unknown,O
 0x71004b2748,172,fn_71004b2748,unknown,unknown,O
-0x71004b27f4,684,fn_71004b27f4,unknown,unknown,U
-0x71004b2aa0,684,fn_71004b2aa0,unknown,unknown,U
+0x71004b27f4,684,fn_71004b27f4,unknown,unknown,O
+0x71004b2aa0,684,fn_71004b2aa0,unknown,unknown,O
 0x71004b2d4c,552,fn_71004b2d4c,unknown,unknown,O
 0x71004b2f74,12,fn_71004b2f74,unknown,unknown,O
 0x71004b2f80,24,fn_71004b2f80,unknown,unknown,O

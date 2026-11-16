@@ -2553,7 +2553,7 @@ address,size,name,name_source,subsystem,status
 0x7100097d14,4,fn_7100097d14,unknown,engine/reflection?,O
 0x7100097d18,308,fn_7100097d18,unknown,engine/reflection?,O
 0x7100097e4c,308,fn_7100097e4c,unknown,engine/reflection?,O
-0x7100097f80,680,fn_7100097f80,unknown,engine/reflection?,U
+0x7100097f80,680,fn_7100097f80,unknown,engine/reflection?,O
 0x7100098230,148,fn_7100098230,unknown,engine/reflection?,O
 0x71000982c4,332,fn_71000982c4,unknown,engine/reflection?,O
 0x7100098410,384,base::reflection::refl_InitType<base::reflection::ECollectionAccessMode>,reflection,engine/reflection,O

@@ -1102,7 +1102,7 @@ address,size,name,name_source,subsystem,status
 0x7100b21170,244,GUI::CGlobalMapArea::refl_GetClass,reflection,gui,O
 0x7100b21264,604,GUI::CGlobalMapArea::refl_AddFields,reflection,gui,O
 0x7100b214c0,352,GUI::CGlobalMapArea::refl_InitClass,reflection,gui,O
-0x7100b21620,1492,fn_7100b21620,unknown,gui?,U
+0x7100b21620,1492,fn_7100b21620,unknown,gui?,O
 0x7100b21bf4,772,fn_7100b21bf4,unknown,gui?,O
 0x7100b21ef8,36,fn_7100b21ef8,unknown,gui?,O
 0x7100b21f1c,4,fn_7100b21f1c,unknown,gui?,O
@@ -2118,9 +2118,9 @@ address,size,name,name_source,subsystem,status
 0x7100b6d740,6760,fn_7100b6d740,unknown,gui?,U
 0x7100b6f1a8,536,fn_7100b6f1a8,unknown,gui?,U
 0x7100b6f3c0,272,fn_7100b6f3c0,unknown,gui?,O
-0x7100b6f4d0,856,fn_7100b6f4d0,unknown,gui?,U
+0x7100b6f4d0,856,fn_7100b6f4d0,unknown,gui?,O
 0x7100b6f828,572,fn_7100b6f828,unknown,gui?,U
-0x7100b6fa64,540,fn_7100b6fa64,unknown,gui?,U
+0x7100b6fa64,540,fn_7100b6fa64,unknown,gui?,O
 0x7100b6fc80,28,fn_7100b6fc80,unknown,gui?,O
 0x7100b6fc9c,8,GUI::CSamusMenuComposition::refl_Equals,reflection,gui,O
 0x7100b6fca4,8,GUI::CSamusMenuComposition::refl_Hash,reflection,gui,O
