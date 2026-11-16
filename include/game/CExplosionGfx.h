@@ -7,6 +7,8 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct CExplosionGfx;
+struct UnkExplosionTarget;
 struct UnkReflType;
 struct UnkTUHeader;
 
@@ -25,3 +27,8 @@ extern UnkReflType g_unk_71727be388;
 extern UnkConverter g_unk_71727be4a8;
 extern UnkConverter g_unk_71727be4c8;
 void fn_7100ddf1c0(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
+// Spawns the explosion at a target (a shot effect slot, game/CShotManager/UnkShotEffect_b0011.h): the main burst,
+// then uAmount - 1 more (src/game/CExplosionGfx.cpp).
+void fn_7100de08f0(CExplosionGfx* self, UnkExplosionTarget* target);
+// The largest of fLength and the two vRandomDelay bounds, never below zero.
+f32 fn_7100de1388(const CExplosionGfx* self);

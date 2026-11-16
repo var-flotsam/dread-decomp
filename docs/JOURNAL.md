@@ -154,6 +154,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Unit 210's slots, the shot effect and CExplosionGfx (2026-11-16).** Unit 210's resource slot is
+`include/game/UnkSlot_b0235.h`, and its four shared globals (the slot table, its top, the release queue and its count)
+are declared once in `game/UnkTU210.h`. The release queue holds slots, so the emitter's store casts its `void*`.
+CTunableShotManager's 0xfc-byte effect slot and `fn_7100ddec50` are `include/game/CShotManager/UnkShotEffect_b0011.h`.
+CExplosionGfx's layout (reflected names) is `include/game/CExplosionGfxLayout.h`, shared by the spawn and the
+max-radius sources, and `fn_7100de08f0` and `fn_7100de1388` are declared in `game/CExplosionGfx.h`. `fn_710016eae4`
+and `fn_7100ed64dc` moved from `drafts/` to `src/` as matches. Parked: `fn_7100fddf18` (CMusicManager), which needs
+`UnkCopyVec_b56` moved from `src/game/UnkUnit2601/` into `include/` and `UnkPathVec_b0019` rebuilt on it with the
+record's non-trivial copy.
+
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
 pointers or the holder's kind, as if the store of the empty id into the moved-from slot could change them;

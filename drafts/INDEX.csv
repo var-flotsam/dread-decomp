@@ -131,7 +131,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710016c038,400,drafts/game/UnkTU208/fn_710016c038.cpp,operations,99.0,1,overnight,
 0x710016d2b4,348,drafts/game/UnkTU208/fn_710016d2b4.cpp,operations,33.3,55,lean-b4,value copied as raw 32-bit word (u32) not float; tail loads and block layout differ
 0x710016d410,396,drafts/game/UnkTU208/fn_710016d410.cpp,operations,16.2,83,lean-b4,result carried as raw 32-bit word on default/key paths; loop rotation and hoisting differ
-0x710016eae4,188,drafts/game/UnkTU210/fn_710016eae4.cpp,match,100.0,0,lean-b6,matches; held: 2 declaration problems: src/game/UnkTU210/fn_710016eae4.cpp:19 g_unk_716e34c420: UnkSlot_l16eae4* g_unk_716e34c420[] -> signature differs from every existing one; copy one of these exactly: UnkSlot...
 0x7100170044,320,drafts/game/UnkTU210/fn_7100170044.cpp,calls,6.8,73,lean-b6,compiler hoists/unswitches the age loop (original reloads lifetimes; start_times; indices each iteration); cal
 0x71001932dc,116,drafts/game/UnkTU211/fn_71001932dc.cpp,control flow,16.1,24,lean-b1,loop shape: original uses ccmp-combined loop conditions; ours branches separately
 0x71001934e0,188,drafts/game/UnkTU211/fn_71001934e0.cpp,operations,29.8,33,lean-b1,stack slot order of the by-value temporaries (ours uses two slots; original one) and branch merge shape
@@ -480,7 +479,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100eb3e90,508,drafts/game/UnkTU2566/fn_7100eb3e90.cpp,registers or order,89.8,13,lean-o1,id move loop: pool value in x9 not x8 (registers only; the matched fn_71000a6ca8 gets it with a union store; n
 0x7100ec6a6c,464,drafts/game/UnkTU2571/fn_7100ec6a6c.cpp,registers or order,92.2,9,overnight,
 0x7100ecd1a4,2828,drafts/game/UnkTU2573/fn_7100ecd1a4.cpp,calls,2.1,692,fable1,
-0x7100ed64dc,192,drafts/game/CShotManager/CTunableShotManager/fn_7100ed64dc.cpp,match,100.0,0,lean-b5,matches; held: 3 declaration problems: src/game/CShotManager/CTunableShotManager/fn_7100ed64dc.cpp:25 fn_7100ddec50: void fn_7100ddec50(UnkShotEffect_ed64dc*; u32; u32) -> signature differs from every existing on...
 0x7100ed6bc4,68,drafts/game/CShotManager/CTunableShotManager/fn_7100ed6bc4.cpp,registers or order,52.9,8,lean-b5,passes tools/equiv_test.py; held: 2 declaration problems: src/game/CShotManager/CTunableShotManager/fn_7100ed6bc4.cpp:21 fn_7100ed6c08: void fn_7100ed6c08(UnkShotManager_ed6bc4*; f32) -> src/game/CShotManager.cpp defines it with ot...
 0x7100ee1548,760,drafts/game/UnkTU2577/fn_7100ee1548.cpp,control flow,34.7,104,lean-o1,unrolled: original reloads the pool from the 5th id on; ours CSEs it one id longer
 0x7100ee29a0,256,drafts/game/UnkTU2577/fn_7100ee29a0.cpp,control flow,25.0,43,lean-b1,original keeps null path of node->object before virtual call; clang drops it; loop shape and ccmp differ

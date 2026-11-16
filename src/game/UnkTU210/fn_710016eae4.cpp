@@ -1,22 +1,14 @@
 // A unit with no known name (unit 210): flips the emitter double buffer, restarts the frame's counters and
 // returns the slots queued for release to the free table. Names and layouts are placeholders.
+#include "game/UnkSlot_b0235.h"
+#include "game/UnkTU210.h"
 #include "types.h"
-
-struct UnkSlot_l16eae4 {
-    void* resource;
-    s32 slot;  // 0x8
-    u32 field_0xc;
-};
 
 extern u32 g_unk_716e34c3c8;
 extern void** g_unk_716e34c3c0;
 extern u32 g_unk_7101a1dbc8;
 extern u32 g_unk_716e34c3d8;
 extern void* g_unk_716e34c3d0;
-extern u32 g_unk_716e352430;
-extern u32 g_unk_716e34e428;
-extern UnkSlot_l16eae4* g_unk_716e34e430[];
-extern UnkSlot_l16eae4* g_unk_716e34c420[];
 
 void fn_710016eae4() {
     g_unk_716e34c3c8 = ~g_unk_716e34c3c8 & 1;
@@ -27,12 +19,12 @@ void fn_710016eae4() {
     u64 count = g_unk_716e352430;
     if (count != 0) {
         u32 top = g_unk_716e34e428;
-        UnkSlot_l16eae4** queued = g_unk_716e34e430;
+        UnkSlot_b0235** queued = g_unk_716e34e430;
         do {
-            UnkSlot_l16eae4* freed = *queued++;
+            UnkSlot_b0235* freed = *queued++;
             top = top - 1;
             u32 index = freed->slot;
-            UnkSlot_l16eae4* last = g_unk_716e34c420[top];
+            UnkSlot_b0235* last = g_unk_716e34c420[top];
             g_unk_716e34c420[index] = last;
             last->slot = index;
             g_unk_716e34c420[top] = freed;
