@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassFadeOutEvent
 namespace CCharClassFadeOutEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Fade Out");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Fade", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Fade Out");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Fade", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTime", 0xc, (DefaultValue, 0.3f), (MinValue, 0.1f), (MaxValue, 20.0f));

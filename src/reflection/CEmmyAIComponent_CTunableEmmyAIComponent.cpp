@@ -315,8 +315,8 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100565c50);
     }
     UnkReflField* field15 = fn_7100096524(cls, CStrId("tLogicShapesToAvoidCornerReposition", true), &g_unk_717269bf08, 0x2a6c8, -1, -1);
-    field15->attrs.Add<bool>(fn_7100090090(), false);
-    field15->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field15->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
+    field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

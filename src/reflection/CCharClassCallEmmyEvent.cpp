@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCallEmmyEvent
 namespace CCharClassCallEmmyEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set target last perception");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Emmy", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set target last perception");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Emmy", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinTimeSinceLastTargetPerception", 0xc, (DefaultValue, 1.0f));

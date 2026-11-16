@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassHideNodeEvent
 namespace CCharClassHideNodeEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Hide Node");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Graphics", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Hide Node");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Graphics", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

@@ -122,28 +122,28 @@ void refl_AddFields(CClass* cls) {
         fn_7100a023c8(fn, "OnLevelChangeUse");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetUseState", true))) {
         fn_7100a02540(fn, "SetUseState");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Use State"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Use State"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseAccepted", true))) {
         fn_7100a025f4(fn, "OnUseAccepted");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Use Accepted"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Use Accepted"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseDeclined", true))) {
         fn_7100a026a8(fn, "OnUseDeclined");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Use Declined"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Use Declined"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseContinued", true))) {
         fn_7100a0275c(fn, "OnUseContinued");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("On Use Continued"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Use Continued"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("RefreshUsableEntity", true))) {
         fn_7100a02810(fn, "RefreshUsableEntity");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Refresh Usable Entity"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Refresh Usable Entity"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
 bool refl_Equals(const void*, const void*) { return false; }

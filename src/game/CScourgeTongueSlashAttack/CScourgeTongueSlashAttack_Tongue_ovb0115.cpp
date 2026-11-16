@@ -10,7 +10,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
@@ -138,7 +138,7 @@ bool fn_710069ae3c(UnkScourgeSlash_b0115* self, bool check, void* a, void* b) {
     f32 ax = actor->field_0x44, ay = actor->field_0x54, az = actor->field_0x64;
     base::math::CVector3D d = {ax - tx, ay - ty, az - tz};
     fn_710007b430(&flat, &d);
-    f32 length = sqrtf(flat.x * flat.x + flat.y * flat.y);
+    f32 length = Length(flat);
     query.distance[0] = length;
     query.distance[1] = length;
     return fn_710069a7e4(self, &query, ai->field_0x1140, check, a, b);

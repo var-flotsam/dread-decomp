@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetCurrentCubemapIntensityEvent
 namespace CCharClassSetCurrentCubemapIntensityEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Current Cubemap Intensity");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Lighting", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Current Cubemap Intensity");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Lighting", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fIntensity", 0xc, (DefaultValue, 1.0f));

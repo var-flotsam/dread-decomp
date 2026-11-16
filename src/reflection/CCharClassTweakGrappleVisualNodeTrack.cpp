@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakGrappleVisualNodeTrack
 namespace CCharClassTweakGrappleVisualNodeTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Grapple Visual Node");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090e60(), "State");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Grapple Visual Node");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "State");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));

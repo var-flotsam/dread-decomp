@@ -452,8 +452,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eDamageStrengthOnForcedReaction_SetterFunction", true)))
         fn_710078cba4(fn, "_m_eDamageStrengthOnForcedReaction_SetterFunction");
     UnkReflField* field10 = fn_7100096524(cls, CStrId("eDamageStrengthOnForcedReaction", true), &g_unk_7172730858, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<s32>(fn_7100075240(), &g_unk_7172730858, 3);
-    field10->attrs.Add<const char*>(fn_7100007e80(), "Override damage strength reaction when forcing reaction [DEFAULT]");
+    field10->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172730858, 3);
+    field10->attrs.Add<const char*>(base::reflection::attr::Description(), "Override damage strength reaction when forcing reaction [DEFAULT]");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreInmune_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bIgnoreInmune_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
@@ -465,7 +465,7 @@ void refl_AddFields(CClass* cls) {
         fn_710078cd18(fn, "_m_bIgnoreInmune_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bIgnoreInmune", (DefaultValue, false), (Description, "Ignore Player Inmune [false]"));
     UnkReflField* field12 = fn_7100096524(cls, CStrId("dictDamageIDOverrides", true), &g_unk_7101d5f2b0, 0xa0, -1, -1);
-    field12->attrs_0x70.Add<bool>(fn_7100091d40(), true);
+    field12->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sIgnoreBumpColliders_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sIgnoreBumpColliders_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();

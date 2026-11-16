@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassHideScenarioItemByNameEvent
 namespace CCharClassHideScenarioItemByNameEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Hide Scenario Item By Name");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Scenario", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Hide Scenario Item By Name");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Scenario", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sItemName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

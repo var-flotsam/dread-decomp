@@ -28,8 +28,8 @@ void fn_7100cb869c();
 void fn_7100cb7a04(UnkReflFunction* fn, const char* name);
 namespace CCharClassDropItemOverwriteProbabilitiesEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Drop Item Overwrite Probabilities");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "Drops");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Overwrite Probabilities");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Drops");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iMinNumOfDroppedItems", 0xc, (DefaultValue, 0));

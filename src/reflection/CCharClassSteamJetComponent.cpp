@@ -157,7 +157,7 @@ void refl_AddFields(CClass* cls) {
         fn_710089da64(fn, "_m_vReactionDirection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "vReactionDirection", (DefaultValue, base::math::CVector2D{1.0f, 0.0f}));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("wpNextSteamJet", true), &g_unk_717269bb48, 0xc10, -1, -1);
-    field11->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
+    field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 10);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

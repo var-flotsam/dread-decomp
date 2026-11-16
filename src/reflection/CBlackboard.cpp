@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -27,7 +28,7 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_710104a108();
 namespace CBlackboard {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x30001u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x30001u);
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_hashSections_GetterFunction", true))) {
@@ -39,13 +40,13 @@ void refl_AddFields(CClass* cls) {
     }
     UnkReflField* field0 = fn_7100096524(cls, CStrId("hashSections", true), &g_unk_71729fc870, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
-    field0->attrs.Add<const char*>(fn_710008fd60(), "CreateSection");
-    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterSectionsDeserialization", true));
+    field0->attrs.Add<const char*>(base::reflection::attr::CreateElement(), "CreateSection");
+    field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterSectionsDeserialization", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateSection", true))) {
         fn_7101045544(fn, "CreateSection");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("sKey", true));
-        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sKey", true));
+        fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterSectionsDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterSectionsDeserialization", true);

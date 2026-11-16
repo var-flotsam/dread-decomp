@@ -1,16 +1,10 @@
-// DRAFT (trial 3, attempt 1 of 3 was the best: 97.1%, KIND operations, 5 differing instructions, same size).
-// This text is that attempt. What still differs:
+// DRAFT: 97.7%, KIND operations, 4 differing instructions, same size. What still differs:
 // 1. Timer test: the original keeps cset le / cset pl, tests `answer`, then orr (second, first) + cbz.
-//    This form gives the inverted pair (cset hi / cset mi, and, tbnz). Tried and worse (28.9%, the test
-//    splits into branches after the `answer` test): the two flags as locals joined by `|` into a third
-//    local, and the two flags as locals joined by `||` inside the if. Untried: a form where the `ready`
-//    value is not inverted, e.g. an inline helper returning the bool, or `if (answer && ready)` nested
-//    around a separate `if (answer->vf_0x680(...))`.
-// 2. Normalise: the original has x * scale, y * scale, scale * z; this form has scale * y. Confirmed
-//    (2026-11-16): base::math::Normalized (include/base/math/CVectorOps.h) applied to push itself gives the
-//    original's normalise exactly (97.7%, only difference 1 left), but push is a UnkVec3f, so it needs the
-//    shared operations for UnkVec3f (or push as a CVector3D, which changes its word copies); a copy into a
-//    CVector3D first does not work (the original reloads push after the sqrtf call).
+//    This form gives the inverted pair (cset hi / cset mi, and, tbnz). Tried, no better: an inline
+//    helper returning the bool (either polarity), `!(time > -0.001f) || !(time < 0.2f)`, a ternary,
+//    `if (answer)` or `if (answer && ready)` nested around the call; worse (28.9%): the condition
+//    written inside the if, the flags as two locals, `|` for `||`, a `waiting` local.
+// The normalise matches through Normalized (game/UnkVec3fOps.h) applied to push itself.
 // CPlayerLifeComponent (unit 2716): reacts to a hit. Picks the hit direction, lets the attacker's
 // component answer the hit, passes the resulting push to the player's movement and, for hit kinds
 // 4 and 5, sends the game manager an event with the push's direction.
@@ -20,6 +14,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -132,8 +127,7 @@ void fn_7101167aec(CPlayerLifeComponent* self, UnkHit* hit) {
 
     if (!hit->field_0x22 && (hit->field_0xc8 & ~1u) == 4) {
         UnkGameManager* manager = g_unk_7101d47310;
-        f32 scale = 1.0f / (sqrtf(push.x * push.x + push.y * push.y + push.z * push.z) + 0.0001f);
-        UnkVec3f normal(push.x * scale, push.y * scale, push.z * scale);
+        UnkVec3f normal = Normalized(push);
         fn_7100e038b0(manager, g_unk_7172a0a198, reinterpret_cast<UnkVec*>(&normal), 0);
     }
 }

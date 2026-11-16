@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassFadeOutMusicEvent
 namespace CCharClassFadeOutMusicEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Fade Out Music");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Sound", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Fade Out Music");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTime", 0xc, (DefaultValue, 3.0f), (MinValue, 0.1f), (MaxValue, 100.0f));

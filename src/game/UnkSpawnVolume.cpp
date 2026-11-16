@@ -9,6 +9,7 @@
 #include <algorithm>
 
 #include "game/UnkTU54.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -34,10 +35,7 @@ static inline f32 RandUnit() {
     return (f32)((rand() & 0x7fff) * (1.0 / 32767.0));
 }
 
-// Component-wise products.
-static inline UnkVec3f operator*(const UnkVec3f& a, f32 s) {
-    return UnkVec3f(a.x * s, a.y * s, a.z * s);
-}
+// The component-wise product.
 static inline UnkVec3f operator*(const UnkVec3f& a, const UnkVec3f& b) {
     return UnkVec3f(a.x * b.x, a.y * b.y, a.z * b.z);
 }

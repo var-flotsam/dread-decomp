@@ -28,13 +28,13 @@ namespace CCentralUnitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vSpawnPointActors", true), &g_unk_717269bf08, 0x146d0, -1, -1);
-    field0->attrs.Add<bool>(fn_7100090090(), false);
-    field0->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+    field0->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
+    field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);
     DREAD_REFLECTED_FIELD_OF("CRinkaUnitComponent::ECentralUnitType", "eType", 0x14730, (DefaultValue, 2147483647));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpDoorCentralUnit", true), &g_unk_71727b6270, 0x14790, -1, -1);
-    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("wpDeadCutScenePlayer", true), &g_unk_71727b6270, 0x14750, -1, -1);
-    field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

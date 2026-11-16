@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCheckFloorHitExtraDistanceTrack
 namespace CCharClassCheckFloorHitExtraDistanceTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Check Floor Hit Extra Distance");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Movement", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Check Floor Hit Extra Distance");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Movement", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fExtraDistance", 0x18, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1000.0f), (Description, "Centimeters"));

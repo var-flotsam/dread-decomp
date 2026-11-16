@@ -45,7 +45,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_ePipeGroup1_SetterFunction", true)))
         fn_7100a90798(fn, "_m_ePipeGroup1_SetterFunction");
     UnkReflField* field6 = fn_7100096524(cls, CStrId("ePipeGroup1", true), &g_unk_7172752160, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<s32>(fn_7100075240(), &g_unk_7172752160, 0);
+    field6->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172752160, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_ePipeGroup2_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_ePipeGroup2_GetterFunction", true);
         fn->return_type = &g_unk_7172752160;
@@ -56,7 +56,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_ePipeGroup2_SetterFunction", true)))
         fn_7100a9090c(fn, "_m_ePipeGroup2_SetterFunction");
     UnkReflField* field7 = fn_7100096524(cls, CStrId("ePipeGroup2", true), &g_unk_7172752160, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<s32>(fn_7100075240(), &g_unk_7172752160, 0);
+    field7->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172752160, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

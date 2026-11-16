@@ -46,12 +46,12 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71005004a4);
     }
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tFast4LegTransformationMagnet", true), &g_unk_717269bf08, 0x2a700, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpForceEmmyPerceptionVisionConeOffShape", true), &g_unk_717269bb48, 0x2a730, -1, -1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     DREAD_REFLECTED_FIELD(bool, "bZipLine004Behavior", 0x2a728, (DefaultValue, false), (EditorVisible, false), (Persistence, 0));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("wpPhase2HeatEnabledLogicShape", true), &g_unk_717269bb48, 0x2a770, -1, -1);
-    field3->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

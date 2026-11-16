@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // animtree::CSamusLegsBoneControlDef
 namespace animtree::CSamusLegsBoneControlDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Samus Legs Control");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Samus Legs Control");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CName, "sThigh", 0x10, (Description, "Tight Bone"));

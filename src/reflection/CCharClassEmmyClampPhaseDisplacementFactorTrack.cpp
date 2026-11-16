@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassEmmyClampPhaseDisplacementFactorTrack
 namespace CCharClassEmmyClampPhaseDisplacementFactorTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Clamp Emmy Phase Displacement Factor");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Emmy", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Clamp Emmy Phase Displacement Factor");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Emmy", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fmin", 0x18, (DefaultValue, 0.0f));

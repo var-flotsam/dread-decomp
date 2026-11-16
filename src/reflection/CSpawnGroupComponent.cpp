@@ -68,9 +68,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bGenerateEntitiesByOrder", 0x142, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(CStrId, "sLogicCollisionShapeID", 0x418, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field20 = fn_7100096524(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0xb8, -1, -1);
-    field20->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field20->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     UnkReflField* field21 = fn_7100096524(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0xf8, -1, -1);
-    field21->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field21->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     DREAD_REFLECTED_FIELD(f32, "fDropAmmoProb", 0x3d8, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(s32, "iInitToGenerate", 0x188, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(CStrId, "sArenaId", 0x1c0, (DefaultValue, CStrId(g_unk_7101d470e0)));
@@ -84,10 +84,10 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iNumDeaths", (DefaultValue, 0), (Persistence, 0));
     UnkReflField* field27 = fn_7100096524(cls, CStrId("vectSpawnPoints", true), &g_unk_7172a07250, 0x68, -1, -1);
-    field27->attrs.Add<bool>(fn_7100092c20(), true);
-    field27->attrs_0x70.Add<bool>(fn_710025dbb0(), true);
-    field27->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
-    field27->attrs_0x70.Add<const char*>(fn_71010434d0(), "SPAWNPOINT");
+    field27->attrs.Add<bool>(base::reflection::attr::DisableListAdd(), true);
+    field27->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
+    field27->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);
+    field27->attrs_0x70.Add<const char*>(base::reflection::attr::eActorLinkToComponentLinkTransform(), "SPAWNPOINT");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassFXSetMaterialPropertyTransitionEvent
 namespace CCharClassFXSetMaterialPropertyTransitionEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Material Property Transition");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "FX");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Material Property Transition");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "FX");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sFXId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

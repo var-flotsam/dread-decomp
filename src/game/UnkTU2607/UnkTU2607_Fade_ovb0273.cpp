@@ -8,13 +8,12 @@
 #include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/math/CVector.h"
-#include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU290.h"
 #include "game/UnkTU315.h"
-#include "game/UnkTU55.h"
 #include "types.h"
 
 using base::color::CColor4F;
@@ -90,9 +89,9 @@ static inline UnkVector4D FadeLerp4(f32 t, const UnkVector4D& from, const UnkVec
         return to;
     if (t < 0.0f)
         return from;
-    UnkVector4D a = fn_710007b5c0(&from, 1.0f - t);
-    UnkVector4D b = fn_710007b5c0(&to, t);
-    return fn_710007b5ec(&a, &b);
+    UnkVector4D a = from * (1.0f - t);
+    UnkVector4D b = to * t;
+    return a + b;
 }
 
 static inline f32 NonNegative(f32 v) { return v <= 0.0f ? 0.0f : v; }
@@ -149,7 +148,7 @@ void fn_7100f9ada4(f32 dt, UnkEnvironmentFade* fade) {
     UnkFadeLayout* self = L(fade);
     f32 t = self->Step(13, dt);
     UnkVector4D r = FadeLerp4(t, self->c13.now, self->c13.to);
-    fn_710007b518(&self->c13.now, &r);
+    Assign(self->c13.now, r);
     self->flag_0x270 = true;
 }
 

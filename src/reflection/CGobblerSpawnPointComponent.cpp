@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -38,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_wpDoor_SetterFunction", true)))
         fn_7100a1a1e8(fn, "_m_wpDoor_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpDoor", true), &g_unk_71727b6270, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_wpWeb_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_wpWeb_GetterFunction", true);
         fn->return_type = &g_unk_71727b6270;
@@ -49,7 +50,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_wpWeb_SetterFunction", true)))
         fn_7100a1a35c(fn, "_m_wpWeb_SetterFunction");
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpWeb", true), &g_unk_71727b6270, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
