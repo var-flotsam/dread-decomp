@@ -602,6 +602,8 @@ def related_by_type(block: list[str], getters: dict[int, str], enums: frozenset[
         elif m and plain and int(m.group(2), 16) in plain:
             name = plain[int(m.group(2), 16)]
             line = f"{m.group(1)}&base::reflection::PrimitiveType<{name}>::Get(); }}"
+            if name not in PRIMITIVE_VALUE_TYPES.values():
+                first.append(class_declaration(name))
             first.append(f"extern template const base::reflection::CType& base::reflection::PrimitiveType<{name}>::Get();")
         out.append(line)
     return list(dict.fromkeys(first)) + out
@@ -632,8 +634,9 @@ def keyed_collections(named_colls: dict) -> set[int]:
 
 
 def keyed_primitives(named_prims: dict[int, str]) -> dict[int, str]:
-    """{getter: T} of the plain types with value operations from ValueOps.h (primitive_value_type) keyed by T
-    itself: one getter per type, so that refl_GetType<T> names one function."""
+    """{getter: T} of the plain types (`named_prims`: those with value operations from ValueOps.h,
+    primitive_value_type, and the classes, primitive_class) keyed by T itself: one getter per type, so that
+    refl_GetType<T> names one function."""
     counts: dict[str, int] = {}
     for v in named_prims.values():
         counts[v] = counts.get(v, 0) + 1
@@ -765,8 +768,9 @@ def reflection_names(orig: asmdiff.Original, version: str, keyed: dict[int, str]
             if g in by_type and canon in keyed_written:
                 keyed_found.update(type_keyed_names(g, inits[g], canon))
     named_prims = {g: v for g, b in prims if (v := primitive_value_type(b))}
+    named_prims.update({g: c for g, b in prims if (c := primitive_class(b))})
     for g, v in keyed_primitives(named_prims).items():
-        if v in written and v in keyed_plain_written:
+        if (v in written or v not in PRIMITIVE_VALUE_TYPES.values()) and v in keyed_plain_written:
             keyed_found.update(type_keyed_names(g, None, v))
     for g, body in prims:
         value_type = primitive_value_type(body)
@@ -1377,10 +1381,33 @@ def primitive_value_type(body: list[str]) -> str | None:
     return PRIMITIVE_VALUE_TYPES[m.group(1)]
 
 
-def emit_primitive(getter: int, body: list[str], value_type: str | None = None, keyed: bool = False) -> list[str]:
+def primitive_class(body: list[str]) -> str | None:
+    """The class a plain type's traits describe when its name is one a declaration can spell (CStrId,
+    CVector3D, ...): its value operations stay by address."""
+    m = re.search(r'static constexpr const char\* name = "([^"]*)";', "\n".join(body))
+    if not m or m.group(1) in PRIMITIVE_VALUE_TYPES or not QUALIFIED_RE.fullmatch(m.group(1)):
+        return None
+    return m.group(1)
+
+
+def class_declaration(name: str) -> str:
+    """`namespace A::B { class C; }`: an enclosing class is declared as a namespace, which mangles the same."""
+    scope, _, leaf = name.rpartition("::")
+    return declare_in(scope, f"class {leaf};")
+
+
+def emit_primitive(getter: int, body: list[str], value_type: str | None = None, keyed: str | None = None) -> list[str]:
     """A plain type's traits and getter; with `value_type`, its CType slots come from
-    ValueOps<value_type> (ValueOps.h), and when `keyed` (keyed_primitives) the description and getter are
-    keyed by the type itself, PrimitiveType<value_type>::Get (refl_GetType<T>)."""
+    ValueOps<value_type> (ValueOps.h). `keyed` (keyed_primitives) is the type the description and getter are
+    keyed by, PrimitiveType<T>::Get (refl_GetType<T>): the value type, or a class (primitive_class) whose
+    slots stay by address."""
+    if keyed and not value_type:
+        return [class_declaration(keyed),
+                "template <>",
+                f"struct base::reflection::PrimitiveTypeDescription<{keyed}> {{",
+                *body,
+                "};",
+                f"template const base::reflection::CType& base::reflection::PrimitiveType<{keyed}>::Get();"]
     if value_type and keyed:
         slot_members = {f" {SLOTS[off]} = " for off in VALUE_OPS}
         body = [line for line in underived(body) if not any(m in line for m in slot_members)]
@@ -1583,7 +1610,11 @@ def main() -> int:
         decls.add(f"extern base::reflection::CType g_unk_{o:x};")
     named_ptrs = named_pointers(orig, pairs, enum_names_known | {name for name, _ in named_flags.values()})
     named_prims = {g: v for g, b in prims if (v := primitive_value_type(b))}
+    class_prims = {g: c for g, b in prims if (c := primitive_class(b))}
     prim_bodies = dict(prims)
+
+    def plain_keyed() -> dict[int, str]:
+        return keyed_primitives({**named_prims, **class_prims})
     known_types = enum_names_known | {name for name, _ in named_flags.values()}
     by_hand = defined_by_hand()
     # (C, element, the members the mapper writes); a slot a hand-written source defines keeps its address
@@ -1593,7 +1624,7 @@ def main() -> int:
 
     def collection_block(init: int, body: list[str]) -> list[str]:
         return related_by_type(collection_form(init, body), keyed_pointers(named_ptrs, pairs, inline_ptrs),
-                               enum_names_known, keyed_primitives(named_prims))
+                               enum_names_known, plain_keyed())
 
     def collection_form(init: int, body: list[str]) -> list[str]:
         if init in named_colls:
@@ -1610,10 +1641,10 @@ def main() -> int:
 
     def pointer_block(getter: int, name: str, init: int, body: list[str]) -> list[str]:
         return related_by_type(pointer_form(getter, name, init, body), keyed_pointers(named_ptrs, pairs, inline_ptrs),
-                               enum_names_known, keyed_primitives(named_prims))
+                               enum_names_known, plain_keyed())
 
     def primitive_block(getter: int, body: list[str]) -> list[str]:
-        return emit_primitive(getter, body, named_prims.get(getter), getter in keyed_primitives(named_prims))
+        return emit_primitive(getter, body, named_prims.get(getter), plain_keyed().get(getter))
 
     def pointer_form(getter: int, name: str, init: int, body: list[str]) -> list[str]:
         if getter in named_ptrs:
@@ -1656,7 +1687,7 @@ def main() -> int:
                          for a, n in type_keyed_names(g, inits[g], canon).items()})
         expected.update({n: a for i in keyed_collections(named_colls)
                          for a, n in type_keyed_names(None, i, named_colls[i][0]).items()})
-        expected.update({n: a for g, v in keyed_primitives(named_prims).items()
+        expected.update({n: a for g, v in plain_keyed().items()
                          for a, n in type_keyed_names(g, None, v).items()})
         expected = {demangled_spelling(n): a for n, a in expected.items()}
         expected.update({alias: a for n, a in list(expected.items()) for alias in asmdiff.name_aliases(n)})
@@ -1678,7 +1709,9 @@ def main() -> int:
         failed_colls = {i: frozenset(d for d in v[2] if collection_slots(coll_bodies[i])[d] not in ok)
                         for i, v in named_colls.items()}
         failed_colls = {i: bad for i, bad in failed_colls.items() if bad or i not in ok}
-        if not failed and not failed_ptrs and not failed_flags and not failed_prims and not failed_colls:
+        failed_class_prims = {g for g in class_prims if g in plain_keyed() and g not in ok}
+        if (not failed and not failed_ptrs and not failed_flags and not failed_prims and not failed_colls
+                and not failed_class_prims):
             break
         print(f"named forms that do not match, kept by address: enums {' '.join(f'{i:x}' for i in sorted(failed))}; "
               f"pointer types {' '.join(f'{g:x}' for g in sorted(failed_ptrs))}")
@@ -1686,13 +1719,14 @@ def main() -> int:
         named_ptrs = {g: v for g, v in named_ptrs.items() if g not in failed_ptrs}
         named_flags = {i: v for i, v in named_flags.items() if i not in failed_flags}
         named_prims = {g: v for g, v in named_prims.items() if g not in failed_prims}
+        class_prims = {g: c for g, c in class_prims.items() if g not in failed_class_prims}
         named_colls = {i: (*v[:2], v[2] - failed_colls.get(i, frozenset())) for i, v in named_colls.items()}
         named_colls = {i: v for i, v in named_colls.items() if v[2] and i in ok}
         if failed_colls:
             print("collection slots kept by address: " + "; ".join(
                 f"{i:x} {' '.join(sorted(bad)) or '(constructor)'}" for i, bad in sorted(failed_colls.items())))
-        if failed_prims:
-            print(f"plain types kept by address: {' '.join(f'{g:x}' for g in sorted(failed_prims))}")
+        if failed_prims or failed_class_prims:
+            print(f"plain types kept by address: {' '.join(f'{g:x}' for g in sorted(failed_prims | failed_class_prims))}")
         if failed_flags:
             print(f"flag sets kept by address: {' '.join(f'{i:x}' for i in sorted(failed_flags))}")
     for line in asmdiff.reloc_rejects(results):
@@ -1734,7 +1768,7 @@ def main() -> int:
           f"({sum(f[0] in named_flags for f in good_flagsets)} with named value operations); "
           f"keyed by type: {len(keyed_pointers(named_ptrs, pairs, inline_ptrs))} pointer types, "
           f"{len(keyed_collections(named_colls))} collections, "
-          f"{len(keyed_primitives({g: v for g, v in named_prims.items() if g in {p[0] for p in good_prims}}))} plain types")
+          f"{sum(p[0] in plain_keyed() for p in good_prims)} plain types")
     return 0
 
 
