@@ -40,6 +40,10 @@ class UnkSelf_7100369c44;
 struct UnkSluggerAI;
 struct UnkSluggerEvent;
 struct UnkWarLotusAI;
+struct CAttack;
+struct UnkAttackListSelf_b0143;
+// The attack of the list named `name`.
+CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name);
 void fn_710110cca4(void*, void*);
 void fn_71010ff2b8(char* self);
 void fn_7101105c90(UnkKraidAI2* self, void* arg, UnkKraidRequest* request);
