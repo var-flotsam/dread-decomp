@@ -5,6 +5,7 @@
 
 #include "base/global/CStrId.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkTU2647.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -14,9 +15,6 @@ void fn_7100016c44(void* self, const void* other);
 
 struct UnkPathIdTable_710103c4e8;
 void fn_7101036a9c(UnkPathIdTable_710103c4e8* self);
-void fn_71010372dc(void* items, const void* other_items);
-
-extern char g_unk_7101cac748[];
 
 inline const UnkGameManagerIdTable& PresetIds_l036fb8() {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");

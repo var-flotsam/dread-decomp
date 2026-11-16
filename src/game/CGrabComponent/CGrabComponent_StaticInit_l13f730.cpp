@@ -4,6 +4,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/UnkSList.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CGrabComponent.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,6 @@ struct UnkStatics_710113f730 {
     u8 pad_0x28[0x18];
     u8 field_0x40[8];
 };
-extern UnkStatics_710113f730 g_unk_7172a090e8 __attribute__((visibility("hidden")));
 extern char g_unk_7172a08f50[];
 extern UnkEnumType g_unk_7172a08f58;
 void fn_710113a9ec(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
@@ -25,10 +25,6 @@ extern UnkConversion g_unk_7172a09098;
 void fn_710113f520() __attribute__((visibility("hidden")));
 void fn_710113f52c() __attribute__((visibility("hidden")));
 
-// The registry of grabbing components.
-struct UnkGrabListTag_ovb0057;
-using UnkGrabList_ovb0057 = base::UnkSList<UnkGrabListTag_ovb0057>;
-extern UnkGrabList_ovb0057 g_unk_7172a090b8;
 extern char g_unk_7101cb33a8[];
 void fn_710113ad50(void* list);
 

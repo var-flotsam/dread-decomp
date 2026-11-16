@@ -20,8 +20,6 @@ extern void* g_unk_7101a6e558[];
 void fn_710075d124(UnkProperty* p);
 void fn_71007534a8(void* p);
 extern UnkPropertyEx<> g_unk_7172711588;
-extern void* g_unk_7101a45fe8[];
-extern void* g_unk_7101a45f90[];
 extern UnkEnumType g_unk_71727122c0;
 extern char g_unk_71727115c8[];
 void fn_7100754738();

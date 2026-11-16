@@ -11,8 +11,6 @@
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
-const base::reflection::CType* fn_7101045d7c();
-
 UnkReflValue fn_7101049fe0(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* a = args[0];
     CBlackboard* self = *reinterpret_cast<CBlackboard**>(obj + 8);

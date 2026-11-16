@@ -3,6 +3,7 @@
 // registry map at +0x7c0 under the owner's name. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CUsableComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -12,7 +13,6 @@ extern template bool base::reflection::refl_RegistryMapInit<UnkRefl_fn_7100a8577
     base::reflection::UnkReflRegistryMap*, const base::global::CStrId&);
 
 struct UnkStateObject;
-void fn_7100a9ea64(UnkStateObject* self);
 
 void fn_7100a884c8();
 void fn_7100a884cc();

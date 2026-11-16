@@ -6,6 +6,7 @@
 #include "base/UnkStrIdTable.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CMapAcquisitionComponent.h"
 #include "game/CPullOffGrapplePointComponent.h"
 #include "game/CTimelineComponent.h"
 #include "game/CUsableComponent.h"
@@ -13,9 +14,7 @@
 
 using base::global::CStrId;
 
-extern void* g_unk_7101a91d50[];  // the class's vtable
 extern void* g_unk_7101a92218[];  // the states' base vtable
-extern void* g_unk_7101a92270[];  // the state machine's vtable
 
 struct UnkMapState_la84fb4 {
     void** vtable;

@@ -2,10 +2,9 @@
 // the later ones up one place (growing the array first when it is full); inserting at the end appends
 // through fn_7100e4ea08. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/SLogicPathNode.h"
 #include "game/UnkTU2563.h"
 #include "types.h"
-
-extern char g_unk_7101cac8f0[];
 
 // Two words of a point, copied as one.
 struct UnkPathPointTail {

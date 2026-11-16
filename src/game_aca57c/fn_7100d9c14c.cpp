@@ -1,6 +1,7 @@
 // Getters building a value of kind 2 that holds a word of the object at +0x8 of their argument
 // (fn_71000a18d4 fills in the rest from the global descriptor of the word's type).
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU1601.h"
 #include "game/UnkTU2176.h"
 #include "game/UnkTU2528.h"
 #include "types.h"
@@ -46,7 +47,6 @@ extern base::reflection::CType g_unk_7108b6cc88;
 extern base::reflection::CType g_unk_7108b6cde8;
 extern UnkEnumType g_unk_7172730858;
 extern UnkEnumType g_unk_7172743e90;
-extern base::reflection::CType g_unk_7172752160;
 extern base::reflection::CType g_unk_7108b6d110;
 extern base::reflection::CType g_unk_7108b6d270;
 extern base::reflection::CType g_unk_7108b6cb28;

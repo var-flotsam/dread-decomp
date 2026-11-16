@@ -3,6 +3,7 @@
 // ("ICEZONE"), the trigger's name "Freeze Zone" and its flags. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBaseDamageTriggerComponent.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ using base::global::CStrId;
 using base::global::UnkStrId;
 
 struct UnkBaseDamageTrigger3;
-void fn_7100a45a30(UnkBaseDamageTrigger3* self);
 
 extern char g_unk_7101a8d410[];  // vtable
 

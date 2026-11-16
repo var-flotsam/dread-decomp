@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CPickableItemComponent.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
@@ -16,7 +17,6 @@ using base::global::CRntVector;
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-extern void* g_unk_7101a89358[];  // vtable
 struct UnkPickableComponent;
 void fn_71009ccf7c(UnkPickableComponent* self);  // CPickableComponent's constructor
 void fn_71009d3cf8(char* self);   // base::refl_StrIdListCtor<..>, instantiated in src/clones

@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU1601.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -50,7 +51,6 @@ extern base::reflection::CType g_unk_7172751fe8;
 void fn_7100a91800(CType* self, const CStrId& name, void* a, void* b);
 extern char g_unk_7172752158[];
 // CThermalDeviceComponent::EPipeGroup and its converters to and from int.
-extern base::reflection::CType g_unk_7172752160;
 void fn_7100a91d80(CType* self, const CStrId& name, void (*init)(void*), void* extra);
 void fn_7100a919f4(void* e);
 extern char g_unk_7172752278[];

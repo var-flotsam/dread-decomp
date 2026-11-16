@@ -3,14 +3,14 @@
 // owned-object lists. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassCooldownXBossAttack.h"
+#include "game/CCooldownXBossFireBallDef.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
 struct UnkCooldownXBossAttackDef;
-void fn_71004a09b4(UnkCooldownXBossAttackDef* self);
-extern char g_unk_7101a3e300[];
 
 struct UnkFireBallAttackDef_l4b9cc4 {
     char* vtable;

@@ -20,3 +20,4 @@ bool fn_7101173964(void* self);
 extern void* g_unk_7101cb46a0[];
 bool fn_71011735e8(UnkEntity* entity, const void* key, UnkMatrix44* out, u32 flags);
 void fn_7101171a08(UnkModelUpdater_ovb0032* self, const void* path, const base::global::CRntString* extra);
+extern void* g_unk_7101cb4508[];

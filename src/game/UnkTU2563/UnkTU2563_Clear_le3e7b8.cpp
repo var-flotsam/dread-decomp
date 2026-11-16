@@ -11,7 +11,6 @@
 using base::global::CStrId;
 
 struct UnkRec60IdArray_b0223;
-void fn_7100e4efa0(UnkRec60IdArray_b0223* table);
 template <class Value>
 struct UnkIdRecordTable;
 struct UnkIdRecord28;

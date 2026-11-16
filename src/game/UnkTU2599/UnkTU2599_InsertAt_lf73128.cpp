@@ -6,9 +6,8 @@
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2599.h"
 #include "types.h"
-
-extern char g_unk_7101cab388[];
 
 struct UnkClone_fn_7100f72f84;
 void fn_7100f72db4(base::global::CRntVector<base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f72f84, UnkCloneElem<UnkClone_fn_7100f72f84, 4>>&);

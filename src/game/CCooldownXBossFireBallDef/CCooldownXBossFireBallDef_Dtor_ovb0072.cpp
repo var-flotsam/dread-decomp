@@ -6,13 +6,13 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassCooldownXBossAttack.h"
+#include "game/CCooldownXBossFireBallDef.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCooldownXBossAttackDef;
-extern char g_unk_7101a3e300[];
 
 struct UnkFireBallAttackDef_ovb0072 {
     char* vtable;

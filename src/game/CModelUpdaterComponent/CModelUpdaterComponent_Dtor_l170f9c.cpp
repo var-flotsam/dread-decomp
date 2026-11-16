@@ -118,8 +118,6 @@ struct UnkModelUpdater_l170f9c : UnkBaseComponent {
 static_assert(__builtin_offsetof(UnkModelUpdater_l170f9c, events) == 0x120, "layout");
 static_assert(__builtin_offsetof(UnkModelUpdater_l170f9c, setup) == 0x160, "layout");
 
-extern void* g_unk_7101cb4508[];
-
 // Hands the loaded model back to the model cache when the owner is a character; false when the cache
 // does not take it.
 static inline bool ReturnToCache(UnkModelUpdater_l170f9c* self) {

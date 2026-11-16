@@ -46,8 +46,6 @@ extern UnkReflType g_unk_717275ef50;
 struct CType;
 
 struct UnkCharMap;
-extern void* g_unk_7101a45fe8[];
-extern void* g_unk_7101a45f90[];
 
 extern UnkReflType g_unk_7172797480 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<0x160> g_unk_7172796390;

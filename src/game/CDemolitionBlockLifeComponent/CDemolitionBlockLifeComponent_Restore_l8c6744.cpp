@@ -5,11 +5,13 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "game/CBlackboard.h"
+#include "game/CCollisionComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU218.h"
+#include "game/UnkTU253.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
@@ -18,7 +20,6 @@ using base::math::CVector4D;
 
 struct UnkPowerBombCollider_ovb0127;
 struct UnkPowerBombColliders_ovb0127;
-UnkPowerBombCollider_ovb0127* fn_710086420c(UnkPowerBombColliders_ovb0127*, u32);
 
 struct UnkDemolitionPart {
     UnkStringData* name;
@@ -48,8 +49,6 @@ struct UnkDemolitionModelResource {
 
 struct UnkPowerBombPartList_ovb0127;
 struct UnkPowerBombPart_ovb0127;
-u32 fn_71001c1440(UnkPowerBombPartList_ovb0127* list);
-UnkPowerBombPart_ovb0127* fn_71001c1450(UnkPowerBombPartList_ovb0127* list, u32 index);
 
 // The model's named parts (fn_71001c1440 counts them, fn_71001c1450 returns one).
 static inline u32 PartCount(UnkDemolitionModelResource* resource) {

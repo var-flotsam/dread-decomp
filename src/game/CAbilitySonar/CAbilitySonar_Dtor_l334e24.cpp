@@ -13,8 +13,6 @@
 #include "types.h"
 
 extern void* g_unk_7101a235c0[];  // CAbilitySonar's vtable
-extern void* g_unk_7101a225f8[];  // the value holders' vtable
-extern void* g_unk_7101a22650[];  // the vtable of the member at +0x10
 
 void fn_7100a0f758();
 void fn_7100a0df38();

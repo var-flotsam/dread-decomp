@@ -4,14 +4,13 @@
 #include "base/UnkLoadingMask.h"
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkTU2666.h"
 #include "game/UnkTU2677.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 struct lua_State;
-
-s32 fn_7101097578(const char* name);
 
 struct UnkMaskStaticZero_l091ae0 {
     u32 value;

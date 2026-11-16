@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CDemolitionBlockLifeComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -38,7 +39,6 @@ extern UnkConverter g_unk_7172730c70;
 void fn_71008c89d8() __attribute__((visibility("hidden")));
 void fn_71008c89e4() __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_7172730c90;
-extern UnkProperty g_unk_7172730c98;
 extern UnkProperty g_unk_7172730cc0;
 extern void* g_unk_7101a7e5d0[];
 void fn_71008c8de8(UnkProperty* p);

@@ -7,3 +7,4 @@
 
 struct UnkCooldownXBossAttackDef;
 void fn_71004a0a10(UnkCooldownXBossAttackDef* self);
+void fn_71004a09b4(UnkCooldownXBossAttackDef* self);

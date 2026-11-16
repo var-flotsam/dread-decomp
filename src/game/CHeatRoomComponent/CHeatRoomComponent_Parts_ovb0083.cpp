@@ -260,7 +260,6 @@ struct UnkHeatRoomMembers_ovb0083 {
 };
 static_assert(__builtin_offsetof(UnkHeatRoomMembers_ovb0083, sound_path) == 0xc50, "UnkHeatRoomMembers_ovb0083 layout");
 
-extern char g_unk_7101a8d620[];
 struct UnkLiquidPoolDtor_ovb0075;
 
 // The destructor: the ids, then the parts, then the base's (fn_7100a45a84).

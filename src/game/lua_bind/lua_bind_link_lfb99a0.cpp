@@ -6,12 +6,12 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkLuaDoorTarget;
-UnkLuaDoorTarget* fn_710055b104(void* object);
 void fn_7100acca50(UnkLuaDoorTarget* target, void* first, void* second);
 
 struct UnkLuaStrData {

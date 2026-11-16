@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
+#include "game/CGrabComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -22,9 +23,7 @@ struct UnkStatics_710113f730 {
     u8 pad_0x28[0x18];
     u8 field_0x40[8];
 };
-extern UnkStatics_710113f730 g_unk_7172a090e8 __attribute__((visibility("hidden")));
 
-f32 fn_710117808c(UnkAnimationComponent* self, u64 key);
 void fn_71011781f4(UnkAnimationComponent* self, u64 key, bool flag);
 void fn_7101178274(UnkAnimationComponent* self, u64 key);
 

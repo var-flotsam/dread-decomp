@@ -166,7 +166,6 @@ void fn_710103beec(UnkPresetRef_e* self, UnkPresetRef_e* other) {
     }
 }
 
-extern char g_unk_7101cac748[];
 void fn_7101036efc(void* items);
 
 struct UnkAudioPresetBank_h {
@@ -221,7 +220,6 @@ static_assert(__builtin_offsetof(UnkAudioPresetBank_i, flags) == 0x5c4, "layout"
 
 struct UnkAssetRecordHolder_b45a1;
 UnkAssetRecordHolder_b45a1* fn_7100016e14(UnkAssetRecordHolder_b45a1* self, UnkAssetRecordHolder_b45a1* other);
-void fn_71010372dc(void* items, const void* other_items);
 
 UnkAudioPresetBank_i* fn_7101037484(UnkAudioPresetBank_i* self, UnkAudioPresetBank_i* other) {
     if (other != self) {

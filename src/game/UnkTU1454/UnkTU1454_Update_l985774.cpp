@@ -3,6 +3,7 @@
 // component an id (when the grapple tunable plays swing animations), takes the new value and switches the
 // state machine at +0xe0 to state 1. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CSamusGrappleMovementState.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1450.h"
@@ -14,7 +15,6 @@ struct UnkGrappleTunable_l985774 {
     u8 pad_0x0[0x80];
     bool bSwingPlayAnimations;
 };
-extern base::reflection::UnkTunable g_unk_717273ba88;
 
 static inline const UnkGrappleTunable_l985774& GrappleTunable() {
     return reinterpret_cast<const UnkGrappleTunable_l985774&>(g_unk_717273ba88);

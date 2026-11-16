@@ -22,9 +22,6 @@ struct UnkKey {
     u32 field_0x14;
 };
 
-bool fn_710080f9e0(const UnkKey* a, const UnkKey* b);
-void fn_710080fb00(UnkKey* key, void* owner);
-
 struct UnkSlotTarget {
     u8 pad_0x0[0x30];
     UnkVec4Pod* field_0x30;

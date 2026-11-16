@@ -32,7 +32,6 @@ struct UnkNamedValueTmp;
 }
 using unk_static_init::UnkNamedValueTmp;
 void fn_7100ad3404(UnkStruct_71729e0ab0*, UnkNamedValueTmp*, u64);
-void fn_7100d8ce3c(void* self);
 
 // A value's type as its copies see it: the hooks to copy and to tear down a value.
 struct UnkValueOps_d90cd0 {

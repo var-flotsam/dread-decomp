@@ -87,8 +87,6 @@ struct UnkObj_71009cf440 {
     u8 field_0x1d0[0x10];
 };
 
-extern void* g_unk_7101a89358[];
-void fn_71009cef20(void* p);
 void fn_71009cd080(UnkObj_71009cf440* self);
 
 void fn_71009cf440(UnkObj_71009cf440* self) {

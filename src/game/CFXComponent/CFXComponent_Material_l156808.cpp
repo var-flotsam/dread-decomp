@@ -1,15 +1,13 @@
 // CFXComponent's unit: switches the effects tied to material ids, turning off those of the material the
 // owner leaves and on those of the material it enters.
 // Names and layouts are placeholders.
+#include "game/CCollisionMaterialCacheComponent.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU1428.h"
 #include "types.h"
 
 struct UnkEventOwner_m_ovb0137;
 struct UnkStruct_710024fa0c;
-
-void* fn_710094c9ac(UnkEventOwner_m_ovb0137* owner);  // the owner's material source, if any
-u32 fn_7100798e88();
-u32 fn_7100798e90(void* source);
 
 struct UnkFXMaterialName {
     u8 pad_0x0[0x30];

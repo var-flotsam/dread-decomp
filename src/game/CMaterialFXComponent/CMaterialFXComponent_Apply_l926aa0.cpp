@@ -12,10 +12,6 @@
 using base::global::CStrId;
 using base::math::CVector4D;
 
-void fn_710080fb00(UnkKey* key, void* owner);
-bool fn_710080fb08(UnkKey* key);
-bool fn_710080f9e0(const UnkKey* key, const UnkKey* other);
-
 // A colour whose assignment is the out-of-line one (fn_710007b518).
 struct UnkMaterialFXColor_l926aa0 : CVector4D {
     UnkMaterialFXColor_l926aa0& operator=(const UnkMaterialFXColor_l926aa0& other) {

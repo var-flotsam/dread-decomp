@@ -4,12 +4,11 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CMaterialFXComponent.h"
 #include "game/CSceneComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101a833b0[];
 
 struct UnkBreakableTileGroup_b46a2;
 

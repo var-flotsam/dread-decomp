@@ -406,8 +406,6 @@ void fn_7100e0ecb0() {
 }
 
 struct UnkCharMap;
-extern void* g_unk_7101a45fe8[];
-extern void* g_unk_7101a45f90[];
 
 void fn_7100e7c980() {
     InitHeader(g_unk_71727c9948);

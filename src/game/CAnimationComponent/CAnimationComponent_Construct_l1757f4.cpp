@@ -9,6 +9,7 @@
 #include "base/UnkInitRecord_0x5c.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "game/CComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU1141.h"
@@ -18,15 +19,9 @@
 using base::global::CRntVector;
 using base::global::CStrId;
 
-extern void* g_unk_7101cb46c0[];  // vtable
-extern void* g_unk_7101cb4880[];  // the listener lists' vtable
-extern char g_unk_7101cb4840[];   // the pool list's vtable
-extern char g_unk_7101cb4860[];   // its base's
-
 struct UnkStruct_71007142e8;
 
 // The pool list at +0x4c0 (an out-of-line base::refl_PoolListCtor).
-void fn_710117b794(void* list, u32 capacity, u32 a, u32 step, base::UnkAllocator* allocator);
 
 struct UnkAnimPoolTag_l1757f4;
 template <>

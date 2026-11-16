@@ -14,8 +14,6 @@ using base::global::CStrId;
 struct UnkCameraCtrl_ovb0049;
 
 extern void* g_unk_7101a22898[];  // CAbilityEnergyWave's vtable
-extern void* g_unk_7101a225f8[];  // the value holders' vtable
-extern void* g_unk_7101a22650[];  // the vtable of the member at +0x10
 
 // Three lists; the first holds the addresses of slots that refer back to this set.
 struct UnkListSet_l305dc0 {

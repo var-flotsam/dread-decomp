@@ -6,12 +6,12 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
+#include "game/CFrozenComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern char g_unk_7172721120[] __attribute__((visibility("hidden")));
 extern char g_unk_7172721128[] __attribute__((visibility("hidden")));
 
 struct UnkFreezeDesc_l7fa144 {

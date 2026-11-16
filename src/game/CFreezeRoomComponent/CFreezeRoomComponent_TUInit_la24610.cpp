@@ -29,8 +29,6 @@ struct UnkFreezeRoomClassTU_la24610 {
 extern UnkFreezeRoomTU_la24610 g_unk_7172745fe0 __attribute__((visibility("hidden")));
 extern UnkFreezeRoomClassTU_la24610 g_unk_7172746000 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<> g_unk_7172745bc0;
-extern void* g_unk_7101a45fe8[];
-extern void* g_unk_7101a45f90[];
 extern UnkReflType g_unk_7172745c00;  // EThermalFreezeRoomType
 extern char g_unk_7172745d18;
 extern UnkConverter g_unk_7172745d20;

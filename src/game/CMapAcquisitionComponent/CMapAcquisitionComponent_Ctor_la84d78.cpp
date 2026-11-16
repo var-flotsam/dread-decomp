@@ -3,15 +3,14 @@
 // states, the registry map, two tunables and the timeline listener. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CMapAcquisitionComponent.h"
 #include "game/CPullOffGrapplePointComponent.h"
 #include "game/CUsableComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern void* g_unk_7101a91d50[];  // the class's vtable
 extern void* g_unk_7101a921c0[];  // the states' vtable
-extern void* g_unk_7101a92270[];  // the state machine's vtable
 void fn_7100a87f5c(char* self);  // base::refl_StrIdListCtor<..>, instantiated in src/clones
 
 struct UnkMapDelegate_la84d78 {

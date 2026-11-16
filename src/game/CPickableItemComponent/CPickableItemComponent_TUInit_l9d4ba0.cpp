@@ -6,6 +6,7 @@
 #include "base/UnkStrIdRegistry.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CPickableItemComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTUSymbols.h"
@@ -43,14 +44,11 @@ struct UnkPickLists_l9d4ba0 {
 
 extern UnkPickableItemTU g_unk_717273ffa0 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_717273fe00;
-extern UnkProperty g_unk_717273fe08;
 extern UnkProperty g_unk_717273fe30;
 extern char g_unk_717273fe58;
-extern u8 g_unk_717273fe60[];
 extern char g_unk_7101a89520[];  // the properties' vtable
 void fn_71009d3f7c(UnkProperty* p);
 void fn_71009ce4c0(void* p);
-void fn_71009cef20(void* p);
 
 void fn_71009d4ba0() {
     UnkPickableItemTU& tu = g_unk_717273ffa0;

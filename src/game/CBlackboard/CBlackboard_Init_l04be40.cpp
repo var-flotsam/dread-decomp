@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CBlackboard.h"
 #include "game/UnkTUInit.h"
 
 // The shared helpers see a reflected type through the placeholder layout (UnkReflType).
@@ -38,7 +39,6 @@ void fn_71010462b8(UnkReflType* self, const CStrId& name, UnkReflType* base, voi
 void fn_7101045f34();
 const base::reflection::CType* fn_710104643c();
 void fn_7101046518(UnkReflType* self, const CStrId& name, void* a, void* b);
-const base::reflection::CType* fn_7101045d7c();  // refl_GetType<CBlackboard::CSection*>
 const base::reflection::CType* fn_710104670c();  // refl_GetType<CBlackboard::TSectionContainer*>
 
 void fn_710104be40() {

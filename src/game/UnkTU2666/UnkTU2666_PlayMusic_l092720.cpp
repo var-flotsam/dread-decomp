@@ -12,6 +12,7 @@
 #include "game/UnkTU23.h"
 #include "game/UnkTU2677.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -23,7 +24,6 @@ struct lua_State;
 using UnkPathMember_l092720 = base::UnkStrIdMemberOf<g_unk_7101d47200>;
 
 struct UnkTuneMgrView_b0019;
-f32 fn_7100fdc468(UnkTuneMgrView_b0019* manager, const u64* path);
 void fn_7100fdc3c4(UnkTuneMgrView_b0019* manager, const u64* path, s32* first, s32* second);
 
 // The file path of a string id's text (its use count at +0x44 goes up first).

@@ -6,12 +6,11 @@
 #include "base/UnkStrIdTable.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CChozoCommanderXLifeComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a7df38[];
 
 struct UnkCommanderXCallbacks_l8bd4c0;
 template <>

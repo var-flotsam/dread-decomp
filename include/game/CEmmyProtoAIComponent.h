@@ -9,3 +9,5 @@ void fn_71004fa3b8(void* p);
 extern void* g_unk_7101a46040[];
 extern void* g_unk_7101a45710[];
 extern UnkPropertyEx<> g_unk_71726dd158;
+extern void* g_unk_7101a45fe8[];
+extern void* g_unk_7101a45f90[];

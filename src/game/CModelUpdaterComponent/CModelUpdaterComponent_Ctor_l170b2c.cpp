@@ -13,8 +13,6 @@
 using base::global::CFilePathStrId;
 using base::global::UnkStringData;
 
-extern void* g_unk_7101cb4508[];
-
 struct UnkModelSetup_ovb0032;
 void fn_7101170da0(UnkModelSetup_ovb0032* self);
 

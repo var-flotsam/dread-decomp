@@ -11,6 +11,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2564.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -19,7 +20,6 @@ using base::global::CRntVector;
 using base::global::CStrId;
 using unk_static_init::UnkEnumType;
 
-extern UnkPropertyEx<> g_unk_717275adf0;  // "ArchivesLocked"
 extern UnkEnumType g_unk_7101d60e78;      // the flags' type
 
 // The flags read from the section are converted to the flags' type.

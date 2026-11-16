@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2571.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -15,7 +16,6 @@ struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 
 // The counters' names in the blackboard.
-extern CStrId g_unk_71729ce1a0[3] __attribute__((visibility("hidden")));
 
 // A name's handle (an id and the object a registry has for it) as fn_7100ae986c builds it in place;
 // only the id is released.

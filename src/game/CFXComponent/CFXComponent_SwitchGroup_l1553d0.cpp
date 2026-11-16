@@ -3,16 +3,14 @@
 // left), restarting them when asked.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCollisionMaterialCacheComponent.h"
 #include "game/UnkTU132.h"
+#include "game/UnkTU1428.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
 struct UnkEventOwner_m_ovb0137;
-
-void* fn_710094c9ac(UnkEventOwner_m_ovb0137* owner);  // the owner's material source, if any
-u32 fn_7100798e88();
-u32 fn_7100798e90(void* source);
 
 struct UnkFXGroupName {
     u8 pad_0x0[0x30];

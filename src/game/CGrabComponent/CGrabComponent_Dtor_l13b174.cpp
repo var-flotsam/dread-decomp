@@ -8,14 +8,10 @@
 #include "base/global/CRntVector.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/CChozoCommanderKiGrabAttack.h"
+#include "game/CGrabComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
-// The registry of grabbing components.
-struct UnkGrabListTag_ovb0057;
-using UnkGrabList_ovb0057 = base::UnkSList<UnkGrabListTag_ovb0057>;
-extern UnkGrabList_ovb0057 g_unk_7172a090b8;
-extern void* g_unk_7101cb3230[];
 
 using UnkGrabNode_l13b174 = UnkGrabList_ovb0057::Node;
 

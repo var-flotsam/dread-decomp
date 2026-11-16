@@ -21,8 +21,6 @@ struct UnkCameraCtrl_ovb0049;
 
 extern void* g_unk_7101a22db8[];  // CAbilityMultiLockon's vtable
 extern void* g_unk_7101a23040[];  // the vtable of the member at +0x3f0
-extern void* g_unk_7101a225f8[];  // CAbility's value holders' vtable
-extern void* g_unk_7101a22650[];  // the vtable of the member at +0x10
 
 // Drops a counted reference.
 static inline void Release(UnkRefObject* p) {
