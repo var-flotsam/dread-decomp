@@ -4758,8 +4758,8 @@ address,size,name,name_source,subsystem,status
 0x71009fd5dc,4,fn_71009fd5dc,unknown,game?,O
 0x71009fd5e0,16,fn_71009fd5e0,unknown,game?,O
 0x71009fd5f0,192,fn_71009fd5f0,unknown,game?,O
-0x71009fd6b0,12,fn_71009fd6b0,unknown,game?,O
-0x71009fd6bc,36,fn_71009fd6bc,unknown,game?,O
+0x71009fd6b0,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShotLaunchConfig, std::__1::default_delete<CShotLaunchConfig>>>>::At",reflection,engine/reflection,O
+0x71009fd6bc,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShotLaunchConfig, std::__1::default_delete<CShotLaunchConfig>>>>::Find",reflection,engine/reflection,O
 0x71009fd6e0,4,fn_71009fd6e0,unknown,game?,O
 0x71009fd6e4,80,fn_71009fd6e4,unknown,game?,O
 0x71009fd734,76,fn_71009fd734,unknown,game?,O
@@ -4772,7 +4772,7 @@ address,size,name,name_source,subsystem,status
 0x71009fd95c,612,fn_71009fd95c,unknown,game?,O
 0x71009fdbc0,564,fn_71009fdbc0,unknown,game?,O
 0x71009fddf4,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShotLaunchConfig, std::__1::default_delete<CShotLaunchConfig>>>>::Begin",reflection,engine/reflection,O
-0x71009fde00,20,fn_71009fde00,unknown,game?,O
+0x71009fde00,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShotLaunchConfig, std::__1::default_delete<CShotLaunchConfig>>>>::End",reflection,engine/reflection,O
 0x71009fde14,260,fn_71009fde14,unknown,game?,O
 0x71009fdf18,268,fn_71009fdf18,unknown,game?,O
 0x71009fe030,860,fn_71009fe030,unknown,game?,U

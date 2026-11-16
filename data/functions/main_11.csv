@@ -3687,8 +3687,8 @@ address,size,name,name_source,subsystem,status
 0x71011e71dc,4,fn_71011e71dc,unknown,unknown,O
 0x71011e71e0,16,fn_71011e71e0,unknown,unknown,O
 0x71011e71f0,192,fn_71011e71f0,unknown,unknown,O
-0x71011e72b0,12,fn_71011e72b0,unknown,unknown,O
-0x71011e72bc,36,fn_71011e72bc,unknown,unknown,O
+0x71011e72b0,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::At",reflection,engine/reflection,O
+0x71011e72bc,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::Find",reflection,engine/reflection,O
 0x71011e72e0,4,fn_71011e72e0,unknown,unknown,O
 0x71011e72e4,80,fn_71011e72e4,unknown,unknown,O
 0x71011e7334,76,fn_71011e7334,unknown,unknown,O
@@ -3701,7 +3701,7 @@ address,size,name,name_source,subsystem,status
 0x71011e755c,420,fn_71011e755c,unknown,unknown,O
 0x71011e7700,292,fn_71011e7700,unknown,unknown,O
 0x71011e7824,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::Begin",reflection,engine/reflection,O
-0x71011e7830,20,fn_71011e7830,unknown,unknown,O
+0x71011e7830,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::End",reflection,engine/reflection,O
 0x71011e7844,260,fn_71011e7844,unknown,unknown,O
 0x71011e7948,268,fn_71011e7948,unknown,unknown,O
 0x71011e7a54,20,base::reflection::ValueOps<GUI::CHUD::EForceVisibilityState>::Equals,reflection,engine/reflection,O

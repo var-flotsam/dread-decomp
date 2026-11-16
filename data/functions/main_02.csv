@@ -4025,8 +4025,8 @@ address,size,name,name_source,subsystem,status
 0x71002b98f4,4,fn_71002b98f4,unknown,unknown,O
 0x71002b98f8,16,fn_71002b98f8,unknown,unknown,O
 0x71002b9908,192,fn_71002b9908,unknown,unknown,O
-0x71002b99c8,12,fn_71002b99c8,unknown,unknown,O
-0x71002b99d4,36,fn_71002b99d4,unknown,unknown,O
+0x71002b99c8,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::At",reflection,engine/reflection,O
+0x71002b99d4,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::Find",reflection,engine/reflection,O
 0x71002b99f8,4,fn_71002b99f8,unknown,unknown,O
 0x71002b99fc,80,fn_71002b99fc,unknown,unknown,O
 0x71002b9a4c,76,fn_71002b9a4c,unknown,unknown,O
@@ -4039,7 +4039,7 @@ address,size,name,name_source,subsystem,status
 0x71002b9c74,612,fn_71002b9c74,unknown,unknown,O
 0x71002b9ed8,564,fn_71002b9ed8,unknown,unknown,O
 0x71002ba10c,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::Begin",reflection,engine/reflection,O
-0x71002ba118,20,fn_71002ba118,unknown,unknown,O
+0x71002ba118,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::End",reflection,engine/reflection,O
 0x71002ba12c,260,fn_71002ba12c,unknown,unknown,O
 0x71002ba230,268,fn_71002ba230,unknown,unknown,O
 0x71002ba33c,12,querysystem::CEvaluator::refl_Equals,reflection,ai/querysystem,O
@@ -4254,8 +4254,8 @@ address,size,name,name_source,subsystem,status
 0x71002c03ac,4,fn_71002c03ac,unknown,unknown,O
 0x71002c03b0,16,fn_71002c03b0,unknown,unknown,O
 0x71002c03c0,192,fn_71002c03c0,unknown,unknown,O
-0x71002c0480,12,fn_71002c0480,unknown,unknown,O
-0x71002c048c,36,fn_71002c048c,unknown,unknown,O
+0x71002c0480,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::At",reflection,engine/reflection,O
+0x71002c048c,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::Find",reflection,engine/reflection,O
 0x71002c04b0,4,fn_71002c04b0,unknown,unknown,O
 0x71002c04b4,80,fn_71002c04b4,unknown,unknown,O
 0x71002c0504,76,fn_71002c0504,unknown,unknown,O
@@ -4268,7 +4268,7 @@ address,size,name,name_source,subsystem,status
 0x71002c072c,612,fn_71002c072c,unknown,unknown,O
 0x71002c0990,564,fn_71002c0990,unknown,unknown,O
 0x71002c0bc4,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::Begin",reflection,engine/reflection,O
-0x71002c0bd0,20,fn_71002c0bd0,unknown,unknown,O
+0x71002c0bd0,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::End",reflection,engine/reflection,O
 0x71002c0be4,260,fn_71002c0be4,unknown,unknown,O
 0x71002c0ce8,268,fn_71002c0ce8,unknown,unknown,O
 0x71002c0df4,12,querysystem::CFilter::refl_Equals,reflection,ai/querysystem,O
@@ -5189,8 +5189,8 @@ address,size,name,name_source,subsystem,status
 0x71002de74c,4,fn_71002de74c,unknown,animation?,O
 0x71002de750,16,fn_71002de750,unknown,animation?,O
 0x71002de760,192,fn_71002de760,unknown,animation?,O
-0x71002de820,12,fn_71002de820,unknown,animation?,O
-0x71002de82c,36,fn_71002de82c,unknown,animation?,O
+0x71002de820,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::At",reflection,engine/reflection,O
+0x71002de82c,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::Find",reflection,engine/reflection,O
 0x71002de850,4,fn_71002de850,unknown,animation?,O
 0x71002de854,80,fn_71002de854,unknown,animation?,O
 0x71002de8a4,76,fn_71002de8a4,unknown,animation?,O
@@ -5203,7 +5203,7 @@ address,size,name,name_source,subsystem,status
 0x71002deacc,612,fn_71002deacc,unknown,animation?,O
 0x71002ded30,564,fn_71002ded30,unknown,animation?,O
 0x71002def64,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::Begin",reflection,engine/reflection,O
-0x71002def70,20,fn_71002def70,unknown,animation?,O
+0x71002def70,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::End",reflection,engine/reflection,O
 0x71002def84,260,fn_71002def84,unknown,animation?,O
 0x71002df088,268,fn_71002df088,unknown,animation?,O
 0x71002df1a0,840,fn_71002df1a0,unknown,animation?,O

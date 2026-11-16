@@ -1430,8 +1430,8 @@ address,size,name,name_source,subsystem,status
 0x7100368278,4,fn_7100368278,unknown,unknown,O
 0x710036827c,16,fn_710036827c,unknown,unknown,O
 0x710036828c,192,fn_710036828c,unknown,unknown,O
-0x710036834c,12,fn_710036834c,unknown,unknown,O
-0x7100368358,36,fn_7100368358,unknown,unknown,O
+0x710036834c,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::At",reflection,engine/reflection,O
+0x7100368358,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::Find",reflection,engine/reflection,O
 0x710036837c,4,fn_710036837c,unknown,unknown,O
 0x7100368380,80,fn_7100368380,unknown,unknown,O
 0x71003683d0,76,fn_71003683d0,unknown,unknown,O
@@ -1444,7 +1444,7 @@ address,size,name,name_source,subsystem,status
 0x71003685f8,612,fn_71003685f8,unknown,unknown,O
 0x710036885c,564,fn_710036885c,unknown,unknown,O
 0x7100368a90,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::Begin",reflection,engine/reflection,O
-0x7100368a9c,20,fn_7100368a9c,unknown,unknown,O
+0x7100368a9c,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::End",reflection,engine/reflection,O
 0x7100368ab0,260,fn_7100368ab0,unknown,unknown,O
 0x7100368bb4,268,fn_7100368bb4,unknown,unknown,O
 0x7100368cc0,8,CAttackPreset::refl_Equals,reflection,game,O

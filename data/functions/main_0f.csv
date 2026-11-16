@@ -4295,8 +4295,8 @@ address,size,name,name_source,subsystem,status
 0x7100fa06e0,4,fn_7100fa06e0,unknown,unknown,O
 0x7100fa06e4,16,fn_7100fa06e4,unknown,unknown,O
 0x7100fa06f4,200,fn_7100fa06f4,unknown,unknown,U
-0x7100fa07bc,12,fn_7100fa07bc,unknown,unknown,O
-0x7100fa07c8,36,fn_7100fa07c8,unknown,unknown,O
+0x7100fa07bc,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::At",reflection,engine/reflection,O
+0x7100fa07c8,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::Find",reflection,engine/reflection,O
 0x7100fa07ec,4,fn_7100fa07ec,unknown,unknown,O
 0x7100fa07f0,640,fn_7100fa07f0,unknown,unknown,U
 0x7100fa0a70,76,fn_7100fa0a70,unknown,unknown,O
@@ -4307,7 +4307,7 @@ address,size,name,name_source,subsystem,status
 0x7100fa0b50,156,fn_7100fa0b50,unknown,unknown,O
 0x7100fa0bec,188,fn_7100fa0bec,unknown,unknown,O
 0x7100fa0ca8,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::Begin",reflection,engine/reflection,O
-0x7100fa0cb4,20,fn_7100fa0cb4,unknown,unknown,O
+0x7100fa0cb4,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::End",reflection,engine/reflection,O
 0x7100fa0cc8,168,fn_7100fa0cc8,unknown,unknown,O
 0x7100fa0d70,176,fn_7100fa0d70,unknown,unknown,O
 0x7100fa0e20,1076,fn_7100fa0e20,unknown,unknown,U
@@ -4484,8 +4484,8 @@ address,size,name,name_source,subsystem,status
 0x7100fa8b88,4,fn_7100fa8b88,unknown,unknown,O
 0x7100fa8b8c,16,fn_7100fa8b8c,unknown,unknown,O
 0x7100fa8b9c,192,fn_7100fa8b9c,unknown,unknown,O
-0x7100fa8c5c,12,fn_7100fa8c5c,unknown,unknown,O
-0x7100fa8c68,36,fn_7100fa8c68,unknown,unknown,O
+0x7100fa8c5c,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::At",reflection,engine/reflection,O
+0x7100fa8c68,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::Find",reflection,engine/reflection,O
 0x7100fa8c8c,4,fn_7100fa8c8c,unknown,unknown,O
 0x7100fa8c90,80,fn_7100fa8c90,unknown,unknown,O
 0x7100fa8ce0,76,fn_7100fa8ce0,unknown,unknown,O
@@ -4498,7 +4498,7 @@ address,size,name,name_source,subsystem,status
 0x7100fa8f08,612,fn_7100fa8f08,unknown,unknown,O
 0x7100fa916c,564,fn_7100fa916c,unknown,unknown,O
 0x7100fa93a0,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::Begin",reflection,engine/reflection,O
-0x7100fa93ac,20,fn_7100fa93ac,unknown,unknown,O
+0x7100fa93ac,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::End",reflection,engine/reflection,O
 0x7100fa93c0,260,fn_7100fa93c0,unknown,unknown,O
 0x7100fa94c4,268,fn_7100fa94c4,unknown,unknown,O
 0x7100fa95d0,1004,fn_7100fa95d0,unknown,unknown,U
@@ -4826,8 +4826,8 @@ address,size,name,name_source,subsystem,status
 0x7100fb6c6c,4,fn_7100fb6c6c,unknown,unknown,O
 0x7100fb6c70,16,fn_7100fb6c70,unknown,unknown,O
 0x7100fb6c80,192,fn_7100fb6c80,unknown,unknown,O
-0x7100fb6d40,12,fn_7100fb6d40,unknown,unknown,O
-0x7100fb6d4c,36,fn_7100fb6d4c,unknown,unknown,O
+0x7100fb6d40,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::At",reflection,engine/reflection,O
+0x7100fb6d4c,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::Find",reflection,engine/reflection,O
 0x7100fb6d70,4,fn_7100fb6d70,unknown,unknown,O
 0x7100fb6d74,80,fn_7100fb6d74,unknown,unknown,O
 0x7100fb6dc4,76,fn_7100fb6dc4,unknown,unknown,O
@@ -4839,7 +4839,7 @@ address,size,name,name_source,subsystem,status
 0x7100fb6f34,184,fn_7100fb6f34,unknown,unknown,O
 0x7100fb6fec,612,fn_7100fb6fec,unknown,unknown,O
 0x7100fb7250,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::Begin",reflection,engine/reflection,O
-0x7100fb725c,20,fn_7100fb725c,unknown,unknown,O
+0x7100fb725c,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::End",reflection,engine/reflection,O
 0x7100fb7270,260,fn_7100fb7270,unknown,unknown,O
 0x7100fb7374,268,fn_7100fb7374,unknown,unknown,O
 0x7100fb7480,1024,fn_7100fb7480,unknown,unknown,U

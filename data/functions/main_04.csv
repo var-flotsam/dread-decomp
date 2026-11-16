@@ -1968,8 +1968,8 @@ address,size,name,name_source,subsystem,status
 0x7100460a18,4,fn_7100460a18,unknown,unknown,O
 0x7100460a1c,16,fn_7100460a1c,unknown,unknown,O
 0x7100460a2c,192,fn_7100460a2c,unknown,unknown,O
-0x7100460aec,12,fn_7100460aec,unknown,unknown,O
-0x7100460af8,36,fn_7100460af8,unknown,unknown,O
+0x7100460aec,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CChozoRobotSoldierCannonShotPattern, std::__1::default_delete<CChozoRobotSoldierCannonShotPattern>>>>::At",reflection,engine/reflection,O
+0x7100460af8,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CChozoRobotSoldierCannonShotPattern, std::__1::default_delete<CChozoRobotSoldierCannonShotPattern>>>>::Find",reflection,engine/reflection,O
 0x7100460b1c,4,fn_7100460b1c,unknown,unknown,O
 0x7100460b20,80,fn_7100460b20,unknown,unknown,O
 0x7100460b70,76,fn_7100460b70,unknown,unknown,O
@@ -1982,7 +1982,7 @@ address,size,name,name_source,subsystem,status
 0x7100460d98,612,fn_7100460d98,unknown,unknown,O
 0x7100460ffc,564,fn_7100460ffc,unknown,unknown,O
 0x7100461230,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CChozoRobotSoldierCannonShotPattern, std::__1::default_delete<CChozoRobotSoldierCannonShotPattern>>>>::Begin",reflection,engine/reflection,O
-0x710046123c,20,fn_710046123c,unknown,unknown,O
+0x710046123c,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CChozoRobotSoldierCannonShotPattern, std::__1::default_delete<CChozoRobotSoldierCannonShotPattern>>>>::End",reflection,engine/reflection,O
 0x7100461250,260,fn_7100461250,unknown,unknown,O
 0x7100461354,268,fn_7100461354,unknown,unknown,O
 0x7100461460,8,CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack::refl_Equals,reflection,game/characters,O
@@ -3889,8 +3889,8 @@ address,size,name,name_source,subsystem,status
 0x71004a7a80,4,fn_71004a7a80,unknown,unknown,O
 0x71004a7a84,16,fn_71004a7a84,unknown,unknown,O
 0x71004a7a94,192,fn_71004a7a94,unknown,unknown,O
-0x71004a7b54,12,fn_71004a7b54,unknown,unknown,O
-0x71004a7b60,36,fn_71004a7b60,unknown,unknown,O
+0x71004a7b54,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaCarpetDef, std::__1::default_delete<CCooldownXBossLavaCarpetDef>>>>::At",reflection,engine/reflection,O
+0x71004a7b60,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaCarpetDef, std::__1::default_delete<CCooldownXBossLavaCarpetDef>>>>::Find",reflection,engine/reflection,O
 0x71004a7b84,4,fn_71004a7b84,unknown,unknown,O
 0x71004a7b88,80,fn_71004a7b88,unknown,unknown,O
 0x71004a7bd8,76,fn_71004a7bd8,unknown,unknown,O
@@ -3903,7 +3903,7 @@ address,size,name,name_source,subsystem,status
 0x71004a7e00,612,fn_71004a7e00,unknown,unknown,O
 0x71004a8064,564,fn_71004a8064,unknown,unknown,O
 0x71004a8298,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaCarpetDef, std::__1::default_delete<CCooldownXBossLavaCarpetDef>>>>::Begin",reflection,engine/reflection,O
-0x71004a82a4,20,fn_71004a82a4,unknown,unknown,O
+0x71004a82a4,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaCarpetDef, std::__1::default_delete<CCooldownXBossLavaCarpetDef>>>>::End",reflection,engine/reflection,O
 0x71004a82b8,260,fn_71004a82b8,unknown,unknown,O
 0x71004a83bc,268,fn_71004a83bc,unknown,unknown,O
 0x71004a84c8,224,fn_71004a84c8,unknown,unknown,O
@@ -3935,7 +3935,7 @@ address,size,name,name_source,subsystem,status
 0x71004a8cc8,16,fn_71004a8cc8,unknown,unknown,O
 0x71004a8cd8,8,fn_71004a8cd8,unknown,unknown,O
 0x71004a8ce0,20,fn_71004a8ce0,unknown,unknown,O
-0x71004a8cf4,40,fn_71004a8cf4,unknown,unknown,O
+0x71004a8cf4,40,"base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaCarpetDef, std::__1::default_delete<CCooldownXBossLavaCarpetDef>>>>>::Find",reflection,engine/reflection,O
 0x71004a8d1c,4,fn_71004a8d1c,unknown,unknown,O
 0x71004a8d20,188,fn_71004a8d20,unknown,unknown,O
 0x71004a8ddc,160,fn_71004a8ddc,unknown,unknown,O
@@ -3951,7 +3951,7 @@ address,size,name,name_source,subsystem,status
 0x71004a9570,444,fn_71004a9570,unknown,unknown,O
 0x71004a972c,576,fn_71004a972c,unknown,unknown,O
 0x71004a996c,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaCarpetDef, std::__1::default_delete<CCooldownXBossLavaCarpetDef>>>>>::Begin",reflection,engine/reflection,O
-0x71004a9978,24,fn_71004a9978,unknown,unknown,O
+0x71004a9978,24,"base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaCarpetDef, std::__1::default_delete<CCooldownXBossLavaCarpetDef>>>>>::End",reflection,engine/reflection,O
 0x71004a9990,256,fn_71004a9990,unknown,unknown,O
 0x71004a9a90,268,fn_71004a9a90,unknown,unknown,O
 0x71004a9b9c,12,CCharClassCooldownXBossLavaCarpetAttack::refl_Equals,reflection,game/characters,O
@@ -4221,8 +4221,8 @@ address,size,name,name_source,subsystem,status
 0x71004b155c,4,fn_71004b155c,unknown,unknown,O
 0x71004b1560,16,fn_71004b1560,unknown,unknown,O
 0x71004b1570,192,fn_71004b1570,unknown,unknown,O
-0x71004b1630,12,fn_71004b1630,unknown,unknown,O
-0x71004b163c,36,fn_71004b163c,unknown,unknown,O
+0x71004b1630,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaDropsDef, std::__1::default_delete<CCooldownXBossLavaDropsDef>>>>::At",reflection,engine/reflection,O
+0x71004b163c,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaDropsDef, std::__1::default_delete<CCooldownXBossLavaDropsDef>>>>::Find",reflection,engine/reflection,O
 0x71004b1660,4,fn_71004b1660,unknown,unknown,O
 0x71004b1664,80,fn_71004b1664,unknown,unknown,O
 0x71004b16b4,76,fn_71004b16b4,unknown,unknown,O
@@ -4235,7 +4235,7 @@ address,size,name,name_source,subsystem,status
 0x71004b18dc,612,fn_71004b18dc,unknown,unknown,O
 0x71004b1b40,564,fn_71004b1b40,unknown,unknown,O
 0x71004b1d74,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaDropsDef, std::__1::default_delete<CCooldownXBossLavaDropsDef>>>>::Begin",reflection,engine/reflection,O
-0x71004b1d80,20,fn_71004b1d80,unknown,unknown,O
+0x71004b1d80,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossLavaDropsDef, std::__1::default_delete<CCooldownXBossLavaDropsDef>>>>::End",reflection,engine/reflection,O
 0x71004b1d94,260,fn_71004b1d94,unknown,unknown,O
 0x71004b1e98,268,fn_71004b1e98,unknown,unknown,O
 0x71004b1fa4,12,fn_71004b1fa4,unknown,unknown,O
@@ -4642,8 +4642,8 @@ address,size,name,name_source,subsystem,status
 0x71004bdccc,4,fn_71004bdccc,unknown,unknown,O
 0x71004bdcd0,16,fn_71004bdcd0,unknown,unknown,O
 0x71004bdce0,192,fn_71004bdce0,unknown,unknown,O
-0x71004bdda0,12,fn_71004bdda0,unknown,unknown,O
-0x71004bddac,36,fn_71004bddac,unknown,unknown,O
+0x71004bdda0,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossFireWallDef, std::__1::default_delete<CCooldownXBossFireWallDef>>>>::At",reflection,engine/reflection,O
+0x71004bddac,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossFireWallDef, std::__1::default_delete<CCooldownXBossFireWallDef>>>>::Find",reflection,engine/reflection,O
 0x71004bddd0,4,fn_71004bddd0,unknown,unknown,O
 0x71004bddd4,80,fn_71004bddd4,unknown,unknown,O
 0x71004bde24,76,fn_71004bde24,unknown,unknown,O
@@ -4655,7 +4655,7 @@ address,size,name,name_source,subsystem,status
 0x71004bdf94,184,fn_71004bdf94,unknown,unknown,O
 0x71004be04c,612,fn_71004be04c,unknown,unknown,O
 0x71004be2b0,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossFireWallDef, std::__1::default_delete<CCooldownXBossFireWallDef>>>>::Begin",reflection,engine/reflection,O
-0x71004be2bc,20,fn_71004be2bc,unknown,unknown,O
+0x71004be2bc,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossFireWallDef, std::__1::default_delete<CCooldownXBossFireWallDef>>>>::End",reflection,engine/reflection,O
 0x71004be2d0,260,fn_71004be2d0,unknown,unknown,O
 0x71004be3d4,268,fn_71004be3d4,unknown,unknown,O
 0x71004be4e0,224,fn_71004be4e0,unknown,unknown,O
@@ -4687,7 +4687,7 @@ address,size,name,name_source,subsystem,status
 0x71004bece0,16,fn_71004bece0,unknown,unknown,O
 0x71004becf0,8,fn_71004becf0,unknown,unknown,O
 0x71004becf8,20,fn_71004becf8,unknown,unknown,O
-0x71004bed0c,40,fn_71004bed0c,unknown,unknown,O
+0x71004bed0c,40,"base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossFireWallDef, std::__1::default_delete<CCooldownXBossFireWallDef>>>>>::Find",reflection,engine/reflection,O
 0x71004bed34,4,fn_71004bed34,unknown,unknown,O
 0x71004bed38,188,fn_71004bed38,unknown,unknown,O
 0x71004bedf4,160,fn_71004bedf4,unknown,unknown,O
@@ -4703,7 +4703,7 @@ address,size,name,name_source,subsystem,status
 0x71004bf588,444,fn_71004bf588,unknown,unknown,O
 0x71004bf744,576,fn_71004bf744,unknown,unknown,O
 0x71004bf984,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossFireWallDef, std::__1::default_delete<CCooldownXBossFireWallDef>>>>>::Begin",reflection,engine/reflection,O
-0x71004bf990,24,fn_71004bf990,unknown,unknown,O
+0x71004bf990,24,"base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::__1::unique_ptr<CCooldownXBossFireWallDef, std::__1::default_delete<CCooldownXBossFireWallDef>>>>>::End",reflection,engine/reflection,O
 0x71004bf9a8,256,fn_71004bf9a8,unknown,unknown,O
 0x71004bfaa8,268,fn_71004bfaa8,unknown,unknown,O
 0x71004bfbb4,12,fn_71004bfbb4,unknown,unknown,O
