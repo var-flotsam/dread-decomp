@@ -946,11 +946,11 @@ address,size,name,name_source,subsystem,status
 0x7101036e34,200,fn_7101036e34,unknown,unknown,O
 0x7101036efc,152,fn_7101036efc,unknown,unknown,O
 0x7101036f94,36,fn_7101036f94,unknown,unknown,O
-0x7101036fb8,804,fn_7101036fb8,unknown,unknown,U
+0x7101036fb8,804,fn_7101036fb8,unknown,unknown,O
 0x71010372dc,424,fn_71010372dc,unknown,unknown,O
 0x7101037484,480,fn_7101037484,unknown,unknown,O
 0x7101037664,220,fn_7101037664,unknown,unknown,O
-0x7101037740,884,fn_7101037740,unknown,unknown,U
+0x7101037740,884,fn_7101037740,unknown,unknown,O
 0x7101037ab4,224,fn_7101037ab4,unknown,unknown,O
 0x7101037b94,4,fn_7101037b94,unknown,unknown,O
 0x7101037b98,20,fn_7101037b98,unknown,unknown,O
@@ -1261,7 +1261,7 @@ address,size,name,name_source,subsystem,status
 0x710103c9dc,12,fn_710103c9dc,unknown,unknown,O
 0x710103c9e8,200,fn_710103c9e8,unknown,unknown,U
 0x710103cab0,180,fn_710103cab0,unknown,unknown,U
-0x710103cb70,1260,fn_710103cb70,unknown,unknown,U
+0x710103cb70,1260,fn_710103cb70,unknown,unknown,O
 0x710103d05c,1836,fn_710103d05c,unknown,unknown,O
 0x710103d788,352,fn_710103d788,unknown,unknown,O
 0x710103d8e8,380,fn_710103d8e8,unknown,unknown,O
@@ -1665,7 +1665,7 @@ address,size,name,name_source,subsystem,status
 0x710104b640,540,fn_710104b640,unknown,unknown,U
 0x710104b860,624,fn_710104b860,unknown,unknown,U
 0x710104bad0,880,fn_710104bad0,unknown,unknown,U
-0x710104be40,1016,fn_710104be40,unknown,unknown,U
+0x710104be40,1016,fn_710104be40,unknown,unknown,O
 0x710104c238,88,CFXPoolPack::refl_AddAttributes,reflection,game,O
 0x710104c290,240,CFXPoolPack::refl_GetClass,reflection,game,O
 0x710104c380,148,CFXPoolPack::refl_AddFields,reflection,game,O
@@ -2314,7 +2314,7 @@ address,size,name,name_source,subsystem,status
 0x7101060fc4,168,fn_7101060fc4,unknown,unknown,O
 0x710106106c,176,fn_710106106c,unknown,unknown,O
 0x710106111c,332,fn_710106111c,unknown,unknown,O
-0x7101061268,516,fn_7101061268,unknown,unknown,U
+0x7101061268,516,fn_7101061268,unknown,unknown,O
 0x710106146c,768,fn_710106146c,unknown,unknown,U
 0x7101061770,2096,fn_7101061770,unknown,unknown,O
 0x7101061fa0,16,fn_7101061fa0,unknown,unknown,O
@@ -2780,7 +2780,7 @@ address,size,name,name_source,subsystem,status
 0x71010791a0,84,lua_bind::SaveProfile,string,script/bindings,O
 0x7101079200,140,lua_bind::IsSaveDataBusy,string,script/bindings,O
 0x7101079290,164,lua_bind::SaveNewGame,string,script/bindings,O
-0x7101079340,620,lua_bind::LoadGameDataTo,string,script/bindings,U
+0x7101079340,620,lua_bind::LoadGameDataTo,string,script/bindings,O
 0x71010795b0,84,lua_bind::SetSceneBrightness,string,script/bindings,O
 0x7101079610,8,lua_bind::GetDefaultVideoModeIdx,string,script/bindings,O
 0x7101079620,8,lua_bind::GetVideoModes,string,script/bindings,O
@@ -2815,7 +2815,7 @@ address,size,name,name_source,subsystem,status
 0x710107a260,20,lua_bind::GetPlayerInfo,string,script/bindings,O
 0x710107a280,112,lua_bind::GetPlayerName,string,script/bindings,O
 0x710107a2f0,176,lua_bind::ForceConvertToSamus,string,script/bindings,O
-0x710107a3a0,620,lua_bind::RecoverSpecialEnergy,string,script/bindings,U
+0x710107a3a0,620,lua_bind::RecoverSpecialEnergy,string,script/bindings,O
 0x710107a610,620,lua_bind::GetPlayerEnergyStatus,string,script/bindings,U
 0x710107a880,3200,lua_bind::GainAllItemsAndPowerUps,string,script/bindings,O
 0x710107b500,1392,lua_bind::GetPlayerCurrentModeGuns,string,script/bindings,U
@@ -3179,7 +3179,7 @@ address,size,name,name_source,subsystem,status
 0x7101091580,444,lua_bind::StopMusicPreset,string,script/bindings,U
 0x7101091740,728,lua_bind::StopMusicStream,string,script/bindings,U
 0x7101091a20,180,lua_bind::IsPlayingPreset,string,script/bindings,O
-0x7101091ae0,468,lua_bind::StopMusicWithFade,string,script/bindings,U
+0x7101091ae0,468,lua_bind::StopMusicWithFade,string,script/bindings,O
 0x7101091cc0,136,lua_bind::StopCurrentMusicTrack,string,script/bindings,O
 0x7101091d50,132,lua_bind::EnableMusic,string,script/bindings,O
 0x7101091de0,136,lua_bind::IsMusicEnabled,string,script/bindings,O
@@ -3199,7 +3199,7 @@ address,size,name,name_source,subsystem,status
 0x7101092660,36,lua_bind::IsEnvironmentMusicEnabled,string,script/bindings,O
 0x7101092690,104,lua_bind::SetCurrentEnvMultiplier,string,script/bindings,O
 0x7101092700,32,lua_bind::GetCurrentEnvMultiplier,string,script/bindings,O
-0x7101092720,660,lua_bind::DebugPlayStream,string,script/bindings,U
+0x7101092720,660,lua_bind::DebugPlayStream,string,script/bindings,O
 0x71010929c0,244,lua_bind::DebugSetStreamVol,string,script/bindings,O
 0x7101092ac0,236,lua_bind::DebugGetStreamVolumeFromData,string,script/bindings,O
 0x7101092bb0,236,lua_bind::DebugGetEnvironmentMultiplier,string,script/bindings,O
