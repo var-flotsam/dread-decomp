@@ -534,7 +534,6 @@ extern base::reflection::CType g_unk_7172a06e68;
 void fn_710001dc08();
 void fn_710001de1c();
 void fn_710001dffc();
-void fn_710001e1d0();
 void fn_710001e23c();
 void fn_710001ecfc();
 void fn_710001ee0c();
@@ -3930,7 +3929,6 @@ template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100019dcc> : base::reflection::CollectionMapperDescription<base::global::CRntVector<base::core::AssetName>> {
     static constexpr u64 size = 0x28;
     static constexpr u32 kind = 0x1;
-    static constexpr UnkFn equals = &fn_710001e1d0;
     static constexpr UnkFn type_of = &fn_710001e23c;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return &g_unk_7101d4d998; }
