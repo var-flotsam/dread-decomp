@@ -3141,7 +3141,7 @@ address,size,name,name_source,subsystem,status
 0x7100eb29f8,336,base::global::CRntVector<EMapTutoType>::GrowAt,reflection,engine/base,O
 0x7100eb2b48,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::Begin,reflection,engine/reflection,O
 0x7100eb2b54,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::End,reflection,engine/reflection,O
-0x7100eb2b68,168,fn_7100eb2b68,unknown,unknown,O
+0x7100eb2b68,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::ConstBegin,reflection,engine/reflection,O
 0x7100eb2c10,176,fn_7100eb2c10,unknown,unknown,O
 0x7100eb2cc0,460,fn_7100eb2cc0,unknown,unknown,O
 0x7100eb2e8c,24,fn_7100eb2e8c,unknown,unknown,O

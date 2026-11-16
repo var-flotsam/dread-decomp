@@ -3111,8 +3111,8 @@ address,size,name,name_source,subsystem,status
 0x71011d2268,432,base::global::CRntVector<GUI::CDisplayObject*>::InsertMove,reflection,engine/base,O
 0x71011d2418,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::Begin,reflection,engine/reflection,O
 0x71011d2424,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::End,reflection,engine/reflection,O
-0x71011d2438,168,fn_71011d2438,unknown,unknown,O
-0x71011d24e0,176,fn_71011d24e0,unknown,unknown,O
+0x71011d2438,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::ConstBegin,reflection,engine/reflection,O
+0x71011d24e0,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::ConstEnd,reflection,engine/reflection,O
 0x71011d2590,176,fn_71011d2590,unknown,unknown,O
 0x71011d2640,8,fn_71011d2640,unknown,unknown,O
 0x71011d2648,12,fn_71011d2648,unknown,unknown,O
@@ -3440,8 +3440,8 @@ address,size,name,name_source,subsystem,status
 0x71011dc0b8,336,base::global::CRntVector<GUI::CDisplayObjectContainer*>::GrowAt,reflection,engine/base,O
 0x71011dc208,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Begin,reflection,engine/reflection,O
 0x71011dc214,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::End,reflection,engine/reflection,O
-0x71011dc228,168,fn_71011dc228,unknown,unknown,O
-0x71011dc2d0,176,fn_71011dc2d0,unknown,unknown,O
+0x71011dc228,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::ConstBegin,reflection,engine/reflection,O
+0x71011dc2d0,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::ConstEnd,reflection,engine/reflection,O
 0x71011dc380,8,GUI::CDisplayObjectContainer::refl_Equals,reflection,gui,O
 0x71011dc388,8,GUI::CDisplayObjectContainer::refl_Hash,reflection,gui,O
 0x71011dc390,28,GUI::CDisplayObjectContainer::refl_TypeOf,reflection,gui,O

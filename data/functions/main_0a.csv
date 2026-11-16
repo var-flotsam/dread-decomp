@@ -1357,7 +1357,7 @@ address,size,name,name_source,subsystem,status
 0x7100a3593c,336,base::global::CRntVector<EShinesparkTravellingDirection>::GrowAt,reflection,engine/base,O
 0x7100a35a8c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::Begin,reflection,engine/reflection,O
 0x7100a35a98,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::End,reflection,engine/reflection,O
-0x7100a35aac,168,fn_7100a35aac,unknown,unknown,O
+0x7100a35aac,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::ConstBegin,reflection,engine/reflection,O
 0x7100a35b54,176,fn_7100a35b54,unknown,unknown,O
 0x7100a35c04,172,fn_7100a35c04,unknown,unknown,O
 0x7100a35cb0,8,fn_7100a35cb0,unknown,unknown,O
@@ -1404,7 +1404,7 @@ address,size,name,name_source,subsystem,status
 0x7100a3681c,336,base::global::CRntVector<ECoolShinesparkSituation>::GrowAt,reflection,engine/base,O
 0x7100a3696c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::Begin,reflection,engine/reflection,O
 0x7100a36978,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::End,reflection,engine/reflection,O
-0x7100a3698c,168,fn_7100a3698c,unknown,unknown,O
+0x7100a3698c,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::ConstBegin,reflection,engine/reflection,O
 0x7100a36a34,176,fn_7100a36a34,unknown,unknown,O
 0x7100a36af0,1316,fn_7100a36af0,unknown,unknown,U
 0x7100a37014,4,CChangeSetupLogicAction::refl_AddAttributes,reflection,game/ai,O
@@ -5313,7 +5313,7 @@ address,size,name,name_source,subsystem,status
 0x7100adb92c,336,base::global::CRntVector<gameeditor::EPersistenceTarget>::GrowAt,reflection,engine/base,O
 0x7100adba7c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::Begin,reflection,engine/reflection,O
 0x7100adba88,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::End,reflection,engine/reflection,O
-0x7100adba9c,168,fn_7100adba9c,unknown,unknown,O
+0x7100adba9c,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::ConstBegin,reflection,engine/reflection,O
 0x7100adbb44,176,fn_7100adbb44,unknown,unknown,O
 0x7100adbbf4,36,fn_7100adbbf4,unknown,unknown,O
 0x7100adbc20,1464,fn_7100adbc20,unknown,unknown,U
