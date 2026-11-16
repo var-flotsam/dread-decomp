@@ -2,6 +2,7 @@
 // record (a string id, a number, a path id, three string ids, a 64-bit number and a number), the 0xa0-byte
 // record that holds two arrays and a map of ids, a vector of path ids, and the reflected copies of take
 // records read from a direct or an indirect source. Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU2200.h"
@@ -186,25 +187,9 @@ struct UnkStrIdPair_b239 {
     u32 value;
 };
 
-struct UnkStrIdMap_b239 {
-    UnkStrIdPair_b239* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkStrIdMap_b239 = base::global::CRntSmallDictionary<CStrId, UnkStrIdPair_b239>;
 
-struct UnkIdArray_b239 {
-    u32* numbers;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdArray_b239 = base::global::CRntSmallDictionary<CStrId, u32>;
 
 struct UnkElemA0_b42a3 {
     CStrId field_0x0;
@@ -251,19 +236,19 @@ void fn_7100c8bba4(UnkElemA0_b42a3* self, const UnkElemA0_b42a3* other) {
     new (&self->field_0x18) CStrId(other->field_0x18);
     self->field_0x20 = other->field_0x20;
     self->field_0x24 = other->field_0x24;
-    self->field_0x28.numbers = nullptr;
-    self->field_0x28.ids = nullptr;
+    self->field_0x28.values = nullptr;
+    self->field_0x28.keys = nullptr;
     self->field_0x28.count = 0;
     self->field_0x28.capacity = 0;
     self->field_0x28.step = other->field_0x28.step;
     self->field_0x28.flags = other->field_0x28.flags;
     self->field_0x28.allocator = other->field_0x28.allocator;
     fn_71000df22c(reinterpret_cast<UnkKeyedStrIds*>(&self->field_0x28), other->field_0x28.count);
-    __builtin_memcpy(self->field_0x28.numbers, other->field_0x28.numbers, (u64)other->field_0x28.count * 4);
+    __builtin_memcpy(self->field_0x28.values, other->field_0x28.values, (u64)other->field_0x28.count * 4);
     self->field_0x28.count = other->field_0x28.count;
     self->field_0x28.count = other->field_0x28.count;
     for (u64 i = 0; i < self->field_0x28.count; ++i)
-        CopyIdUntyped(&self->field_0x28.ids[i], other->field_0x28.ids[i]);
+        CopyIdUntyped(&self->field_0x28.keys[i], other->field_0x28.keys[i]);
     self->field_0x50 = other->field_0x50;
     new (&self->field_0x58) CStrId(other->field_0x58);
     new (&self->field_0x60) CStrId(other->field_0x60);

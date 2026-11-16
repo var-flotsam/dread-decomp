@@ -6,6 +6,7 @@
 // (fn_710009d020, fn_710009d1ec); the "AssetHash" attribute (fn_710009ea3c). Names and layouts
 // are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
@@ -43,15 +44,7 @@ struct UnkTypeVirtuals_ovb0053 {
 };
 
 // The type's attribute container (CType+0x80): values, string-id keys, count, and the allocator.
-struct UnkTypeAttrs_ovb0053 {
-    UnkReflValue* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkTypeAttrs_ovb0053 = base::global::CRntSmallDictionary<CStrId, UnkReflValue>;
 
 // The same container as fn_710009dd6c creates it on first use.
 struct UnkReflAttrsInit_ovb0053 {

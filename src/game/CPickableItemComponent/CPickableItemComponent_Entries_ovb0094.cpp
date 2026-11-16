@@ -4,6 +4,7 @@
 // fn_71009d2be0), placing the item on a breakable tile (fn_71009d0404), its timer (fn_71009d0570) and
 // marking it picked in the blackboard (fn_71009d383c). Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -46,34 +47,33 @@ struct UnkPickEntry_ovb0094 {
 };
 
 // Entries and keys in parallel arrays.
-struct UnkPickPool_ovb0094 {
-    UnkPickEntry_ovb0094* entries;  // 0x0
-    u64* keys;                      // 0x8
-    u32 count;                      // 0x10
-    u32 capacity;                   // 0x14
-    u32 grow;                       // 0x18
-    u32 flags;                      // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
-};
+// entries: 0x0
+// keys: 0x8
+// count: 0x10
+// capacity: 0x14
+// grow: 0x18
+// flags: 0x1c
+// allocator: 0x20
+using UnkPickPool_ovb0094 = base::global::CRntSmallDictionary<u64, UnkPickEntry_ovb0094>;
 
 void fn_71009d4a10(UnkPickPool_ovb0094* self, u32 n) {
     if (self->capacity < n) {
         auto* entries = static_cast<UnkPickEntry_ovb0094*>(
             self->allocator->vf_0x40((u64)n * sizeof(UnkPickEntry_ovb0094), 8, self->flags));
         auto* keys = static_cast<u64*>(self->allocator->vf_0x40((u64)n * sizeof(u64), 8, self->flags));
-        if (UnkPickEntry_ovb0094* old = self->entries) {
+        if (UnkPickEntry_ovb0094* old = self->values) {
             UnkPickEntry_ovb0094* dst = entries;
             for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
                 new (dst) UnkPickEntry_ovb0094(*old);
                 old->~UnkPickEntry_ovb0094();
             }
-            self->allocator->vf_0x48(self->entries);
+            self->allocator->vf_0x48(self->values);
         }
         if (self->keys) {
             __builtin_memcpy(keys, self->keys, (u64)self->count * sizeof(u64));
             self->allocator->vf_0x48(self->keys);
         }
-        self->entries = entries;
+        self->values = entries;
         self->keys = keys;
         self->capacity = n;
     }
@@ -81,28 +81,28 @@ void fn_71009d4a10(UnkPickPool_ovb0094* self, u32 n) {
 
 UnkPickEntry_ovb0094* fn_71009d4940(UnkPickPool_ovb0094* self, const u64& key, UnkPickEntry_ovb0094& value) {
     if (self->count == self->capacity)
-        fn_71009d4a10(self, self->count + self->grow);
+        fn_71009d4a10(self, self->count + self->step);
     __builtin_memcpy(&self->keys[self->count], &key, sizeof(u64));
-    new (&self->entries[self->count]) UnkPickEntry_ovb0094(value);
+    new (&self->values[self->count]) UnkPickEntry_ovb0094(value);
     ++self->count;
-    UnkPickEntry_ovb0094* end = self->entries + self->count;
-    return self->count ? end - 1 : self->entries;
+    UnkPickEntry_ovb0094* end = self->values + self->count;
+    return self->count ? end - 1 : self->values;
 }
 
 UnkPickEntry_ovb0094* fn_71009d42e8(UnkPickPool_ovb0094* self, UnkPickEntry_ovb0094* entry);
 
 // Removes the entry (swapping the last one into its place).
 UnkPickEntry_ovb0094* fn_71009d42e8(UnkPickPool_ovb0094* self, UnkPickEntry_ovb0094* entry) {
-    u32 index = entry - self->entries;
-    self->entries[index].Reset();
+    u32 index = entry - self->values;
+    self->values[index].Reset();
     u32 last = self->count - 1;
     if (last != index) {
-        new (&self->entries[index]) UnkPickEntry_ovb0094(self->entries[last]);
-        self->entries[self->count - 1].Reset();
+        new (&self->values[index]) UnkPickEntry_ovb0094(self->values[last]);
+        self->values[self->count - 1].Reset();
         __builtin_memcpy(&self->keys[index], &self->keys[self->count - 1], sizeof(u64));
     }
     --self->count;
-    return &self->entries[index];
+    return &self->values[index];
 }
 
 struct UnkPickTarget_ovb0094 {
@@ -118,8 +118,8 @@ struct UnkPickItem_ovb0094 {
 static inline UnkPickEntry_ovb0094* Find_ovb0094(UnkPickPool_ovb0094* pool, const u64& key) {
     for (u32 i = 0; i < pool->count; ++i)
         if (pool->keys[i] == key)
-            return &pool->entries[i];
-    return &pool->entries[pool->count];
+            return &pool->values[i];
+    return &pool->values[pool->count];
 }
 
 // Drops the entries whose objects (fn_7100751520 on the key) have their flag at +0x39 set.
@@ -128,7 +128,7 @@ void fn_71009cf780(UnkPickItem_ovb0094* self) {
         auto* target = static_cast<UnkPickTarget_ovb0094*>(fn_7100751520(reinterpret_cast<void*>(*it)));
         if (target && target->field_0x39) {
             UnkPickEntry_ovb0094* entry = Find_ovb0094(&self->pool, *it);
-            if (entry != &self->pool.entries[self->pool.count])
+            if (entry != &self->pool.values[self->pool.count])
                 fn_71009d42e8(&self->pool, entry);
         } else {
             ++it;
@@ -378,7 +378,7 @@ void fn_71009d0404(UnkPickPlaced_ovb0094* self) {
 // Drops the entry for the key; once none are left and there is no tile, the item counts as picked.
 bool fn_71009d2be0(UnkPickPicked_ovb0094* self, u64 key) {
     UnkPickEntry_ovb0094* entry = Find_ovb0094(&self->pool, key);
-    if (entry != &self->pool.entries[self->pool.count])
+    if (entry != &self->pool.values[self->pool.count])
         fn_71009d42e8(&self->pool, entry);
     if (self->pool.count == 0 && !self->tile) {
         self->field_0x12b = true;

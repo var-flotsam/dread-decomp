@@ -3,6 +3,7 @@
 // fn_7100f0ca9c erases one of the 0x30-byte timed entries (a head and the value map, moved inline,
 // destroyed by fn_7100f0e85c), both moving the last entry into the hole; fn_7100f0f7b4 reserves the timed
 // map like fn_7100f0f980 (CPlayerInfo_Reserve_b52.cpp). Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 #include "base/UnkKeyedStrIds.h"
 #include "game/CBlackboard.h"
@@ -50,29 +51,21 @@ struct UnkTimedEntry_ovb0071 {
         : head(other.head), properties(static_cast<UnkKeyedStrIds&&>(other.properties)) {}
 };
 
-struct UnkTimedMap_ovb0071 {
-    UnkTimedEntry_ovb0071* values;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkTimedMap_ovb0071 = base::global::CRntSmallDictionary<CStrId, UnkTimedEntry_ovb0071>;
 
 UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it) {
     u32 index = it - self->values;
     fn_7100f0e85c(&self->values[index]);
-    self->ids[index].Reset();
+    self->keys[index].Reset();
     if (self->count - 1 != index) {
         new (&self->values[index]) UnkTimedEntry_ovb0071(static_cast<UnkTimedEntry_ovb0071&&>(self->values[self->count - 1]));
         fn_7100f0e85c(&self->values[self->count - 1]);
-        CStrId* ids = self->ids;
+        CStrId* ids = self->keys;
         u32 last = self->count - 1;
         ids[index].data = ids[last].data;
         base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
         __builtin_memcpy(&ids[last].data, &empty, sizeof(empty));
-        self->ids[self->count - 1].Reset();
+        self->keys[self->count - 1].Reset();
     }
     --self->count;
     return &self->values[index];
@@ -92,7 +85,7 @@ void fn_7100f0f7b4(UnkTimedMap_ovb0071* self, u32 capacity) {
             }
             self->allocator->vf_0x48(self->values);
         }
-        if (CStrId* old = self->ids) {
+        if (CStrId* old = self->keys) {
             u64 j = 0;
             for (u32 i = 0; i < self->count; ++i, ++j, ++old) {
                 __builtin_memcpy(&ids[j], old, sizeof(CStrId));
@@ -109,10 +102,10 @@ void fn_7100f0f7b4(UnkTimedMap_ovb0071* self, u32 capacity) {
                     old->data = &pool->empty;
                 }
             }
-            self->allocator->vf_0x48(self->ids);
+            self->allocator->vf_0x48(self->keys);
         }
         self->values = values;
-        self->ids = ids;
+        self->keys = ids;
         self->capacity = capacity;
     }
 }

@@ -5,6 +5,7 @@
 #include <new>
 
 #include "UnkTempIterValue_b44.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU85.h"
 #include "types.h"
@@ -20,23 +21,7 @@ struct UnkRecordB0_b44a1 {
     ~UnkRecordB0_b44a1() { fn_71000e70c4(this); }
 };
 
-struct UnkKeyedB0Array_b44a1 {
-    UnkRecordB0_b44a1* values;
-    u64* keys;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkRecordB0_b44a1* End() { return &values[count]; }
-    UnkRecordB0_b44a1* Find(const u64& key) {
-        for (u64 i = 0; i < count; ++i)
-            if (keys[i] == key)
-                return &values[i];
-        return End();
-    }
-};
+using UnkKeyedB0Array_b44a1 = base::global::CRntSmallDictionary<u64, UnkRecordB0_b44a1>;
 
 __attribute__((always_inline)) static inline void Clear(UnkKeyedB0Array_b44a1* self) {
     if (self->values)

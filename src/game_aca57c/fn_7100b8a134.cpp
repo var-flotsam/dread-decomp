@@ -2,6 +2,7 @@
 // sharing a count and capacity: when the capacity is below `n`, both are reallocated to `n`,
 // the records moved over (each source destroyed by fn_7100b8b7e8), the ids copied and the old
 // arrays freed.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -76,15 +77,7 @@ struct UnkRecord120 {
 
 void fn_7100b8b7e8(UnkRecord120* record);  // destructor
 
-struct UnkRecord120Table {
-    UnkRecord120* records;
-    void** ids;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    UnkAllocator* allocator;
-};
+using UnkRecord120Table = base::global::CRntSmallDictionary<void*, UnkRecord120>;
 
 void fn_7100b8a134(UnkRecord120Table* self, u32 n) {
     if (self->capacity >= n)
@@ -92,21 +85,21 @@ void fn_7100b8a134(UnkRecord120Table* self, u32 n) {
     UnkRecord120* records =
         static_cast<UnkRecord120*>(self->allocator->vf_0x40((u64)n * sizeof(UnkRecord120), 8, self->flags));
     void** ids = static_cast<void**>(self->allocator->vf_0x40((u64)n * sizeof(void*), 8, self->flags));
-    if (UnkRecord120* old = self->records) {
+    if (UnkRecord120* old = self->values) {
         UnkRecord120* dst = records;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
             new (dst) UnkRecord120(static_cast<UnkRecord120&&>(*old));
             fn_7100b8b7e8(old);
         }
-        self->allocator->vf_0x48(self->records);
+        self->allocator->vf_0x48(self->values);
     }
-    if (void** old = self->ids) {
+    if (void** old = self->keys) {
         void** dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst)
             __builtin_memcpy(dst, old, sizeof(void*));
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->records = records;
-    self->ids = ids;
+    self->values = records;
+    self->keys = ids;
     self->capacity = n;
 }

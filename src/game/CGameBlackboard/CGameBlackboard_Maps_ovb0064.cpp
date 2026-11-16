@@ -11,6 +11,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkParallelFind.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
@@ -69,15 +70,7 @@ static inline void CopyId(UnkStringData** dst, UnkStringData* const* src) {
 // Values at 0 and the ids that name them at 8, sharing a count, a capacity, a growth step, the
 // allocation flags and the allocator.
 template <class V>
-struct UnkIdMap_ovb0064 {
-    V* values;
-    UnkReleasedId_ovb0064* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdMap_ovb0064 = base::global::CRntSmallDictionary<UnkReleasedId_ovb0064, V>;
 
 // Grows both arrays, moving the values (destroying the old ones with Destroy) and the keys.
 template <class V, void (*Destroy)(V*)>
@@ -205,15 +198,7 @@ struct UnkFloatsById_ovb0064 {
     }
 };
 
-struct UnkFloatsByIdMap_ovb0064 {
-    UnkFloatsById_ovb0064* values;
-    UnkStringData** keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkFloatsByIdMap_ovb0064 = base::global::CRntSmallDictionary<UnkStringData*, UnkFloatsById_ovb0064>;
 
 struct UnkGameBlackboard_ovb0064 : CBlackboard {
     UnkIdSetMap_ovb0064 sets;                  // 0xf0
@@ -336,15 +321,7 @@ void fn_7100aee75c(UnkFloatsByIdMap_ovb0064* self, const UnkFloatsByIdMap_ovb006
 
 // The float tables as their set-by-key move sees them: the entry's ids are released (storage kept),
 // then it takes the given table's fields and leaves that one empty.
-struct UnkFloatsByIdOwned_ovb0064 {
-    f32* values;
-    UnkReleasedId_ovb0064* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkFloatsByIdOwned_ovb0064 = base::global::CRntSmallDictionary<UnkReleasedId_ovb0064, f32>;
 
 struct UnkFloatsByIdOwnedMap_ovb0064 {
     UnkFloatsByIdOwned_ovb0064* values;
@@ -363,12 +340,12 @@ struct UnkFloatsByIdOwnedMap_ovb0064 {
 void fn_7100aee2c0(UnkFloatsByIdOwnedMap_ovb0064* self, const u64* key, UnkFloatsByIdOwned_ovb0064* value) {
     UnkFloatsByIdOwned_ovb0064* dst = self->Find(key);
     if (dst != self->End()) {
-        if (dst->ids)
+        if (dst->keys)
             for (u64 i = 0; i < dst->count; ++i)
-                dst->ids[i].~UnkReleasedId_ovb0064();
+                dst->keys[i].~UnkReleasedId_ovb0064();
         dst->count = 0;
         dst->allocator = value->allocator;
-        dst->ids = value->ids;
+        dst->keys = value->keys;
         dst->values = value->values;
         dst->capacity = value->capacity;
         dst->count = value->count;
@@ -376,7 +353,7 @@ void fn_7100aee2c0(UnkFloatsByIdOwnedMap_ovb0064* self, const u64* key, UnkFloat
         dst->step = value->step;
         value->count = 0;
         value->values = nullptr;
-        value->ids = nullptr;
+        value->keys = nullptr;
     }
 }
 

@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -45,15 +46,7 @@ struct UnkNewRecord_l01ab7c {
 };
 static_assert(sizeof(UnkNewRecord_l01ab7c) == 0x80, "record layout");
 
-struct UnkRecordMap_l01ab7c {
-    UnkNewRecord_l01ab7c* values;
-    base::global::CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkRecordMap_l01ab7c = base::global::CRntSmallDictionary<base::global::CStrId, UnkNewRecord_l01ab7c>;
 
 UnkNewRecord_l01ab7c* fn_710001ab7c(UnkRecordMap_l01ab7c* self, const base::global::CStrId* key) {
     if (self->count == self->capacity)

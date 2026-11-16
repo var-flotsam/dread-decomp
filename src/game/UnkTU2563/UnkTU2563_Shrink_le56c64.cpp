@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkFreedVectorPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -11,15 +12,7 @@
 using base::global::CStrId;
 
 // Records with their ids alongside in a second array.
-struct UnkPairIdArray_le56c64 {
-    UnkFreedVectorPair* records;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkPairIdArray_le56c64 = base::global::CRntSmallDictionary<CStrId, UnkFreedVectorPair>;
 
 // The array's type as its caller (src/game/UnkTU2563/UnkTU2563_Records_ovb0223.cpp) declares it.
 struct UnkRec60IdArray_b0223;
@@ -31,23 +24,23 @@ void fn_7100e56c64(UnkRec60IdArray_b0223* array) {
     UnkFreedVectorPair* records = static_cast<UnkFreedVectorPair*>(
         self->allocator->vf_0x40((u64)self->count * sizeof(UnkFreedVectorPair), 8, self->flags));
     CStrId* ids = static_cast<CStrId*>(self->allocator->vf_0x40((u64)self->count * sizeof(CStrId), 8, self->flags));
-    if (UnkFreedVectorPair* old = self->records) {
+    if (UnkFreedVectorPair* old = self->values) {
         UnkFreedVectorPair* dst = records;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
             new (dst) UnkFreedVectorPair(static_cast<UnkFreedVectorPair&&>(*old));
             old->~UnkFreedVectorPair();
         }
-        self->allocator->vf_0x48(self->records);
+        self->allocator->vf_0x48(self->values);
     }
-    if (CStrId* old = self->ids) {
+    if (CStrId* old = self->keys) {
         CStrId* dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
             new (dst) CStrId(*old);
             old->Reset();
         }
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->records = records;
-    self->ids = ids;
+    self->values = records;
+    self->keys = ids;
     self->capacity = self->count;
 }

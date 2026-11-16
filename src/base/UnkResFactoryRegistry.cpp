@@ -5,6 +5,7 @@
 // and fn_71000113b0.cpp) and a factory object, three string ids and two callbacks; fn_710001fc00
 // registers the three, each with a factory created on first use (their deleting destructors are in
 // src/game_s1/fn_7100022518.cpp). Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/animation/CBlendSpaceResource.h"
@@ -119,15 +120,7 @@ __attribute__((flatten)) void fn_7100020164(char* self) {
 
 // The registry's entries keyed by their descriptor's id: two parallel arrays sharing a count, a
 // capacity and a growth step.
-struct UnkRegistryEntries {
-    UnkRegistryEntry* values;
-    UnkRegistryEntryId<&g_unk_7101d47108>* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkRegistryEntries = base::global::CRntSmallDictionary<UnkRegistryEntryId<&g_unk_7101d47108>, UnkRegistryEntry>;
 // Grows both arrays to `capacity`.
 void fn_7100022e2c(UnkRegistryEntries* self, u32 capacity);
 
