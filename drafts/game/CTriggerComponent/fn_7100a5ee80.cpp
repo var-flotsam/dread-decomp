@@ -123,7 +123,7 @@ static inline const CRntString& StringOf(const CStrId& id) {
 
 // The game time (+0x2444 of the game manager).
 static inline f32 GameTime() {
-    return *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(g_unk_7101d47310) + 0x2444);
+    return g_unk_7101d47310->field_0x2444;
 }
 
 // Whether `condition` answers an event of `kind`: one of kind 3 with a delay only once the delay and

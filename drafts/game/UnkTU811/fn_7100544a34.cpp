@@ -36,11 +36,6 @@ inline const UnkGameManagerIdTable& IdTable_l544a34() {
     return s_table;
 }
 
-// A slot of the id table its header has no member for yet.
-inline const CStrId& TableId_l544a34(u32 offset) {
-    return reinterpret_cast<const CStrId*>(&IdTable_l544a34())[offset / sizeof(CStrId)];
-}
-
 // A string with 0x100 bytes of inline storage (0x148 bytes), as in src/base/UnkTunableRegistry.cpp.
 struct UnkInlineString_l544a34 {
     u8 str[0x30];
@@ -143,10 +138,10 @@ void fn_7100544a34(UnkEmmyActor_b55* actor, char* data, bool on) {
     UnkEmmyAI_l544a34* self = reinterpret_cast<UnkEmmyAI_l544a34*>(actor);
     const CStrId& action = Id(data);
     CStrId current(UnkStrIdInline(), nullptr, false);
-    if (CBlackboard::CSection* section = fn_7101047270(&self->blackboard, TableId_l544a34(0x1b58)))
+    if (CBlackboard::CSection* section = fn_7101047270(&self->blackboard, IdTable_l544a34().field_0x1b58))
         fn_710051d464(section, reinterpret_cast<UnkPropertyName*>(g_unk_71726e20a8), &current);
     if (!(action == current)) {
-        SetSectionString(&self->blackboard, TableId_l544a34(0x1b58), reinterpret_cast<UnkPropertyName*>(g_unk_71726e20a8),
+        SetSectionString(&self->blackboard, IdTable_l544a34().field_0x1b58, reinterpret_cast<UnkPropertyName*>(g_unk_71726e20a8),
                          action.Text());
         if (self->entity->animation)
             SetLayers(self, action, current, on);
