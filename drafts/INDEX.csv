@@ -560,6 +560,8 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100a787cc,944,drafts/game/CCapsuleUsableComponent/fn_7100a787cc.cpp,operations,3.4,228,lean,
 0x7100aa3b9c,716,drafts/game/CUsableComponent/fn_7100aa3b9c.cpp,build fails,,,lean-ob2,0x18 constant hoisted to a saved register (umaddl vs madd); later blocks laid out differently; 12 bytes longer
 0x7100ab0fdc,1004,drafts/game/CPowerBombMovement/fn_7100ab0fdc.cpp,control flow,15.1,200,lean-r2kc,ours 52 bytes shorter: insert/handle paths shaped differently (original keeps &head in a register; spills the
+0x7100ab13c8,624,drafts/game/CPowerBombMovement/fn_7100ab13c8.cpp,match,100.0,0,lean-r2kc,matches; held: declares fn_7100aaaaf4 with the bomb-hit member-pointer types that live only in CBombMovement_Hits_ovb0078.cpp (no header yet)
+0x7100ab1638,468,drafts/game/CPowerBombMovement/fn_7100ab1638.cpp,match,100.0,0,lean-r2kc,matches; held: declares fn_7100aaaaf4 with the bomb-hit member-pointer types that live only in CBombMovement_Hits_ovb0078.cpp (no header yet)
 0x7100ab1de4,452,drafts/game/CPowerBombMovement/fn_7100ab1de4.cpp,conditions,98.2,2,lean-r2kc,only the free-slot test differs (cmp #0/b.le vs cmp #1/b.lt): likely if (free > 0) { add } return 2; untested
 0x7100ab2148,452,drafts/game/CPowerBombMovement/fn_7100ab2148.cpp,control flow,38.9,69,lean-r2kc,same function as 7100ab1de4 at 64 records; that draft (u8-storage fixed lists; u32 free) scored 98.2%; budget
 0x7100ac4ec0,268,drafts/game/CProjectileMovement/fn_7100ac4ec0.cpp,control flow,17.9,54,lean-oc1,flag/object test: original ccmp chain (0xc; object; 2) with the object checks out of line; ours merges or cset
@@ -796,6 +798,8 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100f04520,432,drafts/game/UnkTU2584/fn_7100f04520.cpp,calls,0.9,102,pilot50,calls: original has 4 (release path duplicated); ours 3
 0x7100f0d640,368,drafts/game/CPlayerInfo/fn_7100f0d640.cpp,control flow,50.0,46,lean-b5,null-handle path and count/base hoisting differ in control flow
 0x7100f0d88c,564,drafts/game/CPlayerInfo/fn_7100f0d88c.cpp,operations,10.6,126,lean-r2kc,one extra mov (erase-loop pointer copied into another register; 142 vs 141 insns); rest registers; reads x1 (s
+0x7100f0dac0,636,drafts/game/CPlayerInfo/fn_7100f0dac0.cpp,match,100.0,0,lean-r2kc,matches; held: its declarations of fn_7100074354 / g_unk_71729db988 conflict with the existing ones (handle types)
+0x7100f0e238,576,drafts/game/CPlayerInfo/fn_7100f0e238.cpp,match,100.0,0,lean-r2kc,matches; held: its declarations of fn_7100074354 / g_unk_71729db988 conflict with the existing ones (handle types)
 0x7100f0e4e4,888,drafts/game/CPlayerInfo/fn_7100f0e4e4.cpp,control flow,33.2,147,lean-r2kc,block layout after the outer Add: the original reloads values/count after the id copy on both paths (ours PREs
 0x7100f0edfc,284,drafts/game/CPlayerInfo/fn_7100f0edfc.cpp,build fails,,,lean-b5,slot loop and name buffer layout still differ
 0x7100f0f4d0,164,drafts/game/CPlayerInfo/fn_7100f0f4d0.cpp,operations,43.9,23,lean-b5,original caches the id pointer across the call; ours reloads it from the record

@@ -7,14 +7,14 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
+#include "game/UnkBufferStringPool.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
 // The team manager singleton, reached through the GOT.
-extern char* g_unk_71726b2398;
 
 void fn_71011a73bc(char* manager, UnkRemovedValue_b60* entity);
-char* fn_7100d7820c(char* p0, u32 p1, u32 p2, u32 p3, u32 p4);
 
 // An actor as this sees it: reflected, with the removed flag at +0x1b5.
 struct UnkRemovedActor_ldebc28 {

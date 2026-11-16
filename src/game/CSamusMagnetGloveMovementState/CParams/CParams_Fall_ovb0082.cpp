@@ -12,7 +12,6 @@
 
 struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;
-extern UnkDesc_SpitSend g_unk_710164b968;
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
 

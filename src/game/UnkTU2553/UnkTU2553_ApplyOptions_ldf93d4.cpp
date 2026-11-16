@@ -13,6 +13,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU23.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
@@ -20,11 +21,6 @@
 using base::global::CStrId;
 
 // The option properties this reads.
-extern UnkPropertyEx<> g_unk_7172759b10;
-extern UnkPropertyEx<> g_unk_7172759bd0;
-extern UnkPropertyEx<> g_unk_7172759b90;
-
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 
 struct UnkOptionsManager_ldf93d4 {
     u8 pad_0x0[0x820];

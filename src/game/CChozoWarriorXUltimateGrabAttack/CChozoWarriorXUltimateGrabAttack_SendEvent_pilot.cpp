@@ -8,6 +8,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -24,7 +25,6 @@ struct UnkPlayer {
 };
 
 struct UnkDesc_SpitSend;
-extern UnkDesc_SpitSend g_unk_710164b968;
 __attribute__((visibility("hidden"))) extern const u64 g_unk_71016498b8[];  // a hash per kind
 
 struct UnkEventValue {

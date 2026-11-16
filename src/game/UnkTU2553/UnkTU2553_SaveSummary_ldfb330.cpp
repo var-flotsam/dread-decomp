@@ -39,7 +39,6 @@ struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
     const u32* Chars() const { return *reinterpret_cast<const u32* const*>(unk_0x0 + 8); }
 };
-extern const u32 g_unk_7101648434[] __attribute__((visibility("hidden")));
 
 // A value a script call returned: where it is in the bag's stream, the hash of its name and its type.
 struct UnkScriptValue_ldfb330 {

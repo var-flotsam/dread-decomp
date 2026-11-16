@@ -7,7 +7,9 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCollisionComponent.h"
 #include "game/CElectricReactionComponent.h"
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSlots.h"
@@ -19,11 +21,7 @@
 
 using base::math::CVector4D;
 
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
-extern const u64 g_unk_710164b4c0;
-void fn_7100861fc8(void* part, bool flag);
 struct UnkCollisionContainer_b42;
-void fn_7100861710(UnkCollisionContainer_b42* self, bool force);
 
 struct UnkWapSlotsOwner_la0c900 {
     u8 pad_0x0[0x138];

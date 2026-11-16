@@ -13,3 +13,5 @@ void fn_7100a0a08c(UnkPlatformSm_b61*);
 void fn_7100a09cd4(UnkWeightPlatform_b49a4* self);
 extern UnkProperty g_unk_71727434e0;
 extern base::global::CStrId g_unk_7172743570 __attribute__((visibility("hidden")));
+extern const u64 g_unk_710164b4c0;
+extern const u64 g_unk_710164b4c8;

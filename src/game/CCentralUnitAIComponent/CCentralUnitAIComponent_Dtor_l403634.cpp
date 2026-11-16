@@ -8,8 +8,6 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-extern void* g_unk_7101a337d8[];
-
 struct UnkItemBase_71011a91c4;
 struct UnkRenderItemPair_b64a2 {
     UnkItemBase_71011a91c4* first;

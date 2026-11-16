@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
+#include "game/CGunComponent.h"
 #include "game/CPlayerInfo.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU39.h"
@@ -12,9 +13,6 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern char g_unk_7101caa450[];  // CPlayerInfo's vtable
-
-void fn_7100840f50(void*, void**);
 void fn_7100f110b0(void* member);
 
 // An element destroyed through its first virtual slot (0x38 bytes).

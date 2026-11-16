@@ -9,8 +9,6 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
-extern void* g_unk_7101a337d8[];
-
 // Only the vtable at +0x0 is named; the size 1 keeps offsets from folding into element strides.
 struct UnkComponent {
     u8 unk_0x0;

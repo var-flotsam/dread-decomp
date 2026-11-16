@@ -140,7 +140,7 @@ address,size,name,name_source,subsystem,status
 0x71004030f4,244,CCentralUnitAIComponent::refl_GetClass,reflection,game/ai,O
 0x71004031e8,744,CCentralUnitAIComponent::refl_AddFields,reflection,game/ai,O
 0x71004034d0,356,CCentralUnitAIComponent::refl_InitClass,reflection,game/ai,O
-0x7100403634,616,fn_7100403634,unknown,game/ai?,U
+0x7100403634,616,fn_7100403634,unknown,game/ai?,O
 0x710040389c,224,fn_710040389c,unknown,game/ai?,O
 0x710040397c,36,fn_710040397c,unknown,game/ai?,O
 0x71004039a0,120,fn_71004039a0,unknown,game/ai?,O
@@ -168,7 +168,7 @@ address,size,name,name_source,subsystem,status
 0x71004065f4,432,fn_71004065f4,unknown,game/ai?,U
 0x71004067a4,220,fn_71004067a4,unknown,game/ai?,O
 0x7100406880,560,fn_7100406880,unknown,game/ai?,O
-0x7100406ab0,676,fn_7100406ab0,unknown,game/ai?,U
+0x7100406ab0,676,fn_7100406ab0,unknown,game/ai?,O
 0x7100406d54,220,fn_7100406d54,unknown,game/ai?,O
 0x7100406e30,28,fn_7100406e30,unknown,game/ai?,O
 0x7100406e4c,132,fn_7100406e4c,unknown,game/ai?,O

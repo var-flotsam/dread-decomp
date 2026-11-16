@@ -7,8 +7,10 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCollisionComponent.h"
 #include "game/CElectricReactionComponent.h"
 #include "game/CFXComponent.h"
+#include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSlots.h"
@@ -20,10 +22,7 @@
 using base::global::CStrId;
 using base::math::CVector4D;
 
-extern const u64 g_unk_710164b4c8;
-void fn_7100861fc8(void* part, bool flag);
 struct UnkCollisionContainer_b42;
-void fn_7100861710(UnkCollisionContainer_b42* self, bool force);
 
 struct UnkWapSlotsOwner_la0c27c {
     u8 pad_0x0[0x138];

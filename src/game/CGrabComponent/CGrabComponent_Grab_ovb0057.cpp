@@ -20,6 +20,7 @@
 #include "game/CGrabComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU1730.h"
@@ -38,7 +39,6 @@ void fn_71010ff850(void* target, bool flag, void* arg);
 bool fn_710119dc88(UnkSubAreaGuiCache* self, void* actor, bool flag);
 
 extern void* g_unk_7101cb3230[];  // the component's vtable
-extern char* g_unk_71726b2398;
 extern u8 g_unk_7172a09100[] __attribute__((visibility("hidden")));
 
 // As in src/game/CCharClassToStateTrack/CCharClassToStateTrack_Fill.cpp.

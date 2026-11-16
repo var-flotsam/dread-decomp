@@ -6,3 +6,4 @@
 extern void* g_unk_7101a1b5a0[];
 extern void* g_unk_7101a1b678[];
 extern void* g_unk_7101a1b750[];
+extern char* g_unk_71726b2398;

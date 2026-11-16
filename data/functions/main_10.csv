@@ -3347,7 +3347,7 @@ address,size,name,name_source,subsystem,status
 0x71010973c0,440,fn_71010973c0,unknown,script/bindings?,U
 0x7101097578,328,fn_7101097578,unknown,script/bindings?,O
 0x71010976c0,292,fn_71010976c0,unknown,script/bindings?,O
-0x71010977e4,724,fn_71010977e4,unknown,script/bindings?,U
+0x71010977e4,724,fn_71010977e4,unknown,script/bindings?,O
 0x7101097ab8,376,fn_7101097ab8,unknown,script/bindings?,O
 0x7101097c30,528,fn_7101097c30,unknown,script/bindings?,O
 0x7101097e40,24,fn_7101097e40,unknown,script/bindings?,O

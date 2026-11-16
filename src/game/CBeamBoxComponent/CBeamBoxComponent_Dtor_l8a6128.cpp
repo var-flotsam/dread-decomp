@@ -10,6 +10,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CBeamBoxComponent.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CPullOffGrapplePointComponent.h"
@@ -17,8 +18,6 @@
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a7d4e0[];  // the class's vtable
 
 struct UnkBeamSetBase_l8a6128 {
     char* vtable;

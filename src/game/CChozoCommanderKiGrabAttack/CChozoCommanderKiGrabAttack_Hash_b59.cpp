@@ -7,10 +7,10 @@
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 extern const u64 g_unk_71016494b8[] __attribute__((visibility("hidden")));
 extern const u64 g_unk_7101649478[] __attribute__((visibility("hidden")));
 struct UnkPlayer;

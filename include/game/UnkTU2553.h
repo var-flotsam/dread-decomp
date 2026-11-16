@@ -83,3 +83,4 @@ bool fn_7100dfc344(UnkGameManager* manager, const char* const& a, const char* co
 void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const base::global::CRntString* name, const base::global::CRntString* tag);
 s32 fn_7100dff1a8(UnkGameManager* self, const base::UnkNamedEntry* key, bool a, bool b);
 UnkAbility* fn_7100df5928(UnkPlayer* self);
+extern const u32 g_unk_7101648434[] __attribute__((visibility("hidden")));

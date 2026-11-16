@@ -1,8 +1,10 @@
 // CPowerBombMovement's unit (tools/tu_map.py unit 1612): tests the bomb's shape (g_unk_710164b850 scaled by
 // size) at position against each collider in the movement's list (+0x530) and hands every hit to the bomb
 // hit handler (fn_7100aaaaf4), tiles to the movement's vf_0x2b0. Names and layouts are placeholders.
+#include "game/UnkTU2510.h"
 #include "game/UnkTU437.h"
 #include "game/UnkTU54.h"
+#include "game/logic/collision/CCircleShape2D.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -14,9 +16,6 @@ struct UnkMatrix44_7100078c9c {
 };
 
 struct UnkLavaDropsShape_A2_b71;
-void fn_7100d6169c(UnkLavaDropsShape_A2_b71* self, const void* source, f32 size);
-void fn_7100d61750(UnkLavaDropsShape_A2_b71* self);
-bool fn_7100d57ca0(UnkLavaDropsShape_A2_b71* self, void* body, void* other, void* out, u32 flags);
 
 struct UnkLavaDropsShape_A2_b71 {
     u8 pad_0x0[0x8];

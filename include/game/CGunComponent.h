@@ -20,3 +20,4 @@ char* fn_710083cd4c(UnkSamusGunComponent* self);
 bool fn_710083f32c(UnkSamusGunComponent* gun, const base::global::CStrId* id, bool a, bool b, bool c);
 void fn_710083d27c(UnkSamusGunComponent* gun, bool flag);
 bool fn_710084088c(UnkSamusGunComponent*);
+void fn_7100840f50(void*, void**);

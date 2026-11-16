@@ -19,6 +19,7 @@
 #include "game/CFrozenComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkCallbackSetVector.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkSwitchObject.h"
@@ -221,7 +222,6 @@ void fn_710110cacc(UnkAIC_b0144* self) {
 
 struct UnkCancelOwner_ovb0128;
 u64 fn_7100413fe8(char* p0, u32 p1);
-extern char* g_unk_71726b2398;
 
 struct UnkAIState_b0144 {
     void** vtable;

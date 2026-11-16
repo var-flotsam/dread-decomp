@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/logic/collision/CCollider.h"
 #include "types.h"
 
 // An array of pointers that owns its storage (0x28 bytes, laid out as base::global::CRntVector).
@@ -42,8 +43,6 @@ struct UnkPtrArrays_ovb0034 {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-
-void fn_7100d43e70(UnkPtrArrays_ovb0034* self, const UnkPtrArray_ovb0034* value);
 
 // Builds `dst` as a copy of `src`: its settings, the capacity reserved, then the pointers.
 static inline void CopyConstruct(UnkPtrArray_ovb0034* dst, const UnkPtrArray_ovb0034* src) {

@@ -5,14 +5,13 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU437.h"
+#include "game/logic/collision/CCircleShape2D.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a95690[];
 
 struct UnkLavaDropsShape_A2_b71;
-void fn_7100d6169c(UnkLavaDropsShape_A2_b71* self, const void* source, f32 size);
-void fn_7100d61750(UnkLavaDropsShape_A2_b71* self);
 
 struct UnkLavaDropsShape_A2_b71 {
     u8 pad_0x0[0x8];

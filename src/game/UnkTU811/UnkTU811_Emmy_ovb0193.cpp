@@ -220,7 +220,6 @@ bool fn_71005593f0(UnkEmmyStateAI_b0193* self, bool force, u32 id) {
 // ---- 71005579b0
 
 extern char g_unk_71726debe0[];
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 bool fn_7101110268(void* self);
 
 struct UnkTrackedVtbl_b0193 {
