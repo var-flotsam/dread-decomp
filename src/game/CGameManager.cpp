@@ -22,6 +22,7 @@
 #include "game/UnkTU2564.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU2727.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
@@ -858,7 +859,6 @@ struct UnkCompared_0x30;
 static inline bool Equal(const CRntString* a, const CRntString* b) {
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(a), reinterpret_cast<const UnkCompared_0x30*>(b));
 }
-UnkNamedUser* fn_7101190890(UnkNamedObject* self, CRntString name);
 
 // A flag holder (as src/game/GUI/CIngameMenu/fn_7100b2de48.cpp sees it): set, the step callbacks and the
 // blackboard pass are skipped.

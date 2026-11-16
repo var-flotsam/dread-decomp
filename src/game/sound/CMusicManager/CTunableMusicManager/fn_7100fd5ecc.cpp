@@ -16,22 +16,11 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern void* g_unk_7101a1b678[];
 using UnkString40_lfd5ecc = UnkBufferString<0x40, g_unk_7101a1b678>;
-
-// What a file-path id points at: the path as a string, and how often it was played.
-struct UnkPathInfo_lfd5ecc {
-    u8 pad_0x0[0x10];
-    CRntString path;  // 0x10
-    u8 pad_0x40[0x4];
-    u32 uses;  // 0x44
-};
 
 struct UnkPathRecord_lfd5ecc {
     CFilePathStrId path;
     u8 pad_0x8[0x10];
-
-    UnkPathInfo_lfd5ecc* Info() const { return reinterpret_cast<UnkPathInfo_lfd5ecc*>(path.data); }
 };
 
 struct UnkPathRecordVec_lfd5ecc {
@@ -114,8 +103,10 @@ void fn_7100fd5ecc(UnkMusicMgr_lfd5ecc* self, u32 index, bool hold, f32 time) {
     else
         fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), reinterpret_cast<UnkHandle*>(&first), fade);
 
-    ++first.Info()->uses;
-    const CRntString* played = &first.Info()->path;
+    // The played path's string, counting the read. The pooled text is a whole CRntString in the original
+    // (UnkStringData lays out only its text and key), copied here as one.
+    ++first.path.data->reads;
+    const CRntString* played = &first.path.data->String();
     UnkString40_lfd5ecc path;
     fn_710007eaa0(path.Str(), played);
 
