@@ -686,21 +686,21 @@ address,size,name,name_source,subsystem,status
 0x7100916188,8,fn_7100916188,unknown,unknown,O
 0x7100916190,80,fn_7100916190,unknown,unknown,O
 0x71009161e0,84,fn_71009161e0,unknown,unknown,O
-0x7100916234,8,fn_7100916234,unknown,unknown,O
+0x7100916234,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::Count",reflection,engine/reflection,O
 0x710091623c,172,fn_710091623c,unknown,unknown,O
 0x71009162e8,152,fn_71009162e8,unknown,unknown,O
 0x7100916380,152,fn_7100916380,unknown,unknown,O
 0x7100916418,100,fn_7100916418,unknown,unknown,O
-0x710091647c,12,fn_710091647c,unknown,unknown,O
+0x710091647c,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::At",reflection,engine/reflection,O
 0x7100916488,100,fn_7100916488,unknown,unknown,O
 0x71009164ec,108,fn_71009164ec,unknown,unknown,O
 0x7100916558,108,fn_7100916558,unknown,unknown,O
 0x71009165c4,152,fn_71009165c4,unknown,unknown,U
-0x710091665c,8,fn_710091665c,unknown,unknown,O
+0x710091665c,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::Hash",reflection,engine/reflection,O
 0x7100916664,12,fn_7100916664,unknown,unknown,O
-0x7100916670,52,fn_7100916670,unknown,unknown,O
+0x7100916670,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::Construct",reflection,engine/reflection,O
 0x71009166a4,192,fn_71009166a4,unknown,unknown,O
-0x7100916764,68,fn_7100916764,unknown,unknown,O
+0x7100916764,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::MoveConstruct",reflection,engine/reflection,O
 0x71009167a8,4,fn_71009167a8,unknown,unknown,O
 0x71009167ac,48,fn_71009167ac,unknown,unknown,O
 0x71009167dc,260,fn_71009167dc,unknown,unknown,O
@@ -708,8 +708,8 @@ address,size,name,name_source,subsystem,status
 0x71009169dc,356,fn_71009169dc,unknown,unknown,O
 0x7100916b40,348,fn_7100916b40,unknown,unknown,O
 0x7100916c9c,300,fn_7100916c9c,unknown,unknown,O
-0x7100916dc8,12,fn_7100916dc8,unknown,unknown,O
-0x7100916dd4,20,fn_7100916dd4,unknown,unknown,O
+0x7100916dc8,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::Begin",reflection,engine/reflection,O
+0x7100916dd4,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::End",reflection,engine/reflection,O
 0x7100916de8,152,fn_7100916de8,unknown,unknown,O
 0x7100916e80,164,fn_7100916e80,unknown,unknown,O
 0x7100916f30,1076,fn_7100916f30,unknown,unknown,U
