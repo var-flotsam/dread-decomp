@@ -99,7 +99,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710010519c,88,drafts/game/UnkTU101/fn_710010519c.cpp,operations,31.8,15,lean-b1,store order and load hoisting of the three float triples differ
 0x7100106038,176,drafts/game/UnkTU101/fn_7100106038.cpp,control flow,22.9,33,lean-b1,branch order of flag/time checks and single exit differ
 0x710010df80,476,drafts/game/UnkTU107/fn_710010df80.cpp,registers or order,89.9,12,pilot50,register allocation of loop counters
-0x710010e15c,520,drafts/game/UnkTU107/fn_710010e15c.cpp,match,100.0,0,lean-ob1,matches; held: src/game_s7/fn_710010e470.cpp declares it returning a 20-byte UnkBoxSplit_710010e470 where the original writes 12 bytes
 0x710010f774,196,drafts/game/UnkTU107/fn_710010f774.cpp,control flow,16.3,40,lean-ob3,y-range test merged into fccmp; original branches on bottom before computing top
 0x7100117aa8,248,drafts/game/UnkTU108/fn_7100117aa8.cpp,control flow,22.2,48,lean-b3,loop shape: original has separate empty-case exit and rotated loop; mine merges them
 0x71001186d8,176,drafts/game/UnkTU108/fn_71001186d8.cpp,operations,54.5,20,lean-b3,final classification compare order (dot<=0 first; then range test) and constant materialisation order
