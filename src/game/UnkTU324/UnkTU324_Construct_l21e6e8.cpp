@@ -38,7 +38,11 @@ struct UnkMediaConstruct324 {
     base::global::CRntVector<void*> lists[2];   // 0x6d0
     base::global::CRntVector<void*> field_0x720;  // 0x720
     u8 pad_0x748[0x1e4];
-    u8 field_0x92c[0x14];                       // 0x92c
+    u32 field_0x92c;                            // 0x92c
+    u32 field_0x930;                            // 0x930
+    u32 field_0x934;                            // 0x934
+    u32 field_0x938;                            // 0x938
+    u32 field_0x93c;                            // 0x93c
     nn::os::MutexType listener_lock;            // 0x940
     nn::os::MutexType lock;                     // 0x960
     u8 pad_0x980[0x10];
@@ -73,16 +77,20 @@ void fn_710021e6e8(UnkMediaConstruct324* self) {
     for (base::global::CRntVector<void*>& list : self->lists)
         new (&list) base::global::CRntVector<void*>(0xf);
     new (&self->field_0x720) base::global::CRntVector<void*>(0xf);
-    __builtin_memset(self->field_0x92c, 0, sizeof(self->field_0x92c));
+    nn::os::MutexType* locks[] = {&self->lock, &self->listener_lock, &self->field_0x990};
+    self->field_0x92c = 0;
+    self->field_0x930 = 0;
+    self->field_0x934 = 0;
+    self->field_0x938 = 0;
+    self->field_0x93c = 0;
     self->queue_vtable = reinterpret_cast<void**>(g_unk_7101a204c0 + 0x10);
     self->queue_head = self->queue_storage;
     self->queue_tail = self->queue_storage;
     self->queue_count = 0;
     self->field_0xad0 = 0;
     self->field_0xad4 = false;
-    fn_71000668f8(&self->lock);
-    fn_71000668f8(&self->listener_lock);
-    fn_71000668f8(&self->field_0x990);
+    for (nn::os::MutexType* lock : locks)
+        fn_71000668f8(lock);
     self->field_0x50 = 0;
     self->field_0x58 = 0;
 }

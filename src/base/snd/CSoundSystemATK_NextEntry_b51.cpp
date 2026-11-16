@@ -4,13 +4,12 @@
 // the entry reset to -1 and two flags (+0x16f, +0x170) set. The layout is UnkSoundStart's
 // (src/base/snd/CSoundSystemATK.cpp); names are placeholders.
 
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkSoundStart;
 bool fn_71000f4ebc(UnkSoundStart* self, u32 id, u32 c, f32 a, f32 b);
 // nn::atk (library): stopping a sound and a player, with a fade of `frames`.
-void fn_710120d54c(void* sound, u32 frames);
-void fn_7101206630(u8* player, u32 frames);
 
 struct UnkSoundVoice_71000f4a68 {
     u8 pad_0x0[0x28];

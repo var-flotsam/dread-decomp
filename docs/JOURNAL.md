@@ -154,6 +154,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Opus retry of near-miss drafts, lean-r1 (2026-11-16).** The 38 drafts of this session's batches that scored 70%
+or more and differ in more than registers, given back to Opus from their draft text (`prepare.py --drafts`, budget
+4); jobs of one function were packed five to a worker across units. 12 matched; one of them only with whole-element
+`__builtin_memcpy` copies of one-field structs, so it stays a draft. 11 functions into `src/`, about 1.32 million
+tokens, about 120,000 per match: cheaper than a new Opus batch at this point. What closed them: element copy
+constructors written as member-initializer lists, a variant's storage held in the iterator itself, colour channels
+computed into separate locals before the clamp, an inline `Lerp`, a local id type whose destructor has no null
+test (as the original's inlined one), and two callers' declarations brought to the definitions' types
+(`fn_710021e6e8`, `fn_7100146c50`). `fn_710100147c` now has one declaration in `include/game/UnkTU2640.h`.
+The draft near-misses that remain mostly need the original's reload after a store (a count, a tail, a kind) that
+readable source does not reproduce, or a static's place in the unit's data.
+
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
 pointers or the holder's kind, as if the store of the empty id into the moved-from slot could change them;

@@ -3,6 +3,7 @@
 // reserves its capacity and appends each element.
 #include "base/global/CRntVector.h"
 #include "types.h"
+#include "game/UnkTU2640.h"
 
 struct UnkElem38 {
     u8 unk_0x0[0x38];
@@ -47,7 +48,6 @@ struct UnkElem78 {
     u8 unk_0x0[0x78];
 };
 
-void fn_710100147c(UnkElemArray<UnkElem78>* self, u32 capacity);
 void fn_7101001694(UnkElemArray<UnkElem78>* self, const UnkElem78* value);
 
 void fn_71010012d4(UnkElemArray<UnkElem78>* self, const UnkElemArray<UnkElem78>& other) {

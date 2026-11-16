@@ -14,23 +14,18 @@
 #include "game/UnkTU365.h"
 #include "types.h"
 
-extern UnkMatrix44 g_unk_7101a1a680;
 
 struct UnkRefl_fn_7100a48b60;
 template <>
 base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_7100a48b60>(void*);
 
-// The result of the shape tester (as in src/game/UnkTU2510/UnkTU2510_Collision_ovb0175.cpp): bit 0 a hit.
+// The result of the shape tester (as src/game/CCollisionComponent/CCollisionComponent_Records_ovb0107.cpp
+// defines it): bit 0 a hit.
 struct UnkShapeTestResult_ovb0107 {
-    union {
-        u32 flags;
-        u32 bits;
-    };
+    u32 flags;
     u32 field_0x4;
-    UnkShapeTestResult_ovb0107() : bits(0) {}
-    UnkShapeTestResult_ovb0107(u32 b) : bits(b) {}
-    UnkShapeTestResult_ovb0107(const UnkShapeTestResult_ovb0107& o) : bits(o.bits) {}
+    UnkShapeTestResult_ovb0107(const UnkShapeTestResult_ovb0107& other);
 };
 
 struct UnkZoneLogicShape_lef694 {
@@ -75,9 +70,8 @@ static inline UnkShapeTester_A5_b68* GetTester_lef694() {
 
 // The object registered under a name with the given kind.
 static inline void* FindObject_lef694(UnkGameManager* gm, const char* name, u64 length, u32 kind) {
-    u32 want = kind;
     u64 id = fn_7100001570(name, length);
-    u32 flags = want;
+    alignas(8) u32 flags = kind;
     return fn_7100deba8c(gm, &id, &flags);
 }
 
@@ -90,13 +84,14 @@ bool fn_7100eef694() {
         reinterpret_cast<UnkZoneLogicShape_lef694*>(base::reflection::refl_FindTyped<UnkRefl_fn_7100a48b60>(zone));
     void* other = logic->field_0x30;
     UnkPlayerView_lef694* player = reinterpret_cast<UnkPlayerView_lef694*>(fn_7100dec788(g_unk_7101d47310));
-    if (!player || !player->field_0x1f8)
+    if (!player)
         return false;
-    UnkPlayerShape_lef694* shape = reinterpret_cast<UnkPlayerShape_lef694*>(fn_7100976588(player->field_0x1f8));
-    void* owner = shape->field_0x158;
-    UnkShapeTester_A5_b68* tester = GetTester_lef694();
-    UnkShapeTestResult_ovb0107 result = fn_7100d51368(tester, owner, shape->vf_0x70(), other, g_unk_7101a1a680, nullptr, 0);
-    if (result.flags & 1)
-        return true;
+    if (player->field_0x1f8) {
+        UnkPlayerShape_lef694* shape = reinterpret_cast<UnkPlayerShape_lef694*>(fn_7100976588(player->field_0x1f8));
+        void* owner = shape->field_0x158;
+        UnkShapeTester_A5_b68* tester = GetTester_lef694();
+        if (fn_7100d51368(tester, owner, shape->vf_0x70(), other, g_unk_7101a1a680, nullptr, 0).flags & 1)
+            return true;
+    }
     return false;
 }

@@ -8,6 +8,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkSphere.h"
+#include "game/UnkTU270.h"
 #include "game/UnkTU308.h"
 #include "types.h"
 
@@ -30,7 +31,6 @@ struct UnkPoolBox {
 void fn_7100215dcc(UnkPoolBox* self, const UnkVec3f* min, const UnkVec3f* max);
 extern const char g_unk_7101a20090[];
 // The pool's vtable (GOT 0x7101cc75c0).
-extern char g_unk_7101a1eeb0[];
 
 // One pool entry (0xe0 bytes): a transform, a sphere, a box and the box quantised to tenths.
 struct UnkSpherePoolEntry {

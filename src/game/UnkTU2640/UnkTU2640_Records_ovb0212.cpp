@@ -32,7 +32,6 @@ struct UnkElemArray {
     base::UnkAllocator* allocator;
 };
 
-void fn_710100147c(UnkElemArray<UnkElem78>* self, u32 capacity);
 void fn_71010017f4(UnkElemArray<UnkElem78>* self);  // clear
 
 struct UnkRec78Init_b0212 {
