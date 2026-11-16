@@ -17,6 +17,6 @@ void fn_710083b0bc(void* owner, UnkListener_b40* listener);
 UnkItem_710083e9d4* fn_710083e9d4(UnkStruct_710083e9d4* self, const u64* id, bool primary);
 void fn_710083ad6c(UnkSamusGunComponent* gun);
 char* fn_710083cd4c(UnkSamusGunComponent* self);
-void fn_710083f32c(UnkSamusGunComponent* gun, const base::global::CStrId* id, bool a, bool b, bool c);
+bool fn_710083f32c(UnkSamusGunComponent* gun, const base::global::CStrId* id, bool a, bool b, bool c);
 void fn_710083d27c(UnkSamusGunComponent* gun, bool flag);
 bool fn_710084088c(UnkSamusGunComponent*);
