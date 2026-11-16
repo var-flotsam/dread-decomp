@@ -4193,28 +4193,28 @@ address,size,name,name_source,subsystem,status
 0x7100f9ef80,88,fn_7100f9ef80,unknown,unknown,O
 0x7100f9efd8,12,fn_7100f9efd8,unknown,unknown,O
 0x7100f9efe4,16,fn_7100f9efe4,unknown,unknown,O
-0x7100f9eff4,20,fn_7100f9eff4,unknown,unknown,O
-0x7100f9f008,8,fn_7100f9f008,unknown,unknown,O
-0x7100f9f010,20,fn_7100f9f010,unknown,unknown,O
-0x7100f9f024,8,fn_7100f9f024,unknown,unknown,O
-0x7100f9f02c,12,fn_7100f9f02c,unknown,unknown,O
-0x7100f9f038,12,fn_7100f9f038,unknown,unknown,O
-0x7100f9f044,4,fn_7100f9f044,unknown,unknown,O
-0x7100f9f048,20,fn_7100f9f048,unknown,unknown,O
-0x7100f9f05c,20,fn_7100f9f05c,unknown,unknown,O
+0x7100f9eff4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::Equals",reflection,engine/reflection,O
+0x7100f9f008,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::Hash",reflection,engine/reflection,O
+0x7100f9f010,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
+0x7100f9f024,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::Construct",reflection,engine/reflection,O
+0x7100f9f02c,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100f9f038,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100f9f044,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::Destroy",reflection,engine/reflection,O
+0x7100f9f048,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100f9f05c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100f9f070,360,fn_7100f9f070,unknown,unknown,O
 0x7100f9f1d8,88,fn_7100f9f1d8,unknown,unknown,O
 0x7100f9f230,12,fn_7100f9f230,unknown,unknown,O
 0x7100f9f23c,16,fn_7100f9f23c,unknown,unknown,O
-0x7100f9f24c,20,fn_7100f9f24c,unknown,unknown,O
-0x7100f9f260,8,fn_7100f9f260,unknown,unknown,O
-0x7100f9f268,20,fn_7100f9f268,unknown,unknown,O
-0x7100f9f27c,8,fn_7100f9f27c,unknown,unknown,O
-0x7100f9f284,12,fn_7100f9f284,unknown,unknown,O
-0x7100f9f290,12,fn_7100f9f290,unknown,unknown,O
-0x7100f9f29c,4,fn_7100f9f29c,unknown,unknown,O
-0x7100f9f2a0,20,fn_7100f9f2a0,unknown,unknown,O
-0x7100f9f2b4,20,fn_7100f9f2b4,unknown,unknown,O
+0x7100f9f24c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
+0x7100f9f260,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
+0x7100f9f268,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
+0x7100f9f27c,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::Construct",reflection,engine/reflection,O
+0x7100f9f284,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100f9f290,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100f9f29c,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
+0x7100f9f2a0,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100f9f2b4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100f9f2c8,364,fn_7100f9f2c8,unknown,unknown,O
 0x7100f9f434,60,fn_7100f9f434,unknown,unknown,O
 0x7100f9f470,4,fn_7100f9f470,unknown,unknown,O
@@ -4247,15 +4247,15 @@ address,size,name,name_source,subsystem,status
 0x7100f9fba4,96,fn_7100f9fba4,unknown,unknown,O
 0x7100f9fc04,12,fn_7100f9fc04,unknown,unknown,O
 0x7100f9fc10,16,fn_7100f9fc10,unknown,unknown,O
-0x7100f9fc20,20,fn_7100f9fc20,unknown,unknown,O
-0x7100f9fc34,8,fn_7100f9fc34,unknown,unknown,O
-0x7100f9fc3c,20,fn_7100f9fc3c,unknown,unknown,O
-0x7100f9fc50,8,fn_7100f9fc50,unknown,unknown,O
-0x7100f9fc58,12,fn_7100f9fc58,unknown,unknown,O
-0x7100f9fc64,12,fn_7100f9fc64,unknown,unknown,O
-0x7100f9fc70,4,fn_7100f9fc70,unknown,unknown,O
-0x7100f9fc74,20,fn_7100f9fc74,unknown,unknown,O
-0x7100f9fc88,20,fn_7100f9fc88,unknown,unknown,O
+0x7100f9fc20,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::Equals",reflection,engine/reflection,O
+0x7100f9fc34,8,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::Hash",reflection,engine/reflection,O
+0x7100f9fc3c,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::TypeOf",reflection,engine/reflection,O
+0x7100f9fc50,8,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::Construct",reflection,engine/reflection,O
+0x7100f9fc58,12,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::CopyConstruct",reflection,engine/reflection,O
+0x7100f9fc64,12,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::MoveConstruct",reflection,engine/reflection,O
+0x7100f9fc70,4,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::Destroy",reflection,engine/reflection,O
+0x7100f9fc74,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::CopyAssign",reflection,engine/reflection,O
+0x7100f9fc88,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>*>::MoveAssign",reflection,engine/reflection,O
 0x7100f9fc9c,12,fn_7100f9fc9c,unknown,unknown,O
 0x7100f9fca8,12,fn_7100f9fca8,unknown,unknown,O
 0x7100f9fcb4,8,fn_7100f9fcb4,unknown,unknown,O
@@ -4290,7 +4290,7 @@ address,size,name,name_source,subsystem,status
 0x7100fa05bc,8,fn_7100fa05bc,unknown,unknown,O
 0x7100fa05c4,80,fn_7100fa05c4,unknown,unknown,O
 0x7100fa0614,84,fn_7100fa0614,unknown,unknown,O
-0x7100fa0668,8,fn_7100fa0668,unknown,unknown,O
+0x7100fa0668,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::Count",reflection,engine/reflection,O
 0x7100fa0670,112,fn_7100fa0670,unknown,unknown,O
 0x7100fa06e0,4,fn_7100fa06e0,unknown,unknown,O
 0x7100fa06e4,16,fn_7100fa06e4,unknown,unknown,O
@@ -4300,13 +4300,13 @@ address,size,name,name_source,subsystem,status
 0x7100fa07ec,4,fn_7100fa07ec,unknown,unknown,O
 0x7100fa07f0,640,fn_7100fa07f0,unknown,unknown,U
 0x7100fa0a70,76,fn_7100fa0a70,unknown,unknown,O
-0x7100fa0abc,8,fn_7100fa0abc,unknown,unknown,O
-0x7100fa0ac4,12,fn_7100fa0ac4,unknown,unknown,O
-0x7100fa0ad0,64,fn_7100fa0ad0,unknown,unknown,O
-0x7100fa0b10,64,fn_7100fa0b10,unknown,unknown,O
+0x7100fa0abc,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::Hash",reflection,engine/reflection,O
+0x7100fa0ac4,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TypeOf",reflection,engine/reflection,O
+0x7100fa0ad0,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::Construct",reflection,engine/reflection,O
+0x7100fa0b10,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::MoveConstruct",reflection,engine/reflection,O
 0x7100fa0b50,156,fn_7100fa0b50,unknown,unknown,O
 0x7100fa0bec,188,fn_7100fa0bec,unknown,unknown,O
-0x7100fa0ca8,12,fn_7100fa0ca8,unknown,unknown,O
+0x7100fa0ca8,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::Begin",reflection,engine/reflection,O
 0x7100fa0cb4,20,fn_7100fa0cb4,unknown,unknown,O
 0x7100fa0cc8,168,fn_7100fa0cc8,unknown,unknown,O
 0x7100fa0d70,176,fn_7100fa0d70,unknown,unknown,O
@@ -4369,28 +4369,28 @@ address,size,name,name_source,subsystem,status
 0x7100fa7240,88,fn_7100fa7240,unknown,unknown,O
 0x7100fa7298,12,fn_7100fa7298,unknown,unknown,O
 0x7100fa72a4,16,fn_7100fa72a4,unknown,unknown,O
-0x7100fa72b4,20,fn_7100fa72b4,unknown,unknown,O
-0x7100fa72c8,8,fn_7100fa72c8,unknown,unknown,O
-0x7100fa72d0,20,fn_7100fa72d0,unknown,unknown,O
-0x7100fa72e4,8,fn_7100fa72e4,unknown,unknown,O
-0x7100fa72ec,12,fn_7100fa72ec,unknown,unknown,O
-0x7100fa72f8,12,fn_7100fa72f8,unknown,unknown,O
-0x7100fa7304,4,fn_7100fa7304,unknown,unknown,O
-0x7100fa7308,20,fn_7100fa7308,unknown,unknown,O
-0x7100fa731c,20,fn_7100fa731c,unknown,unknown,O
+0x7100fa72b4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::Equals",reflection,engine/reflection,O
+0x7100fa72c8,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::Hash",reflection,engine/reflection,O
+0x7100fa72d0,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
+0x7100fa72e4,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::Construct",reflection,engine/reflection,O
+0x7100fa72ec,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100fa72f8,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100fa7304,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::Destroy",reflection,engine/reflection,O
+0x7100fa7308,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100fa731c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100fa7330,360,fn_7100fa7330,unknown,unknown,O
 0x7100fa7498,88,fn_7100fa7498,unknown,unknown,O
 0x7100fa74f0,12,fn_7100fa74f0,unknown,unknown,O
 0x7100fa74fc,16,fn_7100fa74fc,unknown,unknown,O
-0x7100fa750c,20,fn_7100fa750c,unknown,unknown,O
-0x7100fa7520,8,fn_7100fa7520,unknown,unknown,O
-0x7100fa7528,20,fn_7100fa7528,unknown,unknown,O
-0x7100fa753c,8,fn_7100fa753c,unknown,unknown,O
-0x7100fa7544,12,fn_7100fa7544,unknown,unknown,O
-0x7100fa7550,12,fn_7100fa7550,unknown,unknown,O
-0x7100fa755c,4,fn_7100fa755c,unknown,unknown,O
-0x7100fa7560,20,fn_7100fa7560,unknown,unknown,O
-0x7100fa7574,20,fn_7100fa7574,unknown,unknown,O
+0x7100fa750c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
+0x7100fa7520,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
+0x7100fa7528,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
+0x7100fa753c,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::Construct",reflection,engine/reflection,O
+0x7100fa7544,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100fa7550,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100fa755c,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
+0x7100fa7560,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100fa7574,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100fa7588,364,fn_7100fa7588,unknown,unknown,O
 0x7100fa76f4,60,fn_7100fa76f4,unknown,unknown,O
 0x7100fa7730,4,fn_7100fa7730,unknown,unknown,O
@@ -4421,15 +4421,15 @@ address,size,name,name_source,subsystem,status
 0x7100fa7fa4,96,fn_7100fa7fa4,unknown,unknown,O
 0x7100fa8004,12,fn_7100fa8004,unknown,unknown,O
 0x7100fa8010,16,fn_7100fa8010,unknown,unknown,O
-0x7100fa8020,20,fn_7100fa8020,unknown,unknown,O
-0x7100fa8034,8,fn_7100fa8034,unknown,unknown,O
-0x7100fa803c,20,fn_7100fa803c,unknown,unknown,O
-0x7100fa8050,8,fn_7100fa8050,unknown,unknown,O
-0x7100fa8058,12,fn_7100fa8058,unknown,unknown,O
-0x7100fa8064,12,fn_7100fa8064,unknown,unknown,O
-0x7100fa8070,4,fn_7100fa8070,unknown,unknown,O
-0x7100fa8074,20,fn_7100fa8074,unknown,unknown,O
-0x7100fa8088,20,fn_7100fa8088,unknown,unknown,O
+0x7100fa8020,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::Equals",reflection,engine/reflection,O
+0x7100fa8034,8,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::Hash",reflection,engine/reflection,O
+0x7100fa803c,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::TypeOf",reflection,engine/reflection,O
+0x7100fa8050,8,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::Construct",reflection,engine/reflection,O
+0x7100fa8058,12,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::CopyConstruct",reflection,engine/reflection,O
+0x7100fa8064,12,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::MoveConstruct",reflection,engine/reflection,O
+0x7100fa8070,4,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::Destroy",reflection,engine/reflection,O
+0x7100fa8074,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::CopyAssign",reflection,engine/reflection,O
+0x7100fa8088,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>::MoveAssign",reflection,engine/reflection,O
 0x7100fa809c,12,fn_7100fa809c,unknown,unknown,O
 0x7100fa80a8,8,fn_7100fa80a8,unknown,unknown,O
 0x7100fa80b0,8,fn_7100fa80b0,unknown,unknown,O
@@ -4479,7 +4479,7 @@ address,size,name,name_source,subsystem,status
 0x7100fa8a70,8,fn_7100fa8a70,unknown,unknown,O
 0x7100fa8a78,80,fn_7100fa8a78,unknown,unknown,O
 0x7100fa8ac8,84,fn_7100fa8ac8,unknown,unknown,O
-0x7100fa8b1c,8,fn_7100fa8b1c,unknown,unknown,O
+0x7100fa8b1c,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::Count",reflection,engine/reflection,O
 0x7100fa8b24,100,fn_7100fa8b24,unknown,unknown,O
 0x7100fa8b88,4,fn_7100fa8b88,unknown,unknown,O
 0x7100fa8b8c,16,fn_7100fa8b8c,unknown,unknown,O
@@ -4489,15 +4489,15 @@ address,size,name,name_source,subsystem,status
 0x7100fa8c8c,4,fn_7100fa8c8c,unknown,unknown,O
 0x7100fa8c90,80,fn_7100fa8c90,unknown,unknown,O
 0x7100fa8ce0,76,fn_7100fa8ce0,unknown,unknown,O
-0x7100fa8d2c,8,fn_7100fa8d2c,unknown,unknown,O
-0x7100fa8d34,12,fn_7100fa8d34,unknown,unknown,O
-0x7100fa8d40,64,fn_7100fa8d40,unknown,unknown,O
-0x7100fa8d80,64,fn_7100fa8d80,unknown,unknown,O
+0x7100fa8d2c,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::Hash",reflection,engine/reflection,O
+0x7100fa8d34,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::TypeOf",reflection,engine/reflection,O
+0x7100fa8d40,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::Construct",reflection,engine/reflection,O
+0x7100fa8d80,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::MoveConstruct",reflection,engine/reflection,O
 0x7100fa8dc0,144,fn_7100fa8dc0,unknown,unknown,O
 0x7100fa8e50,184,fn_7100fa8e50,unknown,unknown,O
 0x7100fa8f08,612,fn_7100fa8f08,unknown,unknown,O
 0x7100fa916c,564,fn_7100fa916c,unknown,unknown,O
-0x7100fa93a0,12,fn_7100fa93a0,unknown,unknown,O
+0x7100fa93a0,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::Begin",reflection,engine/reflection,O
 0x7100fa93ac,20,fn_7100fa93ac,unknown,unknown,O
 0x7100fa93c0,260,fn_7100fa93c0,unknown,unknown,O
 0x7100fa94c4,268,fn_7100fa94c4,unknown,unknown,O
@@ -4724,28 +4724,28 @@ address,size,name,name_source,subsystem,status
 0x7100fb566c,88,fn_7100fb566c,unknown,unknown,O
 0x7100fb56c4,12,fn_7100fb56c4,unknown,unknown,O
 0x7100fb56d0,16,fn_7100fb56d0,unknown,unknown,O
-0x7100fb56e0,20,fn_7100fb56e0,unknown,unknown,O
-0x7100fb56f4,8,fn_7100fb56f4,unknown,unknown,O
-0x7100fb56fc,20,fn_7100fb56fc,unknown,unknown,O
-0x7100fb5710,8,fn_7100fb5710,unknown,unknown,O
-0x7100fb5718,12,fn_7100fb5718,unknown,unknown,O
-0x7100fb5724,12,fn_7100fb5724,unknown,unknown,O
-0x7100fb5730,4,fn_7100fb5730,unknown,unknown,O
-0x7100fb5734,20,fn_7100fb5734,unknown,unknown,O
-0x7100fb5748,20,fn_7100fb5748,unknown,unknown,O
+0x7100fb56e0,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::Equals",reflection,engine/reflection,O
+0x7100fb56f4,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::Hash",reflection,engine/reflection,O
+0x7100fb56fc,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
+0x7100fb5710,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::Construct",reflection,engine/reflection,O
+0x7100fb5718,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100fb5724,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100fb5730,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::Destroy",reflection,engine/reflection,O
+0x7100fb5734,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100fb5748,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100fb575c,360,fn_7100fb575c,unknown,unknown,O
 0x7100fb58c4,88,fn_7100fb58c4,unknown,unknown,O
 0x7100fb591c,12,fn_7100fb591c,unknown,unknown,O
 0x7100fb5928,16,fn_7100fb5928,unknown,unknown,O
-0x7100fb5938,20,fn_7100fb5938,unknown,unknown,O
-0x7100fb594c,8,fn_7100fb594c,unknown,unknown,O
-0x7100fb5954,20,fn_7100fb5954,unknown,unknown,O
-0x7100fb5968,8,fn_7100fb5968,unknown,unknown,O
-0x7100fb5970,12,fn_7100fb5970,unknown,unknown,O
-0x7100fb597c,12,fn_7100fb597c,unknown,unknown,O
-0x7100fb5988,4,fn_7100fb5988,unknown,unknown,O
-0x7100fb598c,20,fn_7100fb598c,unknown,unknown,O
-0x7100fb59a0,20,fn_7100fb59a0,unknown,unknown,O
+0x7100fb5938,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
+0x7100fb594c,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
+0x7100fb5954,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
+0x7100fb5968,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::Construct",reflection,engine/reflection,O
+0x7100fb5970,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100fb597c,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100fb5988,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
+0x7100fb598c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100fb59a0,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100fb59b4,364,fn_7100fb59b4,unknown,unknown,O
 0x7100fb5b20,60,fn_7100fb5b20,unknown,unknown,O
 0x7100fb5b5c,4,fn_7100fb5b5c,unknown,unknown,O
@@ -4776,15 +4776,15 @@ address,size,name,name_source,subsystem,status
 0x7100fb63d0,96,fn_7100fb63d0,unknown,unknown,O
 0x7100fb6430,12,fn_7100fb6430,unknown,unknown,O
 0x7100fb643c,16,fn_7100fb643c,unknown,unknown,O
-0x7100fb644c,20,fn_7100fb644c,unknown,unknown,O
-0x7100fb6460,8,fn_7100fb6460,unknown,unknown,O
-0x7100fb6468,20,fn_7100fb6468,unknown,unknown,O
-0x7100fb647c,8,fn_7100fb647c,unknown,unknown,O
-0x7100fb6484,12,fn_7100fb6484,unknown,unknown,O
-0x7100fb6490,12,fn_7100fb6490,unknown,unknown,O
-0x7100fb649c,4,fn_7100fb649c,unknown,unknown,O
-0x7100fb64a0,20,fn_7100fb64a0,unknown,unknown,O
-0x7100fb64b4,20,fn_7100fb64b4,unknown,unknown,O
+0x7100fb644c,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::Equals",reflection,engine/reflection,O
+0x7100fb6460,8,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::Hash",reflection,engine/reflection,O
+0x7100fb6468,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::TypeOf",reflection,engine/reflection,O
+0x7100fb647c,8,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::Construct",reflection,engine/reflection,O
+0x7100fb6484,12,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::CopyConstruct",reflection,engine/reflection,O
+0x7100fb6490,12,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::MoveConstruct",reflection,engine/reflection,O
+0x7100fb649c,4,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::Destroy",reflection,engine/reflection,O
+0x7100fb64a0,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::CopyAssign",reflection,engine/reflection,O
+0x7100fb64b4,20,"base::reflection::ValueOps<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>*>::MoveAssign",reflection,engine/reflection,O
 0x7100fb64c8,12,fn_7100fb64c8,unknown,unknown,O
 0x7100fb64d4,12,fn_7100fb64d4,unknown,unknown,O
 0x7100fb64e0,8,fn_7100fb64e0,unknown,unknown,O
@@ -4821,7 +4821,7 @@ address,size,name,name_source,subsystem,status
 0x7100fb6b54,8,fn_7100fb6b54,unknown,unknown,O
 0x7100fb6b5c,80,fn_7100fb6b5c,unknown,unknown,O
 0x7100fb6bac,84,fn_7100fb6bac,unknown,unknown,O
-0x7100fb6c00,8,fn_7100fb6c00,unknown,unknown,O
+0x7100fb6c00,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::Count",reflection,engine/reflection,O
 0x7100fb6c08,100,fn_7100fb6c08,unknown,unknown,O
 0x7100fb6c6c,4,fn_7100fb6c6c,unknown,unknown,O
 0x7100fb6c70,16,fn_7100fb6c70,unknown,unknown,O
@@ -4831,14 +4831,14 @@ address,size,name,name_source,subsystem,status
 0x7100fb6d70,4,fn_7100fb6d70,unknown,unknown,O
 0x7100fb6d74,80,fn_7100fb6d74,unknown,unknown,O
 0x7100fb6dc4,76,fn_7100fb6dc4,unknown,unknown,O
-0x7100fb6e10,8,fn_7100fb6e10,unknown,unknown,O
-0x7100fb6e18,12,fn_7100fb6e18,unknown,unknown,O
-0x7100fb6e24,64,fn_7100fb6e24,unknown,unknown,O
-0x7100fb6e64,64,fn_7100fb6e64,unknown,unknown,O
+0x7100fb6e10,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::Hash",reflection,engine/reflection,O
+0x7100fb6e18,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::TypeOf",reflection,engine/reflection,O
+0x7100fb6e24,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::Construct",reflection,engine/reflection,O
+0x7100fb6e64,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::MoveConstruct",reflection,engine/reflection,O
 0x7100fb6ea4,144,fn_7100fb6ea4,unknown,unknown,O
 0x7100fb6f34,184,fn_7100fb6f34,unknown,unknown,O
 0x7100fb6fec,612,fn_7100fb6fec,unknown,unknown,O
-0x7100fb7250,12,fn_7100fb7250,unknown,unknown,O
+0x7100fb7250,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::Begin",reflection,engine/reflection,O
 0x7100fb725c,20,fn_7100fb725c,unknown,unknown,O
 0x7100fb7270,260,fn_7100fb7270,unknown,unknown,O
 0x7100fb7374,268,fn_7100fb7374,unknown,unknown,O

@@ -3574,28 +3574,28 @@ address,size,name,name_source,subsystem,status
 0x71011e5c6c,88,fn_71011e5c6c,unknown,unknown,O
 0x71011e5cc4,12,fn_71011e5cc4,unknown,unknown,O
 0x71011e5cd0,16,fn_71011e5cd0,unknown,unknown,O
-0x71011e5ce0,20,fn_71011e5ce0,unknown,unknown,O
-0x71011e5cf4,8,fn_71011e5cf4,unknown,unknown,O
-0x71011e5cfc,20,fn_71011e5cfc,unknown,unknown,O
-0x71011e5d10,8,fn_71011e5d10,unknown,unknown,O
-0x71011e5d18,12,fn_71011e5d18,unknown,unknown,O
-0x71011e5d24,12,fn_71011e5d24,unknown,unknown,O
-0x71011e5d30,4,fn_71011e5d30,unknown,unknown,O
-0x71011e5d34,20,fn_71011e5d34,unknown,unknown,O
-0x71011e5d48,20,fn_71011e5d48,unknown,unknown,O
+0x71011e5ce0,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::Equals",reflection,engine/reflection,O
+0x71011e5cf4,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::Hash",reflection,engine/reflection,O
+0x71011e5cfc,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
+0x71011e5d10,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::Construct",reflection,engine/reflection,O
+0x71011e5d18,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::CopyConstruct",reflection,engine/reflection,O
+0x71011e5d24,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::MoveConstruct",reflection,engine/reflection,O
+0x71011e5d30,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::Destroy",reflection,engine/reflection,O
+0x71011e5d34,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
+0x71011e5d48,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
 0x71011e5d5c,360,fn_71011e5d5c,unknown,unknown,O
 0x71011e5ec4,88,fn_71011e5ec4,unknown,unknown,O
 0x71011e5f1c,12,fn_71011e5f1c,unknown,unknown,O
 0x71011e5f28,16,fn_71011e5f28,unknown,unknown,O
-0x71011e5f38,20,fn_71011e5f38,unknown,unknown,O
-0x71011e5f4c,8,fn_71011e5f4c,unknown,unknown,O
-0x71011e5f54,20,fn_71011e5f54,unknown,unknown,O
-0x71011e5f68,8,fn_71011e5f68,unknown,unknown,O
-0x71011e5f70,12,fn_71011e5f70,unknown,unknown,O
-0x71011e5f7c,12,fn_71011e5f7c,unknown,unknown,O
-0x71011e5f88,4,fn_71011e5f88,unknown,unknown,O
-0x71011e5f8c,20,fn_71011e5f8c,unknown,unknown,O
-0x71011e5fa0,20,fn_71011e5fa0,unknown,unknown,O
+0x71011e5f38,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
+0x71011e5f4c,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
+0x71011e5f54,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
+0x71011e5f68,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::Construct",reflection,engine/reflection,O
+0x71011e5f70,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::CopyConstruct",reflection,engine/reflection,O
+0x71011e5f7c,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::MoveConstruct",reflection,engine/reflection,O
+0x71011e5f88,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
+0x71011e5f8c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
+0x71011e5fa0,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
 0x71011e5fb4,364,fn_71011e5fb4,unknown,unknown,O
 0x71011e6120,60,fn_71011e6120,unknown,unknown,O
 0x71011e615c,4,fn_71011e615c,unknown,unknown,O
@@ -3682,7 +3682,7 @@ address,size,name,name_source,subsystem,status
 0x71011e70c4,8,fn_71011e70c4,unknown,unknown,O
 0x71011e70cc,80,fn_71011e70cc,unknown,unknown,O
 0x71011e711c,84,fn_71011e711c,unknown,unknown,O
-0x71011e7170,8,fn_71011e7170,unknown,unknown,O
+0x71011e7170,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::Count",reflection,engine/reflection,O
 0x71011e7178,100,fn_71011e7178,unknown,unknown,O
 0x71011e71dc,4,fn_71011e71dc,unknown,unknown,O
 0x71011e71e0,16,fn_71011e71e0,unknown,unknown,O
@@ -3692,15 +3692,15 @@ address,size,name,name_source,subsystem,status
 0x71011e72e0,4,fn_71011e72e0,unknown,unknown,O
 0x71011e72e4,80,fn_71011e72e4,unknown,unknown,O
 0x71011e7334,76,fn_71011e7334,unknown,unknown,O
-0x71011e7380,8,fn_71011e7380,unknown,unknown,O
-0x71011e7388,12,fn_71011e7388,unknown,unknown,O
-0x71011e7394,64,fn_71011e7394,unknown,unknown,O
-0x71011e73d4,64,fn_71011e73d4,unknown,unknown,O
+0x71011e7380,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::Hash",reflection,engine/reflection,O
+0x71011e7388,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::TypeOf",reflection,engine/reflection,O
+0x71011e7394,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::Construct",reflection,engine/reflection,O
+0x71011e73d4,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::MoveConstruct",reflection,engine/reflection,O
 0x71011e7414,144,fn_71011e7414,unknown,unknown,O
 0x71011e74a4,184,fn_71011e74a4,unknown,unknown,O
 0x71011e755c,420,fn_71011e755c,unknown,unknown,O
 0x71011e7700,292,fn_71011e7700,unknown,unknown,O
-0x71011e7824,12,fn_71011e7824,unknown,unknown,O
+0x71011e7824,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<GUI::CHUD::SResourceAnimation, std::__1::default_delete<GUI::CHUD::SResourceAnimation>>>>::Begin",reflection,engine/reflection,O
 0x71011e7830,20,fn_71011e7830,unknown,unknown,O
 0x71011e7844,260,fn_71011e7844,unknown,unknown,O
 0x71011e7948,268,fn_71011e7948,unknown,unknown,O

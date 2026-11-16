@@ -914,27 +914,9 @@ void fn_7100eda4a8();
 void fn_7100ef0224();
 void fn_7100ef0284();
 void fn_7100ef0290();
-void fn_7100ef02a0();
-void fn_7100ef02b4();
-void fn_7100ef02bc();
-void fn_7100ef02d0();
-void fn_7100ef02d8();
-void fn_7100ef02e4();
-void fn_7100ef02f0();
-void fn_7100ef02f4();
-void fn_7100ef0308();
 void fn_7100ef0488();
 void fn_7100ef04e8();
 void fn_7100ef04f4();
-void fn_7100ef0504();
-void fn_7100ef0518();
-void fn_7100ef0520();
-void fn_7100ef0534();
-void fn_7100ef053c();
-void fn_7100ef0548();
-void fn_7100ef0554();
-void fn_7100ef0558();
-void fn_7100ef056c();
 void fn_7100ef0b48();
 void fn_7100ef0ba8();
 void fn_7100ef0bb4();
@@ -4482,21 +4464,16 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100ed3068> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100eda2d0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100ed3068>();
+#include <memory>
 struct UnkRefl_fn_7100ef00b8;
 struct UnkRefl_fn_7100ee0f38;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ef00b8> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<std::unique_ptr<CSubareaSetup>> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100ee0f38>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<std::unique_ptr<CSubareaSetup>> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ef00b8> : base::reflection::ValueOpsDescription<base::global::CRntVector<std::unique_ptr<CSubareaSetup>> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ef02d0;
-    static constexpr UnkFn copy_construct = &fn_7100ef02d8;
-    static constexpr UnkFn move_construct = &fn_7100ef02e4;
-    static constexpr UnkFn destroy = &fn_7100ef02f0;
-    static constexpr UnkFn copy_assign = &fn_7100ef02f4;
-    static constexpr UnkFn move_assign = &fn_7100ef0308;
-    static constexpr UnkFn equals = &fn_7100ef02a0;
-    static constexpr UnkFn hash = &fn_7100ef02b4;
-    static constexpr UnkFn type_of = &fn_7100ef02bc;
     static constexpr UnkFn get = &fn_7100ef0224;
     static constexpr UnkFn set = &fn_7100ef0284;
     static constexpr UnkFn increment = &fn_7100ef0290;
@@ -4509,21 +4486,16 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100ee0f38> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100ef00b8*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100ee0f38>();
+#include <memory>
 struct UnkRefl_fn_7100ef031c;
 struct UnkRefl_fn_7100ee1014;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ef031c> {
+const CType& base::reflection::ValueOps<base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>> const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100ee1014>(); }
+template struct base::reflection::ValueOps<base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>> const*>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ef031c> : base::reflection::ValueOpsDescription<base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>> const*> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ef0534;
-    static constexpr UnkFn copy_construct = &fn_7100ef053c;
-    static constexpr UnkFn move_construct = &fn_7100ef0548;
-    static constexpr UnkFn destroy = &fn_7100ef0554;
-    static constexpr UnkFn copy_assign = &fn_7100ef0558;
-    static constexpr UnkFn move_assign = &fn_7100ef056c;
-    static constexpr UnkFn equals = &fn_7100ef0504;
-    static constexpr UnkFn hash = &fn_7100ef0518;
-    static constexpr UnkFn type_of = &fn_7100ef0520;
     static constexpr UnkFn get = &fn_7100ef0488;
     static constexpr UnkFn set = &fn_7100ef04e8;
     static constexpr UnkFn increment = &fn_7100ef04f4;
