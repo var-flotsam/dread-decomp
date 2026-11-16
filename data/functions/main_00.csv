@@ -4693,8 +4693,8 @@ address,size,name,name_source,subsystem,status
 0x71000d1574,88,fn_71000d1574,unknown,unknown,O
 0x71000d15cc,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::Count,reflection,engine/reflection,O
 0x71000d15d4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::Clear,reflection,engine/reflection,O
-0x71000d15dc,16,fn_71000d15dc,unknown,unknown,O
-0x71000d15ec,16,fn_71000d15ec,unknown,unknown,O
+0x71000d15dc,16,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::AddCopy,reflection,engine/reflection,O
+0x71000d15ec,16,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::AddMove,reflection,engine/reflection,O
 0x71000d15fc,92,fn_71000d15fc,unknown,unknown,O
 0x71000d1658,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::At,reflection,engine/reflection,O
 0x71000d1664,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::Find,reflection,engine/reflection,O
@@ -4709,8 +4709,8 @@ address,size,name,name_source,subsystem,status
 0x71000d187c,60,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::Destroy,reflection,engine/reflection,O
 0x71000d18b8,192,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::CopyAssign,reflection,engine/reflection,O
 0x71000d1978,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::MoveAssign,reflection,engine/reflection,O
-0x71000d19c4,432,fn_71000d19c4,unknown,unknown,O
-0x71000d1b74,432,fn_71000d1b74,unknown,unknown,O
+0x71000d19c4,432,base::global::CRntVector<unsigned short>::InsertCopy,reflection,engine/base,O
+0x71000d1b74,432,base::global::CRntVector<unsigned short>::InsertMove,reflection,engine/base,O
 0x71000d1d24,336,base::global::CRntVector<unsigned short>::GrowAt,reflection,engine/base,O
 0x71000d1e74,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::Begin,reflection,engine/reflection,O
 0x71000d1e80,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::End,reflection,engine/reflection,O
