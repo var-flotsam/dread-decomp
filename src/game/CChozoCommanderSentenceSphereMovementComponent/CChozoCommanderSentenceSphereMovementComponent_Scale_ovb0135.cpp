@@ -9,6 +9,7 @@
 #include "game/CFXComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkNavMeshHit.h"
 #include "game/UnkTU362.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCircleShape2D.h"
@@ -41,19 +42,6 @@ struct UnkSpherePart_ovb0135 {
     void vf_0x20(const UnkVec3f* scale) {
         reinterpret_cast<void (*)(UnkSpherePart_ovb0135*, const UnkVec3f*)>(vtable[0x20 / 8])(this, scale);
     }
-};
-
-struct UnkNavMeshHit;
-struct UnkElem_7100286624;
-
-struct UnkNavMeshHit {
-    u16 cell;
-    u8 side;
-    CVector2D point;
-
-    ~UnkNavMeshHit() { fn_710028760c(reinterpret_cast<UnkElem_7100286624*>(this)); }
-
-    bool IsValid() const { return cell != 0xffff && side != 0xff; }
 };
 
 struct UnkSphereMovementNav_ovb0135 {

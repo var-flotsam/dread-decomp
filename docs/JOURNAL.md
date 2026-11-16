@@ -154,6 +154,14 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**One navigation hit and one unit-442 path (2026-11-16).** `UnkNavMeshHit` (12 bytes: cell, side, point) had nine
+definitions in three texts; it is now `include/game/UnkNavMeshHit.h`, with every constructor any user had (empty,
+copy, and from a packed cell and side plus a point through `fn_71002875bc`, now declared in `game/UnkTU362.h`).
+`UnkPath442` is `include/game/UnkPath442.h` with its two accessors and a `SegmentCount()` member. The base movement
+initialisation `fn_71010d0b78` has one declaration in `game/CMovementComponent.h`, taking `CMovementComponent*`.
+`fn_71010cd6f4` and `fn_71010c80e0` (CEnemyMovement) moved from `drafts/` to `src/` as matches; every other user
+compiles to the same bytes.
+
 **Opus batch lean-o2: the yield falls (2026-11-16).** The next ten units in the same shape: 7 matches of 50
 (14%), 10 registers-only, 33 that differ; 186 graded attempts; about 2.16 million tokens. One more match came
 from the caller: `fn_7100e00cc0` matches with a `bool` parameter, and its only caller now declares it and its
