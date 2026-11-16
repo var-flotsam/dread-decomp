@@ -154,6 +154,17 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**One home for the GUI label setters, fn_7100b44344 promoted (2026-11-16).** `fn_71011cd5a0` (unit 2747,
+GUI::CDisplayObject) is now declared once in `include/game/UnkTU2747.h` and `fn_71011ecfbc` (unit 2752, the
+label's text setter) in `include/game/GUI/CLabel.h`, both on `UnkGuiDisplayObject*`; `tools/hub_migrate.py`
+moved all 17 local copies (11 and 6, `src/game_s7/UnkGuiS7.h`'s namespaced one included). `UnkGuiObj` had two
+meanings: an alias of `UnkGuiDisplayObject` in most files and a separate incomplete struct in eight, one of them
+`include/game/GUI/CButton.h` (the return of `fn_71011c08dc`). The struct is gone: `fn_71011c08dc` returns
+`UnkGuiDisplayObject*`, the others use the alias (three files that no longer named it dropped it), and
+`CDebugTunableButton_Init`'s cast of that return went away. `tools/baseline.py` over the 76 declaring and including
+files showed no output change. The draft (lean-ob2's, byte-matching) then moved to
+`src/game/UnkTU1689/fn_7100b44344.cpp`.
+
 **Opus batch on the boot slice, lean-ob2 (2026-11-16).** The next 55 ready boot functions of 300 to 1,000 bytes, packed five to a worker across units. 17 matched (31%) and `fn_71006fc4fc` is verified equivalent; 14 go into `src/`. Three matches wait in `drafts/`: `fn_7100d5925c` (returns `fn_7100d541c0`'s contact where the shared declaration returns `UnkColliderResult`), `fn_7100b44344` and `fn_710006cea8` (each copies declarations of callees or globals that have no single header yet). `fn_710035d9e0` now returns its quad-tree node type in `game/UnkTU441.h`. Merging the lean-r1 branch with main moved `fn_7100eef694` back to `drafts/`: it matched with an 8-byte result type, and the shared `UnkColliderResult` is 4 bytes, so the result's stack slot moves by 4.
 
 **Opus retry of older near-miss drafts, lean-r2 (2026-11-16).** The 56 drafts from earlier runs (mostly the

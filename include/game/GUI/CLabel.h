@@ -18,3 +18,4 @@ extern char g_unk_7101cb65e8[];  // Its line list's vtable.
 void fn_71011ef0c8(UnkGuiDisplayObject* label, bool value);
 void fn_71011ed150(UnkGuiDisplayObject* label, const base::global::CStrId& font);
 void fn_71011eec60(UnkGuiDisplayObject* label, u32 mode);
+void fn_71011ecfbc(UnkGuiDisplayObject* label, const char32_t* text);  // Sets the label's text.

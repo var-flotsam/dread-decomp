@@ -16,7 +16,6 @@ using base::global::CRntString;
 
 using UnkGuiObj = UnkGuiDisplayObject;
 UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
-void fn_71011ecfbc(UnkGuiObj*, const char32_t*);
 
 struct UnkStateSink;
 struct UnkStateKey;

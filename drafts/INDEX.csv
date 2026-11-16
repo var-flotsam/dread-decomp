@@ -391,7 +391,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100b188d0,324,drafts/game/GUI/IDisplayObjectTrack/fn_7100b188d0.cpp,operations,19.8,63,lean-b4,register/ordering of count and global loads in prologue; shifted tail
 0x7100b19584,84,drafts/game/GUI/IDisplayObjectTrack/fn_7100b19584.cpp,operations,14.3,15,lean-b4,index masked lsl/lsr and data reload in loop not reproduced
 0x7100b1a1d0,368,drafts/game/GUI/IDisplayObjectTrack/fn_7100b1a1d0.cpp,operations,48.9,47,lean-b4,register allocation: original keeps this in x21 and forms &keys late; ours hoists it
-0x7100b44344,424,drafts/game/UnkTU1689/fn_7100b44344.cpp,match,100.0,0,lean-ob2,matches; held: copies fn_71011ecfbc and fn_71011cd5a0; whose UnkGuiObj declarations cannot move to one header yet
 0x7100b4c684,596,drafts/game/UnkTU1691/fn_7100b4c684.cpp,conditions,98.7,2,overnight,
 0x7100b5ccec,212,drafts/game/GUI/CMissionLog/fn_7100b5ccec.cpp,build fails,,,lean-b5,element destructor call: original computes the destroy argument early (x19+0x10) before the stores; ours later
 0x7100b5cdc0,224,drafts/game/GUI/CMissionLog/fn_7100b5cdc0.cpp,build fails,,,lean-b5,same: destroy argument address hoisted in the original
