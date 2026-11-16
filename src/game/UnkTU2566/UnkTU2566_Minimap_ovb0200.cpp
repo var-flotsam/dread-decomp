@@ -30,6 +30,7 @@
 #include "game/UnkTU2566.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -276,13 +277,6 @@ void* fn_7100e944bc(UnkKeyOwner_b0200* self, const CStrId* key, void* arg) {
     }
     return node->value;
 }
-
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
-using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
-const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 struct UnkSetFlagDef_b0200 : UnkIdSource {
     u64 field_0x8;

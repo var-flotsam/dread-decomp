@@ -1,6 +1,7 @@
 // Picks the pair handler for two shapes from the sum of their type bits, passing the shapes
 // (and their transforms) in the order the handler expects. Unhandled pairs give an empty
 // result. Names and layouts are placeholders.
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
@@ -11,37 +12,30 @@ struct UnkShape {
     virtual u32 GetType();
 };
 
-// Returned in memory: its copy is user-written.
-struct UnkContact {
-    u32 value;
-
-    UnkContact() { value = 0; }
-    UnkContact(const UnkContact& other) { value = other.value; }
-};
-
-inline const UnkContact& NoContact() {
-    static UnkContact s_none;
+// The empty result (game/logic/collision/UnkColliderResult.h).
+inline const UnkColliderResult& NoContact() {
+    static UnkColliderResult s_none;
     return s_none;
 }
 
-struct UnkCollider;
+struct UnkShapeTester_A5_b68;
 // An empty argument (its register is left as it is).
 struct UnkNoContext : UnkLeftoverReg {};
 
-UnkContact fn_7100d54f28(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d55920(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag);
-UnkContact fn_7100d551c8(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d55b80(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d556d0(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag);
-UnkContact fn_7100d5635c(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d560bc(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d54d78(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d54bc0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d54a08(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d55484(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
-UnkContact fn_7100d55df4(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d54f28(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d55920(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag);
+UnkColliderResult fn_7100d551c8(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d55b80(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d556d0(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag);
+UnkColliderResult fn_7100d5635c(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d560bc(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d54d78(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d54bc0(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d54a08(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d55484(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
+UnkColliderResult fn_7100d55df4(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped, bool flag);
 
-UnkContact fn_7100d541c0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
+UnkColliderResult fn_7100d541c0(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
                          bool flag) {
     switch (a->GetType() + b->GetType()) {
     case 3: {

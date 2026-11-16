@@ -1,9 +1,7 @@
 // CEnemyMovement unit: runs the base movement init, then resets the movement state fields.
 // Names and layouts are placeholders.
+#include "game/CMovementComponent.h"
 #include "types.h"
-
-struct UnkMovementBase_l0c80e0;
-void fn_71010d0b78(UnkMovementBase_l0c80e0* self);
 
 struct UnkEnemyMovement_l0c80e0 {
     u8 pad_0x0[0x1d8];
@@ -24,7 +22,7 @@ struct UnkEnemyMovement_l0c80e0 {
 };
 
 void fn_71010c80e0(UnkEnemyMovement_l0c80e0* self) {
-    fn_71010d0b78(reinterpret_cast<UnkMovementBase_l0c80e0*>(self));
+    fn_71010d0b78(reinterpret_cast<CMovementComponent*>(self));
     self->field_0x1d8 = 0;
     self->field_0x1e0 = 0;
     self->field_0x6f4 = 0;

@@ -145,6 +145,11 @@ struct UnkCollectionIter {
             current.SetRef(&this->index, element);
     }
 
+    // Copies the position, then points the pair at it again (reflection's copies of an iterator).
+    UnkCollectionIter(const UnkCollectionIter& other) : index(other.index), element(other.element) {
+        refl_IterSync(this);
+    }
+
     UnkCollectionIter& operator=(const UnkCollectionIter& other) {
         if (this != &other) {
             index = other.index;

@@ -15,6 +15,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -132,11 +133,6 @@ struct UnkTypedValue {
 };
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
 
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
-const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName* self, const CStrId* name);
 
 struct UnkStrIdHandle_b0166 {
     CStrId id;

@@ -648,12 +648,6 @@ UnkResult fn_7100eb2264(char* p0, char* p1) {
     return ret;
 }
 
-extern char g_unk_71727cbbe8[];
-char* fn_7100eb2400() {
-    char* r0_0 = (char*)g_unk_71727cbbe8;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100e90c28(char*); }
 u32 fn_7100eb2e8c(char* p0) {
     char* r0_0 = callee::fn_7100e90c28(p0);

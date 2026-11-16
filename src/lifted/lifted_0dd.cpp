@@ -354,12 +354,6 @@ void fn_7100dd0674(char* p0, char* p1, char* p2) {
     return;
 }
 
-extern char g_unk_71727bcf00[];
-char* fn_7100dd0a3c() {
-    char* r0_0 = (char*)g_unk_71727bcf00;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100dd0030(char*, char*); }
 char* fn_7100dd0a7c(char* p0, char* p1) {
     return callee::fn_7100dd0030(p0, p1);

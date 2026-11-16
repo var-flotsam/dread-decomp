@@ -15,3 +15,5 @@ void fn_71002af630(UnkNavMeshCell* self);  // A cell's constructor.
 void fn_71002af6a0(UnkNavMeshCell* self);
 bool fn_71002af6fc(UnkRegion_710027a41c* region, u32 flags);
 bool fn_71002b007c(UnkNavMeshCell* cell);
+// Sets the cell's flag, telling its mesh when it changes (src/game/UnkNavMeshCell_SetFlag.cpp).
+void fn_71002af93c(UnkNavMeshCell* self, bool flag);

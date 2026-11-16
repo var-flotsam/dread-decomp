@@ -4,20 +4,9 @@
 #include <stdlib.h>
 
 #include "base/UnkMatrix44.h"
+#include "game/CExplosionGfxLayout.h"
 #include "game/UnkTU54.h"
 #include "types.h"
-
-struct CExplosionGfx {
-    u8 pad_0x0[0xb8];
-    f32 fMainExplosionScale;  // +0xb8
-    f32 vRandomScale[2];      // +0xbc
-    f32 fRadius;              // +0xc4
-    f32 fRadiusAmplitude;     // +0xc8
-    f32 fRandomArcAmplitude;  // +0xcc
-    u32 uAmount;              // +0xd0
-    f32 fLength;              // +0xd4
-    f32 vRandomDelay[2];      // +0xd8
-};
 
 // What an explosion is spawned at: a position at +0xc, and delays (count at +0x30) that
 // fn_7100ddecd8 appends to.

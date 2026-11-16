@@ -1,57 +1,8 @@
 // Queries a 2D bounding-volume tree and its sub-trees for objects overlapping a shape swept by a
 // 2D offset (the union of its bounds before and after the move), filtered by a layer mask;
 // returns whether anything reported a hit.
+#include "game/logic/collision/UnkBvhTree.h"
 #include "types.h"
-
-struct UnkFlags {
-    u32 bits;
-    UnkFlags(u32 b) : bits(b) {}
-    UnkFlags(const UnkFlags& o) : bits(o.bits) {}
-};
-
-struct Vec3 {
-    f32 x, y, z;
-};
-
-struct Vec2 {
-    f32 x, y;
-    Vec2(const Vec3& v);  // fn_710007b430
-    Vec2(const Vec2& o) : x(o.x), y(o.y) {}
-};
-
-struct UnkAABB3 {
-    Vec3 min, max;
-};
-
-struct UnkBox {
-    Vec2 min, max;
-    UnkBox(const UnkAABB3& b) : min(b.min), max(b.max) {}
-};
-
-struct UnkMtx44 {
-    f32 m[16];
-    UnkMtx44(const UnkMtx44& o) {
-        for (int i = 0; i < 16; ++i)
-            m[i] = o.m[i];
-    }
-};
-
-UnkMtx44 operator*(const UnkMtx44& a, const UnkMtx44& b);  // fn_71000127c8
-
-struct UnkShape {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual UnkAABB3 vf_0x28(const UnkMtx44& xf);  // bounds under a transform
-    UnkMtx44 transform;
-};
-
-struct UnkNode {
-    f32 minX, minY, maxX, maxY;
-    s32 index;  // >= 0: index of the next node outside this subtree; < 0: a leaf
-};
 
 struct UnkQueryCtx {
     u32 mask;
@@ -62,27 +13,6 @@ struct UnkQueryCtx {
     UnkMtx44 transform;
     Vec2 delta;
     const UnkBox* bounds;
-};
-
-struct UnkSubTree {
-    char pad[8];
-    u32 field_0x8;
-    u32 field_0xc;
-    char pad2[0x90 - 0x10];
-    UnkFlags Query(UnkFlags flags, const UnkMtx44* xf, const Vec2* delta, UnkShape* shape, u32 mask, const UnkBox* bounds, void* arg, bool flag) asm("fn_7100d5be04");  // fn_7100d5be04
-};
-
-struct UnkTree {
-    char pad[0x5c];
-    u32 field_0x5c;
-    UnkNode* nodes;
-    u32 nodeCount;
-    char pad2[0x90 - 0x6c];
-    char field_0x90[0xb8 - 0x90];
-    u32 subTreeCount;
-    u8 subTrees[4 * sizeof(UnkSubTree)];
-    UnkSubTree* SubBegin() { return reinterpret_cast<UnkSubTree*>(subTrees); }
-    UnkSubTree* SubEnd() { return SubBegin() + subTreeCount; }
 };
 
 bool fn_7100d5cd9c(UnkQueryCtx* ctx, const UnkNode* node);
