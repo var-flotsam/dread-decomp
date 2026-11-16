@@ -196,10 +196,10 @@ def traits(orig: asmdiff.Original, init: int, decls: set[str], local: int | None
     for off, member in SLOTS.items():
         v = st.get(off)
         if v == ("imm", 0):
-            lines.append(f"    static constexpr UnkFn {member} = nullptr;")
+            lines.append(f"    static constexpr SlotFn {member} = nullptr;")
         elif v and v[0] == "fn":
             decls.add(f"void fn_{v[1]:x}();")
-            lines.append(f"    static constexpr UnkFn {member} = &fn_{v[1]:x};")
+            lines.append(f"    static constexpr SlotFn {member} = &fn_{v[1]:x};")
         else:
             return None
     p = st.get(0xE8)
@@ -224,7 +224,7 @@ def emit(getter: int, name: str, init: int, body: list[str]) -> list[str]:
             *body,
             "};",
             "template <>",
-            f"struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_{getter:x}> {{",
+            f"struct base::reflection::PointerTypeGetter<UnkRefl_fn_{getter:x}> {{",
             f"    static constexpr const char* name = {refl_attrs.c_string(name)};",
             f"    using Init = UnkRefl_fn_{init:x};",
             "};",
@@ -245,10 +245,10 @@ def enum_traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[str]
     for off in (0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x68):
         v = st.get(off)
         if v == ("imm", 0):
-            lines.append(f"    static constexpr UnkFn {SLOTS[off]} = nullptr;")
+            lines.append(f"    static constexpr SlotFn {SLOTS[off]} = nullptr;")
         elif v and v[0] == "fn":
             decls.add(f"void fn_{v[1]:x}();")
-            lines.append(f"    static constexpr UnkFn {SLOTS[off]} = &fn_{v[1]:x};")
+            lines.append(f"    static constexpr SlotFn {SLOTS[off]} = &fn_{v[1]:x};")
         else:
             return None
     decls.add(f"const base::reflection::CType* fn_{under[1]:x}();")
@@ -524,13 +524,22 @@ def named_pointers(orig: asmdiff.Original, pairs: list, enums: frozenset[str] = 
     return out
 
 
+# The lines a description base derives from the type itself (ValueOps.h, CollectionTypeMapper.h): its size,
+# sizeof(T), and a collection's kind. A description with such a base leaves them out.
+DERIVED_LINES = ("    static constexpr u64 size = ", "    static constexpr u32 kind = ")
+
+
+def underived(body: list[str]) -> list[str]:
+    return [line for line in body if not line.startswith(DERIVED_LINES)]
+
+
 def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: str,
                      enums: frozenset[str] = frozenset()) -> list[str]:
     """A pointer type's description with its CType slots from ValueOps<T> (ValueOps.h), T spelled
     `canon`; the pointer-specific slots (get, set, increment) and the getter (whose string is `name`)
     stay as they are."""
     slot_members = {f" {m} = " for m in SLOTS.values() if m not in ("get", "set", "increment")}
-    rest = [line for line in body if not any(m in line for m in slot_members)]
+    rest = [line for line in underived(body) if not any(m in line for m in slot_members)]
     out = emit(getter, name, init, rest)
     name = canon
     head = out.index("template <>")
@@ -597,8 +606,8 @@ def enum_declaration(name: str) -> str:
 
 def emit_enum_ops(init: int, name: str, obj: int, body: list[str]) -> list[str]:
     """An enum's description and value operations, named by the enum (ValueOps.h). `body` is
-    enum_traits' lines; the slot lines give way to ValueOpsDescription."""
-    rest = [line for line in body if " UnkFn " not in line]
+    enum_traits' lines; the slot lines and the size give way to ValueOpsDescription."""
+    rest = [line for line in underived(body) if " SlotFn " not in line]
     return ["template <>",
             f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) {{ return g_unk_{obj:x}; }}",
             f"template struct base::reflection::ValueOps<{name}>;",
@@ -705,7 +714,7 @@ def collection_traits(orig: asmdiff.Original, init: int, decls: set[str],
         f = fn(off)
         if f is None:
             return None
-        lines.append(f"    static constexpr UnkFn {SLOTS[off]} = {f};")
+        lines.append(f"    static constexpr SlotFn {SLOTS[off]} = {f};")
     for off, member in ((0xE8, "key"), (0xF0, "element"), (0xF8, "iterator"), (0x100, "const_iterator")):
         v = st.get(off)
         if off == 0xF0 and local is not None:
@@ -723,7 +732,7 @@ def collection_traits(orig: asmdiff.Original, init: int, decls: set[str],
         f = fn(off)
         if f is None:
             return None
-        lines.append(f"    static constexpr UnkFn {member} = {f};")
+        lines.append(f"    static constexpr SlotFn {member} = {f};")
     return lines
 
 
@@ -992,7 +1001,7 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
     so that only the slots are emitted. type_of is the mapper's only with the descriptor it returns."""
     if type_of_global is None:
         members = frozenset(members) - {"type_of"}
-    rest = [line for line in body if not any(f" {d} = " in line for d in members)]
+    rest = [line for line in underived(body) if not any(f" {d} = " in line for d in members)]
     out = emit_collection(init, rest)
     desc = f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> {{"
     small_dict = SMALL_DICT_RE.fullmatch(vector) is not None
@@ -1070,10 +1079,10 @@ def flagset_traits(orig: asmdiff.Original, init: int, decls: set[str]) -> list[s
     for off in (0x28, 0x30, 0x38, 0x40, 0x48, 0x50, 0x58, 0x60, 0x68):
         v = st.get(off)
         if v == ("imm", 0):
-            lines.append(f"    static constexpr UnkFn {SLOTS[off]} = nullptr;")
+            lines.append(f"    static constexpr SlotFn {SLOTS[off]} = nullptr;")
         elif v and v[0] == "fn":
             decls.add(f"void fn_{v[1]:x}();")
-            lines.append(f"    static constexpr UnkFn {SLOTS[off]} = &fn_{v[1]:x};")
+            lines.append(f"    static constexpr SlotFn {SLOTS[off]} = &fn_{v[1]:x};")
         else:
             return None
     decls.add(f"const base::reflection::CType* fn_{under[1]:x}();")
@@ -1103,7 +1112,7 @@ def flagset_definition(name: str) -> str:
 
 def emit_flagset_ops(init: int, name: str, obj: int, body: list[str]) -> list[str]:
     """A flag set's description and value operations, named by the flag set (ValueOps.h)."""
-    rest = [line for line in body if " UnkFn " not in line]
+    rest = [line for line in underived(body) if " SlotFn " not in line]
     return [flagset_definition(name),
             "template <>",
             f"const CType& base::reflection::ValueOps<{name}>::TypeOf(const void*) {{ return g_unk_{obj:x}; }}",
@@ -1211,10 +1220,10 @@ def primitive_traits(orig: asmdiff.Original, addr: int, decls: set[str]) -> list
         v = st.get(off)
         member = PRIMITIVE_SLOTS[off]
         if v == ("imm", 0):
-            lines.append(f"    static constexpr UnkFn {member} = nullptr;")
+            lines.append(f"    static constexpr SlotFn {member} = nullptr;")
         elif v and v[0] == "fn":
             decls.add(f"void fn_{v[1]:x}();")
-            lines.append(f"    static constexpr UnkFn {member} = &fn_{v[1]:x};")
+            lines.append(f"    static constexpr SlotFn {member} = &fn_{v[1]:x};")
         else:
             return None
     return lines
@@ -1245,12 +1254,12 @@ def primitive_value_type(body: list[str]) -> str | None:
 def emit_primitive(getter: int, body: list[str], value_type: str | None = None) -> list[str]:
     """A plain type's traits and getter; with `value_type`, its CType slots come from
     ValueOps<value_type> (ValueOps.h)."""
-    head = f"struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_{getter:x}> {{"
+    head = f"struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_{getter:x}> {{"
     ops = []
     if value_type:
         slot_members = {f" {SLOTS[off]} = " for off in VALUE_OPS}
-        body = [line for line in body if not any(m in line for m in slot_members)]
-        head = (f"struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_{getter:x}> "
+        body = [line for line in underived(body) if not any(m in line for m in slot_members)]
+        head = (f"struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_{getter:x}> "
                 f": base::reflection::ValueOpsDescription<{value_type}> {{")
         ops = ["template <>",
                f"const CType& base::reflection::ValueOps<{value_type}>::TypeOf(const void*) "
@@ -1286,7 +1295,7 @@ def emit_inline_pointer(getter: int, name: str, body: list[str]) -> list[str]:
             *body,
             "};",
             "template <>",
-            f"struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_{getter:x}> {{",
+            f"struct base::reflection::PointerTypeGetter<UnkRefl_fn_{getter:x}> {{",
             f"    static constexpr const char* name = {refl_attrs.c_string(name)};",
             f"    using Init = UnkReflInline_{getter:x};",
             "};",
@@ -1328,7 +1337,7 @@ PRELUDE = ['#include "base/global/CRntVector.h"',
            '#include "base/reflection/UnkReflPrimitiveType.h"',
            '#include "base/reflection/ValueOps.h"',
            "using base::reflection::CType;",
-           "using base::reflection::UnkFn;"]
+           "using base::reflection::SlotFn;"]
 NAME_RE = re.compile(r"\b(?:fn|g_unk)_[0-9a-f]{10}\b")
 
 

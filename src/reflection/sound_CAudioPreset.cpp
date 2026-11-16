@@ -480,22 +480,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101038914> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7101038b38;
-    static constexpr UnkFn copy_construct = &fn_7101038b40;
-    static constexpr UnkFn move_construct = &fn_7101038b4c;
-    static constexpr UnkFn destroy = &fn_7101038b58;
-    static constexpr UnkFn copy_assign = &fn_7101038b5c;
-    static constexpr UnkFn move_assign = &fn_7101038b70;
-    static constexpr UnkFn equals = &fn_7101038b08;
-    static constexpr UnkFn hash = &fn_7101038b1c;
-    static constexpr UnkFn type_of = &fn_7101038b24;
-    static constexpr UnkFn get = &fn_7101038a84;
-    static constexpr UnkFn set = &fn_7101038aec;
-    static constexpr UnkFn increment = &fn_7101038af8;
+    static constexpr SlotFn construct = &fn_7101038b38;
+    static constexpr SlotFn copy_construct = &fn_7101038b40;
+    static constexpr SlotFn move_construct = &fn_7101038b4c;
+    static constexpr SlotFn destroy = &fn_7101038b58;
+    static constexpr SlotFn copy_assign = &fn_7101038b5c;
+    static constexpr SlotFn move_assign = &fn_7101038b70;
+    static constexpr SlotFn equals = &fn_7101038b08;
+    static constexpr SlotFn hash = &fn_7101038b1c;
+    static constexpr SlotFn type_of = &fn_7101038b24;
+    static constexpr SlotFn get = &fn_7101038a84;
+    static constexpr SlotFn set = &fn_7101038aec;
+    static constexpr SlotFn increment = &fn_7101038af8;
     static const CType* pointee() { return sound::CAudioPreset::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010353bc> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71010353bc> {
     static constexpr const char* name = "sound::CAudioPreset*";
     using Init = UnkRefl_fn_7101038914;
 };
@@ -507,22 +507,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_7101038b84> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7101038da8;
-    static constexpr UnkFn copy_construct = &fn_7101038db0;
-    static constexpr UnkFn move_construct = &fn_7101038dbc;
-    static constexpr UnkFn destroy = &fn_7101038dc8;
-    static constexpr UnkFn copy_assign = &fn_7101038dcc;
-    static constexpr UnkFn move_assign = &fn_7101038de0;
-    static constexpr UnkFn equals = &fn_7101038d78;
-    static constexpr UnkFn hash = &fn_7101038d8c;
-    static constexpr UnkFn type_of = &fn_7101038d94;
-    static constexpr UnkFn get = &fn_7101038cf4;
-    static constexpr UnkFn set = &fn_7101038d5c;
-    static constexpr UnkFn increment = &fn_7101038d68;
+    static constexpr SlotFn construct = &fn_7101038da8;
+    static constexpr SlotFn copy_construct = &fn_7101038db0;
+    static constexpr SlotFn move_construct = &fn_7101038dbc;
+    static constexpr SlotFn destroy = &fn_7101038dc8;
+    static constexpr SlotFn copy_assign = &fn_7101038dcc;
+    static constexpr SlotFn move_assign = &fn_7101038de0;
+    static constexpr SlotFn equals = &fn_7101038d78;
+    static constexpr SlotFn hash = &fn_7101038d8c;
+    static constexpr SlotFn type_of = &fn_7101038d94;
+    static constexpr SlotFn get = &fn_7101038cf4;
+    static constexpr SlotFn set = &fn_7101038d5c;
+    static constexpr SlotFn increment = &fn_7101038d68;
     static const CType* pointee() { return sound::CAudioPreset::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7101035498> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_7101035498> {
     static constexpr const char* name = "sound::CAudioPreset const*";
     using Init = UnkRefl_fn_7101038b84;
 };

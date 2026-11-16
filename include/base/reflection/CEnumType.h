@@ -14,7 +14,7 @@
 namespace base::reflection {
 
 // Per-type facts for CEnumType's constructor (generated): size, the CType function slots
-// (typed UnkFn and cast at the use site), the underlying type's getter and the out-of-line
+// (typed SlotFn and cast at the use site), the underlying type's getter and the out-of-line
 // function that reserves the value list (one instance per element type).
 template <class T>
 struct EnumTypeDescription;
@@ -36,14 +36,14 @@ static_assert(sizeof(CEnumType) == 0x118, "CEnumType layout");
 template <class T>
 CEnumType::CEnumType(const base::global::CStrId& name, const void* arg, T*)
     : CType(fn_7100001570("base::reflection::CEnumType", 0x1b), name, EnumTypeDescription<T>::size,
-            reinterpret_cast<UnkFn_0x58>(EnumTypeDescription<T>::equals),
-            reinterpret_cast<UnkFn_0x60>(EnumTypeDescription<T>::hash),
-            reinterpret_cast<UnkFn_0x68>(EnumTypeDescription<T>::type_of), nullptr, nullptr,
-            {reinterpret_cast<UnkFn>(EnumTypeDescription<T>::construct), reinterpret_cast<UnkFn_0x30>(EnumTypeDescription<T>::copy_construct),
-             reinterpret_cast<UnkFn_0x30>(EnumTypeDescription<T>::move_construct),
-             reinterpret_cast<UnkFn_0x40>(EnumTypeDescription<T>::destroy),
-             reinterpret_cast<UnkFn_0x48>(EnumTypeDescription<T>::copy_assign),
-             reinterpret_cast<UnkFn_0x48>(EnumTypeDescription<T>::move_assign)},
+            reinterpret_cast<EqualsFn>(EnumTypeDescription<T>::equals),
+            reinterpret_cast<HashFn>(EnumTypeDescription<T>::hash),
+            reinterpret_cast<TypeOfFn>(EnumTypeDescription<T>::type_of), nullptr, nullptr,
+            {reinterpret_cast<SlotFn>(EnumTypeDescription<T>::construct), reinterpret_cast<CopyConstructFn>(EnumTypeDescription<T>::copy_construct),
+             reinterpret_cast<CopyConstructFn>(EnumTypeDescription<T>::move_construct),
+             reinterpret_cast<DestroyFn>(EnumTypeDescription<T>::destroy),
+             reinterpret_cast<AssignFn>(EnumTypeDescription<T>::copy_assign),
+             reinterpret_cast<AssignFn>(EnumTypeDescription<T>::move_assign)},
             false),
       m_underlying(EnumTypeDescription<T>::underlying()), field_0xe8(arg) {
     EnumTypeDescription<T>::reserve(&m_values, 0x10);

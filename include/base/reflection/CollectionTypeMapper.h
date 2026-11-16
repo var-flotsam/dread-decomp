@@ -33,6 +33,9 @@ namespace base::reflection {
 
 template <class C>
 struct CollectionTypeMapper {
+    // CCollectionType's kind: a vector is indexed by position.
+    static constexpr u32 kind = 1;
+
     struct TElementIterator {
         void* m_element = nullptr;
         bool operator==(const TElementIterator& other) const { return m_element == other.m_element; }
@@ -120,10 +123,12 @@ struct CollectionTypeMapper {
 };
 
 // The mapper's functions under the members a collection's description gives its descriptor's constructor
-// (CCollectionType.h). A description derives from this and adds the rest: size, kind, the key, element and
+// (CCollectionType.h). A description derives from this and adds the rest: the key, element and
 // iterator types, and the slots not written yet.
 template <class C>
 struct CollectionMapperDescription {
+    static constexpr u64 size = sizeof(C);
+    static constexpr u32 kind = CollectionTypeMapper<C>::kind;
     static constexpr auto construct = &CollectionTypeMapper<C>::Construct;
     static constexpr auto copy_construct = &CollectionTypeMapper<C>::CopyConstruct;
     static constexpr auto move_construct = &CollectionTypeMapper<C>::MoveConstruct;
@@ -153,6 +158,8 @@ struct CollectionMapperDescription {
 template <class C>
 struct VectorHeaderMapperDescription {
     using Mapper = CollectionTypeMapper<C>;
+    static constexpr u64 size = sizeof(C);
+    static constexpr u32 kind = CollectionTypeMapper<C>::kind;
     static constexpr auto construct = &Mapper::Construct;
     static constexpr auto move_construct = &Mapper::MoveConstruct;
     static constexpr auto hash = &Mapper::Hash;
@@ -176,6 +183,8 @@ struct VectorAccessMapperDescription : VectorHeaderMapperDescription<C> {
 template <class K, class V>
 struct CollectionTypeMapper<global::CRntSmallDictionary<K, V>> {
     using C = global::CRntSmallDictionary<K, V>;
+    // CCollectionType's kind: a dictionary is keyed.
+    static constexpr u32 kind = 2;
 
     struct TElementIterator {
         void* m_element = nullptr;
@@ -229,6 +238,8 @@ struct CollectionTypeMapper<global::CRntSmallDictionary<K, V>> {
 template <class C>
 struct SmallDictionaryHeaderMapperDescription {
     using Mapper = CollectionTypeMapper<C>;
+    static constexpr u64 size = sizeof(C);
+    static constexpr u32 kind = CollectionTypeMapper<C>::kind;
     static constexpr auto construct = &Mapper::Construct;
     static constexpr auto move_construct = &Mapper::MoveConstruct;
     static constexpr auto hash = &Mapper::Hash;
@@ -261,6 +272,8 @@ struct SmallDictionaryKeyedMapperDescription : SmallDictionaryMapperDescription<
 template <class K, class V>
 struct CollectionTypeMapper<global::CRntDictionary<K, V>> {
     using C = global::CRntDictionary<K, V>;
+    // CCollectionType's kind: a dictionary is keyed.
+    static constexpr u32 kind = 2;
 
     struct TElementIterator {
         void* m_element = nullptr;
@@ -304,6 +317,8 @@ struct CollectionTypeMapper<global::CRntDictionary<K, V>> {
 template <class C>
 struct DictionaryMapperDescription {
     using Mapper = CollectionTypeMapper<C>;
+    static constexpr u64 size = sizeof(C);
+    static constexpr u32 kind = CollectionTypeMapper<C>::kind;
     static constexpr auto construct = &Mapper::Construct;
     static constexpr auto equals = &Mapper::Equals;
     static constexpr auto hash = &Mapper::Hash;

@@ -16,23 +16,25 @@
 
 namespace base::reflection {
 
-using UnkFn = void (*)();
+// A descriptor's function slot, typed as nothing in particular: a description names the function and the
+// constructor casts it to the slot's own type below.
+using SlotFn = void (*)();
 
 class CType;
 class CClass;
 
 // Type-erased per-type functions a descriptor points to (CType+0x28..+0x68). Signatures are
 // inferred from the code shapes in main; the roles in the comments are guesses.
-using UnkFn_0x30 = void (*)(void* dst, const void* src);   // copy-constructs (0x30) / moves (0x38)
-using UnkFn_0x40 = void (*)(void* obj);                    // destroys in place (complete dtor)
-using UnkFn_0x48 = void* (*)(void* dst, const void* src);  // assigns; null when not assignable
-using UnkFn_0x58 = bool (*)(const void* a, const void* b); // compares (identity or always false)
-using UnkFn_0x60 = s32 (*)();                              // returns -1 for every class
-using UnkFn_0x68 = const CType& (*)(const void* obj);      // the object's dynamic class
+using CopyConstructFn = void (*)(void* dst, const void* src);  // copy-constructs (0x30) / moves (0x38)
+using DestroyFn = void (*)(void* obj);                         // destroys in place (complete dtor)
+using AssignFn = void* (*)(void* dst, const void* src);        // assigns; null when not assignable
+using EqualsFn = bool (*)(const void* a, const void* b);       // compares (identity or always false)
+using HashFn = s32 (*)();                                      // returns -1 for every class
+using TypeOfFn = const CType& (*)(const void* obj);            // the object's dynamic class
 // The two functions a class getter passes in. Both receive the descriptor: the first
 // (CType+0x70) adds class attributes to the container at CType+0x80, the second (CClass+0xe0)
 // registers member fields. Most of them are empty.
-using UnkFn_0x70 = void (*)(CClass* cls);
+using ClassSetupFn = void (*)(CClass* cls);
 
 // Stand-ins for a reflected object's virtual interface, as far as the helpers use it. Most
 // classes put the dynamic class getter in vtable slot 0 and the destructor after it; a few
@@ -68,15 +70,15 @@ class CType {
 public:
     // Type-specific functions installed by the constructor body; absent ones stay null.
     struct UnkFnSet {
-        UnkFn fn_0x28;
-        UnkFn_0x30 fn_0x30, fn_0x38;
-        UnkFn_0x40 fn_0x40;
-        UnkFn_0x48 fn_0x48, fn_0x50;
+        SlotFn fn_0x28;
+        CopyConstructFn fn_0x30, fn_0x38;
+        DestroyFn fn_0x40;
+        AssignFn fn_0x48, fn_0x50;
     };
 
-    CType(u64 kind, const base::global::CStrId& name, u64 size, UnkFn_0x58 fn_0x58, UnkFn_0x60 fn_0x60,
-          UnkFn_0x68 fn_0x68,
-          UnkFn_0x70 fn_0x70, const CType* parent, const UnkFnSet& fns, bool abstract)
+    CType(u64 kind, const base::global::CStrId& name, u64 size, EqualsFn fn_0x58, HashFn fn_0x60,
+          TypeOfFn fn_0x68,
+          ClassSetupFn fn_0x70, const CType* parent, const UnkFnSet& fns, bool abstract)
         : m_name(name), m_kind(kind), m_size(size), m_flags(0), field_0x24(-1), m_fn_0x58(fn_0x58),
           m_fn_0x60(fn_0x60), m_fn_0x68(fn_0x68), m_fn_0x70(fn_0x70), m_parent(parent),
           m_array_0xb8(10, 0x3e) {
@@ -103,16 +105,16 @@ public:
     u64 m_size;
     u32 m_flags;
     s32 field_0x24;
-    UnkFn m_fn_0x28 = nullptr;
-    UnkFn_0x30 m_fn_0x30 = nullptr;
-    UnkFn_0x30 m_fn_0x38 = nullptr;
-    UnkFn_0x40 m_fn_0x40 = nullptr;
-    UnkFn_0x48 m_fn_0x48 = nullptr;
-    UnkFn_0x48 m_fn_0x50 = nullptr;
-    UnkFn_0x58 m_fn_0x58;
-    UnkFn_0x60 m_fn_0x60;
-    UnkFn_0x68 m_fn_0x68;
-    UnkFn_0x70 m_fn_0x70;
+    SlotFn m_fn_0x28 = nullptr;
+    CopyConstructFn m_fn_0x30 = nullptr;
+    CopyConstructFn m_fn_0x38 = nullptr;
+    DestroyFn m_fn_0x40 = nullptr;
+    AssignFn m_fn_0x48 = nullptr;
+    AssignFn m_fn_0x50 = nullptr;
+    EqualsFn m_fn_0x58;
+    HashFn m_fn_0x60;
+    TypeOfFn m_fn_0x68;
+    ClassSetupFn m_fn_0x70;
     const CType* m_parent;
     void* field_0x80 = nullptr;  // attribute container, created on first use (fn_710009dd6c)
     void* field_0x88 = nullptr;
@@ -145,20 +147,20 @@ public:
     // Defined out of the class body: the original calls it rather than inlining it.
     // `extra` is always null and unused; typing it T* is our device for deducing T.
     template <class T>
-    CClass(const base::global::CStrId& name, const CClass* parent, UnkFn_0x70 fn_0x70, UnkFn_0x70 fn_0xe0, T* extra);
+    CClass(const base::global::CStrId& name, const CClass* parent, ClassSetupFn fn_0x70, ClassSetupFn fn_0xe0, T* extra);
     ~CClass() override;
 
-    UnkFn_0x70 m_fn_0xe0;
+    ClassSetupFn m_fn_0xe0;
     UnkReflArray m_array_0xe8;
     UnkReflArray m_array_0x110;
 };
 
 template <class T>
-CClass::CClass(const base::global::CStrId& name, const CClass* parent, UnkFn_0x70 fn_0x70, UnkFn_0x70 fn_0xe0, T* extra)
+CClass::CClass(const base::global::CStrId& name, const CClass* parent, ClassSetupFn fn_0x70, ClassSetupFn fn_0xe0, T* extra)
     : CType(fn_7100001570("base::reflection::CClass", 0x18), name, UnkReflClassTraits<T>::size,
             UnkReflClassTraits<T>::fn_0x58, UnkReflClassTraits<T>::fn_0x60, UnkReflClassTraits<T>::fn_0x68,
             fn_0x70, parent,
-            {reinterpret_cast<UnkFn>(UnkReflClassTraits<T>::fn_0x28), UnkReflClassTraits<T>::fn_0x30,
+            {reinterpret_cast<SlotFn>(UnkReflClassTraits<T>::fn_0x28), UnkReflClassTraits<T>::fn_0x30,
              UnkReflClassTraits<T>::fn_0x38, UnkReflClassTraits<T>::fn_0x40, UnkReflClassTraits<T>::fn_0x48,
              UnkReflClassTraits<T>::fn_0x50},
             UnkReflClassTraits<T>::abstract),
@@ -196,7 +198,7 @@ void fn_710009ec00(void* list, void* type);
 // constructor out of line (implicit instantiation would inline it into the getter). Whether
 // it did so with an explicit instantiation or a noinline attribute is unknown; both produce
 // the same code.
-#define DREAD_REFL_GETTER_IMPL_(ADDR, INIT, NAME_ID, PARENT_EXPR, FN_0x70, FN_0xE0)                     void fn_##FN_0x70(base::reflection::CClass*);                                                      void fn_##FN_0xE0(base::reflection::CClass*);                                                      DREAD_REFL_GETTER_LINKAGE const base::reflection::CClass* fn_##ADDR() {                                                          static base::reflection::CClass s_class(NAME_ID, PARENT_EXPR, &fn_##FN_0x70, &fn_##FN_0xE0,                                                 static_cast<UnkRefl_fn_##INIT*>(nullptr));                 return &s_class;                                                                               }                                                                                                  template base::reflection::CClass::CClass(const base::global::CStrId&,                                                                       const base::reflection::CClass*,                                                                   base::reflection::UnkFn_0x70,                                                                      base::reflection::UnkFn_0x70, UnkRefl_fn_##INIT*)
+#define DREAD_REFL_GETTER_IMPL_(ADDR, INIT, NAME_ID, PARENT_EXPR, FN_0x70, FN_0xE0)                     void fn_##FN_0x70(base::reflection::CClass*);                                                      void fn_##FN_0xE0(base::reflection::CClass*);                                                      DREAD_REFL_GETTER_LINKAGE const base::reflection::CClass* fn_##ADDR() {                                                          static base::reflection::CClass s_class(NAME_ID, PARENT_EXPR, &fn_##FN_0x70, &fn_##FN_0xE0,                                                 static_cast<UnkRefl_fn_##INIT*>(nullptr));                 return &s_class;                                                                               }                                                                                                  template base::reflection::CClass::CClass(const base::global::CStrId&,                                                                       const base::reflection::CClass*,                                                                   base::reflection::ClassSetupFn,                                                                      base::reflection::ClassSetupFn, UnkRefl_fn_##INIT*)
 
 #define DREAD_REFL_CLASS_GETTER(ADDR, INIT, NAME, PARENT, FN_0x70, FN_0xE0)                            const base::reflection::CClass* fn_##PARENT();                                                     DREAD_REFL_GETTER_IMPL_(ADDR, INIT, base::global::CStrId(NAME, true), fn_##PARENT(), FN_0x70, FN_0xE0)
 

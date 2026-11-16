@@ -110,15 +110,15 @@ TRAIT_SLOTS = [0x58, 0x60, 0x68, 0x28, 0x30, 0x38, 0x40, 0x48, 0x50]
 
 # Slot -> (CClass.h type alias, declaration format). {name} is fn_<addr>.
 SLOT_TYPES = {
-    0x28: ("UnkFn", "void {name}();"),
-    0x30: ("UnkFn_0x30", "void {name}(void* dst, const void* src);"),
-    0x38: ("UnkFn_0x30", "void {name}(void* dst, const void* src);"),
-    0x40: ("UnkFn_0x40", "void {name}(void* obj);"),
-    0x48: ("UnkFn_0x48", "void* {name}(void* dst, const void* src);"),
-    0x50: ("UnkFn_0x48", "void* {name}(void* dst, const void* src);"),
-    0x58: ("UnkFn_0x58", "bool {name}(const void* a, const void* b);"),
-    0x60: ("UnkFn_0x60", "s32 {name}();"),
-    0x68: ("UnkFn_0x68", "const base::reflection::CType& {name}(const void* obj);"),
+    0x28: ("SlotFn", "void {name}();"),
+    0x30: ("CopyConstructFn", "void {name}(void* dst, const void* src);"),
+    0x38: ("CopyConstructFn", "void {name}(void* dst, const void* src);"),
+    0x40: ("DestroyFn", "void {name}(void* obj);"),
+    0x48: ("AssignFn", "void* {name}(void* dst, const void* src);"),
+    0x50: ("AssignFn", "void* {name}(void* dst, const void* src);"),
+    0x58: ("EqualsFn", "bool {name}(const void* a, const void* b);"),
+    0x60: ("HashFn", "s32 {name}();"),
+    0x68: ("TypeOfFn", "const base::reflection::CType& {name}(const void* obj);"),
 }
 OBJ = "base::reflection::UnkReflObject"
 OBJ_B = "base::reflection::UnkReflObjectB"
@@ -500,8 +500,8 @@ def constructor_lines(init: int, size: int, abstract: bool, traits: dict[int, in
         lines.append(f"    static constexpr {SLOT_TYPES[slot][0]} fn_{slot:#x} = {value};")
     return lines + ["};",
                     "template base::reflection::CClass::CClass(const base::global::CStrId&, "
-                    "const base::reflection::CClass*, base::reflection::UnkFn_0x70, "
-                    f"base::reflection::UnkFn_0x70, UnkRefl_fn_{init:x}*);"]
+                    "const base::reflection::CClass*, base::reflection::ClassSetupFn, "
+                    f"base::reflection::ClassSetupFn, UnkRefl_fn_{init:x}*);"]
 
 
 def write_chunks(prefix: str, header: list[str], defs: dict[int, tuple[list[str], str]]) -> None:

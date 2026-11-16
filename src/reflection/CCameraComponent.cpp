@@ -174,22 +174,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010e6b8c> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010e6db0;
-    static constexpr UnkFn copy_construct = &fn_71010e6db8;
-    static constexpr UnkFn move_construct = &fn_71010e6dc4;
-    static constexpr UnkFn destroy = &fn_71010e6dd0;
-    static constexpr UnkFn copy_assign = &fn_71010e6dd4;
-    static constexpr UnkFn move_assign = &fn_71010e6de8;
-    static constexpr UnkFn equals = &fn_71010e6d80;
-    static constexpr UnkFn hash = &fn_71010e6d94;
-    static constexpr UnkFn type_of = &fn_71010e6d9c;
-    static constexpr UnkFn get = &fn_71010e6cfc;
-    static constexpr UnkFn set = &fn_71010e6d64;
-    static constexpr UnkFn increment = &fn_71010e6d70;
+    static constexpr SlotFn construct = &fn_71010e6db0;
+    static constexpr SlotFn copy_construct = &fn_71010e6db8;
+    static constexpr SlotFn move_construct = &fn_71010e6dc4;
+    static constexpr SlotFn destroy = &fn_71010e6dd0;
+    static constexpr SlotFn copy_assign = &fn_71010e6dd4;
+    static constexpr SlotFn move_assign = &fn_71010e6de8;
+    static constexpr SlotFn equals = &fn_71010e6d80;
+    static constexpr SlotFn hash = &fn_71010e6d94;
+    static constexpr SlotFn type_of = &fn_71010e6d9c;
+    static constexpr SlotFn get = &fn_71010e6cfc;
+    static constexpr SlotFn set = &fn_71010e6d64;
+    static constexpr SlotFn increment = &fn_71010e6d70;
     static const CType* pointee() { return CCameraComponent::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010e17f4> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71010e17f4> {
     static constexpr const char* name = "CCameraComponent*";
     using Init = UnkRefl_fn_71010e6b8c;
 };
@@ -201,22 +201,22 @@ template <>
 struct base::reflection::PointerTypeDescription<UnkRefl_fn_71010e6dfc> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71010e7020;
-    static constexpr UnkFn copy_construct = &fn_71010e7028;
-    static constexpr UnkFn move_construct = &fn_71010e7034;
-    static constexpr UnkFn destroy = &fn_71010e7040;
-    static constexpr UnkFn copy_assign = &fn_71010e7044;
-    static constexpr UnkFn move_assign = &fn_71010e7058;
-    static constexpr UnkFn equals = &fn_71010e6ff0;
-    static constexpr UnkFn hash = &fn_71010e7004;
-    static constexpr UnkFn type_of = &fn_71010e700c;
-    static constexpr UnkFn get = &fn_71010e6f6c;
-    static constexpr UnkFn set = &fn_71010e6fd4;
-    static constexpr UnkFn increment = &fn_71010e6fe0;
+    static constexpr SlotFn construct = &fn_71010e7020;
+    static constexpr SlotFn copy_construct = &fn_71010e7028;
+    static constexpr SlotFn move_construct = &fn_71010e7034;
+    static constexpr SlotFn destroy = &fn_71010e7040;
+    static constexpr SlotFn copy_assign = &fn_71010e7044;
+    static constexpr SlotFn move_assign = &fn_71010e7058;
+    static constexpr SlotFn equals = &fn_71010e6ff0;
+    static constexpr SlotFn hash = &fn_71010e7004;
+    static constexpr SlotFn type_of = &fn_71010e700c;
+    static constexpr SlotFn get = &fn_71010e6f6c;
+    static constexpr SlotFn set = &fn_71010e6fd4;
+    static constexpr SlotFn increment = &fn_71010e6fe0;
     static const CType* pointee() { return CCameraComponent::refl_GetClass(); }
 };
 template <>
-struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71010e18d0> {
+struct base::reflection::PointerTypeGetter<UnkRefl_fn_71010e18d0> {
     static constexpr const char* name = "CCameraComponent const*";
     using Init = UnkRefl_fn_71010e6dfc;
 };

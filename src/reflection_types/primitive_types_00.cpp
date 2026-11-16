@@ -9,7 +9,7 @@
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/ValueOps.h"
 using base::reflection::CType;
-using base::reflection::UnkFn;
+using base::reflection::SlotFn;
 void fn_7100008164();
 void fn_7100008168();
 void fn_7100008174();
@@ -269,29 +269,28 @@ template <>
 const CType& base::reflection::ValueOps<unsigned int>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100005178>(); }
 template struct base::reflection::ValueOps<unsigned int>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100005178> : base::reflection::ValueOpsDescription<unsigned int> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100005178> : base::reflection::ValueOpsDescription<unsigned int> {
     static constexpr const char* name = "unsigned";
     static constexpr u64 length = 8;
-    static constexpr u64 size = 0x4;
-    static constexpr UnkFn add_attributes = &fn_71000e5fa8;
+    static constexpr SlotFn add_attributes = &fn_71000e5fa8;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100005178>();
 struct UnkRefl_fn_7100007f84;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100007f84> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100007f84> {
     static constexpr const char* name = "base::global::CRntString";
     static constexpr u64 length = 24;
     static constexpr u64 size = 0x30;
-    static constexpr UnkFn construct = &fn_7100008178;
-    static constexpr UnkFn copy_construct = &fn_710000817c;
-    static constexpr UnkFn move_construct = &fn_7100008180;
-    static constexpr UnkFn destroy = &fn_7100008184;
-    static constexpr UnkFn copy_assign = &fn_7100008188;
-    static constexpr UnkFn move_assign = &fn_71000081b8;
-    static constexpr UnkFn equals = &fn_7100008164;
-    static constexpr UnkFn hash = &fn_7100008168;
-    static constexpr UnkFn type_of = &fn_7100008174;
-    static constexpr UnkFn add_attributes = &fn_71000a7068;
+    static constexpr SlotFn construct = &fn_7100008178;
+    static constexpr SlotFn copy_construct = &fn_710000817c;
+    static constexpr SlotFn move_construct = &fn_7100008180;
+    static constexpr SlotFn destroy = &fn_7100008184;
+    static constexpr SlotFn copy_assign = &fn_7100008188;
+    static constexpr SlotFn move_assign = &fn_71000081b8;
+    static constexpr SlotFn equals = &fn_7100008164;
+    static constexpr SlotFn hash = &fn_7100008168;
+    static constexpr SlotFn type_of = &fn_7100008174;
+    static constexpr SlotFn add_attributes = &fn_71000a7068;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100007f84>();
 struct UnkRefl_fn_7100008500;
@@ -299,29 +298,28 @@ template <>
 const CType& base::reflection::ValueOps<char>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100008500>(); }
 template struct base::reflection::ValueOps<char>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100008500> : base::reflection::ValueOpsDescription<char> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100008500> : base::reflection::ValueOpsDescription<char> {
     static constexpr const char* name = "char";
     static constexpr u64 length = 4;
-    static constexpr u64 size = 0x1;
-    static constexpr UnkFn add_attributes = &fn_71000e5fa0;
+    static constexpr SlotFn add_attributes = &fn_71000e5fa0;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100008500>();
 struct UnkRefl_fn_7100009658;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100009658> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100009658> {
     static constexpr const char* name = "base::global::CStrId";
     static constexpr u64 length = 20;
     static constexpr u64 size = 0x8;
-    static constexpr UnkFn construct = &fn_710000b81c;
-    static constexpr UnkFn copy_construct = &fn_710000b8cc;
-    static constexpr UnkFn move_construct = &fn_710000b8fc;
-    static constexpr UnkFn destroy = &fn_710000b91c;
-    static constexpr UnkFn copy_assign = &fn_710000b984;
-    static constexpr UnkFn move_assign = &fn_710000ba0c;
-    static constexpr UnkFn equals = &fn_710000b7f4;
-    static constexpr UnkFn hash = &fn_710000b808;
-    static constexpr UnkFn type_of = &fn_710000b818;
-    static constexpr UnkFn add_attributes = &fn_71000a74a4;
+    static constexpr SlotFn construct = &fn_710000b81c;
+    static constexpr SlotFn copy_construct = &fn_710000b8cc;
+    static constexpr SlotFn move_construct = &fn_710000b8fc;
+    static constexpr SlotFn destroy = &fn_710000b91c;
+    static constexpr SlotFn copy_assign = &fn_710000b984;
+    static constexpr SlotFn move_assign = &fn_710000ba0c;
+    static constexpr SlotFn equals = &fn_710000b7f4;
+    static constexpr SlotFn hash = &fn_710000b808;
+    static constexpr SlotFn type_of = &fn_710000b818;
+    static constexpr SlotFn add_attributes = &fn_71000a74a4;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100009658>();
 struct UnkRefl_fn_710000abbc;
@@ -329,29 +327,28 @@ template <>
 const CType& base::reflection::ValueOps<float>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000abbc>(); }
 template struct base::reflection::ValueOps<float>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710000abbc> : base::reflection::ValueOpsDescription<float> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000abbc> : base::reflection::ValueOpsDescription<float> {
     static constexpr const char* name = "float";
     static constexpr u64 length = 5;
-    static constexpr u64 size = 0x4;
-    static constexpr UnkFn add_attributes = &fn_71000e5fac;
+    static constexpr SlotFn add_attributes = &fn_71000e5fac;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000abbc>();
 struct UnkRefl_fn_710000ad9c;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710000ad9c> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000ad9c> {
     static constexpr const char* name = "base::global::CFilePathStrId";
     static constexpr u64 length = 28;
     static constexpr u64 size = 0x8;
-    static constexpr UnkFn construct = &fn_710000ca54;
-    static constexpr UnkFn copy_construct = &fn_710000cb04;
-    static constexpr UnkFn move_construct = &fn_710000cb34;
-    static constexpr UnkFn destroy = &fn_710000cb54;
-    static constexpr UnkFn copy_assign = &fn_710000cbbc;
-    static constexpr UnkFn move_assign = &fn_710000cc44;
-    static constexpr UnkFn equals = &fn_710000ca2c;
-    static constexpr UnkFn hash = &fn_710000ca40;
-    static constexpr UnkFn type_of = &fn_710000ca50;
-    static constexpr UnkFn add_attributes = &fn_71000a7660;
+    static constexpr SlotFn construct = &fn_710000ca54;
+    static constexpr SlotFn copy_construct = &fn_710000cb04;
+    static constexpr SlotFn move_construct = &fn_710000cb34;
+    static constexpr SlotFn destroy = &fn_710000cb54;
+    static constexpr SlotFn copy_assign = &fn_710000cbbc;
+    static constexpr SlotFn move_assign = &fn_710000cc44;
+    static constexpr SlotFn equals = &fn_710000ca2c;
+    static constexpr SlotFn hash = &fn_710000ca40;
+    static constexpr SlotFn type_of = &fn_710000ca50;
+    static constexpr SlotFn add_attributes = &fn_71000a7660;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000ad9c>();
 struct UnkRefl_fn_710000d228;
@@ -359,47 +356,46 @@ template <>
 const CType& base::reflection::ValueOps<bool>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000d228>(); }
 template struct base::reflection::ValueOps<bool>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710000d228> : base::reflection::ValueOpsDescription<bool> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000d228> : base::reflection::ValueOpsDescription<bool> {
     static constexpr const char* name = "bool";
     static constexpr u64 length = 4;
-    static constexpr u64 size = 0x1;
-    static constexpr UnkFn add_attributes = &fn_71000e5f9c;
+    static constexpr SlotFn add_attributes = &fn_71000e5f9c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000d228>();
 struct UnkRefl_fn_710000fd7c;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710000fd7c> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000fd7c> {
     static constexpr const char* name = "base::global::CName";
     static constexpr u64 length = 19;
     static constexpr u64 size = 0x8;
-    static constexpr UnkFn construct = &fn_710000ff80;
-    static constexpr UnkFn copy_construct = &fn_710000ff8c;
-    static constexpr UnkFn move_construct = &fn_710000ff98;
-    static constexpr UnkFn destroy = &fn_710000ffa4;
-    static constexpr UnkFn copy_assign = &fn_710000ffa8;
-    static constexpr UnkFn move_assign = &fn_710000ffbc;
-    static constexpr UnkFn equals = &fn_710000ff5c;
-    static constexpr UnkFn hash = &fn_710000ff70;
-    static constexpr UnkFn type_of = &fn_710000ff7c;
-    static constexpr UnkFn add_attributes = &fn_71000a6eac;
+    static constexpr SlotFn construct = &fn_710000ff80;
+    static constexpr SlotFn copy_construct = &fn_710000ff8c;
+    static constexpr SlotFn move_construct = &fn_710000ff98;
+    static constexpr SlotFn destroy = &fn_710000ffa4;
+    static constexpr SlotFn copy_assign = &fn_710000ffa8;
+    static constexpr SlotFn move_assign = &fn_710000ffbc;
+    static constexpr SlotFn equals = &fn_710000ff5c;
+    static constexpr SlotFn hash = &fn_710000ff70;
+    static constexpr SlotFn type_of = &fn_710000ff7c;
+    static constexpr SlotFn add_attributes = &fn_71000a6eac;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000fd7c>();
 struct UnkRefl_fn_710000ffd0;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710000ffd0> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000ffd0> {
     static constexpr const char* name = "SCustomData";
     static constexpr u64 length = 11;
     static constexpr u64 size = 0x18;
-    static constexpr UnkFn construct = &fn_71000101c8;
-    static constexpr UnkFn copy_construct = &fn_71000101cc;
-    static constexpr UnkFn move_construct = &fn_71000101d0;
-    static constexpr UnkFn destroy = &fn_71000101d4;
-    static constexpr UnkFn copy_assign = &fn_7100010214;
-    static constexpr UnkFn move_assign = &fn_7100010244;
-    static constexpr UnkFn equals = &fn_71000101b0;
-    static constexpr UnkFn hash = &fn_71000101bc;
-    static constexpr UnkFn type_of = &fn_71000101c4;
-    static constexpr UnkFn add_attributes = &fn_71000943bc;
+    static constexpr SlotFn construct = &fn_71000101c8;
+    static constexpr SlotFn copy_construct = &fn_71000101cc;
+    static constexpr SlotFn move_construct = &fn_71000101d0;
+    static constexpr SlotFn destroy = &fn_71000101d4;
+    static constexpr SlotFn copy_assign = &fn_7100010214;
+    static constexpr SlotFn move_assign = &fn_7100010244;
+    static constexpr SlotFn equals = &fn_71000101b0;
+    static constexpr SlotFn hash = &fn_71000101bc;
+    static constexpr SlotFn type_of = &fn_71000101c4;
+    static constexpr SlotFn add_attributes = &fn_71000943bc;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000ffd0>();
 struct UnkRefl_fn_7100010e58;
@@ -407,11 +403,10 @@ template <>
 const CType& base::reflection::ValueOps<unsigned long>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100010e58>(); }
 template struct base::reflection::ValueOps<unsigned long>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100010e58> : base::reflection::ValueOpsDescription<unsigned long> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100010e58> : base::reflection::ValueOpsDescription<unsigned long> {
     static constexpr const char* name = "unsigned long";
     static constexpr u64 length = 13;
-    static constexpr u64 size = 0x8;
-    static constexpr UnkFn add_attributes = &fn_71000e5fc0;
+    static constexpr SlotFn add_attributes = &fn_71000e5fc0;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100010e58>();
 struct UnkRefl_fn_7100014768;
@@ -419,11 +414,10 @@ template <>
 const CType& base::reflection::ValueOps<int>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100014768>(); }
 template struct base::reflection::ValueOps<int>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100014768> : base::reflection::ValueOpsDescription<int> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100014768> : base::reflection::ValueOpsDescription<int> {
     static constexpr const char* name = "int";
     static constexpr u64 length = 3;
-    static constexpr u64 size = 0x4;
-    static constexpr UnkFn add_attributes = &fn_71000e5fa4;
+    static constexpr SlotFn add_attributes = &fn_71000e5fa4;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100014768>();
 struct UnkRefl_fn_7100024324;
@@ -431,281 +425,280 @@ template <>
 const CType& base::reflection::ValueOps<long>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100024324>(); }
 template struct base::reflection::ValueOps<long>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100024324> : base::reflection::ValueOpsDescription<long> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100024324> : base::reflection::ValueOpsDescription<long> {
     static constexpr const char* name = "long";
     static constexpr u64 length = 4;
-    static constexpr u64 size = 0x8;
-    static constexpr UnkFn add_attributes = &fn_71000e61ac;
+    static constexpr SlotFn add_attributes = &fn_71000e61ac;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100024324>();
 struct UnkRefl_fn_7100024504;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100024504> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100024504> {
     static constexpr const char* name = "base::math::CVector2D";
     static constexpr u64 length = 21;
     static constexpr u64 size = 0x8;
-    static constexpr UnkFn construct = &fn_7100024b7c;
-    static constexpr UnkFn copy_construct = &fn_7100024b84;
-    static constexpr UnkFn move_construct = &fn_7100024b98;
-    static constexpr UnkFn destroy = &fn_7100024bac;
-    static constexpr UnkFn copy_assign = &fn_7100024bb0;
-    static constexpr UnkFn move_assign = &fn_7100024bcc;
-    static constexpr UnkFn equals = &fn_7100024b10;
-    static constexpr UnkFn hash = &fn_7100024b6c;
-    static constexpr UnkFn type_of = &fn_7100024b78;
-    static constexpr UnkFn add_attributes = &fn_71000a781c;
+    static constexpr SlotFn construct = &fn_7100024b7c;
+    static constexpr SlotFn copy_construct = &fn_7100024b84;
+    static constexpr SlotFn move_construct = &fn_7100024b98;
+    static constexpr SlotFn destroy = &fn_7100024bac;
+    static constexpr SlotFn copy_assign = &fn_7100024bb0;
+    static constexpr SlotFn move_assign = &fn_7100024bcc;
+    static constexpr SlotFn equals = &fn_7100024b10;
+    static constexpr SlotFn hash = &fn_7100024b6c;
+    static constexpr SlotFn type_of = &fn_7100024b78;
+    static constexpr SlotFn add_attributes = &fn_71000a781c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100024504>();
 struct UnkRefl_fn_71000246e4;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000246e4> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000246e4> {
     static constexpr const char* name = "base::math::CVector3D";
     static constexpr u64 length = 21;
     static constexpr u64 size = 0xc;
-    static constexpr UnkFn construct = &fn_7100024cb4;
-    static constexpr UnkFn copy_construct = &fn_7100024cc0;
-    static constexpr UnkFn move_construct = &fn_7100024cdc;
-    static constexpr UnkFn destroy = &fn_7100024cf8;
-    static constexpr UnkFn copy_assign = &fn_7100024cfc;
-    static constexpr UnkFn move_assign = &fn_7100024d20;
-    static constexpr UnkFn equals = &fn_7100024be8;
-    static constexpr UnkFn hash = &fn_7100024ca4;
-    static constexpr UnkFn type_of = &fn_7100024cb0;
-    static constexpr UnkFn add_attributes = &fn_71000a7820;
+    static constexpr SlotFn construct = &fn_7100024cb4;
+    static constexpr SlotFn copy_construct = &fn_7100024cc0;
+    static constexpr SlotFn move_construct = &fn_7100024cdc;
+    static constexpr SlotFn destroy = &fn_7100024cf8;
+    static constexpr SlotFn copy_assign = &fn_7100024cfc;
+    static constexpr SlotFn move_assign = &fn_7100024d20;
+    static constexpr SlotFn equals = &fn_7100024be8;
+    static constexpr SlotFn hash = &fn_7100024ca4;
+    static constexpr SlotFn type_of = &fn_7100024cb0;
+    static constexpr SlotFn add_attributes = &fn_71000a7820;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000246e4>();
 struct UnkRefl_fn_71000248c4;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000248c4> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000248c4> {
     static constexpr const char* name = "base::math::CVector4D";
     static constexpr u64 length = 21;
     static constexpr u64 size = 0x10;
-    static constexpr UnkFn construct = &fn_7100024d58;
-    static constexpr UnkFn copy_construct = &fn_7100024d60;
-    static constexpr UnkFn move_construct = &fn_7100024d84;
-    static constexpr UnkFn destroy = &fn_7100024da8;
-    static constexpr UnkFn copy_assign = &fn_7100024dac;
-    static constexpr UnkFn move_assign = &fn_7100024ddc;
-    static constexpr UnkFn equals = &fn_7100024d44;
-    static constexpr UnkFn hash = &fn_7100024d48;
-    static constexpr UnkFn type_of = &fn_7100024d54;
-    static constexpr UnkFn add_attributes = &fn_71000a7824;
+    static constexpr SlotFn construct = &fn_7100024d58;
+    static constexpr SlotFn copy_construct = &fn_7100024d60;
+    static constexpr SlotFn move_construct = &fn_7100024d84;
+    static constexpr SlotFn destroy = &fn_7100024da8;
+    static constexpr SlotFn copy_assign = &fn_7100024dac;
+    static constexpr SlotFn move_assign = &fn_7100024ddc;
+    static constexpr SlotFn equals = &fn_7100024d44;
+    static constexpr SlotFn hash = &fn_7100024d48;
+    static constexpr SlotFn type_of = &fn_7100024d54;
+    static constexpr SlotFn add_attributes = &fn_71000a7824;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000248c4>();
 struct UnkRefl_fn_7100067f5c;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100067f5c> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100067f5c> {
     static constexpr const char* name = "base::color::CColor3F";
     static constexpr u64 length = 21;
     static constexpr u64 size = 0xc;
-    static constexpr UnkFn construct = &fn_7100068154;
-    static constexpr UnkFn copy_construct = &fn_7100068168;
-    static constexpr UnkFn move_construct = &fn_7100068184;
-    static constexpr UnkFn destroy = &fn_71000681a0;
-    static constexpr UnkFn copy_assign = &fn_71000681a4;
-    static constexpr UnkFn move_assign = &fn_71000681d4;
-    static constexpr UnkFn equals = &fn_710006813c;
-    static constexpr UnkFn hash = &fn_7100068148;
-    static constexpr UnkFn type_of = &fn_7100068150;
-    static constexpr UnkFn add_attributes = &fn_71000a8798;
+    static constexpr SlotFn construct = &fn_7100068154;
+    static constexpr SlotFn copy_construct = &fn_7100068168;
+    static constexpr SlotFn move_construct = &fn_7100068184;
+    static constexpr SlotFn destroy = &fn_71000681a0;
+    static constexpr SlotFn copy_assign = &fn_71000681a4;
+    static constexpr SlotFn move_assign = &fn_71000681d4;
+    static constexpr SlotFn equals = &fn_710006813c;
+    static constexpr SlotFn hash = &fn_7100068148;
+    static constexpr SlotFn type_of = &fn_7100068150;
+    static constexpr SlotFn add_attributes = &fn_71000a8798;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100067f5c>();
 struct UnkRefl_fn_7100068204;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100068204> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100068204> {
     static constexpr const char* name = "base::color::CColor4F";
     static constexpr u64 length = 21;
     static constexpr u64 size = 0x10;
-    static constexpr UnkFn construct = &fn_71000683fc;
-    static constexpr UnkFn copy_construct = &fn_7100068408;
-    static constexpr UnkFn move_construct = &fn_710006842c;
-    static constexpr UnkFn destroy = &fn_7100068450;
-    static constexpr UnkFn copy_assign = &fn_7100068454;
-    static constexpr UnkFn move_assign = &fn_7100068484;
-    static constexpr UnkFn equals = &fn_71000683e4;
-    static constexpr UnkFn hash = &fn_71000683f0;
-    static constexpr UnkFn type_of = &fn_71000683f8;
-    static constexpr UnkFn add_attributes = &fn_71000a879c;
+    static constexpr SlotFn construct = &fn_71000683fc;
+    static constexpr SlotFn copy_construct = &fn_7100068408;
+    static constexpr SlotFn move_construct = &fn_710006842c;
+    static constexpr SlotFn destroy = &fn_7100068450;
+    static constexpr SlotFn copy_assign = &fn_7100068454;
+    static constexpr SlotFn move_assign = &fn_7100068484;
+    static constexpr SlotFn equals = &fn_71000683e4;
+    static constexpr SlotFn hash = &fn_71000683f0;
+    static constexpr SlotFn type_of = &fn_71000683f8;
+    static constexpr SlotFn add_attributes = &fn_71000a879c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100068204>();
 struct UnkRefl_fn_7100098c9c;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100098c9c> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100098c9c> {
     static constexpr const char* name = "base::reflection::CEnumRef";
     static constexpr u64 length = 26;
     static constexpr u64 size = 0x10;
-    static constexpr UnkFn construct = nullptr;
-    static constexpr UnkFn copy_construct = &fn_710009909c;
-    static constexpr UnkFn move_construct = &fn_71000990c8;
-    static constexpr UnkFn destroy = &fn_71000990f4;
-    static constexpr UnkFn copy_assign = &fn_71000990f8;
-    static constexpr UnkFn move_assign = &fn_7100099150;
-    static constexpr UnkFn equals = &fn_7100099040;
-    static constexpr UnkFn hash = &fn_7100099090;
-    static constexpr UnkFn type_of = &fn_7100099098;
-    static constexpr UnkFn add_attributes = &fn_7100098e74;
+    static constexpr SlotFn construct = nullptr;
+    static constexpr SlotFn copy_construct = &fn_710009909c;
+    static constexpr SlotFn move_construct = &fn_71000990c8;
+    static constexpr SlotFn destroy = &fn_71000990f4;
+    static constexpr SlotFn copy_assign = &fn_71000990f8;
+    static constexpr SlotFn move_assign = &fn_7100099150;
+    static constexpr SlotFn equals = &fn_7100099040;
+    static constexpr SlotFn hash = &fn_7100099090;
+    static constexpr SlotFn type_of = &fn_7100099098;
+    static constexpr SlotFn add_attributes = &fn_7100098e74;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100098c9c>();
 struct UnkRefl_fn_7100098e78;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100098e78> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100098e78> {
     static constexpr const char* name = "base::reflection::CEnumConstRef";
     static constexpr u64 length = 31;
     static constexpr u64 size = 0x10;
-    static constexpr UnkFn construct = nullptr;
-    static constexpr UnkFn copy_construct = &fn_71000991c0;
-    static constexpr UnkFn move_construct = &fn_71000991cc;
-    static constexpr UnkFn destroy = &fn_71000991d8;
-    static constexpr UnkFn copy_assign = nullptr;
-    static constexpr UnkFn move_assign = nullptr;
-    static constexpr UnkFn equals = &fn_71000991a8;
-    static constexpr UnkFn hash = &fn_71000991b4;
-    static constexpr UnkFn type_of = &fn_71000991bc;
-    static constexpr UnkFn add_attributes = &fn_710009903c;
+    static constexpr SlotFn construct = nullptr;
+    static constexpr SlotFn copy_construct = &fn_71000991c0;
+    static constexpr SlotFn move_construct = &fn_71000991cc;
+    static constexpr SlotFn destroy = &fn_71000991d8;
+    static constexpr SlotFn copy_assign = nullptr;
+    static constexpr SlotFn move_assign = nullptr;
+    static constexpr SlotFn equals = &fn_71000991a8;
+    static constexpr SlotFn hash = &fn_71000991b4;
+    static constexpr SlotFn type_of = &fn_71000991bc;
+    static constexpr SlotFn add_attributes = &fn_710009903c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100098e78>();
 struct UnkRefl_fn_7100099b94;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100099b94> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100099b94> {
     static constexpr const char* name = "base::reflection::CFlagsetRef";
     static constexpr u64 length = 29;
     static constexpr u64 size = 0x10;
-    static constexpr UnkFn construct = nullptr;
-    static constexpr UnkFn copy_construct = &fn_7100099f94;
-    static constexpr UnkFn move_construct = &fn_7100099fc0;
-    static constexpr UnkFn destroy = &fn_7100099fec;
-    static constexpr UnkFn copy_assign = &fn_7100099ff0;
-    static constexpr UnkFn move_assign = &fn_710009a048;
-    static constexpr UnkFn equals = &fn_7100099f38;
-    static constexpr UnkFn hash = &fn_7100099f88;
-    static constexpr UnkFn type_of = &fn_7100099f90;
-    static constexpr UnkFn add_attributes = &fn_7100099d6c;
+    static constexpr SlotFn construct = nullptr;
+    static constexpr SlotFn copy_construct = &fn_7100099f94;
+    static constexpr SlotFn move_construct = &fn_7100099fc0;
+    static constexpr SlotFn destroy = &fn_7100099fec;
+    static constexpr SlotFn copy_assign = &fn_7100099ff0;
+    static constexpr SlotFn move_assign = &fn_710009a048;
+    static constexpr SlotFn equals = &fn_7100099f38;
+    static constexpr SlotFn hash = &fn_7100099f88;
+    static constexpr SlotFn type_of = &fn_7100099f90;
+    static constexpr SlotFn add_attributes = &fn_7100099d6c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100099b94>();
 struct UnkRefl_fn_7100099d70;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100099d70> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100099d70> {
     static constexpr const char* name = "base::reflection::CFlagsetConstRef";
     static constexpr u64 length = 34;
     static constexpr u64 size = 0x10;
-    static constexpr UnkFn construct = nullptr;
-    static constexpr UnkFn copy_construct = &fn_710009a0b8;
-    static constexpr UnkFn move_construct = &fn_710009a0c4;
-    static constexpr UnkFn destroy = &fn_710009a0d0;
-    static constexpr UnkFn copy_assign = nullptr;
-    static constexpr UnkFn move_assign = nullptr;
-    static constexpr UnkFn equals = &fn_710009a0a0;
-    static constexpr UnkFn hash = &fn_710009a0ac;
-    static constexpr UnkFn type_of = &fn_710009a0b4;
-    static constexpr UnkFn add_attributes = &fn_7100099f34;
+    static constexpr SlotFn construct = nullptr;
+    static constexpr SlotFn copy_construct = &fn_710009a0b8;
+    static constexpr SlotFn move_construct = &fn_710009a0c4;
+    static constexpr SlotFn destroy = &fn_710009a0d0;
+    static constexpr SlotFn copy_assign = nullptr;
+    static constexpr SlotFn move_assign = nullptr;
+    static constexpr SlotFn equals = &fn_710009a0a0;
+    static constexpr SlotFn hash = &fn_710009a0ac;
+    static constexpr SlotFn type_of = &fn_710009a0b4;
+    static constexpr SlotFn add_attributes = &fn_7100099f34;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100099d70>();
 struct UnkRefl_fn_710009b84c;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710009b84c> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710009b84c> {
     static constexpr const char* name = "base::reflection::CFunction";
     static constexpr u64 length = 27;
     static constexpr u64 size = 0xb8;
-    static constexpr UnkFn construct = &fn_710009bb10;
-    static constexpr UnkFn copy_construct = &fn_710009bb14;
-    static constexpr UnkFn move_construct = &fn_710009bb18;
-    static constexpr UnkFn destroy = &fn_710009bc30;
-    static constexpr UnkFn copy_assign = nullptr;
-    static constexpr UnkFn move_assign = nullptr;
-    static constexpr UnkFn equals = &fn_710009baf8;
-    static constexpr UnkFn hash = &fn_710009bb04;
-    static constexpr UnkFn type_of = &fn_710009bb0c;
-    static constexpr UnkFn add_attributes = &fn_710009ba18;
+    static constexpr SlotFn construct = &fn_710009bb10;
+    static constexpr SlotFn copy_construct = &fn_710009bb14;
+    static constexpr SlotFn move_construct = &fn_710009bb18;
+    static constexpr SlotFn destroy = &fn_710009bc30;
+    static constexpr SlotFn copy_assign = nullptr;
+    static constexpr SlotFn move_assign = nullptr;
+    static constexpr SlotFn equals = &fn_710009baf8;
+    static constexpr SlotFn hash = &fn_710009bb04;
+    static constexpr SlotFn type_of = &fn_710009bb0c;
+    static constexpr SlotFn add_attributes = &fn_710009ba18;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710009b84c>();
 struct UnkRefl_fn_710009f200;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710009f200> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710009f200> {
     static constexpr const char* name = "base::global::TRntString32";
     static constexpr u64 length = 26;
     static constexpr u64 size = 0x68;
-    static constexpr UnkFn construct = &fn_710009f3f4;
-    static constexpr UnkFn copy_construct = &fn_710009f430;
-    static constexpr UnkFn move_construct = &fn_710009f478;
-    static constexpr UnkFn destroy = &fn_710009f4c0;
-    static constexpr UnkFn copy_assign = &fn_710009f4e4;
-    static constexpr UnkFn move_assign = &fn_710009f514;
-    static constexpr UnkFn equals = &fn_710009f3e0;
-    static constexpr UnkFn hash = &fn_710009f3e4;
-    static constexpr UnkFn type_of = &fn_710009f3f0;
-    static constexpr UnkFn add_attributes = &fn_71000a7148;
+    static constexpr SlotFn construct = &fn_710009f3f4;
+    static constexpr SlotFn copy_construct = &fn_710009f430;
+    static constexpr SlotFn move_construct = &fn_710009f478;
+    static constexpr SlotFn destroy = &fn_710009f4c0;
+    static constexpr SlotFn copy_assign = &fn_710009f4e4;
+    static constexpr SlotFn move_assign = &fn_710009f514;
+    static constexpr SlotFn equals = &fn_710009f3e0;
+    static constexpr SlotFn hash = &fn_710009f3e4;
+    static constexpr SlotFn type_of = &fn_710009f3f0;
+    static constexpr SlotFn add_attributes = &fn_71000a7148;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710009f200>();
 struct UnkRefl_fn_710009f69c;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710009f69c> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710009f69c> {
     static constexpr const char* name = "base::global::TRntString64";
     static constexpr u64 length = 26;
     static constexpr u64 size = 0x88;
-    static constexpr UnkFn construct = &fn_710009f890;
-    static constexpr UnkFn copy_construct = &fn_710009f8cc;
-    static constexpr UnkFn move_construct = &fn_710009f914;
-    static constexpr UnkFn destroy = &fn_710009f95c;
-    static constexpr UnkFn copy_assign = &fn_710009f980;
-    static constexpr UnkFn move_assign = &fn_710009f9b0;
-    static constexpr UnkFn equals = &fn_710009f87c;
-    static constexpr UnkFn hash = &fn_710009f880;
-    static constexpr UnkFn type_of = &fn_710009f88c;
-    static constexpr UnkFn add_attributes = &fn_71000a71f4;
+    static constexpr SlotFn construct = &fn_710009f890;
+    static constexpr SlotFn copy_construct = &fn_710009f8cc;
+    static constexpr SlotFn move_construct = &fn_710009f914;
+    static constexpr SlotFn destroy = &fn_710009f95c;
+    static constexpr SlotFn copy_assign = &fn_710009f980;
+    static constexpr SlotFn move_assign = &fn_710009f9b0;
+    static constexpr SlotFn equals = &fn_710009f87c;
+    static constexpr SlotFn hash = &fn_710009f880;
+    static constexpr SlotFn type_of = &fn_710009f88c;
+    static constexpr SlotFn add_attributes = &fn_71000a71f4;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710009f69c>();
 struct UnkRefl_fn_710009fb38;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710009fb38> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710009fb38> {
     static constexpr const char* name = "base::global::TRntString128";
     static constexpr u64 length = 27;
     static constexpr u64 size = 0xc8;
-    static constexpr UnkFn construct = &fn_710009fd2c;
-    static constexpr UnkFn copy_construct = &fn_710009fd68;
-    static constexpr UnkFn move_construct = &fn_710009fdb0;
-    static constexpr UnkFn destroy = &fn_710009fdf8;
-    static constexpr UnkFn copy_assign = &fn_710009fe1c;
-    static constexpr UnkFn move_assign = &fn_710009fe4c;
-    static constexpr UnkFn equals = &fn_710009fd18;
-    static constexpr UnkFn hash = &fn_710009fd1c;
-    static constexpr UnkFn type_of = &fn_710009fd28;
-    static constexpr UnkFn add_attributes = &fn_71000a72a0;
+    static constexpr SlotFn construct = &fn_710009fd2c;
+    static constexpr SlotFn copy_construct = &fn_710009fd68;
+    static constexpr SlotFn move_construct = &fn_710009fdb0;
+    static constexpr SlotFn destroy = &fn_710009fdf8;
+    static constexpr SlotFn copy_assign = &fn_710009fe1c;
+    static constexpr SlotFn move_assign = &fn_710009fe4c;
+    static constexpr SlotFn equals = &fn_710009fd18;
+    static constexpr SlotFn hash = &fn_710009fd1c;
+    static constexpr SlotFn type_of = &fn_710009fd28;
+    static constexpr SlotFn add_attributes = &fn_71000a72a0;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710009fb38>();
 struct UnkRefl_fn_710009ffd4;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710009ffd4> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710009ffd4> {
     static constexpr const char* name = "base::global::TRntString256";
     static constexpr u64 length = 27;
     static constexpr u64 size = 0x148;
-    static constexpr UnkFn construct = &fn_71000a01c8;
-    static constexpr UnkFn copy_construct = &fn_71000a0204;
-    static constexpr UnkFn move_construct = &fn_71000a024c;
-    static constexpr UnkFn destroy = &fn_71000a0294;
-    static constexpr UnkFn copy_assign = &fn_71000a02b8;
-    static constexpr UnkFn move_assign = &fn_71000a02e8;
-    static constexpr UnkFn equals = &fn_71000a01b4;
-    static constexpr UnkFn hash = &fn_71000a01b8;
-    static constexpr UnkFn type_of = &fn_71000a01c4;
-    static constexpr UnkFn add_attributes = &fn_71000a734c;
+    static constexpr SlotFn construct = &fn_71000a01c8;
+    static constexpr SlotFn copy_construct = &fn_71000a0204;
+    static constexpr SlotFn move_construct = &fn_71000a024c;
+    static constexpr SlotFn destroy = &fn_71000a0294;
+    static constexpr SlotFn copy_assign = &fn_71000a02b8;
+    static constexpr SlotFn move_assign = &fn_71000a02e8;
+    static constexpr SlotFn equals = &fn_71000a01b4;
+    static constexpr SlotFn hash = &fn_71000a01b8;
+    static constexpr SlotFn type_of = &fn_71000a01c4;
+    static constexpr SlotFn add_attributes = &fn_71000a734c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710009ffd4>();
 struct UnkRefl_fn_71000a0318;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000a0318> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a0318> {
     static constexpr const char* name = "base::global::TRntString512";
     static constexpr u64 length = 27;
     static constexpr u64 size = 0x248;
-    static constexpr UnkFn construct = &fn_71000a050c;
-    static constexpr UnkFn copy_construct = &fn_71000a0548;
-    static constexpr UnkFn move_construct = &fn_71000a0590;
-    static constexpr UnkFn destroy = &fn_71000a05d8;
-    static constexpr UnkFn copy_assign = &fn_71000a05fc;
-    static constexpr UnkFn move_assign = &fn_71000a062c;
-    static constexpr UnkFn equals = &fn_71000a04f8;
-    static constexpr UnkFn hash = &fn_71000a04fc;
-    static constexpr UnkFn type_of = &fn_71000a0508;
-    static constexpr UnkFn add_attributes = &fn_71000a73f8;
+    static constexpr SlotFn construct = &fn_71000a050c;
+    static constexpr SlotFn copy_construct = &fn_71000a0548;
+    static constexpr SlotFn move_construct = &fn_71000a0590;
+    static constexpr SlotFn destroy = &fn_71000a05d8;
+    static constexpr SlotFn copy_assign = &fn_71000a05fc;
+    static constexpr SlotFn move_assign = &fn_71000a062c;
+    static constexpr SlotFn equals = &fn_71000a04f8;
+    static constexpr SlotFn hash = &fn_71000a04fc;
+    static constexpr SlotFn type_of = &fn_71000a0508;
+    static constexpr SlotFn add_attributes = &fn_71000a73f8;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a0318>();
 struct UnkRefl_fn_71000a3640;
@@ -713,11 +706,10 @@ template <>
 const CType& base::reflection::ValueOps<double>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3640>(); }
 template struct base::reflection::ValueOps<double>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000a3640> : base::reflection::ValueOpsDescription<double> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a3640> : base::reflection::ValueOpsDescription<double> {
     static constexpr const char* name = "double";
     static constexpr u64 length = 6;
-    static constexpr u64 size = 0x8;
-    static constexpr UnkFn add_attributes = &fn_71000e5fb0;
+    static constexpr SlotFn add_attributes = &fn_71000e5fb0;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3640>();
 struct UnkRefl_fn_71000a388c;
@@ -725,11 +717,10 @@ template <>
 const CType& base::reflection::ValueOps<signed char>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a388c>(); }
 template struct base::reflection::ValueOps<signed char>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000a388c> : base::reflection::ValueOpsDescription<signed char> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a388c> : base::reflection::ValueOpsDescription<signed char> {
     static constexpr const char* name = "signed char";
     static constexpr u64 length = 11;
-    static constexpr u64 size = 0x1;
-    static constexpr UnkFn add_attributes = &fn_71000e5fb4;
+    static constexpr SlotFn add_attributes = &fn_71000e5fb4;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a388c>();
 struct UnkRefl_fn_71000a3ad4;
@@ -737,11 +728,10 @@ template <>
 const CType& base::reflection::ValueOps<short>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3ad4>(); }
 template struct base::reflection::ValueOps<short>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000a3ad4> : base::reflection::ValueOpsDescription<short> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a3ad4> : base::reflection::ValueOpsDescription<short> {
     static constexpr const char* name = "short";
     static constexpr u64 length = 5;
-    static constexpr u64 size = 0x2;
-    static constexpr UnkFn add_attributes = &fn_71000e61a8;
+    static constexpr SlotFn add_attributes = &fn_71000e61a8;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3ad4>();
 struct UnkRefl_fn_71000a3d20;
@@ -749,11 +739,10 @@ template <>
 const CType& base::reflection::ValueOps<unsigned char>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3d20>(); }
 template struct base::reflection::ValueOps<unsigned char>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000a3d20> : base::reflection::ValueOpsDescription<unsigned char> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a3d20> : base::reflection::ValueOpsDescription<unsigned char> {
     static constexpr const char* name = "unsigned char";
     static constexpr u64 length = 13;
-    static constexpr u64 size = 0x1;
-    static constexpr UnkFn add_attributes = &fn_71000e5fb8;
+    static constexpr SlotFn add_attributes = &fn_71000e5fb8;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3d20>();
 struct UnkRefl_fn_71000a3f68;
@@ -761,47 +750,46 @@ template <>
 const CType& base::reflection::ValueOps<unsigned short>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3f68>(); }
 template struct base::reflection::ValueOps<unsigned short>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000a3f68> : base::reflection::ValueOpsDescription<unsigned short> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a3f68> : base::reflection::ValueOpsDescription<unsigned short> {
     static constexpr const char* name = "unsigned short";
     static constexpr u64 length = 14;
-    static constexpr u64 size = 0x2;
-    static constexpr UnkFn add_attributes = &fn_71000e5fbc;
+    static constexpr SlotFn add_attributes = &fn_71000e5fbc;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3f68>();
 struct UnkRefl_fn_71000a41b4;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000a41b4> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a41b4> {
     static constexpr const char* name = "base::color::CColor4B";
     static constexpr u64 length = 21;
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_71000a43b4;
-    static constexpr UnkFn copy_construct = &fn_71000a43b8;
-    static constexpr UnkFn move_construct = &fn_71000a43c4;
-    static constexpr UnkFn destroy = &fn_71000a43d0;
-    static constexpr UnkFn copy_assign = &fn_71000a43d4;
-    static constexpr UnkFn move_assign = &fn_71000a43e8;
-    static constexpr UnkFn equals = &fn_71000a4394;
-    static constexpr UnkFn hash = &fn_71000a43a8;
-    static constexpr UnkFn type_of = &fn_71000a43b0;
-    static constexpr UnkFn add_attributes = &fn_71000a87a0;
+    static constexpr SlotFn construct = &fn_71000a43b4;
+    static constexpr SlotFn copy_construct = &fn_71000a43b8;
+    static constexpr SlotFn move_construct = &fn_71000a43c4;
+    static constexpr SlotFn destroy = &fn_71000a43d0;
+    static constexpr SlotFn copy_assign = &fn_71000a43d4;
+    static constexpr SlotFn move_assign = &fn_71000a43e8;
+    static constexpr SlotFn equals = &fn_71000a4394;
+    static constexpr SlotFn hash = &fn_71000a43a8;
+    static constexpr SlotFn type_of = &fn_71000a43b0;
+    static constexpr SlotFn add_attributes = &fn_71000a87a0;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a41b4>();
 struct UnkRefl_fn_71000a87a4;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000a87a4> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a87a4> {
     static constexpr const char* name = "base::color::CColor4B_SRGB";
     static constexpr u64 length = 26;
     static constexpr u64 size = 0x4;
-    static constexpr UnkFn construct = &fn_71000bc5c0;
-    static constexpr UnkFn copy_construct = &fn_71000bc5c4;
-    static constexpr UnkFn move_construct = &fn_71000bc5d0;
-    static constexpr UnkFn destroy = &fn_71000bc5dc;
-    static constexpr UnkFn copy_assign = &fn_71000bc5e0;
-    static constexpr UnkFn move_assign = &fn_71000bc5f4;
-    static constexpr UnkFn equals = &fn_71000bc5a0;
-    static constexpr UnkFn hash = &fn_71000bc5b4;
-    static constexpr UnkFn type_of = &fn_71000bc5bc;
-    static constexpr UnkFn add_attributes = &fn_71000a8984;
+    static constexpr SlotFn construct = &fn_71000bc5c0;
+    static constexpr SlotFn copy_construct = &fn_71000bc5c4;
+    static constexpr SlotFn move_construct = &fn_71000bc5d0;
+    static constexpr SlotFn destroy = &fn_71000bc5dc;
+    static constexpr SlotFn copy_assign = &fn_71000bc5e0;
+    static constexpr SlotFn move_assign = &fn_71000bc5f4;
+    static constexpr SlotFn equals = &fn_71000bc5a0;
+    static constexpr SlotFn hash = &fn_71000bc5b4;
+    static constexpr SlotFn type_of = &fn_71000bc5bc;
+    static constexpr SlotFn add_attributes = &fn_71000a8984;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a87a4>();
 struct UnkRefl_fn_71000e5fc4;
@@ -809,11 +797,10 @@ template <>
 const CType& base::reflection::ValueOps<unsigned long long>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000e5fc4>(); }
 template struct base::reflection::ValueOps<unsigned long long>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000e5fc4> : base::reflection::ValueOpsDescription<unsigned long long> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000e5fc4> : base::reflection::ValueOpsDescription<unsigned long long> {
     static constexpr const char* name = "unsigned long long";
     static constexpr u64 length = 18;
-    static constexpr u64 size = 0x8;
-    static constexpr UnkFn add_attributes = &fn_71000e61a4;
+    static constexpr SlotFn add_attributes = &fn_71000e61a4;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000e5fc4>();
 struct UnkRefl_fn_71000e61b0;
@@ -821,64 +808,63 @@ template <>
 const CType& base::reflection::ValueOps<long long>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000e61b0>(); }
 template struct base::reflection::ValueOps<long long>;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_71000e61b0> : base::reflection::ValueOpsDescription<long long> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000e61b0> : base::reflection::ValueOpsDescription<long long> {
     static constexpr const char* name = "long long";
     static constexpr u64 length = 9;
-    static constexpr u64 size = 0x8;
-    static constexpr UnkFn add_attributes = &fn_71000e6390;
+    static constexpr SlotFn add_attributes = &fn_71000e6390;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000e61b0>();
 struct UnkRefl_fn_710025d654;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710025d654> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710025d654> {
     static constexpr const char* name = "gameeditor::CGameModelIndex";
     static constexpr u64 length = 27;
     static constexpr u64 size = 0x28;
-    static constexpr UnkFn construct = &fn_710025d844;
-    static constexpr UnkFn copy_construct = &fn_710025d888;
-    static constexpr UnkFn move_construct = &fn_710025d88c;
-    static constexpr UnkFn destroy = &fn_710025d890;
-    static constexpr UnkFn copy_assign = &fn_710025d92c;
-    static constexpr UnkFn move_assign = &fn_710025d95c;
-    static constexpr UnkFn equals = &fn_710025d834;
-    static constexpr UnkFn hash = &fn_710025d838;
-    static constexpr UnkFn type_of = &fn_710025d840;
-    static constexpr UnkFn add_attributes = &fn_7100ad2d8c;
+    static constexpr SlotFn construct = &fn_710025d844;
+    static constexpr SlotFn copy_construct = &fn_710025d888;
+    static constexpr SlotFn move_construct = &fn_710025d88c;
+    static constexpr SlotFn destroy = &fn_710025d890;
+    static constexpr SlotFn copy_assign = &fn_710025d92c;
+    static constexpr SlotFn move_assign = &fn_710025d95c;
+    static constexpr SlotFn equals = &fn_710025d834;
+    static constexpr SlotFn hash = &fn_710025d838;
+    static constexpr SlotFn type_of = &fn_710025d840;
+    static constexpr SlotFn add_attributes = &fn_7100ad2d8c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710025d654>();
 struct UnkRefl_fn_7100fbc1ac;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_7100fbc1ac> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100fbc1ac> {
     static constexpr const char* name = "luaGameObject";
     static constexpr u64 length = 13;
     static constexpr u64 size = 0x8;
-    static constexpr UnkFn construct = &fn_7100fbc7c8;
-    static constexpr UnkFn copy_construct = &fn_7100fbc7d0;
-    static constexpr UnkFn move_construct = &fn_7100fbc82c;
-    static constexpr UnkFn destroy = &fn_7100fbc888;
-    static constexpr UnkFn copy_assign = &fn_7100fbc8b0;
-    static constexpr UnkFn move_assign = &fn_7100fbc8e0;
-    static constexpr UnkFn equals = &fn_7100fbc7b0;
-    static constexpr UnkFn hash = &fn_7100fbc7bc;
-    static constexpr UnkFn type_of = &fn_7100fbc7c4;
-    static constexpr UnkFn add_attributes = &fn_7100fbc38c;
+    static constexpr SlotFn construct = &fn_7100fbc7c8;
+    static constexpr SlotFn copy_construct = &fn_7100fbc7d0;
+    static constexpr SlotFn move_construct = &fn_7100fbc82c;
+    static constexpr SlotFn destroy = &fn_7100fbc888;
+    static constexpr SlotFn copy_assign = &fn_7100fbc8b0;
+    static constexpr SlotFn move_assign = &fn_7100fbc8e0;
+    static constexpr SlotFn equals = &fn_7100fbc7b0;
+    static constexpr SlotFn hash = &fn_7100fbc7bc;
+    static constexpr SlotFn type_of = &fn_7100fbc7c4;
+    static constexpr SlotFn add_attributes = &fn_7100fbc38c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100fbc1ac>();
 struct UnkRefl_fn_710107552c;
 template <>
-struct base::reflection::UnkReflPrimitiveTraits<UnkRefl_fn_710107552c> {
+struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710107552c> {
     static constexpr const char* name = "luaDisplayObject";
     static constexpr u64 length = 16;
     static constexpr u64 size = 0x8;
-    static constexpr UnkFn construct = &fn_7101075ea8;
-    static constexpr UnkFn copy_construct = &fn_7101075eb0;
-    static constexpr UnkFn move_construct = &fn_7101075f0c;
-    static constexpr UnkFn destroy = &fn_7101075f68;
-    static constexpr UnkFn copy_assign = &fn_7101075f90;
-    static constexpr UnkFn move_assign = &fn_7101075fc0;
-    static constexpr UnkFn equals = &fn_7101075e90;
-    static constexpr UnkFn hash = &fn_7101075e9c;
-    static constexpr UnkFn type_of = &fn_7101075ea4;
-    static constexpr UnkFn add_attributes = &fn_710107570c;
+    static constexpr SlotFn construct = &fn_7101075ea8;
+    static constexpr SlotFn copy_construct = &fn_7101075eb0;
+    static constexpr SlotFn move_construct = &fn_7101075f0c;
+    static constexpr SlotFn destroy = &fn_7101075f68;
+    static constexpr SlotFn copy_assign = &fn_7101075f90;
+    static constexpr SlotFn move_assign = &fn_7101075fc0;
+    static constexpr SlotFn equals = &fn_7101075e90;
+    static constexpr SlotFn hash = &fn_7101075e9c;
+    static constexpr SlotFn type_of = &fn_7101075ea4;
+    static constexpr SlotFn add_attributes = &fn_710107570c;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710107552c>();
