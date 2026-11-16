@@ -39,7 +39,10 @@ bool fn_7101178524(UnkAnimFlagsHolder_b47a3* self, u32 bit);
 bool fn_7101179870(UnkStateSet_1441* self);
 void fn_710117774c(UnkShakernautCtrl_b53* ctrl);
 void fn_7101178010(void* target, u64 id, bool flag, f32 time);
-void fn_7101179878(UnkAnimActionSetsOwner* anim, void* entry, u32 a, u64 key, UnkMtx44_b46a2* out, u32 b, f32 c);
+bool fn_7101179878(UnkAnimActionSetsOwner* anim, void* entry, u32 a, u64 key, UnkMtx44_b46a2* out, u32 b, f32 c);
+// fn_7101179878 for the action `id` names, at `seconds` turned into frames on its clock; false when there is no
+// such action.
+bool fn_7101179de0(UnkAnimActionSetsOwner* self, void* id, u64 key, f32 seconds, UnkMtx44_b46a2* out, u32 b);
 void fn_710117ab64(UnkAnimationComponent* self, bool, const void* arg);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void* fn_7101177d2c(UnkAnimationComponent* self, u64 key);

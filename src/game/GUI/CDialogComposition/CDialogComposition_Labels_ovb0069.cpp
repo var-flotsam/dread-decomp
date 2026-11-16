@@ -13,6 +13,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
@@ -23,7 +24,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 using UnkGuiObj = UnkGuiDisplayObject;
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 struct UnkWideStr_0x20;
 
 // A string id's pooled data as these reads see it.

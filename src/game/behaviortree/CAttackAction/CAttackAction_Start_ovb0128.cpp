@@ -69,8 +69,7 @@ void fn_7100372864(UnkAttackAction_ovb0128* self) {
     if (!player)
         return;
     if (fn_7101136308(player) ||
-        (attack && reinterpret_cast<bool (*)(UnkCommanderPlayer_b67a2*, void*, u32, u32, void*, f32)>(
-                       fn_7101134420)(reinterpret_cast<UnkCommanderPlayer_b67a2*>(player), attack, 0, 0, nullptr,
-                                      -1.0f)))
+        (attack &&
+         fn_7101134420(reinterpret_cast<UnkCommanderPlayer_b67a2*>(player), attack, false, 0, nullptr, -1.0f)))
         self->started = true;
 }

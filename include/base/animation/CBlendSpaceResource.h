@@ -15,7 +15,8 @@ void* fn_710000ffd0();
 // base::reflection's registry (0x1a8 bytes): the reflected types by 64-bit id.
 extern UnkVersionRegistry* g_unk_7101d4c8d0;
 extern char g_unk_7101d4c138[];
-void fn_710000f750(UnkParseContext* self, void* root);
+// Parses from a root node: fn_710000f850's result (nonzero on success).
+s32 fn_710000f750(UnkParseContext* self, void* root);
 const base::reflection::UnkReflAttrKey& fn_710000d120();
 const base::reflection::CType* fn_7100010e58();  // An 8-byte type's getter.
 extern const base::reflection::CType g_unk_7101d4cfb0 __attribute__((visibility("hidden")));

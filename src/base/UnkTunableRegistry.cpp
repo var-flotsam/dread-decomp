@@ -3,6 +3,7 @@
 // that share a count, a capacity and a growth step (fn_710013ac14 builds them; fn_710013c2ac
 // appends; src/game_lo/fn_710013c3c8.cpp looks a group up). Names and layouts are placeholders
 // inferred from the code.
+#include "base/UnkTunableLine.h"
 #include "base/global/CRntVector.h"
 #include "base/core/CBaseObject.h"
 #include "base/global/CStrId.h"
@@ -119,40 +120,6 @@ void fn_710013ec80(UnkTunableGroupArrays* self, u32 new_capacity) {
 
 using base::global::CRntString;
 using base::reflection::UnkReflTypedPtr;
-
-// A string with 0x100 bytes of inline storage (0x148 bytes).
-struct UnkTunableLine {
-    u8 str[0x30];
-    char* storage_vtable;  // +0x30
-    u8 buffer[0x100];
-    u64 field_0x138;
-    u32 field_0x140;
-
-    CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
-    const CRntString* Str() const { return reinterpret_cast<const CRntString*>(str); }
-    const char* Data() const { return Str()->data; }
-    u32 Length() const { return Str()->length; }
-    // The text, or the empty string for none.
-    const char* CStr() const { return Data() ? Data() : g_unk_710162e2ed; }
-    bool IsEmpty() const { return !Data() || !Data()[0]; }
-
-    UnkTunableLine() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
-        field_0x138 = 0;
-        field_0x140 = 0;
-        storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
-    }
-    UnkTunableLine(const UnkTunableLine& other) : UnkTunableLine() { fn_710007eaa0(Str(), other.Str()); }
-    ~UnkTunableLine() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
-    }
-    UnkTunableLine& operator=(const UnkTunableLine& other) {
-        fn_710007eaa0(Str(), other.Str());
-        return *this;
-    }
-};
-static_assert(sizeof(UnkTunableLine) == 0x148, "");
 
 // `count` characters of `str`, as a string with inline storage.
 static inline UnkTunableLine Mid(const char* str, u32 count) {

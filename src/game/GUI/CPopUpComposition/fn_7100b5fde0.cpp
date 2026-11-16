@@ -6,7 +6,9 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
@@ -18,9 +20,6 @@ using base::global::CStrId;
 struct UnkGuiComposition_ovb0090;
 struct UnkMapCallback_ovb0090;
 struct UnkPopUpComposition_ovb0085;
-
-using UnkGuiObj = UnkGuiDisplayObject;
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 
 // The pop-up's own steps (src/game/GUI/CPopUpComposition/CPopUpComposition_Members_ovb0085.cpp
 // defines fn_7100b5effc; fn_7100b5f938 is a placeholder signature).
@@ -101,7 +100,7 @@ static inline UnkGuiDisplayObject* FindLabel(UnkPopUp_b5fde0* self, u8* id) {
     UnkGuiDisplayObject* obj;
     {
         CRntString path(IdText(id));
-        obj = fn_71011d9508(reinterpret_cast<UnkGuiObj*>(self), reinterpret_cast<const char* const*>(&path));
+        obj = fn_71011d9508(reinterpret_cast<UnkGuiDisplayObject*>(self), reinterpret_cast<const char* const*>(&path));
         if (obj && !fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(obj->GetClass()),
                                   reinterpret_cast<const base::reflection::CType*>(fn_71011e8dfc())))
             obj = nullptr;

@@ -202,7 +202,6 @@ struct UnkUserDataOwner;
 
 bool fn_7101203760(UnkUserDataOwner* self);
 bool fn_7100dfe364(UnkGameManager* self);
-s32 fn_7100df78cc(UnkGameManager*, const base::UnkNamedEntry*, bool, bool);
 
 s32 fn_7101079200(lua_State* L) {
     UnkUserDataOwner* owner = g_unk_7101d47308;
@@ -270,7 +269,7 @@ s32 fn_7101078ef0(lua_State* L) {
         UnkGameManager* manager = g_unk_7101d47310;
         base::UnkNamedEntry key;
         fn_710007e704(&key, name);
-        result = fn_7100df78cc(manager, &key, flag, false);
+        result = fn_7100df78cc(manager, *reinterpret_cast<const CRntString*>(&key), flag, false);
         fn_710007ecd4(reinterpret_cast<CRntString*>(&key));
     }
     return fn_71010c0b40(L, "i", result);

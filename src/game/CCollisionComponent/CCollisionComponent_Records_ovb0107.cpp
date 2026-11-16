@@ -6,6 +6,7 @@
 #include <new>
 
 #include "base/UnkMatrix44.h"
+#include "base/UnkTunableLine.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -787,21 +788,6 @@ done:
 }
 
 // Loading the collision file the CCharClassCollisionComponent names.
-
-// A string with 0x100 bytes of inline storage (as src/base/UnkTunableRegistry.cpp has it).
-struct UnkTunableLine {
-    u8 str[0x30];
-    char* storage_vtable;  // +0x30
-    u8 buffer[0x100];
-    u64 field_0x138;
-    u32 field_0x140;
-
-    CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
-    ~UnkTunableLine() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
-    }
-};
 
 // The collision file's reader (as src/game/CSubAreaManager.cpp declares it).
 struct UnkCollisionFileReader {
