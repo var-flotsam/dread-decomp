@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CCollisionComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/CPowerBombBlockLifeComponent.h"
@@ -14,6 +15,7 @@
 #include "game/CTimelineComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU253.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -90,8 +92,6 @@ struct UnkPowerBombPart_ovb0127 {
 };
 
 struct UnkPowerBombPartList_ovb0127;
-u32 fn_71001c1440(UnkPowerBombPartList_ovb0127* list);
-UnkPowerBombPart_ovb0127* fn_71001c1450(UnkPowerBombPartList_ovb0127* list, u32 index);
 
 struct UnkPowerBombModelData_ovb0127 {
     u8 pad_0x0[0x138];
@@ -152,7 +152,6 @@ struct UnkPowerBombColliders_ovb0127 {
     u8 pad_0x0[0x50];
     u32 count;  // 0x50
 };
-UnkPowerBombCollider_ovb0127* fn_710086420c(UnkPowerBombColliders_ovb0127* self, u32 index);
 
 struct UnkPowerBombOwner_ovb0127 {
     u8 pad_0x0[0x2a0];

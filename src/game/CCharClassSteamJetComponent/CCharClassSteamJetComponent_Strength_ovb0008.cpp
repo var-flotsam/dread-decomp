@@ -19,7 +19,6 @@
 using base::global::UnkStrId;
 
 struct UnkBaseDamageTrigger3;
-void fn_7100a45a30(UnkBaseDamageTrigger3* self);
 struct UnkLiquidPool_b44a2;
 struct UnkPlayer;
 struct UnkInventory;

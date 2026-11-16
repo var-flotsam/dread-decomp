@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkStateObject;
 struct UnkShipRecharge_A5_b73;
 struct UnkThermalDevice_b50a5;
 struct UnkUsableComponent_A6_b62;
@@ -25,3 +26,4 @@ void fn_7100aa30bc(UnkUsable_b48* self, u32 arg);
 extern u8 g_unk_7172753148[];  // A UnkProperty.
 extern void* g_unk_7101a94220[];
 extern void* g_unk_7101a94718[];
+void fn_7100a9ea64(UnkStateObject* self);

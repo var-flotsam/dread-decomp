@@ -14,3 +14,7 @@ extern char g_unk_7101cab298[];
 extern char g_unk_7101cab2c0[];
 extern char g_unk_7101cab2e8[];
 extern char g_unk_7101cab310[];
+extern char g_unk_7101cab360[];
+extern char g_unk_7101cab388[];
+extern char g_unk_7101cab3b0[];
+extern char g_unk_7101cab3d8[];

@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkRec60IdArray_b0223;
 struct UnkArraysRecord;
 struct UnkDashMesh;
 struct UnkPolyValues;
@@ -24,3 +25,4 @@ extern void* g_unk_7101aa9d38[];
 void fn_7100e5ba88(void*, u32);
 // Brings the mesh's bounds up to date with its vertices (their x and y).
 void fn_7100e3e1c0(UnkDashMesh* mesh);
+void fn_7100e4efa0(UnkRec60IdArray_b0223* table);

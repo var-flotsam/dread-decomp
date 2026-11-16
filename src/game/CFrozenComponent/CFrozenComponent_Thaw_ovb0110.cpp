@@ -27,8 +27,6 @@ struct UnkSmOwner_A5_b62;  // src/game/UnkStateMachineUpdateA5_b62.cpp
 struct UnkLayerNode;
 void fn_7101177a70(void* handle, u64 key);
 
-extern char g_unk_7172721120[] __attribute__((visibility("hidden")));
-
 // The animation's tree nodes by name (parallel key and value arrays).
 struct UnkFrozenNodeMap_ov110 {
     u8 pad_0x0[0x78];

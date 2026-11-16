@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTU2544.h"
 #include "game/UnkTUProperty.h"
 
@@ -32,7 +33,6 @@ extern f32 g_unk_7101aa94ac;
 extern UnkStrIdBase g_unk_71727bca38;
 extern UnkEnumType g_unk_71727bcb40;
 extern UnkPropertyEx<> g_unk_71727bca40;
-extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101aa94d8[];
 void fn_7100dcfb6c(void* p);
 void fn_7100db464c(void* p);

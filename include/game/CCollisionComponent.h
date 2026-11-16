@@ -9,6 +9,8 @@
 #include "base/reflection/CClass.h"
 #include "types.h"
 
+struct UnkPowerBombCollider_ovb0127;
+struct UnkPowerBombColliders_ovb0127;
 struct UnkCollisionContainer_b42;
 struct UnkCollisionFileReader;
 struct UnkColliderNode;
@@ -31,3 +33,4 @@ void fn_7100860830(UnkCollisionFileReader* self, const char* path, base::global:
 base::reflection::UnkReflObject*& fn_7100862088(base::global::CRntVector<base::reflection::UnkReflObject*>* self, u32 index);
 void fn_7100861fc8(void* part, bool flag);
 void fn_7100861710(UnkCollisionContainer_b42* self, bool force);
+UnkPowerBombCollider_ovb0127* fn_710086420c(UnkPowerBombColliders_ovb0127*, u32);

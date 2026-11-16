@@ -13,8 +13,6 @@ struct UnkStatics_7100753350 {
     u8 field_0x20[8];
 };
 extern UnkStatics_7100753350 g_unk_71727113d8 __attribute__((visibility("hidden")));
-extern void* g_unk_7101a45fe8[];
-extern void* g_unk_7101a45f90[];
 extern UnkEnumType g_unk_7172735f58;
 extern char g_unk_71727113d0[];
 
