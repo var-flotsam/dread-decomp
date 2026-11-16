@@ -5,6 +5,7 @@
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU218.h"
 #include "types.h"
 

@@ -13,14 +13,15 @@ struct UnkTaggedObject135 {
     u8 sub[0x8];                // 0x18, size unknown
 };
 
-void fn_71001bcbec(void* sub, void* arg);  // the sub-object's constructor
+struct UnkTU250Object;
+void fn_71001bcbec(UnkTU250Object* self, void* arg);  // the sub-object's constructor
 
 void fn_71001478bc(UnkTaggedObject135* self) {
     self->flags_lo = 0xf000;
     self->flags_hi = 0xff09;
     self->tag = 0x600d600d;
     self->resource = nullptr;
-    fn_71001bcbec(self->sub, nullptr);
+    fn_71001bcbec(reinterpret_cast<UnkTU250Object*>(self->sub), nullptr);
     self->self = self;
     self->flags_hi = 0x70c;
 }

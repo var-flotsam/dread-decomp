@@ -10,6 +10,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CPlaythroughDef.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU83.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"

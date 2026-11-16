@@ -34,3 +34,4 @@ struct UnkScopedHashStream : UnkHashStream_0x38 {
 
     s32 Finish() { return fn_710007b750(data, fn_710007c1a4(this), -1); }
 };
+void fn_710007c144(UnkHashStream_0x38* s);

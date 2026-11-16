@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
@@ -30,8 +31,6 @@ struct UnkEntry_0x30 {
 // The file read into memory: the in-memory file (constructed by fn_710007be8c, destroyed by
 // fn_710007c0e4; base/UnkHashStream.h) and two words the opener sets (+0x38 is zero after a
 // successful read).
-
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71729ec650 __attribute__((visibility("hidden")));

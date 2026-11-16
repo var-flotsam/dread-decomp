@@ -1,6 +1,7 @@
 ## What this changes
 
-<!-- Functions or templates matched, tools changed, why. -->
+<!-- Functions or templates matched, tools changed, why, and anything reusable. This section is the journal entry:
+     tools/journal_sync.py copies it into docs/JOURNAL.md after the merge, so do not edit that file. -->
 
 ## Progress
 
@@ -15,5 +16,5 @@
 - [ ] `tools/decl_check.py --base origin/main` passes: shared symbols are declared once, in `include/`.
 - [ ] New files sit under `src/<subsystem>/`, named for their class or unit (`tools/tu_map.py --function <addr>`); no new address-named directories.
 - [ ] New names come from RTTI, reflection data, strings or mercury-engine-data-structures; everything else keeps `fn_<addr>` / `field_0x..` placeholders.
-- [ ] Notes and findings went to the top of `docs/JOURNAL.md`; `docs/HANDOFF.md` was left alone (the merging session updates it).
+- [ ] Notes and findings are in "What this changes" above; `docs/JOURNAL.md` and `docs/HANDOFF.md` were left alone (the merging session updates them).
 - [ ] Commit messages say what changed (no phase prefix needed).

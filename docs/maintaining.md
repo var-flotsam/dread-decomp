@@ -90,7 +90,9 @@ git status --short data/functions                               # should match w
 generator. For generator changes, also rerun the generator and confirm its output is unchanged
 (`git status` clean). Then merge on GitHub with a merge commit.
 
-After a round of merges, the merging session refreshes `docs/HANDOFF.md`
+After a round of merges, the merging session first adds the merged pull requests' descriptions to the
+journal (`tools/journal_sync.py`; `--dry-run` shows them first) and puts any reusable finding they record
+in the journal's index, then refreshes `docs/HANDOFF.md`
 (`tools/progress.py --slice boot --handoff`), then the README's status card and `docs/status.svg`
 (`tools/status_card.py --write`, which reads the handoff, so it runs second), then the per-unit table
 `data/tu_status.csv` (`tools/tu_status.py --write`; `--check` says whether it is behind). Each pull request's
@@ -114,8 +116,9 @@ only `check.py`'s own status lines reach GitHub.
 matching build: `src/`, `include/`, `lib/`, `data/functions/`, the toolchain pins, `check.py` and
 the tools it imports, or the workflow itself (`DECOMP_PATHS` in the workflow; a hosted `changes`
 job decides). Any other pull request (docs, `port/`, most of `tools/`) shows `check` as skipped,
-which the required check counts as passing; if `changes` fails, the check runs. Pushes to main and
-manual runs always run it, and a nightly run at 02:17 UTC runs `check.py --no-cache`, rebuilding
+which the required check counts as passing; if `changes` fails, the check runs. A push to main is
+filtered the same way over the pushed range (since 2026-11-16: a merge of a pull request that changed no
+input needs no second check). Manual runs always run it, and a nightly run at 02:17 UTC runs `check.py --no-cache`, rebuilding
 and rediffing every source, so a fault in `check.py`'s caches (`build/check/2.1.0/*.inputs.json`,
 `*.diff.json`) shows up within a day. Add a path to `DECOMP_PATHS` when `check.py` starts reading
 a new file. To force a full check on a pull request, run the workflow by hand on its branch.
@@ -150,6 +153,22 @@ nothing outside `docs/` and Markdown files (its `docs-only` job decides).
   Windows puts only `Git\cmd` on PATH, so `git` works in jobs but `bash` does not; the logon task
   also prepends `C:\Program Files\Git\bin` to the runner's PATH for any future `shell: bash` step
   (the runner's `.path` file is not honoured on Windows).
+- **Priority.** Task Scheduler starts a task at priority 7 (`BELOW_NORMAL`), which every child process
+  inherits, so the check got only the CPU nothing else wanted (the job prints its class to confirm): 3 minutes at night, 62 in the day (run
+  832, 2026-11-16). Since then the build step raises itself to `Normal` before it starts `check.py`, and
+  the first step prints the class the job started at. To start the runner itself at normal priority:
+  `$t = Get-ScheduledTask -TaskName 'GitHub Actions runner (dread-decomp)'; $t.Settings.Priority = 4;
+  Set-ScheduledTask -InputObject $t`, then restart the task while no job runs.
+- **A second runner** on the same PC lets short checks pass while a long one runs. Each runner has its own
+  checkout and its own `build\check` cache (never share one between runners: two `check.py` runs would
+  write the same cache files). Steps: GitHub, Settings > Actions > Runners > New self-hosted runner,
+  Windows x64; run its download commands in `%USERPROFILE%\actions-runner-2`, then
+  `.\config.cmd --url https://github.com/var-flotsam/dread-decomp --token <token> --name dread-pc-2 --labels dread --work _work --unattended`;
+  copy `.env` from the first runner's folder; register a copy of the logon task pointing at the new folder
+  (`$x = (Export-ScheduledTask -TaskName 'GitHub Actions runner (dread-decomp)') -replace 'actions-runner(?!-)', 'actions-runner-2' -replace '<Priority>\d+</Priority>', '<Priority>4</Priority>';
+  Register-ScheduledTask -TaskName 'GitHub Actions runner 2 (dread-decomp)' -Xml $x; Start-ScheduledTask -TaskName 'GitHub Actions runner 2 (dread-decomp)'`).
+  Its first job fails at "Toolchain and dump present"; then add the junctions `orig` and `build\recon` in
+  `%USERPROFILE%\actions-runner-2\_work\dread-decomp\dread-decomp` as for the first runner, and re-run that job.
 - To retire it: `config.cmd remove --token <token from gh api ... /actions/runners/remove-token>`,
   delete the scheduled task, then the folder.
 
@@ -175,7 +194,8 @@ It prints the sample and writes `build/review/sample_<seed>.md`: each function w
 fake-match forms `tools/fakematch.py` sees in it, and seven questions (is the comment true, are the names
 placeholders or sourced, do structs read as layouts, is anything there only to steer the compiler, does any
 line read like decompiler output, does it declare something its own way, is any statement there twice or without effect). The reader is a person, or a
-session that did not write the code. The findings go at the top of `docs/JOURNAL.md` with the seed, so the
+session that did not write the code. The findings go in the pull request's description, with the seed (or at the top of
+`docs/JOURNAL.md` when the merging session records them itself), so the
 sample can be drawn again; a finding that holds for a run or a recipe matters more than one function's, and
 goes into the worker brief (`tools/batch/lean/worker.md`) or a check. The first read is in the journal
 (2026-11-12, seed 2026-W46).

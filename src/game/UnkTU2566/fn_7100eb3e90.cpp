@@ -62,8 +62,7 @@ void fn_7100eb3e90(UnkNamedRefArrays_eb3e90* self, u32 capacity) {
         if (CStrId* old = self->names) {
             CStrId* dst = names;
             for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
-                dst->data = old->data;
-                old->data = &g_unk_7101d47108->empty;
+                CStrId::MoveConstructReloading(dst, *old);
                 old->Reset();
             }
             self->allocator->vf_0x48(self->names);

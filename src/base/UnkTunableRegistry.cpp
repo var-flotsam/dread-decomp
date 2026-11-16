@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkTU112.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTU85.h"
 #include "game/UnkTU99.h"
@@ -163,8 +164,6 @@ static inline UnkTunableLine Mid(const char* str, u32 count) {
 // The tunables file reader (as in src/game/CSubAreaManager.cpp): the file held in memory and two
 // words the opener sets.
 // The id and path pair (base/UnkStrIdPathPair.h) the file is opened with.
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
-void fn_710007c144(UnkHashStream_0x38* s);  // closes the file
 // Reads a line of at most `size` bytes from the position; false when none could be read.
 bool fn_710007c9e8(base::global::CRntFile* file, char* buffer, u32 size);
 // Rewinds the file opened for writing to its buffer (fn_710007c1a4).

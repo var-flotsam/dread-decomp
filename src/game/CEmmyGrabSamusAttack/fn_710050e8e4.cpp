@@ -6,7 +6,6 @@
 #include "types.h"
 
 // The 0x38-byte object at +0x28 is the hash stream (base/UnkHashStream.h); fn_710007c0e4 destroys it.
-void fn_710007c144(UnkHashStream_0x38* s);
 
 // A string id whose destructor decrements and tests the count in two steps.
 struct UnkStrId_710050e8e4 {

@@ -134,7 +134,6 @@ bool fn_7100256268(UnkActorDefFile_ovb0118* self, base::global::CRntFile* file) 
     return true;
 }
 
-void fn_710007c144(UnkHashStream_0x38*);
 struct UnkSpawnDefRef_b52;
 
 // What fn_71011938bc returns, as this unit holds it: the resource is released when nothing else

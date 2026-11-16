@@ -29,6 +29,7 @@
 #include "game/UnkTU25.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
@@ -681,8 +682,6 @@ struct UnkPathPairTemp_b45a1 {
 };
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 
 // The parser's callbacks of this unit.
 extern UnkParseCallbacks g_unk_71727c7270 __attribute__((visibility("hidden")));

@@ -10,6 +10,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU2564.h"
 #include "types.h"
 

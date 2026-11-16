@@ -20,6 +20,7 @@
 #include "game/UnkTU315.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTU57.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -277,7 +278,6 @@ void fn_7100ed5f2c(UnkShotIdRecordSet* self) {
 #include "base/UnkFileReader.h"
 
 // The file reader (as src/game/sound/UnkMusicPresets.cpp spells it).
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 extern UnkParseCallbacks g_unk_71729da548 __attribute__((visibility("hidden")));  // this unit's callbacks
 
 // The shot kinds (15) and the presets of each kind (8), as indices.

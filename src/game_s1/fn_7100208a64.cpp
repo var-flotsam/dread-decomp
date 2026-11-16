@@ -4,10 +4,10 @@
 // to the node's translation and angles (fn_71001bc740, fn_71001bc8a4, fn_71001bc69c). The
 // target's +0x70 records whether it follows; a change of state is stored at +0xf5 and its inverse
 // at +0x136.
+#include "game/UnkTU248.h"
 #include "game/UnkXformNode.h"
 
 struct UnkXformHolder_0x84;
-void fn_71001bc740(UnkXformHolder_0x84* self, const UnkVec3f* v);
 void fn_71001bc8a4(UnkXformHolder_0x84* self, const UnkVec3f* v);
 void fn_71001bc69c(UnkXformHolder_0x84* self);
 
