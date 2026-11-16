@@ -26,7 +26,7 @@ struct UnkReadArg_b0249 {
     const base::reflection::CType* type;
     u64* value;
 };
-void fn_7100fc29e8(void* reader, u32 flags, UnkReadArg_b0249* arg, const base::global::CStrId* name);
+bool fn_7100fc29e8(void* reader, u32 flags, UnkReadArg_b0249* arg, const base::global::CStrId* name);
 using base::reflection::CType;
 using base::UnkStrIdMember;
 

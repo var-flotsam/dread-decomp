@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CBlackboard.h"
 #include "game/CBombGun.h"
 #include "game/CHydrogigaAIComponent.h"
 #include "game/UnkGameManager.h"
@@ -37,7 +38,6 @@ void fn_71011a19a4(void* self);
 void fn_7100def678(UnkGameManager* self, const CRntString& name, const char* fmt, ...);
 char* fn_7100d7820c(char* p0, u32 p1, u32 p2, u32 p3, u32 p4);
 void fn_7100de70a8(UnkGameManager* self);
-void fn_7101047ea8(void* self);
 void fn_7100e2c28c(void* self);
 char* fn_7100ed779c(char* p0);
 void fn_7100ed6bc4(void* self);

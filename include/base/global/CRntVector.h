@@ -71,6 +71,8 @@ struct CRntVector {
 
     CRntVector() = default;
     explicit CRntVector(u32 flags) : flags(flags) {}
+    // With the allocation flags and the growth step.
+    CRntVector(u32 flags, u32 step) : step(step), flags(flags) {}
 
     // Takes the source's settings and allocator, reserves its capacity and appends copies of its
     // elements (fn_710001e3b4 for base::core::AssetName; fn_71000cbae4 inlines all of it).

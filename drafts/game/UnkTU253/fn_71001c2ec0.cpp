@@ -5,6 +5,7 @@
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::color::CColor4F;

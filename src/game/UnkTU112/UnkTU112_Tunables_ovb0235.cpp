@@ -7,6 +7,7 @@
 #include <string.h>
 
 #include "base/UnkHashStream.h"
+#include "base/UnkTunableLine.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
@@ -110,33 +111,6 @@ UnkTunableGroup_A1b71* fn_710013c2ac(UnkTunableGroupArrays_A1b71* self_, const C
 }
 
 // ---- a tunable's field
-
-// A string with 0x100 bytes of inline storage (0x148 bytes).
-struct UnkTunableLine {
-    u8 str[0x30];
-    char* storage_vtable;  // +0x30
-    u8 buffer[0x100];
-    u64 field_0x138;
-    u32 field_0x140;
-
-    CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
-
-    UnkTunableLine() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
-        storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
-        field_0x138 = 0;
-        field_0x140 = 0;
-    }
-    UnkTunableLine& operator=(const CRntString& other) {
-        fn_710007eaa0(Str(), &other);
-        return *this;
-    }
-    ~UnkTunableLine() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
-    }
-};
-static_assert(sizeof(UnkTunableLine) == 0x148, "");
 
 // A reflected field (0xb0 bytes): its type at +0x10.
 struct UnkTunableField {
