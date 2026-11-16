@@ -28,6 +28,12 @@ struct CRntDictionaryHash<T*> {
     static u32 Of(T* key) { return (u32)(u64)key; }
 };
 
+// A 32-bit integer key: itself.
+template <>
+struct CRntDictionaryHash<u32> {
+    static u32 Of(u32 key) { return key; }
+};
+
 // A 64-bit integer key: its low 32 bits.
 template <>
 struct CRntDictionaryHash<u64> {

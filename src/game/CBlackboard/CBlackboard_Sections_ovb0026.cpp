@@ -9,6 +9,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkParallelFind.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
@@ -42,12 +43,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
 void fn_7100af0030(UnkSectionData* self, const UnkSectionData* other);
-
-struct UnkStrIdData_b0026 {
-    u8 pad_0x0[0x30];
-    u32 hash_lo;
-    u32 hash_hi;
-};
 
 struct UnkNameSet_b0026 {
     CStrId* values;
@@ -116,31 +111,9 @@ struct UnkSectionGroup_b0026 {
 };
 static_assert(sizeof(UnkSectionGroup_b0026) == 0x68, "layout");
 
-// The groups by name: a chained hash map whose nodes are also listed in creation order.
-struct UnkGroupNode_b0026 {
-    CStrId key;
-    UnkSectionGroup_b0026* value;
-    // Union members: the original reloads the list ends after each link store.
-    union {
-        UnkGroupNode_b0026* next;
-    };
-    union {
-        UnkGroupNode_b0026* prev;
-    };
-    UnkGroupNode_b0026* chain;
-};
-
-struct UnkGroupMap_b0026 {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    UnkGroupNode_b0026** buckets;
-    u32 bucket_count;
-    u32 modulus;
-    u8 pad_0x20[0x18];
-    UnkGroupNode_b0026* last;   // 0x38
-    UnkGroupNode_b0026* first;  // 0x40
-};
+// The groups by name.
+using UnkGroupMap_b0026 = base::global::CRntDictionary<CStrId, UnkSectionGroup_b0026*>;
+using UnkGroupNode_b0026 = UnkGroupMap_b0026::TNode;
 
 struct UnkBlackboardGroups_b0026 {
     u8 pad_0x0[0x30];
@@ -216,32 +189,7 @@ s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name) {
 UnkSectionGroup_b0026* fn_71010486bc(UnkBlackboardGroups_b0026* self, const CStrId& key) {
     auto* group = new (fn_71000839a0(sizeof(UnkSectionGroup_b0026), 0x15))
         UnkSectionGroup_b0026(reinterpret_cast<CBlackboard*>(self), key);
-    UnkGroupMap_b0026& map = self->groups;
-    UnkGroupNode_b0026** bucket = nullptr;
-    if (map.bucket_count) {
-        const UnkStrIdData_b0026* data = reinterpret_cast<const UnkStrIdData_b0026*>(key.data);
-        u32 i = (data->hash_lo ^ data->hash_hi) % map.modulus;
-        bucket = map.buckets + i;
-    }
-    UnkGroupNode_b0026* old = *bucket;
-    auto* node = static_cast<UnkGroupNode_b0026*>(map.allocator->vf_0x40(sizeof(UnkGroupNode_b0026), 8, map.flags));
-    if (node) {
-        new (&node->key) CStrId(key);
-        node->value = group;
-        node->next = nullptr;
-        node->prev = nullptr;
-        node->chain = nullptr;
-    }
-    node->chain = old;
-    *bucket = node;
-    if (!map.first) {
-        map.first = node;
-    } else if (map.last) {
-        node->prev = map.last;
-        map.last->next = node;
-    }
-    map.last = node;
-    ++map.count;
+    self->groups.Insert(key, group);
     return group;
 }
 
