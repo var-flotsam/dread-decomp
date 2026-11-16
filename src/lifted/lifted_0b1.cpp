@@ -1649,12 +1649,6 @@ UnkResult fn_7100b16458(char* p0, char* p1) {
     return ret;
 }
 
-extern char g_unk_717275fb68[];
-char* fn_7100b1665c() {
-    char* r0_0 = (char*)g_unk_717275fb68;
-    return r0_0;
-}
-
 extern char g_unk_7101a9a4c0[];
 extern char g_unk_7101a9a508[];
 namespace callee { char* fn_710007ea60(char*, char*); }

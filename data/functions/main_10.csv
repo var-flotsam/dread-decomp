@@ -48,7 +48,7 @@ address,size,name,name_source,subsystem,status
 0x71010011f0,132,fn_71010011f0,unknown,unknown,O
 0x7101001274,12,fn_7101001274,unknown,unknown,O
 0x7101001280,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::Hash,reflection,engine/reflection,O
-0x7101001288,12,fn_7101001288,unknown,unknown,O
+0x7101001288,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::TypeOf,reflection,engine/reflection,O
 0x7101001294,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::Construct,reflection,engine/reflection,O
 0x71010012d4,128,fn_71010012d4,unknown,unknown,O
 0x7101001354,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::MoveConstruct,reflection,engine/reflection,O
@@ -111,7 +111,7 @@ address,size,name,name_source,subsystem,status
 0x710100375c,288,fn_710100375c,unknown,unknown,U
 0x710100387c,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Equals",reflection,engine/reflection,O
 0x7101003888,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Hash",reflection,engine/reflection,O
-0x7101003890,12,fn_7101003890,unknown,unknown,O
+0x7101003890,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::TypeOf",reflection,engine/reflection,O
 0x710100389c,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Construct",reflection,engine/reflection,O
 0x71010038a0,152,fn_71010038a0,unknown,unknown,O
 0x7101003938,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Begin",reflection,engine/reflection,O
@@ -167,7 +167,7 @@ address,size,name,name_source,subsystem,status
 0x7101004a3c,148,fn_7101004a3c,unknown,unknown,O
 0x7101004ad0,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Equals",reflection,engine/reflection,O
 0x7101004adc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Hash",reflection,engine/reflection,O
-0x7101004ae4,12,fn_7101004ae4,unknown,unknown,O
+0x7101004ae4,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::TypeOf",reflection,engine/reflection,O
 0x7101004af0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Construct",reflection,engine/reflection,O
 0x7101004af4,4,fn_7101004af4,unknown,unknown,O
 0x7101004af8,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Begin",reflection,engine/reflection,O
@@ -222,7 +222,7 @@ address,size,name,name_source,subsystem,status
 0x7101005b78,108,fn_7101005b78,unknown,unknown,O
 0x7101005be4,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::Equals",reflection,engine/reflection,O
 0x7101005bf0,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::Hash",reflection,engine/reflection,O
-0x7101005bf8,12,fn_7101005bf8,unknown,unknown,O
+0x7101005bf8,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::TypeOf",reflection,engine/reflection,O
 0x7101005c04,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::Construct",reflection,engine/reflection,O
 0x7101005c08,4,fn_7101005c08,unknown,unknown,O
 0x7101005c0c,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::Begin",reflection,engine/reflection,O
@@ -810,7 +810,7 @@ address,size,name,name_source,subsystem,status
 0x7101029a84,144,fn_7101029a84,unknown,unknown,O
 0x7101029b14,12,fn_7101029b14,unknown,unknown,O
 0x7101029b20,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::Hash",reflection,engine/reflection,O
-0x7101029b28,12,fn_7101029b28,unknown,unknown,O
+0x7101029b28,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::TypeOf",reflection,engine/reflection,O
 0x7101029b34,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::Construct",reflection,engine/reflection,O
 0x7101029b68,4,fn_7101029b68,unknown,unknown,O
 0x7101029b6c,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::MoveConstruct",reflection,engine/reflection,O
@@ -1426,7 +1426,7 @@ address,size,name,name_source,subsystem,status
 0x7101042680,108,fn_7101042680,unknown,unknown,O
 0x71010426ec,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::Equals",reflection,engine/reflection,O
 0x71010426f8,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::Hash",reflection,engine/reflection,O
-0x7101042700,12,fn_7101042700,unknown,unknown,O
+0x7101042700,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::TypeOf",reflection,engine/reflection,O
 0x710104270c,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::Construct",reflection,engine/reflection,O
 0x7101042710,4,fn_7101042710,unknown,unknown,O
 0x7101042714,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::Begin",reflection,engine/reflection,O
@@ -2297,7 +2297,7 @@ address,size,name,name_source,subsystem,status
 0x71010603c0,52,fn_71010603c0,unknown,unknown,O
 0x71010603f4,136,fn_71010603f4,unknown,unknown,U
 0x710106047c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorPathSegment>>::Hash,reflection,engine/reflection,O
-0x7101060484,12,fn_7101060484,unknown,unknown,O
+0x7101060484,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorPathSegment>>::TypeOf,reflection,engine/reflection,O
 0x7101060490,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorPathSegment>>::Construct,reflection,engine/reflection,O
 0x71010604d0,4,fn_71010604d0,unknown,unknown,O
 0x71010604d4,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorPathSegment>>::MoveConstruct,reflection,engine/reflection,O
@@ -2601,7 +2601,7 @@ address,size,name,name_source,subsystem,status
 0x71010706e4,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::SetMove,reflection,engine/reflection,O
 0x710107070c,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Equals,reflection,engine/reflection,O
 0x7101070758,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Hash,reflection,engine/reflection,O
-0x7101070760,12,fn_7101070760,unknown,unknown,O
+0x7101070760,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TypeOf,reflection,engine/reflection,O
 0x710107076c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Construct,reflection,engine/reflection,O
 0x71010707ac,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::CopyConstruct,reflection,engine/reflection,O
 0x7101070870,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::MoveConstruct,reflection,engine/reflection,O
@@ -4080,7 +4080,7 @@ address,size,name,name_source,subsystem,status
 0x71010c6424,112,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::SetMove",reflection,engine/reflection,O
 0x71010c6494,152,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Equals",reflection,engine/reflection,O
 0x71010c652c,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Hash",reflection,engine/reflection,O
-0x71010c6534,12,fn_71010c6534,unknown,unknown,O
+0x71010c6534,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::TypeOf",reflection,engine/reflection,O
 0x71010c6540,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Construct",reflection,engine/reflection,O
 0x71010c6574,196,fn_71010c6574,unknown,unknown,O
 0x71010c6638,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::MoveConstruct",reflection,engine/reflection,O

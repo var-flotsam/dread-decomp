@@ -799,7 +799,7 @@ address,size,name,name_source,subsystem,status
 0x710001dffc,468,fn_710001dffc,unknown,unknown,O
 0x710001e1d0,100,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Equals,reflection,engine/reflection,O
 0x710001e234,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Hash,reflection,engine/reflection,O
-0x710001e23c,12,fn_710001e23c,unknown,unknown,O
+0x710001e23c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::TypeOf,reflection,engine/reflection,O
 0x710001e248,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Construct,reflection,engine/reflection,O
 0x710001e288,4,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::CopyConstruct,reflection,engine/reflection,O
 0x710001e28c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::MoveConstruct,reflection,engine/reflection,O
@@ -4474,7 +4474,7 @@ address,size,name,name_source,subsystem,status
 0x71000cb898,60,fn_71000cb898,unknown,unknown,O
 0x71000cb8d4,192,fn_71000cb8d4,unknown,unknown,U
 0x71000cb994,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::Hash,reflection,engine/reflection,O
-0x71000cb99c,12,fn_71000cb99c,unknown,unknown,O
+0x71000cb99c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TypeOf,reflection,engine/reflection,O
 0x71000cb9a8,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::Construct,reflection,engine/reflection,O
 0x71000cb9e8,4,fn_71000cb9e8,unknown,unknown,O
 0x71000cb9ec,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::MoveConstruct,reflection,engine/reflection,O
@@ -4555,7 +4555,7 @@ address,size,name,name_source,subsystem,status
 0x71000cdd48,144,fn_71000cdd48,unknown,unknown,O
 0x71000cddd8,76,fn_71000cddd8,unknown,unknown,O
 0x71000cde24,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::Hash,reflection,engine/reflection,O
-0x71000cde2c,12,fn_71000cde2c,unknown,unknown,O
+0x71000cde2c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::TypeOf,reflection,engine/reflection,O
 0x71000cde38,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::Construct,reflection,engine/reflection,O
 0x71000cde78,248,fn_71000cde78,unknown,unknown,O
 0x71000cdf70,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::MoveConstruct,reflection,engine/reflection,O
@@ -4604,7 +4604,7 @@ address,size,name,name_source,subsystem,status
 0x71000cf034,44,fn_71000cf034,unknown,unknown,O
 0x71000cf060,76,fn_71000cf060,unknown,unknown,O
 0x71000cf0ac,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::Hash,reflection,engine/reflection,O
-0x71000cf0b4,12,fn_71000cf0b4,unknown,unknown,O
+0x71000cf0b4,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::TypeOf,reflection,engine/reflection,O
 0x71000cf0c0,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::Construct,reflection,engine/reflection,O
 0x71000cf100,4,fn_71000cf100,unknown,unknown,O
 0x71000cf104,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::MoveConstruct,reflection,engine/reflection,O
@@ -4654,7 +4654,7 @@ address,size,name,name_source,subsystem,status
 0x71000d0504,144,fn_71000d0504,unknown,unknown,O
 0x71000d0594,76,fn_71000d0594,unknown,unknown,O
 0x71000d05e0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::Hash,reflection,engine/reflection,O
-0x71000d05e8,12,fn_71000d05e8,unknown,unknown,O
+0x71000d05e8,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::TypeOf,reflection,engine/reflection,O
 0x71000d05f4,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::Construct,reflection,engine/reflection,O
 0x71000d0634,248,fn_71000d0634,unknown,unknown,O
 0x71000d072c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::MoveConstruct,reflection,engine/reflection,O
@@ -4702,7 +4702,7 @@ address,size,name,name_source,subsystem,status
 0x71000d16b0,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::SetMove,reflection,engine/reflection,O
 0x71000d16d8,76,fn_71000d16d8,unknown,unknown,O
 0x71000d1724,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::Hash,reflection,engine/reflection,O
-0x71000d172c,12,fn_71000d172c,unknown,unknown,O
+0x71000d172c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TypeOf,reflection,engine/reflection,O
 0x71000d1738,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::Construct,reflection,engine/reflection,O
 0x71000d1778,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::CopyConstruct,reflection,engine/reflection,O
 0x71000d183c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::MoveConstruct,reflection,engine/reflection,O
@@ -4749,7 +4749,7 @@ address,size,name,name_source,subsystem,status
 0x71000d25c8,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::SetMove,reflection,engine/reflection,O
 0x71000d25f0,76,fn_71000d25f0,unknown,unknown,O
 0x71000d263c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::Hash,reflection,engine/reflection,O
-0x71000d2644,12,fn_71000d2644,unknown,unknown,O
+0x71000d2644,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TypeOf,reflection,engine/reflection,O
 0x71000d2650,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::Construct,reflection,engine/reflection,O
 0x71000d2690,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::CopyConstruct,reflection,engine/reflection,O
 0x71000d2754,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::MoveConstruct,reflection,engine/reflection,O
@@ -4796,7 +4796,7 @@ address,size,name,name_source,subsystem,status
 0x71000d34c4,40,fn_71000d34c4,unknown,unknown,O
 0x71000d34ec,76,fn_71000d34ec,unknown,unknown,O
 0x71000d3538,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<uint64>>::Hash,reflection,engine/reflection,O
-0x71000d3540,12,fn_71000d3540,unknown,unknown,O
+0x71000d3540,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<uint64>>::TypeOf,reflection,engine/reflection,O
 0x71000d354c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<uint64>>::Construct,reflection,engine/reflection,O
 0x71000d358c,196,fn_71000d358c,unknown,unknown,O
 0x71000d3650,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<uint64>>::MoveConstruct,reflection,engine/reflection,O
@@ -4843,7 +4843,7 @@ address,size,name,name_source,subsystem,status
 0x71000d43dc,40,fn_71000d43dc,unknown,unknown,O
 0x71000d4404,76,fn_71000d4404,unknown,unknown,O
 0x71000d4450,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<float32>>::Hash,reflection,engine/reflection,O
-0x71000d4458,12,fn_71000d4458,unknown,unknown,O
+0x71000d4458,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<float32>>::TypeOf,reflection,engine/reflection,O
 0x71000d4464,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<float32>>::Construct,reflection,engine/reflection,O
 0x71000d44a4,196,fn_71000d44a4,unknown,unknown,O
 0x71000d4568,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<float32>>::MoveConstruct,reflection,engine/reflection,O
@@ -4900,7 +4900,7 @@ address,size,name,name_source,subsystem,status
 0x71000d5590,284,fn_71000d5590,unknown,unknown,O
 0x71000d56ac,136,fn_71000d56ac,unknown,unknown,O
 0x71000d5734,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::reflection::CTypedValue>>::Hash,reflection,engine/reflection,O
-0x71000d573c,12,fn_71000d573c,unknown,unknown,O
+0x71000d573c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::reflection::CTypedValue>>::TypeOf,reflection,engine/reflection,O
 0x71000d5748,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::reflection::CTypedValue>>::Construct,reflection,engine/reflection,O
 0x71000d5788,4,fn_71000d5788,unknown,unknown,O
 0x71000d578c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::reflection::CTypedValue>>::MoveConstruct,reflection,engine/reflection,O
@@ -4949,7 +4949,7 @@ address,size,name,name_source,subsystem,status
 0x71000d6b14,108,fn_71000d6b14,unknown,unknown,O
 0x71000d6b80,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Equals",reflection,engine/reflection,O
 0x71000d6b8c,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Hash",reflection,engine/reflection,O
-0x71000d6b94,12,fn_71000d6b94,unknown,unknown,O
+0x71000d6b94,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::TypeOf",reflection,engine/reflection,O
 0x71000d6ba0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Construct",reflection,engine/reflection,O
 0x71000d6ba4,4,fn_71000d6ba4,unknown,unknown,O
 0x71000d6ba8,236,fn_71000d6ba8,unknown,unknown,O
@@ -4994,7 +4994,7 @@ address,size,name,name_source,subsystem,status
 0x71000d7ce8,144,fn_71000d7ce8,unknown,unknown,O
 0x71000d7d78,240,fn_71000d7d78,unknown,unknown,O
 0x71000d7e68,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Hash",reflection,engine/reflection,O
-0x71000d7e70,12,fn_71000d7e70,unknown,unknown,O
+0x71000d7e70,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>>::TypeOf",reflection,engine/reflection,O
 0x71000d7e7c,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Construct",reflection,engine/reflection,O
 0x71000d7eb0,4,fn_71000d7eb0,unknown,unknown,O
 0x71000d7eb4,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>>::MoveConstruct",reflection,engine/reflection,O
@@ -5043,7 +5043,7 @@ address,size,name,name_source,subsystem,status
 0x71000d93f4,232,fn_71000d93f4,unknown,unknown,O
 0x71000d94dc,152,fn_71000d94dc,unknown,unknown,O
 0x71000d9574,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::Hash",reflection,engine/reflection,O
-0x71000d957c,12,fn_71000d957c,unknown,unknown,O
+0x71000d957c,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::TypeOf",reflection,engine/reflection,O
 0x71000d9588,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::Construct",reflection,engine/reflection,O
 0x71000d95bc,256,fn_71000d95bc,unknown,unknown,O
 0x71000d96bc,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::MoveConstruct",reflection,engine/reflection,O
@@ -5094,7 +5094,7 @@ address,size,name,name_source,subsystem,status
 0x71000dae28,232,fn_71000dae28,unknown,unknown,O
 0x71000daf10,152,fn_71000daf10,unknown,unknown,O
 0x71000dafa8,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::Hash",reflection,engine/reflection,O
-0x71000dafb0,12,fn_71000dafb0,unknown,unknown,O
+0x71000dafb0,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::TypeOf",reflection,engine/reflection,O
 0x71000dafbc,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::Construct",reflection,engine/reflection,O
 0x71000daff0,264,fn_71000daff0,unknown,unknown,O
 0x71000db0f8,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::MoveConstruct",reflection,engine/reflection,O
@@ -5143,7 +5143,7 @@ address,size,name,name_source,subsystem,status
 0x71000dc138,4,fn_71000dc138,unknown,unknown,O
 0x71000dc13c,12,fn_71000dc13c,unknown,unknown,O
 0x71000dc148,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>>::Hash",reflection,engine/reflection,O
-0x71000dc150,12,fn_71000dc150,unknown,unknown,O
+0x71000dc150,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>>::TypeOf",reflection,engine/reflection,O
 0x71000dc15c,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>>::Construct",reflection,engine/reflection,O
 0x71000dc190,192,fn_71000dc190,unknown,unknown,O
 0x71000dc250,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>>::MoveConstruct",reflection,engine/reflection,O
@@ -5187,7 +5187,7 @@ address,size,name,name_source,subsystem,status
 0x71000dca64,4,fn_71000dca64,unknown,unknown,O
 0x71000dca68,12,fn_71000dca68,unknown,unknown,O
 0x71000dca74,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>>::Hash",reflection,engine/reflection,O
-0x71000dca7c,12,fn_71000dca7c,unknown,unknown,O
+0x71000dca7c,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>>::TypeOf",reflection,engine/reflection,O
 0x71000dca88,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>>::Construct",reflection,engine/reflection,O
 0x71000dcabc,236,fn_71000dcabc,unknown,unknown,O
 0x71000dcba8,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>>::MoveConstruct",reflection,engine/reflection,O
@@ -5233,7 +5233,7 @@ address,size,name,name_source,subsystem,status
 0x71000ddbfc,4,fn_71000ddbfc,unknown,unknown,O
 0x71000ddc00,12,fn_71000ddc00,unknown,unknown,O
 0x71000ddc0c,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::Hash",reflection,engine/reflection,O
-0x71000ddc14,12,fn_71000ddc14,unknown,unknown,O
+0x71000ddc14,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::TypeOf",reflection,engine/reflection,O
 0x71000ddc20,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::Construct",reflection,engine/reflection,O
 0x71000ddc54,236,fn_71000ddc54,unknown,unknown,O
 0x71000ddd40,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::MoveConstruct",reflection,engine/reflection,O
@@ -5279,7 +5279,7 @@ address,size,name,name_source,subsystem,status
 0x71000dee9c,116,fn_71000dee9c,unknown,unknown,O
 0x71000def10,148,fn_71000def10,unknown,unknown,O
 0x71000defa4,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::Hash",reflection,engine/reflection,O
-0x71000defac,12,fn_71000defac,unknown,unknown,O
+0x71000defac,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::TypeOf",reflection,engine/reflection,O
 0x71000defb8,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::Construct",reflection,engine/reflection,O
 0x71000defec,196,fn_71000defec,unknown,unknown,O
 0x71000df0b0,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::MoveConstruct",reflection,engine/reflection,O
@@ -5328,7 +5328,7 @@ address,size,name,name_source,subsystem,status
 0x71000e0078,40,fn_71000e0078,unknown,unknown,O
 0x71000e00a0,136,fn_71000e00a0,unknown,unknown,O
 0x71000e0128,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::Hash,reflection,engine/reflection,O
-0x71000e0130,12,fn_71000e0130,unknown,unknown,O
+0x71000e0130,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::TypeOf,reflection,engine/reflection,O
 0x71000e013c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::Construct,reflection,engine/reflection,O
 0x71000e017c,4,fn_71000e017c,unknown,unknown,O
 0x71000e0180,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::MoveConstruct,reflection,engine/reflection,O
@@ -5377,7 +5377,7 @@ address,size,name,name_source,subsystem,status
 0x71000e1660,328,fn_71000e1660,unknown,unknown,O
 0x71000e17a8,76,fn_71000e17a8,unknown,unknown,O
 0x71000e17f4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::Hash,reflection,engine/reflection,O
-0x71000e17fc,12,fn_71000e17fc,unknown,unknown,O
+0x71000e17fc,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TypeOf,reflection,engine/reflection,O
 0x71000e1808,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::Construct,reflection,engine/reflection,O
 0x71000e1848,188,fn_71000e1848,unknown,unknown,O
 0x71000e1904,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::MoveConstruct,reflection,engine/reflection,O

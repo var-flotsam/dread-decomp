@@ -395,12 +395,6 @@ bool fn_7100e60b74(char* p0, char* p1) {
     return r0_0;
 }
 
-extern char g_unk_71727c40f0[];
-char* fn_7100e60b88() {
-    char* r0_0 = (char*)g_unk_71727c40f0;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100e4eb8c(char*); }
 char* fn_7100e60cf8(char* p0) {
     char* r0_19 = p0;
@@ -714,12 +708,6 @@ L_7100e62350:;
 
 bool fn_7100e62378(char* p0, char* p1) {
     bool r0_0 = (u64)(u64)(p0) == (u64)(p1);
-    return r0_0;
-}
-
-extern char g_unk_71727c44e8[];
-char* fn_7100e6238c() {
-    char* r0_0 = (char*)g_unk_71727c44e8;
     return r0_0;
 }
 

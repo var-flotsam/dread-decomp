@@ -264,12 +264,6 @@ u64 fn_7100241568(char* p0, char* p1) {
     return r7_0;
 }
 
-extern char g_unk_717269adc0[];
-char* fn_71002417f8() {
-    char* r0_0 = (char*)g_unk_717269adc0;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100241a1c(char*, char*); }
 char* fn_7100241844(char* p0, char* p1) {
     return callee::fn_7100241a1c(p0, p1);
@@ -394,12 +388,6 @@ UnkResult fn_7100242b20(char* p0, char* p1) {
 namespace callee { char* fn_71002430e8(char*, char*); }
 char* fn_7100242e94(char* p0, char* p1) {
     return callee::fn_71002430e8(p0, p1);
-}
-
-extern char g_unk_717269b1b8[];
-char* fn_7100242fe4() {
-    char* r0_0 = (char*)g_unk_717269b1b8;
-    return r0_0;
 }
 
 namespace callee { char* fn_7100242ff8(char*); }
@@ -661,12 +649,6 @@ char* fn_710024396c(char* p0, char* p1, char* p2) {
         return ((char* (*)(u64))(r14_1))(r13_0);
     }
     return r2_0;
-}
-
-extern char g_unk_717269b5d8[];
-char* fn_7100243a20() {
-    char* r0_0 = (char*)g_unk_717269b5d8;
-    return r0_0;
 }
 
 char* fn_7100243b58(char* p0, char* p1) {
@@ -986,12 +968,6 @@ L_7100244f70:;
     X1 = (u64)(((char*)X2));
     X0 = (u64)(callee::fn_7100241c78(X0, ((char*)X1)));
     return *((char*)X0);
-}
-
-extern char g_unk_717269b9d0[];
-char* fn_71002450b4() {
-    char* r0_0 = (char*)g_unk_717269b9d0;
-    return r0_0;
 }
 
 namespace callee { char* fn_710024515c(u64); }
@@ -1512,12 +1488,6 @@ char* fn_7100246728(char* p0, char* p1) {
     return callee::fn_710024693c(p0, p1);
 }
 
-extern char g_unk_717269bf08[];
-char* fn_7100246734() {
-    char* r0_0 = (char*)g_unk_717269bf08;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100246a94(char*, char*); }
 char* fn_7100246780(char* p0, char* p1) {
     return callee::fn_7100246a94(p0, p1);
@@ -1750,12 +1720,6 @@ L_7100248500:;
     X1 = (u64)(((char*)X2));
     X0 = (u64)(callee::fn_7100246d70(X0, ((char*)X1)));
     return *((char*)X0);
-}
-
-extern char g_unk_717269c300[];
-char* fn_710024861c() {
-    char* r0_0 = (char*)g_unk_717269c300;
-    return r0_0;
 }
 
 namespace callee { char* fn_71002486a8(char*, u64); }

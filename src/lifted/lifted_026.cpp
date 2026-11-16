@@ -1991,12 +1991,6 @@ UnkResult fn_710026bcb8(char* p0, char* p1) {
     return ret;
 }
 
-extern char g_unk_71726a2fb8[];
-char* fn_710026bebc() {
-    char* r0_0 = (char*)g_unk_71726a2fb8;
-    return r0_0;
-}
-
 char* fn_710026ce70(char* p0) {
     char* r0_0 = (p0) + 88;
     return r0_0;

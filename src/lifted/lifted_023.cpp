@@ -3554,12 +3554,6 @@ UnkResult fn_710023eee0(char* p0, char* p1) {
     return ret;
 }
 
-extern char g_unk_717269a5d0[];
-char* fn_710023f0e4() {
-    char* r0_0 = (char*)g_unk_717269a5d0;
-    return r0_0;
-}
-
 extern char g_unk_717269a748[];
 char* fn_710023fa5c() {
     char* r0_0 = (char*)g_unk_717269a748;

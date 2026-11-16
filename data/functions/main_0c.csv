@@ -391,7 +391,7 @@ address,size,name,name_source,subsystem,status
 0x7100c0b3b0,52,fn_7100c0b3b0,unknown,unknown,O
 0x7100c0b3e4,136,fn_7100c0b3e4,unknown,unknown,U
 0x7100c0b46c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::Hash,reflection,engine/reflection,O
-0x7100c0b474,12,fn_7100c0b474,unknown,unknown,O
+0x7100c0b474,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TypeOf,reflection,engine/reflection,O
 0x7100c0b480,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::Construct,reflection,engine/reflection,O
 0x7100c0b4c0,4,fn_7100c0b4c0,unknown,unknown,O
 0x7100c0b4c4,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::MoveConstruct,reflection,engine/reflection,O

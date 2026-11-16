@@ -304,7 +304,7 @@ address,size,name,name_source,subsystem,status
 0x7101113f5c,432,fn_7101113f5c,unknown,unknown,U
 0x710111410c,136,fn_710111410c,unknown,unknown,O
 0x7101114194,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<SFallBackPath>>::Hash,reflection,engine/reflection,O
-0x710111419c,12,fn_710111419c,unknown,unknown,O
+0x710111419c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<SFallBackPath>>::TypeOf,reflection,engine/reflection,O
 0x71011141a8,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SFallBackPath>>::Construct,reflection,engine/reflection,O
 0x71011141e8,128,fn_71011141e8,unknown,unknown,O
 0x7101114268,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SFallBackPath>>::MoveConstruct,reflection,engine/reflection,O
@@ -763,7 +763,7 @@ address,size,name,name_source,subsystem,status
 0x710112fb38,344,fn_710112fb38,unknown,unknown,U
 0x710112fc90,12,fn_710112fc90,unknown,unknown,O
 0x710112fc9c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CSpawnerActorBlueprint>>::Hash,reflection,engine/reflection,O
-0x710112fca4,12,fn_710112fca4,unknown,unknown,O
+0x710112fca4,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CSpawnerActorBlueprint>>::TypeOf,reflection,engine/reflection,O
 0x710112fcb0,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CSpawnerActorBlueprint>>::Construct,reflection,engine/reflection,O
 0x710112fcf0,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CSpawnerActorBlueprint>>::MoveConstruct,reflection,engine/reflection,O
 0x710112fd30,4,fn_710112fd30,unknown,unknown,O
@@ -3100,7 +3100,7 @@ address,size,name,name_source,subsystem,status
 0x71011d1da4,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::SetMove,reflection,engine/reflection,O
 0x71011d1dcc,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::Equals,reflection,engine/reflection,O
 0x71011d1e18,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::Hash,reflection,engine/reflection,O
-0x71011d1e20,12,fn_71011d1e20,unknown,unknown,O
+0x71011d1e20,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::TypeOf,reflection,engine/reflection,O
 0x71011d1e2c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::Construct,reflection,engine/reflection,O
 0x71011d1e6c,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::CopyConstruct,reflection,engine/reflection,O
 0x71011d1f30,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::MoveConstruct,reflection,engine/reflection,O
@@ -3428,7 +3428,7 @@ address,size,name,name_source,subsystem,status
 0x71011dba44,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::SetMove,reflection,engine/reflection,O
 0x71011dba6c,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Equals,reflection,engine/reflection,O
 0x71011dbab8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Hash,reflection,engine/reflection,O
-0x71011dbac0,12,fn_71011dbac0,unknown,unknown,O
+0x71011dbac0,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::TypeOf,reflection,engine/reflection,O
 0x71011dbacc,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::Construct,reflection,engine/reflection,O
 0x71011dbb0c,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::CopyConstruct,reflection,engine/reflection,O
 0x71011dbbd0,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::MoveConstruct,reflection,engine/reflection,O

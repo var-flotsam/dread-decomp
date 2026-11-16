@@ -1894,12 +1894,6 @@ bool fn_710112fc90(char* p0, char* p1) {
     return r0_0;
 }
 
-extern char g_unk_7172a06cf0[];
-char* fn_710112fca4() {
-    char* r0_0 = (char*)g_unk_7172a06cf0;
-    return r0_0;
-}
-
 namespace callee { char* fn_71011266cc(char*); }
 char* fn_710112fd30(char* p0) {
     return callee::fn_71011266cc(p0);

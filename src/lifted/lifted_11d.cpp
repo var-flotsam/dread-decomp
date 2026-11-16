@@ -707,12 +707,6 @@ UnkResult fn_71011d1c1c(char* p0, char* p1) {
     return ret;
 }
 
-extern char g_unk_7172a0d730[];
-char* fn_71011d1e20() {
-    char* r0_0 = (char*)g_unk_7172a0d730;
-    return r0_0;
-}
-
 extern char g_unk_7172a0d8a8[];
 char* fn_71011d2648() {
     char* r0_0 = (char*)g_unk_7172a0d8a8;
@@ -2557,12 +2551,6 @@ UnkResult fn_71011db8bc(char* p0, char* p1) {
     u32 r16_3 = 0x1;
     callee::fn_71000a18d4(r13_0, r12_1, r14_2, r16_3);
     return ret;
-}
-
-extern char g_unk_7172a0e928[];
-char* fn_71011dbac0() {
-    char* r0_0 = (char*)g_unk_7172a0e928;
-    return r0_0;
 }
 
 extern char g_unk_7101cb5dd0[];

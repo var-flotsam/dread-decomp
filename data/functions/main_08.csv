@@ -3309,7 +3309,7 @@ address,size,name,name_source,subsystem,status
 0x710089504c,232,fn_710089504c,unknown,unknown,O
 0x7100895134,12,fn_7100895134,unknown,unknown,O
 0x7100895140,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::Hash,reflection,engine/reflection,O
-0x7100895148,12,fn_7100895148,unknown,unknown,O
+0x7100895148,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TypeOf,reflection,engine/reflection,O
 0x7100895154,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::Construct,reflection,engine/reflection,O
 0x7100895194,128,fn_7100895194,unknown,unknown,O
 0x7100895214,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::MoveConstruct,reflection,engine/reflection,O
@@ -3777,7 +3777,7 @@ address,size,name,name_source,subsystem,status
 0x71008aaeb0,232,fn_71008aaeb0,unknown,unknown,O
 0x71008aaf98,12,fn_71008aaf98,unknown,unknown,O
 0x71008aafa4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::Hash,reflection,engine/reflection,O
-0x71008aafac,12,fn_71008aafac,unknown,unknown,O
+0x71008aafac,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TypeOf,reflection,engine/reflection,O
 0x71008aafb8,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::Construct,reflection,engine/reflection,O
 0x71008aaff8,128,fn_71008aaff8,unknown,unknown,O
 0x71008ab078,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::MoveConstruct,reflection,engine/reflection,O

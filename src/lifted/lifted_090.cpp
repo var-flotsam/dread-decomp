@@ -743,12 +743,6 @@ char* fn_7100904840(char* p0, char* p1) {
     return callee::fn_7100904a0c(p0, p1);
 }
 
-extern char g_unk_7172733a70[];
-char* fn_710090484c() {
-    char* r0_0 = (char*)g_unk_7172733a70;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100904b48(char*, char*); }
 char* fn_710090488c(char* p0, char* p1) {
     return callee::fn_7100904b48(p0, p1);
@@ -1631,12 +1625,6 @@ u64 fn_710090ca64(char* p0, char* p1) {
 
 bool fn_710090cdbc(char* p0, char* p1) {
     bool r0_0 = (u64)(u64)(p0) == (u64)(p1);
-    return r0_0;
-}
-
-extern char g_unk_7172734a68[];
-char* fn_710090cdd0() {
-    char* r0_0 = (char*)g_unk_7172734a68;
     return r0_0;
 }
 

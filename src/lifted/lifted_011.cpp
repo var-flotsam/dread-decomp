@@ -2396,12 +2396,6 @@ bool fn_710011ee7c(char* p0, char* p1) {
     return r0_0;
 }
 
-extern char g_unk_7108b6ddf0[];
-char* fn_710011ee90() {
-    char* r0_0 = (char*)g_unk_7108b6ddf0;
-    return r0_0;
-}
-
 namespace callee { char* fn_710011f0d8(char*, char*); }
 char* fn_710011eedc(char* p0, char* p1) {
     return callee::fn_710011f0d8(p0, p1);

@@ -300,7 +300,7 @@ address,size,name,name_source,subsystem,status
 0x7100b08de0,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::SetMove,reflection,engine/reflection,O
 0x7100b08e08,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::Equals,reflection,engine/reflection,O
 0x7100b08e54,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::Hash,reflection,engine/reflection,O
-0x7100b08e5c,12,fn_7100b08e5c,unknown,unknown,O
+0x7100b08e5c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TypeOf,reflection,engine/reflection,O
 0x7100b08e68,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::Construct,reflection,engine/reflection,O
 0x7100b08ea8,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::CopyConstruct,reflection,engine/reflection,O
 0x7100b08f6c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::MoveConstruct,reflection,engine/reflection,O
@@ -427,7 +427,7 @@ address,size,name,name_source,subsystem,status
 0x7100b0cd7c,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::SetMove,reflection,engine/reflection,O
 0x7100b0cda4,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::Equals,reflection,engine/reflection,O
 0x7100b0cdf0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::Hash,reflection,engine/reflection,O
-0x7100b0cdf8,12,fn_7100b0cdf8,unknown,unknown,O
+0x7100b0cdf8,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TypeOf,reflection,engine/reflection,O
 0x7100b0ce04,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::Construct,reflection,engine/reflection,O
 0x7100b0ce44,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::CopyConstruct,reflection,engine/reflection,O
 0x7100b0cf08,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::MoveConstruct,reflection,engine/reflection,O
@@ -761,7 +761,7 @@ address,size,name,name_source,subsystem,status
 0x7100b165e0,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::SetMove,reflection,engine/reflection,O
 0x7100b16608,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::Equals,reflection,engine/reflection,O
 0x7100b16654,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::Hash,reflection,engine/reflection,O
-0x7100b1665c,12,fn_7100b1665c,unknown,gui?,O
+0x7100b1665c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TypeOf,reflection,engine/reflection,O
 0x7100b16668,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::Construct,reflection,engine/reflection,O
 0x7100b166a8,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::CopyConstruct,reflection,engine/reflection,O
 0x7100b1676c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::MoveConstruct,reflection,engine/reflection,O
@@ -2353,7 +2353,7 @@ address,size,name,name_source,subsystem,status
 0x7100b78ea0,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::SetMove,reflection,engine/reflection,O
 0x7100b78ec8,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::Equals,reflection,engine/reflection,O
 0x7100b78f14,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::Hash,reflection,engine/reflection,O
-0x7100b78f1c,12,fn_7100b78f1c,unknown,unknown,O
+0x7100b78f1c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TypeOf,reflection,engine/reflection,O
 0x7100b78f28,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::Construct,reflection,engine/reflection,O
 0x7100b78f68,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::CopyConstruct,reflection,engine/reflection,O
 0x7100b7902c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::MoveConstruct,reflection,engine/reflection,O
@@ -2578,7 +2578,7 @@ address,size,name,name_source,subsystem,status
 0x7100b80f68,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::SetMove",reflection,engine/reflection,O
 0x7100b80fc0,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Equals",reflection,engine/reflection,O
 0x7100b80fcc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Hash",reflection,engine/reflection,O
-0x7100b80fd4,12,fn_7100b80fd4,unknown,unknown,O
+0x7100b80fd4,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TypeOf",reflection,engine/reflection,O
 0x7100b80fe0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::Construct",reflection,engine/reflection,O
 0x7100b80fe4,4,fn_7100b80fe4,unknown,unknown,O
 0x7100b80fe8,240,fn_7100b80fe8,unknown,unknown,O
@@ -2706,7 +2706,7 @@ address,size,name,name_source,subsystem,status
 0x7100b84034,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::SetMove,reflection,engine/reflection,O
 0x7100b8405c,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::Equals,reflection,engine/reflection,O
 0x7100b840a8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::Hash,reflection,engine/reflection,O
-0x7100b840b0,12,fn_7100b840b0,unknown,unknown,O
+0x7100b840b0,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TypeOf,reflection,engine/reflection,O
 0x7100b840bc,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::Construct,reflection,engine/reflection,O
 0x7100b840fc,196,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::CopyConstruct,reflection,engine/reflection,O
 0x7100b841c0,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::MoveConstruct,reflection,engine/reflection,O

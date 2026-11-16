@@ -1997,12 +1997,6 @@ UnkResult fn_7100b08c58(char* p0, char* p1) {
     return ret;
 }
 
-extern char g_unk_717275e480[];
-char* fn_7100b08e5c() {
-    char* r0_0 = (char*)g_unk_717275e480;
-    return r0_0;
-}
-
 namespace callee { char* fn_71000ee4d0(u64); }
 char* fn_7100b0a0f0(char* p0) {
     u64 r0_0 = (u64)*(u64*)((char*)(p0) + 48);
@@ -2502,10 +2496,4 @@ UnkResult fn_7100b0cbf4(char* p0, char* p1) {
     u32 r16_3 = 0x1;
     callee::fn_71000a18d4(r13_0, r12_1, r14_2, r16_3);
     return ret;
-}
-
-extern char g_unk_717275f310[];
-char* fn_7100b0cdf8() {
-    char* r0_0 = (char*)g_unk_717275f310;
-    return r0_0;
 }

@@ -138,7 +138,7 @@ address,size,name,name_source,subsystem,status
 0x71009047b4,140,fn_71009047b4,unknown,game/components?,O
 0x7100904840,4,fn_7100904840,unknown,game/components?,O
 0x7100904844,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::Hash",reflection,engine/reflection,O
-0x710090484c,12,fn_710090484c,unknown,game/components?,O
+0x710090484c,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::TypeOf",reflection,engine/reflection,O
 0x7100904858,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::Construct",reflection,engine/reflection,O
 0x710090488c,4,fn_710090488c,unknown,game/components?,O
 0x7100904890,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::MoveConstruct",reflection,engine/reflection,O
@@ -370,7 +370,7 @@ address,size,name,name_source,subsystem,status
 0x710090cc04,440,fn_710090cc04,unknown,unknown,O
 0x710090cdbc,12,fn_710090cdbc,unknown,unknown,O
 0x710090cdc8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::Hash,reflection,engine/reflection,O
-0x710090cdd0,12,fn_710090cdd0,unknown,unknown,O
+0x710090cdd0,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::TypeOf,reflection,engine/reflection,O
 0x710090cddc,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::Construct,reflection,engine/reflection,O
 0x710090ce1c,128,fn_710090ce1c,unknown,unknown,O
 0x710090ce9c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::MoveConstruct,reflection,engine/reflection,O
@@ -697,7 +697,7 @@ address,size,name,name_source,subsystem,status
 0x7100916558,108,fn_7100916558,unknown,unknown,O
 0x71009165c4,152,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::Equals",reflection,engine/reflection,O
 0x710091665c,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::Hash",reflection,engine/reflection,O
-0x7100916664,12,fn_7100916664,unknown,unknown,O
+0x7100916664,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::TypeOf",reflection,engine/reflection,O
 0x7100916670,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::Construct",reflection,engine/reflection,O
 0x71009166a4,192,fn_71009166a4,unknown,unknown,O
 0x7100916764,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::MoveConstruct",reflection,engine/reflection,O

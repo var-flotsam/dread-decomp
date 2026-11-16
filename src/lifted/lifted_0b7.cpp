@@ -1474,12 +1474,6 @@ UnkResult fn_7100b78d18(char* p0, char* p1) {
     return ret;
 }
 
-extern char g_unk_71727664f0[];
-char* fn_7100b78f1c() {
-    char* r0_0 = (char*)g_unk_71727664f0;
-    return r0_0;
-}
-
 namespace callee { char* fn_71011d8e90(char*); }
 char* fn_7100b79dcc(char* p0) {
     return callee::fn_71011d8e90(p0);

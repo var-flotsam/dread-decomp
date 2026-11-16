@@ -1167,12 +1167,6 @@ u64 fn_7100aee1b0(char* p0, char* p1) {
     return r3_0;
 }
 
-extern char g_unk_717275b988[];
-char* fn_7100aee544() {
-    char* r0_0 = (char*)g_unk_717275b988;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100aee75c(char*, char*); }
 char* fn_7100aee584(char* p0, char* p1) {
     return callee::fn_7100aee75c(p0, p1);

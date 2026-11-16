@@ -675,12 +675,6 @@ bool fn_7100a95468(char* p0, char* p1) {
     return r0_0;
 }
 
-extern char g_unk_7172751fe8[];
-char* fn_7100a9547c() {
-    char* r0_0 = (char*)g_unk_7172751fe8;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100a959a0(char*, u32); }
 void fn_7100a95588(char* p0) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);

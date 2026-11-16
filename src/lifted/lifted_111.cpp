@@ -660,12 +660,6 @@ u64 fn_7101113dc8(char* p0, char* p1) {
     return r8_0;
 }
 
-extern char g_unk_7172a05bc8[];
-char* fn_710111419c() {
-    char* r0_0 = (char*)g_unk_7172a05bc8;
-    return r0_0;
-}
-
 namespace callee { char* fn_71011146c0(char*, u32); }
 void fn_71011142a8(char* p0) {
     u64 r0_8 = (u64)*(u64*)((char*)(p0) + 0);

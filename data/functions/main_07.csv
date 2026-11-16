@@ -1703,7 +1703,7 @@ address,size,name,name_source,subsystem,status
 0x710075e39c,200,fn_710075e39c,unknown,unknown,O
 0x710075e464,12,fn_710075e464,unknown,unknown,O
 0x710075e470,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::Hash,reflection,engine/reflection,O
-0x710075e478,12,fn_710075e478,unknown,unknown,O
+0x710075e478,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TypeOf,reflection,engine/reflection,O
 0x710075e484,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::Construct,reflection,engine/reflection,O
 0x710075e4c4,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::MoveConstruct,reflection,engine/reflection,O
 0x710075e504,4,fn_710075e504,unknown,unknown,O
@@ -2311,7 +2311,7 @@ address,size,name,name_source,subsystem,status
 0x710077a2f0,40,fn_710077a2f0,unknown,unknown,O
 0x710077a318,12,fn_710077a318,unknown,unknown,O
 0x710077a324,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::Hash,reflection,engine/reflection,O
-0x710077a32c,12,fn_710077a32c,unknown,unknown,O
+0x710077a32c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TypeOf,reflection,engine/reflection,O
 0x710077a338,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::Construct,reflection,engine/reflection,O
 0x710077a378,4,fn_710077a378,unknown,unknown,O
 0x710077a37c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::MoveConstruct,reflection,engine/reflection,O
@@ -3081,7 +3081,7 @@ address,size,name,name_source,subsystem,status
 0x710079c4fc,116,fn_710079c4fc,unknown,unknown,O
 0x710079c570,152,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::Equals",reflection,engine/reflection,O
 0x710079c608,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::Hash",reflection,engine/reflection,O
-0x710079c610,12,fn_710079c610,unknown,unknown,O
+0x710079c610,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TypeOf",reflection,engine/reflection,O
 0x710079c61c,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::Construct",reflection,engine/reflection,O
 0x710079c650,196,fn_710079c650,unknown,unknown,O
 0x710079c714,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::MoveConstruct",reflection,engine/reflection,O
