@@ -6,6 +6,7 @@
 // after the base reset (fn_71010f3e94). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/CCameraFX_Shake.h"
 #include "game/UnkTU53.h"
 #include "types.h"
@@ -21,9 +22,7 @@ struct UnkRandShakeCurve_ovb0131 {
     };
 };
 
-struct UnkRandShakeOffset_ovb0131 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkRandShake_ovb0131 {
     u8 pad_0x0[0x34];
@@ -35,7 +34,7 @@ struct UnkRandShake_ovb0131 {
     UnkRandShakeCurve_ovb0131* curve;  // 0x58
     f32 amplitude;  // 0x60
     f32 amplitude_w;  // 0x64
-    UnkRandShakeOffset_ovb0131 offset;  // 0x68
+    CVector3D offset;  // 0x68
     f32 offset_w;  // 0x74
 };
 

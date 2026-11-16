@@ -3,6 +3,7 @@
 // for 9 or more entries or kind 1) goes to the camera the component's +0x60 slot holds, when there is
 // one: to +0x38, then its vf_0xa0 with the value (fn_71010e717c), or to +0x44 and vf_0xa8 (fn_71010e7278). Each
 // returns an empty result of kind 2. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkValueSet_ccc {
@@ -22,9 +23,7 @@ struct UnkResult_0x18_ccc {
     u64 kind_and_flag;
 };
 
-struct UnkVec3_ccc {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkCamera_ccc {
     virtual void vf_0x0();
@@ -47,12 +46,12 @@ struct UnkCamera_ccc {
     virtual void vf_0x88();
     virtual void vf_0x90();
     virtual void vf_0x98();
-    virtual void vf_0xa0(const struct UnkVec3_ccc* value);  // told of the new +0x38
-    virtual void vf_0xa8(const struct UnkVec3_ccc* value);  // told of the new +0x44
+    virtual void vf_0xa0(const struct CVector3D* value);  // told of the new +0x38
+    virtual void vf_0xa8(const struct CVector3D* value);  // told of the new +0x44
 
     u8 unk_0x8[0x30];
-    UnkVec3_ccc field_0x38;
-    UnkVec3_ccc field_0x44;
+    CVector3D field_0x38;
+    CVector3D field_0x44;
 };
 
 struct UnkCameraSlot_ccc {
@@ -69,12 +68,12 @@ struct UnkCameraComponentOwner_ccc {
     UnkCameraComponent_ccc* target;
 };
 
-static inline __attribute__((always_inline)) const UnkVec3_ccc* PickArg_ccc(UnkValueSource_ccc* src) {
+static inline __attribute__((always_inline)) const CVector3D* PickArg_ccc(UnkValueSource_ccc* src) {
     if (!src->set)
         return nullptr;
     if (src->kind == 1 || src->set->count >= 9)
-        return static_cast<const UnkVec3_ccc*>(src->holder);
-    return reinterpret_cast<const UnkVec3_ccc*>(src);
+        return static_cast<const CVector3D*>(src->holder);
+    return reinterpret_cast<const CVector3D*>(src);
 }
 
 static inline __attribute__((always_inline)) UnkResult_0x18_ccc Done_ccc() {
@@ -85,7 +84,7 @@ static inline __attribute__((always_inline)) UnkResult_0x18_ccc Done_ccc() {
 
 UnkResult_0x18_ccc fn_71010e717c(void*, UnkCameraComponentOwner_ccc* owner, UnkValueSource_ccc** source) {
     UnkCameraComponent_ccc* target = owner->target;
-    const UnkVec3_ccc* v = PickArg_ccc(*source);
+    const CVector3D* v = PickArg_ccc(*source);
     if (target->slot) {
         if (UnkCamera_ccc* camera = target->slot->camera) {
             camera->field_0x38.x = v->x;
@@ -99,7 +98,7 @@ UnkResult_0x18_ccc fn_71010e717c(void*, UnkCameraComponentOwner_ccc* owner, UnkV
 
 UnkResult_0x18_ccc fn_71010e7278(void*, UnkCameraComponentOwner_ccc* owner, UnkValueSource_ccc** source) {
     UnkCameraComponent_ccc* target = owner->target;
-    const UnkVec3_ccc* v = PickArg_ccc(*source);
+    const CVector3D* v = PickArg_ccc(*source);
     if (target->slot) {
         if (UnkCamera_ccc* camera = target->slot->camera) {
             camera->field_0x44.x = v->x;

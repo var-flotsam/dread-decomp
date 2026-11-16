@@ -3,18 +3,17 @@
 // recomputed first (fn_71001243d4 on the polygon collection at +0xa8); then the 2D bounds
 // (+0xd0 min, +0xd8 max) are moved by the transform's translation, with its z for both depths.
 // Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkPolygonCollection2D;
 void fn_71001243d4(UnkPolygonCollection2D* self);
 
-struct UnkWorldVec3 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkWorldBox3D {
-    UnkWorldVec3 min;
-    UnkWorldVec3 max;
+    CVector3D min;
+    CVector3D max;
 };
 
 struct UnkWorldTransform {

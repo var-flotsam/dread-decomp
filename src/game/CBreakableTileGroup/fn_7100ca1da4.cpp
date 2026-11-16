@@ -1,5 +1,6 @@
 // CBreakableTileGroup's unit: sets the group's origin and places every tile (100 units a cell).
 // Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CBreakableTileGroup.h"
 #include "types.h"
 
@@ -44,16 +45,12 @@ struct UnkTileGroup {
     UnkTileCollider* field_0xd0;
 };
 
-struct UnkGroupOrigin {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 void fn_7100c9e968(UnkQueryObj* tile);
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
-void fn_7100ca1da4(UnkTileGroup* group, const UnkGroupOrigin* origin) {
+void fn_7100ca1da4(UnkTileGroup* group, const CVector3D* origin) {
     group->field_0x18 = origin->x;
     group->field_0x1c = origin->y;
     group->field_0x20 = origin->z;

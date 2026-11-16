@@ -1,6 +1,7 @@
 // Unit 1441 (no reflection hint): on a message of type 1 whose sender's +0x10 object has the kind cached in the
 // hidden global at 0x717273a730, and when the owner (+0x30) has its +0x220 part, restarts the movement at +0x38
 // (fn_71010d08d4) with velocity + impulse / mass. Returns true. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CMovementComponent.h"
 #include "types.h"
 
@@ -23,11 +24,7 @@ struct UnkImpulseMovement_A5_b68 {
     f32 impulse_z;
 };
 
-struct UnkImpulseVec_A5_b68 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkImpulseKind_A5_b68 {
     u8 pad_0x0[0x38];
@@ -66,7 +63,7 @@ bool fn_7100969e84(UnkImpulseUser_A5_b68* self, const UnkImpulseMessage_A5_b68* 
         f32 ax = sx + m->velocity_x;
         f32 ay = sy + m->velocity_y;
         f32 az = sz + m->velocity_z;
-        UnkImpulseVec_A5_b68 v;
+        CVector3D v;
         v.x = ax;
         v.y = ay;
         v.z = az;

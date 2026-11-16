@@ -8,6 +8,7 @@
 // zero at 100 per second, runs the base update (fn_7100763f9c), counts +0x300 down (or copies the current vectors
 // at +0x68/+0x74 to the start ones at +0x38/+0x44 when +0x28d is set) and, while +0x304 counts, re-runs
 // fn_71007642d4 once a second. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CCameraBoundaryCtrl.h"
 #include "game/CCameraCtrl.h"
 #include "game/UnkTU0.h"
@@ -22,14 +23,12 @@ struct UnkArg_fc;
 struct CSynchronizedBlockCameraCtrl;
 void fn_71007642d4(CSynchronizedBlockCameraCtrl* self, f32 t, bool flag);
 
-struct UnkCamVec3_ovb0020 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkMetroidCameraCtrl_ovb0020 {
     u8 unk_0x0[0x2b8];
-    UnkCamVec3_ovb0020 field_0x2b8;
-    UnkCamVec3_ovb0020 field_0x2c4;
+    CVector3D field_0x2b8;
+    CVector3D field_0x2c4;
     u8 unk_0x2d0[0x34];
     u32 field_0x304;
     f32 field_0x308;

@@ -1,16 +1,15 @@
 // CMorphBallMovement (unit 1428): damping the velocity at +0x1d8 along a direction. Names and
 // layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
-struct UnkMorphDampVec {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkMorphBallDamp {
     u8 pad_0x0[0x7c];
     f32 field_0x7c;
     u8 pad_0x80[0x1d8 - 0x80];
-    UnkMorphDampVec velocity;  // 0x1d8
+    CVector3D velocity;  // 0x1d8
     u8 pad_0x1e4[0x23c4 - 0x1e4];
     f32 field_0x23c4;
     f32 field_0x23c8;
@@ -26,7 +25,7 @@ static inline bool IsNearZero(f32 v) {
 }
 
 // Takes the share `dt` x rate of the velocity along `dir` away, without changing its sign.
-void fn_7100945238(UnkMorphBallDamp* self, const UnkMorphDampVec* dir, f32 dt) {
+void fn_7100945238(UnkMorphBallDamp* self, const CVector3D* dir, f32 dt) {
     if (!self->field_0x23d6)
         return;
     if (!IsNearZero(self->field_0x7c) && !fn_71009438e8(self))

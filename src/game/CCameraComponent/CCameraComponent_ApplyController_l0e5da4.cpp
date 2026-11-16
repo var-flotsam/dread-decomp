@@ -3,23 +3,22 @@
 // unless it already is and is active. Names and layouts are placeholders.
 #include "base/UnkParallelFind.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/CCameraComponent.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-struct UnkCamVec3_l0e5da4 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 // The description fn_7100df2404 of the game manager finds by name.
 struct UnkCamCtrl_ovb5 {
     u8 pad_0x0[0x18];
     CStrId id;                      // 0x18
     bool hasOffsets;                // 0x20
-    UnkCamVec3_l0e5da4 field_0x24;  // 0x24
-    UnkCamVec3_l0e5da4 field_0x30;  // 0x30
+    CVector3D field_0x24;  // 0x24
+    CVector3D field_0x30;  // 0x30
     u32 field_0x3c;
     u8 pad_0x40[0x8];
     f32 field_0x48;
@@ -48,8 +47,8 @@ struct UnkCamObject_l0e5da4 {
     virtual void vf_0x88();
     virtual void vf_0x90();
     virtual void vf_0x98();
-    virtual void vf_0xa0(const UnkCamVec3_l0e5da4* value);
-    virtual void vf_0xa8(const UnkCamVec3_l0e5da4* value);
+    virtual void vf_0xa0(const CVector3D* value);
+    virtual void vf_0xa8(const CVector3D* value);
     virtual void vf_0xb0();
     virtual void vf_0xb8();
     virtual void vf_0xc0();

@@ -17,9 +17,7 @@
 
 extern void* g_unk_7101a62b48[];
 
-struct UnkShakernautVec3_ovb0037 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkShakernautPiercingLaserAttack_ovb0037 {
     void** vtable;
@@ -32,11 +30,11 @@ struct UnkShakernautPiercingLaserAttack_ovb0037 {
     u64 field_0x48;
     u64 field_0x50;
     u8 pad_0x58[0x1c];
-    UnkShakernautVec3_ovb0037 field_0x74;
-    UnkShakernautVec3_ovb0037 field_0x80;
-    UnkShakernautVec3_ovb0037 field_0x8c;
+    CVector3D field_0x74;
+    CVector3D field_0x80;
+    CVector3D field_0x8c;
     u8 pad_0x98[0x4];
-    UnkShakernautVec3_ovb0037 field_0x9c;
+    CVector3D field_0x9c;
 };
 static_assert(__builtin_offsetof(UnkShakernautPiercingLaserAttack_ovb0037, field_0x9c) == 0x9c, "layout");
 

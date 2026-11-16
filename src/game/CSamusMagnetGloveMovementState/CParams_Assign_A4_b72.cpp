@@ -3,6 +3,7 @@
 // kept, the base's fields copied as one block, the segment at +0x64 (fn_7100125b44), the handle at +0x80
 // (fn_710031d208) and the slot at +0x88 (fn_71002a5d1c) assigned out of line. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkTU365.h"
 #include "game/malloc.h"
@@ -29,9 +30,7 @@ struct UnkSlot_A4_b72 {
     }
 };
 
-struct UnkVec3_A4_b72 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 // Polymorphic, so a derived class reuses its tail padding (+0x2c).
 struct UnkMagnetRecordBase_A4_b72 {
@@ -65,7 +64,7 @@ struct UnkMagnetParams_A4_b72 : UnkMagnetRecordBase_A4_b72 {
     u32 field_0x90;
     u32 field_0x94;
     u32 field_0x98;
-    UnkVec3_A4_b72 field_0x9c;
+    CVector3D field_0x9c;
 
     __attribute__((always_inline)) UnkMagnetParams_A4_b72& operator=(const UnkMagnetParams_A4_b72& other) {
         if (this != &other) {

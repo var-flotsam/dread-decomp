@@ -6,6 +6,7 @@
 // steps. Names and layouts are placeholders.
 #include <algorithm>
 #include <cmath>
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 struct UnkRefCounted_71003cd6e0 {
@@ -69,35 +70,13 @@ struct UnkHandleB_71003cd6e0 {
     }
 };
 
-struct UnkVec3_71003cd6e0 {
-    f32 x;
-    f32 y;
-    f32 z;
-
-    UnkVec3_71003cd6e0 operator-(const UnkVec3_71003cd6e0& o) const {
-        UnkVec3_71003cd6e0 r;
-        r.x = x - o.x;
-        r.y = y - o.y;
-        r.z = z - o.z;
-        return r;
-    }
-    UnkVec3_71003cd6e0 operator*(f32 s) const {
-        UnkVec3_71003cd6e0 r;
-        r.x = x * s;
-        r.y = y * s;
-        r.z = z * s;
-        return r;
-    }
-    f32 Dot(const UnkVec3_71003cd6e0& o) const { return x * o.x + y * o.y + z * o.z; }
-    f32 LengthSq() const { return x * x + y * y + z * z; }
-    f32 Length() const { return sqrtf(LengthSq()); }
-};
+using base::math::CVector3D;
 
 struct UnkEntry_71003cd6e0 {
     UnkHandleA_71003cd6e0 a;
     UnkHandleB_71003cd6e0 b;
     u32 field_0x10;
-    UnkVec3_71003cd6e0 pos;
+    CVector3D pos;
     u32 field_0x20;
     u32 field_0x24;
     u32 field_0x28;
@@ -143,20 +122,18 @@ __attribute__((always_inline)) inline void swap(UnkEntry_71003cd6e0& x, UnkEntry
 }
 
 struct UnkCmp_71003cd6e0 {
-    UnkVec3_71003cd6e0 pos;
-    UnkVec3_71003cd6e0 dir;
+    CVector3D pos;
+    CVector3D dir;
 
     // Returns a word, not a bool: the callers test all of w0 (cbz), not bit 0.
     s32 operator()(const UnkEntry_71003cd6e0& a, const UnkEntry_71003cd6e0& b) const;
 
     // Cosine of the angle between the axis and the direction to the entry.
     f32 Along(const UnkEntry_71003cd6e0& e) const {
-        UnkVec3_71003cd6e0 d = e.pos - pos;
-        return dir.Dot(d * (1.0f / (d.Length() + 0.0001f)));
+        return Dot(dir, Normalized(e.pos - pos));
     }
     f32 DistSq(const UnkEntry_71003cd6e0& e) const {
-        return (e.pos.x - pos.x) * (e.pos.x - pos.x) + (e.pos.y - pos.y) * (e.pos.y - pos.y) +
-               (e.pos.z - pos.z) * (e.pos.z - pos.z);
+        return DistanceSq(e.pos, pos);
     }
 };
 

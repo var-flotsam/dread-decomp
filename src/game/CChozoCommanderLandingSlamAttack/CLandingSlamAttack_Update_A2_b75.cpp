@@ -9,6 +9,7 @@
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp; then the mode becomes 2. Names and layouts
 // are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
@@ -31,13 +32,11 @@ void fn_710043764c(UnkSlamUpdate_A2_b75* self);
 void fn_71004385ac();
 struct UnkSlamAttack_A2_b72;
 
-struct UnkSlamDir_A2_b75 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkSlamQuery_A2_b75 {
     void** vtable;
-    UnkSlamDir_A2_b75 field_0x8;
+    CVector3D field_0x8;
     u8 field_0x14;
     u8 pad_0x15[7];
     u8 field_0x1c;

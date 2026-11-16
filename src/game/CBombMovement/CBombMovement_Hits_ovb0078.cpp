@@ -4,6 +4,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -81,9 +82,7 @@ struct UnkListedItem;
 void fn_7100558ed8(void* entity, void* movement);
 extern u64 g_unk_710164b688;
 
-struct UnkBombPos_ovb0078 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkBombListedItem_ovb0078 {
     u8 pad_0x0[0x10];
