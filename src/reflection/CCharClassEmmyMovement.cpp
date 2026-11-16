@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CCharClassEmmyMovement
 void fn_710052d8f8();
@@ -138,7 +141,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpRelaxAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052d8f8);
@@ -150,7 +153,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052d9f8);
@@ -162,7 +165,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052daf8);
@@ -174,7 +177,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052dbf8);
@@ -186,7 +189,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052dcf8);
@@ -198,7 +201,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052ddf8);
@@ -210,7 +213,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052def8);
@@ -222,7 +225,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownRelaxAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052dff8);
@@ -234,7 +237,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e0f8);
@@ -246,7 +249,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e1f8);
@@ -258,7 +261,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e2f8);
@@ -270,7 +273,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e3f8);
@@ -282,7 +285,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e4f8);
@@ -294,7 +297,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e5f8);
@@ -306,7 +309,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilRelaxAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e6f8);
@@ -318,7 +321,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e7f8);
@@ -330,7 +333,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilBackAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e8f8);
@@ -342,7 +345,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052e9f8);
@@ -354,7 +357,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilBackInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052eaf8);
@@ -366,7 +369,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052ebf8);
@@ -378,7 +381,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilBackEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052ecf8);
@@ -390,7 +393,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolRelaxAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052edf8);
@@ -402,7 +405,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052eef8);
@@ -414,7 +417,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052eff8);
@@ -426,7 +429,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f0f8);
@@ -438,7 +441,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f1f8);
@@ -450,7 +453,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f2f8);
@@ -462,7 +465,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingPatrolBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f3f8);
@@ -474,7 +477,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolRelaxAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f4f8);
@@ -486,7 +489,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f5f8);
@@ -498,7 +501,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f6f8);
@@ -510,7 +513,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f7f8);
@@ -522,7 +525,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f8f8);
@@ -534,7 +537,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052f9f8);
@@ -546,7 +549,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallUpPatrolBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052faf8);
@@ -558,7 +561,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolRelaxAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052fbf8);
@@ -570,7 +573,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052fcf8);
@@ -582,7 +585,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052fdf8);
@@ -594,7 +597,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052fef8);
@@ -606,7 +609,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710052fff8);
@@ -618,7 +621,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005300f8);
@@ -630,7 +633,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingWallDownPatrolBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005301f8);
@@ -642,7 +645,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolRelaxAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005302f8);
@@ -654,7 +657,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005303f8);
@@ -666,7 +669,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005304f8);
@@ -678,7 +681,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005305f8);
@@ -690,7 +693,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005306f8);
@@ -702,7 +705,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005307f8);
@@ -714,7 +717,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingCeilPatrolBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005308f8);
@@ -726,7 +729,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelRelaxAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelRelaxAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71005309f8);
@@ -738,7 +741,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100530af8);
@@ -750,7 +753,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100530bf8);
@@ -762,7 +765,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100530cf8);
@@ -774,7 +777,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackInitAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackInitAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100530df8);
@@ -786,7 +789,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelFrontEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100530ef8);
@@ -798,7 +801,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingTunnelBackEndAnim_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackEndAnim_GetterFunction", true);
-            fn->return_type = fn_7100009658();
+            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100530ff8);

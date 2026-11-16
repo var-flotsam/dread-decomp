@@ -18,6 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::math { class CVector3D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CMinimapManager::CTunableMinimapManager
 extern bool g_unk_71727ca6d0;
@@ -70,7 +75,7 @@ void refl_AddFields(CClass* cls) {
         return;
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vOccluderColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vOccluderColor_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eaa764);
@@ -80,7 +85,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vOccluderColor", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDefaultBorderColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vDefaultBorderColor_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eaa8f8);
@@ -90,7 +95,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vDefaultBorderColor", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vUnexploredBorderColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vUnexploredBorderColor_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eaaa8c);
@@ -100,7 +105,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vUnexploredBorderColor", (DefaultValue, base::math::CVector3D{0.1f, 0.1f, 0.1f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vNormalRoomColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vNormalRoomColor_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eaac20);
@@ -110,7 +115,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vNormalRoomColor", (DefaultValue, base::math::CVector3D{0.0f, 0.12752979f, 0.3111805f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecialRoomColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vSpecialRoomColor_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eaadb4);
@@ -120,7 +125,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vSpecialRoomColor", (DefaultValue, base::math::CVector3D{0.05818718f, 0.034230206f, 0.00017512398f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vTransportRoomColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vTransportRoomColor_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eaaf48);
@@ -130,7 +135,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vTransportRoomColor", (DefaultValue, base::math::CVector3D{0.0060405936f, 0.00017512398f, 0.3111805f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDefaultColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vDefaultColor_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eab0dc);
@@ -140,7 +145,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vDefaultColor", (DefaultValue, base::math::CVector3D{0.06772459f, 0.44232294f, 0.09151835f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCooldownColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vCooldownColor_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eab270);
@@ -194,7 +199,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vSkyColor", 0x288, (DefaultValue, base::math::CVector3D{0.0f, 0.12752979f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinimapViewAlpha_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fMinimapViewAlpha_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eab404);
@@ -204,7 +209,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fMinimapViewAlpha", (DefaultValue, 0.86f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinimapViewZoom_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fMinimapViewZoom_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eab58c);
@@ -214,7 +219,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fMinimapViewZoom", (DefaultValue, 3.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAreaMapSnapVelMult_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAreaMapSnapVelMult_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eab714);
@@ -224,7 +229,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAreaMapSnapVelMult", (DefaultValue, 1.5f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAreaMapMoveVel_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAreaMapMoveVel_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eab89c);
@@ -234,7 +239,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAreaMapMoveVel", (DefaultValue, 60.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAreaMapFastMoveVel_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAreaMapFastMoveVel_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eaba24);
@@ -244,7 +249,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAreaMapFastMoveVel", (DefaultValue, 120.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAreaMapZoomMin_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAreaMapZoomMin_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eabbac);
@@ -254,7 +259,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAreaMapZoomMin", (DefaultValue, 0.5f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAreaMapZoomMax_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAreaMapZoomMax_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eabd34);
@@ -264,7 +269,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAreaMapZoomMax", (DefaultValue, 8.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAreaMapZoomDefault_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAreaMapZoomDefault_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eabebc);
@@ -274,7 +279,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAreaMapZoomDefault", (DefaultValue, 4.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAreaMapZoomVel_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAreaMapZoomVel_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eac044);
@@ -284,7 +289,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAreaMapZoomVel", (DefaultValue, 3.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bAutoFadeEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bAutoFadeEnabled_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100eac1cc);

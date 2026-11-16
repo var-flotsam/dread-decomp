@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CCharClassBossAIComponent
 void fn_710041a4e0();
@@ -35,7 +37,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseIsInFrustumForBossCamera_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bUseIsInFrustumForBossCamera_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710041a4e0);
@@ -45,7 +47,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bUseIsInFrustumForBossCamera", (DefaultValue, true), (Description, "Use Is In Frustum For Boss Camera"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseAngry_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bUseAngry_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710041a570);
@@ -56,7 +58,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bManuallyRemoveFromTeamManager", 0x50f, (DefaultValue, false), (Description, "Manually remove from team manager?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bWantsLifeFeedback_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bWantsLifeFeedback_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710041a600);
@@ -66,7 +68,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bWantsLifeFeedback", (DefaultValue, false), (Description, "Wants Life Feedback?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRemovePlayerInputOnDeath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bRemovePlayerInputOnDeath_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710041a690);
@@ -76,7 +78,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bRemovePlayerInputOnDeath", (DefaultValue, true), (Description, "Remove player input on death?"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710041a720);

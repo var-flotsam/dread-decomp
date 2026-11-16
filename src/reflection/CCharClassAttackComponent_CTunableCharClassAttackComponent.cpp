@@ -19,6 +19,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CCharClassAttackComponent::CTunableCharClassAttackComponent
 extern bool g_unk_71727165a8;
@@ -359,7 +363,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sDefaultDamageID", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Default damage ID"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sDamageSource_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078d8c0);
@@ -369,7 +373,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Damage source"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRotateToInstigatorHitCollider_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bRotateToInstigatorHitCollider_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078da0c);
@@ -380,7 +384,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EDamageType", "eDamageType", 0x70, (DefaultValue, 0), (Description, "Damage source"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessDownDefaultAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sSuccessDownDefaultAnim_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078da9c);
@@ -390,7 +394,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessDownDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Down anim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessUpDefaultAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sSuccessUpDefaultAnim_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078db9c);
@@ -400,7 +404,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessUpDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Up anim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessFrontDefaultAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sSuccessFrontDefaultAnim_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078dc9c);
@@ -410,7 +414,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessFrontDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Front anim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSuccessBackDefaultAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sSuccessBackDefaultAnim_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078dd9c);
@@ -420,7 +424,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessBackDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Back anim"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreReaction_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bIgnoreReaction_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078de9c);
@@ -430,7 +434,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bIgnoreReaction", (DefaultValue, false), (Description, "Ignore damage reaction [false]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceReaction_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bForceReaction_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078df2c);
@@ -452,7 +456,7 @@ void refl_AddFields(CClass* cls) {
     field10->attrs.Add<const char*>(fn_7100007e80(), "Override damage strength reaction when forcing reaction [DEFAULT]");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreInmune_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bIgnoreInmune_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078e048);
@@ -464,7 +468,7 @@ void refl_AddFields(CClass* cls) {
     field12->attrs_0x70.Add<bool>(fn_7100091d40(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sIgnoreBumpColliders_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sIgnoreBumpColliders_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078e0d8);

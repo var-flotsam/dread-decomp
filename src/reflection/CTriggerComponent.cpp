@@ -18,6 +18,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CTriggerComponent
 void fn_7100a5cbcc(UnkReflFunction* fn, const char* name);
@@ -40,7 +44,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bCallEntityLuaCallback", 0x3d, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iReverb_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_iReverb_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a6463c);
@@ -50,7 +54,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(s32, "iReverb", (DefaultValue, -1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a646ec);
@@ -67,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bPersistentState", 0x278, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSfxType_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sSfxType_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a64790);

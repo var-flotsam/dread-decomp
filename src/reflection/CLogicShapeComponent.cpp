@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/CPointerType.h"
+namespace game::logic::collision { class CShape; }
+extern template const base::reflection::CType* base::reflection::PointerType<game::logic::collision::CShape*>::Get();
 
 // CLogicShapeComponent
 const base::reflection::CType* fn_7100913068();

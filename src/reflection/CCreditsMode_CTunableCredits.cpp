@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::math { class CVector3D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 
 // CCreditsMode::CTunableCredits
 extern bool g_unk_7172a0b678;
@@ -40,7 +43,7 @@ void refl_AddFields(CClass* cls) {
         return;
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorTitle_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vColorTitle_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101186130);
@@ -50,7 +53,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorTitle", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Title color")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorSubtitle_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vColorSubtitle_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011862f0);
@@ -60,7 +63,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorSubtitle", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Subtitle color")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorEntry_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vColorEntry_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011864b0);

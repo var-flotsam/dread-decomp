@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CAbilityOpticCamouflage
 namespace CAbilityOpticCamouflage {
@@ -65,7 +67,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamagePerSecondStill", 0x30, (DefaultValue, 2.5f), (ShowInConfig, true), (Description, "Damage per second still"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 0.5f), (InternalTag, "OpticCamouflage"));
     DREAD_REFLECTED_FIELD(f32, "fDamagePerSecondMoving", 0x34, (DefaultValue, 10.0f), (ShowInConfig, true), (Description, "Damage per second moving"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 0.5f), (InternalTag, "OpticCamouflage"));
     DREAD_REFLECTED_FIELD(s32, "iMode", 0x38, (DefaultValue, 0));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iSelectionMode", true), fn_7100014768(), 0x84, -1, -1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("iSelectionMode", true), &base::reflection::PrimitiveType<int>::Get(), 0x84, -1, -1);
     field3->attrs.Add<s32>(fn_7100075240(), &g_unk_71726afcf8, 0);
     field3->attrs.Add<const char*>(fn_7100007e80(), "Which action should player do with input to activate/deactivate");
     field3->attrs.Add<bool>(fn_7100093170(), true);
@@ -73,7 +75,7 @@ void refl_AddFields(CClass* cls) {
     field3->attrs.Add<s32>(fn_71000916e0(), 0);
     field3->attrs.Add<s32>(fn_71000917f0(), 1);
     field3->attrs.Add<s32>(fn_7100324d10(), 1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("iSelectionInput", true), fn_7100014768(), 0x88, -1, -1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("iSelectionInput", true), &base::reflection::PrimitiveType<int>::Get(), 0x88, -1, -1);
     field4->attrs.Add<s32>(fn_7100075240(), &g_unk_71726afe58, 0);
     field4->attrs.Add<const char*>(fn_7100007e80(), "Which input to use when activating ability");
     field4->attrs.Add<bool>(fn_7100093170(), true);

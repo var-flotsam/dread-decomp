@@ -20,6 +20,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::math { class CVector2D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector2D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // game::logic::collision::CAABoxShape2D
 void fn_7100d5ed18();
@@ -33,7 +37,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Min_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_v2Min_GetterFunction", true);
-        fn->return_type = fn_7100024504();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d5ed18);
@@ -43,7 +47,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "v2Min", (DefaultValue, base::math::CVector2D{-200.0f, -200.0f}), (Description, base::global::CRntString("Min Point")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Max_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_v2Max_GetterFunction", true);
-        fn->return_type = fn_7100024504();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d5edcc);
@@ -53,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "v2Max", (DefaultValue, base::math::CVector2D{200.0f, 200.0f}), (Description, base::global::CRntString("Max Point")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d5ee80);

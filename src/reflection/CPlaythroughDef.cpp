@@ -20,6 +20,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class TRntString128; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::TRntString128>::Get();
+namespace base::global { class TRntString64; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::TRntString64>::Get();
 
 // CPlaythroughDef
 extern base::reflection::CType g_unk_71726adc98;
@@ -68,8 +73,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CPlaythroughDef, base::core::CAsset);
 
 // CPlaythroughDef::SCheckpointDef
-const base::reflection::CType* fn_710009f69c();
-const base::reflection::CType* fn_710009fb38();
 void fn_71002f4f44();
 void fn_71002f0f90(UnkReflFunction* fn, const char* name);
 void fn_71002f110c(UnkReflFunction* fn, const char* name);
@@ -78,19 +81,19 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioID", 0x8, (XmlAttribute, true));
     DREAD_REFLECTED_FIELD(CStrId, "sCheckpointID", 0x10, (XmlAttribute, true));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("strDesc", true), fn_710009f69c(), 0x18, -1, -1);
+    UnkReflField* field2 = fn_7100096524(cls, CStrId("strDesc", true), &base::reflection::PrimitiveType<base::global::TRntString64>::Get(), 0x18, -1, -1);
     field2->attrs.Add<bool>(fn_710001b9f0(), true);
     DREAD_REFLECTED_FIELD(CStrId, "sStartPoint", 0xa0, (XmlAttribute, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_strTags_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_strTags_GetterFunction", true);
-        fn->return_type = fn_710009fb38();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::TRntString128>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002f4f44);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_strTags_SetterFunction", true)))
         fn_71002f0f90(fn, "_strTags_SetterFunction");
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("strTags", true), fn_710009fb38(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field4 = fn_7100096524(cls, CStrId("strTags", true), &base::reflection::PrimitiveType<base::global::TRntString128>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field4->attrs.Add<bool>(fn_710001b9f0(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("HasTag", true)))
         fn_71002f110c(fn, "HasTag");

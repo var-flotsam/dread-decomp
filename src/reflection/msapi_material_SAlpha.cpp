@@ -19,6 +19,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<char>::Get();
 
 // msapi::material::SAlpha
 namespace msapi::material::SAlpha {
@@ -236,7 +238,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("cType", true), fn_7100008500(), 0x10, -1, -1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("cType", true), &base::reflection::PrimitiveType<char>::Get(), 0x10, -1, -1);
     field1->attrs.AddTyped<u8, &fn_7100008500>(fn_7100075240(), 102);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
 }

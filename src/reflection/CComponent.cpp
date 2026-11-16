@@ -20,6 +20,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CComponent
 void fn_71010c57bc();
@@ -32,7 +34,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010c57bc);
@@ -40,7 +42,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bEnabled", (DefaultValue, true), (Persistence, 0), (EditorVisible, false), (Description, base::global::CRntString("Enabled?")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bWantsEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bWantsEnabled_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010c580c);
@@ -50,7 +52,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bWantsEnabled", (DefaultValue, true), (Description, base::global::CRntString("States if the component should be enabled at the begining")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseDefaultValues_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseDefaultValues_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010c58b4);
