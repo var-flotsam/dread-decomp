@@ -180,6 +180,14 @@ information types; `fn_71009ea070` declared in `game/UnkTU1501.h`), and CMission
 declared once). `fn_710054095c`, `fn_71009ea070` and `fn_7100b5af1c` moved from `drafts/` to `src/` as matches.
 Parked: `fn_71000e76dc` (unit 85): its types are `include/base/reflection/`'s, which another thread is changing.
 
+**One spawn holder for unit 2704 (2026-11-16).** The 0x40-byte holder that CSpawnPointComponent's unit keeps in a
+`CRntVector` (virtual destructor, callback vector at +0x8, state at +0x30, refcounted handle at +0x38; the
+CGameLink<CActor> layout) had three views: the vector copy's (`UnkEntry_b42a3`), the insert's and the append
+draft's. All three now use `UnkSpawnHolder` in `include/game/UnkSpawnHolder.h`, and the append
+(`fn_7101131b98`) moved from `drafts/` to `src/` as a match. The copy is "construct empty, then `CopyFrom`": a copy
+constructor with the same body changes the insert's code (the callback vector's construction is no longer dead).
+Parked: `UnkShapeHit_A5_b68` (`fn_7101126c34`): with 8 bytes `fn_7101126c34` matches but `fn_71007e98c8`'s frame
+moves; with 16 the reverse, so the two callers' frames disagree and the size needs another look.
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
 pointers or the holder's kind, as if the store of the empty id into the moved-from slot could change them;
