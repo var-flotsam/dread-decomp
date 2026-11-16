@@ -68,7 +68,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000cef84,84,drafts/game/UnkTU83/fn_71000cef84.cpp,operations,14.3,15,lean-b1,loop reload/index shape (lsl/lsr 3) not reproduced; unrolled instead
 0x71000d0dc0,316,drafts/game/UnkTU83/fn_71000d0dc0.cpp,operations,34.2,51,lean-b1,index register split and pool reload after move-from folded (312 vs 316 bytes); sibling of fn_71000ce604 on CF
 0x71000d6c94,332,drafts/game/UnkTU83/fn_71000d6c94.cpp,operations,63.9,29,lean-b1,tail reloaded after node->prev store in original (one load more); otherwise register choice
-0x71000e76dc,256,drafts/game/UnkTU85/fn_71000e76dc.cpp,match,100.0,0,lean-b1,matches; held: declared with UnkTunableFieldHandle/UnkReflTypedPtr types local to src/game/UnkTU112/UnkTU112_Tunables_ovb0235.cpp; needs one shared layout
 0x71000e8044,212,drafts/game/UnkTU85/fn_71000e8044.cpp,control flow,34.0,31,lean-b1,control flow: not-found path jumps to shared end compare instead of duplicating it; found path laid out after
 0x71000e9d60,416,drafts/game/UnkTU88/fn_71000e9d60.cpp,registers or order,99.0,1,overnight,
 0x71000eaf20,984,drafts/game/UnkTU88/fn_71000eaf20.cpp,registers or order,65.4,85,lean-ob1,registers only with a u32 flag (src/base/UnkResRegistry.cpp declares u8; the caller's declaration must follow)

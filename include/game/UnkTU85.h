@@ -12,13 +12,22 @@ struct UnkRecordB0_b44a1;
 struct UnkReflField;
 struct UnkReflFieldObject;
 struct UnkReflValueArg;
+struct UnkTunableFieldHandle;
+struct UnkTunableReflValue;
 struct UnkVersionEntry;
+
+namespace base::reflection {
+struct UnkReflTypedPtr;
+}
 
 // Gets the field's value.
 bool fn_71000e78e0(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);
 
 // Sets the field's value.
 bool fn_71000e7a80(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);
+
+// Reads the field of `obj` into a value: through its accessor, or by converting the value at its offset.
+UnkTunableReflValue fn_71000e76dc(UnkTunableFieldHandle* field, const base::reflection::UnkReflTypedPtr* obj);
 
 void fn_71000e70c4(UnkRecordB0_b44a1* self);
 bool fn_71000e6ce0(UnkVersionEntry* self, u16* major, u16* minor);

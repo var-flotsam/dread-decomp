@@ -10,31 +10,22 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU85.h"
+#include "game/UnkTunableFieldHandle.h"
+#include "game/UnkTunableReflValue.h"
 
 using namespace base::reflection;
 
-// An object and its type, as the walk passes it on.
-struct UnkReflFieldObject {
-    char* type;
-    void* ptr;
-};
-
-struct UnkFieldAccessor {
+// Reads the value instead of the field's offset when present.
+struct UnkTunableFieldAccessor {
     virtual void vf_0x0() {}
     virtual void vf_0x8() {}
     virtual UnkReflValue vf_0x10(const void* obj_ref, const void* index, u32 flags) = 0;
 };
 
-struct UnkReflField {
-    u8 pad_0x0[8];
-    u32 offset;
-    const CType* type;
-    UnkFieldAccessor* accessor;
-};
-
-UnkReflValue fn_71000e76dc(::UnkReflField* field, const UnkReflFieldObject* obj) {
-    UnkReflValue result = refl_EmptyValue();
-    UnkFieldAccessor* accessor = field->accessor;
+UnkTunableReflValue fn_71000e76dc(UnkTunableFieldHandle* field, const UnkReflTypedPtr* obj) {
+    UnkTunableReflValue result = refl_EmptyValue();
+    UnkTunableFieldAccessor* accessor = field->accessor;
     if (accessor) {
         UnkReflValue value;
         u64 index[2] = {0, 0};
