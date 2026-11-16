@@ -9,7 +9,7 @@
 #include "base/animation/CAnimationResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkGameManager.h"
@@ -29,75 +29,8 @@ struct UnkModelParts_e0484c {
 };
 static_assert(__builtin_offsetof(UnkModelParts_e0484c, data) == 0x138, "layout");
 
-struct UnkPathHashed_e0484c {
-    u8 pad_0x0[0x30];
-    u32 hash_lo;
-    u32 hash_hi;
-};
-
-struct UnkPathNode_e0484c {
-    CFilePathStrId key;
-    UnkModel* value;             // 0x8
-    UnkPathNode_e0484c* next;    // 0x10
-    UnkPathNode_e0484c* prev;    // 0x18
-    UnkPathNode_e0484c* chain;   // 0x20
-
-    UnkPathNode_e0484c(const CFilePathStrId& k, UnkModel* v)
-        : key(k), value(v), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    UnkPathNode_e0484c*& Next() { return next; }
-    UnkPathNode_e0484c*& Prev() { return prev; }
-};
-
 // A hash map by file path whose nodes are also kept in a list.
-struct UnkPathMap_e0484c {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;  // 0xc
-    UnkPathNode_e0484c** buckets;
-    u32 bucket_count;
-    u32 divisor;
-    u8 pad_0x20[0x18];
-    UnkPathNode_e0484c* tail;  // 0x38
-    UnkPathNode_e0484c* head;  // 0x40
-
-    UnkPathNode_e0484c* Find(const CFilePathStrId& key) {
-        UnkPathNode_e0484c** bucket = nullptr;
-        if (bucket_count != 0) {
-            const UnkPathHashed_e0484c* h = reinterpret_cast<const UnkPathHashed_e0484c*>(key.data);
-            u32 i = (h->hash_lo ^ h->hash_hi) % divisor;
-            bucket = buckets + i;
-        }
-        if (!bucket)
-            return nullptr;
-        for (UnkPathNode_e0484c* n = *bucket; n; n = n->chain)
-            if (n->key.data == key.data)
-                return n;
-        return nullptr;
-    }
-    void Insert(const CFilePathStrId& key, UnkModel* value) {
-        UnkPathNode_e0484c** bucket = nullptr;
-        if (bucket_count != 0) {
-            const UnkPathHashed_e0484c* h = reinterpret_cast<const UnkPathHashed_e0484c*>(key.data);
-            u32 i = (h->hash_lo ^ h->hash_hi) % divisor;
-            bucket = buckets + i;
-        }
-        UnkPathNode_e0484c* old = *bucket;
-        auto* node = static_cast<UnkPathNode_e0484c*>(allocator->vf_0x40(sizeof(UnkPathNode_e0484c), 8, flags));
-        if (node)
-            new (node) UnkPathNode_e0484c(key, value);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
-};
+using UnkPathMap_e0484c = base::global::CRntDictionary<CFilePathStrId, UnkModel*>;
 
 template <class T, u64 Size, void (*Ctor)(T*)>
 static inline T* Singleton_e0484c(T*& instance) {
@@ -117,7 +50,7 @@ struct UnkGameManagerModels_e0484c {
 
 bool fn_7100e0484c(UnkGameManager* manager, const CFilePathStrId* path) {
     auto* self = reinterpret_cast<UnkGameManagerModels_e0484c*>(manager);
-    if (self->field_0x29c8.Find(*path))
+    if (self->field_0x29c8.FindNode(*path))
         return true;
     UnkRegistry_0x70* registry = Singleton_e0484c<UnkRegistry_0x70, 0x70, fn_7100087388>(g_unk_7101d4b5a0);
     bool known;

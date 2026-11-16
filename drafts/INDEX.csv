@@ -761,7 +761,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100f86fec,340,drafts/game/UnkTU2601/fn_7100f86fec.cpp,registers or order,94.1,5,overnight,
 0x7100f89818,400,drafts/game/UnkTU2602/fn_7100f89818.cpp,operations,50.0,49,lean-ob3,second music-manager lookup: original reloads the table count (+0x1d8) after the manager check; ours reuses it
 0x7100f8e1ac,1244,drafts/game/UnkTU2604/fn_7100f8e1ac.cpp,operations,54.2,142,lean-r2k,matches up to 0x18..0x2c copy: needs those three fields as one struct with a user-provided empty ctor (20-byte
-0x7100f8eb50,660,drafts/game/UnkTU2604/fn_7100f8eb50.cpp,operations,19.9,132,lean-r2k,temp record zero stores placed after pool ensure; hash loads scheduled differently; own movable id type
+0x7100f8eb50,660,drafts/game/UnkTU2604/fn_7100f8eb50.cpp,control flow,27.8,118,lean-r2k,temp record zero stores placed after pool ensure; hash loads scheduled differently; own movable id type
 0x7100f984ac,300,drafts/game/UnkTU2607/fn_7100f984ac.cpp,registers or order,94.7,4,lean-b1,instruction order only: progress store vs adrp; mov x20/x22
 0x7100f985d8,240,drafts/game/UnkTU2607/fn_7100f985d8.cpp,operations,50.0,28,lean-b1,range pair phi kept in float regs (original in w regs); register choice and branch layout differ
 0x7100f9a190,316,drafts/game/UnkTU2607/fn_7100f9a190.cpp,operations,41.8,45,lean-b1,progress store through computed address with int constant (sibling needs empty barrier); rest same
@@ -780,8 +780,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100fce18c,512,drafts/game/UnkTU2626/fn_7100fce18c.cpp,operations,71.9,35,lean-ob3,push tail: original reloads count after the key store (key type aliases); a two-word key struct (drafts/7100fc
 0x7100fd0d40,308,drafts/game/UnkTU2635/fn_7100fd0d40.cpp,control flow,1.3,74,pilot50,control flow: extra epilogue copy; no shared exit/flag register
 0x7100fd73a4,816,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fd73a4.cpp,registers or order,96.6,7,lean-ob3,file-path id assignment: src load order and empty compare operand order
-0x7100fd9aa0,344,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fd9aa0.cpp,control flow,23.3,61,lean-b3,lookup half matches; insert half loses the count==0 null-bucket path the original keeps
-0x7100fd9d80,276,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fd9d80.cpp,operations,0.0,69,lean-b3,clang drops the original empty-set null-bucket path (count==0 jumps to insert with null bucket); extra instruc
 0x7100fdb640,340,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdb640.cpp,build fails,,,lean-b3,states loop is index-based instead of pointer walk (b58 FindState inlined); rest matches
 0x7100fdb9e0,80,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdb9e0.cpp,control flow,50.0,10,lean-oc1,hold-flag test is branchy in the original (phi of 1 / held==0); flag looks bool though declared u32
 0x7100fdbd98,1580,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdbd98.cpp,operations,44.6,210,lean-r2kb,9 instructions short; original rematerializes the string-pool GOT loads and spills differently; path record ve

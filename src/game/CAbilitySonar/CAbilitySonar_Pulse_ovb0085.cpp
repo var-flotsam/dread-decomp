@@ -8,7 +8,7 @@
 // and layouts are placeholders.
 #include <new>
 #include "base/UnkResKey.h"
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
@@ -200,53 +200,8 @@ struct UnkSonarModel_ovb0085 {
 };
 static_assert(__builtin_offsetof(UnkSonarModel_ovb0085, field_0x130) == 0x130, "layout");
 
-struct UnkPoolNode_ovb0085 {
-    void* key;
-    void* value;
-    UnkPoolNode_ovb0085* next;   // 0x10: the list of all nodes
-    UnkPoolNode_ovb0085* prev;   // 0x18
-    UnkPoolNode_ovb0085* chain;  // 0x20: the next node in the bucket
-};
-
-struct UnkPoolMap_ovb0085 {
-    using Node = UnkPoolNode_ovb0085;
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    Node** buckets;       // 0x10
-    u32 bucket_count;     // 0x18
-    u32 bucket_capacity;  // 0x1c
-    u8 pad_0x20[0x18];
-    Node* tail;  // 0x38
-    Node* head;  // 0x40
-
-    __attribute__((always_inline)) void Insert(void* key, void* value) {
-        Node** slot = nullptr;
-        if (bucket_count) {
-            u32 i = (u32)(u64)key % bucket_capacity;
-            slot = &buckets[i];
-        }
-        Node* c = *slot;
-        auto* n = static_cast<Node*>(allocator->vf_0x40(0x28, 8, flags));
-        if (n) {
-            n->key = key;
-            n->value = value;
-            n->next = nullptr;
-            n->prev = nullptr;
-            n->chain = nullptr;
-        }
-        n->chain = c;
-        *slot = n;
-        if (!head) {
-            head = n;
-        } else if (tail) {
-            __builtin_memcpy(&n->prev, &tail, sizeof(Node*));  // the original reloads the tail
-            tail->next = n;
-        }
-        tail = n;
-        ++count;
-    }
-};
+// The render pool's objects, by their base.
+using UnkPoolMap_ovb0085 = base::global::CRntDictionary<void*, void*>;
 
 struct UnkDeletable_ovb0085 {
     void** vtable;
