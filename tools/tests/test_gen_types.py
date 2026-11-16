@@ -268,7 +268,7 @@ class TypeKeyed(unittest.TestCase):
         body = ['    static constexpr const char* name = "int";', "    static constexpr u64 length = 3;",
                 "    static constexpr u64 size = 0x4;", "    static constexpr SlotFn construct = &fn_7100000010;",
                 "    static constexpr SlotFn add_attributes = &fn_7100000070;"]
-        out = gt.emit_primitive(0x7100000300, body, "int", keyed=True)
+        out = gt.emit_primitive(0x7100000300, body, "int", keyed="int")
         self.assertFalse(any("UnkRefl" in ln or "fn_7100000300" in ln for ln in out))
         self.assertIn("const CType& base::reflection::ValueOps<int>::TypeOf(const void*) "
                       "{ return base::reflection::PrimitiveType<int>::Get(); }", out)
@@ -281,6 +281,22 @@ class TypeKeyed(unittest.TestCase):
         self.assertEqual(gt.KEYED_PLAIN_RE.findall("\n".join(out)), ["int"])
         self.assertEqual(gt.keyed_primitives({1: "int", 2: "float", 3: "float"}), {1: "int"})
         self.assertEqual(gt.type_keyed_names(1, None, "int"), {1: "base::reflection::refl_GetType<int>"})
+
+    def test_plain_class_keyed_by_type(self):
+        body = ['    static constexpr const char* name = "base::global::CStrId";', "    static constexpr u64 length = 20;",
+                "    static constexpr u64 size = 0x8;", "    static constexpr SlotFn construct = &fn_7100000010;"]
+        self.assertEqual(gt.primitive_class(body), "base::global::CStrId")
+        self.assertIsNone(gt.primitive_class(['    static constexpr const char* name = "int";']))
+        self.assertIsNone(gt.primitive_class(['    static constexpr const char* name = "a b";']))
+        out = gt.emit_primitive(0x7100000300, body, None, keyed="base::global::CStrId")
+        self.assertEqual(out[0], "namespace base::global { class CStrId; }")
+        self.assertIn("struct base::reflection::PrimitiveTypeDescription<base::global::CStrId> {", out)
+        self.assertIn(body[3], out)  # the slots stay by address
+        self.assertEqual(out[-1], "template const base::reflection::CType& "
+                                  "base::reflection::PrimitiveType<base::global::CStrId>::Get();")
+        rel = gt.related_by_type(["    static const CType* key() { return fn_7100000300(); }"], {}, frozenset(),
+                                 {0x7100000300: "base::global::CStrId"})
+        self.assertEqual(rel[0], "namespace base::global { class CStrId; }")
 
     def test_related_plain_types_by_type(self):
         block = ["template <>", "struct base::reflection::PointerTypeDescription<int*> {",

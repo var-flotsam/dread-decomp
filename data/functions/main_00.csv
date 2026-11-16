@@ -456,7 +456,7 @@ address,size,name,name_source,subsystem,status
 0x710000ffa4,4,fn_710000ffa4,unknown,unknown,O
 0x710000ffa8,20,fn_710000ffa8,unknown,unknown,O
 0x710000ffbc,20,fn_710000ffbc,unknown,unknown,O
-0x710000ffd0,480,fn_710000ffd0,unknown,unknown,O
+0x710000ffd0,480,base::reflection::refl_GetType<SCustomData>,reflection,engine/reflection,O
 0x71000101b0,12,fn_71000101b0,unknown,unknown,O
 0x71000101bc,8,fn_71000101bc,unknown,unknown,O
 0x71000101c4,4,fn_71000101c4,unknown,unknown,O
