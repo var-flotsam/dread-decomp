@@ -26,6 +26,7 @@
 #include "game/UnkTU315.h"
 #include "game/UnkTUInit.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 
 extern s32 g_unk_7101cb5320 __attribute__((visibility("hidden")));
@@ -221,10 +222,6 @@ void fn_71011990e8(UnkIdHolder_b0188* self) {
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
 struct UnkGameManagerNamedDef : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
@@ -544,7 +541,6 @@ void fn_7101192a4c(void* self);
 void fn_7100219c44(UnkRenderManager* self, u32 value);
 void fn_710021a09c(UnkRenderManager* self, u32 value);
 void fn_7101196ccc(void* self);
-
 
 struct UnkCallback_b0188 {
     void* object;

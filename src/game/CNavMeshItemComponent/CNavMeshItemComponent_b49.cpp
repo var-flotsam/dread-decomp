@@ -10,18 +10,11 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
-
-// As src/game/UnkSubareaSetupState.cpp and src/game_s7/fn_7100fc4b34.cpp declare it.
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
-using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
-const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 struct UnkNavMeshNamedDef_b49 : UnkIdSource {
     u64 field_0x8;

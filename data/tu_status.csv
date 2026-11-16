@@ -2565,7 +2565,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1232,16,3,0,0,36,0,160504,161648
 2564,0x7100e65204,0x7100e768b0,CMinimapDef,medium,unknown,partial,293,71332,282,3,1,0,0,8,0,55820,56048
 2565,0x7100e768b0,0x7100e7cdfc,UnkTU2565,high,unknown,partial,150,25924,138,0,0,0,0,12,0,17304,17304
-2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,747,15,7,0,0,86,0,123604,126540
+2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,748,15,7,0,0,85,0,124040,126976
 2567,0x7100eb695c,0x7100ebf278,UnkTU2567,high,unknown,partial,45,35028,31,1,0,1,0,12,0,4720,4720
 2568,0x7100ebf278,0x7100ec32c0,UnkTU2568,high,unknown,partial,36,16440,27,0,0,0,0,9,0,5172,5172
 2569,0x7100ec32c0,0x7100ec5a2c,UnkTU2569,high,unknown,partial,13,10092,9,1,0,0,0,3,0,3980,3980

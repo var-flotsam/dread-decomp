@@ -167,6 +167,13 @@ Declarations: `g_unk_7101a1f000` (the tagged-object widgets' vtable) gets one de
 members as the third. Recurring blocker for the next header decision: the use count at +0x44 of a pooled
 string's entry (`UnkStringEntry::tail.field_0x44`), which several originals reload after incrementing; the
 matched siblings write it with `__builtin_memcpy`.
+**One sub-id for fn_71003327a4 (2026-11-16).** Fifteen sources and four drafts each copied the 16-byte sub-id
+(`UnkSubId_7100fc4b34`), a `UnkQualifiedName` alias and `fn_71003327a4`'s declaration, the same text everywhere;
+they are now `include/game/UnkSubId_7100fc4b34.h`. `fn_7100e984a4` (unit 2566) moved from `drafts/` to `src/` as a
+match. Parked: the UnkTU2510 group (`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5c1d0`, `fn_7100d5c370`): the query
+result is 4 bytes in `UnkCollisionWorld.cpp` and 8 in `UnkTU2510_Collision_ovb0175.cpp` (the tester-result size
+question of `UnkShapeHit_A5_b68` again), and `UnkShape`, `UnkBox`, `UnkSubTree` and `UnkFlags` have 7, 7, 4 and 3
+different texts; that is a unit-wide pass of its own.
 
 **Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
 (`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;

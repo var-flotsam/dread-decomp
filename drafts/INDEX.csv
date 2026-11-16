@@ -489,7 +489,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e9565c,332,drafts/game/UnkTU2566/fn_7100e9565c.cpp,operations,15.7,65,lean-b1,pool global loaded PC-relative not via GOT; first-element release and shift loop differ; erase-by-value on id
 0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,conditions,93.1,14,lean,
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
-0x7100e984a4,436,drafts/game/UnkTU2566/fn_7100e984a4.cpp,match,100.0,0,lean-p1,matches; held: copies fn_71003327a4's declaration; whose types are aliases that differ per file (one header first)
 0x7100e9af80,632,drafts/game/UnkTU2566/fn_7100e9af80.cpp,operations,50.0,70,lean-o2,first 80 insns match; ours sinks the last point's bounds update into a shared tail where the original keeps it
 0x7100e9b7d4,320,drafts/game/UnkTU2566/fn_7100e9b7d4.cpp,operations,59.0,31,lean-b1,combining found and value: original ANDs the raw call result with the flag; ours masks it and uses tst/cset
 0x7100e9c06c,492,drafts/game/UnkTU2566/fn_7100e9c06c.cpp,registers or order,92.7,9,overnight,

@@ -14,6 +14,7 @@
 #include "game/UnkTU1645.h"
 #include "game/UnkTU500.h"
 #include "game/UnkTU57.h"
+#include "game/UnkSubId_7100fc4b34.h"
 
 using namespace unk_prop;
 
@@ -39,16 +40,9 @@ static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
 
 // A definition whose qualified id is kept as a string (built by fn_7100ae9d7c), with named
 // sub-ids looked up in a map (fn_71003327a4).
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
-using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
-const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
-
 struct UnkNamedDef_7100fc4b34 : UnkIdSource {
     u64 field_0x8;
-    UnkQualifiedName_7100fc4b34 name;
+    UnkQualifiedName name;
 };
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_7100fc4b34& def, const CStrId& name) {
