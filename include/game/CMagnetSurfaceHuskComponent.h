@@ -11,3 +11,5 @@ struct UnkProperty;
 extern void* g_unk_7101a831e0[];  // CMagnetSurfaceHuskComponent unit.
 extern UnkProperty g_unk_7172737e70;  // "Breakable".
 extern base::global::CStrId g_unk_7172737ef8 __attribute__((visibility("hidden")));
+extern u64 g_unk_710164b258;
+extern u64 g_unk_710164b260;

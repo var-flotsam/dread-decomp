@@ -6,9 +6,12 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkCutscene;
 struct UnkCutsceneObject_cs;
 struct UnkVec3_cs;
 u32 fn_7101068c80(UnkCutsceneObject_cs* object, void* entry);
 void fn_710106bcfc(UnkCutsceneObject_cs* object, const UnkVec3_cs& pos);
 extern void* g_unk_7101cac988[];
 void* fn_710106cf74(UnkCutsceneObject_cs* object, const base::global::CStrId* name);
+void fn_710106838c(void* p);
+void fn_710106b2bc(UnkCutscene* self, f32 frame);

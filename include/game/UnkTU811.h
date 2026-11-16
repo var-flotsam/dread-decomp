@@ -48,3 +48,4 @@ base::global::CRntVector<UnkListedItem*>* fn_7100552d7c();
 void fn_71005479a0(UnkEmmyRelaxAI_b59* self);
 // Hands the game manager the string id for the barrier state (the barrier or no-barrier name, or the default).
 void fn_710054095c(UnkEmmyAI2_b57a3* self);
+void fn_7100540dd0(char* self);

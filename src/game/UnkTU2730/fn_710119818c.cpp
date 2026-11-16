@@ -1,6 +1,9 @@
 // Unit 2730 (tools/tu_map.py): moves the pending weak references of the cutscene manager into its tracked list
 // (each target once, by a new weak handle of its own), then empties the pending list. Names and layouts are
 // placeholders.
+#include <new>
+
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
@@ -38,49 +41,34 @@ struct UnkHandleRef_l19818c {
 // A singly linked list of weak handles whose nodes come from its allocator.
 struct UnkHandleList_l19818c {
     void* vtable;
-    u32 count;  // 0x8
-    UnkHandleNode_l19818c* head;
-    UnkHandleNode_l19818c* tail;
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;
+    base::UnkLinkedList<UnkHandleNode_l19818c> list;  // 0x8
 
     bool Contains(UnkWeakTarget* target) const {
-        for (UnkHandleNode_l19818c* node = head; node; node = node->next)
+        for (UnkHandleNode_l19818c* node = list.head; node; node = node->next)
             if (node->handle && node->handle->target == target)
                 return true;
         return false;
     }
 
     void PushBack(const UnkHandleRef_l19818c& handle) {
-        auto* node = static_cast<UnkHandleNode_l19818c*>(allocator->vf_0x40(sizeof(UnkHandleNode_l19818c), 8, flags));
-        if (node) {
-            new (node) UnkHandleNode_l19818c(handle.p);
-            if (count == 0) {
-                head = node;
-                tail = node;
-                count = 1;
-            } else {
-                tail->next = node;
-                node->next = nullptr;
-                tail = node;
-                ++count;
-            }
-        }
+        void* mem = list.allocator->vf_0x40(sizeof(UnkHandleNode_l19818c), 8, list.flags);
+        if (mem)
+            list.PushBack(new (mem) UnkHandleNode_l19818c(handle.p));
     }
 
     void Clear() {
-        for (UnkHandleNode_l19818c* node = head; node;) {
+        for (UnkHandleNode_l19818c* node = list.head; node;) {
             UnkHandleNode_l19818c* next = node->next;
             if (UnkWeakHandle* handle = node->handle) {
                 if (--handle->ref_count == 0)
                     handle->vf_0x10();
             }
-            allocator->vf_0x48(node);
+            list.allocator->vf_0x48(node);
             node = next;
         }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        list.count = 0;
+        list.head = nullptr;
+        list.tail = nullptr;
     }
 };
 static_assert(sizeof(UnkHandleList_l19818c) == 0x30, "layout");
@@ -93,7 +81,7 @@ struct UnkCutsceneManager_l19818c {
 
 void fn_710119818c(UnkCutsceneManager_l19818c* self) {
     fn_7100decc8c(g_unk_7101d47310);
-    for (UnkHandleNode_l19818c* node = self->pending.head; node; node = node->next) {
+    for (UnkHandleNode_l19818c* node = self->pending.list.head; node; node = node->next) {
         UnkWeakHandle* pending = node->handle;
         if (!pending || !pending->target)
             continue;

@@ -3081,9 +3081,8 @@ extern template void base::global::CRntVector<base::core::AssetName>::InsertCopy
 extern template void base::global::CRntVector<base::core::AssetName>::InsertMove(base::core::AssetName&&, u32);
 extern base::reflection::CType g_unk_7101d4de98;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::TypeOf(const void*) { return g_unk_7101d4de98; }
-struct UnkRefl_fn_7100019dcc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100019dcc> : base::reflection::CollectionMapperDescription<base::global::CRntVector<base::core::AssetName>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::core::AssetName>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<base::core::AssetName>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return &g_unk_7101d4d998; }
     static const CType* iterator() { return fn_710001904c(); }
@@ -3094,12 +3093,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100019dcc> : base
     static constexpr SlotFn const_begin = &fn_710001ecfc;
     static constexpr SlotFn const_end = &fn_710001ee0c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100019dcc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::core::AssetName>*, void*);
 extern base::reflection::CType g_unk_7101d5c078;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TypeOf(const void*) { return g_unk_7101d5c078; }
-struct UnkRefl_fn_71000a85a8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000a85a8> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::math::CVector3D>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::math::CVector3D>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::math::CVector3D>> {
     static constexpr SlotFn copy_construct = &fn_71000cb9e8;
     static constexpr SlotFn destroy = &fn_71000cba2c;
     static constexpr SlotFn copy_assign = &fn_71000cba68;
@@ -3121,12 +3119,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000a85a8> : base
     static constexpr SlotFn const_begin = &fn_71000cc564;
     static constexpr SlotFn const_end = &fn_71000cc60c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000a85a8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::math::CVector3D>*, void*);
 extern base::reflection::CType g_unk_7101d5c998;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::TypeOf(const void*) { return g_unk_7101d5c998; }
-struct UnkRefl_fn_71000a98cc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000a98cc> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CStrId>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CStrId>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CStrId>> {
     static constexpr SlotFn copy_construct = &fn_71000cde78;
     static constexpr SlotFn destroy = &fn_71000cdfb0;
     static constexpr SlotFn copy_assign = &fn_71000ce074;
@@ -3148,12 +3145,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000a98cc> : base
     static constexpr SlotFn const_begin = &fn_71000ce8b8;
     static constexpr SlotFn const_end = &fn_71000ce990;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000a98cc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CStrId>*, void*);
 extern base::reflection::CType g_unk_7101d5cd90;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::TypeOf(const void*) { return g_unk_7101d5cd90; }
-struct UnkRefl_fn_71000aa83c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000aa83c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CName>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CName>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CName>> {
     static constexpr SlotFn copy_construct = &fn_71000cf100;
     static constexpr SlotFn destroy = &fn_71000cf144;
     static constexpr SlotFn copy_assign = &fn_71000cf180;
@@ -3175,12 +3171,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000aa83c> : base
     static constexpr SlotFn const_begin = &fn_71000cfb30;
     static constexpr SlotFn const_end = &fn_71000cfbd8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000aa83c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CName>*, void*);
 extern base::reflection::CType g_unk_7101d5d188;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::TypeOf(const void*) { return g_unk_7101d5d188; }
-struct UnkRefl_fn_71000ab7ac;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ab7ac> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CFilePathStrId>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CFilePathStrId>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CFilePathStrId>> {
     static constexpr SlotFn copy_construct = &fn_71000d0634;
     static constexpr SlotFn destroy = &fn_71000d076c;
     static constexpr SlotFn copy_assign = &fn_71000d0830;
@@ -3202,13 +3197,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ab7ac> : base
     static constexpr SlotFn const_begin = &fn_71000d0f1c;
     static constexpr SlotFn const_end = &fn_71000d0ff4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000ab7ac*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CFilePathStrId>*, void*);
 extern template unsigned short& base::global::CRntVector<unsigned short>::GrowAt(u32);
 extern base::reflection::CType g_unk_7101d5d580;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TypeOf(const void*) { return g_unk_7101d5d580; }
-struct UnkRefl_fn_71000ac71c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ac71c> : base::reflection::CollectionMapperDescription<base::global::CRntVector<unsigned short>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<unsigned short>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<unsigned short>> {
     static constexpr SlotFn equals = &fn_71000d16d8;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_71000a3f68(); }
@@ -3219,15 +3213,14 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ac71c> : base
     static constexpr SlotFn erase = &fn_71000d15fc;
     static constexpr SlotFn const_end = &fn_71000d1f3c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000ac71c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<unsigned short>*, void*);
 extern template unsigned int& base::global::CRntVector<unsigned int>::GrowAt(u32);
 extern template void base::global::CRntVector<unsigned int>::InsertCopy(unsigned int const&, u32);
 extern template void base::global::CRntVector<unsigned int>::InsertMove(unsigned int&&, u32);
 extern base::reflection::CType g_unk_7101d5d978;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TypeOf(const void*) { return g_unk_7101d5d978; }
-struct UnkRefl_fn_71000ad68c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ad68c> : base::reflection::CollectionMapperDescription<base::global::CRntVector<unsigned int>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<unsigned int>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<unsigned int>> {
     static constexpr SlotFn equals = &fn_71000d25f0;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100005178(); }
@@ -3236,12 +3229,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ad68c> : base
     static constexpr SlotFn erase = &fn_71000d2514;
     static constexpr SlotFn const_end = &fn_71000d2e54;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000ad68c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<unsigned int>*, void*);
 extern base::reflection::CType g_unk_7101d5dd70;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<uint64>>::TypeOf(const void*) { return g_unk_7101d5dd70; }
-struct UnkRefl_fn_71000ae5fc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ae5fc> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<uint64>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<uint64>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<uint64>> {
     static constexpr SlotFn copy_construct = &fn_71000d358c;
     static constexpr SlotFn destroy = &fn_71000d3690;
     static constexpr SlotFn copy_assign = &fn_71000d36cc;
@@ -3263,12 +3255,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ae5fc> : base
     static constexpr SlotFn const_begin = &fn_71000d3ca8;
     static constexpr SlotFn const_end = &fn_71000d3d50;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000ae5fc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<uint64>*, void*);
 extern base::reflection::CType g_unk_7101d5e168;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<float32>>::TypeOf(const void*) { return g_unk_7101d5e168; }
-struct UnkRefl_fn_71000af56c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000af56c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<float32>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<float32>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<float32>> {
     static constexpr SlotFn copy_construct = &fn_71000d44a4;
     static constexpr SlotFn destroy = &fn_71000d45a8;
     static constexpr SlotFn copy_assign = &fn_71000d45e4;
@@ -3290,12 +3281,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000af56c> : base
     static constexpr SlotFn const_begin = &fn_71000d4bc0;
     static constexpr SlotFn const_end = &fn_71000d4c68;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000af56c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<float32>*, void*);
 extern base::reflection::CType g_unk_7101d5e6c8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::reflection::CTypedValue>>::TypeOf(const void*) { return g_unk_7101d5e6c8; }
-struct UnkRefl_fn_71000b073c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b073c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::reflection::CTypedValue>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::reflection::CTypedValue>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::reflection::CTypedValue>> {
     static constexpr SlotFn copy_construct = &fn_71000d5788;
     static constexpr SlotFn destroy = &fn_71000d57cc;
     static constexpr SlotFn copy_assign = &fn_71000d5858;
@@ -3317,14 +3307,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b073c> : base
     static constexpr SlotFn const_begin = &fn_71000d5e74;
     static constexpr SlotFn const_end = &fn_71000d5f4c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b073c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::reflection::CTypedValue>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7101d5eac0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::TypeOf(const void*) { return g_unk_7101d5eac0; }
-struct UnkRefl_fn_71000b16ac;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b16ac> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71000d6ba4;
@@ -3345,14 +3334,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b16ac> : base
     static constexpr SlotFn const_begin = &fn_71000d6f6c;
     static constexpr SlotFn const_end = &fn_71000d7024;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b16ac*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7101d5eeb8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>>::TypeOf(const void*) { return g_unk_7101d5eeb8; }
-struct UnkRefl_fn_71000b25fc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b25fc> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>> {
     static constexpr SlotFn copy_construct = &fn_71000d7eb0;
     static constexpr SlotFn destroy = &fn_71000d7ef8;
     static constexpr SlotFn copy_assign = &fn_71000d8028;
@@ -3374,14 +3362,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b25fc> : base
     static constexpr SlotFn const_begin = &fn_71000d8590;
     static constexpr SlotFn const_end = &fn_71000d86a4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b25fc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CTypedValue>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7101d5f2b0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::TypeOf(const void*) { return g_unk_7101d5f2b0; }
-struct UnkRefl_fn_71000b3570;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b3570> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>> {
     static constexpr SlotFn copy_construct = &fn_71000d95bc;
     static constexpr SlotFn destroy = &fn_71000d9700;
     static constexpr SlotFn copy_assign = &fn_71000d9758;
@@ -3400,15 +3387,14 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b3570> : base
     static constexpr SlotFn const_begin = &fn_71000d9fe0;
     static constexpr SlotFn const_end = &fn_71000da0c0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b3570*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 #include "base/global/CFilePathStrId.h"
 extern base::reflection::CType g_unk_7101d5f6a8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::TypeOf(const void*) { return g_unk_7101d5f6a8; }
-struct UnkRefl_fn_71000b44e4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b44e4> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>> {
     static constexpr SlotFn copy_construct = &fn_71000daff0;
     static constexpr SlotFn destroy = &fn_71000db13c;
     static constexpr SlotFn copy_assign = &fn_71000db194;
@@ -3427,13 +3413,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b44e4> : base
     static constexpr SlotFn const_begin = &fn_71000dba2c;
     static constexpr SlotFn const_end = &fn_71000dbb10;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b44e4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 extern base::reflection::CType g_unk_7101d5faa0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>>::TypeOf(const void*) { return g_unk_7101d5faa0; }
-struct UnkRefl_fn_71000b57c8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b57c8> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>> {
     static constexpr SlotFn copy_construct = &fn_71000dc190;
     static constexpr SlotFn destroy = &fn_71000dc294;
     static constexpr SlotFn copy_assign = &fn_71000dc340;
@@ -3455,14 +3440,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b57c8> : base
     static constexpr SlotFn const_begin = &fn_71000dc374;
     static constexpr SlotFn const_end = &fn_71000dc3d8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b57c8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CName, base::reflection::CVariable>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7101d5fe98;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>>::TypeOf(const void*) { return g_unk_7101d5fe98; }
-struct UnkRefl_fn_71000b6740;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b6740> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>> {
     static constexpr SlotFn copy_construct = &fn_71000dcabc;
     static constexpr SlotFn destroy = &fn_71000dcbec;
     static constexpr SlotFn copy_assign = &fn_71000dcd1c;
@@ -3484,14 +3468,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b6740> : base
     static constexpr SlotFn const_begin = &fn_71000dd04c;
     static constexpr SlotFn const_end = &fn_71000dd160;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b6740*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CVariable>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7101d60290;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::TypeOf(const void*) { return g_unk_7101d60290; }
-struct UnkRefl_fn_71000b76b8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b76b8> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>> {
     static constexpr SlotFn copy_construct = &fn_71000ddc54;
     static constexpr SlotFn destroy = &fn_71000ddd84;
     static constexpr SlotFn copy_assign = &fn_71000ddec4;
@@ -3513,14 +3496,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b76b8> : base
     static constexpr SlotFn const_begin = &fn_71000de178;
     static constexpr SlotFn const_end = &fn_71000de28c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b76b8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7101d60688;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, float>>::TypeOf(const void*) { return g_unk_7101d60688; }
-struct UnkRefl_fn_71000b862c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b862c> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, float>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, float>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, float>> {
     static constexpr SlotFn copy_construct = &fn_71000defec;
     static constexpr SlotFn destroy = &fn_71000df0f4;
     static constexpr SlotFn copy_assign = &fn_71000df0f8;
@@ -3539,12 +3521,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b862c> : base
     static constexpr SlotFn const_begin = &fn_71000df8a0;
     static constexpr SlotFn const_end = &fn_71000df938;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b862c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, float>*, void*);
 extern base::reflection::CType g_unk_7101d60a80;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::TypeOf(const void*) { return g_unk_7101d60a80; }
-struct UnkRefl_fn_71000b95a0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b95a0> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CRntString>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CRntString>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CRntString>> {
     static constexpr SlotFn copy_construct = &fn_71000e017c;
     static constexpr SlotFn destroy = &fn_71000e01c0;
     static constexpr SlotFn copy_assign = &fn_71000e024c;
@@ -3566,14 +3547,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000b95a0> : base
     static constexpr SlotFn const_begin = &fn_71000e0db4;
     static constexpr SlotFn const_end = &fn_71000e0e8c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000b95a0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CRntString>*, void*);
 extern template void base::global::CRntVector<bool>::InsertCopy(bool const&, u32);
 extern template void base::global::CRntVector<bool>::InsertMove(bool&&, u32);
 extern base::reflection::CType g_unk_7101d60e78;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TypeOf(const void*) { return g_unk_7101d60e78; }
-struct UnkRefl_fn_71000ba510;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ba510> : base::reflection::CollectionMapperDescription<base::global::CRntVector<bool>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<bool>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<bool>> {
     static constexpr SlotFn copy_construct = &fn_71000e1848;
     static constexpr SlotFn copy_assign = &fn_71000e1980;
     static constexpr SlotFn equals = &fn_71000e17a8;
@@ -3585,12 +3565,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ba510> : base
     static constexpr SlotFn set_move = &fn_71000e1660;
     static constexpr SlotFn const_end = &fn_71000e1e84;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000ba510*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<bool>*, void*);
 extern base::reflection::CType g_unk_7108b6ddf0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::spatial::CPolygon2D>>::TypeOf(const void*) { return g_unk_7108b6ddf0; }
-struct UnkRefl_fn_7100113db4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100113db4> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::spatial::CPolygon2D>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::spatial::CPolygon2D>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::spatial::CPolygon2D>> {
     static constexpr SlotFn copy_construct = &fn_710011eedc;
     static constexpr SlotFn destroy = &fn_710011ef20;
     static constexpr SlotFn copy_assign = &fn_710011efc4;
@@ -3612,12 +3591,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100113db4> : base
     static constexpr SlotFn const_begin = &fn_710011fbf0;
     static constexpr SlotFn const_end = &fn_710011fd0c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100113db4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::spatial::CPolygon2D>*, void*);
 extern base::reflection::CType g_unk_7108b6e1e8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::spatial::SSegmentData>>::TypeOf(const void*) { return g_unk_7108b6e1e8; }
-struct UnkRefl_fn_7100114d28;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100114d28> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::spatial::SSegmentData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::spatial::SSegmentData>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::spatial::SSegmentData>> {
     static constexpr SlotFn copy_construct = &fn_7100120408;
     static constexpr SlotFn destroy = &fn_710012044c;
     static constexpr SlotFn copy_assign = &fn_7100120488;
@@ -3639,14 +3617,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100114d28> : base
     static constexpr SlotFn const_begin = &fn_7100120528;
     static constexpr SlotFn const_end = &fn_71001205d0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100114d28*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::spatial::SSegmentData>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7108b6e5e0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>>::TypeOf(const void*) { return g_unk_7108b6e5e0; }
-struct UnkRefl_fn_7100115c9c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100115c9c> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100121264;
@@ -3664,12 +3641,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100115c9c> : base
     static constexpr SlotFn const_begin = &fn_71001214ec;
     static constexpr SlotFn const_end = &fn_71001214fc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100115c9c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, base::spatial::CPolygon2D*>*, void*);
 extern base::reflection::CType g_unk_7108b6e9d8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::spatial::CEditorSegment>>::TypeOf(const void*) { return g_unk_7108b6e9d8; }
-struct UnkRefl_fn_7100116bec;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100116bec> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::spatial::CEditorSegment>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::spatial::CEditorSegment>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::spatial::CEditorSegment>> {
     static constexpr SlotFn copy_construct = &fn_7100121c94;
     static constexpr SlotFn destroy = &fn_7100121cd8;
     static constexpr SlotFn copy_assign = &fn_7100121d14;
@@ -3691,13 +3667,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100116bec> : base
     static constexpr SlotFn const_begin = &fn_7100122788;
     static constexpr SlotFn const_end = &fn_7100122830;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100116bec*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::spatial::CEditorSegment>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 extern base::reflection::CType g_unk_710b371338;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CRntString, base::tunable::CTunable*>>::TypeOf(const void*) { return g_unk_710b371338; }
-struct UnkRefl_fn_7100136bfc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100136bfc> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CRntString, base::tunable::CTunable*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CRntString, base::tunable::CTunable*>> : base::reflection::SmallDictionaryMapperDescription<base::global::CRntSmallDictionary<base::global::CRntString, base::tunable::CTunable*>> {
     static constexpr SlotFn copy_construct = &fn_7100138d0c;
     static constexpr SlotFn destroy = &fn_7100138df8;
     static constexpr SlotFn copy_assign = &fn_7100138eb0;
@@ -3717,22 +3692,21 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100136bfc> : base
     static constexpr SlotFn const_begin = &fn_71001391d4;
     static constexpr SlotFn const_end = &fn_7100139238;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100136bfc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CRntString, base::tunable::CTunable*>*, void*);
 extern template base::tunable::CTunableManager*& base::global::CRntVector<base::tunable::CTunableManager*>::GrowAt(u32);
 extern template void base::global::CRntVector<base::tunable::CTunableManager*>::InsertCopy(base::tunable::CTunableManager* const&, u32);
 extern template void base::global::CRntVector<base::tunable::CTunableManager*>::InsertMove(base::tunable::CTunableManager*&&, u32);
 extern base::reflection::CType g_unk_710b372020;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::TypeOf(const void*) { return g_unk_710b372020; }
-struct UnkRefl_fn_710013a638;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710013a638> : base::reflection::CollectionMapperDescription<base::global::CRntVector<base::tunable::CTunableManager*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::tunable::CTunableManager*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<base::tunable::CTunableManager*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_71001397dc(); }
     static const CType* iterator() { return fn_71001398b8(); }
     static const CType* const_iterator() { return fn_7100139f78(); }
     static constexpr SlotFn erase = &fn_710013f5cc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710013a638*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::tunable::CTunableManager*>*, void*);
 struct UnkRefl_fn_71001ed940;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71001ed940> {
@@ -3771,31 +3745,29 @@ extern template void base::global::CRntVector<engine::scene::CSceneSlot*>::Inser
 extern template void base::global::CRntVector<engine::scene::CSceneSlot*>::InsertMove(engine::scene::CSceneSlot*&&, u32);
 extern base::reflection::CType g_unk_716e598500;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::TypeOf(const void*) { return g_unk_716e598500; }
-struct UnkRefl_fn_71001ff86c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71001ff86c> : base::reflection::CollectionMapperDescription<base::global::CRntVector<engine::scene::CSceneSlot*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<engine::scene::CSceneSlot*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<engine::scene::CSceneSlot*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_71001fea10(); }
     static const CType* iterator() { return fn_71001feaec(); }
     static const CType* const_iterator() { return fn_71001ff1ac(); }
     static constexpr SlotFn erase = &fn_7100204e50;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71001ff86c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<engine::scene::CSceneSlot*>*, void*);
 extern template CActor*& base::global::CRntVector<CActor*>::GrowAt(u32);
 extern template void base::global::CRntVector<CActor*>::InsertCopy(CActor* const&, u32);
 extern template void base::global::CRntVector<CActor*>::InsertMove(CActor*&&, u32);
 extern base::reflection::CType g_unk_717269a5d0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::TypeOf(const void*) { return g_unk_717269a5d0; }
-struct UnkRefl_fn_710022a5c0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022a5c0> : base::reflection::CollectionMapperDescription<base::global::CRntVector<CActor*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CActor*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<CActor*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_71002295ac(); }
     static const CType* iterator() { return fn_7100229840(); }
     static const CType* const_iterator() { return fn_7100229f00(); }
     static constexpr SlotFn erase = &fn_710023efb4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710022a5c0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CActor*>*, void*);
 struct UnkRefl_fn_710022b530;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022b530> {
@@ -3831,9 +3803,8 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022b530> {
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710022b530*, void*);
 extern base::reflection::CType g_unk_717269adc0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::TypeOf(const void*) { return g_unk_717269adc0; }
-struct UnkRefl_fn_710022c498;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022c498> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CWeakPtr<CActor>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CWeakPtr<CActor>>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CWeakPtr<CActor>>> {
     static constexpr SlotFn copy_construct = &fn_7100241844;
     static constexpr SlotFn destroy = &fn_7100241888;
     static constexpr SlotFn copy_assign = &fn_7100241918;
@@ -3855,14 +3826,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022c498> : base
     static constexpr SlotFn const_begin = &fn_71002421bc;
     static constexpr SlotFn const_end = &fn_71002422e4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710022c498*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CWeakPtr<CActor>>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_717269b1b8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::TypeOf(const void*) { return g_unk_717269b1b8; }
-struct UnkRefl_fn_710022d408;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022d408> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, CActor*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, CActor*>> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, CActor*>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100242ff4;
@@ -3880,12 +3850,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022d408> : base
     static constexpr SlotFn const_begin = &fn_710024327c;
     static constexpr SlotFn const_end = &fn_710024328c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710022d408*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, CActor*>*, void*);
 extern base::reflection::CType g_unk_717269b5d8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::TypeOf(const void*) { return g_unk_717269b5d8; }
-struct UnkRefl_fn_710022e434;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022e434> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<TActorUniquePtr>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<TActorUniquePtr>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<TActorUniquePtr>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100243aac;
     static constexpr SlotFn copy_assign = nullptr;
@@ -3907,14 +3876,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022e434> : base
     static constexpr SlotFn const_begin = &fn_7100244148;
     static constexpr SlotFn const_end = &fn_7100244290;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710022e434*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<TActorUniquePtr>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_717269b9d0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::TypeOf(const void*) { return g_unk_717269b9d0; }
-struct UnkRefl_fn_710022f394;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022f394> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71002450c4;
@@ -3935,12 +3903,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022f394> : base
     static constexpr SlotFn const_begin = &fn_71002454ac;
     static constexpr SlotFn const_end = &fn_7100245538;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710022f394*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>*, void*);
 extern base::reflection::CType g_unk_717269bf08;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::TypeOf(const void*) { return g_unk_717269bf08; }
-struct UnkRefl_fn_7100230688;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100230688> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CGameLink<CActor>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CGameLink<CActor>>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CGameLink<CActor>>> {
     static constexpr SlotFn copy_construct = &fn_7100246780;
     static constexpr SlotFn destroy = &fn_71002467c4;
     static constexpr SlotFn copy_assign = &fn_7100246860;
@@ -3962,14 +3929,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100230688> : base
     static constexpr SlotFn const_begin = &fn_71002475b0;
     static constexpr SlotFn const_end = &fn_71002476ec;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100230688*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CGameLink<CActor>>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_717269c300;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::TypeOf(const void*) { return g_unk_717269c300; }
-struct UnkRefl_fn_71002315fc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002315fc> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_710024862c;
@@ -3990,14 +3956,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002315fc> : base
     static constexpr SlotFn const_begin = &fn_71002488f4;
     static constexpr SlotFn const_end = &fn_7100248a18;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71002315fc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_717269f810;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::TypeOf(const void*) { return g_unk_717269f810; }
-struct UnkRefl_fn_710024f3c4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710024f3c4> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>> {
     static constexpr SlotFn copy_construct = &fn_7100251bd0;
     static constexpr SlotFn destroy = &fn_7100251cd8;
     static constexpr SlotFn copy_assign = &fn_7100251cdc;
@@ -4013,14 +3978,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710024f3c4> : base
     static constexpr SlotFn const_begin = &fn_71002520fc;
     static constexpr SlotFn const_end = &fn_7100252194;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710024f3c4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71726a0628;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::TypeOf(const void*) { return g_unk_71726a0628; }
-struct UnkRefl_fn_71002580f0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002580f0> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>> {
     static constexpr SlotFn copy_construct = &fn_710025fb24;
     static constexpr SlotFn destroy = &fn_710025fc54;
     static constexpr SlotFn copy_assign = &fn_710025fd94;
@@ -4042,7 +4006,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002580f0> : base
     static constexpr SlotFn const_begin = &fn_7100260488;
     static constexpr SlotFn const_end = &fn_710026059c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71002580f0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>*, void*);
 struct UnkRefl_fn_710025a7e8;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710025a7e8> {
@@ -4081,21 +4045,19 @@ extern template void base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>::
 extern template void base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>::InsertMove(navmesh::CDynamicSmartLinkRule*&&, u32);
 extern base::reflection::CType g_unk_71726a2fb8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TypeOf(const void*) { return g_unk_71726a2fb8; }
-struct UnkRefl_fn_710026a7a4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710026a7a4> : base::reflection::CollectionMapperDescription<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100269948(); }
     static const CType* iterator() { return fn_7100269a24(); }
     static const CType* const_iterator() { return fn_710026a0e4(); }
     static constexpr SlotFn erase = &fn_710026bd8c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710026a7a4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>*, void*);
 extern base::reflection::CType g_unk_71726a3d78;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TypeOf(const void*) { return g_unk_71726a3d78; }
-struct UnkRefl_fn_710026e858;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710026e858> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>> {
     static constexpr SlotFn copy_construct = &fn_710027360c;
     static constexpr SlotFn destroy = &fn_7100273650;
     static constexpr SlotFn copy_assign = &fn_71002736dc;
@@ -4117,13 +4079,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710026e858> : base
     static constexpr SlotFn const_begin = &fn_7100273ce4;
     static constexpr SlotFn const_end = &fn_7100273dbc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710026e858*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726a4ec8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TypeOf(const void*) { return g_unk_71726a4ec8; }
-struct UnkRefl_fn_71002b7994;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002b7994> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71002b9b2c;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4142,13 +4103,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002b7994> : base
     static constexpr SlotFn const_begin = &fn_71002ba12c;
     static constexpr SlotFn const_end = &fn_71002ba230;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71002b7994*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726a6138;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TypeOf(const void*) { return g_unk_71726a6138; }
-struct UnkRefl_fn_71002be8bc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002be8bc> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71002c05e4;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4167,7 +4127,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002be8bc> : base
     static constexpr SlotFn const_begin = &fn_71002c0be4;
     static constexpr SlotFn const_end = &fn_71002c0ce8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71002be8bc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>*, void*);
 struct UnkRefl_fn_71002c83e4;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002c83e4> {
@@ -4237,9 +4197,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include <memory>
 extern base::reflection::CType g_unk_71726aa3a0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TypeOf(const void*) { return g_unk_71726aa3a0; }
-struct UnkRefl_fn_71002dce58;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002dce58> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71002de984;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4258,7 +4217,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002dce58> : base
     static constexpr SlotFn const_begin = &fn_71002def84;
     static constexpr SlotFn const_end = &fn_71002df088;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71002dce58*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>*, void*);
 struct UnkRefl_fn_71002eb838;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71002eb838> {
@@ -4328,9 +4287,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include <memory>
 extern base::reflection::CType g_unk_71726b28e0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TypeOf(const void*) { return g_unk_71726b28e0; }
-struct UnkRefl_fn_7100365758;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100365758> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CAttackPreset>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CAttackPreset>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CAttackPreset>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71003684b0;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4349,7 +4307,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100365758> : base
     static constexpr SlotFn const_begin = &fn_7100368ab0;
     static constexpr SlotFn const_end = &fn_7100368bb4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100365758*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CAttackPreset>>*, void*);
 struct UnkRefl_fn_71003ec768;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71003ec768> {
@@ -4386,9 +4344,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include <memory>
 extern base::reflection::CType g_unk_71726ca4e8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TypeOf(const void*) { return g_unk_71726ca4e8; }
-struct UnkRefl_fn_710045e0f8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710045e0f8> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100460c50;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4407,13 +4364,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710045e0f8> : base
     static constexpr SlotFn const_begin = &fn_7100461250;
     static constexpr SlotFn const_end = &fn_7100461354;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710045e0f8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726d2360;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TypeOf(const void*) { return g_unk_71726d2360; }
-struct UnkRefl_fn_71004a3a6c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004a3a6c> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71004a7cb8;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4432,13 +4388,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004a3a6c> : base
     static constexpr SlotFn const_begin = &fn_71004a82b8;
     static constexpr SlotFn const_end = &fn_71004a83bc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71004a3a6c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726d2758;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TypeOf(const void*) { return g_unk_71726d2758; }
-struct UnkRefl_fn_71004a49cc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004a49cc> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71004a8f10;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4458,13 +4413,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004a49cc> : base
     static constexpr SlotFn const_begin = &fn_71004a9990;
     static constexpr SlotFn const_end = &fn_71004a9a90;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71004a49cc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726d3d30;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TypeOf(const void*) { return g_unk_71726d3d30; }
-struct UnkRefl_fn_71004acbac;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004acbac> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71004b1794;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4483,13 +4437,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004acbac> : base
     static constexpr SlotFn const_begin = &fn_71004b1d94;
     static constexpr SlotFn const_end = &fn_71004b1e98;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71004acbac*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726d5aa8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TypeOf(const void*) { return g_unk_71726d5aa8; }
-struct UnkRefl_fn_71004b6cf8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004b6cf8> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71004bdf04;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4508,13 +4461,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004b6cf8> : base
     static constexpr SlotFn const_begin = &fn_71004be2d0;
     static constexpr SlotFn const_end = &fn_71004be3d4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71004b6cf8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726d5ea0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TypeOf(const void*) { return g_unk_71726d5ea0; }
-struct UnkRefl_fn_71004b7c58;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004b7c58> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71004bef28;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4534,13 +4486,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004b7c58> : base
     static constexpr SlotFn const_begin = &fn_71004bf9a8;
     static constexpr SlotFn const_end = &fn_71004bfaa8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71004b7c58*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726e00c8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TypeOf(const void*) { return g_unk_71726e00c8; }
-struct UnkRefl_fn_7100533110;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100533110> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100561e0c;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4559,13 +4510,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100533110> : base
     static constexpr SlotFn const_begin = &fn_710056240c;
     static constexpr SlotFn const_end = &fn_7100562510;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100533110*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726e04e8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TypeOf(const void*) { return g_unk_71726e04e8; }
-struct UnkRefl_fn_7100534a10;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100534a10> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005631cc;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4584,13 +4534,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100534a10> : base
     static constexpr SlotFn const_begin = &fn_71005637cc;
     static constexpr SlotFn const_end = &fn_71005638d0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100534a10*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726e0908;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TypeOf(const void*) { return g_unk_71726e0908; }
-struct UnkRefl_fn_710053626c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710053626c> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005648e0;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4609,13 +4558,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710053626c> : base
     static constexpr SlotFn const_begin = &fn_7100564cac;
     static constexpr SlotFn const_end = &fn_7100564db0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710053626c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726e36c8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TypeOf(const void*) { return g_unk_71726e36c8; }
-struct UnkRefl_fn_7100576074;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100576074> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100578588;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4634,13 +4582,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100576074> : base
     static constexpr SlotFn const_begin = &fn_7100578954;
     static constexpr SlotFn const_end = &fn_7100578a58;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100576074*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CEnemyPreset>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726e9b38;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TypeOf(const void*) { return g_unk_71726e9b38; }
-struct UnkRefl_fn_71005aee58;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005aee58> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005b1510;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4659,13 +4606,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005aee58> : base
     static constexpr SlotFn const_begin = &fn_71005b1b10;
     static constexpr SlotFn const_end = &fn_71005b1c14;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71005aee58*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726ed360;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TypeOf(const void*) { return g_unk_71726ed360; }
-struct UnkRefl_fn_71005d4ad8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005d4ad8> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005d9810;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4684,13 +4630,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005d4ad8> : base
     static constexpr SlotFn const_begin = &fn_71005d9bdc;
     static constexpr SlotFn const_end = &fn_71005d9ce0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71005d4ad8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726ed758;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TypeOf(const void*) { return g_unk_71726ed758; }
-struct UnkRefl_fn_71005d5a38;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005d5a38> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005da834;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4710,13 +4655,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005d5a38> : base
     static constexpr SlotFn const_begin = &fn_71005db2b4;
     static constexpr SlotFn const_end = &fn_71005db3b4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71005d5a38*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726eee58;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TypeOf(const void*) { return g_unk_71726eee58; }
-struct UnkRefl_fn_71005de03c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005de03c> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005e285c;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4735,13 +4679,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005de03c> : base
     static constexpr SlotFn const_begin = &fn_71005e2e5c;
     static constexpr SlotFn const_end = &fn_71005e2f60;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71005de03c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726ef250;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TypeOf(const void*) { return g_unk_71726ef250; }
-struct UnkRefl_fn_71005def9c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005def9c> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005e3ab4;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4761,13 +4704,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005def9c> : base
     static constexpr SlotFn const_begin = &fn_71005e4534;
     static constexpr SlotFn const_end = &fn_71005e4634;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71005def9c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726f1088;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TypeOf(const void*) { return g_unk_71726f1088; }
-struct UnkRefl_fn_71005e9654;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005e9654> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005ed888;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4786,13 +4728,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005e9654> : base
     static constexpr SlotFn const_begin = &fn_71005ede88;
     static constexpr SlotFn const_end = &fn_71005edf8c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71005e9654*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726f1480;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TypeOf(const void*) { return g_unk_71726f1480; }
-struct UnkRefl_fn_71005ea5b4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005ea5b4> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71005eeae0;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4812,13 +4753,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71005ea5b4> : base
     static constexpr SlotFn const_begin = &fn_71005ef560;
     static constexpr SlotFn const_end = &fn_71005ef660;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71005ea5b4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726f5280;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TypeOf(const void*) { return g_unk_71726f5280; }
-struct UnkRefl_fn_710060ff98;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710060ff98> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CShootDCBones>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CShootDCBones>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CShootDCBones>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_710061a2f0;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4837,13 +4777,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710060ff98> : base
     static constexpr SlotFn const_begin = &fn_710061a8f0;
     static constexpr SlotFn const_end = &fn_710061a9f4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710060ff98*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CShootDCBones>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726f56a0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TypeOf(const void*) { return g_unk_71726f56a0; }
-struct UnkRefl_fn_71006118a8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71006118a8> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<COffset>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<COffset>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<COffset>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_710061b434;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4862,13 +4801,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71006118a8> : base
     static constexpr SlotFn const_begin = &fn_710061ba34;
     static constexpr SlotFn const_end = &fn_710061bb38;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71006118a8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<COffset>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71726f5eb8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TypeOf(const void*) { return g_unk_71726f5eb8; }
-struct UnkRefl_fn_7100613fa0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100613fa0> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CPattern>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CPattern>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CPattern>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_710061e060;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4887,7 +4825,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100613fa0> : base
     static constexpr SlotFn const_begin = &fn_710061e660;
     static constexpr SlotFn const_end = &fn_710061e764;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100613fa0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CPattern>>*, void*);
 struct UnkRefl_fn_7100666888;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100666888> {
@@ -4957,9 +4895,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include <memory>
 extern base::reflection::CType g_unk_717270d668;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TypeOf(const void*) { return g_unk_717270d668; }
-struct UnkRefl_fn_7100709aac;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100709aac> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CTentacle>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CTentacle>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CTentacle>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_710070c624;
     static constexpr SlotFn copy_assign = nullptr;
@@ -4978,12 +4915,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100709aac> : base
     static constexpr SlotFn const_begin = &fn_710070cc24;
     static constexpr SlotFn const_end = &fn_710070cd28;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100709aac*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CTentacle>>*, void*);
 extern base::reflection::CType g_unk_7172711ad0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TypeOf(const void*) { return g_unk_7172711ad0; }
-struct UnkRefl_fn_71007560f8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71007560f8> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_710075e504;
     static constexpr SlotFn copy_assign = nullptr;
@@ -5005,7 +4941,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71007560f8> : base
     static constexpr SlotFn const_begin = &fn_710075e6c8;
     static constexpr SlotFn const_end = &fn_710075e804;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71007560f8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*, void*);
 struct UnkRefl_fn_7100757138;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100757138> {
@@ -5075,9 +5011,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include <memory>
 extern base::reflection::CType g_unk_7172714058;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TypeOf(const void*) { return g_unk_7172714058; }
-struct UnkRefl_fn_710076b708;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710076b708> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71007790c0;
     static constexpr SlotFn copy_assign = nullptr;
@@ -5096,12 +5031,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710076b708> : base
     static constexpr SlotFn const_begin = &fn_71007796c0;
     static constexpr SlotFn const_end = &fn_71007797c4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710076b708*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>*, void*);
 extern base::reflection::CType g_unk_7172714630;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TypeOf(const void*) { return g_unk_7172714630; }
-struct UnkRefl_fn_710076ca6c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710076ca6c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>> {
     static constexpr SlotFn copy_construct = &fn_710077a378;
     static constexpr SlotFn destroy = &fn_710077a3bc;
     static constexpr SlotFn copy_assign = &fn_710077a448;
@@ -5123,14 +5057,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710076ca6c> : base
     static constexpr SlotFn const_begin = &fn_710077afa4;
     static constexpr SlotFn const_end = &fn_710077b1e8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710076ca6c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7172718518;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TypeOf(const void*) { return g_unk_7172718518; }
-struct UnkRefl_fn_7100799f40;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100799f40> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>> {
     static constexpr SlotFn copy_construct = &fn_710079c650;
     static constexpr SlotFn destroy = &fn_710079c758;
     static constexpr SlotFn copy_assign = &fn_710079c75c;
@@ -5148,13 +5081,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100799f40> : base
     static constexpr SlotFn const_begin = &fn_710079ce08;
     static constexpr SlotFn const_end = &fn_710079cea0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100799f40*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_717271c1a0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TypeOf(const void*) { return g_unk_717271c1a0; }
-struct UnkRefl_fn_71007ca03c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71007ca03c> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71007cbcf8;
     static constexpr SlotFn copy_assign = nullptr;
@@ -5173,13 +5105,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71007ca03c> : base
     static constexpr SlotFn const_begin = &fn_71007cc2f8;
     static constexpr SlotFn const_end = &fn_71007cc3fc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71007ca03c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_7172720320;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TypeOf(const void*) { return g_unk_7172720320; }
-struct UnkRefl_fn_71007f0074;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71007f0074> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71007f28c4;
     static constexpr SlotFn copy_assign = nullptr;
@@ -5198,7 +5129,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71007f0074> : base
     static constexpr SlotFn const_begin = &fn_71007f2ec4;
     static constexpr SlotFn const_end = &fn_71007f2fc8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71007f0074*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>*, void*);
 struct UnkRefl_fn_7100810c5c;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100810c5c> {
@@ -5234,9 +5165,8 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100810c5c> {
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100810c5c*, void*);
 extern base::reflection::CType g_unk_717272c848;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TypeOf(const void*) { return g_unk_717272c848; }
-struct UnkRefl_fn_710088ef8c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710088ef8c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SActivatabledOnEventInfo>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<SActivatabledOnEventInfo>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SActivatabledOnEventInfo>> {
     static constexpr SlotFn copy_construct = &fn_7100895194;
     static constexpr SlotFn destroy = &fn_7100895254;
     static constexpr SlotFn copy_assign = &fn_7100895258;
@@ -5258,12 +5188,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710088ef8c> : base
     static constexpr SlotFn const_begin = &fn_7100895fe4;
     static constexpr SlotFn const_end = &fn_71008961bc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710088ef8c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<SActivatabledOnEventInfo>*, void*);
 extern base::reflection::CType g_unk_717272e550;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TypeOf(const void*) { return g_unk_717272e550; }
-struct UnkRefl_fn_71008a58a4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71008a58a4> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SBeamBoxActivatable>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<SBeamBoxActivatable>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SBeamBoxActivatable>> {
     static constexpr SlotFn copy_construct = &fn_71008aaff8;
     static constexpr SlotFn destroy = &fn_71008ab0b8;
     static constexpr SlotFn copy_assign = &fn_71008ab2a0;
@@ -5285,14 +5214,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71008a58a4> : base
     static constexpr SlotFn const_begin = &fn_71008ac02c;
     static constexpr SlotFn const_end = &fn_71008ac204;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71008a58a4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<SBeamBoxActivatable>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7172733a70;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>>::TypeOf(const void*) { return g_unk_7172733a70; }
-struct UnkRefl_fn_71008ffb38;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71008ffb38> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>> {
     static constexpr SlotFn copy_construct = &fn_710090488c;
     static constexpr SlotFn destroy = &fn_71009048d4;
     static constexpr SlotFn copy_assign = &fn_71009048d8;
@@ -5314,12 +5242,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71008ffb38> : base
     static constexpr SlotFn const_begin = &fn_7100905138;
     static constexpr SlotFn const_end = &fn_71009051d0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71008ffb38*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, base::spatial::CAABox2D>*, void*);
 extern base::reflection::CType g_unk_7172734a68;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>>::TypeOf(const void*) { return g_unk_7172734a68; }
-struct UnkRefl_fn_7100908230;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100908230> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>> {
     static constexpr SlotFn copy_construct = &fn_710090ce1c;
     static constexpr SlotFn destroy = &fn_710090cedc;
     static constexpr SlotFn copy_assign = &fn_710090cf20;
@@ -5341,14 +5268,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100908230> : base
     static constexpr SlotFn const_begin = &fn_710090dbb4;
     static constexpr SlotFn const_end = &fn_710090dcf0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100908230*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7172735f58;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::TypeOf(const void*) { return g_unk_7172735f58; }
-struct UnkRefl_fn_710091403c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710091403c> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, bool>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, bool>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, bool>> {
     static constexpr SlotFn copy_construct = &fn_71009166a4;
     static constexpr SlotFn destroy = &fn_71009167a8;
     static constexpr SlotFn copy_assign = &fn_71009167ac;
@@ -5366,7 +5292,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710091403c> : base
     static constexpr SlotFn const_begin = &fn_7100916de8;
     static constexpr SlotFn const_end = &fn_7100916e80;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710091403c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, bool>*, void*);
 struct UnkRefl_fn_71009bf5f8;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71009bf5f8> {
@@ -5403,9 +5329,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include <memory>
 extern base::reflection::CType g_unk_7172741f48;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>>::TypeOf(const void*) { return g_unk_7172741f48; }
-struct UnkRefl_fn_71009fb940;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71009fb940> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71009fd814;
     static constexpr SlotFn copy_assign = nullptr;
@@ -5424,15 +5349,14 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71009fb940> : base
     static constexpr SlotFn const_begin = &fn_71009fde14;
     static constexpr SlotFn const_end = &fn_71009fdf18;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71009fb940*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>*, void*);
 extern template EShinesparkTravellingDirection& base::global::CRntVector<EShinesparkTravellingDirection>::GrowAt(u32);
 extern template void base::global::CRntVector<EShinesparkTravellingDirection>::InsertCopy(EShinesparkTravellingDirection const&, u32);
 extern template void base::global::CRntVector<EShinesparkTravellingDirection>::InsertMove(EShinesparkTravellingDirection&&, u32);
 extern base::reflection::CType g_unk_7172747758;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::TypeOf(const void*) { return g_unk_7172747758; }
-struct UnkRefl_fn_7100a320f8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a320f8> : base::reflection::CollectionMapperDescription<base::global::CRntVector<EShinesparkTravellingDirection>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<EShinesparkTravellingDirection>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<EShinesparkTravellingDirection>> {
     static constexpr SlotFn equals = &fn_7100a352f0;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return &g_unk_71726b0410; }
@@ -5441,15 +5365,14 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a320f8> : base
     static constexpr SlotFn erase = &fn_7100a35214;
     static constexpr SlotFn const_end = &fn_7100a35b54;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a320f8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<EShinesparkTravellingDirection>*, void*);
 extern template ECoolShinesparkSituation& base::global::CRntVector<ECoolShinesparkSituation>::GrowAt(u32);
 extern template void base::global::CRntVector<ECoolShinesparkSituation>::InsertCopy(ECoolShinesparkSituation const&, u32);
 extern template void base::global::CRntVector<ECoolShinesparkSituation>::InsertMove(ECoolShinesparkSituation&&, u32);
 extern base::reflection::CType g_unk_7172747b50;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::TypeOf(const void*) { return g_unk_7172747b50; }
-struct UnkRefl_fn_7100a3306c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a3306c> : base::reflection::CollectionMapperDescription<base::global::CRntVector<ECoolShinesparkSituation>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<ECoolShinesparkSituation>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<ECoolShinesparkSituation>> {
     static constexpr SlotFn equals = &fn_7100a361d0;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return &g_unk_71726b06a8; }
@@ -5458,12 +5381,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a3306c> : base
     static constexpr SlotFn erase = &fn_7100a360f4;
     static constexpr SlotFn const_end = &fn_7100a36a34;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a3306c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<ECoolShinesparkSituation>*, void*);
 extern base::reflection::CType g_unk_7172748d20;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<DoorStateInfo>>::TypeOf(const void*) { return g_unk_7172748d20; }
-struct UnkRefl_fn_7100a38cd0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a38cd0> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<DoorStateInfo>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<DoorStateInfo>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<DoorStateInfo>> {
     static constexpr SlotFn copy_construct = &fn_7100a3b6f0;
     static constexpr SlotFn destroy = &fn_7100a3b7b0;
     static constexpr SlotFn copy_assign = &fn_7100a3b7f4;
@@ -5485,13 +5407,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a38cd0> : base
     static constexpr SlotFn const_begin = &fn_7100a3c488;
     static constexpr SlotFn const_end = &fn_7100a3c5c4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a38cd0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<DoorStateInfo>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_717274caa0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::TypeOf(const void*) { return g_unk_717274caa0; }
-struct UnkRefl_fn_7100a558c4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a558c4> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100a57514;
     static constexpr SlotFn copy_assign = nullptr;
@@ -5510,13 +5431,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a558c4> : base
     static constexpr SlotFn const_begin = &fn_7100a578e0;
     static constexpr SlotFn const_end = &fn_7100a579e4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a558c4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_717274dad8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::TypeOf(const void*) { return g_unk_717274dad8; }
-struct UnkRefl_fn_7100a5b420;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a5b420> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100a63f40;
     static constexpr SlotFn copy_assign = nullptr;
@@ -5535,14 +5455,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a5b420> : base
     static constexpr SlotFn const_begin = &fn_7100a64328;
     static constexpr SlotFn const_end = &fn_7100a643d0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a5b420*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_717274ef10;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>::TypeOf(const void*) { return g_unk_717274ef10; }
-struct UnkRefl_fn_7100a7200c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a7200c> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100a754b0;
@@ -5562,12 +5481,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a7200c> : base
     static constexpr SlotFn const_begin = &fn_7100a75998;
     static constexpr SlotFn const_end = &fn_7100a75a28;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a7200c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>*, void*);
 extern base::reflection::CType g_unk_7172751fe8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<SDoorInfo>>::TypeOf(const void*) { return g_unk_7172751fe8; }
-struct UnkRefl_fn_7100a91800;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a91800> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SDoorInfo>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<SDoorInfo>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SDoorInfo>> {
     static constexpr SlotFn copy_construct = &fn_7100a954c8;
     static constexpr SlotFn destroy = &fn_7100a95588;
     static constexpr SlotFn copy_assign = &fn_7100a955cc;
@@ -5589,12 +5507,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a91800> : base
     static constexpr SlotFn const_begin = &fn_7100a96260;
     static constexpr SlotFn const_end = &fn_7100a9639c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a91800*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<SDoorInfo>*, void*);
 extern base::reflection::CType g_unk_7172756230;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<SWorldGraphNode>>::TypeOf(const void*) { return g_unk_7172756230; }
-struct UnkRefl_fn_7100acf604;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100acf604> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SWorldGraphNode>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<SWorldGraphNode>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SWorldGraphNode>> {
     static constexpr SlotFn copy_construct = &fn_7100ad1f04;
     static constexpr SlotFn destroy = &fn_7100ad1f48;
     static constexpr SlotFn copy_assign = &fn_7100ad1fd4;
@@ -5616,15 +5533,14 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100acf604> : base
     static constexpr SlotFn const_begin = &fn_7100ad2728;
     static constexpr SlotFn const_end = &fn_7100ad2800;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100acf604*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<SWorldGraphNode>*, void*);
 extern template gameeditor::EPersistenceTarget& base::global::CRntVector<gameeditor::EPersistenceTarget>::GrowAt(u32);
 extern template void base::global::CRntVector<gameeditor::EPersistenceTarget>::InsertCopy(gameeditor::EPersistenceTarget const&, u32);
 extern template void base::global::CRntVector<gameeditor::EPersistenceTarget>::InsertMove(gameeditor::EPersistenceTarget&&, u32);
 extern base::reflection::CType g_unk_7172757378;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::TypeOf(const void*) { return g_unk_7172757378; }
-struct UnkRefl_fn_7100ad7acc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100ad7acc> : base::reflection::CollectionMapperDescription<base::global::CRntVector<gameeditor::EPersistenceTarget>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<gameeditor::EPersistenceTarget>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<gameeditor::EPersistenceTarget>> {
     static constexpr SlotFn equals = &fn_7100adb2e0;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return &g_unk_7172756f90; }
@@ -5633,14 +5549,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100ad7acc> : base
     static constexpr SlotFn erase = &fn_7100adb204;
     static constexpr SlotFn const_end = &fn_7100adbb44;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100ad7acc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<gameeditor::EPersistenceTarget>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_717275b988;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::TypeOf(const void*) { return g_unk_717275b988; }
-struct UnkRefl_fn_7100aeafec;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100aeafec> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>> {
     static constexpr SlotFn copy_construct = &fn_7100aee584;
     static constexpr SlotFn destroy = &fn_7100aee5cc;
     static constexpr SlotFn copy_assign = &fn_7100aee6fc;
@@ -5662,52 +5577,49 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100aeafec> : base
     static constexpr SlotFn const_begin = &fn_7100aef39c;
     static constexpr SlotFn const_end = &fn_7100aef43c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100aeafec*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>*, void*);
 extern template GUI::CDisplayObjectDef*& base::global::CRntVector<GUI::CDisplayObjectDef*>::GrowAt(u32);
 extern template void base::global::CRntVector<GUI::CDisplayObjectDef*>::InsertCopy(GUI::CDisplayObjectDef* const&, u32);
 extern template void base::global::CRntVector<GUI::CDisplayObjectDef*>::InsertMove(GUI::CDisplayObjectDef*&&, u32);
 extern base::reflection::CType g_unk_717275e480;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TypeOf(const void*) { return g_unk_717275e480; }
-struct UnkRefl_fn_7100b062cc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b062cc> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CDisplayObjectDef*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<GUI::CDisplayObjectDef*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CDisplayObjectDef*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100b05394(); }
     static const CType* iterator() { return fn_7100b0554c(); }
     static const CType* const_iterator() { return fn_7100b05c0c(); }
     static constexpr SlotFn erase = &fn_7100b08d2c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b062cc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<GUI::CDisplayObjectDef*>*, void*);
 extern template GUI::CDisplayObjectStateDef*& base::global::CRntVector<GUI::CDisplayObjectStateDef*>::GrowAt(u32);
 extern template void base::global::CRntVector<GUI::CDisplayObjectStateDef*>::InsertCopy(GUI::CDisplayObjectStateDef* const&, u32);
 extern template void base::global::CRntVector<GUI::CDisplayObjectStateDef*>::InsertMove(GUI::CDisplayObjectStateDef*&&, u32);
 extern base::reflection::CType g_unk_717275f310;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TypeOf(const void*) { return g_unk_717275f310; }
-struct UnkRefl_fn_7100b0b728;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b0b728> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CDisplayObjectStateDef*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<GUI::CDisplayObjectStateDef*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CDisplayObjectStateDef*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100b08378(); }
     static const CType* iterator() { return fn_7100b0a9a8(); }
     static const CType* const_iterator() { return fn_7100b0b068(); }
     static constexpr SlotFn erase = &fn_7100b0ccc8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b0b728*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<GUI::CDisplayObjectStateDef*>*, void*);
 extern template GUI::IDisplayObjectTrack*& base::global::CRntVector<GUI::IDisplayObjectTrack*>::GrowAt(u32);
 extern template void base::global::CRntVector<GUI::IDisplayObjectTrack*>::InsertCopy(GUI::IDisplayObjectTrack* const&, u32);
 extern template void base::global::CRntVector<GUI::IDisplayObjectTrack*>::InsertMove(GUI::IDisplayObjectTrack*&&, u32);
 extern base::reflection::CType g_unk_717275fb68;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TypeOf(const void*) { return g_unk_717275fb68; }
-struct UnkRefl_fn_7100b0eb10;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b0eb10> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::IDisplayObjectTrack*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<GUI::IDisplayObjectTrack*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::IDisplayObjectTrack*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100b0dcb4(); }
     static const CType* iterator() { return fn_7100b0dd90(); }
     static const CType* const_iterator() { return fn_7100b0e450(); }
     static constexpr SlotFn erase = &fn_7100b1652c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b0eb10*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<GUI::IDisplayObjectTrack*>*, void*);
 struct UnkRefl_fn_7100b10108;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b10108> {
@@ -5845,23 +5757,21 @@ extern template void base::global::CRntVector<GUI::CSkin*>::InsertCopy(GUI::CSki
 extern template void base::global::CRntVector<GUI::CSkin*>::InsertMove(GUI::CSkin*&&, u32);
 extern base::reflection::CType g_unk_71727664f0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TypeOf(const void*) { return g_unk_71727664f0; }
-struct UnkRefl_fn_7100b7710c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b7710c> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CSkin*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<GUI::CSkin*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CSkin*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100b762b0(); }
     static const CType* iterator() { return fn_7100b7638c(); }
     static const CType* const_iterator() { return fn_7100b76a4c(); }
     static constexpr SlotFn erase = &fn_7100b78dec;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b7710c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<GUI::CSkin*>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727673c0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TypeOf(const void*) { return g_unk_71727673c0; }
-struct UnkRefl_fn_7100b7e6dc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b7e6dc> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100b80fe4;
@@ -5879,27 +5789,25 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b7e6dc> : base
     static constexpr SlotFn const_begin = &fn_7100b8126c;
     static constexpr SlotFn const_end = &fn_7100b8127c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b7e6dc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>*, void*);
 extern template GUI::CSpriteSheetItem*& base::global::CRntVector<GUI::CSpriteSheetItem*>::GrowAt(u32);
 extern template void base::global::CRntVector<GUI::CSpriteSheetItem*>::InsertCopy(GUI::CSpriteSheetItem* const&, u32);
 extern template void base::global::CRntVector<GUI::CSpriteSheetItem*>::InsertMove(GUI::CSpriteSheetItem*&&, u32);
 extern base::reflection::CType g_unk_71727680b0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TypeOf(const void*) { return g_unk_71727680b0; }
-struct UnkRefl_fn_7100b828c0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b828c0> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CSpriteSheetItem*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<GUI::CSpriteSheetItem*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CSpriteSheetItem*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100b80034(); }
     static const CType* iterator() { return fn_7100b81b40(); }
     static const CType* const_iterator() { return fn_7100b82200(); }
     static constexpr SlotFn erase = &fn_7100b83f80;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b828c0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<GUI::CSpriteSheetItem*>*, void*);
 extern base::reflection::CType g_unk_717277bd00;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TypeOf(const void*) { return g_unk_717277bd00; }
-struct UnkRefl_fn_7100c0366c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100c0366c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CEditorRailSegment>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CEditorRailSegment>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CEditorRailSegment>> {
     static constexpr SlotFn copy_construct = &fn_7100c0b4c0;
     static constexpr SlotFn destroy = &fn_7100c0b504;
     static constexpr SlotFn copy_assign = &fn_7100c0b540;
@@ -5921,7 +5829,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100c0366c> : base
     static constexpr SlotFn const_begin = &fn_7100c0bfb4;
     static constexpr SlotFn const_end = &fn_7100c0c05c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100c0366c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CEditorRailSegment>*, void*);
 struct UnkRefl_fn_7100ca5c84;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100ca5c84> {
@@ -5957,9 +5865,8 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100ca5c84> {
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100ca5c84*, void*);
 extern base::reflection::CType g_unk_71727b06e8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<game::logic::collision::CCollider>>>::TypeOf(const void*) { return g_unk_71727b06e8; }
-struct UnkRefl_fn_7100d383ac;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d383ac> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CWeakPtr<game::logic::collision::CCollider>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CWeakPtr<game::logic::collision::CCollider>>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CWeakPtr<game::logic::collision::CCollider>>> {
     static constexpr SlotFn copy_construct = &fn_7100d40370;
     static constexpr SlotFn destroy = &fn_7100d403b4;
     static constexpr SlotFn copy_assign = &fn_7100d40444;
@@ -5981,14 +5888,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d383ac> : base
     static constexpr SlotFn const_begin = &fn_7100d40ba0;
     static constexpr SlotFn const_end = &fn_7100d40cc8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d383ac*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CWeakPtr<game::logic::collision::CCollider>>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727b0ae0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CWeakPtr<game::logic::collision::CCollider>>>::TypeOf(const void*) { return g_unk_71727b0ae0; }
-struct UnkRefl_fn_7100d3931c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d3931c> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CWeakPtr<game::logic::collision::CCollider>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CWeakPtr<game::logic::collision::CCollider>>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CWeakPtr<game::logic::collision::CCollider>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100d41888;
@@ -6009,27 +5915,25 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d3931c> : base
     static constexpr SlotFn const_begin = &fn_7100d41dfc;
     static constexpr SlotFn const_end = &fn_7100d41ecc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d3931c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, base::global::CWeakPtr<game::logic::collision::CCollider>>*, void*);
 extern template game::logic::collision::CCollider*& base::global::CRntVector<game::logic::collision::CCollider*>::GrowAt(u32);
 extern template void base::global::CRntVector<game::logic::collision::CCollider*>::InsertCopy(game::logic::collision::CCollider* const&, u32);
 extern template void base::global::CRntVector<game::logic::collision::CCollider*>::InsertMove(game::logic::collision::CCollider*&&, u32);
 extern base::reflection::CType g_unk_71727b0ed8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::TypeOf(const void*) { return g_unk_71727b0ed8; }
-struct UnkRefl_fn_7100d3a348;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d3a348> : base::reflection::CollectionMapperDescription<base::global::CRntVector<game::logic::collision::CCollider*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<game::logic::collision::CCollider*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<game::logic::collision::CCollider*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100d394ec(); }
     static const CType* iterator() { return fn_7100d395c8(); }
     static const CType* const_iterator() { return fn_7100d39c88(); }
     static constexpr SlotFn erase = &fn_7100d424a4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d3a348*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<game::logic::collision::CCollider*>*, void*);
 extern base::reflection::CType g_unk_71727b12d0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>>::TypeOf(const void*) { return g_unk_71727b12d0; }
-struct UnkRefl_fn_7100d3b2b8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d3b2b8> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>> {
     static constexpr SlotFn copy_construct = &fn_7100d43b54;
     static constexpr SlotFn destroy = &fn_7100d43b98;
     static constexpr SlotFn copy_assign = &fn_7100d43c3c;
@@ -6049,14 +5953,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d3b2b8> : base
     static constexpr SlotFn const_begin = &fn_7100d44810;
     static constexpr SlotFn const_end = &fn_7100d4492c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d3b2b8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727b4088;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape*>>::TypeOf(const void*) { return g_unk_71727b4088; }
-struct UnkRefl_fn_7100d6aeb8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d6aeb8> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape*>> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape*>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100d6ee50;
@@ -6074,14 +5977,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d6aeb8> : base
     static constexpr SlotFn const_begin = &fn_7100d6f0d8;
     static constexpr SlotFn const_end = &fn_7100d6f0e8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d6aeb8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape*>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727b4480;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TypeOf(const void*) { return g_unk_71727b4480; }
-struct UnkRefl_fn_7100d6be08;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d6be08> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>> : base::reflection::DictionaryFindMapperDescription<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100d6fcd4;
@@ -6099,7 +6001,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d6be08> : base
     static constexpr SlotFn const_begin = &fn_7100d6ff5c;
     static constexpr SlotFn const_end = &fn_7100d6ff6c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d6be08*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>*, void*);
 struct UnkRefl_fn_7100d72b94;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d72b94> {
@@ -6135,9 +6037,8 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d72b94> {
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d72b94*, void*);
 extern base::reflection::CType g_unk_71727b5908;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CEntity>>>::TypeOf(const void*) { return g_unk_71727b5908; }
-struct UnkRefl_fn_7100d73afc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d73afc> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CWeakPtr<CEntity>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<base::global::CWeakPtr<CEntity>>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<base::global::CWeakPtr<CEntity>>> {
     static constexpr SlotFn copy_construct = &fn_7100d843dc;
     static constexpr SlotFn destroy = &fn_7100d84420;
     static constexpr SlotFn copy_assign = &fn_7100d844b0;
@@ -6159,29 +6060,27 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d73afc> : base
     static constexpr SlotFn const_begin = &fn_7100d84af8;
     static constexpr SlotFn const_end = &fn_7100d84c20;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d73afc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<base::global::CWeakPtr<CEntity>>*, void*);
 extern template CEntity*& base::global::CRntVector<CEntity*>::GrowAt(u32);
 extern template void base::global::CRntVector<CEntity*>::InsertCopy(CEntity* const&, u32);
 extern template void base::global::CRntVector<CEntity*>::InsertMove(CEntity*&&, u32);
 extern base::reflection::CType g_unk_71727b5d00;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::TypeOf(const void*) { return g_unk_71727b5d00; }
-struct UnkRefl_fn_7100d74a6c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d74a6c> : base::reflection::CollectionMapperDescription<base::global::CRntVector<CEntity*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CEntity*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<CEntity*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100a0536c(); }
     static const CType* iterator() { return fn_7100d73cec(); }
     static const CType* const_iterator() { return fn_7100d743ac(); }
     static constexpr SlotFn erase = &fn_7100d8525c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d74a6c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CEntity*>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727b60f8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>>::TypeOf(const void*) { return g_unk_71727b60f8; }
-struct UnkRefl_fn_7100d759dc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d759dc> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>> {
     static constexpr SlotFn copy_construct = &fn_7100d8672c;
     static constexpr SlotFn destroy = &fn_7100d86834;
     static constexpr SlotFn copy_assign = &fn_7100d86838;
@@ -6197,12 +6096,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d759dc> : base
     static constexpr SlotFn const_begin = &fn_7100d86fe8;
     static constexpr SlotFn const_end = &fn_7100d87080;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d759dc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>*, void*);
 extern base::reflection::CType g_unk_71727b6630;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CEntity>>>::TypeOf(const void*) { return g_unk_71727b6630; }
-struct UnkRefl_fn_7100d76cf0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d76cf0> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CGameLink<CEntity>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CGameLink<CEntity>>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CGameLink<CEntity>>> {
     static constexpr SlotFn copy_construct = &fn_7100d88234;
     static constexpr SlotFn destroy = &fn_7100d88278;
     static constexpr SlotFn copy_assign = &fn_7100d88314;
@@ -6224,14 +6122,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d76cf0> : base
     static constexpr SlotFn const_begin = &fn_7100d88e14;
     static constexpr SlotFn const_end = &fn_7100d88f50;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d76cf0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CGameLink<CEntity>>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727b6a28;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CEntity>>>>::TypeOf(const void*) { return g_unk_71727b6a28; }
-struct UnkRefl_fn_7100d77c64;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d77c64> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CEntity>>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CEntity>>>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CEntity>>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100d89e90;
@@ -6252,12 +6149,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d77c64> : base
     static constexpr SlotFn const_begin = &fn_7100d8a158;
     static constexpr SlotFn const_end = &fn_7100d8a27c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d77c64*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CEntity>>>*, void*);
 extern base::reflection::CType g_unk_71727bac20;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CLightInfo>>::TypeOf(const void*) { return g_unk_71727bac20; }
-struct UnkRefl_fn_7100d9e8b0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d9e8b0> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CLightInfo>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CLightInfo>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CLightInfo>> {
     static constexpr SlotFn copy_construct = &fn_7100da130c;
     static constexpr SlotFn destroy = &fn_7100da1350;
     static constexpr SlotFn copy_assign = &fn_7100da1394;
@@ -6279,13 +6175,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d9e8b0> : base
     static constexpr SlotFn const_begin = &fn_7100da1ab0;
     static constexpr SlotFn const_end = &fn_7100da1bbc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d9e8b0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CLightInfo>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 extern base::reflection::CType g_unk_71727bcf00;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TypeOf(const void*) { return g_unk_71727bcf00; }
-struct UnkRefl_fn_7100db58e8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100db58e8> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<int, float>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<int, float>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<int, float>> {
     static constexpr SlotFn copy_construct = &fn_7100dd0a7c;
     static constexpr SlotFn destroy = &fn_7100dd0ac4;
     static constexpr SlotFn copy_assign = &fn_7100dd0b1c;
@@ -6301,14 +6196,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100db58e8> : base
     static constexpr SlotFn const_begin = &fn_7100dd0cf4;
     static constexpr SlotFn const_end = &fn_7100dd0d1c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100db58e8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<int, float>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CFilePathStrId.h"
 extern base::reflection::CType g_unk_71727bfc38;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::TypeOf(const void*) { return g_unk_71727bfc38; }
-struct UnkRefl_fn_7100e09330;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e09330> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100e0eb30;
@@ -6329,12 +6223,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e09330> : base
     static constexpr SlotFn const_begin = &fn_7100e0ebdc;
     static constexpr SlotFn const_end = &fn_7100e0ec6c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e09330*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*, void*);
 extern base::reflection::CType g_unk_71727c2130;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<SGeoData>>::TypeOf(const void*) { return g_unk_71727c2130; }
-struct UnkRefl_fn_7100e3396c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e3396c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SGeoData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<SGeoData>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SGeoData>> {
     static constexpr SlotFn copy_construct = &fn_7100e52898;
     static constexpr SlotFn destroy = &fn_7100e52958;
     static constexpr SlotFn copy_assign = &fn_7100e52a28;
@@ -6356,13 +6249,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e3396c> : base
     static constexpr SlotFn const_begin = &fn_7100e53838;
     static constexpr SlotFn const_end = &fn_7100e538fc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e3396c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<SGeoData>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 extern base::reflection::CType g_unk_71727c2528;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<uint64, SGeoData>>::TypeOf(const void*) { return g_unk_71727c2528; }
-struct UnkRefl_fn_7100e348e0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e348e0> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<uint64, SGeoData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<uint64, SGeoData>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<uint64, SGeoData>> {
     static constexpr SlotFn copy_construct = &fn_7100e547bc;
     static constexpr SlotFn destroy = &fn_7100e54804;
     static constexpr SlotFn copy_assign = &fn_7100e54808;
@@ -6384,14 +6276,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e348e0> : base
     static constexpr SlotFn const_begin = &fn_7100e5540c;
     static constexpr SlotFn const_end = &fn_7100e55498;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e348e0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<uint64, SGeoData>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727c2920;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>>::TypeOf(const void*) { return g_unk_71727c2920; }
-struct UnkRefl_fn_7100e35858;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e35858> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>> {
     static constexpr SlotFn copy_construct = &fn_7100e564f0;
     static constexpr SlotFn destroy = &fn_7100e56538;
     static constexpr SlotFn copy_assign = &fn_7100e56590;
@@ -6413,14 +6304,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e35858> : base
     static constexpr SlotFn const_begin = &fn_7100e572d8;
     static constexpr SlotFn const_end = &fn_7100e573b0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e35858*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, SGeoData>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727c2d18;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>>::TypeOf(const void*) { return g_unk_71727c2d18; }
-struct UnkRefl_fn_7100e367d0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e367d0> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>> {
     static constexpr SlotFn copy_construct = &fn_7100e5828c;
     static constexpr SlotFn destroy = &fn_7100e583bc;
     static constexpr SlotFn copy_assign = &fn_7100e584ec;
@@ -6442,14 +6332,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e367d0> : base
     static constexpr SlotFn const_begin = &fn_7100e58da0;
     static constexpr SlotFn const_end = &fn_7100e58e40;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e367d0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727c3110;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SDoorData>>::TypeOf(const void*) { return g_unk_71727c3110; }
-struct UnkRefl_fn_7100e37748;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e37748> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SDoorData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SDoorData>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SDoorData>> {
     static constexpr SlotFn copy_construct = &fn_7100e59a58;
     static constexpr SlotFn destroy = &fn_7100e59b88;
     static constexpr SlotFn copy_assign = &fn_7100e59cb8;
@@ -6471,14 +6360,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e37748> : base
     static constexpr SlotFn const_begin = &fn_7100e5a824;
     static constexpr SlotFn const_end = &fn_7100e5a938;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e37748*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SDoorData>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727c3508;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>>::TypeOf(const void*) { return g_unk_71727c3508; }
-struct UnkRefl_fn_7100e386c0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e386c0> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>> {
     static constexpr SlotFn copy_construct = &fn_7100e5b800;
     static constexpr SlotFn destroy = &fn_7100e5b848;
     static constexpr SlotFn copy_assign = &fn_7100e5b8a0;
@@ -6500,14 +6388,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e386c0> : base
     static constexpr SlotFn const_begin = &fn_7100e5c46c;
     static constexpr SlotFn const_end = &fn_7100e5c54c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e386c0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727c3900;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>>::TypeOf(const void*) { return g_unk_71727c3900; }
-struct UnkRefl_fn_7100e39638;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e39638> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>> {
     static constexpr SlotFn copy_construct = &fn_7100e5d7e0;
     static constexpr SlotFn destroy = &fn_7100e5d828;
     static constexpr SlotFn copy_assign = &fn_7100e5d880;
@@ -6529,14 +6416,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e39638> : base
     static constexpr SlotFn const_begin = &fn_7100e5e1e0;
     static constexpr SlotFn const_end = &fn_7100e5e244;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e39638*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727c3cf8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SMagnetSurfaceData>>::TypeOf(const void*) { return g_unk_71727c3cf8; }
-struct UnkRefl_fn_7100e3a5b0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e3a5b0> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SMagnetSurfaceData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SMagnetSurfaceData>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SMagnetSurfaceData>> {
     static constexpr SlotFn copy_construct = &fn_7100e5f11c;
     static constexpr SlotFn destroy = &fn_7100e5f24c;
     static constexpr SlotFn copy_assign = &fn_7100e5f2a4;
@@ -6558,14 +6444,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e3a5b0> : base
     static constexpr SlotFn const_begin = &fn_7100e5ff8c;
     static constexpr SlotFn const_end = &fn_7100e5ffe0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e3a5b0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SMagnetSurfaceData>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71727c40f0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::STransportSignData>>::TypeOf(const void*) { return g_unk_71727c40f0; }
-struct UnkRefl_fn_7100e3b528;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e3b528> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::STransportSignData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::STransportSignData>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::STransportSignData>> {
     static constexpr SlotFn copy_construct = &fn_7100e60bc8;
     static constexpr SlotFn destroy = &fn_7100e60cf8;
     static constexpr SlotFn copy_assign = &fn_7100e60d50;
@@ -6587,12 +6472,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e3b528> : base
     static constexpr SlotFn const_begin = &fn_7100e61988;
     static constexpr SlotFn const_end = &fn_7100e619ec;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e3b528*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::STransportSignData>*, void*);
 extern base::reflection::CType g_unk_71727c44e8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CMinimapData::SMovingMagnetSurfaceData>>::TypeOf(const void*) { return g_unk_71727c44e8; }
-struct UnkRefl_fn_7100e3c4a0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e3c4a0> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CMinimapData::SMovingMagnetSurfaceData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CMinimapData::SMovingMagnetSurfaceData>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CMinimapData::SMovingMagnetSurfaceData>> {
     static constexpr SlotFn copy_construct = &fn_7100e623d8;
     static constexpr SlotFn destroy = &fn_7100e6241c;
     static constexpr SlotFn copy_assign = &fn_7100e624a8;
@@ -6614,7 +6498,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e3c4a0> : base
     static constexpr SlotFn const_begin = &fn_7100e62f54;
     static constexpr SlotFn const_end = &fn_7100e63034;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e3c4a0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CMinimapData::SMovingMagnetSurfaceData>*, void*);
 struct UnkRefl_fn_7100e676d4;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e676d4> {
@@ -6818,9 +6702,8 @@ extern template void base::global::CRntVector<EMapTutoType>::InsertCopy(EMapTuto
 extern template void base::global::CRntVector<EMapTutoType>::InsertMove(EMapTutoType&&, u32);
 extern base::reflection::CType g_unk_71727cbbe8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::TypeOf(const void*) { return g_unk_71727cbbe8; }
-struct UnkRefl_fn_7100e8b664;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e8b664> : base::reflection::CollectionMapperDescription<base::global::CRntVector<EMapTutoType>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<EMapTutoType>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<EMapTutoType>> {
     static constexpr SlotFn equals = &fn_7100eb23ac;
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return &g_unk_71727cac18; }
@@ -6829,7 +6712,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e8b664> : base
     static constexpr SlotFn erase = &fn_7100eb22d0;
     static constexpr SlotFn const_end = &fn_7100eb2c10;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e8b664*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<EMapTutoType>*, void*);
 struct UnkRefl_fn_7100ed1594;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100ed1594> {
@@ -6900,9 +6783,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71729e0928;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CEnvironmentData>>::TypeOf(const void*) { return g_unk_71729e0928; }
-struct UnkRefl_fn_7100f424f4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f424f4> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, CEnvironmentData>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, CEnvironmentData>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, CEnvironmentData>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100f796b4;
@@ -6923,12 +6805,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f424f4> : base
     static constexpr SlotFn const_begin = &fn_7100f79844;
     static constexpr SlotFn const_end = &fn_7100f798fc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100f424f4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, CEnvironmentData>*, void*);
 extern base::reflection::CType g_unk_71729e8c48;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CEnvironmentMusicData::SMusicTransition>>::TypeOf(const void*) { return g_unk_71729e8c48; }
-struct UnkRefl_fn_7100f7f1c4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f7f1c4> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CEnvironmentMusicData::SMusicTransition>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CEnvironmentMusicData::SMusicTransition>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CEnvironmentMusicData::SMusicTransition>> {
     static constexpr SlotFn copy_construct = &fn_7100f846ac;
     static constexpr SlotFn destroy = &fn_7100f846f0;
     static constexpr SlotFn copy_assign = &fn_7100f8478c;
@@ -6950,7 +6831,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f7f1c4> : base
     static constexpr SlotFn const_begin = &fn_7100f856d0;
     static constexpr SlotFn const_end = &fn_7100f857b8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100f7f1c4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CEnvironmentMusicData::SMusicTransition>*, void*);
 struct UnkRefl_fn_7100f80dec;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f80dec> {
@@ -6988,9 +6869,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71729eaa00;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>>::TypeOf(const void*) { return g_unk_71729eaa00; }
-struct UnkRefl_fn_7100f8d6c0;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f8d6c0> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100f9237c;
@@ -7011,7 +6891,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f8d6c0> : base
     static constexpr SlotFn const_begin = &fn_7100f923d0;
     static constexpr SlotFn const_end = &fn_7100f924c4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100f8d6c0*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>*, void*);
 struct UnkRefl_fn_7100f94424;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f94424> {
@@ -7048,9 +6928,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include <memory>
 extern base::reflection::CType g_unk_71729ecaa0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>>>::TypeOf(const void*) { return g_unk_71729ecaa0; }
-struct UnkRefl_fn_7100f9e540;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f9e540> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100fa0b50;
     static constexpr SlotFn copy_assign = nullptr;
@@ -7069,13 +6948,12 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100f9e540> : base
     static constexpr SlotFn const_begin = &fn_7100fa0cc8;
     static constexpr SlotFn const_end = &fn_7100fa0d70;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100f9e540*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CSubareaCharclassGroup>>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_71729ed6f8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CSubareaInfo>>>::TypeOf(const void*) { return g_unk_71729ed6f8; }
-struct UnkRefl_fn_7100fa42e8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fa42e8> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CSubareaInfo>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CSubareaInfo>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CSubareaInfo>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100fa8dc0;
     static constexpr SlotFn copy_assign = nullptr;
@@ -7094,7 +6972,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fa42e8> : base
     static constexpr SlotFn const_begin = &fn_7100fa93c0;
     static constexpr SlotFn const_end = &fn_7100fa94c4;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fa42e8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CSubareaInfo>>*, void*);
 struct UnkRefl_fn_7100faf424;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100faf424> {
@@ -7131,9 +7009,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include <memory>
 extern base::reflection::CType g_unk_71729ef220;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CSubareaSetup>>>::TypeOf(const void*) { return g_unk_71729ef220; }
-struct UnkRefl_fn_7100fb4890;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fb4890> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CSubareaSetup>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<CSubareaSetup>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<CSubareaSetup>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100fb6ea4;
     static constexpr SlotFn copy_assign = nullptr;
@@ -7152,12 +7029,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fb4890> : base
     static constexpr SlotFn const_begin = &fn_7100fb7270;
     static constexpr SlotFn const_end = &fn_7100fb7374;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fb4890*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CSubareaSetup>>*, void*);
 extern base::reflection::CType g_unk_71729f16d8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TMusicFile>>::TypeOf(const void*) { return g_unk_71729f16d8; }
-struct UnkRefl_fn_7100fe2444;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe2444> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<sound::TMusicFile>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<sound::TMusicFile>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<sound::TMusicFile>> {
     static constexpr SlotFn copy_construct = &fn_7100ffb890;
     static constexpr SlotFn destroy = &fn_7100ffb8d4;
     static constexpr SlotFn copy_assign = &fn_7100ffb9a8;
@@ -7179,12 +7055,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe2444> : base
     static constexpr SlotFn const_begin = &fn_7100ffc2c0;
     static constexpr SlotFn const_end = &fn_7100ffc398;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fe2444*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<sound::TMusicFile>*, void*);
 extern base::reflection::CType g_unk_71729f1c10;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TMusicTrack>>::TypeOf(const void*) { return g_unk_71729f1c10; }
-struct UnkRefl_fn_7100fe3d38;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe3d38> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<sound::TMusicTrack>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<sound::TMusicTrack>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<sound::TMusicTrack>> {
     static constexpr SlotFn copy_construct = &fn_7100ffd4b4;
     static constexpr SlotFn destroy = &fn_7100ffd4f8;
     static constexpr SlotFn copy_assign = &fn_7100ffd53c;
@@ -7206,12 +7081,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe3d38> : base
     static constexpr SlotFn const_begin = &fn_7100ffdd34;
     static constexpr SlotFn const_end = &fn_7100ffde5c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fe3d38*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<sound::TMusicTrack>*, void*);
 extern base::reflection::CType g_unk_71729f2148;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::SStateFadeOut>>::TypeOf(const void*) { return g_unk_71729f2148; }
-struct UnkRefl_fn_7100fe52ac;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe52ac> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<sound::SStateFadeOut>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<sound::SStateFadeOut>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<sound::SStateFadeOut>> {
     static constexpr SlotFn copy_construct = &fn_7100ffe524;
     static constexpr SlotFn destroy = &fn_7100ffe628;
     static constexpr SlotFn copy_assign = &fn_7100ffe664;
@@ -7233,14 +7107,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe52ac> : base
     static constexpr SlotFn const_begin = &fn_7100ffec40;
     static constexpr SlotFn const_end = &fn_7100ffece8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fe52ac*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<sound::SStateFadeOut>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71729f2680;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>>::TypeOf(const void*) { return g_unk_71729f2680; }
-struct UnkRefl_fn_7100fe6b0c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe6b0c> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7100fffce4;
@@ -7261,12 +7134,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe6b0c> : base
     static constexpr SlotFn const_begin = &fn_7101000210;
     static constexpr SlotFn const_end = &fn_71010002a0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fe6b0c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>*, void*);
 extern base::reflection::CType g_unk_71729f2bb8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::TypeOf(const void*) { return g_unk_71729f2bb8; }
-struct UnkRefl_fn_7100fe8060;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe8060> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<sound::TBossMusicTrack>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<sound::TBossMusicTrack>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<sound::TBossMusicTrack>> {
     static constexpr SlotFn copy_construct = &fn_71010012d4;
     static constexpr SlotFn destroy = &fn_7101001394;
     static constexpr SlotFn copy_assign = &fn_7101001398;
@@ -7288,14 +7160,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe8060> : base
     static constexpr SlotFn const_begin = &fn_7101002450;
     static constexpr SlotFn const_end = &fn_71010025e8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fe8060*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<sound::TBossMusicTrack>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71729f30f0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::TypeOf(const void*) { return g_unk_71729f30f0; }
-struct UnkRefl_fn_7100fe95d4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe95d4> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71010038a0;
@@ -7316,14 +7187,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fe95d4> : base
     static constexpr SlotFn const_begin = &fn_710100394c;
     static constexpr SlotFn const_end = &fn_71010039dc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fe95d4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71729f3628;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::TypeOf(const void*) { return g_unk_71729f3628; }
-struct UnkRefl_fn_7100feb448;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100feb448> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7101004af4;
@@ -7344,14 +7214,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100feb448> : base
     static constexpr SlotFn const_begin = &fn_7101004b0c;
     static constexpr SlotFn const_end = &fn_7101004c74;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100feb448*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>*, void*);
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71729f3b60;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::TypeOf(const void*) { return g_unk_71729f3b60; }
-struct UnkRefl_fn_7100fed2bc;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fed2bc> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7101005c08;
@@ -7372,14 +7241,13 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100fed2bc> : base
     static constexpr SlotFn const_begin = &fn_7101005c20;
     static constexpr SlotFn const_end = &fn_7101005cd8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100fed2bc*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71729f8938;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::TypeOf(const void*) { return g_unk_71729f8938; }
-struct UnkRefl_fn_710102191c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710102191c> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>> : base::reflection::SmallDictionaryHeaderMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>> {
     static constexpr SlotFn copy_construct = &fn_7101029b68;
     static constexpr SlotFn destroy = &fn_7101029bb0;
     static constexpr SlotFn copy_assign = &fn_7101029ce0;
@@ -7401,7 +7269,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710102191c> : base
     static constexpr SlotFn const_begin = &fn_710102aa2c;
     static constexpr SlotFn const_end = &fn_710102ab40;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710102191c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>*, void*);
 struct UnkRefl_fn_7101022a98;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101022a98> {
@@ -7472,9 +7340,8 @@ template base::reflection::CCollectionType::CCollectionType(const base::global::
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_71729fb848;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::TypeOf(const void*) { return g_unk_71729fb848; }
-struct UnkRefl_fn_710103ea38;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710103ea38> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>> : base::reflection::DictionaryMapperDescription<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn move_construct = nullptr;
     static constexpr SlotFn destroy = &fn_7101042710;
@@ -7495,7 +7362,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710103ea38> : base
     static constexpr SlotFn const_begin = &fn_7101042728;
     static constexpr SlotFn const_end = &fn_71010427e0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710103ea38*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>*, void*);
 struct UnkRefl_fn_7101046518;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101046518> {
@@ -7531,9 +7398,8 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101046518> {
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7101046518*, void*);
 extern base::reflection::CType g_unk_71729fed28;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorPathSegment>>::TypeOf(const void*) { return g_unk_71729fed28; }
-struct UnkRefl_fn_7101058e9c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101058e9c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CEditorPathSegment>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CEditorPathSegment>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CEditorPathSegment>> {
     static constexpr SlotFn copy_construct = &fn_71010604d0;
     static constexpr SlotFn destroy = &fn_7101060514;
     static constexpr SlotFn copy_assign = &fn_7101060550;
@@ -7555,7 +7421,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101058e9c> : base
     static constexpr SlotFn const_begin = &fn_7101060fc4;
     static constexpr SlotFn const_end = &fn_710106106c;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7101058e9c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CEditorPathSegment>*, void*);
 struct UnkRefl_fn_7101063470;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101063470> {
@@ -7594,22 +7460,20 @@ extern template void base::global::CRntVector<CCutscene*>::InsertCopy(CCutscene*
 extern template void base::global::CRntVector<CCutscene*>::InsertMove(CCutscene*&&, u32);
 extern base::reflection::CType g_unk_7172a007e0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TypeOf(const void*) { return g_unk_7172a007e0; }
-struct UnkRefl_fn_71010643e4;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010643e4> : base::reflection::CollectionMapperDescription<base::global::CRntVector<CCutscene*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CCutscene*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<CCutscene*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_71007adf30(); }
     static const CType* iterator() { return fn_7101063664(); }
     static const CType* const_iterator() { return fn_7101063d24(); }
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71010643e4*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CCutscene*>*, void*);
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 extern base::reflection::CType g_unk_7172a03008;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::TypeOf(const void*) { return g_unk_7172a03008; }
-struct UnkRefl_fn_71010c3e78;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010c3e78> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>> : base::reflection::SmallDictionaryKeyedMapperDescription<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>> {
     static constexpr SlotFn copy_construct = &fn_71010c6574;
     static constexpr SlotFn destroy = &fn_71010c667c;
     static constexpr SlotFn copy_assign = &fn_71010c6680;
@@ -7625,12 +7489,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010c3e78> : base
     static constexpr SlotFn const_begin = &fn_71010c6e30;
     static constexpr SlotFn const_end = &fn_71010c6ec8;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71010c3e78*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>*, void*);
 extern base::reflection::CType g_unk_7172a05bc8;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<SFallBackPath>>::TypeOf(const void*) { return g_unk_7172a05bc8; }
-struct UnkRefl_fn_71010f66c8;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010f66c8> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SFallBackPath>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<SFallBackPath>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<SFallBackPath>> {
     static constexpr SlotFn copy_construct = &fn_71011141e8;
     static constexpr SlotFn destroy = &fn_71011142a8;
     static constexpr SlotFn copy_assign = &fn_71011142ec;
@@ -7652,12 +7515,11 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010f66c8> : base
     static constexpr SlotFn const_begin = &fn_7101114f80;
     static constexpr SlotFn const_end = &fn_71011150bc;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71010f66c8*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<SFallBackPath>*, void*);
 extern base::reflection::CType g_unk_7172a06cf0;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<CSpawnerActorBlueprint>>::TypeOf(const void*) { return g_unk_7172a06cf0; }
-struct UnkRefl_fn_7101121c1c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101121c1c> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CSpawnerActorBlueprint>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<CSpawnerActorBlueprint>> : base::reflection::VectorHeaderMapperDescription<base::global::CRntVector<CSpawnerActorBlueprint>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_710112fd30;
     static constexpr SlotFn copy_assign = nullptr;
@@ -7679,7 +7541,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7101121c1c> : base
     static constexpr SlotFn const_begin = &fn_7101130174;
     static constexpr SlotFn const_end = &fn_7101130270;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7101121c1c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<CSpawnerActorBlueprint>*, void*);
 struct UnkRefl_fn_71011230d8;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71011230d8> {
@@ -7718,16 +7580,15 @@ extern template void base::global::CRntVector<GUI::CDisplayObject*>::InsertCopy(
 extern template void base::global::CRntVector<GUI::CDisplayObject*>::InsertMove(GUI::CDisplayObject*&&, u32);
 extern base::reflection::CType g_unk_7172a0d730;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObject*>>::TypeOf(const void*) { return g_unk_7172a0d730; }
-struct UnkRefl_fn_71011c270c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71011c270c> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CDisplayObject*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<GUI::CDisplayObject*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CDisplayObject*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_7100fc036c(); }
     static const CType* iterator() { return fn_71011c198c(); }
     static const CType* const_iterator() { return fn_71011c204c(); }
     static constexpr SlotFn erase = &fn_71011d1cf0;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71011c270c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<GUI::CDisplayObject*>*, void*);
 struct UnkRefl_fn_71011c367c;
 template <>
 struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71011c367c> {
@@ -7766,22 +7627,20 @@ extern template void base::global::CRntVector<GUI::CDisplayObjectContainer*>::In
 extern template void base::global::CRntVector<GUI::CDisplayObjectContainer*>::InsertMove(GUI::CDisplayObjectContainer*&&, u32);
 extern base::reflection::CType g_unk_7172a0e928;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::TypeOf(const void*) { return g_unk_7172a0e928; }
-struct UnkRefl_fn_71011d793c;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71011d793c> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CDisplayObjectContainer*>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<GUI::CDisplayObjectContainer*>> : base::reflection::CollectionMapperDescription<base::global::CRntVector<GUI::CDisplayObjectContainer*>> {
     static const CType* key() { return fn_7100005178(); }
     static const CType* element() { return fn_71011d6a04(); }
     static const CType* iterator() { return fn_71011d6bbc(); }
     static const CType* const_iterator() { return fn_71011d727c(); }
     static constexpr SlotFn erase = &fn_71011db990;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71011d793c*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<GUI::CDisplayObjectContainer*>*, void*);
 #include <memory>
 extern base::reflection::CType g_unk_7172a0f518;
 template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<GUI::CHUD::SResourceAnimation>>>::TypeOf(const void*) { return g_unk_7172a0f518; }
-struct UnkRefl_fn_71011dec04;
 template <>
-struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71011dec04> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<GUI::CHUD::SResourceAnimation>>> {
+struct base::reflection::CollectionTypeDescription<base::global::CRntVector<std::unique_ptr<GUI::CHUD::SResourceAnimation>>> : base::reflection::VectorAccessMapperDescription<base::global::CRntVector<std::unique_ptr<GUI::CHUD::SResourceAnimation>>> {
     static constexpr SlotFn copy_construct = nullptr;
     static constexpr SlotFn destroy = &fn_71011e7414;
     static constexpr SlotFn copy_assign = nullptr;
@@ -7800,4 +7659,4 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71011dec04> : base
     static constexpr SlotFn const_begin = &fn_71011e7844;
     static constexpr SlotFn const_end = &fn_71011e7948;
 };
-template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71011dec04*, void*);
+template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<GUI::CHUD::SResourceAnimation>>*, void*);

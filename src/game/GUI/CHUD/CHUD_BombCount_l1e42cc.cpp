@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CInventoryComponent.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -22,8 +23,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkInventory;
 using UnkGuiObj = UnkGuiDisplayObject;
-s32 fn_71011442a0(UnkInventory* inventory, const UnkQualifiedId& item, s32 flag);
-void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 
 // GUI::CHUD::CBombAnimation's class (what fn_71011dd7e0 returns).
 __attribute__((visibility("hidden"))) extern base::reflection::CClass g_unk_7172a10410;

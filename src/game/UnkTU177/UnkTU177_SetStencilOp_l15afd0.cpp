@@ -1,16 +1,13 @@
 // UnkTU177: sets three global operation values (0-7). When any changes, records them, maps each
 // into a second numbering and passes the mapped triple to a global callback for two faces.
 // Names and layouts are placeholders.
+#include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "types.h"
 
 extern s32 g_unk_716e29c698;
 extern s32 g_unk_716e29c69c;
 extern s32 g_unk_716e29c6a0;
-extern s32 g_unk_7101a1d7f4;
-extern s32 g_unk_7101a1d7f8;
-extern s32 g_unk_7101a1d7fc;
-extern void (*g_unk_716e29b6b8)(void* object, s32 a, s32 b, s32 c, s32 d);
 
 static inline void Map_710015afd0(s32 v, s32* out) {
     switch (v) {

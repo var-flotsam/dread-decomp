@@ -141,15 +141,15 @@ address,size,name,name_source,subsystem,status
 0x7100b05218,380,fn_7100b05218,unknown,unknown,O
 0x7100b05394,220,base::reflection::refl_GetType<GUI::CDisplayObjectDef*>,reflection,engine/reflection,O
 0x7100b05470,220,fn_7100b05470,unknown,engine/reflection?,O
-0x7100b0554c,220,fn_7100b0554c,unknown,engine/reflection?,O
-0x7100b05628,220,fn_7100b05628,unknown,engine/reflection?,O
+0x7100b0554c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementIterator>,reflection,engine/reflection,O
+0x7100b05628,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b05704,900,fn_7100b05704,unknown,engine/reflection?,O
 0x7100b05a88,388,fn_7100b05a88,unknown,engine/reflection?,O
-0x7100b05c0c,220,fn_7100b05c0c,unknown,engine/reflection?,O
+0x7100b05c0c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b05ce8,900,fn_7100b05ce8,unknown,engine/reflection?,O
 0x7100b0606c,388,fn_7100b0606c,unknown,engine/reflection?,O
-0x7100b061f0,220,fn_7100b061f0,unknown,engine/reflection?,O
-0x7100b062cc,496,fn_7100b062cc,unknown,engine/reflection?,O
+0x7100b061f0,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
+0x7100b062cc,496,base::reflection::refl_InitType<base::global::CRntVector<GUI::CDisplayObjectDef*>>,reflection,engine/reflection,O
 0x7100b064bc,236,fn_7100b064bc,unknown,engine/reflection?,O
 0x7100b065a8,316,fn_7100b065a8,unknown,engine/reflection?,O
 0x7100b066e4,36,fn_7100b066e4,unknown,engine/reflection?,O
@@ -188,7 +188,7 @@ address,size,name,name_source,subsystem,status
 0x7100b07650,4,fn_7100b07650,unknown,unknown,O
 0x7100b07654,20,fn_7100b07654,unknown,unknown,O
 0x7100b07668,20,fn_7100b07668,unknown,unknown,O
-0x7100b0767c,360,fn_7100b0767c,unknown,unknown,O
+0x7100b0767c,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementIterator>,reflection,engine/reflection,O
 0x7100b077e4,88,fn_7100b077e4,unknown,unknown,O
 0x7100b0783c,12,fn_7100b0783c,unknown,unknown,O
 0x7100b07848,16,fn_7100b07848,unknown,unknown,O
@@ -201,7 +201,7 @@ address,size,name,name_source,subsystem,status
 0x7100b078a8,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b078ac,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b078c0,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b078d4,360,fn_7100b078d4,unknown,unknown,O
+0x7100b078d4,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b07a3c,88,fn_7100b07a3c,unknown,unknown,O
 0x7100b07a94,12,fn_7100b07a94,unknown,unknown,O
 0x7100b07aa0,16,fn_7100b07aa0,unknown,unknown,O
@@ -214,7 +214,7 @@ address,size,name,name_source,subsystem,status
 0x7100b07b00,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementConstIterator>::Destroy,reflection,engine/reflection,O
 0x7100b07b04,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementConstIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b07b18,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TElementConstIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b07b2c,364,fn_7100b07b2c,unknown,unknown,O
+0x7100b07b2c,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b07c98,60,fn_7100b07c98,unknown,unknown,O
 0x7100b07cd4,4,fn_7100b07cd4,unknown,unknown,O
 0x7100b07cd8,60,fn_7100b07cd8,unknown,unknown,O
@@ -227,7 +227,7 @@ address,size,name,name_source,subsystem,status
 0x7100b07da4,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b07dbc,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b07e14,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b07e6c,364,fn_7100b07e6c,unknown,unknown,O
+0x7100b07e6c,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x7100b07fd8,60,fn_7100b07fd8,unknown,unknown,O
 0x7100b08014,4,fn_7100b08014,unknown,unknown,O
 0x7100b08018,60,fn_7100b08018,unknown,unknown,O
@@ -323,19 +323,19 @@ address,size,name,name_source,subsystem,status
 0x7100b0a450,636,fn_7100b0a450,unknown,unknown,O
 0x7100b0a6cc,352,fn_7100b0a6cc,unknown,unknown,O
 0x7100b0a82c,380,fn_7100b0a82c,unknown,unknown,O
-0x7100b0a9a8,220,fn_7100b0a9a8,unknown,unknown,O
-0x7100b0aa84,220,fn_7100b0aa84,unknown,unknown,O
+0x7100b0a9a8,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementIterator>,reflection,engine/reflection,O
+0x7100b0aa84,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b0ab60,900,fn_7100b0ab60,unknown,unknown,O
 0x7100b0aee4,388,fn_7100b0aee4,unknown,unknown,O
-0x7100b0b068,220,fn_7100b0b068,unknown,unknown,O
+0x7100b0b068,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b0b144,900,fn_7100b0b144,unknown,unknown,O
 0x7100b0b4c8,388,fn_7100b0b4c8,unknown,unknown,O
-0x7100b0b64c,220,fn_7100b0b64c,unknown,unknown,O
-0x7100b0b728,496,fn_7100b0b728,unknown,unknown,O
+0x7100b0b64c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
+0x7100b0b728,496,base::reflection::refl_InitType<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>,reflection,engine/reflection,O
 0x7100b0b918,84,fn_7100b0b918,unknown,unknown,O
 0x7100b0b96c,112,fn_7100b0b96c,unknown,unknown,O
 0x7100b0b9dc,292,fn_7100b0b9dc,unknown,unknown,U
-0x7100b0bb00,360,fn_7100b0bb00,unknown,unknown,O
+0x7100b0bb00,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementIterator>,reflection,engine/reflection,O
 0x7100b0bc68,88,fn_7100b0bc68,unknown,unknown,O
 0x7100b0bcc0,12,fn_7100b0bcc0,unknown,unknown,O
 0x7100b0bccc,16,fn_7100b0bccc,unknown,unknown,O
@@ -348,7 +348,7 @@ address,size,name,name_source,subsystem,status
 0x7100b0bd2c,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b0bd30,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b0bd44,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b0bd58,360,fn_7100b0bd58,unknown,unknown,O
+0x7100b0bd58,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b0bec0,88,fn_7100b0bec0,unknown,unknown,O
 0x7100b0bf18,12,fn_7100b0bf18,unknown,unknown,O
 0x7100b0bf24,16,fn_7100b0bf24,unknown,unknown,O
@@ -361,7 +361,7 @@ address,size,name,name_source,subsystem,status
 0x7100b0bf84,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementConstIterator>::Destroy,reflection,engine/reflection,O
 0x7100b0bf88,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementConstIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b0bf9c,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TElementConstIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b0bfb0,364,fn_7100b0bfb0,unknown,unknown,O
+0x7100b0bfb0,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b0c11c,60,fn_7100b0c11c,unknown,unknown,O
 0x7100b0c158,4,fn_7100b0c158,unknown,unknown,O
 0x7100b0c15c,60,fn_7100b0c15c,unknown,unknown,O
@@ -374,7 +374,7 @@ address,size,name,name_source,subsystem,status
 0x7100b0c228,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b0c240,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b0c298,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b0c2f0,364,fn_7100b0c2f0,unknown,unknown,O
+0x7100b0c2f0,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x7100b0c45c,60,fn_7100b0c45c,unknown,unknown,O
 0x7100b0c498,4,fn_7100b0c498,unknown,unknown,O
 0x7100b0c49c,60,fn_7100b0c49c,unknown,unknown,O
@@ -447,15 +447,15 @@ address,size,name,name_source,subsystem,status
 0x7100b0db44,4,GUI::IDisplayObjectTrack::refl_AddFields,reflection,gui,O
 0x7100b0db48,364,GUI::IDisplayObjectTrack::refl_InitClass,reflection,gui,O
 0x7100b0dcb4,220,base::reflection::refl_GetType<GUI::IDisplayObjectTrack*>,reflection,engine/reflection,O
-0x7100b0dd90,220,fn_7100b0dd90,unknown,unknown,O
-0x7100b0de6c,220,fn_7100b0de6c,unknown,unknown,O
+0x7100b0dd90,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementIterator>,reflection,engine/reflection,O
+0x7100b0de6c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b0df48,900,fn_7100b0df48,unknown,unknown,O
 0x7100b0e2cc,388,fn_7100b0e2cc,unknown,unknown,O
-0x7100b0e450,220,fn_7100b0e450,unknown,unknown,O
+0x7100b0e450,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b0e52c,900,fn_7100b0e52c,unknown,unknown,O
 0x7100b0e8b0,388,fn_7100b0e8b0,unknown,unknown,O
-0x7100b0ea34,220,fn_7100b0ea34,unknown,unknown,O
-0x7100b0eb10,496,fn_7100b0eb10,unknown,unknown,O
+0x7100b0ea34,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
+0x7100b0eb10,496,base::reflection::refl_InitType<base::global::CRntVector<GUI::IDisplayObjectTrack*>>,reflection,engine/reflection,O
 0x7100b0ed00,4,GUI::CDisplayObjectTrackFloat::refl_AddAttributes,reflection,gui,O
 0x7100b0ed04,244,GUI::CDisplayObjectTrackFloat::refl_GetClass,reflection,gui,O
 0x7100b0edf8,380,GUI::CDisplayObjectTrackFloat::refl_AddFields,reflection,gui,O
@@ -514,7 +514,7 @@ address,size,name,name_source,subsystem,status
 0x7100b13138,4,fn_7100b13138,unknown,unknown,O
 0x7100b1313c,20,fn_7100b1313c,unknown,unknown,O
 0x7100b13150,20,fn_7100b13150,unknown,unknown,O
-0x7100b13164,360,fn_7100b13164,unknown,unknown,O
+0x7100b13164,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementIterator>,reflection,engine/reflection,O
 0x7100b132cc,88,fn_7100b132cc,unknown,unknown,O
 0x7100b13324,12,fn_7100b13324,unknown,unknown,O
 0x7100b13330,16,fn_7100b13330,unknown,unknown,O
@@ -527,7 +527,7 @@ address,size,name,name_source,subsystem,status
 0x7100b13390,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b13394,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b133a8,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b133bc,360,fn_7100b133bc,unknown,unknown,O
+0x7100b133bc,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b13524,88,fn_7100b13524,unknown,unknown,O
 0x7100b1357c,12,fn_7100b1357c,unknown,unknown,O
 0x7100b13588,16,fn_7100b13588,unknown,unknown,O
@@ -540,7 +540,7 @@ address,size,name,name_source,subsystem,status
 0x7100b135e8,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementConstIterator>::Destroy,reflection,engine/reflection,O
 0x7100b135ec,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementConstIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b13600,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TElementConstIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b13614,364,fn_7100b13614,unknown,unknown,O
+0x7100b13614,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b13780,60,fn_7100b13780,unknown,unknown,O
 0x7100b137bc,4,fn_7100b137bc,unknown,unknown,O
 0x7100b137c0,60,fn_7100b137c0,unknown,unknown,O
@@ -553,7 +553,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1388c,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b138a4,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b138fc,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b13954,364,fn_7100b13954,unknown,unknown,O
+0x7100b13954,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x7100b13ac0,60,fn_7100b13ac0,unknown,unknown,O
 0x7100b13afc,4,fn_7100b13afc,unknown,unknown,O
 0x7100b13b00,60,fn_7100b13b00,unknown,unknown,O
@@ -1118,7 +1118,7 @@ address,size,name,name_source,subsystem,status
 0x7100b22840,160,fn_7100b22840,unknown,gui?,O
 0x7100b228e0,40,fn_7100b228e0,unknown,gui?,O
 0x7100b22910,1332,fn_7100b22910,unknown,gui?,U
-0x7100b22e50,572,fn_7100b22e50,unknown,gui?,U
+0x7100b22e50,572,fn_7100b22e50,unknown,gui?,O
 0x7100b23090,756,fn_7100b23090,unknown,gui?,U
 0x7100b23384,4,GUI::CGlobalMapComposition::refl_AddAttributes,reflection,gui,O
 0x7100b23388,244,GUI::CGlobalMapComposition::refl_GetClass,reflection,gui,O
@@ -1787,8 +1787,8 @@ address,size,name,name_source,subsystem,status
 0x7100b54a10,244,GUI::CMissionLog::refl_GetClass,reflection,gui,O
 0x7100b54b04,4,GUI::CMissionLog::refl_AddFields,reflection,gui,O
 0x7100b54b08,352,GUI::CMissionLog::refl_InitClass,reflection,gui,O
-0x7100b54c68,220,fn_7100b54c68,unknown,unknown,O
-0x7100b54d44,220,fn_7100b54d44,unknown,unknown,O
+0x7100b54c68,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<GUI::CMissionLog::TMissionLogEntries>::TElementIterator>,reflection,engine/reflection,O
+0x7100b54d44,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<GUI::CMissionLog::TMissionLogEntries>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b54e20,900,fn_7100b54e20,unknown,unknown,O
 0x7100b551a4,388,fn_7100b551a4,unknown,unknown,O
 0x7100b55328,220,fn_7100b55328,unknown,unknown,O
@@ -1818,7 +1818,7 @@ address,size,name,name_source,subsystem,status
 0x7100b59e28,248,fn_7100b59e28,unknown,unknown,O
 0x7100b59f20,252,fn_7100b59f20,unknown,unknown,O
 0x7100b5a01c,28,fn_7100b5a01c,unknown,unknown,O
-0x7100b5a038,364,fn_7100b5a038,unknown,unknown,O
+0x7100b5a038,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<GUI::CMissionLog::TMissionLogEntries>::TElementIterator>,reflection,engine/reflection,O
 0x7100b5a1a4,96,fn_7100b5a1a4,unknown,unknown,O
 0x7100b5a204,12,fn_7100b5a204,unknown,unknown,O
 0x7100b5a210,16,fn_7100b5a210,unknown,unknown,O
@@ -1831,7 +1831,7 @@ address,size,name,name_source,subsystem,status
 0x7100b5a270,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<GUI::CMissionLog::TMissionLogEntries>::TElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b5a274,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<GUI::CMissionLog::TMissionLogEntries>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b5a288,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<GUI::CMissionLog::TMissionLogEntries>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b5a29c,364,fn_7100b5a29c,unknown,unknown,O
+0x7100b5a29c,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<GUI::CMissionLog::TMissionLogEntries>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b5a408,96,fn_7100b5a408,unknown,unknown,O
 0x7100b5a468,12,fn_7100b5a468,unknown,unknown,O
 0x7100b5a474,16,fn_7100b5a474,unknown,unknown,O
@@ -2231,15 +2231,15 @@ address,size,name,name_source,subsystem,status
 0x7100b75ea8,644,fn_7100b75ea8,unknown,unknown,O
 0x7100b7612c,388,fn_7100b7612c,unknown,unknown,O
 0x7100b762b0,220,base::reflection::refl_GetType<GUI::CSkin*>,reflection,engine/reflection,O
-0x7100b7638c,220,fn_7100b7638c,unknown,engine/reflection?,O
-0x7100b76468,220,fn_7100b76468,unknown,engine/reflection?,O
+0x7100b7638c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementIterator>,reflection,engine/reflection,O
+0x7100b76468,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b76544,900,fn_7100b76544,unknown,engine/reflection?,O
 0x7100b768c8,388,fn_7100b768c8,unknown,engine/reflection?,O
-0x7100b76a4c,220,fn_7100b76a4c,unknown,engine/reflection?,O
+0x7100b76a4c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b76b28,900,fn_7100b76b28,unknown,engine/reflection?,O
 0x7100b76eac,388,fn_7100b76eac,unknown,engine/reflection?,O
-0x7100b77030,220,fn_7100b77030,unknown,engine/reflection?,O
-0x7100b7710c,496,fn_7100b7710c,unknown,engine/reflection?,O
+0x7100b77030,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
+0x7100b7710c,496,base::reflection::refl_InitType<base::global::CRntVector<GUI::CSkin*>>,reflection,engine/reflection,O
 0x7100b772fc,212,fn_7100b772fc,unknown,engine/reflection?,O
 0x7100b773d0,232,fn_7100b773d0,unknown,engine/reflection?,O
 0x7100b774b8,44,fn_7100b774b8,unknown,engine/reflection?,O
@@ -2258,7 +2258,7 @@ address,size,name,name_source,subsystem,status
 0x7100b777fc,4,base::reflection::ValueOps<GUI::CSkin*>::Destroy,reflection,engine/reflection,O
 0x7100b77800,20,base::reflection::ValueOps<GUI::CSkin*>::CopyAssign,reflection,engine/reflection,O
 0x7100b77814,20,base::reflection::ValueOps<GUI::CSkin*>::MoveAssign,reflection,engine/reflection,O
-0x7100b77828,360,fn_7100b77828,unknown,unknown,O
+0x7100b77828,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementIterator>,reflection,engine/reflection,O
 0x7100b77990,88,fn_7100b77990,unknown,unknown,O
 0x7100b779e8,12,fn_7100b779e8,unknown,unknown,O
 0x7100b779f4,16,fn_7100b779f4,unknown,unknown,O
@@ -2271,7 +2271,7 @@ address,size,name,name_source,subsystem,status
 0x7100b77a54,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b77a58,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b77a6c,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b77a80,360,fn_7100b77a80,unknown,unknown,O
+0x7100b77a80,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b77be8,88,fn_7100b77be8,unknown,unknown,O
 0x7100b77c40,12,fn_7100b77c40,unknown,unknown,O
 0x7100b77c4c,16,fn_7100b77c4c,unknown,unknown,O
@@ -2284,7 +2284,7 @@ address,size,name,name_source,subsystem,status
 0x7100b77cac,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementConstIterator>::Destroy,reflection,engine/reflection,O
 0x7100b77cb0,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementConstIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b77cc4,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TElementConstIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b77cd8,364,fn_7100b77cd8,unknown,unknown,O
+0x7100b77cd8,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b77e44,60,fn_7100b77e44,unknown,unknown,O
 0x7100b77e80,4,fn_7100b77e80,unknown,unknown,O
 0x7100b77e84,60,fn_7100b77e84,unknown,unknown,O
@@ -2297,7 +2297,7 @@ address,size,name,name_source,subsystem,status
 0x7100b77f50,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b77f68,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b77fc0,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b78018,364,fn_7100b78018,unknown,unknown,O
+0x7100b78018,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x7100b78184,60,fn_7100b78184,unknown,unknown,O
 0x7100b781c0,4,fn_7100b781c0,unknown,unknown,O
 0x7100b781c4,60,fn_7100b781c4,unknown,unknown,O
@@ -2439,15 +2439,15 @@ address,size,name,name_source,subsystem,status
 0x7100b7d580,388,fn_7100b7d580,unknown,unknown,O
 0x7100b7d704,380,fn_7100b7d704,unknown,unknown,O
 0x7100b7d880,220,base::reflection::refl_GetType<GUI::CSpriteSheet*>,reflection,engine/reflection,O
-0x7100b7d95c,220,fn_7100b7d95c,unknown,engine/reflection?,O
-0x7100b7da38,220,fn_7100b7da38,unknown,engine/reflection?,O
+0x7100b7d95c,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementIterator>",reflection,engine/reflection,O
+0x7100b7da38,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementConstIterator>",reflection,engine/reflection,O
 0x7100b7db14,900,fn_7100b7db14,unknown,engine/reflection?,O
 0x7100b7de98,388,fn_7100b7de98,unknown,engine/reflection?,O
 0x7100b7e01c,220,fn_7100b7e01c,unknown,engine/reflection?,O
 0x7100b7e0f8,900,fn_7100b7e0f8,unknown,engine/reflection?,O
 0x7100b7e47c,388,fn_7100b7e47c,unknown,engine/reflection?,O
 0x7100b7e600,220,fn_7100b7e600,unknown,engine/reflection?,O
-0x7100b7e6dc,464,fn_7100b7e6dc,unknown,engine/reflection?,O
+0x7100b7e6dc,464,"base::reflection::refl_InitType<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>",reflection,engine/reflection,O
 0x7100b7e8ac,232,fn_7100b7e8ac,unknown,engine/reflection?,O
 0x7100b7e994,212,fn_7100b7e994,unknown,engine/reflection?,O
 0x7100b7ea68,256,fn_7100b7ea68,unknown,engine/reflection?,O
@@ -2465,7 +2465,7 @@ address,size,name,name_source,subsystem,status
 0x7100b7ee0c,4,base::reflection::ValueOps<GUI::CSpriteSheet*>::Destroy,reflection,engine/reflection,O
 0x7100b7ee10,20,base::reflection::ValueOps<GUI::CSpriteSheet*>::CopyAssign,reflection,engine/reflection,O
 0x7100b7ee24,20,base::reflection::ValueOps<GUI::CSpriteSheet*>::MoveAssign,reflection,engine/reflection,O
-0x7100b7ee38,360,fn_7100b7ee38,unknown,unknown,O
+0x7100b7ee38,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementIterator>",reflection,engine/reflection,O
 0x7100b7efa0,60,fn_7100b7efa0,unknown,unknown,O
 0x7100b7efdc,4,fn_7100b7efdc,unknown,unknown,O
 0x7100b7efe0,16,fn_7100b7efe0,unknown,unknown,O
@@ -2478,7 +2478,7 @@ address,size,name,name_source,subsystem,status
 0x7100b7f040,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementIterator>::Destroy",reflection,engine/reflection,O
 0x7100b7f044,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
 0x7100b7f058,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
-0x7100b7f06c,360,fn_7100b7f06c,unknown,unknown,O
+0x7100b7f06c,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, GUI::CSpriteSheet*>>::TElementConstIterator>",reflection,engine/reflection,O
 0x7100b7f1d4,60,fn_7100b7f1d4,unknown,unknown,O
 0x7100b7f210,4,fn_7100b7f210,unknown,unknown,O
 0x7100b7f214,16,fn_7100b7f214,unknown,unknown,O
@@ -2592,18 +2592,18 @@ address,size,name,name_source,subsystem,status
 0x7100b8172c,388,fn_7100b8172c,unknown,unknown,O
 0x7100b818b0,268,fn_7100b818b0,unknown,unknown,O
 0x7100b819bc,388,fn_7100b819bc,unknown,unknown,O
-0x7100b81b40,220,fn_7100b81b40,unknown,unknown,O
-0x7100b81c1c,220,fn_7100b81c1c,unknown,unknown,O
+0x7100b81b40,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementIterator>,reflection,engine/reflection,O
+0x7100b81c1c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b81cf8,900,fn_7100b81cf8,unknown,unknown,O
 0x7100b8207c,388,fn_7100b8207c,unknown,unknown,O
-0x7100b82200,220,fn_7100b82200,unknown,unknown,O
+0x7100b82200,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b822dc,900,fn_7100b822dc,unknown,unknown,O
 0x7100b82660,388,fn_7100b82660,unknown,unknown,O
-0x7100b827e4,220,fn_7100b827e4,unknown,unknown,O
-0x7100b828c0,496,fn_7100b828c0,unknown,unknown,O
+0x7100b827e4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
+0x7100b828c0,496,base::reflection::refl_InitType<base::global::CRntVector<GUI::CSpriteSheetItem*>>,reflection,engine/reflection,O
 0x7100b82ab0,104,fn_7100b82ab0,unknown,unknown,O
 0x7100b82b18,116,fn_7100b82b18,unknown,unknown,O
-0x7100b82b8c,360,fn_7100b82b8c,unknown,unknown,O
+0x7100b82b8c,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementIterator>,reflection,engine/reflection,O
 0x7100b82cf4,88,fn_7100b82cf4,unknown,unknown,O
 0x7100b82d4c,12,fn_7100b82d4c,unknown,unknown,O
 0x7100b82d58,16,fn_7100b82d58,unknown,unknown,O
@@ -2616,7 +2616,7 @@ address,size,name,name_source,subsystem,status
 0x7100b82db8,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b82dbc,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b82dd0,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b82de4,360,fn_7100b82de4,unknown,unknown,O
+0x7100b82de4,360,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100b82f4c,88,fn_7100b82f4c,unknown,unknown,O
 0x7100b82fa4,12,fn_7100b82fa4,unknown,unknown,O
 0x7100b82fb0,16,fn_7100b82fb0,unknown,unknown,O
@@ -2629,7 +2629,7 @@ address,size,name,name_source,subsystem,status
 0x7100b83010,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementConstIterator>::Destroy,reflection,engine/reflection,O
 0x7100b83014,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementConstIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b83028,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TElementConstIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b8303c,364,fn_7100b8303c,unknown,unknown,O
+0x7100b8303c,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementIterator>,reflection,engine/reflection,O
 0x7100b831a8,60,fn_7100b831a8,unknown,unknown,O
 0x7100b831e4,4,fn_7100b831e4,unknown,unknown,O
 0x7100b831e8,60,fn_7100b831e8,unknown,unknown,O
@@ -2642,7 +2642,7 @@ address,size,name,name_source,subsystem,status
 0x7100b832b4,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100b832cc,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100b83324,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100b8337c,364,fn_7100b8337c,unknown,unknown,O
+0x7100b8337c,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x7100b834e8,60,fn_7100b834e8,unknown,unknown,O
 0x7100b83524,4,fn_7100b83524,unknown,unknown,O
 0x7100b83528,60,fn_7100b83528,unknown,unknown,O

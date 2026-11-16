@@ -6,12 +6,11 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkXformNode.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
 using base::global::CRntVector;
 using base::global::CStrId;
-
-void fn_710027e258(void* self, const void* other);  // the key array's copy constructor
 
 // Two floats, copied one by one.
 struct UnkPoint2_l2b5aa8 {

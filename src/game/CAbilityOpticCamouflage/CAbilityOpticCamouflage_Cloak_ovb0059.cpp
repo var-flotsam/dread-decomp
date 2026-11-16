@@ -14,6 +14,8 @@
 #include "game/CFXComponent.h"
 #include "game/CGameObject.h"
 #include "game/CGunComponent.h"
+#include "game/UnkTU247.h"
+#include "game/UnkTU2712.h"
 #include "game/UnkTU39.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -39,8 +41,6 @@ bool fn_7100a1f84c(UnkSpecialEnergyComponent* self);
 f32 fn_7100301700(void* p);
 struct UnkPart;
 struct UnkWorld;
-bool fn_710114e674(UnkObject* model, u8 index);
-void fn_71001bc10c(void* p, const UnkV4_b47* colour, bool flag);
 extern const UnkV4_b47 g_unk_7101648e38 __attribute__((visibility("hidden")));  // the cloak colour
 extern const UnkV4_b47 g_unk_7101648e48 __attribute__((visibility("hidden")));  // the other one
 

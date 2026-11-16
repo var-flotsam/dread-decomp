@@ -20,9 +20,6 @@
 
 using base::global::CStrId;
 
-extern u64 g_unk_710164b258;
-extern u64 g_unk_710164b260;
-
 struct UnkMagnetSurfaceHusk_b48;
 
 struct UnkHuskCollider_SetBreakable {

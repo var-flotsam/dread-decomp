@@ -3,10 +3,10 @@
 // then every entry is freed through the allocator (vtable slot 0x48) and the list is emptied.
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
 struct UnkBehaviorNode_A2_b69;
-s32 fn_7100394b30(UnkBehaviorNode_A2_b69* node, f32 value, s32 state);
 
 struct UnkPendingEntry_A2_b69 {
     void* vtable;

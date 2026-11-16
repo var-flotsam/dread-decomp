@@ -50,6 +50,18 @@ CPointerType::CPointerType(const base::global::CStrId& name, T*, void*)
       m_get(PointerTypeDescription<T>::get), m_set(PointerTypeDescription<T>::set),
       m_increment(PointerTypeDescription<T>::increment) {}
 
+// refl_GetType<T> for a pointer type T whose description is keyed by T itself (tools/gen_types.py): the
+// description gives the name too. data/functions/ calls Get refl_GetType<T> (asmdiff.name_aliases).
+template <class T>
+struct PointerType {
+    static const CType* Get() {
+        static CPointerType s_type(base::global::CStrId(PointerTypeDescription<T>::name, true),
+                                   static_cast<T*>(nullptr), nullptr);
+        return &s_type;
+    }
+};
+
+// The same for a type still keyed by address tags (its name does not parse, or two getters share it).
 // Per-getter facts (generated): the type's name and its descriptor constructor's tag.
 template <class G>
 struct PointerTypeGetter;

@@ -8,6 +8,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU85.h"
@@ -16,7 +17,6 @@
 using base::global::CRntString;
 
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 
 struct UnkReflField;
 struct UnkReflFieldObject;

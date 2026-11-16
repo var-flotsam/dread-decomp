@@ -534,12 +534,26 @@ def underived(body: list[str]) -> list[str]:
 
 
 def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: str,
-                     enums: frozenset[str] = frozenset()) -> list[str]:
+                     enums: frozenset[str] = frozenset(), keyed: bool = False) -> list[str]:
     """A pointer type's description with its CType slots from ValueOps<T> (ValueOps.h), T spelled
     `canon`; the pointer-specific slots (get, set, increment) and the getter (whose string is `name`)
-    stay as they are."""
+    stay as they are. `keyed`: the description, the getter (PointerType<T>::Get) and the constructor are
+    keyed by T itself (keyed_pointers), not by address tags."""
     slot_members = {f" {m} = " for m in SLOTS.values() if m not in ("get", "set", "increment")}
     rest = [line for line in underived(body) if not any(m in line for m in slot_members)]
+    if keyed:
+        return type_declarations(pointer_value_type(canon, enums)[1], enums) + [
+            "template <>",
+            f"const CType& base::reflection::ValueOps<{canon}>::TypeOf(const void*) "
+            f"{{ return *base::reflection::PointerType<{canon}>::Get(); }}",
+            f"template struct base::reflection::ValueOps<{canon}>;",
+            "template <>",
+            f"struct base::reflection::PointerTypeDescription<{canon}> : base::reflection::ValueOpsDescription<{canon}> {{",
+            f"    static constexpr const char* name = {refl_attrs.c_string(name)};",
+            *rest,
+            "};",
+            f"template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, {canon}*, void*);",
+            f"template const base::reflection::CType* base::reflection::PointerType<{canon}>::Get();"]
     out = emit(getter, name, init, rest)
     name = canon
     head = out.index("template <>")
@@ -551,6 +565,32 @@ def emit_pointer_ops(getter: int, name: str, init: int, body: list[str], canon: 
            f"{{ return *base::reflection::refl_GetPointerType<UnkRefl_fn_{getter:x}>(); }}",
            f"template struct base::reflection::ValueOps<{name}>;"]
     return type_declarations(pointer_value_type(canon, enums)[1], enums) + out[:head] + ops + out[head:]
+
+
+def keyed_pointers(named_ptrs: dict[int, str], pairs: list, inline_ptrs: list) -> dict[int, str]:
+    """{getter: T} of the named pointer types (named_pointers) keyed by T itself: those whose name is one
+    getter's in the original (POINTER_NAMES, set by scan), so that refl_GetType<T> names one function."""
+    inline = {name for _, name, _ in inline_ptrs}
+    names = {g: name for g, name, _, _ in pairs}
+    return {g: canon for g, canon in named_ptrs.items()
+            if POINTER_NAMES.get(names[g]) == 1 and names[g] not in inline}
+
+
+def keyed_collections(named_colls: dict) -> set[int]:
+    """The named collections (constructor addresses) keyed by their collection type: one per type."""
+    counts: dict[str, int] = {}
+    for v in named_colls.values():
+        counts[v[0]] = counts.get(v[0], 0) + 1
+    return {i for i, v in named_colls.items() if counts[v[0]] == 1}
+
+
+def type_keyed_names(getter: int | None, init: int, name: str) -> dict[int, str]:
+    """data/functions/ names of a type-keyed description's getter (refl_GetType<T>, defined as
+    PointerType<T>::Get) and descriptor constructor (refl_InitType<T>); asmdiff.name_aliases maps them."""
+    out = {init: f"base::reflection::refl_InitType<{name}>"}
+    if getter is not None:
+        out[getter] = f"base::reflection::refl_GetType<{name}>"
+    return out
 
 
 def pointer_ops_names(orig: asmdiff.Original, init: int, name: str) -> dict[int, str]:
@@ -629,13 +669,19 @@ def enum_ops_names(orig: asmdiff.Original, init: int, name: str) -> dict[int, st
 
 
 ENUM_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$", re.M)
+# A descriptor constructor instantiated for the type itself (a type-keyed description), not for a tag.
+KEYED_INIT_RE = re.compile(r"^template base::reflection::C(?:Pointer|Collection)Type::C(?:Pointer|Collection)Type\("
+                           r"const base::global::CStrId&, (?!Unk)(.+)\*, void\*\);$", re.M)
 
 
-def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
+def reflection_names(orig: asmdiff.Original, version: str, keyed: dict[int, str] | None = None) -> dict[int, str]:
     """data/functions/ names of the enums, flag sets, pointer and plain types written in their named form in
-    src/reflection_types/ (tools/gen_functions_csv.py)."""
-    written = {m.group(1) for f in OUT.glob("*_types_*.cpp")
-               for m in ENUM_OPS_RE.finditer(f.read_text(encoding="utf-8"))}
+    src/reflection_types/ (tools/gen_functions_csv.py). `keyed` receives those of the type-keyed descriptions'
+    getters and constructors (type_keyed_names), which replace the names reflection data gives them."""
+    texts_all = [f.read_text(encoding="utf-8") for f in OUT.glob("*_types_*.cpp")]
+    written = {m.group(1) for text in texts_all for m in ENUM_OPS_RE.finditer(text)}
+    keyed_written = {m.group(1) for text in texts_all for m in KEYED_INIT_RE.finditer(text)}
+    keyed_found: dict[int, str] = {}
     pairs, _, enums, _ = scan(orig)
     out = {}
     named = enum_names(orig, version, enums)
@@ -648,10 +694,13 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
             out.update(enum_ops_names(orig, init, name))
     inits = {g: i for g, _, i, _ in pairs}
     known = frozenset(name for name, _ in list(named.values()) + list(flags.values()))
+    prims, inline_ptrs = scan_primitives(orig, set())
+    by_type = keyed_pointers(named_pointers(orig, pairs, known), pairs, inline_ptrs)
     for g, canon in named_pointers(orig, pairs, known).items():
         if canon in written:
             out.update(pointer_ops_names(orig, inits[g], canon))
-    prims, _ = scan_primitives(orig, set())
+            if g in by_type and canon in keyed_written:
+                keyed_found.update(type_keyed_names(g, inits[g], canon))
     for g, body in prims:
         value_type = primitive_value_type(body)
         if value_type and value_type in written:
@@ -663,13 +712,19 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
     named_ptrs = named_pointers(orig, pairs, known)
     colls, _ = scan_collections(orig, set())
     by_hand = defined_by_hand()
-    for _, body in colls:
+    for init, body in colls:
         v = mapped_collection(body, named_ptrs, frozenset(name for name, _ in named.values()))
         if v and v[0] in mapped:
             slots = collection_slots(body)
             enums = frozenset(name for name, _ in named.values())
             members = {d for d in mapper_members(orig, body, by_hand, v[0], enums) if slots[d] not in by_address}
             out.update(collection_ops_names(orig, body, *v, members))
+            if v[0] in keyed_written:
+                keyed_found.update(type_keyed_names(None, init, v[0]))
+    keyed_found = {a: demangled_spelling(n) for a, n in keyed_found.items()}
+    out.update(keyed_found)
+    if keyed is not None:
+        keyed.update(keyed_found)
     return {a: demangled_spelling(n) for a, n in out.items()}
 
 
@@ -995,7 +1050,8 @@ def collection_ops_names(orig: asmdiff.Original, body: list[str], vector: str, e
 
 
 def emit_collection_ops(init: int, body: list[str], vector: str, element: str, members,
-                        enums: frozenset[str] = frozenset(), type_of_global: int | None = None) -> list[str]:
+                        enums: frozenset[str] = frozenset(), type_of_global: int | None = None,
+                        keyed: bool = False) -> list[str]:
     """A vector collection's description with the mapper's functions (CollectionMapperDescription<C>) for
     `members`, the others by address; the CRntVector members they call are declared instantiated elsewhere,
     so that only the slots are emitted. type_of is the mapper's only with the descriptor it returns."""
@@ -1016,6 +1072,10 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
             else "VectorAccessMapperDescription" if sized_element(element) else "VectorHeaderMapperDescription")
     out[out.index(desc)] = (f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> "
                             f": base::reflection::{base}<{vector}> {{")
+    if keyed:
+        # keyed by the collection type (keyed_collections): no tag, and the constructor instantiated for it
+        out = [line.replace(f"UnkRefl_fn_{init:x}", vector) for line in out
+               if line != f"struct UnkRefl_fn_{init:x};"]
     node = pointer_value_type(f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator")[1]
     helpers = sorted({"extern template " + MAPPER_HELPERS[d][1].format(C=vector, E=element) + ";"
                       for d in members if d in MAPPER_HELPERS and not small_dict and not dictionary})
@@ -1355,6 +1415,11 @@ def write_chunks(prefix: str, blocks: list[list[str]], decls: set[str], header: 
                                                            encoding="utf-8")
 
 
+# {type name: how many getters of the original build a pointer descriptor under it}, every getter scan()
+# recognises, those it leaves out included: a type is keyed by type only when its name is one getter's.
+POINTER_NAMES: dict[str, int] = {}
+
+
 def scan(orig: asmdiff.Original) -> tuple[list, list, list, set[str]]:
     """Candidates: (pointer pairs, pointer pairs with a local pointee, enums, declarations).
 
@@ -1370,6 +1435,7 @@ def scan(orig: asmdiff.Original) -> tuple[list, list, list, set[str]]:
 
     pairs = []  # (getter, name, init, traits lines)
     local = []  # (getter, name, init, traits lines, pointee getter)
+    POINTER_NAMES.clear()
     enums = []  # (init, traits lines)
     decls: set[str] = set()
     for a in rows:
@@ -1385,6 +1451,7 @@ def scan(orig: asmdiff.Original) -> tuple[list, list, list, set[str]]:
         if not facts:
             continue
         name, init = facts
+        POINTER_NAMES[name] = POINTER_NAMES.get(name, 0) + 1
         if init not in orig.sizes:
             continue
         pointee = local_pointee(orig, init)
@@ -1448,7 +1515,8 @@ def main() -> int:
         if init in named_colls:
             members = named_colls[init][2]
             obj = returned_object(orig, collection_slots(body)["type_of"]) if "type_of" in members else None
-            return emit_collection_ops(init, body, *named_colls[init], known_types, obj)
+            return emit_collection_ops(init, body, *named_colls[init], known_types, obj,
+                                       keyed=init in keyed_collections(named_colls))
         return emit_collection(init, body)
 
     def flagset_block(init: int, body: list[str]) -> list[str]:
@@ -1458,7 +1526,8 @@ def main() -> int:
 
     def pointer_block(getter: int, name: str, init: int, body: list[str]) -> list[str]:
         if getter in named_ptrs:
-            return emit_pointer_ops(getter, name, init, body, named_ptrs[getter], enum_names_known)
+            return emit_pointer_ops(getter, name, init, body, named_ptrs[getter], enum_names_known,
+                                    keyed=getter in keyed_pointers(named_ptrs, pairs, inline_ptrs))
         return emit(getter, name, init, body)
 
     def enum_block(init: int, body: list[str]) -> list[str]:
@@ -1491,6 +1560,11 @@ def main() -> int:
         expected.update({n: a for g, v in named_prims.items() for a, n in primitive_ops_names(prim_bodies[g], v).items()})
         coll_names = {i: collection_ops_names(orig, coll_bodies[i], *v) for i, v in named_colls.items()}
         expected.update({n: a for names in coll_names.values() for a, n in names.items()})
+        # the type-keyed getters and constructors, by the names data/functions/ will give them
+        expected.update({n: a for g, canon in keyed_pointers(named_ptrs, pairs, inline_ptrs).items()
+                         for a, n in type_keyed_names(g, inits[g], canon).items()})
+        expected.update({n: a for i in keyed_collections(named_colls)
+                         for a, n in type_keyed_names(None, i, named_colls[i][0]).items()})
         expected = {demangled_spelling(n): a for n, a in expected.items()}
         expected.update({alias: a for n, a in list(expected.items()) for alias in asmdiff.name_aliases(n)})
         symbols = [f.symbol for f in asmdiff.read_object(obj)]
@@ -1564,7 +1638,9 @@ def main() -> int:
           f"pointer types with an inlined constructor: {len(inline_ptrs)} getter candidates, "
           f"{len(good_inline)} byte-identical; "
           f"flag sets: {len(flagsets)} constructor candidates, {len(good_flagsets)} byte-identical "
-          f"({sum(f[0] in named_flags for f in good_flagsets)} with named value operations)")
+          f"({sum(f[0] in named_flags for f in good_flagsets)} with named value operations); "
+          f"keyed by type: {len(keyed_pointers(named_ptrs, pairs, inline_ptrs))} pointer types, "
+          f"{len(keyed_collections(named_colls))} collections")
     return 0
 
 

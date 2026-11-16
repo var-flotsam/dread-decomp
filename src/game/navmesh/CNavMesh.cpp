@@ -958,7 +958,6 @@ struct UnkNavMeshItem;  // src/game/navmesh/UnkNavMeshItem.cpp
 // from the other item by fn_71002b525c, read by fn_71002b5338 (src/base/UnkKeyListRead.cpp) and
 // destroyed by fn_71002b52a4.
 struct UnkNavLoadLink;
-void fn_710027e258(void* self, const void* other);  // the key array's copy constructor
 void fn_71002b525c(UnkNavLoadLink* self, UnkNavMeshItem* item);
 void fn_71002b52a4(UnkNavLoadLink* self);
 struct UnkKeyList;

@@ -23,6 +23,7 @@
 #include "game/UnkTU2564.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
+#include "game/UnkTU2677.h"
 #include "game/UnkTUProperty.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "game/UnkSubId_7100fc4b34.h"
@@ -767,7 +768,6 @@ struct UnkRefObject_ovb0203 {
     };
 };
 // Calls a script function (src/base/UnkLuaCall.cpp); here its first argument is the marker's display object.
-bool fn_71010c0e70(const char* name, const char* fmt, ...);
 
 struct UnkMapMenuTail_ovb0203 {
     u8 pad_0x0[0xfa8];

@@ -18,7 +18,6 @@
 using base::global::CRntString;
 
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011ec424(UnkGuiObj* label, const CRntString& text);
 
 struct UnkReflField;
 struct UnkReflFieldObject;

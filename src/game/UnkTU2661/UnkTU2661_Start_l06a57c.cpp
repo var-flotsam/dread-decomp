@@ -8,6 +8,8 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU2661.h"
+#include "game/UnkTU2677.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -19,9 +21,6 @@ struct UnkCutscene;
 
 void fn_710119770c(UnkObj_710119770c* self, UnkActor_710119770c* actor);
 void fn_7101197d1c(UnkObj_710119770c* self);
-bool fn_71010c0e70(const char* name, const char* fmt, ...);
-void fn_710106838c(void* p);
-void fn_710106b2bc(UnkCutscene* self, f32 frame);
 u64 fn_71010e4a98(void* self);
 u64 fn_71010e4aa0(void* self);
 void fn_71010e4aa8(void* self);

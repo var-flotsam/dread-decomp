@@ -3,6 +3,7 @@
 // every sound path the class lists that the sound system takes. Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkLinkedList.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
@@ -47,38 +48,13 @@ struct UnkSource_ld77f54 {
     bool field_0x11;
 };
 
-struct UnkPathList_ld77f54 {
-    u32 count;
-    UnkPathNode_ld77f54* head;
-    UnkPathNode_ld77f54* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    void PushBack(const CFilePathStrId& path) {
-        auto* node = static_cast<UnkPathNode_ld77f54*>(allocator->vf_0x40(sizeof(UnkPathNode_ld77f54), 8, flags));
-        if (node) {
-            new (&node->path) CFilePathStrId(path);
-            node->next = nullptr;
-            if (count == 0) {
-                head = node;
-                tail = node;
-            } else {
-                tail->next = node;
-                node->next = nullptr;
-                tail = node;
-            }
-            count++;
-        }
-    }
-};
-
 struct UnkEntity_ld77f54 {
     u8 pad_0x0[0x28];
     UnkReflObject* char_class;  // 0x28
     u8 pad_0x30[0x64];
     base::math::CVector3D scale;  // 0x94
     u8 pad_0xa0[0x2b0];
-    UnkPathList_ld77f54 paths;  // 0x350
+    base::UnkLinkedList<UnkPathNode_ld77f54> paths;  // 0x350
     u8 pad_0x378[0x4];
     f32 field_0x37c;
     f32 field_0x380;
@@ -90,6 +66,21 @@ struct UnkEntity_ld77f54 {
 };
 static_assert(__builtin_offsetof(UnkEntity_ld77f54, paths) == 0x350, "layout");
 static_assert(__builtin_offsetof(UnkEntity_ld77f54, field_0x3d0) == 0x3d0, "layout");
+
+// base::UnkLinkedList::PushBack with the empty case storing the tail before the head.
+template <class Node>
+static inline void PushBackTailFirst(base::UnkLinkedList<Node>& list, Node* node) {
+    if (list.count == 0) {
+        list.tail = node;
+        list.head = node;
+        list.count = 1;
+    } else {
+        list.tail->next = node;
+        node->next = nullptr;
+        list.tail = node;
+        ++list.count;
+    }
+}
 
 static inline UnkCharClass_ld77f54* AsCharClass(UnkReflObject* object) {
     return fn_710009d50c(object->vf_0x0(), fn_71011abbd4()) ? reinterpret_cast<UnkCharClass_ld77f54*>(object)
@@ -122,8 +113,11 @@ bool fn_7100d77f54(UnkEntity_ld77f54* self, const UnkSource_ld77f54* source) {
             self->scale.z = scale;
         }
         for (UnkPathNode_ld77f54* node = AsCharClass(self->char_class)->paths; node; node = node->next) {
-            if (TakePath(&node->path))
-                self->paths.PushBack(node->path);
+            if (!TakePath(&node->path))
+                continue;
+            void* mem = self->paths.allocator->vf_0x40(sizeof(UnkPathNode_ld77f54), 8, self->paths.flags);
+            if (mem)
+                PushBackTailFirst(self->paths, new (mem) UnkPathNode_ld77f54{node->path, nullptr});
         }
     }
     return ok;

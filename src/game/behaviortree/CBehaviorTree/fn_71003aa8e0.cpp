@@ -4,11 +4,12 @@
 // the entry has no node. Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntVector.h"
+#include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
-struct UnkBehaviorNode_A2_b69;
-s32 fn_7100394b30(UnkBehaviorNode_A2_b69* node, f32 value, s32 state);
+struct UnkBehaviorNodeView_l3aa8e0;
 
 struct UnkListener_l3aa8e0 {
     virtual void vf_0x0();
@@ -18,8 +19,8 @@ struct UnkListener_l3aa8e0 {
     virtual void vf_0x20();
     virtual void vf_0x28();
     virtual void vf_0x30();
-    virtual void vf_0x38(UnkBehaviorNode_A2_b69* node, s32 state);
-    virtual void vf_0x40(UnkBehaviorNode_A2_b69* node);
+    virtual void vf_0x38(UnkBehaviorNodeView_l3aa8e0* node, s32 state);
+    virtual void vf_0x40(UnkBehaviorNodeView_l3aa8e0* node);
 };
 
 struct UnkListenerHolder_l3aa8e0 {
@@ -27,7 +28,8 @@ struct UnkListenerHolder_l3aa8e0 {
     UnkListener_l3aa8e0* listener;  // 0x10
 };
 
-struct UnkBehaviorNode_A2_b69 {
+// The node as this function reads it (its listener holder at +0x20).
+struct UnkBehaviorNodeView_l3aa8e0 {
     u8 pad_0x0[0x20];
     UnkListenerHolder_l3aa8e0* holder;  // 0x20
 };
@@ -35,49 +37,31 @@ struct UnkBehaviorNode_A2_b69 {
 struct UnkPendingNode_l3aa8e0 {
     virtual void vf_0x0();
     u32 state;
-    UnkBehaviorNode_A2_b69* key;
+    UnkBehaviorNodeView_l3aa8e0* key;
     UnkPendingNode_l3aa8e0* next;
 
-    UnkPendingNode_l3aa8e0(UnkBehaviorNode_A2_b69* k, u32 s) : state(s), key(k), next(nullptr) {}
+    UnkPendingNode_l3aa8e0(UnkBehaviorNodeView_l3aa8e0* k, u32 s) : state(s), key(k), next(nullptr) {}
 };
 
 struct UnkBehaviorTree_l3aa8e0 {
     u8 pad_0x0[0x20];
-    union {  // no type-based alias info: reloaded after the node's link is stored
-        u32 count;
-    };
-    UnkPendingNode_l3aa8e0* head;
-    UnkPendingNode_l3aa8e0* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    void PushBack(UnkPendingNode_l3aa8e0* node) {
-        if (count) {
-            tail->next = node;
-            node->next = nullptr;
-            tail = node;
-        } else {
-            head = node;
-            tail = node;
-        }
-        ++count;
-    }
+    base::UnkLinkedList<UnkPendingNode_l3aa8e0> pending;  // 0x20
 };
 
 bool fn_71003aa8e0(UnkBehaviorTree_l3aa8e0* self, f32 dt) {
-    UnkPendingNode_l3aa8e0* first = self->head;
+    UnkPendingNode_l3aa8e0* first = self->pending.head;
     if (!first)
         return false;
-    UnkBehaviorNode_A2_b69* node = first->key;
+    UnkBehaviorNodeView_l3aa8e0* node = first->key;
     u32 state = first->state;
-    self->head = first->next;
-    self->allocator->vf_0x48(first);
-    if (--self->count == 0)
-        self->tail = self->head;
+    self->pending.head = first->next;
+    self->pending.allocator->vf_0x48(first);
+    if (--self->pending.count == 0)
+        self->pending.tail = self->pending.head;
     if (!node)
         return false;
     if (state - 1 <= 2)
-        state = fn_7100394b30(node, dt, state);
+        state = fn_7100394b30(reinterpret_cast<UnkBehaviorNode_A2_b69*>(node), dt, state);
     if (state - 5 <= 1) {
         if (UnkListenerHolder_l3aa8e0* holder = node->holder)
             if (holder->listener)
@@ -87,9 +71,9 @@ bool fn_71003aa8e0(UnkBehaviorTree_l3aa8e0* self, f32 dt) {
             if (holder->listener)
                 holder->listener->vf_0x40(node);
     } else {
-        void* mem = self->allocator->vf_0x40(sizeof(UnkPendingNode_l3aa8e0), 8, self->flags);
+        void* mem = self->pending.allocator->vf_0x40(sizeof(UnkPendingNode_l3aa8e0), 8, self->pending.flags);
         if (mem)
-            self->PushBack(new (mem) UnkPendingNode_l3aa8e0(node, state));
+            self->pending.PushBack(new (mem) UnkPendingNode_l3aa8e0(node, state));
     }
     return true;
 }

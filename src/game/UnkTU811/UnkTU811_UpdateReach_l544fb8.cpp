@@ -3,9 +3,11 @@
 // fn_7100540dd0. Returns the stored answer. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
+#include "game/CCharClassAIComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 // A position as three words (as src/game_s2/fn_71005416bc.cpp has it).
@@ -15,14 +17,11 @@ struct UnkVec3Bits {
 };
 struct UnkPlace;
 
-void fn_7100540dd0(char* self);
-
 struct UnkReachContext_l544fb8 {
     u8 pad_0x0[0x601];
     bool alwaysReachable;  // 0x601
 };
 struct UnkSource_7100286798;
-u32 fn_7100413fd8(UnkSource_7100286798* self);
 bool fn_7100ec14e4(void* self, const base::math::CVector3D* a, const base::math::CVector3D* b, u32 c, u32 d);
 
 struct UnkReachState_l544fb8 {

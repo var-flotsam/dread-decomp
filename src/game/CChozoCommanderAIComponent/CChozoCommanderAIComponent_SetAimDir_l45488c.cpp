@@ -19,7 +19,6 @@ struct UnkMatrix44Words {
 };
 
 UnkMatrix44Words fn_7100076dc4(const UnkMatrix44Words* src);
-UnkMatrix44 fn_7100078314(const UnkMatrix44* m);
 
 struct UnkCommanderBagOwner_l45488c {
     u8 pad_0x0[0x80];
