@@ -9,6 +9,7 @@
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU63.h"
 #include "types.h"
@@ -39,24 +40,6 @@ struct UnkIdTextData {
     };
 };
 
-// A path id whose release decrements and tests the count in two steps (src/game/CGameManager.cpp).
-struct UnkListedPathId {
-    UnkStringData* data;
-
-    ~UnkListedPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 // The same release for a path id that stays (it is left the empty id).
 static inline void ResetPath(CFilePathStrId* id) {
     UnkStringData*& data = id->data;
@@ -72,14 +55,14 @@ static inline void ResetPath(CFilePathStrId* id) {
     }
 }
 
-static inline const char* IdText(UnkListedPathId& id) {
+static inline const char* IdText(UnkPathIdTwoStep& id) {
     ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;
     const CRntString& str = reinterpret_cast<UnkIdTextData*>(id.data)->str;
     return str.data ? str.data : g_unk_710162e2ed;
 }
 
 struct UnkListedPath {
-    UnkListedPathId id;
+    UnkPathIdTwoStep id;
     UnkListedPath* next;
 };
 // A list of path ids (its destructor is fn_7100087cf8).
@@ -103,7 +86,7 @@ struct UnkFilePathList {
         vtable = &g_unk_7101a1b030[2];
         for (UnkListedPath* n = head; n;) {
             UnkListedPath* next = n->next;
-            n->id.~UnkListedPathId();
+            n->id.~UnkPathIdTwoStep();
             allocator->vf_0x48(n);
             n = next;
         }
@@ -137,7 +120,7 @@ struct UnkResourceGroup {
     u8 pad_0x0[0x8];
     UnkResourceSet objects;
     u8 others[0x50];
-    base::global::CRntVector<UnkListedPathId> files;
+    base::global::CRntVector<UnkPathIdTwoStep> files;
     CFilePathStrId directory;
 };
 static_assert(__builtin_offsetof(UnkResourceGroup, objects.first_bucket) == 0x30, "UnkResourceGroup placeholder layout");
@@ -186,7 +169,7 @@ void fn_7100ecb00c(UnkResourceGroup* self) {
     }
     fn_7100ecb3a4(&self->objects);
     fn_7100ecb4ac(self->others);
-    for (UnkListedPathId* it = self->files.data, *end = it + self->files.count; it != end; ++it)
+    for (UnkPathIdTwoStep* it = self->files.data, *end = it + self->files.count; it != end; ++it)
         fn_710008987c(FileDevice(), reinterpret_cast<CFilePathStrId*>(it), 0);
     self->files.Clear();
     if (self->directory.data != &g_unk_7101d47200->empty) {

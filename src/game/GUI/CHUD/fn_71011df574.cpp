@@ -28,33 +28,14 @@ __attribute__((always_inline)) static inline bool Equal(const UnkRecord80IterVal
 // released (and left as the empty id) before the array is freed.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id (or, with the file-path pool, a path id) left as the empty string once released.
-template <UnkStringPool** Pool>
-struct UnkEmptiedStrIdT {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkEmptiedStrIdT() {
-        if (UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-using UnkEmptiedStrId = UnkEmptiedStrIdT<&g_unk_7101d47108>;
 
 struct UnkIdWordPair {
-    UnkEmptiedStrId id;
+    UnkStrIdTwoStep id;
     u64 field_0x8;
 };
 
@@ -72,7 +53,7 @@ static inline void Clear(base::global::CRntVector<T>* self) {
 void fn_71011df574(base::global::CRntVector<UnkIdWordPair>* self) { Clear(self); }
 // The same for an array of 0x18-byte records led by a path id, after a word, in another unit.
 struct UnkPathIdRecord_0x18 {
-    UnkEmptiedStrIdT<&g_unk_7101d47200> path;
+    UnkPathIdTwoStep path;
     u64 field_0x8;
     u64 field_0x10;
 };

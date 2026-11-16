@@ -17,24 +17,17 @@ void fn_7100f10f20(void* self);
 void fn_7100f0f4d0();
 extern char g_unk_7101caa450[];  // CPlayerInfo's vtable
 
-// A string id's data with a plain count: these copies increment it with int alias info (the
-// original reuses the pools it loaded once across the increments).
-struct UnkPlainStringData {
-    u8 unk_0x0[0x8];
-    s32 ref_count;
-};
-
 // A string id copied from a global id, its count incremented unless it is the pool's empty string.
 struct UnkPlayerInfoId {
     UnkStringData* data;
 
     UnkPlayerInfoId(const base::global::UnkStrIdBase& other, UnkStringPool* const& pool) : data(other.data) {
         if (&pool->empty != data)
-            ++reinterpret_cast<UnkPlainStringData*>(data)->ref_count;
+            ++data->ref_count;
     }
     UnkPlayerInfoId(const base::global::UnkFilePathStrIdBase& other, UnkStringPool* const& pool) : data(other.data) {
         if (&pool->empty != data)
-            ++reinterpret_cast<UnkPlainStringData*>(data)->ref_count;
+            ++data->ref_count;
     }
 };
 

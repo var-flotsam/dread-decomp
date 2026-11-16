@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU63.h"
 #include "types.h"
@@ -23,26 +24,8 @@ void fn_7100254d6c(void* self);
 void fn_7100254e84(void* self);
 void fn_7100255158(void* self);
 
-// A file-path id whose release decrements and tests the count in two steps.
-struct UnkPathId_ovb0066 {
-    UnkStringData* data;
-
-    ~UnkPathId_ovb0066() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkPathNode_ovb0066 {
-    UnkPathId_ovb0066 id;
+    UnkPathIdTwoStep id;
     UnkPathNode_ovb0066* next;
 };
 
@@ -59,7 +42,7 @@ struct UnkPathList_ovb0066 {
     void Clear() {
         for (UnkPathNode_ovb0066* n = head; n;) {
             UnkPathNode_ovb0066* next = n->next;
-            n->id.~UnkPathId_ovb0066();
+            n->id.~UnkPathIdTwoStep();
             allocator->vf_0x48(n);
             n = next;
         }

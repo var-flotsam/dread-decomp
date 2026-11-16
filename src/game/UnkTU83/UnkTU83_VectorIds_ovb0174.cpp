@@ -11,6 +11,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCloneRecords.h"
 #include "base/UnkNamedRegistry.h"
+#include "base/UnkPooledStrId.h"
 #include "base/UnkResPathVec.h"
 #include "base/global/CRntVector.h"
 #include "base/file/UnkFileCacheSet.h"
@@ -34,12 +35,8 @@ namespace {
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkIdRef_b0174 {
-    UnkStringData* data;
-};
-
 template <class Vec, UnkStringPool** Pool, bool AtCount>
-__attribute__((always_inline)) inline void Finish(Vec* self, const UnkIdRef_b0174* value, u32 index) {
+__attribute__((always_inline)) inline void Finish(Vec* self, const base::UnkPooledString* value, u32 index) {
     auto** data = reinterpret_cast<UnkStringData***>(&self->data);
     UnkStringData** slot = *data;
     slot += AtCount ? self->count : index;
@@ -51,7 +48,7 @@ __attribute__((always_inline)) inline void Finish(Vec* self, const UnkIdRef_b017
 }
 
 template <class Vec, UnkStringPool** Pool, void (*ReserveFn)(Vec*, u32)>
-__attribute__((always_inline)) inline void InsertCopy(Vec* self, const UnkIdRef_b0174* value, u32 index) {
+__attribute__((always_inline)) inline void InsertCopy(Vec* self, const base::UnkPooledString* value, u32 index) {
     auto** data = reinterpret_cast<UnkStringData***>(&self->data);
     u32 n = self->count;
     u32 cap = self->capacity;
@@ -94,12 +91,12 @@ __attribute__((always_inline)) inline void InsertCopy(Vec* self, const UnkIdRef_
 
 void fn_71000ce300(base::UnkStrIdVec* self, const base::global::CStrId* value, u32 index) {
     InsertCopy<base::UnkStrIdVec, &g_unk_7101d47108, fn_710000542c>(
-        self, reinterpret_cast<const UnkIdRef_b0174*>(value), index);
+        self, reinterpret_cast<const base::UnkPooledString*>(value), index);
 }
 
 void fn_71000d0abc(UnkResPathVec* self, const base::global::CFilePathStrId* value, u32 index) {
     InsertCopy<UnkResPathVec, &g_unk_7101d47200, fn_7100018450>(
-        self, reinterpret_cast<const UnkIdRef_b0174*>(value), index);
+        self, reinterpret_cast<const base::UnkPooledString*>(value), index);
 }
 
 // ---- shrink of the attribute arrays (fn_71000d8290) ----

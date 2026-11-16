@@ -10,6 +10,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -38,21 +39,9 @@ using namespace base::global;
 
 struct UnkIdValuesArray;
 
-// A string id that starts out as the empty id.
-struct UnkSlotId_b0200 {
-    UnkStringData* data;
-
-    UnkSlotId_b0200() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 // A string id and a value; a new one is zeroed, then built.
 struct UnkIdSlot_b0200 {
-    UnkSlotId_b0200 id;
+    UnkEmptyStrId id;
     u64 value = 0;
 };
 

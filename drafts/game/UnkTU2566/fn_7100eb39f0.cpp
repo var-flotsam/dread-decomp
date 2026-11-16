@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
 #include "types.h"
@@ -79,21 +80,9 @@ struct UnkMinimapParts_leb39f0 {
     }
 };
 
-// An empty string id, creating the pool first when there is none.
-struct UnkEmptyId_leb39f0 {
-    UnkStringData* data;
-
-    UnkEmptyId_leb39f0() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkMinimapValue_leb39f0 {
     UnkMinimapParts_leb39f0 parts;
-    UnkEmptyId_leb39f0 id;  // 0x15e8
+    UnkEmptyStrId id;  // 0x15e8
 
     UnkMinimapValue_leb39f0() { parts.Resize(4); }
 };

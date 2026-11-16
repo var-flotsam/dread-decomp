@@ -3,30 +3,14 @@
 // fn_7100ffb8d4. Each id is released (and left as the empty id) before the array is freed.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkEmptiedFilePathStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkEmptiedFilePathStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkFilePathIdWordPair {
-    UnkEmptiedFilePathStrId id;
+    UnkPathIdTwoStep id;
     u64 field_0x8;
     u64 field_0x10;
 };

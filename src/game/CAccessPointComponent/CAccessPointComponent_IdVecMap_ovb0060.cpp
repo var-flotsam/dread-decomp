@@ -15,22 +15,7 @@
 using base::global::CStrId;
 
 
-struct UnkIdElem_ovb0060 : base::global::UnkStrIdBase {
-    ~UnkIdElem_ovb0060() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-using UnkIdVector_ovb0060 = base::global::CRntVector<UnkIdElem_ovb0060>;
+using UnkIdVector_ovb0060 = base::global::CRntVector<base::global::CStrId>;
 
 struct UnkHashView_ovb0060 {
     u8 pad_0x0[0x30];

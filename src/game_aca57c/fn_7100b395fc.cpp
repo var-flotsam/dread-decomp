@@ -5,6 +5,7 @@
 // 0x7101a9c888) a string id at 0xf8.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU1689.h"
 #include "types.h"
 
@@ -13,24 +14,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 extern void* g_unk_7101a9c938[];
-
-// A string id whose destructor reloads the id after the decrement.
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 struct UnkRefObject {
     virtual void vf_0x0();
@@ -77,7 +60,7 @@ struct UnkNamedBase : UnkNamedRoot {
 
 struct UnkNamedWithId : UnkNamedBase {
     u64 field_0xf0;
-    UnkReleasedStrId id;
+    UnkStrIdTwoStep id;
 
     __attribute__((always_inline)) ~UnkNamedWithId() { SetVtable(this, g_unk_7101a9ca40); }
 };
@@ -91,7 +74,7 @@ struct UnkNamedWithRef : UnkNamedBase {
 // The two classes with the pointer and a string id: the same members, each its own vtable.
 template <void** Vtable>
 struct UnkNamedWithRefIdT : UnkNamedWithRef {
-    UnkReleasedStrId id;
+    UnkStrIdTwoStep id;
 
     __attribute__((always_inline)) ~UnkNamedWithRefIdT() { SetVtable(this, Vtable); }
 };

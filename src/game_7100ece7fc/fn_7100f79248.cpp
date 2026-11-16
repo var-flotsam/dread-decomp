@@ -4,32 +4,15 @@
 // resets the count and the list; the destructors clear the map and destroy its storage.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkMapKey {
-    UnkStringData* data;
-
-    ~UnkMapKey() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 template <u32 Next, void (*Destroy)(void*)>
 struct UnkMapNode {
-    UnkMapKey key;
+    UnkStrIdTwoStep key;
     u8 value[Next - 8];  // destroyed by Destroy
     UnkMapNode* next;  // the map's node list
 };
@@ -56,7 +39,7 @@ struct UnkIdMap : Storage {
         for (Node* n = static_cast<Node*>(this->head); n;) {
             Node* next = n->next;
             Destroy(n->value);
-            n->key.~UnkMapKey();
+            n->key.~UnkStrIdTwoStep();
             this->allocator->vf_0x48(n);
             n = next;
         }

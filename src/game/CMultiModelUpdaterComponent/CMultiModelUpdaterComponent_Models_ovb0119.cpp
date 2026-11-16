@@ -3,6 +3,7 @@
 // (CMultiModelUpdaterComponent_ReflSet_A5_b67.cpp) does inline: when it differs from the current one
 // (+0x210), the model map (entries of 0x20 at +0x1e8, keys at +0x1f0, count at +0x1f8) has it and
 // fn_7100938fcc accepts the entry, it takes the name; it returns whether it did. Names are placeholders.
+#include "base/UnkPooledStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CMultiModelUpdaterComponent.h"
 #include "types.h"
@@ -59,15 +60,9 @@ struct UnkModelValue_b0119 {
 };
 void fn_7100939804(UnkModelValue_b0119* self, const UnkModelValue_b0119* other);
 
-// A string id key: moved bitwise, the old one left holding the empty id and then released in two
-// steps (as CStrId::Reset).
-struct UnkMovedId_b0119 {
-    UnkStringData* data;
-};
-
 struct UnkModelMap_b0119 {
     UnkModelValue_b0119* values;
-    UnkMovedId_b0119* keys;
+    base::UnkPooledString* keys;
     u32 count;
     u32 capacity;
     u32 field_0x18;
@@ -80,8 +75,8 @@ void fn_7100939678(UnkModelMap_b0119* self, u32 capacity) {
         return;
     auto* values = static_cast<UnkModelValue_b0119*>(
         self->allocator->vf_0x40((u64)capacity * sizeof(UnkModelValue_b0119), 8, self->flags));
-    auto* keys = static_cast<UnkMovedId_b0119*>(
-        self->allocator->vf_0x40((u64)capacity * sizeof(UnkMovedId_b0119), 8, self->flags));
+    auto* keys = static_cast<base::UnkPooledString*>(
+        self->allocator->vf_0x40((u64)capacity * sizeof(base::UnkPooledString), 8, self->flags));
     if (self->values) {
         UnkModelValue_b0119* src = self->values;
         UnkModelValue_b0119* dst = values;
@@ -92,10 +87,10 @@ void fn_7100939678(UnkModelMap_b0119* self, u32 capacity) {
         self->allocator->vf_0x48(self->values);
     }
     if (self->keys) {
-        UnkMovedId_b0119* src = self->keys;
+        base::UnkPooledString* src = self->keys;
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j, ++src) {
-            __builtin_memcpy(&keys[j], src, sizeof(UnkMovedId_b0119));
+            __builtin_memcpy(&keys[j], src, sizeof(base::UnkPooledString));
             UnkStringPool* pool = g_unk_7101d47108;
             src->data = &pool->empty;
             if ((pool = g_unk_7101d47108)) {

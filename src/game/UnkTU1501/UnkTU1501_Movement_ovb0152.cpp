@@ -5,6 +5,7 @@
 // hit flags (fn_71009ecd98) and the leg and input updates. Names and layouts are placeholders.
 #include <algorithm>
 
+#include "base/UnkPooledStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -229,10 +230,6 @@ struct UnkReq_b152 {
     u64 field_0x10;
 };
 
-struct UnkIdHolder_b152 {
-    base::global::UnkStringData* data;
-};
-
 struct UnkInput_b152 {
     u8 pad_0x0[0x58];
     u32 count;
@@ -340,7 +337,7 @@ f32 fn_71007965a8(UnkRunInfo_b152* info);
 f32 fn_71007965c0(UnkRunInfo_b152* info);
 void fn_7100976940(UnkMove_b152* self);
 void fn_71009767f0(UnkMove_b152* self);
-UnkIdHolder_b152* fn_71009e7870(UnkMove_b152* self);
+base::UnkPooledString* fn_71009e7870(UnkMove_b152* self);
 bool fn_7100df45ec(UnkGameManager* self);
 void fn_71002d6074(UnkLeg_b152* leg, bool flag, f32 weight);
 void fn_71009f115c();
@@ -600,7 +597,7 @@ void fn_71009e7a5c(UnkMove_b152* self, UnkReq_b152* req) {
                 req->key = 0x19758dba5538d219ull;
             fn_7100287954(&msg);
         }
-        UnkIdHolder_b152* id = fn_71009e7870(self);
+        base::UnkPooledString* id = fn_71009e7870(self);
         if (id->data != &g_unk_7101d47108->empty) {
             req->key = *reinterpret_cast<u64*>(reinterpret_cast<u8*>(id->data) + 0x30);
             req->field_0x8 = -1;

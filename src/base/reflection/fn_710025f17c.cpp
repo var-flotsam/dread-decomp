@@ -3,23 +3,12 @@
 // entries: fn_710025f17c, fn_7100262c34.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::UnkAllocator;
 using base::global::CRntVector;
 using base::global::UnkStringData;
-
-// A string id constructed empty: the pool is created first when there is none yet.
-struct UnkEmptyId_710025f17c {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) UnkEmptyId_710025f17c() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
 
 struct UnkAllocatorHandle_710025f17c {
     UnkAllocator* allocator = fn_7100083990();
@@ -58,7 +47,7 @@ extern void* g_unk_7101a20c98[];
 
 struct UnkObject_710025f17c {
     void** vtable;
-    UnkEmptyId_710025f17c field_0x8;
+    UnkEmptyStrId field_0x8;
     UnkAllocatorHandle_710025f17c field_0x10;
     UnkResizedVector_710025f17c<u64> field_0x20;
     u64 field_0x48;

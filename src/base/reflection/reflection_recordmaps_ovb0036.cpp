@@ -19,6 +19,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -152,22 +153,7 @@ void fn_7100260718(char* self, void*) {
 }
 
 // A string id released on destruction (the empty string is left behind).
-struct UnkMapKey_ovb0036 {
-    UnkStringData* data;
-
-    ~UnkMapKey_ovb0036() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
+using UnkMapKey_ovb0036 = UnkStrIdTwoStep;
 
 // The map's 0x60-byte records, destroyed through their vtable.
 struct UnkMapRecord_ovb0036 {

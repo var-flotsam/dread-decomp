@@ -3,6 +3,7 @@
 #include "base/file/CPackManagerDevice.h"
 #include "base/file/IDevice.h"
 #include "base/global/CRntString.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBTObserverComponent.h"
@@ -317,25 +318,8 @@ static inline const char* CStr(const CRntString& s) {
     return s.data ? s.data : g_unk_710162e2ed;
 }
 
-// A path id whose release decrements and tests the count in two steps.
-struct UnkListedPathId {
-    UnkStringData* data;
-
-    ~UnkListedPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 struct UnkListedPath {
-    UnkListedPathId id;
+    UnkPathIdTwoStep id;
     UnkListedPath* next;
 };
 // A list of path ids (its destructor is fn_7100087cf8).
@@ -359,7 +343,7 @@ struct UnkFilePathList {
         vtable = &g_unk_7101a1b030[2];
         for (UnkListedPath* n = head; n;) {
             UnkListedPath* next = n->next;
-            n->id.~UnkListedPathId();
+            n->id.~UnkPathIdTwoStep();
             allocator->vf_0x48(n);
             n = next;
         }

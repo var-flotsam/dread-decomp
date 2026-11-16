@@ -12,6 +12,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
 #include "base/tunable/CTunable.h"
@@ -821,15 +822,7 @@ extern UnkMinimapCallback g_unk_71727cbd60;
 extern UnkMinimapCallback g_unk_71727cbd78;
 
 // A string id built empty (the pointer is cleared first).
-struct UnkMinimapEmptyId {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMinimapEmptyId() : data(nullptr) {
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
+using UnkMinimapEmptyId = UnkEmptyStrId;
 
 // An array without the growth flag (0x20 bytes): data, count, capacity, step, flags, allocator.
 struct UnkMinimapBuffer {

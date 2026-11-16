@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkPooledId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkTU23.h"
@@ -460,26 +461,8 @@ void fn_7100fd613c(UnkMusicSlots_b0019* self, u32 index, bool immediate) {
     }
 }
 
-// A string id whose destructor decrements and then re-tests the count.
-struct UnkSetKey_b0019 {
-    base::global::UnkStringData* data;
-
-    ~UnkSetKey_b0019() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkIdSetNode_0x28 {
-    UnkSetKey_b0019 key;
+    UnkStrIdTwoStep key;
     void* value;
     UnkIdSetNode_0x28* next;
     UnkIdSetNode_0x28* prev;

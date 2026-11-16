@@ -8,6 +8,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CPowerUpLifeComponent.h"
@@ -35,24 +36,13 @@ struct UnkPowerUpLifeList_ovb0126 : UnkPowerUpLifeListBase_ovb0126 {
     }
 };
 
-struct UnkPowerUpLifeEmptyId_ovb0126 {
-    UnkStringData* data;
-
-    UnkPowerUpLifeEmptyId_ovb0126() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkPowerUpLife_ovb0126 {
     char* vtable;
     u8 pad_0x8[0x380];
     UnkPowerUpLifeList_ovb0126 list;  // 0x388
     void* handle;                     // 0x3c8
     base::global::CStrId name;        // 0x3d0
-    UnkPowerUpLifeEmptyId_ovb0126 id;  // 0x3d8
+    UnkEmptyStrId id;  // 0x3d8
 };
 static_assert(__builtin_offsetof(UnkPowerUpLife_ovb0126, id) == 0x3d8, "layout");
 
@@ -62,5 +52,5 @@ void fn_71008e4b24(UnkPowerUpLife_ovb0126* self) {
     new (&self->list) UnkPowerUpLifeList_ovb0126;
     self->handle = nullptr;
     new (&self->name) base::global::CStrId(g_unk_710162e2ed, true);
-    new (&self->id) UnkPowerUpLifeEmptyId_ovb0126;
+    new (&self->id) UnkEmptyStrId;
 }

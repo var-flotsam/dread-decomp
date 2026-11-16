@@ -6,6 +6,7 @@
 #include "../../game_s7/UnkPropS7.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CActorComponent.h"
 #include "game/CFXComponent.h"
@@ -156,26 +157,8 @@ struct UnkFXOwner_ovb51 {
     UnkFXSceneHolder_ovb51* field_0x228;
 };
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkFXNodeId_ovb51 {
-    UnkStringData* data;
-
-    ~UnkFXNodeId_ovb51() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkFXIdNode_ovb51 {
-    UnkFXNodeId_ovb51 id;
+    UnkStrIdTwoStep id;
     u64 field_0x8;
     UnkFXIdNode_ovb51* next;
 };
@@ -190,7 +173,7 @@ struct UnkFXIdList_ovb51 {
     void Clear() {
         for (UnkFXIdNode_ovb51* n = head; n;) {
             UnkFXIdNode_ovb51* next = n->next;
-            n->id.~UnkFXNodeId_ovb51();
+            n->id.~UnkStrIdTwoStep();
             allocator->vf_0x48(n);
             n = next;
         }

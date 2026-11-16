@@ -6,33 +6,13 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id (of the pool `Pool` points to) whose destructor decrements and tests in two steps
-// (the original reloads the id after the decrement).
-template <UnkStringPool** Pool>
-struct UnkReleasedId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedId() {
-        if (UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-using UnkReleasedStrId = UnkReleasedId<&g_unk_7101d47108>;
-using UnkReleasedPathId = UnkReleasedId<&g_unk_7101d47200>;
 
 struct UnkShared54Ptr {
     UnkCountedResource* ptr;
@@ -49,9 +29,9 @@ template <char* Vtable>
 struct UnkPathRefBase {
     char* vtable;
     u8 unk_0x8[0x8];
-    UnkReleasedStrId a;
-    UnkReleasedStrId b;
-    UnkReleasedPathId path;
+    UnkStrIdTwoStep a;
+    UnkStrIdTwoStep b;
+    UnkPathIdTwoStep path;
     UnkShared54Ptr shared;
 
     __attribute__((always_inline)) ~UnkPathRefBase() {

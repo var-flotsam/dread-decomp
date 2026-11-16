@@ -2,6 +2,7 @@
 // path is one of the entry's names it is used as it is; otherwise the entry's directory (or the key's path) is
 // joined with each of the entry's names and the newest file the file registry reports wins. Names and layouts
 // are placeholders.
+#include "base/UnkPooledStrId.h"
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/animation/CBlendSpace1D.h"
@@ -25,11 +26,6 @@ struct UnkRegistry_7100d92158;
 extern char g_unk_7101d4e578[] __attribute__((visibility("hidden")));
 bool fn_710007fbc0(const CRntString* self, const CRntString* other);
 
-// An id as it is read here: its pooled string.
-struct UnkIdWord_l01a39c {
-    UnkStringData* data;
-};
-
 // The string of an id, counting the read.
 template <class Id>
 inline const CRntString& IdString(const Id& id) {
@@ -38,20 +34,20 @@ inline const CRntString& IdString(const Id& id) {
 }
 
 struct UnkKey_l01a39c {
-    UnkIdWord_l01a39c id;
+    base::UnkPooledString id;
     UnkFilePathStrIdBase path;  // 0x8
 };
 
 struct UnkNames_l01a39c {
     u8 pad_0x0[0x30];
-    UnkIdWord_l01a39c* names;  // 0x30
+    base::UnkPooledString* names;  // 0x30
     u32 name_count;            // 0x38
 };
 
 struct UnkSearchEntry_l01a39c {
     UnkNames_l01a39c* names;
     u8 pad_0x8[0x18];
-    UnkIdWord_l01a39c directory;  // 0x20, a file-path id
+    base::UnkPooledString directory;  // 0x20, a file-path id
 };
 
 // The string id of a pair: a copy takes a reference before the old string is released.
@@ -165,7 +161,7 @@ UnkPair_l01a39c fn_710001a39c(const UnkKey_l01a39c* key) {
     UnkSearchEntry_l01a39c* entry = reinterpret_cast<UnkSearchEntry_l01a39c*>(
         fn_7100020320(g_unk_7101d4bbc0, reinterpret_cast<const UnkRegistryKey*>(key)));
     UnkNames_l01a39c* names = entry->names;
-    for (UnkIdWord_l01a39c *p = names->names, *e = p + names->name_count; p != e; ++p) {
+    for (base::UnkPooledString *p = names->names, *e = p + names->name_count; p != e; ++p) {
         if (fn_710007fbc0(&IdString(key->path), &IdString(*p)))
             return UnkPair_l01a39c(g_unk_7101d4e578, key->path);
     }
@@ -188,7 +184,7 @@ UnkPair_l01a39c fn_710001a39c(const UnkKey_l01a39c* key) {
     UnkPair_l01a39c result;
     s64 newest = 0;
     names = entry->names;
-    for (UnkIdWord_l01a39c *p = names->names, *e = p + names->name_count; p != e; ++p) {
+    for (base::UnkPooledString *p = names->names, *e = p + names->name_count; p != e; ++p) {
         UnkPair_l01a39c candidate(g_unk_7101d4e578, UnkBuiltPath_l01a39c(fn_710007eee0(dir.Str(), &IdString(*p))));
         UnkFileInfo_l01a39c info;
         UnkRegistry_0x70* reg = g_unk_7101d4b5a0;

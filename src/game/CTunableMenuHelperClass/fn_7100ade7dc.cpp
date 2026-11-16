@@ -3,24 +3,14 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
-struct UnkEmptyId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) UnkEmptyId() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkEmptyIdPair {
-    UnkEmptyId first;
-    UnkEmptyId second;
+    UnkEmptyStrId first;
+    UnkEmptyStrId second;
 
     __attribute__((always_inline)) UnkEmptyIdPair() {}
 };

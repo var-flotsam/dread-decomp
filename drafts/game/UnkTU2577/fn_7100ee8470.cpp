@@ -8,26 +8,10 @@
 
 
 
-// A string id released in two steps (the count is read back after the decrement).
-struct UnkListId : base::global::UnkStrIdBase {
-    ~UnkListId() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
+using UnkIdList = base::global::CRntVector<base::global::CStrId>;
 
-using UnkIdList = base::global::CRntVector<UnkListId>;
-
-inline bool Contains(const UnkIdList& list, const UnkListId& id) {
-    for (const UnkListId *it = list.data, *end = it + list.count; it != end; ++it) {
+inline bool Contains(const UnkIdList& list, const base::global::CStrId& id) {
+    for (const base::global::CStrId *it = list.data, *end = it + list.count; it != end; ++it) {
         if (it->data == id.data)
             return true;
     }
@@ -50,13 +34,13 @@ bool fn_7100ee8470(void* self, const void* second_key, const void* first_key, Un
     fn_7100eeb87c(self, second_key, &second);
 
     bool changed = force;
-    for (const UnkListId *it = first.data, *end = it + first.count; it != end; ++it) {
+    for (const base::global::CStrId *it = first.data, *end = it + first.count; it != end; ++it) {
         if (!Contains(second, *it)) {
             changed = true;
             break;
         }
     }
-    for (const UnkListId *it = second.data, *end = it + second.count; it != end && !changed; ++it) {
+    for (const base::global::CStrId *it = second.data, *end = it + second.count; it != end && !changed; ++it) {
         if (!Contains(first, *it))
             changed = true;
     }

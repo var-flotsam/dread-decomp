@@ -269,7 +269,7 @@ void fn_710008a378(CPackManagerDevice* self) {
     }
     fn_7100066918(&self->mutex);
     self->packs.Free();
-    self->name.~UnkDeviceName();
+    self->name.~CStrId();
 }
 
 // The pack that has `key`: with `any`, the first that has it; otherwise the first in use (a

@@ -3,6 +3,7 @@
 // move constructor of an iterator value over a map of such pointers keyed by string ids.
 #include "base/UnkCollectionIter.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 struct UnkRefObject {
@@ -78,15 +79,6 @@ void fn_7100d44810(const base::global::CRntVector<UnkPlainVector>* v, UnkPlainVe
 void fn_7100d4492c(const base::global::CRntVector<UnkPlainVector>* v, UnkPlainVectorIter* out) {
     *out = UnkPlainVectorIter(v->count, v->data + v->count);
 }
-
-// A string id key that is taken over when moved (the source is left holding the empty id).
-struct UnkMovedStrId {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
 
 // The move constructor of an iterator value over a keyed map of such pointers.
 using UnkKeyedRefPtrValue = base::UnkIterValue<UnkRefPtr, UnkMovedStrId>;

@@ -20,28 +20,9 @@
 using base::global::CStrId;
 
 // The message, as UnkEmmyDefeatedMessage_b42.cpp lays it out.
-struct UnkMlogText_b42a1 : base::global::UnkStrIdBase {
-    __attribute__((always_inline)) UnkMlogText_b42a1(const CStrId& other) : UnkStrIdBase(other) {
-        if (&g_unk_7101d47108->empty != data)
-            ++data->ref_count;
-    }
-    __attribute__((always_inline)) ~UnkMlogText_b42a1() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkMlogMessage_b42a1 {
     u32 kind;
-    UnkMlogText_b42a1 text;
+    base::global::CStrId text;
     base::global::CRntVector<base::UnkStrIdMember> args;
 
     __attribute__((always_inline)) UnkMlogMessage_b42a1(const CStrId& t) : kind(0), text(t), args(0xc) {}

@@ -8,33 +8,16 @@
 // a value) is destroyed.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkMapKey {
-    UnkStringData* data;
-
-    ~UnkMapKey() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 template <class Value, void (*Destroy)(Value*)>
 struct UnkMapNode {
-    UnkMapKey key;
+    UnkStrIdTwoStep key;
     Value value;  // destroyed by Destroy
     UnkMapNode* next;  // the map's node list
 };
@@ -61,7 +44,7 @@ struct UnkIdMap : UnkIdMapStorage {
         for (Node* n = static_cast<Node*>(this->head); n;) {
             Node* next = n->next;
             Destroy(&n->value);
-            n->key.~UnkMapKey();
+            n->key.~UnkStrIdTwoStep();
             this->allocator->vf_0x48(n);
             n = next;
         }
@@ -81,7 +64,7 @@ struct UnkMapIter {
     void* node;
     union {
         struct {
-            UnkMapKey key;
+            UnkStrIdTwoStep key;
             Value value;  // destroyed by Destroy
         } entry;  // kind 1
     };
@@ -93,7 +76,7 @@ struct UnkMapIter {
         switch (kind) {
         case 1:
             Destroy(&entry.value);
-            entry.key.~UnkMapKey();
+            entry.key.~UnkStrIdTwoStep();
             kind = 0;
             break;
         case 2:

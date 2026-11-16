@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection.h"
 #include "game/UnkBufferStringPool.h"
@@ -109,14 +110,6 @@ void fn_7100ebee14(UnkScaledString* self, const UnkScaledString* other) { new (s
 // its copy constructor, and its move constructor (the ids are taken over, leaving the pool's
 // empty string; the string is copied).
 using base::global::CStrId;
-
-struct UnkMovedStrId {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
 
 using UnkString40 = UnkBufferString<0x40, g_unk_7101a1b678>;
 

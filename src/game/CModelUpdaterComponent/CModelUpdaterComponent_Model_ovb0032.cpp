@@ -10,6 +10,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
@@ -32,17 +33,6 @@ extern "C" int rand();
 
 // --- The set-up record ---
 
-// A string id (as CStrId) built empty: the default constructor.
-struct UnkEmptyStrId_ovb0032 {
-    base::global::UnkStringData* data;
-    UnkEmptyStrId_ovb0032() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkScaleKey_ovb0032 {
     f32 field_0x0;
     f32 x, y, z;
@@ -52,7 +42,7 @@ struct UnkScaleKey_ovb0032 {
 struct UnkModelSetup_ovb0032 {
     bool field_0x0;
     UnkScaleKey_ovb0032 keys[6];  // 0x4
-    UnkEmptyStrId_ovb0032 ids[3];  // 0x68
+    UnkEmptyStrId ids[3];  // 0x68
     u64 field_0x80;
 
     __attribute__((always_inline)) UnkModelSetup_ovb0032() : field_0x0(false), field_0x80(0) {}
