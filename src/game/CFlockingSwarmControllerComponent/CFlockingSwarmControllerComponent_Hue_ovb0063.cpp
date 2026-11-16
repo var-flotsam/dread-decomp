@@ -6,7 +6,7 @@
 // The class data is read without a check, as in the game. Names and layouts are placeholders.
 #include <math.h>
 
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -63,11 +63,7 @@ void fn_7100742440(UnkSwarmCtrl_hue_ovb0063* self, s32 index) {
         case 0: {
             CVector2D d;
             fn_710007b430(&d, &v);
-            f32 length = sqrtf(d.x * d.x + d.y * d.y);
-            if (length != 0.0f) {
-                d.x = d.x / length;
-                d.y = d.y / length;
-            }
+            Normalize(d);
             f32 angle = acosf(-d.x) / 6.2831855f;
             if (d.y > 0.0f)
                 angle = 1.0f - angle;

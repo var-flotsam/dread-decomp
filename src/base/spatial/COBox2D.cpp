@@ -5,7 +5,7 @@
 // src/engine/SystemStartup.cpp has the same layout as UnkOrientedBox2D.
 // Holds fn_7100110420 (a corner by index) and fn_7100110794 (whether a point lies inside). Names
 // and layouts are placeholders.
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/spatial/COBox2D.h"
 #include "game/malloc.h"
@@ -14,21 +14,8 @@
 using base::math::CVector2D;
 using base::spatial::COBox2D;
 
-// Vector arithmetic on the box's points (component by component).
-static inline CVector2D operator*(CVector2D v, f32 s) {
-    return {v.x * s, v.y * s};
-}
-static inline CVector2D operator+(CVector2D a, CVector2D b) {
-    return {a.x + b.x, a.y + b.y};
-}
-static inline CVector2D operator-(CVector2D a, CVector2D b) {
-    return {a.x - b.x, a.y - b.y};
-}
-
 // Corner `index` of the box: centre -/+ half the size along axis_x (minus for 0 and 3), then -/+
 // half the size along axis_y (minus for 0 and 1); the origin for any other index.
-// NON_MATCHING(minor): register allocation only (the original keeps 0.5 in s0 and the point in s1/s2,
-// ours in s2 and s0/s1); the same instructions in the same order.
 UnkVec2Result fn_7100110420(const COBox2D* self, u32 index) {
     CVector2D p;
     switch (index) {

@@ -1,9 +1,9 @@
 #include "base/global/CStrId.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-extern "C" f32 sqrtf(f32);
 
 using base::global::CStrId;
 
@@ -134,21 +134,10 @@ UnkVec3f fn_710097c53c(UnkFollower_b0197* self, const UnkFollowTarget_b0197* tar
     f32 tx = target->x_0x44;
     f32 ty = target->y_0x54;
     f32 tz = target->z_0x64;
-    f32 dx, dy, dz;
-    {
-        UnkVec3f p = actor->vf_0x188();
-        dx = tx - p.x;
-        dy = ty - p.y;
-        dz = tz - p.z;
-    }
-    f32 len = sqrtf(dx * dx + dy * dy + dz * dz);
-    f32 inv = 1.0f / (len + 0.0001f);
-    f32 ux = dx * inv;
-    f32 uy = dy * inv;
-    f32 uz = dz * inv;
-    f32 sx = reach * ux;
-    f32 sy = reach * uy;
-    f32 sz = reach * uz;
+    UnkVec3f u = Normalized(UnkVec3f(tx, ty, tz) - actor->vf_0x188());
+    f32 sx = reach * u.x;
+    f32 sy = reach * u.y;
+    f32 sz = reach * u.z;
     UnkVec3f q = actor->vf_0x188();
     return UnkVec3f(sx + q.x, sy + q.y, sz + q.z);
 }

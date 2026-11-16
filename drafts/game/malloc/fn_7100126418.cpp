@@ -1,7 +1,7 @@
 // malloc unit: closest points between two bounded lines in the plane (each a unit direction and a
 // half-length, the second offset from the first): the two parameters, the two points and the gap
 // between them. Names and layouts are placeholders.
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -10,20 +10,6 @@ static inline CVector2D operator*(f32 s, const CVector2D& v) {
     CVector2D r;
     r.x = s * v.x;
     r.y = s * v.y;
-    return r;
-}
-
-static inline CVector2D operator+(const CVector2D& a, const CVector2D& b) {
-    CVector2D r;
-    r.x = a.x + b.x;
-    r.y = a.y + b.y;
-    return r;
-}
-
-static inline CVector2D operator-(const CVector2D& a, const CVector2D& b) {
-    CVector2D r;
-    r.x = a.x - b.x;
-    r.y = a.y - b.y;
     return r;
 }
 
