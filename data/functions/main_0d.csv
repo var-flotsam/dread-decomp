@@ -3236,28 +3236,28 @@ address,size,name,name_source,subsystem,status
 0x7100d6d3e0,60,fn_7100d6d3e0,unknown,unknown,O
 0x7100d6d41c,4,fn_7100d6d41c,unknown,unknown,O
 0x7100d6d420,16,fn_7100d6d420,unknown,unknown,O
-0x7100d6d430,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::Equals",reflection,engine/reflection,O
-0x7100d6d444,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::Hash",reflection,engine/reflection,O
-0x7100d6d44c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
-0x7100d6d460,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::Construct",reflection,engine/reflection,O
-0x7100d6d468,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::CopyConstruct",reflection,engine/reflection,O
-0x7100d6d474,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::MoveConstruct",reflection,engine/reflection,O
-0x7100d6d480,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::Destroy",reflection,engine/reflection,O
-0x7100d6d484,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
-0x7100d6d498,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
+0x7100d6d430,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::Equals",reflection,engine/reflection,O
+0x7100d6d444,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::Hash",reflection,engine/reflection,O
+0x7100d6d44c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
+0x7100d6d460,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::Construct",reflection,engine/reflection,O
+0x7100d6d468,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100d6d474,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100d6d480,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::Destroy",reflection,engine/reflection,O
+0x7100d6d484,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100d6d498,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100d6d4ac,360,fn_7100d6d4ac,unknown,unknown,O
 0x7100d6d614,60,fn_7100d6d614,unknown,unknown,O
 0x7100d6d650,4,fn_7100d6d650,unknown,unknown,O
 0x7100d6d654,16,fn_7100d6d654,unknown,unknown,O
-0x7100d6d664,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
-0x7100d6d678,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
-0x7100d6d680,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
-0x7100d6d694,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::Construct",reflection,engine/reflection,O
-0x7100d6d69c,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::CopyConstruct",reflection,engine/reflection,O
-0x7100d6d6a8,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::MoveConstruct",reflection,engine/reflection,O
-0x7100d6d6b4,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
-0x7100d6d6b8,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
-0x7100d6d6cc,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
+0x7100d6d664,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
+0x7100d6d678,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
+0x7100d6d680,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
+0x7100d6d694,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::Construct",reflection,engine/reflection,O
+0x7100d6d69c,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::CopyConstruct",reflection,engine/reflection,O
+0x7100d6d6a8,12,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::MoveConstruct",reflection,engine/reflection,O
+0x7100d6d6b4,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
+0x7100d6d6b8,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
+0x7100d6d6cc,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100d6d6e0,364,fn_7100d6d6e0,unknown,unknown,O
 0x7100d6d84c,60,fn_7100d6d84c,unknown,unknown,O
 0x7100d6d888,4,fn_7100d6d888,unknown,unknown,O
@@ -3363,24 +3363,24 @@ address,size,name,name_source,subsystem,status
 0x7100d6f7f8,8,fn_7100d6f7f8,unknown,unknown,O
 0x7100d6f800,80,fn_7100d6f800,unknown,unknown,O
 0x7100d6f850,84,fn_7100d6f850,unknown,unknown,O
-0x7100d6f8a4,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::Count",reflection,engine/reflection,O
+0x7100d6f8a4,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::Count",reflection,engine/reflection,O
 0x7100d6f8ac,208,fn_7100d6f8ac,unknown,unknown,O
 0x7100d6f97c,252,fn_7100d6f97c,unknown,unknown,O
 0x7100d6fa78,252,fn_7100d6fa78,unknown,unknown,O
 0x7100d6fb74,4,fn_7100d6fb74,unknown,unknown,O
 0x7100d6fb78,48,fn_7100d6fb78,unknown,unknown,O
-0x7100d6fba8,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::Find",reflection,engine/reflection,O
-0x7100d6fc00,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::SetCopy",reflection,engine/reflection,O
-0x7100d6fc58,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::SetMove",reflection,engine/reflection,O
-0x7100d6fcb0,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::Equals",reflection,engine/reflection,O
-0x7100d6fcbc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::Hash",reflection,engine/reflection,O
+0x7100d6fba8,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::Find",reflection,engine/reflection,O
+0x7100d6fc00,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::SetCopy",reflection,engine/reflection,O
+0x7100d6fc58,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::SetMove",reflection,engine/reflection,O
+0x7100d6fcb0,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::Equals",reflection,engine/reflection,O
+0x7100d6fcbc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::Hash",reflection,engine/reflection,O
 0x7100d6fcc4,12,fn_7100d6fcc4,unknown,unknown,O
-0x7100d6fcd0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::Construct",reflection,engine/reflection,O
+0x7100d6fcd0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::Construct",reflection,engine/reflection,O
 0x7100d6fcd4,4,fn_7100d6fcd4,unknown,unknown,O
 0x7100d6fcd8,240,fn_7100d6fcd8,unknown,unknown,O
 0x7100d6fdc8,384,fn_7100d6fdc8,unknown,unknown,O
-0x7100d6ff48,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::Begin",reflection,engine/reflection,O
-0x7100d6ff54,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::End",reflection,engine/reflection,O
+0x7100d6ff48,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::Begin",reflection,engine/reflection,O
+0x7100d6ff54,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::End",reflection,engine/reflection,O
 0x7100d6ff5c,16,fn_7100d6ff5c,unknown,unknown,O
 0x7100d6ff6c,12,fn_7100d6ff6c,unknown,unknown,O
 0x7100d6ff80,1428,fn_7100d6ff80,unknown,unknown,O
@@ -4067,7 +4067,7 @@ address,size,name,name_source,subsystem,status
 0x7100d867f0,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>>::MoveConstruct",reflection,engine/reflection,O
 0x7100d86834,4,fn_7100d86834,unknown,unknown,O
 0x7100d86838,48,fn_7100d86838,unknown,unknown,O
-0x7100d86868,260,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CEntity*>>::MoveAssign",reflection,engine/reflection,O
+0x7100d86868,260,fn_7100d86868,unknown,unknown,O
 0x7100d8696c,352,fn_7100d8696c,unknown,unknown,O
 0x7100d86acc,252,fn_7100d86acc,unknown,unknown,O
 0x7100d86bc8,360,fn_7100d86bc8,unknown,unknown,O

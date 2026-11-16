@@ -1,0 +1,90 @@
+// Unit 287: constructor of a widget-like object: the base widget state, then the derived vtable,
+// the member at +0x108 built from the argument, an identity matrix and a zero offset, and virtual slot 0x50.
+// Names and layouts are placeholders.
+#include "base/UnkInitRecord_0x5c.h"
+#include "game/UnkSphere.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU167.h"
+#include "game/UnkTU308.h"
+#include "types.h"
+
+inline void* operator new(u64, void* p) { return p; }
+
+extern void* g_unk_7101a1f000[];
+extern void* g_unk_7101a1f8b0[];
+
+struct UnkWidgetArg;
+struct UnkWidgetMember {
+    u8 data[8];
+    UnkWidgetMember() {}
+    UnkWidgetMember(const UnkWidgetMember&) {}
+};
+
+struct UnkWidget {
+    void** vtable_0x0;
+    void* field_0x8;
+    u8 id_0x10[8];
+    u8 sub_0x18[0x5c];
+    s32 field_0x74;
+    void* field_0x78;
+    UnkSphere sub_0x80;
+    s32 field_0xd0, field_0xd4, field_0xd8, field_0xdc;
+    f32 field_0xe0;
+    s32 field_0xe4, field_0xe8, field_0xec, field_0xf0;
+    u8 flag_0xf4, flag_0xf5, flag_0xf6, flag_0xf7, flag_0xf8, flag_0xf9, flag_0xfa, flag_0xfb,
+        flag_0xfc, flag_0xfd;
+    u8 pad_0xfe[2];
+    u32 field_0x100;
+    u8 pad_0x104[4];
+    UnkWidgetMember member_0x108;
+    f32 matrix_0x110[16];
+    f32 offset_0x150[3];
+};
+
+typedef void (*UnkVf50)(UnkWidget*, int);
+
+void fn_710020a18c(UnkWidget* self, UnkWidgetArg* a) {
+    self->field_0x8 = nullptr;
+    self->vtable_0x0 = g_unk_7101a1f000 + 2;
+    fn_71000003d4(self->id_0x10, "", true);
+    fn_7100025624(self->sub_0x18);
+    self->field_0x74 = -1;
+    self->field_0x78 = nullptr;
+    fn_710021685c(&self->sub_0x80);
+    self->field_0xd0 = 0;
+    self->field_0xd4 = 0;
+    self->field_0xd8 = -1;
+    self->field_0xdc = -1;
+    self->field_0xe0 = -1.0f;
+    self->field_0xe4 = 0;
+    self->field_0xe8 = 0;
+    self->field_0xec = 0;
+    self->field_0xf0 = 0;
+    self->flag_0xf4 = 0;
+    self->flag_0xf5 = 1;
+    self->flag_0xf6 = 1;
+    self->flag_0xf7 = 1;
+    self->flag_0xf8 = 1;
+    self->flag_0xf9 = 0;
+    self->flag_0xfa = 1;
+    self->flag_0xfb = 1;
+    self->flag_0xfc = 1;
+    self->flag_0xfd = 1;
+    self->field_0x100 = 0x600d600d;
+    self->vtable_0x0 = g_unk_7101a1f8b0 + 2;
+    new (&self->member_0x108) UnkWidgetMember(fn_71001512a0(a));
+    for (int i = 0; i < 16; i++)
+        self->matrix_0x110[i] = 0.0f;
+    self->matrix_0x110[15] = 1.0f;
+    self->matrix_0x110[10] = 1.0f;
+    self->matrix_0x110[5] = 1.0f;
+    self->matrix_0x110[0] = 1.0f;
+    self->offset_0x150[0] = 0.0f;
+    self->offset_0x150[1] = 0.0f;
+    self->offset_0x150[2] = 0.0f;
+    fn_710021693c(&self->sub_0x80, 0.0f);
+    ((UnkVf50)self->vtable_0x0[10])(self, 1);
+    self->flag_0xf7 = 0;
+    self->flag_0xf5 = 1;
+    self->field_0xd4 = 1;
+}

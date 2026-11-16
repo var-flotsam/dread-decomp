@@ -1770,6 +1770,7 @@ namespace base::global { template <class> class CWeakPtr; }
 namespace base::spatial { class CAABox2D; }
 namespace game::logic::collision { class CCollider; }
 namespace game::logic::collision { class CShape; }
+namespace game::logic::collision { class CShapeconst; }
 namespace gameeditor { class CGameModelQueryBoard; }
 namespace gameeditor { class CGameModelRoot; }
 namespace gameeditor { class TPropertyId; }
@@ -5851,10 +5852,10 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d6d278;
 struct UnkRefl_fn_7100d6b088;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d6b088>(); }
-template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>;
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d6b088>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6d278> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6d278> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
     static constexpr UnkFn get = &fn_7100d6d3e0;
@@ -5872,10 +5873,10 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d6d4ac;
 struct UnkRefl_fn_7100d6b164;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d6b164>(); }
-template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>;
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d6b164>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6d4ac> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6d4ac> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
     static constexpr UnkFn get = &fn_7100d6d614;

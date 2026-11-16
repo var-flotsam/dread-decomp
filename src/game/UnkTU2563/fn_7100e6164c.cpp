@@ -48,7 +48,7 @@ UnkValue_0x80* fn_7100e6164c(UnkValues80ByKey* array, UnkValue_0x80* value) {
         new (&self->records[index])
             UnkIdPairRecord_le6164c(static_cast<UnkIdPairRecord_le6164c&&>(self->records[self->count - 1]));
         self->records[self->count - 1].~UnkIdPairRecord_le6164c();
-        new (&self->ids[index]) UnkStrIdMember(static_cast<UnkStrIdMember&&>(self->ids[self->count - 1]));
+        base::global::CStrId::MoveConstructReloading(reinterpret_cast<base::global::CStrId*>(&self->ids[index]), reinterpret_cast<base::global::CStrId&>(self->ids[self->count - 1]));
         self->ids[self->count - 1].~UnkStrIdMember();
     }
     --self->count;

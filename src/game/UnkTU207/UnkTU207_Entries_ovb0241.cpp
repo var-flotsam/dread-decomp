@@ -11,6 +11,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "game/UnkTU207.h"
 #include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
@@ -38,8 +39,6 @@ struct UnkController_u207 {
     UnkModel_u207* model;                    // 0x8
     base::global::CRntVector<UnkEntry_u207> entries;  // 0x10
 };
-
-void fn_710016b21c(base::global::CRntVector<UnkEntry_u207>* self, u32 capacity);
 
 // Erases the entry at `index`: its id is released, the later entries move down and the moved-from
 // ones are released again (CRntVector::EraseAt, inlined).

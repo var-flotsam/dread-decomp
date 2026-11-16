@@ -22,7 +22,6 @@
 #include "game/UnkTU2611.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU57.h"
-#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -278,7 +277,13 @@ struct UnkSetupIdText {
 };
 
 // A definition whose qualified id is kept as a string, with named sub-ids looked up in a map
-// (fn_71003327a4, game/UnkSubId_7100fc4b34.h).
+// (the same definitions as src/game_s7/fn_7100fc4b34.cpp's).
+struct UnkSubId_7100fc4b34 {
+    CStrId id;
+    u64 field_0x8;
+};
+using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
+const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 struct UnkSetupNamedDef : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;

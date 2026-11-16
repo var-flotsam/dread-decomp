@@ -22,7 +22,6 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU2611.h"
 #include "game/UnkTU57.h"
-#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -158,6 +157,13 @@ struct UnkNameSet_ovb0259 {
     UnkNamePart_ovb0259** parts;  // 0x150
     u32 count;                    // 0x158
 };
+
+struct UnkSubId_7100fc4b34 {
+    CStrId id;
+    u64 field_0x8;
+};
+using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
+const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 void fn_7100fac824(UnkNameSet_ovb0259* self, CBlackboard* blackboard) {
     UnkTypedValue v;
