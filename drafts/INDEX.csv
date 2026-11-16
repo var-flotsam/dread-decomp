@@ -480,7 +480,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e2f030,220,drafts/game/UnkTU2562/fn_7100e2f030.cpp,operations,29.1,38,lean-b5,loop induction var: original keeps the active-byte pointer and post-index fuses slot address; ours uses flags/
 0x7100e2f398,292,drafts/game/UnkTU2562/fn_7100e2f398.cpp,operations,2.7,69,pilot50,operations: second loop strength-reduced; 2 insns off; first-loop counter register
 0x7100e3d080,2088,drafts/game/UnkTU2563/fn_7100e3d080.cpp,control flow,15.1,436,fable1,
-0x7100e3e1c0,156,drafts/game/UnkTU2563/fn_7100e3e1c0.cpp,match,100.0,0,lean-b1,matches; held: declared as void fn_7100e3e1c0(UnkDashMesh*) with UnkDashMesh local to src/game/UnkDashedPathMesh.cpp; needs that layout in a header
 0x7100e50c98,392,drafts/game/UnkTU2563/fn_7100e50c98.cpp,operations,1.0,94,lean-b1,store order around the fourth vector: original zeroes its data before the third vector allocator store and kee
 0x7100e51258,688,drafts/game/UnkTU2563/fn_7100e51258.cpp,operations,71.5,47,lean-o1,second array pair (0xd8) is addressed from a pre-indexed pair base in the original (2 extra movs); first 121 i
 0x7100e536b8,348,drafts/game/UnkTU2563/fn_7100e536b8.cpp,operations,36.8,46,lean-b1,zero-init of new record: original uses unpaired 8-byte stores from base+0x5c and mul by 0x60; ours stp with sh
