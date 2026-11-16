@@ -15,7 +15,7 @@ namespace base::reflection {
 // cast at the use site (null when the type lacks that function). A named plain type takes the
 // value operations from ValueOpsDescription<T>.
 template <class G>
-struct PrimitiveTypeDescription;
+struct PrimitiveTypeDescription;  // G: the getter's tag, or the type itself (PrimitiveType<T>)
 
 // Builds the descriptor in place (a prvalue, so the static is constructed directly). The name
 // is built by the caller before the kind is hashed, as in the original.
@@ -39,6 +39,20 @@ inline CType refl_MakePrimitiveType(const base::global::CStrId& name) {
 template <class G>
 const CType& refl_GetPrimitiveType() {
     static CType s_type = refl_MakePrimitiveType<G>(base::global::CStrId(PrimitiveTypeDescription<G>::name, true));
+    return s_type;
+}
+
+// refl_GetType<T> for a plain type keyed by the C++ type it describes (int, float, ...), with
+// PrimitiveTypeDescription<T> its facts. Not inline: a description in another file names Get through an
+// explicit instantiation declaration (`extern template`), and the call stays a call, as in the original.
+template <class T>
+struct PrimitiveType {
+    static const CType& Get();
+};
+
+template <class T>
+const CType& PrimitiveType<T>::Get() {
+    static CType s_type = refl_MakePrimitiveType<T>(base::global::CStrId(PrimitiveTypeDescription<T>::name, true));
     return s_type;
 }
 
