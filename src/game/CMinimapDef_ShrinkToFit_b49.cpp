@@ -7,6 +7,7 @@
 #include <new>
 
 #include "../game_aca57c/UnkBufferString.h"
+#include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2564.h"
@@ -25,7 +26,6 @@ struct UnkMovedStrId_b49 {
     }
 };
 
-extern void* g_unk_7101a1b678[];
 using UnkString40_b49 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
 // Copied as a block.

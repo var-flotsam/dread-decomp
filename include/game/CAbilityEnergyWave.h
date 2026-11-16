@@ -32,3 +32,6 @@ UnkWeakTarget* fn_7100302014(void* owner);
 UnkWeakTarget* fn_7100303054(void* owner);  // Looks the component up in the owner.
 // Points the handle in `holder` at the weak handle of that component, unless it still has a target.
 void fn_71002fd814(void* owner, UnkWeakHandle** holder);
+// The ability's tunables (CAbilityEnergyWave::CTunableAbilityEnergyWave).
+struct UnkTunableValue_ovb0262g;
+extern UnkTunableValue_ovb0262g g_unk_71726af060;

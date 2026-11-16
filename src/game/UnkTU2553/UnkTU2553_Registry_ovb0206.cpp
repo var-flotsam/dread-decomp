@@ -44,6 +44,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2559.h"
 #include "game/UnkTU2571.h"
+#include "game/UnkTU2727.h"
 #include "game/UnkTU2733.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
@@ -1033,7 +1034,6 @@ struct UnkCompared_0x30;
 static inline bool Equal(const CRntString* a, const CRntString* b) {
     return fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(a), reinterpret_cast<const UnkCompared_0x30*>(b));
 }
-UnkNamedUser* fn_7101190890(UnkNamedObject* self, CRntString name);
 
 // The pooled data behind a string id as its text accessor sees it.
 struct UnkIdTextData {
