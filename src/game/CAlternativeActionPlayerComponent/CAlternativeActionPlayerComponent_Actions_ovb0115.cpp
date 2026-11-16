@@ -7,6 +7,7 @@
 // entry's animation once a random draw falls under its building chance. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkDeferredSet.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -78,15 +79,14 @@ struct UnkAltActionRect_ovb0115 {
 };
 
 // The parallel arrays of CAlternativeActionPlayerComponent_Add_A3_b74.cpp (UnkAltActionArrays_A3_b74).
-struct UnkAltActionArrays_ovb0115 {
-    UnkAltActionRect_ovb0115* rects;  // 0x0
-    CStrId* ids;                      // 0x8
-    u32 count;                        // 0x10
-    u32 capacity;                     // 0x14
-    u32 step;                         // 0x18
-    u32 flags;                        // 0x1c
-    base::UnkAllocator* allocator;    // 0x20
-};
+// rects: 0x0
+// ids: 0x8
+// count: 0x10
+// capacity: 0x14
+// step: 0x18
+// flags: 0x1c
+// allocator: 0x20
+using UnkAltActionArrays_ovb0115 = base::global::CRntSmallDictionary<CStrId, UnkAltActionRect_ovb0115>;
 
 struct UnkAltActionArrays_A3_b74;
 
@@ -98,11 +98,11 @@ void fn_710071263c(UnkAltActionArrays_A3_b74* arrays, u32 capacity) {
     UnkAltActionRect_ovb0115* rects = static_cast<UnkAltActionRect_ovb0115*>(
         self->allocator->vf_0x40((u64)capacity * sizeof(UnkAltActionRect_ovb0115), 8, self->flags));
     CStrId* ids = static_cast<CStrId*>(self->allocator->vf_0x40((u64)capacity * sizeof(CStrId), 8, self->flags));
-    if (self->rects) {
-        __builtin_memcpy(rects, self->rects, (u64)self->count * sizeof(UnkAltActionRect_ovb0115));
-        self->allocator->vf_0x48(self->rects);
+    if (self->values) {
+        __builtin_memcpy(rects, self->values, (u64)self->count * sizeof(UnkAltActionRect_ovb0115));
+        self->allocator->vf_0x48(self->values);
     }
-    if (CStrId* src = self->ids) {
+    if (CStrId* src = self->keys) {
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j, ++src) {
             UnkStringData* data = src->data;
@@ -120,10 +120,10 @@ void fn_710071263c(UnkAltActionArrays_A3_b74* arrays, u32 capacity) {
                 src->data = &pool->empty;
             }
         }
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->rects = rects;
-    self->ids = ids;
+    self->values = rects;
+    self->keys = ids;
     self->capacity = capacity;
 }
 

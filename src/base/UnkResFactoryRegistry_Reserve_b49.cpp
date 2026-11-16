@@ -4,6 +4,7 @@
 // released. Names and layouts are placeholders.
 #include <new>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU27.h"
@@ -65,15 +66,7 @@ struct UnkRegistryEntry : UnkRegistryEntryHead {
 };
 static_assert(sizeof(UnkRegistryEntry) == 0x48, "UnkRegistryEntry layout");
 
-struct UnkRegistryEntries {
-    UnkRegistryEntry* values;
-    UnkRegistryEntryId<&g_unk_7101d47108>* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkRegistryEntries = base::global::CRntSmallDictionary<UnkRegistryEntryId<&g_unk_7101d47108>, UnkRegistryEntry>;
 
 void fn_7100022e2c(UnkRegistryEntries* self, u32 capacity) {
     using Key = UnkRegistryEntryId<&g_unk_7101d47108>;

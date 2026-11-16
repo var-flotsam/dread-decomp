@@ -8,6 +8,7 @@
 // src/game/CMaterialFXComponent/fn_7100926874.cpp). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkSList.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
@@ -31,15 +32,7 @@ struct UnkHydrogigaEntry_b0166 {
 };
 static_assert(sizeof(UnkHydrogigaEntry_b0166) == 0x58, "layout");
 
-struct UnkHydrogigaTable_b0166 {
-    UnkHydrogigaEntry_b0166* values;
-    base::UnkStrIdMember* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkHydrogigaTable_b0166 = base::global::CRntSmallDictionary<base::UnkStrIdMember, UnkHydrogigaEntry_b0166>;
 
 __attribute__((noinline)) void fn_71005bdf1c(UnkHydrogigaEntry_b0166* self) {
     self->field_0x50.Reset();
