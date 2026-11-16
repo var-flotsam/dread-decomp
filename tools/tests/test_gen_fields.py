@@ -4,6 +4,7 @@ Made-up sources; no game data.
 """
 
 import unittest
+from unittest import mock
 
 from tools.tests import _path  # noqa: F401
 import gen_fields
@@ -67,6 +68,14 @@ void refl_AddFields(CClass* cls) {
         self.assertEqual([gen_fields.type_name(e, getters, objects) for e in
                           ("fn_7100000abc()", "&g_unk_7101d00010", "fn_7100000999()", "&g_unk_7101d00020")],
                          ["float", "game::EKind", "fn_7100000999()", "&g_unk_7101d00020"])
+
+    def test_type_names_of_keyed_descriptions(self):
+        source = ("template <>\n"
+                  "struct base::reflection::PrimitiveTypeDescription<unsigned int> "
+                  ": base::reflection::ValueOpsDescription<unsigned int> {\n"
+                  '    static constexpr const char* name = "unsigned";\n};\n')
+        with mock.patch.object(gen_fields, "keyed_getters", return_value={"unsigned int": 0x7100000222}):
+            self.assertEqual(gen_fields.getter_names([], [source]), {0x7100000222: "unsigned"})
 
     def test_layout_includes_the_bases(self):
         rows = [{"class": "game::CNode", "offset": "0x10", "name": "eKind", "type": "game::EKind"},
