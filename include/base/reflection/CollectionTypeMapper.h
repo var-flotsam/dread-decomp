@@ -8,16 +8,18 @@
 // An element iterator is the element it is at, null at the end; every collection kind's is the same
 // eight bytes. The element is untyped here because reflection reaches it only through the pointee's
 // descriptor. A key-element iterator (an index, the element, and the key and element as they are read)
-// is laid out per collection kind and is not written yet.
+// is laid out per collection kind: a vector's is base::UnkCollectionIter (base/UnkCollectionIter.h), a keyed
+// collection's is not written yet.
 //
 // The descriptor's own functions (its CType value slots and CCollectionType's accessors, from +0x108)
 // are the mapper's static members, one instantiation per collection type. They are written for
 // CRntVector<T> (base/global/CRntVector.h), whose key is the element's index; a keyed collection's are
-// not written yet. ConstBegin and ConstEnd are not written yet either.
+// not written yet.
 
 #include <new>
 #include <utility>
 
+#include "base/UnkCollectionIter.h"
 #include "types.h"
 
 namespace base::reflection {
@@ -32,7 +34,10 @@ struct CollectionTypeMapper {
         const void* m_element = nullptr;
         bool operator==(const TElementConstIterator& other) const { return m_element == other.m_element; }
     };
-    struct TKeyElementIterator;
+    // A vector's key-element iterator: the index, the element, and the pair as it is read.
+    struct TKeyElementIterator : UnkCollectionIter<typename C::value_type> {
+        using UnkCollectionIter<typename C::value_type>::UnkCollectionIter;
+    };
     struct TKeyElementConstIterator;
 
     // The CType slots. Reflection creates its arrays with allocation flags 0xf.
@@ -85,6 +90,14 @@ struct CollectionTypeMapper {
         C* c = static_cast<C*>(collection);
         static_cast<TElementIterator*>(it)->m_element = c->data + c->count;
     }
+    static void ConstBegin(const void* collection, void* it) {
+        const C* c = static_cast<const C*>(collection);
+        *static_cast<TKeyElementIterator*>(it) = TKeyElementIterator(0, c->data);
+    }
+    static void ConstEnd(const void* collection, void* it) {
+        const C* c = static_cast<const C*>(collection);
+        *static_cast<TKeyElementIterator*>(it) = TKeyElementIterator(c->count, c->data + c->count);
+    }
 };
 
 // The mapper's functions under the members a collection's description gives its descriptor's constructor
@@ -111,6 +124,8 @@ struct CollectionMapperDescription {
     static constexpr auto erase = &CollectionTypeMapper<C>::Erase;
     static constexpr auto set_copy = &CollectionTypeMapper<C>::SetCopy;
     static constexpr auto set_move = &CollectionTypeMapper<C>::SetMove;
+    static constexpr auto const_begin = &CollectionTypeMapper<C>::ConstBegin;
+    static constexpr auto const_end = &CollectionTypeMapper<C>::ConstEnd;
 };
 
 }  // namespace base::reflection

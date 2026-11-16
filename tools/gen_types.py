@@ -677,7 +677,7 @@ MAPPER_SLOTS = {"construct": "Construct", "copy_construct": "CopyConstruct", "mo
                 "destroy": "Destroy", "copy_assign": "CopyAssign", "move_assign": "MoveAssign", "hash": "Hash",
                 "count": "Count", "clear": "Clear", "add_copy": "AddCopy", "add_move": "AddMove", "at": "At",
                 "find": "Find", "begin": "Begin", "end": "End", "equals": "Equals", "erase": "Erase",
-                "set_copy": "SetCopy", "set_move": "SetMove"}
+                "set_copy": "SetCopy", "set_move": "SetMove", "const_begin": "ConstBegin", "const_end": "ConstEnd"}
 # The CRntVector member each calls out of line, and its declaration (E: the element type).
 # Class elements whose header gives CollectionTypeMapper what it needs: the include a generated file adds.
 CLASS_ELEMENT_HEADERS = {"base::core::AssetName": "base/core/AssetName.h"}
