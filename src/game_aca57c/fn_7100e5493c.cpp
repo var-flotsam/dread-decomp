@@ -172,23 +172,13 @@ void fn_7100e5493c(UnkRecord60Array* self, const UnkRecord60Array& other) {
     new (self) UnkRecord60Array(other);
 }
 
-// A plain array of the records (base::global::CRntVector's layout) with an out-of-line Reserve
-// (fn_7100e52b58): appends a copy, growing like PushBack (including its hang).
-struct UnkRecord60List {
-    UnkRecord60* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-void fn_7100e52cf4(UnkRecord60List* self, const UnkRecord60* value) {
+// Appends a copy to a plain array of the records with an out-of-line Reserve (fn_7100e52b58),
+// growing like PushBack (including its hang).
+void fn_7100e52cf4(base::global::CRntVector<UnkRecord60>* self, const UnkRecord60* value) {
     u32 n = self->count;
     u32 new_capacity = self->capacity;
     if (new_capacity <= n && self->step != 0)
-        new_capacity = (n / self->step + 1) * self->step;
+        new_capacity = self->GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }

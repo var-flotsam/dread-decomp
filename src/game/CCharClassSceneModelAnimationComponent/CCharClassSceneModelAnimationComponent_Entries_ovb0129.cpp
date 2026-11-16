@@ -47,17 +47,7 @@ struct UnkEntry_b0129 {
 };
 static_assert(sizeof(UnkEntry_b0129) == 0x50, "entry size");
 
-struct UnkEntryArray_b0129 {
-    UnkEntry_b0129* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool growable;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-void fn_71009f24c0(UnkEntryArray_b0129* self, u32 n) {
+void fn_71009f24c0(base::global::CRntVector<UnkEntry_b0129>* self, u32 n) {
     if (self->capacity < n) {
         UnkEntry_b0129* p =
             static_cast<UnkEntry_b0129*>(self->allocator->vf_0x40((u64)n * sizeof(UnkEntry_b0129), 8, self->flags));

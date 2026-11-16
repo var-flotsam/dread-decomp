@@ -16,23 +16,13 @@ struct UnkTileRecordElem_b43a2 {
     u8 unk_0x0[0x48];
 };
 
-struct UnkTileRecordArray_b43a2 {
-    UnkTileRecordElem_b43a2* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-void fn_71007613d8(UnkTileRecordArray_b43a2* self, u32 capacity);
+void fn_71007613d8(base::global::CRntVector<UnkTileRecordElem_b43a2>* self, u32 capacity);
 void fn_71007582a4(UnkTileRecordElem_b43a2* self);
 
-static inline void Grow_b43a2(UnkTileRecordArray_b43a2* self, u32 index) {
+static inline void Grow_b43a2(base::global::CRntVector<UnkTileRecordElem_b43a2>* self, u32 index) {
     u32 capacity = self->capacity;
     if (capacity <= index && self->step != 0)
-        capacity = (index / self->step + 1) * self->step;
+        capacity = self->GrownCapacity(index);
     fn_71007613d8(self, capacity);
     u32 n = index + 1;
     fn_71007613d8(self, n);
@@ -41,7 +31,8 @@ static inline void Grow_b43a2(UnkTileRecordArray_b43a2* self, u32 index) {
     self->count = n;
 }
 
-void fn_710075e39c(UnkTileRecordArray_b43a2* self, const u32* index, UnkTileRecordElem_b43a2* value) {
+void fn_710075e39c(base::global::CRntVector<UnkTileRecordElem_b43a2>* self, const u32* index,
+                   UnkTileRecordElem_b43a2* value) {
     u32 i = *index;
     if (self->field_0x14 && self->count <= i)
         Grow_b43a2(self, i);

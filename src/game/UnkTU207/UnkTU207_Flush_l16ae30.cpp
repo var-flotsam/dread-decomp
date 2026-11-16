@@ -50,7 +50,7 @@ static inline UnkEntry_u207& GrowAt(base::global::CRntVector<UnkEntry_u207>& v, 
     if (v.field_0x14 && v.count <= index) {
         u32 cap = v.capacity;
         if (cap <= index && v.step != 0)
-            cap = (index / v.step + 1) * v.step;
+            cap = v.GrownCapacity(index);
         fn_710016b21c(&v, cap);
         fn_710016b21c(&v, index + 1);
         for (u32 i = v.count; i < index + 1; ++i) {

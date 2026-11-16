@@ -32,7 +32,7 @@ UnkNavRecord_l28d970* fn_710028d970(base::global::CRntVector<UnkNavRecord_l28d97
         // First to the next multiple of the step, then to exactly index + 1 records.
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0) {
-            u32 grown = (index / self->step + 1) * self->step;
+            u32 grown = self->GrownCapacity(index);
             if (cap < grown) {
                 self->Reserve(grown);
                 cap = grown;

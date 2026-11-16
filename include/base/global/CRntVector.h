@@ -181,6 +181,46 @@ struct CRntVector {
     // Destroys the elements, keeping the array.
     void Clear() { Truncate(0); }
 
+    // The element at `index`, without growing (GrowAt grows).
+    T& operator[](u32 index) { return data[index]; }
+    const T& operator[](u32 index) const { return data[index]; }
+
+    T* begin() { return data; }
+    T* end() { return data + count; }
+    const T* begin() const { return data; }
+    const T* end() const { return data + count; }
+
+    // The capacity a full array grows to when it holds `n` elements: the next multiple of the step
+    // above n (the growth of PushBack, EmplaceBack and Insert).
+    u32 GrownCapacity(u32 n) const { return (n / step + 1) * step; }
+
+    // Grows the array to exactly `n` elements, value-initialising the new ones; a smaller `n` only
+    // lowers the count, destroying nothing (the bucket array of the map constructor in
+    // src/game/CPowerBombMovement/CPowerBombMovement_Map_ovb0015.cpp).
+    void Resize(u32 n) {
+        u32 old = count;
+        if (old < n) {
+            T* p;
+            if (capacity >= n) {
+                p = data;
+            } else {
+                p = MoveTo(n);
+                capacity = n;
+                old = count;
+                data = p;
+            }
+            if constexpr (kTrivial) {
+                __builtin_memset(p + old, 0, (u64)(n - old) * sizeof(T));
+            } else {
+                for (u32 i = old; i < n; ++i)
+                    new (&p[i]) T();
+            }
+        } else if (old == n) {
+            return;
+        }
+        count = n;
+    }
+
     // Takes over other's array after destroying the elements (the old array is not freed;
     // fn_71002b9bbc and its copies).
     CRntVector& operator=(CRntVector&& other) {

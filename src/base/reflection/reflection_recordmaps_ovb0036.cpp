@@ -309,19 +309,9 @@ struct UnkHashedKeyData_ovb0036 {
 };
 
 // The node's value: a vector, moved in.
-struct UnkNodeValue_ovb0036 {
-    u64* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 struct UnkKeyNode_ovb0036 {
     UnkStringData* key;
-    UnkNodeValue_ovb0036 value;  // 0x8
+    base::global::CRntVector<u64> value;  // 0x8
     UnkKeyNode_ovb0036* prev;   // 0x30
     UnkKeyNode_ovb0036* next;   // 0x38
     UnkKeyNode_ovb0036* chain;  // 0x40
@@ -382,7 +372,7 @@ struct UnkKeyNodeOwner_ovb0036 {
     UnkKeyNodeMap_ovb0036 map;  // 0x30
 };
 
-UnkNodeValue_ovb0036* fn_710025c1a4(UnkKeyNodeOwner_ovb0036* self, UnkStringData* const* key) {
+base::global::CRntVector<u64>* fn_710025c1a4(UnkKeyNodeOwner_ovb0036* self, UnkStringData* const* key) {
     UnkKeyNodeMap_ovb0036* map = &self->map;
     map->Erase(*key);
     base::UnkAllocator* allocator = fn_7100083990();

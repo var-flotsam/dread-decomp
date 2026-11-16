@@ -1,6 +1,7 @@
 // Unit 2510: empties an owner of reference-counted pointer arrays without freeing their storage. It first
 // unlinks every target that still points back at the owner, then releases each array's references.
 // Names and layouts are placeholders.
+#include "base/global/CRntVectorReloading.h"
 #include "game/UnkTU107.h"
 #include "types.h"
 
@@ -24,16 +25,8 @@ struct UnkRefObj_ld5afa4 {
     virtual void vf_0x10();
 };
 
-struct UnkRefArray_ld5afa4 {
-    UnkRefObj_ld5afa4** data;
-    union {
-        u32 count;
-    };
-    u32 capacity;
-
-    UnkRefObj_ld5afa4** begin() { return data; }
-    UnkRefObj_ld5afa4** end() { return data + count; }
-
+// The original reloads the count after each release (base/global/CRntVectorReloading.h).
+struct UnkRefArray_ld5afa4 : base::global::CRntVectorReloading<UnkRefObj_ld5afa4*> {
     inline void Unlink(UnkOwner_ld5afa4* owner) {
         if (count == 0)
             return;
@@ -68,22 +61,20 @@ struct UnkPlainArray_ld5afa4 {
 struct UnkHolder_ld5afa4 {
     u8 pad_0x0[0x10];
     UnkRefArray_ld5afa4 a;  // 0x10
-    u8 pad_0x20[0x70];
+    u8 pad_0x38[0x58];
 };
 
 struct UnkOwner_ld5afa4 {
     u8 pad_0x0[0x8];
     UnkRefArray_ld5afa4 a;  // 0x8
-    u8 pad_0x18[0x18];
     UnkRefArray_ld5afa4 b;  // 0x30
-    u8 pad_0x40[0x1c];
+    u8 pad_0x58[0x4];
     u32 field_0x5c;
     UnkPlainArray_ld5afa4 plain;  // 0x60
     u8 pad_0x70[0x18];
     u8 field_0x88;
     u8 pad_0x89[0x7];
     UnkRefArray_ld5afa4 d;  // 0x90
-    u8 pad_0xa0[0x18];
     u32 element_count;  // 0xb8
     u8 elements[0x90];  // 0xbc, UnkHolder_ld5afa4 records
 };

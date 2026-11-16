@@ -224,18 +224,8 @@ void fn_7100decc8c(UnkGameManager* self) {
 // list, and zeroes the count. Names and layouts are placeholders.
 using base::global::CStrId;
 
-struct UnkRefList_de92e8 {
-    UnkRefObject** data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 struct UnkRefListMap_de92e8 {
-    UnkRefList_de92e8* values;
+    base::global::CRntVector<UnkRefObject*>* values;
     CStrId* keys;
     u32 count;
 };
@@ -247,7 +237,7 @@ void fn_7100de92e8(UnkRefListMap_de92e8* self) {
     }
     if (self->values && self->count) {
         for (u64 i = 0; i < self->count; ++i) {
-            UnkRefList_de92e8* list = &self->values[i];
+            base::global::CRntVector<UnkRefObject*>* list = &self->values[i];
             if (list->data) {
                 for (u64 j = 0; j < list->count; ++j) {
                     if (UnkRefObject* object = list->data[j]) {

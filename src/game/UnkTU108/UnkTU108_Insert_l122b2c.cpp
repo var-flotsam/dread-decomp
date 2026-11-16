@@ -31,7 +31,7 @@ void fn_7100122b2c(UnkInsertTarget* self, const UnkArgObj* point, u32 index) {
         UnkVec3f* p;
         u32 new_capacity = cap;
         if (cap <= n && v->step != 0)
-            new_capacity = (index / v->step + 1) * v->step;
+            new_capacity = v->GrownCapacity(index);
         if ((s32)new_capacity <= (s32)index)
             for (;;) {
             }
@@ -46,7 +46,7 @@ void fn_7100122b2c(UnkInsertTarget* self, const UnkArgObj* point, u32 index) {
         new (&p[index]) UnkVec3f(value);
     } else {
         if (cap <= n && v->step != 0) {
-            u32 grown = (n / v->step + 1) * v->step;
+            u32 grown = v->GrownCapacity(n);
             if (cap < grown) {
                 UnkVec3f* q = MoveTo(v, grown);
                 v->data = q;

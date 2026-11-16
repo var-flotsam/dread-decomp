@@ -44,15 +44,7 @@ struct UnkRefPtr {
     }
 };
 
-struct UnkRefPtrArray {
-    UnkRefPtr* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkRefPtrArray = base::global::CRntVector<UnkRefPtr>;
 
 static inline void Reserve(UnkRefPtrArray* self, u32 capacity) {
     if (self->capacity >= capacity)

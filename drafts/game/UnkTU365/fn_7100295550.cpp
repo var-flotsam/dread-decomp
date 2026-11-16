@@ -21,19 +21,9 @@ struct UnkElem_l295550 {
 };
 static_assert(sizeof(UnkElem_l295550) == 0x48, "layout");
 
-struct UnkArray_l295550 {
-    UnkElem_l295550* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+void fn_710011f1ec(base::global::CRntVector<UnkElem_l295550>* self, u32 capacity);
 
-void fn_710011f1ec(UnkArray_l295550* self, u32 capacity);
-
-UnkElem_l295550* fn_7100295550(UnkArray_l295550* self, u32 index) {
+UnkElem_l295550* fn_7100295550(base::global::CRntVector<UnkElem_l295550>* self, u32 index) {
     if (self->field_0x14 && self->count <= index) {
         u32 capacity = self->capacity;
         if (capacity <= index && self->step != 0)
