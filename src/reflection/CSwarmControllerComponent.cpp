@@ -27,9 +27,9 @@ namespace CSwarmControllerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x40, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x88, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 3);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
     DREAD_REFLECTED_FIELD(f32, "fGroupVelocity", 0x1a0, (DefaultValue, 150.0f));
 }
 bool refl_Equals(const void*, const void*) { return false; }

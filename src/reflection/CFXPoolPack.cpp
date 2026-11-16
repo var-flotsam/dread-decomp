@@ -27,7 +27,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 // CFXPoolPack
 namespace CFXPoolPack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CFXPool::CDefinition>", "lPoolDefinitions", 0x0);
@@ -63,7 +63,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFile", 0x0, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eType", true), &g_unk_71727b8dd8, 0x8, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727b8dd8, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727b8dd8, 0);
     DREAD_REFLECTED_FIELD(u32, "uSize", 0xc, (DefaultValue, 1));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

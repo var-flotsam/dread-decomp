@@ -75,15 +75,6 @@ static inline CVector2D Vec(f32 x, f32 y) {
     v.y = y;
     return v;
 }
-static inline CVector2D operator+(const CVector2D& a, const CVector2D& b) {
-    return Vec(a.x + b.x, a.y + b.y);
-}
-static inline CVector2D operator-(const CVector2D& a, const CVector2D& b) {
-    return Vec(a.x - b.x, a.y - b.y);
-}
-static inline CVector2D operator*(const CVector2D& a, f32 s) {
-    return Vec(a.x * s, a.y * s);
-}
 
 static inline const f32& Max(const f32& a, const f32& b) {
     return a > b ? a : b;

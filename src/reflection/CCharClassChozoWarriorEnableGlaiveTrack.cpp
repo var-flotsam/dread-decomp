@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassChozoWarriorEnableGlaiveTrack
 namespace CCharClassChozoWarriorEnableGlaiveTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Enable CW Glaive");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Chozo Warrior", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Enable CW Glaive");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Chozo Warrior", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTipOffset", 0x18, (DefaultValue, 290.0f));

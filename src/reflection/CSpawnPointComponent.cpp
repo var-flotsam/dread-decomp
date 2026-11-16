@@ -44,7 +44,7 @@ void fn_71011329bc();
 void fn_7101132a0c();
 namespace CSpawnPointComponent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<bool>(fn_7100091e50(), true);
+    fn_710009dd6c(cls)->Add<bool>(base::reflection::attr::SPointChClassSelectEnabled(), true);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnBeforeGenerate", 0xa8, (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
@@ -59,15 +59,15 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x115, (DefaultValue, true), (Persistence, 0), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(bool, "bAutomanaged", 0x27c, (DefaultValue, false));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("wpSceneShapeId", true), &g_unk_717269bb48, 0x120, -1, -1);
-    field11->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     UnkReflField* field12 = fn_7100096524(cls, CStrId("wpCollisionSceneShapeId", true), &g_unk_717269bb48, 0x170, -1, -1);
-    field12->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field12->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     UnkReflField* field13 = fn_7100096524(cls, CStrId("wpNavigableShape", true), &g_unk_717269bb48, 0x1b8, -1, -1);
-    field13->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field13->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     UnkReflField* field14 = fn_7100096524(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0x1f8, -1, -1);
-    field14->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field14->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     UnkReflField* field15 = fn_7100096524(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0x238, -1, -1);
-    field15->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field15->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     DREAD_REFLECTED_FIELD(f32, "fTimeOnAOIEndToUseAsMainAOI", 0x278, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpawnFromXCellProbability", 0x2bc, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpawnFromXCellProbabilityAfterFirst", 0x2c0, (DefaultValue, 0.0f));
@@ -75,8 +75,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bUseDynamicSpawnPosition", 0x351, (DefaultValue, false));
     DREAD_REFLECTED_FIELD_OF("CSpawnPointComponent::EDynamicSpawnPositionMode", "eDynamicSpawnPositionMode", 0x354, (DefaultValue, 1));
     UnkReflField* field22 = fn_7100096524(cls, CStrId("tDynamicSpawnPositions", true), &g_unk_717269bf08, 0x358, -1, -1);
-    field22->attrs.Add<bool>(fn_7100090090(), false);
-    field22->attrs_0x70.Add<bool>(fn_710025dbb0(), true);
+    field22->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
+    field22->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetDynamicSpawnPositionOverride", true)))
         fn_71011255e4(fn, "SetDynamicSpawnPositionOverride");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ResetDynamicSpawnPositionOverride", true))) {
@@ -87,10 +87,10 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101132780);
     }
     UnkReflField* field23 = fn_7100096524(cls, CStrId("tXCellTransformTargets", true), &g_unk_717269bf08, 0x2c8, -1, -1);
-    field23->attrs.Add<bool>(fn_7100090090(), false);
-    field23->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 3);
+    field23->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
+    field23->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);
     UnkReflField* field24 = fn_7100096524(cls, CStrId("wpXCellActivationAreaShape", true), &g_unk_717269bb48, 0x2f0, -1, -1);
-    field24->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field24->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCharClass_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sCharClass_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();

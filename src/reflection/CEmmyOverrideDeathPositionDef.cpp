@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -27,9 +28,9 @@ namespace CEmmyOverrideDeathPositionDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpLandmark", true), &g_unk_717269bb48, 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x48, -1, -1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -62,11 +63,11 @@ namespace CEmmyAutoForbiddenEdgesDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCheckSamusLogicShape", true), &g_unk_717269bb48, 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpCheckEmmyLogicShape", true), &g_unk_717269bb48, 0x48, -1, -1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("tForbiddenLogicShapes", true), &g_unk_717269bf08, 0x88, -1, -1);
-    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("tWeightedLogicShapeIDs", true), &g_unk_7101d5c998, 0xb0, -1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -98,11 +99,11 @@ namespace CEmmyAutoGlobalSmartLinkDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpStartLandmark", true), &g_unk_717269bb48, 0x8, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("tEndLandmarks", true), &g_unk_717269bf08, 0x48, -1, -1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpActivateLogicShape", true), &g_unk_717269bb48, 0x70, -1, -1);
-    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -25,7 +25,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<c
 // msapi::material::SAlpha
 namespace msapi::material::SAlpha {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Alpha Test");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Alpha Test");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
@@ -59,7 +59,7 @@ DREAD_REFLECTED_CLASS(msapi::material::SAlpha, base::core::CBaseObject);
 // msapi::material::SBlend
 namespace msapi::material::SBlend {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Alpha Blend");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Alpha Blend");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
@@ -94,7 +94,7 @@ DREAD_REFLECTED_CLASS(msapi::material::SBlend, base::core::CBaseObject);
 // msapi::material::SCull
 namespace msapi::material::SCull {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Backface Culling");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Backface Culling");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("msapi::api::types::cullMode::ECullMode", "eMode", 0x8, (DefaultValue, 2), (Persistence, 1));
@@ -126,7 +126,7 @@ DREAD_REFLECTED_CLASS(msapi::material::SCull, base::core::CBaseObject);
 // msapi::material::SStencil
 namespace msapi::material::SStencil {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Stencil Operation");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Stencil Operation");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x8, (DefaultValue, false), (Persistence, 1));
@@ -165,7 +165,7 @@ DREAD_REFLECTED_CLASS(msapi::material::SStencil, base::core::CBaseObject);
 // msapi::material::SDepth
 namespace msapi::material::SDepth {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Depth Test Mode");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Depth Test Mode");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bTest", 0x8, (DefaultValue, true), (Persistence, 1));
@@ -200,7 +200,7 @@ DREAD_REFLECTED_CLASS(msapi::material::SDepth, base::core::CBaseObject);
 // msapi::material::SFill
 namespace msapi::material::SFill {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Fill Mode");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Fill Mode");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("msapi::api::types::fillMode::EFillMode", "eFillMode", 0x8, (DefaultValue, 0), (Persistence, 1));
@@ -234,12 +234,12 @@ extern base::reflection::CType g_unk_7101d679f0;
 const base::reflection::CType* fn_7100008500();
 namespace msapi::material::SConstant {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Constant");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Constant");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("cType", true), &base::reflection::PrimitiveType<char>::Get(), 0x10, -1, -1);
-    field1->attrs.AddTyped<u8, &fn_7100008500>(fn_7100075240(), 102);
+    field1->attrs.AddTyped<u8, &fn_7100008500>(base::reflection::attr::DefaultValue(), 102);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
@@ -269,7 +269,7 @@ DREAD_REFLECTED_CLASS(msapi::material::SConstant, base::core::CBaseObject);
 // msapi::material::SStage
 namespace msapi::material::SStage {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Surface Material Stage");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Surface Material Stage");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("msapi::api::shdr::EShaderType", "eType", 0x8, (DefaultValue, 2147483647), (Persistence, 1));
@@ -301,7 +301,7 @@ DREAD_REFLECTED_CLASS(msapi::material::SStage, base::core::CBaseObject);
 // msapi::material::STexture
 namespace msapi::material::STexture {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Texture");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Texture");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
@@ -349,8 +349,8 @@ DREAD_REFLECTED_CLASS(msapi::material::STexture, base::core::CBaseObject);
 // msapi::material::CMaterial
 namespace msapi::material::CMaterial {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Surface Material");
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x20011u);
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Surface Material");
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x20011u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));

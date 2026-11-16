@@ -6,6 +6,7 @@
 // placeholders.
 #include <math.h>
 #include "game/CMovementComponent.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -67,9 +68,8 @@ void fn_71010df1fc(UnkSteeringMovement_ovb0023* self, f32 dt) {
     v.x = ax + vx;
     v.y = ay + vy;
     v.z = az + vz;
-    f32 scale = 1.0f / (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z) + 0.0001f);
-    self->dir = UnkVec3f(v.x * scale, v.y * scale, v.z * scale);
-    f32 len = sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+    self->dir = Normalized(v);
+    f32 len = Length(v);
     self->speed = len > self->max_speed ? self->max_speed : len;
     vt = *reinterpret_cast<UnkSteeringMovementV_ovb0023**>(self);
     vt->vf_0x288(self, dt);

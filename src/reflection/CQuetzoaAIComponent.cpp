@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -26,13 +27,13 @@ namespace CQuetzoaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpShortRangePath", true), &g_unk_717269bb48, 0x14a30, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eShortRangePathType", true), &g_unk_71727bb8e8, 0x14a70, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 3);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpLongRangePath", true), &g_unk_717269bb48, 0x14a78, -1, -1);
-    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("eLongRangePathType", true), &g_unk_71727bb8e8, 0x14ab8, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 3);
+    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

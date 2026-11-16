@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassLuaCallbackEvent
 namespace CCharClassLuaCallbackEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Lua Callback");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Lua", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Lua Callback");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Lua", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sCallbackName", 0x10, (DefaultValue, CStrId(" ", true)));

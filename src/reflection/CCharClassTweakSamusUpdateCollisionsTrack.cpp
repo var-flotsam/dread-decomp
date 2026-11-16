@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakSamusUpdateCollisionsTrack
 namespace CCharClassTweakSamusUpdateCollisionsTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Samus Update Collisions");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090e60(), "Tweak");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Samus Update Collisions");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CSamusMovement::EUpdateCollisionsPhaseOrder", "eOrder", 0x18, (DefaultValue, 0), (Description, "Order to calculate collisions"));

@@ -27,8 +27,8 @@ void fn_7100be4d2c();
 void fn_7100be42fc(UnkReflFunction* fn, const char* name);
 namespace CCharClassStopAudioPresetEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Stop Preset");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Audio", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Stop Preset");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPresetID_GetterFunction", true))) {

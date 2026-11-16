@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassOverrideSpeedHyperDashTrack
 namespace CCharClassOverrideSpeedHyperDashTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Override Speed HyperDash");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("AI/State", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Override Speed HyperDash");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI/State", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x18, (DefaultValue, 1.0f), (MinValue, -50000.0f), (MaxValue, 50000.0f));

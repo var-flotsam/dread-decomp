@@ -87,12 +87,12 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("BindToGameBlackboard", true))) {
         fn_7101140d84(fn, "BindToGameBlackboard");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Bind an inventory component to a blackboard section");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Bind an inventory component to a blackboard section");
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetItemAmount", true))) {
         fn_7101140f00(fn, "SetItemAmount");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Item Amount"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Item Amount"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetItemAmount", true)))
         fn_7101140fb4(fn, "GetItemAmount");

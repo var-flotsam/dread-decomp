@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -26,24 +27,24 @@ void fn_7100e082bc(UnkReflFunction* fn, const char* name);
 void fn_7100e08438(UnkReflFunction* fn, const char* name);
 namespace CLightManager {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("dicLightDefs", true), &g_unk_71727bfc38, 0x148, -1, -1);
-    field0->attrs.Add<CStrId>(fn_71000901a0(), CStrId("sPath", true));
-    field0->attrs.Add<CStrId>(fn_710008fd60(), CStrId("CreateElement", true));
-    field0->attrs.Add<CStrId>(fn_710008fb40(), CStrId("DeleteElement", true));
+    field0->attrs.Add<CStrId>(base::reflection::attr::ElementKeyVariable(), CStrId("sPath", true));
+    field0->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateElement", true));
+    field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteElement", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
         fn_7100e082bc(fn, "CreateElement");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Create LightDef");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create LightDef");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(fn_710008f920(), base::global::CFilePathStrId("sPath", true));
+        fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(base::reflection::attr::Name(), base::global::CFilePathStrId("sPath", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
         fn_7100e08438(fn, "DeleteElement");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Delete LightDef");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete LightDef");
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(fn_710008f920(), base::global::CFilePathStrId("sPath", true));
+        fn->ParamAttrs(0)->Add<base::global::CFilePathStrId>(base::reflection::attr::Name(), base::global::CFilePathStrId("sPath", true));
     }
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

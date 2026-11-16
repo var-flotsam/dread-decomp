@@ -38,8 +38,8 @@ void fn_71002ee14c();
 void fn_71002ee510();
 namespace CPlaythrough {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
-    fn_710009dd6c(cls)->Add<const char*>(fn_710008ff80(), "AfterDeserialize");
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterDeserialize");
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPlaythroughName_GetterFunction", true))) {

@@ -10,6 +10,7 @@
 #include "game/CDropComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -151,14 +152,10 @@ struct UnkDropSpawnRequest_ovb0096 {
 UnkDropSpawnParams_ovb0096 fn_7100cb7f90(UnkDropSpawnRequest_ovb0096* request);
 UnkDropSpawnParams_ovb0096 fn_7100cb5004(UnkDropSpawnRequest_ovb0096* request);
 
-static inline UnkVec3f Sub_ovb0096(const UnkVec3f& a, const UnkVec3f& b) {
-    return UnkVec3f(a.x - b.x, a.y - b.y, a.z - b.z);
-}
-
 // Which of six directions the player is in, seen from the owner facing along its yaw sign.
 __attribute__((always_inline)) static inline void PlayerDirection_ovb0096(UnkDropSpawnComp_ovb0096* self, u32& kind) {
     auto* player = reinterpret_cast<UnkDropSpawnOwner_ovb0096*>(fn_7100dec788(g_unk_7101d47310));
-    UnkVec3f d = Sub_ovb0096(player->xform.GetTranslation(), self->owner->xform.GetTranslation());
+    UnkVec3f d = player->xform.GetTranslation() - self->owner->xform.GetTranslation();
     f32 dx = d.x;
     f32 dy = d.y;
     f32 dz = d.z;

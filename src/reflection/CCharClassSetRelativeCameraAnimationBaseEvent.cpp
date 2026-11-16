@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 extern CStrId* g_unk_716e454178[];
 namespace CCharClassSetRelativeCameraAnimationBaseEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Relative Camera Animation");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Camera", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Relative Camera Animation");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimationPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Extension, CStrId(*g_unk_716e454178[6])));
