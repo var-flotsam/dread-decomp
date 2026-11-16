@@ -9,6 +9,7 @@
 struct UnkDialogText;
 struct UnkLanguage;
 void fn_710119c020(UnkLanguage* language);
+bool fn_710119c9fc(UnkLanguage* language);
 s32 fn_710119c9f4(UnkLanguage* language);
 UnkDialogText fn_710119d040(UnkLanguage* language, const base::global::CStrId& key);  // The text the language gives.
 void fn_710119cb44(UnkLanguage* self, const char* path, bool keep_texts);
