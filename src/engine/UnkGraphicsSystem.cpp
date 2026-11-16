@@ -1633,7 +1633,7 @@ struct UnkGfxPairEntry {
 struct UnkGfxPairMap {
     u8 pad_0x0[0x3183628];
     UnkGfxPairEntry* values;
-    base::global::CStrId* ids;
+    base::global::CStrId* keys;
     u32 count;
 };
 

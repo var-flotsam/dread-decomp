@@ -18,6 +18,7 @@
 
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CEnumType.h"
@@ -302,25 +303,19 @@ void fn_71009c189c(UnkNavPairOwner_ovb0100* self, UnkNavIdPair_ovb0100* pair) {
 
 using UnkNavElemVector_ovb0100 = base::global::CRntVector<u64>;
 
-struct UnkNavElemMap_ovb0100 {
-    UnkNavElemVector_ovb0100* values;  // 0x0
-    CStrId* keys;                      // 0x8
-    u32 count;                         // 0x10
-    u32 capacity;                      // 0x14
-    u32 step;                          // 0x18
-    u32 flags;                         // 0x1c
-    base::UnkAllocator* allocator;     // 0x20
+using UnkNavElemMap_ovb0100 = base::global::CRntSmallDictionary<CStrId, UnkNavElemVector_ovb0100>;
 
-    const UnkNavElemVector_ovb0100* Find(const CStrId& key) const {
-        const UnkNavElemVector_ovb0100* v = values;
-        const CStrId* k = keys;
-        for (u64 i = 0; i < count; ++i) {
-            if (k[i].data == key.data)
-                return &v[(u32)i];
-        }
-        return &v[count];
+// The map's find as fn_71009c3d44 inlines it: a 64-bit index truncated to 32 bits, the arrays read
+// once (the shared Find, with a 32-bit index, comes out in other registers).
+static const UnkNavElemVector_ovb0100* FindWide(const UnkNavElemMap_ovb0100* self, const CStrId& key) {
+    const UnkNavElemVector_ovb0100* v = self->values;
+    const CStrId* k = self->keys;
+    for (u64 i = 0; i < self->count; ++i) {
+        if (k[i] == key)
+            return &v[(u32)i];
     }
-};
+    return &v[self->count];
+}
 
 // Releases the keys, frees the arrays and empties the map (a clone of fn_710027e494).
 void fn_71009c44c8(UnkNavElemMap_ovb0100* self);
@@ -474,7 +469,7 @@ bool fn_71009c3d44(const UnkNavElemMap_ovb0100* self, const UnkNavElemMap_ovb010
     if (self->count != other->count)
         return false;
     for (u32 i = 0; i < self->count; ++i) {
-        const UnkNavElemVector_ovb0100* v = other->Find(self->keys[i]);
+        const UnkNavElemVector_ovb0100* v = FindWide(other, self->keys[i]);
         if (v == &other->values[other->count])
             return false;
         if (!Equal(self->values[i], *v))

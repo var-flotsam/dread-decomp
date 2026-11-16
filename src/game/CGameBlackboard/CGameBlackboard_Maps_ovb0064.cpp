@@ -138,15 +138,7 @@ struct UnkIdSet_ovb0064 {
 };
 
 // The sets by section id, as base/UnkParallelFind.h sees them.
-struct UnkIdSetMap_ovb0064 {
-    UnkIdSet_ovb0064** values;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdSetMap_ovb0064 = base::global::CRntSmallDictionary<CStrId, UnkIdSet_ovb0064*>;
 
 // An owning pointer to a set; the move stores bytewise (the original reloads the moved-from slot).
 struct UnkOwnedSet_ovb0064 {
@@ -229,8 +221,8 @@ void fn_7100aebde8(UnkGameBlackboard_ovb0064* self) {
         t.allocator->vf_0x48(t.values);
     UnkIdSetMap_ovb0064& s = self->sets;
     fn_7100aecdc4(reinterpret_cast<UnkIdRecordTable<UnkOwned<void, fn_7100aef674>>*>(&s));
-    if (s.ids)
-        s.allocator->vf_0x48(s.ids);
+    if (s.keys)
+        s.allocator->vf_0x48(s.keys);
     if (s.values)
         s.allocator->vf_0x48(s.values);
     fn_7101046ac0(self);
