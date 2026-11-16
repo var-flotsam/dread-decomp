@@ -12,6 +12,7 @@
 #include "game/CPrimaryGun.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -25,7 +26,6 @@ using base::global::CStrId;
 
 struct UnkInventory;
 // As src/game/CMissileBaseGun/CMissileBaseGun_Ammo_ovb0103.cpp declares them.
-extern char* g_unk_71726b2398;
 
 static inline UnkQualifiedId& Qid_ovb0266(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);

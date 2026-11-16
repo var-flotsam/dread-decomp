@@ -4063,7 +4063,7 @@ address,size,name,name_source,subsystem,status
 0x71001d50d8,16,fn_71001d50d8,unknown,unknown,O
 0x71001d50e8,16,fn_71001d50e8,unknown,unknown,O
 0x71001d50f8,200,fn_71001d50f8,unknown,unknown,U
-0x71001d51c0,460,fn_71001d51c0,unknown,unknown,U
+0x71001d51c0,460,fn_71001d51c0,unknown,unknown,O
 0x71001d538c,96,fn_71001d538c,unknown,unknown,O
 0x71001d53ec,16,fn_71001d53ec,unknown,unknown,O
 0x71001d53fc,16,fn_71001d53fc,unknown,unknown,O

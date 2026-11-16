@@ -3,10 +3,10 @@
 // src/game/UnkStateMachineSet_b61.cpp). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 extern const u64 g_unk_7101649600[] __attribute__((visibility("hidden")));  // a hash per kind
 
 // Twelve bytes (copied as a whole: an 8-byte and a 4-byte move).

@@ -12,6 +12,7 @@
 #include "game/CFrozenComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkRenderManager.h"
@@ -146,8 +147,6 @@ u32 fn_710115b0f4(UnkEnemyLifeComponentAI_ovb0043* self, void* a, void* b, void*
     value = fn_7101158f30(self, a, b, c);
     return value;
 }
-
-extern char* g_unk_71726b2398;       // the instance, reached through the GOT
 
 struct UnkEnemyLifeAIState_ovb0043 {
     u8 pad_0x0[0xc4];

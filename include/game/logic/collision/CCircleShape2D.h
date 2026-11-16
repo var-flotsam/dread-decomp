@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkLavaDropsShape_A2_b71;
 struct UnkSphereShape_ovb0135;
 void fn_7100d61664(void* shape);  // The CIRCLE shape's constructor.
 void fn_7100d618f8(UnkSphereShape_ovb0135* self, f32 radius);
+void fn_7100d6169c(UnkLavaDropsShape_A2_b71* self, const void* source, f32 size);
+void fn_7100d61750(UnkLavaDropsShape_A2_b71* self);
