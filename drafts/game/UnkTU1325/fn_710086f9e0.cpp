@@ -1,5 +1,6 @@
 // Unit 1325 (no class hint): a keyed list (vtable g_unk_7101a7a548) of timed nodes: each holds a string id, a
 // timer, an inner list (vtable g_unk_7101a46040) of plain values and two flags. Names and layouts are placeholders.
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -16,40 +17,18 @@ struct UnkInnerNode_b0169 {
 
 struct UnkInnerList_b0169 {
     void* vtable;
-    u32 count;
-    UnkInnerNode_b0169* head;
-    UnkInnerNode_b0169* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+    base::UnkLinkedList<UnkInnerNode_b0169> body;  // 0x8
 
-    __attribute__((always_inline)) void Clear() {
-        for (UnkInnerNode_b0169* n = head; n;) {
-            UnkInnerNode_b0169* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
     __attribute__((always_inline)) void Destroy() {
         vtable = reinterpret_cast<char*>(g_unk_7101a46040) + 0x10;
-        Clear();
+        body.Clear();
     }
     __attribute__((always_inline)) void PushBack(const UnkInnerNode_b0169* src) {
-        UnkInnerNode_b0169* n = static_cast<UnkInnerNode_b0169*>(allocator->vf_0x40(0x10, 8, flags));
+        UnkInnerNode_b0169* n = static_cast<UnkInnerNode_b0169*>(body.allocator->vf_0x40(0x10, 8, body.flags));
         if (n) {
             n->value = src->value;
             n->next = nullptr;
-            if (count) {
-                // Untyped store: the original reloads the count after linking the node in.
-                __builtin_memcpy(&tail->next, &n, sizeof(n));
-                n->next = nullptr;
-                tail = n;
-            } else {
-                head = tail = n;
-            }
-            ++count;
+            body.PushBack(n);
         }
     }
 };
@@ -69,10 +48,10 @@ struct UnkTimedEntry_b0169 {
 
     UnkTimedEntry_b0169(CStrId& key) : id(key) {
         inner.vtable = reinterpret_cast<char*>(g_unk_7101a46040) + 0x10;
-        inner.count = 0;
-        inner.head = inner.tail = nullptr;
-        inner.allocator = fn_7100083990();
-        inner.flags = 0x13;
+        inner.body.count = 0;
+        inner.body.head = inner.body.tail = nullptr;
+        inner.body.allocator = fn_7100083990();
+        inner.body.flags = 0x13;
         both = 0;
     }
     ~UnkTimedEntry_b0169() { inner.Destroy(); }
@@ -87,38 +66,35 @@ static_assert(sizeof(UnkTimedNode_b0169) == 0x50, "layout");
 
 struct UnkTimedList_b0169 {
     void* vtable;
-    u32 count;
-    UnkTimedNode_b0169* head;  // 0x10
-    UnkTimedNode_b0169* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+    base::UnkLinkedList<UnkTimedNode_b0169> body;  // 0x8
 
+    // Clear, destroying each node's own list and id first.
     __attribute__((always_inline)) void Clear() {
-        for (UnkTimedNode_b0169* n = head; n;) {
+        for (UnkTimedNode_b0169* n = body.head; n;) {
             UnkTimedNode_b0169* next = n->next;
             n->Destroy(this);
             n = next;
         }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        body.count = 0;
+        body.head = nullptr;
+        body.tail = nullptr;
     }
 };
 
 __attribute__((always_inline)) void UnkTimedNode_b0169::Destroy(UnkTimedList_b0169* list) {
     inner.Destroy();
     id.Reset();
-    list->allocator->vf_0x48(this);
+    list->body.allocator->vf_0x48(this);
 }
 
 // Whether the id's node has no values and neither flag.
 bool fn_71008701b4(UnkTimedList_b0169* self, CStrId* id) {
-    UnkTimedNode_b0169* n = self->head;
+    UnkTimedNode_b0169* n = self->body.head;
     for (; n; n = n->next) {
         if (n->id.data == id->data)
             break;
     }
-    if (n && n->inner.count == 0 && !n->flag_b && !n->flag_a)
+    if (n && n->inner.body.count == 0 && !n->flag_b && !n->flag_a)
         return true;
     return false;
 }
@@ -135,30 +111,33 @@ struct TmpEntry {
 
 // Appends the node's contents to the list, taking over its id.
 __attribute__((noinline)) void fn_710086f9e0(UnkTimedList_b0169* self, UnkTimedEntry_b0169* other) {
-    UnkTimedNode_b0169* node = static_cast<UnkTimedNode_b0169*>(self->allocator->vf_0x40(0x50, 8, self->flags));
+    UnkTimedNode_b0169* node = static_cast<UnkTimedNode_b0169*>(self->body.allocator->vf_0x40(0x50, 8, self->body.flags));
     if (!node)
         return;
     node->id.data = other->id.data;
     other->id.data = &g_unk_7101d47108->empty;
     node->timer = other->timer;
-    node->inner.count = 0;
-    node->inner.head = node->inner.tail = nullptr;
     node->inner.vtable = reinterpret_cast<char*>(g_unk_7101a46040) + 0x10;
-    node->inner.allocator = other->inner.allocator;
-    node->inner.flags = other->inner.flags;
-    for (UnkInnerNode_b0169* v = other->inner.head; v; v = v->next)
+    node->inner.body.count = 0;
+    node->inner.body.head = node->inner.body.tail = nullptr;
+    node->inner.body.allocator = other->inner.body.allocator;
+    node->inner.body.flags = other->inner.body.flags;
+    for (UnkInnerNode_b0169* v = other->inner.body.head; v; v = v->next)
         node->inner.PushBack(v);
     node->both = other->both;
     node->next = nullptr;
-    if (self->count) {
-        // Untyped store: the original reloads the count after linking the node in.
-        __builtin_memcpy(&self->tail->next, &node, sizeof(node));
-        node->next = nullptr;
-        self->tail = node;
+    // self->body.PushBack(node), written out: calling the member schedules the empty list's `count = 1`
+    // after the head and tail stores, where the original sets it up first.
+    if (self->body.count == 0) {
+        self->body.head = node;
+        self->body.tail = node;
+        self->body.count = 1;
     } else {
-        self->head = self->tail = node;
+        self->body.tail->next = node;
+        node->next = nullptr;
+        self->body.tail = node;
+        ++self->body.count;
     }
-    ++self->count;
 }
 
 // The list's deleting destructor.
@@ -177,7 +156,7 @@ UnkTimedNode_b0169* fn_710086f718(UnkTimedList* list_, UnkTimedNode* node_) {
     UnkTimedNode_b0169* node = reinterpret_cast<UnkTimedNode_b0169*>(node_);
     UnkTimedNode_b0169* prev;
     UnkTimedNode_b0169* it = nullptr;
-    UnkTimedNode_b0169* next = self->head;
+    UnkTimedNode_b0169* next = self->body.head;
     while (next) {
         prev = it;
         it = next;
@@ -185,13 +164,13 @@ UnkTimedNode_b0169* fn_710086f718(UnkTimedList* list_, UnkTimedNode* node_) {
         if (it == node) {
             if (prev) {
                 prev->next = next;
-                if (self->tail == node)
-                    self->tail = prev;
+                if (self->body.tail == node)
+                    self->body.tail = prev;
             } else {
-                self->head = next;
+                self->body.head = next;
             }
-            if (--self->count == 0)
-                self->head = self->tail = nullptr;
+            if (--self->body.count == 0)
+                self->body.head = self->body.tail = nullptr;
             if (node)
                 node->Destroy(self);
             return next;
@@ -201,7 +180,7 @@ UnkTimedNode_b0169* fn_710086f718(UnkTimedList* list_, UnkTimedNode* node_) {
 }
 
 static inline UnkTimedNode_b0169* FindNode(UnkTimedList_b0169* self, CStrId* id) {
-    for (UnkTimedNode_b0169* n = self->head; n; n = n->next) {
+    for (UnkTimedNode_b0169* n = self->body.head; n; n = n->next) {
         if (n->id.data == id->data)
             return n;
     }
@@ -214,7 +193,7 @@ void fn_710086f870(void* block, void* arg) {
     UnkTimedNode_b0169* n = FindNode(self, id);
     if (n) {
         n->timer = -1.0f;
-        n->inner.Clear();
+        n->inner.body.Clear();
         n->both = 0;
     } else {
         TmpEntry tmp(*id);
@@ -227,7 +206,7 @@ void fn_710086fb24(UnkTimedList_b0169* self, CStrId* id, f32 timer) {
     UnkTimedNode_b0169* n = FindNode(self, id);
     if (n) {
         n->timer = -1.0f;
-        n->inner.Clear();
+        n->inner.body.Clear();
         n->both = 0;
         n->timer = timer;
     } else {
@@ -241,19 +220,19 @@ void fn_710086fca0(UnkTimedList_b0169* self, CStrId* id, UnkInnerList_b0169* src
     UnkTimedNode_b0169* n = FindNode(self, id);
     if (n) {
         n->timer = -1.0f;
-        n->inner.Clear();
+        n->inner.body.Clear();
         n->both = 0;
     } else {
         TmpEntry tmp(*id);
         tmp.e.timer = -1.0f;
         fn_710086f9e0(self, &tmp.e);
-        n = self->tail;
+        n = self->body.tail;
         if (!n)
             return;
     }
     if (&n->inner != src) {
-        n->inner.Clear();
-        for (UnkInnerNode_b0169* v = src->head; v; v = v->next)
+        n->inner.body.Clear();
+        for (UnkInnerNode_b0169* v = src->body.head; v; v = v->next)
             n->inner.PushBack(v);
     }
     n->flag_a = a;

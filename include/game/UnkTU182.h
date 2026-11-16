@@ -27,7 +27,7 @@ void fn_7100161d60(UnkGfxBuffer252* buffer);
 void fn_710015f810(UnkRenderTargetSlot* out, u32 format, u32 width, u32 height, u32 a, void* b, void* c, u32 d, u32 e);
 
 void fn_7100160590(u64 slot);
-void fn_71001606f0(s32 a, s32 b, bool c);
+void fn_71001606f0(u32 index, bool enable, u32 group);
 void fn_7100160810(s32 a, s32 b, u32);
 void fn_7100160890(s32 a, s32 b, u32);
 void* fn_71001611e0(void* object);  // A target's NVN texture.

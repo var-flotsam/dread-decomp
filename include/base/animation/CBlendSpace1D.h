@@ -7,7 +7,7 @@
 
 struct UnkRegistry_7100d92158;
 struct UnkBlend13;
-void fn_7100006e98(UnkBlend13* self, u32 a);
+bool fn_7100006e98(UnkBlend13* self, bool force);
 extern char g_unk_7101a19230[];
 extern char g_unk_7101a19268[];
 extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;

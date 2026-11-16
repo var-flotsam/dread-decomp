@@ -7,6 +7,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
@@ -64,15 +65,7 @@ struct UnkRecord80 {
 static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
 
 template <class V>
-struct UnkIdMap {
-    V* values;
-    UnkAssetStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdMap = base::global::CRntSmallDictionary<UnkAssetStrId, V>;
 
 void fn_710001871c(UnkIdMap<UnkRecord80>* self) {
     if (self->count != self->capacity) {

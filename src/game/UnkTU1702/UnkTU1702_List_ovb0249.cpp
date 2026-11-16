@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityShinespark.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CMainMenu.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
@@ -25,7 +26,6 @@
 using base::global::CRntString;
 
 using UnkGuiObj = UnkGuiDisplayObject;
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 struct UnkMenuTarget;
 
 struct UnkListScreen_b0249 {

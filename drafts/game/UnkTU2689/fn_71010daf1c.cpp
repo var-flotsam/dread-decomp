@@ -5,12 +5,6 @@
 #include "game/UnkGameManager.h"
 #include "types.h"
 
-struct UnkInput_l0daf1c;
-struct UnkManagerHead_l0daf1c {
-    u8 pad_0x0[0x38];
-    u8 field_0x38[1];
-};
-
 bool fn_7100f0e228(void* input);
 f32 fn_7100f0e4cc(void* input);
 s32 fn_7100f0e4d4(void* input);
@@ -24,7 +18,7 @@ struct UnkMovement_l0daf1c {
 };
 
 static inline void* Input() {
-    return reinterpret_cast<UnkManagerHead_l0daf1c*>(g_unk_7101d47310)->field_0x38;
+    return g_unk_7101d47310->field_0x38;
 }
 
 void fn_71010daf1c(void*, f32 dt, UnkMovement_l0daf1c* self) {

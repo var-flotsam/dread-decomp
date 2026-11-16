@@ -67,7 +67,7 @@ static inline void Switch(UnkObject* self, UnkFXEffect* effect, u32 on, u32 rest
         void* scene = reinterpret_cast<UnkFXOwner*>(reinterpret_cast<char**>(self)[6])->field_0x228->scene;
         if (!scene || !(on & 1)) {
             if (scene)
-                fn_710014580c(effect);
+                fn_710014580c(effect, scene);
         } else {
             fn_71001457fc(effect, scene, 1);
         }

@@ -6,12 +6,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-// The tunable's view used here: the shortest time a target is kept.
-struct UnkAITunable_daec80 {
-    u8 pad_0x0[0xfc];
-    f32 min_target_time;
-};
-
 struct UnkListener_daec80 {
     void** vtable;
 
@@ -62,7 +56,7 @@ void fn_7100daec80(UnkEmmyRegistry_b55* registry, void* actor, bool start) {
     }
     UnkWeakHandle* current = self->target;
     if ((current ? current->target : nullptr) != target &&
-        self->time < reinterpret_cast<const UnkAITunable_daec80*>(&g_unk_71726e0aa8)->min_target_time)
+        self->time < g_unk_71726e0aa8.field_0xfc)
         self->changed_early = true;
     CopyWeakRef(&self->previous_target, current);
     AssignRef(&self->final_target, target ? GetWeakHandle(target) : nullptr);

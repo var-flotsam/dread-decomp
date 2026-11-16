@@ -1,6 +1,7 @@
 // CAutoolAIComponent's unit (tools/tu_map.py): the AI's reset, its collider and effect switches, and the reserve of its two parallel point arrays.
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/UnkZeroVector3.h"
@@ -144,15 +145,12 @@ struct UnkAutoolRefSlot_ovb0137 {
 };
 
 // Two parallel arrays (refcounted objects and a point for each) sharing a count and a capacity.
-struct UnkAutoolPointArray_ovb0137 {
-    UnkAutoolRefSlot_ovb0137* refs;
-    UnkVec3f* points;  // 0x8
-    u32 count;                       // 0x10
-    u32 capacity;                    // 0x14
-    u32 step;
-    u32 flags;                    // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
-};
+// points: 0x8
+// count: 0x10
+// capacity: 0x14
+// flags: 0x1c
+// allocator: 0x20
+using UnkAutoolPointArray_ovb0137 = base::global::CRntSmallDictionary<UnkVec3f, UnkAutoolRefSlot_ovb0137>;
 
 // Reserves room for `n` entries in both arrays.
 void fn_71003c6fa4(UnkAutoolPointArray_ovb0137* self, u32 n) {
@@ -162,26 +160,26 @@ void fn_71003c6fa4(UnkAutoolPointArray_ovb0137* self, u32 n) {
         static_cast<UnkAutoolRefSlot_ovb0137*>(self->allocator->vf_0x40((u64)n * 8, 8, self->flags));
     UnkVec3f* points =
         static_cast<UnkVec3f*>(self->allocator->vf_0x40((u64)n * 12, 8, self->flags));
-    if (UnkAutoolRefSlot_ovb0137* old = self->refs) {
+    if (UnkAutoolRefSlot_ovb0137* old = self->values) {
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j) {
             refs[j].ptr = nullptr;
             refs[j].Assign(old[j].ptr);
             old[j].Release();
         }
-        self->allocator->vf_0x48(self->refs);
+        self->allocator->vf_0x48(self->values);
     }
-    if (UnkVec3f* src = self->points) {
+    if (UnkVec3f* src = self->keys) {
         UnkVec3f* dst = points;
         for (u32 i = 0; i < self->count; ++i) {
             new (dst) UnkVec3f(*src);
             ++src;
             ++dst;
         }
-        self->allocator->vf_0x48(self->points);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->refs = refs;
-    self->points = points;
+    self->values = refs;
+    self->keys = points;
     self->capacity = n;
 }
 

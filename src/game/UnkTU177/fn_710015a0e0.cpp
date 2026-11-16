@@ -1,9 +1,7 @@
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "types.h"
-
-extern bool g_unk_7101a1d7d9;
-extern void (*g_unk_716e29b578)(void* target, s32 index, bool r, bool g, bool b, bool a);
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers.
 void fn_710015a0e0(u32 value) {

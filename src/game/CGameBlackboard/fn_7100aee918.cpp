@@ -7,6 +7,7 @@
 
 #include "base/UnkFreedVectorPair.h"
 #include "base/UnkKeyedStrIds.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2563.h"
@@ -296,15 +297,7 @@ static inline UnkSecondPtrArray<T>* MoveAssign(UnkSecondPtrArray<T>* self, UnkSe
 // sides are destroyed, the storage is reallocated when the other's count differs from the
 // capacity, then the values are assigned and the keys copied, counting a use of each.
 template <class V>
-struct UnkIdMap {
-    V* values;
-    UnkReleasedStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdMap = base::global::CRntSmallDictionary<UnkReleasedStrId, V>;
 
 // Grows both arrays, moving the values (destroying the old ones with Destroy) and the keys.
 template <class V, void (*Destroy)(V*)>

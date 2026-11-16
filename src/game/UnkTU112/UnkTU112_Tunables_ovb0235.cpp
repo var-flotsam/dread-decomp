@@ -7,6 +7,8 @@
 #include <string.h>
 
 #include "base/UnkHashStream.h"
+#include "base/UnkTunableLine.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
@@ -78,15 +80,7 @@ static_assert(sizeof(UnkNewTunableGroup) == 0x80, "");
 struct UnkTunableGroupArrays;
 void fn_710013ec80(UnkTunableGroupArrays* self, u32 new_capacity);
 
-struct UnkTunableGroupNames {
-    UnkNewTunableGroup* groups;
-    CStrId* names;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    UnkAllocator* allocator;
-};
+using UnkTunableGroupNames = base::global::CRntSmallDictionary<CStrId, UnkNewTunableGroup>;
 
 struct UnkTunableGroup_A1b71;
 struct UnkTunableGroupArrays_A1b71;
@@ -100,43 +94,16 @@ UnkTunableGroup_A1b71* fn_710013c2ac(UnkTunableGroupArrays_A1b71* self_, const C
         n = self->count;
     }
     // The key is copied as raw bytes, then retained: the original reloads the count after the copy.
-    CStrId* k = &self->names[n];
+    CStrId* k = &self->keys[n];
     __builtin_memcpy(k, key, sizeof(*k));
     if (&g_unk_7101d47108->empty != k->data)
         ++k->data->ref_count;
-    new (&self->groups[self->count]) UnkNewTunableGroup();
+    new (&self->values[self->count]) UnkNewTunableGroup();
     u32 count = ++self->count;
-    return reinterpret_cast<UnkTunableGroup_A1b71*>(count ? &self->groups[count] - 1 : self->groups);
+    return reinterpret_cast<UnkTunableGroup_A1b71*>(count ? &self->values[count] - 1 : self->values);
 }
 
 // ---- a tunable's field
-
-// A string with 0x100 bytes of inline storage (0x148 bytes).
-struct UnkTunableLine {
-    u8 str[0x30];
-    char* storage_vtable;  // +0x30
-    u8 buffer[0x100];
-    u64 field_0x138;
-    u32 field_0x140;
-
-    CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
-
-    UnkTunableLine() {
-        fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
-        storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
-        field_0x138 = 0;
-        field_0x140 = 0;
-    }
-    UnkTunableLine& operator=(const CRntString& other) {
-        fn_710007eaa0(Str(), &other);
-        return *this;
-    }
-    ~UnkTunableLine() {
-        fn_710007ed40(Str());
-        fn_710007ecd4(Str());
-    }
-};
-static_assert(sizeof(UnkTunableLine) == 0x148, "");
 
 // A reflected field (0xb0 bytes): its type at +0x10.
 struct UnkTunableField {

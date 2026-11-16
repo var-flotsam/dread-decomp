@@ -6,15 +6,12 @@
 #include "game/CActorComponent.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkTU132.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU247.h"
 #include "game/UnkTU285.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-// Declared with the scene the callers pass (game/UnkTU132.h declares the effect only).
-void fn_710014580c(void* effect, void* scene);
-void fn_71001457fc(void* effect, void* scene, u32 flag);
 
 struct UnkFXTriggerSceneHolder {
     u8 pad_0x0[0x50];

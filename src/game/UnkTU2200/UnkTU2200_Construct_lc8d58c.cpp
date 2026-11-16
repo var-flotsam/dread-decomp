@@ -2,6 +2,7 @@
 // empty id array and an empty id map (step 10, flags 0xe) and a number of -1. Names and layouts are
 // placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -17,25 +18,9 @@ struct UnkStrIdPair_b239 {
     u32 value;
 };
 
-struct UnkStrIdMap_b239 {
-    UnkStrIdPair_b239* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkStrIdMap_b239 = base::global::CRntSmallDictionary<CStrId, UnkStrIdPair_b239>;
 
-struct UnkIdArray_b239 {
-    u32* numbers;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdArray_b239 = base::global::CRntSmallDictionary<CStrId, u32>;
 
 struct UnkElemA0_b42a3 {
     CStrId field_0x0;
@@ -68,8 +53,8 @@ void fn_7100c8d58c(UnkElemA0_b42a3* self) {
     MakeEmpty(&self->field_0x10);
     MakeEmpty(&self->field_0x18);
     self->field_0x24 = 0;
-    self->field_0x28.numbers = nullptr;
-    self->field_0x28.ids = nullptr;
+    self->field_0x28.values = nullptr;
+    self->field_0x28.keys = nullptr;
     self->field_0x28.count = 0;
     self->field_0x28.capacity = 0;
     self->field_0x28.step = 10;

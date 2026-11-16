@@ -10,8 +10,7 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
-// Needs CSoundManager.h to declare the result UnkSoundHandle (it says void); include it once it does.
-struct UnkDropTarget;
+#include "game/sound/CSoundManager.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -29,9 +28,6 @@ struct UnkSoundDef;
 struct UnkSoundDesc;
 void fn_7101037bc0(UnkSoundDef* self, UnkSoundDesc* out, f32* scales, u32 index);
 
-struct UnkAudioPreset_b0038;
-bool fn_710102423c(UnkDropTarget* self, UnkAudioPreset_b0038* preset);
-void fn_71010244a8(UnkDropTarget* self, UnkSoundHandle handle);
 
 // The audio preset a sound source refers to (sound::CAudioPreset).
 struct UnkAudioPreset_l024b28 : base::reflection::UnkReflObject {
