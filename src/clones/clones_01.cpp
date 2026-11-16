@@ -14,24 +14,6 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
-struct UnkClone_fn_7100327958;
-void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
-void fn_7100327958(void* e) {
-    fn_7100014948(e, base::global::CStrId("Default", true), 0x0);
-    fn_7100014948(e, base::global::CStrId("CooldownX", true), 0x1);
-}
-struct UnkClone_fn_71003283a8;
-extern char g_unk_7101a23550[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_71003283a8> {
-    static char* vtable() { return g_unk_7101a23550; }
-};
-template void base::refl_ZeroedCtor<UnkClone_fn_71003283a8>(char*);
-struct UnkClone_fn_7100331b48;
-extern char g_unk_7101a23478[];
-template <> struct base::UnkDtorTraits<UnkClone_fn_7100331b48> {
-    static char* vtable() { return g_unk_7101a23478; }
-};
-template void base::refl_RefPairArrayDeletingDtor<UnkClone_fn_7100331b48, 0xc, 0x48, 0, 8>(char*);
 struct UnkClone_fn_7100332100;
 template void base::reflection::refl_SetDynamicValue<UnkClone_fn_7100332100>(char*, base::reflection::UnkReflObject*);
 struct UnkClone_fn_71003325cc;
@@ -5526,3 +5508,9 @@ template <> struct base::UnkOwnerVecInsertTraits<UnkClone_fn_71005e3d30> {
 template void base::refl_OwnerVecInsert(base::global::CRntVector<UnkCloneOwnerVecHandle<UnkClone_fn_71005e3d30>>*, UnkCloneOwnerVecHandle<UnkClone_fn_71005e3d30>*, u32);
 struct UnkClone_fn_71005e3fb0;
 template void base::global::CRntVector<UnkCloneVecHandle<UnkClone_fn_71005e3fb0>>::EmplaceBack(UnkCloneVecHandle<UnkClone_fn_71005e3fb0>&&);
+struct UnkClone_fn_71005e5404;
+template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71005e5404>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
+struct UnkClone_fn_71005e5d08;
+template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71005e5d08>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
+struct UnkClone_fn_71005e6ed4;
+template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71005e6ed4>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);

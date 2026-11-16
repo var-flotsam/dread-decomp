@@ -15,26 +15,6 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
-struct UnkClone_fn_71008dc0a8;
-const base::reflection::CType* fn_710000d228();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc0a8> {
-    static const CType* type() { return fn_710000d228(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc0a8, u8, 0x418>(void*, char*);
-struct UnkClone_fn_71008dc150;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc150> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc150, u32, 0x654>(void*, char*);
-struct UnkClone_fn_71008dc19c;
-template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71008dc19c, u32, 0x654>(void*, char*, base::reflection::UnkReflValue* const*);
-struct UnkClone_fn_71008dc1e0;
-const base::reflection::CType* fn_7100014768();
-template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc1e0> {
-    static const CType* type() { return fn_7100014768(); }
-};
-template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc1e0, u32, 0x658>(void*, char*);
 struct UnkClone_fn_71008dc22c;
 template base::reflection::UnkReflValue base::reflection::refl_SetFieldValue<UnkClone_fn_71008dc22c, u32, 0x658>(void*, char*, base::reflection::UnkReflValue* const*);
 struct UnkClone_fn_71008dc270;
@@ -634,8 +614,6 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71009161e0> {
     static const CType* type() { return fn_710000d228(); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetIterElementValue<UnkClone_fn_71009161e0, UnkCloneBlock<UnkClone_fn_71009161e0, 0x8>>(void*, char*);
-struct UnkClone_fn_71009167dc;
-template base::UnkStrIdArray<UnkClone_fn_71009167dc>& base::UnkStrIdArray<UnkClone_fn_71009167dc>::operator=(base::UnkStrIdArray<UnkClone_fn_71009167dc>&&);
 struct UnkClone_fn_7100918304;
 extern char g_unk_7101a81de8[];
 template <> struct base::UnkValueHolderTraits<UnkClone_fn_7100918304> {
@@ -5248,3 +5226,59 @@ template <> struct base::UnkTypeInitTraits<UnkClone_fn_7100b8ba50> {
 template void base::refl_TypeStaticInit<UnkClone_fn_7100b8ba50>();
 struct UnkClone_fn_7100b8c2cc;
 template void base::refl_HashMapInit<UnkClone_fn_7100b8c2cc, 0x1e8>(char*, u32, u32);
+struct UnkClone_fn_7100b8c7c0;
+void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
+void fn_7100b8c7c0(void* e) {
+    fn_7100014948(e, base::global::CStrId("DCRootControlled", true), 0x0);
+    fn_7100014948(e, base::global::CStrId("DCRootRotationControlled", true), 0x1);
+    fn_7100014948(e, base::global::CStrId("DontBlend", true), 0x2);
+    fn_7100014948(e, base::global::CStrId("ForceModelUpdate", true), 0x3);
+    fn_7100014948(e, base::global::CStrId("IgnoreCullState", true), 0x4);
+    fn_7100014948(e, base::global::CStrId("HasNextAction", true), 0x5);
+    fn_7100014948(e, base::global::CStrId("HasEndPose", true), 0x6);
+    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
+}
+struct UnkClone_fn_7100b8cc6c;
+void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
+void fn_7100b8cc6c(void* e) {
+    fn_7100014948(e, base::global::CStrId("TIME", true), 0x0);
+    fn_7100014948(e, base::global::CStrId("MANUAL", true), 0x1);
+    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
+}
+struct UnkClone_fn_7100b8cf38;
+void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
+void fn_7100b8cf38(void* e) {
+    fn_7100014948(e, base::global::CStrId("HOLD", true), 0x0);
+    fn_7100014948(e, base::global::CStrId("LOOP", true), 0x1);
+    fn_7100014948(e, base::global::CStrId("PLAY_ACTION", true), 0x2);
+    fn_7100014948(e, base::global::CStrId("DEFAULT_LOOP", true), 0x3);
+    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
+}
+struct UnkClone_fn_7100b8d2c4;
+void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
+void fn_7100b8d2c4(void* e) {
+    fn_7100014948(e, base::global::CStrId("Animation", true), 0x0);
+    fn_7100014948(e, base::global::CStrId("BlendSpace", true), 0x1);
+    fn_7100014948(e, base::global::CStrId("Wait", true), 0x2);
+    fn_7100014948(e, base::global::CStrId("Invalid", true), 0x7fffffff);
+}
+struct UnkClone_fn_7100b8d5f0;
+void fn_7100014948(void* e, const base::global::CStrId& name, u32 value);
+void fn_7100b8d5f0(void* e) {
+    fn_7100014948(e, base::global::CStrId("IGNORE_PRIORITY", true), 0x0);
+    fn_7100014948(e, base::global::CStrId("FORCE", true), 0x1);
+    fn_7100014948(e, base::global::CStrId("LOCAL_TRANSFORM", true), 0x2);
+    fn_7100014948(e, base::global::CStrId("CLEAR_ROOT_MOTION", true), 0x3);
+    fn_7100014948(e, base::global::CStrId("CLEAR_ROOT_MOTION_IF_NO_ADVANCE", true), 0x4);
+    fn_7100014948(e, base::global::CStrId("ACTIONSET_UPDATED", true), 0x5);
+    fn_7100014948(e, base::global::CStrId("REPLACE_LOOPED", true), 0x6);
+    fn_7100014948(e, base::global::CStrId("UPDATE_MODEL", true), 0x7);
+    fn_7100014948(e, base::global::CStrId("USE_LAST_REMAINING_TIME", true), 0x8);
+    fn_7100014948(e, base::global::CStrId("NEXT_ACTION", true), 0x9);
+    fn_7100014948(e, base::global::CStrId("LAUNCH_EVENTS_ON_SYNC", true), 0xa);
+    fn_7100014948(e, base::global::CStrId("RESET_STORED_ENTITY_TRANSFORM", true), 0xb);
+    fn_7100014948(e, base::global::CStrId("RESET_STORED_ENTITY_TRANSFORM_TRANSLATION", true), 0xc);
+    fn_7100014948(e, base::global::CStrId("START_EVENTS_ON_TICK", true), 0xd);
+    fn_7100014948(e, base::global::CStrId("LAUNCH_NON_DISCARDABLES", true), 0xe);
+    fn_7100014948(e, base::global::CStrId("NO_SET_SAME_ACTION_WITH_DIFFERENT_PREFIX", true), 0xf);
+}

@@ -102,10 +102,12 @@ public:
             UnkEnsureFilePathPool();
         data = &g_unk_7101d47200->empty;
     }
+    // Releases in two steps, as CStrId's destructor does.
     ~CFilePathStrId() {
         if (UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {
-                if (--data->ref_count == 0) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
                     pool = g_unk_7101d47200;
                 }
@@ -116,6 +118,11 @@ public:
 
     // Ids are equal when they share the pooled string.
     bool operator==(const CFilePathStrId& other) const { return data == other.data; }
+    // The bucket hash of an id: its string's hash, folded to one word.
+    u32 Hash() const {
+        const UnkHashedString* string = static_cast<const UnkHashedString*>(data);
+        return string->hash[0] ^ string->hash[1];
+    }
 };
 
 }  // namespace base::global

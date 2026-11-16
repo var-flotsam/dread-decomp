@@ -5,16 +5,10 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
-using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
-const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 struct UnkNamedDef_le9b7d4 : UnkIdSource {
     u64 field_0x8;

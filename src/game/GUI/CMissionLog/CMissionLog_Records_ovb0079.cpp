@@ -7,27 +7,11 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU83.h"
+#include "game/GUI/UnkMissionLogRecords.h"
 #include "types.h"
 
 using base::UnkAllocator;
 using base::UnkStrIdMember;
-
-struct UnkElem38 {
-    u8 unk_0x0[0x38];
-};
-
-template <class Elem>
-struct UnkElemArray {
-    Elem* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-using UnkElem38Array = UnkElemArray<UnkElem38>;
 
 struct UnkMissionLogRecordDtor_ovb0079 {
     u32 field_0x0;
@@ -67,9 +51,6 @@ void fn_7100b55d4c(UnkElem38Array* self) {
         self->capacity = 0;
     }
 }
-
-void fn_7100b5c28c(UnkElem38Array* self, u32 capacity);
-void fn_7100b593d0(UnkElem38Array* self, const UnkElem38* value);
 
 UnkElem38Array* fn_7100b5c3e8(UnkElem38Array* self, const UnkElem38Array* other) {
     if (self != other) {
