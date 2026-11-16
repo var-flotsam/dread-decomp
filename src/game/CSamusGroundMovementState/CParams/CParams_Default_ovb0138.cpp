@@ -9,6 +9,7 @@
 #include "game/CMovementComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGroundMovement_ovb0138.h"
+#include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
@@ -21,7 +22,6 @@ extern const u64 g_unk_710164b380;  // the key while fn_7100df5874 holds
 extern const u64 g_unk_710164b388;
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
-void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
 struct UnkPlayer;
 
 struct UnkGroundTrackTime_ovb0138 {

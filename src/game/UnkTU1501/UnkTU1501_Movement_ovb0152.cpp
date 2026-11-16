@@ -28,6 +28,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
@@ -345,7 +346,6 @@ void fn_71002d6074(UnkLeg_b152* leg, bool flag, f32 weight);
 void fn_71009f115c();
 void fn_71010dc54c(UnkMove_b152* self, UnkSpanArg_b152* span);
 void fn_71002fdf5c(void* obj, void* arg);
-void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
 void fn_71010d956c(UnkMove_b152* self);
 bool fn_710085aa5c(void* gun, void* tile, UnkHitInfo_b152* hit);
 struct UnkQueryObj;

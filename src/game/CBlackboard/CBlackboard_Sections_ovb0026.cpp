@@ -21,6 +21,7 @@
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU80.h"
 #include "game/UnkTU83.h"
 #include "game/UnkTU92.h"
 #include "types.h"
@@ -462,7 +463,6 @@ struct UnkReadArg_b0026 {
     const base::reflection::CType* type;
     u64* value;
 };
-const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 
 struct UnkBlackboardReader_b0026 {
     u8 pad_0x0[0x30];

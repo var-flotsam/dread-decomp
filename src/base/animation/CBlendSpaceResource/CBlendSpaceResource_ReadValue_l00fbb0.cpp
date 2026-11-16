@@ -5,6 +5,7 @@
 #include "base/UnkHashStream.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CName.h"
+#include "base/global/CStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
@@ -41,7 +42,8 @@ static inline bool Assign(const CType* type, UnkTypedRef* dst, UnkTypedRef src) 
     return fn_710009d7a8(type, dst, &src);
 }
 
-bool fn_710000fbb0(CRntFile* file, void*, UnkTypedRef* value) {
+// The kind and the name the callers pass (as to fn_71000ee9fc) are not read here.
+bool fn_710000fbb0(CRntFile* file, u32, UnkTypedRef* value, const base::global::CStrId*) {
     if (value->type == fn_710000fd7c()) {
         CName name(UnkNameHash(), -1);
         fn_710007c714(file, &name, sizeof(name), 1);
