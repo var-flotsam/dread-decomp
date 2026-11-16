@@ -5,6 +5,7 @@
 // to a list of devices in order, stopping at the first that doesn't report success. The device
 // interface and the list keep placeholder names; members keep offset-based ones.
 
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -45,21 +46,12 @@ struct UnkDeviceNode {
 };
 
 // A singly linked list of devices, its nodes from `allocator` with `flags` (vtable via GOT
-// 0x7101cbc378; its destructor out of line is fn_7100084838).
-struct UnkDeviceList {
+// 0x7101cbc378; its destructor out of line is fn_7100084838). Its body from +8 is
+// base::UnkLinkedList, whose count is a union member: appending reloads the count after storing
+// the new node's link, as the original does.
+struct UnkDeviceList : UnkLinkedList<UnkDeviceNode> {
     virtual ~UnkDeviceList() { Clear(); }
     virtual void vf_0x8();
-
-    void Clear() {
-        for (UnkDeviceNode* n = head; n;) {
-            UnkDeviceNode* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
 
     void PushBack(UnkDevice* const& device) {
         auto* node = static_cast<UnkDeviceNode*>(allocator->vf_0x40(sizeof(UnkDeviceNode), 8, flags));
@@ -78,16 +70,6 @@ struct UnkDeviceList {
             ++count;
         }
     }
-
-    // A union member: Clang gives union accesses no type-based alias info, so appending reloads
-    // the count after storing the new node's link, as the original does.
-    union {
-        u32 count;  // +0x8
-    };
-    UnkDeviceNode* head;
-    UnkDeviceNode* tail;
-    UnkAllocator* allocator;  // +0x20
-    u32 flags;
 };
 
 // The queue's name: a string id whose destructor decrements and tests in two steps (the original

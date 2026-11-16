@@ -27,7 +27,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710002c960,228,drafts/game/UnkTU36/fn_710002c960.cpp,control flow,13.6,49,lean-b4,result copied to a callee-saved register each unrolled try; original keeps only the last
 0x710002cff8,224,drafts/game/UnkTU36/fn_710002cff8.cpp,operations,10.7,49,lean-b4,strb pair merged to strh and store order; 4 calls/GOT loads misaligned from first diff
 0x710002fb80,400,drafts/game/UnkTU39/fn_710002fb80.cpp,control flow,28.0,72,lean-ob1,loop layout: the skip path (node = next) is placed before the timer update; nested-if form gets layout right b
-0x710002ffb4,372,drafts/game/UnkTU39/fn_710002ffb4.cpp,operations,17.0,77,pilot50,list unlink loop and tail layout differ (operations)
+0x710002ffb4,372,drafts/game/UnkTU39/fn_710002ffb4.cpp,registers or order,84.9,14,pilot50,list unlink loop and tail layout differ (operations)
 0x71000687d8,376,drafts/game/UnkTU42/fn_71000687d8.cpp,operations,10.6,74,lean,
 0x710006993c,100,drafts/game/UnkTU42/fn_710006993c.cpp,control flow,0.0,20,lean-b6,original keeps a second empty check and 64-bit byte-length distance; mine folds to 32-bit count
 0x71000699a0,100,drafts/game/UnkTU42/fn_71000699a0.cpp,control flow,0.0,20,lean-b6,original keeps a second empty check and 64-bit byte-length distance; mine folds to 32-bit count
@@ -223,7 +223,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100286420,236,drafts/game/UnkTU356/fn_7100286420.cpp,operations,11.3,52,pilot50,loop base register and pointer increment form differ
 0x710028659c,136,drafts/game/UnkTU357/fn_710028659c.cpp,operations,8.8,28,lean,
 0x7100288a0c,572,drafts/game/UnkTU364/fn_7100288a0c.cpp,registers or order,96.5,5,lean-ob1,draft (attempt 3; KIND registers): key load scheduled after the slot deref; attempt 4 (own u32 key) was worse.
-0x7100289214,304,drafts/game/UnkTU365/fn_7100289214.cpp,operations,92.1,6,lean-b3,first-node head/tail stores (stp) and loop counter register; union around node next used
 0x7100289344,420,drafts/game/UnkTU365/fn_7100289344.cpp,control flow,13.3,89,lean-o1,prev-edge index: original keeps i==0 branch recomputing edge count; ours folds it; edge-count cset order
 0x7100295550,300,drafts/game/UnkTU365/fn_7100295550.cpp,operations,44.0,41,lean-b3,loop addressing based on end of element (offsets negative) and store order differ
 0x7100298e08,1924,drafts/game/UnkTU365/fn_7100298e08.cpp,control flow,0.0,376,lean,
@@ -262,10 +261,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100354b34,272,drafts/game/UnkTU437/fn_7100354b34.cpp,control flow,52.9,27,lean-b5,early-return branch layout and list loop/prologue differ
 0x7100358d68,364,drafts/game/UnkTU437/fn_7100358d68.cpp,control flow,8.8,78,lean-b5,loop shape over two packed lists; flag-guarded loop bodies not reproduced
 0x710035d5c4,504,drafts/game/UnkTU441/fn_710035d5c4.cpp,registers or order,96.0,5,overnight,
-0x71003aa8e0,360,drafts/game/behaviortree/CBehaviorTree/fn_71003aa8e0.cpp,registers or order,97.8,2,lean-b5,count increment scheduled after the head/tail store instead of before it
-0x71003aaa48,136,drafts/game/behaviortree/CBehaviorTree/fn_71003aaa48.cpp,registers or order,94.1,2,lean-b5,count increment scheduled after the head/tail store instead of before it
-0x71003aab64,168,drafts/game/behaviortree/CBehaviorTree/fn_71003aab64.cpp,registers or order,95.2,2,lean-b5,count increment scheduled after the head/tail store instead of before it
-0x71003aac0c,316,drafts/game/behaviortree/CBehaviorTree/fn_71003aac0c.cpp,registers or order,97.5,2,lean-b5,count increment scheduled after the head/tail store instead of before it
 0x71003b5d1c,84,drafts/game/CAutclastChargeAttack/fn_71003b5d1c.cpp,conditions,95.2,1,lean-b6,final csel arm order and condition (pl vs mi); only compare select differs
 0x71003b7704,372,drafts/game/CAutclastChargeAttack/fn_71003b7704.cpp,operations,43.0,43,lean-b6,copy ctor: field copy grouping (0x58..0x6e as 22 bytes; word copies from 0x70) and register use differ; later
 0x71003bb534,544,drafts/game/CAutectorAIComponent/fn_71003bb534.cpp,registers or order,90.4,13,overnight,
@@ -439,7 +434,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100d66bc4,448,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d66bc4.cpp,operations,11.6,95,pilot50,stack slot sharing of hit/point and edge; operations differ
 0x7100d6702c,340,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d6702c.cpp,operations,58.8,35,lean-ob2,frame 0x10 larger: original shares the edge and hit slot
 0x7100d77e38,284,drafts/game/UnkTU2523/fn_7100d77e38.cpp,operations,2.7,69,lean-b2,unaligned tail stores and store scheduling; extra callee-saved register
-0x7100d77f54,436,drafts/game/UnkTU2523/fn_7100d77f54.cpp,operations,56.0,45,lean-ob2,list count not reloaded after the tail->next store (reference needed a union); 12-byte vector copy stores in o
+0x7100d77f54,436,drafts/game/UnkTU2523/fn_7100d77f54.cpp,registers or order,98.2,2,lean-ob2,list count not reloaded after the tail->next store (reference needed a union); 12-byte vector copy stores in o
 0x7100d7ac18,444,drafts/game/UnkTU2523/fn_7100d7ac18.cpp,operations,95.5,5,overnight,
 0x7100d822c0,292,drafts/game/UnkTU2523/fn_7100d822c0.cpp,operations,52.1,35,lean-b2,store order/scheduling of tail fields; 35 insns differ
 0x7100d8664c,152,drafts/game/UnkTU2523/fn_7100d8664c.cpp,operations,7.9,34,lean-b2,inner find loop shape and hoisted ldp of other map fields
@@ -732,7 +727,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710116f614,644,drafts/game/CModelUpdaterComponent/fn_710116f614.cpp,operations,32.9,105,lean-ob3,original reloads the string pool before the second id assignment (not the third); every source form shares or
 0x7101172f40,872,drafts/game/CModelUpdaterComponent/fn_7101172f40.cpp,operations,10.1,195,lean-ob3,original reloads the curve pointer after the use-count increment (needs a non-TBAA count; a union in the refs)
 0x710117a190,788,drafts/game/CAnimationComponent/fn_710117a190.cpp,operations,42.4,110,lean,
-0x710119818c,444,drafts/game/UnkTU2730/fn_710119818c.cpp,operations,45.0,60,lean-o1,matches 100% only with the list count in a union (as base/CDeviceQueue.h UnkDeviceList; same 0x30 list with vt
 0x7101198e88,608,drafts/game/UnkTU2730/fn_7101198e88.cpp,operations,22.4,117,lean-o1,near registers-only: original spills &iter.value.element to [sp] in the preheader (one extra live value; regs
 0x71011991c4,796,drafts/game/UnkTU2730/fn_71011991c4.cpp,operations,30.7,136,lean-ob3,list count must be read without type-based alias info (original reloads it after node-link stores; with a unio
 0x71011995c0,424,drafts/game/UnkTU2730/fn_71011995c0.cpp,operations,66.0,30,lean-o1,matches 100% only with a per-field __builtin_memcpy copy constructor (as UnkCallback_kr move ctor in UnkTU2730
