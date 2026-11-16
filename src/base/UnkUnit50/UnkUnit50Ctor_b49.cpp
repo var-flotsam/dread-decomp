@@ -15,8 +15,6 @@
 using base::global::CFilePathStrId;
 using base::input::UnkRumbleManager;
 
-extern UnkRumbleManager* g_unk_7101d47348;
-
 struct UnkUnit50Object_b49a1 {
     u64 field_0x0;
     u64 field_0x8;

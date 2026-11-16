@@ -23,7 +23,6 @@ class UnkKeyedSlots_b48a3;
 void fn_7101048280(UnkKeyedSlots_b48a3* self, const u64* key);
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
-bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 void fn_7101048940(void* groups, const CStrId& key);
 
 // The game manager's group table, after its blackboard.

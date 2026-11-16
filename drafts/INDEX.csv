@@ -33,7 +33,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000699a0,100,drafts/game/UnkTU42/fn_71000699a0.cpp,control flow,0.0,20,lean-b6,original keeps a second empty check and 64-bit byte-length distance; mine folds to 32-bit count
 0x710006c598,468,drafts/game/nn/time/fn_710006c598.cpp,operations,8.5,105,lean-ob1,ours folds add into pre-index ldp for the last point (1-instr shift skews the positional score); rest of tail
 0x710006c76c,472,drafts/game/nn/time/fn_710006c76c.cpp,control flow,18.9,95,lean-ob1,count reload after unlink needs union around count (UnkSList form; not allowed); add folded into pre-index ldp
-0x710006cea8,568,drafts/game/nn/time/fn_710006cea8.cpp,match,100.0,0,lean-ob2,matches; held: copies fn_71010474f4 and g_unk_7101d47348; which have no header yet
 0x710006e7a4,348,drafts/game/UnkTU46/fn_710006e7a4.cpp,registers or order,92.0,7,overnight,
 0x710006f914,376,drafts/game/UnkTU47/fn_710006f914.cpp,match,100.0,0,lean-r1,matches only with whole-element __builtin_memcpy copies of one-field structs (the count reload after each copy); held as a steering form
 0x7100070204,160,drafts/game/UnkTU47/fn_7100070204.cpp,control flow,56.8,15,lean-b2,second index search: original hoists i=0 before the count test; ours splits an empty-table block

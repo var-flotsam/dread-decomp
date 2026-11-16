@@ -29,7 +29,6 @@ struct UnkHandle {
     }
 };
 
-extern UnkRumbleManager* g_unk_7101d47348;
 struct UnkRumbleParams;
 UnkHandle fn_7100074354(UnkRumbleManager* self, const UnkRumbleParams* params);
 // The state's looping vibration file (in the unit's data, src/game/CSamusMagnetGloveMovementState/

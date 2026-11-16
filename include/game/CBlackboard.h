@@ -99,3 +99,6 @@ CBlackboard::CSection* fn_7101047414(CBlackboard* self, const base::global::CStr
 CBlackboard::CSection* fn_7101047484(CBlackboard* self, const base::global::CStrId& key);
 // Reads a bool from the section's value under `name` into `*out`; returns whether it was found.
 bool fn_710006d11c(CBlackboard::CSection* self, const base::global::CStrId* name, bool* out);
+
+// Whether the section `section` names has a property named `name` (src/game/CBlackboard.cpp).
+bool fn_71010474f4(CBlackboard* self, const base::global::CStrId& section, const base::global::CStrId& name);

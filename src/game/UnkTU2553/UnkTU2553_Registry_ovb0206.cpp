@@ -614,7 +614,6 @@ using base::global::CStrId;
 
 // The user data's owner, created on first use (as src/game/CBossRushManager.cpp has it).
 struct UnkUserDataOwner;
-bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 extern u8 g_unk_71727be8a8[];
 
 static inline UnkUserDataOwner* GetOwner_e04b00() {

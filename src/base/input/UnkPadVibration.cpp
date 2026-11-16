@@ -98,7 +98,6 @@ void fn_710006ddc8(UnkPadSet* self) {
 using base::input::UnkRumbleManager;
 
 // The rumble manager (created on first use) and its target pad's two vibration devices.
-extern UnkRumbleManager* g_unk_7101d47348;
 void fn_710006fb30(UnkRumbleManager* self, nn::hid::VibrationDeviceHandle left,
                    nn::hid::VibrationDeviceHandle right);
 

@@ -13,8 +13,6 @@
 
 using base::global::CStrId;
 
-bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
-
 struct UnkMapNamedDef_b49 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
