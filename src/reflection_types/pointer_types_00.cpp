@@ -11,12 +11,6 @@
 #include "base/reflection/ValueOps.h"
 using base::reflection::CType;
 using base::reflection::SlotFn;
-const base::reflection::CType* fn_7100007f84();
-const base::reflection::CType* fn_7100009658();
-const base::reflection::CType* fn_710000ad9c();
-const base::reflection::CType* fn_710000fd7c();
-const base::reflection::CType* fn_71000246e4();
-const base::reflection::CType* fn_710009b84c();
 const base::reflection::CType* fn_710009d884();
 const base::reflection::CType* fn_7100135da0();
 const base::reflection::CType* fn_71002295ac();
@@ -1565,6 +1559,7 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100019cf0> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710001c4e8*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100019cf0>();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::reflection::CFunction>::Get();
 template <>
 const CType& base::reflection::ValueOps<base::reflection::CFunction const*>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CFunction const*>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CFunction const*>;
@@ -1575,7 +1570,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CFunction cons
     static constexpr SlotFn get = &fn_710009bda4;
     static constexpr SlotFn set = &fn_710009bdfc;
     static constexpr SlotFn increment = &fn_710009be08;
-    static const CType* pointee() { return fn_710009b84c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::reflection::CFunction>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CFunction const**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CFunction const*>::Get();
@@ -1606,6 +1601,7 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710009d884> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710009ecd4*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710009d884>();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CName>::Get();
 template <>
 const CType& base::reflection::ValueOps<base::global::CName*>::TypeOf(const void*) { return *base::reflection::PointerType<base::global::CName*>::Get(); }
 template struct base::reflection::ValueOps<base::global::CName*>;
@@ -1616,7 +1612,7 @@ struct base::reflection::PointerTypeDescription<base::global::CName*> : base::re
     static constexpr SlotFn get = &fn_71000bab70;
     static constexpr SlotFn set = &fn_71000babc8;
     static constexpr SlotFn increment = &fn_71000babd4;
-    static const CType* pointee() { return fn_710000fd7c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CName>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CName**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CName*>::Get();
@@ -1630,10 +1626,11 @@ struct base::reflection::PointerTypeDescription<base::global::CName const*> : ba
     static constexpr SlotFn get = &fn_71000badc8;
     static constexpr SlotFn set = &fn_71000bae20;
     static constexpr SlotFn increment = &fn_71000bae2c;
-    static const CType* pointee() { return fn_710000fd7c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CName>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CName const**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CName const*>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CRntString>::Get();
 template <>
 const CType& base::reflection::ValueOps<base::global::CRntString const*>::TypeOf(const void*) { return *base::reflection::PointerType<base::global::CRntString const*>::Get(); }
 template struct base::reflection::ValueOps<base::global::CRntString const*>;
@@ -1644,10 +1641,11 @@ struct base::reflection::PointerTypeDescription<base::global::CRntString const*>
     static constexpr SlotFn get = &fn_71000bb020;
     static constexpr SlotFn set = &fn_71000bb078;
     static constexpr SlotFn increment = &fn_71000bb084;
-    static const CType* pointee() { return fn_7100007f84(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CRntString>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CRntString const**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CRntString const*>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 template <>
 const CType& base::reflection::ValueOps<base::global::CStrId*>::TypeOf(const void*) { return *base::reflection::PointerType<base::global::CStrId*>::Get(); }
 template struct base::reflection::ValueOps<base::global::CStrId*>;
@@ -1658,7 +1656,7 @@ struct base::reflection::PointerTypeDescription<base::global::CStrId*> : base::r
     static constexpr SlotFn get = &fn_71000bb278;
     static constexpr SlotFn set = &fn_71000bb2d0;
     static constexpr SlotFn increment = &fn_71000bb2dc;
-    static const CType* pointee() { return fn_7100009658(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CStrId**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CStrId*>::Get();
@@ -1672,10 +1670,11 @@ struct base::reflection::PointerTypeDescription<base::global::CStrId const*> : b
     static constexpr SlotFn get = &fn_71000bb4d0;
     static constexpr SlotFn set = &fn_71000bb528;
     static constexpr SlotFn increment = &fn_71000bb534;
-    static const CType* pointee() { return fn_7100009658(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CStrId const**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CStrId const*>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 template <>
 const CType& base::reflection::ValueOps<base::global::CFilePathStrId*>::TypeOf(const void*) { return *base::reflection::PointerType<base::global::CFilePathStrId*>::Get(); }
 template struct base::reflection::ValueOps<base::global::CFilePathStrId*>;
@@ -1686,7 +1685,7 @@ struct base::reflection::PointerTypeDescription<base::global::CFilePathStrId*> :
     static constexpr SlotFn get = &fn_71000bb728;
     static constexpr SlotFn set = &fn_71000bb780;
     static constexpr SlotFn increment = &fn_71000bb78c;
-    static const CType* pointee() { return fn_710000ad9c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CFilePathStrId**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CFilePathStrId*>::Get();
@@ -1700,10 +1699,11 @@ struct base::reflection::PointerTypeDescription<base::global::CFilePathStrId con
     static constexpr SlotFn get = &fn_71000bb980;
     static constexpr SlotFn set = &fn_71000bb9d8;
     static constexpr SlotFn increment = &fn_71000bb9e4;
-    static const CType* pointee() { return fn_710000ad9c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CFilePathStrId const**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CFilePathStrId const*>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 template <>
 const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TElementIterator>;
@@ -1714,7 +1714,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000bbbd8;
     static constexpr SlotFn set = &fn_71000bbc30;
     static constexpr SlotFn increment = &fn_71000bbc3c;
-    static const CType* pointee() { return fn_71000246e4(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::math::CVector3D>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TElementIterator>::Get();
@@ -1728,7 +1728,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000bbe30;
     static constexpr SlotFn set = &fn_71000bbe88;
     static constexpr SlotFn increment = &fn_71000bbe94;
-    static const CType* pointee() { return fn_71000246e4(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::math::CVector3D>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::math::CVector3D>>::TElementConstIterator>::Get();
@@ -1796,7 +1796,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000bc7d0;
     static constexpr SlotFn set = &fn_71000bc828;
     static constexpr SlotFn increment = &fn_71000bc834;
-    static const CType* pointee() { return fn_7100009658(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::TElementIterator>::Get();
@@ -1810,7 +1810,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000bca28;
     static constexpr SlotFn set = &fn_71000bca80;
     static constexpr SlotFn increment = &fn_71000bca8c;
-    static const CType* pointee() { return fn_7100009658(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CStrId>>::TElementConstIterator>::Get();
@@ -1878,7 +1878,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000bd510;
     static constexpr SlotFn set = &fn_71000bd568;
     static constexpr SlotFn increment = &fn_71000bd574;
-    static const CType* pointee() { return fn_710000fd7c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CName>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::TElementIterator>::Get();
@@ -1892,7 +1892,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000bd768;
     static constexpr SlotFn set = &fn_71000bd7c0;
     static constexpr SlotFn increment = &fn_71000bd7cc;
-    static const CType* pointee() { return fn_710000fd7c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CName>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CName>>::TElementConstIterator>::Get();
@@ -1960,7 +1960,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000be040;
     static constexpr SlotFn set = &fn_71000be098;
     static constexpr SlotFn increment = &fn_71000be0a4;
-    static const CType* pointee() { return fn_710000ad9c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::TElementIterator>::Get();
@@ -1974,7 +1974,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000be298;
     static constexpr SlotFn set = &fn_71000be2f0;
     static constexpr SlotFn increment = &fn_71000be2fc;
-    static const CType* pointee() { return fn_710000ad9c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CFilePathStrId>>::TElementConstIterator>::Get();
@@ -2582,7 +2582,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000c42e8;
     static constexpr SlotFn set = &fn_71000c4340;
     static constexpr SlotFn increment = &fn_71000c434c;
-    static const CType* pointee() { return fn_7100009658(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::TElementIterator>::Get();
@@ -2596,7 +2596,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000c4540;
     static constexpr SlotFn set = &fn_71000c4598;
     static constexpr SlotFn increment = &fn_71000c45a4;
-    static const CType* pointee() { return fn_7100009658(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::TElementConstIterator>::Get();
@@ -2664,7 +2664,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000c5138;
     static constexpr SlotFn set = &fn_71000c5190;
     static constexpr SlotFn increment = &fn_71000c519c;
-    static const CType* pointee() { return fn_710000ad9c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::TElementIterator>::Get();
@@ -2678,7 +2678,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000c5390;
     static constexpr SlotFn set = &fn_71000c53e8;
     static constexpr SlotFn increment = &fn_71000c53f4;
-    static const CType* pointee() { return fn_710000ad9c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CFilePathStrId>>::TElementConstIterator>::Get();
@@ -2966,7 +2966,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000c8128;
     static constexpr SlotFn set = &fn_71000c8180;
     static constexpr SlotFn increment = &fn_71000c818c;
-    static const CType* pointee() { return fn_710009b84c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::reflection::CFunction>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::TElementIterator>::Get();
@@ -2980,7 +2980,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000c8380;
     static constexpr SlotFn set = &fn_71000c83d8;
     static constexpr SlotFn increment = &fn_71000c83e4;
-    static const CType* pointee() { return fn_710009b84c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::reflection::CFunction>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::TElementConstIterator>::Get();
@@ -3130,7 +3130,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000c9a98;
     static constexpr SlotFn set = &fn_71000c9af0;
     static constexpr SlotFn increment = &fn_71000c9afc;
-    static const CType* pointee() { return fn_7100007f84(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CRntString>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::TElementIterator>::Get();
@@ -3144,7 +3144,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_71000c9cf0;
     static constexpr SlotFn set = &fn_71000c9d48;
     static constexpr SlotFn increment = &fn_71000c9d54;
-    static const CType* pointee() { return fn_7100007f84(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CRntString>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntString>>::TElementConstIterator>::Get();
