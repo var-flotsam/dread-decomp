@@ -3693,11 +3693,11 @@ address,size,name,name_source,subsystem,status
 0x71003aa7a0,36,fn_71003aa7a0,unknown,ai/behaviortree?,O
 0x71003aa7c4,280,fn_71003aa7c4,unknown,ai/behaviortree?,U
 0x71003aa8dc,4,fn_71003aa8dc,unknown,ai/behaviortree?,O
-0x71003aa8e0,360,fn_71003aa8e0,unknown,ai/behaviortree?,U
-0x71003aaa48,136,fn_71003aaa48,unknown,ai/behaviortree?,U
+0x71003aa8e0,360,fn_71003aa8e0,unknown,ai/behaviortree?,O
+0x71003aaa48,136,fn_71003aaa48,unknown,ai/behaviortree?,O
 0x71003aaad0,148,fn_71003aaad0,unknown,ai/behaviortree?,O
-0x71003aab64,168,fn_71003aab64,unknown,ai/behaviortree?,U
-0x71003aac0c,316,fn_71003aac0c,unknown,ai/behaviortree?,U
+0x71003aab64,168,fn_71003aab64,unknown,ai/behaviortree?,O
+0x71003aac0c,316,fn_71003aac0c,unknown,ai/behaviortree?,O
 0x71003aad48,348,fn_71003aad48,unknown,ai/behaviortree?,m
 0x71003aaea4,92,fn_71003aaea4,unknown,ai/behaviortree?,O
 0x71003aaf00,28,fn_71003aaf00,unknown,ai/behaviortree?,O

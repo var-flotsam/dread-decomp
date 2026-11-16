@@ -3,28 +3,35 @@
 // A singly linked list of 8-byte values (count at +8, head and tail at +0x10/+0x18, nodes of
 // {value, next} from an allocator at +0x20 with flags at +0x28): inserting before a node
 // (fn_7100240a00 and its identical copies) inlines insert-after, push-front and push-back.
-// The count is a union member: the original reloads it after storing node links. Names and
-// layout are placeholders inferred from the code.
+// The body from +8 is base::UnkLinkedList (base/UnkLinkedList.h), whose count is a union member:
+// the original reloads it after storing node links. Names and layout are placeholders inferred
+// from the code.
 
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntVector.h"
 #include "types.h"
 
 namespace base {
 
 template <class Tag>
-struct UnkSList {
-    struct Node {
-        u64 value;
-        Node* next;
-    };
+struct UnkSListNode {
+    u64 value;
+    UnkSListNode* next;
+};
+
+// The word before the list body.
+struct UnkSListWord {
     u64 field_0x0;
-    union {
-        u32 count;
-    };
-    Node* head;
-    Node* tail;
-    UnkAllocator* allocator;
-    u32 flags;
+};
+
+template <class Tag>
+struct UnkSList : UnkSListWord, UnkLinkedList<UnkSListNode<Tag>> {
+    using Node = UnkSListNode<Tag>;
+    using UnkLinkedList<Node>::count;
+    using UnkLinkedList<Node>::head;
+    using UnkLinkedList<Node>::tail;
+    using UnkLinkedList<Node>::allocator;
+    using UnkLinkedList<Node>::flags;
 
     __attribute__((always_inline)) Node* NewNode(const u64& v) {
         Node* n = static_cast<Node*>(allocator->vf_0x40(sizeof(Node), 8, flags));
