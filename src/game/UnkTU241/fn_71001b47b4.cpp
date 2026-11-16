@@ -2,6 +2,7 @@
 // case-insensitively (the name is lower-cased into a string with inline storage), bumping the
 // entry's use count while it looks; -1 when none. Names and layouts are placeholders.
 #include "base/global/CRntString.h"
+#include "base/global/CStrId.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
@@ -19,10 +20,9 @@ struct UnkInlineString_71001b47b4 {
     CRntString* Str() { return reinterpret_cast<CRntString*>(str); }
     UnkInlineString_71001b47b4() {
         fn_710007e6e4(Str(), reinterpret_cast<base::UnkAllocator*>(&storage_vtable));
-        char* vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
+        storage_vtable = reinterpret_cast<char*>(g_unk_7101a194b8 + 2);
         field_0x138 = 0;
         field_0x140 = 0;
-        storage_vtable = vtable;
     }
     ~UnkInlineString_71001b47b4() {
         fn_710007ed40(Str());
@@ -30,16 +30,9 @@ struct UnkInlineString_71001b47b4 {
     }
 };
 
-struct UnkNamedData_71001b47b4 {
-    u8 pad_0x0[0x10];
-    UnkCompared_0x30* name;  // +0x10, inline
-    u8 pad_0x18[0x2c];
-    u32 use_count;  // +0x44
-};
-
 struct UnkNamedEntry_71001b47b4 {
     u8 pad_0x0[8];
-    UnkNamedData_71001b47b4* data;
+    base::global::CStrId name;  // +0x8
 };
 
 struct UnkNameList_71001b47b4 {
@@ -53,14 +46,15 @@ UnkNamedEntry_71001b47b4** fn_71001b459c(void* entries, u32 index);
 u32 fn_71001b47b4(UnkNameList_71001b47b4* self, const char* name) {
     char lower[0x100];
     lower[0] = 0;
-    u64 len = static_cast<u32>(strlen(name));
+    u32 len = strlen(name);
     if (len != 0) {
-        for (u64 i = 0; i < len; i++) {
+        u64 i = 0;
+        do {
             char c = name[i];
             if (c >= 'A' && c <= 'Z')
                 c += 0x20;
             lower[i] = c;
-        }
+        } while (++i < len);
         lower[len] = 0;
     }
 
@@ -72,11 +66,10 @@ u32 fn_71001b47b4(UnkNameList_71001b47b4* self, const char* name) {
         u32 i = 0;
         do {
             UnkNamedEntry_71001b47b4* entry = *fn_71001b459c(self->entries, i);
-            u32 uses = entry->data->use_count + 1;
-            __builtin_memcpy(&entry->data->use_count, &uses, sizeof(uses));
+            // The id's string compared whole (the CRntString at UnkStringData::text), counting the read.
+            ++entry->name.data->reads;
             bool same = fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(key.Str()),
-                                      reinterpret_cast<const UnkCompared_0x30*>(
-                                          reinterpret_cast<u8*>(entry->data) + 0x10));
+                                      reinterpret_cast<const UnkCompared_0x30*>(&entry->name.data->text));
             found = same ? i : 0xffffffff;
             i += !same;
         } while ((found == 0xffffffff) & (i < self->count));

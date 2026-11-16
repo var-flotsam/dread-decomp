@@ -10,6 +10,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2727.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -87,8 +88,8 @@ static inline T* Singleton_ldfde4c(T*& instance) {
     return instance;
 }
 
-struct UnkMenuEntries_ovb0186;
-void* fn_7101190890(UnkMenuEntries_ovb0186* self, CRntString name);
+struct UnkNamedObject;
+struct UnkNamedUser;
 
 // An object registered by name, and what fn_7101190890 gives for it and a scenario.
 struct UnkNamedObject_ldfde4c {
@@ -104,17 +105,10 @@ struct UnkNamedUser_ldfde4c {
     bool field_0x88;
 };
 
-// The pooled data behind a string id as its text accessor sees it.
-struct UnkIdTextData_ldfde4c {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    s32 reads;
-};
-
-static inline const CRntString& IdText_ldfde4c(const CStrId& id) {
-    ++reinterpret_cast<UnkIdTextData_ldfde4c*>(id.data)->reads;
-    return reinterpret_cast<UnkIdTextData_ldfde4c*>(id.data)->str;
+// An id's text as the string it is (its pooled data holds a CRntString at +0x10), counting the read.
+static inline const CRntString& IdString_ldfde4c(const CStrId& id) {
+    ++id.data->reads;
+    return id.data->String();
 }
 
 inline UnkGameManagerIdTable& IdTable_ldfde4c() {
@@ -144,7 +138,7 @@ s32 fn_7100dfde4c(UnkGameManager* manager) {
     blackboards.PushBack(self->field_0x820);
     const CRntString& scenario = self->field_0x7f0;
     // The slot is read as a string id here.
-    const CRntString& key = IdText_ldfde4c(*reinterpret_cast<CStrId*>(IdTable_ldfde4c().pad_0x0 + 0x16a8));
+    const CRntString& key = IdString_ldfde4c(*reinterpret_cast<CStrId*>(IdTable_ldfde4c().pad_0x0 + 0x16a8));
     UnkNamedObject_ldfde4c* found = nullptr;
     for (UnkNamedNode_ldfde4c* n = self->field_0x478; n; n = n->next) {
         if (fn_710007f120(reinterpret_cast<const UnkCompared_0x30*>(&n->value->name),
@@ -154,8 +148,8 @@ s32 fn_7100dfde4c(UnkGameManager* manager) {
         }
     }
     if (found) {
-        auto* user = static_cast<UnkNamedUser_ldfde4c*>(
-            fn_7101190890(reinterpret_cast<UnkMenuEntries_ovb0186*>(found), CRntString(scenario)));
+        auto* user = reinterpret_cast<UnkNamedUser_ldfde4c*>(
+            fn_7101190890(reinterpret_cast<UnkNamedObject*>(found), CRntString(scenario)));
         user->field_0x88 = true;
     }
     CRntString name(scenario);

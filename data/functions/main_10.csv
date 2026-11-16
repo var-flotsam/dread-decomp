@@ -2999,7 +2999,7 @@ address,size,name,name_source,subsystem,status
 0x7101085e00,92,lua_bind::GetControlledAI,string,script/bindings,O
 0x7101085e60,456,lua_bind::GetSelectedAIAttacks,string,script/bindings,U
 0x7101086030,820,lua_bind::SwitchSelectedAIAttack,string,script/bindings,U
-0x7101086370,360,lua_bind::SwitchSelectedAIAttackPreset,string,script/bindings,U
+0x7101086370,360,lua_bind::SwitchSelectedAIAttackPreset,string,script/bindings,O
 0x71010864e0,268,lua_bind::RefreshSelectedAIAttackPreset,string,script/bindings,O
 0x71010865f0,24,lua_bind::EnableAttacks,string,script/bindings,O
 0x7101086610,20,lua_bind::DisableAttacks,string,script/bindings,O

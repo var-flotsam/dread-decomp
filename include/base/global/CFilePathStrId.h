@@ -24,9 +24,7 @@ class CRntString;
 
 }  // namespace base::global
 
-// The empty string the CRntString constructors pass to the pool when the string has no text
-// (also used by fn_7100000850, src/base/global/fn_71000003d4.cpp).
-extern const char g_unk_710162e2ed[] __attribute__((visibility("hidden")));
+// g_unk_710162e2ed, the empty text, is declared in base/global/CStrId.h.
 
 namespace base::global {
 

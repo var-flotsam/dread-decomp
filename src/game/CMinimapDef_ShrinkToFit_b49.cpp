@@ -7,6 +7,7 @@
 #include <new>
 
 #include "../game_aca57c/UnkBufferString.h"
+#include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBufferStringPool.h"
