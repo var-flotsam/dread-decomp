@@ -4,6 +4,7 @@
 // of string ids at +0x3d0 (built with 11 buckets, emptied), and dropping the model file
 // (<root>maps/levels/c50_gui/<name>/<name>.bmssd). Names and layouts are placeholders.
 #include <new>
+#include "base/UnkVtableList.h"
 
 #include "base/UnkChainedMap.h"
 #include "base/UnkSList.h"
@@ -36,26 +37,7 @@ struct UnkScene3DNode_ovb0076 {
 };
 
 // A linked list whose nodes come from its allocator.
-struct UnkScene3DList_ovb0076 {
-    void** vtable;
-    u32 count;
-    UnkScene3DNode_ovb0076* head;
-    UnkScene3DNode_ovb0076* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    // Frees every node.
-    void Clear() {
-        for (UnkScene3DNode_ovb0076* n = head; n;) {
-            UnkScene3DNode_ovb0076* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
-};
+using UnkScene3DList_ovb0076 = base::UnkVtableList<UnkScene3DNode_ovb0076>;
 
 // One input of the frame: the key (bit), its kind (2: held) and its value.
 struct UnkScene3DInput_ovb0076 {

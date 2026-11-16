@@ -3,6 +3,7 @@
 // placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU1323.h"
 #include "types.h"
 
@@ -13,24 +14,6 @@ using base::global::UnkStringPool;
 struct UnkHeatableValue_0xd0;
 struct UnkIdRecord_0x28;
 void fn_710086e288(UnkIdRecord_0x28* self);
-
-// A string id whose release decrements and tests the count in two steps.
-struct UnkTwoStepId_b260 {
-    UnkStringData* data;
-
-    ~UnkTwoStepId_b260() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 struct UnkHeatableValue_b260 {
     CStrId id0;                       // 0x0
@@ -68,7 +51,7 @@ void fn_710086e0ac(UnkHeatableValue_0xd0* self_) {
     UnkHeatableValue_b260* self = reinterpret_cast<UnkHeatableValue_b260*>(self_);
     fn_710086e288(reinterpret_cast<UnkIdRecord_0x28*>(self->ids78));
     self->id48.Reset();
-    reinterpret_cast<base::global::CRntVector<UnkTwoStepId_b260>&>(self->list).Free();
+    reinterpret_cast<base::global::CRntVector<UnkStrIdTwoStep>&>(self->list).Free();
     self->id18.Reset();
     self->id10.Reset();
     self->id0.Reset();

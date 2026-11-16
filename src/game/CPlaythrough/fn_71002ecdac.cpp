@@ -1,7 +1,7 @@
 // Releases and deletes the record held by a pointer slot (clearing the slot first): its owned
 // object at 0x30 is deleted through its virtual slot 0x10, then its string id at 8 is released.
 #include <new>
-#include "game_s2/UnkTwoStepStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 struct UnkOwned {

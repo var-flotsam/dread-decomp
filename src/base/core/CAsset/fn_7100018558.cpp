@@ -2,48 +2,25 @@
 // (the comments are adapted from the original's): fn_7100018558, fn_710025ff90. Copy-assignments of maps of ids to
 // records (values at 0, keys at 8, sharing one count): both sides are destroyed, the storage is reallocated when the
 // other's count differs from the capacity, then the values are assigned and the keys copied, counting a use of each.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using namespace base::global;
 
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 template <class V>
-struct UnkIdMap {
-    V* values;
-    UnkReleasedStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkStrIdKeyedMap = base::global::CRntSmallDictionary<UnkStrIdTwoStep, V>;
 
-template <class V, void (*Destroy)(V*), void (*Free)(UnkIdMap<V>*), void (*Allocate)(UnkIdMap<V>*, u32),
+template <class V, void (*Destroy)(V*), void (*Free)(UnkStrIdKeyedMap<V>*), void (*Allocate)(UnkStrIdKeyedMap<V>*, u32),
           void (*AssignValue)(V*, const V*)>
-static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
+static inline UnkStrIdKeyedMap<V>* Assign(UnkStrIdKeyedMap<V>* self, const UnkStrIdKeyedMap<V>* other) {
     if (self != other) {
         if (self->keys)
             for (u64 i = 0; i < self->count; ++i)
-                self->keys[i].~UnkReleasedStrId();
+                self->keys[i].~UnkStrIdTwoStep();
         if (self->values)
             for (u32 i = 0; i < self->count; ++i)
                 Destroy(&self->values[i]);
@@ -69,7 +46,7 @@ static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
 struct UnkRecord80 {
     u64 unk_0x0[0x80 / 8];
 };
-using UnkIdRecordMap = UnkIdMap<UnkRecord80>;
+using UnkIdRecordMap = UnkStrIdKeyedMap<UnkRecord80>;
 void fn_710001871c(UnkIdRecordMap* self);             // frees the storage
 void fn_7100017948(UnkIdRecordMap* self, u32 capacity);  // Reserve
 
@@ -85,7 +62,7 @@ struct UnkVirtualRecord60 {
 __attribute__((always_inline)) inline void DestroyVirtual(UnkVirtualRecord60* record) {
     record->~UnkVirtualRecord60();
 }
-using UnkIdVirtualRecordMap = UnkIdMap<UnkVirtualRecord60>;
+using UnkIdVirtualRecordMap = UnkStrIdKeyedMap<UnkVirtualRecord60>;
 void fn_7100260164(UnkIdVirtualRecordMap* self);                // frees the storage
 void fn_710025fdf4(UnkIdVirtualRecordMap* self, u32 capacity);  // Reserve
 void fn_710025f17c(UnkVirtualRecord60* self, const UnkVirtualRecord60* other);

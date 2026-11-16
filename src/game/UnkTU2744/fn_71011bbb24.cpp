@@ -2,6 +2,7 @@
 // capacity; the layers are copied over and released, the keys moved. Names and layouts are placeholders.
 #include <new>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -23,15 +24,7 @@ struct UnkGuiLayerSlot {
 };
 static_assert(sizeof(UnkGuiLayerSlot) == 0x48, "UnkGuiLayerSlot layout");
 
-struct UnkGuiLayerSlotArrays {
-    UnkGuiLayerSlot* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkGuiLayerSlotArrays = base::global::CRntSmallDictionary<CStrId, UnkGuiLayerSlot>;
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71011bbb24(UnkGuiLayerSlotArrays* self, u32 capacity) {

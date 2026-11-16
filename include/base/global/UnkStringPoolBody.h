@@ -8,6 +8,7 @@
 // are placeholders inferred from the code.
 
 #include "base/UnkBlockFreeList.h"
+#include "base/global/UnkBucketSet.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -35,19 +36,9 @@ struct UnkPoolNode {
 };
 static_assert(sizeof(UnkPoolNode) == 0x58, "UnkPoolNode layout");
 
-// The set: the bucket array (an CRntVector; `count` buckets in use of `capacity`, which is also the
-// hash modulus), the first non-empty bucket and its first node, the node allocator and the number
-// of nodes. `version` counts changes (UnkPoolBucketRef in base/global/UnkStringPool.h).
-struct UnkPoolSet {
-    CRntVector<char*> buckets;
-    u32 first_bucket;  // +0x28: -1 when empty
-    UnkPoolNode* first_node;
-    UnkAllocator* node_allocator;
-    u32 node_flags;
-    u32 node_count;
-    u32 version;
-};
-static_assert(sizeof(UnkPoolSet) == 0x50, "UnkPoolSet layout");
+// The pool's chained hash set (base/global/UnkBucketSet.h). `version` counts changes
+// (UnkPoolBucketRef in base/global/UnkStringPool.h).
+using UnkPoolSet = UnkBucketSet<UnkPoolNode>;
 
 // The block pool the set's nodes' memory comes from, laid out as UnkBlockPool
 // (base/UnkCloneHelpers.h). It follows the set, and the set's node allocator points at it once

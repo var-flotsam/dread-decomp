@@ -4,7 +4,7 @@
 // (fn_7100d7c990), unless the blackboard is locked (the setter as in
 // src/game/CAIComponent/CAIComponent_StoreFloat_b49.cpp). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
@@ -29,19 +29,8 @@ struct UnkXParasiteMode_A3_b75 {
     u64 unk_0x8;
 };
 
-struct UnkXParasiteVec_A3_b75 {
-    f32 x, y, z;
-};
-static inline UnkXParasiteVec_A3_b75 operator-(const UnkXParasiteVec_A3_b75& a, const UnkXParasiteVec_A3_b75& b) {
-    return {a.x - b.x, a.y - b.y, a.z - b.z};
-}
-static inline UnkXParasiteVec_A3_b75 operator+(const UnkXParasiteVec_A3_b75& a, const UnkXParasiteVec_A3_b75& b) {
-    return {a.x + b.x, a.y + b.y, a.z + b.z};
-}
-static inline UnkXParasiteVec_A3_b75 operator*(const UnkXParasiteVec_A3_b75& a, f32 s) {
-    return {a.x * s, a.y * s, a.z * s};
-}
-static inline UnkXParasiteVec_A3_b75 UnkXParasitePos_A3_b75(const UnkActor* a) {
+using base::math::CVector3D;
+static inline CVector3D UnkXParasitePos_A3_b75(const UnkActor* a) {
     return {a->field_0x44, a->field_0x54, a->field_0x64};
 }
 
@@ -56,9 +45,9 @@ void XParasiteAI_FleeFromTarget(UnkXParasiteAI* self) {
         return;
     CBlackboard* blackboard = &self->blackboard;
     UnkActor* owner = self->owner;
-    UnkXParasiteVec_A3_b75 from = UnkXParasitePos_A3_b75(target);
-    UnkXParasiteVec_A3_b75 at = UnkXParasitePos_A3_b75(owner);
-    UnkXParasiteVec_A3_b75 pos = at + (at - from) * 10000.0f;
+    CVector3D from = UnkXParasitePos_A3_b75(target);
+    CVector3D at = UnkXParasitePos_A3_b75(owner);
+    CVector3D pos = at + (at - from) * 10000.0f;
     if (CBlackboard::CSection* s = fn_71010472e0(blackboard, g_unk_71726b7cb8)) {
         if (!blackboard->field_0xe8) {
             UnkTypedValue v;

@@ -7,6 +7,7 @@
 // (+0x74) of the AI's pattern (fn_7100621aa8, by +0x70), fires that entry (fn_71006250c0, with the
 // pattern's name) and moves to the next one, switching to state 3 after the last (+0x78). State
 // changes go through fn_7100624fe0. Names and layouts are placeholders.
+#include "base/UnkPooledStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -55,12 +56,9 @@ struct UnkNailAttack_ovb0134 {
 };
 
 UnkNailPatternRef_ovb0134* fn_7100621aa8(UnkReflObject* ai, s32 id);
-// The pattern's name, handed over as an id the caller releases (by the value it handed over).
-struct UnkNameArg_ovb0134 {
-    base::global::UnkStringData* data;
-};
+
 void fn_71006250c0(UnkNailAttack_ovb0134* self, UnkNailPatternEntry_ovb0134* entry, u32 index,
-                   __attribute__((noescape)) UnkNameArg_ovb0134* name);
+                   __attribute__((noescape)) base::UnkPooledString* name);
 void fn_7100624fe0(UnkNailAttack_ovb0134* self, s32 state);
 
 void fn_7100624e44(UnkNailAttack_ovb0134* self, f32 dt) {
@@ -84,7 +82,7 @@ void fn_7100624e44(UnkNailAttack_ovb0134* self, f32 dt) {
         if (self->timer >= entry->duration) {
             {
                 base::global::UnkStringData* data = pattern->name.data;
-                UnkNameArg_ovb0134 name = {data};
+                base::UnkPooledString name = {data};
                 if (&g_unk_7101d47108->empty != data)
                     ++data->ref_count;
                 fn_71006250c0(self, entry, index, &name);

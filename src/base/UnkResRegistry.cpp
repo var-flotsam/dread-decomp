@@ -10,15 +10,16 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkResKey.h"
 #include "base/UnkResPathVec.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/file/UnkFileCacheSet.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkBucketSet.h"
 #include "game/UnkTU27.h"
 #include "types.h"
 
 using base::UnkAllocator;
-using base::UnkBlockPool;
 using base::global::CRntVector;
 using base::global::CFilePathStrId;
 using base::global::CStrId;
@@ -129,15 +130,7 @@ __attribute__((noinline, flatten)) void fn_71000ec89c(UnkResDesc* self, const Un
 
 // The registry's records and their type names: two parallel arrays sharing a count, a capacity
 // and a growth step (embedded at +0xf0).
-struct UnkResDescArrays {
-    UnkResDesc* descs;
-    CStrId* names;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    UnkAllocator* allocator;
-};
+using UnkResDescArrays = base::global::CRntSmallDictionary<CStrId, UnkResDesc>;
 
 // Grows both arrays to `new_capacity`: the records are copied and destroyed, the names moved.
 void fn_71000ec708(UnkResDescArrays* self, u32 new_capacity) {
@@ -145,15 +138,15 @@ void fn_71000ec708(UnkResDescArrays* self, u32 new_capacity) {
         UnkResDesc* descs =
             static_cast<UnkResDesc*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(UnkResDesc), 8, self->flags));
         CStrId* names = static_cast<CStrId*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(CStrId), 8, self->flags));
-        if (UnkResDesc* old = self->descs) {
+        if (UnkResDesc* old = self->values) {
             UnkResDesc* dst = descs;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
                 fn_71000ec89c(dst, old);
                 old->~UnkResDesc();
             }
-            self->allocator->vf_0x48(self->descs);
+            self->allocator->vf_0x48(self->values);
         }
-        if (CStrId* old = self->names) {
+        if (CStrId* old = self->keys) {
             CStrId* dst = names;
             for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
                 // The moved-from id is cleared through a union, so its pool is reloaded.
@@ -164,27 +157,18 @@ void fn_71000ec708(UnkResDescArrays* self, u32 new_capacity) {
                 reinterpret_cast<Slot*>(&old->data)->p = &g_unk_7101d47108->empty;
                 old->Reset();
             }
-            self->allocator->vf_0x48(self->names);
+            self->allocator->vf_0x48(self->keys);
         }
-        self->descs = descs;
-        self->names = names;
+        self->values = descs;
+        self->keys = names;
         self->capacity = new_capacity;
     }
 }
 
-// The registry's hash set of entries, laid out as the string pool's (base::global::UnkPoolSetWithNodes
-// in base/global/UnkStringPoolBody.h), with 0x14-byte nodes; fn_71000ec184 sets it up.
-struct UnkResSet {
-    CRntVector<char*> buckets;
-    u32 first_bucket;
-    char* first_node;
-    UnkAllocator* node_allocator;
-    u32 node_flags;
-    u32 node_count;
-    u32 version;
-    UnkBlockPool nodes;
-};
-static_assert(sizeof(UnkResSet) == 0x90, "");
+// The registry's hash set of entries (base/global/UnkBucketSet.h) with its node pool; fn_71000ec184
+// sets it up.
+struct UnkResSetNode;
+using UnkResSet = base::global::UnkPooledBucketSet<UnkResSetNode>;
 
 // Sets the set up with `nodes` pooled nodes of 0x60 bytes and `buckets` buckets (the file cache set's
 // set-up, base/file/UnkFileCacheSet.h, with the same layout).
@@ -214,7 +198,7 @@ void fn_71000e9c78(UnkResRegistry* self) {
     self->vtable_0x8 = g_unk_7101a1b888 + 0x60;
     fn_71000e9d60(self->field_0x10, 300, 0xe);
     UnkResSet* set = &self->set;
-    new (&set->buckets) CRntVector<char*>(0xe);
+    new (&set->buckets) CRntVector<UnkResSetNode*>(0xe);
     set->first_node = nullptr;
     set->first_bucket = -1;
     set->node_allocator = fn_7100083990();
@@ -227,8 +211,8 @@ void fn_71000e9c78(UnkResRegistry* self) {
     set->nodes.field_0x38 = 0;
     set->nodes.field_0x3c = false;
     fn_71000ec184(set, 5, 0x14);
-    self->descs.descs = nullptr;
-    self->descs.names = nullptr;
+    self->descs.values = nullptr;
+    self->descs.keys = nullptr;
     self->descs.count = 0;
     self->descs.capacity = 0;
     self->descs.step = 10;
@@ -256,9 +240,9 @@ UnkCountedResource* fn_71000eaf20(UnkResRegistry* self, const UnkResKey* key, u8
 static inline UnkResDesc* FindDesc(UnkResRegistry* self, const UnkResKey* key) {
     UnkResDescArrays& d = self->descs;
     for (u64 i = 0; i < d.count; ++i)
-        if (d.names[i].data == key->type.data)
-            return &d.descs[i];
-    return &d.descs[d.count];
+        if (d.keys[i].data == key->type.data)
+            return &d.values[i];
+    return &d.values[d.count];
 }
 
 // The index of `key`'s type's record, or the count.
@@ -266,7 +250,7 @@ static inline u64 FindDescIndex(UnkResRegistry* self, const UnkResKey* key) {
     UnkResDescArrays& d = self->descs;
     u64 i = 0;
     for (; i < d.count; ++i)
-        if (d.names[i].data == key->type.data)
+        if (d.keys[i].data == key->type.data)
             break;
     return i;
 }
@@ -285,7 +269,7 @@ UnkResRef fn_71000ead80(UnkResRegistry* self, const UnkResKey* key, u8 flag, voi
         } else {
             UnkResDesc* desc = FindDesc(self, key);
             if (desc->name.data != &g_unk_7101d47108->empty && desc->field_0x18.data != &g_unk_7101d47200->empty) {
-                desc = &self->descs.descs[FindDescIndex(self, key)];
+                desc = &self->descs.values[FindDescIndex(self, key)];
                 if (desc->name.data != key->type.data || desc->field_0x18.data != key->path.data) {
                     // The other key's resource, copied into the result and released as the temporary.
                     // In this unit the count is a plain word: it is not reread after the result is

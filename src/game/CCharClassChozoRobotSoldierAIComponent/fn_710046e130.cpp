@@ -2,10 +2,10 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CCharClassChozoRobotSoldierAIComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkBossAIComponent.h"
-#include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStrId;

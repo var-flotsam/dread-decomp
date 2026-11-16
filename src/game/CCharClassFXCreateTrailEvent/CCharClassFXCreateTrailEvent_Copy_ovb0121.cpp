@@ -3,41 +3,23 @@
 // assignment (fn_7100bb1abc). Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-template <UnkStringPool** Pool>
-struct UnkReleasedId_ovb0121 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedId_ovb0121() {
-        if (UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-using UnkReleasedStrId_ovb0121 = UnkReleasedId_ovb0121<&g_unk_7101d47108>;
-using UnkReleasedPathId_ovb0121 = UnkReleasedId_ovb0121<&g_unk_7101d47200>;
 
 extern void* g_unk_7101aa0f28[];
 
 struct UnkTrailEvent_ovb0121 {
     void** vtable;
     u8 unk_0x8[0x8];
-    UnkReleasedStrId_ovb0121 a;      // 0x10
-    UnkReleasedPathId_ovb0121 path;  // 0x18
+    UnkStrIdTwoStep a;      // 0x10
+    UnkPathIdTwoStep path;  // 0x18
     u8 unk_0x20[0x8];
-    UnkReleasedStrId_ovb0121 b;      // 0x28
+    UnkStrIdTwoStep b;      // 0x28
 
     __attribute__((always_inline)) ~UnkTrailEvent_ovb0121() { vtable = g_unk_7101aa0f28 + 2; }
 };

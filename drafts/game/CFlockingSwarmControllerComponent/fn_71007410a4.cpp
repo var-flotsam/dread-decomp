@@ -5,6 +5,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "types.h"
 
@@ -13,22 +14,10 @@ using base::global::UnkStringData;
 struct UnkRedenkiNamedList_ovb0084;
 void fn_710065b430(base::global::CRntVector<UnkRedenkiNamedList_ovb0084>* self, u32 n);
 
-// An id starting as the pool's empty string.
-struct UnkGroupName_l7410a4 {
-    UnkStringData* data;
-
-    UnkGroupName_l7410a4() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkSwarmGroup_l7410a4 {
     base::global::CRntVector<u32> members{0xf};
     u32 field_0x28 = 3;
-    UnkGroupName_l7410a4 name;  // +0x30
+    UnkEmptyStrId name;  // +0x30
 };
 static_assert(sizeof(UnkSwarmGroup_l7410a4) == 0x38, "UnkSwarmGroup_l7410a4 placeholder layout");
 

@@ -7,6 +7,7 @@
 // resource does not load (fn_7100339a50, fn_7100339ea0 in CAbilitySonar.cpp) the object is deleted). Names
 // and layouts are placeholders.
 #include <new>
+#include "base/UnkPooledStrId.h"
 #include "base/UnkResKey.h"
 #include "base/global/CRntDictionary.h"
 #include "base/global/CFilePathStrId.h"
@@ -32,11 +33,7 @@ struct UnkSonarVec_ovb0085 {
     u32 pad;
 };
 
-struct UnkEmptyStrId_ovb0085 {
-    base::global::UnkStringData* data;
-};
-
-__attribute__((always_inline)) static inline void InitEmptyId(UnkEmptyStrId_ovb0085* id) {
+__attribute__((always_inline)) static inline void InitEmptyId(base::UnkPooledString* id) {
     id->data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();
@@ -50,10 +47,10 @@ struct UnkSonarTunable_ovb0085 {
     UnkSonarVec_ovb0085 field_0x40;
     UnkSonarVec_ovb0085 field_0x50;
     u8 pad_0x60[0x8];
-    UnkEmptyStrId_ovb0085 field_0x68;
-    UnkEmptyStrId_ovb0085 field_0x70;
+    base::UnkPooledString field_0x68;
+    base::UnkPooledString field_0x70;
     u64 field_0x78;
-    UnkEmptyStrId_ovb0085 field_0x80;
+    base::UnkPooledString field_0x80;
 };
 
 static inline void Clear(UnkSonarVec_ovb0085* v) {

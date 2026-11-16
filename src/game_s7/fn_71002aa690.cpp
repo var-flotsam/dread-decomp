@@ -11,6 +11,7 @@
 // addresses its middle words from the loop's base register, ours from the destination pointer.
 // Same behaviour.
 #include <algorithm>
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkPos_71002aa690 {
@@ -23,11 +24,7 @@ struct UnkPos_71002aa690 {
     };
 };
 
-struct UnkVec3_71002aa690 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkEntry_71002aa690 {
     u32 field_0x0;
@@ -68,16 +65,16 @@ static inline f32 Sign_71002aa690(f32 x) {
 }
 
 struct UnkCmp_71002aa690 {
-    UnkVec3_71002aa690 pos;
+    CVector3D pos;
 
-    f32 DistSq(const UnkVec3_71002aa690& p) const {
+    f32 DistSq(const CVector3D& p) const {
         return (pos.x - p.x) * (pos.x - p.x) + (pos.y - p.y) * (pos.y - p.y) +
                (pos.z - p.z) * (pos.z - p.z);
     }
     bool operator()(const UnkEntry_71002aa690& a, const UnkEntry_71002aa690& b) const {
-        UnkVec3_71002aa690 pb = {b.pos.x, b.pos.y, 0.0f};
+        CVector3D pb = {b.pos.x, b.pos.y, 0.0f};
         f32 db = DistSq(pb);
-        UnkVec3_71002aa690 pa = {a.pos.x, a.pos.y, 0.0f};
+        CVector3D pa = {a.pos.x, a.pos.y, 0.0f};
         f32 da = DistSq(pa);
         return (s32)Sign_71002aa690(db - da) > 0;
     }

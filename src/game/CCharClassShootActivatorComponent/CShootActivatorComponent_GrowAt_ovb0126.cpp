@@ -10,6 +10,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -36,20 +37,9 @@ struct UnkGrowSet_ovb0126 : UnkGrowSetBase_ovb0126 {
     }
 };
 
-struct UnkGrowId_ovb0126 {
-    UnkStringData* data;
-
-    UnkGrowId_ovb0126() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkGrowEntry_ovb0126 {
     UnkGrowSet_ovb0126 set;
-    UnkGrowId_ovb0126 id;
+    UnkEmptyStrId id;
 };
 static_assert(sizeof(UnkGrowEntry_ovb0126) == 0x48, "entry size");
 

@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/UnkKeyedStrIds.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -59,15 +60,7 @@ struct UnkOwnedSlot_b0261 {
     }
 };
 
-struct UnkOwnedMap_b0261 {
-    UnkOwnedSlot_b0261* values;
-    UnkReleasedId_b0261* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkOwnedMap_b0261 = base::global::CRntSmallDictionary<UnkReleasedId_b0261, UnkOwnedSlot_b0261>;
 
 void fn_7100ae3834(UnkOwnedMap_b0261* self, u32 capacity) {
     if (self->capacity < capacity) {
@@ -117,15 +110,7 @@ struct UnkKeyedSlot_b0261 {
     }
 };
 
-struct UnkKeyedMap_b0261 {
-    UnkKeyedSlot_b0261* values;
-    UnkReleasedId_b0261* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyedMap_b0261 = base::global::CRntSmallDictionary<UnkReleasedId_b0261, UnkKeyedSlot_b0261>;
 
 void fn_7100ae2ef4(UnkKeyedMap_b0261* self, u32 capacity) {
     if (self->capacity < capacity) {

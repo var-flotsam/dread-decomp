@@ -3,6 +3,7 @@
 // a candidate that passes the class filter at +0x78 replaces the best one (record at +0x8, flag at
 // +0x70) when there is none or it lies nearer to the point at +0x78 (x, y, z squared on both sides).
 // Result 1 when taken, else the guarded "skip" 0. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CAimComponent.h"
 #include "game/UnkTU437.h"
 #include "types.h"
@@ -28,9 +29,7 @@ static inline UnkVisitResult_b0040 Skip_ovb0198k() {
 }
 
 
-struct UnkAimPoint_ovb0198k {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkAimNearest_ovb0198k {
     u8 pad_0x0[8];
@@ -38,7 +37,7 @@ struct UnkAimNearest_ovb0198k {
     u8 pad_0x50[0x20];
     bool has_best;  // 0x70
     u8 pad_0x71[7];
-    UnkAimPoint_ovb0198k point;  // 0x78
+    CVector3D point;  // 0x78
 };
 static_assert(__builtin_offsetof(UnkAimNearest_ovb0198k, has_best) == 0x70, "layout");
 

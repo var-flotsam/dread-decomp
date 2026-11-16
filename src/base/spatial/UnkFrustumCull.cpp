@@ -66,6 +66,8 @@ s32 fn_71001bab30(const UnkFrustumView* self, UnkBoundSphere* sphere) {
 // ---- The view's cull object (fn_71001b7a60) ----
 
 #include "base/global/CRntDictionary.h"
+#include "base/global/CRntVector.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkSphere.h"
 
 // The registry every view's cull object is entered in: a chained hash set of pointers at +8 (the
@@ -353,19 +355,13 @@ void fn_71001ba864(UnkXformTarget* target, const UnkVec3f* pos) {
 
 namespace {
 
-struct V3 {
-    f32 x, y, z;
-};
-
-inline V3 Add(V3 a, V3 b) { return {a.x + b.x, a.y + b.y, a.z + b.z}; }
-inline V3 Sub(V3 a, V3 b) { return {a.x - b.x, a.y - b.y, a.z - b.z}; }
-inline V3 Scale(V3 a, f32 s) { return {a.x * s, a.y * s, a.z * s}; }
+using base::math::CVector3D;
 
 // The view's fields this update reads and writes, by offset (the constructor's layout above keeps
 // them as raw words): the eye at +0xa8, its forward, right and up axes after it, the corners of the
 // two cross-sections at +0x280 (the one at +0x8c's distance) and +0x2b0 (+0x88's), the quantised
 // planes at +0x1d8 and the orthographic size at +0x15c.
-inline V3& Vec(UnkCullView* v, u32 offset) { return *reinterpret_cast<V3*>(reinterpret_cast<u8*>(v) + offset); }
+inline CVector3D& Vec(UnkCullView* v, u32 offset) { return *reinterpret_cast<CVector3D*>(reinterpret_cast<u8*>(v) + offset); }
 inline f32 Word(const UnkCullView* v, u32 offset) {
     return *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(v) + offset);
 }
@@ -385,22 +381,22 @@ inline s32 Quantise(f32 v, f32 scale) {
 
 // A cross-section's four corners at the given distance along the view's forward axis, from the
 // right and up axes scaled to the half sizes (r, u): (+r, -u), (+r, +u), (-r, -u), (-r, +u).
-__attribute__((always_inline)) inline void Corners(UnkCullView* self, V3* out, f32 distance, V3 r, V3 u) {
-    V3 eye = Vec(self, 0xa8);
-    V3 forward = Vec(self, 0xb4);
-    V3 c = {eye.x + forward.x * distance, eye.y + forward.y * distance, eye.z + forward.z * distance};
-    V3 cr = Add(c, r);
-    V3 cl = Sub(c, r);
-    out[0] = Sub(cr, u);
-    out[1] = Add(u, cr);
-    out[2] = Sub(cl, u);
-    out[3] = Add(u, cl);
+__attribute__((always_inline)) inline void Corners(UnkCullView* self, CVector3D* out, f32 distance, CVector3D r, CVector3D u) {
+    CVector3D eye = Vec(self, 0xa8);
+    CVector3D forward = Vec(self, 0xb4);
+    CVector3D c = {eye.x + forward.x * distance, eye.y + forward.y * distance, eye.z + forward.z * distance};
+    CVector3D cr = c + r;
+    CVector3D cl = c - r;
+    out[0] = cr - u;
+    out[1] = u + cr;
+    out[2] = cl - u;
+    out[3] = u + cl;
 }
 
 // The plane through p0, a and b (its normal cross(a - p0, b - p0), normalised).
-__attribute__((always_inline)) inline void PlaneFrom(UnkPlane* plane, const V3& p0, const V3& a, const V3& b) {
-    V3 v1 = Sub(a, p0);
-    V3 v2 = Sub(b, p0);
+__attribute__((always_inline)) inline void PlaneFrom(UnkPlane* plane, const CVector3D& p0, const CVector3D& a, const CVector3D& b) {
+    CVector3D v1 = a - p0;
+    CVector3D v2 = b - p0;
     f32 nx = v1.y * v2.z - v1.z * v2.y;
     f32 ny = v1.z * v2.x - v1.x * v2.z;
     f32 nz = v1.x * v2.y - v1.y * v2.x;
@@ -418,8 +414,8 @@ __attribute__((always_inline)) inline void PlaneFrom(UnkPlane* plane, const V3& 
 
 // The corners, planes and boxes from the two cross-sections' distances and half sizes (inlined
 // into both of the update's branches).
-__attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, V3* near, V3* far, f32 near_d,
-                                                          f32 far_d, V3 near_r, V3 near_u, V3 far_r, V3 far_u) {
+__attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, CVector3D* near, CVector3D* far, f32 near_d,
+                                                          f32 far_d, CVector3D near_r, CVector3D near_u, CVector3D far_r, CVector3D far_u) {
     Corners(self, near, near_d, near_r, near_u);
     Corners(self, far, far_d, far_r, far_u);
 
@@ -438,14 +434,14 @@ __attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, V3*
     }
 
     // The frustum's four edges, from the far corners to the near ones, cut into nine slabs.
-    V3 step[4];
+    CVector3D step[4];
     for (u32 k = 0; k < 4; ++k)
-        step[k] = Scale(Sub(near[k], far[k]), 0.11111111f);
+        step[k] = (near[k] - far[k]) * 0.11111111f;
     for (u32 i = 0; i < 9; ++i) {
-        V3 points[8];
+        CVector3D points[8];
         for (u32 k = 0; k < 4; ++k) {
-            points[k] = Add(Scale(step[k], (f32)i), far[k]);
-            points[4 + k] = Add(Scale(step[k], (f32)(i + 1)), far[k]);
+            points[k] = step[k] * (f32)i + far[k];
+            points[4 + k] = step[k] * (f32)(i + 1) + far[k];
         }
         UnkPoolBox* box = &self->boxes[i].box;
         {
@@ -456,7 +452,7 @@ __attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, V3*
         }
         // The box's value wins a comparison with a NaN.
         for (u64 k = 0; k < 8; ++k) {
-            const V3& p = points[k];
+            const CVector3D& p = points[k];
             {
                 UnkVec3f m = box->GetMin();
                 UnkVec3f grown(m.x < p.x ? m.x : p.x, m.y < p.y ? m.y : p.y, m.z < p.z ? m.z : p.z);
@@ -480,19 +476,19 @@ __attribute__((always_inline)) static inline void Rebuild(UnkCullView* self, V3*
 // plane terms instead of keeping them in registers (and multiplies one reloaded plane distance by
 // 10000 where we fold its negation into -10000), so the scheduling and registers differ.
 void fn_71001b83f8(UnkCullView* self) {
-    V3* far = &Vec(self, 0x280);
-    V3* near = &Vec(self, 0x2b0);
+    CVector3D* far = &Vec(self, 0x280);
+    CVector3D* near = &Vec(self, 0x2b0);
     if (reinterpret_cast<const u8*>(self->cull)[0xb0]) {
         f32 near_d = self->field_0x88;
         // The size times the axis, halved.
-        V3 r = Scale(Scale(Vec(self, 0xc0), Word(self, 0x160)), 0.5f);
-        V3 u = Scale(Scale(Vec(self, 0xcc), Word(self, 0x15c)), 0.5f);
+        CVector3D r = Vec(self, 0xc0) * Word(self, 0x160) * 0.5f;
+        CVector3D u = Vec(self, 0xcc) * Word(self, 0x15c) * 0.5f;
         Rebuild(self, near, far, near_d, self->field_0x8c, r, u, r, u);
     } else {
         f32 near_d = self->field_0x88;
         f32 far_d = self->field_0x8c;
-        Rebuild(self, near, far, near_d, far_d, Scale(Vec(self, 0xc0), near_d * self->field_0x78),
-                Scale(Vec(self, 0xcc), near_d * self->field_0x7c), Scale(Vec(self, 0xc0), self->field_0x78 * far_d),
-                Scale(Vec(self, 0xcc), self->field_0x7c * far_d));
+        Rebuild(self, near, far, near_d, far_d, Vec(self, 0xc0) * (near_d * self->field_0x78),
+                Vec(self, 0xcc) * (near_d * self->field_0x7c), Vec(self, 0xc0) * (self->field_0x78 * far_d),
+                Vec(self, 0xcc) * (self->field_0x7c * far_d));
     }
 }

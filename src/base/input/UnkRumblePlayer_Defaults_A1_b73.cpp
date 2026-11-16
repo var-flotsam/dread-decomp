@@ -1,13 +1,12 @@
 // From unit 48 of tools/tu_map.py: puts the vibration player's fade, gains, flags and both
 // modulations back to their defaults without touching the SDK player (the tail of fn_7100070dd4,
 // src/base/input/UnkRumblePlayer_Reset_b67a1.cpp). Called by fn_710006fbb0. Layout placeholders.
+#include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "types.h"
 
 
-struct UnkRumbleVec_A1_b73 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkRumbleModulation_A1_b73 {
     f32 amplitude_low;
@@ -25,7 +24,7 @@ struct UnkRumbleDefaults_A1_b73 {
     f32 to;        // 0x168
     f32 duration;
     f32 elapsed;   // 0x170
-    UnkRumbleVec_A1_b73 offset;  // 0x174
+    CVector3D offset;  // 0x174
     f32 balance;   // 0x180
     f32 gain;
     f32 current;   // 0x188

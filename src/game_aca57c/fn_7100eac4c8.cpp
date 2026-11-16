@@ -7,18 +7,11 @@
 #include "UnkBufferString.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkBufferStringPool.h"
 #include "types.h"
 
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
-
-struct UnkMovedStrId {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
 
 // Plain bytes copied as one block.
 template <u32 N, u32 Align>

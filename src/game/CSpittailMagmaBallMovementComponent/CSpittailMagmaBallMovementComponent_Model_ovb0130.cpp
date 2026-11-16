@@ -125,7 +125,7 @@ void fn_71006ca2ac(UnkSpittailMovement_ovb0130* self) {
     u32 n = v.count;
     u32 capacity = v.capacity;
     if (capacity <= n && v.step != 0)
-        capacity = (n / v.step + 1) * v.step;
+        capacity = v.GrownCapacity(n);
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }

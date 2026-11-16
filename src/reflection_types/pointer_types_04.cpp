@@ -11,14 +11,11 @@
 #include "base/reflection/ValueOps.h"
 using base::reflection::CType;
 using base::reflection::SlotFn;
-const base::reflection::CType* fn_7100009658();
 const base::reflection::CType* fn_7100f9d5bc();
 const base::reflection::CType* fn_7100fa3364();
 const base::reflection::CType* fn_7100fb390c();
-const base::reflection::CType* fn_7100fbc1ac();
 const base::reflection::CType* fn_71010221d4();
 const base::reflection::CType* fn_710102df18();
-const base::reflection::CType* fn_710107552c();
 const base::reflection::CType* fn_71010c301c();
 const base::reflection::CType* fn_71010ecae4();
 const base::reflection::CType* fn_7101123918();
@@ -2137,6 +2134,7 @@ struct base::reflection::PointerTypeDescription<base::global::CRntVector<std::un
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CSubareaInfo>>**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CRntVector<std::unique_ptr<CSubareaInfo>>*>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 struct UnkRefl_fn_7100faf820;
 struct UnkRefl_fn_7100fae6a4;
 template <>
@@ -2155,7 +2153,7 @@ struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100faf820> {
     static constexpr SlotFn get = &fn_7100faf988;
     static constexpr SlotFn set = &fn_7100faf9e0;
     static constexpr SlotFn increment = &fn_7100faf9ec;
-    static const CType* pointee() { return fn_7100009658(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CStrId>::Get(); }
 };
 template <>
 struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100fae6a4> {
@@ -2182,7 +2180,7 @@ struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100fafa78> {
     static constexpr SlotFn get = &fn_7100fafbe0;
     static constexpr SlotFn set = &fn_7100fafc38;
     static constexpr SlotFn increment = &fn_7100fafc44;
-    static const CType* pointee() { return fn_7100009658(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CStrId>::Get(); }
 };
 template <>
 struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100fae780> {
@@ -2398,6 +2396,7 @@ struct base::reflection::PointerTypeDescription<base::global::CRntVector<std::un
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CRntVector<std::unique_ptr<CSubareaSetup>>**, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::global::CRntVector<std::unique_ptr<CSubareaSetup>>*>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<luaGameObject>::Get();
 template <>
 const CType& base::reflection::ValueOps<luaGameObject*>::TypeOf(const void*) { return *base::reflection::PointerType<luaGameObject*>::Get(); }
 template struct base::reflection::ValueOps<luaGameObject*>;
@@ -2408,7 +2407,7 @@ struct base::reflection::PointerTypeDescription<luaGameObject*> : base::reflecti
     static constexpr SlotFn get = &fn_7100fbca78;
     static constexpr SlotFn set = &fn_7100fbcad0;
     static constexpr SlotFn increment = &fn_7100fbcadc;
-    static const CType* pointee() { return fn_7100fbc1ac(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<luaGameObject>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, luaGameObject**, void*);
 template const base::reflection::CType* base::reflection::PointerType<luaGameObject*>::Get();
@@ -4596,6 +4595,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TKeyElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TKeyElementConstIterator>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<luaDisplayObject>::Get();
 template <>
 const CType& base::reflection::ValueOps<luaDisplayObject*>::TypeOf(const void*) { return *base::reflection::PointerType<luaDisplayObject*>::Get(); }
 template struct base::reflection::ValueOps<luaDisplayObject*>;
@@ -4606,7 +4606,7 @@ struct base::reflection::PointerTypeDescription<luaDisplayObject*> : base::refle
     static constexpr SlotFn get = &fn_7101076158;
     static constexpr SlotFn set = &fn_71010761b0;
     static constexpr SlotFn increment = &fn_71010761bc;
-    static const CType* pointee() { return fn_710107552c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<luaDisplayObject>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, luaDisplayObject**, void*);
 template const base::reflection::CType* base::reflection::PointerType<luaDisplayObject*>::Get();

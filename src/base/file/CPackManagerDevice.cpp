@@ -4,6 +4,7 @@
 // base/file/UnkFileDevice.h). Names and layouts are placeholders inferred from the code.
 
 #include <stdio.h>
+#include "base/UnkVtableList.h"
 
 #include <nn/os.h>
 
@@ -206,14 +207,7 @@ struct UnkListedPath {
     UnkListedPath* next;
 };
 // A list of path ids (its destructor is fn_7100087cf8; src/game/UnkResourceGroup.cpp has the same).
-struct UnkFilePathList {
-    void** vtable;
-    u32 count;
-    UnkListedPath* head;
-    UnkListedPath* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;
@@ -269,7 +263,7 @@ void fn_710008a378(CPackManagerDevice* self) {
     }
     fn_7100066918(&self->mutex);
     self->packs.Free();
-    self->name.~UnkDeviceName();
+    self->name.~CStrId();
 }
 
 // The pack that has `key`: with `any`, the first that has it; otherwise the first in use (a

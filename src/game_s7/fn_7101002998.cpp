@@ -3,8 +3,8 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU2640.h"
-#include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStrId;

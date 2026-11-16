@@ -6,7 +6,9 @@
 #include "../../game_s7/UnkPropS7.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "base/math/CVector.h"
 #include "game/CActorComponent.h"
 #include "game/CFXComponent.h"
 #include "game/CSceneComponent.h"
@@ -18,6 +20,7 @@
 #include "game/UnkTU253.h"
 #include "game/UnkTU285.h"
 #include "types.h"
+#include "base/UnkLinkedList.h"
 
 using base::global::UnkStringData;
 
@@ -156,49 +159,13 @@ struct UnkFXOwner_ovb51 {
     UnkFXSceneHolder_ovb51* field_0x228;
 };
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkFXNodeId_ovb51 {
-    UnkStringData* data;
-
-    ~UnkFXNodeId_ovb51() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkFXIdNode_ovb51 {
-    UnkFXNodeId_ovb51 id;
+    UnkStrIdTwoStep id;
     u64 field_0x8;
     UnkFXIdNode_ovb51* next;
 };
 
 // A list of string-id nodes freed through its allocator.
-struct UnkFXIdList_ovb51 {
-    u32 count;
-    UnkFXIdNode_ovb51* head;
-    UnkFXIdNode_ovb51* tail;
-    base::UnkAllocator* allocator;
-
-    void Clear() {
-        for (UnkFXIdNode_ovb51* n = head; n;) {
-            UnkFXIdNode_ovb51* next = n->next;
-            n->id.~UnkFXNodeId_ovb51();
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
-};
 
 struct UnkFXComponent_ovb51 {
     u8 pad_0x0[0x30];
@@ -225,7 +192,7 @@ struct UnkFXComponent_ovb51 {
     void* effect_b;  // 0x158
     UnkFXScene_ovb51* attached_scene;  // 0x160, the scene the fifth manager model is attached to
     u8 pad_0x168[0x18];
-    UnkFXIdList_ovb51 ids;  // 0x180
+    base::UnkLinkedList<UnkFXIdNode_ovb51> ids;  // 0x180
 };
 static_assert(__builtin_offsetof(UnkFXComponent_ovb51, ids) == 0x180, "UnkFXComponent_ovb51 layout");
 
@@ -317,15 +284,13 @@ void fn_7101152008(UnkFXComponent_ovb51* self, bool on) {
 
 // ---- loops over every effect ----
 
-struct UnkFXVec3_ovb51 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 void fn_71011576dc(UnkFXComponent_ovb51* self, f32 scale) {
     self->scale = scale;
     for (UnkFXEntry_ovb51* e = self->effects.values; e != self->effects.End(); ++e) {
         if (e->effect) {
-            UnkFXVec3_ovb51 v = {scale, scale, scale};
+            CVector3D v = {scale, scale, scale};
             VCall<0x20>(e->effect, &v);
         }
     }
@@ -363,7 +328,7 @@ void fn_71009f19ac(UnkFXComponent_ovb51* self);
 
 void fn_710114f6b8(UnkFXComponent_ovb51* self) {
     fn_710114f780(self);
-    self->ids.Clear();
+    self->ids.ClearDestroying();
     fn_71009f19ac(self);
 }
 

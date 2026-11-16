@@ -5,6 +5,7 @@
 // says they are done. Names and layouts are placeholders.
 #include "base/global/CRntDictionary.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkEvent_b257f;
 
@@ -36,17 +37,7 @@ struct UnkNode_b257f {
     UnkNode_b257f* next;
 };
 
-struct UnkList_b257f {
-    void** vtable;
-    // A union member: no type-based alias info, so the count is reloaded after the links are stored.
-    union {
-        u32 count;  // 0x8
-    };
-    UnkNode_b257f* head;  // 0x10
-    UnkNode_b257f* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
-};
+using UnkList_b257f = base::UnkVtableList<UnkNode_b257f>;
 
 // The handler lists by event key.
 using UnkMap_b257f = base::global::CRntDictionary<u32, UnkList_b257f*>;

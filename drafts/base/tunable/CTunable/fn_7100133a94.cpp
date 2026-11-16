@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game_s2/UnkOwnedList.h"
@@ -10,28 +11,12 @@
 
 using base::global::CStrId;
 
-struct UnkListMap133a94 {
-    UnkOwnedList* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkOwnedList* End() { return &values[count]; }
-    UnkOwnedList* Find(const CStrId* key) {
-        for (u64 i = 0; i < count; ++i)
-            if (keys[i].data == key->data)
-                return values + i;
-        return values + count;
-    }
-};
+using UnkListMap133a94 = base::global::CRntSmallDictionary<CStrId, UnkOwnedList>;
 
 void fn_71001358e0(UnkListMap133a94* self, u32 capacity);
 
 UnkOwnedList* fn_7100133a94(UnkListMap133a94* self, const CStrId* key) {
-    UnkOwnedList* found = self->Find(key);
+    UnkOwnedList* found = self->Find(*key);
     if (found != self->End())
         return found;
     UnkOwnedList empty;

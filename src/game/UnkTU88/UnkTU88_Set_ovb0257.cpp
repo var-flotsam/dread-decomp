@@ -11,6 +11,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkBucketSet.h"
 #include "types.h"
 
 // ---- the registry's set of named nodes (the type map at +0x60 of the registry) ----
@@ -23,21 +24,7 @@ struct UnkSetNode_b257j {
 };
 static_assert(sizeof(UnkSetNode_b257j) == 0x60, "node layout");
 
-struct UnkNamedSet_b257j {
-    UnkSetNode_b257j** data;
-    u32 count;  // 0x8
-    u32 capacity;  // 0xc
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-    u32 first_bucket;  // 0x28
-    UnkSetNode_b257j* first_node;  // 0x30
-    base::UnkAllocator* node_allocator;  // 0x38
-    u32 node_flags;  // 0x40
-    u32 node_count;  // 0x44
-    u32 version;  // 0x48
-};
+using UnkNamedSet_b257j = base::global::UnkBucketSet<UnkSetNode_b257j>;
 
 UnkSetNode_b257j** fn_71000ec52c(UnkNamedSet_b257j* set, u32 index);
 void fn_71000ea064(void* list);
@@ -57,7 +44,7 @@ static inline __attribute__((always_inline)) void DestroyNode_b257j(UnkNamedSet_
 void fn_71000ea16c(UnkNamedSet_b257j* self) {
     if (!self->node_count)
         return;
-    u32 n = self->count;
+    u32 n = self->buckets.count;
     for (u32 i = 0; i != n; ++i) {
         UnkSetNode_b257j* node = *fn_71000ec52c(self, i);
         while (node) {
@@ -67,7 +54,7 @@ void fn_71000ea16c(UnkNamedSet_b257j* self) {
             node = next;
         }
     }
-    __builtin_memset(self->data, 0, (u64)self->capacity * 8);
+    __builtin_memset(self->buckets.data, 0, (u64)self->buckets.capacity * 8);
     self->node_count = 0;
     self->first_node = nullptr;
     self->first_bucket = -1;
@@ -102,17 +89,17 @@ void fn_71000eb7c4(UnkNamedSet_b257j* self, UnkSetIter_b257j* it) {
     if (*bucket == node) {
         *bucket = node->next;
         if (index == self->first_bucket) {
-            if (index < self->count) {
+            if (index < self->buckets.count) {
                 while (!*fn_71000ec52c(self, index)) {
                     index = self->first_bucket + 1;
                     self->first_bucket = index;
-                    if (!(index < self->count))
+                    if (!(index < self->buckets.count))
                         break;
                 }
             }
             if (node == self->first_node) {
                 u32 first = self->first_bucket;
-                self->first_node = first < self->count ? *fn_71000ec52c(self, first) : nullptr;
+                self->first_node = first < self->buckets.count ? *fn_71000ec52c(self, first) : nullptr;
             }
         }
     }

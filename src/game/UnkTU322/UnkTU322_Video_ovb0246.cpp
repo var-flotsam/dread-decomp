@@ -99,7 +99,7 @@ UnkRef fn_710021cab8(UnkPlayer* player, const UnkPathKey& path, u32 a, u32 b) {
         u32 cap = list.capacity;
         u32 new_cap = cap;
         if (cap <= n && list.step != 0)
-            new_cap = (n / list.step + 1) * list.step;
+            new_cap = list.GrownCapacity(n);
         if ((s32)n >= (s32)new_cap)
             for (;;) {
             }

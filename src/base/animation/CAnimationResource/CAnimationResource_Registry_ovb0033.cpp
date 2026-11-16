@@ -5,29 +5,11 @@
 #include "base/UnkResType.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// A string id whose destructor decrements and tests in two steps (the original reloads the id
-// after the decrement).
-struct UnkAnimStrId_ovb0033 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkAnimStrId_ovb0033() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 template <class T>
 struct UnkAnimArray_ovb0033 {
@@ -59,10 +41,10 @@ struct UnkAnimRecord_ovb0033 {
 };
 
 struct UnkAnimDesc_ovb0033 {
-    UnkAnimStrId_ovb0033 name;                           // 0x0
+    UnkStrIdTwoStep name;                           // 0x0
     UnkAnimArray_ovb0033<UnkAnimRecord_ovb0033> records;  // 0x8
-    UnkAnimArray_ovb0033<UnkAnimStrId_ovb0033> ids_a;     // 0x30
-    UnkAnimArray_ovb0033<UnkAnimStrId_ovb0033> ids_b;     // 0x58
+    UnkAnimArray_ovb0033<UnkStrIdTwoStep> ids_a;     // 0x30
+    UnkAnimArray_ovb0033<UnkStrIdTwoStep> ids_b;     // 0x58
 
     __attribute__((always_inline)) ~UnkAnimDesc_ovb0033() {}
 };

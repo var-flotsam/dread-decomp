@@ -14,6 +14,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CDisplayObjectContainer.h"
@@ -65,24 +66,6 @@ static inline bool IsA(UnkGuiDisplayObject* obj) {
     return fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(obj->GetClass()),
                          reinterpret_cast<const base::reflection::CType*>(Getter()));
 }
-
-// A string id whose destructor decrements and tests in two steps (as in fn_7100b607f0.cpp).
-struct UnkReleasedStrId_ovb0085 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId_ovb0085() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 // A registration in a deferred set: the set, this composition and the callback.
 struct UnkPopUpListener_ovb0085 {
@@ -195,7 +178,7 @@ struct UnkPopUpComposition_ovb0085 {
     base::global::CRntVector<UnkPopUpIdRecord_ovb0085> records;  // 0x2f0
     base::UnkRefPtrMember panel;                         // 0x318
     base::UnkRefPtrMember field_0x320;
-    UnkReleasedStrId_ovb0085 id_0x328;
+    UnkStrIdTwoStep id_0x328;
     UnkPopUpAction_ovb0085 on_accept;  // 0x330
     UnkPopUpAction_ovb0085 on_select;  // 0x340
     UnkPopUpAction_ovb0085 on_back;    // 0x350
@@ -251,7 +234,7 @@ void fn_7100b5e7c8(UnkPopUpComposition_ovb0085* self) {
     self->vtable = g_unk_7101a9d758 + 0x10;
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->ids_0x388));
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->ids_0x370));
-    self->id_0x328.~UnkReleasedStrId_ovb0085();
+    self->id_0x328.~UnkStrIdTwoStep();
     self->field_0x320.~UnkRefPtrMember();
     self->panel.~UnkRefPtrMember();
     if (self->records.data) {

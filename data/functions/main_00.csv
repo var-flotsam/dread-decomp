@@ -106,7 +106,7 @@ address,size,name,name_source,subsystem,status
 0x7100004fcc,72,fn_7100004fcc,unknown,unknown,O
 0x7100005014,80,fn_7100005014,unknown,unknown,O
 0x7100005070,264,fn_7100005070,unknown,unknown,O
-0x7100005178,480,base::reflection::refl_GetType<unsigned>,reflection,engine/reflection,O
+0x7100005178,480,base::reflection::refl_GetType<unsigned int>,reflection,engine/reflection,O
 0x7100005358,104,fn_7100005358,unknown,unknown,O
 0x71000053c0,20,base::reflection::ValueOps<unsigned int>::Equals,reflection,engine/reflection,O
 0x71000053d4,8,base::reflection::ValueOps<unsigned int>::Hash,reflection,engine/reflection,O
@@ -210,7 +210,7 @@ address,size,name,name_source,subsystem,status
 0x71000084d4,4,base::reflection::ValueOps<char const*>::Destroy,reflection,engine/reflection,O
 0x71000084d8,20,base::reflection::ValueOps<char const*>::CopyAssign,reflection,engine/reflection,O
 0x71000084ec,20,base::reflection::ValueOps<char const*>::MoveAssign,reflection,engine/reflection,O
-0x7100008500,476,fn_7100008500,unknown,unknown,O
+0x7100008500,476,base::reflection::refl_GetType<char>,reflection,engine/reflection,O
 0x71000086dc,20,base::reflection::ValueOps<char>::Equals,reflection,engine/reflection,O
 0x71000086f0,8,base::reflection::ValueOps<char>::Hash,reflection,engine/reflection,O
 0x71000086f8,4,base::reflection::ValueOps<char>::TypeOf,reflection,engine/reflection,O
@@ -360,7 +360,7 @@ address,size,name,name_source,subsystem,status
 0x710000cf00,8,fn_710000cf00,unknown,unknown,O
 0x710000cf10,524,fn_710000cf10,unknown,unknown,U
 0x710000d120,264,fn_710000d120,unknown,unknown,O
-0x710000d228,476,fn_710000d228,unknown,unknown,O
+0x710000d228,476,base::reflection::refl_GetType<bool>,reflection,engine/reflection,O
 0x710000d404,20,base::reflection::ValueOps<bool>::Equals,reflection,engine/reflection,O
 0x710000d418,8,base::reflection::ValueOps<bool>::Hash,reflection,engine/reflection,O
 0x710000d420,4,base::reflection::ValueOps<bool>::TypeOf,reflection,engine/reflection,O
@@ -456,7 +456,7 @@ address,size,name,name_source,subsystem,status
 0x710000ffa4,4,fn_710000ffa4,unknown,unknown,O
 0x710000ffa8,20,fn_710000ffa8,unknown,unknown,O
 0x710000ffbc,20,fn_710000ffbc,unknown,unknown,O
-0x710000ffd0,480,fn_710000ffd0,unknown,unknown,O
+0x710000ffd0,480,base::reflection::refl_GetType<SCustomData>,reflection,engine/reflection,O
 0x71000101b0,12,fn_71000101b0,unknown,unknown,O
 0x71000101bc,8,fn_71000101bc,unknown,unknown,O
 0x71000101c4,4,fn_71000101c4,unknown,unknown,O
@@ -471,7 +471,7 @@ address,size,name,name_source,subsystem,status
 0x71000108f0,880,fn_71000108f0,unknown,unknown,U
 0x7100010c60,284,fn_7100010c60,unknown,unknown,O
 0x7100010d7c,220,base::reflection::refl_GetType<void*>,reflection,engine/reflection,O
-0x7100010e58,480,fn_7100010e58,unknown,unknown,O
+0x7100010e58,480,base::reflection::refl_GetType<unsigned long>,reflection,engine/reflection,O
 0x7100011040,264,fn_7100011040,unknown,unknown,O
 0x7100011148,364,base::reflection::refl_InitType<void*>,reflection,engine/reflection,O
 0x71000112b4,8,fn_71000112b4,unknown,unknown,O
@@ -587,7 +587,7 @@ address,size,name,name_source,subsystem,status
 0x71000143a0,252,fn_71000143a0,unknown,engine/base?,O
 0x710001449c,332,fn_710001449c,unknown,engine/base?,O
 0x71000145e8,384,base::reflection::refl_InitType<base::animation::EBlendFunction>,reflection,engine/reflection,O
-0x7100014768,480,fn_7100014768,unknown,engine/base?,O
+0x7100014768,480,base::reflection::refl_GetType<int>,reflection,engine/reflection,O
 0x7100014948,256,fn_7100014948,unknown,engine/base?,O
 0x7100014a48,304,fn_7100014a48,unknown,engine/base?,O
 0x7100014b78,20,base::reflection::ValueOps<int>::Equals,reflection,engine/reflection,O
@@ -926,7 +926,7 @@ address,size,name,name_source,subsystem,status
 0x7100023d2c,1004,fn_7100023d2c,unknown,unknown,U
 0x7100024118,28,fn_7100024118,unknown,unknown,O
 0x7100024140,484,fn_7100024140,unknown,unknown,O
-0x7100024324,480,fn_7100024324,unknown,unknown,O
+0x7100024324,480,base::reflection::refl_GetType<long>,reflection,engine/reflection,O
 0x7100024504,480,base::reflection::refl_GetType<base::math::CVector2D>,reflection,engine/reflection,O
 0x71000246e4,480,base::reflection::refl_GetType<base::math::CVector3D>,reflection,engine/reflection,O
 0x71000248c4,480,base::reflection::refl_GetType<base::math::CVector4D>,reflection,engine/reflection,O
@@ -2980,7 +2980,7 @@ address,size,name,name_source,subsystem,status
 0x71000a3860,4,base::reflection::ValueOps<double>::Destroy,reflection,engine/reflection,O
 0x71000a3864,20,base::reflection::ValueOps<double>::CopyAssign,reflection,engine/reflection,O
 0x71000a3878,20,base::reflection::ValueOps<double>::MoveAssign,reflection,engine/reflection,O
-0x71000a388c,476,fn_71000a388c,unknown,engine/reflection?,O
+0x71000a388c,476,base::reflection::refl_GetType<signed char>,reflection,engine/reflection,O
 0x71000a3a68,20,base::reflection::ValueOps<signed char>::Equals,reflection,engine/reflection,O
 0x71000a3a7c,8,base::reflection::ValueOps<signed char>::Hash,reflection,engine/reflection,O
 0x71000a3a84,4,base::reflection::ValueOps<signed char>::TypeOf,reflection,engine/reflection,O
@@ -2990,7 +2990,7 @@ address,size,name,name_source,subsystem,status
 0x71000a3aa8,4,base::reflection::ValueOps<signed char>::Destroy,reflection,engine/reflection,O
 0x71000a3aac,20,base::reflection::ValueOps<signed char>::CopyAssign,reflection,engine/reflection,O
 0x71000a3ac0,20,base::reflection::ValueOps<signed char>::MoveAssign,reflection,engine/reflection,O
-0x71000a3ad4,480,fn_71000a3ad4,unknown,engine/reflection?,O
+0x71000a3ad4,480,base::reflection::refl_GetType<short>,reflection,engine/reflection,O
 0x71000a3cb4,20,base::reflection::ValueOps<short>::Equals,reflection,engine/reflection,O
 0x71000a3cc8,8,base::reflection::ValueOps<short>::Hash,reflection,engine/reflection,O
 0x71000a3cd0,4,base::reflection::ValueOps<short>::TypeOf,reflection,engine/reflection,O
@@ -3000,7 +3000,7 @@ address,size,name,name_source,subsystem,status
 0x71000a3cf4,4,base::reflection::ValueOps<short>::Destroy,reflection,engine/reflection,O
 0x71000a3cf8,20,base::reflection::ValueOps<short>::CopyAssign,reflection,engine/reflection,O
 0x71000a3d0c,20,base::reflection::ValueOps<short>::MoveAssign,reflection,engine/reflection,O
-0x71000a3d20,476,fn_71000a3d20,unknown,engine/reflection?,O
+0x71000a3d20,476,base::reflection::refl_GetType<unsigned char>,reflection,engine/reflection,O
 0x71000a3efc,20,base::reflection::ValueOps<unsigned char>::Equals,reflection,engine/reflection,O
 0x71000a3f10,8,base::reflection::ValueOps<unsigned char>::Hash,reflection,engine/reflection,O
 0x71000a3f18,4,base::reflection::ValueOps<unsigned char>::TypeOf,reflection,engine/reflection,O
@@ -3010,7 +3010,7 @@ address,size,name,name_source,subsystem,status
 0x71000a3f3c,4,base::reflection::ValueOps<unsigned char>::Destroy,reflection,engine/reflection,O
 0x71000a3f40,20,base::reflection::ValueOps<unsigned char>::CopyAssign,reflection,engine/reflection,O
 0x71000a3f54,20,base::reflection::ValueOps<unsigned char>::MoveAssign,reflection,engine/reflection,O
-0x71000a3f68,480,fn_71000a3f68,unknown,engine/reflection?,O
+0x71000a3f68,480,base::reflection::refl_GetType<unsigned short>,reflection,engine/reflection,O
 0x71000a4148,20,base::reflection::ValueOps<unsigned short>::Equals,reflection,engine/reflection,O
 0x71000a415c,8,base::reflection::ValueOps<unsigned short>::Hash,reflection,engine/reflection,O
 0x71000a4164,4,base::reflection::ValueOps<unsigned short>::TypeOf,reflection,engine/reflection,O
@@ -5422,11 +5422,11 @@ address,size,name,name_source,subsystem,status
 0x71000e5fb8,4,fn_71000e5fb8,unknown,unknown,O
 0x71000e5fbc,4,fn_71000e5fbc,unknown,unknown,O
 0x71000e5fc0,4,fn_71000e5fc0,unknown,unknown,O
-0x71000e5fc4,480,fn_71000e5fc4,unknown,unknown,O
+0x71000e5fc4,480,base::reflection::refl_GetType<unsigned long long>,reflection,engine/reflection,O
 0x71000e61a4,4,fn_71000e61a4,unknown,unknown,O
 0x71000e61a8,4,fn_71000e61a8,unknown,unknown,O
 0x71000e61ac,4,fn_71000e61ac,unknown,unknown,O
-0x71000e61b0,480,fn_71000e61b0,unknown,unknown,O
+0x71000e61b0,480,base::reflection::refl_GetType<long long>,reflection,engine/reflection,O
 0x71000e6390,4,fn_71000e6390,unknown,unknown,O
 0x71000e6394,220,base::reflection::refl_GetType<unsigned int*>,reflection,engine/reflection,O
 0x71000e6470,220,base::reflection::refl_GetType<unsigned int const*>,reflection,engine/reflection,O

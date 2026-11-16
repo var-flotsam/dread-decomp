@@ -11,8 +11,10 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkKeyedStrIds.h"
 #include "base/UnkParallelFind.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection.h"
 #include "game/CBlackboard.h"
 #include "game/CGameBlackboard.h"
@@ -69,15 +71,7 @@ static inline void CopyId(UnkStringData** dst, UnkStringData* const* src) {
 // Values at 0 and the ids that name them at 8, sharing a count, a capacity, a growth step, the
 // allocation flags and the allocator.
 template <class V>
-struct UnkIdMap_ovb0064 {
-    V* values;
-    UnkReleasedId_ovb0064* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdMap_ovb0064 = base::global::CRntSmallDictionary<UnkReleasedId_ovb0064, V>;
 
 // Grows both arrays, moving the values (destroying the old ones with Destroy) and the keys.
 template <class V, void (*Destroy)(V*)>
@@ -205,15 +199,7 @@ struct UnkFloatsById_ovb0064 {
     }
 };
 
-struct UnkFloatsByIdMap_ovb0064 {
-    UnkFloatsById_ovb0064* values;
-    UnkStringData** keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkFloatsByIdMap_ovb0064 = base::global::CRntSmallDictionary<UnkStringData*, UnkFloatsById_ovb0064>;
 
 struct UnkGameBlackboard_ovb0064 : CBlackboard {
     UnkIdSetMap_ovb0064 sets;                  // 0xf0
@@ -336,15 +322,7 @@ void fn_7100aee75c(UnkFloatsByIdMap_ovb0064* self, const UnkFloatsByIdMap_ovb006
 
 // The float tables as their set-by-key move sees them: the entry's ids are released (storage kept),
 // then it takes the given table's fields and leaves that one empty.
-struct UnkFloatsByIdOwned_ovb0064 {
-    f32* values;
-    UnkReleasedId_ovb0064* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkFloatsByIdOwned_ovb0064 = base::global::CRntSmallDictionary<UnkReleasedId_ovb0064, f32>;
 
 struct UnkFloatsByIdOwnedMap_ovb0064 {
     UnkFloatsByIdOwned_ovb0064* values;
@@ -363,12 +341,12 @@ struct UnkFloatsByIdOwnedMap_ovb0064 {
 void fn_7100aee2c0(UnkFloatsByIdOwnedMap_ovb0064* self, const u64* key, UnkFloatsByIdOwned_ovb0064* value) {
     UnkFloatsByIdOwned_ovb0064* dst = self->Find(key);
     if (dst != self->End()) {
-        if (dst->ids)
+        if (dst->keys)
             for (u64 i = 0; i < dst->count; ++i)
-                dst->ids[i].~UnkReleasedId_ovb0064();
+                dst->keys[i].~UnkReleasedId_ovb0064();
         dst->count = 0;
         dst->allocator = value->allocator;
-        dst->ids = value->ids;
+        dst->keys = value->keys;
         dst->values = value->values;
         dst->capacity = value->capacity;
         dst->count = value->count;
@@ -376,18 +354,11 @@ void fn_7100aee2c0(UnkFloatsByIdOwnedMap_ovb0064* self, const u64* key, UnkFloat
         dst->step = value->step;
         value->count = 0;
         value->values = nullptr;
-        value->ids = nullptr;
+        value->keys = nullptr;
     }
 }
 
-// A string id whose move leaves the pool's empty string behind.
-struct UnkMovedId_ovb0064 {
-    UnkStringData* data;
-
-    UnkMovedId_ovb0064(UnkMovedId_ovb0064&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-};
-
-using UnkFloatsByIdValue_ovb0064 = base::UnkIterValue<UnkFloatsById_ovb0064, UnkMovedId_ovb0064>;
+using UnkFloatsByIdValue_ovb0064 = base::UnkIterValue<UnkFloatsById_ovb0064, UnkMovedStrId>;
 
 // The move constructor of the map's cached iterator value: the id is moved, the table copied.
 void fn_7100aedd04(UnkFloatsByIdValue_ovb0064* self, UnkFloatsByIdValue_ovb0064* other) {
@@ -395,12 +366,12 @@ void fn_7100aedd04(UnkFloatsByIdValue_ovb0064* self, UnkFloatsByIdValue_ovb0064*
     self->state = 0;
     if (other->state == 1) {
         self->state = 1;
-        new (&self->value) Pair{static_cast<UnkMovedId_ovb0064&&>(other->value.index), other->value.element};
+        new (&self->value) Pair{static_cast<UnkMovedStrId&&>(other->value.index), other->value.element};
     } else if (other->state == 2) {
         self->state = 1;
         UnkFloatsByIdValue_ovb0064::Ref r = other->ref;
         new (&self->value)
-            Pair{static_cast<UnkMovedId_ovb0064&&>(*const_cast<UnkMovedId_ovb0064*>(r.index)), *r.element};
+            Pair{static_cast<UnkMovedStrId&&>(*const_cast<UnkMovedStrId*>(r.index)), *r.element};
     }
 }
 

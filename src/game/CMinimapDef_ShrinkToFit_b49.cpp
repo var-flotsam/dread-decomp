@@ -7,9 +7,11 @@
 #include <new>
 
 #include "../game_aca57c/UnkBufferString.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU2564.h"
 #include "types.h"
@@ -17,15 +19,6 @@
 using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// As fn_7100e7b084.cpp's UnkMovedStrId: taken over, the moved-from id left empty.
-struct UnkMovedStrId_b49 {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMovedStrId_b49(UnkMovedStrId_b49&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
 
 using UnkString40_b49 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
@@ -46,10 +39,10 @@ struct UnkWords5_b49 {
 };
 
 struct UnkIdsString40_b49 {
-    UnkMovedStrId_b49 field_0x0;
+    UnkMovedStrId field_0x0;
     u64 field_0x8;
-    UnkMovedStrId_b49 field_0x10;
-    UnkMovedStrId_b49 field_0x18;
+    UnkMovedStrId field_0x10;
+    UnkMovedStrId field_0x18;
     UnkString40_b49 field_0x20;
     UnkWord_b49 field_0xa8;
     UnkWord_b49 field_0xac;
@@ -60,7 +53,7 @@ static_assert(sizeof(UnkIdsString40_b49) == 0xc8, "UnkIdsString40_b49 layout");
 // A 0x18-byte record: a string id taken over on a move (released in two steps when destroyed) and
 // four words.
 struct UnkIdWords4 {
-    UnkMovedStrId_b49 id;
+    UnkMovedStrId id;
     UnkWord_b49 field_0x8;
     UnkWord_b49 field_0xc;
     UnkWord_b49 field_0x10;
@@ -72,15 +65,7 @@ struct UnkIdWords4 {
 static_assert(sizeof(UnkIdWords4) == 0x18, "UnkIdWords4 layout");
 
 template <class T>
-struct UnkKeyedArray {
-    T* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyedArray = base::global::CRntSmallDictionary<CStrId, T>;
 
 // Moves the records into arrays of exactly `count` entries; Destroy runs on each moved-from record.
 template <class T, void (*Destroy)(T*)>
@@ -119,7 +104,7 @@ void fn_7100e71e04(UnkKeyedArray<UnkIdWords4>* self) { ShrinkToFit<UnkIdWords4, 
 // The 0xc8-byte record's default constructor (fn_7100e6dfbc): the three ids empty, the string built
 // on its storage, the words at +0xa8 and +0xac and the four at +0xb4 cleared; +0x8, +0xb0 and +0xc4
 // are left as they are.
-__attribute__((always_inline)) static inline void InitEmptyId(UnkMovedStrId_b49* id) {
+__attribute__((always_inline)) static inline void InitEmptyId(UnkMovedStrId* id) {
     id->data = nullptr;
     if (!g_unk_7101d47108)
         base::global::UnkEnsureStringPool();

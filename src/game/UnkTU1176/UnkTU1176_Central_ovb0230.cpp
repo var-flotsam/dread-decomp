@@ -53,15 +53,7 @@ struct UnkSetPair_b0230 {
           second(static_cast<UnkCallbackSet_7101a20950&&>(o.second)) {}
 };
 
-struct UnkPairVec_b0230 {
-    UnkSetPair_b0230* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkPairVec_b0230 = base::global::CRntVector<UnkSetPair_b0230>;
 
 // As src/game/CCentralUnitComponent/CCentralUnitComponent_b40.cpp declares them.
 // An entry of the array, destroyed out of line (as src/game/CCentralUnitComponent/CCentralUnitComponent_b40.cpp).
@@ -91,7 +83,7 @@ void fn_710077a700(base::global::CRntVector<UnkEntry_cu>* vec, const UnkEntry_cu
     u32 old_capacity = self->capacity;
     u32 new_capacity = old_capacity;
     if (old_capacity <= n && self->step != 0)
-        new_capacity = (n / self->step + 1) * self->step;
+        new_capacity = self->GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }
@@ -132,7 +124,7 @@ UnkSetPair_b0230* fn_710077ad70(UnkPairVec_b0230* self, u32 index) {
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0) {
-            u32 grown = (index / self->step + 1) * self->step;
+            u32 grown = self->GrownCapacity(index);
             if (cap < grown) {
                 UnkSetPair_b0230* p = static_cast<UnkSetPair_b0230*>(
                     self->allocator->vf_0x40((u64)grown * sizeof(UnkSetPair_b0230), 8, self->flags));
@@ -571,7 +563,7 @@ void fn_710077a96c(UnkPairVec_b0230* self, const UnkSetPair_b0230* value, u32 in
     }
     u32 cap = self->capacity;
     if (cap <= n && self->step != 0) {
-        u32 grown = (n / self->step + 1) * self->step;
+        u32 grown = self->GrownCapacity(n);
         if (cap < grown) {
             UnkSetPair_b0230* p = static_cast<UnkSetPair_b0230*>(
                 self->allocator->vf_0x40((u64)grown * sizeof(UnkSetPair_b0230), 8, self->flags));

@@ -3,6 +3,7 @@
 // Assignment from an in-place (state 1) or by-reference (state 2) pair of an id and a record: the
 // id is moved (released, taken, the other's left empty) and the record assigned out of line.
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 template <class X, class Y>
@@ -23,39 +24,22 @@ struct UnkValuePairRef {
     Y& GetY() { return state == 2 ? *refs.y : values.y; }
 };
 
-struct UnkPairReleasedStrId {
-    base::global::UnkStringData* data;
-
-    ~UnkPairReleasedStrId() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 // The id pointers are moved bitwise (the original reloads the pair's state after them).
-__attribute__((always_inline)) static inline void MoveAssign(UnkPairReleasedStrId* self, UnkPairReleasedStrId* other) {
-    self->~UnkPairReleasedStrId();
+__attribute__((always_inline)) static inline void MoveAssign(UnkStrIdTwoStep* self, UnkStrIdTwoStep* other) {
+    self->~UnkStrIdTwoStep();
     __builtin_memcpy(&self->data, &other->data, sizeof(self->data));
     base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
     __builtin_memcpy(&other->data, &empty, sizeof(empty));
 }
 
 template <class Y>
-__attribute__((always_inline)) static inline UnkValuePairRef<UnkPairReleasedStrId, Y>* MoveAssignSet(
-    UnkValuePairRef<UnkPairReleasedStrId, Y>* self, UnkValuePairRef<UnkPairReleasedStrId, Y>* other) {
+__attribute__((always_inline)) static inline UnkValuePairRef<UnkStrIdTwoStep, Y>* MoveAssignSet(
+    UnkValuePairRef<UnkStrIdTwoStep, Y>* self, UnkValuePairRef<UnkStrIdTwoStep, Y>* other) {
     if (other->state == 1) {
         MoveAssign(&self->GetX(), &other->values.x);
         self->GetY() = other->values.y;
     } else if (other->state == 2) {
-        UnkPairReleasedStrId* x = other->refs.x;
+        UnkStrIdTwoStep* x = other->refs.x;
         MoveAssign(&self->GetX(), x);
         self->GetY() = *other->refs.y;
     }
@@ -75,7 +59,7 @@ __attribute__((always_inline)) static inline UnkValuePairRef<UnkPairReleasedStrI
 
 UNK_ASSIGNED_RECORD(UnkAssignedRecord_f78e68, 0x3a8, fn_7100f477a0)
 
-using UnkIdRecordPair_f78e68 = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedRecord_f78e68>;
+using UnkIdRecordPair_f78e68 = UnkValuePairRef<UnkStrIdTwoStep, UnkAssignedRecord_f78e68>;
 
 UnkIdRecordPair_f78e68* fn_7100f78e68(UnkIdRecordPair_f78e68* self, UnkIdRecordPair_f78e68* other) {
     return MoveAssignSet(self, other);

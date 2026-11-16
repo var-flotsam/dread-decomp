@@ -4,22 +4,14 @@
 
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-struct UnkTU2604InsId {
-    UnkStringData* data;
-
-    UnkTU2604InsId(UnkTU2604InsId&& other) {
-        data = other.data;
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkTU2604InsRecord {
-    UnkTU2604InsId id;
+    UnkMovedStrId id;
     u64 field_0x8;
     u64 field_0x10;
     u32 field_0x18;

@@ -4,28 +4,10 @@
 // fn_7100e5190c).
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using namespace base::global;
-
-// A string id whose destructor decrements and tests in two steps (the original reloads the id
-// after the decrement).
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 // The arrays' elements are plain values; only their storage is freed.
 struct UnkArray : base::global::CRntVector<u32> {
@@ -43,7 +25,7 @@ static_assert(sizeof(UnkRecordA8) == 0xa8, "UnkRecordA8 layout");
 
 struct UnkRecord80 {
     u8 unk_0x0[0x10];
-    UnkReleasedStrId field_0x10;
+    UnkStrIdTwoStep field_0x10;
     UnkArray field_0x18;
     UnkArray field_0x40;
     u8 unk_0x68[0x18];
@@ -53,7 +35,7 @@ static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
 template <class Record>
 struct UnkRecordIdArray {
     Record* records;
-    UnkReleasedStrId* ids;
+    UnkStrIdTwoStep* ids;
     u32 count;
 };
 
@@ -61,7 +43,7 @@ template <class Record>
 __attribute__((always_inline)) static inline void Clear(UnkRecordIdArray<Record>* self) {
     if (self->ids) {
         for (u64 i = 0; i < self->count; ++i)
-            self->ids[i].~UnkReleasedStrId();
+            self->ids[i].~UnkStrIdTwoStep();
     }
     if (self->records) {
         for (u64 i = 0; i < self->count; ++i)
@@ -80,9 +62,9 @@ void fn_7100e4eb8c(UnkRecordIdArray<UnkRecord80>* self) { Clear(self); }
 
 // Destructor of a record of two string ids (0x0, 0x18) and two arrays (0x20, 0x48).
 struct UnkIdsArraysRecord {
-    UnkReleasedStrId field_0x0;
+    UnkStrIdTwoStep field_0x0;
     u8 unk_0x8[0x10];
-    UnkReleasedStrId field_0x18;
+    UnkStrIdTwoStep field_0x18;
     UnkArray field_0x20;
     UnkArray field_0x48;
 

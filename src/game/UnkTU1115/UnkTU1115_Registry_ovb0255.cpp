@@ -5,6 +5,7 @@
 // constructor (fn_71006f8ca0), an object constructor (fn_71006f84a8) and the count of entries over
 // copies of the records (fn_71006fa894). Names and layouts are placeholders.
 #include "base/UnkCloneRecords.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU1115.h"
@@ -41,15 +42,14 @@ struct UnkRegObj_b0255 {
 static_assert(__builtin_offsetof(UnkRegObj_b0255, registry) == 0x68, "layout");
 
 // Parallel arrays of objects (as words) and their u32 ids.
-struct UnkPairVec_b0255 {
-    u64* values;                    // 0x0
-    u32* keys;                      // 0x8
-    u32 count;                      // 0x10
-    u32 capacity;                   // 0x14
-    u32 step;                       // 0x18
-    u32 flags;                      // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
-};
+// values: 0x0
+// keys: 0x8
+// count: 0x10
+// capacity: 0x14
+// step: 0x18
+// flags: 0x1c
+// allocator: 0x20
+using UnkPairVec_b0255 = base::global::CRntSmallDictionary<u32, u64>;
 
 struct UnkRegistry_b0255 {
     void* vtable;                               // 0x0

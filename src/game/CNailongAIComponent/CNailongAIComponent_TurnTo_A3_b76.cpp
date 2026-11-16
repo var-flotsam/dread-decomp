@@ -3,6 +3,7 @@
 // is negated and, if the side (+0x1483c: 1 while the old speed was negative) changes, ids 4/8 are set and cleared
 // on the controller (+0x220) as CShakernautAIComponent_Flip_b53.cpp sends them. Names and layouts are placeholders.
 #include <math.h>
+#include "base/math/CVectorOps.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2702.h"
@@ -14,12 +15,7 @@ struct UnkShakernautCtrl_b53;
 // As src/game/CQuetzoaAIComponent/CQuetzoaAIComponent_b38.cpp declares it.
 struct UnkQuetzoaAIComponent;
 
-namespace {
-struct V3 {
-    f32 x, y, z;
-};
-inline V3 operator-(V3 a, V3 b) { return V3{a.x - b.x, a.y - b.y, a.z - b.z}; }
-}  // namespace
+using base::math::CVector3D;
 
 struct UnkNailongTurnState_A3_b76 {
     u32 side;  // 0x1483c
@@ -37,10 +33,9 @@ struct UnkNailongTurnAI_A3_b76 {
 void fn_710062175c(UnkNailongTurnAI_A3_b76* self, UnkActor* target) {
     UnkNailongTurnState_A3_b76* st = &self->state;
     fn_7101108124(reinterpret_cast<UnkQuetzoaAIComponent*>(self), target);
-    V3 dir = V3{target->field_0x44, target->field_0x54, target->field_0x64} -
-             V3{self->owner->field_0x44, self->owner->field_0x54, self->owner->field_0x64};
-    f32 inv = 1.0f / (sqrtf(dir.x * dir.x + dir.y * dir.y + dir.z * dir.z) + 0.0001f);
-    V3 n = V3{dir.x * inv, dir.y * inv, dir.z * inv};
+    CVector3D dir = CVector3D{target->field_0x44, target->field_0x54, target->field_0x64} -
+             CVector3D{self->owner->field_0x44, self->owner->field_0x54, self->owner->field_0x64};
+    CVector3D n = Normalized(dir);
     f32 speed = st->speed;
     f32 d = speed * n.x + 0.0f * n.y + 0.0f * n.z;
     if (d < 0.0f && !(d + 0.01f >= 0.0f && d - 0.01f <= 0.0f)) {

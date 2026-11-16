@@ -11,9 +11,6 @@
 #include "base/reflection/ValueOps.h"
 using base::reflection::CType;
 using base::reflection::SlotFn;
-const base::reflection::CType* fn_710000abbc();
-const base::reflection::CType* fn_710000ad9c();
-const base::reflection::CType* fn_71000a0318();
 const base::reflection::CType* fn_7100d9cf20();
 extern base::reflection::CType g_unk_7101d5c998;
 extern base::reflection::CType g_unk_71727ba620;
@@ -2051,6 +2048,7 @@ namespace CMinimapManager { class TCustomMarkerDataMap; }
 namespace CMinimapManager { class TGlobalMapIcons; }
 namespace base::global { class CFilePathStrId; }
 namespace base::global { class CStrId; }
+namespace base::global { class TRntString512; }
 namespace base::global { template <class, class> class CRntDictionary; }
 namespace base::global { template <class, class> class CRntSmallDictionary; }
 namespace base::global { template <class> class CRntVector; }
@@ -2179,6 +2177,7 @@ struct base::reflection::PointerTypeDescription<CBaseGameLink*> : base::reflecti
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, CBaseGameLink**, void*);
 template const base::reflection::CType* base::reflection::PointerType<CBaseGameLink*>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 template <>
 const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TElementIterator>;
@@ -2189,7 +2188,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_7100dce5b8;
     static constexpr SlotFn set = &fn_7100dce610;
     static constexpr SlotFn increment = &fn_7100dce61c;
-    static const CType* pointee() { return fn_710000abbc(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<float>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TElementIterator>::Get();
@@ -2203,7 +2202,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_7100dce810;
     static constexpr SlotFn set = &fn_7100dce868;
     static constexpr SlotFn increment = &fn_7100dce874;
-    static const CType* pointee() { return fn_710000abbc(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<float>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<int, float>>::TElementConstIterator>::Get();
@@ -3355,6 +3354,7 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100e68570> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100e6d814*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100e68570>();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::TRntString512>::Get();
 template <>
 const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TElementIterator>;
@@ -3365,7 +3365,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_7100e7a568;
     static constexpr SlotFn set = &fn_7100e7a5c0;
     static constexpr SlotFn increment = &fn_7100e7a5cc;
-    static const CType* pointee() { return fn_71000a0318(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::TRntString512>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TElementIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TElementIterator>::Get();
@@ -3379,7 +3379,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
     static constexpr SlotFn get = &fn_7100e7a7c0;
     static constexpr SlotFn set = &fn_7100e7a818;
     static constexpr SlotFn increment = &fn_7100e7a824;
-    static const CType* pointee() { return fn_71000a0318(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::TRntString512>::Get(); }
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<minimapGrid::TMinimapVisMap>::TElementConstIterator>::Get();
@@ -3739,6 +3739,7 @@ struct base::reflection::PointerTypeDescription<base::reflection::CollectionType
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::TKeyElementConstIterator*, void*);
 template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<EMapTutoType>>::TKeyElementConstIterator>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 struct UnkRefl_fn_7100ed7964;
 struct UnkRefl_fn_7100ed0814;
 template <>
@@ -3757,7 +3758,7 @@ struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ed7964> {
     static constexpr SlotFn get = &fn_7100ed7acc;
     static constexpr SlotFn set = &fn_7100ed7b24;
     static constexpr SlotFn increment = &fn_7100ed7b30;
-    static const CType* pointee() { return fn_710000ad9c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(); }
 };
 template <>
 struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100ed0814> {
@@ -3784,7 +3785,7 @@ struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ed7bbc> {
     static constexpr SlotFn get = &fn_7100ed7d24;
     static constexpr SlotFn set = &fn_7100ed7d7c;
     static constexpr SlotFn increment = &fn_7100ed7d88;
-    static const CType* pointee() { return fn_710000ad9c(); }
+    static const CType* pointee() { return &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(); }
 };
 template <>
 struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100ed08f0> {

@@ -3,6 +3,7 @@
 // flags, moving the old elements over. Names and layouts are placeholders.
 #include <new>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -23,15 +24,7 @@ struct UnkCutSceneRecord_lc8bec8 {
 };
 static_assert(sizeof(UnkCutSceneRecord_lc8bec8) == 0x18, "UnkCutSceneRecord_lc8bec8 size");
 
-struct UnkCutSceneRecordArrays_lc8bec8 {
-    UnkCutSceneRecord_lc8bec8* records;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    UnkAllocator* allocator;
-};
+using UnkCutSceneRecordArrays_lc8bec8 = base::global::CRntSmallDictionary<CStrId, UnkCutSceneRecord_lc8bec8>;
 
 // Takes the string `from` holds into an id slot that holds none yet, leaving `from` empty.
 static inline void MoveInto(CStrId* slot, CStrId& from) {
@@ -44,7 +37,7 @@ void fn_7100c8bec8(UnkCutSceneRecordArrays_lc8bec8* self, u32 new_capacity) {
         UnkCutSceneRecord_lc8bec8* records = static_cast<UnkCutSceneRecord_lc8bec8*>(self->allocator->vf_0x40(
             (u64)new_capacity * sizeof(UnkCutSceneRecord_lc8bec8), 8, self->flags));
         CStrId* keys = static_cast<CStrId*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(CStrId), 8, self->flags));
-        if (UnkCutSceneRecord_lc8bec8* old = self->records) {
+        if (UnkCutSceneRecord_lc8bec8* old = self->values) {
             UnkCutSceneRecord_lc8bec8* dst = records;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
                 MoveInto(&dst->id, old->id);
@@ -52,7 +45,7 @@ void fn_7100c8bec8(UnkCutSceneRecordArrays_lc8bec8* self, u32 new_capacity) {
                 dst->field_0x10 = old->field_0x10;
                 old->~UnkCutSceneRecord_lc8bec8();
             }
-            self->allocator->vf_0x48(self->records);
+            self->allocator->vf_0x48(self->values);
         }
         if (CStrId* old = self->keys) {
             CStrId* dst = keys;
@@ -62,7 +55,7 @@ void fn_7100c8bec8(UnkCutSceneRecordArrays_lc8bec8* self, u32 new_capacity) {
             }
             self->allocator->vf_0x48(self->keys);
         }
-        self->records = records;
+        self->values = records;
         self->keys = keys;
         self->capacity = new_capacity;
     }

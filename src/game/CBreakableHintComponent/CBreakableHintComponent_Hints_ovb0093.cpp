@@ -11,6 +11,7 @@
 #include <new>
 
 #include "base/UnkDeferredSet.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -69,15 +70,7 @@ struct UnkHintRef_ovb0093 {
 };
 
 // A flat map: values and keys in parallel arrays sharing a count and capacity.
-struct UnkHintMap_ovb0093 {
-    UnkHintRef_ovb0093* values;
-    u64* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkHintMap_ovb0093 = base::global::CRntSmallDictionary<u64, UnkHintRef_ovb0093>;
 
 __attribute__((noinline)) void fn_7100752fbc(UnkHintMap_ovb0093* self, u32 new_capacity) {
     if (self->capacity >= new_capacity)

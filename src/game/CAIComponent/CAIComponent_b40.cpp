@@ -3,11 +3,11 @@
 // kind 1) to fn_710110a82c on the object at 8 and returns the int 0 as a reflected value. Names are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
 
-void fn_710110a82c(char* self, void* a, void* b);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b40a3(UnkReflValue* arg) {
     if (!arg->type)

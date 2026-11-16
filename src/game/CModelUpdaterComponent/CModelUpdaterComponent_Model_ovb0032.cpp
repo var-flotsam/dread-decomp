@@ -5,12 +5,15 @@
 // actor's model updater (fn_7101173ddc), and the release of its loaded model (fn_7101174314). Names
 // and layouts are placeholders inferred from the code.
 #include <new>
+#include "base/UnkVtableList.h"
 
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "base/math/CVector.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -32,17 +35,6 @@ extern "C" int rand();
 
 // --- The set-up record ---
 
-// A string id (as CStrId) built empty: the default constructor.
-struct UnkEmptyStrId_ovb0032 {
-    base::global::UnkStringData* data;
-    UnkEmptyStrId_ovb0032() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkScaleKey_ovb0032 {
     f32 field_0x0;
     f32 x, y, z;
@@ -52,7 +44,7 @@ struct UnkScaleKey_ovb0032 {
 struct UnkModelSetup_ovb0032 {
     bool field_0x0;
     UnkScaleKey_ovb0032 keys[6];  // 0x4
-    UnkEmptyStrId_ovb0032 ids[3];  // 0x68
+    UnkEmptyStrId ids[3];  // 0x68
     u64 field_0x80;
 
     __attribute__((always_inline)) UnkModelSetup_ovb0032() : field_0x0(false), field_0x80(0) {}
@@ -280,13 +272,11 @@ public:
     }
 };
 
-struct UnkVec3fPod_ovb0032 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkModelEvent_ovb0032 {
     UnkVec3f position;  // 0x0
-    UnkVec3fPod_ovb0032 field_0xc;
+    CVector3D field_0xc;
     UnkEventName_ovb0032 name;  // 0x18
     u32 field_0x20;
 
@@ -300,16 +290,7 @@ struct UnkModelEventNode_ovb0032 {
 };
 
 // A singly linked list of events (as base/UnkSList.h, with larger values).
-struct UnkModelEventList_ovb0032 {
-    u8 pad_0x0[0x8];
-    union {
-        u32 count;  // 0x8
-    };
-    UnkModelEventNode_ovb0032* head;  // 0x10
-    UnkModelEventNode_ovb0032* tail;  // 0x18
-    UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
-
+struct UnkModelEventList_ovb0032 : base::UnkVtableList<UnkModelEventNode_ovb0032> {
     void PushBack(const UnkModelEvent_ovb0032& event) {
         auto* n = static_cast<UnkModelEventNode_ovb0032*>(
             allocator->vf_0x40(sizeof(UnkModelEventNode_ovb0032), 8, flags));
