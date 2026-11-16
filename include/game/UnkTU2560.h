@@ -6,6 +6,12 @@
 #include "types.h"
 
 struct UnkBillboardEntry_bbc;
+struct UnkRecord_b218;
+namespace base::global {
+class CStrId;
+}
+// Registers a billboard record under `key` with the billboard manager.
+void fn_7100e1cfec(void* self, base::global::CStrId* key, UnkRecord_b218* record);
 void fn_7100e1bca4(void* self);
 void* fn_7100e1cb50(void* manager, u64* key, void* arg);
 UnkBillboardEntry_bbc* fn_7100e1caf0(void* manager, u32 id);

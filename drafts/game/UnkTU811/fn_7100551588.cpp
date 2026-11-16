@@ -26,11 +26,6 @@ inline const UnkGameManagerIdTable& IdTable_l551588() {
     return s_table;
 }
 
-// A slot of the id table its header has no member for yet.
-inline const CStrId& TableId_l551588(u32 offset) {
-    return reinterpret_cast<const CStrId*>(&IdTable_l551588())[offset / sizeof(CStrId)];
-}
-
 // A string id copied from another (retained).
 struct UnkSoundName_l551588 {
     UnkStringData* data;
@@ -122,7 +117,7 @@ struct UnkEmmyAI_l551588 {
 static_assert(__builtin_offsetof(UnkEmmyAI_l551588, field_0x2a6f0) == 0x2a6f0, "layout");
 
 bool fn_7100551588(UnkEmmyAI_l551588* self, const CStrId* message) {
-    if (*message == TableId_l551588(0x18c0)) {
+    if (*message == IdTable_l551588().field_0x18c0) {
         if (self->state != 1) {
             self->state = 1;
             self->vtable->vf_0x850(self);
@@ -141,7 +136,7 @@ bool fn_7100551588(UnkEmmyAI_l551588* self, const CStrId* message) {
                       const_cast<CStrId*>(&g_unk_7101d470e0), false, true, true);
         fn_710114fe8c(self->entity->world, 0xe83eac0c8c30776cull, 0, 0);
     }
-    if (*message == TableId_l551588(0x970)) {
+    if (*message == IdTable_l551588().field_0x970) {
         self->field_0x29ef5 = false;
         fn_710114fe8c(self->entity->world, 0xaf057066b81fccd4ull, 0, 0);
     }
