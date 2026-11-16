@@ -692,13 +692,23 @@ MAPPER_HELPERS = {"add_copy": ("InsertCopy", "void {C}::InsertCopy({E} const&, u
                   "set_move": ("GrowAt", "{E}& {C}::GrowAt(u32)")}
 VECTOR_RE = re.compile(r"base::global::CRntVector<(.+)>")
 SMALL_DICT_RE = re.compile(r"base::global::CRntSmallDictionary<(.+)>")
-MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|SmallDictionary(?:Keyed)?)MapperDescription<(.+)> \{$", re.M)
+DICT_RE = re.compile(r"base::global::CRntDictionary<(.+)>")
+MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|SmallDictionary(?:Keyed)?|Dictionary(?:Find)?)"
+                            r"MapperDescription<(.+)> \{$", re.M)
 # The slots CollectionTypeMapper writes for a small dictionary so far (SmallDictionaryMapperDescription).
 SMALL_DICT_SLOTS = ("construct", "move_construct", "hash", "count", "at", "begin", "end")
 # And those that compare keys, for a key of DICT_KEY_TYPES or a plain number
 # (SmallDictionaryKeyedMapperDescription).
 SMALL_DICT_KEYED_SLOTS = ("move_assign", "equals", "find", "set_copy", "set_move")
 DICT_KEY_TYPES = ("base::global::CStrId",)
+# The slots CollectionTypeMapper writes for a dictionary keyed by a string id of DICT_HASH_KEYS
+# (DictionaryMapperDescription), and those that look a key up when the value is whole: a pointer, a plain number,
+# a class of DICT_VALUE_HEADERS or one of DICT_WHOLE_VALUES (DictionaryFindMapperDescription).
+DICT_SLOTS = ("construct", "equals", "hash", "count", "begin", "end")
+DICT_FIND_SLOTS = ("find", "set_copy", "set_move")
+DICT_HASH_KEYS = ("base::global::CStrId", "base::global::CFilePathStrId")
+# Class values whole through the headers a dictionary's file already includes.
+DICT_WHOLE_VALUES = ("base::global::CRntVector<base::global::CStrId>",)
 # Value classes a small dictionary's mapper needs whole (At and End take their size), and their headers.
 DICT_VALUE_HEADERS = {"base::global::CStrId": "base/global/CStrId.h",
                       "base::global::CFilePathStrId": "base/global/CFilePathStrId.h"}
@@ -771,9 +781,36 @@ def mapped_small_dictionary(body: list[str], named_ptrs: dict[int, str],
     return None
 
 
+def mapped_dictionary(body: list[str], named_ptrs: dict[int, str]) -> tuple[str, str] | None:
+    """(C, value) of a dictionary whose DICT_SLOTS CollectionTypeMapper<C> writes: kind 2 and 0x48 bytes, C named
+    by its element iterator's named form and keyed by one of DICT_HASH_KEYS."""
+    text = "\n".join(body)
+    if "size = 0x48;" not in text or "kind = 0x2;" not in text:
+        return None
+    it = element_iterator(body, named_ptrs)
+    d = DICT_RE.fullmatch(it.group(1)) if it else None
+    if d is None or not set(DICT_SLOTS) <= set(collection_slots(body)):
+        return None
+    args = split_template_args(d.group(1))
+    if len(args) != 2 or args[0] not in DICT_HASH_KEYS:
+        return None
+    return it.group(1), args[1]
+
+
+def dictionary_finds(collection: str) -> bool:
+    """Whether a dictionary's mapper writes DICT_FIND_SLOTS: its value is whole."""
+    d = DICT_RE.fullmatch(collection)
+    if d is None:
+        return False
+    value = split_template_args(d.group(1))[1]
+    return (value.endswith("*") or value in PRIMITIVE_VALUE_TYPES.values() or value in DICT_VALUE_HEADERS
+            or value in DICT_WHOLE_VALUES)
+
+
 def mapped_collection(body: list[str], named_ptrs: dict[int, str], enums: frozenset[str]):
-    """mapped_vector's or mapped_small_dictionary's (C, element or value)."""
-    return mapped_vector(body, named_ptrs, enums) or mapped_small_dictionary(body, named_ptrs, enums)
+    """mapped_vector's, mapped_small_dictionary's or mapped_dictionary's (C, element or value)."""
+    return (mapped_vector(body, named_ptrs, enums) or mapped_small_dictionary(body, named_ptrs, enums)
+            or mapped_dictionary(body, named_ptrs))
 
 
 def keyed_small_dictionary(collection: str) -> bool:
@@ -789,6 +826,8 @@ def mapper_slots(collection: str) -> tuple[str, ...]:
     """The description members CollectionTypeMapper<collection> can write."""
     if SMALL_DICT_RE.fullmatch(collection):
         return SMALL_DICT_SLOTS + (SMALL_DICT_KEYED_SLOTS if keyed_small_dictionary(collection) else ())
+    if DICT_RE.fullmatch(collection):
+        return DICT_SLOTS + (DICT_FIND_SLOTS if dictionary_finds(collection) else ())
     return tuple(MAPPER_SLOTS)
 
 
@@ -805,7 +844,7 @@ def call_target(orig: asmdiff.Original, addr: int) -> int | None:
 def mapper_helpers(orig: asmdiff.Original, body: list[str], members, collection: str = "") -> dict[str, int]:
     """{member: the CRntVector member it calls} for the members of `members` that call one (none for a small
     dictionary's)."""
-    if SMALL_DICT_RE.fullmatch(collection):
+    if SMALL_DICT_RE.fullmatch(collection) or DICT_RE.fullmatch(collection):
         return {}
     slots = collection_slots(body)
     return {d: t for d in members if d in MAPPER_HELPERS and (t := call_target(orig, slots[d])) is not None}
@@ -841,16 +880,20 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
     out = emit_collection(init, rest)
     desc = f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> {{"
     small_dict = SMALL_DICT_RE.fullmatch(vector) is not None
+    dictionary = DICT_RE.fullmatch(vector) is not None
     base = ("SmallDictionaryKeyedMapperDescription" if keyed_small_dictionary(vector)
-            else "SmallDictionaryMapperDescription" if small_dict else "CollectionMapperDescription")
+            else "SmallDictionaryMapperDescription" if small_dict
+            else "DictionaryFindMapperDescription" if dictionary_finds(vector)
+            else "DictionaryMapperDescription" if dictionary else "CollectionMapperDescription")
     out[out.index(desc)] = (f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> "
                             f": base::reflection::{base}<{vector}> {{")
     node = pointer_value_type(f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator")[1]
     helpers = sorted({"extern template " + MAPPER_HELPERS[d][1].format(C=vector, E=element) + ";"
-                      for d in members if d in MAPPER_HELPERS and not small_dict})
-    if small_dict:
-        key = split_template_args(SMALL_DICT_RE.fullmatch(vector).group(1))[0]
-        include = ['#include "base/global/CRntSmallDictionary.h"'] + [
+                      for d in members if d in MAPPER_HELPERS and not small_dict and not dictionary})
+    if small_dict or dictionary:
+        key = split_template_args((SMALL_DICT_RE.fullmatch(vector) or DICT_RE.fullmatch(vector)).group(1))[0]
+        header = "CRntSmallDictionary.h" if small_dict else "CRntDictionary.h"
+        include = [f'#include "base/global/{header}"'] + [
             f'#include "{DICT_VALUE_HEADERS[t]}"' for t in dict.fromkeys((key, element)) if t in DICT_VALUE_HEADERS]
     else:
         include = [f'#include "{CLASS_ELEMENT_HEADERS[element]}"'] if element in CLASS_ELEMENT_HEADERS else []

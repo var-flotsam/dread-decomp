@@ -116,6 +116,11 @@ public:
 
     // Ids are equal when they share the pooled string.
     bool operator==(const CFilePathStrId& other) const { return data == other.data; }
+    // The bucket hash of an id: its string's hash, folded to one word.
+    u32 Hash() const {
+        const UnkHashedString* string = static_cast<const UnkHashedString*>(data);
+        return string->hash[0] ^ string->hash[1];
+    }
 };
 
 }  // namespace base::global

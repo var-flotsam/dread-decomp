@@ -20,6 +20,12 @@ struct UnkStringData {
     };
 };
 
+// A pooled string as the hash maps read it: its 64-bit hash, as two words, at 0x30 (inferred).
+struct UnkHashedString : UnkStringData {
+    u8 unk_0xc[0x24];
+    u32 hash[2];
+};
+
 struct UnkStringPool {
     u8 unk_0x0[0x10];
     UnkStringData empty;
@@ -186,9 +192,27 @@ public:
         data = other.data;
         other.data = &g_unk_7101d47108->empty;
     }
+    // ReleaseAndTake as the move of the keyed arrays' iterator values and of their records
+    // (fn_7100e558f8, fn_7100e5ae40): the moved-from id gets the empty id through a store with no
+    // type-based alias info, so what follows (the pool, counts, array pointers, the holder's kind)
+    // is loaded again, as the original does. Elsewhere (fn_71000d8b90, fn_71002d9994) the original
+    // keeps those values across the store, so it is a member of its own.
+    void ReleaseAndTakeReloading(CStrId& other) {
+        Reset();
+        data = other.data;
+        union Slot {
+            UnkStringData* p;
+        };
+        reinterpret_cast<Slot*>(&other.data)->p = &g_unk_7101d47108->empty;
+    }
 
     // Ids are equal when they share the pooled string.
     bool operator==(const CStrId& other) const { return data == other.data; }
+    // The bucket hash of an id: its string's hash, folded to one word.
+    u32 Hash() const {
+        const UnkHashedString* string = static_cast<const UnkHashedString*>(data);
+        return string->hash[0] ^ string->hash[1];
+    }
 };
 
 // The id type of a reflected function's name (UnkReflFunction+0x30). It is built by the same
