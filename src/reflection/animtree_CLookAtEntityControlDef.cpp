@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // animtree::CLookAtEntityControlDef
 namespace animtree::CLookAtEntityControlDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Look at Entity Control Definition");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Look at Entity Control Definition");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sEntity", 0x40, (Description, "Entity to look at"));

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -60,8 +61,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetStage", true)))
         fn_71009be6fc(fn, "SetStage");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &g_unk_71727b6630, 0x188, -1, -1);
-    field0->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Spawn points to set forbidden edges"));
-    field0->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Spawn points to set forbidden edges"));
+    field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

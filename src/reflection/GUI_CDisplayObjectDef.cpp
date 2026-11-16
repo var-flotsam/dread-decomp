@@ -35,8 +35,8 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sID", 0x8);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("lstpStates", true), &g_unk_717275f310, 0x38, -1, -1);
-    field1->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewDOStateDef", true));
-    field1->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterStateDeserialization", true));
+    field1->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("AddNewDOStateDef", true));
+    field1->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterStateDeserialization", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewDOStateDef", true))) {
         fn->name = base::global::UnkStrId("AddNewDOStateDef", true);
         fn->return_type = base::reflection::PointerType<GUI::CDisplayObjectStateDef*>::Get();
@@ -47,7 +47,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterStateDeserialization", true)))
         fn_7100b05218(fn, "AfterStateDeserialization");
     UnkReflField* field2 = fn_7100096524(cls, CStrId("lstpChildren", true), &g_unk_717275e480, 0x60, -1, -1);
-    field2->attrs.Add<CStrId>(fn_710008fd60(), CStrId("AddNewChild", true));
+    field2->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("AddNewChild", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewChild", true))) {
         fn->name = base::global::UnkStrId("AddNewChild", true);
         fn->return_type = fn_7100b05394();

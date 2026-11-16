@@ -28,8 +28,8 @@ void fn_7100c432bc();
 void fn_7100c42f54(UnkReflFunction* fn, const char* name);
 namespace CCharClassOverrideAnalogAimInvalidAnglesTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Override Analog Aim Invalid Angles");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Analog", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Override Analog Aim Invalid Angles");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Analog", true));
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinInvaligAngle_GetterFunction", true))) {

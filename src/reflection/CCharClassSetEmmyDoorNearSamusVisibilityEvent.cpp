@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetEmmyDoorNearSamusVisibilityEvent
 namespace CCharClassSetEmmyDoorNearSamusVisibilityEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Emmy Doors Visibility");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Emmy", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Emmy Doors Visibility");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Emmy", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bVisible", 0xc, (DefaultValue, true));

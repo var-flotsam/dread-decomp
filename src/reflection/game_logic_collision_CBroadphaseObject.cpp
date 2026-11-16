@@ -26,7 +26,7 @@ namespace game::logic::collision::CBroadphaseObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), &base::reflection::PrimitiveType<unsigned long>::Get(), 0x18, -1, -1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     DREAD_REFLECTED_FIELD(CStrId, "sStrId", 0x20);
 }
 bool refl_Equals(const void*, const void*) { return false; }

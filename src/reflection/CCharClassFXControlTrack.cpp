@@ -29,8 +29,8 @@ void fn_7100cfd18c();
 void fn_7100cfc67c(UnkReflFunction* fn, const char* name);
 namespace CCharClassFXControlTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "FX Control");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("FX", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Control");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("FX", true));
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sActive_GetterFunction", true))) {

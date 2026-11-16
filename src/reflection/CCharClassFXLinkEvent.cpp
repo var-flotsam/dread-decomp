@@ -23,13 +23,13 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_71727b8ef8;
 namespace CCharClassFXLinkEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "FX Link");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("FX", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Link");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eLinkType", true), &g_unk_71727b8ef8, 0x18, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727b8ef8, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727b8ef8, 4);
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x28, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetY", 0x2c, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetZ", 0x30, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));

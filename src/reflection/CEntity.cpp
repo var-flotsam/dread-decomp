@@ -49,9 +49,9 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("oBBox", true), &g_unk_7108b6d3d0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Entity BBox");
-    field0->attrs.Add<CStrId>(fn_7100091c30(), CStrId("Bounding Box", true));
-    field0->attrs.Add<bool>(fn_7100234410(), true);
+    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Entity BBox");
+    field0->attrs.Add<CStrId>(base::reflection::attr::DisplayName(), CStrId("Bounding Box", true));
+    field0->attrs.Add<bool>(base::reflection::attr::WidgetReadOnly(), true);
     DREAD_REFLECTED_FIELD(bool, "bIsInFrustum", 0xffffffff, (DisplayName, CStrId("Inside Frustum", true)), (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsInFrustum_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bIsInFrustum_GetterFunction", true);
@@ -63,22 +63,22 @@ void refl_AddFields(CClass* cls) {
     fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("bIsInFrustum")), cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("PlayEntityLoop", true))) {
         fn_7100d71900(fn, "PlayEntityLoop");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopEntityLoop", true))) {
         fn_7100d719b4(fn, "StopEntityLoop");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopEntityLoopWithFade", true))) {
         fn_7100d71a68(fn, "StopEntityLoopWithFade");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DelMeIn", true))) {
         fn_7100d71b1c(fn, "DelMeIn");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Deletes the entity after float seconds");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Deletes the entity after float seconds");
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartTimeline", true))) {
         fn->name = base::global::UnkStrId("StartTimeline", true);

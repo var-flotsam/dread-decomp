@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("ETrainDirection", "eDirection", 0x548, (DefaultValue, 0));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("eLoadingScreen", true), &g_unk_71727c0710, 0x54c, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727c0710, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727c0710, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sLevelName", 0x550, (DefaultValue, CStrId("c10_samus", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioName", 0x558, (DefaultValue, CStrId("", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sTargetSpawnPoint", 0x560, (DefaultValue, CStrId("", true)));

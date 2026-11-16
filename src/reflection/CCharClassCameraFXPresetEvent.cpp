@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCameraFXPresetEvent
 namespace CCharClassCameraFXPresetEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Camera FX Preset");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Camera", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Camera FX Preset");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sPreset", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

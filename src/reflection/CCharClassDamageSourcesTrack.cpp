@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDamageSourcesTrack
 namespace CCharClassDamageSourcesTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Block all damage sources except selected ones");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Damage", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Block all damage sources except selected ones");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Damage", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sDamageSourcesMask", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Damage Source Mask"));

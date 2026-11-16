@@ -38,8 +38,8 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayerInside", true))) {
         fn_7100a5cbcc(fn, "IsPlayerInside");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FIELD(bool, "bCallEntityLuaCallback", 0x3d, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iReverb_GetterFunction", true))) {
@@ -80,7 +80,7 @@ void refl_AddFields(CClass* cls) {
         fn_7100a5cf78(fn, "_sSfxType_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("lstActivationConditions", true), &g_unk_717274dad8, 0x250, -1, -1);
-    field11->attrs_0x70.Add<CStrId>(fn_710008ff80(), CStrId("AfterActivationConditionDeserialization", true));
+    field11->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterActivationConditionDeserialization", true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterActivationConditionDeserialization", true)))
         fn_7100a5d0f4(fn, "AfterActivationConditionDeserialization");
 }

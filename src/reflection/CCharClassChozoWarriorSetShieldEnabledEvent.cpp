@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassChozoWarriorSetShieldEnabledEvent
 namespace CCharClassChozoWarriorSetShieldEnabledEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "ChozoWarrior Set Shield Enabled");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Enemy own actions", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "ChozoWarrior Set Shield Enabled");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0xc, (DefaultValue, true));

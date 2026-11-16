@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCantFloorSlideTrack
 namespace CCharClassCantFloorSlideTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Cant Floor Slide");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Floor Slide", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Cant Floor Slide");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Floor Slide", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bBufferInput", 0x18, (DefaultValue, false));

@@ -41,8 +41,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sModelAlias", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, base::global::CRntString("Current model alias")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetVertexLightsEnabled", true))) {
         fn_7100937f48(fn, "SetVertexLightsEnabled");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Vertex Lights Enabled"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Vertex Lights Enabled"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
 bool refl_Equals(const void*, const void*) { return false; }

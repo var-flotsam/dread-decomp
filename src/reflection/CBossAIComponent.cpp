@@ -33,14 +33,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sArenaRightLandmark", 0x146f8, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(f32, "fArenaLimitDist", 0x14700, (DefaultValue, 0.0f));
     UnkReflField* field3 = fn_7100096524(cls, CStrId("tDoors", true), &g_unk_71727b6630, 0x146c8, -1, -1);
-    field3->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Door to lock on emmy spawn"));
-    field3->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field3->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Door to lock on emmy spawn"));
+    field3->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     UnkReflField* field4 = fn_7100096524(cls, CStrId("wpBossCamera", true), &g_unk_717269bb48, 0x14728, -1, -1);
-    field4->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field5 = fn_7100096524(cls, CStrId("wpBossCameraFloorLandmark", true), &g_unk_717269bb48, 0x14768, -1, -1);
-    field5->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+    field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
     UnkReflField* field6 = fn_7100096524(cls, CStrId("wpBossCameraCeilingLandmark", true), &g_unk_717269bb48, 0x147a8, -1, -1);
-    field6->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+    field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetBossCamera", true))) {
         fn->name = base::global::UnkStrId("SetBossCamera", true);
         fn->return_type = &g_unk_7101d5af48;
@@ -48,13 +48,13 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71003b0e60);
         fn_7100302d14(fn);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Sets the Boss Camera");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Sets the Boss Camera");
     }
     UnkReflField* field7 = fn_7100096524(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x14910, -1, -1);
-    field7->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field7->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x14950, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field9 = fn_7100096524(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x14958, -1, -1);
-    field9->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD(bool, "bSaveGameOnAfterDead", 0x14998, (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }

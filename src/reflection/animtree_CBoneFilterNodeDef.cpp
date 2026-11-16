@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -22,13 +23,13 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_7101d5c998;
 namespace animtree::CBoneFilterNodeDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Bone Filter Node Definition");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Bone Filter Node Definition");
 }
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("vBones", true), &g_unk_7101d5c998, 0x10, -1, -1);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "List of bone filters");
+    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone filters");
     UnkReflField* field1 = fn_7100096524(cls, CStrId("vBoneHierarchies", true), &g_unk_7101d5c998, 0x38, -1, -1);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "List of bone hierarchies filters");
+    field1->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone hierarchies filters");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

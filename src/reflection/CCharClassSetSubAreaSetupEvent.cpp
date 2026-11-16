@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetSubAreaSetupEvent
 namespace CCharClassSetSubAreaSetupEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Sub Area Setup");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Subarea", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Sub Area Setup");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Subarea", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sSetup", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

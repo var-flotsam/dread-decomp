@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassUseDC_ShotOrientationTrack
 namespace CCharClassUseDC_ShotOrientationTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Use DC_Shot Orientation");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Gun", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Use DC_Shot Orientation");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Gun", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bProjectOnXY", 0x18, (DefaultValue, true), (Description, "Project DC_Shot Dir on XY plane"));

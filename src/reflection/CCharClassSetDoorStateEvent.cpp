@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetDoorStateEvent
 namespace CCharClassSetDoorStateEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Door State (open|close)");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Door", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Door State (open|close)");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Door", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CName, "sEntityName", 0x38, (DefaultValue, base::global::CName("")));

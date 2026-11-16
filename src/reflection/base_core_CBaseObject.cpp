@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -30,7 +31,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100024edc);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Print type vars");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Print type vars");
     }
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -116,8 +116,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsSamus", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceDetachGrapple", true))) {
         fn_71009df12c(fn, "ForceDetachGrapple");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Force detach grapple"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Force detach grapple"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FIELD(f32, "fFixedModelOffsetYGoingUp", 0x54f8, (DefaultValue, 30.0f));
     DREAD_REFLECTED_FIELD(f32, "fFixedModelOffsetYGoingDown", 0x54fc, (DefaultValue, 25.0f));
