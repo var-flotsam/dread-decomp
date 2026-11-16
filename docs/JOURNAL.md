@@ -154,6 +154,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**One spawn holder for unit 2704 (2026-11-16).** The 0x40-byte holder that CSpawnPointComponent's unit keeps in a
+`CRntVector` (virtual destructor, callback vector at +0x8, state at +0x30, refcounted handle at +0x38; the
+CGameLink<CActor> layout) had three views: the vector copy's (`UnkEntry_b42a3`), the insert's and the append
+draft's. All three now use `UnkSpawnHolder` in `include/game/UnkSpawnHolder.h`, and the append
+(`fn_7101131b98`) moved from `drafts/` to `src/` as a match. The copy is "construct empty, then `CopyFrom`": a copy
+constructor with the same body changes the insert's code (the callback vector's construction is no longer dead).
+Parked: `UnkShapeHit_A5_b68` (`fn_7101126c34`): with 8 bytes `fn_7101126c34` matches but `fn_71007e98c8`'s frame
+moves; with 16 the reverse, so the two callers' frames disagree and the size needs another look.
+
 **Opus batch lean-o1: 50 ready functions of 400 to 1,000 bytes (2026-11-16).** The pilot's shape, scaled on the
 owner's go-ahead: the next ten units with three or more ready functions of that size, 10 Opus workers, 5 each,
 budget 5. Results: 13 matches (26%; 9 on the first graded attempt, 3 on the second, 1 on the third), 10
