@@ -100,5 +100,15 @@ CBlackboard::CSection* fn_7101047484(CBlackboard* self, const base::global::CStr
 // Reads a bool from the section's value under `name` into `*out`; returns whether it was found.
 bool fn_710006d11c(CBlackboard::CSection* self, const base::global::CStrId* name, bool* out);
 
+// This unit's parser callbacks (base/reflection/UnkReflObjectRead.h), copied into each read or write
+// context.
+struct UnkParseCallbacks;
+extern UnkParseCallbacks g_unk_71729fd068 __attribute__((visibility("hidden")));
+
+// Clears this blackboard and adds a copy of each of `other`'s sections under its key; returns false
+// (w0 cleared before the return).
+bool fn_7101047068(CBlackboard* self, CBlackboard* other);
+void fn_7101047ea8(void* self);
+
 // Whether the section `section` names has a property named `name` (src/game/CBlackboard.cpp).
 bool fn_71010474f4(CBlackboard* self, const base::global::CStrId& section, const base::global::CStrId& name);

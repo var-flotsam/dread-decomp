@@ -1,6 +1,6 @@
 // Sets up an actor's components (two of them through a mask of all flags), then hands a list of
 // nineteen flag values to fn_71008724f8 under a fixed key. Layouts are placeholders.
-#include "../../game_s7/UnkFlagListS7.h"
+#include "game/UnkFlagListS7.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineComponent.h"

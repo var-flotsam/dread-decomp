@@ -4,6 +4,9 @@
 // 0x7100154770-0x71001587dc). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+// Sets the colour write mask of render target `index` (the graphics device's callback).
+extern void (*g_unk_716e29b578)(void* target, s32 index, bool r, bool g, bool b, bool a);
 // An NVN C entry point, stored by the loader (its name is unknown).
 extern void (*g_unk_716e29ac78)(void* device, s32 name, s32* value);
 // NVN entry point the graphics start-up loads (inferred: the memory pool's finaliser).

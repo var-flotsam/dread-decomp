@@ -24,7 +24,6 @@ struct UnkUserDataOwner;
 struct UnkStrVector;
 
 void fn_7100e06218(void* context);
-void fn_7101047ea8(void* self);
 
 // A list of pointers (vtable g_unk_7101aa9ac0), its nodes from `allocator` with `flags`.
 struct UnkPtrListNode {
@@ -156,8 +155,7 @@ s32 fn_7100df78cc(UnkGameManager* manager, const CRntString& name, bool second_b
         blackboards.PushBack(&self->field_0xbf8);
     CRntString scenario(self->field_0x7f0);
     {
-        CRntVector<CRntString> files(0xf);
-        files.step = 1;
+        CRntVector<CRntString> files(0xf, 1);
         files.Reserve(1);
         UnkReloadCallback callback = {manager, reinterpret_cast<void*>(&fn_7100e06218)};
         self->SetPending(reinterpret_cast<u8*>(&files), &callback);

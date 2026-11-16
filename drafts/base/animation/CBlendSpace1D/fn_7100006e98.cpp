@@ -1,6 +1,7 @@
 // base::animation::CBlendSpace1D's unit (unit 13): when the blend is dirty (bit 0 of +0x40) or the
 // update is forced, picks the two samples around the blend position, sets their weights, and advances
 // each sample with a positive weight by the step. Names and layouts are placeholders.
+#include "base/animation/CBlendSpace1D.h"
 #include "types.h"
 
 struct UnkBlend13;

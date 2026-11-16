@@ -2,14 +2,14 @@
 // function pointer for each of the eight slots 0-7 with the colour flag and the new value.
 // Names and layouts are placeholders.
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "types.h"
 
-extern bool g_unk_7101a1d7d9;
 extern bool g_unk_7101a1d7da;
-extern void (*g_unk_716e29b578)(void* object, s32 slot, bool red, bool green, bool blue, bool alpha);
 
-void fn_710015a260(u32 value) {
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
+void fn_710015a260(bool value) {
     bool alpha = value & 1;
     if (g_unk_7101a1d7da == alpha)
         return;

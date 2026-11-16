@@ -37,6 +37,7 @@ address,digest,verdict,rules,detail
 0x710014d9e8,b1192fcce325333e0a0534876ca81fc5,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
 0x71001541a0,76f5bf0cfb4d21d09686651a9cbfbb97,pass,2,
 0x710015a0e0,6ae3ae9e4faa5b4c53ba0a7894ea5ad2,pass,2,
+0x710015a260,d712039186763f26016350734c77f53a,pass,2,
 0x710015f100,1615f278b0b18f551e1f16b77ae3c48b,inconclusive,2,only 11% of the original's instructions ran
 0x710015f500,dd4252f182e1fcde842889f71318d1e9,pass,2,
 0x71001606f0,baf350b068f0c8cfe318b28a1291e119,pass,2,
