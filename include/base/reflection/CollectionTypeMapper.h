@@ -25,6 +25,8 @@
 namespace base::global {
 template <class K, class V>
 struct CRntSmallDictionary;
+template <class K, class V>
+struct CRntDictionary;
 }  // namespace base::global
 
 namespace base::reflection {
@@ -208,6 +210,59 @@ struct SmallDictionaryKeyedMapperDescription : SmallDictionaryMapperDescription<
     static constexpr auto find = &Mapper::Find;
     static constexpr auto set_copy = &Mapper::SetCopy;
     static constexpr auto set_move = &Mapper::SetMove;
+};
+
+// A dictionary's mapper (base/global/CRntDictionary.h): an element iterator is at a node, null at the end.
+// The slots written so far are those that need none of its insertion, removal or clearing.
+template <class K, class V>
+struct CollectionTypeMapper<global::CRntDictionary<K, V>> {
+    using C = global::CRntDictionary<K, V>;
+
+    struct TElementIterator {
+        void* m_element = nullptr;
+        bool operator==(const TElementIterator& other) const { return m_element == other.m_element; }
+    };
+    struct TElementConstIterator {
+        const void* m_element = nullptr;
+        bool operator==(const TElementConstIterator& other) const { return m_element == other.m_element; }
+    };
+    struct TKeyElementIterator;
+    struct TKeyElementConstIterator;
+
+    // Reflection constructs no dictionary in place: the object holding it already has.
+    static void Construct(void*) {}
+    // Dictionaries compare equal only to themselves.
+    static bool Equals(const void* a, const void* b) { return a == b; }
+    static s32 Hash(const void*) { return -1; }
+    static const class CType& TypeOf(const void* obj);
+
+    static u32 Count(const void* collection) { return static_cast<const C*>(collection)->count; }
+    static void* Find(void* collection, const void* key) {
+        return static_cast<C*>(collection)->Find(*static_cast<const K*>(key));
+    }
+    static void Begin(void* collection, void* it) {
+        static_cast<TElementIterator*>(it)->m_element = static_cast<C*>(collection)->first;
+    }
+    static void End(void*, void* it) { static_cast<TElementIterator*>(it)->m_element = nullptr; }
+};
+
+// The members of a dictionary C's description that its mapper writes; they need neither its key nor its
+// value whole.
+template <class C>
+struct DictionaryMapperDescription {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto construct = &Mapper::Construct;
+    static constexpr auto equals = &Mapper::Equals;
+    static constexpr auto hash = &Mapper::Hash;
+    static constexpr auto count = &Mapper::Count;
+    static constexpr auto begin = &Mapper::Begin;
+    static constexpr auto end = &Mapper::End;
+};
+
+// And Find, for a dictionary whose key and value are whole.
+template <class C>
+struct DictionaryFindMapperDescription : DictionaryMapperDescription<C> {
+    static constexpr auto find = &CollectionTypeMapper<C>::Find;
 };
 
 }  // namespace base::reflection

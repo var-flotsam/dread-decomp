@@ -20,6 +20,12 @@ struct UnkStringData {
     };
 };
 
+// A pooled string as the hash maps read it: its 64-bit hash, as two words, at 0x30 (inferred).
+struct UnkHashedString : UnkStringData {
+    u8 unk_0xc[0x24];
+    u32 hash[2];
+};
+
 struct UnkStringPool {
     u8 unk_0x0[0x10];
     UnkStringData empty;
@@ -189,6 +195,11 @@ public:
 
     // Ids are equal when they share the pooled string.
     bool operator==(const CStrId& other) const { return data == other.data; }
+    // The bucket hash of an id: its string's hash, folded to one word.
+    u32 Hash() const {
+        const UnkHashedString* string = static_cast<const UnkHashedString*>(data);
+        return string->hash[0] ^ string->hash[1];
+    }
 };
 
 // The id type of a reflected function's name (UnkReflFunction+0x30). It is built by the same
