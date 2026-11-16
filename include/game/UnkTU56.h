@@ -14,3 +14,4 @@ void fn_710007beac(base::global::CRntFile* self, const base::global::CRntFile* o
 void fn_710007c080(base::global::CRntFile* file, void* data, u32 flags, u64 size);
 // Formatted stream write ("i" integer, "b" bool, "f" float, "s" string).
 s64 fn_710007cb4c(void* stream, const char* format, ...);
+u64 fn_710007c70c(base::global::CRntFile* file, void* dest, u64 size);

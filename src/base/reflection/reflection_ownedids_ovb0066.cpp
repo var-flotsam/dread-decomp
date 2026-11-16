@@ -3,10 +3,10 @@
 // assigning a pair that either holds its key and set or refers to them.
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 struct UnkNamedIds;  // src/game/CSubAreaManager.cpp
-void fn_7100ef1e1c(UnkNamedIds* self);
 
 struct UnkOwnedIds_ovb0066 {
     union {  // no type-based alias information, as in the original

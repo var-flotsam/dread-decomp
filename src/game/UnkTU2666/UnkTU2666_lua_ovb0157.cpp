@@ -37,7 +37,7 @@ struct UnkSoundMgr;
 struct UnkSoundHandle_b46a1;
 
 // ---- game manager, one name key ----
-void fn_7100df71d4(UnkGameManager* self, const CRntString& name);
+s32 fn_7100df71d4(UnkGameManager* self, const CRntString& name);
 
 s32 fn_7101078df0(lua_State* L) {
     const char* name;

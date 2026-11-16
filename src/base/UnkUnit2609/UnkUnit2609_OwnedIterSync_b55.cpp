@@ -4,10 +4,10 @@
 // owns an object at +0x18 (fn_7100ef1e1c destroys it, fn_7100083c00 frees it). Names and layouts are
 // placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 struct UnkNamedIds;  // src/game/CSubAreaManager.cpp
-void fn_7100ef1e1c(UnkNamedIds* self);
 
 struct UnkOwnedObject_b55 {
     u64 field_0x0;

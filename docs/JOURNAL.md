@@ -154,6 +154,18 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Opus batch lean-o1: 50 ready functions of 400 to 1,000 bytes (2026-11-16).** The pilot's shape, scaled on the
+owner's go-ahead: the next ten units with three or more ready functions of that size, 10 Opus workers, 5 each,
+budget 5. Results: 13 matches (26%; 9 on the first graded attempt, 3 on the second, 1 on the third), 10
+registers-only, 27 that differ; 177 graded attempts; about 2.14 million tokens, about 165,000 per match, against
+the pilot's 47% and 91,000. Five more matched only with a union around a member or a single field copied with
+`__builtin_memcpy` (string-id moves whose original clears the moved-from slot through a store that may alias
+anything, and a list count reloaded after a link store); those stay drafts, as the rules say. The permuter
+matched none of the six readable registers-only drafts and `tools/equiv_test.py` passed one. 14 functions into
+`src/`. One caller's declaration of `fn_7100df71d4` now returns the `s32` the function does (the caller's code is
+unchanged). Worth a header change later: a `CStrId` move-assignment whose clearing store aliases as the original's
+does would turn at least three of those union-only matches readable.
+
 **Opus pilot on 400 to 1,000-byte functions, and the end of the small batches (2026-11-15).** lean-b6 gave 19 Sonnet
 workers two-function units (38 functions of 400 bytes or less): no match, 14 registers-only, about 2 million
 tokens; the batch was stopped there, since the units of several alike functions were used up. The owner then

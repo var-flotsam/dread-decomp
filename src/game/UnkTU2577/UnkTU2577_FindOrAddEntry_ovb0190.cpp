@@ -1,9 +1,9 @@
 // CSubAreaManager::CTunableSubAreaManager unit (tools/tu_map.py unit 2577): fn_7100eef488: finds the entry of the array at +0x888 (owned entries of 0x30 bytes) whose key is the argument's, else builds one (fn_7100f9e7fc) and inserts it at the given index (fn_7100ef1f24), or appends it when the key's count at +0x30 equals the array's. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 struct UnkNamedIds;
-void fn_7100ef1e1c(UnkNamedIds* self);
 
 struct UnkOwnedEntry_b190 {
     union {

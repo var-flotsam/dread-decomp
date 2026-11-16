@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkNamedIds;
 struct UnkPoppedRequest;
 struct UnkNamedObjectPtr_b190;
 struct UnkCamMask_b0101;
@@ -45,3 +46,4 @@ extern base::global::UnkStrIdBase g_unk_71729daa38[/* 9; unsized: x86-64 would a
 UnkNamedObjectPtr_b190* fn_7100eee97c(base::global::CRntVector<UnkNamedObjectPtr_b190>* v, u32 index);
 void fn_7100ee4550(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
 void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
+void fn_7100ef1e1c(UnkNamedIds* self);
