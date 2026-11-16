@@ -2,6 +2,7 @@
 // in hundredths, kind 2 a distance-based fade level (falling with the distance) with the value, the
 // selector from the table and a clamped count, kind 3 bits taken from the context. The selector comes
 // from a table indexed by half the (even) argument minus one. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
 extern "C" float sqrtf(float);
@@ -27,11 +28,10 @@ struct UnkPackContext_ovb0262k {
 };
 static_assert(__builtin_offsetof(UnkPackContext_ovb0262k, field_0x3a4) == 0x3a4, "layout");
 
-struct UnkVec3_ovb0262k {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
-static inline f32 Distance(const UnkVec3_ovb0262k* a, const UnkVec3_ovb0262k* b) {
+// Takes pointers: the shared Distance (by reference) loads the components in another order here.
+static inline f32 Distance(const CVector3D* a, const CVector3D* b) {
     f32 dx = a->x - b->x;
     f32 dy = a->y - b->y;
     f32 dz = a->z - b->z;
@@ -39,7 +39,7 @@ static inline f32 Distance(const UnkVec3_ovb0262k* a, const UnkVec3_ovb0262k* b)
 }
 
 u32 fn_7100168f30(UnkPackKind_ovb0262k* self, u32 argument, u32 value, UnkPackContext_ovb0262k* context,
-                  void* unused, const UnkVec3_ovb0262k* a, const UnkVec3_ovb0262k* b) {
+                  void* unused, const CVector3D* a, const CVector3D* b) {
     u32 index = argument - 2;
     index = (index >> 1) | (index << 31);
     u32 selector = index <= 6 ? g_unk_7101648094[(s32)index] : 0;

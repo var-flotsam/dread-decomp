@@ -4,19 +4,18 @@
 // 0x132e4760c37d0e46 that the world holds is scaled by the distance between the box's top and bottom / 100
 // (vf_0x20), and the objects at +0x58, +0x60 and +0x68 are moved to the origin (vf_0x10). Names and
 // layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CFXComponent.h"
 #include "types.h"
 
 struct UnkWorld;
 struct UnkPart;
 
-struct UnkRayVec_ovb0126 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkRayBox_ovb0126 {
-    UnkRayVec_ovb0126 min;
-    UnkRayVec_ovb0126 max;
+    CVector3D min;
+    CVector3D max;
 };
 
 struct UnkRayShape_ovb0126 {
@@ -39,9 +38,9 @@ struct UnkRayCollider_ovb0126 {
 struct UnkRayObject_ovb0126 {
     virtual void vf_0x0();
     virtual void vf_0x8();
-    virtual void vf_0x10(const UnkRayVec_ovb0126* position);
+    virtual void vf_0x10(const CVector3D* position);
     virtual void vf_0x18();
-    virtual void vf_0x20(const UnkRayVec_ovb0126* scale);
+    virtual void vf_0x20(const CVector3D* scale);
 };
 
 struct UnkRayOwner_ovb0126 {
@@ -71,12 +70,12 @@ void fn_71006b4594(UnkRayAttack_ovb0126* self) {
         return;
     UnkRayBox_ovb0126 box = shape->vf_0x28(shape->field_0x8);
     f32 top = box.max.y;
-    UnkRayVec_ovb0126 position;
+    CVector3D position;
     position.x = (box.min.x + box.max.x) * 0.5f;
     position.y = box.min.y;
     position.z = 0.0f;
     if (auto* effect = reinterpret_cast<UnkRayObject_ovb0126*>(fn_7101152b90(world, 0x132e4760c37d0e46ULL))) {
-        UnkRayVec_ovb0126 scale;
+        CVector3D scale;
         scale.x = __builtin_fabsf(top - position.y) / 100.0f;
         scale.y = 1.0f;
         scale.z = 1.0f;

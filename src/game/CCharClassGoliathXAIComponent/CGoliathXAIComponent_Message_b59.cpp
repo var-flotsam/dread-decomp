@@ -9,6 +9,7 @@
 // (src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
@@ -26,9 +27,7 @@ struct UnkKraidCreatureVec {
 
 struct UnkGoliathAI_b58a3;
 
-struct UnkGoliathXRotation_b59a3 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkGoliathXOwner_b59a3 {
     virtual void vf_0x0();
@@ -58,7 +57,7 @@ struct UnkGoliathXOwner_b59a3 {
     virtual void vf_0xc0();
     virtual void vf_0xc8();
     virtual void vf_0xd0();
-    virtual void vf_0xd8(const UnkGoliathXRotation_b59a3* rotation, bool now);
+    virtual void vf_0xd8(const CVector3D* rotation, bool now);
 };
 
 struct UnkGoliathXObject_b59a3 {
@@ -131,7 +130,7 @@ turn:
     owner = reinterpret_cast<UnkGoliathXOwner_b59a3*>(self->owner);
     {
         f32 facing = Xform_b59a3(other).m[2];
-        UnkGoliathXRotation_b59a3 rotation;
+        CVector3D rotation;
         rotation.x = 0.0f;
         rotation.z = 0.0f;
         rotation.y = facing >= 0.0f ? 1.5707964f : -1.5707964f;

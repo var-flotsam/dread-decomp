@@ -2,6 +2,7 @@
 // polymorphic object that gives a 3D factor two ways (vtable slots 0x10 and 0x18). Names and
 // layouts are placeholders.
 // Holds fn_7100ecfa10 (scales a vector by one of the factors).
+#include "base/math/CVector.h"
 #include "types.h"
 
 // The factor the object hands back in memory (a user-provided destructor makes it so).
@@ -23,16 +24,12 @@ struct UnkScaleHolder {
     UnkScaleSource* source;
 };
 
-struct UnkScaleVec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 // Multiplies `v` component by component with the source's factor (the second one when `which` is
 // set; `a`, `b` and `t` are passed on to it: the original never touches s0, so the callers' `t`,
 // CShotManager's shot time, reaches the source). Nothing happens without a source.
-void fn_7100ecfa10(UnkScaleHolder* self, void* a, void* b, UnkScaleVec3* v, f32 t, s32 which) {
+void fn_7100ecfa10(UnkScaleHolder* self, void* a, void* b, CVector3D* v, f32 t, s32 which) {
     if (UnkScaleSource* source = self->source) {
         UnkScaleFactor f = which ? source->vf_0x18(a, b, t) : source->vf_0x10(a, b, t);
         v->x = f.x * v->x;

@@ -4,16 +4,13 @@
 // zero is stored in the component (+0x70, as a vector), and the actor's effect sink (+0x218) gets a
 // parameter block with the direction set (as src/game/UnkUnit1123/UnkUnit1123_b38.cpp builds one).
 // Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
-struct UnkVec3_b49 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 template <class T>
 struct UnkOpt_b49 {
@@ -26,8 +23,8 @@ struct UnkSinkParams_b49 {
     void** vtable;
     UnkOpt_b49<u32> field_0x8;
     UnkOpt_b49<f32> field_0x10;
-    UnkOpt_b49<UnkVec3_b49> field_0x18;
-    UnkOpt_b49<UnkVec3_b49> field_0x28;
+    UnkOpt_b49<CVector3D> field_0x18;
+    UnkOpt_b49<CVector3D> field_0x28;
     u32 kind;  // 0x38
 };
 
@@ -35,7 +32,7 @@ struct UnkEffectSink;
 
 struct UnkViewDirComponent {
     u8 pad_0x0[0x70];
-    UnkVec3_b49 desired_dir;  // 0x70
+    CVector3D desired_dir;  // 0x70
 };
 
 struct UnkViewDirContext {

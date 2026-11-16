@@ -32,13 +32,11 @@ static inline __attribute__((always_inline)) T* PickArg_lpn(UnkValueSource_lpn* 
     return reinterpret_cast<T*>(src);
 }
 
-struct UnkVec3_lpn {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkLogicPathNode_lpn {
     u8 unk_0x0[8];
-    UnkVec3_lpn pos;
+    CVector3D pos;
 };
 
 struct UnkLogicPathNodeOwner_lpn {
@@ -49,7 +47,7 @@ struct UnkLogicPathNodeOwner_lpn {
 UnkResult_0x18_lpn fn_710105ce04(void* unused, UnkLogicPathNodeOwner_lpn* owner, UnkValueSource_lpn** source) {
     UnkLogicPathNode_lpn* target = owner->target;
     UnkValueSource_lpn* src = *source;
-    UnkVec3_lpn* v = PickArg_lpn<UnkVec3_lpn>(src);
+    CVector3D* v = PickArg_lpn<CVector3D>(src);
     target->pos.x = v->x;
     target->pos.y = v->y;
     target->pos.z = v->z;

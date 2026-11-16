@@ -2,16 +2,15 @@
 // at +0x18; when it moved (more than 0.001 on some axis), it keeps the new one, hands the path at
 // +0x12ab8 to the object at +0x25540 when +0x12ac0 is set (fn_71002ad420), clears both paths
 // (+0x12ab8 and +0x30, fn_71002adc8c) and clears +0x37fdc. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
-struct UnkVec3_np41 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkSelf_np41 {
     u8 pad_0x0[0x18];
-    UnkVec3_np41 target;  // 0x18
+    CVector3D target;  // 0x18
     u8 pad_0x24[0xc];
     u8 path_0x30[0x12a88];
     u8 path_0x12ab8[0x8];
@@ -27,11 +26,11 @@ static inline bool Near_np41(f32 a, f32 b) {
     return lo <= b && hi >= b;
 }
 
-static inline bool Near_np41(const UnkVec3_np41& a, const UnkVec3_np41& b) {
+static inline bool Near_np41(const CVector3D& a, const CVector3D& b) {
     return Near_np41(a.x, b.x) && Near_np41(a.y, b.y) && Near_np41(a.z, b.z);
 }
 
-void fn_710070699c(UnkSelf_np41* self, const UnkVec3_np41* target) {
+void fn_710070699c(UnkSelf_np41* self, const CVector3D* target) {
     if (!Near_np41(self->target, *target)) {
         self->target.x = target->x;
         asm("" ::: "memory");

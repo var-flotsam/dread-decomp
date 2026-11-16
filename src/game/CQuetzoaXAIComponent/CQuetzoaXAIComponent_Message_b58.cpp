@@ -7,17 +7,14 @@
 // 0x2800041c, or arrive while +0x14bc8 is clear, answer 2. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
+#include "base/math/CVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
-struct UnkVec3_b58a4 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 template <class T>
 struct UnkOpt_b58a4 {
@@ -30,8 +27,8 @@ struct UnkSinkParams_b58a4 {
     void** vtable;
     UnkOpt_b58a4<u32> field_0x8;
     UnkOpt_b58a4<f32> field_0x10;
-    UnkOpt_b58a4<UnkVec3_b58a4> field_0x18;
-    UnkOpt_b58a4<UnkVec3_b58a4> field_0x28;
+    UnkOpt_b58a4<CVector3D> field_0x18;
+    UnkOpt_b58a4<CVector3D> field_0x28;
     u32 kind;  // 0x38
 };
 
@@ -40,7 +37,7 @@ struct UnkEffectSink;
 struct UnkQuetzoaXOwner_b58;
 struct UnkQuetzoaXOwnerVtbl_b58 {
     void* slots[0xd8 / 8];
-    void (*turn)(UnkQuetzoaXOwner_b58* self, const UnkVec3_b58a4* angles, u32 flag);
+    void (*turn)(UnkQuetzoaXOwner_b58* self, const CVector3D* angles, u32 flag);
 };
 struct UnkQuetzoaXOwner_b58 {
     UnkQuetzoaXOwnerVtbl_b58* vtable;
@@ -86,7 +83,7 @@ u32 fn_710063f944(UnkQuetzoaXAI_b58* self, UnkQuetzoaXMessage_b58* msg) {
             UnkQuetzoaXOwner_b58* turner = reinterpret_cast<UnkQuetzoaXOwner_b58*>(self->owner);
             const UnkMatrix44& m = fn_710002614c(reinterpret_cast<const UnkMatrix44*>(other->field_0x38));
             f32 yaw = m.m[2] >= 0.0f ? -1.5707964f : 1.5707964f;
-            UnkVec3_b58a4 angles;
+            CVector3D angles;
             angles.x = 0.0f;
             angles.z = 0.0f;
             angles.y = yaw;

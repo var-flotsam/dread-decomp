@@ -2,6 +2,7 @@
 // listeners (+0x68, +0x88) again with what the owner's enemy movement (+0x1f0, when it is a CEnemyMovement) and
 // its object at +0x258 now point at (as CAIAttackComponent's fn_7101133dc8); fn_71006f5104 finds the index of
 // the path point nearest the owner. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAINavigationComponent.h"
@@ -80,16 +81,14 @@ fetch1:
     return true;
 }
 
-struct UnkNavPoint_b0129 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 // A node of a path tree: children by index (slot 0x30), a count (slot 0x28) and a point (slot 0x18).
 struct UnkNavNode_b0129 {
     void** vtable;
 
-    const UnkNavPoint_b0129* Point() {
-        return reinterpret_cast<const UnkNavPoint_b0129* (*)(UnkNavNode_b0129*)>(vtable[0x18 / 8])(this);
+    const CVector3D* Point() {
+        return reinterpret_cast<const CVector3D* (*)(UnkNavNode_b0129*)>(vtable[0x18 / 8])(this);
     }
     u32 Count() { return reinterpret_cast<u32 (*)(UnkNavNode_b0129*)>(vtable[0x28 / 8])(this); }
     UnkNavNode_b0129* Child(u32 i) {
@@ -107,7 +106,7 @@ struct UnkNavSelf_b0129 {
     UnkActor* owner;
 };
 
-static inline f32 Dist2(f32 x, f32 y, f32 z, const UnkNavPoint_b0129& p) {
+static inline f32 Dist2(f32 x, f32 y, f32 z, const CVector3D& p) {
     f32 dx = x - p.x;
     f32 dy = y - p.y;
     f32 dz = z - p.z;
@@ -120,11 +119,11 @@ u32 fn_71006f5104(UnkNavSelf_b0129* self, UnkNavPath_b0129* path) {
     f32 y = self->owner->field_0x54;
     f32 z = self->owner->field_0x64;
     UnkNavNode_b0129* root = &path->root;
-    UnkNavPoint_b0129 first = *root->Child(0)->Child(0)->Point();
+    CVector3D first = *root->Child(0)->Child(0)->Point();
     f32 best_d = Dist2(x, y, z, first);
     u32 best = 0;
     for (u32 i = 1; i < root->Child(0)->Count(); ++i) {
-        const UnkNavPoint_b0129* p = root->Child(0)->Child(i)->Point();
+        const CVector3D* p = root->Child(0)->Child(i)->Point();
         f32 dx = x - p->x;
         f32 dy = y - p->y;
         f32 d = dx * dx + dy * dy;

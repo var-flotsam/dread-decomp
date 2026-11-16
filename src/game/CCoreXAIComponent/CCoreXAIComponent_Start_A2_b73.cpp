@@ -5,6 +5,7 @@
 // +0x50) and +0x220, hooks the callback fn_71004db7f8 (link at +0x149d8, handle at +0x149f0) up to the object
 // the owner tracks (+0x220), as src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp, and sets
 // the +0x50 object's +0x114 when its +0x11c is set. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBossAIComponent.h"
@@ -52,13 +53,11 @@ struct UnkCoreXLink_A2_b73 {
     void (*callback)();
 };
 
-struct UnkCoreXVec_A2_b73 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkCoreXState_A2_b73 {
     f32 field_0x0[4];
-    UnkCoreXVec_A2_b73 field_0x10;
+    CVector3D field_0x10;
     u8 pad_0x1c[0x14];
     UnkCoreXLink_A2_b73 link;  // 0x30
     UnkWeakHandle* handle;     // 0x48
@@ -97,7 +96,7 @@ void fn_71004d99d4(UnkCoreXAI_A2_b73* self) {
     f32 dx = x - target->field_0x44;
     f32 dy = y - target->field_0x54;
     f32 dz = z - target->field_0x64;
-    state->field_0x10 = UnkCoreXVec_A2_b73{dx, dy, dz};
+    state->field_0x10 = CVector3D{dx, dy, dz};
     asm volatile("" ::: "memory");  // the owner reload stays after the stores (they pair)
     owner = self->owner;
     auto* shape = static_cast<UnkCoreXShape_A2_b73*>(owner->field_0x228);

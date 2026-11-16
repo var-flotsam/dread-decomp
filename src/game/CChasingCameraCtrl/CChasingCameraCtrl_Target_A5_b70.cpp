@@ -2,6 +2,7 @@
 // +0x24) or the transform node's translation (+0x18's +0x20, fn_7100206154); the player's x and y replace it per
 // the axis flags at +0x1d8. Then it becomes the target (+0x38) with the direction (0, 0, -1) at +0x44. Names and
 // layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -10,13 +11,11 @@
 
 struct UnkPlayer;
 
-struct UnkChasedPos_A5_b70 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkChasedObject_A5_b70 {
     u8 pad_0x0[0x24];
-    UnkChasedPos_A5_b70 pos;
+    CVector3D pos;
 };
 
 struct UnkChasedLink_A5_b70 {
@@ -28,10 +27,10 @@ struct UnkChasingCameraCtrl_A5_b70 {
     u8 pad_0x0[0x18];
     char* node_owner;  // 0x18
     u8 pad_0x20[0x18];
-    UnkChasedPos_A5_b70 target;  // 0x38
+    CVector3D target;  // 0x38
     f32 dir_x, dir_y, dir_z;     // 0x44
     u8 pad_0x50[0x18];
-    UnkChasedPos_A5_b70 chased;  // 0x68
+    CVector3D chased;  // 0x68
     u8 pad_0x74[0x44];
     UnkChasedLink_A5_b70* link;  // 0xb8
     u8 pad_0xc0[0x118];

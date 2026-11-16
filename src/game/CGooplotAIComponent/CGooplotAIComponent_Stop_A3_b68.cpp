@@ -6,6 +6,7 @@
 // slot 0x180 of the owner's +0x1b8 with (1, false). Names and layouts are placeholders.
 #include <math.h>
 
+#include "base/math/CVectorOps.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CCoreXAIComponent.h"
 #include "game/CGooplotAIComponent.h"
@@ -72,7 +73,7 @@ void fn_710059aa2c(UnkGooplotAI_A3_b68* self) {
     dst[1] = y;
     dst[2] = src[2];
     const CVector3D& v = movement->velocity;
-    movement->speed = sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
+    movement->speed = Length(v);
     fn_71010d08d4(reinterpret_cast<UnkMovement_71010d08d4*>(self->owner->field_0x218),
                   reinterpret_cast<const UnkMovementVec_71010d08d4*>(&g_unk_710164779c), true);
     if (UnkFlagTarget* comp = self->owner->field_0x228) {

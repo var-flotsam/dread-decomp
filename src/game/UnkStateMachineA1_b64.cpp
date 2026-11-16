@@ -3,6 +3,7 @@
 // current state and applies what it asked for, at most ten times, while marked busy) and requests (the
 // template of src/game/UnkStateMachineSet_b60.cpp). A machine far into its owner (+0x14978) reads its states
 // array from the owner (UnkSmStatesAt_A1_b64), as the original does. Names are placeholders.
+#include "base/math/CVector.h"
 #include "game/CAbility.h"
 #include "game/CAbilitySpeedBooster.h"
 #include "game/CCharClassCentralUnitCannonAIComponent.h"
@@ -315,15 +316,11 @@ struct UnkAimTunable {
     f32 field_0xb8;
 };
 
-struct UnkSmVec3_A1_b64 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkSmFacing_A1_b64 {
     u8 pad_0x0[0x9ec];
-    UnkSmVec3_A1_b64 dir;
+    CVector3D dir;
 };
 
 struct UnkSmActor_A1_b64 {
@@ -347,12 +344,12 @@ struct UnkSmShinespark_A1_b64 {
     UnkSmMachine_A1_b64 machine;
 };
 
-void fn_710032f4cc(UnkSmShinespark_A1_b64*, const UnkSmVec3_A1_b64&);
-void fn_710032f35c(UnkSmShinespark_A1_b64*, const UnkSmVec3_A1_b64&, f32);
+void fn_710032f4cc(UnkSmShinespark_A1_b64*, const CVector3D&);
+void fn_710032f35c(UnkSmShinespark_A1_b64*, const CVector3D&, f32);
 
 void fn_710032f810(UnkSmShinespark_A1_b64* self, f32 dt) {
-    const UnkSmVec3_A1_b64& facing = self->owner->actor->facing->dir;
-    UnkSmVec3_A1_b64 dir = {facing.x, facing.y, facing.z};
+    const CVector3D& facing = self->owner->actor->facing->dir;
+    CVector3D dir = {facing.x, facing.y, facing.z};
     f32 angle = atan2f(dir.y, fabsf(dir.x));
     if (self->flag) {
         f32 limit = g_unk_71726b1438.field_0xb8;
@@ -625,7 +622,7 @@ struct UnkSmLavaTunable_A1_b64 {
 struct UnkSmLavaSink_A1_b64 {
     virtual void vf_0x0();
     virtual void vf_0x8();
-    virtual void vf_0x10(UnkSmVec3_A1_b64* position);
+    virtual void vf_0x10(CVector3D* position);
 };
 
 struct UnkSmLava_A1_b64 {
@@ -639,12 +636,12 @@ struct UnkSmLava_A1_b64 {
     f32 time;
     f32 near_time;
     u8 pad_0x2e8[0x2f0 - 0x2e8];
-    UnkSmVec3_A1_b64 position;
+    CVector3D position;
     u8 pad_0x2fc[0x320 - 0x2fc];
     UnkSmLavaSink_A1_b64* sink;
 };
 
-void fn_71004d24d0(UnkSmLavaAI_A1_b64*, UnkSmVec3_A1_b64*, f32);
+void fn_71004d24d0(UnkSmLavaAI_A1_b64*, CVector3D*, f32);
 
 __attribute__((always_inline)) static inline UnkSmLavaAI_A1_b64* LavaAI_A1_b64(UnkActor* actor) {
     UnkSmLavaAI_A1_b64* ai = static_cast<UnkSmLavaAI_A1_b64*>(actor->field_0x240);
@@ -666,8 +663,8 @@ void fn_71004c7ee4(UnkSmLava_A1_b64* self, f32 dt) {
     fn_71004d24d0(ai, &self->position, dt);
     if (self->time >= self->tunable->field_0x104) {
         if (UnkActor* target = fn_7100d7c990(self->actor)) {
-            UnkSmVec3_A1_b64 t = {target->field_0x44, target->field_0x54, target->field_0x64};
-            const UnkSmVec3_A1_b64& p = self->position;
+            CVector3D t = {target->field_0x44, target->field_0x54, target->field_0x64};
+            const CVector3D& p = self->position;
             if ((p.x - t.x) * (p.x - t.x) + (p.y - t.y) * (p.y - t.y) + (p.z - t.z) * (p.z - t.z) < 100.0f) {
                 self->near_time += dt;
                 if (self->near_time >= self->tunable->field_0x108)
@@ -681,7 +678,7 @@ void fn_71004c7ee4(UnkSmLava_A1_b64* self, f32 dt) {
     UnkSmLavaSink_A1_b64* part = reinterpret_cast<UnkSmLavaSink_A1_b64*>(fn_7101152b90(world, 0x5659b769f8e44087));
     part->vf_0x10(&self->position);
     self->sink->vf_0x10(&self->position);
-    typedef void (*AimFn)(UnkSmLavaAI_A1_b64*, UnkSmVec3_A1_b64*);
+    typedef void (*AimFn)(UnkSmLavaAI_A1_b64*, CVector3D*);
     (*reinterpret_cast<AimFn**>(ai))[0x838 / 8](ai, &self->position);
 }
 

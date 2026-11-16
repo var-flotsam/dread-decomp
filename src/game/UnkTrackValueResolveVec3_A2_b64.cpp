@@ -2,20 +2,19 @@
 // fn_7100ffe02c), in unit 596 (tools/tu_map.py, no class hint): a word and a three-float vector,
 // stored (kind 1) or given through a pointer to each part (kind 2), copied into the result, which is
 // left empty (kind 0) for anything else. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
-struct UnkVec3_b64a2 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkResolveVec3Value_b64a2 {
     f32 a;
-    UnkVec3_b64a2 b;
+    CVector3D b;
 };
 
 struct UnkResolveVec3Refs_b64a2 {
     f32* a;
-    UnkVec3_b64a2* b;
+    CVector3D* b;
 };
 
 struct UnkResolveVec3_b64a2 {

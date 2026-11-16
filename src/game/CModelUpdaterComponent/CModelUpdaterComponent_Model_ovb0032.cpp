@@ -12,6 +12,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "base/math/CVector.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -281,13 +282,11 @@ public:
     }
 };
 
-struct UnkVec3fPod_ovb0032 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkModelEvent_ovb0032 {
     UnkVec3f position;  // 0x0
-    UnkVec3fPod_ovb0032 field_0xc;
+    CVector3D field_0xc;
     UnkEventName_ovb0032 name;  // 0x18
     u32 field_0x20;
 

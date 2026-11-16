@@ -8,6 +8,7 @@
 #include <math.h>
 
 #include "base/global/CRntVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/CClass.h"
 #include "game/CCharClassBlockableWarningRadius.h"
 #include "game/CComponent.h"
@@ -16,6 +17,7 @@
 #include "game/UnkTU2702.h"
 #include "types.h"
 
+using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 // The AI tuning constants (g_unk_71726c4890), as far as these units read them. Each pair of values is
@@ -139,10 +141,6 @@ void fn_71006392cc(UnkPoisonFlyAI1_ovb0001* self, f32 dt) {
 struct UnkQuetzoaAIComponent;
 // As src/game/CBigFistAttack/CBigFistAttack_Start_A2_b72.cpp declares it.
 
-struct UnkPoisonFlyVec_ovb0001 {
-    f32 x, y, z;
-};
-
 
 struct UnkPoisonFlyAI2_ovb0001 {
     u8 pad_0x0[0x30];
@@ -152,22 +150,17 @@ struct UnkPoisonFlyAI2_ovb0001 {
 void fn_710063970c(UnkPoisonFlyAI2_ovb0001* self, void* arg) {
     fn_7101108124(reinterpret_cast<UnkQuetzoaAIComponent*>(self), arg);
     UnkActor* owner = self->owner;
-    UnkPoisonFlyVec_ovb0001 from = {owner->field_0x44, owner->field_0x54, owner->field_0x64};
+    CVector3D from = {owner->field_0x44, owner->field_0x54, owner->field_0x64};
     UnkActor* target = fn_7100d7c990(owner);
-    UnkPoisonFlyVec_ovb0001 to = {target->field_0x44, target->field_0x54, target->field_0x64};
-    UnkPoisonFlyVec_ovb0001 diff = {to.x - from.x, to.y - from.y, to.z - from.z};
-    f32 inv = 1.0f / (sqrtf(diff.x * diff.x + diff.y * diff.y + diff.z * diff.z) + 0.0001f);
-    UnkPoisonFlyVec_ovb0001 n = {diff.x * inv, diff.y * inv, diff.z * inv};
-    UnkPoisonFlyVec_ovb0001 dir;
+    CVector3D to = {target->field_0x44, target->field_0x54, target->field_0x64};
+    CVector3D n = Normalized(to - from);
+    CVector3D dir;
     dir.x = 1.0f;
     dir.y = 0.0f;
     dir.z = 0.0f;
-    if (n.x * dir.x + n.y * dir.y + n.z * dir.z < 0.0f) {
-        dir.x = -dir.x;
-        dir.y = -dir.y;
-        dir.z = -dir.z;
-    }
+    if (Dot(n, dir) < 0.0f)
+        dir = -dir;
     if (void* movement = self->owner->field_0x218)
-        (*reinterpret_cast<void (***)(void*, UnkPoisonFlyVec_ovb0001*)>(movement))[0x208 / 8](movement, &dir);
+        (*reinterpret_cast<void (***)(void*, CVector3D*)>(movement))[0x208 / 8](movement, &dir);
     fn_710111094c(reinterpret_cast<UnkReflObject*>(self), 1);
 }
