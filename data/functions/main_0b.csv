@@ -1974,7 +1974,7 @@ address,size,name,name_source,subsystem,status
 0x7100b5f938,1076,fn_7100b5f938,unknown,gui?,U
 0x7100b5fd6c,48,fn_7100b5fd6c,unknown,gui?,O
 0x7100b5fd9c,68,fn_7100b5fd9c,unknown,gui?,O
-0x7100b5fde0,944,fn_7100b5fde0,unknown,gui?,U
+0x7100b5fde0,944,fn_7100b5fde0,unknown,gui?,O
 0x7100b60190,220,fn_7100b60190,unknown,gui?,O
 0x7100b6026c,192,fn_7100b6026c,unknown,gui?,O
 0x7100b6032c,1032,fn_7100b6032c,unknown,gui?,U
