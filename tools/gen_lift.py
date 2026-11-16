@@ -3520,14 +3520,14 @@ def defined_outside(out: Path, also: tuple[str, ...] = ()) -> set[int]:
                 # source: the addresses data/functions/ gives those names.
                 for t in VALUE_OPS_RE.findall(text):
                     skip |= named_value_ops().get(t, set())
-                # A vector collection's functions, from CollectionTypeMapper<C> (base/reflection/CollectionTypeMapper.h).
+                # A vector's or small dictionary's functions, from CollectionTypeMapper<C> (base/reflection/CollectionTypeMapper.h).
                 for c in MAPPER_DESC_RE.findall(text):
                     skip |= named_value_ops().get(("mapper", c), set())
     return skip
 
 
 VALUE_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$", re.M)
-MAPPER_DESC_RE = re.compile(r": base::reflection::CollectionMapperDescription<(.+)> \{$", re.M)
+MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|SmallDictionary)MapperDescription<(.+)> \{$", re.M)
 _VALUE_OPS: dict[str, set[int]] | None = None
 
 
