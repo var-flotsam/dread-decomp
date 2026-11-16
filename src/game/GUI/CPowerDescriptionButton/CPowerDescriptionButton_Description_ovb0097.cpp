@@ -6,16 +6,16 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/GUI/CButton.h"
+#include "game/GUI/CLabel.h"
 #include "game/GUI/CPowerDescriptionButton.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-struct UnkGuiObj;
+using UnkGuiObj = UnkGuiDisplayObject;
 struct UnkMissionLogButton_ovb0079;
-void fn_71011ecfbc(UnkGuiObj* label, const char32_t* text);
-void fn_71011cd5a0(UnkGuiObj* object);
 
 struct UnkPowerDescriptionButton_ovb0097 {
     char* vtable;

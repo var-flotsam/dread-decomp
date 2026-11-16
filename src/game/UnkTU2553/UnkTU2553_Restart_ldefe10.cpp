@@ -24,9 +24,9 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
+using base::input::UnkRumbleManager;
 
 struct UnkSoundMgr;
-struct UnkRumbleManager;
 struct UnkSoundSystem_b65a1;
 struct UnkOwner_b0188;
 struct CSubAreaManager;
@@ -46,7 +46,6 @@ void fn_7100e00b48(UnkGameManager* self);
 void fn_7100da201c(void* self);
 void fn_7100da2774(UnkRefPtrArray* self);
 
-extern UnkRumbleManager* g_unk_7101d47348;
 struct UnkManager;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 extern void* g_unk_71727344a8;
@@ -163,9 +162,7 @@ static inline void Assign(CFilePathStrId& dst, const CFilePathStrId& src) {
 void fn_7100defe10(UnkGameManager* self) {
     UnkGameManagerRestartView* view = reinterpret_cast<UnkGameManagerRestartView*>(self);
     fn_7100108030(reinterpret_cast<UnkSoundSystem_b65a1*>(g_unk_7101d4d820), true, false);
-    fn_7100073f48(reinterpret_cast<UnkRumbleManager*>(Instance(
-                      reinterpret_cast<base::input::UnkRumbleManager*&>(g_unk_7101d47348), 0x2210, fn_71000733e4)),
-                  0, 0);
+    fn_7100073f48(Instance(g_unk_7101d47348, 0x2210, fn_71000733e4), 0, 0);
     fn_7101196bf4(static_cast<UnkOwner_b0188*>(g_unk_7101d47330), true);
     fn_710105383c(view->field_0x1078);
     fn_7101053968(view->field_0x1078, &g_unk_710164bdb4, &g_unk_710164bdb4, 0.0f, 0.0f, 0.0f);

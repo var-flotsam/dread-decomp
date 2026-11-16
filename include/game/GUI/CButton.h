@@ -7,10 +7,9 @@
 #include "types.h"
 
 struct UnkGuiButton;
-struct UnkGuiObj;
 struct UnkMissionLogButton_ovb0079;
 struct UnkRumbleTunableButton_ovb0085;
-UnkGuiObj* fn_71011c08dc(UnkMissionLogButton_ovb0079* self);
+UnkGuiDisplayObject* fn_71011c08dc(UnkMissionLogButton_ovb0079* self);
 void fn_71011bf0ec(UnkGuiButton* self);  // CButton's constructor.
 void fn_71011bf1a4(char* self);
 void fn_71011bfd28(UnkRumbleTunableButton_ovb0085* self);

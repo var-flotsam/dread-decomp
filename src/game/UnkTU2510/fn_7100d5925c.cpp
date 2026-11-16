@@ -8,6 +8,7 @@
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -15,14 +16,6 @@ using base::math::CVector3D;
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-
-// Returned in memory: its copy is user-written.
-struct UnkContact {
-    u32 value;
-
-    UnkContact() { value = 0; }
-    UnkContact(const UnkContact& other) { value = other.value; }
-};
 
 // The "skip" result and its guard (shared with the other visitors).
 struct UnkVisitResult_b0040 {
@@ -57,8 +50,6 @@ struct UnkShape;
 struct UnkCollider;
 struct UnkCollider_A5;
 UnkMatrix44 fn_7100d36ac4(UnkCollider_A5* self);
-UnkContact fn_7100d541c0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
-                         bool flag);
 
 // A shape's bounding box at a transform (its vf_0x28).
 struct UnkShapeBox_d5925c {
@@ -139,14 +130,14 @@ struct UnkOffset_d5925c {
 };
 
 // The pair test of the two shapes at their transforms, offset by the sweep.
-static inline UnkContact Test(UnkShapeTester_A5_b68* tester, UnkShape* a, UnkMatrix44* ta, UnkShape* b,
+static inline UnkColliderResult Test(UnkShapeTester_A5_b68* tester, UnkShape* a, UnkMatrix44* ta, UnkShape* b,
                               UnkMatrix44* tb, UnkOffset_d5925c offset, UnkSweepFilter_d5925c* filter) {
-    return fn_7100d541c0(reinterpret_cast<UnkCollider*>(tester), a, ta, b, tb, &offset, filter, false);
+    return fn_7100d541c0(tester, a, ta, b, tb, &offset, filter, false);
 }
 
-// NOTE: src/game/logic/collision/UnkCollisionWorld.cpp declares the result as its UnkColliderResult (the
-// same 4-byte user-copied result); this returns fn_7100d541c0's UnkContact directly, as the original does.
-UnkContact fn_7100d5925c(UnkCollider* mover, UnkCollider* target, const CVector2D* delta, void* filter) {
+// The pair test's result for the swept mover against 	arget, or the shared skip result when the swept
+// bounds do not overlap.
+UnkColliderResult fn_7100d5925c(UnkCollider* mover, UnkCollider* target, const CVector2D* delta, void* filter) {
     UnkSweptCollider_d5925c* self = reinterpret_cast<UnkSweptCollider_d5925c*>(mover);
     UnkSweptCollider_d5925c* other = reinterpret_cast<UnkSweptCollider_d5925c*>(target);
     if (delta->x != 0.0f || delta->y != 0.0f) {
@@ -190,7 +181,7 @@ UnkContact fn_7100d5925c(UnkCollider* mover, UnkCollider* target, const CVector2
         }
     }
     InitSkip();
-    UnkContact skip;
-    skip.value = g_unk_71726a4778.value;
+    UnkColliderResult skip;
+    skip.bits = g_unk_71726a4778.value;
     return skip;
 }

@@ -15,7 +15,6 @@
 using base::global::CStrId;
 
 struct UnkStruct_71011ebdb4;
-struct UnkGuiObj;
 struct UnkMissionLogButton_ovb0079;
 
 struct UnkTunableLabelView_b0266 {
@@ -37,8 +36,7 @@ struct UnkDebugTunableButton_b0266 {
 struct UnkRumbleTunableButton_ovb0085;
 
 static inline UnkGuiDisplayObject* Sub(UnkDebugTunableButton_b0266* self) {
-    return reinterpret_cast<UnkGuiDisplayObject*>(
-        fn_71011c08dc(reinterpret_cast<UnkMissionLogButton_ovb0079*>(self)));
+    return fn_71011c08dc(reinterpret_cast<UnkMissionLogButton_ovb0079*>(self));
 }
 
 void fn_7100b00398(UnkDebugTunableButton_b0266* self) {

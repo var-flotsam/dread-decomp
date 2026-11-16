@@ -17,8 +17,6 @@
 
 using base::global::CStrId;
 
-bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
-
 static inline void SetSectionBool(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name, bool* value) {
     if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section)) {
         if (!blackboard->field_0xe8) {
