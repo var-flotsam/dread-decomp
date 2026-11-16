@@ -48,13 +48,13 @@ to be purged from the history.
    every file whose unit is known into `src/game/<unit>/` (2026-10-28); the ones left there move
    when `data/tu_map.csv` names their unit (rerun it, then prove the move with
    `tools/check.py --compile-only` before and after and `tools/objcompare.py`).
-9. **Logs go to `docs/JOURNAL.md`.** `docs/HANDOFF.md` holds only the current state, fits on one
-   screen, and is edited only by the session that merges a round of PRs (its numbers come from
-   `tools/progress.py --slice boot --handoff`, then `tools/status_card.py --write` for the README's
-   status card and `tools/tu_status.py --write` for `data/tu_status.csv`); feature branches leave all
-   three alone. Batch notes,
-   findings and session summaries go at the top of the journal, and reusable matching findings
-   into its index.
+9. **The pull request's description is its journal entry.** Batch notes, findings and session
+   summaries go in its "What this changes"; after the merge `tools/journal_sync.py` copies it to the
+   top of `docs/JOURNAL.md`, and the merging session adds reusable matching findings to the journal's
+   index. `docs/HANDOFF.md` holds only the current state, fits on one screen, and is edited only by
+   the session that merges a round of PRs (its numbers come from `tools/progress.py --slice boot
+   --handoff`, then `tools/status_card.py --write` for the README's status card and
+   `tools/tu_status.py --write` for `data/tu_status.csv`); feature branches leave all four files alone.
 
 The pre-commit hook and CI enforce part of rules 1, 4 and 7 (paths, file types, sizes,
 declaration growth). The rest is on you and on review.

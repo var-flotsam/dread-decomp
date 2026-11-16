@@ -108,8 +108,9 @@ python -m unittest discover -s tools/tests -t .           # when a tool changed
 a conflict in `data/functions/`, take `origin/main`'s files and let `check.py --update` derive the statuses
 again; never merge them by hand. Then:
 
-- Commit with a message that says what changed. Add an entry at the top of `docs/JOURNAL.md` (what matched, what did
-  not and why, anything reusable). Leave `docs/HANDOFF.md` alone unless you are the session that merges.
+- Commit with a message that says what changed. The pull request's "What this changes" is the journal entry (what
+  matched, what did not and why, anything reusable); leave `docs/JOURNAL.md` and `docs/HANDOFF.md` alone unless
+  you are the session that merges.
 - `git push -u origin <branch>`, then open the pull request with the template's headings (What this changes
   / Progress / Checklist); give matching and done before and after from `tools/progress.py`.
 - **Who merges:** the coordinator of the work. If this session is, merge once the required checks are green

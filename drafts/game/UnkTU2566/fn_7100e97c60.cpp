@@ -133,8 +133,9 @@ void fn_7100e97c60(UnkEntryTable* self, u32 capacity) {
     }
     if (self->ids) {
         UnkMovableId* src = self->ids;
-        for (s32 i = 0; static_cast<u32>(i) < self->count; ++i, ++src) {
-            new (&ids[i]) UnkMovableId(static_cast<UnkMovableId&&>(*src));
+        UnkMovableId* dst = ids;
+        for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
+            new (dst) UnkMovableId(static_cast<UnkMovableId&&>(*src));
             src->~UnkMovableId();
         }
         self->allocator->Free(self->ids);

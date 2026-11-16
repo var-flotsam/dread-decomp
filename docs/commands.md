@@ -495,6 +495,16 @@ python tools/tu_status.py --write | --check
 python tools/tu_status.py --summary FILE [--base REF]
 ```
 
+### `tools/journal_sync.py`
+
+Add the descriptions of merged pull requests to docs/JOURNAL.md.
+
+```sh
+python tools/journal_sync.py                    # add the entries, move the marker
+python tools/journal_sync.py --dry-run          # print the entries, change nothing
+python tools/journal_sync.py --ref origin/main  # read merges up to REF (default origin/main)
+```
+
 ### `tools/gen_commands.py`
 
 Generate docs/commands.md: every tool's one-line purpose and usage lines, from its docstring.

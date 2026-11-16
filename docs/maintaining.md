@@ -90,7 +90,9 @@ git status --short data/functions                               # should match w
 generator. For generator changes, also rerun the generator and confirm its output is unchanged
 (`git status` clean). Then merge on GitHub with a merge commit.
 
-After a round of merges, the merging session refreshes `docs/HANDOFF.md`
+After a round of merges, the merging session first adds the merged pull requests' descriptions to the
+journal (`tools/journal_sync.py`; `--dry-run` shows them first) and puts any reusable finding they record
+in the journal's index, then refreshes `docs/HANDOFF.md`
 (`tools/progress.py --slice boot --handoff`), then the README's status card and `docs/status.svg`
 (`tools/status_card.py --write`, which reads the handoff, so it runs second), then the per-unit table
 `data/tu_status.csv` (`tools/tu_status.py --write`; `--check` says whether it is behind). Each pull request's
@@ -192,7 +194,8 @@ It prints the sample and writes `build/review/sample_<seed>.md`: each function w
 fake-match forms `tools/fakematch.py` sees in it, and seven questions (is the comment true, are the names
 placeholders or sourced, do structs read as layouts, is anything there only to steer the compiler, does any
 line read like decompiler output, does it declare something its own way, is any statement there twice or without effect). The reader is a person, or a
-session that did not write the code. The findings go at the top of `docs/JOURNAL.md` with the seed, so the
+session that did not write the code. The findings go in the pull request's description, with the seed (or at the top of
+`docs/JOURNAL.md` when the merging session records them itself), so the
 sample can be drawn again; a finding that holds for a run or a recipe matters more than one function's, and
 goes into the worker brief (`tools/batch/lean/worker.md`) or a check. The first read is in the journal
 (2026-11-12, seed 2026-W46).
