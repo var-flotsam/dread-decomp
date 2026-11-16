@@ -2491,8 +2491,8 @@ address,size,name,name_source,subsystem,status
 0x7100d42bcc,336,base::global::CRntVector<game::logic::collision::CCollider*>::GrowAt,reflection,engine/base,O
 0x7100d42d1c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::Begin,reflection,engine/reflection,O
 0x7100d42d28,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::End,reflection,engine/reflection,O
-0x7100d42d3c,168,fn_7100d42d3c,unknown,unknown,O
-0x7100d42de4,176,fn_7100d42de4,unknown,unknown,O
+0x7100d42d3c,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::ConstBegin,reflection,engine/reflection,O
+0x7100d42de4,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::ConstEnd,reflection,engine/reflection,O
 0x7100d42e94,224,fn_7100d42e94,unknown,unknown,m
 0x7100d42f74,8,fn_7100d42f74,unknown,unknown,O
 0x7100d42f7c,12,fn_7100d42f7c,unknown,unknown,O
@@ -4025,8 +4025,8 @@ address,size,name,name_source,subsystem,status
 0x7100d857d4,432,base::global::CRntVector<CEntity*>::InsertMove,reflection,engine/base,O
 0x7100d85984,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::Begin,reflection,engine/reflection,O
 0x7100d85990,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::End,reflection,engine/reflection,O
-0x7100d859a4,168,fn_7100d859a4,unknown,unknown,O
-0x7100d85a4c,176,fn_7100d85a4c,unknown,unknown,O
+0x7100d859a4,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::ConstBegin,reflection,engine/reflection,O
+0x7100d85a4c,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::ConstEnd,reflection,engine/reflection,O
 0x7100d85afc,176,fn_7100d85afc,unknown,unknown,O
 0x7100d85bac,8,fn_7100d85bac,unknown,unknown,O
 0x7100d85bb4,12,fn_7100d85bb4,unknown,unknown,O

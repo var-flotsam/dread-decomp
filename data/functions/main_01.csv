@@ -1448,8 +1448,8 @@ address,size,name,name_source,subsystem,status
 0x710013fcf4,336,base::global::CRntVector<base::tunable::CTunableManager*>::GrowAt,reflection,engine/base,O
 0x710013fe44,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::Begin,reflection,engine/reflection,O
 0x710013fe50,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::End,reflection,engine/reflection,O
-0x710013fe64,168,fn_710013fe64,unknown,unknown,O
-0x710013ff0c,176,fn_710013ff0c,unknown,unknown,O
+0x710013fe64,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::ConstBegin,reflection,engine/reflection,O
+0x710013ff0c,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::tunable::CTunableManager*>>::ConstEnd,reflection,engine/reflection,O
 0x710013ffbc,744,fn_710013ffbc,unknown,unknown,U
 0x71001402a4,336,fn_71001402a4,unknown,unknown,O
 0x7100140400,1416,fn_7100140400,unknown,unknown,U

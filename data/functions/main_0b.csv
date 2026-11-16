@@ -312,8 +312,8 @@ address,size,name,name_source,subsystem,status
 0x7100b09454,336,base::global::CRntVector<GUI::CDisplayObjectDef*>::GrowAt,reflection,engine/base,O
 0x7100b095a4,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::Begin,reflection,engine/reflection,O
 0x7100b095b0,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::End,reflection,engine/reflection,O
-0x7100b095c4,168,fn_7100b095c4,unknown,unknown,O
-0x7100b0966c,176,fn_7100b0966c,unknown,unknown,O
+0x7100b095c4,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::ConstBegin,reflection,engine/reflection,O
+0x7100b0966c,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::ConstEnd,reflection,engine/reflection,O
 0x7100b09720,252,fn_7100b09720,unknown,unknown,O
 0x7100b09820,744,fn_7100b09820,unknown,unknown,U
 0x7100b09b10,624,fn_7100b09b10,unknown,unknown,U
@@ -439,8 +439,8 @@ address,size,name,name_source,subsystem,status
 0x7100b0d3f0,336,base::global::CRntVector<GUI::CDisplayObjectStateDef*>::GrowAt,reflection,engine/base,O
 0x7100b0d540,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::Begin,reflection,engine/reflection,O
 0x7100b0d54c,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::End,reflection,engine/reflection,O
-0x7100b0d560,168,fn_7100b0d560,unknown,unknown,O
-0x7100b0d608,176,fn_7100b0d608,unknown,unknown,O
+0x7100b0d560,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::ConstBegin,reflection,engine/reflection,O
+0x7100b0d608,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::ConstEnd,reflection,engine/reflection,O
 0x7100b0d6c0,912,fn_7100b0d6c0,unknown,unknown,O
 0x7100b0da50,4,GUI::IDisplayObjectTrack::refl_AddAttributes,reflection,gui,O
 0x7100b0da54,240,GUI::IDisplayObjectTrack::refl_GetClass,reflection,gui,O
@@ -772,8 +772,8 @@ address,size,name,name_source,subsystem,status
 0x7100b16aa4,432,base::global::CRntVector<GUI::IDisplayObjectTrack*>::InsertMove,reflection,engine/base,O
 0x7100b16c54,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::Begin,reflection,engine/reflection,O
 0x7100b16c60,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::End,reflection,engine/reflection,O
-0x7100b16c74,168,fn_7100b16c74,unknown,gui?,O
-0x7100b16d1c,176,fn_7100b16d1c,unknown,gui?,O
+0x7100b16c74,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::ConstBegin,reflection,engine/reflection,O
+0x7100b16d1c,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::ConstEnd,reflection,engine/reflection,O
 0x7100b16dcc,12,GUI::CDisplayObjectTrackFloat::refl_Equals,reflection,gui,O
 0x7100b16dd8,8,GUI::CDisplayObjectTrackFloat::refl_Hash,reflection,gui,O
 0x7100b16de0,28,GUI::CDisplayObjectTrackFloat::refl_TypeOf,reflection,gui,O
@@ -2365,8 +2365,8 @@ address,size,name,name_source,subsystem,status
 0x7100b79514,336,base::global::CRntVector<GUI::CSkin*>::GrowAt,reflection,engine/base,O
 0x7100b79664,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::Begin,reflection,engine/reflection,O
 0x7100b79670,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::End,reflection,engine/reflection,O
-0x7100b79684,168,fn_7100b79684,unknown,unknown,O
-0x7100b7972c,176,fn_7100b7972c,unknown,unknown,O
+0x7100b79684,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::ConstBegin,reflection,engine/reflection,O
+0x7100b7972c,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::ConstEnd,reflection,engine/reflection,O
 0x7100b797e0,912,fn_7100b797e0,unknown,unknown,O
 0x7100b79b70,4,GUI::CSlotInfoComposition::refl_AddAttributes,reflection,gui,O
 0x7100b79b74,244,GUI::CSlotInfoComposition::refl_GetClass,reflection,gui,O
@@ -2718,8 +2718,8 @@ address,size,name,name_source,subsystem,status
 0x7100b846a8,336,base::global::CRntVector<GUI::CSpriteSheetItem*>::GrowAt,reflection,engine/base,O
 0x7100b847f8,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::Begin,reflection,engine/reflection,O
 0x7100b84804,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::End,reflection,engine/reflection,O
-0x7100b84818,168,fn_7100b84818,unknown,unknown,O
-0x7100b848c0,176,fn_7100b848c0,unknown,unknown,O
+0x7100b84818,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::ConstBegin,reflection,engine/reflection,O
+0x7100b848c0,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::ConstEnd,reflection,engine/reflection,O
 0x7100b84970,1076,fn_7100b84970,unknown,unknown,O
 0x7100b84da4,4,GUI::CSubtitleComposition::refl_AddAttributes,reflection,gui,O
 0x7100b84da8,244,GUI::CSubtitleComposition::refl_GetClass,reflection,gui,O

@@ -650,7 +650,6 @@ void fn_71000d1f3c();
 void fn_71000d2514();
 void fn_71000d25f0();
 void fn_71000d2644();
-void fn_71000d2dac();
 void fn_71000d2e54();
 void fn_71000d33e0();
 void fn_71000d33e8();
@@ -918,7 +917,6 @@ void fn_71000e17a8();
 void fn_71000e17fc();
 void fn_71000e1848();
 void fn_71000e1980();
-void fn_71000e1ddc();
 void fn_71000e1e84();
 void fn_710011ec94();
 void fn_710011ec9c();
@@ -1028,8 +1026,6 @@ void fn_71001391d4();
 void fn_7100139238();
 void fn_710013f5cc();
 void fn_710013f6fc();
-void fn_710013fe64();
-void fn_710013ff0c();
 void fn_71001f20dc();
 void fn_71001f20e4();
 void fn_71001f2148();
@@ -1050,12 +1046,8 @@ void fn_71001f25e0();
 void fn_71001f2630();
 void fn_7100204e50();
 void fn_7100204f80();
-void fn_7100205598();
-void fn_7100205640();
 void fn_710023efb4();
 void fn_710023f0e4();
-void fn_710023f84c();
-void fn_710023f8f4();
 void fn_710023fe80();
 void fn_710023fe88();
 void fn_710023fedc();
@@ -1263,8 +1255,6 @@ void fn_71002611bc();
 void fn_7100261284();
 void fn_710026bd8c();
 void fn_710026bebc();
-void fn_710026c624();
-void fn_710026c6cc();
 void fn_7100273170();
 void fn_7100273178();
 void fn_71002731d0();
@@ -2280,12 +2270,10 @@ void fn_71009fdf18();
 void fn_7100a35214();
 void fn_7100a352f0();
 void fn_7100a35344();
-void fn_7100a35aac();
 void fn_7100a35b54();
 void fn_7100a360f4();
 void fn_7100a361d0();
 void fn_7100a36224();
-void fn_7100a3698c();
 void fn_7100a36a34();
 void fn_7100a3b2f0();
 void fn_7100a3b2f8();
@@ -2414,7 +2402,6 @@ void fn_7100ad2800();
 void fn_7100adb204();
 void fn_7100adb2e0();
 void fn_7100adb334();
-void fn_7100adba9c();
 void fn_7100adbb44();
 void fn_7100aedf5c();
 void fn_7100aedf64();
@@ -2440,16 +2427,10 @@ void fn_7100aef39c();
 void fn_7100aef43c();
 void fn_7100b08d2c();
 void fn_7100b08e5c();
-void fn_7100b095c4();
-void fn_7100b0966c();
 void fn_7100b0ccc8();
 void fn_7100b0cdf8();
-void fn_7100b0d560();
-void fn_7100b0d608();
 void fn_7100b1652c();
 void fn_7100b1665c();
-void fn_7100b16c74();
-void fn_7100b16d1c();
 void fn_7100b17d7c();
 void fn_7100b17d84();
 void fn_7100b17d8c();
@@ -2540,8 +2521,6 @@ void fn_7100b5ccec();
 void fn_7100b5cdc0();
 void fn_7100b78dec();
 void fn_7100b78f1c();
-void fn_7100b79684();
-void fn_7100b7972c();
 void fn_7100b80bb4();
 void fn_7100b80bbc();
 void fn_7100b80c8c();
@@ -2562,8 +2541,6 @@ void fn_7100b8126c();
 void fn_7100b8127c();
 void fn_7100b83f80();
 void fn_7100b840b0();
-void fn_7100b84818();
-void fn_7100b848c0();
 void fn_7100c0b2c0();
 void fn_7100c0b2c8();
 void fn_7100c0b2d0();
@@ -2646,8 +2623,6 @@ void fn_7100d41dfc();
 void fn_7100d41ecc();
 void fn_7100d424a4();
 void fn_7100d425d4();
-void fn_7100d42d3c();
-void fn_7100d42de4();
 void fn_7100d43724();
 void fn_7100d4372c();
 void fn_7100d437bc();
@@ -2751,8 +2726,6 @@ void fn_7100d84af8();
 void fn_7100d84c20();
 void fn_7100d8525c();
 void fn_7100d8538c();
-void fn_7100d859a4();
-void fn_7100d85a4c();
 void fn_7100d862ac();
 void fn_7100d862b4();
 void fn_7100d86360();
@@ -3232,7 +3205,6 @@ void fn_7100eb1d6c();
 void fn_7100eb22d0();
 void fn_7100eb23ac();
 void fn_7100eb2400();
-void fn_7100eb2b68();
 void fn_7100eb2c10();
 void fn_7100edb2c8();
 void fn_7100edb2d0();
@@ -3763,8 +3735,6 @@ void fn_710106fe68();
 void fn_710106fe80();
 void fn_710106ffcc();
 void fn_7101070760();
-void fn_7101070ec8();
-void fn_7101070f70();
 void fn_71010c60f4();
 void fn_71010c60fc();
 void fn_71010c61a8();
@@ -3853,8 +3823,6 @@ void fn_7101132350();
 void fn_710113248c();
 void fn_71011d1cf0();
 void fn_71011d1e20();
-void fn_71011d2438();
-void fn_71011d24e0();
 void fn_71011d2a6c();
 void fn_71011d2a74();
 void fn_71011d2ac8();
@@ -3878,8 +3846,6 @@ void fn_71011d33c4();
 void fn_71011d3470();
 void fn_71011db990();
 void fn_71011dbac0();
-void fn_71011dc228();
-void fn_71011dc2d0();
 void fn_71011e7170();
 void fn_71011e7178();
 void fn_71011e71dc();
@@ -4121,7 +4087,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ad68c> : base
     static const CType* iterator() { return fn_71000ac90c(); }
     static const CType* const_iterator() { return fn_71000acfcc(); }
     static constexpr UnkFn erase = &fn_71000d2514;
-    static constexpr UnkFn const_begin = &fn_71000d2dac;
     static constexpr UnkFn const_end = &fn_71000d2e54;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000ad68c*, void*);
@@ -4538,7 +4503,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71000ba510> : base
     static const CType* const_iterator() { return fn_71000b9e50(); }
     static constexpr UnkFn set_copy = &fn_71000e1518;
     static constexpr UnkFn set_move = &fn_71000e1660;
-    static constexpr UnkFn const_begin = &fn_71000e1ddc;
     static constexpr UnkFn const_end = &fn_71000e1e84;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71000ba510*, void*);
@@ -4721,8 +4685,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710013a638> : base
     static const CType* iterator() { return fn_71001398b8(); }
     static const CType* const_iterator() { return fn_7100139f78(); }
     static constexpr UnkFn erase = &fn_710013f5cc;
-    static constexpr UnkFn const_begin = &fn_710013fe64;
-    static constexpr UnkFn const_end = &fn_710013ff0c;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710013a638*, void*);
 struct UnkRefl_fn_71001ed940;
@@ -4772,8 +4734,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71001ff86c> : base
     static const CType* iterator() { return fn_71001feaec(); }
     static const CType* const_iterator() { return fn_71001ff1ac(); }
     static constexpr UnkFn erase = &fn_7100204e50;
-    static constexpr UnkFn const_begin = &fn_7100205598;
-    static constexpr UnkFn const_end = &fn_7100205640;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71001ff86c*, void*);
 extern template CActor*& base::global::CRntVector<CActor*>::GrowAt(u32);
@@ -4790,8 +4750,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710022a5c0> : base
     static const CType* iterator() { return fn_7100229840(); }
     static const CType* const_iterator() { return fn_7100229f00(); }
     static constexpr UnkFn erase = &fn_710023efb4;
-    static constexpr UnkFn const_begin = &fn_710023f84c;
-    static constexpr UnkFn const_end = &fn_710023f8f4;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710022a5c0*, void*);
 struct UnkRefl_fn_710022b530;
@@ -5138,8 +5096,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_710026a7a4> : base
     static const CType* iterator() { return fn_7100269a24(); }
     static const CType* const_iterator() { return fn_710026a0e4(); }
     static constexpr UnkFn erase = &fn_710026bd8c;
-    static constexpr UnkFn const_begin = &fn_710026c624;
-    static constexpr UnkFn const_end = &fn_710026c6cc;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_710026a7a4*, void*);
 struct UnkRefl_fn_710026e858;
@@ -6774,7 +6730,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a320f8> : base
     static const CType* iterator() { return fn_7100a31378(); }
     static const CType* const_iterator() { return fn_7100a31a38(); }
     static constexpr UnkFn erase = &fn_7100a35214;
-    static constexpr UnkFn const_begin = &fn_7100a35aac;
     static constexpr UnkFn const_end = &fn_7100a35b54;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a320f8*, void*);
@@ -6793,7 +6748,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100a3306c> : base
     static const CType* iterator() { return fn_7100a322ec(); }
     static const CType* const_iterator() { return fn_7100a329ac(); }
     static constexpr UnkFn erase = &fn_7100a360f4;
-    static constexpr UnkFn const_begin = &fn_7100a3698c;
     static constexpr UnkFn const_end = &fn_7100a36a34;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100a3306c*, void*);
@@ -7010,7 +6964,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100ad7acc> : base
     static const CType* iterator() { return fn_7100ad6d4c(); }
     static const CType* const_iterator() { return fn_7100ad740c(); }
     static constexpr UnkFn erase = &fn_7100adb204;
-    static constexpr UnkFn const_begin = &fn_7100adba9c;
     static constexpr UnkFn const_end = &fn_7100adbb44;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100ad7acc*, void*);
@@ -7061,8 +7014,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b062cc> : base
     static const CType* iterator() { return fn_7100b0554c(); }
     static const CType* const_iterator() { return fn_7100b05c0c(); }
     static constexpr UnkFn erase = &fn_7100b08d2c;
-    static constexpr UnkFn const_begin = &fn_7100b095c4;
-    static constexpr UnkFn const_end = &fn_7100b0966c;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b062cc*, void*);
 extern template GUI::CDisplayObjectStateDef*& base::global::CRntVector<GUI::CDisplayObjectStateDef*>::GrowAt(u32);
@@ -7079,8 +7030,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b0b728> : base
     static const CType* iterator() { return fn_7100b0a9a8(); }
     static const CType* const_iterator() { return fn_7100b0b068(); }
     static constexpr UnkFn erase = &fn_7100b0ccc8;
-    static constexpr UnkFn const_begin = &fn_7100b0d560;
-    static constexpr UnkFn const_end = &fn_7100b0d608;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b0b728*, void*);
 extern template GUI::IDisplayObjectTrack*& base::global::CRntVector<GUI::IDisplayObjectTrack*>::GrowAt(u32);
@@ -7097,8 +7046,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b0eb10> : base
     static const CType* iterator() { return fn_7100b0dd90(); }
     static const CType* const_iterator() { return fn_7100b0e450(); }
     static constexpr UnkFn erase = &fn_7100b1652c;
-    static constexpr UnkFn const_begin = &fn_7100b16c74;
-    static constexpr UnkFn const_end = &fn_7100b16d1c;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b0eb10*, void*);
 struct UnkRefl_fn_7100b10108;
@@ -7247,8 +7194,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b7710c> : base
     static const CType* iterator() { return fn_7100b7638c(); }
     static const CType* const_iterator() { return fn_7100b76a4c(); }
     static constexpr UnkFn erase = &fn_7100b78dec;
-    static constexpr UnkFn const_begin = &fn_7100b79684;
-    static constexpr UnkFn const_end = &fn_7100b7972c;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b7710c*, void*);
 struct UnkRefl_fn_7100b7e6dc;
@@ -7298,8 +7243,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100b828c0> : base
     static const CType* iterator() { return fn_7100b81b40(); }
     static const CType* const_iterator() { return fn_7100b82200(); }
     static constexpr UnkFn erase = &fn_7100b83f80;
-    static constexpr UnkFn const_begin = &fn_7100b84818;
-    static constexpr UnkFn const_end = &fn_7100b848c0;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100b828c0*, void*);
 struct UnkRefl_fn_7100c0366c;
@@ -7448,8 +7391,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d3a348> : base
     static const CType* iterator() { return fn_7100d395c8(); }
     static const CType* const_iterator() { return fn_7100d39c88(); }
     static constexpr UnkFn erase = &fn_7100d424a4;
-    static constexpr UnkFn const_begin = &fn_7100d42d3c;
-    static constexpr UnkFn const_end = &fn_7100d42de4;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d3a348*, void*);
 struct UnkRefl_fn_7100d3b2b8;
@@ -7631,8 +7572,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100d74a6c> : base
     static const CType* iterator() { return fn_7100d73cec(); }
     static const CType* const_iterator() { return fn_7100d743ac(); }
     static constexpr UnkFn erase = &fn_7100d8525c;
-    static constexpr UnkFn const_begin = &fn_7100d859a4;
-    static constexpr UnkFn const_end = &fn_7100d85a4c;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100d74a6c*, void*);
 struct UnkRefl_fn_7100d759dc;
@@ -8376,7 +8315,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100e8b664> : base
     static const CType* iterator() { return fn_7100e8a8e4(); }
     static const CType* const_iterator() { return fn_7100e8afa4(); }
     static constexpr UnkFn erase = &fn_7100eb22d0;
-    static constexpr UnkFn const_begin = &fn_7100eb2b68;
     static constexpr UnkFn const_end = &fn_7100eb2c10;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_7100e8b664*, void*);
@@ -9251,8 +9189,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71010643e4> : base
     static const CType* element() { return fn_71007adf30(); }
     static const CType* iterator() { return fn_7101063664(); }
     static const CType* const_iterator() { return fn_7101063d24(); }
-    static constexpr UnkFn const_begin = &fn_7101070ec8;
-    static constexpr UnkFn const_end = &fn_7101070f70;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71010643e4*, void*);
 struct UnkRefl_fn_71010c3e78;
@@ -9401,8 +9337,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71011c270c> : base
     static const CType* iterator() { return fn_71011c198c(); }
     static const CType* const_iterator() { return fn_71011c204c(); }
     static constexpr UnkFn erase = &fn_71011d1cf0;
-    static constexpr UnkFn const_begin = &fn_71011d2438;
-    static constexpr UnkFn const_end = &fn_71011d24e0;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71011c270c*, void*);
 struct UnkRefl_fn_71011c367c;
@@ -9452,8 +9386,6 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71011d793c> : base
     static const CType* iterator() { return fn_71011d6bbc(); }
     static const CType* const_iterator() { return fn_71011d727c(); }
     static constexpr UnkFn erase = &fn_71011db990;
-    static constexpr UnkFn const_begin = &fn_71011dc228;
-    static constexpr UnkFn const_end = &fn_71011dc2d0;
 };
 template base::reflection::CCollectionType::CCollectionType(const base::global::CStrId&, UnkRefl_fn_71011d793c*, void*);
 struct UnkRefl_fn_71011dec04;
