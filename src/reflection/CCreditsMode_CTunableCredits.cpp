@@ -41,34 +41,34 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172a0b678 = true;
     if (!cls)
         return;
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorTitle_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_vColorTitle_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_vColorTitle_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101186130);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorTitle_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_vColorTitle_SetterFunction")
         fn_7101183378(fn, "_m_vColorTitle_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorTitle", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Title color")));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorSubtitle_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_vColorSubtitle_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_vColorSubtitle_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011862f0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorSubtitle_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_vColorSubtitle_SetterFunction")
         fn_71011834f4(fn, "_m_vColorSubtitle_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorSubtitle", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Subtitle color")));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorEntry_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_vColorEntry_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_vColorEntry_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011864b0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vColorEntry_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_vColorEntry_SetterFunction")
         fn_7101183670(fn, "_m_vColorEntry_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vColorEntry", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}), (Description, base::global::CRntString("Entry color")));
     UnkTunableRegistry* registry = g_unk_7101d47350;

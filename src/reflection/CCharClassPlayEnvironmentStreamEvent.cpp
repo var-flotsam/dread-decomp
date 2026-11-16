@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPlayEnvironmentStreamEvent
 namespace CCharClassPlayEnvironmentStreamEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Environment Stream");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Environment Stream");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0xc, (DefaultValue, 1.0f));

@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSwifterSpawnGroupSpawnEvent
 namespace CCharClassSwifterSpawnGroupSpawnEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Swifter SpawnGroup Spawn");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Swifter", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Swifter SpawnGroup Spawn");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Swifter", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("ESwifterSpawnGroupDirection", "eDirection", 0xc, (DefaultValue, 1));

@@ -32,7 +32,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CTimelineComponent::ENextPolicy", "eNextPolicy", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartAction", true))) {
+    DREAD_REFLECTED_FUNCTION("StartAction") {
         fn->name = base::global::UnkStrId("StartAction", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -40,7 +40,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100a2dbb4);
         fn_7100a2d930(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("EndAction", true)))
+    DREAD_REFLECTED_FUNCTION("EndAction")
         fn_7100a2a998(fn, "EndAction");
 }
 bool refl_Equals(const void*, const void*) { return false; }

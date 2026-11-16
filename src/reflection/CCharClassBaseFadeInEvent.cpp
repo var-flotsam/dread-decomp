@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassBaseFadeInEvent
 namespace CCharClassBaseFadeInEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Fade In");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Fade", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Fade In");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Fade", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTime", 0xc, (DefaultValue, 0.3f), (MinValue, 0.1f), (MaxValue, 20.0f));

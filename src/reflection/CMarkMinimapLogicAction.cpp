@@ -25,9 +25,9 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CMarkMinimapLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpVisibleLogicShape", true), &g_unk_717269bb48, 0x10, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpVisibleLogicShape", true), &g_unk_717269bb48, 0x10, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpVisitedLogicShape", true), &g_unk_717269bb48, 0x50, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpVisitedLogicShape", true), &g_unk_717269bb48, 0x50, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

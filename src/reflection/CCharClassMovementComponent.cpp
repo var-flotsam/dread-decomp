@@ -27,14 +27,14 @@ void fn_710097b0d4(UnkReflFunction* fn, const char* name);
 namespace CCharClassMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fPhysicsVelocityFriction_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fPhysicsVelocityFriction_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fPhysicsVelocityFriction_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710097b370);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fPhysicsVelocityFriction_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fPhysicsVelocityFriction_SetterFunction")
         fn_710097b0d4(fn, "_m_fPhysicsVelocityFriction_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPhysicsVelocityFriction", (DefaultValue, 0.0f), (Description, "Physics Velocity Friction"));
     DREAD_REFLECTED_FIELD(f32, "fGravityScalar", 0x60, (DefaultValue, 2200.0f), (Description, "Gravity Scalar"));

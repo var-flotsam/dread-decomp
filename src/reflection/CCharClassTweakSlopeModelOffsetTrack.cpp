@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakSlopeModelOffsetTrack
 namespace CCharClassTweakSlopeModelOffsetTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Slope Model Offset");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Slope", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Slope Model Offset");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Slope", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSlopeUpOffset", 0x18, (DefaultValue, 0.0f));

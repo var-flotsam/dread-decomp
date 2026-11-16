@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassIgnoreAINavigationTrack
 namespace CCharClassIgnoreAINavigationTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore AI Navigation");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Ignore", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore AI Navigation");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Ignore", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sSpeedSampleNode", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));

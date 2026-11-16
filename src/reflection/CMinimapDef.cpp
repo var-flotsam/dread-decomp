@@ -27,22 +27,22 @@ void fn_7100e6e81c();
 void fn_7100e6e850();
 namespace CMinimapDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("oMinimapIconsMatLink", true), &g_unk_7101d4ec50, 0x60, -1, -1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oIconsNoMipsMatLink", true), &g_unk_7101d4ec50, 0x78, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oOverlayMatLink", true), &g_unk_7101d4ec50, 0x90, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("oMinimapIconsMatLink", true), &g_unk_7101d4ec50, 0x60, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("oIconsNoMipsMatLink", true), &g_unk_7101d4ec50, 0x78, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("oOverlayMatLink", true), &g_unk_7101d4ec50, 0x90, -1, -1);
     DREAD_REFLECTED_FIELD_OF("CMinimapDef::TMapIconDefs", "mapIconDefs", 0xa8, (AfterElementDeserialization, "AfterIconDefDeserialize"));
     DREAD_REFLECTED_FIELD_OF("CMinimapDef::TMapLabelDefs", "mapLabelDefs", 0xd0, (AfterElementDeserialization, "AfterLabelDefDeserialize"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterIconDefDeserialize", true))) {
+    DREAD_REFLECTED_FUNCTION("AfterIconDefDeserialize") {
         fn->name = base::global::UnkStrId("AfterIconDefDeserialize", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100e6e81c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterLabelDefDeserialize", true))) {
+    DREAD_REFLECTED_FUNCTION("AfterLabelDefDeserialize") {
         fn->name = base::global::UnkStrId("AfterLabelDefDeserialize", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

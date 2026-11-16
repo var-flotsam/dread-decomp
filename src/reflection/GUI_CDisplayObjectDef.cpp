@@ -34,21 +34,21 @@ namespace GUI::CDisplayObjectDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sID", 0x8);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("lstpStates", true), &g_unk_717275f310, 0x38, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("lstpStates", true), &g_unk_717275f310, 0x38, -1, -1);
     field1->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("AddNewDOStateDef", true));
     field1->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterStateDeserialization", true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewDOStateDef", true))) {
+    DREAD_REFLECTED_FUNCTION("AddNewDOStateDef") {
         fn->name = base::global::UnkStrId("AddNewDOStateDef", true);
         fn->return_type = base::reflection::PointerType<GUI::CDisplayObjectStateDef*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b086b8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterStateDeserialization", true)))
+    DREAD_REFLECTED_FUNCTION("AfterStateDeserialization")
         fn_7100b05218(fn, "AfterStateDeserialization");
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("lstpChildren", true), &g_unk_717275e480, 0x60, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("lstpChildren", true), &g_unk_717275e480, 0x60, -1, -1);
     field2->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("AddNewChild", true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewChild", true))) {
+    DREAD_REFLECTED_FUNCTION("AddNewChild") {
         fn->name = base::global::UnkStrId("AddNewChild", true);
         fn->return_type = fn_7100b05394();
         fn->field_0xb2 = 0;

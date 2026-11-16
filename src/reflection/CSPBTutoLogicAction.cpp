@@ -26,11 +26,11 @@ extern base::reflection::CType g_unk_717274caa0;
 namespace CSPBTutoLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCentralUnitDoor", true), &g_unk_717269bb48, 0x20, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpCentralUnitDoor", true), &g_unk_717269bb48, 0x20, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpCentralUnit", true), &g_unk_717269bb48, 0x60, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpCentralUnit", true), &g_unk_717269bb48, 0x60, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("oSPRTuto.m_vAfterTutoLogicActions", true), &g_unk_717274caa0, 0x130, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("oSPRTuto.m_vAfterTutoLogicActions", true), &g_unk_717274caa0, 0x130, -1, -1);
     field2->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

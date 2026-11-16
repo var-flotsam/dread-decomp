@@ -49,89 +49,89 @@ void fn_71007a0efc();
 namespace CCubeMapComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCubePos_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_vCubePos_GetterFunction") {
         fn->name = base::global::UnkStrId("_vCubePos_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x100;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a07a0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCubePos_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_vCubePos_SetterFunction")
         fn_710079e864(fn, "_vCubePos_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vCubePos");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAttMin_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAttMin_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a088c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAttMin_SetterFunction")
         fn_710079e9e0(fn, "_fAttMin_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttMin", (DefaultValue, 400.0f), (MaxValueProperty, CStrId("fAttMax", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAttMax_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAttMax_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0938);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAttMax_SetterFunction")
         fn_710079eb5c(fn, "_fAttMax_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttMax", (DefaultValue, 500.0f), (MinValueProperty, CStrId("fAttMin", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vBoxBounds_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_vBoxBounds_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_vBoxBounds_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x100;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0a3c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vBoxBounds_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_vBoxBounds_SetterFunction")
         fn_710079ecd8(fn, "_m_vBoxBounds_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vBoxBounds", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (MinValueProperty, CStrId("m_vBoxBounds", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensity_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fIntensity_GetterFunction") {
         fn->name = base::global::UnkStrId("_fIntensity_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0b28);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensity_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fIntensity_SetterFunction")
         fn_710079ee54(fn, "_fIntensity_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fIntensity");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnableCulling_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bEnableCulling_GetterFunction") {
         fn->name = base::global::UnkStrId("_bEnableCulling_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0bdc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnableCulling_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bEnableCulling_SetterFunction")
         fn_710079efd0(fn, "_bEnableCulling_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bEnableCulling");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePathSpecular_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sTexturePathSpecular_GetterFunction") {
         fn->name = base::global::UnkStrId("_sTexturePathSpecular_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0cac);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePathSpecular_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sTexturePathSpecular_SetterFunction")
         fn_710079f14c(fn, "_sTexturePathSpecular_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sTexturePathSpecular");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePathDiffuse_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sTexturePathDiffuse_GetterFunction") {
         fn->name = base::global::UnkStrId("_sTexturePathDiffuse_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0d58);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePathDiffuse_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sTexturePathDiffuse_SetterFunction")
         fn_710079f2c8(fn, "_sTexturePathDiffuse_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sTexturePathDiffuse");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CalculateCubemap", true)))
+    DREAD_REFLECTED_FUNCTION("CalculateCubemap")
         fn_710079f444(fn, "CalculateCubemap");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ApplyCubemap", true))) {
+    DREAD_REFLECTED_FUNCTION("ApplyCubemap") {
         fn->name = base::global::UnkStrId("ApplyCubemap", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

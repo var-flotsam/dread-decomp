@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetSlomoCustomEvent
 namespace CCharClassSetSlomoCustomEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Slomo Custom");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Time", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Slomo Custom");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Time", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSlomo", 0xc, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 10.0f));

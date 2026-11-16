@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassRecalculatePathEvent
 namespace CCharClassRecalculatePathEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Recalculate Path");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("AI", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Recalculate Path");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("AI", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

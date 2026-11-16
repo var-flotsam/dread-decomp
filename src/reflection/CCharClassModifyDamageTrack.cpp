@@ -28,18 +28,18 @@ void fn_7100d2279c();
 void fn_7100d21e7c(UnkReflFunction* fn, const char* name);
 namespace CCharClassModifyDamageTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Modify Damage");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Damage", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Modify Damage");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Damage", true));
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sColliders_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sColliders_GetterFunction") {
         fn->name = base::global::UnkStrId("_sColliders_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2279c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sColliders_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sColliders_SetterFunction")
         fn_7100d21e7c(fn, "_sColliders_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));

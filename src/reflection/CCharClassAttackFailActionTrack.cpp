@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAttackFailActionTrack
 namespace CCharClassAttackFailActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Attack Fail Action");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Attack Fail Action");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSyncBlockWindowTime", 0x18, (DefaultValue, -1.0f));

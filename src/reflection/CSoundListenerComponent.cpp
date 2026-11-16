@@ -28,14 +28,14 @@ void fn_710090e924(UnkReflFunction* fn, const char* name);
 namespace CSoundListenerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLookAt_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_vLookAt_GetterFunction") {
         fn->name = base::global::UnkStrId("_vLookAt_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710090ee6c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLookAt_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_vLookAt_SetterFunction")
         fn_710090e924(fn, "_vLookAt_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vLookAt", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 3), (bSkipDataFlowOrder, true), (Persistence, 0));
 }

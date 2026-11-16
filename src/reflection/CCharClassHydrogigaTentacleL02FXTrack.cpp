@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassHydrogigaTentacleL02FXTrack
 namespace CCharClassHydrogigaTentacleL02FXTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Enable Tentacle L02 FX");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("FX", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Enable Tentacle L02 FX");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("FX", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

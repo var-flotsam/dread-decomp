@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassForceAnalogInputAngTrack
 namespace CCharClassForceAnalogInputAngTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Force Analog Input Ang");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Aim", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Force Analog Input Ang");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Aim", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x18, (DefaultValue, false));

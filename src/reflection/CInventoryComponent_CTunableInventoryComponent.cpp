@@ -36,14 +36,14 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172a09290 = true;
     if (!cls)
         return;
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iMaxNumMissiles_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_iMaxNumMissiles_GetterFunction") {
         fn->name = base::global::UnkStrId("_iMaxNumMissiles_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101149248);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iMaxNumMissiles_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_iMaxNumMissiles_SetterFunction")
         fn_710113ff7c(fn, "_iMaxNumMissiles_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iMaxNumMissiles", (DefaultValue, 100), (ShowInConfig, true), (Description, "Max missiles"), (MinValueI, 0), (MaxValueI, 500), (ControlIntStep, 1), (InternalTag, "General"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
@@ -85,16 +85,16 @@ void fn_7101140fb4(UnkReflFunction* fn, const char* name);
 namespace CInventoryComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("BindToGameBlackboard", true))) {
+    DREAD_REFLECTED_FUNCTION("BindToGameBlackboard") {
         fn_7101140d84(fn, "BindToGameBlackboard");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Bind an inventory component to a blackboard section");
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetItemAmount", true))) {
+    DREAD_REFLECTED_FUNCTION("SetItemAmount") {
         fn_7101140f00(fn, "SetItemAmount");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Item Amount"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetItemAmount", true)))
+    DREAD_REFLECTED_FUNCTION("GetItemAmount")
         fn_7101140fb4(fn, "GetItemAmount");
 }
 bool refl_Equals(const void*, const void*) { return false; }

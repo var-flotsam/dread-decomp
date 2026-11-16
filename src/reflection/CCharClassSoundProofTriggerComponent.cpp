@@ -59,7 +59,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0xaf0, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(bool, "bMuteActors", 0xaf6, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bFilterSpecificActors", 0xaf5, (DefaultValue, false));
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("vActorsToIgnore", true), &g_unk_717269bf08, 0xac0, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("vActorsToIgnore", true), &g_unk_717269bf08, 0xac0, -1, -1);
     field5->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field5->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 13);
 }

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassChangeCharacterColliderTrack
 namespace CCharClassChangeCharacterColliderTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Change Character Collider");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Collision", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Change Character Collider");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Collision", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sCollider", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));

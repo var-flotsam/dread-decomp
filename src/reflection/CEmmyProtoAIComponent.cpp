@@ -27,9 +27,9 @@ namespace CEmmyProtoAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sDirtMaterialConstantId", 0x2a700, (DefaultValue, "vDirtColor"), (Description, "Dirt effect constant id"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StandStillFor", true)))
+    DREAD_REFLECTED_FUNCTION("StandStillFor")
         fn_71004fa958(fn, "StandStillFor");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnPresentationCutsceneEnd", true))) {
+    DREAD_REFLECTED_FUNCTION("OnPresentationCutsceneEnd") {
         fn->name = base::global::UnkStrId("OnPresentationCutsceneEnd", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

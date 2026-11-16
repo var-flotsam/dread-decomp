@@ -26,11 +26,11 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100e51c54();
 namespace CMinimapData {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(u32, "uDataVersion", 0x58, (DefaultValue, 0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("gridDef", true), &g_unk_71727c9380, 0x60, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("gridDef", true), &g_unk_71727c9380, 0x60, -1, -1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SGeoData>", "aNavmeshGeos", 0x5fd8);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>", "mapOccluderGeos", 0x6000);
     DREAD_REFLECTED_FIELD_OF("SGeoData", "oEmmyRoomGeo", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
@@ -54,7 +54,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>", "mapBossBattleLabels", 0x62d0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>", "mapAbilityLabels", 0x62f8);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>", "mapVignetteOccludedIcons", 0x6320);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("UpdateEmmyZoneLimits", true))) {
+    DREAD_REFLECTED_FUNCTION("UpdateEmmyZoneLimits") {
         fn->name = base::global::UnkStrId("UpdateEmmyZoneLimits", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

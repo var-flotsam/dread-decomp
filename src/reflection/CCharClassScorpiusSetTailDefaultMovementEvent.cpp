@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassScorpiusSetTailDefaultMovementEvent
 namespace CCharClassScorpiusSetTailDefaultMovementEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Scorpius Set Tail Default Movement");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Scorpius", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Scorpius Set Tail Default Movement");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Scorpius", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBlendingTime", 0xc, (DefaultValue, -1.0f));

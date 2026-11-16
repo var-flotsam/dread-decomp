@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassFakeDropEvent
 namespace CCharClassFakeDropEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Fake Drop");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Drop", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Fake Drop");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Drop", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iNumLife", 0xc, (DefaultValue, 0));

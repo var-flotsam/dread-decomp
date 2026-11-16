@@ -30,24 +30,24 @@ void fn_7100d614e8(UnkReflFunction* fn, const char* name);
 namespace game::logic::collision::CCircleShape2D {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRadius_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fRadius_GetterFunction") {
         fn->name = base::global::UnkStrId("_fRadius_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d61b7c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRadius_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fRadius_SetterFunction")
         fn_7100d6136c(fn, "_fRadius_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fRadius", (DefaultValue, 150.0f), (Description, base::global::CRntString("Radius")));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bOutwardsNormal_GetterFunction") {
         fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d61c30);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bOutwardsNormal_SetterFunction")
         fn_7100d614e8(fn, "_bOutwardsNormal_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOutwardsNormal", (DefaultValue, false));
 }

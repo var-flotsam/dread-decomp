@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPlayTimelineTrack
 namespace CCharClassPlayTimelineTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Timeline");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Timelines", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Timeline");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Timelines", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sOnStartTimeline", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Main Timeline"));

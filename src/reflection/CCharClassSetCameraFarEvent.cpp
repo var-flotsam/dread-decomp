@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetCameraFarEvent
 namespace CCharClassSetCameraFarEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Camera Far");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Camera Far");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fValue", 0xc, (DefaultValue, 60000.0f));

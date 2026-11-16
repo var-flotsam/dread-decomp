@@ -26,7 +26,7 @@ namespace CStandaloneFXComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SFXInstanceData, false>", "vctFXInstances", 0x50, (SetRenderItemSelectionIdCall, true), (DisableListAddRemove, false), (CreateElement, CStrId("AddNewFXInstance", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddNewFXInstance", true))) {
+    DREAD_REFLECTED_FUNCTION("AddNewFXInstance") {
         fn_7100812860(fn, "AddNewFXInstance");
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));

@@ -27,14 +27,14 @@ void fn_710092816c(UnkReflFunction* fn, const char* name);
 namespace CCharClassMeleeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoLockOnMelee_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bAutoLockOnMelee_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bAutoLockOnMelee_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71009284a4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoLockOnMelee_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bAutoLockOnMelee_SetterFunction")
         fn_710092816c(fn, "_m_bAutoLockOnMelee_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAutoLockOnMelee", (DefaultValue, true));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMeleeKillFX", 0x60, (DefaultValue, "system/fx/generic/energyblocksuc.bcptl"));

@@ -27,7 +27,7 @@ void fn_710113f59c();
 namespace CGrabComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsInGrab_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bIsInGrab_GetterFunction") {
         fn->name = base::global::UnkStrId("_bIsInGrab_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;

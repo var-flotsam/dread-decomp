@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassApplyDC_ShinesparkLogicTrack
 namespace CCharClassApplyDC_ShinesparkLogicTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Apply DC_Shinespark logic");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Shinespark");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Apply DC_Shinespark logic");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Shinespark");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

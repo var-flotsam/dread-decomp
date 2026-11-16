@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetEntityVisibilityStateEvent
 namespace CCharClassSetEntityVisibilityStateEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Entity Visibility State (Visible|Hidden)");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Entity", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Entity Visibility State (Visible|Hidden)");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Entity", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CName, "sEntityName", 0x10, (Description, "Entity name to search for and apply bState to its visibility. If empty, bState will be applied to attached entity"), (DefaultValue, base::global::CName("")));

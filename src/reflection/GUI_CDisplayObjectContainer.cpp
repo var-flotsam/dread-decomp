@@ -32,25 +32,25 @@ void fn_71011d8af8(UnkReflFunction* fn, const char* name);
 void fn_71011d8bac(UnkReflFunction* fn, const char* name);
 namespace GUI::CDisplayObjectContainer {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10202u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10202u);
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddChild", true)))
+    DREAD_REFLECTED_FUNCTION("AddChild")
         fn_71011d8690(fn, "AddChild");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FindChild", true)))
+    DREAD_REFLECTED_FUNCTION("FindChild")
         fn_71011d8808(fn, "FindChild");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FindDescendant", true)))
+    DREAD_REFLECTED_FUNCTION("FindDescendant")
         fn_71011d8980(fn, "FindDescendant");
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sChildToFocus", 0x190, (DefaultValue, base::global::CRntString("ListComposition")));
     DREAD_REFLECTED_FIELD_OF("base::global::CPooledList<GUI::CDisplayObject*>", "lstChildren", 0x1c0, (CreateElement, CStrId("AddDisplayObj", true)), (DeleteElement, CStrId("DeleteDO", true)), (AfterElementDeserialization, CStrId("AfterChildrenListDeserialization", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterChildrenListDeserialization", true))) {
+    DREAD_REFLECTED_FUNCTION("AfterChildrenListDeserialization") {
         fn->name = base::global::UnkStrId("AfterChildrenListDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011dc5bc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddDisplayObj", true))) {
+    DREAD_REFLECTED_FUNCTION("AddDisplayObj") {
         fn_71011d8af8(fn, "AddDisplayObj");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create DO At Index");
         fn_710009ae5c(fn, fn->params.count);
@@ -59,7 +59,7 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("oType", true));
         fn->ParamAttrs(1)->Add<bool>(base::reflection::attr::Required(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteDO", true))) {
+    DREAD_REFLECTED_FUNCTION("DeleteDO") {
         fn_71011d8bac(fn, "DeleteDO");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete DO At Index");
         fn_710009ae5c(fn, fn->params.count);

@@ -24,14 +24,14 @@ extern base::reflection::CType g_unk_71726b0570;
 extern base::reflection::CType g_unk_71726b0808;
 namespace CCharClassSetRelativeCameraAnimationCoolShinesparkEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Cool Shinespark Camera Animation");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Camera");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Cool Shinespark Camera Animation");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Camera");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tTravellingDirections", true), &g_unk_71726b0570, 0x6c, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("tTravellingDirections", true), &g_unk_71726b0570, 0x6c, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71726b0570, s32(base::reflection::refl_GetEnumZero<0x71726b0940>()));
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Play camera animation when travelling towards these directions");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("tSituations", true), &g_unk_71726b0808, 0x70, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("tSituations", true), &g_unk_71726b0808, 0x70, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71726b0808, s32(base::reflection::refl_GetEnumZero<0x71726b0950>()));
     field1->attrs.Add<const char*>(base::reflection::attr::Description(), "Play camera animation only in these situations");
     DREAD_REFLECTED_FIELD(f32, "fTargetSlomo", 0x74, (DefaultValue, 1.0f), (Description, "While playing Cool Shinespark, apply this slomo to the game"));

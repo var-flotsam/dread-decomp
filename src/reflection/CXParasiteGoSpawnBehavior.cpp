@@ -25,7 +25,7 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CXParasiteGoSpawnBehavior {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tSpawnPoints", true), &g_unk_717269bf08, 0x20, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("tSpawnPoints", true), &g_unk_717269bf08, 0x20, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);
 }

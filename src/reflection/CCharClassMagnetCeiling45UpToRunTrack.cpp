@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassMagnetCeiling45UpToRunTrack
 namespace CCharClassMagnetCeiling45UpToRunTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Magnet Ceiling45 Up To Run");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Movement");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Magnet Ceiling45 Up To Run");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Movement");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

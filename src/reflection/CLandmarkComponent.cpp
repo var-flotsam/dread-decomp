@@ -27,7 +27,7 @@ void fn_71008a34f0();
 namespace CLandmarkComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sLandmarkID_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sLandmarkID_GetterFunction") {
         fn->name = base::global::UnkStrId("_sLandmarkID_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;

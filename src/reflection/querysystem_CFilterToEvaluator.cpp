@@ -24,7 +24,7 @@ const base::reflection::CType* fn_71002bd4d8();
 namespace querysystem::CFilterToEvaluator {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("pFilter", true), fn_71002bd4d8(), 0x20, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("pFilter", true), fn_71002bd4d8(), 0x20, -1, -1);
     DREAD_REFLECTED_FIELD(f32, "fEvaluation", 0x28, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

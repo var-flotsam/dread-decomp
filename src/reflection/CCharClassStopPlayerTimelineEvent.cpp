@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassStopPlayerTimelineEvent
 namespace CCharClassStopPlayerTimelineEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Stop Player Timeline action");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Timelines", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Stop Player Timeline action");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Timelines", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

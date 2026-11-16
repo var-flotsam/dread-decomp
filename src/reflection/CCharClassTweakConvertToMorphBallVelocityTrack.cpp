@@ -29,28 +29,28 @@ void fn_7100d2ec10();
 void fn_7100d2e8d4(UnkReflFunction* fn, const char* name);
 namespace CCharClassTweakConvertToMorphBallVelocityTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Convert Velocity");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Player", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Convert Velocity");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Player", true));
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFrontDirection_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bUseFrontDirection_GetterFunction") {
         fn->name = base::global::UnkStrId("_bUseFrontDirection_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2eb80);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFrontDirection_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bUseFrontDirection_SetterFunction")
         fn_7100d2e758(fn, "_bUseFrontDirection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bUseFrontDirection", (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVelocity_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fVelocity_GetterFunction") {
         fn->name = base::global::UnkStrId("_fVelocity_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2ec10);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVelocity_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fVelocity_SetterFunction")
         fn_7100d2e8d4(fn, "_fVelocity_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fVelocity", (DefaultValue, 0.0f));
 }
