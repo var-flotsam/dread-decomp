@@ -395,7 +395,6 @@ s32 fn_7101084870(lua_State* L) {
     return fn_71010c0b40(L, "s", text ? text : g_unk_710162e2ed);
 }
 
-void* fn_7100d7842c(void* object);
 struct UnkTriggerList_A5_b72;
 bool fn_7100a60104(UnkTriggerList_A5_b72* self, const CRntString& name);
 
