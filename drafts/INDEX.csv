@@ -629,9 +629,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e0f89c,232,drafts/game/UnkTU2557/fn_7100e0f89c.cpp,operations,13.8,47,lean-ob3,same stores; different schedule: original stores the -1.0f at 0x1fc late and the 28 bytes at 0x204 as one word
 0x7100e13abc,328,drafts/game/UnkTU2557/fn_7100e13abc.cpp,registers or order,96.3,3,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2557/fn_7100e13abc.cpp:77 fn_7100e13abc: defined as void* fn_7100e13abc(UnkPoolMap_b0247*; const CFilePathStrId*; UnkTexObject_b0247**; UnkWidgetArg*) -> declar...
 0x7100e1cbdc,148,drafts/game/UnkTU2560/fn_7100e1cbdc.cpp,operations,94.6,2,overnight,
-0x7100e2308c,1896,drafts/game/UnkTU2562/fn_7100e2308c.cpp,operations,97.3,13,lean-r2k,offsets Reserve move loop reloads data/count as if the element stores were char-typed; matches (scratch build/
-0x7100e237f4,1972,drafts/game/UnkTU2562/fn_7100e237f4.cpp,operations,97.4,13,lean-r2k,offsets Reserve move loop reloads data/count as if the element stores were char-typed; matches (scratch build/
-0x7100e23fa8,2008,drafts/game/UnkTU2562/fn_7100e23fa8.cpp,operations,97.4,13,lean-r2k,offsets Reserve move loop reloads data/count as if the element stores were char-typed; matches (scratch build/
 0x7100e2a034,1792,drafts/game/UnkTU2562/fn_7100e2a034.cpp,control flow,7.9,412,lean-r2k,prologue/stack now match; CStrId move-assign of the X-Parasite id lays out its release blocks differently (poo
 0x7100e2d4ec,284,drafts/game/UnkTU2562/fn_7100e2d4ec.cpp,operations,9.9,57,lean-b5,box merge scheduling and loop shape differ; z loaded as integer word in original
 0x7100e2eef8,312,drafts/game/UnkTU2562/fn_7100e2eef8.cpp,registers or order,71.8,22,lean-b5,same instructions; register/order differences

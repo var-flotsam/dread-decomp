@@ -14,6 +14,8 @@ struct UnkChargeTunable : UnkTunable {
     u8 pad_0xa4[4];
     f32 field_0xa8;
     f32 field_0xac;
+    u8 pad_0xb0[0x4c];
+    f32 field_0xfc;  // the shortest time a target is kept (CTunableAIManager_SetTarget_ldaec80.cpp)
 };
 
 struct UnkFlagged {
