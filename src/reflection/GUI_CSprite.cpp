@@ -18,6 +18,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // GUI::CSprite
 void fn_71011f7b70(UnkReflFunction* fn, const char* name);
@@ -45,7 +49,7 @@ void refl_AddFields(CClass* cls) {
         fn_71011f7b70(fn, "SetAutoRotateVelocity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_FlipX_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_FlipX_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011fa690);
@@ -55,7 +59,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "FlipX");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_FlipY_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_FlipY_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011fa760);
@@ -65,7 +69,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "FlipY");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_SpriteScaleTilesTexture_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_SpriteScaleTilesTexture_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011fa830);
@@ -75,7 +79,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "SpriteScaleTilesTexture");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_SpriteSheetItem_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_SpriteSheetItem_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011fa900);
@@ -85,7 +89,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "SpriteSheetItem");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_BlendMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_BlendMode_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011faaa0);
@@ -95,7 +99,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "BlendMode");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_USelMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_USelMode_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011fabe8);
@@ -105,7 +109,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "USelMode");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_VSelMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_VSelMode_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011fadf8);

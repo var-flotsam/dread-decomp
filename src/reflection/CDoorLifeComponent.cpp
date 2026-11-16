@@ -19,6 +19,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CDoorLifeComponent
 extern base::reflection::CType g_unk_71727b6270;
@@ -53,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeOpened_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fMinTimeOpened_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc010);
@@ -63,7 +67,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fMinTimeOpened", (DefaultValue, 3.0f), (Description, "Min time opened"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStayOpen_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bStayOpen_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc0a8);
@@ -77,7 +81,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bFrozenDuringColdown", 0x41e, (DefaultValue, true), (Description, "Should freeze when cooldown"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaLeft_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iAreaLeft_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc150);
@@ -87,7 +91,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(s32, "iAreaLeft", (DefaultValue, 0), (Description, "Area left type"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaRight_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iAreaRight_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc1e0);
@@ -140,7 +144,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OpenDoor", true))) {
         fn->name = base::global::UnkStrId("OpenDoor", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dcc08);
@@ -183,7 +187,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fIceBlockOffSet", 0x30, (DefaultValue, 0.0f), (Description, "Ice Block Offset"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bForceAllDoorsOpened_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bForceAllDoorsOpened_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dccec);

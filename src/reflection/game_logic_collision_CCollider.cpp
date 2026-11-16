@@ -19,19 +19,20 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+namespace game::logic::collision { class CShape; }
+extern template const base::reflection::CType* base::reflection::PointerType<game::logic::collision::CShape*>::Get();
 
 // game::logic::collision::CCollider
-const base::reflection::CType* fn_71009155a8();
 void fn_7100d3f7f4();
 void fn_71000e8118(UnkReflField* field, u64 index);
 namespace game::logic::collision::CCollider {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("pShape", true), fn_71009155a8(), 0xffffffff, -1, -1);
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("pShape", true), base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0xffffffff, -1, -1);
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_pShape_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_pShape_GetterFunction", true);
-            fn->return_type = fn_71009155a8();
+            fn->return_type = base::reflection::PointerType<game::logic::collision::CShape*>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100d3f7f4);

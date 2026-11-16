@@ -20,6 +20,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::math { class CVector3D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCameraComponent
 void fn_71010e70d0();
@@ -45,7 +49,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fCurrentInterp_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010e70d0);
@@ -53,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_READ_ONLY_PROPERTY(f32, "fCurrentInterp", (Description, base::global::CRntString("Current interpolation speed")), (EditorModeDataFlow, 2), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vCurrentPos_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010e711c);
@@ -63,7 +67,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vCurrentPos", (Description, base::global::CRntString("Current position")), (EditorModeDataFlow, 3));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCurrentDir_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vCurrentDir_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010e7218);
@@ -73,7 +77,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vCurrentDir", (Description, base::global::CRntString("Current direction")), (EditorModeDataFlow, 3));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultInterp_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDefaultInterp_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010e7314);
@@ -83,7 +87,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultInterp", (DefaultValue, 10.0f), (Description, "Default interpolation speed"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentInterpChangeSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fCurrentInterpChangeSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010e73a4);
@@ -93,7 +97,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fCurrentInterpChangeSpeed", (DefaultValue, -1.0f), (Description, "Current interpolation change speed"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultNear_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDefaultNear_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010e7434);
@@ -103,7 +107,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultNear", (Persistence, 0), (EditorVisible, false), (DefaultValue, 100.0f), (Description, "Default near plane dist"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultFar_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDefaultFar_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71010e74c4);

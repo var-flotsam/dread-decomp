@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CEntity
 extern base::reflection::CType g_unk_7108b6d3d0;
@@ -53,7 +55,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bIsInFrustum", 0xffffffff, (DisplayName, CStrId("Inside Frustum", true)), (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsInFrustum_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bIsInFrustum_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d82448);

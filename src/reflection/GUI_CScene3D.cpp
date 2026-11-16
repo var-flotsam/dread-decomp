@@ -18,6 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // GUI::CScene3D
 void fn_7100b7439c();
@@ -45,7 +50,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ProcessInput_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_ProcessInput_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b7439c);
@@ -55,7 +60,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "ProcessInput");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraPathAnimation_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CameraPathAnimation_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b74484);
@@ -65,7 +70,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "CameraPathAnimation");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraTargetNode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CameraTargetNode_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b74580);
@@ -75,7 +80,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "CameraTargetNode");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_GUIScene_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_GUIScene_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b746b8);
@@ -85,7 +90,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "GUIScene");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraDepthOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CameraDepthOffset_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b747b4);
@@ -95,7 +100,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "CameraDepthOffset");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CameraPathAnimationSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CameraPathAnimationSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b74878);
@@ -105,7 +110,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "CameraPathAnimationSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ManualRotationSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_ManualRotationSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b74908);
@@ -115,7 +120,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "ManualRotationSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ManualZoomSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_ManualZoomSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b74998);
@@ -125,7 +130,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "ManualZoomSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PitchInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_PitchInterpSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b74a28);
@@ -135,7 +140,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "PitchInterpSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DepthInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_DepthInterpSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b74ab8);

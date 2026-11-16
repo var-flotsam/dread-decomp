@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CInventoryComponent::CTunableInventoryComponent
 extern bool g_unk_7172a09290;
@@ -36,7 +38,7 @@ void refl_AddFields(CClass* cls) {
         return;
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iMaxNumMissiles_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iMaxNumMissiles_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101149248);

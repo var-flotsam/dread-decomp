@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // COmniLightComponent
 void fn_71008f1f54();
@@ -39,7 +42,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMin_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f1f54);
@@ -49,7 +52,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttMin", (DefaultValue, 400.0f), (MaxValueProperty, CStrId("fAttMax", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMax_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f2004);
@@ -59,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttMax", (DefaultValue, 500.0f), (MinValueProperty, CStrId("fAttMin", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttConstantFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttConstantFactor_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f20d8);
@@ -69,7 +72,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttConstantFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttQuadraticFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttQuadraticFactor_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f2180);
@@ -79,7 +82,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttQuadraticFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bCastShadows_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bCastShadows_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f2228);
@@ -89,7 +92,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bCastShadows");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStaticShadows_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bStaticShadows_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f22e4);
@@ -99,7 +102,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bStaticShadows");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fShadowScl_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fShadowScl_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f238c);

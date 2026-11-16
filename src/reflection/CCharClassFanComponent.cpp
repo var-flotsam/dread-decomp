@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassFanComponent
 namespace CCharClassFanComponent {
@@ -66,7 +68,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWindLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fWindLength_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710087f868);
@@ -76,7 +78,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fWindLength", (DefaultValue, 1200.0f), (MinValue, 800.0f), (MaxValue, 1200.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fHurricaneLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fHurricaneLength_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710087f914);
@@ -86,7 +88,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fHurricaneLength", (DefaultValue, 800.0f), (MinValue, 600.0f), (MaxValue, 800.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBarrierLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fBarrierLength_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710087f9a4);
@@ -96,7 +98,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fBarrierLength", (DefaultValue, 200.0f), (MinValue, 100.0f), (MaxValue, 400.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWidth_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fWidth_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710087fa34);
@@ -106,7 +108,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 400.0f), (MinValue, 400.0f), (MaxValue, 400.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fParticleScale_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fParticleScale_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710087fae0);
