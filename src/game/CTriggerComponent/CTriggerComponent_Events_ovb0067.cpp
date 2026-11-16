@@ -17,6 +17,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -103,8 +104,7 @@ static inline UnkVec3f DirFromTarget(UnkTriggerActor_ovb0067* actor) {
     if (UnkTriggerTarget_ovb0067* t = actor->target) {
         UnkVec3f pos(actor->x, actor->y, actor->z);
         UnkVec3f d(pos.x - t->x, pos.y - t->y, pos.z - t->z);
-        f32 inv = 1.0f / (sqrtf(d.x * d.x + d.y * d.y + d.z * d.z) + 0.0001f);
-        dir = UnkVec3f(d.x * inv, d.y * inv, d.z * inv);
+        dir = Normalized(d);
     }
     return dir;
 }

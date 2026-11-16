@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "types.h"
@@ -123,9 +124,6 @@ struct UnkSamusMovement_l9ea3e4 {
 
 static inline UnkVec3f Position(const UnkActor* actor) {
     return UnkVec3f(actor->field_0x44, actor->field_0x54, actor->field_0x64);
-}
-static inline UnkVec3f operator+(const UnkVec3f& a, const UnkVec3f& b) {
-    return UnkVec3f(a.x + b.x, a.y + b.y, a.z + b.z);
 }
 
 bool fn_71009ed53c(UnkSamusMovement_l9ea3e4* self, const UnkVec3f* from, const UnkVec3f* dir,
