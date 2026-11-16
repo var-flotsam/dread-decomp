@@ -216,27 +216,9 @@ void fn_710026b12c();
 void fn_710026b324();
 void fn_710026b360();
 void fn_710026b364();
-void fn_710026b3a0();
-void fn_710026b3b4();
-void fn_710026b3bc();
-void fn_710026b3d0();
-void fn_710026b3e0();
-void fn_710026b408();
-void fn_710026b430();
-void fn_710026b448();
-void fn_710026b4a0();
 void fn_710026b664();
 void fn_710026b6a0();
 void fn_710026b6a4();
-void fn_710026b6e0();
-void fn_710026b6f4();
-void fn_710026b6fc();
-void fn_710026b710();
-void fn_710026b720();
-void fn_710026b748();
-void fn_710026b770();
-void fn_710026b788();
-void fn_710026b7e0();
 void fn_71002717fc();
 void fn_710027185c();
 void fn_7100271868();
@@ -1938,18 +1920,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_710026b1b8;
 struct UnkRefl_fn_710026a0e4;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026b1b8> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710026a0e4>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026b1b8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710026b3d0;
-    static constexpr UnkFn copy_construct = &fn_710026b3e0;
-    static constexpr UnkFn move_construct = &fn_710026b408;
-    static constexpr UnkFn destroy = &fn_710026b430;
-    static constexpr UnkFn copy_assign = &fn_710026b448;
-    static constexpr UnkFn move_assign = &fn_710026b4a0;
-    static constexpr UnkFn equals = &fn_710026b3a0;
-    static constexpr UnkFn hash = &fn_710026b3b4;
-    static constexpr UnkFn type_of = &fn_710026b3bc;
     static constexpr UnkFn get = &fn_710026b324;
     static constexpr UnkFn set = &fn_710026b360;
     static constexpr UnkFn increment = &fn_710026b364;
@@ -1965,18 +1941,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_710026b4f8;
 struct UnkRefl_fn_710026a6c8;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026b4f8> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710026a6c8>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026b4f8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_710026b710;
-    static constexpr UnkFn copy_construct = &fn_710026b720;
-    static constexpr UnkFn move_construct = &fn_710026b748;
-    static constexpr UnkFn destroy = &fn_710026b770;
-    static constexpr UnkFn copy_assign = &fn_710026b788;
-    static constexpr UnkFn move_assign = &fn_710026b7e0;
-    static constexpr UnkFn equals = &fn_710026b6e0;
-    static constexpr UnkFn hash = &fn_710026b6f4;
-    static constexpr UnkFn type_of = &fn_710026b6fc;
     static constexpr UnkFn get = &fn_710026b664;
     static constexpr UnkFn set = &fn_710026b6a0;
     static constexpr UnkFn increment = &fn_710026b6a4;
