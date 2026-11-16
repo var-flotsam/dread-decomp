@@ -12,6 +12,7 @@
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
 extern UnkMatrix44 g_unk_7101a1a680;
@@ -20,18 +21,6 @@ struct UnkRefl_fn_7100a48b60;
 template <>
 base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_7100a48b60>(void*);
-
-// The result of the shape tester (as in src/game/UnkTU2510/UnkTU2510_Collision_ovb0175.cpp): bit 0 a hit.
-struct UnkShapeTestResult_ovb0107 {
-    union {
-        u32 flags;
-        u32 bits;
-    };
-    u32 field_0x4;
-    UnkShapeTestResult_ovb0107() : bits(0) {}
-    UnkShapeTestResult_ovb0107(u32 b) : bits(b) {}
-    UnkShapeTestResult_ovb0107(const UnkShapeTestResult_ovb0107& o) : bits(o.bits) {}
-};
 
 struct UnkZoneLogicShape_lef694 {
     u8 pad_0x0[0x30];
@@ -95,8 +84,8 @@ bool fn_7100eef694() {
     UnkPlayerShape_lef694* shape = reinterpret_cast<UnkPlayerShape_lef694*>(fn_7100976588(player->field_0x1f8));
     void* owner = shape->field_0x158;
     UnkShapeTester_A5_b68* tester = GetTester_lef694();
-    UnkShapeTestResult_ovb0107 result = fn_7100d51368(tester, owner, shape->vf_0x70(), other, g_unk_7101a1a680, nullptr, 0);
-    if (result.flags & 1)
+    UnkColliderResult result = fn_7100d51368(tester, owner, shape->vf_0x70(), other, g_unk_7101a1a680, nullptr, 0);
+    if (result.bits & 1)
         return true;
     return false;
 }

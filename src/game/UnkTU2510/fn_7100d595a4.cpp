@@ -4,22 +4,14 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU2509.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-
-// The result of a query (as in src/game/UnkCollisionContacts.cpp): bit 0 a hit, bit 1 stop.
-// Returned in memory: its copy is user-written.
-struct UnkColliderResult {
-    u32 bits;
-
-    UnkColliderResult() : bits(0) {}
-    UnkColliderResult(u32 b) : bits(b) {}
-    UnkColliderResult(const UnkColliderResult& o) : bits(o.bits) {}
-};
 
 // The "skip" result and its guard (shared with the other visitors).
 struct UnkVisitResult_b0040 {
@@ -85,8 +77,6 @@ struct UnkCollider {
     void* owner;  // 0x158
 };
 
-extern void* g_unk_7101aa8898[];
-
 struct UnkShapeFilter_590ac {
     void** vtable;
     UnkCollider* node;
@@ -107,9 +97,13 @@ struct UnkSweepBox_595a4 {
     f32 minX, minY, maxX, maxY;
 };
 
-UnkColliderResult fn_7100d541c0(UnkShapeTester_A5_b68* tester, void* a, void* b, void* owner,
-                                const UnkMatrix44& transform, UnkSweepDelta_595a4 delta, UnkShapeFilter_590ac* filter,
-                                bool flag);
+// The pair test of shape `a` (placed by `ta`) and shape `b` (placed by `tb`), with the sweep's offset handed over
+// as a copy and the filter.
+static inline UnkColliderResult Sweep(UnkShapeTester_A5_b68* tester, void* a, void* ta, void* b, const UnkMatrix44& tb,
+                                      UnkSweepDelta_595a4 delta, UnkShapeFilter_590ac* filter, bool flag) {
+    return fn_7100d541c0(tester, static_cast<UnkShape*>(a), ta, static_cast<UnkShape*>(b),
+                         const_cast<UnkMatrix44*>(&tb), &delta, filter, flag);
+}
 
 UnkColliderResult fn_7100d595a4(void* a, void* b, UnkCollider* collider, void* c, void* d, void* e, bool flag) {
     const UnkSweepDelta_595a4* delta = static_cast<const UnkSweepDelta_595a4*>(c);
@@ -121,11 +115,11 @@ UnkColliderResult fn_7100d595a4(void* a, void* b, UnkCollider* collider, void* c
         if (e) {
             UnkShapeFilter_590ac filter(collider, e);
             UnkShapeTester_A5_b68* tester = Tester();
-            return fn_7100d541c0(tester, a, b, collider->owner, fn_7100d36a2c(reinterpret_cast<UnkShape*>(collider)),
+            return Sweep(tester, a, b, collider->owner, fn_7100d36a2c(reinterpret_cast<UnkShape*>(collider)),
                                  *delta, &filter, flag);
         }
         UnkShapeTester_A5_b68* tester = Tester();
-        return fn_7100d541c0(tester, a, b, collider->owner, fn_7100d36a2c(reinterpret_cast<UnkShape*>(collider)),
+        return Sweep(tester, a, b, collider->owner, fn_7100d36a2c(reinterpret_cast<UnkShape*>(collider)),
                              *delta, nullptr, flag);
     }
     // Missed, or no motion: nothing to report.

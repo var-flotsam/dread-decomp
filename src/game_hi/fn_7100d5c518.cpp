@@ -1,22 +1,8 @@
 // Queries a 2D bounding-volume tree and its sub-trees for objects overlapping a box (given by two
 // corners), filtered by a layer mask; returns whether anything reported a hit.
 #include "game/UnkTU2510.h"
+#include "game/logic/collision/UnkBvhTree.h"
 #include "types.h"
-
-struct UnkFlags {
-    u32 bits;
-    UnkFlags(u32 b) : bits(b) {}
-    UnkFlags(const UnkFlags& o) : bits(o.bits) {}
-};
-
-struct UnkBox {
-    f32 minX, minY, maxX, maxY;
-};
-
-struct UnkNode {
-    f32 minX, minY, maxX, maxY;
-    s32 index;  // >= 0: index of the next node outside this subtree; < 0: a leaf
-};
 
 struct UnkQueryCtx {
     u32 mask;
@@ -27,31 +13,10 @@ struct UnkQueryCtx {
     const UnkBox* bounds;
 };
 
-struct UnkSubTree {
-    char pad[8];
-    u32 field_0x8;
-    u32 field_0xc;
-    char pad2[0x90 - 0x10];
-    UnkFlags Query(UnkFlags flags, const UnkBox* box, u32 mask, const UnkBox* bounds, void* arg, u32 arg2) asm("fn_7100d5c6dc");  // fn_7100d5c6dc
-};
-
-struct UnkTree {
-    char pad[0x5c];
-    u32 field_0x5c;
-    UnkNode* nodes;
-    u32 nodeCount;
-    char pad2[0x90 - 0x6c];
-    char field_0x90[0xb8 - 0x90];
-    u32 subTreeCount;
-    u8 subTrees[4 * sizeof(UnkSubTree)];
-    UnkSubTree* SubBegin() { return reinterpret_cast<UnkSubTree*>(subTrees); }
-    UnkSubTree* SubEnd() { return SubBegin() + subTreeCount; }
-};
-
 bool fn_7100d5d0bc(UnkQueryCtx* ctx, const UnkNode* node);
 
 bool fn_7100d5c518(UnkTree* self, u32 mask, const UnkBox* box, void* arg, u32 arg2) {
-    f32 x0 = box->minX, y0 = box->minY, x1 = box->maxX, y1 = box->maxY;
+    f32 x0 = box->min.x, y0 = box->min.y, x1 = box->max.x, y1 = box->max.y;
     UnkBox bounds = {x1 > x0 ? x0 : x1, y1 > y0 ? y0 : y1, x1 < x0 ? x0 : x1, y1 < y0 ? y0 : y1};
     UnkFlags result = 0;
     if (self->field_0x5c & mask) {
@@ -60,7 +25,7 @@ bool fn_7100d5c518(UnkTree* self, u32 mask, const UnkBox* box, void* arg, u32 ar
         u32 i = 0;
         while (i < count) {
             const UnkNode& n = self->nodes[i];
-            if (bounds.maxX >= n.minX && bounds.minX <= n.maxX && bounds.maxY >= n.minY && bounds.minY <= n.maxY) {
+            if (bounds.max.x >= n.minX && bounds.min.x <= n.maxX && bounds.max.y >= n.minY && bounds.min.y <= n.maxY) {
                 if (n.index < 0 && !fn_7100d5d0bc(&ctx, &n))
                     break;
                 ++i;

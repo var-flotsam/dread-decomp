@@ -372,13 +372,9 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100d4aa08,728,drafts/game/UnkTU2506/fn_7100d4aa08.cpp,control flow,4.7,173,lean-p1,loop induction: original walks a pointer with a byte countdown and tests n*0x48 for zero (matched only via a b
 0x7100d4ae50,676,drafts/game/UnkTU2506/fn_7100d4ae50.cpp,conditions,96.4,6,lean-p1,matches with a union around the group count (u32 at +0); without it the copy loop skips the count reload on th
 0x7100d4ba54,280,drafts/game/UnkTU2506/fn_7100d4ba54.cpp,control flow,46.6,36,pilot50,control flow: loop-count phi and tail layout differ; load order of groups/count
-0x7100d595a4,528,drafts/game/UnkTU2510/fn_7100d595a4.cpp,match,100.0,0,lean-p1,matches; held: callee fn_7100d541c0 is defined in src/game_s7/fn_7100d541c0.cpp with other types (UnkContact result)
 0x7100d59dd8,1324,drafts/game/UnkTU2510/fn_7100d59dd8.cpp,control flow,11.8,288,fable1,
 0x7100d5b268,540,drafts/game/UnkTU2510/fn_7100d5b268.cpp,operations,22.2,89,pilot50,13-word copy gets merged into wide loads; init/store scheduling and hoisted out-slot compare differ
-0x7100d5b918,420,drafts/game/UnkTU2510/fn_7100d5b918.cpp,match,100.0,0,lean-p1,matches; held: copies fn_7100d5823c's declaration; whose result type is an alias that differs per file (one header first)
 0x7100d5be04,440,drafts/game/UnkTU2510/fn_7100d5be04.cpp,operations,19.1,88,pilot50,entry guard ccmp and loop shape; KIND operations
-0x7100d5c1d0,416,drafts/game/UnkTU2510/fn_7100d5c1d0.cpp,match,100.0,0,lean-p1,matches; held: declared as member UnkSubTree::Query with a u16 argument the original does not extend
-0x7100d5c370,424,drafts/game/UnkTU2510/fn_7100d5c370.cpp,match,100.0,0,lean-p1,matches; held: declared as member UnkSubTree::Query with a u16 argument the original does not extend
 0x7100d5c6dc,392,drafts/game/UnkTU2510/fn_7100d5c6dc.cpp,operations,84.7,15,pilot50,entry cond ccmp and loop counter form (cbz vs adds)
 0x7100d63a40,564,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d63a40.cpp,calls,7.5,128,pilot50,clang unswitches loop on null sink: duplicate segment ctor and test calls (7 vs 5)
 0x7100d66bc4,448,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d66bc4.cpp,operations,11.6,95,pilot50,stack slot sharing of hit/point and edge; operations differ
@@ -634,7 +630,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7101113df0,364,drafts/game/UnkTU2702/fn_7101113df0.cpp,registers or order,84.6,14,lean-b2,register allocation and instruction order only (loop counter setup; constant moves)
 0x7101113f5c,432,drafts/game/UnkTU2702/fn_7101113f5c.cpp,operations,30.6,74,lean-o2,grow loop: original strength-reduces element address to &elem.owner (+0x38 base; madd); ours to elem base; tai
 0x710112688c,308,drafts/game/UnkTU2704/fn_710112688c.cpp,build fails,,,spawnpoint,CStrId dtor duplicated into null-section path (7 calls vs 6); original shares tail; header split of pad 0x290/
-0x7101126c34,244,drafts/game/UnkTU2704/fn_7101126c34.cpp,match,100.0,0,spawnpoint,matches; held: it defines UnkShapeHit_A5_b68 (the shape tester's result; game/UnkTU2509.h) as 8 bytes where three other sources define it as 16; with the 16-byte definition the function is at 75%. Settle the result's size first
 0x7101127834,304,drafts/game/UnkTU2704/fn_7101127834.cpp,registers or order,92.1,6,spawnpoint,instruction order only: flag load at +0x1b2 before the other link state test; and the final call arg setup ord
 0x710112a3bc,412,drafts/game/UnkTU2704/fn_710112a3bc.cpp,calls,31.0,67,pilot50,KIND calls: 3 calls vs 4; return-true block layout
 0x710112bce8,300,drafts/game/UnkTU2704/fn_710112bce8.cpp,control flow,82.1,11,spawnpoint,search loop: original uses a byte counter and shared found/end check tail; ours duplicates the end check
