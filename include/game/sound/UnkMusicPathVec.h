@@ -2,8 +2,8 @@
 
 // The music manager's file-path list (each music entry holds one at +0x28): 0x18-byte records of a file path id
 // and a point, in a base/UnkCopyVec_b56.h array whose out-of-line reserve is fn_7100456980 (in
-// CChozoCommanderAIComponent's unit) and whose copy constructor is fn_7100fddf18. Names and layouts are
-// placeholders.
+// CChozoCommanderAIComponent's unit). A music entry holds it as a UnkMusicPathList, which adds the out-of-line
+// copy constructor fn_7100fddf18 and frees the records on destruction. Names and layouts are placeholders.
 #include "base/UnkCopyVec_b56.h"
 #include "base/global/UnkPooledId.h"
 #include "game/CChozoCommanderAIComponent.h"
@@ -24,6 +24,12 @@ template <>
 inline void UnkPathVec_b0019::Reserve(u32 n) {
     fn_7100456980(this, n);
 }
+
+// The list as a music entry's member (fn_7100fddcb4 copies the entries).
+struct UnkMusicPathList : UnkPathVec_b0019 {
+    UnkMusicPathList(const UnkMusicPathList& other) asm("fn_7100fddf18");  // fn_7100fddf18
+    ~UnkMusicPathList() { Free(); }
+};
 
 // Record `i`, growing a growable list to cover it first (the new records constructed by fn_7100456ac0).
 inline UnkPathRecord_b0019& PathAt(UnkPathVec_b0019& v, u32 i) {

@@ -267,8 +267,6 @@ using base::global::CStrId;
 using base::input::UnkRumbleManager;
 
 struct UnkUserDataOwner;
-bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
-extern UnkRumbleManager* g_unk_7101d47348;
 
 void fn_7101187c30() {
     UnkUserDataOwner* owner = g_unk_7101d47308;

@@ -60,7 +60,6 @@ struct UnkDoorCentral_A4_b76 {
 
 CStrId fn_71008d2670(UnkDoorCentral_A4_b76* self);
 void fn_71008d1604(UnkDoorCentral_A4_b76* self);
-bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 
 void fn_71008ca2d0(UnkDoorCentral_A4_b76* self) {
     fn_71008d0ef4(self);

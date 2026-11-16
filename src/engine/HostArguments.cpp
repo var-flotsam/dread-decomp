@@ -311,7 +311,6 @@ struct UnkEngineObject_0xf0;
 void fn_7100075e64(UnkEngineObject_0xf0* self, f32 dt);
 struct UnkSoundHolder;
 void fn_710006ce38(UnkSoundHolder* holder, f32 dt);
-extern UnkRumbleManager* g_unk_7101d47348;
 void fn_7100073af8(UnkRumbleManager* self, f32 dt);
 void fn_710013dee8(UnkTunableRegistry* self);
 // The language singleton (src/game/UnkLanguage.cpp); its per-frame step is empty.
