@@ -3039,7 +3039,7 @@ address,size,name,name_source,subsystem,status
 0x7100eaf960,256,fn_7100eaf960,unknown,unknown,O
 0x7100eafa60,272,fn_7100eafa60,unknown,unknown,O
 0x7100eafb70,388,fn_7100eafb70,unknown,unknown,O
-0x7100eafcf4,452,fn_7100eafcf4,unknown,unknown,U
+0x7100eafcf4,452,fn_7100eafcf4,unknown,unknown,O
 0x7100eafeb8,416,fn_7100eafeb8,unknown,unknown,O
 0x7100eb0058,340,fn_7100eb0058,unknown,unknown,O
 0x7100eb01ac,12,fn_7100eb01ac,unknown,unknown,O

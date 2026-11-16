@@ -20,7 +20,7 @@ struct UnkAttackTable_l78d46c {
     base::global::CStrId* At(const u64* key) {
         base::global::CStrId* value = values;
         const u64* k = keys;
-        for (u32 n = count; n; --n, ++k, ++value)
+        for (u64 n = count; n; ++value, --n, ++k)
             if (*k == *key)
                 return value;
         return End();

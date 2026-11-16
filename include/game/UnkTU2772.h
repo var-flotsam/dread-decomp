@@ -65,3 +65,5 @@ u64 fn_7101234068(void* effect);
 bool fn_7101234580(void* effect);
 u64 fn_71012346b8(void* effect);
 bool fn_7101234dc4(void* effect);
+void fn_7101206630(u8* player, u32 frames);
+void fn_710120d54c(void* sound, u32 frames);

@@ -14,3 +14,9 @@ void fn_7100ffaa88(void*);
 void fn_7100fefde0(void*);
 UnkPartFfca00* fn_7100ffbad8(UnkPartFfca00* self, const UnkPartFfca00* other);
 void fn_7101005d8c(void*);
+void fn_7100ff4350(char*);
+void fn_7100ff7360(char*);
+template <class Elem>
+struct UnkElemArray;
+struct UnkElem78;
+void fn_710100147c(UnkElemArray<UnkElem78>* self, u32 capacity);

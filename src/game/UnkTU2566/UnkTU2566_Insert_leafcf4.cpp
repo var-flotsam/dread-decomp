@@ -39,12 +39,8 @@ struct UnkIdValues_eafcf4 {
     u32 field_0x8;
     u32 field_0xc;
 
-    // The values are stored through plain pointers (the original reloads after each).
-    UnkIdValues_eafcf4(const UnkIdValues_eafcf4& other) : id(other.id) {
-        u32* values = &field_0x8;
-        values[0] = other.field_0x8;
-        values[1] = other.field_0xc;
-    }
+    UnkIdValues_eafcf4(const UnkIdValues_eafcf4& other)
+        : id(other.id), field_0x8(other.field_0x8), field_0xc(other.field_0xc) {}
     UnkIdValues_eafcf4(UnkIdValues_eafcf4&& other)
         : id(static_cast<UnkMovableStrId_eafcf4&&>(other.id)), field_0x8(other.field_0x8), field_0xc(other.field_0xc) {}
 };

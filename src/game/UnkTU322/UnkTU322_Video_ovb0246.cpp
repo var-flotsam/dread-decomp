@@ -56,7 +56,8 @@ struct UnkPathKey {
 extern void* g_unk_7101a20470[];
 extern void* g_unk_7101a20440[];
 
-void fn_710021e6e8(void* obj);
+struct UnkMediaConstruct324;
+void fn_710021e6e8(UnkMediaConstruct324* obj);
 void fn_71002206fc(void* obj);
 void fn_710021d394(char*, void*, u32);
 void fn_710021ff8c(void* obj, void* pair);
@@ -83,7 +84,7 @@ UnkRef fn_710021cab8(UnkPlayer* player, const UnkPathKey& path, u32 a, u32 b) {
     UnkCab8Player_b0246* self = reinterpret_cast<UnkCab8Player_b0246*>(player);
     void* mem = operator new(0xb20);
     __builtin_memset(mem, 0, 0xb20);
-    fn_710021e6e8(mem);
+    fn_710021e6e8(static_cast<UnkMediaConstruct324*>(mem));
     *reinterpret_cast<void**>(mem) = &g_unk_7101a20470[2];
     UnkCab8Obj_b0246* obj = reinterpret_cast<UnkCab8Obj_b0246*>(mem);
     obj->field_0xad8 = 0;

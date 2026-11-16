@@ -30,35 +30,32 @@ struct UnkWeightListener_lac90a8 {
     UnkWeightLink_lac90a8* link;  // 0x18
 };
 
+// Two words cleared together.
+struct UnkWeightPair_lac90a8 {
+    u64 field_0x0;
+    u64 field_0x8;
+};
+
 struct UnkWeightDtor_lac90a8 : UnkBaseComponent {
     void* field_0x40;
     u8 pad_0x48[0x8];
     void** field_0x50;
     u8 pad_0x58[0x10];
     base::reflection::UnkReflValue value_0x68;
-    u64 field_0x80;
-    u64 field_0x88;
-    u64 field_0x90;
-    u64 field_0x98;
-    u64 field_0xa0;
-    u64 field_0xa8;
-    u64 field_0xb0;
-    u64 field_0xb8;
+    UnkWeightPair_lac90a8 field_0x80;
+    UnkWeightPair_lac90a8 field_0x90;
+    UnkWeightPair_lac90a8 field_0xa0;
+    UnkWeightPair_lac90a8 field_0xb0;
     void** field_0xc0;
     u8 pad_0xc8[0x10];
     base::reflection::UnkReflValue value_0xd8;
-    u64 field_0xf0;
-    u64 field_0xf8;
-    u64 field_0x100;
-    u64 field_0x108;
-    u64 field_0x110;
-    u64 field_0x118;
-    u64 field_0x120;
-    u64 field_0x128;
+    UnkWeightPair_lac90a8 field_0xf0;
+    UnkWeightPair_lac90a8 field_0x100;
+    UnkWeightPair_lac90a8 field_0x110;
+    UnkWeightPair_lac90a8 field_0x120;
     void** field_0x130;
     u8 pad_0x138[8];
-    u64 field_0x140;
-    u64 field_0x148;
+    UnkWeightPair_lac90a8 field_0x140;
     u32 field_0x150;
     u8 pad_0x154[0x1e0 - 0x154];
     UnkWeightListener_lac90a8 listener;  // 0x1e0
@@ -101,28 +98,19 @@ void fn_7100ac90a8(UnkWeightDtor_lac90a8* self) {
     }
 cleared:
     self->field_0x150 = 0;
-    self->field_0x140 = 0;
-    self->field_0x148 = 0;
-    self->field_0xf0 = 0;
-    self->field_0xf8 = 0;
-    self->field_0x120 = 0;
-    self->field_0x110 = 0;
-    self->field_0x118 = 0;
-    self->field_0x128 = 0;
+    self->field_0x140 = UnkWeightPair_lac90a8();
+    self->field_0xf0 = UnkWeightPair_lac90a8();
+    self->field_0x120 = UnkWeightPair_lac90a8();
+    self->field_0x110 = UnkWeightPair_lac90a8();
     self->field_0x130 = g_unk_7101a97478 + 2;
-    self->field_0x100 = 0;
-    self->field_0x108 = 0;
+    self->field_0x100 = UnkWeightPair_lac90a8();
     self->field_0xc0 = g_unk_7101a97420 + 2;
     fn_71000a1c60(&self->value_0xd8);
-    self->field_0xb0 = 0;
-    self->field_0xb8 = 0;
+    self->field_0xb0 = UnkWeightPair_lac90a8();
     self->field_0x50 = g_unk_7101a97420 + 2;
-    self->field_0xa0 = 0;
-    self->field_0xa8 = 0;
-    self->field_0x90 = 0;
-    self->field_0x98 = 0;
-    self->field_0x80 = 0;
-    self->field_0x88 = 0;
+    self->field_0xa0 = UnkWeightPair_lac90a8();
+    self->field_0x90 = UnkWeightPair_lac90a8();
+    self->field_0x80 = UnkWeightPair_lac90a8();
     fn_71000a1c60(&self->value_0x68);
     fn_71010c4194(self);
 }

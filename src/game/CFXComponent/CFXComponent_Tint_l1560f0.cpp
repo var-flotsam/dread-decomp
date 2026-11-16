@@ -68,8 +68,11 @@ void fn_71011560f0(UnkFXComponent_l1560f0* self, UnkFXMessage_l1560f0* msg) {
     UnkFXEffect_l1560f0* effect = entry ? entry->effect : nullptr;
     if (!effect)
         return;
-    f32 r = msg->r, g = msg->g, b = msg->b, a = msg->a, k = msg->scale;
-    f32 values[4] = {NonNegative(r * k), NonNegative(k * g), NonNegative(k * b), NonNegative(a)};
+    f32 r = msg->r * msg->scale;
+    f32 g = msg->scale * msg->g;
+    f32 b = msg->scale * msg->b;
+    f32 a = msg->a;
+    f32 values[4] = {NonNegative(r), NonNegative(g), NonNegative(b), NonNegative(a)};
     if (msg->param == &g_unk_7101d47108->empty)
         VCall_l1560f0<0xe0>(effect, msg->field_0x20, values, msg->field_0x24);
     else

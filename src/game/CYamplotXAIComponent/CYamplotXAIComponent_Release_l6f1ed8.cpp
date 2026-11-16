@@ -7,7 +7,23 @@
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
-using base::global::CStrId;
+using base::global::UnkStringData;
+using base::global::UnkStringPool;
+
+// A copied string id whose destructor does not test for a null id.
+struct UnkYamplotId_l6f1ed8 {
+    UnkStringData* data;
+    UnkYamplotId_l6f1ed8(const UnkYamplotId_l6f1ed8& other) : data(other.data) {
+        if (&g_unk_7101d47108->empty != data)
+            ++data->ref_count;
+    }
+    ~UnkYamplotId_l6f1ed8() {
+        if (UnkStringPool* pool = g_unk_7101d47108) {
+            if (data != &pool->empty && --data->ref_count == 0)
+                fn_71000803a4(pool, data);
+        }
+    }
+};
 
 struct UnkMovementVec_71010d08d4 {
     f32 x, y, z;
@@ -49,7 +65,7 @@ static inline void Release(UnkYamplotTarget_l6f1ed8* target) {
 void fn_71006f1ed8(UnkYamplot_l6f1ed8* self, UnkYamplotTarget_l6f1ed8* target) {
     UnkAnimationComponent* anim = self->owner->field_0x220;
     if ((anim != nullptr) & (self->field_0x14762 != 0)) {
-        CStrId id(*fn_7101177ae8(anim, 0xf4061ff25a2163d6));
+        UnkYamplotId_l6f1ed8 id(*reinterpret_cast<const UnkYamplotId_l6f1ed8*>(fn_7101177ae8(anim, 0xf4061ff25a2163d6)));
         if (reinterpret_cast<const UnkStringEntry_l6f1ed8*>(id.data)->hash == 0x56b5846baf59688c) {
             if (self->field_0x14762)
                 Release(target);
