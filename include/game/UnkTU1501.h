@@ -9,6 +9,7 @@ struct UnkSamusSettings;
 struct UnkFlagged;
 struct UnkHelper;
 struct UnkSamusMovement;
+struct UnkGroundMovement_ovb0138;
 struct UnkSamusMovementUpdate;
 bool fn_71009e6434(UnkHelper* helper);
 bool fn_71009e75e8(UnkFlagged*);
@@ -21,3 +22,5 @@ bool fn_71009e84e4(char* self);
 void fn_71009e85f4(void* self, bool flag);
 void fn_71009eaa88(void*);
 extern UnkSamusSettings g_unk_7172740de0;
+// Clears the movement's air state on landing, stops the gun and lets the spin jump reset the animation.
+void fn_71009ea070(UnkGroundMovement_ovb0138* movement);

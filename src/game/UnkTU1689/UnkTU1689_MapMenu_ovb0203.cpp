@@ -25,6 +25,7 @@
 #include "game/UnkTU2567.h"
 #include "game/UnkTUProperty.h"
 #include "game/sound/SGUISoundEventsSelector.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -703,13 +704,6 @@ void fn_7100b45b5c(UnkMapMenuOwner_ovb0203* self) {
 }
 
 // ---- fn_7100b46744
-// As src/game/UnkSubareaSetupState.cpp and src/game_s7/fn_7100fc4b34.cpp declare it.
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
-using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
-const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 struct UnkMapNamedDef_ovb0203 : UnkIdSource {
     u64 field_0x8;
