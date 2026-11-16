@@ -154,6 +154,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Readable reflection slot types; size and kind from the type (2026-11-16).** Steps 1 and 2 of the type-keyed
+descriptions note. The slot aliases are named by role (`SlotFn`, `CopyConstructFn`, `DestroyFn`, `AssignFn`,
+`EqualsFn`, `HashFn`, `TypeOfFn`, `ClassSetupFn`), `UnkReflTypeGetter` is `PointerTypeGetter` and
+`UnkReflPrimitiveTraits` is `PrimitiveTypeDescription`. `ValueOpsDescription<T>` gives `size = sizeof(T)` and the
+collection description bases give `size = sizeof(C)` and `kind` from `CollectionTypeMapper<C>::kind` (1 for a
+vector, 2 for a dictionary); gen_types drops those lines under a base. Every one of the 951 descriptions with a base
+already had sizeof's value, the 42 key iterators' 0x28 included. A whole-tree compile changed none of 100678
+functions, and the PC's regeneration reproduced the branch's generated files exactly.
+
 **Opus retry of near-miss drafts, lean-r1 (2026-11-16).** The 38 drafts of this session's batches that scored 70%
 or more and differ in more than registers, given back to Opus from their draft text (`prepare.py --drafts`, budget
 4); jobs of one function were packed five to a worker across units. 12 matched; one of them only with whole-element
