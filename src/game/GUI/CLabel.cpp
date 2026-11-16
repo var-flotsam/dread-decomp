@@ -293,10 +293,7 @@ struct UnkLabelGlyph {
 };
 static_assert(sizeof(UnkLabelGlyph) == 0x30, "UnkLabelGlyph placeholder layout");
 
-using UnkGlyphVector = base::global::CRntVector<UnkLabelGlyph>;
-// Reserves `capacity` glyphs; assigns another vector's glyphs.
-void fn_71011f05d4(UnkGlyphVector* self, u32 capacity);
-void fn_71011ee3b4(UnkGlyphVector* self, const UnkGlyphVector* other);
+// UnkGlyphVector, fn_71011f05d4 and fn_71011ee3b4 are in game/GUI/CLabel.h.
 
 // The GUI root's text object a run draws with (its +0x130 is the text node).
 struct UnkLabelTextNode {

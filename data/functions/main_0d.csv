@@ -4205,7 +4205,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8ce3c,156,fn_7100d8ce3c,unknown,engine/reflection?,O
 0x7100d8ced8,492,fn_7100d8ced8,unknown,engine/reflection?,O
 0x7100d8d0c4,144,fn_7100d8d0c4,unknown,engine/reflection?,O
-0x7100d8d154,776,fn_7100d8d154,unknown,engine/reflection?,U
+0x7100d8d154,776,fn_7100d8d154,unknown,engine/reflection?,O
 0x7100d8d45c,532,fn_7100d8d45c,unknown,engine/reflection?,O
 0x7100d8d670,484,fn_7100d8d670,unknown,engine/reflection?,O
 0x7100d8d854,620,fn_7100d8d854,unknown,engine/reflection?,U
@@ -5604,7 +5604,7 @@ address,size,name,name_source,subsystem,status
 0x7100df249c,192,fn_7100df249c,unknown,unknown,O
 0x7100df255c,12,fn_7100df255c,unknown,unknown,O
 0x7100df2568,56,fn_7100df2568,unknown,unknown,O
-0x7100df25a0,816,fn_7100df25a0,unknown,unknown,U
+0x7100df25a0,816,fn_7100df25a0,unknown,unknown,O
 0x7100df28d0,412,fn_7100df28d0,unknown,unknown,U
 0x7100df2a6c,96,fn_7100df2a6c,unknown,unknown,O
 0x7100df2acc,156,fn_7100df2acc,unknown,unknown,O

@@ -10,6 +10,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CPlaythroughDef.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU83.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
@@ -65,8 +66,6 @@ struct UnkPlaythroughStorage_ovb0123 {
     u64 field_0x48;
     u32 field_0x50;
 };
-
-extern void* g_unk_7101a1b678[];  // the storage's vtable
 
 // A string whose storage object follows it.
 struct UnkPlaythroughText_ovb0123 {

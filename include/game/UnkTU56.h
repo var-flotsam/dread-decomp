@@ -5,7 +5,12 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
+#include "base/global/CRntString.h"
 #include "types.h"
+
+struct UnkFileReader;
+struct UnkStrPair_0x10;
+
 s64 fn_710007cf30(void* stream, const char* format, ...);
 s64 fn_710007cee4(void*, const char**);  // The next string of the stream, in place.
 // Copy-constructs a file from another one (its contents copied into a block of its own).
@@ -15,3 +20,4 @@ void fn_710007c080(base::global::CRntFile* file, void* data, u32 flags, u64 size
 // Formatted stream write ("i" integer, "b" bool, "f" float, "s" string).
 s64 fn_710007cb4c(void* stream, const char* format, ...);
 u64 fn_710007c70c(base::global::CRntFile* file, void* dest, u64 size);
+bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);

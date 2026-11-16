@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CPlaythroughDef.h"
+#include "game/UnkBufferStringPool.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -28,8 +29,6 @@ struct UnkNode {
     u8 field_0x18[0x30];
     UnkStorage field_0x48;
 };
-
-extern void* g_unk_7101a1b678[];
 
 void fn_71002f4820(UnkNode* self) {
     self->vtable = g_unk_7101a22280 + 2;

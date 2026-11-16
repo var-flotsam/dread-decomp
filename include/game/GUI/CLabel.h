@@ -4,6 +4,7 @@
 // 0x71011e8df8-0x71011f0810). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "game/UnkGuiDisplayObject.h"
+#include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -18,3 +19,10 @@ extern char g_unk_7101cb65e8[];  // Its line list's vtable.
 void fn_71011ef0c8(UnkGuiDisplayObject* label, bool value);
 void fn_71011ed150(UnkGuiDisplayObject* label, const base::global::CStrId& font);
 void fn_71011eec60(UnkGuiDisplayObject* label, u32 mode);
+
+// A label's glyphs (0x30 bytes each; src/game/GUI/CLabel.cpp lays one out): reserves `capacity` glyphs;
+// assigns another vector's glyphs, returning `self`.
+struct UnkLabelGlyph;
+using UnkGlyphVector = base::global::CRntVector<UnkLabelGlyph>;
+void fn_71011f05d4(UnkGlyphVector* self, u32 capacity);
+UnkGlyphVector* fn_71011ee3b4(UnkGlyphVector* self, const UnkGlyphVector* other);

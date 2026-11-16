@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2569.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -43,9 +44,7 @@ struct UnkIdEntryT_ovb0245 {
 using UnkIdEntry_ovb0245 = UnkIdEntryT_ovb0245<true>;
 using UnkIdEntryMove_ovb0245 = UnkIdEntryT_ovb0245<false>;
 
-using UnkIdVec_ovb0245 = base::global::CRntVector<UnkIdEntry_ovb0245>;
-
-void fn_7100ec4fd4(UnkIdVec_ovb0245* v, u32 n);
+// UnkIdVec_ovb0245, the array of these entries, is in game/UnkTU2569.h.
 
 // As src/game/UnkPlayReport.cpp declares it (its record type is the entry above).
 struct UnkRecord_7101147868;

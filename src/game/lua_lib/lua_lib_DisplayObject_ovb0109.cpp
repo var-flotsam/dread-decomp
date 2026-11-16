@@ -27,7 +27,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
 UnkGuiDisplayObject* fn_71011b5d3c(UnkGuiRoot* root, const char* const* path);
-void fn_710007c144(UnkHashStream_0x38* s);
 
 // A display object as the scripts hold it: full userdata with the "__DisplayObjectType" metatable
 // holding a counted weak handle on the object.

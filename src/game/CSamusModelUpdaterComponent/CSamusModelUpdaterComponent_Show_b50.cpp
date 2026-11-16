@@ -5,12 +5,11 @@
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU218.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-extern void* g_unk_7101a1b678[];
 
 void fn_710093a130(char* self, char* entry, CRntString* out);
 

@@ -18,6 +18,7 @@
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU112.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
@@ -243,8 +244,6 @@ void fn_710013c4b4(UnkTunableRegistry* self, const char* name, const char* field
 // The id and path pair (base/UnkStrIdPathPair.h) the file is opened from.
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 
 extern UnkParseCallbacks g_unk_710b372778 __attribute__((visibility("hidden")));  // this unit's callbacks
 extern UnkStrPair_0x10 g_unk_710b372748 __attribute__((visibility("hidden")));    // the second tunables file

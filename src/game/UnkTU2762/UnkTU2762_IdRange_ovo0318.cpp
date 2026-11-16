@@ -5,6 +5,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntString.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
@@ -17,10 +18,7 @@ struct UnkEntry_0x30 {
 // The id and path pair (base/UnkStrIdPathPair.h) that fn_710008d4c0 builds and fn_710008d8e8
 // destroys, as src/game_hi/fn_71011b69d8.cpp names it.
 
-void fn_710007c144(UnkHashStream_0x38*);
-
 // The file read into memory: the in-memory file and two words the opener sets.
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 
 struct UnkIdRange_ovo0318 {
     u16 first;

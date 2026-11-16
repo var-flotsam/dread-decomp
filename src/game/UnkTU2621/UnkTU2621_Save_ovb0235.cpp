@@ -352,7 +352,6 @@ bool fn_7100fc7c5c(UnkDirIter_b0235* it);
 bool fn_7100fc7b78(UnkDirIter_b0235* it);
 UnkInlineString_b0235 fn_7100fc7c7c(UnkDirIter_b0235* it);
 void fn_7100fc7d88(UnkDirIter_b0235* it, base::global::CRntFile* file);
-void fn_710007c144(UnkHashStream_0x38* s);
 bool fn_7100fc7d58(UnkDirIter_b0235* it);
 void fn_7100fc7cfc(UnkDirIter_b0235* it, base::global::CRntFile* file);
 extern const char g_unk_710164784b;  // the path separator

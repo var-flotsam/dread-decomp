@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkHandler_71011a91c4;
 struct UnkFxObjectPool_ovb0135;
 void fn_710104da24(UnkFxObjectPool_ovb0135* self);
 void fn_710104e720(void*);
+u32 fn_710104de7c(UnkHandler_71011a91c4* h);

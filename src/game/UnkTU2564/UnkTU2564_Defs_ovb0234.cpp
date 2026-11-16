@@ -23,9 +23,11 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2564.h"
 #include "game/UnkTU32.h"
+#include "game/UnkTU56.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
@@ -46,8 +48,6 @@ struct UnkPathPairTemp_b45a1 {
 };
 
 // The file read into memory and two words the opener sets (+0x38 is zero after a good read).
-
-bool fn_710007c1ac(UnkFileReader* self, const UnkStrPair_0x10* path, const base::global::CRntString* mode);
 
 // This unit's parser callbacks.
 extern UnkParseCallbacks g_unk_71727c8d90 __attribute__((visibility("hidden")));
@@ -212,7 +212,6 @@ struct UnkMovedStrId_b0234 {
     }
 };
 
-extern void* g_unk_7101a1b678[];
 using UnkString40_b0234 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
 // Copied as a block.
