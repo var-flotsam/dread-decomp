@@ -1,5 +1,6 @@
 // Static initialiser of a reflected unit: the header ids, then the unit's own statics and
 // registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
+#include "game/GUI/CMissionLog.h"
 #include "UnkStaticInitS7.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CCollectionType.h"
@@ -44,12 +45,9 @@ extern UnkPropertyEx<> g_unk_7172759f98;
 extern UnkPropertyEx<> g_unk_717275abd8;
 extern UnkPropertyEx<> g_unk_717275ac98;
 extern UnkStrIdBase g_unk_717275acd8;
-extern UnkEnumType g_unk_7172764a30;
-extern UnkPropertyEx<> g_unk_717275ace0;
 extern void* g_unk_7101a97630[];
 void fn_7100ae25d0(void* p);
 void fn_7100ae04dc(void* p);
-extern UnkPropertyEx<> g_unk_717275ad20;
 extern UnkStrIdBase g_unk_717275ad60;
 extern void* g_unk_7101a97688[];
 void fn_7100ae272c(void* p);

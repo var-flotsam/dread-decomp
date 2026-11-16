@@ -1809,7 +1809,7 @@ address,size,name,name_source,subsystem,status
 0x7100b58f24,1196,fn_7100b58f24,unknown,unknown,U
 0x7100b593d0,420,fn_7100b593d0,unknown,unknown,O
 0x7100b59574,284,fn_7100b59574,unknown,unknown,O
-0x7100b59690,864,fn_7100b59690,unknown,unknown,U
+0x7100b59690,864,fn_7100b59690,unknown,unknown,O
 0x7100b599f0,296,fn_7100b599f0,unknown,unknown,O
 0x7100b59b18,64,fn_7100b59b18,unknown,unknown,O
 0x7100b59b58,184,fn_7100b59b58,unknown,unknown,O
@@ -1922,8 +1922,8 @@ address,size,name,name_source,subsystem,status
 0x7100b5c0d0,444,fn_7100b5c0d0,unknown,gui?,O
 0x7100b5c28c,348,fn_7100b5c28c,unknown,gui?,O
 0x7100b5c3e8,440,fn_7100b5c3e8,unknown,gui?,O
-0x7100b5c5a0,880,fn_7100b5c5a0,unknown,gui?,U
-0x7100b5c910,736,fn_7100b5c910,unknown,gui?,U
+0x7100b5c5a0,880,fn_7100b5c5a0,unknown,gui?,O
+0x7100b5c910,736,fn_7100b5c910,unknown,gui?,O
 0x7100b5cbf0,216,fn_7100b5cbf0,unknown,gui?,O
 0x7100b5ccc8,12,fn_7100b5ccc8,unknown,gui?,O
 0x7100b5ccd4,24,fn_7100b5ccd4,unknown,gui?,O
@@ -1935,7 +1935,7 @@ address,size,name,name_source,subsystem,status
 0x7100b5cf20,224,fn_7100b5cf20,unknown,gui?,O
 0x7100b5d000,100,fn_7100b5d000,unknown,gui?,O
 0x7100b5d064,84,fn_7100b5d064,unknown,gui?,O
-0x7100b5d0c0,1664,fn_7100b5d0c0,unknown,gui?,U
+0x7100b5d0c0,1664,fn_7100b5d0c0,unknown,gui?,O
 0x7100b5d740,4,GUI::CNewGameButton::refl_AddAttributes,reflection,gui,O
 0x7100b5d744,244,GUI::CNewGameButton::refl_GetClass,reflection,gui,O
 0x7100b5d838,4,GUI::CNewGameButton::refl_AddFields,reflection,gui,O

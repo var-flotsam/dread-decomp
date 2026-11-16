@@ -3,6 +3,7 @@
 // CSpawnGroupComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2703,
 // 0x71011173fc-0x7101120afc). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "game/UnkTUProperty.h"
 #include "types.h"
 
 struct UnkSpawnGroupKey;
@@ -11,3 +12,5 @@ UnkSubAreaEntityList* fn_7101119514();
 void fn_7101119a50(void* p);
 extern UnkSpawnGroupKey g_unk_7172a067c0 __attribute__((visibility("hidden")));
 void fn_710111fd80(void*, void*);
+extern UnkProperty g_unk_7172a065e0;
+extern UnkProperty g_unk_7172a06608;

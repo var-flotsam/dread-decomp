@@ -8,14 +8,13 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"
+#include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
-
-extern UnkProperty g_unk_7172a065e0;
 
 struct UnkSpawnGroupValue_b49 {
     union {

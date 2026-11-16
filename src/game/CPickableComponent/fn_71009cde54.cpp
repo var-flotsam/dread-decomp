@@ -2,6 +2,7 @@
 // their hash), else loads the chunk and, when that fails, formats and reports the error message.
 #include <stdarg.h>
 #include "base/global/CRntString.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "types.h"
@@ -18,8 +19,6 @@ struct UnkAllocator {
     virtual void* Alloc(u64 size, u64 align, u32 flags);
     virtual void Free(void* p);
 };
-
-extern void* g_unk_7101a1b750[];
 
 struct UnkStrStorage {
     void* vtable;

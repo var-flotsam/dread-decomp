@@ -21,6 +21,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2666.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU341.h"
@@ -410,7 +411,6 @@ s32 fn_7101084b60(lua_State* L) {
 }
 
 struct UnkUserDataOwner;
-extern CStrId g_unk_7172a01968[2] __attribute__((visibility("hidden")));
 
 s32 fn_71010798e0(lua_State* L) {
     bool first = false;

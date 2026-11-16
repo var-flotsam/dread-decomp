@@ -8,9 +8,8 @@
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2599.h"
 #include "types.h"
-
-extern char g_unk_7101cab298[];
 
 template <char* Vtable, u64 Size>
 struct UnkIdValueEraseTag_A6_b76;

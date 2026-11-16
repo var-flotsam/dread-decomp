@@ -10,6 +10,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/CRntString.h"
 #include "types.h"
 
 // A section's properties as parallel arrays: 24-byte values and the ids that name them. They
@@ -112,3 +113,4 @@ void fn_7101047ea8(void* self);
 
 // Whether the section `section` names has a property named `name` (src/game/CBlackboard.cpp).
 bool fn_71010474f4(CBlackboard* self, const base::global::CStrId& section, const base::global::CStrId& name);
+bool fn_7100395c38(CBlackboard::CSection* section, const void* key, base::global::CRntString* out);

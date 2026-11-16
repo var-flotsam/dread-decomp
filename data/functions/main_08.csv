@@ -2129,7 +2129,7 @@ address,size,name,name_source,subsystem,status
 0x710086427c,72,fn_710086427c,unknown,unknown,O
 0x71008642c4,176,fn_71008642c4,unknown,unknown,O
 0x7100864374,736,fn_7100864374,unknown,unknown,O
-0x7100864654,744,fn_7100864654,unknown,unknown,U
+0x7100864654,744,fn_7100864654,unknown,unknown,O
 0x710086493c,944,fn_710086493c,unknown,unknown,U
 0x7100864cec,328,fn_7100864cec,unknown,unknown,O
 0x7100864e34,476,fn_7100864e34,unknown,unknown,U
@@ -2142,7 +2142,7 @@ address,size,name,name_source,subsystem,status
 0x7100865558,384,fn_7100865558,unknown,unknown,O
 0x71008656d8,748,fn_71008656d8,unknown,unknown,U
 0x71008659c4,884,fn_71008659c4,unknown,unknown,U
-0x7100865d38,756,fn_7100865d38,unknown,unknown,U
+0x7100865d38,756,fn_7100865d38,unknown,unknown,O
 0x710086602c,8,fn_710086602c,unknown,unknown,O
 0x7100866034,756,fn_7100866034,unknown,unknown,U
 0x7100866328,8,fn_7100866328,unknown,unknown,O
@@ -3155,7 +3155,7 @@ address,size,name,name_source,subsystem,status
 0x710088f988,352,CShootActivatorComponent::refl_InitClass,reflection,game/components,O
 0x710088fae8,508,fn_710088fae8,unknown,unknown,O
 0x710088fce4,812,fn_710088fce4,unknown,unknown,U
-0x7100890010,1184,fn_7100890010,unknown,unknown,U
+0x7100890010,1184,fn_7100890010,unknown,unknown,O
 0x71008904b0,488,fn_71008904b0,unknown,unknown,O
 0x7100890698,36,fn_7100890698,unknown,unknown,O
 0x71008906bc,152,fn_71008906bc,unknown,unknown,O
@@ -3284,7 +3284,7 @@ address,size,name,name_source,subsystem,status
 0x7100894388,60,fn_7100894388,unknown,unknown,O
 0x71008943c4,284,fn_71008943c4,unknown,unknown,O
 0x71008944e0,48,fn_71008944e0,unknown,unknown,O
-0x7100894510,496,fn_7100894510,unknown,unknown,U
+0x7100894510,496,fn_7100894510,unknown,unknown,O
 0x7100894700,80,fn_7100894700,unknown,unknown,O
 0x7100894750,56,fn_7100894750,unknown,unknown,O
 0x7100894788,12,fn_7100894788,unknown,unknown,O

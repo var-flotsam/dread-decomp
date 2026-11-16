@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2620.h"
 #include "game/UnkTU2677.h"
@@ -51,7 +52,6 @@ struct UnkInlineString {
     u64 field_0xb8;
     u32 field_0xc0;
 };
-extern void* g_unk_7101a1b750[];
 
 struct UnkPathIds;
 

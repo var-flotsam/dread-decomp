@@ -23,6 +23,7 @@
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU25.h"
@@ -658,8 +659,6 @@ void fn_710102ab40(UnkStrIdMap_A6_b75<UnkSoundRecord18_b0038>* self,
                    UnkStrIdIterValue_A6_b75<UnkSoundRecord18_b0038>* out) {
     UnkStrIdMapEnd_A6_b75(self, out);
 }
-
-extern void* g_unk_7101a1b750[];
 
 // A string with 0x80 bytes of inline storage (as in src/base/snd/CSoundSystemATK.cpp).
 struct UnkSoundInlineString_b0038 {
