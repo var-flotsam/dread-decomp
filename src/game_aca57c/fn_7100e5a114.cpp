@@ -1,6 +1,7 @@
 // Shrink-to-fit of a container of two parallel arrays (records and their string ids) sharing a
 // count and capacity: both are reallocated to the count, the elements moved over (each source
 // destroyed) and the old arrays freed.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
@@ -86,15 +87,7 @@ struct UnkRecord60 {
     UnkRecord60(UnkRecord60&& other) = default;
 };
 
-struct UnkRecordTable {
-    UnkRecord60* records;
-    UnkTableId* ids;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    UnkAllocator* allocator;
-};
+using UnkRecordTable = base::global::CRntSmallDictionary<UnkTableId, UnkRecord60>;
 
 // NON_MATCHING(minor): the id copy loop addresses the source by index instead of a moving pointer
 void fn_7100e5a114(UnkRecordTable* self) {
@@ -103,22 +96,22 @@ void fn_7100e5a114(UnkRecordTable* self) {
     UnkRecord60* records =
         static_cast<UnkRecord60*>(self->allocator->vf_0x40((u64)self->count * sizeof(UnkRecord60), 8, self->flags));
     UnkTableId* ids = static_cast<UnkTableId*>(self->allocator->vf_0x40((u64)self->count * sizeof(UnkTableId), 8, self->flags));
-    if (UnkRecord60* old = self->records) {
+    if (UnkRecord60* old = self->values) {
         UnkRecord60* dst = records;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
             new (dst) UnkRecord60(static_cast<UnkRecord60&&>(*old));
             fn_7100e4a1d0(old);
         }
-        self->allocator->vf_0x48(self->records);
+        self->allocator->vf_0x48(self->values);
     }
-    if (UnkTableId* old = self->ids) {
+    if (UnkTableId* old = self->keys) {
         for (u64 i = 0; (u32)i < self->count; ++i, ++old) {
             new (&ids[i]) UnkTableId(*old);
             old->~UnkTableId();
         }
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->records = records;
-    self->ids = ids;
+    self->values = records;
+    self->keys = ids;
     self->capacity = self->count;
 }

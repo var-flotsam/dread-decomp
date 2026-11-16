@@ -15,21 +15,11 @@ struct UnkMovePair_l01ead8 {
     base::UnkPooledStrId<g_unk_7101d47200> path;
 };
 
-struct UnkMovePairVec_l01ead8 {
-    UnkMovePair_l01ead8* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-static inline void Reserve_l01ead8(UnkMovePairVec_l01ead8* self, u32 n) {
+static inline void Reserve_l01ead8(base::global::CRntVector<UnkMovePair_l01ead8>* self, u32 n) {
     fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
 }
 
-void fn_710001ead8(UnkMovePairVec_l01ead8* self, UnkMovePair_l01ead8* value, u32 index) {
+void fn_710001ead8(base::global::CRntVector<UnkMovePair_l01ead8>* self, UnkMovePair_l01ead8* value, u32 index) {
     u32 n = self->count;
     u32 cap = self->capacity;
     UnkMovePair_l01ead8* slot;

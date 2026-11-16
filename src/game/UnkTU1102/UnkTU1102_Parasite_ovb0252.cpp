@@ -154,9 +154,7 @@ struct UnkXParasitePartHandle_8208 {
     u8 field_0xb;
 };
 
-struct UnkXParasiteVec3_8208 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 void XParasiteAI_SetEffectActive(UnkXParasiteAI* self, bool on) {
     if (self->field_0x14724 == 4)

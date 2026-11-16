@@ -2,6 +2,7 @@
 // when fn_7100df5740 of the game manager says no, or when the owner's target (fn_7100d7c990) is farther away
 // than the tunable radius at g_unk_71726cb3f8 + 0x2c; otherwise the base attack's test (fn_7100360b84) decides.
 // Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAttack.h"
 #include "game/UnkActor.h"
@@ -13,11 +14,9 @@ using base::reflection::UnkTunable;
 
 extern UnkTunable g_unk_71726cb3f8;
 
-struct UnkPos_b0236f {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
-static inline UnkPos_b0236f Pos(const UnkActor* a) {
+static inline CVector3D Pos(const UnkActor* a) {
     return {a->field_0x44, a->field_0x54, a->field_0x64};
 }
 
@@ -27,8 +26,8 @@ bool fn_710046971c(CAttack* self, void* arg, u32 mode) {
         return false;
     UnkActor* target = fn_7100d7c990(self->field_0x8);
     if (target) {
-        UnkPos_b0236f t = Pos(target);
-        UnkPos_b0236f p = Pos(self->field_0x8);
+        CVector3D t = Pos(target);
+        CVector3D p = Pos(self->field_0x8);
         f32 dx = t.x - p.x;
         f32 dy = t.y - p.y;
         f32 dz = t.z - p.z;

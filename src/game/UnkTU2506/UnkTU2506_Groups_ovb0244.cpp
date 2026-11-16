@@ -9,6 +9,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkSList.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"
@@ -125,15 +126,7 @@ void fn_7100d4b0f4(UnkGroupArray_ovb0244* self, u32 capacity) {
 }
 
 // Two parallel arrays of 8-byte values sharing a count, capacity, step, flags and allocator.
-struct UnkWordPairs_ovb0244 {
-    u64* first;
-    u64* second;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkWordPairs_ovb0244 = base::global::CRntSmallDictionary<u64, u64>;
 
 struct UnkWorld_ovb0244 {
     u8 pad_0x0[0x118];
@@ -148,23 +141,23 @@ void fn_7100d47d1c(UnkWorld_ovb0244* self, void* a, void* b) {
         if (n < grown) {
             u64* first = static_cast<u64*>(p->allocator->vf_0x40((u64)grown * 8, 8, p->flags));
             u64* second = static_cast<u64*>(p->allocator->vf_0x40((u64)grown * 8, 8, p->flags));
-            if (p->first) {
-                __builtin_memcpy(first, p->first, (u64)p->count * 8);
-                p->allocator->vf_0x48(p->first);
+            if (p->values) {
+                __builtin_memcpy(first, p->values, (u64)p->count * 8);
+                p->allocator->vf_0x48(p->values);
             }
-            if (p->second) {
-                __builtin_memcpy(second, p->second, (u64)p->count * 8);
-                p->allocator->vf_0x48(p->second);
+            if (p->keys) {
+                __builtin_memcpy(second, p->keys, (u64)p->count * 8);
+                p->allocator->vf_0x48(p->keys);
             }
             n = p->count;
-            p->first = first;
-            p->second = second;
+            p->values = first;
+            p->keys = second;
             p->capacity = grown;
         }
     }
     // The stores go through an untyped path: the original reloads the array pointers and count after them.
-    __builtin_memcpy(&p->second[n], &a, 8);
-    __builtin_memcpy(&p->first[p->count], &b, 8);
+    __builtin_memcpy(&p->keys[n], &a, 8);
+    __builtin_memcpy(&p->values[p->count], &b, 8);
     p->count = p->count + 1;
 }
 

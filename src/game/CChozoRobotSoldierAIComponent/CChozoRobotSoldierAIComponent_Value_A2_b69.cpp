@@ -3,6 +3,7 @@
 // fn_71011057fc answers, else +0xa68 when the flag is set), into *out; false when there is none.
 // Names and layouts are placeholders.
 #include "game/CDamageSourceFactor.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkRobotSoldierTable_A2_b69;
@@ -20,8 +21,6 @@ struct UnkRobotSoldierAI_A2_b69 {
     u8 pad_0x149a8[0x27790 - 0x149a8];
     bool flag;  // +0x27790
 };
-
-bool fn_71011057fc(UnkRobotSoldierAI_A2_b69* self);
 
 bool fn_7100471cb4(UnkRobotSoldierAI_A2_b69* self, u32 index, f32* out) {
     UnkRobotSoldierTable_A2_b69* table;

@@ -11,6 +11,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CAsset.h"
@@ -74,15 +75,7 @@ struct UnkSoundIdResource_b0038 {
 };
 
 // Two parallel arrays sharing one count: the records and their string ids.
-struct UnkSoundIdTable_b0038 {
-    UnkSoundIdResource_b0038* records;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkSoundIdTable_b0038 = base::global::CRntSmallDictionary<CStrId, UnkSoundIdResource_b0038>;
 
 // Moves both arrays into ones of exactly `count` entries (the records copied, then destroyed).
 void fn_710102a344(UnkSoundIdTable_b0038* self) {
@@ -91,24 +84,24 @@ void fn_710102a344(UnkSoundIdTable_b0038* self) {
     auto* records = static_cast<UnkSoundIdResource_b0038*>(
         self->allocator->vf_0x40((u64)self->count * sizeof(UnkSoundIdResource_b0038), 8, self->flags));
     auto* ids = static_cast<CStrId*>(self->allocator->vf_0x40((u64)self->count * sizeof(CStrId), 8, self->flags));
-    if (UnkSoundIdResource_b0038* src = self->records) {
+    if (UnkSoundIdResource_b0038* src = self->values) {
         UnkSoundIdResource_b0038* dst = records;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
             new (dst) UnkSoundIdResource_b0038(*src);
             fn_7100026f70(reinterpret_cast<UnkIdPair*>(src));
         }
-        self->allocator->vf_0x48(self->records);
+        self->allocator->vf_0x48(self->values);
     }
-    if (CStrId* old = self->ids) {
+    if (CStrId* old = self->keys) {
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j, ++old) {
             new (&ids[j]) CStrId(*old);
             old->Reset();
         }
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->records = records;
-    self->ids = ids;
+    self->values = records;
+    self->keys = ids;
     self->capacity = self->count;
 }
 
@@ -145,24 +138,24 @@ void fn_7101029ec8(UnkSoundIdTable_b0038* self, u32 capacity) {
     auto* records = static_cast<UnkSoundIdResource_b0038*>(
         self->allocator->vf_0x40((u64)capacity * sizeof(UnkSoundIdResource_b0038), 8, self->flags));
     auto* ids = static_cast<CStrId*>(self->allocator->vf_0x40((u64)capacity * sizeof(CStrId), 8, self->flags));
-    if (UnkSoundIdResource_b0038* src = self->records) {
+    if (UnkSoundIdResource_b0038* src = self->values) {
         UnkSoundIdResource_b0038* dst = records;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
             new (dst) UnkSoundIdResource_b0038(*src);
             fn_7100026f70(reinterpret_cast<UnkIdPair*>(src));
         }
-        self->allocator->vf_0x48(self->records);
+        self->allocator->vf_0x48(self->values);
     }
-    if (CStrId* old = self->ids) {
+    if (CStrId* old = self->keys) {
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j, ++old) {
             new (&ids[j]) UnkSoundKeyId_b0038(static_cast<UnkSoundKeyId_b0038&&>(*reinterpret_cast<UnkSoundKeyId_b0038*>(old)));
             reinterpret_cast<UnkSoundKeyId_b0038*>(old)->~UnkSoundKeyId_b0038();
         }
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->records = records;
-    self->ids = ids;
+    self->values = records;
+    self->keys = ids;
     self->capacity = capacity;
 }
 
@@ -179,10 +172,10 @@ __attribute__((always_inline)) static inline UnkSoundIdResource_b0038* Add(UnkSo
                                             const UnkSoundIdResource_b0038* record) {
     if (self->count == self->capacity)
         fn_7101029ec8(self, self->count + self->step);
-    CopyId(&self->ids[self->count], key);
-    new (&self->records[self->count]) UnkSoundIdResource_b0038(*record);
+    CopyId(&self->keys[self->count], key);
+    new (&self->values[self->count]) UnkSoundIdResource_b0038(*record);
     u32 n = ++self->count;
-    return n ? self->records + n - 1 : self->records;
+    return n ? self->values + n - 1 : self->values;
 }
 
 UnkSoundIdResource_b0038* fn_710102a578(UnkSoundIdTable_b0038* self, const CStrId* key,
@@ -198,8 +191,8 @@ UnkSoundIdResource_b0038* fn_710102a6bc(UnkSoundIdTable_b0038* self, const CStrI
 // The copy constructor: the growth parameters copied, room for the other's count reserved
 // (fn_7101029ec8), then the records and the ids copied.
 void fn_7101029d40(UnkSoundIdTable_b0038* self, const UnkSoundIdTable_b0038* other) {
-    self->records = nullptr;
-    self->ids = nullptr;
+    self->values = nullptr;
+    self->keys = nullptr;
     self->count = 0;
     self->capacity = 0;
     self->step = other->step;
@@ -208,8 +201,8 @@ void fn_7101029d40(UnkSoundIdTable_b0038* self, const UnkSoundIdTable_b0038* oth
     fn_7101029ec8(self, other->count);
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i) {
-        UnkSoundIdResource_b0038* dst = &self->records[i];
-        const UnkSoundIdResource_b0038* src = &other->records[i];
+        UnkSoundIdResource_b0038* dst = &self->values[i];
+        const UnkSoundIdResource_b0038* src = &other->values[i];
         new (&dst->id) CStrId(src->id);
         dst->path.data = src->path.data;
         if (&g_unk_7101d47200->empty != dst->path.data)
@@ -226,7 +219,7 @@ void fn_7101029d40(UnkSoundIdTable_b0038* self, const UnkSoundIdTable_b0038* oth
     }
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i)
-        CopyId(&self->ids[i], &other->ids[i]);
+        CopyId(&self->keys[i], &other->keys[i]);
 }
 
 // A pair of values held in place (state 1) or by reference (state 2).
@@ -287,23 +280,23 @@ void fn_71010295f0(UnkSoundIdResourcePair_b0038* self, UnkSoundIdResourcePair_b0
 
 // The ids as the moves see them.
 static inline UnkSoundKeyId_b0038* KeyIds(UnkSoundIdTable_b0038* self) {
-    return reinterpret_cast<UnkSoundKeyId_b0038*>(self->ids);
+    return reinterpret_cast<UnkSoundKeyId_b0038*>(self->keys);
 }
 
 // Removes the record at `pos` and its id: the last record and id are moved into its place.
 // Returns the record now at that place.
 UnkSoundIdResource_b0038* fn_710102a800(UnkSoundIdTable_b0038* self, UnkSoundIdResource_b0038* pos) {
-    u32 i = pos - self->records;
-    fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->records[i]));
-    self->ids[i].Reset();
+    u32 i = pos - self->values;
+    fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->values[i]));
+    self->keys[i].Reset();
     if (i != self->count - 1) {
-        new (&self->records[i]) UnkSoundIdResource_b0038(self->records[self->count - 1]);
-        fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->records[self->count - 1]));
+        new (&self->values[i]) UnkSoundIdResource_b0038(self->values[self->count - 1]);
+        fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->values[self->count - 1]));
         new (&KeyIds(self)[i]) UnkSoundKeyId_b0038(static_cast<UnkSoundKeyId_b0038&&>(KeyIds(self)[self->count - 1]));
         KeyIds(self)[self->count - 1].~UnkSoundKeyId_b0038();
     }
     --self->count;
-    return &self->records[i];
+    return &self->values[i];
 }
 
 // An object owning a table, with an owned polymorphic object first: destroyed by fn_710102796c.
@@ -320,19 +313,19 @@ struct UnkSoundOwned_b0038 {
 
 void fn_710102796c(UnkSoundOwned_b0038* self) {
     UnkSoundIdTable_b0038* t = &self->table;
-    if (t->ids && t->count) {
+    if (t->keys && t->count) {
         for (u64 i = 0; i < t->count; ++i)
-            t->ids[i].Reset();
+            t->keys[i].Reset();
     }
-    if (t->records && t->count) {
+    if (t->values && t->count) {
         for (u64 i = 0; i < t->count; ++i)
-            fn_7100026f70(reinterpret_cast<UnkIdPair*>(&t->records[i]));
+            fn_7100026f70(reinterpret_cast<UnkIdPair*>(&t->values[i]));
     }
     t->count = 0;
-    if (t->ids)
-        t->allocator->vf_0x48(t->ids);
-    if (t->records)
-        t->allocator->vf_0x48(t->records);
+    if (t->keys)
+        t->allocator->vf_0x48(t->keys);
+    if (t->values)
+        t->allocator->vf_0x48(t->values);
     UnkSoundOwnerBase_b0038* p = self->owner;
     self->owner = nullptr;
     if (p)
@@ -394,8 +387,8 @@ __attribute__((always_inline)) static inline void Construct(UnkSoundOwnerObject_
     fn_7100016ad8(self);
     self->vtable = g_unk_7101cac688 + 2;
     fn_7101028988(&self->objects, 0x40, 0xb);
-    self->table.records = nullptr;
-    self->table.ids = nullptr;
+    self->table.values = nullptr;
+    self->table.keys = nullptr;
     self->table.count = 0;
     self->table.capacity = 0;
     self->table.step = 10;
@@ -434,8 +427,8 @@ void fn_7101023378(UnkSoundTableObject_b0038* self) {
     fn_710102849c(self->buckets, nullptr, 0xe);
     self->vtable = g_unk_7101cac5d8 + 2;
     self->vtable2 = g_unk_7101cac5d8 + 12;
-    self->table.records = nullptr;
-    self->table.ids = nullptr;
+    self->table.values = nullptr;
+    self->table.keys = nullptr;
     self->table.count = 0;
     self->table.capacity = 0;
     self->table.step = 10;

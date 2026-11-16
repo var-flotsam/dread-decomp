@@ -4,6 +4,7 @@
 // the definition's flag (+0xec) is set, moves the owner to the stored position (+0x3b4) and marks
 // it moved. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/math/CVectorOps.h"
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/CTimelineComponent.h"
 #include "game/UnkGameManager.h"
@@ -114,16 +115,10 @@ struct UnkFarTunable_lac6850 {
     f32 distance;  // 0x34
 };
 
-struct Vec3_lac6850 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
-static inline Vec3_lac6850 Pos(const UnkPlayerPos_lac6850* p) {
+static inline CVector3D Pos(const UnkPlayerPos_lac6850* p) {
     return {p->x, p->y, p->z};
-}
-
-static inline Vec3_lac6850 operator-(const Vec3_lac6850& a, const Vec3_lac6850& b) {
-    return {a.x - b.x, a.y - b.y, a.z - b.z};
 }
 
 bool fn_7100ac6850(UnkFarMovement_lac6850* self, UnkFarDefinition_lac6850* def) {
@@ -133,13 +128,9 @@ bool fn_7100ac6850(UnkFarMovement_lac6850* self, UnkFarDefinition_lac6850* def) 
     if (!player)
         return false;
     UnkFarOwner_lac6850* owner = self->owner;
-    Vec3_lac6850 a = Pos(owner);
-    Vec3_lac6850 b = Pos(player);
-    f32 dx = a.x - b.x;
-    f32 dy = a.y - b.y;
-    f32 distSq = dx * dx + dy * dy;
-    f32 dz = a.z - b.z;
-    distSq += dz * dz;
+    CVector3D a = Pos(owner);
+    CVector3D b = Pos(player);
+    f32 distSq = DistanceSq(a, b);
     f32 limit = reinterpret_cast<const UnkFarTunable_lac6850*>(&g_unk_71727bc558)->distance;
     if (!(distSq > limit * limit))
         return false;

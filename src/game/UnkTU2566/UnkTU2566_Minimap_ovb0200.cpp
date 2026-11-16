@@ -52,7 +52,7 @@ UnkIdSlot_b0200* fn_7100eb0058(void* array, u32 index) {
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0)
-            cap = (index / self->step + 1) * self->step;
+            cap = self->GrownCapacity(index);
         fn_7100b48af4(reinterpret_cast<UnkIdValuesArray*>(self), cap);
         u32 n = index + 1;
         fn_7100b48af4(reinterpret_cast<UnkIdValuesArray*>(self), n);
@@ -407,7 +407,7 @@ UnkIdValuesVector_b0200* fn_7100eafb70(UnkIdValuesVector_b0200* self, const UnkI
             u32 n = self->count;
             u32 new_capacity = self->capacity;
             if (new_capacity <= n && self->step != 0)
-                new_capacity = (n / self->step + 1) * self->step;
+                new_capacity = self->GrownCapacity(n);
             if ((s32)n >= (s32)new_capacity)
                 for (;;) {
                 }
@@ -504,7 +504,7 @@ void fn_7100eafeb8(base::global::CRntVector<UnkIdWords_b0200c>* self, UnkIdWords
     u32 n = self->count;
     if (n == index) {
         if (cap <= n && self->step != 0)
-            cap = (index / self->step + 1) * self->step;
+            cap = self->GrownCapacity(index);
         if ((s32)cap <= (s32)index)
             for (;;) {
             }
@@ -512,7 +512,7 @@ void fn_7100eafeb8(base::global::CRntVector<UnkIdWords_b0200c>* self, UnkIdWords
         new (&self->data[self->count]) UnkIdWords_b0200c(static_cast<UnkIdWords_b0200c&&>(*value));
     } else {
         if (cap <= n && self->step != 0)
-            cap = (n / self->step + 1) * self->step;
+            cap = self->GrownCapacity(n);
         Grow(self, cap);
         for (u32 i = self->count - 1; i >= index; --i) {
             UnkIdWords_b0200c* q = &self->data[i];

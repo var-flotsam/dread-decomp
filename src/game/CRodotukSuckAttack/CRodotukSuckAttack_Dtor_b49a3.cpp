@@ -9,32 +9,25 @@
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkRefNode_b49a3 {
     UnkRefObject* ref;
     UnkRefNode_b49a3* next;
 };
 
-struct UnkRefList_b49a3 {
-    void** vtable;  // 0x28
-    u32 count;  // 0x30
-    UnkRefNode_b49a3* head;  // 0x38
-    UnkRefNode_b49a3* tail;  // 0x40
-    base::UnkAllocator* allocator;  // 0x48
-};
-
 struct UnkRodotukSuckAttack_b49a3 {
     void** vtable;
     u8 pad_0x8[0x20];
-    UnkRefList_b49a3 list;  // 0x28
-    u8 pad_0x50[0x20];
+    base::UnkVtableList<UnkRefNode_b49a3> list;  // 0x28
+    u8 pad_0x58[0x18];
     u8 field_0x70[0x8];
 };
 
 __attribute__((always_inline)) static inline void Destroy_b49a3(UnkRodotukSuckAttack_b49a3* self) {
     self->vtable = g_unk_7101a5da10 + 2;
     fn_7100d62bd8(self->field_0x70);
-    UnkRefList_b49a3* list = &self->list;
+    base::UnkVtableList<UnkRefNode_b49a3>* list = &self->list;
     list->vtable = g_unk_7101a5db18 + 2;
     for (UnkRefNode_b49a3* node = list->head; node;) {
         UnkRefNode_b49a3* next = node->next;

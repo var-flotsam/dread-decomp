@@ -3,6 +3,7 @@
 #include <new>
 #include <string.h>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "types.h"
 
@@ -31,15 +32,11 @@ struct UnkEntry_l6fb648 {
 };
 static_assert(sizeof(UnkEntry_l6fb648) == 0x30, "");
 
-struct UnkEntryPairArray_l6fb648 {
-    UnkEntry_l6fb648* entries;
-    u32* keys;
-    u32 count;     // 0x10
-    u32 capacity;  // 0x14
-    u32 step;
-    u32 flags;     // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
-};
+// count: 0x10
+// capacity: 0x14
+// flags: 0x1c
+// allocator: 0x20
+using UnkEntryPairArray_l6fb648 = base::global::CRntSmallDictionary<u32, UnkEntry_l6fb648>;
 
 void fn_71006fb648(UnkEntryPairArray_l6fb648* self, u32 capacity) {
     if (self->capacity >= capacity)
@@ -47,19 +44,19 @@ void fn_71006fb648(UnkEntryPairArray_l6fb648* self, u32 capacity) {
     UnkEntry_l6fb648* entries = static_cast<UnkEntry_l6fb648*>(
         self->allocator->vf_0x40((u64)capacity * sizeof(UnkEntry_l6fb648), 8, self->flags));
     u32* keys = static_cast<u32*>(self->allocator->vf_0x40((u64)capacity * sizeof(u32), 8, self->flags));
-    if (UnkEntry_l6fb648* old = self->entries) {
+    if (UnkEntry_l6fb648* old = self->values) {
         UnkEntry_l6fb648* dst = entries;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
             new (dst) UnkEntry_l6fb648(static_cast<UnkEntry_l6fb648&&>(*old));
             old->~UnkEntry_l6fb648();
         }
-        self->allocator->vf_0x48(self->entries);
+        self->allocator->vf_0x48(self->values);
     }
     if (self->keys) {
         memcpy(keys, self->keys, (u64)self->count * 4);
         self->allocator->vf_0x48(self->keys);
     }
-    self->entries = entries;
+    self->values = entries;
     self->keys = keys;
     self->capacity = capacity;
 }

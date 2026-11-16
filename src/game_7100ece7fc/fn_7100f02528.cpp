@@ -2,6 +2,7 @@
 // (keyed in the first, as in fn_7100f00af4's list): restore the vtable, release each node's
 // reference and free the node through the list's allocator, then empty the list (the deleting
 // ones then free the object).
+#include "base/UnkVtableList.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU2578.h"
 #include "types.h"
@@ -38,33 +39,12 @@ struct UnkRefNode {
     UnkRefNode* next;
 };
 
-template <class Node>
-struct UnkList {
-    u32 count;
-    Node* head;
-    Node* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    ~UnkList() {
-        for (Node* n = head; n;) {
-            Node* next = n->next;
-            n->ref.~UnkRef();
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
-};
-
 template <void** Vtable, class Node>
-struct UnkRefListOwner {
-    void** vtable;
-    UnkList<Node> list;
-
-    ~UnkRefListOwner() { vtable = &Vtable[2]; }
+struct UnkRefListOwner : base::UnkVtableList<Node> {
+    ~UnkRefListOwner() {
+        this->vtable = &Vtable[2];
+        this->ClearDestroying();
+    }
 };
 
 void fn_7100f02528(UnkRefListOwner<g_unk_7101caa208, UnkKeyRefNode>& self) {

@@ -335,18 +335,8 @@ struct UnkRec50_a {
 };
 static_assert(sizeof(UnkRec50_a) == 0x50, "layout");
 
-struct UnkRec50Vec_a {
-    UnkRec50_a* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 void fn_7100f85d24(UnkRecord50Vec_b56* vec, u32 n) {
-    UnkRec50Vec_a* self = reinterpret_cast<UnkRec50Vec_a*>(vec);
+    base::global::CRntVector<UnkRec50_a>* self = reinterpret_cast<base::global::CRntVector<UnkRec50_a>*>(vec);
     if (self->capacity < n) {
         UnkRec50_a* mem = static_cast<UnkRec50_a*>(self->allocator->vf_0x40((u64)n * sizeof(UnkRec50_a), 8, self->flags));
         if (self->data) {

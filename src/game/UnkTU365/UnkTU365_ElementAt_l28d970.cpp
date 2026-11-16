@@ -2,19 +2,18 @@
 // growing the array up to it with zeroed records: CRntVector::GrowAt written out. Names and layouts
 // are placeholders.
 #include "base/global/CRntVector.h"
+#include "base/math/CVector.h"
 #include "types.h"
 
-struct UnkNavVec_l28d970 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 // Two points, each with two words; copied member by member.
 struct UnkNavRecord_l28d970 {
-    UnkNavVec_l28d970 point0 = {};
+    CVector3D point0 = {};
     u32 field_0xc = 0;
     u32 field_0x10 = 0;
     u8 pad_0x14[4];
-    UnkNavVec_l28d970 point1 = {};
+    CVector3D point1 = {};
     u32 field_0x24 = 0;
     u32 field_0x28 = 0;
     u8 pad_0x2c[4];
@@ -32,7 +31,7 @@ UnkNavRecord_l28d970* fn_710028d970(base::global::CRntVector<UnkNavRecord_l28d97
         // First to the next multiple of the step, then to exactly index + 1 records.
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0) {
-            u32 grown = (index / self->step + 1) * self->step;
+            u32 grown = self->GrownCapacity(index);
             if (cap < grown) {
                 self->Reserve(grown);
                 cap = grown;

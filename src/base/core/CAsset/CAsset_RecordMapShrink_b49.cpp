@@ -7,6 +7,7 @@
 
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
@@ -35,28 +36,10 @@ struct UnkAssetKeyedMap {
     }
 };
 
-struct UnkAssetPathIdVector {
-    UnkAssetPathId* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkAssetPathIdVector(UnkAssetPathIdVector&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
-};
-
 struct UnkRecord80 {
     UnkAssetKeyedMap<UnkStrIdPathPair, UnkAssetPathId> field_0x0;
     UnkAssetKeyedMap<UnkStrIdPathPair, UnkAssetPathId> field_0x28;
-    UnkAssetPathIdVector field_0x50;
+    base::global::CRntVector<UnkAssetPathId> field_0x50;
     UnkAssetPathId field_0x78;
 
     UnkRecord80(UnkRecord80&& other) = default;
@@ -64,15 +47,7 @@ struct UnkRecord80 {
 static_assert(sizeof(UnkRecord80) == 0x80, "UnkRecord80 layout");
 
 template <class V>
-struct UnkIdMap {
-    V* values;
-    UnkAssetStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdMap = base::global::CRntSmallDictionary<UnkAssetStrId, V>;
 
 void fn_710001871c(UnkIdMap<UnkRecord80>* self) {
     if (self->count != self->capacity) {

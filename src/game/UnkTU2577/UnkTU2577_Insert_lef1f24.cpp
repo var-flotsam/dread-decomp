@@ -50,7 +50,7 @@ void fn_7100ef1f24(base::global::CRntVector<UnkOwnedEntry_b190>* v, UnkOwnedEntr
     if (n == index) {
         u32 new_capacity = cap;
         if (cap <= n && v->step != 0)
-            new_capacity = (index / v->step + 1) * v->step;
+            new_capacity = v->GrownCapacity(index);
         if ((s32)new_capacity <= (s32)index)
             for (;;) {
             }
@@ -64,7 +64,7 @@ void fn_7100ef1f24(base::global::CRntVector<UnkOwnedEntry_b190>* v, UnkOwnedEntr
         }
     } else {
         if (cap <= n && v->step != 0) {
-            u32 grown = (n / v->step + 1) * v->step;
+            u32 grown = v->GrownCapacity(n);
             if (cap < grown) {
                 Entry* q = MoveTo(v, grown);
                 v->data = q;

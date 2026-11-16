@@ -4,6 +4,7 @@
 // facing (fn_7100450ef0). Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAIManager/CTunableAIManager.h"
@@ -49,13 +50,11 @@ void fn_71004530fc(UnkCommander_ovb0073* self, const UnkCommanderHit_ovb0073* hi
     self->field_0x15d71 = true;
 }
 
-struct UnkVec3_ovb0073 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkAabb_ovb0073 {
-    UnkVec3_ovb0073 min;
-    UnkVec3_ovb0073 max;
+    CVector3D min;
+    CVector3D max;
 };
 
 struct UnkCommanderTransform_ovb0073 {
@@ -87,9 +86,9 @@ UnkCommanderList_ovb0073* fn_7100459f94();
 static inline f32 Min_ovb0073(f32 a, f32 b) { return a < b ? a : b; }
 static inline f32 Max_ovb0073(f32 a, f32 b) { return a > b ? a : b; }
 
-static inline void Grow_ovb0073(UnkAabb_ovb0073* box, const UnkVec3_ovb0073& p) {
-    box->min = UnkVec3_ovb0073{Min_ovb0073(box->min.x, p.x), Min_ovb0073(box->min.y, p.y), Min_ovb0073(box->min.z, p.z)};
-    box->max = UnkVec3_ovb0073{Max_ovb0073(box->max.x, p.x), Max_ovb0073(box->max.y, p.y), Max_ovb0073(box->max.z, p.z)};
+static inline void Grow_ovb0073(UnkAabb_ovb0073* box, const CVector3D& p) {
+    box->min = CVector3D{Min_ovb0073(box->min.x, p.x), Min_ovb0073(box->min.y, p.y), Min_ovb0073(box->min.z, p.z)};
+    box->max = CVector3D{Max_ovb0073(box->max.x, p.x), Max_ovb0073(box->max.y, p.y), Max_ovb0073(box->max.z, p.z)};
 }
 
 // The base bounds, grown to take in a 600-unit square around each listed entry.
@@ -105,14 +104,14 @@ void fn_7100455554(UnkBoundsComponent* self, UnkAabb_ovb0073* out) {
         f32 x = t->x;
         f32 y = t->y;
         f32 z = t->z;
-        UnkVec3_ovb0073 lo = {x - 300.0f, y - 300.0f, z};
-        UnkVec3_ovb0073 hi = {x + 300.0f, y + 300.0f, z};
+        CVector3D lo = {x - 300.0f, y - 300.0f, z};
+        CVector3D hi = {x + 300.0f, y + 300.0f, z};
         Grow_ovb0073(out, lo);
         Grow_ovb0073(out, hi);
     }
 }
 
-static inline void Zero_ovb0073(UnkVec3_ovb0073* v) {
+static inline void Zero_ovb0073(CVector3D* v) {
     v->x = 0.0f;
     v->y = 0.0f;
     v->z = 0.0f;
@@ -159,7 +158,7 @@ struct UnkCommanderAI_ovb0073 {
     u8 pad_0x1144[0x15d71 - 0x1144];
     bool field_0x15d71;
     u8 pad_0x15d72[0x15ebc - 0x15d72];
-    UnkVec3_ovb0073 field_0x15ebc;
+    CVector3D field_0x15ebc;
 };
 
 template <const base::reflection::CClass* (*GetClass)()>
@@ -204,8 +203,8 @@ struct UnkCommanderPush_ovb0073 {
 void fn_7100451000(UnkCommanderPush_ovb0073* self, f32 dt);
 
 // Sets the actor's position through its vf_0xd0 (with the flag set).
-static inline void SetPosition_ovb0073(UnkActor* actor, UnkVec3_ovb0073* position) {
-    reinterpret_cast<void (***)(UnkActor*, UnkVec3_ovb0073*, bool)>(actor)[0][0xd0 / 8](actor, position, true);
+static inline void SetPosition_ovb0073(UnkActor* actor, CVector3D* position) {
+    reinterpret_cast<void (***)(UnkActor*, CVector3D*, bool)>(actor)[0][0xd0 / 8](actor, position, true);
 }
 
 // The base update (fn_71010c424c); then, once after a push was asked for, moves the target 250
@@ -217,7 +216,7 @@ void fn_7100450ef0(UnkCommanderPush_ovb0073* self, f32 dt) {
         if (UnkActor* target = fn_7100d7c990(self->actor)) {
             f32 y = target->field_0x54;
             f32 z = target->field_0x64;
-            UnkVec3_ovb0073 pos;
+            CVector3D pos;
             pos.y = y;
             pos.z = z;
             UnkActor* actor = self->actor;

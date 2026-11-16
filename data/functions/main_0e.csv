@@ -526,9 +526,9 @@ address,size,name,name_source,subsystem,status
 0x7100e225e4,352,fn_7100e225e4,unknown,game?,O
 0x7100e22744,816,fn_7100e22744,unknown,game?,U
 0x7100e22a74,1560,fn_7100e22a74,unknown,game?,U
-0x7100e2308c,1896,fn_7100e2308c,unknown,game?,U
-0x7100e237f4,1972,fn_7100e237f4,unknown,game?,U
-0x7100e23fa8,2008,fn_7100e23fa8,unknown,game?,U
+0x7100e2308c,1896,fn_7100e2308c,unknown,game?,O
+0x7100e237f4,1972,fn_7100e237f4,unknown,game?,O
+0x7100e23fa8,2008,fn_7100e23fa8,unknown,game?,O
 0x7100e24780,14780,fn_7100e24780,unknown,game?,U
 0x7100e2813c,1112,fn_7100e2813c,unknown,game?,U
 0x7100e28594,1112,fn_7100e28594,unknown,game?,U

@@ -12,6 +12,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
+#include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -33,13 +34,11 @@ extern void* g_unk_7101cac898[];
 
 // ---- Positions and bounds ----
 
-struct UnkPathVec3 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkPathBox {
-    UnkPathVec3 min;
-    UnkPathVec3 max;
+    CVector3D min;
+    CVector3D max;
 
     void Reset() {
         min.x = 3.4028235e38f;
@@ -49,13 +48,13 @@ struct UnkPathBox {
         max.y = -3.4028235e38f;
         max.z = -3.4028235e38f;
     }
-    static UnkPathVec3 Min(const UnkPathVec3& a, const UnkPathVec3& b) {
+    static CVector3D Min(const CVector3D& a, const CVector3D& b) {
         return {a.x < b.x ? a.x : b.x, a.y < b.y ? a.y : b.y, a.z < b.z ? a.z : b.z};
     }
-    static UnkPathVec3 Max(const UnkPathVec3& a, const UnkPathVec3& b) {
+    static CVector3D Max(const CVector3D& a, const CVector3D& b) {
         return {a.x > b.x ? a.x : b.x, a.y > b.y ? a.y : b.y, a.z > b.z ? a.z : b.z};
     }
-    void Add(const UnkPathVec3& lo, const UnkPathVec3& hi) {
+    void Add(const CVector3D& lo, const CVector3D& hi) {
         min = Min(min, lo);
         max = Max(max, hi);
     }
@@ -66,7 +65,7 @@ struct UnkPathNodePoint {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
-    virtual const UnkPathVec3* GetPos();
+    virtual const CVector3D* GetPos();
     u8 pad_0x8[0x18];
 };
 
@@ -114,8 +113,8 @@ f32 fn_71010598e0(UnkPathPoints* self, u32 a, u32 b) {
     u32 lo = b < a ? b : a;
     f32 length = 0.0f;
     for (u32 i = lo; i < hi; ++i) {
-        const UnkPathVec3* p = self->points.data[i].GetPos();
-        const UnkPathVec3* q = self->points.data[i + 1].GetPos();
+        const CVector3D* p = self->points.data[i].GetPos();
+        const CVector3D* q = self->points.data[i + 1].GetPos();
         f32 dx = p->x - q->x;
         f32 dy = p->y - q->y;
         f32 dz = p->z - q->z;
@@ -126,11 +125,11 @@ f32 fn_71010598e0(UnkPathPoints* self, u32 a, u32 b) {
 
 // The nearest point to p on one list: its segment, the parameter along it and the distance
 // (optional), from fn_7101059344.
-void fn_7101059344(UnkPathPoints* self, const UnkPathVec3* p, s32* segment, f32* t, f32* distance);
+void fn_7101059344(UnkPathPoints* self, const CVector3D* p, s32* segment, f32* t, f32* distance);
 
 // The nearest point to p over all the lists: the list, its segment, the parameter and the distance
 // (optional).
-void fn_7101059fec(UnkPathShapes* self, const UnkPathVec3* p, s32* shape, s32* segment, f32* t, f32* distance) {
+void fn_7101059fec(UnkPathShapes* self, const CVector3D* p, s32* shape, s32* segment, f32* t, f32* distance) {
     *shape = -1;
     *segment = -1;
     *t = 0.0f;
@@ -223,7 +222,7 @@ UnkReflObject* fn_71010590dc(char* self, u32 index, void* arg) {
     base::global::CRntVector<UnkPathPointV>* v = &node->points;
     if (v->field_0x14 && v->count <= index) {
         if (v->capacity <= index && v->step != 0) {
-            u32 grown = (index / v->step + 1) * v->step;
+            u32 grown = v->GrownCapacity(index);
             v->Reserve(grown);
         }
         fn_710106111c(reinterpret_cast<UnkPathPointArray*>(v), index + 1);

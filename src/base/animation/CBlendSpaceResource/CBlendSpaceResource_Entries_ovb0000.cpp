@@ -111,7 +111,7 @@ void fn_710000e7a4(UnkElem18Vector* self, const UnkElem18* element) {
     u32 n = v->count;
     u32 new_capacity = v->capacity;
     if (new_capacity <= n && v->step != 0)
-        new_capacity = (n / v->step + 1) * v->step;
+        new_capacity = v->GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }
@@ -156,7 +156,7 @@ void fn_710000e9c0(UnkElem18Vector* self, const UnkBlendEntry_ovb0000* value, u3
     }
     u32 capacity = v->capacity;
     if (capacity <= n && v->step != 0)
-        capacity = (n / v->step + 1) * v->step;
+        capacity = v->GrownCapacity(n);
     fn_710000e610(self, capacity);
     for (u32 i = v->count - 1; i >= index; --i) {
         UnkBlendEntry_ovb0000* e = &v->data[i];
@@ -175,7 +175,7 @@ void fn_710000ebe0(UnkElem18Vector* self, UnkBlendEntry_ovb0000* value, u32 inde
     u32 n = v->count;
     if (n == index) {
         if (capacity <= n && v->step != 0)
-            capacity = (index / v->step + 1) * v->step;
+            capacity = v->GrownCapacity(index);
         if ((s32)capacity <= (s32)index)
             for (;;) {
             }
@@ -185,7 +185,7 @@ void fn_710000ebe0(UnkElem18Vector* self, UnkBlendEntry_ovb0000* value, u32 inde
         return;
     } else {
         if (capacity <= n && v->step != 0)
-            capacity = (n / v->step + 1) * v->step;
+            capacity = v->GrownCapacity(n);
         fn_710000e610(self, capacity);
         for (u32 i = v->count - 1; i >= index; --i) {
             UnkBlendEntry_ovb0000* e = &v->data[i];
@@ -204,7 +204,7 @@ UnkBlendEntry_ovb0000* fn_710000efe0(UnkElem18Vector* self, u32 index) {
     if (v->field_0x14 && v->count <= index) {
         u32 capacity = v->capacity;
         if (capacity <= index && v->step != 0)
-            capacity = (index / v->step + 1) * v->step;
+            capacity = v->GrownCapacity(index);
         fn_710000e610(self, capacity);
         u32 n = index + 1;
         fn_710000e610(self, n);

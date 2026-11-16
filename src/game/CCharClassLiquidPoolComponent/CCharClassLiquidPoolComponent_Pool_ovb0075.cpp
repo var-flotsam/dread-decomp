@@ -18,6 +18,7 @@
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -193,15 +194,7 @@ UnkLiquidValue_ovb0075* fn_7100901264(UnkLiquidValueMap_ovb0075* self, UnkLiquid
 
 using base::global::CStrId;
 
-struct UnkLiquidValueArray_ovb0075 {
-    UnkLiquidValue_ovb0075* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkLiquidValueArray_ovb0075 = base::global::CRntSmallDictionary<CStrId, UnkLiquidValue_ovb0075>;
 
 void fn_7100904f7c(UnkLiquidValueArray_ovb0075* self) {
     if (self->count == self->capacity)

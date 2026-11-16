@@ -29,6 +29,7 @@
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 extern "C" float sqrtf(float);
 
@@ -88,13 +89,7 @@ struct UnkScourgeAIView_ovb0115 {
 };
 
 // A list of nodes (link at +8) freed through the allocator.
-struct UnkAttackNodeList_ovb0115 {
-    void* vtable;
-    u32 count;
-    void* head;
-    void* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkAttackNodeList_ovb0115 : base::UnkVtableList<void> {
     ~UnkAttackNodeList_ovb0115() {
         vtable = g_unk_7101a21540 + 0x10;
         void* n = head;
@@ -127,7 +122,6 @@ struct UnkAttackQuery_ovb0115 {
     f32 distance[2];  // 0x8
     u8 pad_0x10[0x18];
     UnkAttackNodeList_ovb0115 nodes;  // 0x28
-    u8 pad_0x50[0x8];
 
     UnkAttackQuery_ovb0115(UnkActor* actor, void* params) { fn_71002c6f80(this, actor, params); }
 };

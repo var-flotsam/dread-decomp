@@ -7,6 +7,7 @@
 #include <new>
 
 #include "../game_aca57c/UnkBufferString.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
@@ -64,15 +65,7 @@ struct UnkIdWords4 {
 static_assert(sizeof(UnkIdWords4) == 0x18, "UnkIdWords4 layout");
 
 template <class T>
-struct UnkKeyedArray {
-    T* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyedArray = base::global::CRntSmallDictionary<CStrId, T>;
 
 // Moves the records into arrays of exactly `count` entries; Destroy runs on each moved-from record.
 template <class T, void (*Destroy)(T*)>

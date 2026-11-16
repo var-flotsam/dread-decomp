@@ -8,6 +8,7 @@
 // Also the clear of such a list with plain nodes (fn_710023fe88). fn_71011aaf80 is a relative.
 
 #include "base/UnkStrIdPathPair.h"
+#include "base/UnkVtableList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "game/CChozoCommanderKiGrabAttack.h"
@@ -19,13 +20,7 @@ extern char unk_7101a202e0[];
 extern char unk_7101a1a070[];
 extern char unk_7101a1bcf0[];
 
-struct UnkNodeList_7100219134 {
-    char* vtable;
-    u32 count;
-    char* head;
-    char* tail;
-    base::UnkAllocator* allocator;
-};
+using UnkNodeList_7100219134 = base::UnkVtableList<char>;
 
 template <char* Vtable, u32 Next, void (*DestroyNode)(char*), class List = UnkNodeList_7100219134>
 static inline void DestroyList(List* self) {

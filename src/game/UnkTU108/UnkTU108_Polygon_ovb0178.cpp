@@ -68,7 +68,7 @@ __attribute__((always_inline)) static inline void InsertAt(base::global::CRntVec
     if (n == index) {
         u32 new_capacity = cap;
         if (cap <= n && self->step != 0)
-            new_capacity = (index / self->step + 1) * self->step;
+            new_capacity = self->GrownCapacity(index);
         if ((s32)new_capacity <= (s32)index)
             for (;;) {
             }
@@ -84,7 +84,7 @@ __attribute__((always_inline)) static inline void InsertAt(base::global::CRntVec
         new (&p[index]) T(static_cast<T&&>(*value));
     } else {
         if (cap <= n && self->step != 0) {
-            u32 grown = (n / self->step + 1) * self->step;
+            u32 grown = self->GrownCapacity(n);
             if (cap < grown) {
                 T* p = MoveTo(self, grown);
                 n = self->count;

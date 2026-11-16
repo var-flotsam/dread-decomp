@@ -7,6 +7,7 @@
 // builds the shape at +0x30; a shape of kind 0x10 gets its flag at +0x98 set) and a reflected
 // invoker answering whether an object lies in the shape (the test of
 // CLogicShapeComponent_Test_A5_b68.cpp). Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
@@ -26,23 +27,7 @@
 using base::global::CStrId;
 using base::global::UnkStringData;
 
-struct UnkLogicShapeFlagMap_ovb0037 {
-    bool* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;  // 0x14
-    u32 step;      // 0x18
-    u32 flags;     // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
-
-    bool* Find(const CStrId& key) {
-        for (u64 i = 0; i < count; ++i)
-            if (keys[i].data == key.data)
-                return &values[i];
-        return values + count;
-    }
-    bool* End() { return values + count; }
-};
+using UnkLogicShapeFlagMap_ovb0037 = base::global::CRntSmallDictionary<CStrId, bool>;
 
 bool* fn_7100916c9c(UnkLogicShapeFlagMap_ovb0037* self, bool* it);
 void fn_71007531f8(UnkLogicShapeFlagMap_ovb0037* self, u32 capacity);

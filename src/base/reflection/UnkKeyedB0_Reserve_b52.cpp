@@ -2,6 +2,7 @@
 // string-id keys, a copy of fn_7100093dd0 (src/base/reflection/UnkReflAttrs_Reserve_b49.cpp) for the
 // records of src/base/reflection/UnkReflKeyedB0_b44.cpp: each record moved (fn_7100097d18) and the old
 // one destroyed (fn_71000e70c4), each key moved over and the old one released. Names are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU85.h"
@@ -20,15 +21,7 @@ struct RecordB0 {
 };
 }  // namespace
 
-struct UnkKeyedB0Arrays_b52 {
-    void* values;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyedB0Arrays_b52 = base::global::CRntSmallDictionary<CStrId, void>;
 
 static void Reserve(UnkKeyedB0Arrays_b52* self, u32 capacity) {
     if (self->capacity < capacity) {
@@ -44,7 +37,7 @@ static void Reserve(UnkKeyedB0Arrays_b52* self, u32 capacity) {
             }
             self->allocator->vf_0x48(self->values);
         }
-        if (CStrId* old = self->ids) {
+        if (CStrId* old = self->keys) {
             u64 j = 0;
             for (u32 i = 0; i < self->count; ++i, ++j, ++old) {
                 __builtin_memcpy(&ids[j], old, sizeof(CStrId));
@@ -61,10 +54,10 @@ static void Reserve(UnkKeyedB0Arrays_b52* self, u32 capacity) {
                     old->data = &pool->empty;
                 }
             }
-            self->allocator->vf_0x48(self->ids);
+            self->allocator->vf_0x48(self->keys);
         }
         self->values = values;
-        self->ids = ids;
+        self->keys = ids;
         self->capacity = capacity;
     }
 }

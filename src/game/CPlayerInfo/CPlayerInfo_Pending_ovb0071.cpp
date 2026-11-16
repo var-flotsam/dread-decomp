@@ -6,8 +6,10 @@
 // finished empty ones; fn_7100f0dd3c stops the effect behind the handle at +0x260 and frees +0x138;
 // fn_7100f0bc50 resets everything. Names and layouts are placeholders.
 #include "base/UnkKeyedStrIds.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CPlayerInfo.h"
@@ -31,12 +33,10 @@ void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, boo
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 struct UnkManager;
 
-struct UnkVec3_ovb0071 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkPendingPos_ovb0071 {
-    UnkVec3_ovb0071 pos;
+    CVector3D pos;
     bool has;  // 0xc
 };
 
@@ -66,15 +66,7 @@ struct UnkTimedEntry_ovb0071 {
     UnkKeyedStrIds properties;  // 0x8
 };
 
-struct UnkTimedMap_ovb0071 {
-    UnkTimedEntry_ovb0071* values;
-    base::global::CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkTimedMap_ovb0071 = base::global::CRntSmallDictionary<base::global::CStrId, UnkTimedEntry_ovb0071>;
 
 struct UnkTileOutlines;
 
@@ -135,7 +127,7 @@ struct UnkPlayerInfoMsg_ovb0071 {
 UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it);
 void fn_7100840f50(void* target, void** slot);
 void fn_7100841270(void* target, void** slot);
-void fn_7100f0c248(UnkPlayerInfo_ovb0071* self, const UnkVec3_ovb0071* pos, f32 time);
+void fn_7100f0c248(UnkPlayerInfo_ovb0071* self, const CVector3D* pos, f32 time);
 void fn_7100f0c988(UnkPlayerInfo_ovb0071* self, f32 dt);
 void fn_7100f0d88c(UnkPlayerInfo_ovb0071* self);
 void fn_7100f0be58(UnkPlayerInfo_ovb0071* self, bool flag);
@@ -171,7 +163,7 @@ bool fn_7100f0e100(UnkPlayerInfo_ovb0071* self, UnkPlayerInfoMsg_ovb0071 msg) {
     return false;
 }
 
-u32 fn_7100f0d7b0(UnkPlayerInfo_ovb0071* self, void* source, const UnkVec3_ovb0071* pos) {
+u32 fn_7100f0d7b0(UnkPlayerInfo_ovb0071* self, void* source, const CVector3D* pos) {
     fn_7100f0d88c(self);
     if (self->count == 0) {
         if (fn_7100eef674(Manager_ovb0071())) {
@@ -232,9 +224,9 @@ void fn_7100f0bc50(UnkPlayerInfo_ovb0071* self) {
     self->pending_time = 0.0f;
     self->pending_pos = UnkPendingPos_ovb0071();
     UnkTimedMap_ovb0071& map = self->timed;
-    if (map.ids && map.count) {
+    if (map.keys && map.count) {
         for (u64 i = 0; i < map.count; ++i)
-            map.ids[i].Reset();
+            map.keys[i].Reset();
     }
     if (map.values && map.count) {
         for (u64 i = 0; i < map.count; ++i)

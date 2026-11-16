@@ -3,6 +3,7 @@
 // destroys and frees the old arrays.
 #include <new>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -44,15 +45,7 @@ struct UnkEntry_71004f1558 {
     u64 value;
 };
 
-struct UnkStruct_71004f1558 {
-    UnkEntry_71004f1558* entries;
-    UnkId_71004f1558* ids;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkStruct_71004f1558 = base::global::CRntSmallDictionary<UnkId_71004f1558, UnkEntry_71004f1558>;
 
 void fn_71004f1558(UnkStruct_71004f1558* self, u32 capacity) {
     if (self->capacity >= capacity)
@@ -61,23 +54,23 @@ void fn_71004f1558(UnkStruct_71004f1558* self, u32 capacity) {
         self->allocator->vf_0x40((u64)capacity * sizeof(UnkEntry_71004f1558), 8, self->flags));
     UnkId_71004f1558* ids = static_cast<UnkId_71004f1558*>(
         self->allocator->vf_0x40((u64)capacity * sizeof(UnkId_71004f1558), 8, self->flags));
-    if (UnkEntry_71004f1558* src = self->entries) {
+    if (UnkEntry_71004f1558* src = self->values) {
         UnkEntry_71004f1558* dst = entries;
         for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
             new (dst) UnkEntry_71004f1558(*src);
             src->~UnkEntry_71004f1558();
         }
-        self->allocator->vf_0x48(self->entries);
+        self->allocator->vf_0x48(self->values);
     }
-    if (UnkId_71004f1558* src = self->ids) {
+    if (UnkId_71004f1558* src = self->keys) {
         UnkId_71004f1558* dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
             new (dst) UnkId_71004f1558(static_cast<UnkId_71004f1558&&>(*src));
             src->~UnkId_71004f1558();
         }
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->entries = entries;
-    self->ids = ids;
+    self->values = entries;
+    self->keys = ids;
     self->capacity = capacity;
 }

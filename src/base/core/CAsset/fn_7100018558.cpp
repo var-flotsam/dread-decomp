@@ -2,6 +2,7 @@
 // (the comments are adapted from the original's): fn_7100018558, fn_710025ff90. Copy-assignments of maps of ids to
 // records (values at 0, keys at 8, sharing one count): both sides are destroyed, the storage is reallocated when the
 // other's count differs from the capacity, then the values are assigned and the keys copied, counting a use of each.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/core/CAsset.h"
 #include "base/global/CStrId.h"
@@ -11,15 +12,7 @@
 using namespace base::global;
 
 template <class V>
-struct UnkStrIdKeyedMap {
-    V* values;
-    UnkStrIdTwoStep* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkStrIdKeyedMap = base::global::CRntSmallDictionary<UnkStrIdTwoStep, V>;
 
 template <class V, void (*Destroy)(V*), void (*Free)(UnkStrIdKeyedMap<V>*), void (*Allocate)(UnkStrIdKeyedMap<V>*, u32),
           void (*AssignValue)(V*, const V*)>

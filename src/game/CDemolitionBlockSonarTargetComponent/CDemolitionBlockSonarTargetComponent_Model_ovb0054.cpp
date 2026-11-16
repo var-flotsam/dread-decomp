@@ -8,6 +8,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/CDemolitionBlockSonarTargetComponent.h"
@@ -59,51 +60,7 @@ struct UnkSonarModel_ovb0054 {
     virtual void vf_0x8();
 };
 
-struct UnkSonarSetNode_ovb0054 {
-    u64 key;
-    u64 value;
-    UnkSonarSetNode_ovb0054* next;
-    UnkSonarSetNode_ovb0054* prev;
-    UnkSonarSetNode_ovb0054* chain;
-
-    UnkSonarSetNode_ovb0054(u64 k, u64 v) : key(k), value(v), next(nullptr), prev(nullptr), chain(nullptr) {}
-    UnkSonarSetNode_ovb0054*& Next() { return next; }
-    UnkSonarSetNode_ovb0054*& Prev() { return prev; }
-};
-
-struct UnkSonarSet_ovb0054 {
-    base::UnkAllocator* allocator;
-    u32 flags;                           // 0x8
-    u32 count;                           // 0xc
-    UnkSonarSetNode_ovb0054** buckets;   // 0x10
-    u32 bucket_count;                    // 0x18
-    u32 bucket_capacity;                 // 0x1c
-    u8 pad_0x20[0x18];
-    UnkSonarSetNode_ovb0054* tail;  // 0x38
-    UnkSonarSetNode_ovb0054* head;  // 0x40
-
-    void Insert(u64 key, u64 value) {
-        UnkSonarSetNode_ovb0054** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)key % bucket_capacity;
-            bucket = &buckets[i];
-        }
-        UnkSonarSetNode_ovb0054* old = *bucket;
-        auto* node = static_cast<UnkSonarSetNode_ovb0054*>(allocator->vf_0x40(sizeof(UnkSonarSetNode_ovb0054), 8, flags));
-        if (node)
-            new (node) UnkSonarSetNode_ovb0054(key, value);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
-};
+using UnkSonarSet_ovb0054 = base::global::CRntDictionary<u64, u64>;
 
 // Returns the node (src/game/UnkModelManager.cpp declares it with a void return; the mangled name is the same).
 UnkSceneNode* fn_7100a0feac(UnkRenderPool* pool, CFilePathStrId* path, UnkOverlayModel** out, base::global::CStrId* id) {

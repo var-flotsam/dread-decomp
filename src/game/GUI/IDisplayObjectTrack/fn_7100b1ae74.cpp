@@ -171,7 +171,7 @@ void fn_7100b1b39c(UnkWordStringVector* self, const UnkWordMovedString* value, u
     }
     u32 cap = self->capacity;
     if (cap <= n && self->step != 0) {
-        u32 grown = (n / self->step + 1) * self->step;
+        u32 grown = self->GrownCapacity(n);
         if (cap < grown) {
             Reallocate(self, grown);
             n = self->count;
@@ -195,7 +195,7 @@ UnkWordMovedString* fn_7100b1a568(UnkWordStringVector* self, u32 index) {
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0) {
-            u32 grown = (index / self->step + 1) * self->step;
+            u32 grown = self->GrownCapacity(index);
             if (cap < grown) {
                 Reallocate(self, grown);
                 cap = grown;
@@ -221,7 +221,7 @@ void fn_7100b1b544(UnkWordStringVector* self, UnkWordMovedString* value, u32 ind
     if (n == index) {
         u32 new_capacity = cap;
         if (cap <= n && self->step != 0)
-            new_capacity = (index / self->step + 1) * self->step;
+            new_capacity = self->GrownCapacity(index);
         if ((s32)new_capacity <= (s32)index)
             for (;;) {
             }
@@ -235,7 +235,7 @@ void fn_7100b1b544(UnkWordStringVector* self, UnkWordMovedString* value, u32 ind
         }
     } else {
         if (cap <= n && self->step != 0) {
-            u32 grown = (n / self->step + 1) * self->step;
+            u32 grown = self->GrownCapacity(n);
             if (cap < grown) {
                 Reallocate(self, grown);
                 n = self->count;

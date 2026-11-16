@@ -12,6 +12,7 @@
 #include "base/UnkSList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAnimatedCameraCtrl.h"
@@ -163,23 +164,21 @@ struct UnkCamComp3_ovb5 {
     f32 field_0x278;
 };
 
-struct UnkVec3_ovb5 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkPlayerView_ovb5 {
     u8 pad_0x0[0x220];
     UnkAnimationComponent* field_0x220;
 };
 
-f32 fn_71010e49c8(UnkCamComp3_ovb5* self, UnkPlayer* target, const UnkVec3_ovb5* pos, f32 margin) {
+f32 fn_71010e49c8(UnkCamComp3_ovb5* self, UnkPlayer* target, const CVector3D* pos, f32 margin) {
     if (!(self->field_0x4c < 0.0f))
         return self->field_0x4c;
     if (!target)
         return 0.0f;
     if (!(margin >= 0.0f))
         margin = self->field_0x278;
-    f32 z = reinterpret_cast<const UnkVec3_ovb5*>(fn_7100d7c9f4(target))->z;
+    f32 z = reinterpret_cast<const CVector3D*>(fn_7100d7c9f4(target))->z;
     if (UnkPlayer* player = fn_7100dec788(g_unk_7101d47310)) {
         if (UnkAnimationComponent* cls = reinterpret_cast<UnkPlayerView_ovb5*>(player)->field_0x220) {
             if (fn_710117b348(cls, fn_7100cfa6b8()))

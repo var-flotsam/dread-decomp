@@ -1,6 +1,7 @@
 // Dropped-item manager's unit (2562): grows the paired array of 0x78-byte entries and their 8-byte keys
 // to hold at least `capacity`; each entry is moved and its three id pairs released. Names and layouts
 // are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU32.h"
 #include "types.h"
@@ -25,15 +26,7 @@ struct UnkEntry_le2fa5c {
 };
 static_assert(sizeof(UnkEntry_le2fa5c) == 0x78, "size");
 
-struct UnkEntryArray_le2fa5c {
-    UnkEntry_le2fa5c* values;
-    UnkAliasWord_le2fa5c* keys;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkEntryArray_le2fa5c = base::global::CRntSmallDictionary<UnkAliasWord_le2fa5c, UnkEntry_le2fa5c>;
 
 void fn_7100e2f4bc(UnkEntry_le2fa5c* dst, UnkEntry_le2fa5c* src);
 

@@ -2,6 +2,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAimComponent.h"
 #include "game/CInventoryComponent.h"
@@ -22,6 +23,8 @@
 
 #include <cmath>
 #include <new>
+
+using base::math::CVector3D;
 
 // Unit 437: whether an aim angle (atan2f of the second value over the absolute first) lies inside
 // the tunable limit band of the given region (0..6). Limits are read at +0xa4..+0xb8 of the aim
@@ -236,11 +239,8 @@ struct UnkAimTunable_ovb0198p {
     f32 speed;  // 0x7c
 };
 
-struct UnkAimSide_ovb0198p {
-    f32 x, y, z;
-};
 
-typedef void (*UnkAimSetSide_ovb0198p)(void* object, const UnkAimSide_ovb0198p* side);
+typedef void (*UnkAimSetSide_ovb0198p)(void* object, const CVector3D* side);
 
 struct UnkAimActor_ovb0198p {
     u8 pad_0x0[0x38];
@@ -337,7 +337,7 @@ wrap:
         f32 s = self->side;
         if (s == 0.0f)
             s = fn_710002614c(&self->actor->transform).m[2];
-        UnkAimSide_ovb0198p side;
+        CVector3D side;
         side.x = (f32)((s > 0.0f) - (s < 0.0f));
         __builtin_memset(&side.y, 0, 8);
         (*reinterpret_cast<UnkAimSetSide_ovb0198p**>(object))[0x208 / 8](object, &side);
@@ -346,11 +346,8 @@ wrap:
 
 // Unit 437: speed needed to cover the distance between two points beyond 50 units within `time`.
 // Names and layouts are placeholders.
-struct UnkPoint3_ovb0198 {
-    f32 x, y, z;
-};
 
-f32 fn_7100351fe0(void* self, f32 time, const UnkPoint3_ovb0198* a, const UnkPoint3_ovb0198* b) {
+f32 fn_7100351fe0(void* self, f32 time, const CVector3D* a, const CVector3D* b) {
     f32 dx = a->x - b->x;
     f32 dy = a->y - b->y;
     f32 dz = a->z - b->z;
@@ -397,9 +394,6 @@ static inline UnkVisitResult_b0040 Skip_ovb0198l() {
 struct UnkAimFilter_ovb0198l;
 bool fn_7100358d68(UnkAimFilter_ovb0198l* self, UnkAimTarget* target);
 
-struct UnkAimPoint_ovb0198l {
-    f32 x, y, z;
-};
 
 struct UnkAimNearest_ovb0198l {
     u8 pad_0x0[8];
@@ -407,7 +401,7 @@ struct UnkAimNearest_ovb0198l {
     u8 pad_0x50[0x28];
     bool has_best;  // 0x78
     u8 pad_0x79[7];
-    UnkAimPoint_ovb0198l point;  // 0x80
+    CVector3D point;  // 0x80
 };
 static_assert(__builtin_offsetof(UnkAimNearest_ovb0198l, has_best) == 0x78, "layout");
 
@@ -488,9 +482,6 @@ struct UnkAimTarget_ovb0198m {
     }
 };
 
-struct UnkAimPoint_ovb0198m {
-    f32 x, y, z;
-};
 
 struct UnkAimNearest_ovb0198m {
     u8 pad_0x0[8];
@@ -498,7 +489,7 @@ struct UnkAimNearest_ovb0198m {
     u8 pad_0x50[0x20];
     bool has_best;  // 0x70
     u8 pad_0x71[7];
-    UnkAimPoint_ovb0198m point;  // 0x78
+    CVector3D point;  // 0x78
     u8 pad_0x84[4];
     void* ignore;  // 0x88
 };

@@ -29,6 +29,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
+#include "base/UnkLinkedList.h"
 
 extern s32 g_unk_7101cb5320 __attribute__((visibility("hidden")));
 
@@ -457,13 +458,7 @@ struct UnkTrackedNode_b0188 {
     }
 };
 
-struct UnkTrackedList_b0188 {
-    u32 count;
-    UnkTrackedNode_b0188* head;
-    UnkTrackedNode_b0188* tail;
-    UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkTrackedList_b0188 : base::UnkLinkedList<UnkTrackedNode_b0188> {
     UnkTrackedNode_b0188* Find(u64 key) {
         for (UnkTrackedNode_b0188* n = head; n; n = n->next)
             if (n->item && n->item->field_0x10 == key)

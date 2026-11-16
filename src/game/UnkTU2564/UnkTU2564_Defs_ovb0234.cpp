@@ -12,6 +12,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkHashStream.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CDefinition.h"
@@ -306,15 +307,7 @@ static_assert(sizeof(UnkIdWords4_b0234) == 0x18, "layout");
 
 // Records and string-id keys in two arrays sharing one count.
 template <class T>
-struct UnkKeyedArray_b0234 {
-    T* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyedArray_b0234 = base::global::CRntSmallDictionary<CStrId, T>;
 
 // A key as the growth moves it (as src/game/CMinimapDef_ShrinkToFit_b49.cpp's UnkKeyId_b49): the
 // moved-from id is cleared through a union, then released in two steps.

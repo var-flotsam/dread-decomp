@@ -1,12 +1,9 @@
 // Unit 108: tests whether the segment a-b crosses a plane (normal xyz, distance w) and writes the
 // crossing point. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
-struct UnkVec3_108 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkPlane108 {
     f32 x;
@@ -15,12 +12,12 @@ struct UnkPlane108 {
     f32 w;
 };
 
-static inline f32 Distance(const UnkPlane108* plane, const UnkVec3_108* p) {
+static inline f32 Distance(const UnkPlane108* plane, const CVector3D* p) {
     return plane->x * p->x + plane->y * p->y + plane->z * p->z;
 }
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
-bool fn_7100110db8(const UnkVec3_108* a, const UnkVec3_108* b, const UnkPlane108* plane, UnkVec3_108* out) {
+bool fn_7100110db8(const CVector3D* a, const CVector3D* b, const UnkPlane108* plane, CVector3D* out) {
     f32 da = Distance(plane, a);
     f32 db = Distance(plane, b);
     da = plane->w + da;

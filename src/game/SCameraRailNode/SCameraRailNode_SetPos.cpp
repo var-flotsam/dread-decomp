@@ -30,13 +30,11 @@ static inline __attribute__((always_inline)) T* PickArg_crn(UnkValueSource_crn* 
     return reinterpret_cast<T*>(src);
 }
 
-struct UnkVec3_crn {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkCameraRailNode_crn {
     u8 unk_0x0[8];
-    UnkVec3_crn pos;
+    CVector3D pos;
 };
 
 struct UnkCameraRailNodeOwner_crn {
@@ -47,7 +45,7 @@ struct UnkCameraRailNodeOwner_crn {
 UnkResult_0x18_crn fn_7100c07a1c(void* unused, UnkCameraRailNodeOwner_crn* owner, UnkValueSource_crn** source) {
     UnkCameraRailNode_crn* target = owner->target;
     UnkValueSource_crn* src = *source;
-    UnkVec3_crn* v = PickArg_crn<UnkVec3_crn>(src);
+    CVector3D* v = PickArg_crn<CVector3D>(src);
     target->pos.x = v->x;
     target->pos.y = v->y;
     target->pos.z = v->z;

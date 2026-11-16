@@ -4,6 +4,7 @@
 // (+0x210), the model map (entries of 0x20 at +0x1e8, keys at +0x1f0, count at +0x1f8) has it and
 // fn_7100938fcc accepts the entry, it takes the name; it returns whether it did. Names are placeholders.
 #include "base/UnkPooledStrId.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 #include "game/CMultiModelUpdaterComponent.h"
 #include "types.h"
@@ -60,15 +61,9 @@ struct UnkModelValue_b0119 {
 };
 void fn_7100939804(UnkModelValue_b0119* self, const UnkModelValue_b0119* other);
 
-struct UnkModelMap_b0119 {
-    UnkModelValue_b0119* values;
-    base::UnkPooledString* keys;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+// Its keys are string ids moved bitwise, the old one left holding the empty id and then released in
+// two steps (as CStrId::Reset).
+using UnkModelMap_b0119 = base::global::CRntSmallDictionary<base::UnkPooledString, UnkModelValue_b0119>;
 
 void fn_7100939678(UnkModelMap_b0119* self, u32 capacity) {
     if (self->capacity >= capacity)

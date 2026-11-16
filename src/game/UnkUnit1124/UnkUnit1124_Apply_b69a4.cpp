@@ -2,12 +2,11 @@
 // object changed (+0xa8), optionally clears its three optional settings, takes each setting the argument has,
 // then copies the third setting's value (or zero) into the current value at +0x58. Names and layouts are
 // placeholders.
+#include "base/math/CVector.h"
 #include "game/UnkTU1124.h"
 #include "types.h"
 
-struct UnkVec3_b69a4 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkVec4_b69a4 {
     f32 x, y, z, w;
@@ -21,7 +20,7 @@ struct UnkOptional_b69a4 {
 
 struct UnkSettings_b69a4 {
     u8 pad_0x0[8];
-    UnkOptional_b69a4<UnkVec3_b69a4> field_0x8;
+    UnkOptional_b69a4<CVector3D> field_0x8;
     UnkOptional_b69a4<u32> field_0x18;
     UnkOptional_b69a4<UnkVec4_b69a4> field_0x20;
 };
@@ -30,7 +29,7 @@ struct UnkUnit1124Settings_b69a4 {
     u8 pad_0x0[0x58];
     UnkVec4_b69a4 current;  // 0x58
     u8 pad_0x68[0x10];
-    UnkOptional_b69a4<UnkVec3_b69a4> field_0x78;
+    UnkOptional_b69a4<CVector3D> field_0x78;
     UnkOptional_b69a4<u32> field_0x88;
     UnkOptional_b69a4<UnkVec4_b69a4> field_0x90;
     u8 pad_0xa4[4];

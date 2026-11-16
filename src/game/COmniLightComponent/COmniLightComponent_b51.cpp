@@ -1,14 +1,13 @@
 // COmniLightComponent (unit 1390): after the base update, follows the owner's position (the
 // translation column of its transform) and reports each change through vtable slot 0x168.
 // Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CComponent.h"
 #include "types.h"
 
 struct UnkParent;
 
-struct UnkOmniVec3 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 // The position words, as the original reads them (integer loads).
 struct UnkOmniOwner {
@@ -31,10 +30,10 @@ struct UnkOmniLight {
     u8 pad_0x8[0x28];
     UnkOmniOwner* owner;  // 0x30
     u8 pad_0x38[0x8];
-    UnkOmniVec3 pos;  // 0x40
+    CVector3D pos;  // 0x40
 
-    void vf_0x168(const UnkOmniVec3& p) {
-        reinterpret_cast<void (*)(UnkOmniLight*, const UnkOmniVec3&)>(vtable[0x168 / 8])(this, p);
+    void vf_0x168(const CVector3D& p) {
+        reinterpret_cast<void (*)(UnkOmniLight*, const CVector3D&)>(vtable[0x168 / 8])(this, p);
     }
 };
 
@@ -53,7 +52,7 @@ void fn_71008f18a4(UnkOmniLight* self) {
     p[2] = z;
     if (UNK_CHANGED(AsF32(p[0]), self->pos.x) || UNK_CHANGED(AsF32(p[1]), self->pos.y) ||
         UNK_CHANGED(AsF32(p[2]), self->pos.z)) {
-        self->vf_0x168(*reinterpret_cast<const UnkOmniVec3*>(p));
+        self->vf_0x168(*reinterpret_cast<const CVector3D*>(p));
         u32* dst = reinterpret_cast<u32*>(&self->pos);
         dst[0] = p[0];
         dst[1] = p[1];

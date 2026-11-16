@@ -2,20 +2,19 @@
 // the listener at +0x530 about it through one of three vtable slots (0x160 for 1 and 7, 0x168 for 2, none for 11,
 // 0x170 otherwise), passing the id at +0x3fc, the owner's (+0x30) position (the translation column of its
 // transform at +0x38) and the owner. Returns the classification. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkGrappleBeam_A4_b74;
 s32 fn_7100ac82bc(UnkGrappleBeam_A4_b74* self, void* arg);
 
-struct UnkGrappleVec3_A4_b74 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkGrappleOwner_A4_b74 {
     u8 pad_0x0[0x38];
     f32 transform[3][4];  // 0x38
 
-    UnkGrappleVec3_A4_b74 Position() const { return {transform[0][3], transform[1][3], transform[2][3]}; }
+    CVector3D Position() const { return {transform[0][3], transform[1][3], transform[2][3]}; }
 };
 
 struct UnkGrappleListener_A4_b74 {
@@ -63,9 +62,9 @@ struct UnkGrappleListener_A4_b74 {
     virtual void vf_0x148();
     virtual void vf_0x150();
     virtual void vf_0x158();
-    virtual void vf_0x160(u32 id, const UnkGrappleVec3_A4_b74& pos, UnkGrappleOwner_A4_b74* owner, void* extra);
-    virtual void vf_0x168(u32 id, const UnkGrappleVec3_A4_b74& pos, UnkGrappleOwner_A4_b74* owner, void* extra);
-    virtual void vf_0x170(u32 id, const UnkGrappleVec3_A4_b74& pos, UnkGrappleOwner_A4_b74* owner, void* extra);
+    virtual void vf_0x160(u32 id, const CVector3D& pos, UnkGrappleOwner_A4_b74* owner, void* extra);
+    virtual void vf_0x168(u32 id, const CVector3D& pos, UnkGrappleOwner_A4_b74* owner, void* extra);
+    virtual void vf_0x170(u32 id, const CVector3D& pos, UnkGrappleOwner_A4_b74* owner, void* extra);
 };
 
 struct UnkGrappleBeam_A4_b74 {

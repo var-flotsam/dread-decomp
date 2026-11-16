@@ -1,20 +1,17 @@
 // game::logic::collision::CAABoxShape2D unit: the shape's 2D box (min at +0xa8, max at +0xb0) moved
 // by a transform's translation (+0xc, +0x1c, +0x2c of a 3x4 matrix) into a 3D box at the
 // translation's z. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkBoxVec2 {
     f32 x;
     f32 y;
 };
-struct UnkBoxVec3 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 struct UnkBox3 {
-    UnkBoxVec3 min;
-    UnkBoxVec3 max;
+    CVector3D min;
+    CVector3D max;
 };
 struct UnkBoxTransform {
     f32 m[3][4];

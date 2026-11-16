@@ -2,26 +2,16 @@
 // than `step` from the target position by `step` towards it. Names and layouts are placeholders.
 #include <math.h>
 
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
-struct UnkVec3_le2eef8 {
-    f32 x, y, z;
-};
-
-static inline UnkVec3_le2eef8 operator*(const UnkVec3_le2eef8& v, f32 s) {
-    UnkVec3_le2eef8 r = {v.x * s, v.y * s, v.z * s};
-    return r;
-}
-static inline UnkVec3_le2eef8 operator+(const UnkVec3_le2eef8& a, const UnkVec3_le2eef8& b) {
-    UnkVec3_le2eef8 r = {a.x + b.x, a.y + b.y, a.z + b.z};
-    return r;
-}
+using base::math::CVector3D;
 
 struct UnkSlot_le2eef8 {
     u8 pad_0x0[0x75];
     u8 active;  // 0x75
     u8 pad_0x76[6];
-    UnkVec3_le2eef8 pos;  // 0x7c
+    CVector3D pos;  // 0x7c
     u8 pad_0x88[0xa9 - 0x88];
     u8 flags;  // 0xa9
     u8 pad_0xaa[0xf0 - 0xaa];
@@ -33,20 +23,16 @@ struct UnkSlotManager_le2eef8 {
     UnkSlot_le2eef8 slots[128];  // 0x8
 };
 
-void fn_7100f06034(UnkSlot_le2eef8* slot, const UnkVec3_le2eef8* pos);
+void fn_7100f06034(UnkSlot_le2eef8* slot, const CVector3D* pos);
 
-void fn_7100e2eef8(UnkSlotManager_le2eef8* self, f32 step, const UnkVec3_le2eef8* target) {
+void fn_7100e2eef8(UnkSlotManager_le2eef8* self, f32 step, const CVector3D* target) {
     for (UnkSlot_le2eef8& slot : self->slots) {
         if (!slot.active || !(slot.flags & 2))
             continue;
-        f32 dx = slot.pos.x - target->x;
-        f32 dy = slot.pos.y - target->y;
-        f32 dz = slot.pos.z - target->z;
-        f32 dist2 = dx * dx + dy * dy + dz * dz;
-        if (dist2 > step * step) {
-            f32 inv = 1.0f / (sqrtf(dist2) + 0.0001f);
-            UnkVec3_le2eef8 delta = {dx, dy, dz};
-            UnkVec3_le2eef8 moved = *target + delta * inv * step;
+        CVector3D pos = slot.pos;
+        CVector3D delta = pos - *target;
+        if (LengthSq(delta) > step * step) {
+            CVector3D moved = *target + Normalized(delta) * step;
             fn_7100f06034(&slot, &moved);
         }
     }

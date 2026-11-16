@@ -58,51 +58,12 @@ struct UnkPbListener_ovb0015 {
     UnkPbCounted_ovb0015* link;  // 0x18
 };
 
-// The map's bucket array (base/global/CRntVector.h's layout).
-struct UnkPbBuckets_ovb0015 {
-    void** data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkPbBuckets_ovb0015(u32 flags_)
-        : data(nullptr), count(0), capacity(0), step(10), field_0x14(true), flags(flags_),
-          allocator(fn_7100083990()) {}
-
-    // Resizes to `n` buckets, the new ones empty.
-    void Resize(u32 n) {
-        u32 old = count;
-        if (old < n) {
-            void** p;
-            if (capacity >= n) {
-                p = data;
-            } else {
-                p = static_cast<void**>(allocator->vf_0x40((u64)n * sizeof(void*), 8, flags));
-                if (data) {
-                    __builtin_memcpy(p, data, (u64)count * sizeof(void*));
-                    allocator->vf_0x48(data);
-                }
-                capacity = n;
-                old = count;
-                data = p;
-            }
-            __builtin_memset(p + old, 0, (u64)(n - old) * sizeof(void*));
-        } else if (old == n) {
-            return;
-        }
-        count = n;
-    }
-};
-
 // The chained hash map (the layout of base/UnkHashMap.h's): 11 buckets to start with.
 struct UnkPbMap_ovb0015 {
     base::UnkAllocator* allocator;  // 0x0: the nodes'
     u32 field_0x8;
     u32 count;                     // 0xc
-    UnkPbBuckets_ovb0015 buckets;  // 0x10
+    base::global::CRntVector<void*> buckets;  // 0x10
     UnkPbNode_ovb0015* first;      // 0x38
     UnkPbNode_ovb0015* last;       // 0x40: where the walk starts
 

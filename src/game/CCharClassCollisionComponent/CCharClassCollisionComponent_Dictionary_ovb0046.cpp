@@ -8,6 +8,7 @@
 
 #include "base/UnkCollectionIter.h"
 #include "base/UnkDestructors.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
@@ -27,15 +28,7 @@ __attribute__((flatten)) void fn_710079c034(void* dst, const void* src) {
 }
 
 // The dictionary: materials, their keys, the shared count, then the arrays' growth settings.
-struct UnkColMatDict_ovb0046 {
-    u32* values;
-    UnkStrIdMember* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkColMatDict_ovb0046 = base::global::CRntSmallDictionary<UnkStrIdMember, u32>;
 
 struct UnkStruct_71008bca30;
 

@@ -5,6 +5,7 @@
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTU1325.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CStrId;
 
@@ -13,24 +14,7 @@ struct UnkInnerNode_b0169 {
     UnkInnerNode_b0169* next;
 };
 
-struct UnkInnerList_b0169 {
-    void* vtable;
-    u32 count;
-    UnkInnerNode_b0169* head;
-    UnkInnerNode_b0169* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    __attribute__((always_inline)) void Clear() {
-        for (UnkInnerNode_b0169* n = head; n;) {
-            UnkInnerNode_b0169* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
+struct UnkInnerList_b0169 : base::UnkVtableList<UnkInnerNode_b0169> {
     __attribute__((always_inline)) void Destroy() {
         vtable = reinterpret_cast<char*>(g_unk_7101a46040) + 0x10;
         Clear();
@@ -84,14 +68,7 @@ struct UnkTimedNode_b0169 : UnkTimedEntry_b0169 {
 };
 static_assert(sizeof(UnkTimedNode_b0169) == 0x50, "layout");
 
-struct UnkTimedList_b0169 {
-    void* vtable;
-    u32 count;
-    UnkTimedNode_b0169* head;  // 0x10
-    UnkTimedNode_b0169* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkTimedList_b0169 : base::UnkVtableList<UnkTimedNode_b0169> {
     __attribute__((always_inline)) void Clear() {
         for (UnkTimedNode_b0169* n = head; n;) {
             UnkTimedNode_b0169* next = n->next;

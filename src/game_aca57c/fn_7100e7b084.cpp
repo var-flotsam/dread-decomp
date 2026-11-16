@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
+#include "base/math/CVector.h"
 #include "base/reflection.h"
 #include "game/UnkBufferStringPool.h"
 #include "types.h"
@@ -89,14 +90,10 @@ UnkString100 fn_7100adc570(UnkFormatSource* self) {
 // its value-initialising constructor and its copy constructor.
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
-struct UnkFloat3 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkScaledString {
-    UnkFloat3 field_0x0 = {1.0f, 1.0f, 1.0f};
+    CVector3D field_0x0 = {1.0f, 1.0f, 1.0f};
     UnkString20 field_0x10;
     u32 field_0x78 = 0;
 };

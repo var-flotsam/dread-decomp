@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -34,15 +35,7 @@ struct UnkCountedRef_l2a6d38 {
     }
 };
 
-struct UnkCountedRefArrays_l2a6d38 {
-    UnkCountedRef_l2a6d38* refs;
-    CStrId* names;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkCountedRefArrays_l2a6d38 = base::global::CRntSmallDictionary<CStrId, UnkCountedRef_l2a6d38>;
 
 // Grows both arrays to `new_capacity`: the references are moved and the old ones dropped, the
 // names moved.
@@ -52,23 +45,23 @@ void fn_71002a6d38(UnkCountedRefArrays_l2a6d38* self, u32 new_capacity) {
     UnkCountedRef_l2a6d38* refs = static_cast<UnkCountedRef_l2a6d38*>(
         self->allocator->vf_0x40((u64)new_capacity * sizeof(UnkCountedRef_l2a6d38), 8, self->flags));
     CStrId* names = static_cast<CStrId*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(CStrId), 8, self->flags));
-    if (UnkCountedRef_l2a6d38* old = self->refs) {
+    if (UnkCountedRef_l2a6d38* old = self->values) {
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j) {
             new (&refs[j]) UnkCountedRef_l2a6d38(static_cast<UnkCountedRef_l2a6d38&&>(old[j]));
             old[j].~UnkCountedRef_l2a6d38();
         }
-        self->allocator->vf_0x48(self->refs);
+        self->allocator->vf_0x48(self->values);
     }
-    if (CStrId* old = self->names) {
+    if (CStrId* old = self->keys) {
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j, ++old) {
             CStrId::MoveConstructReloading(&names[j], *old);
             old->Reset();
         }
-        self->allocator->vf_0x48(self->names);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->refs = refs;
-    self->names = names;
+    self->values = refs;
+    self->keys = names;
     self->capacity = new_capacity;
 }
