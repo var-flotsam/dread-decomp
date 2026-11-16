@@ -41,6 +41,17 @@ struct UnkCopyVec_b56 {
             PushBackCopy(*p);
     }
 
+    // Destroys the elements and releases the storage (base::global::CRntVector::Free).
+    void Free() {
+        if (data) {
+            for (u32 i = 0; i < count; ++i)
+                data[i].~T();
+            count = 0;
+            allocator->vf_0x48(data);
+            capacity = 0;
+        }
+    }
+
     __attribute__((always_inline)) void CopyFrom(const UnkCopyVec_b56& other) {
         data = nullptr;
         count = 0;

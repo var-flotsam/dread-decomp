@@ -5342,7 +5342,7 @@ address,size,name,name_source,subsystem,status
 0x7100fddca4,8,sound::CMusicManager::CTunableMusicManager::refl_CopyAssign,reflection,audio,O
 0x7100fddcac,8,sound::CMusicManager::CTunableMusicManager::refl_MoveAssign,reflection,audio,O
 0x7100fddcb4,612,fn_7100fddcb4,unknown,unknown,O
-0x7100fddf18,296,fn_7100fddf18,unknown,unknown,U
+0x7100fddf18,296,fn_7100fddf18,unknown,unknown,O
 0x7100fde040,564,fn_7100fde040,unknown,unknown,U
 0x7100fde274,152,fn_7100fde274,unknown,unknown,O
 0x7100fde30c,144,fn_7100fde30c,unknown,unknown,O

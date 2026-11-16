@@ -7,18 +7,8 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkPooledId.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/UnkMusicPathVec.h"
 #include "types.h"
-
-struct UnkPathEntry_0x18 {
-    UnkPooledId<&g_unk_7101d47200> field_0x0;
-    u64 field_0x8;
-    u64 field_0x10;
-};
-
-struct UnkPathList : base::global::CRntVector<UnkPathEntry_0x18> {
-    UnkPathList(const UnkPathList& other) asm("fn_7100fddf18");  // fn_7100fddf18
-    ~UnkPathList() { Free(); }
-};
 
 struct UnkEntry_0x60 {
     u32 field_0x0;
@@ -33,7 +23,7 @@ struct UnkEntry_0x60 {
     u8 field_0x24;
     u8 field_0x25;
     u8 field_0x26;
-    UnkPathList field_0x28;
+    UnkMusicPathList field_0x28;
     u64 field_0x50;
     UnkPooledId<&g_unk_7101d47108> field_0x58;
 
