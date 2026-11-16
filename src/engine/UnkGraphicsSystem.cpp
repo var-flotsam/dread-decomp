@@ -622,7 +622,7 @@ void fn_71001d6c58(UnkGfxNamedVectors* self, u32 capacity) {
 }
 
 // Selects the overlay program and binds it (not decompiled yet).
-void fn_71001cc608(UnkGraphicsSystem* self, void* program);
+bool fn_71001cc608(UnkGraphicsSystem* self, void* program);  // whether the program was bound
 
 // Drops the overlay program: the device's bindings are cleared (when it has any), then the program
 // state and the program are forgotten.

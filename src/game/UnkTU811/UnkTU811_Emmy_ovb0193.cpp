@@ -313,7 +313,7 @@ struct UnkDoorList_b0193 {
     base::reflection::UnkReflObject** items;
     u32 count;
 };
-UnkDoorList_b0193* fn_71007b5d90(UnkShape* shape);
+UnkDoorList_b0193* fn_71007b5d90();
 bool fn_7100d57f44(UnkShape* shape, UnkCollisionObject* object, void* a, u32 b);
 
 struct UnkDoorOwner_b0193 {
@@ -344,7 +344,7 @@ bool fn_710054782c(UnkEmmyRelaxAI_b59* self_) {
     if (actor->field_0x1f8) {
         UnkShape* shape = fn_7100976588(reinterpret_cast<UnkFlagged*>(actor->field_0x1f8));
         if (shape) {
-            UnkDoorList_b0193* list = fn_71007b5d90(shape);
+            UnkDoorList_b0193* list = fn_71007b5d90();
             for (u32 i = 0; i < list->count; ++i) {
                 base::reflection::UnkReflObject* object =
                     reinterpret_cast<UnkDoorListed_b0193*>(list->items[i])->field_0x10;
