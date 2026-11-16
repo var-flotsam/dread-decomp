@@ -3,6 +3,7 @@
 // fn_71000d92a8; fn_7100251a80 is a relative. Called only through their collection function tables.
 
 #include "base/UnkCloneCalls.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "game/UnkTU23.h"
 #include "types.h"
 
@@ -155,15 +156,7 @@ struct UnkWordRecord_0x40 {
     UnkAliasWord words[16];
 };
 
-struct UnkRecordsByKeyStore {
-    UnkWordRecord_0x40* values;
-    u64* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkRecordsByKeyStore = base::global::CRntSmallDictionary<u64, UnkWordRecord_0x40>;
 
 void fn_7100015378(UnkRecordsByKeyStore* self, u32 capacity) {
     if (self->capacity < capacity) {

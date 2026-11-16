@@ -9,6 +9,7 @@
 #include <string.h>
 
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
@@ -93,15 +94,7 @@ struct UnkSwarmOwner_ovb6 {
 // A slot of the array at +0x278 (see fn_710074ea40).
 struct UnkSwarmSlot_ovb6;
 
-struct UnkSwarmSlots_ovb6 {
-    UnkSwarmSlot_ovb6* slots;
-    void** items;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkSwarmSlots_ovb6 = base::global::CRntSmallDictionary<void*, UnkSwarmSlot_ovb6>;
 
 // The layout of a base::global::CRntVector, freed when it goes out of scope.
 struct UnkSwarmTargets_ovb6 {
@@ -317,8 +310,8 @@ void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
     if (self->slots.count != 0) {
         // An unused array (only its default allocator is fetched).
         base::global::CRntVector<void*> unused;
-        UnkSwarmSlot_ovb6* it = self->slots.slots;
-        while (self->slots.slots + self->slots.count != it) {
+        UnkSwarmSlot_ovb6* it = self->slots.values;
+        while (self->slots.values + self->slots.count != it) {
             if (it->field_0x10)
                 it = fn_710074a568(&self->slots, it);
             else
@@ -375,15 +368,7 @@ struct UnkSwarmPair_ovb6 {
     u32 b;
 };
 
-struct UnkSwarmWordsAndPairs_ovb6 {
-    u32* words;
-    UnkSwarmPair_ovb6* pairs;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkSwarmWordsAndPairs_ovb6 = base::global::CRntSmallDictionary<UnkSwarmPair_ovb6, u32>;
 
 // Reserves room for n entries in both arrays.
 void fn_710074e938(UnkSwarmWordsAndPairs_ovb6* self, u32 n) {
@@ -392,31 +377,23 @@ void fn_710074e938(UnkSwarmWordsAndPairs_ovb6* self, u32 n) {
     u32* words = static_cast<u32*>(self->allocator->vf_0x40((u64)n * sizeof(u32), 8, self->flags));
     UnkSwarmPair_ovb6* pairs =
         static_cast<UnkSwarmPair_ovb6*>(self->allocator->vf_0x40((u64)n * sizeof(UnkSwarmPair_ovb6), 8, self->flags));
-    if (self->words) {
-        memcpy(words, self->words, (u64)self->count * sizeof(u32));
-        self->allocator->vf_0x48(self->words);
+    if (self->values) {
+        memcpy(words, self->values, (u64)self->count * sizeof(u32));
+        self->allocator->vf_0x48(self->values);
     }
-    if (UnkSwarmPair_ovb6* old = self->pairs) {
+    if (UnkSwarmPair_ovb6* old = self->keys) {
         UnkSwarmPair_ovb6* dst = pairs;
         for (u32 i = 0; i < self->count; ++i)
             *dst++ = *old++;
-        self->allocator->vf_0x48(self->pairs);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->words = words;
-    self->pairs = pairs;
+    self->values = words;
+    self->keys = pairs;
     self->capacity = n;
 }
 
 // The same with two arrays of pairs.
-struct UnkSwarmPairs2_ovb6 {
-    UnkSwarmPair_ovb6* first;
-    UnkSwarmPair_ovb6* second;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkSwarmPairs2_ovb6 = base::global::CRntSmallDictionary<UnkSwarmPair_ovb6, UnkSwarmPair_ovb6>;
 
 void fn_710074e82c(UnkSwarmPairs2_ovb6* self, u32 n) {
     if (self->capacity >= n)
@@ -425,20 +402,20 @@ void fn_710074e82c(UnkSwarmPairs2_ovb6* self, u32 n) {
         static_cast<UnkSwarmPair_ovb6*>(self->allocator->vf_0x40((u64)n * sizeof(UnkSwarmPair_ovb6), 8, self->flags));
     UnkSwarmPair_ovb6* second =
         static_cast<UnkSwarmPair_ovb6*>(self->allocator->vf_0x40((u64)n * sizeof(UnkSwarmPair_ovb6), 8, self->flags));
-    if (UnkSwarmPair_ovb6* old = self->first) {
+    if (UnkSwarmPair_ovb6* old = self->values) {
         UnkSwarmPair_ovb6* dst = first;
         for (u32 i = 0; i < self->count; ++i)
             *dst++ = *old++;
-        self->allocator->vf_0x48(self->first);
+        self->allocator->vf_0x48(self->values);
     }
-    if (UnkSwarmPair_ovb6* old = self->second) {
+    if (UnkSwarmPair_ovb6* old = self->keys) {
         UnkSwarmPair_ovb6* dst = second;
         for (u32 i = 0; i < self->count; ++i)
             *dst++ = *old++;
-        self->allocator->vf_0x48(self->second);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->first = first;
-    self->second = second;
+    self->values = first;
+    self->keys = second;
     self->capacity = n;
 }
 

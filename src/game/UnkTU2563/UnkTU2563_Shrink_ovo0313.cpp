@@ -3,6 +3,7 @@
 // (fn_7100e5dd0c, declared in UnkTU2563_Records_ovb0223.cpp). Names and layouts are placeholders.
 #include <new>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -51,15 +52,7 @@ struct UnkBoundsItem_o0313 {
 static_assert(sizeof(UnkBoundsItem_o0313) == 0x28, "layout");
 
 template <class V>
-struct UnkKeyedItems_o0313 {
-    V* items;
-    UnkMinimapId_o0313* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyedItems_o0313 = base::global::CRntSmallDictionary<UnkMinimapId_o0313, V>;
 
 // Shrinks both arrays to the count: moves the items and copies the ids (counting a use) before releasing the old ones.
 void fn_7100e5bdf0(UnkKeyedItems_o0313<UnkBoundsItem_o0313>* self) {
@@ -69,13 +62,13 @@ void fn_7100e5bdf0(UnkKeyedItems_o0313<UnkBoundsItem_o0313>* self) {
     V* items = static_cast<V*>(self->allocator->vf_0x40((u64)self->count * sizeof(V), 8, self->flags));
     auto* keys = static_cast<UnkMinimapId_o0313*>(
         self->allocator->vf_0x40((u64)self->count * sizeof(UnkMinimapId_o0313), 8, self->flags));
-    if (V* src = self->items) {
+    if (V* src = self->values) {
         V* dst = items;
         for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
             new (dst) V(static_cast<V&&>(*src));
             src->~V();
         }
-        self->allocator->vf_0x48(self->items);
+        self->allocator->vf_0x48(self->values);
     }
     if (UnkMinimapId_o0313* src = self->keys) {
         CStrId* dst = reinterpret_cast<CStrId*>(keys);
@@ -85,7 +78,7 @@ void fn_7100e5bdf0(UnkKeyedItems_o0313<UnkBoundsItem_o0313>* self) {
         }
         self->allocator->vf_0x48(self->keys);
     }
-    self->items = items;
+    self->values = items;
     self->keys = keys;
     self->capacity = self->count;
 }
@@ -105,15 +98,7 @@ struct UnkVecRawB {
 };
 static_assert(sizeof(UnkVecRawB) == 0x28, "layout");
 
-struct UnkIdVecTableB {
-    UnkVecRawB* items;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdVecTableB = base::global::CRntSmallDictionary<CStrId, UnkVecRawB>;
 
 // Shrinks the arrays to the count.
 void fn_7100e5dd0c(UnkStrIdVecMap_b0223* map) {
@@ -124,7 +109,7 @@ void fn_7100e5dd0c(UnkStrIdVecMap_b0223* map) {
         static_cast<UnkVecRawB*>(self->allocator->vf_0x40((u64)self->count * sizeof(UnkVecRawB), 8, self->flags));
     CStrId* new_keys =
         static_cast<CStrId*>(self->allocator->vf_0x40((u64)self->count * 8, 8, self->flags));
-    UnkVecRawB* src = self->items;
+    UnkVecRawB* src = self->values;
     if (src) {
         UnkVecRawB* dst = new_items;
         for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
@@ -137,7 +122,7 @@ void fn_7100e5dd0c(UnkStrIdVecMap_b0223* map) {
             dst->allocator = src->allocator;
             __builtin_memset(src, 0, 16);
         }
-        self->allocator->vf_0x48(self->items);
+        self->allocator->vf_0x48(self->values);
     }
     if (CStrId* src = self->keys) {
         CStrId* dst = new_keys;
@@ -147,7 +132,7 @@ void fn_7100e5dd0c(UnkStrIdVecMap_b0223* map) {
         }
         self->allocator->vf_0x48(self->keys);
     }
-    self->items = new_items;
+    self->values = new_items;
     self->keys = new_keys;
     self->capacity = self->count;
 }

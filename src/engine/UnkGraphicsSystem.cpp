@@ -10,6 +10,7 @@
 #include "base/UnkDefaultAllocator.h"
 #include "base/UnkMatrix44.h"
 #include "base/UnkParallelFind.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
@@ -82,15 +83,11 @@ struct UnkGfxNamedVector {
 static_assert(sizeof(UnkGfxNamedVector) == 0x18, "named vector size");
 
 // Named vectors in an array parallel to their 64-bit keys, with a shared count.
-struct UnkGfxNamedVectors {
-    UnkGfxNamedVector* values;
-    u64* keys;  // 0x8
-    u32 count;  // 0x10
-    u32 capacity;
-    u32 step;
-    u32 flags;  // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
-};
+// keys: 0x8
+// count: 0x10
+// flags: 0x1c
+// allocator: 0x20
+using UnkGfxNamedVectors = base::global::CRntSmallDictionary<u64, UnkGfxNamedVector>;
 static_assert(sizeof(UnkGfxNamedVectors) == 0x28, "named vectors size");
 
 // One display mode the device reports (fn_710015be10): a name and three words.
