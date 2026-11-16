@@ -49,6 +49,21 @@ struct UnkLinkedList {
         }
     }
 
+    // PushBack as some callers inline it: an empty list stores the tail before the head
+    // (fn_7100d77f54).
+    void PushBackTailFirst(Node* node) {
+        if (count == 0) {
+            tail = node;
+            head = node;
+            count = 1;
+        } else {
+            tail->next = node;
+            node->next = nullptr;
+            tail = node;
+            ++count;
+        }
+    }
+
     void PushFront(Node* node) {
         if (count == 0) {
             head = node;
@@ -61,7 +76,7 @@ struct UnkLinkedList {
         }
     }
 
-    // Unlinks `node` and frees it; nothing happens if it is not in the list.
+    // Unlinks `node`, destroys and frees it; nothing happens if it is not in the list.
     void Remove(Node* node) {
         Node* prev = nullptr;
         for (Node* cur = head; cur;) {
@@ -78,6 +93,7 @@ struct UnkLinkedList {
                     head = nullptr;
                     tail = nullptr;
                 }
+                node->~Node();
                 allocator->vf_0x48(node);
                 return;
             }

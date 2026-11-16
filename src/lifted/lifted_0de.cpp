@@ -439,15 +439,6 @@ u64 fn_7100de9c14(char* p0) {
     return r3_0;
 }
 
-namespace callee { char* fn_710007ecd4(char*); }
-namespace callee { char* fn_710007ed40(char*); }
-char* fn_7100de9f54(char* p0) {
-    char* r0_19 = p0;
-    char* r1_0 = callee::fn_710007ed40(p0);
-    char* r2_0 = r0_19;
-    return callee::fn_710007ecd4(r2_0);
-}
-
 namespace callee { char* fn_710007f120(u64, char*); }
 u64 fn_7100deab70(char* p0, char* p1) {
     u64 X0 = (u64)p0;

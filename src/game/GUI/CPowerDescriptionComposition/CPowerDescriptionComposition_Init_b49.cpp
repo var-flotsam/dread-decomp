@@ -18,7 +18,6 @@ using base::global::CStrId;
 
 using UnkGuiObj = UnkGuiDisplayObject;
 struct UnkPanel_71011dfeb0;
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 
 // Looks a child up by path (declared as src/game_s7/UnkGuiS7.h does: the path string by address).
 static inline UnkGuiObj* FindByPath(void* self, const CRntString& path) {

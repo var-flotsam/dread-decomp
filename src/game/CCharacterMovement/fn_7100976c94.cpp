@@ -58,9 +58,9 @@ struct UnkBox2D {
     UnkBox2D(f32 min_x_, f32 min_y_, f32 max_x_, f32 max_y_)
         : min_x(min_x_), min_y(min_y_), max_x(max_x_), max_y(max_y_) {}
 };
-void fn_7100d5e1f8(UnkCollisionShape* self, const UnkBox2D* box);
 
-bool fn_7100976c94(UnkGrappleTarget* target, const UnkVec3f* pos, u32 value, void* arg, bool flag, f32 offset) {
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
+bool fn_7100976c94(UnkGrappleTarget* target, const UnkVec3f* pos, u32 value, void* arg, u32 flag, f32 offset) {
     UnkGameManagerSub_0x608* sub = g_unk_7101d47310->field_0x608;
     if (!sub)
         return false;

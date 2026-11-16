@@ -55,7 +55,6 @@ __attribute__((always_inline)) bool fn_7100b7cd98(UnkSlotSelected_ovb0113* self)
 // and the content state is set as above.
 struct UnkGuiEvent_b49;
 using UnkGuiObj = UnkGuiDisplayObject;
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 
 struct UnkSlotSelectedBody_ovb0113 {
     u8 pad_0x0[0x230];

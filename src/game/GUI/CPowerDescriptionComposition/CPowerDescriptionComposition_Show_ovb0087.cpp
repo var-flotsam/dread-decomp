@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CArchivesInspectorComposition.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
@@ -144,8 +145,6 @@ void fn_7100b63ef4(UnkPowerDescCompositionScroll* self, UnkPowerDescScrollEvent*
     }
     event->handled = true;
 }
-
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 
 static inline UnkGuiObj* FindByPath(void* self, const CRntString& path) {
     return fn_71011d9508(static_cast<UnkGuiObj*>(self), reinterpret_cast<const char* const*>(&path));

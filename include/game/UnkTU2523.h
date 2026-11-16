@@ -40,7 +40,7 @@ void fn_7100d80b84(void* self);  // Re-points `current` at (index, element).
 extern void* g_unk_71727b85d0;
 UnkWeakHandle* fn_7100d78378(UnkWeakTarget* self);
 void fn_7100d7c94c(UnkActor*, const u64*);
-bool fn_7100d7bea0(UnkActor* owner, bool flag);
+bool fn_7100d7bea0(UnkActor* owner, u32 mode);
 UnkActorPosition fn_7100d7b7a8(UnkActor* actor);
 const base::global::CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065*);
 UnkHyperBeamEffectHandle fn_7100d7c614(UnkActor* owner, const UnkHyperBeamEffectDesc* desc, const base::global::CStrId* name, u32 a, u32 b, u32 c);

@@ -16,6 +16,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU32.h"
 #include "types.h"
@@ -28,7 +29,6 @@ using base::global::UnkStringPool;
 
 // As src/game_s7/UnkGuiS7.h declares them.
 using UnkGuiObj = UnkGuiDisplayObject;
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 
 // As src/game/GUI/CPopUpGeneric/GUI_CPopUpGeneric_Dtor.cpp declares it: an id pair's destructor.

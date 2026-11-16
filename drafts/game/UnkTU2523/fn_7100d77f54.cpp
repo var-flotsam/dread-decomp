@@ -67,21 +67,6 @@ struct UnkEntity_ld77f54 {
 static_assert(__builtin_offsetof(UnkEntity_ld77f54, paths) == 0x350, "layout");
 static_assert(__builtin_offsetof(UnkEntity_ld77f54, field_0x3d0) == 0x3d0, "layout");
 
-// base::UnkLinkedList::PushBack with the empty case storing the tail before the head.
-template <class Node>
-static inline void PushBackTailFirst(base::UnkLinkedList<Node>& list, Node* node) {
-    if (list.count == 0) {
-        list.tail = node;
-        list.head = node;
-        list.count = 1;
-    } else {
-        list.tail->next = node;
-        node->next = nullptr;
-        list.tail = node;
-        ++list.count;
-    }
-}
-
 static inline UnkCharClass_ld77f54* AsCharClass(UnkReflObject* object) {
     return fn_710009d50c(object->vf_0x0(), fn_71011abbd4()) ? reinterpret_cast<UnkCharClass_ld77f54*>(object)
                                                             : nullptr;
@@ -117,7 +102,7 @@ bool fn_7100d77f54(UnkEntity_ld77f54* self, const UnkSource_ld77f54* source) {
                 continue;
             void* mem = self->paths.allocator->vf_0x40(sizeof(UnkPathNode_ld77f54), 8, self->paths.flags);
             if (mem)
-                PushBackTailFirst(self->paths, new (mem) UnkPathNode_ld77f54{node->path, nullptr});
+                self->paths.PushBackTailFirst(new (mem) UnkPathNode_ld77f54{node->path, nullptr});
         }
     }
     return ok;

@@ -3528,7 +3528,25 @@ def defined_outside(out: Path, also: tuple[str, ...] = ()) -> set[int]:
                     skip |= named_value_ops().get(("mapper", c), set())
                     # and its constructor, when its description is keyed by C (refl_InitType<C>)
                     skip |= named_value_ops().get(c, set())
+            skip |= labelled_inline(text)
+    # A member named fn_X by an asm label and defined inline in its header is emitted, under that
+    # name, by the sources that need its address (base/UnkTunableLine.h's destructor).
+    for f in (ROOT / "include").rglob("*.h"):
+        skip |= labelled_inline(f.read_text(encoding="utf-8"))
     return skip
+
+
+# A member function declared with an asm label: `~T() asm("fn_X");`, `T(const T&) asm("fn_X");`.
+LABEL_RE = re.compile(r'(~?\w+)\s*\([^;{]*?\)\s*(?:const\s*)?asm\("fn_([0-9a-f]{10})"\)\s*;')
+
+
+def labelled_inline(text: str) -> set[int]:
+    """Addresses of asm-labelled member functions that the same file also defines (`T::name(...) {`)."""
+    found = set()
+    for name, addr in LABEL_RE.findall(text):
+        if re.search(r"::" + re.escape(name) + r"\s*\([^;{]*\)\s*(?:const\s*)?\{", text):
+            found.add(int(addr, 16))
+    return found
 
 
 VALUE_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$", re.M)

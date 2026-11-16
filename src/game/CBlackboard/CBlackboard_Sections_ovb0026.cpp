@@ -18,6 +18,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBlackboard.h"
@@ -525,14 +526,10 @@ struct UnkWriteRoot_b0026 {
 };
 
 void* fn_71000edd0c(UnkWriter_b0026* self);
-struct UnkWriteCallbacks_b0026 {
-    u64 words[6];
-};
-extern UnkWriteCallbacks_b0026 g_unk_71729fd068 __attribute__((visibility("hidden")));
 
 // What fn_710104b540 is given: this unit's callbacks, the objects to write and the writer.
 struct UnkWriteContext_b0026 {
-    UnkWriteCallbacks_b0026 callbacks;
+    UnkParseCallbacks callbacks;
     UnkWriteStack_b0026* stack;
     UnkWriter_b0026* writer;
 };
@@ -550,7 +547,7 @@ void fn_7101047988(CBlackboard* self, base::global::CRntFile* file) {
     fn_71000ed224(reinterpret_cast<UnkVersionWriter_A1b71*>(&writer), file,
                   reinterpret_cast<UnkVersionEntry*>(const_cast<base::reflection::CClass*>(object->vf_0x0())));
     if (stack.count) {
-        const UnkWriteCallbacks_b0026* callbacks = &g_unk_71729fd068;
+        const UnkParseCallbacks* callbacks = &g_unk_71729fd068;
         ctx.callbacks.words[0] = callbacks->words[0];
         ctx.callbacks.words[1] = callbacks->words[1];
         ctx.callbacks.words[2] = callbacks->words[2];
@@ -600,7 +597,7 @@ void fn_7101048b94(UnkSectionGroup_b0026* self, base::global::CRntFile* file) {
                   reinterpret_cast<UnkVersionEntry*>(const_cast<base::reflection::CClass*>(
                       reinterpret_cast<base::reflection::UnkReflObject*>(self->owner)->vf_0x0())));
     if (stack.count) {
-        const UnkWriteCallbacks_b0026* callbacks = &g_unk_71729fd068;
+        const UnkParseCallbacks* callbacks = &g_unk_71729fd068;
         ctx.callbacks.words[0] = callbacks->words[0];
         ctx.callbacks.words[1] = callbacks->words[1];
         ctx.callbacks.words[2] = callbacks->words[2];

@@ -39,7 +39,6 @@ struct UnkGuiPos {
 
 // The container's own set-up, before its flags (src/game/GUI/CHUD/fn_71011dfeb0.cpp calls it too).
 // The child at a dotted path ("Content.Navigation"), given as the path string's text.
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 // The position of an item's anchor (src/game/UnkGuiAnchor.cpp).
 // Sets the object's x (src/game/GUI/CDisplayObject.cpp).
 void fn_71011cc748(f32 x, UnkGuiDisplayObject* self);

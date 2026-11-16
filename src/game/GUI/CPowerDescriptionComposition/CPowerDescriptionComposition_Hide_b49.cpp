@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2578.h"
@@ -18,7 +19,6 @@
 using base::global::CRntString;
 
 using UnkGuiObj = UnkGuiDisplayObject;
-UnkGuiObj* fn_71011d9508(UnkGuiObj* self, const char* const* path);
 
 // Looks a child up by path (declared as src/game_s7/UnkGuiS7.h does: the path string by address).
 static inline UnkGuiObj* FindByPath(void* self, const CRntString& path) {

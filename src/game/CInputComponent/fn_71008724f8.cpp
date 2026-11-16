@@ -1,9 +1,9 @@
 // CInputComponent's unit: files a list of flag values under a key (fn_71008724f8). When there is
 // something to do it may reset the component (fn_7100872268) and clear its pressed state, then hands a
 // copy of the list to the block at +0xad0 (fn_710086fca0). Names and layouts are placeholders.
-#include "../../game_s7/UnkFlagListS7.h"
 #include "base/global/CRntVector.h"
 #include "game/CInputComponent.h"
+#include "game/UnkFlagListS7.h"
 #include "types.h"
 
 using unk_flag_list::UnkFlagList;
