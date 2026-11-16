@@ -154,6 +154,13 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**A navigation cell's owner and flag in the shared layout (2026-11-16).** `UnkNavMeshCell`
+(`include/game/UnkNavMeshCell.h`) now lays out the owning mesh at +0x58 and the flag at +0x60, so the flag setter
+`fn_71002af93c` drops its private view (`UnkNavMeshCellFlag367`) and is declared once in `game/UnkTU367.h`. The mesh's
+callback `fn_710027da54` is declared in `game/navmesh/CNavMesh.h` and moved from `drafts/` to `src/` as a match. The
+cell's 16-bit id at +0x0 is read through an `Id()` accessor: a `u16` member there changes how `fn_71002afa48`
+(src/game/UnkNavMeshCellLoad.cpp) compiles, so the first eight bytes stay padding.
+
 **Opus batch lean-o2: the yield falls (2026-11-16).** The next ten units in the same shape: 7 matches of 50
 (14%), 10 registers-only, 33 that differ; 186 graded attempts; about 2.16 million tokens. One more match came
 from the caller: `fn_7100e00cc0` matches with a `bool` parameter, and its only caller now declares it and its
