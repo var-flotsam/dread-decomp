@@ -429,11 +429,9 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e51258,688,drafts/game/UnkTU2563/fn_7100e51258.cpp,operations,71.5,47,lean-o1,second array pair (0xd8) is addressed from a pre-indexed pair base in the original (2 extra movs); first 121 i
 0x7100e536b8,348,drafts/game/UnkTU2563/fn_7100e536b8.cpp,operations,36.8,46,lean-b1,zero-init of new record: original uses unpaired 8-byte stores from base+0x5c and mul by 0x60; ours stp with sh
 0x7100e54348,364,drafts/game/UnkTU2563/fn_7100e54348.cpp,operations,52.2,43,lean-b1,key store/value load order; capacity reloaded after reserve; count kept in register
-0x7100e558f8,736,drafts/game/UnkTU2563/fn_7100e558f8.cpp,match,100.0,0,lean-o1,matches only with a union Slot cast on the moved-from CStrId store (draft has it); 45.7% registers with plain
 0x7100e56814,608,drafts/game/UnkTU2563/fn_7100e56814.cpp,registers or order,91.4,13,lean-p1,x8/x9 swapped for the pool in the id-move loop
 0x7100e57018,668,drafts/game/UnkTU2563/fn_7100e57018.cpp,registers or order,79.0,35,lean-o1,registers in the record move; 79% needs a union cast (Slot) on the moved-from CStrId store to force reloads; 5
 0x7100e58bdc,416,drafts/game/UnkTU2563/fn_7100e58bdc.cpp,operations,46.2,54,lean-p1,original reloads count before the last key's release; only a __builtin_memcpy key copy reproduces it (85.6%; t
-0x7100e5ae40,676,drafts/game/UnkTU2563/fn_7100e5ae40.cpp,match,100.0,0,lean-o1,matches only with a union Slot cast on the moved-from CStrId key store (draft has it); 48% registers with plai
 0x7100e5b944,324,drafts/game/UnkTU2563/fn_7100e5b944.cpp,operations,29.3,57,lean,
 0x7100e5bc9c,340,drafts/game/UnkTU2563/fn_7100e5bc9c.cpp,operations,47.1,45,lean-b1,copy loop: original reloads count each pass and copies fields in order after the loop test; entry copy shape u
 0x7100e5c014,268,drafts/game/UnkTU2563/fn_7100e5c014.cpp,control flow,22.9,51,lean-b1,count reload/branch join after CStrId key copy differs (extra jump); draft uses CStrId copy ctor
