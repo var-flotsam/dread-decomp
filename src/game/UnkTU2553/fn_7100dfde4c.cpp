@@ -10,6 +10,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2727.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -89,7 +90,6 @@ static inline T* Singleton_ldfde4c(T*& instance) {
 
 struct UnkNamedObject;
 struct UnkNamedUser;
-UnkNamedUser* fn_7101190890(UnkNamedObject* self, CRntString name);
 
 // An object registered by name, and what fn_7101190890 gives for it and a scenario.
 struct UnkNamedObject_ldfde4c {

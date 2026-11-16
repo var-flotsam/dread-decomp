@@ -8,6 +8,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU85.h"
 #include "types.h"
@@ -17,7 +18,6 @@ using base::reflection::UnkReflTypedPtr;
 
 // The ability's tunables (the reflection registers it as a CTunable).
 struct UnkTunableValue_ovb0262g;
-extern UnkTunableValue_ovb0262g g_unk_71726af060;
 
 struct UnkBoostField_l305c24 {
     u8 pad_0x0[0xb0];

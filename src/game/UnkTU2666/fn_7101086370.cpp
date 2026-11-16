@@ -7,12 +7,11 @@
 #include "game/CCharClassAttack.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkAttackTarget_A2_b68;
 struct UnkAttackListSelf_b0143;
-CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name);
-s32 fn_71003623a4(CAttack* attack);
 
 struct UnkAttackEntry_l086370 {
     u8 pad_0x0[0x10];

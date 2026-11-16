@@ -16,7 +16,6 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern void* g_unk_7101a1b678[];
 using UnkString40_lfd5ecc = UnkBufferString<0x40, g_unk_7101a1b678>;
 
 struct UnkPathRecord_lfd5ecc {

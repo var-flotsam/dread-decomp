@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
@@ -68,8 +69,6 @@ struct UnkCommanderAI_l455200 {
     }
 };
 static_assert(__builtin_offsetof(UnkCommanderAI_l455200, send_pending) == 0x15f00, "layout");
-
-extern __attribute__((visibility("hidden"))) CStrId g_unk_71726c9540;
 
 bool fn_7100455200(UnkCommanderAI_l455200* self, UnkAnimEvent_l455200* event) {
     UnkAnimationComponent* animation = self->owner->animation;

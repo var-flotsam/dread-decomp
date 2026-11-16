@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CAnimationComponent.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -75,7 +76,6 @@ struct UnkCommanderAI_l450c28 {
 };
 static_assert(__builtin_offsetof(UnkCommanderAI_l450c28, send_pending) == 0x15f00, "layout");
 
-extern __attribute__((visibility("hidden"))) CStrId g_unk_71726c9540;
 f32 fn_710117808c(UnkAnimationComponent* self, u64 key);
 
 void fn_7100450c28(UnkCommanderAI_l450c28* self) {
