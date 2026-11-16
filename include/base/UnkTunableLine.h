@@ -49,7 +49,14 @@ struct UnkTunableLine {
     }
     UnkTunableLine(const UnkTunableLine& other) : UnkTunableLine() { fn_710007eaa0(Str(), other.Str()); }
     // Inlined where it runs; the copy the runtime asset path's static registers at exit is fn_7100de9f54.
+    // The label is for the matching build only (Clang 9 ignores it, tools/dread/asm_labels.py reads
+    // it): the port's newer Clang never finishes compiling a destructor that is both labelled and
+    // defined inline.
+#if defined(SWITCH)
     ~UnkTunableLine() asm("fn_7100de9f54");
+#else
+    ~UnkTunableLine();
+#endif
 
     UnkTunableLine& operator=(const UnkTunableLine& other) {
         fn_710007eaa0(Str(), other.Str());
