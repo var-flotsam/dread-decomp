@@ -3527,8 +3527,8 @@ def defined_outside(out: Path, also: tuple[str, ...] = ()) -> set[int]:
 
 
 VALUE_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$", re.M)
-MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|SmallDictionary(?:Keyed)?|Dictionary(?:Find)?)"
-                            r"MapperDescription<(.+)> \{$", re.M)
+MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|VectorHeader|SmallDictionary(?:Keyed|Header)?"
+                            r"|Dictionary(?:Find)?)MapperDescription<(.+)> \{$", re.M)
 _VALUE_OPS: dict[str, set[int]] | None = None
 
 

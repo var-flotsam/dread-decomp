@@ -326,10 +326,19 @@ class TypeNames(unittest.TestCase):
         vector = "base::global::CRntVector<CActor*>"
         named = {0x7100000520: f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator"}
         self.assertEqual(gt.mapped_vector(body, named, frozenset()), (vector, "CActor*"))
-        # a class element, a keyed collection, a const iterator or an unnamed iterator: not written yet
-        for other in ("base::global::CRntVector<CFoo>", "base::global::CRntDictionary<CFoo, CBar>"):
+        # a keyed collection or a std:: element: not a vector written here
+        for other in ("base::global::CRntDictionary<CFoo, CBar>", "base::global::CRntVector<std::unique_ptr<CFoo>>"):
             named_other = {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}
             self.assertIsNone(gt.mapped_vector(body, named_other, frozenset()))
+        # a class element only declared: the slots that touch the header alone
+        foo = "base::global::CRntVector<CFoo>"
+        self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "CFoo")},
+                                          frozenset()), (foo, "CFoo"))
+        self.assertEqual(gt.mapper_slots(foo), gt.VECTOR_HEADER_SLOTS)
+        out = gt.emit_collection_ops(0x7100000010, body, foo, "CFoo", frozenset(gt.VECTOR_HEADER_SLOTS))
+        self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
+                      f": base::reflection::VectorHeaderMapperDescription<{foo}> {{", out)
+        self.assertIn("class CFoo;", out)
         # a class with a header that gives the mapper what it needs
         asset = "base::global::CRntVector<base::core::AssetName>"
         self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "base::core::AssetName")},
@@ -366,10 +375,14 @@ class TypeNames(unittest.TestCase):
         self.assertEqual(gt.mapped_collection(body, named, frozenset()), (dict_, "CEntity*"))
         self.assertIsNone(gt.mapped_vector(body, named, frozenset()))
         self.assertEqual(gt.split_template_args("A<B, C>, D"), ["A<B, C>", "D"])
-        # a class value without a known header: not written yet
+        # a class value without a known header: the slots that touch the header alone
         other = dict_.replace("CEntity*", "SGeoData")
-        self.assertIsNone(gt.mapped_collection(
-            body, {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}, frozenset()))
+        self.assertEqual(gt.mapped_collection(
+            body, {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}, frozenset()),
+            (other, "SGeoData"))
+        self.assertEqual(gt.mapper_slots(other), gt.SMALL_DICT_HEADER_SLOTS)
+        self.assertIn(f": base::reflection::SmallDictionaryHeaderMapperDescription<{other}> {{", "\n".join(
+            gt.emit_collection_ops(0x7100000010, body, other, "SGeoData", frozenset(gt.SMALL_DICT_HEADER_SLOTS))))
         # string-id keys compare, so the keyed slots are written too; a string key's are not
         self.assertEqual(gt.mapper_slots(dict_), gt.SMALL_DICT_SLOTS + gt.SMALL_DICT_KEYED_SLOTS)
         self.assertEqual(gt.mapper_slots("base::global::CRntSmallDictionary<base::global::CRntString, int>"),

@@ -135,6 +135,18 @@ struct CollectionMapperDescription {
     static constexpr auto const_end = &CollectionTypeMapper<C>::ConstEnd;
 };
 
+// The members that touch only a vector's header (its pointer, count and allocator), for a vector whose
+// element type is not written yet.
+template <class C>
+struct VectorHeaderMapperDescription {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto construct = &Mapper::Construct;
+    static constexpr auto move_construct = &Mapper::MoveConstruct;
+    static constexpr auto hash = &Mapper::Hash;
+    static constexpr auto count = &Mapper::Count;
+    static constexpr auto begin = &Mapper::Begin;
+};
+
 // A small dictionary's mapper (base/global/CRntSmallDictionary.h): its element iterators are a vector's.
 // The slots written so far are those that need none of its growth or copies; its erase is still by address.
 template <class K, class V>
@@ -188,16 +200,23 @@ struct CollectionTypeMapper<global::CRntSmallDictionary<K, V>> {
     }
 };
 
-// The members of a small dictionary C's description that its mapper writes.
+// The members of a small dictionary C's description that touch only its header, for a dictionary whose
+// value type is not written yet.
 template <class C>
-struct SmallDictionaryMapperDescription {
+struct SmallDictionaryHeaderMapperDescription {
     using Mapper = CollectionTypeMapper<C>;
     static constexpr auto construct = &Mapper::Construct;
     static constexpr auto move_construct = &Mapper::MoveConstruct;
     static constexpr auto hash = &Mapper::Hash;
     static constexpr auto count = &Mapper::Count;
-    static constexpr auto at = &Mapper::At;
     static constexpr auto begin = &Mapper::Begin;
+};
+
+// And those that need its value whole.
+template <class C>
+struct SmallDictionaryMapperDescription : SmallDictionaryHeaderMapperDescription<C> {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto at = &Mapper::At;
     static constexpr auto end = &Mapper::End;
 };
 

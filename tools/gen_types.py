@@ -598,7 +598,8 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
         v = mapped_collection(body, named_ptrs, frozenset(name for name, _ in named.values()))
         if v and v[0] in mapped:
             slots = collection_slots(body)
-            members = {d for d in mapper_members(orig, body, by_hand, v[0]) if slots[d] not in by_address}
+            enums = frozenset(name for name, _ in named.values())
+            members = {d for d in mapper_members(orig, body, by_hand, v[0], enums) if slots[d] not in by_address}
             out.update(collection_ops_names(orig, body, *v, members))
     return out
 
@@ -694,10 +695,16 @@ MAPPER_HELPERS = {"add_copy": ("InsertCopy", "void {C}::InsertCopy({E} const&, u
 VECTOR_RE = re.compile(r"base::global::CRntVector<(.+)>")
 SMALL_DICT_RE = re.compile(r"base::global::CRntSmallDictionary<(.+)>")
 DICT_RE = re.compile(r"base::global::CRntDictionary<(.+)>")
-MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|SmallDictionary(?:Keyed)?|Dictionary(?:Find)?)"
-                            r"MapperDescription<(.+)> \{$", re.M)
-# The slots CollectionTypeMapper writes for a small dictionary so far (SmallDictionaryMapperDescription).
+MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|VectorHeader|SmallDictionary(?:Keyed|Header)?"
+                            r"|Dictionary(?:Find)?)MapperDescription<(.+)> \{$", re.M)
+# The slots that touch only a vector's header, for an element that is only declared
+# (VectorHeaderMapperDescription).
+VECTOR_HEADER_SLOTS = ("construct", "move_construct", "hash", "count", "begin")
+# The slots CollectionTypeMapper writes for a small dictionary so far (SmallDictionaryMapperDescription), and
+# those of them that touch only its header, for a value that is only declared
+# (SmallDictionaryHeaderMapperDescription).
 SMALL_DICT_SLOTS = ("construct", "move_construct", "hash", "count", "at", "begin", "end")
+SMALL_DICT_HEADER_SLOTS = ("construct", "move_construct", "hash", "count", "begin")
 # And those that compare keys, for a key of DICT_KEY_TYPES or a plain number
 # (SmallDictionaryKeyedMapperDescription).
 SMALL_DICT_KEYED_SLOTS = ("move_assign", "equals", "find", "set_copy", "set_move")
@@ -720,20 +727,35 @@ def collection_slots(body: list[str]) -> dict[str, int]:
     return {m: int(a, 16) for m, a in re.findall(r" (\w+) = &fn_([0-9a-f]+);", "\n".join(body))}
 
 
+def whole_element(element: str, enums: frozenset[str], headers) -> bool:
+    """Whether a generated file can have a collection's element whole: a pointer, an enum, a plain number or
+    a class of `headers`."""
+    return (element.endswith("*") or element in enums or element in PRIMITIVE_VALUE_TYPES.values()
+            or element in headers)
+
+
+def declarable_element(element: str) -> bool:
+    """Whether an element type the generated file only declares can be named there: it parses, and it is
+    not in std:: (libc++ mangles that as std::__1)."""
+    return parse_type(element) is not None and "std::" not in element
+
+
 def mapped_vector(body: list[str], named_ptrs: dict[int, str], enums: frozenset[str]) -> tuple[str, str] | None:
     """(C, element) of a vector collection whose slots CollectionTypeMapper<C> writes today: kind 1 and 0x28
-    bytes, C named by its element iterator's named form (named_pointers), every mapper slot a function, and an
-    element that is a pointer, an enum, a plain number or a class of CLASS_ELEMENT_HEADERS."""
+    bytes, C named by its element iterator's named form (named_pointers), and every mapper slot a function;
+    all of them for a whole element (whole_element), the header's (VECTOR_HEADER_SLOTS) for one that is
+    only declared."""
     text = "\n".join(body)
     if "size = 0x28;" not in text or "kind = 0x1;" not in text:
         return None
     it = element_iterator(body, named_ptrs)
     v = VECTOR_RE.fullmatch(it.group(1)) if it else None
-    if v is None or not set(MAPPER_SLOTS) <= set(collection_slots(body)):
+    if v is None:
         return None
     element = v.group(1)
-    if (element.endswith("*") or element in enums or element in PRIMITIVE_VALUE_TYPES.values()
-            or element in CLASS_ELEMENT_HEADERS):
+    if whole_element(element, enums, CLASS_ELEMENT_HEADERS):
+        return (it.group(1), element) if set(MAPPER_SLOTS) <= set(collection_slots(body)) else None
+    if declarable_element(element) and set(VECTOR_HEADER_SLOTS) <= set(collection_slots(body)):
         return it.group(1), element
     return None
 
@@ -762,22 +784,24 @@ def split_template_args(args: str) -> list[str]:
 
 def mapped_small_dictionary(body: list[str], named_ptrs: dict[int, str],
                             enums: frozenset[str]) -> tuple[str, str] | None:
-    """(C, value) of a small dictionary whose SMALL_DICT_SLOTS CollectionTypeMapper<C> writes: kind 2 and 0x28
-    bytes, C named by its element iterator's named form, and a value that is a pointer, an enum, a plain number
-    or a class of DICT_VALUE_HEADERS."""
+    """(C, value) of a small dictionary whose slots CollectionTypeMapper<C> writes: kind 2 and 0x28 bytes, C
+    named by its element iterator's named form, and every mapper slot a function; SMALL_DICT_SLOTS for a whole
+    value (whole_element with DICT_VALUE_HEADERS), SMALL_DICT_HEADER_SLOTS for one that is only declared."""
     text = "\n".join(body)
     if "size = 0x28;" not in text or "kind = 0x2;" not in text:
         return None
     it = element_iterator(body, named_ptrs)
     d = SMALL_DICT_RE.fullmatch(it.group(1)) if it else None
-    if d is None or not set(SMALL_DICT_SLOTS) <= set(collection_slots(body)):
+    if d is None:
         return None
     args = split_template_args(d.group(1))
     if len(args) != 2:
         return None
     value = args[1]
-    if (value.endswith("*") or value in enums or value in PRIMITIVE_VALUE_TYPES.values()
-            or value in DICT_VALUE_HEADERS):
+    if whole_element(value, enums, DICT_VALUE_HEADERS):
+        return (it.group(1), value) if set(SMALL_DICT_SLOTS) <= set(collection_slots(body)) else None
+    if (all(declarable_element(a) for a in args)
+            and set(SMALL_DICT_HEADER_SLOTS) <= set(collection_slots(body))):
         return it.group(1), value
     return None
 
@@ -823,13 +847,24 @@ def keyed_small_dictionary(collection: str) -> bool:
     return key in DICT_KEY_TYPES or key in PRIMITIVE_VALUE_TYPES.values()
 
 
-def mapper_slots(collection: str) -> tuple[str, ...]:
+def whole_collection(collection: str, enums: frozenset[str]) -> bool:
+    """Whether a vector's element or a small dictionary's value is whole (whole_element)."""
+    if v := VECTOR_RE.fullmatch(collection):
+        return whole_element(v.group(1), enums, CLASS_ELEMENT_HEADERS)
+    if d := SMALL_DICT_RE.fullmatch(collection):
+        return whole_element(split_template_args(d.group(1))[-1], enums, DICT_VALUE_HEADERS)
+    return True
+
+
+def mapper_slots(collection: str, enums: frozenset[str] = frozenset()) -> tuple[str, ...]:
     """The description members CollectionTypeMapper<collection> can write."""
     if SMALL_DICT_RE.fullmatch(collection):
+        if not whole_collection(collection, enums):
+            return SMALL_DICT_HEADER_SLOTS
         return SMALL_DICT_SLOTS + (SMALL_DICT_KEYED_SLOTS if keyed_small_dictionary(collection) else ())
     if DICT_RE.fullmatch(collection):
         return DICT_SLOTS + (DICT_FIND_SLOTS if dictionary_finds(collection) else ())
-    return tuple(MAPPER_SLOTS)
+    return tuple(MAPPER_SLOTS) if whole_collection(collection, enums) else VECTOR_HEADER_SLOTS
 
 
 def call_target(orig: asmdiff.Original, addr: int) -> int | None:
@@ -852,11 +887,11 @@ def mapper_helpers(orig: asmdiff.Original, body: list[str], members, collection:
 
 
 def mapper_members(orig: asmdiff.Original, body: list[str], by_hand: set[int],
-                   collection: str = "") -> frozenset[str]:
+                   collection: str = "", enums: frozenset[str] = frozenset()) -> frozenset[str]:
     """The description members the mapper writes for a collection: every one of mapper_slots whose slot, and
     the CRntVector member it calls, no hand-written source defines (those keep their addresses)."""
     slots = collection_slots(body)
-    free = {d for d in mapper_slots(collection) if d in slots and slots[d] not in by_hand}
+    free = {d for d in mapper_slots(collection, enums) if d in slots and slots[d] not in by_hand}
     helpers = mapper_helpers(orig, body, free, collection)
     return frozenset(d for d in free if helpers.get(d) not in by_hand)
 
@@ -882,10 +917,13 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
     desc = f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> {{"
     small_dict = SMALL_DICT_RE.fullmatch(vector) is not None
     dictionary = DICT_RE.fullmatch(vector) is not None
-    base = ("SmallDictionaryKeyedMapperDescription" if keyed_small_dictionary(vector)
+    whole = whole_collection(vector, enums)
+    base = ("SmallDictionaryHeaderMapperDescription" if small_dict and not whole
+            else "SmallDictionaryKeyedMapperDescription" if keyed_small_dictionary(vector)
             else "SmallDictionaryMapperDescription" if small_dict
             else "DictionaryFindMapperDescription" if dictionary_finds(vector)
-            else "DictionaryMapperDescription" if dictionary else "CollectionMapperDescription")
+            else "DictionaryMapperDescription" if dictionary
+            else "CollectionMapperDescription" if whole else "VectorHeaderMapperDescription")
     out[out.index(desc)] = (f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> "
                             f": base::reflection::{base}<{vector}> {{")
     node = pointer_value_type(f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator")[1]
@@ -1301,7 +1339,7 @@ def main() -> int:
     by_hand = defined_by_hand()
     # (C, element, the members the mapper writes); a slot a hand-written source defines keeps its address
     named_colls = {i: (*v, m) for i, b in colls if (v := mapped_collection(b, named_ptrs, enum_names_known))
-                   and (m := mapper_members(orig, b, by_hand, v[0]))}
+                   and (m := mapper_members(orig, b, by_hand, v[0], enum_names_known))}
     coll_bodies = dict(colls)
 
     def collection_block(init: int, body: list[str]) -> list[str]:
