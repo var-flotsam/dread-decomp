@@ -4,11 +4,13 @@
 // are placeholders.
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpace1D.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU25.h"
 #include "game/UnkTU27.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -18,8 +20,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkRegistry_7100d92158;
-extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
-extern char g_unk_7101d4e570[] __attribute__((visibility("hidden")));
 extern CStrId g_unk_7101d4e590;
 
 struct UnkExtKey_ovb0274 {

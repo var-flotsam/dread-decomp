@@ -4,6 +4,7 @@
 // fn_7100010c60 parses a value of a given type into a scratch target and drops it (skipping it;
 // the reader types are in base/reflection/UnkReflObjectRead.h). Names and layouts are placeholders.
 #include "base/animation/CAnimationResource.h"
+#include "base/animation/CBlendSpace1D.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CRntFile.h"
@@ -126,7 +127,6 @@ extern UnkParseCallbacks g_unk_7101d4cde8 __attribute__((visibility("hidden")));
 
 // The resource registry and its lookup (as src/base/core/CAssetLink.cpp declares them).
 struct UnkRegistry_7100d92158;
-extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
 struct UnkAssetResRef {
     UnkCountedResource* ptr;
     ~UnkAssetResRef() {

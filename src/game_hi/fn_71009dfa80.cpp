@@ -8,6 +8,7 @@
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/CInputComponent.h"
 #include "game/CSamusHangMovementState/CParams.h"
+#include "game/UnkTU2689.h"
 #include "game/UnkTU39.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
@@ -77,7 +78,6 @@ void fn_710098ffe0(void* p);
 void fn_7100991d0c(void* p);
 void fn_71009b3b20(void* p);
 void fn_7100988dfc(void* p);
-void fn_71010d7874(void* p);
 
 extern void* g_unk_7101a8a048[];
 extern void* g_unk_7101a8a498[];

@@ -681,7 +681,7 @@ address,size,name,name_source,subsystem,status
 0x7100019fc0,236,fn_7100019fc0,unknown,unknown,O
 0x710001a0ac,452,fn_710001a0ac,unknown,unknown,O
 0x710001a270,300,fn_710001a270,unknown,unknown,O
-0x710001a39c,1180,fn_710001a39c,unknown,unknown,U
+0x710001a39c,1180,fn_710001a39c,unknown,unknown,O
 0x710001a838,124,fn_710001a838,unknown,unknown,O
 0x710001a8b4,624,fn_710001a8b4,unknown,unknown,O
 0x710001ab24,88,fn_710001ab24,unknown,unknown,O
@@ -810,7 +810,7 @@ address,size,name,name_source,subsystem,status
 0x710001e4e8,324,fn_710001e4e8,unknown,unknown,O
 0x710001e62c,280,fn_710001e62c,unknown,unknown,O
 0x710001e744,300,fn_710001e744,unknown,unknown,O
-0x710001e870,616,base::global::CRntVector<base::core::AssetName>::InsertCopy,reflection,engine/base,U
+0x710001e870,616,base::global::CRntVector<base::core::AssetName>::InsertCopy,reflection,engine/base,O
 0x710001ead8,516,base::global::CRntVector<base::core::AssetName>::InsertMove,reflection,engine/base,U
 0x710001ecdc,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::Begin,reflection,engine/reflection,O
 0x710001ece8,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::core::AssetName>>::End,reflection,engine/reflection,O
@@ -844,7 +844,7 @@ address,size,name,name_source,subsystem,status
 0x710001f43c,8,fn_710001f43c,unknown,unknown,O
 0x710001f444,8,fn_710001f444,unknown,unknown,O
 0x710001f44c,12,fn_710001f44c,unknown,unknown,O
-0x710001f460,1356,fn_710001f460,unknown,unknown,U
+0x710001f460,1356,fn_710001f460,unknown,unknown,O
 0x710001f9b0,128,fn_710001f9b0,unknown,unknown,O
 0x710001fa30,320,fn_710001fa30,unknown,unknown,O
 0x710001fb70,36,fn_710001fb70,unknown,unknown,O

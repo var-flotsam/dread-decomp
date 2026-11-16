@@ -1,0 +1,89 @@
+// Unit 2200 (hint CCutSceneDef): the constructor of the 0xa0-byte record: empty string and path ids, an
+// empty id array and an empty id map (step 10, flags 0xe) and a number of -1. Names and layouts are
+// placeholders.
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CRntVector.h"
+#include "base/global/CStrId.h"
+#include "types.h"
+
+#include <new>
+
+using base::global::CFilePathStrId;
+using base::global::CStrId;
+
+struct UnkStrIdPair_b239 {
+    CStrId first;
+    CStrId second;
+    u32 value;
+};
+
+struct UnkStrIdMap_b239 {
+    UnkStrIdPair_b239* values;
+    CStrId* keys;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    u32 flags;
+    base::UnkAllocator* allocator;
+};
+
+struct UnkIdArray_b239 {
+    u32* numbers;
+    CStrId* ids;
+    u32 count;
+    u32 capacity;
+    u32 step;
+    u32 flags;
+    base::UnkAllocator* allocator;
+};
+
+struct UnkElemA0_b42a3 {
+    CStrId field_0x0;
+    CFilePathStrId field_0x8;
+    CStrId field_0x10;
+    CStrId field_0x18;
+    u16 field_0x20;
+    u32 field_0x24;
+    UnkIdArray_b239 field_0x28;
+    u64 field_0x50;
+    CStrId field_0x58;
+    CStrId field_0x60;
+    u32 field_0x68;
+    UnkStrIdMap_b239 field_0x70;
+    CFilePathStrId field_0x98;
+};
+static_assert(sizeof(UnkElemA0_b42a3) == 0xa0, "UnkElemA0_b42a3 layout");
+
+// An empty id, creating the pool first when there is none.
+static inline void MakeEmpty(CStrId* id) {
+    id->data = nullptr;
+    if (!g_unk_7101d47108)
+        base::global::UnkEnsureStringPool();
+    id->data = &g_unk_7101d47108->empty;
+}
+
+void fn_7100c8d58c(UnkElemA0_b42a3* self) {
+    MakeEmpty(&self->field_0x0);
+    new (&self->field_0x8) CFilePathStrId();
+    MakeEmpty(&self->field_0x10);
+    MakeEmpty(&self->field_0x18);
+    self->field_0x24 = 0;
+    self->field_0x28.numbers = nullptr;
+    self->field_0x28.ids = nullptr;
+    self->field_0x28.count = 0;
+    self->field_0x28.capacity = 0;
+    self->field_0x28.step = 10;
+    self->field_0x28.flags = 0xe;
+    self->field_0x28.allocator = fn_7100083990();
+    self->field_0x50 = -1;
+    MakeEmpty(&self->field_0x58);
+    MakeEmpty(&self->field_0x60);
+    self->field_0x70.values = nullptr;
+    self->field_0x70.keys = nullptr;
+    self->field_0x70.count = 0;
+    self->field_0x70.capacity = 0;
+    self->field_0x70.step = 10;
+    self->field_0x70.flags = 0xe;
+    self->field_0x70.allocator = fn_7100083990();
+    new (&self->field_0x98) CFilePathStrId();
+}

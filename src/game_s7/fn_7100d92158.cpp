@@ -1,5 +1,6 @@
 // Registers a set of descriptors with the registry, three of them with a factory object
 // (created on first use). Names and layouts are placeholders.
+#include "base/animation/CBlendSpace1D.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2527.h"
@@ -45,7 +46,6 @@ struct UnkEntry_7100d92158 {
 };
 
 struct UnkRegistry_7100d92158;
-extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
 
 // A factory: a vtable and a 0x50-byte member, zeroed and then set up by its own function.
 struct UnkFactory_7100d92158 {

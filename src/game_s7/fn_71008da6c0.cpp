@@ -85,7 +85,6 @@ struct UnkStruct_71727313d4 {
     f32 field_0x28;
     f32 field_0x2c;
 };
-extern UnkStruct_71727313d4 g_unk_71727313d4;
 struct UnkStruct_7172731404 {
     f32 field_0x0;
     f32 field_0x4;

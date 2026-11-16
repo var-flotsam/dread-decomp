@@ -48,3 +48,4 @@ extern UnkConverter g_unk_71727bc510;
 extern UnkConverter g_unk_71727bc530;
 void fn_7100da6938(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
 void fn_7100da6cc4(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
+extern void* g_unk_7101aa9328[];

@@ -21,7 +21,6 @@ union UnkPairSlot_b0248 {
     UnkPairSlot_b0248() {}
     ~UnkPairSlot_b0248() {}
 };
-UnkStrIdPathPair* fn_710008d830(UnkStrIdPathPair* dst, const UnkStrIdPathPair* src);
 
 struct UnkRegistryString_b0248 {
     u8 pad_0x0[0x30];

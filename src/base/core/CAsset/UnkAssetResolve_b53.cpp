@@ -4,13 +4,13 @@
 // the registry (fn_7100020468). Names are placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpace1D.h"
 #include "game/UnkTU27.h"
 #include "types.h"
 
 // The resource registry (src/game_s7/fn_7100d92158.cpp registers its descriptors; reached through
 // the GOT).
 struct UnkRegistry_7100d92158;
-extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
 
 void fn_7100020468(UnkRegistry_7100d92158* registry, UnkCountedResource* resource);
 

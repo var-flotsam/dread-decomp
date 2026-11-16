@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkStruct_71727313d4;
 struct UnkStruct_71727313a4;
 struct UnkProperty;
 struct UnkDoorLife;
@@ -28,3 +29,4 @@ extern UnkProperty g_unk_7172731188;  // "ControlledByUsable".
 bool fn_71008d586c(UnkDoorLock*, bool, bool, base::global::CStrId*);
 bool fn_71008d564c(UnkDoorLock* door, u32 value, const base::global::CStrId* id);
 extern UnkStruct_71727313a4 g_unk_71727313a4;
+extern UnkStruct_71727313d4 g_unk_71727313d4;

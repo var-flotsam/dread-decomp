@@ -9,9 +9,9 @@
 #include "UnkClone.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2599.h"
 #include "types.h"
 
-extern char g_unk_7101cab248[];
 extern char g_unk_7101cab270[];
 extern char g_unk_7101cab2c0[];
 extern char g_unk_7101cab2e8[];

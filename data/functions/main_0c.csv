@@ -4451,7 +4451,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8ae98,4,CCutSceneDef::refl_Destroy,reflection,game/cutscene,O
 0x7100c8ae9c,48,CCutSceneDef::refl_CopyAssign,reflection,game/cutscene,O
 0x7100c8aecc,48,CCutSceneDef::refl_MoveAssign,reflection,game/cutscene,O
-0x7100c8aefc,1240,fn_7100c8aefc,unknown,game/cutscene?,U
+0x7100c8aefc,1240,fn_7100c8aefc,unknown,game/cutscene?,O
 0x7100c8b3d4,692,fn_7100c8b3d4,unknown,game/cutscene?,U
 0x7100c8b688,208,fn_7100c8b688,unknown,game/cutscene?,O
 0x7100c8b758,316,fn_7100c8b758,unknown,game/cutscene?,O
@@ -4462,11 +4462,11 @@ address,size,name,name_source,subsystem,status
 0x7100c8bec8,576,fn_7100c8bec8,unknown,game/cutscene?,U
 0x7100c8c108,264,fn_7100c8c108,unknown,game/cutscene?,O
 0x7100c8c210,296,fn_7100c8c210,unknown,game/cutscene?,O
-0x7100c8c338,1148,fn_7100c8c338,unknown,game/cutscene?,U
-0x7100c8c7b4,980,fn_7100c8c7b4,unknown,game/cutscene?,U
+0x7100c8c338,1148,fn_7100c8c338,unknown,game/cutscene?,O
+0x7100c8c7b4,980,fn_7100c8c7b4,unknown,game/cutscene?,O
 0x7100c8cb88,240,fn_7100c8cb88,unknown,game/cutscene?,O
 0x7100c8cc78,380,fn_7100c8cc78,unknown,game/cutscene?,O
-0x7100c8cdf4,1408,fn_7100c8cdf4,unknown,game/cutscene?,U
+0x7100c8cdf4,1408,fn_7100c8cdf4,unknown,game/cutscene?,O
 0x7100c8d374,52,fn_7100c8d374,unknown,game/cutscene?,O
 0x7100c8d3a8,12,CCutSceneDef::CActorDef::refl_Equals,reflection,game/cutscene,O
 0x7100c8d3b4,8,CCutSceneDef::CActorDef::refl_Hash,reflection,game/cutscene,O
@@ -4477,7 +4477,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8d528,4,CCutSceneDef::CActorDef::refl_Destroy,reflection,game/cutscene,O
 0x7100c8d52c,48,CCutSceneDef::CActorDef::refl_CopyAssign,reflection,game/cutscene,O
 0x7100c8d55c,48,CCutSceneDef::CActorDef::refl_MoveAssign,reflection,game/cutscene,O
-0x7100c8d58c,1076,fn_7100c8d58c,unknown,game/cutscene?,U
+0x7100c8d58c,1076,fn_7100c8d58c,unknown,game/cutscene?,O
 0x7100c8d9c0,740,fn_7100c8d9c0,unknown,game/cutscene?,U
 0x7100c8dca4,320,fn_7100c8dca4,unknown,game/cutscene?,U
 0x7100c8dde4,592,fn_7100c8dde4,unknown,game/cutscene?,U

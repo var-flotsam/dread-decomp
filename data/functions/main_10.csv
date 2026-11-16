@@ -85,7 +85,7 @@ address,size,name,name_source,subsystem,status
 0x7101002cec,60,fn_7101002cec,unknown,unknown,O
 0x7101002d28,460,fn_7101002d28,unknown,unknown,O
 0x7101002ef4,48,fn_7101002ef4,unknown,unknown,O
-0x7101002f24,736,fn_7101002f24,unknown,unknown,U
+0x7101002f24,736,fn_7101002f24,unknown,unknown,O
 0x7101003204,80,fn_7101003204,unknown,unknown,O
 0x7101003254,56,fn_7101003254,unknown,unknown,O
 0x710100328c,12,fn_710100328c,unknown,unknown,O
@@ -2654,7 +2654,7 @@ address,size,name,name_source,subsystem,status
 0x7101073060,240,fn_7101073060,unknown,unknown,O
 0x7101073150,300,fn_7101073150,unknown,unknown,O
 0x7101073280,436,fn_7101073280,unknown,unknown,O
-0x7101073440,1856,fn_7101073440,unknown,unknown,U
+0x7101073440,1856,fn_7101073440,unknown,unknown,O
 0x7101073b80,76,fn_7101073b80,unknown,unknown,O
 0x7101073bcc,84,fn_7101073bcc,unknown,unknown,O
 0x7101073c20,16,fn_7101073c20,unknown,unknown,O
@@ -3020,7 +3020,7 @@ address,size,name,name_source,subsystem,status
 0x7101086b60,324,lua_bind::GetCameraCtrlValues,string,script/bindings,O
 0x7101086cb0,312,lua_bind::SetCameraCtrlValues,string,script/bindings,O
 0x7101086df0,260,lua_bind::SetCameraCtrlValue,string,script/bindings,O
-0x7101086f00,1260,lua_bind::GetCameraCtrlValue,string,script/bindings,U
+0x7101086f00,1260,lua_bind::GetCameraCtrlValue,string,script/bindings,O
 0x71010873f0,548,lua_bind::PlayCameraAnimation,string,script/bindings,U
 0x7101087620,44,lua_bind::StopCameraAnimation,string,script/bindings,O
 0x7101087650,700,lua_bind::PlayRelativeCameraAnimation,string,script/bindings,U
