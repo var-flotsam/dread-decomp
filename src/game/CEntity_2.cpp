@@ -10,6 +10,7 @@
 #include "game/CAudioComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/CEnemyMovement.h"
+#include "game/CRumbleComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU101.h"
@@ -89,7 +90,6 @@ UnkHandle fn_71009db2e0(CRumbleComponent* self, void* a, bool b, bool c, bool d)
 UnkHandle fn_71009db4b8(CRumbleComponent* self, void* a, bool b, bool c, bool d);
 UnkHandle fn_71009db690(CRumbleComponent* self, void* a, void* b, void* c, void* d);
 UnkHandle fn_71009db880(CRumbleComponent* self, void* a, void* b, void* c);
-UnkHandle fn_71009dacbc(CRumbleComponent* self, const UnkRumbleParams* params, bool a, bool b);
 
 UnkSoundHandle fn_7100d7c42c(UnkEntityWithSound* self, void* a, void* b, void* c, void* d) {
     if (self->sound) return fn_710071c080(self->sound, a, b, c, d);

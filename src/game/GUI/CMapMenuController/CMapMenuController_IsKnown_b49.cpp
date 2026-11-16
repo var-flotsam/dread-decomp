@@ -25,7 +25,6 @@ struct UnkMapNamedDef_b49 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern UnkMapNamedDef_b49 g_unk_71727c9e00;
 
 static inline UnkSubId_7100fc4b34 SubId(UnkMapNamedDef_b49& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])

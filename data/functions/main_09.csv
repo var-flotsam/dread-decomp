@@ -4189,15 +4189,15 @@ address,size,name,name_source,subsystem,status
 0x71009da0a8,104,fn_71009da0a8,unknown,game/components?,O
 0x71009da110,292,fn_71009da110,unknown,game/components?,U
 0x71009da234,304,fn_71009da234,unknown,game/components?,U
-0x71009da364,548,fn_71009da364,unknown,game/components?,U
+0x71009da364,548,fn_71009da364,unknown,game/components?,O
 0x71009da588,684,fn_71009da588,unknown,game/components?,U
 0x71009da834,192,fn_71009da834,unknown,game/components?,O
 0x71009da8f4,968,fn_71009da8f4,unknown,game/components?,U
 0x71009dacbc,480,fn_71009dacbc,unknown,game/components?,O
 0x71009dae9c,600,fn_71009dae9c,unknown,game/components?,U
 0x71009db0f4,492,fn_71009db0f4,unknown,game/components?,U
-0x71009db2e0,472,fn_71009db2e0,unknown,game/components?,U
-0x71009db4b8,472,fn_71009db4b8,unknown,game/components?,U
+0x71009db2e0,472,fn_71009db2e0,unknown,game/components?,O
+0x71009db4b8,472,fn_71009db4b8,unknown,game/components?,O
 0x71009db690,496,fn_71009db690,unknown,game/components?,U
 0x71009db880,460,fn_71009db880,unknown,game/components?,U
 0x71009dba4c,28,fn_71009dba4c,unknown,game/components?,O
@@ -4216,7 +4216,7 @@ address,size,name,name_source,subsystem,status
 0x71009dbdb0,8,CRumbleComponent::refl_MoveAssign,reflection,game/components,O
 0x71009dbdb8,308,fn_71009dbdb8,unknown,unknown,O
 0x71009dbeec,480,fn_71009dbeec,unknown,unknown,U
-0x71009dc0cc,556,fn_71009dc0cc,unknown,unknown,U
+0x71009dc0cc,556,fn_71009dc0cc,unknown,unknown,O
 0x71009dc300,188,fn_71009dc300,unknown,unknown,O
 0x71009dc3bc,4,CSamusMovement::CTunableSamusMovement::refl_AddAttributes,reflection,game/player,O
 0x71009dc3c0,244,CSamusMovement::CTunableSamusMovement::refl_GetClass,reflection,game/player,O

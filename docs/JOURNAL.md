@@ -154,6 +154,23 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Opus pilot on 400 to 1,000-byte functions, and the end of the small batches (2026-11-15).** lean-b6 gave 19 Sonnet
+workers two-function units (38 functions of 400 bytes or less): no match, 14 registers-only, about 2 million
+tokens; the batch was stopped there, since the units of several alike functions were used up. The owner then
+approved one pilot outside the batch shape: 40 ready functions of 400 to 1,000 bytes, whole units of three or
+more, 8 Opus workers with 5 functions each and a budget of 5 (`prepare.py --model opus --budget 5 --per-worker
+5`). Result: 19 matches (47%: 6 on the first graded attempt, 6 on the second, 1 on the third, 4 on the fourth, 2
+on the fifth), 3 registers-only, 18 that differ; 118 graded attempts; about 1.73 million tokens, about 91,000 per
+match, below every Sonnet batch of this session. 14 matches are in `src/`; five wait in `drafts/`
+on declarations (a member `Query` with a `u16` argument the original leaves unextended, callees whose declarations name aliases that differ per file, and a callee whose
+definition returns another type). With the permuter (2 more, one held) and `tools/equiv_test.py` (7 verified,
+6 of them lean-b6's), 22 functions into `src/`. The workers' notes: whole-unit context matters more at this
+size (one worker matched all five of unit 2510's collider visitors once the list loop's stop test came first);
+several matches needed the caller's existing parameter types, kept with a cast at entry. A worker's result file
+written with a byte-order mark is not read by `coord.py record`; strip it. Recommendation: this shape (Opus,
+about five ready functions of one unit, 400 to 1,000 bytes, budget 5) over more small-function batches; 1,540
+such functions are ready and untried.
+
 **Vector descriptors: Equals, Erase, SetCopy and SetMove (2026-11-15).** These four join
 `CollectionTypeMapper<C>`, which leaves only `TypeOf` and the key-element iterators (`ConstBegin`, `ConstEnd`)
 by address. They match every reference there is with no dump (lifted, clone and hand-written copies of 12

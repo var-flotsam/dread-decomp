@@ -3,6 +3,7 @@ address,digest,verdict,rules,detail
 0x710002d3e0,ccf33efee148de0fd9c99dd3b31d2492,pass,2,
 0x710006cd9c,e0d3c6ac3d1574487fb23bd532041934,pass,2,
 0x71000708c8,81506c18b14baabb966729e413c9fdda,pass,2,
+0x7100076920,7a0a4dae1eb6b5515a43eab8d8003dc3,pass,2,
 0x7100077c70,6934c6958abf061e9fc7872df6275096,pass,2,
 0x7100078e54,3fc173749ecfaf9e19ab02496151189d,pass,2,
 0x7100079b18,1ffde30061d52aea37354f768c7470d0,pass,2,
@@ -99,6 +100,7 @@ address,digest,verdict,rules,detail
 0x71006c083c,e01bf5f33f060f8d620f49fe0899d74e,pass,2,
 0x71006eb484,47135ee84631131e2dc775321549c3d7,inconclusive,2,only 89% of the original's instructions ran
 0x7100700594,21cf0846eb26c983648e2fde4f1454a4,pass,2,
+0x7100702e38,e8a3b617d8371e10e90470dd2f75dbbd,pass,2,
 0x7100714808,0722c41dde09ac2c8cbd44951f777767,inconclusive,2,1 of 6 conditional branches went only one way
 0x710074566c,67c91b4330ba18c0590fb900f7bc9740,pass,2,
 0x7100745bdc,cdec408383f1c17510ff1afcc2a5a1c6,pass,2,
@@ -109,6 +111,7 @@ address,digest,verdict,rules,detail
 0x71008449ec,da2c258a851d0aa3829478a40cad372d,inconclusive,2,unresolved base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id()::s_id (no address in the 
 0x710086c89c,7064220056ae29298435634e7f2115df,pass,2,
 0x710087f018,4cdde458ffff53b070002450edaff6d6,pass,2,
+0x710089f764,f50125fe8b6ccf8a8ca9f94af5317281,pass,2,
 0x71009881b0,5afb7e2395df36e3ca9d150ff4d1a495,pass,2,
 0x71009cde54,d980ce8242f098adb0ef195783b93d79,inconclusive,2,only 79% of the original's instructions ran
 0x71009e307c,d2d74df9929cd064da2bfd12de663cbb,pass,2,
@@ -124,6 +127,7 @@ address,digest,verdict,rules,detail
 0x7100b52550,0e1b923765b31ffc4f757de109c9a55a,inconclusive,2,unresolved base::global::CRntString::CRntString(char const*)
 0x7100b5462c,f84c8cb02def9c916c49aa89ff0c16c8,inconclusive,2,unresolved base::global::CRntString::CRntString(char const*)
 0x7100b8c61c,48f4c2549036f64da7728b76da17267a,pass,2,
+0x7100ca1da4,b0ff494c4bb5d6d1b1fdf368cd1aad03,pass,2,both runs were cut off
 0x7100d4065c,22a79f7420bd9ba2d21d508e26d1236c,inconclusive,2,only 75% of the original's instructions ran
 0x7100d42e94,f02d5b9a651cba7d658611312d665467,pass,2,
 0x7100d43390,f02d5b9a651cba7d658611312d665467,pass,2,
@@ -163,7 +167,9 @@ address,digest,verdict,rules,detail
 0x7100eca778,056cff2f7069cf909a91ac97438182f9,inconclusive,2,only 83% of the original's instructions ran
 0x7100ed6448,09645bab1b5be5048472ebb1dd83b426,pass,2,
 0x7100ee4f84,105bfc17d8be1c6f6e47540cc8428d48,inconclusive,2,unresolved guard variable for GameManagerIdTable()::s_table (no address in the original)
+0x7100f0588c,2853624cdd128aa42ec5557e52fd54cb,pass,2,
 0x7100f06034,3146cd331b7a02411be77b776ce4c68d,pass,2,both runs were cut off
+0x7100f0644c,6cbaafbb66340ff67c35ca026a147c50,pass,2,
 0x7100f90c50,116a9a32b213e829107f2d7d06f67ca0,pass,2,
 0x7100f91fe4,f33ed8fc7cf7b4effee085a8d9e81ce0,pass,2,
 0x7100f97d90,9432c5e90c43b504d44b800505165bb2,pass,2,
@@ -186,6 +192,7 @@ address,digest,verdict,rules,detail
 0x710117e5b0,015028da5a71252479c1fe1d0ac23362,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x71011b7e7c,274dcd780552faf03754d378cf2de86b,pass,2,both runs were cut off
 0x71011b7fc8,870cfedad1877e58e1d6de99ffb4fd06,pass,2,both runs were cut off
+0x71011bbb24,9435d1611115c66539d4cd3a199d1f76,pass,2,
 0x7101213600,42c5cc5db299421a23f866d195f9801e,pass,2,
 0x7101213640,c0efa34c44f6dca97f6d97761b538738,pass,2,
 0x7101213858,04792d204afbcaef21f98a1514806588,pass,2,

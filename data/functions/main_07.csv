@@ -69,7 +69,7 @@ address,size,name,name_source,subsystem,status
 0x7100702be8,48,CAIGotoPointNavigationState::SEntityTarget::refl_MoveAssign,reflection,game/ai,O
 0x7100702c18,332,fn_7100702c18,unknown,unknown,O
 0x7100702d70,200,fn_7100702d70,unknown,unknown,O
-0x7100702e38,92,fn_7100702e38,unknown,unknown,U
+0x7100702e38,92,fn_7100702e38,unknown,unknown,m
 0x7100702e94,4,fn_7100702e94,unknown,unknown,O
 0x7100702e98,36,fn_7100702e98,unknown,unknown,O
 0x7100702ebc,4,fn_7100702ebc,unknown,unknown,O

@@ -19,3 +19,4 @@ void fn_7100ca3498(UnkObserverEntry_A6_b68* entry);
 UnkTileQuery_A3_b64* fn_7100ca1ecc(base::reflection::UnkReflObject* group, const void* at, void* arg, bool flag);
 void fn_7100ca0c40(UnkTileGroup* self, u32 tile, UnkVec3f* pos);
 void fn_7100ca0c78(UnkTileGroup* self, u32 tile, UnkVec3f* pos, UnkVec3f* scale);
+void fn_7100ca1180(UnkTileGroup* group);

@@ -19,6 +19,7 @@
 #include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "game/UnkTU2510.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -465,7 +466,6 @@ struct UnkCollider {
     void* owner;  // 0x158
 };
 
-extern void* g_unk_7101aa8898[];
 
 // ---- fn_7100d590ac
 struct UnkShapeFilter_590ac {
