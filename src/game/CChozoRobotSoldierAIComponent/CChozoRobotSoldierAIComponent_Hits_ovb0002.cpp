@@ -5,29 +5,11 @@
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
+#include "game/UnkNavMeshHit.h"
 #include "game/UnkTU362.h"
 #include "types.h"
 
 using base::math::CVector2D;
-
-// From src/game/navmesh/CNavMesh.cpp (the same definitions).
-struct UnkNavMeshHit;
-struct UnkElem_7100286624;  // the same 12-byte record (src/game_lo/fn_7100286624.cpp)
-
-struct UnkNavMeshHit {
-    u16 cell;
-    u8 side;
-    CVector2D point;
-
-    UnkNavMeshHit() { fn_7100287598(this); }
-    UnkNavMeshHit(const UnkNavMeshHit& other) {
-        __builtin_memcpy(static_cast<void*>(&cell), &other.cell, 4);  // the cell, the side and the pad
-        point.x = other.point.x;
-        point.y = other.point.y;
-    }
-    ~UnkNavMeshHit() { fn_710028760c(reinterpret_cast<UnkElem_7100286624*>(this)); }
-};
-static_assert(sizeof(UnkNavMeshHit) == 0xc, "UnkNavMeshHit layout");
 
 UnkNavMeshHit* fn_710046fb88(base::global::CRntVector<UnkNavMeshHit>* hits, u32 index) {
     return &hits->GrowAt(index);

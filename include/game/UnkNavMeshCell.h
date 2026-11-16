@@ -23,6 +23,8 @@ struct UnkNavMeshEdge {
 };
 static_assert(sizeof(UnkNavMeshEdge) == 0x38, "UnkNavMeshEdge layout");
 
+struct UnkNavMesh_l27da54;
+
 struct UnkNavMeshCell {
     u8 pad_0x0[0x8];
     u16* vertices;  // +0x8, the vertex ids
@@ -30,9 +32,17 @@ struct UnkNavMeshCell {
     u8 pad_0x11[0x1f];
     UnkNavMeshEdge* edges;  // +0x30
     u32 edge_count;         // +0x38
+    u8 pad_0x3c[0x1c];
+    UnkNavMesh_l27da54* owner;  // +0x58, told when `flag` changes
+    bool flag;                  // +0x60 (fn_71002af93c sets it)
+
+    // The cell's 16-bit id at +0x0, which the mesh's flag callbacks receive (fn_710027da54). Read through
+    // this accessor: a u16 member there changes how fn_71002afa48 (src/game/UnkNavMeshCellLoad.cpp) compiles.
+    const u16* Id() const { return reinterpret_cast<const u16*>(this); }
 };
 static_assert(__builtin_offsetof(UnkNavMeshCell, edges) == 0x30, "UnkNavMeshCell placeholder layout");
 static_assert(__builtin_offsetof(UnkNavMeshCell, edge_count) == 0x38, "UnkNavMeshCell placeholder layout");
+static_assert(__builtin_offsetof(UnkNavMeshCell, flag) == 0x60, "UnkNavMeshCell placeholder layout");
 
 // The record the lookups return when a cell has no edge for the side (the same object for every
 // cell, so callers compare the pointer).

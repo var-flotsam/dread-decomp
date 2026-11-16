@@ -2,6 +2,7 @@
 // (at +0xc70 and +0xc98), each with the allocator that owns its storage; the destructor destroys the
 // buffers, frees the storage and finishes as a media::CMovieStreamNx (fn_710022594c). Names and
 // layouts are placeholders.
+#include "game/media/CMovieAudioStreamNx.h"
 #include "types.h"
 
 namespace movie {
@@ -61,8 +62,6 @@ struct UnkMovieAudioStreamNx_b50 {
     BufferArray_b50 field_0xc98;
 };
 static_assert(__builtin_offsetof(UnkMovieAudioStreamNx_b50, field_0xc98) == 0xc98, "layout");
-
-extern void* g_unk_7101a204f0[];  // the stream's vtable
 
 void fn_7100221408(UnkMovieAudioStreamNx_b50* self) {
     self->vtable = g_unk_7101a204f0 + 2;

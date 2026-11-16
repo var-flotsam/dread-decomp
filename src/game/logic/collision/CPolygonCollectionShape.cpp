@@ -16,22 +16,15 @@
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "game/logic/collision/CShape.h"
 #include "game/malloc.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-// The result of a query (as in src/game/UnkCollisionContacts.cpp): bit 0 a hit kept, bit 1 stop.
-// Returned in memory: its copy is user-written.
-struct UnkContact {
-    u32 value;
-
-    UnkContact() { value = 0; }
-    UnkContact(const UnkContact& other) { value = other.value; }
-};
-
-inline const UnkContact& NoContact() {
-    static UnkContact s_none;
+// The empty result (game/logic/collision/UnkColliderResult.h).
+inline const UnkColliderResult& NoContact() {
+    static UnkColliderResult s_none;
     return s_none;
 }
 
@@ -94,7 +87,7 @@ static_assert(sizeof(UnkPolygonHit) == 0x38, "UnkPolygonHit layout");
 struct UnkLocalQuery {
     virtual void vf_0x0();
     virtual void vf_0x8();
-    virtual UnkContact vf_0x10(UnkPolygonHit hit);
+    virtual UnkColliderResult vf_0x10(UnkPolygonHit hit);
     CVector3D offset;
     u16 field_0x14;
     const void* field_0x18;
@@ -211,7 +204,7 @@ struct UnkLeafVisitor {
     const G* shape;
     E extra;
     UnkLocalQuery* query;
-    UnkContact result;
+    UnkColliderResult result;
 
     UnkLeafVisitor(const G* s, const E& e, UnkLocalQuery* q)
         : shape(s), extra(CopyOf(e)), query(q), result(NoContact()) {}
@@ -236,10 +229,10 @@ static inline void WalkTree(const UnkShape10* self, const UnkTreeBox& box, V* v,
 }
 
 bool fn_7100d66bc4(UnkLeafVisitor<UnkSegment2D, bool>* self, const UnkTreeNode* node);
-UnkContact fn_7100d644d0(UnkPolygonCollection2D* self, const UnkSegment2D* seg, UnkLocalQuery* query);
+UnkColliderResult fn_7100d644d0(UnkPolygonCollection2D* self, const UnkSegment2D* seg, UnkLocalQuery* query);
 
 // A segment against the collection.
-UnkContact fn_7100d636d8(UnkShape10* self, const UnkSegment2D* seg, UnkLocalQuery* query) {
+UnkColliderResult fn_7100d636d8(UnkShape10* self, const UnkSegment2D* seg, UnkLocalQuery* query) {
     if (!self->has_tree)
         return fn_7100d644d0(&self->polygons, seg, query);
     UnkLeafVisitor<UnkSegment2D, bool> v(seg, false, query);
@@ -254,20 +247,20 @@ UnkContact fn_7100d636d8(UnkShape10* self, const UnkSegment2D* seg, UnkLocalQuer
 // before its body, the edge loop counts the byte offset of the edge's end vertex instead of its
 // start, and the hit's contact is copied through a base register hoisted out of the loops (more
 // spills).
-UnkContact fn_7100d644d0(UnkPolygonCollection2D* self, const UnkSegment2D* seg, UnkLocalQuery* query) {
-    UnkContact result = NoContact();
+UnkColliderResult fn_7100d644d0(UnkPolygonCollection2D* self, const UnkSegment2D* seg, UnkLocalQuery* query) {
+    UnkColliderResult result = NoContact();
     u64 base = 0;
-    for (const UnkPolygon2D *p = self->polygons, *end = p + self->count; p != end && !(result.value & 2);
+    for (const UnkPolygon2D *p = self->polygons, *end = p + self->count; p != end && !(result.bits & 2);
          ++p, base += 0x10000) {
-        for (u64 i = 0; !(result.value & 2) && i < EdgeCount(*p); ++i) {
+        for (u64 i = 0; !(result.bits & 2) && i < EdgeCount(*p); ++i) {
             const UnkPolygonVertex* v = &p->vertices[i];
             UnkSegment2D edge(v->pos, (i == p->count - 1 ? p->vertices : v + 1)->pos);
             UnkContact_710012be70 point = {};
             if (fn_710012be70(seg, &edge, &point, false, 0.0f)) {
                 if (query)
-                    result.value |= query->vf_0x10(UnkPolygonHit{p, (u32)(base + i), point}).value;
+                    result.bits |= query->vf_0x10(UnkPolygonHit{p, (u32)(base + i), point}).bits;
                 else
-                    result.value |= 3;
+                    result.bits |= 3;
             }
         }
     }
@@ -292,10 +285,10 @@ static inline UnkBox2D Union(const UnkBox2D& a, const UnkBox2D& b) {
 }
 
 bool fn_7100d6675c(UnkLeafVisitor<UnkBox2D, bool>* self, const UnkTreeNode* node);
-UnkContact fn_7100d63a40(UnkPolygonCollection2D* self, const UnkBox2D* box, bool flag, UnkLocalQuery* query);
+UnkColliderResult fn_7100d63a40(UnkPolygonCollection2D* self, const UnkBox2D* box, bool flag, UnkLocalQuery* query);
 
 // A box against the collection.
-UnkContact fn_7100d63870(UnkShape10* self, const UnkBox2D* box, UnkLocalQuery* query, bool flag) {
+UnkColliderResult fn_7100d63870(UnkShape10* self, const UnkBox2D* box, UnkLocalQuery* query, bool flag) {
     if (!self->has_tree)
         return fn_7100d63a40(&self->polygons, box, !(query->field_0x14 & 1), query);
     UnkLeafVisitor<UnkBox2D, bool> v(box, flag, query);
@@ -305,11 +298,11 @@ UnkContact fn_7100d63870(UnkShape10* self, const UnkBox2D* box, UnkLocalQuery* q
 }
 
 bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeNode* node);
-UnkContact fn_7100d63e50(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, bool flag,
+UnkColliderResult fn_7100d63e50(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, bool flag,
                          UnkLocalQuery* query);
 
 // A type-8 shape against the collection (its box is flat in z).
-UnkContact fn_7100d63c74(UnkShape10* self, const UnkShape8Geometry* shape, UnkLocalQuery* query, bool flag) {
+UnkColliderResult fn_7100d63c74(UnkShape10* self, const UnkShape8Geometry* shape, UnkLocalQuery* query, bool flag) {
     if (!self->has_tree)
         return fn_7100d63e50(&self->polygons, shape, !(query->field_0x14 & 1), query);
     UnkLeafVisitor<UnkShape8Geometry, bool> v(shape, flag, query);
@@ -356,30 +349,30 @@ bool fn_7100d668d4(UnkLeafVisitor<UnkShape8Geometry, bool>* self, const UnkTreeN
         UnkSegment2D edge = fn_710012436c(polygons, LeafHandle(node));
         hit = fn_7100129910(&edge, self->shape, reinterpret_cast<UnkContactBuffer<4>*>(&found), self->extra);
     }
-    if (hit && !(self->result.value & 2)) {
+    if (hit && !(self->result.bits & 2)) {
         for (const UnkContactPoint* p = found.points; p != found.points + found.count; ++p) {
             UnkLocalQuery* query = self->query;
             if (!query->field_0x20) {
-                self->result.value |= 3;
+                self->result.bits |= 3;
             } else {
                 auto* pool = reinterpret_cast<UnkPool_0x48*>(const_cast<void*>(query->field_0x18));
                 const auto* polygon = reinterpret_cast<const UnkPolygon2D*>(fn_710012431c(pool, LeafHandle(node)));
                 UnkPolygonHit h{polygon, LeafHandle(node), *p};
-                self->result.value |= query->vf_0x10(h).value;
+                self->result.bits |= query->vf_0x10(h).bits;
             }
-            if (self->result.value & 2)
+            if (self->result.bits & 2)
                 break;
         }
     }
-    return !(self->result.value & 2);
+    return !(self->result.bits & 2);
 }
 
 bool fn_7100d66a4c(UnkLeafVisitor<UnkCircle2D, bool>* self, const UnkTreeNode* node);
-UnkContact fn_7100d64270(UnkPolygonCollection2D* self, const UnkCircle2D* circle, bool flag,
+UnkColliderResult fn_7100d64270(UnkPolygonCollection2D* self, const UnkCircle2D* circle, bool flag,
                          UnkLocalQuery* query);
 
 // A circle against the collection.
-UnkContact fn_7100d64088(UnkShape10* self, const UnkCircle2D* circle, UnkLocalQuery* query, bool flag) {
+UnkColliderResult fn_7100d64088(UnkShape10* self, const UnkCircle2D* circle, UnkLocalQuery* query, bool flag) {
     if (!self->has_tree)
         return fn_7100d64270(&self->polygons, circle, !(query->field_0x14 & 1), query);
     UnkLeafVisitor<UnkCircle2D, bool> v(circle, flag, query);
@@ -392,7 +385,7 @@ UnkContact fn_7100d64088(UnkShape10* self, const UnkCircle2D* circle, UnkLocalQu
 }
 
 bool fn_7100d66d84(UnkLeafVisitor<UnkCircle2D, CVector2D>* self, const UnkTreeNode* node);
-UnkContact fn_7100d64f70(UnkPolygonCollection2D* self, const UnkCircle2D* circle, const CVector3D* dir,
+UnkColliderResult fn_7100d64f70(UnkPolygonCollection2D* self, const UnkCircle2D* circle, const CVector3D* dir,
                          UnkLocalQuery* query);
 
 static inline UnkBox2D CircleBox(f32 x, f32 y, f32 r) {
@@ -402,7 +395,7 @@ static inline UnkBox2D CircleBox(f32 x, f32 y, f32 r) {
 
 // A circle moving along `dir` against the collection: the tree is walked with the box covering
 // both ends of the move.
-UnkContact fn_7100d64d3c(UnkShape* self, const UnkCircle2D* circle, const CVector3D* dir, UnkLocalQuery* query) {
+UnkColliderResult fn_7100d64d3c(UnkShape* self, const UnkCircle2D* circle, const CVector3D* dir, UnkLocalQuery* query) {
     UnkShape10* shape = static_cast<UnkShape10*>(self);
     if (!shape->has_tree)
         return fn_7100d64f70(&shape->polygons, circle, dir, query);
@@ -415,11 +408,11 @@ UnkContact fn_7100d64d3c(UnkShape* self, const UnkCircle2D* circle, const CVecto
 }
 
 bool fn_7100d66ed8(UnkLeafVisitor<UnkBox2D, CVector2D>* self, const UnkTreeNode* node);
-UnkContact fn_7100d65410(UnkPolygonCollection2D* self, const UnkBox2D* box, const CVector3D* dir,
+UnkColliderResult fn_7100d65410(UnkPolygonCollection2D* self, const UnkBox2D* box, const CVector3D* dir,
                          UnkLocalQuery* query);
 
 // A box moving along `dir` against the collection.
-UnkContact fn_7100d65200(UnkShape* self, const UnkBox2D* box, const CVector3D* dir, UnkLocalQuery* query) {
+UnkColliderResult fn_7100d65200(UnkShape* self, const UnkBox2D* box, const CVector3D* dir, UnkLocalQuery* query) {
     UnkShape10* shape = static_cast<UnkShape10*>(self);
     if (!shape->has_tree)
         return fn_7100d65410(&shape->polygons, box, dir, query);
@@ -432,7 +425,7 @@ UnkContact fn_7100d65200(UnkShape* self, const UnkBox2D* box, const CVector3D* d
 }
 
 bool fn_7100d6702c(UnkLeafVisitor<UnkShape8Geometry, CVector2D>* self, const UnkTreeNode* node);
-UnkContact fn_7100d658e0(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, const CVector3D* dir,
+UnkColliderResult fn_7100d658e0(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, const CVector3D* dir,
                          UnkLocalQuery* query);
 
 static inline UnkBox2D CenteredBox(f32 x, f32 y, f32 hx, f32 hy) {
@@ -441,7 +434,7 @@ static inline UnkBox2D CenteredBox(f32 x, f32 y, f32 hx, f32 hy) {
 }
 
 // A type-8 shape moving along `dir` against the collection.
-UnkContact fn_7100d656a0(UnkShape* self, const UnkShape8Geometry* geom, const CVector3D* dir, UnkLocalQuery* query) {
+UnkColliderResult fn_7100d656a0(UnkShape* self, const UnkShape8Geometry* geom, const CVector3D* dir, UnkLocalQuery* query) {
     UnkShape10* shape = static_cast<UnkShape10*>(self);
     if (!shape->has_tree)
         return fn_7100d658e0(&shape->polygons, geom, dir, query);
@@ -463,16 +456,16 @@ UnkContact fn_7100d656a0(UnkShape* self, const UnkShape8Geometry* geom, const CV
 struct UnkBoxVisitor {
     const UnkQueryBox* box;
     UnkLocalQuery* query;
-    UnkContact result;
+    UnkColliderResult result;
 
     UnkBoxVisitor(const UnkQueryBox* b, UnkLocalQuery* q) : box(b), query(q), result(NoContact()) {}
 };
 
 bool fn_7100d67180(UnkBoxVisitor* self, const UnkTreeNode* node);
-UnkContact fn_7100d65d50(UnkPolygonCollection2D* self, const UnkQueryBox* box, UnkLocalQuery* query);
+UnkColliderResult fn_7100d65d50(UnkPolygonCollection2D* self, const UnkQueryBox* box, UnkLocalQuery* query);
 
 // A query box (its corners in any order) against the collection.
-UnkContact fn_7100d65b70(UnkShape10* self, const UnkQueryBox* box, UnkLocalQuery* query) {
+UnkColliderResult fn_7100d65b70(UnkShape10* self, const UnkQueryBox* box, UnkLocalQuery* query) {
     if (!self->has_tree)
         return fn_7100d65d50(&self->polygons, box, query);
     f32 x0 = box->minX, y0 = box->minY;
@@ -497,14 +490,14 @@ bool fn_71001244ac(UnkPolygonCollection2D* self, u32 handle, const UnkPolygonPro
 // A moving shape against every edge of every polygon: like fn_7100d644d0, but a contact `Test` finds
 // also has to pass fn_71001244ac.
 template <class Shape, class Point, class Test>
-static inline UnkContact SweepEdges(UnkPolygonCollection2D* self, const Shape* shape, const CVector3D* dir,
+static inline UnkColliderResult SweepEdges(UnkPolygonCollection2D* self, const Shape* shape, const CVector3D* dir,
                                     UnkLocalQuery* query, Test test) {
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     UnkVec2Result step(dir->x, dir->y);
     u64 base = 0;
-    for (const UnkPolygon2D *p = self->polygons, *end = p + self->count; p != end && !(result.value & 2);
+    for (const UnkPolygon2D *p = self->polygons, *end = p + self->count; p != end && !(result.bits & 2);
          ++p, base += 0x10000) {
-        for (u64 i = 0; !(result.value & 2) && i < EdgeCount(*p); ++i) {
+        for (u64 i = 0; !(result.bits & 2) && i < EdgeCount(*p); ++i) {
             const UnkPolygonVertex* v = &p->vertices[i];
             UnkSegment2D edge(v->pos, (i == p->count - 1 ? p->vertices : v + 1)->pos);
             Point point = {};
@@ -512,9 +505,9 @@ static inline UnkContact SweepEdges(UnkPolygonCollection2D* self, const Shape* s
                 u32 handle = (u32)(base + i);
                 if (fn_71001244ac(self, handle, reinterpret_cast<const UnkPolygonProbe*>(&point))) {
                     if (query)
-                        result.value |= query->vf_0x10(UnkPolygonHit{p, handle, point}).value;
+                        result.bits |= query->vf_0x10(UnkPolygonHit{p, handle, point}).bits;
                     else
-                        result.value |= 3;
+                        result.bits |= 3;
                 }
             }
         }
@@ -529,7 +522,7 @@ bool fn_710012f750(const UnkShape8Geometry* shape, const UnkVec2Result& step, co
 // before its body, the edge loop counts the byte offset of the edge's end vertex instead of its
 // start, and the hit's contact is copied through a base register hoisted out of the loops (more
 // spills).
-UnkContact fn_7100d64f70(UnkPolygonCollection2D* self, const UnkCircle2D* circle, const CVector3D* dir,
+UnkColliderResult fn_7100d64f70(UnkPolygonCollection2D* self, const UnkCircle2D* circle, const CVector3D* dir,
                          UnkLocalQuery* query) {
     return SweepEdges<UnkCircle2D, UnkContactPoint>(
         self, circle, dir, query,
@@ -542,7 +535,7 @@ UnkContact fn_7100d64f70(UnkPolygonCollection2D* self, const UnkCircle2D* circle
 // before its body, the edge loop counts the byte offset of the edge's end vertex instead of its
 // start, and the hit's contact is copied through a base register hoisted out of the loops (more
 // spills).
-UnkContact fn_7100d65410(UnkPolygonCollection2D* self, const UnkBox2D* box, const CVector3D* dir,
+UnkColliderResult fn_7100d65410(UnkPolygonCollection2D* self, const UnkBox2D* box, const CVector3D* dir,
                          UnkLocalQuery* query) {
     return SweepEdges<UnkBox2D, UnkContact2D>(self, box, dir, query, fn_710012ce70);
 }
@@ -551,7 +544,7 @@ UnkContact fn_7100d65410(UnkPolygonCollection2D* self, const UnkBox2D* box, cons
 // before its body, the edge loop counts the byte offset of the edge's end vertex instead of its
 // start, and the hit's contact is copied through a base register hoisted out of the loops (more
 // spills).
-UnkContact fn_7100d658e0(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, const CVector3D* dir,
+UnkColliderResult fn_7100d658e0(UnkPolygonCollection2D* self, const UnkShape8Geometry* shape, const CVector3D* dir,
                          UnkLocalQuery* query) {
     return SweepEdges<UnkShape8Geometry, UnkContactPoint>(self, shape, dir, query, fn_710012f750);
 }

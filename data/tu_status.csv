@@ -13,7 +13,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 11,0x71000042b4,0x7100005808,base::animation::CAnimationResource,high,unknown,partial,39,5440,36,0,0,0,0,3,0,4116,4116
 12,0x7100005808,0x7100006254,base::animation::CAnimationSkeletonTransformer,high,engine/base,partial,32,2636,31,0,0,0,0,1,0,2428,2428
 13,0x7100006254,0x710000928c,base::animation::CBlendSpace1D,high,unknown,partial,86,12328,79,0,0,0,0,7,0,7520,7520
-14,0x710000928c,0x7100011758,base::animation::CBlendSpaceResource,high,unknown,partial,251,33940,243,1,0,0,0,7,0,27964,27964
+14,0x710000928c,0x7100011758,base::animation::CBlendSpaceResource,high,unknown,partial,251,33940,244,1,0,0,0,6,0,28424,28424
 15,0x7100011760,0x7100011824,UnkTU15,high,unknown,partial,2,196,1,0,0,0,0,1,0,68,68
 16,0x7100011824,0x7100011a60,UnkTU16,high,unknown,matched,16,556,16,0,0,0,0,0,0,556,556
 17,0x7100011a60,0x7100011e04,base::animation::ISkeletalPoseProvider,high,engine/base,matched,11,920,11,0,0,0,0,0,0,920,920
@@ -50,12 +50,12 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 48,0x7100070740,0x71000710b0,UnkTU48,high,unknown,partial,14,2408,10,2,1,0,0,2,0,1124,1368
 49,0x71000710b0,0x7100071dac,UnkTU49,high,unknown,matched,26,3304,26,0,0,0,0,0,0,3304,3304
 50,0x7100071dac,0x7100072564,UnkTU50,high,unknown,partial,11,1964,10,0,0,0,0,1,0,1312,1312
-51,0x7100072564,0x7100075db8,base::input::CRumbleManager::CTunableRumbleManager,high,engine/base,partial,100,14396,92,0,0,0,0,8,0,9584,9584
+51,0x7100072564,0x7100075db8,base::input::CRumbleManager::CTunableRumbleManager,high,engine/base,partial,100,14396,93,0,0,0,0,7,0,9928,9928
 52,0x7100075db8,0x7100075f78,UnkTU52,high,unknown,matched,5,444,5,0,0,0,0,0,0,444,444
 53,0x7100075f78,0x71000769f0,UnkTU53,high,unknown,partial,16,2608,12,2,1,0,0,2,0,1584,1656
 54,0x71000769f0,0x710007b430,UnkTU54,high,unknown,partial,84,18900,60,6,4,0,0,18,0,7356,8392
 55,0x710007b430,0x710007bb30,UnkTU55,high,unknown,done,19,1756,18,1,1,0,0,0,0,1628,1756
-56,0x710007bb30,0x710007e6c4,UnkTU56,high,unknown,partial,39,11148,30,4,1,0,0,5,0,4068,4320
+56,0x710007bb30,0x710007e6c4,UnkTU56,high,unknown,partial,39,11148,31,4,1,0,0,4,0,4544,4796
 57,0x710007e6c4,0x710007fdb4,UnkTU57,high,unknown,partial,46,5820,37,9,1,0,0,0,0,3072,3272
 58,0x710007fdb4,0x71000815a4,UnkTU58,low,unknown,partial,70,6116,66,4,0,0,0,0,0,4456,4456
 59,0x71000815b0,0x7100082c38,dlmalloc,low,dlmalloc,library,0,0,0,0,0,0,0,0,5,0,0
@@ -71,7 +71,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 69,0x710008ef54,0x71000934b8,UnkTU69,high,unknown,partial,62,17084,60,0,0,0,0,2,0,14652,14652
 70,0x71000934b8,0x71000943bc,UnkTU70,high,unknown,partial,17,3844,14,1,0,0,0,2,0,1876,1876
 71,0x71000943bc,0x7100094fc0,UnkTU71,high,unknown,partial,14,3060,12,0,0,0,0,2,0,1588,1588
-72,0x7100094fc0,0x71000982c4,base::reflection::CClass,high,engine/reflection,partial,51,13052,39,0,0,0,0,12,0,5480,5480
+72,0x7100094fc0,0x71000982c4,base::reflection::CClass,high,engine/reflection,partial,51,13052,40,0,0,0,0,11,0,6220,6220
 73,0x71000982c4,0x71000986cc,UnkTU73,high,engine/reflection,matched,12,1020,12,0,0,0,0,0,0,1020,1020
 74,0x71000986cc,0x7100098c9c,base::reflection::CCollectionType,high,engine/reflection,matched,14,1476,14,0,0,0,0,0,0,1476,1476
 75,0x7100098c9c,0x7100099218,base::reflection,high,engine/reflection,matched,19,1400,19,0,0,0,0,0,0,1400,1400
@@ -93,7 +93,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 91,0x71000edda0,0x71000edfc0,UnkTU91,high,unknown,matched,2,540,2,0,0,0,0,0,0,540,540
 92,0x71000edfc0,0x71000ef534,UnkTU92,high,unknown,partial,25,5492,18,0,0,0,0,7,0,2008,2008
 93,0x71000ef534,0x71000efdb0,UnkTU93,high,unknown,partial,18,2164,15,0,0,0,0,3,0,1484,1484
-94,0x71000efdb0,0x71000f3410,UnkTU94,high,unknown,partial,41,13920,32,0,0,1,0,8,0,4412,4412
+94,0x71000efdb0,0x71000f3410,UnkTU94,high,unknown,partial,41,13920,33,0,0,1,0,7,0,5060,5060
 95,0x71000f3410,0x71000f3490,UnkTU95,high,unknown,matched,1,128,1,0,0,0,0,0,0,128,128
 96,0x71000f3490,0x71000f3510,UnkTU96,high,unknown,matched,1,128,1,0,0,0,0,0,0,128,128
 97,0x71000f3510,0x71000f35d0,UnkTU97,high,unknown,matched,1,192,1,0,0,0,0,0,0,192,192
@@ -107,7 +107,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 105,0x710010c194,0x710010c7a4,UnkTU105,high,unknown,matched,13,1540,13,0,0,0,0,0,0,1540,1540
 106,0x710010c7a4,0x710010d604,UnkTU106,high,unknown,partial,24,3672,23,0,0,0,0,1,0,3400,3400
 107,0x710010d604,0x7100110c54,UnkTU107,high,unknown,partial,46,13864,35,6,1,1,0,4,0,5776,6080
-108,0x7100110c54,0x71001239b0,UnkTU108,low,unknown,partial,555,77140,530,4,3,0,0,21,0,63928,64380
+108,0x7100110c54,0x71001239b0,UnkTU108,low,unknown,partial,555,77140,531,4,3,0,0,20,0,64504,64956
 109,0x71001239b0,0x71001259f4,UnkTU109,high,unknown,partial,33,8252,26,3,1,0,0,4,0,4124,4164
 110,0x71001259f4,0x7100132c04,malloc,high,unknown,partial,113,52628,70,11,1,0,0,32,6,7980,8444
 111,0x7100132c10,0x71001395b8,base::tunable::CTunable,high,unknown,partial,198,26804,182,5,0,0,0,11,0,16016,16016
@@ -206,10 +206,10 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 204,0x710016998c,0x710016a37c,UnkTU204,high,unknown,matched,13,2544,13,0,0,0,0,0,0,2544,2544
 205,0x710016a37c,0x710016a62c,UnkTU205,high,unknown,partial,4,676,3,0,0,0,0,1,0,292,292
 206,0x710016a630,0x710016a6bc,UnkTU206,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
-207,0x710016a6bc,0x710016b51c,UnkTU207,high,unknown,partial,15,3672,14,0,0,0,0,1,0,2972,2972
+207,0x710016a6bc,0x710016b51c,UnkTU207,high,unknown,matched,15,3672,15,0,0,0,0,0,0,3672,3672
 208,0x710016b51c,0x710016e03c,UnkTU208,high,unknown,partial,69,10952,62,2,2,0,0,5,3,7992,8688
 209,0x710016e03c,0x710016e75c,UnkTU209,high,unknown,partial,8,1812,5,1,0,0,0,2,0,488,488
-210,0x710016e75c,0x7100190154,UnkTU210,low,unknown,partial,220,137720,116,0,0,0,0,104,0,3248,3248
+210,0x710016e75c,0x7100190154,UnkTU210,low,unknown,partial,220,137720,118,0,0,0,0,102,0,4056,4056
 211,0x7100190154,0x7100194a9c,UnkTU211,high,unknown,partial,80,18748,63,0,0,0,0,17,0,5352,5352
 212,0x7100194a9c,0x710019545c,UnkTU212,high,unknown,partial,10,2496,9,0,0,0,0,1,0,1616,1616
 213,0x710019545c,0x710019565c,UnkTU213,high,unknown,matched,5,500,5,0,0,0,0,0,0,500,500
@@ -321,13 +321,13 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 319,0x710021b500,0x710021bcd0,media::CMediaStream,high,media,matched,32,1992,32,0,0,0,0,0,0,1992,1992
 320,0x710021bcd0,0x710021be4c,UnkTU320,high,media,matched,4,344,4,0,0,0,0,0,0,344,344
 321,0x710021be4c,0x710021c4cc,UnkTU321,high,media,matched,14,1652,14,0,0,0,0,0,0,1652,1652
-322,0x710021c4cc,0x710021d8ac,UnkTU322,high,media,partial,18,5088,14,1,0,0,0,3,0,2964,2964
+322,0x710021c4cc,0x710021d8ac,UnkTU322,high,media,partial,18,5088,15,1,0,0,0,2,0,3312,3312
 323,0x710021d8ac,0x710021e6e8,media::CMoviePlayer,high,media,matched,28,3632,28,0,0,0,0,0,0,3632,3632
-324,0x710021e6e8,0x71002206fc,UnkTU324,high,media,partial,30,8208,22,0,0,0,0,8,0,4088,4088
-325,0x71002206fc,0x7100220adc,UnkTU325,high,media,partial,7,988,6,0,0,0,0,1,0,524,524
-326,0x7100220adc,0x7100222970,media::CMovieAudioStreamNx,high,media,partial,27,7816,22,0,0,0,0,5,0,2804,2804
+324,0x710021e6e8,0x71002206fc,UnkTU324,high,media,partial,30,8208,23,0,0,0,0,7,0,4492,4492
+325,0x71002206fc,0x7100220adc,UnkTU325,high,media,matched,7,988,7,0,0,0,0,0,0,988,988
+326,0x7100220adc,0x7100222970,media::CMovieAudioStreamNx,high,media,partial,27,7816,23,0,0,0,0,4,0,3400,3400
 327,0x7100222970,0x710022323c,UnkTU327,high,media,matched,12,2248,12,0,0,0,0,0,0,2248,2248
-328,0x710022323c,0x71002236ac,UnkTU328,high,media,partial,6,1136,5,0,0,0,0,1,0,532,532
+328,0x710022323c,0x71002236ac,UnkTU328,high,media,matched,6,1136,6,0,0,0,0,0,0,1136,1136
 329,0x71002236ac,0x7100224d44,UnkTU329,high,media,partial,18,5768,16,0,0,0,0,2,0,5032,5032
 330,0x7100224d44,0x710022554c,UnkTU330,high,media,partial,11,2056,9,0,0,0,0,2,0,1012,1012
 331,0x7100225550,0x710022561c,UnkTU331,high,media,matched,3,188,3,0,0,0,0,0,0,188,188
@@ -354,7 +354,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 352,0x71002696e0,0x710026ca80,navmesh::CDynamicSmartLinkRule,high,unknown,matched,136,13208,136,0,0,0,0,0,1,13208,13208
 353,0x710026ca80,0x710026d6d0,navmesh::CDynamicSmartLinkRules,high,ai/navmesh,partial,17,3144,16,0,0,0,0,1,0,2012,2012
 354,0x710026d6d0,0x7100274548,navmesh::CFixedDynamicSmartLinkRule,high,unknown,partial,163,28268,155,0,0,0,0,8,0,16656,16656
-355,0x7100274548,0x71002810b0,navmesh::CNavMesh,high,ai/navmesh,partial,89,52052,64,7,0,0,0,18,0,19924,19924
+355,0x7100274548,0x71002810b0,navmesh::CNavMesh,high,ai/navmesh,partial,89,52052,65,7,0,0,0,17,0,20004,20004
 356,0x71002810b0,0x710028659c,UnkTU356,high,unknown,partial,23,21736,5,1,0,0,0,17,0,1152,1152
 357,0x710028659c,0x71002871cc,UnkTU357,high,unknown,partial,12,3112,9,1,0,0,0,2,0,1540,1540
 358,0x71002871cc,0x710028739c,UnkTU358,high,unknown,matched,6,456,6,0,0,0,0,0,0,456,456
@@ -364,7 +364,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 362,0x7100287598,0x71002878dc,UnkTU362,high,unknown,matched,8,828,8,0,0,0,0,0,0,828,828
 363,0x71002878dc,0x71002879ec,UnkTU363,high,unknown,matched,7,272,7,0,0,0,0,0,0,272,272
 364,0x71002879ec,0x7100288e2c,UnkTU364,high,unknown,partial,13,5176,9,0,0,0,0,4,0,2152,2152
-365,0x7100288e2c,0x71002ac2f4,navmesh::CNavMeshGenerator,medium,unknown,partial,164,144536,91,3,1,0,0,70,0,22764,23048
+365,0x7100288e2c,0x71002ac2f4,navmesh::CNavMeshGenerator,medium,unknown,partial,164,144536,92,3,1,0,0,69,0,23272,23556
 366,0x71002ac2f4,0x71002af630,navmesh::SNavMeshPath,high,ai/navmesh,partial,73,13112,68,0,0,0,0,5,0,11244,11244
 367,0x71002af630,0x71002b106c,UnkTU367,high,unknown,partial,23,6716,17,2,0,0,0,4,0,1952,1952
 368,0x71002b106c,0x71002b13dc,UnkTU368,high,unknown,partial,3,868,2,0,0,0,0,1,0,352,352
@@ -1716,7 +1716,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 1714,0x7100b65dbc,0x7100b6ffd4,GUI::CSamusMenuComposition,high,gui,partial,30,41492,24,0,0,0,0,6,0,4272,4272
 1715,0x7100b6ffd4,0x7100b7505c,GUI::CScene3D,high,gui,partial,70,20604,62,0,0,0,0,8,0,15420,15420
 1716,0x7100b7505c,0x7100b75ea8,GUI::CScrollMenuEntryItemRenderer,high,gui,partial,25,3648,23,0,0,0,0,2,0,2056,2056
-1717,0x7100b75ea8,0x7100b79b70,base::reflection,high,unknown,matched,140,15556,140,0,0,0,0,0,0,15556,15556
+1717,0x7100b75ea8,0x7100b79b70,base::reflection,high,engine/reflection,matched,140,15556,140,0,0,0,0,0,0,15556,15556
 1718,0x7100b79b70,0x7100b7bc20,GUI::CSlotInfoComposition,high,unknown,partial,18,5872,16,0,0,0,0,2,14,1764,1764
 1719,0x7100b7bc20,0x7100b7c7d0,GUI::CSlotOptionsComposition,high,gui,partial,16,2992,14,0,0,0,0,2,0,1036,1036
 1720,0x7100b7c7d0,0x7100b7d05c,GUI::CSlotSelectedComposition,high,gui,matched,19,2180,19,0,0,0,0,0,0,2180,2180
@@ -2509,7 +2509,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2507,0x7100d4bc00,0x7100d4c17c,UnkTU2507,high,unknown,partial,2,1404,1,0,0,0,0,1,0,140,140
 2508,0x7100d4c17c,0x7100d5134c,UnkTU2508,high,unknown,partial,17,20904,6,4,0,0,0,7,0,1968,1968
 2509,0x7100d5134c,0x7100d5761c,UnkTU2509,high,unknown,partial,42,25292,22,10,0,0,0,10,0,9556,9556
-2510,0x7100d5761c,0x7100d5d23c,UnkTU2510,high,unknown,partial,50,23572,30,4,1,0,0,16,0,12160,12244
+2510,0x7100d5761c,0x7100d5d23c,UnkTU2510,high,unknown,partial,50,23572,34,4,1,0,0,12,0,13948,14032
 2511,0x7100d5d23c,0x7100d5f00c,game::logic::collision::CAABoxShape2D,high,game,matched,73,7628,73,0,0,0,0,0,0,7628,7628
 2512,0x7100d5f00c,0x7100d60c6c,game::logic::collision::CCapsuleShape2D,high,game,partial,70,7260,69,0,0,0,0,1,0,7184,7184
 2513,0x7100d60c6c,0x7100d61d90,game::logic::collision::CCircleShape2D,high,game,partial,38,4384,36,0,0,0,0,2,0,4184,4184
@@ -2562,7 +2562,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2560,0x7100e1bc3c,0x7100e1dbbc,UnkTU2560,high,unknown,partial,26,8060,22,0,0,0,0,4,0,4664,4664
 2561,0x7100e1dbc0,0x7100e1e35c,CLogicDroppedItemManager::CTunableDroppableBillboard,high,unknown,partial,2,1936,1,0,0,0,0,1,0,532,532
 2562,0x7100e1e35c,0x7100e31c18,CLogicDroppedItemManager::CTunableDroppableBillboard,medium,game,partial,92,80060,63,1,0,0,0,28,0,28520,28520
-2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1231,16,3,0,0,37,0,159708,160852
+2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1232,16,3,0,0,36,0,160504,161648
 2564,0x7100e65204,0x7100e768b0,CMinimapDef,medium,unknown,partial,293,71332,282,3,1,0,0,8,0,55820,56048
 2565,0x7100e768b0,0x7100e7cdfc,UnkTU2565,high,unknown,partial,150,25924,138,0,0,0,0,12,0,17304,17304
 2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,749,15,7,0,0,84,0,124492,127428
@@ -2575,8 +2575,8 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2573,0x7100ecbddc,0x7100ecf6ac,UnkTU2573,high,unknown,partial,19,14544,7,0,0,0,0,12,0,1904,1904
 2574,0x7100ecf6ac,0x7100ecf93c,UnkTU2574,high,unknown,matched,15,644,15,0,0,0,0,0,0,644,644
 2575,0x7100ecf93c,0x7100ecfb5c,UnkTU2575,high,unknown,matched,9,532,9,0,0,0,0,0,0,532,532
-2576,0x7100ecfb5c,0x7100edf654,CShotManager::CTunableShotManager,high,unknown,partial,430,64232,413,2,1,1,0,14,0,51288,51436
-2577,0x7100edf654,0x7100ef3494,CSubAreaManager::CTunableSubAreaManager,medium,unknown,partial,212,81460,170,3,0,2,0,37,0,37824,37824
+2576,0x7100ecfb5c,0x7100edf654,CShotManager::CTunableShotManager,high,unknown,partial,430,64232,414,2,1,1,0,13,0,51480,51628
+2577,0x7100edf654,0x7100ef3494,CSubAreaManager::CTunableSubAreaManager,medium,unknown,partial,212,81460,169,3,0,2,0,38,0,37552,37552
 2578,0x7100ef3494,0x7100f02740,UnkTU2578,high,unknown,partial,24,62116,17,2,0,0,0,5,0,56316,56316
 2579,0x7100f02740,0x7100f0338c,UnkTU2579,high,unknown,partial,13,3144,9,1,0,0,0,3,1,768,768
 2580,0x7100f0338c,0x7100f03af0,CHearingSensor,high,game,partial,15,1876,14,0,0,0,0,1,1,1304,1304
@@ -2685,7 +2685,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2683,0x71010c2340,0x71010c23cc,UnkTU2683,high,unknown,matched,1,140,1,0,0,0,0,0,0,140,140
 2684,0x71010c23cc,0x71010c7284,CComponent,high,unknown,partial,172,20152,170,0,0,0,0,2,0,18536,18536
 2685,0x71010c7284,0x71010c74dc,UnkTU2685,high,unknown,matched,3,600,3,0,0,0,0,0,0,600,600
-2686,0x71010c74dc,0x71010cef68,CEnemyMovement,high,unknown,partial,114,31372,89,1,1,0,0,24,0,10956,10968
+2686,0x71010c74dc,0x71010cef68,CEnemyMovement,high,unknown,partial,114,31372,91,1,1,0,0,22,0,11264,11276
 2687,0x71010cef68,0x71010d02f0,CFakePhysicsMovement,high,game,partial,27,5000,24,0,0,0,0,3,0,1880,1880
 2688,0x71010d02f0,0x71010d4ac0,CMovementComponent,high,game/components,partial,75,18380,60,1,1,0,0,14,0,11320,11700
 2689,0x71010d4ac0,0x71010def48,CPlayerMovement,medium,unknown,partial,116,42084,96,0,0,0,0,20,1,25392,25392
@@ -2703,7 +2703,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2701,0x71010f3610,0x71010f41a0,CCameraFX_Shake,high,game,matched,23,2948,23,0,0,0,0,0,0,2948,2948
 2702,0x71010f41a0,0x71011173fc,CAIComponent,medium,unknown,partial,458,143944,360,3,1,0,0,95,0,51104,51540
 2703,0x71011173fc,0x7101120afc,CSpawnGroupComponent,high,unknown,partial,103,38652,86,2,0,0,0,15,0,23368,23368
-2704,0x7101120afc,0x71011336b0,CSpawnPointComponent,medium,unknown,partial,409,76712,385,0,0,0,0,24,0,56352,56352
+2704,0x7101120afc,0x71011336b0,CSpawnPointComponent,medium,unknown,partial,409,76712,387,0,0,0,0,22,0,57052,57052
 2705,0x71011336b0,0x7101135a60,CAIAttackComponent,high,game/ai,partial,44,9124,35,0,0,0,0,9,0,3388,3388
 2706,0x7101135a60,0x7101138930,CAttackComponent,high,game/components,partial,51,11984,44,0,0,0,0,7,0,5576,5576
 2707,0x7101138930,0x7101139a5c,CFactionComponent,high,game/components,partial,29,4384,27,0,0,0,0,2,0,3104,3104

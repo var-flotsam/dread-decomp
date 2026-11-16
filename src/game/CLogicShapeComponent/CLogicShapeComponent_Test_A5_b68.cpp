@@ -7,16 +7,10 @@
 #include "base/math/UnkZeroVector3.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU365.h"
+#include "game/UnkShapeHit_A5_b68.h"
 #include "types.h"
 
 struct UnkShapeTester_A5_b68;
-
-// Returned in memory (not trivially copyable); only bit 0 of the first word is read.
-struct UnkShapeHit_A5_b68 {
-    u32 flags;  // bit 0: hit
-    u8 pad_0x4[0xc];
-    UnkShapeHit_A5_b68(const UnkShapeHit_A5_b68& other);
-};
 
 struct UnkShapeObject_A5_b68 {
     u8 pad_0x0[0x44];

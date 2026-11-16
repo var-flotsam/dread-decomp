@@ -13,8 +13,8 @@ using base::global::CStrId;
 struct UnkMovableId {
     base::global::UnkStringData* data;
 
-    UnkMovableId(UnkMovableId&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
+    UnkMovableId(UnkMovableId&& other) {
+        CStrId::MoveConstructReloading(reinterpret_cast<CStrId*>(this), reinterpret_cast<CStrId&>(other));
     }
     ~UnkMovableId() { reinterpret_cast<CStrId*>(this)->Reset(); }
 };

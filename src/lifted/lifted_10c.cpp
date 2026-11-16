@@ -1157,12 +1157,6 @@ char* fn_71010c6240(char* p0, char* p1, char* p2) {
     return m0;
 }
 
-extern char g_unk_7172a03008[];
-char* fn_71010c6534() {
-    char* r0_0 = (char*)g_unk_7172a03008;
-    return r0_0;
-}
-
 extern char g_unk_7101d47108[];
 namespace callee { char* fn_71010c67b4(char*, u32); }
 namespace callee { char* fn_7101238e00(u64, u64, u64); }

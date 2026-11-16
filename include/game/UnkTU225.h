@@ -5,5 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkKeySetOwner;
 struct UnkKeyOwner;
 bool fn_710019e100(UnkKeyOwner* self, u64 key);
+bool fn_710019e4fc(UnkKeySetOwner* self, u64 key);

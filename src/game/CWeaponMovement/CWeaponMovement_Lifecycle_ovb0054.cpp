@@ -63,8 +63,6 @@ struct UnkWeaponMovement_ovb0054 {
 };
 static_assert(__builtin_offsetof(UnkWeaponMovement_ovb0054, field_0x478) == 0x478, "UnkWeaponMovement_ovb0054 layout");
 
-void fn_71010d0b78(UnkWeaponMovement_ovb0054* self);
-
 static inline UnkStruct_71008c0c74* AsCtorArg(UnkWeaponDamage_ovb0054* d) {
     return reinterpret_cast<UnkStruct_71008c0c74*>(d);
 }
@@ -98,7 +96,7 @@ void fn_7100ac72a4(UnkWeaponMovement_ovb0054* self) {
 }
 
 void fn_7100ac7628(UnkWeaponMovement_ovb0054* self) {
-    fn_71010d0b78(self);
+    fn_71010d0b78(reinterpret_cast<CMovementComponent*>(self));
     self->shots.Clear();
     ResetRef(&self->field_0x230);
     self->field_0x238 = 0;

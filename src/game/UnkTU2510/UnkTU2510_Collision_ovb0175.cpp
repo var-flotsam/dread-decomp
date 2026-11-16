@@ -18,6 +18,7 @@
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 #include "game/UnkTU2510.h"
 
@@ -29,20 +30,6 @@ using base::reflection::UnkReflObject;
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-
-// The result of a query (as in UnkCollisionWorld.cpp): bit 0 a hit, bit 1 stop. Returned in memory: its copy is
-// user-written. Also the result of the shape tester (fn_7100d51368).
-struct UnkShapeTestResult_ovb0107 {
-    union {
-        u32 flags;
-        u32 bits;
-    };
-    u32 field_0x4;
-    UnkShapeTestResult_ovb0107() : bits(0) {}
-    UnkShapeTestResult_ovb0107(u32 b) : bits(b) {}
-    UnkShapeTestResult_ovb0107(const UnkShapeTestResult_ovb0107& o) : bits(o.bits) {}
-};
-using UnkColliderResult = UnkShapeTestResult_ovb0107;
 
 // The "skip" result and its guard (shared with the other visitors).
 struct UnkVisitResult_b0040 {
@@ -136,8 +123,6 @@ struct UnkShapeCtx_b0175 {
     void* bounds;  // 0x68
     u16 arg2;      // 0x70
 };
-UnkColliderResult fn_7100d57d68(void* a, void* b, UnkReflObject* obj, void* c, u32 layers, void* d, u32 e);
-
 bool fn_7100d5cfb4(UnkQueryCtx* c, const UnkNode* node) {
     UnkShapeCtx_b0175* ctx = reinterpret_cast<UnkShapeCtx_b0175*>(c);
     UnkLeafCollider_b0175* collider = LeafCollider(ctx->table, node->index);
@@ -183,8 +168,6 @@ struct UnkPairCtx_b0175 {
     UnkLeafCollider_b0175* self;
     u16 arg2;  // 0x28
 };
-UnkColliderResult fn_7100d5761c(UnkReflObject* objA, UnkReflObject* objB, u32 layersA, u32 layersB, void* c, u32 d);
-
 bool fn_7100d5cea8(UnkQueryCtx* c, const UnkNode* node) {
     UnkPairCtx_b0175* ctx = reinterpret_cast<UnkPairCtx_b0175*>(c);
     UnkLeafCollider_b0175* collider = LeafCollider(ctx->table, node->index);
@@ -206,9 +189,6 @@ struct UnkPairSweepCtx_b0175 {
     UnkLeafCollider_b0175* self;
     u8 delta[8];  // 0x28
 };
-UnkColliderResult fn_7100d5823c(UnkReflObject* objA, UnkReflObject* objB, const void* delta, u32 layersA,
-                                u32 layersB, void* c, bool ownMotion);
-
 bool fn_7100d5cc80(UnkQueryCtx* c, const UnkNode* node) {
     UnkPairSweepCtx_b0175* ctx = reinterpret_cast<UnkPairSweepCtx_b0175*>(c);
     UnkLeafCollider_b0175* collider = LeafCollider(ctx->table, node->index);
@@ -216,7 +196,7 @@ bool fn_7100d5cc80(UnkQueryCtx* c, const UnkNode* node) {
         InitSkip();
         UnkLeafCollider_b0175* self = ctx->self;
         ctx->result.bits |= fn_7100d5823c(reinterpret_cast<UnkReflObject*>(self),
-                                          reinterpret_cast<UnkReflObject*>(collider), ctx->delta, self->GetLayers(),
+                                          reinterpret_cast<UnkReflObject*>(collider), reinterpret_cast<const CVector2D*>(ctx->delta), self->GetLayers(),
                                           ctx->mask, ctx->arg, false).bits;
     }
     return !(ctx->result.bits & 2);

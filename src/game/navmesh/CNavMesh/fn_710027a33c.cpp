@@ -11,7 +11,7 @@
 // A cell's whole record (game/UnkNavMeshCell.h lays out its start).
 struct UnkNavMeshCellRecord {
     UnkNavMeshCell cell;
-    u8 unk_0x40[0x30];
+    u8 unk_0x68[0x8];
 };
 static_assert(sizeof(UnkNavMeshCellRecord) == 0x70, "UnkNavMeshCellRecord layout");
 

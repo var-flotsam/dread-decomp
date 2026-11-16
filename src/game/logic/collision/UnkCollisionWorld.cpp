@@ -10,7 +10,9 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU55.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -20,16 +22,7 @@ using base::reflection::UnkReflObject;
 // Assigns a 3D vector's x and y to a 2D one (the source type as src/game/CBatalloonAIComponent/fn_71003de7b4.cpp names it).
 struct UnkVec3;
 
-// The result of a query (as in src/game/UnkCollisionContacts.cpp): bit 0 a hit, bit 1 stop.
-// Returned in memory: its copy is user-written.
-struct UnkColliderResult {
-    u32 bits;
-
-    UnkColliderResult() : bits(0) {}
-    UnkColliderResult(u32 b) : bits(b) {}
-    UnkColliderResult(const UnkColliderResult& o) : bits(o.bits) {}
-};
-
+// The empty result (game/logic/collision/UnkColliderResult.h).
 inline const UnkColliderResult& NoColliderResult() {
     static UnkColliderResult s_none;
     return s_none;

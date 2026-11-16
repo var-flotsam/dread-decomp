@@ -18,40 +18,34 @@
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "game/malloc.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 #include "UnkLeftoverReg.h"
 
 using base::math::CVector3D;
 
-// The result of a contact query (same type as in src/game_s7/fn_7100d541c0.cpp): bit 0 keeps a
-// point, bit 1 stops the query. Returned in memory: its copy is user-written.
-struct UnkContact {
-    u32 value;
-
-    UnkContact() { value = 0; }
-    UnkContact(const UnkContact& other) { value = other.value; }
-};
-
-inline const UnkContact& NoContact() {
-    static UnkContact s_none;
+// The empty result (game/logic/collision/UnkColliderResult.h; for a contact query bit 0 keeps a point and bit 1
+// stops the query).
+inline const UnkColliderResult& NoContact() {
+    static UnkColliderResult s_none;
     return s_none;
 }
 
-static inline UnkContact MakeContact(u32 value) {
-    UnkContact c;
-    c.value = value;
+static inline UnkColliderResult MakeContact(u32 value) {
+    UnkColliderResult c;
+    c.bits = value;
     return c;
 }
 
 // Both results' bits.
-static inline UnkContact Merge(const UnkContact& a, const UnkContact& b) {
-    return MakeContact(a.value | b.value);
+static inline UnkColliderResult Merge(const UnkColliderResult& a, const UnkColliderResult& b) {
+    return MakeContact(a.bits | b.bits);
 }
 
 // An empty argument (its register is left as it is).
 struct UnkNoContext : UnkLeftoverReg {};
 
-struct UnkCollider;
+struct UnkShapeTester_A5_b68;
 
 // One contact point (0x2c bytes): the position, two vectors that belong to the first and the
 // second shape of the pair (swapped when the pair is reported the other way round), and flags.
@@ -96,15 +90,15 @@ static_assert(sizeof(UnkContactHit) == 0x30, "UnkContactHit layout");
 struct UnkContactSink {
     virtual void vf_0x0();
     virtual void vf_0x8();
-    virtual UnkContact vf_0x10(UnkContactHit hit);
+    virtual UnkColliderResult vf_0x10(UnkContactHit hit);
 };
 
 struct UnkShape;
 // A shape's filter for the points of a point set and its filter for a single point; both are
 // called with the shape (and its transform) first.
-typedef UnkContact (*UnkPointFilter)(void* ctx, UnkShape* self, void* self_xf, UnkShape* other, void* other_xf,
+typedef UnkColliderResult (*UnkPointFilter)(void* ctx, UnkShape* self, void* self_xf, UnkShape* other, void* other_xf,
                                      UnkContactPoint* point);
-typedef UnkContact (*UnkSinglePointFilter)(void* ctx, UnkShape* self, void* self_xf, UnkShape* other, void* other_xf,
+typedef UnkColliderResult (*UnkSinglePointFilter)(void* ctx, UnkShape* self, void* self_xf, UnkShape* other, void* other_xf,
                                            const UnkContactPoint* point, void* extra, const CVector3D* offset);
 
 struct UnkShape {
@@ -124,11 +118,11 @@ struct UnkShape {
 // CRntVector::PushBack over contact points, out of line.
 void fn_7100d574c4(base::global::CRntVector<UnkContactPoint>* self, const UnkContactPoint* value);
 
-UnkContact fn_7100d53d24(const UnkContactSpan* points, const CVector3D* offset, u16 flags, UnkContactSink* sink);
+UnkColliderResult fn_7100d53d24(const UnkContactSpan* points, const CVector3D* offset, u16 flags, UnkContactSink* sink);
 
-UnkContact fn_7100d53b2c(UnkCollider* self, const UnkContactSpan* points, UnkShape* a, void* ta, UnkShape* b, void* tb,
+UnkColliderResult fn_7100d53b2c(UnkShapeTester_A5_b68* self, const UnkContactSpan* points, UnkShape* a, void* ta, UnkShape* b, void* tb,
                          UnkContactSink* sink, const CVector3D* offset, u16 flags);
-UnkContact fn_7100d54020(UnkNoContext, UnkContactPoint point, UnkShape* a, void* ta, UnkShape* b, void* tb,
+UnkColliderResult fn_7100d54020(UnkNoContext, UnkContactPoint point, UnkShape* a, void* ta, UnkShape* b, void* tb,
                          UnkContactSink* sink, const CVector3D* offset, void* extra, u16 flags);
 
 // The 2D placement of an oriented shape (at +0xa8): its oriented box, base::spatial::COBox2D (the
@@ -217,7 +211,7 @@ bool fn_7100129360(const UnkPlacement2D* a, const void* b, UnkContactBuffer<8>* 
 // by a's transform; fn_7100d53784 also turns it by b's), tested against b's geometry, and the points
 // found reported through fn_7100d53b2c at b's translation, halfway between the two in z. The tests
 // differ per shape pair. The first argument is passed through to fn_7100d53b2c, which ignores it.
-UnkContact fn_7100d5337c(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
+UnkColliderResult fn_7100d5337c(UnkShapeTester_A5_b68* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
                          u16 flags) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
@@ -237,7 +231,7 @@ UnkContact fn_7100d5337c(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkSh
     return fn_7100d53b2c(self, &span, a, ta, b, tb, sink, &offset, flags);
 }
 
-UnkContact fn_7100d534d0(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
+UnkColliderResult fn_7100d534d0(UnkShapeTester_A5_b68* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
                          u16 flags) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
@@ -256,7 +250,7 @@ UnkContact fn_7100d534d0(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkSh
     return fn_7100d53b2c(self, &span, a, ta, b, tb, sink, &offset, flags);
 }
 
-UnkContact fn_7100d53624(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
+UnkColliderResult fn_7100d53624(UnkShapeTester_A5_b68* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
                          u16 flags) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
@@ -275,7 +269,7 @@ UnkContact fn_7100d53624(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkSh
     return fn_7100d53b2c(self, &span, a, ta, b, tb, sink, &offset, flags);
 }
 
-UnkContact fn_7100d53784(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
+UnkColliderResult fn_7100d53784(UnkShapeTester_A5_b68* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
                          u16 flags) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
@@ -296,7 +290,7 @@ UnkContact fn_7100d53784(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkSh
     return fn_7100d53b2c(self, &span, a, ta, b, tb, sink, &offset, flags);
 }
 
-UnkContact fn_7100d538fc(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
+UnkColliderResult fn_7100d538fc(UnkShapeTester_A5_b68* self, UnkOrientedShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
                          u16 flags) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
@@ -315,7 +309,7 @@ UnkContact fn_7100d538fc(UnkCollider* self, UnkOrientedShape* a, void* ta, UnkSh
     return fn_7100d53b2c(self, &span, a, ta, b, tb, sink, &offset, flags);
 }
 
-UnkContact fn_7100d53b2c(UnkCollider*, const UnkContactSpan* points, UnkShape* a, void* ta, UnkShape* b, void* tb,
+UnkColliderResult fn_7100d53b2c(UnkShapeTester_A5_b68*, const UnkContactSpan* points, UnkShape* a, void* ta, UnkShape* b, void* tb,
                          UnkContactSink* sink, const CVector3D* offset, u16 flags) {
     base::global::CRntVector<UnkContactPoint> kept(0xf);
     u32 n = (u32)points->count;
@@ -323,17 +317,17 @@ UnkContact fn_7100d53b2c(UnkCollider*, const UnkContactSpan* points, UnkShape* a
     if (!(flags & 4)) {
         for (u32 i = 0; i < n; ++i) {
             UnkContactPoint* p = &points->data[i];
-            UnkContact keep = MakeContact(1);
+            UnkColliderResult keep = MakeContact(1);
             if (a && a->field_0x50)
                 keep = a->field_0x50(a->field_0x48, a, ta, b, tb, p);
             if (b && b->field_0x50)
                 keep = b->field_0x50(b->field_0x48, b, tb, a, ta, p);
-            if (keep.value & 1)
+            if (keep.bits & 1)
                 fn_7100d574c4(&kept, p);
         }
     }
     UnkContactSpan span = {kept.data, kept.count};
-    UnkContact result = fn_7100d53d24(&span, offset, flags, sink);
+    UnkColliderResult result = fn_7100d53d24(&span, offset, flags, sink);
     kept.Free();
     return result;
 }
@@ -379,24 +373,24 @@ static inline UnkContactHit HitFor(const UnkContactPoint* p, const CVector3D* of
 }
 
 // One point reported to the sink as it is (3 without a sink).
-static inline UnkContact ReportPoint(UnkContactSink* sink, const UnkContactPoint* p, const CVector3D* offset) {
+static inline UnkColliderResult ReportPoint(UnkContactSink* sink, const UnkContactPoint* p, const CVector3D* offset) {
     return sink ? sink->vf_0x10(HitFor(p, offset)) : MakeContact(3);
 }
 
 // NON_MATCHING(minor): the two loop bodies address the point from each other's base offset (0x14
 // and 0x28 swapped), so the same loads pair and schedule differently, and the offset is added to the
 // position with the fadd operands the other way round.
-UnkContact fn_7100d53d24(const UnkContactSpan* points, const CVector3D* offset, u16 flags, UnkContactSink* sink) {
-    UnkContact result = NoContact();
+UnkColliderResult fn_7100d53d24(const UnkContactSpan* points, const CVector3D* offset, u16 flags, UnkContactSink* sink) {
+    UnkColliderResult result = NoContact();
     if (!sink) {
         if (points->count != 0)
-            result.value = 3;
+            result.bits = 3;
         return result;
     }
-    for (u64 i = 0; !(result.value & 2) && i < points->count; ++i) {
+    for (u64 i = 0; !(result.bits & 2) && i < points->count; ++i) {
         UnkContactHit hit;
         MakeHit(&hit, &points->data[i], offset, flags & 2);
-        result.value |= sink->vf_0x10(hit).value;
+        result.bits |= sink->vf_0x10(hit).bits;
     }
     return result;
 }
@@ -404,15 +398,15 @@ UnkContact fn_7100d53d24(const UnkContactSpan* points, const CVector3D* offset, 
 // NON_MATCHING(minor): the filters' result temporary sits at sp+0x38 instead of sharing the hit's
 // slot at sp+8; the hit's loads, selects (csel on the inverse condition) and stores are scheduled in
 // another order, and the offset is added to the position with the fadd operands the other way round.
-UnkContact fn_7100d54020(UnkNoContext, UnkContactPoint point, UnkShape* a, void* ta, UnkShape* b, void* tb,
+UnkColliderResult fn_7100d54020(UnkNoContext, UnkContactPoint point, UnkShape* a, void* ta, UnkShape* b, void* tb,
                          UnkContactSink* sink, const CVector3D* offset, void* extra, u16 flags) {
-    UnkContact result = MakeContact(1);
+    UnkColliderResult result = MakeContact(1);
     if (!(flags & 4)) {
         if (a && a->field_0x70)
             result = a->field_0x70(a->field_0x68, a, ta, b, tb, &point, extra, offset);
-        if (b && (result.value & 1) && b->field_0x70)
+        if (b && (result.bits & 1) && b->field_0x70)
             result = b->field_0x70(b->field_0x68, b, tb, a, ta, &point, extra, offset);
-        if (!(result.value & 1))
+        if (!(result.bits & 1))
             return result;
     }
     UnkContactHit hit;
@@ -484,26 +478,26 @@ struct UnkPlacedCircle : UnkCircle2D {
     }
 };
 
-typedef UnkContact (*UnkCollectionPairFn)(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink,
+typedef UnkColliderResult (*UnkCollectionPairFn)(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink,
                                           u32 x6);
-UnkContact fn_7100d5244c(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
-UnkContact fn_7100d52bd0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
-UnkContact fn_7100d5283c(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
-UnkContact fn_7100d656a0(UnkShape* self, const UnkShape8Geometry* shape, const CVector3D* dir, UnkLocalQuery* query);
-UnkContact fn_7100d65200(UnkShape* self, const UnkBox2D* shape, const CVector3D* dir, UnkLocalQuery* query);
-UnkContact fn_7100d64d3c(UnkShape* self, const UnkCircle2D* shape, const CVector3D* dir, UnkLocalQuery* query);
+UnkColliderResult fn_7100d5244c(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
+UnkColliderResult fn_7100d52bd0(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
+UnkColliderResult fn_7100d5283c(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
+UnkColliderResult fn_7100d656a0(UnkShape* self, const UnkShape8Geometry* shape, const CVector3D* dir, UnkLocalQuery* query);
+UnkColliderResult fn_7100d65200(UnkShape* self, const UnkBox2D* shape, const CVector3D* dir, UnkLocalQuery* query);
+UnkColliderResult fn_7100d64d3c(UnkShape* self, const UnkCircle2D* shape, const CVector3D* dir, UnkLocalQuery* query);
 
 // The shape `a` (with its transform) against the polygon collection `b`: the shape is moved into
 // b's frame and queried along the direction `x5` (reversed when the pair is swapped). With `flag`,
 // the contacts of the pair handler `Pair` (b first) come first.
 template <class G, class Placer, UnkCollectionPairFn Pair,
-          UnkContact (*Query)(UnkShape*, const G*, const CVector3D*, UnkLocalQuery*)>
-static inline UnkContact QueryCollection(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5,
+          UnkColliderResult (*Query)(UnkShape*, const G*, const CVector3D*, UnkLocalQuery*)>
+static inline UnkColliderResult QueryCollection(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5,
                                          void* x6, bool swapped, bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     const base::math::CVector2D* d = static_cast<const base::math::CVector2D*>(x5);
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     if (flag)
         result = Pair(self, b, tb, a, ta, x6, 6);
     CVector3D pa = Translation(xa);
@@ -519,24 +513,24 @@ static inline UnkContact QueryCollection(UnkCollider* self, UnkShape* a, void* t
     return result;
 }
 
-UnkContact fn_7100d54a08(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
+UnkColliderResult fn_7100d54a08(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
                          bool swapped, bool flag) {
     return QueryCollection<UnkShape8Geometry, UnkShape8Geometry, fn_7100d5244c, fn_7100d656a0>(self, a, ta, b, tb, x5,
                                                                                                x6, swapped, flag);
 }
 
-UnkContact fn_7100d54bc0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
+UnkColliderResult fn_7100d54bc0(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
                          bool swapped, bool flag) {
     return QueryCollection<UnkBox2D, UnkBox2D, fn_7100d52bd0, fn_7100d65200>(self, a, ta, b, tb, x5, x6, swapped, flag);
 }
 
 // NON_MATCHING(minor): the placed circle's radius is stored after its centre instead of before.
-UnkContact fn_7100d54d78(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
+UnkColliderResult fn_7100d54d78(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
                          bool swapped, bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     const base::math::CVector2D* d = static_cast<const base::math::CVector2D*>(x5);
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     if (flag)
         result = fn_7100d5283c(self, b, tb, a, ta, x6, 6);
     CVector3D pa = Translation(xa);
@@ -560,7 +554,7 @@ bool fn_710012d6b0(const void* b, void* x5, const UnkBox2D* a, UnkContactPoint* 
 // The shape `a` placed in b's frame against b's contact point set (`SetTest`), reported through
 // fn_7100d53b2c.
 template <class G, class Placer, class SetTest>
-static inline UnkContact TestSet(UnkCollider* self, UnkShape* a, const UnkXform* ta, UnkShape* b, const UnkXform* tb,
+static inline UnkColliderResult TestSet(UnkShapeTester_A5_b68* self, UnkShape* a, const UnkXform* ta, UnkShape* b, const UnkXform* tb,
                                  UnkContactSink* sink, u16 flags, SetTest test) {
     CVector3D pa = Translation(ta);
     CVector3D pb = Translation(tb);
@@ -578,12 +572,12 @@ static inline UnkContact TestSet(UnkCollider* self, UnkShape* a, const UnkXform*
 // then the single contact point of the pair along `x5` (Test, or TestReversed with the arguments the
 // other way round when the pair is swapped).
 template <class G, class Placer, class FlagSet, class Test, class TestReversed>
-static inline UnkContact TestSingle(UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
+static inline UnkColliderResult TestSingle(UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
                                     bool flag, FlagSet flag_set, Test test, TestReversed test_reversed) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     UnkContactSink* sink = static_cast<UnkContactSink*>(x6);
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     if (flag)
         result = flag_set(xa, xb, sink);
     CVector3D pa = Translation(xa);
@@ -601,7 +595,7 @@ static inline UnkContact TestSingle(UnkShape* a, void* ta, UnkShape* b, void* tb
 // The circle `a` against the type-1 shape `b`; the flag pass places the circle at b's own position.
 // NON_MATCHING(minor): the single point's hit is built in another order (the same loads and stores,
 // paired differently).
-UnkContact fn_7100d54f28(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
+UnkColliderResult fn_7100d54f28(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
                          bool swapped, bool flag) {
     return TestSingle<UnkCircle2D, UnkPlacedCircle>(
         a, ta, b, tb, x5, x6, swapped, flag,
@@ -617,7 +611,7 @@ UnkContact fn_7100d54f28(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, 
 // The box `a` against the type-1 shape `b`.
 // NON_MATCHING(minor): the single point's hit is built in another order (the same loads and stores,
 // paired differently).
-UnkContact fn_7100d551c8(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
+UnkColliderResult fn_7100d551c8(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
                          bool swapped, bool flag) {
     return TestSingle<UnkBox2D, UnkBox2D>(
         a, ta, b, tb, x5, x6, swapped, flag,
@@ -642,13 +636,13 @@ bool fn_710012d960(const UnkSegment2D* segment, const base::math::CVector2D* del
 // reported to the sink, but its result is dropped: only the flag pass's result is returned.
 // NON_MATCHING(minor): the angles temporary shares the point's stack slot instead of the hit's, and
 // the hit is built in another order (the same loads and stores, paired differently).
-UnkContact fn_7100d55484(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
+UnkColliderResult fn_7100d55484(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6,
                          bool swapped, bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     UnkOrientedShape* oa = static_cast<UnkOrientedShape*>(a);
     UnkContactSink* sink = static_cast<UnkContactSink*>(x6);
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     if (flag)
         result = fn_7100d5337c(self, oa, ta, b, tb, sink, 4);
     f32 dx = xa->m[0][3] - xb->m[0][3];
@@ -665,7 +659,7 @@ UnkContact fn_7100d55484(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, 
                      : fn_710012d770(&local, x5, Geometry(b), &point);
     if (found) {
         CVector3D offset = MakeVec3(xb->m[0][3], xb->m[1][3], (xa->m[2][3] + xb->m[2][3]) * 0.5f);
-        UnkContact dropped = sink ? sink->vf_0x10(HitFor(&point, &offset)) : MakeContact(3);
+        UnkColliderResult dropped = sink ? sink->vf_0x10(HitFor(&point, &offset)) : MakeContact(3);
         (void)dropped;
     }
     return result;
@@ -676,11 +670,11 @@ bool fn_710012dbd0(const UnkBox2D* a, void* x5, const void* b, UnkContactPoint* 
 
 // The box `a` against the box `b`: with `flag`, the point set of the pair first, each point through
 // fn_7100d54020 until the sink asks to stop; then the single contact point along `x5`.
-UnkContact fn_7100d556d0(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag) {
+UnkColliderResult fn_7100d556d0(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     UnkContactSink* sink = static_cast<UnkContactSink*>(x6);
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     base::math::CVector2D pa = Position2D(xa);
     base::math::CVector2D pb = Position2D(xb);
     UnkBox2D local = UnkBox2D::Placed(a, pa.x - pb.x, pa.y - pb.y);
@@ -690,7 +684,7 @@ UnkContact fn_7100d556d0(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
         UnkContactBuffer<4> buf;
         buf.count = 0;
         if (fn_710012b330(&local, Geometry(b), &buf, true)) {
-            for (u32 i = 0; !(result.value & 2) && i < buf.count; ++i)
+            for (u32 i = 0; !(result.bits & 2) && i < buf.count; ++i)
                 result =
                     Merge(result, fn_7100d54020(UnkNoContext(), buf.points[i], a, ta, b, tb, sink, &offset, x5, 0));
         }
@@ -705,12 +699,12 @@ bool fn_7100127720(const UnkCircle2D* a, const UnkCircle2D& b, UnkContactBuffer<
 
 // The circle `a` against the circle `b`, as fn_7100d556d0 (b as a circle at the origin).
 // NON_MATCHING(minor): the placed circle's radius is stored after its centre instead of before.
-UnkContact fn_7100d55920(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag) {
+UnkColliderResult fn_7100d55920(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     UnkContactSink* sink = static_cast<UnkContactSink*>(x6);
     const f32* radius = static_cast<const f32*>(Geometry(b));
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     base::math::CVector2D pa = Position2D(xa);
     base::math::CVector2D pb = Position2D(xb);
     UnkCircle2D local = UnkPlacedCircle::Placed(a, pa.x - pb.x, pa.y - pb.y);
@@ -720,7 +714,7 @@ UnkContact fn_7100d55920(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
         UnkContactBuffer<2> buf;
         buf.count = 0;
         if (fn_7100127720(&local, CircleAtOrigin(*radius), &buf, true)) {
-            for (u32 i = 0; !(result.value & 2) && i < buf.count; ++i)
+            for (u32 i = 0; !(result.bits & 2) && i < buf.count; ++i)
                 result =
                     Merge(result, fn_7100d54020(UnkNoContext(), buf.points[i], a, ta, b, tb, sink, &offset, x5, 0));
         }
@@ -737,12 +731,12 @@ bool fn_7100126bf0(const void* b, const UnkCircle2D* a, UnkContactBuffer<8>* out
 // the other way round (b first); then the single contact point along `x5`, tested the other way
 // round when the pair is swapped.
 // NON_MATCHING(minor): the placed circle's radius is stored after its centre instead of before.
-UnkContact fn_7100d55b80(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
+UnkColliderResult fn_7100d55b80(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
                          bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     UnkContactSink* sink = static_cast<UnkContactSink*>(x6);
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     base::math::CVector2D pa = Position2D(xa);
     base::math::CVector2D pb = Position2D(xb);
     UnkCircle2D local = UnkPlacedCircle::Placed(a, pa.x - pb.x, pa.y - pb.y);
@@ -752,7 +746,7 @@ UnkContact fn_7100d55b80(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
         UnkContactBuffer<8> buf;
         buf.count = 0;
         if (fn_7100126bf0(Geometry(b), &local, &buf, true)) {
-            for (u32 i = 0; !(result.value & 2) && i < buf.count; ++i)
+            for (u32 i = 0; !(result.bits & 2) && i < buf.count; ++i)
                 result =
                     Merge(result, fn_7100d54020(UnkNoContext(), buf.points[i], b, tb, a, ta, sink, &offset, x5, 2));
         }
@@ -771,14 +765,14 @@ bool fn_710012e400(const UnkCircle2D& b, void* x5, const UnkPlacement2D* a, UnkC
 
 // The oriented shape `a` (type 0x40) against the circle `b`: with `flag`, the point set of the pair
 // (fn_7100128da0) first; then, unless the pair is swapped, the single contact point along `x5`.
-UnkContact fn_7100d55df4(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
+UnkColliderResult fn_7100d55df4(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
                          bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     UnkOrientedShape* oa = static_cast<UnkOrientedShape*>(a);
     UnkContactSink* sink = static_cast<UnkContactSink*>(x6);
     const f32* radius = static_cast<const f32*>(Geometry(b));
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     f32 dx = xa->m[0][3] - xb->m[0][3];
     f32 dy = xa->m[1][3] - xb->m[1][3];
     UnkPlacement2D local = oa->placement;
@@ -791,7 +785,7 @@ UnkContact fn_7100d55df4(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
         UnkContactBuffer<8> buf;
         buf.count = 0;
         if (fn_7100128da0(&local, CircleAtOrigin(*radius), &buf, true)) {
-            for (u32 i = 0; !(result.value & 2) && i < buf.count; ++i)
+            for (u32 i = 0; !(result.bits & 2) && i < buf.count; ++i)
                 result =
                     Merge(result, fn_7100d54020(UnkNoContext(), buf.points[i], a, ta, b, tb, sink, &offset, x5, 0));
         }
@@ -809,12 +803,12 @@ bool fn_710012efb0(const void* b, void* x5, const UnkShape8Geometry* a, UnkConta
 // The type-8 shape `a` against the box `b`: with `flag`, the box placed in a's frame against a's own
 // geometry first, reported the other way round (b first); then the single contact point along `x5`,
 // tested the other way round when the pair is swapped.
-UnkContact fn_7100d560bc(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
+UnkColliderResult fn_7100d560bc(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
                          bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     UnkContactSink* sink = static_cast<UnkContactSink*>(x6);
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     base::math::CVector2D pa = Position2D(xa);
     base::math::CVector2D pb = Position2D(xb);
     f32 dx = pa.x - pb.x;
@@ -828,7 +822,7 @@ UnkContact fn_7100d560bc(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
         const UnkBox2D* g = static_cast<const UnkBox2D*>(Geometry(b));
         UnkBox2D other = UnkBox2D::Make(g->min_x - dx, g->min_y - dy, g->max_x - dx, g->max_y - dy);
         if (fn_7100129ff0(&other, static_cast<const UnkShape8Geometry*>(Geometry(a)), &buf, true)) {
-            for (u32 i = 0; !(result.value & 2) && i < buf.count; ++i)
+            for (u32 i = 0; !(result.bits & 2) && i < buf.count; ++i)
                 result =
                     Merge(result, fn_7100d54020(UnkNoContext(), buf.points[i], b, tb, a, ta, sink, &offset, x5, 2));
         }
@@ -846,13 +840,13 @@ bool fn_710012eb40(const UnkShape8Geometry* a, void* x5, const UnkCircle2D& b, U
 bool fn_710012ec40(const UnkCircle2D& b, void* x5, const UnkShape8Geometry* a, UnkContactPoint* out);
 
 // The type-8 shape `a` against the circle `b`, as fn_7100d560bc.
-UnkContact fn_7100d5635c(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
+UnkColliderResult fn_7100d5635c(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void* tb, void* x5, void* x6, bool swapped,
                          bool flag) {
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
     UnkContactSink* sink = static_cast<UnkContactSink*>(x6);
     const f32* radius = static_cast<const f32*>(Geometry(b));
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     base::math::CVector2D pa = Position2D(xa);
     base::math::CVector2D pb = Position2D(xb);
     f32 dx = pa.x - pb.x;
@@ -867,7 +861,7 @@ UnkContact fn_7100d5635c(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
         other.x = other.x - dx;
         other.y = other.y - dy;
         if (fn_710012a9a0(&other, static_cast<const UnkShape8Geometry*>(Geometry(a)), &buf, true)) {
-            for (u32 i = 0; !(result.value & 2) && i < buf.count; ++i)
+            for (u32 i = 0; !(result.bits & 2) && i < buf.count; ++i)
                 result =
                     Merge(result, fn_7100d54020(UnkNoContext(), buf.points[i], b, tb, a, ta, sink, &offset, x5, 2));
         }
@@ -886,9 +880,9 @@ UnkContact fn_7100d5635c(UnkNoContext, UnkShape* a, void* ta, UnkShape* b, void*
 // reported. Most pairs place one shape in the other's frame, collect the points and report them
 // through fn_7100d53b2c at the frame's translation; the polygon collection and oriented pairs have
 // their own handlers. Unhandled pairs give an empty result.
-UnkContact fn_7100d52fcc(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
+UnkColliderResult fn_7100d52fcc(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6);
 bool fn_7100129910(const void* b, const UnkShape8Geometry* a, UnkContactBuffer<4>* out, bool flag);
-UnkContact fn_7100d64750(const void* a, const void* b, const base::math::CVector2D* delta, bool flag,
+UnkColliderResult fn_7100d64750(const void* a, const void* b, const base::math::CVector2D* delta, bool flag,
                          UnkLocalQuery* query);
 struct UnkPathSet2D;
 bool fn_710012c580(const UnkOrientedBox2D* box, const UnkPathSet2D* paths, UnkContactList2D* list);
@@ -900,11 +894,11 @@ bool fn_710012c580(const UnkOrientedBox2D* box, const UnkPathSet2D* paths, UnkCo
 // without the dead fourth argument (w3 = !(flags & 1)) that its three-parameter definition ignores;
 // the fn_7100d64750 delta is stored as two words; loads and selects are scheduled in another order.
 // Same calls with the same arguments otherwise.
-UnkContact fn_7100d51368(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
+UnkColliderResult fn_7100d51368(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, UnkContactSink* sink,
                          u32 flags) {
     if (!a || !b)
         return NoContact();
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     switch (a->GetType() + b->GetType()) {
     case 3: {
         UnkShape* first = a->GetType() == 1 ? a : b;
@@ -1088,7 +1082,7 @@ UnkContact fn_7100d51368(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, 
         const UnkXform* tf = static_cast<const UnkXform*>(a->GetType() == 0x10 ? ta : tb);
         const UnkXform* ts = static_cast<const UnkXform*>(a->GetType() == 0x10 ? tb : ta);
         u32 f = flags | (a->GetType() != 0x10) << 1;
-        UnkContact r = NoContact();
+        UnkColliderResult r = NoContact();
         base::math::CVector2D delta;
         delta.x = tf->m[0][3] - ts->m[0][3];
         delta.y = tf->m[1][3] - ts->m[1][3];
