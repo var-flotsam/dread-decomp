@@ -25,7 +25,7 @@ struct UnkWindTunnelEnd_ovb0265;
 struct UnkCooldownXBossAttack_b62a2;
 void fn_71004cbaa8(UnkWindTunnelEnd_ovb0265* self);
 void fn_71004cbc28(UnkWindTunnelEnd_ovb0265* self);
-void fn_7100f0e238(void* target, u32 value);
+void fn_7100f0e238(void* target, bool on);
 struct UnkCooldownAI_ovb0265;
 void fn_71004d432c(UnkCooldownAI_ovb0265* self, u32 on);
 void fn_71004d1fb0(UnkCooldownAI_ovb0265* self);
@@ -46,7 +46,7 @@ struct UnkWindTunnelEnd_ovb0265 {
 
 void fn_71004cc42c(UnkWindTunnelEnd_ovb0265* self) {
     fn_71004c196c(reinterpret_cast<UnkCooldownXBossAttack_b62a2*>(self));
-    fn_7100f0e238(reinterpret_cast<char*>(g_unk_7101d47310) + 0x38, 0);
+    fn_7100f0e238(reinterpret_cast<char*>(g_unk_7101d47310) + 0x38, false);
     fn_71004cbaa8(self);
     UnkReflObject* ai = static_cast<UnkReflObject*>(self->owner->field_0x240);
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_71004cf318()))

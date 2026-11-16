@@ -18,6 +18,7 @@
 #include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU341.h"
@@ -311,7 +312,6 @@ f32 fn_71010ff140(UnkSpeedSelf_h* self) {
 // ---- i ----
 struct UnkEntityState;
 struct UnkActorTarget;
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
 struct UnkStartOwner_i {
     void** vtable;

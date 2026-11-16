@@ -1330,7 +1330,7 @@ address,size,name,name_source,subsystem,status
 0x7100838a60,180,fn_7100838a60,unknown,unknown,O
 0x7100838b14,180,fn_7100838b14,unknown,unknown,O
 0x7100838bc8,180,fn_7100838bc8,unknown,unknown,O
-0x7100838c7c,676,fn_7100838c7c,unknown,unknown,U
+0x7100838c7c,676,fn_7100838c7c,unknown,unknown,O
 0x7100838f20,1568,fn_7100838f20,unknown,unknown,U
 0x7100839540,140,fn_7100839540,unknown,unknown,O
 0x71008395cc,36,fn_71008395cc,unknown,unknown,O
@@ -1387,7 +1387,7 @@ address,size,name,name_source,subsystem,status
 0x710083f138,192,fn_710083f138,unknown,unknown,O
 0x710083f1f8,84,fn_710083f1f8,unknown,unknown,O
 0x710083f24c,224,fn_710083f24c,unknown,unknown,O
-0x710083f32c,1140,fn_710083f32c,unknown,unknown,U
+0x710083f32c,1140,fn_710083f32c,unknown,unknown,O
 0x710083f7a0,16,fn_710083f7a0,unknown,unknown,O
 0x710083f7b0,1348,fn_710083f7b0,unknown,unknown,U
 0x710083fcf4,880,fn_710083fcf4,unknown,unknown,U
@@ -3656,7 +3656,7 @@ address,size,name,name_source,subsystem,status
 0x71008a5b90,704,CBeamBoxComponent::refl_AddFields,reflection,game/components,O
 0x71008a5e50,352,CBeamBoxComponent::refl_InitClass,reflection,game/components,O
 0x71008a5fb0,376,fn_71008a5fb0,unknown,unknown,O
-0x71008a6128,900,fn_71008a6128,unknown,unknown,U
+0x71008a6128,900,fn_71008a6128,unknown,unknown,O
 0x71008a64ac,36,fn_71008a64ac,unknown,unknown,O
 0x71008a64d0,152,fn_71008a64d0,unknown,unknown,O
 0x71008a6568,456,fn_71008a6568,unknown,unknown,O
@@ -3664,7 +3664,7 @@ address,size,name,name_source,subsystem,status
 0x71008a6d40,1532,fn_71008a6d40,unknown,unknown,U
 0x71008a733c,1160,fn_71008a733c,unknown,unknown,U
 0x71008a77c4,3360,fn_71008a77c4,unknown,unknown,U
-0x71008a84e4,452,fn_71008a84e4,unknown,unknown,U
+0x71008a84e4,452,fn_71008a84e4,unknown,unknown,O
 0x71008a86a8,220,fn_71008a86a8,unknown,unknown,O
 0x71008a8784,4,fn_71008a8784,unknown,unknown,O
 0x71008a8788,4,fn_71008a8788,unknown,unknown,O
@@ -3752,7 +3752,7 @@ address,size,name,name_source,subsystem,status
 0x71008aa1ec,60,fn_71008aa1ec,unknown,unknown,O
 0x71008aa228,284,fn_71008aa228,unknown,unknown,O
 0x71008aa344,48,fn_71008aa344,unknown,unknown,O
-0x71008aa374,496,fn_71008aa374,unknown,unknown,U
+0x71008aa374,496,fn_71008aa374,unknown,unknown,O
 0x71008aa564,80,fn_71008aa564,unknown,unknown,O
 0x71008aa5b4,56,fn_71008aa5b4,unknown,unknown,O
 0x71008aa5ec,12,fn_71008aa5ec,unknown,unknown,O
@@ -3787,7 +3787,7 @@ address,size,name,name_source,subsystem,status
 0x71008ab4e0,468,fn_71008ab4e0,unknown,unknown,O
 0x71008ab6b4,348,fn_71008ab6b4,unknown,unknown,O
 0x71008ab810,524,fn_71008ab810,unknown,unknown,O
-0x71008aba1c,832,fn_71008aba1c,unknown,unknown,U
+0x71008aba1c,832,fn_71008aba1c,unknown,unknown,O
 0x71008abd5c,684,fn_71008abd5c,unknown,unknown,O
 0x71008ac008,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::Begin,reflection,engine/reflection,O
 0x71008ac014,24,fn_71008ac014,unknown,unknown,O
@@ -3801,7 +3801,7 @@ address,size,name,name_source,subsystem,status
 0x71008ac44c,12,fn_71008ac44c,unknown,game/components?,O
 0x71008ac458,260,fn_71008ac458,unknown,game/components?,O
 0x71008ac55c,140,fn_71008ac55c,unknown,game/components?,O
-0x71008ac5f0,1208,fn_71008ac5f0,unknown,game/components?,U
+0x71008ac5f0,1208,fn_71008ac5f0,unknown,game/components?,O
 0x71008acaa8,4,CBeamDoorLifeComponent::refl_AddAttributes,reflection,game/components,O
 0x71008acaac,244,CBeamDoorLifeComponent::refl_GetClass,reflection,game/components,O
 0x71008acba0,4,CBeamDoorLifeComponent::refl_AddFields,reflection,game/components,O

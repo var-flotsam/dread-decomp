@@ -7,9 +7,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CActionSet.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU1730.h"
 #include "types.h"
-
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
 struct UnkActionSetMap;
 

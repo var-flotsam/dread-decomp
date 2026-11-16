@@ -1083,7 +1083,7 @@ address,size,name,name_source,subsystem,status
 0x7100739f10,468,fn_7100739f10,unknown,game/components?,U
 0x710073a0e4,460,fn_710073a0e4,unknown,game/components?,U
 0x710073a2b0,10112,fn_710073a2b0,unknown,game/components?,U
-0x710073ca30,436,fn_710073ca30,unknown,game/components?,U
+0x710073ca30,436,fn_710073ca30,unknown,game/components?,O
 0x710073cbe4,420,fn_710073cbe4,unknown,game/components?,U
 0x710073cd88,2216,fn_710073cd88,unknown,game/components?,U
 0x710073d630,576,fn_710073d630,unknown,game/components?,O

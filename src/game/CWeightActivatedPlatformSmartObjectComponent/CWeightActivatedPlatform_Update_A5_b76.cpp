@@ -17,6 +17,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CAnimationComponent.h"
+#include "game/CCollisionComponent.h"
 #include "game/CElectricReactionComponent.h"
 #include "game/CFXComponent.h"
 #include "game/CInputComponent.h"
@@ -196,10 +197,7 @@ done:
 // the watch at +0x540 with the game manager's set at +0x1da8.
 struct UnkSmartObjectUserA;
 struct UnkSmartObjectActor;
-void fn_7100861fc8(void* part, bool flag);
 struct UnkRinkaControl_ruc;
-extern const u64 g_unk_710164b4c0;
-extern const u64 g_unk_710164b4c8;
 
 struct UnkPlatformSmartUser_A5_b76 {
     virtual void vf_0x0();

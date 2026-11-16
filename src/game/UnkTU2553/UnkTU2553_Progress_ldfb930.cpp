@@ -21,7 +21,6 @@ using base::global::CRntFile;
 using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
 
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 // Calls the script function `name`, collecting what it returns in `results`.
 bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...);
 

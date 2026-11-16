@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CHydrogigaAIComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1643.h"
@@ -28,7 +29,6 @@ using base::global::CStrId;
 // The managers, each a global pointer set on first use (allocated with fn_71000839a0(size, 0x3f),
 // then constructed in place), and their constructors. The declarations repeat the other files'.
 struct UnkUserDataOwner;  // src/game/CGameManager.cpp
-extern char* g_unk_71726b2398;
 struct UnkManager;
 
 namespace {

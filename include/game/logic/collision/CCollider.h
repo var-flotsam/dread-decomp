@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkPtrArray_ovb0034;
+struct UnkPtrArrays_ovb0034;
 struct UnkMatrix44;
 struct UnkShape;
 struct UnkObj_71007e44b8;
@@ -14,3 +16,4 @@ void fn_7100d36624(UnkObj_71007e44b8* self);  // Constructor.
 extern char g_unk_7101aa85b0[];
 extern char g_unk_7101aa8660[];
 UnkMatrix44 fn_7100d36a2c(UnkShape* shape);
+void fn_7100d43e70(UnkPtrArrays_ovb0034* self, const UnkPtrArray_ovb0034* value);
