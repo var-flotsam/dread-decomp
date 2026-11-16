@@ -42,10 +42,22 @@ struct CollectionTypeMapper {
         bool operator==(const TElementConstIterator& other) const { return m_element == other.m_element; }
     };
     // A vector's key-element iterator: the index, the element, and the pair as it is read.
-    struct TKeyElementIterator : UnkCollectionIter<typename C::value_type> {
-        using UnkCollectionIter<typename C::value_type>::UnkCollectionIter;
+    struct TKeyElementIterator : base::UnkCollectionIter<typename C::value_type> {
+        using Iter = base::UnkCollectionIter<typename C::value_type>;
+        using Iter::Iter;
+        // Reflection's copies: the position is taken, then the pair is pointed at again (refl_IterSync).
+        TKeyElementIterator() : Iter(0, nullptr) { refl_IterSync<typename C::value_type, u32>(this); }
+        TKeyElementIterator& operator=(const TKeyElementIterator& other) {
+            Iter::operator=(other);
+            return *this;
+        }
+        bool operator==(const TKeyElementIterator& other) const { return this->element == other.element; }
     };
-    struct TKeyElementConstIterator;
+    // Its const form, laid out and copied the same way.
+    struct TKeyElementConstIterator : TKeyElementIterator {
+        using TKeyElementIterator::TKeyElementIterator;
+        TKeyElementConstIterator() {}
+    };
 
     // The CType slots. Reflection creates its arrays with allocation flags 0xf.
     static void Construct(void* obj) { new (obj) C(0xf); }

@@ -266,6 +266,16 @@ class TypeNames(unittest.TestCase):
             "base::reflection::CollectionTypeMapper<base::global::CRntVector< std::unique_ptr<CFoo> >>::"
             "TElementIterator")[0], name.replace("::Count", "::TElementIterator"))
 
+    def test_key_iterators(self):
+        # a vector's key-element iterator holds an element: only a whole one (a pointer, an enum, ...)
+        key = "base::reflection::CollectionTypeMapper<base::global::CRntVector<{}>>::TKeyElement{}Iterator"
+        self.assertEqual(gt.pointer_value_type(key.format("CActor *", ""))[0], key.format("CActor*", ""))
+        self.assertEqual(gt.pointer_value_type(key.format("EFoo", "Const"), frozenset({"EFoo"}))[0],
+                         key.format("EFoo", "Const"))
+        self.assertIsNone(gt.pointer_value_type(key.format("CFoo", "")))
+        self.assertIsNone(gt.pointer_value_type(
+            "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<CFoo*, CBar*>>::TKeyElementIterator"))
+
     def test_declarations(self):
         node = gt.parse_type("base::global::CRntDictionary<base::global::CStrId, CFoo::SBar>*")
         self.assertEqual(gt.type_declarations(node), [

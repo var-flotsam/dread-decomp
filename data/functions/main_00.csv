@@ -3623,28 +3623,28 @@ address,size,name,name_source,subsystem,status
 0x71000bf234,60,fn_71000bf234,unknown,unknown,O
 0x71000bf270,4,fn_71000bf270,unknown,unknown,O
 0x71000bf274,60,fn_71000bf274,unknown,unknown,O
-0x71000bf2b0,20,fn_71000bf2b0,unknown,unknown,O
-0x71000bf2c4,8,fn_71000bf2c4,unknown,unknown,O
-0x71000bf2cc,20,fn_71000bf2cc,unknown,unknown,O
-0x71000bf2e0,16,fn_71000bf2e0,unknown,unknown,O
-0x71000bf2f0,40,fn_71000bf2f0,unknown,unknown,O
-0x71000bf318,40,fn_71000bf318,unknown,unknown,O
-0x71000bf340,24,fn_71000bf340,unknown,unknown,O
-0x71000bf358,88,fn_71000bf358,unknown,unknown,O
-0x71000bf3b0,88,fn_71000bf3b0,unknown,unknown,O
+0x71000bf2b0,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::Equals,reflection,engine/reflection,O
+0x71000bf2c4,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::Hash,reflection,engine/reflection,O
+0x71000bf2cc,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::TypeOf,reflection,engine/reflection,O
+0x71000bf2e0,16,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::Construct,reflection,engine/reflection,O
+0x71000bf2f0,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::CopyConstruct,reflection,engine/reflection,O
+0x71000bf318,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::MoveConstruct,reflection,engine/reflection,O
+0x71000bf340,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::Destroy,reflection,engine/reflection,O
+0x71000bf358,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::CopyAssign,reflection,engine/reflection,O
+0x71000bf3b0,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementIterator>::MoveAssign,reflection,engine/reflection,O
 0x71000bf408,364,fn_71000bf408,unknown,unknown,O
 0x71000bf574,60,fn_71000bf574,unknown,unknown,O
 0x71000bf5b0,4,fn_71000bf5b0,unknown,unknown,O
 0x71000bf5b4,60,fn_71000bf5b4,unknown,unknown,O
-0x71000bf5f0,20,fn_71000bf5f0,unknown,unknown,O
-0x71000bf604,8,fn_71000bf604,unknown,unknown,O
-0x71000bf60c,20,fn_71000bf60c,unknown,unknown,O
-0x71000bf620,16,fn_71000bf620,unknown,unknown,O
-0x71000bf630,40,fn_71000bf630,unknown,unknown,O
-0x71000bf658,40,fn_71000bf658,unknown,unknown,O
-0x71000bf680,24,fn_71000bf680,unknown,unknown,O
-0x71000bf698,88,fn_71000bf698,unknown,unknown,O
-0x71000bf6f0,88,fn_71000bf6f0,unknown,unknown,O
+0x71000bf5f0,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::Equals,reflection,engine/reflection,O
+0x71000bf604,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::Hash,reflection,engine/reflection,O
+0x71000bf60c,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::TypeOf,reflection,engine/reflection,O
+0x71000bf620,16,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::Construct,reflection,engine/reflection,O
+0x71000bf630,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::CopyConstruct,reflection,engine/reflection,O
+0x71000bf658,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::MoveConstruct,reflection,engine/reflection,O
+0x71000bf680,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::Destroy,reflection,engine/reflection,O
+0x71000bf698,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::CopyAssign,reflection,engine/reflection,O
+0x71000bf6f0,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned short>>::TKeyElementConstIterator>::MoveAssign,reflection,engine/reflection,O
 0x71000bf748,360,fn_71000bf748,unknown,unknown,O
 0x71000bf8b0,88,fn_71000bf8b0,unknown,unknown,O
 0x71000bf908,12,fn_71000bf908,unknown,unknown,O
@@ -3675,28 +3675,28 @@ address,size,name,name_source,subsystem,status
 0x71000bfd64,60,fn_71000bfd64,unknown,unknown,O
 0x71000bfda0,4,fn_71000bfda0,unknown,unknown,O
 0x71000bfda4,60,fn_71000bfda4,unknown,unknown,O
-0x71000bfde0,20,fn_71000bfde0,unknown,unknown,O
-0x71000bfdf4,8,fn_71000bfdf4,unknown,unknown,O
-0x71000bfdfc,20,fn_71000bfdfc,unknown,unknown,O
-0x71000bfe10,16,fn_71000bfe10,unknown,unknown,O
-0x71000bfe20,40,fn_71000bfe20,unknown,unknown,O
-0x71000bfe48,40,fn_71000bfe48,unknown,unknown,O
-0x71000bfe70,24,fn_71000bfe70,unknown,unknown,O
-0x71000bfe88,88,fn_71000bfe88,unknown,unknown,O
-0x71000bfee0,88,fn_71000bfee0,unknown,unknown,O
+0x71000bfde0,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::Equals,reflection,engine/reflection,O
+0x71000bfdf4,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::Hash,reflection,engine/reflection,O
+0x71000bfdfc,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::TypeOf,reflection,engine/reflection,O
+0x71000bfe10,16,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::Construct,reflection,engine/reflection,O
+0x71000bfe20,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::CopyConstruct,reflection,engine/reflection,O
+0x71000bfe48,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::MoveConstruct,reflection,engine/reflection,O
+0x71000bfe70,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::Destroy,reflection,engine/reflection,O
+0x71000bfe88,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::CopyAssign,reflection,engine/reflection,O
+0x71000bfee0,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementIterator>::MoveAssign,reflection,engine/reflection,O
 0x71000bff38,364,fn_71000bff38,unknown,unknown,O
 0x71000c00a4,60,fn_71000c00a4,unknown,unknown,O
 0x71000c00e0,4,fn_71000c00e0,unknown,unknown,O
 0x71000c00e4,60,fn_71000c00e4,unknown,unknown,O
-0x71000c0120,20,fn_71000c0120,unknown,unknown,O
-0x71000c0134,8,fn_71000c0134,unknown,unknown,O
-0x71000c013c,20,fn_71000c013c,unknown,unknown,O
-0x71000c0150,16,fn_71000c0150,unknown,unknown,O
-0x71000c0160,40,fn_71000c0160,unknown,unknown,O
-0x71000c0188,40,fn_71000c0188,unknown,unknown,O
-0x71000c01b0,24,fn_71000c01b0,unknown,unknown,O
-0x71000c01c8,88,fn_71000c01c8,unknown,unknown,O
-0x71000c0220,88,fn_71000c0220,unknown,unknown,O
+0x71000c0120,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::Equals,reflection,engine/reflection,O
+0x71000c0134,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::Hash,reflection,engine/reflection,O
+0x71000c013c,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::TypeOf,reflection,engine/reflection,O
+0x71000c0150,16,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::Construct,reflection,engine/reflection,O
+0x71000c0160,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::CopyConstruct,reflection,engine/reflection,O
+0x71000c0188,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::MoveConstruct,reflection,engine/reflection,O
+0x71000c01b0,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::Destroy,reflection,engine/reflection,O
+0x71000c01c8,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::CopyAssign,reflection,engine/reflection,O
+0x71000c0220,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<unsigned int>>::TKeyElementConstIterator>::MoveAssign,reflection,engine/reflection,O
 0x71000c0278,360,fn_71000c0278,unknown,unknown,O
 0x71000c03e0,88,fn_71000c03e0,unknown,unknown,O
 0x71000c0438,12,fn_71000c0438,unknown,unknown,O
@@ -4419,28 +4419,28 @@ address,size,name,name_source,subsystem,status
 0x71000cabb4,60,fn_71000cabb4,unknown,unknown,O
 0x71000cabf0,4,fn_71000cabf0,unknown,unknown,O
 0x71000cabf4,60,fn_71000cabf4,unknown,unknown,O
-0x71000cac30,20,fn_71000cac30,unknown,unknown,O
-0x71000cac44,8,fn_71000cac44,unknown,unknown,O
-0x71000cac4c,20,fn_71000cac4c,unknown,unknown,O
-0x71000cac60,16,fn_71000cac60,unknown,unknown,O
-0x71000cac70,40,fn_71000cac70,unknown,unknown,O
-0x71000cac98,40,fn_71000cac98,unknown,unknown,O
-0x71000cacc0,24,fn_71000cacc0,unknown,unknown,O
-0x71000cacd8,88,fn_71000cacd8,unknown,unknown,O
-0x71000cad30,88,fn_71000cad30,unknown,unknown,O
+0x71000cac30,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::Equals,reflection,engine/reflection,O
+0x71000cac44,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::Hash,reflection,engine/reflection,O
+0x71000cac4c,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::TypeOf,reflection,engine/reflection,O
+0x71000cac60,16,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::Construct,reflection,engine/reflection,O
+0x71000cac70,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::CopyConstruct,reflection,engine/reflection,O
+0x71000cac98,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::MoveConstruct,reflection,engine/reflection,O
+0x71000cacc0,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::Destroy,reflection,engine/reflection,O
+0x71000cacd8,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::CopyAssign,reflection,engine/reflection,O
+0x71000cad30,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementIterator>::MoveAssign,reflection,engine/reflection,O
 0x71000cad88,364,fn_71000cad88,unknown,unknown,O
 0x71000caef4,60,fn_71000caef4,unknown,unknown,O
 0x71000caf30,4,fn_71000caf30,unknown,unknown,O
 0x71000caf34,60,fn_71000caf34,unknown,unknown,O
-0x71000caf70,20,fn_71000caf70,unknown,unknown,O
-0x71000caf84,8,fn_71000caf84,unknown,unknown,O
-0x71000caf8c,20,fn_71000caf8c,unknown,unknown,O
-0x71000cafa0,16,fn_71000cafa0,unknown,unknown,O
-0x71000cafb0,40,fn_71000cafb0,unknown,unknown,O
-0x71000cafd8,40,fn_71000cafd8,unknown,unknown,O
-0x71000cb000,24,fn_71000cb000,unknown,unknown,O
-0x71000cb018,88,fn_71000cb018,unknown,unknown,O
-0x71000cb070,88,fn_71000cb070,unknown,unknown,O
+0x71000caf70,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::Equals,reflection,engine/reflection,O
+0x71000caf84,8,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::Hash,reflection,engine/reflection,O
+0x71000caf8c,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::TypeOf,reflection,engine/reflection,O
+0x71000cafa0,16,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::Construct,reflection,engine/reflection,O
+0x71000cafb0,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::CopyConstruct,reflection,engine/reflection,O
+0x71000cafd8,40,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::MoveConstruct,reflection,engine/reflection,O
+0x71000cb000,24,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::Destroy,reflection,engine/reflection,O
+0x71000cb018,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::CopyAssign,reflection,engine/reflection,O
+0x71000cb070,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<bool>>::TKeyElementConstIterator>::MoveAssign,reflection,engine/reflection,O
 0x71000cb0c8,316,fn_71000cb0c8,unknown,unknown,O
 0x71000cb204,8,fn_71000cb204,unknown,unknown,O
 0x71000cb20c,12,fn_71000cb20c,unknown,unknown,O
