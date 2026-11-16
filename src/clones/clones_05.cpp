@@ -16,34 +16,6 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
-struct UnkClone_fn_7100e4d928;
-template void base::refl_IterValueFromRef(base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7100e4d928, 0x80>>*, const base::UnkIterValue<UnkCloneBlock<UnkClone_fn_7100e4d928, 0x80>>::Ref*);
-struct UnkClone_fn_7100e4e1f0;
-void fn_7100e4e310(char*);
-template <> struct UnkCloneDtorTraits<UnkClone_fn_7100e4e1f0> {
-    static void destroy(char* p) { fn_7100e4e310(p); }
-};
-template base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e1f0, 0x138>>& base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e1f0, 0x138>>::operator=(const base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e1f0, 0x138>>&);
-struct UnkClone_fn_7100e4e280;
-void fn_7100e4e310(char*);
-template <> struct UnkCloneDtorTraits<UnkClone_fn_7100e4e280> {
-    static void destroy(char* p) { fn_7100e4e310(p); }
-};
-template base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e280, 0x138>>& base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e280, 0x138>>::operator=(const base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e280, 0x138>>&);
-struct UnkClone_fn_7100e4e760;
-void fn_7100e4e310(char*);
-template <> struct UnkCloneDtorTraits<UnkClone_fn_7100e4e760> {
-    static void destroy(char* p) { fn_7100e4e310(p); }
-};
-template base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e760, 0x138>>& base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e760, 0x138>>::operator=(const base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e760, 0x138>>&);
-struct UnkClone_fn_7100e4e7f0;
-void fn_7100e4e310(char*);
-template <> struct UnkCloneDtorTraits<UnkClone_fn_7100e4e7f0> {
-    static void destroy(char* p) { fn_7100e4e310(p); }
-};
-template base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e7f0, 0x138>>& base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e7f0, 0x138>>::operator=(const base::UnkCollectionIter<UnkCloneDtorElem<UnkClone_fn_7100e4e7f0, 0x138>>&);
-struct UnkClone_fn_7100e4f84c;
-template void base::refl_StrIdDtorAt<UnkClone_fn_7100e4f84c, 0x18, UnkCloneStrId<UnkClone_fn_7100e4f84c>>(char*);
 struct UnkClone_fn_7100e51dfc;
 void fn_7100e4f444(void*, const void*);
 template <> struct UnkCloneAssignTraits<UnkClone_fn_7100e51dfc> {
@@ -6272,3 +6244,39 @@ template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710101c4c8> {
     static const CType* type() { return fn_710000abbc(); }
 };
 template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710101c4c8, u32, 0xb4>(void*, char*);
+struct UnkClone_fn_710101c514;
+extern char* g_unk_71726bc560;
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_710101c514> {
+    static char* target() { return g_unk_71726bc560; }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldMinNotify<UnkClone_fn_710101c514, 0xb4, 0xa78d35768b1f931d>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_710101c5ac;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710101c5ac> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710101c5ac, u32, 0xb8>(void*, char*);
+struct UnkClone_fn_710101c5f8;
+extern char* g_unk_71726bc560;
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_710101c5f8> {
+    static char* target() { return g_unk_71726bc560; }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldMinNotify<UnkClone_fn_710101c5f8, 0xb8, 0x43faacd6df53f3ff>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_710101c690;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710101c690> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710101c690, u32, 0xbc>(void*, char*);
+struct UnkClone_fn_710101c6dc;
+extern char* g_unk_71726bc560;
+template <> struct base::reflection::UnkSetterTraits<UnkClone_fn_710101c6dc> {
+    static char* target() { return g_unk_71726bc560; }
+};
+template base::reflection::UnkReflValue base::reflection::refl_SetFieldMinNotify<UnkClone_fn_710101c6dc, 0xbc, 0xa0f61193bf79d853>(void*, char*, base::reflection::UnkReflValue* const*);
+struct UnkClone_fn_710101c774;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_710101c774> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_710101c774, u32, 0xc0>(void*, char*);
