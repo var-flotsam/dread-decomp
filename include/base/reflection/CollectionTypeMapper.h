@@ -213,7 +213,7 @@ struct SmallDictionaryKeyedMapperDescription : SmallDictionaryMapperDescription<
 };
 
 // A dictionary's mapper (base/global/CRntDictionary.h): an element iterator is at a node, null at the end.
-// The slots written so far are those that need none of its insertion, removal or clearing.
+// The slots written so far are those that need none of its insertion, erase or clearing.
 template <class K, class V>
 struct CollectionTypeMapper<global::CRntDictionary<K, V>> {
     using C = global::CRntDictionary<K, V>;
@@ -240,6 +240,14 @@ struct CollectionTypeMapper<global::CRntDictionary<K, V>> {
     static void* Find(void* collection, const void* key) {
         return static_cast<C*>(collection)->Find(*static_cast<const K*>(key));
     }
+    static void SetCopy(void* collection, const void* key, const void* value) {
+        if (V* v = static_cast<C*>(collection)->Find(*static_cast<const K*>(key)))
+            *v = *static_cast<const V*>(value);
+    }
+    static void SetMove(void* collection, const void* key, void* value) {
+        if (V* v = static_cast<C*>(collection)->Find(*static_cast<const K*>(key)))
+            *v = std::move(*static_cast<V*>(value));
+    }
     static void Begin(void* collection, void* it) {
         static_cast<TElementIterator*>(it)->m_element = static_cast<C*>(collection)->first;
     }
@@ -259,10 +267,13 @@ struct DictionaryMapperDescription {
     static constexpr auto end = &Mapper::End;
 };
 
-// And Find, for a dictionary whose key and value are whole.
+// And those that look a key up, for a dictionary whose key and value are whole.
 template <class C>
 struct DictionaryFindMapperDescription : DictionaryMapperDescription<C> {
-    static constexpr auto find = &CollectionTypeMapper<C>::Find;
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto find = &Mapper::Find;
+    static constexpr auto set_copy = &Mapper::SetCopy;
+    static constexpr auto set_move = &Mapper::SetMove;
 };
 
 }  // namespace base::reflection

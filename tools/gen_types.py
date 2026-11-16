@@ -702,11 +702,13 @@ SMALL_DICT_SLOTS = ("construct", "move_construct", "hash", "count", "at", "begin
 SMALL_DICT_KEYED_SLOTS = ("move_assign", "equals", "find", "set_copy", "set_move")
 DICT_KEY_TYPES = ("base::global::CStrId",)
 # The slots CollectionTypeMapper writes for a dictionary keyed by a string id of DICT_HASH_KEYS
-# (DictionaryMapperDescription), and Find when the value is whole: a pointer, a plain number or a class of
-# DICT_VALUE_HEADERS (DictionaryFindMapperDescription).
+# (DictionaryMapperDescription), and those that look a key up when the value is whole: a pointer, a plain number,
+# a class of DICT_VALUE_HEADERS or one of DICT_WHOLE_VALUES (DictionaryFindMapperDescription).
 DICT_SLOTS = ("construct", "equals", "hash", "count", "begin", "end")
-DICT_FIND_SLOTS = ("find",)
+DICT_FIND_SLOTS = ("find", "set_copy", "set_move")
 DICT_HASH_KEYS = ("base::global::CStrId", "base::global::CFilePathStrId")
+# Class values whole through the headers a dictionary's file already includes.
+DICT_WHOLE_VALUES = ("base::global::CRntVector<base::global::CStrId>",)
 # Value classes a small dictionary's mapper needs whole (At and End take their size), and their headers.
 DICT_VALUE_HEADERS = {"base::global::CStrId": "base/global/CStrId.h",
                       "base::global::CFilePathStrId": "base/global/CFilePathStrId.h"}
@@ -796,12 +798,13 @@ def mapped_dictionary(body: list[str], named_ptrs: dict[int, str]) -> tuple[str,
 
 
 def dictionary_finds(collection: str) -> bool:
-    """Whether a dictionary's mapper writes Find: its value is whole (DICT_FIND_SLOTS)."""
+    """Whether a dictionary's mapper writes DICT_FIND_SLOTS: its value is whole."""
     d = DICT_RE.fullmatch(collection)
     if d is None:
         return False
     value = split_template_args(d.group(1))[1]
-    return value.endswith("*") or value in PRIMITIVE_VALUE_TYPES.values() or value in DICT_VALUE_HEADERS
+    return (value.endswith("*") or value in PRIMITIVE_VALUE_TYPES.values() or value in DICT_VALUE_HEADERS
+            or value in DICT_WHOLE_VALUES)
 
 
 def mapped_collection(body: list[str], named_ptrs: dict[int, str], enums: frozenset[str]):
