@@ -15,6 +15,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkNavMeshCell.h"
+#include "game/UnkNavMeshHit.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU107.h"
@@ -257,25 +258,6 @@ struct UnkNavMeshRay {
 
 // The best side found so far: the cell, the side and the closest point on it. Its constructor
 // (fn_7100287598) and destructor (fn_710028760c, empty) are out of line; it is copied word by word.
-struct UnkNavMeshHit;
-struct UnkElem_7100286624;  // the same 12-byte record (src/game_lo/fn_7100286624.cpp)
-
-struct UnkNavMeshHit {
-    u16 cell;
-    u8 side;
-    CVector2D point;
-
-    UnkNavMeshHit() { fn_7100287598(this); }
-    UnkNavMeshHit(const UnkNavMeshHit& other) {
-        __builtin_memcpy(static_cast<void*>(&cell), &other.cell, 4);  // the cell, the side and the pad
-        point.x = other.point.x;
-        point.y = other.point.y;
-    }
-    ~UnkNavMeshHit() { fn_710028760c(reinterpret_cast<UnkElem_7100286624*>(this)); }
-
-    bool IsValid() const { return cell != 0xffff && side != 0xff; }
-};
-static_assert(sizeof(UnkNavMeshHit) == 0xc, "UnkNavMeshHit layout");
 
 // A list of hits with room for a fixed number (not known here) after the count.
 struct UnkNavMeshHits {
@@ -397,7 +379,6 @@ struct UnkSegment2D_71001262e0;   // a segment's two points (src/game/malloc/fn_
 f32 fn_71001262e0(const UnkSegment2D_71001262e0* seg, const CVector2D* p, CVector2D* closest, f32* t);
 bool fn_71006f379c(const UnkDirectionFilter* self, const UnkSegment2D* seg);
 bool fn_71002afc84(const Cell* cell, const u8* side, u32 flags);
-
 
 // A callback with its context: the function is called with the context first.
 template <class R, class... A>

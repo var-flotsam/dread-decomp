@@ -573,12 +573,10 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710107e260,392,drafts/game/UnkTU2666/fn_710107e260.cpp,registers or order,99.0,1,overnight,
 0x7101086370,360,drafts/game/UnkTU2666/fn_7101086370.cpp,match,100.0,0,lean-b4,byte match only with single-member unions around id (0x1780) and reads (0x44); forcing the id reload after the
 0x7101095fb0,552,drafts/game/UnkTU2666/fn_7101095fb0.cpp,registers or order,99.3,1,overnight,
-0x71010c80e0,72,drafts/game/CEnemyMovement/fn_71010c80e0.cpp,match,100.0,0,lean-b4,matches; held: 1 declaration problem: src/game/CEnemyMovement/fn_71010c80e0.cpp:6 fn_71010d0b78: void fn_71010d0b78(UnkMovementBase_l0c80e0*) -> signature differs from every existing one; copy one of these exactl...
 0x71010c90c0,284,drafts/game/CEnemyMovement/fn_71010c90c0.cpp,operations,22.2,55,lean-b4,address of handle slot at +0x1c00 shared in a 4th callee-saved register; original reloads from self; needs a b
 0x71010cc214,376,drafts/game/CEnemyMovement/fn_71010cc214.cpp,build fails,,,lean-b4,tail-call to owner peer virtual 0x510 duplicated on each early-exit path instead of one shared tail
 0x71010cd348,340,drafts/game/CEnemyMovement/fn_71010cd348.cpp,build fails,,,lean-b4,state test (id<=6 and not locked) compiles to bics/cset; original ccmp with state-found path inlined different
 0x71010cd610,228,drafts/game/CEnemyMovement/fn_71010cd610.cpp,calls,71.9,15,lean-b4,original calls fn_710027a328 with bl (not tail call) but tail-calls fn_7100979b30; cause unknown
-0x71010cd6f4,236,drafts/game/CEnemyMovement/fn_71010cd6f4.cpp,match,100.0,0,lean-b4,matches; held: its UnkNavMeshHit and UnkPath442 layouts differ from the other files' (one layout in a header first)
 0x71010d0754,384,drafts/game/CMovementComponent/fn_71010d0754.cpp,operations,7.3,70,lean-b4,constructor store pattern (per-element zero stores; two init passes) not reproduced
 0x71010d1a90,208,drafts/game/CMovementComponent/fn_71010d1a90.cpp,registers or order,50.0,26,lean-b4,passes tools/equiv_test.py; held: 1 declaration problem: src/game/CMovementComponent/fn_71010d1a90.cpp:34 fn_71010d1a90: defined as void fn_71010d1a90(UnkMovement_l0d1a90*; f32) -> declared elsewhere with other types; use this para...
 0x71010d1b60,316,drafts/game/CMovementComponent/fn_71010d1b60.cpp,registers or order,74.7,20,lean-b4,register choice/scheduling only

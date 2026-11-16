@@ -3,40 +3,16 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
+#include "game/UnkNavMeshHit.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkPath442.h"
 #include "game/UnkTU362.h"
 #include "types.h"
 
 using base::math::CVector2D;
 
-struct UnkNavMeshHit;
-struct UnkElem_7100286624;
-char* fn_71002875bc(char* p0, char* p1, char* p2);
-
-struct UnkNavMeshHit {
-    u16 cell;
-    u8 side;
-    CVector2D point;
-
-    UnkNavMeshHit() { fn_7100287598(this); }
-    UnkNavMeshHit(const u32* cell_side, const CVector2D* at) {
-        fn_71002875bc(reinterpret_cast<char*>(this), reinterpret_cast<char*>(const_cast<u32*>(cell_side)),
-                      reinterpret_cast<char*>(const_cast<CVector2D*>(at)));
-    }
-    ~UnkNavMeshHit() { fn_710028760c(reinterpret_cast<UnkElem_7100286624*>(this)); }
-};
-static_assert(sizeof(UnkNavMeshHit) == 0xc, "UnkNavMeshHit layout");
-
 struct UnkCharacterMovementNav_A5_b66;
 UnkNavMeshHit fn_7100979c3c(UnkCharacterMovementNav_A5_b66* self);
-
-struct UnkPath442 {
-    u8 pad_0x0[0x8];
-    u32 count;  // 0x8
-    u8 pad_0xc[0x20];
-    u8 closed;  // 0x2c
-};
-const u32* fn_710035e580(const UnkPath442* self, u32 index);
 
 struct UnkSegmentOwner_l0cd6f4 {
     u8 pad_0x0[0x10];
@@ -73,10 +49,6 @@ static inline UnkNavMeshManager* NavManager() {
     return g_unk_71726a4510;
 }
 
-static inline u32 SegmentCount(const UnkPath442* path) {
-    return path->count - ((path->closed == 0) & (path->count != 0));
-}
-
 UnkNavMeshHit fn_71010cd6f4(UnkEnemyMovement_l0cd6f4* self) {
     UnkNavMesh* mesh = NavManager()->navmesh;
     UnkOwner_l0cd6f4* owner = self->owner;
@@ -86,7 +58,7 @@ UnkNavMeshHit fn_71010cd6f4(UnkEnemyMovement_l0cd6f4* self) {
         if (actor && actor->field_0x848 && actor->field_0x848->kind == 1) {
             UnkPath442* line = reinterpret_cast<UnkPath442*>(path + 0x68);
             u32 index = actor->segment;
-            if (index < SegmentCount(line)) {
+            if (index < line->SegmentCount()) {
                 const u32* entry = fn_710035e580(line, index);
                 if (*reinterpret_cast<const s16*>(entry) != -1)
                     return UnkNavMeshHit(entry, &actor->point);

@@ -188,6 +188,14 @@ draft's. All three now use `UnkSpawnHolder` in `include/game/UnkSpawnHolder.h`, 
 constructor with the same body changes the insert's code (the callback vector's construction is no longer dead).
 Parked: `UnkShapeHit_A5_b68` (`fn_7101126c34`): with 8 bytes `fn_7101126c34` matches but `fn_71007e98c8`'s frame
 moves; with 16 the reverse, so the two callers' frames disagree and the size needs another look.
+**One navigation hit and one unit-442 path (2026-11-16).** `UnkNavMeshHit` (12 bytes: cell, side, point) had nine
+definitions in three texts; it is now `include/game/UnkNavMeshHit.h`, with every constructor any user had (empty,
+copy, and from a packed cell and side plus a point through `fn_71002875bc`, now declared in `game/UnkTU362.h`).
+`UnkPath442` is `include/game/UnkPath442.h` with its two accessors and a `SegmentCount()` member. The base movement
+initialisation `fn_71010d0b78` has one declaration in `game/CMovementComponent.h`, taking `CMovementComponent*`.
+`fn_71010cd6f4` and `fn_71010c80e0` (CEnemyMovement) moved from `drafts/` to `src/` as matches; every other user
+compiles to the same bytes.
+
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
 pointers or the holder's kind, as if the store of the empty id into the moved-from slot could change them;
