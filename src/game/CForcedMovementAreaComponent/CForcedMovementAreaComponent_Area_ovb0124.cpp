@@ -35,6 +35,7 @@
 #include "game/UnkTU811.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/UnkShapeHit_A5_b68.h"
 #include "types.h"
 
 // An array of counted references.
@@ -156,13 +157,6 @@ struct UnkBreakableTarget;
 struct UnkTracker;
 struct UnkShapeTester_A5_b68;
 
-// Returned in memory (not trivially copyable); only bit 0 of the first word is read.
-struct UnkShapeHit_A5_b68 {
-    u32 flags;
-    u8 pad_0x4[0xc];
-    UnkShapeHit_A5_b68(const UnkShapeHit_A5_b68& other);
-};
-
 extern CStrId g_unk_717271fdf8 __attribute__((visibility("hidden")));
 
 struct UnkAreaTarget_ovb0124 {
@@ -191,6 +185,12 @@ struct UnkForcedArea_ovb0124 {
     u32 offset_x;   // 0xec: the probe offset (x, y, z), written as raw words
     u64 offset_yz;  // 0xf0
 };
+
+// Whether the point lies on the shape (the shared tester, no flags).
+static inline bool InShape_ovb0124(UnkShapeTester_A5_b68* tester, void* shape, const CVector2D* point,
+                                   const CVector3D* offset) {
+    return fn_7100d572f8(tester, shape, point, offset, 0).flags & 1;
+}
 
 void fn_71007e98c8(UnkForcedArea_ovb0124* self) {
     UnkDoorRegistry_b61* reg = g_unk_71726bee10;
@@ -226,9 +226,7 @@ void fn_71007e98c8(UnkForcedArea_ovb0124* self) {
                 }
                 probe.x = pos.x + 200.0f;
                 probe.y = pos.y + 300.0f;
-                bool hit = fn_7100d572f8(tester, shape, &probe, reinterpret_cast<const CVector3D*>(&self->offset_x), 0)
-                               .flags &
-                           1;
+                bool hit = InShape_ovb0124(tester, shape, &probe, reinterpret_cast<const CVector3D*>(&self->offset_x));
                 self->offset_yz = 0x43960000;  // (300.0f, 0.0f)
                 self->offset_x = hit ? 0xc3480000 : 0x43480000;  // -200.0f : 200.0f
             }

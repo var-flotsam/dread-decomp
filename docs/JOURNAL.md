@@ -164,6 +164,24 @@ and `fn_7100ed64dc` moved from `drafts/` to `src/` as matches. Parked: `fn_7100f
 `UnkCopyVec_b56` moved from `src/game/UnkUnit2601/` into `include/` and `UnkPathVec_b0019` rebuilt on it with the
 record's non-trivial copy.
 
+**Unit 2510's collision types settled (2026-11-16).** Four findings, each from the original's code:
+- The tester's hit (`UnkShapeHit_A5_b68`, `include/game/UnkShapeHit_A5_b68.h`) is 8 bytes. `fn_7100d572f8` writes only
+  its first word; `fn_7101126c34` keeps it at sp+0 beside a point at sp+8 live across the call (at most 8);
+  `fn_71007e98c8` gives it the slot of a dead 12-byte array ahead of an 8-byte point. LLVM 9's stack colouring
+  merges the larger slot first and the earlier alloca on a tie, so that takes at least 8 and the call inside an
+  inlined helper, whose allocas the inliner puts first. A 4- or 16-byte hit each break one caller.
+- The collision result (`UnkColliderResult`, `include/game/logic/collision/UnkColliderResult.h`) is one 4-byte type
+  under three old names (`UnkContact`, `UnkColliderResult`, the 8-byte `UnkShapeTestResult_ovb0107`):
+  `fn_7100d590ac` returns the tester's result as its own, `fn_7100d595a4` returns `fn_7100d541c0`'s. Its copy
+  constructor must assign in the body: with an initialiser list `fn_7100d51368` compiles differently.
+- The query argument the drafts held as `u32` and the callers as `u16` is 32-bit throughout, from
+  `fn_7100d5b484`/`fn_7100d5bfbc` down to the handlers; only the visitor context stores it as 16 bits. With `u16`
+  parameters the handlers (`fn_7100d57ab4`, `fn_7100d57fd4`) or the dispatchers gain an extension.
+- `include/game/logic/collision/UnkBvhTree.h` holds the tree, its sub-trees (with all four `Query` members), nodes,
+  `UnkFlags`, `UnkBox`, the transform shape (`UnkShape`) and the collider view (`UnkBvhCollider`, which
+  `fn_7100d5bfbc` called `UnkShape`). The pair handlers' opaque `UnkCollider` self is the shape tester.
+`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5c1d0`, `fn_7100d5c370` (the last two as `UnkSubTree::Query`) and
+`fn_7101126c34` moved from `drafts/` to `src/` as matches.
 **One sub-id for fn_71003327a4 (2026-11-16).** Fifteen sources and four drafts each copied the 16-byte sub-id
 (`UnkSubId_7100fc4b34`), a `UnkQualifiedName` alias and `fn_71003327a4`'s declaration, the same text everywhere;
 they are now `include/game/UnkSubId_7100fc4b34.h`. `fn_7100e984a4` (unit 2566) moved from `drafts/` to `src/` as a
