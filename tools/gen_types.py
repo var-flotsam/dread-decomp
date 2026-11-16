@@ -402,7 +402,8 @@ def pointer_value_type(name: str):
     """(the name as llvm-cxxfilt prints it, the parsed type whose names it declares) of a pointer type
     whose value operations can come from ValueOps.h: a plain pointer (`T*`, `T const*`) or an element
     iterator of a collection whose name parses; None for anything else."""
-    m = ITERATOR_RE.fullmatch(re.sub(r"\s+", "", name))
+    # spaces go, except one between two words (`CShape const*`)
+    m = ITERATOR_RE.fullmatch(re.sub(r"(?<=\w)\s+(?=\w)", " ", re.sub(r"\s+(?!\w)|(?<!\w)\s+", "", name)))
     if m:
         node = parse_type(m.group(1))
         if node and not node[2]:
@@ -702,10 +703,10 @@ SMALL_DICT_SLOTS = ("construct", "move_construct", "hash", "count", "at", "begin
 SMALL_DICT_KEYED_SLOTS = ("move_assign", "equals", "find", "set_copy", "set_move")
 DICT_KEY_TYPES = ("base::global::CStrId",)
 # The slots CollectionTypeMapper writes for a dictionary keyed by a string id of DICT_HASH_KEYS
-# (DictionaryMapperDescription), and those that look a key up when the value is whole: a pointer, a plain number,
+# (DictionaryMapperDescription), and those that look a key up or clear when the value is whole: a pointer, a plain number,
 # a class of DICT_VALUE_HEADERS or one of DICT_WHOLE_VALUES (DictionaryFindMapperDescription).
 DICT_SLOTS = ("construct", "equals", "hash", "count", "begin", "end")
-DICT_FIND_SLOTS = ("find", "set_copy", "set_move")
+DICT_FIND_SLOTS = ("clear", "find", "set_copy", "set_move")
 DICT_HASH_KEYS = ("base::global::CStrId", "base::global::CFilePathStrId")
 # Class values whole through the headers a dictionary's file already includes.
 DICT_WHOLE_VALUES = ("base::global::CRntVector<base::global::CStrId>",)

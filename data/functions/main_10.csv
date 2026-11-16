@@ -4086,7 +4086,7 @@ address,size,name,name_source,subsystem,status
 0x71010c6638,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::MoveConstruct",reflection,engine/reflection,O
 0x71010c667c,4,fn_71010c667c,unknown,unknown,O
 0x71010c6680,48,fn_71010c6680,unknown,unknown,O
-0x71010c66b0,260,fn_71010c66b0,unknown,unknown,O
+0x71010c66b0,260,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::MoveAssign",reflection,engine/reflection,O
 0x71010c67b4,352,fn_71010c67b4,unknown,unknown,O
 0x71010c6914,252,fn_71010c6914,unknown,unknown,O
 0x71010c6a10,360,fn_71010c6a10,unknown,unknown,O
