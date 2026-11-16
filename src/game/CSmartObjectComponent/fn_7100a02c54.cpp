@@ -1,6 +1,7 @@
 // Destructor body: destroys the member at +0xc0, drops two ref-counted pointers and releases
 // twelve string ids, then runs the base destructor.
 #include "game/CChozoCommanderKiGrabAttack.h"
+#include "game/CSmartObjectComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 #include "base/global/CStrId.h"
@@ -63,8 +64,6 @@ struct UnkObj_7100a02c54 : UnkBaseComponent {
     UnkRefPtr field_0xb8;
     u8 field_0xc0[0x8];
 };
-
-extern void* g_unk_7101a8ad98[];
 
 void fn_7100a02c54(UnkObj_7100a02c54* self) {
     self->vtable = g_unk_7101a8ad98 + 2;

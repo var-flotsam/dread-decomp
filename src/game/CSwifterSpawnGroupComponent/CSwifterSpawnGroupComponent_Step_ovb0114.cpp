@@ -55,10 +55,11 @@ struct UnkSwifterSpawnGroup_ovb0114 {
     bool flag;  // 0x42c
 };
 
-void fn_710111b64c(UnkSwifterSpawnGroup_ovb0114* self, const char* name);  // the base step
+struct UnkWeakTarget;
+void fn_710111b64c(UnkSwifterSpawnGroup_ovb0114* self, const char* name, UnkWeakTarget* spawned);  // the base step
 
-void fn_7100a130d0(UnkSwifterSpawnGroup_ovb0114* self, const char* name) {
-    fn_710111b64c(self, name);
+void fn_7100a130d0(UnkSwifterSpawnGroup_ovb0114* self, const char* name, UnkWeakTarget* spawned) {
+    fn_710111b64c(self, name, spawned);
     for (UnkSwifterMember_ovb0114 *it = self->members, *end = it + self->memberCount; it != end; ++it) {
         UnkSwifterComponent_ovb0114* component = (*fn_71003df2d0(it))->component;
         UnkSwifterDef_ovb0114* def = component->def;

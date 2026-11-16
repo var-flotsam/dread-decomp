@@ -61,7 +61,7 @@ address,size,name,name_source,subsystem,status
 0x7101001948,832,fn_7101001948,unknown,unknown,U
 0x7101001c88,764,fn_7101001c88,unknown,unknown,U
 0x7101001f84,264,fn_7101001f84,unknown,unknown,U
-0x710100208c,716,fn_710100208c,unknown,unknown,U
+0x710100208c,716,fn_710100208c,unknown,unknown,O
 0x7101002358,212,fn_7101002358,unknown,unknown,O
 0x710100242c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::Begin,reflection,engine/reflection,O
 0x7101002438,24,fn_7101002438,unknown,unknown,O
@@ -2802,7 +2802,7 @@ address,size,name,name_source,subsystem,status
 0x7101079740,36,lua_bind::ApplySettingsFromProfileBlackboard,string,script/bindings,O
 0x7101079770,360,lua_bind::FormatSavedGames,string,script/bindings,O
 0x71010798e0,504,lua_bind::GetDifficultyModesUnlocked,string,script/bindings,O
-0x7101079ae0,832,lua_bind::SetDifficultyModesUnlocked,string,script/bindings,U
+0x7101079ae0,832,lua_bind::SetDifficultyModesUnlocked,string,script/bindings,O
 0x7101079e20,528,lua_bind::RetrievePlaythrough,string,script/bindings,O
 0x710107a030,32,lua_bind::GetTimeStamp,string,script/bindings,O
 0x710107a050,32,lua_bind::GetGameTimeStamp,string,script/bindings,O
@@ -4161,7 +4161,7 @@ address,size,name,name_source,subsystem,status
 0x71010cc3a4,24,fn_71010cc3a4,unknown,unknown,O
 0x71010cc3bc,8,fn_71010cc3bc,unknown,unknown,O
 0x71010cc3c4,20,fn_71010cc3c4,unknown,unknown,O
-0x71010cc3d8,740,fn_71010cc3d8,unknown,unknown,U
+0x71010cc3d8,740,fn_71010cc3d8,unknown,unknown,O
 0x71010cc6bc,644,fn_71010cc6bc,unknown,unknown,U
 0x71010cc940,100,fn_71010cc940,unknown,unknown,O
 0x71010cc9a4,88,fn_71010cc9a4,unknown,unknown,O
@@ -4863,7 +4863,7 @@ address,size,name,name_source,subsystem,status
 0x71010f8930,280,fn_71010f8930,unknown,unknown,O
 0x71010f8a48,336,fn_71010f8a48,unknown,unknown,O
 0x71010f8b98,1740,fn_71010f8b98,unknown,unknown,U
-0x71010f9264,748,fn_71010f9264,unknown,unknown,U
+0x71010f9264,748,fn_71010f9264,unknown,unknown,O
 0x71010f9550,272,fn_71010f9550,unknown,unknown,O
 0x71010f9660,248,fn_71010f9660,unknown,unknown,O
 0x71010f9758,36,fn_71010f9758,unknown,unknown,O
@@ -4875,7 +4875,7 @@ address,size,name,name_source,subsystem,status
 0x71010f9dac,124,fn_71010f9dac,unknown,unknown,O
 0x71010f9e28,4,fn_71010f9e28,unknown,unknown,O
 0x71010f9e2c,440,fn_71010f9e2c,unknown,unknown,U
-0x71010f9fe4,684,fn_71010f9fe4,unknown,unknown,U
+0x71010f9fe4,684,fn_71010f9fe4,unknown,unknown,O
 0x71010fa290,1092,fn_71010fa290,unknown,unknown,U
 0x71010fa6d4,188,fn_71010fa6d4,unknown,unknown,O
 0x71010fa790,152,fn_71010fa790,unknown,unknown,U

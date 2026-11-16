@@ -3,6 +3,7 @@
 // then the start point registered under the id's hash. Layouts are placeholders.
 #include "../game_s7/UnkPropBagS7.h"
 #include "base/global/CRntString.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 
@@ -17,7 +18,6 @@ struct UnkInlineString {
     u64 field_0xb8;
     u32 field_0xc0;
 };
-extern void* g_unk_7101a1b750[];
 
 bool fn_7100e03d78(UnkPropBag* bag, const char* function, const char* args, ...);  // runs a script call
 bool fn_7100e03f50(UnkPropBag* bag, const u64* key, UnkInlineString* out, bool flag);  // reads a string

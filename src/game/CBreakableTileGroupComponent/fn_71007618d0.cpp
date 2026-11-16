@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/CBreakableTileGroupComponent.h"
 #include "game/CEmmyProtoAIComponent.h"
 
 using namespace unk_static_init;
@@ -15,11 +16,9 @@ struct UnkStatics_71007618d0 {
 };
 extern UnkStatics_71007618d0 g_unk_7172713268 __attribute__((visibility("hidden")));
 extern UnkStrIdBase g_unk_7172711530;
-extern UnkProperty g_unk_7172711538;
 extern void* g_unk_7101a6e558[];
 void fn_710075d124(UnkProperty* p);
 void fn_71007534a8(void* p);
-extern UnkProperty g_unk_7172711560;
 extern UnkPropertyEx<> g_unk_7172711588;
 extern void* g_unk_7101a45fe8[];
 extern void* g_unk_7101a45f90[];

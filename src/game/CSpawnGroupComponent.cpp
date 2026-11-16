@@ -8,13 +8,13 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "types.h"
 
 using namespace unk_prop_bag;
 
-extern void* g_unk_7101a1b750[];
 using UnkString80 = UnkBufferString<0x80, g_unk_7101a1b750>;
 
 struct lua_State;

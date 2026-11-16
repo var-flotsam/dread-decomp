@@ -83,7 +83,6 @@ struct UnkReleasedStrId {
     }
 };
 
-extern void* g_unk_7101a1b750[];
 using UnkString80 = UnkBufferString<0x80, g_unk_7101a1b750>;
 
 struct UnkSuffix {

@@ -6,6 +6,7 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/UnkTU432.h"
 #include "types.h"
 
 template <class Tag>
@@ -50,7 +51,6 @@ __attribute__((always_inline)) static inline void SetAt(UnkSlotArray<Tag>* self,
 struct UnkTag_71007ed25c;
 struct UnkTag_710031da18;
 void fn_71007ed25c(UnkSlotArray<UnkTag_71007ed25c>* self, u32 capacity);
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* self, u32 capacity);
 
 void fn_7100d400b8(UnkSlotArray<UnkTag_71007ed25c>* self, const u32& index, const UnkSlot<UnkTag_71007ed25c>& value) {
     SetAt<UnkTag_71007ed25c, fn_71007ed25c>(self, index, value);

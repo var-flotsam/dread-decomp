@@ -2,6 +2,7 @@
 // its own id (vf_0x28) with ':' (skipping empty parts), and stores the result and the object.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameBlackboard.h"
 
 using base::global::CStrId;
@@ -16,8 +17,6 @@ struct UnkInlineString {
     u64 field_0xb8;
     u32 field_0xc0;
 };
-
-extern void* g_unk_7101a1b750[];
 
 // The string data's use count, a union member like ref_count (no type-based alias info, so
 // the id is reloaded after the increment).
