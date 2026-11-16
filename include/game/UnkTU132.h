@@ -8,5 +8,5 @@
 struct UnkOverlayModel;
 
 void fn_71001457fc(void* effect, void* scene, u32 flag);  // Attaches an effect to a scene.
-void fn_710014580c(void* effect);  // Detaches an effect.
+void fn_710014580c(void* effect, void* scene);  // Detaches an effect from a scene.
 void fn_7100145818(UnkOverlayModel* model, bool);

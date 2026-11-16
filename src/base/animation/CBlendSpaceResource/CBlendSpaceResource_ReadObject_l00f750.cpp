@@ -28,7 +28,7 @@ static inline void ReadId(UnkFileReader* reader, u32 kind, UnkTypedRef* arg, u64
     fn_710000fbb0(reinterpret_cast<CRntFile*>(reader), kind, arg, &g_unk_7101d470e0);
 }
 
-void fn_710000f750(UnkParseContext* self, void* root) {
+s32 fn_710000f750(UnkParseContext* self, void* root) {
     base::reflection::UnkReflObject* obj = static_cast<base::reflection::UnkReflObject*>(root);
     UnkTypedRef arg;
     u64 name = (u64)-1;
@@ -41,5 +41,5 @@ void fn_710000f750(UnkParseContext* self, void* root) {
         if (id != (u64)-1)
             type = reinterpret_cast<const CType*>(fn_71000a5118(g_unk_7101d4c8d0, &id));
     }
-    fn_710000f850(self, reinterpret_cast<const CType*>(obj), const_cast<CType*>(type));
+    return fn_710000f850(self, reinterpret_cast<const CType*>(obj), const_cast<CType*>(type));
 }

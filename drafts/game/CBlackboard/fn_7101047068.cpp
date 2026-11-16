@@ -11,10 +11,10 @@ using base::global::CStrId;
 
 void fn_7100af0030(UnkSectionData* self, const UnkSectionData* other);
 
-void fn_7101047068(CBlackboard* self, CBlackboard* other) {
+bool fn_7101047068(CBlackboard* self, CBlackboard* other) {
     self->vf_0x18();
     if (!other)
-        return;
+        return false;
     for (CBlackboard::CSection **it = other->sections, **end = it + other->count; it != end;) {
         CBlackboard::CSection** slot = it++;
         CBlackboard::CSection* src = *slot;
@@ -29,4 +29,5 @@ void fn_7101047068(CBlackboard* self, CBlackboard* other) {
         u32 i = slot - other->sections;
         self->vf_0x28(other->ids[i], section);
     }
+    return false;
 }

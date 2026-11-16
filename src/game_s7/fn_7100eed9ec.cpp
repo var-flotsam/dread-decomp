@@ -1,5 +1,5 @@
 // Hands a list of nineteen flag values to fn_71008724f8 under a fixed key.
-#include "UnkFlagListS7.h"
+#include "game/UnkFlagListS7.h"
 
 using unk_flag_list::UnkFlagList;
 using unk_flag_list::UnkFlagListKey;
