@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkTU132.h"
 #include "types.h"
+#include "base/math/CVectorOps.h"
 
 using base::color::CColor4F;
 using base::math::CVector2D;
@@ -42,7 +43,7 @@ void fn_7100a0f210(char* self, const UnkVec2_b50a5* pos, f32 value, f32 alpha) {
     CColor4F c(0.0f, 1.0f, 1.0f, alpha <= 0.0f ? 0.0f : alpha);
     UnkParamBlock_b50a5* block = GetBlock_b50a5(self);
     UnkVector4D v = fn_7100030878(&c);
-    fn_710007b518(&block->color, &v);
+    Assign(block->color, v);
     if (UnkParamBinding_b50a5* b = block->color_binding)
         *b->data = v;
     block = GetBlock_b50a5(self);
@@ -51,7 +52,7 @@ void fn_7100a0f210(char* self, const UnkVec2_b50a5* pos, f32 value, f32 alpha) {
     v.y = y;
     v.z = 0.0f;
     v.w = value;
-    fn_710007b518(&block->extra, &v);
+    Assign(block->extra, v);
     if (UnkParamBinding_b50a5* b = block->extra_binding)
         *b->data = v;
 }

@@ -3,6 +3,7 @@
 // target block (fn_7100a0ebf4). Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
 #include "game/UnkTU315.h"
@@ -82,7 +83,7 @@ void fn_7100a0ebf4(UnkTargetOwner_b0211* self, const f32* pos, f32 alpha, f32 st
     value.y = py;
     value.z = 0.0f;
     value.w = alpha;
-    fn_710007b518(&block->color, &value);
+    Assign(block->color, value);
     if (block->node)
         *block->node->value = value;
 }

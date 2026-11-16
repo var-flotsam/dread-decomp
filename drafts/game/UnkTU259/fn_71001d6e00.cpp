@@ -5,6 +5,7 @@
 #include "base/UnkParallelFind.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -61,6 +62,6 @@ bool fn_71001d6e00(UnkGfxSystem_l1d6e00* self, const u64* key, const CStrId* nam
     UnkNamedVector_l1d6e00* end = &t.values[count];
     UnkNamedVector_l1d6e00& entry = count ? end[-1] : *end;
     entry.name.Assign(*name);
-    fn_710007b518(&entry.value, value);
+    Assign(entry.value, *value);
     return true;
 }

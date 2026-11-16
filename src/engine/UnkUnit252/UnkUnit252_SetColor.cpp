@@ -4,6 +4,7 @@
 // and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU252.h"
 #include "types.h"
 
@@ -25,9 +26,9 @@ static_assert(__builtin_offsetof(UnkColorOwner252, state) == 0xe8, "UnkColorOwne
 void fn_71001bfea4(UnkColorOwner252* self, u32 index, const base::color::CColor4F* color) {
     base::math::UnkVector4D v = fn_7100030878(color);
     CVector4D* own = &self->colors[index];
-    fn_710007b518(own, &v);
+    Assign(*own, v);
     char* state = self->state;
-    fn_710007b518(reinterpret_cast<CVector4D*>(state + 0x14c) + index, own);
+    Assign(reinterpret_cast<CVector4D*>(state + 0x14c)[index], *own);
     UnkColorTarget252* target = reinterpret_cast<UnkColorTarget252**>(state + 0x1f0)[index];
     if (target)
         *target->color = *own;

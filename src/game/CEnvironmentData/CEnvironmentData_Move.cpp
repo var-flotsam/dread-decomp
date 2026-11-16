@@ -14,6 +14,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU2599.h"
 #include "types.h"
 
@@ -29,7 +30,7 @@ struct UnkColor : base::math::CVector4D {
     UnkColor() : base::math::CVector4D{} {}
     explicit UnkColor(f32 v) : base::math::CVector4D{v, v, v, v} {}
     UnkColor& operator=(const UnkColor& other) {
-        fn_710007b518(this, &other);
+        Assign(*this, other);
         return *this;
     }
 };
