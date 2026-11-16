@@ -273,3 +273,60 @@ class Scans(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TypesByType(unittest.TestCase):
+    KEYED = {0x7100000100: ("Primitive", "float"), 0x7100000200: ("Primitive", "base::global::CStrId"),
+             0x7100000300: ("Pointer", "a::CFoo*")}
+
+    def test_calls_by_type(self):
+        text = "\n".join(['#include "base/reflection/CClass.h"', "using base::global::CStrId;", "",
+                          "const base::reflection::CType* fn_7100000100();",
+                          "void f(UnkReflFunction* fn) {",
+                          "    fn->return_type = fn_7100000100();",
+                          "    fn->params.PushBack(fn_7100000200());",
+                          "    fn->params.PushBack(fn_7100000300());",
+                          "    fn->params.PushBack(fn_7100000400());",
+                          "}"])
+        out = gr.types_by_type(text, self.KEYED).split("\n")
+        self.assertIn("    fn->return_type = &base::reflection::PrimitiveType<float>::Get();", out)
+        self.assertIn("    fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());", out)
+        self.assertIn("    fn->params.PushBack(base::reflection::PointerType<a::CFoo*>::Get());", out)
+        self.assertIn("    fn->params.PushBack(fn_7100000400());", out)  # not keyed
+        self.assertNotIn("const base::reflection::CType* fn_7100000100();", out)
+        ext = "extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();"
+        self.assertEqual(out[:3], ['#include "base/reflection/CClass.h"', "using base::global::CStrId;",
+                                   '#include "base/reflection/UnkReflPrimitiveType.h"'])
+        self.assertLess(out.index(ext), out.index("void f(UnkReflFunction* fn) {"))
+        self.assertIn("namespace a { class CFoo; }", out)
+        self.assertIn("namespace base::global { class CStrId; }", out)
+
+    def test_declaration_kept_while_named_otherwise(self):
+        text = "\n".join(["const base::reflection::CType* fn_7100000100();",
+                          "void f() { g<&fn_7100000100>(fn_7100000100()); }"])
+        out = gr.types_by_type(text, self.KEYED)
+        self.assertIn("const base::reflection::CType* fn_7100000100();", out)
+        self.assertIn("g<&fn_7100000100>(&base::reflection::PrimitiveType<float>::Get())", out)
+
+    def test_nothing_keyed_leaves_the_text(self):
+        self.assertEqual(gr.types_by_type("int x = fn_7100000400();", self.KEYED), "int x = fn_7100000400();")
+
+
+class AttributeKeysByName(unittest.TestCase):
+    def test_keys_by_name(self):
+        text = "\n".join(['#include "base/reflection/CClass.h"', "",
+                          "const base::reflection::UnkReflAttrKey& fn_7100007e80();  // \"Description\"",
+                          "void f(CClass* cls) {",
+                          '    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Text");',
+                          "    g(fn_7100000400());",
+                          "}"])
+        out = gr.attribute_keys_by_name(text, {0x7100007e80: "Description"}).split("\n")
+        self.assertEqual(out[1], '#include "base/reflection/ReflectedFields.h"')
+        self.assertIn('    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Text");', out)
+        self.assertIn("    g(fn_7100000400());", out)
+        self.assertFalse(any("fn_7100007e80" in line for line in out))
+
+    def test_the_header_names_its_keys(self):
+        keys = gr.attribute_keys()
+        self.assertEqual(keys.get(0x7100007e80), "Description")
+        self.assertNotIn(0x710000bf80, keys)  # Persistence is a typed key, written with its enum

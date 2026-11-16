@@ -1,9 +1,8 @@
 // From unit 2607 of tools/tu_map.py: per-frame update of the environment fade's channel 0 (a vector of four): it
 // advances the channel by the frame time, blends the vector and gives it to the render manager.
 // Names and layouts are placeholders.
-#include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkRenderManager.h"
-#include "game/UnkTU55.h"
 #include "types.h"
 
 using base::math::UnkVector4D;
@@ -29,9 +28,9 @@ inline UnkVector4D FadeLerp4(f32 t, const UnkVector4D& from, const UnkVector4D& 
         return to;
     if (t < 0.0f)
         return from;
-    UnkVector4D a = fn_710007b5c0(&from, 1.0f - t);
-    UnkVector4D b = fn_710007b5c0(&to, t);
-    return fn_710007b5ec(&a, &b);
+    UnkVector4D a = from * (1.0f - t);
+    UnkVector4D b = to * t;
+    return a + b;
 }
 }  // namespace
 

@@ -17,23 +17,28 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/ReflectedFields.h"
+namespace base::color { class CColor4B; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::color::CColor4B>::Get();
+namespace base::color { class CColor4B_SRGB; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::color::CColor4B_SRGB>::Get();
 
 // CFadeScreenTrack
-const base::reflection::CType* fn_71000a87a4();
 const base::reflection::CType* fn_71000a41b4();
 namespace CFadeScreenTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Fade Screen");
-    fn_710009dd6c(cls)->Add<bool>(fn_71000912a0(), true);
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Screen Effects", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Fade Screen");
+    fn_710009dd6c(cls)->Add<bool>(base::reflection::attr::EmptyTrack(), true);
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Screen Effects", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vColorStart", true), fn_71000a87a4(), 0x18, -1, -1);
-    field0->attrs.AddTyped<s32, &fn_71000a41b4>(fn_7100075240(), 0);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Color Start");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("vColorEnd", true), fn_71000a87a4(), 0x1c, -1, -1);
-    field1->attrs.AddTyped<s32, &fn_71000a41b4>(fn_7100075240(), -16777216);
-    field1->attrs.Add<const char*>(fn_7100007e80(), "Color End");
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("vColorStart", true), &base::reflection::PrimitiveType<base::color::CColor4B_SRGB>::Get(), 0x18, -1, -1);
+    field0->attrs.AddTyped<s32, &fn_71000a41b4>(base::reflection::attr::DefaultValue(), 0);
+    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Color Start");
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("vColorEnd", true), &base::reflection::PrimitiveType<base::color::CColor4B_SRGB>::Get(), 0x1c, -1, -1);
+    field1->attrs.AddTyped<s32, &fn_71000a41b4>(base::reflection::attr::DefaultValue(), -16777216);
+    field1->attrs.Add<const char*>(base::reflection::attr::Description(), "Color End");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

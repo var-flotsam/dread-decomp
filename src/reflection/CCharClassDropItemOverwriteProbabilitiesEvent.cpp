@@ -19,14 +19,17 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CCharClassDropItemOverwriteProbabilitiesEvent
 void fn_7100cb869c();
 void fn_7100cb7a04(UnkReflFunction* fn, const char* name);
 namespace CCharClassDropItemOverwriteProbabilitiesEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Drop Item Overwrite Probabilities");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "Drops");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Overwrite Probabilities");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Drops");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iMinNumOfDroppedItems", 0xc, (DefaultValue, 0));
@@ -62,7 +65,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("SDropProbabilities::SType", "eType", 0x84, (DefaultValue, 1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodes_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sNodes_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100cb869c);

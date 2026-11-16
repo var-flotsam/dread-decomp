@@ -1,11 +1,11 @@
 // Unit 1428 (CMorphBallMovement neighbourhood): fn_7100949b7c picks the direction the morph ball is pushed
 // along: a segment's stored direction when the owner touches it, else away from a segment end or a point, else
 // the reversed stored normal (up when nothing applies). Names and layouts are placeholders.
-#include <math.h>
 
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "game/UnkActor.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -61,8 +61,7 @@ static inline bool IsNear(f32 a, f32 b) {
 
 // (x, y, z) scaled to about unit length (kept finite at zero).
 static inline UnkVec3f Direction(f32 x, f32 y, f32 z) {
-    f32 inv = 1.0f / (sqrtf(x * x + y * y + z * z) + 0.0001f);
-    return UnkVec3f(x * inv, inv * y, z * inv);
+    return Normalized(UnkVec3f(x, y, z));
 }
 
 UnkVec3f fn_7100949b7c(UnkMorphBallMovement_l949b7c* self) {

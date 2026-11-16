@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CLifeComponent
 extern base::reflection::CType g_unk_7101d679f0;
@@ -43,28 +46,28 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bWantsCameraFXPreset", 0xe0, (DefaultValue, true), (Description, "Wants Camera FX Preset"), (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetOnDamageCallback", true))) {
         fn_710115f078(fn, "SetOnDamageCallback");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set on damage lua callback"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set on damage lua callback"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxLife_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fMaxLife_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710116132c);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxLife_SetterFunction", true)))
         fn_710115f12c(fn, "_m_fMaxLife_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxLife", true), fn_710000abbc(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field1 = fn_7100096524(cls, CStrId("fMaxLife", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field1->attrs.Add<bool>(fn_7100090a20(), false);
-    field1->attrs.Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("max life"));
-    field1->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));
-    field1->attrs.Add<f32>(fn_7100075240(), -1.0f);
+    field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
+    field1->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("max life"));
+    field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));
+    field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
     DREAD_REFLECTED_FIELD(f32, "fCurrentLife", 0x54, (Persistence, 0), (EditorVisible, false), (DefaultValue, -1.0f), (Description, "Current Life"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fCurrentLife_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fCurrentLife_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011613dc);
@@ -75,7 +78,7 @@ void refl_AddFields(CClass* cls) {
     fn_71000e8180(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCurrentLifeLocked_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bCurrentLifeLocked_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101161490);
@@ -85,18 +88,18 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bCurrentLifeLocked", (DefaultValue, false), (ShowInConfig, true), (Description, "Player life locked"), (InternalTag, "General"), (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInvulnerableWithReaction", true))) {
         fn_710115f5a0(fn, "SetInvulnerableWithReaction");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set invulnerability"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set invulnerability"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInvulnerable", true))) {
         fn_710115f654(fn, "SetInvulnerable");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set invulnerability"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set invulnerability"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInvulnerableFor", true))) {
         fn_710115f708(fn, "SetInvulnerableFor");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set invulnerable For"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set invulnerable For"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceDead", true))) {
         fn->name = base::global::UnkStrId("ForceDead", true);

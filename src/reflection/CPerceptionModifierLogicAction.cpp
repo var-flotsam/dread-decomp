@@ -29,9 +29,9 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CPerceptionModifierLogicAction::EMode", "eMode", 0x10, (DefaultValue, 2147483647));
     UnkReflField* field1 = fn_7100096524(cls, CStrId("wpPerceivedPosition", true), &g_unk_717269bb48, 0x18, -1, -1);
-    field1->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 6);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eGroup", true), &g_unk_71727bc290, 0x58, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bc290, 0);
+    field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bc290, 0);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

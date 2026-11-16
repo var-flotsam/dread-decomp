@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassForceBringDropsTrack
 namespace CCharClassForceBringDropsTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Force Bring Drops");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Drops", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Force Bring Drops");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Drops", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSpeedIncrementFactor", 0x18, (DefaultValue, 1.0f));

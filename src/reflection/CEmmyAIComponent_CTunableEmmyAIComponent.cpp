@@ -19,6 +19,12 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CEmmyAIComponent::CTunableEmmyAIComponent
 extern bool g_unk_71726e0bb0;
@@ -62,7 +68,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bDarknessEnabled", 0x74, (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iMinimapMode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iMinimapMode_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100564f50);
@@ -176,7 +182,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCurrentPatrol_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sCurrentPatrol_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565044);
@@ -186,7 +192,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sCurrentPatrol", (Description, "Current patrol"), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPerceptionFeedbackEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bPerceptionFeedbackEnabled_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565114);
@@ -196,7 +202,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bPerceptionFeedbackEnabled", (Description, "Perception feedback enabled"), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bShowBehaviorDebug_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bShowBehaviorDebug_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005651f8);
@@ -206,7 +212,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bShowBehaviorDebug", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPhaseDisplacementFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPhaseDisplacementFactor_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005652f8);
@@ -216,7 +222,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fPhaseDisplacementFactor", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabQTEFailTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fGrabQTEFailTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005653dc);
@@ -226,7 +232,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fGrabQTEFailTime", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPlayerNoiseEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bPlayerNoiseEnabled_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005654e4);
@@ -236,7 +242,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bPlayerNoiseEnabled", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolSearchMaxTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPatrolSearchMaxTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005655dc);
@@ -246,7 +252,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fPatrolSearchMaxTime", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fGrabZoomOffset_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005656c0);
@@ -256,7 +262,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fGrabZoomOffset", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fGrabZoomTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005657a4);
@@ -266,7 +272,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fGrabZoomTime", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bTargetDetectionEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bTargetDetectionEnabled_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565888);
@@ -276,7 +282,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bTargetDetectionEnabled", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bTargetInsideEmmyZone_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bTargetInsideEmmyZone_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565954);
@@ -309,8 +315,8 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100565c50);
     }
     UnkReflField* field15 = fn_7100096524(cls, CStrId("tLogicShapesToAvoidCornerReposition", true), &g_unk_717269bf08, 0x2a6c8, -1, -1);
-    field15->attrs.Add<bool>(fn_7100090090(), false);
-    field15->attrs_0x70.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 4);
+    field15->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
+    field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassOverrideAngularSpeedTrack
 namespace CCharClassOverrideAngularSpeedTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Override angular speed");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Override", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Override angular speed");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Override", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fNewAngSpeed", 0x18, (DefaultValue, 10.0f));

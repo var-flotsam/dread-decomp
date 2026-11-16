@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCutsceneOnInputCallbackEvent
 namespace CCharClassCutsceneOnInputCallbackEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Cutscene On Input Callback");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Cutscene", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Cutscene On Input Callback");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Cutscene", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EInputAction", "eInputAction", 0xc, (DefaultValue, 0));

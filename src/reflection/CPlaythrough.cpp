@@ -20,6 +20,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+class CPlaythroughDef;
+extern template const base::reflection::CType* base::reflection::PointerType<CPlaythroughDef const*>::Get();
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CPlaythrough
 void fn_71002edffc();
@@ -30,17 +35,16 @@ extern base::reflection::CType g_unk_71726acd78;
 void fn_71002ee124();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_71002ee14c();
-const base::reflection::CType* fn_71002ee1dc();
 void fn_71002ee510();
 namespace CPlaythrough {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(fn_7100005070(), 0x10200u);
-    fn_710009dd6c(cls)->Add<const char*>(fn_710008ff80(), "AfterDeserialize");
+    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterDeserialize");
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPlaythroughName_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sPlaythroughName_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002edffc);
@@ -73,7 +77,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetDef", true))) {
         fn->name = base::global::UnkStrId("GetDef", true);
-        fn->return_type = fn_71002ee1dc();
+        fn->return_type = base::reflection::PointerType<CPlaythroughDef const*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002ee510);

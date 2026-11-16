@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassTweakConvertToMorphBallVelocityTrack
 void fn_7100d2eb80();
@@ -26,13 +29,13 @@ void fn_7100d2ec10();
 void fn_7100d2e8d4(UnkReflFunction* fn, const char* name);
 namespace CCharClassTweakConvertToMorphBallVelocityTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Convert Velocity");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Player", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Convert Velocity");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Player", true));
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFrontDirection_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseFrontDirection_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2eb80);
@@ -42,7 +45,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bUseFrontDirection", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVelocity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fVelocity_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2ec10);

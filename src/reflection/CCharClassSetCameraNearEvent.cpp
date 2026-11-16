@@ -23,14 +23,14 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_717279cb00;
 namespace CCharClassSetCameraNearEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Camera Near");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Camera", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Camera Near");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fValue", 0xc, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field2 = fn_7100096524(cls, CStrId("eDir", true), &g_unk_717279cb00, 0x18, -1, -1);
-    field2->attrs.Add<s32>(fn_7100075240(), &g_unk_717279cb00, 0);
+    field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_717279cb00, 0);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

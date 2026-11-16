@@ -18,6 +18,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CPlayerInfo
 void fn_7100f0ed90();
@@ -45,7 +49,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sInputPreset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sInputPreset_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f0ed90);
@@ -53,17 +57,17 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sInputPreset", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInputPreset", true))) {
         fn_7100f07cf0(fn, "SetInputPreset");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Input preset"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Input preset"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SwitchInputPreset", true))) {
         fn_7100f07da4(fn, "SwitchInputPreset");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("SwitchiInput preset"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("SwitchiInput preset"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iHazardousCount_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iHazardousCount_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f0ef94);
@@ -71,22 +75,22 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iHazardousCount", (Description, "Number of hazardous triggers active"), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IncrementHazardousCount", true))) {
         fn_7100f07e58(fn, "IncrementHazardousCount");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Increment the number of hazardous triggers active"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Increment the number of hazardous triggers active"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DecrementHazardousCount", true))) {
         fn_7100f07f0c(fn, "DecrementHazardousCount");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Decrement the number of hazardous triggers active"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Decrement the number of hazardous triggers active"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ResetHazardousCount", true))) {
         fn_7100f07fc0(fn, "ResetHazardousCount");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Reset the number of hazardous triggers active"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Reset the number of hazardous triggers active"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iHeatZoneCount_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iHeatZoneCount_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f0f0e0);
@@ -94,48 +98,48 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iHeatZoneCount", (Description, "Number of heat zone triggers active"), (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IncrementHeatZoneCount", true))) {
         fn_7100f08074(fn, "IncrementHeatZoneCount");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Increment the number of heat zone triggers active"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Increment the number of heat zone triggers active"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DecrementHeatZoneCount", true))) {
         fn_7100f08128(fn, "DecrementHeatZoneCount");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Decrement the number of heat zone triggers active"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Decrement the number of heat zone triggers active"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ResetHeatZoneCount", true))) {
         fn_7100f081dc(fn, "ResetHeatZoneCount");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Reset the number of heat zone triggers active"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Reset the number of heat zone triggers active"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IncrementNumberOfNonReachableTriggers", true))) {
         fn_7100f08290(fn, "IncrementNumberOfNonReachableTriggers");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DecrementNumberOfNonReachableTriggers", true))) {
         fn_7100f08344(fn, "DecrementNumberOfNonReachableTriggers");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ResetNumberOfNonReachableTriggers", true))) {
         fn_7100f083f8(fn, "ResetNumberOfNonReachableTriggers");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FillLifeReserveTank", true))) {
         fn_7100f084ac(fn, "FillLifeReserveTank");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Fills the life reserve tank"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Fills the life reserve tank"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FillSpecialEnergyReserveTank", true))) {
         fn_7100f08560(fn, "FillSpecialEnergyReserveTank");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Fills the special energy reserve tank"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Fills the special energy reserve tank"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("FillMissileReserveTank", true))) {
         fn_7100f08614(fn, "FillMissileReserveTank");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Fills the missile reserve tank"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Fills the missile reserve tank"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IgnoreHang", true))) {
         fn->name = base::global::UnkStrId("IgnoreHang", true);

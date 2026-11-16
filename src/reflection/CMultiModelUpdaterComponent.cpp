@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CMultiModelUpdaterComponent
 void fn_71009393fc();
@@ -28,7 +31,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sModelAlias_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sModelAlias_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71009393fc);
@@ -38,8 +41,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sModelAlias", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, base::global::CRntString("Current model alias")));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetVertexLightsEnabled", true))) {
         fn_7100937f48(fn, "SetVertexLightsEnabled");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Vertex Lights Enabled"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Vertex Lights Enabled"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
 bool refl_Equals(const void*, const void*) { return false; }

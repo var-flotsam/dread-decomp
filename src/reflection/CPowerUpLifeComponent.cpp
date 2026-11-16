@@ -27,12 +27,12 @@ namespace CPowerUpLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpCheckPointEntity", true), &g_unk_71727b6270, 0x388, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 1);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     DREAD_REFLECTED_FIELD(CStrId, "sPowerupNameLabelID", 0x3d8);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetCustomParams", true))) {
         fn_71008e4a70(fn, "SetCustomParams");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString("Set Custom Params"));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Custom Params"));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
 }
 bool refl_Equals(const void*, const void*) { return false; }

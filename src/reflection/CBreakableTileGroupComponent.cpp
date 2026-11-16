@@ -19,6 +19,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CBreakableTileGroupComponent
 void fn_710075d2e4();
@@ -37,7 +39,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uGroupId_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_uGroupId_GetterFunction", true);
-        fn->return_type = fn_7100005178();
+        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710075d2e4);
@@ -57,8 +59,8 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eCollisionMaterial_SetterFunction", true)))
         fn_7100754448(fn, "_m_eCollisionMaterial_SetterFunction");
     UnkReflField* field3 = fn_7100096524(cls, CStrId("eCollisionMaterial", true), &g_unk_7172791c90, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_7172791c90, 0);
-    field3->attrs.Add<const char*>(fn_7100007e80(), "Collision Material");
+    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172791c90, 0);
+    field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Collision Material");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewTile", true))) {
         fn->name = base::global::UnkStrId("CreateNewTile", true);
         fn->return_type = &g_unk_71727115d0;
@@ -67,11 +69,11 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710075d73c);
         fn_710075d430(fn);
         fn_710009ae5c(fn, fn->params.count);
-        fn->ParamAttrs(0)->Add<CStrId>(fn_710008f920(), CStrId("uIdx", true));
-        fn->ParamAttrs(0)->Add<bool>(fn_71000903c0(), true);
-        fn->ParamAttrs(1)->Add<CStrId>(fn_710008f920(), CStrId("eTileType", true));
-        fn->ParamAttrs(2)->Add<CStrId>(fn_710008f920(), CStrId("vGridCoords", true));
-        fn->ParamAttrs(3)->Add<CStrId>(fn_710008f920(), CStrId("sHiddenSG", true));
+        fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
+        fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
+        fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("eTileType", true));
+        fn->ParamAttrs(2)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vGridCoords", true));
+        fn->ParamAttrs(3)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sHiddenSG", true));
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteTileAt", true)))
         fn_71007545bc(fn, "DeleteTileAt");

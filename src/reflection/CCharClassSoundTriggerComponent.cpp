@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -66,7 +67,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eReverb_SetterFunction", true)))
         fn_7100717e9c(fn, "_m_eReverb_SetterFunction");
     UnkReflField* field0 = fn_7100096524(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cc88, 0);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7108b6cc88, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
         fn->return_type = &g_unk_7108b6cde8;
@@ -77,7 +78,7 @@ void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_SetterFunction", true)))
         fn_7100718010(fn, "_m_iLowPassFilter_SetterFunction");
     UnkReflField* field1 = fn_7100096524(cls, CStrId("iLowPassFilter", true), &g_unk_7108b6cde8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_7108b6cde8, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7108b6cde8, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

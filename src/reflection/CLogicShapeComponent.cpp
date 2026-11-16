@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/CPointerType.h"
+namespace game::logic::collision { class CShape; }
+extern template const base::reflection::CType* base::reflection::PointerType<game::logic::collision::CShape*>::Get();
 
 // CLogicShapeComponent
 const base::reflection::CType* fn_7100913068();
@@ -29,11 +32,11 @@ namespace CLogicShapeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("pLogicShape", true), fn_7100913068(), 0x30, -1, -1);
-    field0->attrs.Add<bool>(fn_7100234780(), true);
-    field0->attrs.Add<const char*>(fn_7100007e80(), "Shape");
-    field0->attrs.Add<bool>(fn_7100091d40(), true);
-    field0->attrs.AddTyped<s64, &fn_71009155a8>(fn_7100075240(), 0);
-    field0->attrs.Add<CStrId>(fn_710008ff80(), CStrId("AfterShapeDeserialization", true));
+    field0->attrs.Add<bool>(base::reflection::attr::SetRenderItemSelectionIdCall(), true);
+    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Shape");
+    field0->attrs.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
+    field0->attrs.AddTyped<s64, &fn_71009155a8>(base::reflection::attr::DefaultValue(), 0);
+    field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterShapeDeserialization", true));
     DREAD_REFLECTED_FIELD(bool, "bWantsToGenerateNavMeshEdges", 0x38, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterShapeDeserialization", true))) {
         fn->name = base::global::UnkStrId("AfterShapeDeserialization", true);

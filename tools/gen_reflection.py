@@ -527,6 +527,103 @@ def file_name(type_name: str, taken: set[str]) -> str:
     return name
 
 
+# A type-keyed getter's explicit instantiation in src/reflection_types/ (tools/gen_types.py).
+KEYED_DEF_RE = re.compile(r"^template const base::reflection::CType[*&] base::reflection::(Pointer|Primitive)Type<(.+)>::Get\(\);$",
+                          re.M)
+ENUM_OPS_RE = re.compile(r"^template struct base::reflection::ValueOps<(.+)>;$", re.M)
+
+
+def keyed_getters() -> tuple[dict[int, tuple[str, str]], frozenset[str]]:
+    """({getter: (kind, T)} of the type-keyed getters src/reflection_types/ defines (kind Pointer or Primitive),
+    found by the name data/functions/ gives them, refl_GetType<T>; the enums and flag sets those files name)."""
+    texts = [f.read_text(encoding="utf-8") for f in (ROOT / "src" / "reflection_types").glob("*.cpp")]
+    kinds = {gen_types.demangled_spelling(t): (k, t) for text in texts for k, t in KEYED_DEF_RE.findall(text)}
+    enums = frozenset(e for f in (ROOT / "src" / "reflection_types").glob("*.cpp")
+                      if f.name.startswith(("enum_types_", "flagset_types_"))
+                      for e in ENUM_OPS_RE.findall(f.read_text(encoding="utf-8")))
+    out = {}
+    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
+        with f.open(newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                m = re.fullmatch(r"base::reflection::refl_GetType<(.+)>", r["name"])
+                if m and m.group(1) in kinds:
+                    out[int(r["address"], 16)] = kinds[m.group(1)]
+    return out, enums
+
+
+def types_by_type(text: str, keyed: dict[int, tuple[str, str]], enums: frozenset[str] = frozenset()) -> str:
+    """`text` with each call of a type-keyed getter (keyed_getters) written by its type: &PrimitiveType<T>::Get()
+    or PointerType<T>::Get(). T's declarations and an explicit instantiation declaration go after the file's
+    includes, so that the call stays a call, as in the original; the getter's own declaration goes."""
+    used = {int(a, 16) for a in re.findall(r"\bfn_([0-9a-f]{10})\(\)", text)} & set(keyed)
+    if not used:
+        return text
+    first: list[str] = []
+    for a in sorted(used, key=lambda a: keyed[a][1]):
+        kind, t = keyed[a]
+        if kind == "Primitive":
+            call = f"&base::reflection::PrimitiveType<{t}>::Get()"
+            if t not in gen_types.PRIMITIVE_VALUE_TYPES.values():
+                first.append(gen_types.class_declaration(t))
+            first.append(f"extern template const base::reflection::CType& base::reflection::PrimitiveType<{t}>::Get();")
+        else:
+            parsed = gen_types.pointer_value_type(t, enums)
+            if parsed is None:
+                continue
+            call = f"base::reflection::PointerType<{t}>::Get()"
+            first += gen_types.type_declarations(parsed[1], enums)
+            first.append(f"extern template const base::reflection::CType* base::reflection::PointerType<{t}>::Get();")
+        decl = re.compile(rf"(?:const )?(?:base::reflection::)?CType\* fn_{a:x}\(\);")
+        lines = [line if decl.fullmatch(line) else re.sub(rf"\bfn_{a:x}\(\)", call, line)
+                 for line in text.split(chr(10))]
+        if not any(re.search(rf"\bfn_{a:x}\b", line) for line in lines if not decl.fullmatch(line)):
+            lines = [line for line in lines if not decl.fullmatch(line)]  # the getter is named only by type now
+        text = chr(10).join(lines)
+    lines = text.split(chr(10))
+    head = 0
+    for i, line in enumerate(lines):
+        if line.startswith(("#include", "using ")):
+            head = i + 1
+        elif line and not line.startswith("//"):
+            break
+    includes = [f'#include "base/reflection/{h}"' for h, kind in (("UnkReflPrimitiveType.h", "Primitive"),
+                                                                   ("CPointerType.h", "Pointer"))
+                if any(keyed[a][0] == kind for a in used)]
+    first = [line for line in dict.fromkeys(includes + first) if line not in lines]
+    return chr(10).join(lines[:head] + first + lines[head:])
+
+
+# An attribute key's named getter (base/reflection/ReflectedFields.h): the name it registers.
+ATTR_KEY_RE = re.compile(r"^inline const UnkReflAttrKey& (\w+)\(\) \{ return fn_([0-9a-f]{10})\(\); \}$", re.M)
+
+
+def attribute_keys() -> dict[int, str]:
+    """{key getter: name} of the attribute keys ReflectedFields.h names (namespace base::reflection::attr)."""
+    text = (ROOT / "include" / "base" / "reflection" / "ReflectedFields.h").read_text(encoding="utf-8")
+    return {int(a, 16): name for name, a in ATTR_KEY_RE.findall(text)}
+
+
+def attribute_keys_by_name(text: str, keys: dict[int, str]) -> str:
+    """`text` with each call of an attribute key's getter (attribute_keys) written by the key's name,
+    base::reflection::attr::<Name>() (an inline call of the same getter); the getter's own declaration goes once
+    nothing else names it by address."""
+    used = {int(a, 16) for a in re.findall(r"\bfn_([0-9a-f]{10})\(\)", text)} & set(keys)
+    if not used:
+        return text
+    lines = text.split(chr(10))
+    for a in sorted(used):
+        decl = re.compile(rf"(?:const )?(?:base::reflection::)?UnkReflAttrKey& fn_{a:x}\(\);(?:  //.*)?")
+        lines = [line if decl.fullmatch(line) else re.sub(rf"\bfn_{a:x}\(\)", f"base::reflection::attr::{keys[a]}()", line)
+                 for line in lines]
+        if not any(re.search(rf"\bfn_{a:x}\b", line) for line in lines if not decl.fullmatch(line)):
+            lines = [line for line in lines if not decl.fullmatch(line)]
+    include = '#include "base/reflection/ReflectedFields.h"'
+    if include not in lines:
+        head = max((i + 1 for i, line in enumerate(lines[:40]) if line.startswith("#include")), default=0)
+        lines.insert(head, include)
+    return chr(10).join(lines)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
@@ -934,13 +1031,23 @@ def main() -> int:
                                     "// parse_initialiser), byte-identical to the original."],
                  {a: inits[a] for a in inits_ok})
 
+    keyed = keyed_getters()
+    keys = attribute_keys()
+    by_type = 0
+    for f in sorted(OUT.glob("*.cpp")):
+        old = f.read_text(encoding="utf-8")
+        new = attribute_keys_by_name(types_by_type(old, *keyed), keys)
+        if new != old:
+            by_type += 1
+            f.write_text(new, encoding="utf-8", newline=chr(10))
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
           f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; {padded_ok} of the getters in padded TUs; skipped {skipped_layout} (other statics) and "
           f"{skipped_shape} (different code shape); {ptrs_generated} of {len(local_ptrs) + len(local_colls)} pointer/collection "
           f"types of a local class; {len(others_ok)} of {len(others)} other registration functions (and {others_local} in their getter's TU); "
           f"{len(inits_ok)} of {len(inits)} function initialisers; "
-          f"{ctors_generated} of {len(ctors)} descriptor constructors outside generated getter TUs. Skipped TUs: build/reflection_tus.json")
+          f"{ctors_generated} of {len(ctors)} descriptor constructors outside generated getter TUs; "
+          f"type getters and attribute keys called by name in {by_type} files. Skipped TUs: build/reflection_tus.json")
     return 0
 
 

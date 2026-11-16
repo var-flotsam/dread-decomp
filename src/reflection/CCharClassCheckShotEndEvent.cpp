@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCheckShotEndEvent
 namespace CCharClassCheckShotEndEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Check Shot End");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Samus", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Check Shot End");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Samus", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bCheckStealth", 0xc, (DefaultValue, false));

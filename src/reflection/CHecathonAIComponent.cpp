@@ -18,6 +18,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CHecathonAIComponent
 extern base::reflection::CType g_unk_717269bb48;
@@ -33,16 +37,16 @@ namespace CHecathonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x146d8, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field1 = fn_7100096524(cls, CStrId("ePatrolPathType", true), &g_unk_71727bb8e8, 0x14718, -1, -1);
-    field1->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 3);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
     UnkReflField* field2 = fn_7100096524(cls, CStrId("wpHarassPath", true), &g_unk_717269bb48, 0x14720, -1, -1);
-    field2->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     UnkReflField* field3 = fn_7100096524(cls, CStrId("eHarassPathType", true), &g_unk_71727bb8e8, 0x14760, -1, -1);
-    field3->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 3);
+    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fTimeToGoPatrol_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fTimeToGoPatrol_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
@@ -52,7 +56,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fTimeToGoPatrol", (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
@@ -62,7 +66,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fSpeed", (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsEating_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bIsEating_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005abef0);
@@ -72,7 +76,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bIsEating", (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bCanEat_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bCanEat_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005abef0);
@@ -82,7 +86,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bCanEat", (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolEatDuration_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPatrolEatDuration_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
@@ -92,7 +96,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fPatrolEatDuration", (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolEatCooldown_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPatrolEatCooldown_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
@@ -102,7 +106,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fPatrolEatCooldown", (Persistence, 0), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uMask_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_uMask_GetterFunction", true);
-        fn->return_type = fn_7100005178();
+        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005abf48);

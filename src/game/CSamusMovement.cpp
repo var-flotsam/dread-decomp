@@ -10,6 +10,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU39.h"
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -95,10 +96,6 @@ static inline bool HasTarget(const UnkSamusMovement* self) {
 
 static inline UnkAnimationComponent* Anim(const UnkSamusMovement* self) {
     return static_cast<UnkAnimationComponent*>(self->actor->field_0x220);
-}
-
-static inline f32 Dot(UnkVec3f a, UnkVec3f b) {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
 static inline void Identity(UnkMatrix44* m) {

@@ -18,14 +18,15 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned long>::Get();
 
 // game::logic::collision::CBroadphaseObject
-const base::reflection::CType* fn_7100010e58();
 namespace game::logic::collision::CBroadphaseObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), fn_7100010e58(), 0x18, -1, -1);
-    field0->attrs.Add<bool>(fn_7100090a20(), false);
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("sId", true), &base::reflection::PrimitiveType<unsigned long>::Get(), 0x18, -1, -1);
+    field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     DREAD_REFLECTED_FIELD(CStrId, "sStrId", 0x20);
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -18,6 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::math { class CVector2D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector2D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassSteamJetComponent
 namespace CCharClassSteamJetComponent {
@@ -80,7 +85,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDelayStart", 0xbf4, (DefaultValue, 2.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDamage_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDamage_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710089fcb4);
@@ -90,7 +95,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fDamage", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 999.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fLength_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fLength_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710089fd6c);
@@ -100,7 +105,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fLength", (DefaultValue, 500.0f), (MinValue, 100.0f), (MaxValue, 500.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWidth_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fWidth_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710089fe14);
@@ -113,7 +118,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fOnOffTime", 0xc04, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fParticleScale_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fParticleScale_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710089fee0);
@@ -123,7 +128,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fParticleScale", (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCrossingAllowed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bCrossingAllowed_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710089ffa4);
@@ -133,7 +138,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bCrossingAllowed", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceReactionDirection_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bForceReactionDirection_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008a0044);
@@ -143,7 +148,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bForceReactionDirection", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vReactionDirection_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vReactionDirection_GetterFunction", true);
-        fn->return_type = fn_7100024504();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008a00d4);
@@ -152,7 +157,7 @@ void refl_AddFields(CClass* cls) {
         fn_710089da64(fn, "_m_vReactionDirection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "vReactionDirection", (DefaultValue, base::math::CVector2D{1.0f, 0.0f}));
     UnkReflField* field11 = fn_7100096524(cls, CStrId("wpNextSteamJet", true), &g_unk_717269bb48, 0xc10, -1, -1);
-    field11->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 10);
+    field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 10);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

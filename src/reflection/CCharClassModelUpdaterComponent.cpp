@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CCharClassModelUpdaterComponent
 void fn_710079252c();
@@ -29,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vInitAngWorldOffset", 0x64, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Ang World Offset"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bOverrideDisableInEditor_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710079252c);

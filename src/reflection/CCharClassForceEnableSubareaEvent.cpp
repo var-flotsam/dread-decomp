@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassForceEnableSubareaEvent
 namespace CCharClassForceEnableSubareaEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Subarea Force Enable");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Subarea", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Subarea Force Enable");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Subarea", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sSubareaID", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

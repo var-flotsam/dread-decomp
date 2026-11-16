@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetLockEnvironmentEvent
 namespace CCharClassSetLockEnvironmentEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Lock Environment");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090d50(), CStrId("Environment", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Lock Environment");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Environment", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bMusic", 0xc, (DefaultValue, false));

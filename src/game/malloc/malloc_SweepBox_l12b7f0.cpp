@@ -3,7 +3,7 @@
 // fraction of the path. Names and layouts are placeholders.
 #include <math.h>
 
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -93,14 +93,6 @@ static inline bool UnkNear(f32 a, f32 b) {
     return a - kSamePointEpsilon <= b && a + kSamePointEpsilon >= b;
 }
 
-static inline void UnkNormalize(CVector2D& v) {
-    f32 len = sqrtf(v.x * v.x + v.y * v.y);
-    if (len != 0.0f) {
-        v.x = v.x / len;
-        v.y = v.y / len;
-    }
-}
-
 // NON_MATCHING(minor): the box's x0 and x1 live in swapped registers (s3/s2), the border test
 // compares y1 before y0, and the normal's z store is scheduled before the first distance compare.
 bool fn_710012b7f0(const UnkSweep2D* seg, const UnkBox2D* box, UnkContact2D* out, s32 mode) {
@@ -156,12 +148,12 @@ bool fn_710012b7f0(const UnkSweep2D* seg, const UnkBox2D* box, UnkContact2D* out
     }
     fn_710007b430(&face, &normal);
     // Leaving through that face rather than entering.
-    if (!(face.x * dir.x + face.y * dir.y <= 0.0f))
+    if (!(Dot(face, dir) <= 0.0f))
         return false;
 
     out->SetParam(enter);
     out->SetPoint(px, py);
-    UnkNormalize(dir);
+    Normalize(dir);
     out->SetNormalA(dir);
     out->SetNormalB(face);
     return true;

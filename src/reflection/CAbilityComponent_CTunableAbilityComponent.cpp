@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CAbilityComponent::CTunableAbilityComponent
 extern bool g_unk_71726aebe8;
@@ -92,7 +94,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAccurateAiming_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bAccurateAiming_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100302530);
@@ -107,23 +109,23 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71003028f0);
         fn_71003025c0(fn);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Set Ability Unlocked");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Set Ability Unlocked");
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsAbilityActive", true))) {
         fn_71002fc73c(fn, "IsAbilityActive");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Is Ability Active");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Is Ability Active");
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsAnyAbilityUnlocked", true))) {
         fn->name = base::global::UnkStrId("IsAnyAbilityUnlocked", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100302aa4);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Is Any Ability Active");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Is Any Ability Active");
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("TrySetSelectedAbility", true))) {
         fn_71002fc8b4(fn, "TrySetSelectedAbility");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Try to set an ability");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Try to set an ability");
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeactivateAllAbilities", true))) {
         fn->name = base::global::UnkStrId("DeactivateAllAbilities", true);
@@ -132,7 +134,7 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100302eb0);
         fn_7100302d14(fn);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "deactivate all abilities");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "deactivate all abilities");
     }
     DREAD_REFLECTED_FIELD(CStrId, "sBlockSyncFX", 0xf8, (DefaultValue, "blocksync"), (Description, "Synch block fx id"));
 }

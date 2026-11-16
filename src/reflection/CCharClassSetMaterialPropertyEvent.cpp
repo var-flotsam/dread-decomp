@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetMaterialPropertyEvent
 namespace CCharClassSetMaterialPropertyEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Set Material Property");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090d50(), "Material");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Material Property");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Material");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sMaterialName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

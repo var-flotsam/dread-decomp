@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakMagnetJumpSurfaceTypeTrack
 namespace CCharClassTweakMagnetJumpSurfaceTypeTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Tweak Magnet Jump Surface Type");
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100090e60(), "Tweak");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Magnet Jump Surface Type");
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CSamusMagnetGloveMovementState::ESurfaceType", "eSurfaceType", 0x18, (DefaultValue, 2147483647));

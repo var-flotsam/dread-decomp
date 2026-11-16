@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CCharClassIgnoreCollisionMaskTrack
 void fn_7100c29f5c();
@@ -26,13 +29,13 @@ void fn_7100c2a0d0();
 void fn_7100c29b3c(UnkReflFunction* fn, const char* name);
 namespace CCharClassIgnoreCollisionMaskTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Ignore Collision Mask");
-    fn_710009dd6c(cls)->Add<CStrId>(fn_7100090e60(), CStrId("Collision", true));
+    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Collision Mask");
+    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Collision", true));
 }
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToIgnore_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sMasksToIgnore_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c29f5c);
@@ -42,7 +45,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToIgnore", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Mask to Ignore"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sMasksToEnforce_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_sMasksToEnforce_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c2a0d0);

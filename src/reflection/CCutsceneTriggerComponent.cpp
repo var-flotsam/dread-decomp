@@ -26,7 +26,7 @@ namespace CCutsceneTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = fn_7100096524(cls, CStrId("lnkTargetCutsceneActor", true), &g_unk_717269bb48, 0xac0, -1, -1);
-    field0->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 5);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 5);
     DREAD_REFLECTED_FIELD(bool, "bOneShot", 0xb00, (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }

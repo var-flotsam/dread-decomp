@@ -1,11 +1,10 @@
-// Unit 55 (0x710007b430-0x710007bb30, no class hint): the dot product of two 4-component float
-// vectors. Names are placeholders.
+// Unit 55 (0x710007b430-0x710007bb30, no class hint): the dot product of two 4D vectors
+// (base/math/CVector4D.h; called through Dot in base/math/CVectorOps.h).
+#include "base/math/CVector4D.h"
 #include "types.h"
 
-struct UnkVec4f {
-    f32 x, y, z, w;
-};
+using base::math::CVector4D;
 
-f32 fn_710007b590(const UnkVec4f& a, const UnkVec4f& b) {
-    return b.x * a.x + b.y * a.y + b.z * a.z + b.w * a.w;
+f32 fn_710007b590(const CVector4D* a, const CVector4D* b) {
+    return b->x * a->x + b->y * a->y + b->z * a->z + b->w * a->w;
 }

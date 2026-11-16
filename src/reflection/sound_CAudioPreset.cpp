@@ -20,6 +20,12 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // sound::CAudioPreset
 void fn_710103aa44();
@@ -96,7 +102,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sUniqueId_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sUniqueId_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103aa44);
@@ -106,7 +112,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sUniqueId");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodeToAttach_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sNodeToAttach_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ab44);
@@ -166,7 +172,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field6 = fn_7100096524(cls, CStrId("ePositional", true), &g_unk_7108b6cf48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iInstanceLimit_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_iInstanceLimit_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103af04);
@@ -176,7 +182,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(s32, "iInstanceLimit", (DefaultValue, -1), (MinValueI, -1));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fInBetweenTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fInBetweenTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103af94);
@@ -186,7 +192,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fInBetweenTime", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMaxRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMaxRange_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b024);
@@ -196,7 +202,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttMaxRange", (DefaultValue, 1200.0f), (MinValue, -1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMinRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMinRange_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b0b4);
@@ -206,7 +212,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttMinRange", (DefaultValue, 500.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolume_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fVolume_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b144);
@@ -216,7 +222,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fVolume", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVolumeRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fVolumeRange_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b1d4);
@@ -226,7 +232,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fVolumeRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitch_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPitch_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b264);
@@ -236,7 +242,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fPitch", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPitchRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPitchRange_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b2f4);
@@ -246,7 +252,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fPitchRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPan_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPan_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b384);
@@ -256,7 +262,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fPan", (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPanRange_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fPanRange_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b414);
@@ -266,7 +272,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fPanRange", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeIn_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fFadeIn_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b4a4);
@@ -276,7 +282,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fFadeIn", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFadeOut_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fFadeOut_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b534);
@@ -286,7 +292,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fFadeOut", (DefaultValue, 0.0f), (MinValue, 0.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fEmptyPercentage_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fEmptyPercentage_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b5c4);
@@ -296,7 +302,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fEmptyPercentage", (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fStartDelayed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fStartDelayed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b654);
@@ -306,7 +312,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fStartDelayed", (DefaultValue, 0.0f), (MinValue, -1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bLoop_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bLoop_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b6e4);
@@ -316,7 +322,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bLoop", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bAttachToActor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bAttachToActor_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b774);
@@ -326,7 +332,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bAttachToActor", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpChgAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bStpChgAnim_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b804);
@@ -336,7 +342,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bStpChgAnim", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bStpEntDead_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bStpEntDead_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b894);
@@ -346,7 +352,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bStpEntDead", (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bManaged_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bManaged_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b924);
@@ -356,7 +362,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bManaged", (DefaultValue, true));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bRumbleSync_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bRumbleSync_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103b9b4);
@@ -366,7 +372,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bRumbleSync", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRumbleGainOverride_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fRumbleGainOverride_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ba44);
@@ -376,7 +382,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fRumbleGainOverride", (DefaultValue, -1.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRelativeVolume_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fDimRelativeVolume_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103bad4);
@@ -386,7 +392,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fDimRelativeVolume", (DefaultValue, 0.6f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fDimTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103bb64);
@@ -396,7 +402,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fDimTime", (DefaultValue, 10.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimFadeTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fDimFadeTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103bbf4);
@@ -406,7 +412,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fDimFadeTime", (DefaultValue, 20.0f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fDimRecoverTime_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fDimRecoverTime_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103bc84);

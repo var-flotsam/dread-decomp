@@ -19,6 +19,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CAIComponent
 extern base::reflection::CType g_unk_7101d5af48;
@@ -41,15 +43,15 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101115758);
         fn_71011155bc(fn);
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Add Preset Navigation Path");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Add Preset Navigation Path");
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddIdleLogicPath", true))) {
         fn_71010f7d90(fn, "AddIdleLogicPath");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Add Idle Navigation Path");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Add Idle Navigation Path");
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddBlackboardParam", true))) {
         fn_71010f7f0c(fn, "AddBlackboardParam");
-        fn->Attrs()->Add<const char*>(fn_7100007e80(), "Add Blackboard Param");
+        fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Add Blackboard Param");
     }
     DREAD_REFLECTED_FIELD(CStrId, "sForcedAttack", 0x1780, (DefaultValue, ""), (Description, "Forced attack"));
     DREAD_REFLECTED_FIELD(s32, "iForcedAttackPreset", 0x1788, (DefaultValue, 0), (Description, "Forced attack preset"));
@@ -61,14 +63,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceClockwise", 0x13c8, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only clockwise limit"));
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceCounterClockwise", 0x13cc, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only counter clockwise limit"));
     UnkReflField* field9 = fn_7100096524(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
-    field9->attrs.Add<s32>(fn_710025daa0(), &g_unk_71727bc110, 0);
+    field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SFallBackPath>", "tFallbackPaths", 0x1390);
     UnkReflField* field11 = fn_7100096524(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x13b8, -1, -1);
-    field11->attrs.Add<s32>(fn_7100075240(), &g_unk_71727bb8e8, 2);
+    field11->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 2);
     DREAD_REFLECTED_FIELD(bool, "bIndividualRequiresActivationPerception", 0x121c, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreAttack_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bIgnoreAttack_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101115c1c);

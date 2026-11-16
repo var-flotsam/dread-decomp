@@ -375,7 +375,7 @@ address,size,name,name_source,subsystem,status
 0x710010ffac,380,fn_710010ffac,unknown,unknown,O
 0x7100110128,380,fn_7100110128,unknown,unknown,O
 0x71001102a4,380,fn_71001102a4,unknown,unknown,O
-0x7100110420,304,fn_7100110420,unknown,unknown,m
+0x7100110420,304,fn_7100110420,unknown,unknown,O
 0x7100110550,276,fn_7100110550,unknown,unknown,O
 0x7100110664,104,fn_7100110664,unknown,unknown,O
 0x71001106cc,44,fn_71001106cc,unknown,unknown,O

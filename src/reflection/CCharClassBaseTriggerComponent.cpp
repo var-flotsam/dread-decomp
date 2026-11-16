@@ -57,8 +57,8 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayerInside", true))) {
         fn_7100a46978(fn, "IsPlayerInside");
-        fn->Attrs()->Add<base::global::CRntString>(fn_7100007e80(), base::global::CRntString(""));
-        fn->Attrs()->Add<bool>(fn_71000904d0(), true);
+        fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
+        fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x9bc, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DisableLogic", true))) {
