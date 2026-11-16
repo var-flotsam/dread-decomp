@@ -586,15 +586,19 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
         value_type = primitive_value_type(body)
         if value_type and value_type in written:
             out.update(primitive_ops_names(body, value_type))
-    mapped = {m.group(1) for f in OUT.glob("collection_types_*.cpp")
-              for m in MAPPER_DESC_RE.finditer(f.read_text(encoding="utf-8"))}
+    texts = [f.read_text(encoding="utf-8") for f in OUT.glob("collection_types_*.cpp")]
+    mapped = {m.group(1) for text in texts for m in MAPPER_DESC_RE.finditer(text)}
+    # a mapper slot the generated description keeps by address (it did not match) keeps its fn_ name
+    by_address = {int(a, 16) for text in texts for a in re.findall(r" = &fn_([0-9a-f]+);", text)}
     named_ptrs = named_pointers(orig, pairs, known)
     colls, _ = scan_collections(orig, set())
     by_hand = defined_by_hand()
     for _, body in colls:
         v = mapped_collection(body, named_ptrs, frozenset(name for name, _ in named.values()))
         if v and v[0] in mapped:
-            out.update(collection_ops_names(orig, body, *v, mapper_members(orig, body, by_hand, v[0])))
+            slots = collection_slots(body)
+            members = {d for d in mapper_members(orig, body, by_hand, v[0]) if slots[d] not in by_address}
+            out.update(collection_ops_names(orig, body, *v, members))
     return out
 
 
@@ -1331,7 +1335,7 @@ def main() -> int:
         named_colls = {i: (*v[:2], v[2] - failed_colls.get(i, frozenset())) for i, v in named_colls.items()}
         named_colls = {i: v for i, v in named_colls.items() if v[2] and i in ok}
         if failed_colls:
-            print("vector collection slots kept by address: " + "; ".join(
+            print("collection slots kept by address: " + "; ".join(
                 f"{i:x} {' '.join(sorted(bad)) or '(constructor)'}" for i, bad in sorted(failed_colls.items())))
         if failed_prims:
             print(f"plain types kept by address: {' '.join(f'{g:x}' for g in sorted(failed_prims))}")
