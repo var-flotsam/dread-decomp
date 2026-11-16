@@ -334,11 +334,17 @@ class TypeNames(unittest.TestCase):
         foo = "base::global::CRntVector<CFoo>"
         self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "CFoo")},
                                           frozenset()), (foo, "CFoo"))
-        self.assertEqual(gt.mapper_slots(foo), gt.VECTOR_HEADER_SLOTS)
+        self.assertEqual(gt.mapper_slots(foo), gt.VECTOR_HEADER_SLOTS + ("type_of",))
         out = gt.emit_collection_ops(0x7100000010, body, foo, "CFoo", frozenset(gt.VECTOR_HEADER_SLOTS))
         self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
                       f": base::reflection::VectorHeaderMapperDescription<{foo}> {{", out)
         self.assertIn("class CFoo;", out)
+        # a TypeOf that returns the collection's own descriptor
+        out = gt.emit_collection_ops(0x7100000010, body, foo, "CFoo", frozenset({"count", "type_of"}),
+                                     type_of_global=0x7100000600)
+        self.assertIn("template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<"
+                      f"{foo}>::TypeOf(const void*) {{ return g_unk_7100000600; }}", out)
+        self.assertFalse(any(" type_of = " in line for line in out))
         # a class with a header that gives the mapper what it needs
         asset = "base::global::CRntVector<base::core::AssetName>"
         self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "base::core::AssetName")},
@@ -380,13 +386,13 @@ class TypeNames(unittest.TestCase):
         self.assertEqual(gt.mapped_collection(
             body, {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}, frozenset()),
             (other, "SGeoData"))
-        self.assertEqual(gt.mapper_slots(other), gt.SMALL_DICT_HEADER_SLOTS)
+        self.assertEqual(gt.mapper_slots(other), gt.SMALL_DICT_HEADER_SLOTS + ("type_of",))
         self.assertIn(f": base::reflection::SmallDictionaryHeaderMapperDescription<{other}> {{", "\n".join(
             gt.emit_collection_ops(0x7100000010, body, other, "SGeoData", frozenset(gt.SMALL_DICT_HEADER_SLOTS))))
         # string-id keys compare, so the keyed slots are written too; a string key's are not
-        self.assertEqual(gt.mapper_slots(dict_), gt.SMALL_DICT_SLOTS + gt.SMALL_DICT_KEYED_SLOTS)
+        self.assertEqual(gt.mapper_slots(dict_), gt.SMALL_DICT_SLOTS + gt.SMALL_DICT_KEYED_SLOTS + ("type_of",))
         self.assertEqual(gt.mapper_slots("base::global::CRntSmallDictionary<base::global::CRntString, int>"),
-                         gt.SMALL_DICT_SLOTS)
+                         gt.SMALL_DICT_SLOTS + ("type_of",))
         members = frozenset(gt.SMALL_DICT_SLOTS + gt.SMALL_DICT_KEYED_SLOTS)
         out = gt.emit_collection_ops(0x7100000010, body, dict_, "CEntity*", members)
         self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
@@ -413,10 +419,10 @@ class TypeNames(unittest.TestCase):
         dict_ = "base::global::CRntDictionary<base::global::CStrId, CActor*>"
         named = {0x7100000520: f"base::reflection::CollectionTypeMapper<{dict_}>::TElementIterator"}
         self.assertEqual(gt.mapped_collection(body, named, frozenset()), (dict_, "CActor*"))
-        self.assertEqual(gt.mapper_slots(dict_), gt.DICT_SLOTS + gt.DICT_FIND_SLOTS)
+        self.assertEqual(gt.mapper_slots(dict_), gt.DICT_SLOTS + gt.DICT_FIND_SLOTS + ("type_of",))
         # a class value is not whole here: no Find; a CName key does not hash
         preset = "base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>"
-        self.assertEqual(gt.mapper_slots(preset), gt.DICT_SLOTS)
+        self.assertEqual(gt.mapper_slots(preset), gt.DICT_SLOTS + ("type_of",))
         cname = "base::global::CRntDictionary<base::global::CName, CActor*>"
         self.assertIsNone(gt.mapped_collection(
             body, {0x7100000520: f"base::reflection::CollectionTypeMapper<{cname}>::TElementIterator"}, frozenset()))

@@ -58,7 +58,7 @@ struct CollectionTypeMapper {
     static void* MoveAssign(void* dst, void* src) { return &(*static_cast<C*>(dst) = std::move(*static_cast<C*>(src))); }
     static bool Equals(const void* a, const void* b) { return *static_cast<const C*>(a) == *static_cast<const C*>(b); }
     static s32 Hash(const void*) { return -1; }
-    // The collection's descriptor (specialised per type).
+    // The collection's descriptor: specialised per type, where the generated description names it.
     static const class CType& TypeOf(const void* obj);
 
     // CCollectionType's accessors.
@@ -133,6 +133,7 @@ struct CollectionMapperDescription {
     static constexpr auto set_move = &CollectionTypeMapper<C>::SetMove;
     static constexpr auto const_begin = &CollectionTypeMapper<C>::ConstBegin;
     static constexpr auto const_end = &CollectionTypeMapper<C>::ConstEnd;
+    static constexpr auto type_of = &CollectionTypeMapper<C>::TypeOf;
 };
 
 // The members that touch only a vector's header (its pointer, count and allocator), for a vector whose
@@ -145,6 +146,7 @@ struct VectorHeaderMapperDescription {
     static constexpr auto hash = &Mapper::Hash;
     static constexpr auto count = &Mapper::Count;
     static constexpr auto begin = &Mapper::Begin;
+    static constexpr auto type_of = &Mapper::TypeOf;
 };
 
 // A small dictionary's mapper (base/global/CRntSmallDictionary.h): its element iterators are a vector's.
@@ -210,6 +212,7 @@ struct SmallDictionaryHeaderMapperDescription {
     static constexpr auto hash = &Mapper::Hash;
     static constexpr auto count = &Mapper::Count;
     static constexpr auto begin = &Mapper::Begin;
+    static constexpr auto type_of = &Mapper::TypeOf;
 };
 
 // And those that need its value whole.
@@ -285,6 +288,7 @@ struct DictionaryMapperDescription {
     static constexpr auto count = &Mapper::Count;
     static constexpr auto begin = &Mapper::Begin;
     static constexpr auto end = &Mapper::End;
+    static constexpr auto type_of = &Mapper::TypeOf;
 };
 
 // And those that look a key up or destroy entries, for a dictionary whose key and value are whole.

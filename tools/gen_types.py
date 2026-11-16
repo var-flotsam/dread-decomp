@@ -683,7 +683,8 @@ MAPPER_SLOTS = {"construct": "Construct", "copy_construct": "CopyConstruct", "mo
                 "destroy": "Destroy", "copy_assign": "CopyAssign", "move_assign": "MoveAssign", "hash": "Hash",
                 "count": "Count", "clear": "Clear", "add_copy": "AddCopy", "add_move": "AddMove", "at": "At",
                 "find": "Find", "begin": "Begin", "end": "End", "equals": "Equals", "erase": "Erase",
-                "set_copy": "SetCopy", "set_move": "SetMove", "const_begin": "ConstBegin", "const_end": "ConstEnd"}
+                "set_copy": "SetCopy", "set_move": "SetMove", "const_begin": "ConstBegin", "const_end": "ConstEnd",
+                "type_of": "TypeOf"}
 # The CRntVector member each calls out of line, and its declaration (E: the element type).
 # Class elements whose header gives CollectionTypeMapper what it needs: the include a generated file adds.
 CLASS_ELEMENT_HEADERS = {"base::core::AssetName": "base/core/AssetName.h"}
@@ -857,14 +858,16 @@ def whole_collection(collection: str, enums: frozenset[str]) -> bool:
 
 
 def mapper_slots(collection: str, enums: frozenset[str] = frozenset()) -> tuple[str, ...]:
-    """The description members CollectionTypeMapper<collection> can write."""
+    """The description members CollectionTypeMapper<collection> can write; type_of for every kind, when the
+    slot returns the descriptor from its GOT slot (mapper_members)."""
     if SMALL_DICT_RE.fullmatch(collection):
         if not whole_collection(collection, enums):
-            return SMALL_DICT_HEADER_SLOTS
-        return SMALL_DICT_SLOTS + (SMALL_DICT_KEYED_SLOTS if keyed_small_dictionary(collection) else ())
+            return SMALL_DICT_HEADER_SLOTS + ("type_of",)
+        return (SMALL_DICT_SLOTS + (SMALL_DICT_KEYED_SLOTS if keyed_small_dictionary(collection) else ())
+                + ("type_of",))
     if DICT_RE.fullmatch(collection):
-        return DICT_SLOTS + (DICT_FIND_SLOTS if dictionary_finds(collection) else ())
-    return tuple(MAPPER_SLOTS) if whole_collection(collection, enums) else VECTOR_HEADER_SLOTS
+        return DICT_SLOTS + (DICT_FIND_SLOTS if dictionary_finds(collection) else ()) + ("type_of",)
+    return tuple(MAPPER_SLOTS) if whole_collection(collection, enums) else VECTOR_HEADER_SLOTS + ("type_of",)
 
 
 def call_target(orig: asmdiff.Original, addr: int) -> int | None:
@@ -891,7 +894,8 @@ def mapper_members(orig: asmdiff.Original, body: list[str], by_hand: set[int],
     """The description members the mapper writes for a collection: every one of mapper_slots whose slot, and
     the CRntVector member it calls, no hand-written source defines (those keep their addresses)."""
     slots = collection_slots(body)
-    free = {d for d in mapper_slots(collection, enums) if d in slots and slots[d] not in by_hand}
+    free = {d for d in mapper_slots(collection, enums) if d in slots and slots[d] not in by_hand
+            and (d != "type_of" or returned_object(orig, slots[d]) is not None)}
     helpers = mapper_helpers(orig, body, free, collection)
     return frozenset(d for d in free if helpers.get(d) not in by_hand)
 
@@ -908,10 +912,12 @@ def collection_ops_names(orig: asmdiff.Original, body: list[str], vector: str, e
 
 
 def emit_collection_ops(init: int, body: list[str], vector: str, element: str, members,
-                        enums: frozenset[str] = frozenset()) -> list[str]:
+                        enums: frozenset[str] = frozenset(), type_of_global: int | None = None) -> list[str]:
     """A vector collection's description with the mapper's functions (CollectionMapperDescription<C>) for
     `members`, the others by address; the CRntVector members they call are declared instantiated elsewhere,
-    so that only the slots are emitted."""
+    so that only the slots are emitted. type_of is the mapper's only with the descriptor it returns."""
+    if type_of_global is None:
+        members = frozenset(members) - {"type_of"}
     rest = [line for line in body if not any(f" {d} = " in line for d in members)]
     out = emit_collection(init, rest)
     desc = f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> {{"
@@ -936,7 +942,13 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
             f'#include "{DICT_VALUE_HEADERS[t]}"' for t in dict.fromkeys((key, element)) if t in DICT_VALUE_HEADERS]
     else:
         include = [f'#include "{CLASS_ELEMENT_HEADERS[element]}"'] if element in CLASS_ELEMENT_HEADERS else []
-    return type_declarations(node, enums) + include + helpers + out
+    type_of = []
+    if "type_of" in members:
+        # the collection's own descriptor, which a hand-written static initialiser builds
+        type_of = [f"extern base::reflection::CType g_unk_{type_of_global:x};",
+                   f"template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<{vector}>::"
+                   f"TypeOf(const void*) {{ return g_unk_{type_of_global:x}; }}"]
+    return type_declarations(node, enums) + include + helpers + type_of + out
 
 
 def defined_by_hand() -> set[int]:
@@ -1344,7 +1356,9 @@ def main() -> int:
 
     def collection_block(init: int, body: list[str]) -> list[str]:
         if init in named_colls:
-            return emit_collection_ops(init, body, *named_colls[init], known_types)
+            members = named_colls[init][2]
+            obj = returned_object(orig, collection_slots(body)["type_of"]) if "type_of" in members else None
+            return emit_collection_ops(init, body, *named_colls[init], known_types, obj)
         return emit_collection(init, body)
 
     def flagset_block(init: int, body: list[str]) -> list[str]:
