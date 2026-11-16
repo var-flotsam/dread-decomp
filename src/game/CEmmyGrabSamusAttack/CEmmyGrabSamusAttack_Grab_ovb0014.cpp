@@ -19,7 +19,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAIManager/CTunableAIManager.h"
@@ -429,7 +429,7 @@ UnkGrabAim_ovb0014 fn_710050bd10(UnkGrabAttack6_ovb0014* self) {
         UnkKraidCreatureVec target = fn_7100d7be08(self->owner);
         fn_710007b430(&flat, reinterpret_cast<const CVector3D*>(&target));
     }
-    f32 length = sqrtf(flat.x * flat.x + flat.y * flat.y);
+    f32 length = Length(flat);
     f32 t = length / 200.0f;
     t = t <= 0.0f ? 0.0f : (t > 1.0f ? 1.0f : t);
     CVector2D dir;
