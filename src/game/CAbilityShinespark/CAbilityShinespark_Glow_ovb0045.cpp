@@ -16,6 +16,7 @@
 #include "game/UnkTU365.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
 
@@ -146,14 +147,6 @@ UnkVisitResult_b0040 fn_710033265c(UnkSparkNearest_b0045* self, const UnkSparkTa
 }
 
 // ---- Cool shinesparks ----
-
-// As src/game/UnkSubareaSetupState.cpp and src/game_s7/fn_7100fc4b34.cpp declare it.
-struct UnkSubId_7100fc4b34 {
-    CStrId id;
-    u64 field_0x8;
-};
-using UnkQualifiedName_7100fc4b34 = UnkQualifiedName;
-const UnkSubId_7100fc4b34& fn_71003327a4(UnkQualifiedName_7100fc4b34* self, const CStrId* name);
 
 extern UnkPropertyEx<0x160> g_unk_71727594f8;  // "ExecutedCoolShinesparks"
 

@@ -154,6 +154,32 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**One sub-id for fn_71003327a4 (2026-11-16).** Fifteen sources and four drafts each copied the 16-byte sub-id
+(`UnkSubId_7100fc4b34`), a `UnkQualifiedName` alias and `fn_71003327a4`'s declaration, the same text everywhere;
+they are now `include/game/UnkSubId_7100fc4b34.h`. `fn_7100e984a4` (unit 2566) moved from `drafts/` to `src/` as a
+match. Parked: the UnkTU2510 group (`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5c1d0`, `fn_7100d5c370`): the query
+result is 4 bytes in `UnkCollisionWorld.cpp` and 8 in `UnkTU2510_Collision_ovb0175.cpp` (the tester-result size
+question of `UnkShapeHit_A5_b68` again), and `UnkShape`, `UnkBox`, `UnkSubTree` and `UnkFlags` have 7, 7, 4 and 3
+different texts; that is a unit-wide pass of its own.
+
+**Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
+(`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;
+`fn_710054095c` declared in `game/UnkTU811.h`), unit 1501's ground-movement view
+(`include/game/UnkGroundMovement_ovb0138.h`, the ground state's members plus the draft's, with the actor and run
+information types; `fn_71009ea070` declared in `game/UnkTU1501.h`), and CMissionLog's 0x38-byte record array
+(`include/game/GUI/UnkMissionLogRecords.h`, replacing copies in six sources, with its reserve, append and destroy
+declared once). `fn_710054095c`, `fn_71009ea070` and `fn_7100b5af1c` moved from `drafts/` to `src/` as matches.
+Parked: `fn_71000e76dc` (unit 85): its types are `include/base/reflection/`'s, which another thread is changing.
+
+**`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
+keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
+pointers or the holder's kind, as if the store of the empty id into the moved-from slot could change them;
+two functions matched only with a union-typed store at that point in their own files. Making
+`ReleaseAndTake` itself store that way regressed five matched functions (`fn_71000d8b90`, `fn_71002d9994`,
+`fn_71006ca3fc`, `fn_71006df684`, `fn_710109b790`), whose originals keep the values, so the original has both
+forms. The second is now a member of its own, `ReleaseAndTakeReloading`, with the union store and its reason in
+the header (owner's go-ahead, 2026-11-16). `fn_7100e558f8` and `fn_7100e5ae40` match with it and leave
+`drafts/`; seven other drafts that call `ReleaseAndTake` do not match with the other member.
 **Opus batch lean-o2: the yield falls (2026-11-16).** The next ten units in the same shape: 7 matches of 50
 (14%), 10 registers-only, 33 that differ; 186 graded attempts; about 2.16 million tokens. One more match came
 from the caller: `fn_7100e00cc0` matches with a `bool` parameter, and its only caller now declares it and its
