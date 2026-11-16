@@ -57,11 +57,6 @@ struct UnkDoor_l8d2d1c {
     u8 timer[0x8];
 };
 
-// The id table's slot at +0xb08, just before field_0xb10 (the table has no member for it yet).
-static inline const base::global::CStrId& IdAtB08(UnkGameManagerIdTable& table) {
-    return (&table.field_0xb10)[-1];
-}
-
 void fn_71008d2d1c(UnkDoor_l8d2d1c* self) {
     if (!self->field_0x41c)
         return;
@@ -70,7 +65,7 @@ void fn_71008d2d1c(UnkDoor_l8d2d1c* self) {
         return;
     if (fn_710117ae38(animation, GameManagerIdTable().field_0xb10.data->Key(), false))
         return;
-    if (fn_710117ae38(animation, IdAtB08(GameManagerIdTable()).data->Key(), false))
+    if (fn_710117ae38(animation, GameManagerIdTable().field_0xb08.data->Key(), false))
         return;
     UnkDoorConfig_l8d2d1c* config = self->config;
     if (!config->field_0x11c || config->field_0x128)
@@ -96,7 +91,7 @@ void fn_71008d2d1c(UnkDoor_l8d2d1c* self) {
     mode.id = 0;
     base::reflection::UnkReflTypeIdArg mask;
     mask.id = UnkAll_SpitSend().value;
-    fn_7101176690(animation, IdAtB08(GameManagerIdTable()).data->Key(), 0xf4061ff25a2163d6, &mode,
+    fn_7101176690(animation, GameManagerIdTable().field_0xb08.data->Key(), 0xf4061ff25a2163d6, &mode,
                   &g_unk_710164b958, &g_unk_7172769740, &mask);
     RequestState_b58(&self->state_machine, 2);
 }

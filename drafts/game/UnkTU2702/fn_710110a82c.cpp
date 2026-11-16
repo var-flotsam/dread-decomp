@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTypedValue.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
@@ -15,13 +16,6 @@
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-
-struct UnkReflForwardValue {
-    u8 pad_0x0[0x8];
-    void* object;  // 0x8
-};
-
-UnkReflValue fn_71000a20f4(const UnkReflForwardValue* self, void* extra);
 
 struct UnkEnumType;
 UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
@@ -102,8 +96,7 @@ bool fn_710110a82c(char* self, void* a, void* b) {
         SetValue<fn_71000246e4>(&owner->blackboard, name, ValueData<void>(value));
     } else if (fn_710009d52c(reinterpret_cast<const CType*>(value->type), fn_71000081e8())) {
         CBlackboard* blackboard = &owner->blackboard;
-        UnkReflValue text =
-            fn_71000a20f4(reinterpret_cast<const UnkReflForwardValue*>(value), const_cast<CType*>(fn_71000081e8()));
+        UnkReflValue text = fn_71000a20f4(value, fn_71000081e8());
         SetString(blackboard, name, ValueData<const char*>(&text));
         fn_71000a1c60(&text);
     }
