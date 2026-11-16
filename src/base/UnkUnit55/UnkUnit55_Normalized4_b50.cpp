@@ -1,19 +1,17 @@
-// Unit 55 of tools/tu_map.py: returns a 4-component float vector divided by its length, or the vector
-// itself when the length is zero. The vector has a user-provided copy, so it is returned in memory.
-// Names are placeholders.
+// Unit 55 of tools/tu_map.py: returns a 4D vector divided by its length, or the vector itself when
+// the length is zero (base/math/CVector4D.h; called through Normalized in base/math/CVectorOps.h).
+// The result is returned in memory.
 #include <math.h>
+
+#include "base/math/CVector4D.h"
 #include "types.h"
 
-struct UnkVec4fN {
-    f32 x, y, z, w;
+using base::math::CVector4D;
+using base::math::UnkVector4D;
 
-    UnkVec4fN(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
-    UnkVec4fN(const UnkVec4fN& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
-};
-
-UnkVec4fN fn_710007b690(const UnkVec4fN* v) {
+UnkVector4D fn_710007b690(const CVector4D* v) {
     f32 len = sqrtf(v->x * v->x + v->y * v->y + v->z * v->z + v->w * v->w);
     if (len != 0.0f)
-        return UnkVec4fN(v->x / len, v->y / len, v->z / len, v->w / len);
-    return *v;
+        return UnkVector4D(v->x / len, v->y / len, v->z / len, v->w / len);
+    return UnkVector4D(*v);
 }

@@ -1,8 +1,7 @@
 // From unit 2607 of tools/tu_map.py: per-frame update of the environment fade's channel 26 (a colour): it
 // advances the channel by the frame time, blends the colour from its start to its end and flags the channel.
 // Names and layouts are placeholders.
-#include "base/math/CVector4D.h"
-#include "game/UnkTU55.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::UnkVector4D;
@@ -31,9 +30,9 @@ inline UnkVector4D FadeLerp4(f32 t, const UnkVector4D& from, const UnkVector4D& 
         return to;
     if (t < 0.0f)
         return from;
-    UnkVector4D a = fn_710007b5c0(&from, 1.0f - t);
-    UnkVector4D b = fn_710007b5c0(&to, t);
-    return fn_710007b5ec(&a, &b);
+    UnkVector4D a = from * (1.0f - t);
+    UnkVector4D b = to * t;
+    return a + b;
 }
 }  // namespace
 
@@ -51,6 +50,6 @@ void fn_7100f9b038(f32 dt, UnkEnvironmentFade* fade) {
     }
     self->done[26] = finished;
     UnkVector4D r = FadeLerp4(t, self->from26, self->to26);
-    fn_710007b518(&self->now26, &r);
+    Assign(self->now26, r);
     self->flag_0x31c = true;
 }

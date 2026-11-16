@@ -2,22 +2,10 @@
 // rotation (a quaternion) and scale, translation and scale are interpolated linearly and the
 // rotations normalized-linearly, and the parts are put back together. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
-#include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU54.h"
-#include "game/UnkTU55.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkVec4f {
-    f32 x, y, z, w;
-};
-
-struct UnkVec4fN {
-    f32 x, y, z, w;
-
-    UnkVec4fN(f32 x_, f32 y_, f32 z_, f32 w_) : x(x_), y(y_), z(z_), w(w_) {}
-    UnkVec4fN(const UnkVec4fN& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
-};
 
 // A 3-component vector in a 16-byte slot; the fourth word is never set.
 struct UnkPaddedVec3 {
@@ -30,8 +18,6 @@ struct UnkPaddedVec3 {
 // Splits a transform matrix into translation, rotation and scale.
 void fn_7100077620(const UnkMatrix44* m, UnkPaddedVec3* translation,
                    base::math::CVector4D* rotation, UnkPaddedVec3* scale);
-f32 fn_710007b590(const UnkVec4f& a, const UnkVec4f& b);
-UnkVec4fN fn_710007b690(const UnkVec4fN* v);
 
 inline UnkVec3f LerpVec3(const UnkPaddedVec3& a, const UnkPaddedVec3& b, f32 t) {
     if (t < 1.0f)
@@ -40,13 +26,6 @@ inline UnkVec3f LerpVec3(const UnkPaddedVec3& a, const UnkPaddedVec3& b, f32 t) 
     return UnkVec3f(b.x, b.y, b.z);
 }
 
-inline base::math::UnkVector4D Scaled(const base::math::CVector4D& v, f32 s) {
-    return fn_710007b5c0(&v, s);
-}
-
-inline base::math::UnkVector4D Sum(const base::math::CVector4D& a, const base::math::CVector4D& b) {
-    return fn_710007b5ec(&a, &b);
-}
 
 inline UnkMatrix44 TranslationMatrix(const UnkVec3f& t) {
     UnkMatrix44 m;
@@ -125,14 +104,12 @@ UnkMatrix44 fn_7100078834(const UnkKeyedEntry* entry, const UnkMatrix44* matrix,
     UnkVec3f translation = LerpVec3(fromTranslation, toTranslation, weight);
 
     // Take the shorter way round: flip the target rotation when the two point apart.
-    f32 toWeight = fn_710007b590((const UnkVec4f&)fromRotation, (const UnkVec4f&)toRotation) >= 0.0f
+    f32 toWeight = Dot(fromRotation, toRotation) >= 0.0f
                        ? weight
                        : -weight;
     {
-        base::math::UnkVector4D blended =
-            Sum(Scaled(fromRotation, 1.0f - weight), Scaled(toRotation, toWeight));
-        UnkVec4fN normalized = fn_710007b690((const UnkVec4fN*)&blended);
-        fn_710007b518(&rotation, (const base::math::CVector4D*)&normalized);
+        base::math::UnkVector4D blended = fromRotation * (1.0f - weight) + toRotation * toWeight;
+        Assign(rotation, Normalized(blended));
     }
 
     UnkVec3f scale = LerpVec3(fromScale, toScale, weight);

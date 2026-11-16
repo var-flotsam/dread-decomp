@@ -2,7 +2,7 @@
 // are tried first (each only when the hit faces away from the capsule's middle), then the box between
 // them, whose contact replaces a circle's only for a hit on one of its sides. Names and layouts are
 // placeholders.
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "game/malloc.h"
 #include "types.h"
 
@@ -64,20 +64,6 @@ struct UnkCapsuleContact {
 };
 
 bool fn_710012dbd0(const UnkBox2D* a, void* x5, const void* b, UnkContactPoint* out);
-
-static inline CVector2D operator+(const CVector2D& a, const CVector2D& b) {
-    CVector2D r;
-    r.x = a.x + b.x;
-    r.y = a.y + b.y;
-    return r;
-}
-
-static inline CVector2D operator-(const CVector2D& a, const CVector2D& b) {
-    CVector2D r;
-    r.x = a.x - b.x;
-    r.y = a.y - b.y;
-    return r;
-}
 
 static inline bool IsNear(f32 v, f32 target) {
     return v + 0.001f >= target && v - 0.001f <= target;

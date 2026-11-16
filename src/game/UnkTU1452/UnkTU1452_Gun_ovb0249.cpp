@@ -9,7 +9,7 @@
 #include "types.h"
 #include <math.h>
 #include "../../game_s7/UnkPropBagS7.h"
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkXformNode.h"
 
 using base::global::CStrId;
@@ -114,7 +114,7 @@ void fn_7100981048(UnkUnit1452_b56* self) {
     d.z = pos.z - tz;
     base::math::CVector2D p;
     fn_710007b430(&p, &d);
-    f32 len = sqrtf(p.x * p.x + p.y * p.y);
+    f32 len = Length(p);
     f32 nx, ny;
     if (len != 0.0f) {
         f32 inv = 1.0f / len;
