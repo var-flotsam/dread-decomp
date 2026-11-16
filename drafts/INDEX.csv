@@ -1110,7 +1110,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7101134008,124,drafts/game/CAIAttackComponent/fn_7101134008.cpp,control flow,16.1,22,lean-b5,original keeps an unfolded null-path phi (w0=0 then tbz) and other load order
 0x7101134084,148,drafts/game/CAIAttackComponent/fn_7101134084.cpp,control flow,37.8,19,lean-b5,same unfolded null-path phi as the 134008 sibling
 0x7101134420,552,drafts/game/CAIAttackComponent/fn_7101134420.cpp,operations,33.8,91,lean-oc1,one extra mov in the inlined CStrId copy (x8/x9 allocation); rest lines up shifted by one. Header include/game
-0x7101136bb4,884,drafts/game/CAttackComponent/fn_7101136bb4.cpp,registers or order,93.7,14,lean,
+0x7101136bb4,884,drafts/game/CAttackComponent/fn_7101136bb4.cpp,registers or order,93.7,14,lean,listener walk matches on base::UnkCountedDeferredSet; left: scheduling of the hit-shape stores before fn_71006d4d4c; permute 14->10 no match; equiv_test inconclusive (92% coverage)
 0x710113c060,676,drafts/game/CGrabComponent/fn_710113c060.cpp,build fails,,,lean-r2kd,8-bit flag intersection loop shape (orig branches on own bit; csel on other); empty-id cmp operand order; self
 0x710113cb74,968,drafts/game/CGrabComponent/fn_710113cb74.cpp,control flow,24.3,183,lean-oc1,mode-2 translation: original merges y as an integer phi (fmov w8;s0) and stores x;y;z together; ours branches
 0x710113cf3c,484,drafts/game/CGrabComponent/fn_710113cf3c.cpp,registers or order,86.8,16,lean-oc2,store order of the query constructor (kind=2 and the -1.0f/flag stores scheduled differently)
@@ -1138,8 +1138,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7101178564,68,drafts/game/CAnimationComponent/fn_7101178564.cpp,registers or order,94.1,1,lean-oc1,orr operand order in the +0x70 fold
 0x71011785a8,68,drafts/game/CAnimationComponent/fn_71011785a8.cpp,registers or order,94.1,1,lean-oc1,orr operand order in the +0x70 fold
 0x7101179878,964,drafts/game/CAnimationComponent/fn_7101179878.cpp,control flow,15.4,195,lean-oc1,block placement of the shared return-false and the matrix-copy loop shape; returns bool though the header decl
-0x710117a190,788,drafts/game/CAnimationComponent/fn_710117a190.cpp,operations,42.4,110,lean,
-0x710117ecb0,452,drafts/game/CAnimationComponent/fn_710117ecb0.cpp,operations,11.4,100,lean-r2kd,matches only with a union around UnkAnimListenersLock::listeners (char TBAA: original reloads the pointer afte
+0x710117a190,788,drafts/game/CAnimationComponent/fn_710117a190.cpp,operations,42.4,110,lean,listener walk matches on base::UnkCountedDeferredSet; the rest is the keep-position matrix copy: original copies rows as 12-byte vectors plus a word with no stack copy (a matrix type with vector rows)
 0x7101189cdc,400,drafts/game/UnkTU2726/fn_7101189cdc.cpp,control flow,10.0,88,lean-oc2,block layout: original reloads team part +0x100 for the second lookup and puts both instance creations out of
 0x7101198e88,608,drafts/game/UnkTU2730/fn_7101198e88.cpp,operations,22.4,117,lean-o1,near registers-only: original spills &iter.value.element to [sp] in the preheader (one extra live value; regs
 0x71011991c4,796,drafts/game/UnkTU2730/fn_71011991c4.cpp,operations,30.7,136,lean-ob3,list count must be read without type-based alias info (original reloads it after node-link stores; with a unio

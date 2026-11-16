@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "UnkClone.h"
+#include "base/UnkCountedDeferredSet.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
@@ -893,17 +894,8 @@ bool fn_71010c9338(UnkEnemyMovement_q* self, UnkMessage_q* message) {
     return true;
 }
 
-// fn_71010ce798: removes an item from a list whose changes are deferred while it is locked (+0x78).
-// A list of pointers whose changes are deferred while it is locked (the counter at +0x78).
-struct UnkLockedList {
-    base::global::CRntVector<void*> pending_add;     // 0x0
-    base::global::CRntVector<void*> pending_remove;  // 0x28
-    base::global::CRntVector<void*> items;           // 0x50
-    s32 lock;                               // 0x78
-};
-static_assert(__builtin_offsetof(UnkLockedList, lock) == 0x78, "layout");
-
-void fn_71010ce798(UnkLockedList* self, void* item) {
+// fn_71010ce798: removes an item from a counted deferred set (base/UnkCountedDeferredSet.h).
+void fn_71010ce798(base::UnkCountedDeferredSet<void>* self, void* item) {
     if (self->lock <= 0) {
         self->items.Remove(item);
     } else {
