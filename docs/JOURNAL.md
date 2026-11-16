@@ -155,14 +155,6 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-**Readable reflection slot types; size and kind from the type (2026-11-16).** Steps 1 and 2 of the type-keyed
-descriptions note. The slot aliases are named by role (`SlotFn`, `CopyConstructFn`, `DestroyFn`, `AssignFn`,
-`EqualsFn`, `HashFn`, `TypeOfFn`, `ClassSetupFn`), `UnkReflTypeGetter` is `PointerTypeGetter` and
-`UnkReflPrimitiveTraits` is `PrimitiveTypeDescription`. `ValueOpsDescription<T>` gives `size = sizeof(T)` and the
-collection description bases give `size = sizeof(C)` and `kind` from `CollectionTypeMapper<C>::kind` (1 for a
-vector, 2 for a dictionary); gen_types drops those lines under a base. Every one of the 951 descriptions with a base
-already had sizeof's value, the 42 key iterators' 0x28 included. A whole-tree compile changed none of 100678
-functions, and the PC's regeneration reproduced the branch's generated files exactly.
 **Unit 107's split and spread return a vector (2026-11-16).** `fn_710010df80` (the mean of a box range's centres) and `fn_710010e15c` (the mean squared distance per axis from a point to them) each write 12 bytes through x8, so they return `UnkVec3f`, not the 20-byte `UnkBoxSplit_710010e470` that `src/game_s7/fn_710010e470.cpp` declared. They and `fn_710010e364` now have one declaration in `game/UnkTU107.h` on unit 107's `UnkBoxVector_b0236`. The tree builder `fn_710010d9fc` (major, unverified) calls them through that view: 9.5% to 12.8%, now at the original's size. `fn_710010e15c` is in `src/`; `fn_710010df80` stays a draft (registers, 89.9%).
 **Guard against lost matches (2026-11-16).** `tools/lost_matches.py` runs in the hosted policy workflow on every pull request: every function `O` in `data/functions/` on the base branch must still be `O` in the merge the pull request makes, or the job fails with a `LOST MATCH` line per function. It catches #482 (`fn_7100e984a4` O to U) when replayed against its merge, and none of the 30 merges since. An intended demotion is allowed by a row the same pull request adds to `data/demotions.csv` (address,name,reason); a row already on the base allows nothing. Approved by the owner during the rule freeze, since the defect reached `main`.
 
