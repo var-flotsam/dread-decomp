@@ -7,6 +7,8 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkGroundMovement_ovb0138.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
@@ -65,14 +67,6 @@ struct UnkGroundRequest_ovb0138 : UnkGroundParamsVtable_ovb0138 {
     }
 };
 
-struct UnkGroundMovement_ovb0138 {
-    u8 pad_0x0[0x3a8];
-    bool field_0x3a8;
-    u8 pad_0x3a9[0x2324 - 0x3a9];
-    u8 field_0x2324;
-    u8 field_0x2325;
-};
-
 struct UnkGroundState_ovb0138 {
     u8 pad_0x0[0x8];
     UnkAirTarget_B71a6* target;  // 0x8
@@ -82,7 +76,6 @@ struct UnkGroundState_ovb0138 {
 };
 
 bool fn_71009ed058(UnkGroundMovement_ovb0138* movement, UnkGroundRequest_ovb0138* req);
-void fn_71009ea070(UnkGroundMovement_ovb0138* movement);
 struct UnkGroundPlayer_b52;
 bool fn_71010d1598(UnkGroundPlayer_b52*);
 bool fn_71010d15ac(UnkGroundMovement_ovb0138* movement);
