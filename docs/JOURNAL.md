@@ -161,6 +161,7 @@ match. Parked: the UnkTU2510 group (`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5
 result is 4 bytes in `UnkCollisionWorld.cpp` and 8 in `UnkTU2510_Collision_ovb0175.cpp` (the tester-result size
 question of `UnkShapeHit_A5_b68` again), and `UnkShape`, `UnkBox`, `UnkSubTree` and `UnkFlags` have 7, 7, 4 and 3
 different texts; that is a unit-wide pass of its own.
+
 **Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
 (`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;
 `fn_710054095c` declared in `game/UnkTU811.h`), unit 1501's ground-movement view
