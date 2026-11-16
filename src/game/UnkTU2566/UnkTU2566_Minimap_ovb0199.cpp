@@ -23,6 +23,7 @@
 #include "game/CBlackboard.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMinimapRecord.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2564.h"
 #include "game/UnkTU2566.h"
@@ -164,31 +165,24 @@ void fn_7100e9d4d0(UnkMinimapOwner* self_) {
 }
 
 // ---- fn_7100ea9eb8 ----
-// Destroys a named record: releases the string ids of its items, frees its two arrays and releases its own id.
-struct UnkMmEntry_b0199 {
-    CStrId name;
-    u8 unk_0x8[0x18];
-};
-struct UnkMmNamed_b0199 {
-    CStrId name;
-    UnkMmEntry_b0199* items;
-    void* extra;
-    u32 count;
-    u8 unk_0x1c[0xc];
-    base::UnkAllocator* allocator;
-};
+// The record's destructor: destroys its items and frees their two arrays; its name is released last,
+// by the name's own destructor. Clang 9, the matching compiler, ignores the asm label on the destructor
+// (game/UnkMinimapRecord.h) and emits its mangled symbols, so this alias gives the definition the
+// address's name; a newer Clang (the port's) names the definition by its label (src/base/res/CRes.cpp).
+#if defined(__clang__) && __clang_major__ <= 9
+void fn_7100ea9eb8(UnkMinimapRecord*) __attribute__((alias("_ZN16UnkMinimapRecordD2Ev")));
+#endif
 
-void fn_7100ea9eb8(UnkMmNamed_b0199* self) {
-    if (self->items) {
-        for (u32 i = 0; i < self->count; ++i)
-            self->items[i].name.Reset();
+UnkMinimapRecord::~UnkMinimapRecord() {
+    if (items.values) {
+        for (u32 i = 0; i < items.count; ++i)
+            items.values[i].~UnkMinimapRecordItem();
     }
-    self->count = 0;
-    if (self->extra)
-        self->allocator->vf_0x48(self->extra);
-    if (self->items)
-        self->allocator->vf_0x48(self->items);
-    self->name.Reset();
+    items.count = 0;
+    if (items.keys)
+        items.allocator->vf_0x48(items.keys);
+    if (items.values)
+        items.allocator->vf_0x48(items.values);
 }
 
 // ---- fn_7100ea6234 ----
@@ -517,7 +511,6 @@ __attribute__((flatten)) UnkMmBounds_b0199* fn_7100e98228(UnkMmBoundsList_b0199*
 
 // ---- fn_7100e97f8c ----
 // Appends an id key and a default cell to the list; returns the cell.
-void fn_7100e97c60(void* self, u32 capacity);
 void fn_7100ea9dcc(void* sub);
 
 struct UnkMmCell_b0199 {
