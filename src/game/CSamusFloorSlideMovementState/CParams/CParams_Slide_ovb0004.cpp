@@ -22,6 +22,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1141.h"
+#include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU1730.h"
@@ -65,7 +66,6 @@ void fn_710099d6f0(UnkStandState_A6_b70* self);
 struct UnkActor;
 struct UnkAirTarget_B71a6;
 struct UnkAirRequest_B71a6;
-void fn_710098ae04(UnkAirTarget_B71a6* target, UnkAirRequest_B71a6* req);
 
 static inline const UnkQualifiedId& GetQualifiedId_ovb0004(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);

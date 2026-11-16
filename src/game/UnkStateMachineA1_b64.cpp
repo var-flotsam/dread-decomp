@@ -932,7 +932,6 @@ void fn_7100319cb8(UnkSmLockon_A1_b64* self, s32 kind) {
 
 // The same unit: unless the gun component holds the lock-on gun, state 1; otherwise state 1 when its
 // controller (a CLockOnMissileGun) is not busy, then the next step.
-bool fn_710084088c(UnkSamusGunComponent*);
 void fn_710031c208(UnkSmLockon_A1_b64*);
 
 void fn_710031c530(UnkSmLockon_A1_b64* self) {

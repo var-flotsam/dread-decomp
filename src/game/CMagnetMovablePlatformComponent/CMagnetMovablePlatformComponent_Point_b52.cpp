@@ -7,6 +7,7 @@
 #include "game/SLogicPathNode.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU53.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -23,7 +24,6 @@ struct UnkMagnetPathHolder_b52 {
     UnkDashPath* path;
 };
 UnkMagnetPathHolder_b52* fn_7100382150(UnkActor* actor);
-f32 fn_7100076850(f32 t);
 
 struct UnkMagnetMovablePlatform_b52 {
     u8 unk_0x0[0x30];

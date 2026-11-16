@@ -2220,7 +2220,7 @@ address,size,name,name_source,subsystem,status
 0x710119a9bc,348,fn_710119a9bc,unknown,unknown,O
 0x710119ab20,400,fn_710119ab20,unknown,unknown,O
 0x710119acb0,140,fn_710119acb0,unknown,unknown,O
-0x710119ad3c,232,fn_710119ad3c,unknown,unknown,U
+0x710119ad3c,232,fn_710119ad3c,unknown,unknown,O
 0x710119ae24,196,fn_710119ae24,unknown,unknown,O
 0x710119aee8,252,fn_710119aee8,unknown,unknown,U
 0x710119afe4,100,fn_710119afe4,unknown,unknown,O

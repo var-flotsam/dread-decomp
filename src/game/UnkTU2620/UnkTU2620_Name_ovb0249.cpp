@@ -14,6 +14,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
 #include "game/UnkTU2620.h"
+#include "game/UnkTU80.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
@@ -26,7 +27,6 @@ struct UnkReadArg_b0249 {
     u64* value;
 };
 void fn_7100fc29e8(void* reader, u32 flags, UnkReadArg_b0249* arg, const base::global::CStrId* name);
-const base::reflection::CType* fn_710009c640(base::reflection::UnkReflObject* obj);
 using base::reflection::CType;
 using base::UnkStrIdMember;
 
