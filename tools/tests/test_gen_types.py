@@ -249,6 +249,20 @@ class TypeKeyed(unittest.TestCase):
             keyed = gt.keyed_pointers({1: "a::CFoo*", 2: "a::CBar*", 3: "a::CBaz*"}, pairs, [(9, "a::CBaz*", [])])
         self.assertEqual(keyed, {1: "a::CFoo*"})
 
+    def test_related_types_by_type(self):
+        block = ["template <>", "struct base::reflection::PointerTypeDescription<a::CFoo**> {",
+                 "    static const CType* pointee() { return fn_7100000100(); }",
+                 "    static const CType* element() { return fn_7100000200(); }", "};"]
+        out = gt.related_by_type(block, {0x7100000100: "a::CFoo*"})
+        self.assertIn("    static const CType* pointee() { return base::reflection::PointerType<a::CFoo*>::Get(); }", out)
+        self.assertIn("    static const CType* element() { return fn_7100000200(); }", out)
+        ext = "extern template const base::reflection::CType* base::reflection::PointerType<a::CFoo*>::Get();"
+        self.assertLess(out.index(ext), out.index("template <>"))
+        self.assertIn("namespace a { class CFoo; }", out)
+        defn = "template const base::reflection::CType* base::reflection::PointerType<a::CFoo*>::Get();"
+        self.assertEqual(gt.settle_externs([ext, "x", ext]), [ext, "x"])
+        self.assertEqual(gt.settle_externs([ext, "x", defn]), ["x", defn])
+
     def test_collections_keyed_once_per_type(self):
         colls = {10: ("V<int>", "int", {"count"}), 20: ("V<int>", "int", {"count"}), 30: ("V<float>", "float", {"count"})}
         self.assertEqual(gt.keyed_collections(colls), {30})

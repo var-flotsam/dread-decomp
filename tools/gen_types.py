@@ -576,6 +576,45 @@ def keyed_pointers(named_ptrs: dict[int, str], pairs: list, inline_ptrs: list) -
             if POINTER_NAMES.get(names[g]) == 1 and names[g] not in inline}
 
 
+# A related type's getter (key, element, iterator, const_iterator, pointee) called by address, and the
+# explicit instantiation (definition or declaration) of a type-keyed getter.
+RELATED_RE = re.compile(r"^(    static const CType\* \w+\(\) \{ return )fn_([0-9a-f]{10})\(\); \}$")
+GET_DEF_RE = re.compile(r"^template const base::reflection::CType\* base::reflection::PointerType<(.+)>::Get\(\);$")
+GET_EXTERN_RE = re.compile(r"^extern template const base::reflection::CType\* base::reflection::PointerType<(.+)>::Get\(\);$")
+
+
+def related_by_type(block: list[str], getters: dict[int, str], enums: frozenset[str] = frozenset()) -> list[str]:
+    """`block` with each related type whose getter is a type-keyed pointer type's (`getters`: {getter: T},
+    keyed_pointers) called by its type, PointerType<T>::Get(): T's declarations and an explicit instantiation
+    declaration go first, so that the call stays a call (settle_externs drops those a file defines)."""
+    out, first = [], []
+    for line in block:
+        m = RELATED_RE.match(line)
+        if m and int(m.group(2), 16) in getters:
+            name = getters[int(m.group(2), 16)]
+            line = f"{m.group(1)}base::reflection::PointerType<{name}>::Get(); }}"
+            first += type_declarations(pointer_value_type(name, enums)[1], enums)
+            first.append(f"extern template const base::reflection::CType* base::reflection::PointerType<{name}>::Get();")
+        out.append(line)
+    return list(dict.fromkeys(first)) + out
+
+
+def settle_externs(lines: list[str]) -> list[str]:
+    """lines without the explicit instantiation declarations of the getters they define, and with each other
+    one only where it first appears."""
+    defined = {m.group(1) for line in lines if (m := GET_DEF_RE.match(line))}
+    seen: set[str] = set()
+    out = []
+    for line in lines:
+        m = GET_EXTERN_RE.match(line)
+        if m:
+            if m.group(1) in defined or m.group(1) in seen:
+                continue
+            seen.add(m.group(1))
+        out.append(line)
+    return out
+
+
 def keyed_collections(named_colls: dict) -> set[int]:
     """The named collections (constructor addresses) keyed by their collection type: one per type."""
     counts: dict[str, int] = {}
@@ -1408,7 +1447,7 @@ TYPE_DECL_RE = re.compile(r"^(?:namespace [\w:]+ \{ )?(?:template <[^>]*> )?(?:c
 
 def write_chunks(prefix: str, blocks: list[list[str]], decls: set[str], header: list[str]) -> None:
     for k in range(0, len(blocks), CHUNK):
-        lines = [line for b in blocks[k:k + CHUNK] for line in b]
+        lines = settle_externs([line for b in blocks[k:k + CHUNK] for line in b])
         body = [line for line in lines if not TYPE_DECL_RE.match(line)]
         used = used_decls(body, decls) + sorted({line for line in lines if TYPE_DECL_RE.match(line)})
         (OUT / f"{prefix}_{k // CHUNK:02d}.cpp").write_text("\n".join(header + PRELUDE + used + body) + "\n",
@@ -1512,6 +1551,10 @@ def main() -> int:
     coll_bodies = dict(colls)
 
     def collection_block(init: int, body: list[str]) -> list[str]:
+        return related_by_type(collection_form(init, body), keyed_pointers(named_ptrs, pairs, inline_ptrs),
+                               enum_names_known)
+
+    def collection_form(init: int, body: list[str]) -> list[str]:
         if init in named_colls:
             members = named_colls[init][2]
             obj = returned_object(orig, collection_slots(body)["type_of"]) if "type_of" in members else None
@@ -1525,6 +1568,10 @@ def main() -> int:
         return emit_flagset(init, body)
 
     def pointer_block(getter: int, name: str, init: int, body: list[str]) -> list[str]:
+        return related_by_type(pointer_form(getter, name, init, body), keyed_pointers(named_ptrs, pairs, inline_ptrs),
+                               enum_names_known)
+
+    def pointer_form(getter: int, name: str, init: int, body: list[str]) -> list[str]:
         if getter in named_ptrs:
             return emit_pointer_ops(getter, name, init, body, named_ptrs[getter], enum_names_known,
                                     keyed=getter in keyed_pointers(named_ptrs, pairs, inline_ptrs))
@@ -1540,7 +1587,7 @@ def main() -> int:
     work.mkdir(parents=True, exist_ok=True)
     src, obj = work / "candidates.cpp", work / "candidates.o"
     for attempt in range(2):
-        text = (PRELUDE + sorted(decls) + [line for p in pairs for line in pointer_block(*p)]
+        text = settle_externs(PRELUDE + sorted(decls) + [line for p in pairs for line in pointer_block(*p)]
                 + [line for i, b in enums for line in enum_block(i, b)]
                 + [line for i, b in colls for line in collection_block(i, b)]
                 + [line for g, b in prims for line in emit_primitive(g, b, named_prims.get(g))]
