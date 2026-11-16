@@ -7,10 +7,10 @@
 #include "base/global/CStrId.h"
 #include "game/UnkTU204.h"
 #include "game/UnkTU218.h"
+#include "game/UnkTU225.h"
 #include "types.h"
 
 struct UnkKeySetOwner;
-bool fn_710019e4fc(UnkKeySetOwner* self, u64 key);
 void fn_710019962c(void* object);
 void fn_71001995e8(void* object, bool value);
 

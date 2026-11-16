@@ -122,7 +122,7 @@ struct UnkKeyedValues_7100e6095c;
 using UnkValues10ByKey = base::UnkKeyedArray<UnkKeyedValues_71009046bc, u64, UnkValue_0x10>;
 using UnkValues80ByKey = base::UnkKeyedArray<UnkKeyedValues_7100e6095c, u64, UnkValue_0x80>;
 void* fn_7100901264(UnkValues10ByKey* a, UnkValue_0x10* value);
-void fn_7100e6164c(UnkValues80ByKey* a, UnkValue_0x80* value);
+UnkValue_0x80* fn_7100e6164c(UnkValues80ByKey* a, UnkValue_0x80* value);
 
 template <class A>
 __attribute__((always_inline)) static inline auto FindOrNull(A* a, const u64* key) -> decltype(a->End()) {

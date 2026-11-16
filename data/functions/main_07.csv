@@ -3087,7 +3087,7 @@ address,size,name,name_source,subsystem,status
 0x710079c714,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::MoveConstruct",reflection,engine/reflection,O
 0x710079c758,4,fn_710079c758,unknown,unknown,O
 0x710079c75c,48,fn_710079c75c,unknown,unknown,O
-0x710079c78c,260,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::MoveAssign",reflection,engine/reflection,O
+0x710079c78c,260,fn_710079c78c,unknown,unknown,O
 0x710079c890,348,fn_710079c890,unknown,unknown,U
 0x710079c9ec,360,fn_710079c9ec,unknown,unknown,O
 0x710079cb54,356,fn_710079cb54,unknown,unknown,O
