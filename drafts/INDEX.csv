@@ -162,7 +162,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710015e2d0,232,drafts/game/UnkTU180/fn_710015e2d0.cpp,registers or order,96.6,2,lean-b2,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU180/fn_710015e2d0.cpp:41 fn_710015e2d0: defined as void fn_710015e2d0(UnkUniformTables*; u32; u64; u32; u32; const void*) -> declared elsewhere with other types...
 0x710015e4b0,232,drafts/game/UnkTU181/fn_710015e4b0.cpp,conditions,50.0,29,lean-oc1,location/state test order and stage switch compare order (2;1;0) differ; as in sibling fn_710015e1f0; register
 0x71001604e0,164,drafts/game/UnkTU182/fn_71001604e0.cpp,registers or order,78.0,9,lean-oc2,block order only: the (R;R;R;G) case block comes before the shared RGBA/default block in the original; the jum
-0x71001606f0,288,drafts/game/UnkTU182/fn_71001606f0.cpp,registers or order,97.2,2,lean-oc1,one strb scheduled one slot later; params are (u32 index; bool enable; u32 group) but include/game/UnkTU182.h
 0x7100161410,264,drafts/game/UnkTU182/fn_7100161410.cpp,control flow,80.3,13,lean-oc2,type 2 should be a select (layout == 16 ? 0xa : 0); ours branches; likely the last fix; untested
 0x7100161800,332,drafts/game/UnkTU182/fn_7100161800.cpp,operations,11.9,73,lean-oc1,loop hoists &buffers into an extra callee-saved reg (x27) and the counter reset moves below the callback load;
 0x7100161960,556,drafts/game/UnkTU182/fn_7100161960.cpp,registers or order,95.7,6,lean-ob1,schedule of the function-pointer load before the device register call
@@ -233,7 +232,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71002169e0,288,drafts/game/UnkTU308/fn_71002169e0.cpp,registers or order,97.2,2,overnight,
 0x7100216b00,300,drafts/game/UnkTU308/fn_7100216b00.cpp,registers or order,97.3,2,lean-b6,order of mov v2 and str in the first Include branch
 0x7100216ca4,140,drafts/game/UnkTU308/fn_7100216ca4.cpp,registers or order,94.3,2,overnight,
-0x7100216d30,56,drafts/game/UnkTU308/fn_7100216d30.cpp,registers or order,85.7,2,lean-b6,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU308/fn_7100216d30.cpp:18 fn_7100216d30: defined as void fn_7100216d30(UnkScaleRecord*; f32) -> declared elsewhere with other types; use this parameter list and ...
 0x710021e874,492,drafts/game/UnkTU324/fn_710021e874.cpp,registers or order,96.7,4,overnight,not a match: the permuter spike's result read `first` before it was set (put back 2026-11-13; tools/permute.py refuses that now); takes g_unk_7101a203f8 from its header
 0x710021f168,144,drafts/game/UnkTU324/fn_710021f168.cpp,registers or order,86.1,5,lean-b5,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU324/fn_710021f168.cpp:26 fn_710021f168: defined as bool fn_710021f168(UnkMedia324*; s32) -> declared elsewhere with other types; use this parameter list and res...
 0x710021f2a8,1116,drafts/game/UnkTU324/fn_710021f2a8.cpp,control flow,4.7,265,fable1,
@@ -362,7 +360,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100686860,256,drafts/game/CScorpiusAttack/fn_7100686860.cpp,control flow,56.1,27,lean,
 0x7100692c8c,1000,drafts/game/CScorpiusAIComponent/fn_7100692c8c.cpp,build fails,,,lean-oc1,inlined list erase at owner+0x2b0: original compares and copies 8-byte entries (at 4-aligned +0x84c) as one u6
 0x7100693074,220,drafts/game/CScorpiusAIComponent/fn_7100693074.cpp,calls,17.4,43,lean-b5,vector erase shape: original reloads count in shift loop and keeps memset call; ours folds it
-0x710069409c,788,drafts/game/CScorpiusAIComponent/fn_710069409c.cpp,build fails,,,lean-oc1,one call fewer (18 vs 17) and stack slots: range copy and string temp share 0x20 in the original; returns bool
+0x710069409c,788,drafts/game/CScorpiusAIComponent/fn_710069409c.cpp,calls,27.4,131,lean-oc1,one call fewer (18 vs 17) and stack slots: range copy and string temp share 0x20 in the original; returns bool
 0x7100696570,352,drafts/game/CScorpiusAIComponent/fn_7100696570.cpp,control flow,62.5,33,lean-b5,final state/target selection layout (one fewer branch and jump in ours)
 0x7100697834,248,drafts/game/CScorpiusAIComponent/fn_7100697834.cpp,operations,32.3,40,lean-b5,branch layout and per-branch tunable load; out params typed as u32 bits
 0x71006af8ec,828,drafts/game/CShakernautAIComponent/fn_71006af8ec.cpp,control flow,38.6,120,lean-oc2,hit-check control flow (separate !reachable path; duplicated owner compare) and pose arithmetic order
@@ -455,7 +453,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710096b334,432,drafts/game/UnkTU1442/fn_710096b334.cpp,registers or order,98.1,2,overnight,
 0x710096e728,348,drafts/game/UnkTU1442/fn_710096e728.cpp,operations,26.4,62,lean-oc2,forward general path: count-1 and count!=0 fused into subs/hs; original keeps cmp/cset and a later sub
 0x7100973f30,276,drafts/game/UnkTU1444/fn_7100973f30.cpp,operations,92.8,5,overnight,
-0x7100976c94,320,drafts/game/CCharacterMovement/fn_7100976c94.cpp,operations,86.2,11,lean-oc1,header declares flag as bool; original passes w4 to fn_7100d5b484 u32 arg unmasked (ours adds and #1); shiftin
 0x710097762c,568,drafts/game/CCharacterMovement/fn_710097762c.cpp,control flow,10.6,122,lean-oc2,contact loop guard: ours folds begin==end to count==0; original compares pointers; stop block layout
 0x71009788f4,436,drafts/game/CCharacterMovement/fn_71009788f4.cpp,operations,45.0,59,lean-oc2,identity matrix store merging: original has no memset runs (pairs merged from 0x7c); ours merges zero runs
 0x7100978aa8,380,drafts/game/CCharacterMovement/fn_7100978aa8.cpp,operations,88.4,11,lean-oc1,self-check compare operand order (cmp other;this); zeroing order of 0x60..0x77 and matrix zeros (original desc

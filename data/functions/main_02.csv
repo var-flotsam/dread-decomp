@@ -632,7 +632,7 @@ address,size,name,name_source,subsystem,status
 0x7100216b00,300,fn_7100216b00,unknown,unknown,U
 0x7100216c2c,120,fn_7100216c2c,unknown,unknown,O
 0x7100216ca4,140,fn_7100216ca4,unknown,unknown,U
-0x7100216d30,56,fn_7100216d30,unknown,unknown,U
+0x7100216d30,56,fn_7100216d30,unknown,unknown,O
 0x7100216d70,140,fn_7100216d70,unknown,unknown,O
 0x7100216dfc,252,fn_7100216dfc,unknown,unknown,O
 0x7100216ef8,76,fn_7100216ef8,unknown,unknown,O

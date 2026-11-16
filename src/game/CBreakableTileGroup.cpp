@@ -195,7 +195,6 @@ struct UnkListedItem {
     UnkListedEntity* field_0x10;
 };
 
-void fn_7100d5e1f8(UnkCollisionShape* self, const UnkBox2D* box);
 // The collision query (src/game_hi/fn_7100d5b484.cpp, whose names for the tree, the shape and the
 // matrix these are).
 struct UnkTree;

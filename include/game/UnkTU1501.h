@@ -20,7 +20,7 @@ bool fn_71009e1390(void* obj);
 void fn_71009e4598(UnkSamusMovementUpdate* self);
 bool fn_71009e84e4(char* self);
 void fn_71009e85f4(void* self, bool flag);
-void fn_71009eaa88(void*);
+bool fn_71009eaa88(void* movement);
 extern UnkSamusSettings g_unk_7172740de0;
 // Clears the movement's air state on landing, stops the gun and lets the spin jump reset the animation.
 void fn_71009ea070(UnkGroundMovement_ovb0138* movement);
