@@ -14,6 +14,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CBossAIComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
@@ -405,8 +406,6 @@ struct UnkHolder_0x100_b0157 {
     u8 pad_0x0[0x100];
     UnkHeldObject_b0157* field_0x100;
 };
-
-extern char* g_unk_71726b2398;
 
 s32 fn_710107cb80(lua_State* L) {
     UnkHolder_0x100_b0157* holder = reinterpret_cast<UnkHolder_0x100_b0157*>(g_unk_71726b2398);

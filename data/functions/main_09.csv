@@ -1263,7 +1263,7 @@ address,size,name,name_source,subsystem,status
 0x71009289a4,264,CMeleeComponent::refl_AddFields,reflection,game/components,O
 0x7100928aac,352,CMeleeComponent::refl_InitClass,reflection,game/components,O
 0x7100928c0c,656,fn_7100928c0c,unknown,game/components?,U
-0x7100928e9c,764,fn_7100928e9c,unknown,game/components?,U
+0x7100928e9c,764,fn_7100928e9c,unknown,game/components?,O
 0x7100929198,36,fn_7100929198,unknown,game/components?,O
 0x71009291bc,112,fn_71009291bc,unknown,game/components?,O
 0x710092922c,100,fn_710092922c,unknown,game/components?,O

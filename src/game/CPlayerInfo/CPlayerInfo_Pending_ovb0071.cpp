@@ -11,6 +11,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "game/CCharClassLiquidPoolComponent.h"
+#include "game/CGunComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CPlayerInfo.h"
 #include "game/UnkTU0.h"
@@ -125,7 +126,6 @@ struct UnkPlayerInfoMsg_ovb0071 {
 };
 
 UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ovb0071* it);
-void fn_7100840f50(void* target, void** slot);
 void fn_7100841270(void* target, void** slot);
 void fn_7100f0c248(UnkPlayerInfo_ovb0071* self, const CVector3D* pos, f32 time);
 void fn_7100f0c988(UnkPlayerInfo_ovb0071* self, f32 dt);

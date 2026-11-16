@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CBeamBoxComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CPullOffGrapplePointComponent.h"
 #include "types.h"
@@ -15,7 +16,6 @@
 using base::global::CStrId;
 
 struct UnkLifeComponent_A5_b71;
-extern void* g_unk_7101a7d4e0[];  // the class's vtable
 void fn_71008a99e4(void* self);
 
 struct UnkBeamBox_ovb0134;

@@ -7,6 +7,8 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
+struct UnkLavaDropsShape_A2_b71;
+
 namespace base::reflection {
 struct UnkReflObject;
 }
@@ -41,3 +43,4 @@ UnkColliderResult fn_7100d5761c(base::reflection::UnkReflObject* objA, base::ref
                                 u32 layersA, u32 layersB, void* c, u32 d);
 UnkColliderResult fn_7100d5823c(base::reflection::UnkReflObject* objA, base::reflection::UnkReflObject* objB,
                                 const base::math::CVector2D* delta, u32 layersA, u32 layersB, void* c, bool ownMotion);
+bool fn_7100d57ca0(UnkLavaDropsShape_A2_b71* self, void* body, void* other, void* out, u32 flags);

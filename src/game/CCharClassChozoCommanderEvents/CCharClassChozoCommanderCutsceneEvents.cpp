@@ -9,11 +9,10 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
+#include "game/UnkBufferStringPool.h"
 #include "types.h"
 
 using base::reflection::CClass;
-
-extern char* g_unk_71726b2398;
 
 struct UnkComponent;
 void fn_71004565f0(UnkComponent* component);

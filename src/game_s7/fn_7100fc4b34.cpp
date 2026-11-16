@@ -52,7 +52,6 @@ static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_7100fc4b34& def, const CStrI
 }
 
 // Typed reads of a section's value (refl_GetKeyedValue copies).
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 bool fn_7100a68fb0(CBlackboard::CSection* section, const void* name, u32* out);
 
 struct UnkString_7100fc4b34 {

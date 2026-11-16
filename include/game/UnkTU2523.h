@@ -45,3 +45,4 @@ UnkActorPosition fn_7100d7b7a8(UnkActor* actor);
 const base::global::CStrId* fn_7100d7ba84(UnkSpawnedActor_ovb0065*);
 UnkHyperBeamEffectHandle fn_7100d7c614(UnkActor* owner, const UnkHyperBeamEffectDesc* desc, const base::global::CStrId* name, u32 a, u32 b, u32 c);
 void fn_7100d8865c(base::global::CRntVector<UnkEntry_b43a3>* self, const UnkEntry_b43a3* value);
+char* fn_7100d7820c(char* p0, u32 p1, u32 p2, u32 p3, u32 p4);

@@ -49,7 +49,6 @@ struct base::reflection::UnkFieldTraits<UnkRushRecordTag> {
 };
 
 // Read an int and a float from a section (src/clones/: refl_GetKeyedValue instances).
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 
 // The property's qualified id, built on first use.
 static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
