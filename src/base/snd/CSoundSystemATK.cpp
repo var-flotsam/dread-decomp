@@ -11,6 +11,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "base/snd/UnkSoundSystemATK.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU27.h"
 #include "game/UnkTU2772.h"
@@ -20,7 +21,6 @@
 #include "game/operator_new.h"
 
 using base::snd::UnkSoundSystemATK;
-extern void* g_unk_7101a1b750[];
 
 // A flag that turns the queue off (its meaning is unverified); a direct (not GOT) access.
 // The payload size of each command.

@@ -8,6 +8,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CBreakableTileGroup.h"
+#include "game/CBreakableTileGroupComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
@@ -19,12 +20,7 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern UnkProperty g_unk_7172711538;
-extern UnkProperty g_unk_7172711560;
-
 struct UnkEntryInfo;
-bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
-UnkEntryInfo* fn_7100ca1ea8(void* entry, u8 sub);
 
 struct UnkTileGroupValue_l759b34 {
     CStrId id;

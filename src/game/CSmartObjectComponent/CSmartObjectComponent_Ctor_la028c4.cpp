@@ -5,12 +5,11 @@
 
 #include "base/global/CStrId.h"
 #include "game/CComponent.h"
+#include "game/CSmartObjectComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-extern void* g_unk_7101a8ad98[];
 
 // A zero whose constructor isn't constexpr, so the static is guarded.
 struct UnkSmartObjectStaticZero {

@@ -21,6 +21,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU432.h"
 #include "game/UnkXformNode.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
@@ -83,7 +84,6 @@ f32 fn_710074f2f0(UnkBossCameraCtrl_ovb0008* self);   // the framing distance
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 static inline void* MusicManager() {
     void* instance = g_unk_71726bc560;

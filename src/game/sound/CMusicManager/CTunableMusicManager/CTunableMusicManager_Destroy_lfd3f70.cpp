@@ -4,13 +4,14 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkPooledId.h"
+#include "base/reflection.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game/sound/UnkMusicPathVec.h"
 #include "types.h"
 
 struct UnkObject_7100fcfcdc;
 struct UnkOwnedC_ld8d45c;
-extern char g_unk_7101cac1e0[];  // the manager's vtable
 extern char g_unk_7101cac290[];  // its base's vtable
 
 void fn_7101007cec(UnkMusicTrack_0x32* track);
@@ -23,8 +24,6 @@ struct UnkBase_0x30_7100fe1050 {
     u8 unk_0x8[0x28];
     ~UnkBase_0x30_7100fe1050() asm("fn_7100fe1050");  // fn_7100fe1050
 };
-void fn_7100d9012c(void* member);
-void fn_7100d90218(UnkOwnedC_ld8d45c* self);
 void fn_7100fd422c(char* map);
 void fn_7100fd431c(char* map);
 

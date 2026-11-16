@@ -10,7 +10,6 @@
 #include "types.h"
 
 struct UnkClone_fn_7100f6b52c;
-extern char g_unk_7101cab310[];
 void fn_7100f6b35c(base::global::CRntVector<base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>>*, const base::UnkIdValueElem<UnkClone_fn_7100f6b52c, UnkCloneElem<UnkClone_fn_7100f6b52c, 4>>&);
 template <> struct base::UnkIdValueTraits<UnkClone_fn_7100f6b52c> {
     static char* vtable() { return g_unk_7101cab310; }

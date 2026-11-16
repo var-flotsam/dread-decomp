@@ -4,6 +4,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
 #include "game/CLightManager.h"
+#include "game/CShotManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU437.h"
 #include "types.h"
@@ -11,7 +12,6 @@
 using base::global::CRntVector;
 
 extern void* g_unk_7101caa0d8[];
-extern const u32 g_unk_710164bec0[15];
 void fn_7100e0bc40(char* self, UnkListedObj* obj);
 
 // A shot (0x290 bytes), destroyed through its vtable.

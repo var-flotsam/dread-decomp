@@ -11,6 +11,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2666.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2768.h"
 #include "game/UnkTU56.h"
@@ -21,7 +22,6 @@ using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
 
 struct UnkUserDataOwner;
-extern CStrId g_unk_7172a01968[2] __attribute__((visibility("hidden")));
 
 // A value in the bag: where it is in the bag's stream, the hash of its name and its type.
 struct UnkBagValue_l079ae0 {

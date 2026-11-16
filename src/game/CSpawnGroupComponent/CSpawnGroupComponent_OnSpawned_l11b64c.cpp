@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CPickableComponent.h"
+#include "game/UnkTU432.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -18,7 +19,6 @@ using base::global::CStrId;
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 // An actor as the script calls see it: its id (+0x30) and its script (+0x1e0).
 struct UnkSpawnActor_l11b64c {

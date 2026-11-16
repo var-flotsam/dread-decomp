@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CMissionLog.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -21,10 +22,6 @@ struct UnkMissionLog {
 };
 
 // The "EventsList" and "TutosList" properties and their collection type (src/game_s7/fn_7100ae39e0.cpp).
-struct UnkEnumType;
-extern UnkEnumType g_unk_7172764a30;
-extern UnkPropertyEx<> g_unk_717275ace0;
-extern UnkPropertyEx<> g_unk_717275ad20;
 
 // The game manager's two blackboards.
 struct UnkMissionLogGameManager_b59690 {

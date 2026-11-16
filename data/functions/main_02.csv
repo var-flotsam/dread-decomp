@@ -3583,7 +3583,7 @@ address,size,name,name_source,subsystem,status
 0x710028ad84,2464,fn_710028ad84,unknown,unknown,U
 0x710028b724,5880,fn_710028b724,unknown,unknown,U
 0x710028ce1c,2900,fn_710028ce1c,unknown,unknown,U
-0x710028d970,624,fn_710028d970,unknown,unknown,U
+0x710028d970,624,fn_710028d970,unknown,unknown,O
 0x710028dbe0,2876,fn_710028dbe0,unknown,unknown,U
 0x710028e71c,524,fn_710028e71c,unknown,unknown,U
 0x710028e928,1952,fn_710028e928,unknown,unknown,U

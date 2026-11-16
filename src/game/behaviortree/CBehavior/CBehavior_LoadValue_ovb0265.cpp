@@ -161,7 +161,6 @@ fallback:
 // The same for a string of up to 256 characters.
 struct UnkEnumType;
 UnkEnumType* fn_710009ffd4();
-bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
 
 bool fn_7100395044(UnkSelf* behavior, UnkBehaviorName_ovb0265* name, CRntString* out) {
     UnkBehavior_ovb0265* self = reinterpret_cast<UnkBehavior_ovb0265*>(behavior);

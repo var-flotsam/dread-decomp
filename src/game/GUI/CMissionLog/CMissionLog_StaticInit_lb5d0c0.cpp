@@ -1,6 +1,7 @@
 // Static initialiser of GUI::CMissionLog's unit: the header statics, the reflected
 // CollectionTypeMapper<GUI::CMissionLog::TMissionLogEntries> iterator value types and the TMissionLogEntries
 // vector type, then the unit's string ids (widget names, events and captions). Names and layouts are placeholders.
+#include "game/GUI/CMissionLog.h"
 #include "../../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
@@ -42,7 +43,6 @@ void fn_7100b55788(UnkEnumType* type, const CStrId& name, const base::reflection
 extern char g_unk_7172764a28[];
 extern char g_unk_7172764a29[];
 UnkEnumType* fn_7100b5590c();
-extern UnkEnumType g_unk_7172764a30;
 void fn_7100b559e8(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_7172764ba0[];
 

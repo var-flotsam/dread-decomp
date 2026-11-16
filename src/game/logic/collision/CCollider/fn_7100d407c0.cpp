@@ -3,6 +3,7 @@
 // inserting shifts the later elements up by copying each into the next slot and releasing the
 // old one. Two array types (one Reserve each) have two Insert copies each.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU432.h"
 #include "types.h"
 
 // A reference-counted object released through vf_0x10. The count is a union member (no
@@ -111,7 +112,6 @@ __attribute__((always_inline)) static inline UnkSlotArray<Tag>* Assign(UnkSlotAr
 struct UnkTag_71007ed25c;
 struct UnkTag_710031da18;
 void fn_71007ed25c(UnkSlotArray<UnkTag_71007ed25c>* self, u32 capacity);
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* self, u32 capacity);
 
 // NON_MATCHING(minor): in the shifting loop the release call is laid out after the loop, not
 // inline as in the original.

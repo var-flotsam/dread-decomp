@@ -3,12 +3,12 @@
 #include "../../game_aca57c/UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBufferStringPool.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern void* g_unk_7101a1b750[];
 // The second name an object with an empty one gets.
 __attribute__((visibility("hidden"))) extern CStrId g_unk_7172742db0;
 

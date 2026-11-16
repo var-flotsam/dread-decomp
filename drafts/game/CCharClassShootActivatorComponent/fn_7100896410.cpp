@@ -2,7 +2,7 @@
 // ids, a default pair of -1.0 values and a flag, the SHOOT_ACTIVATOR id, the "Used" property, the tunable and
 // class registrations, the SActivatabledOnEventInfo types, the piston sound preset's id and path, and the two
 // listener sets. Names and layouts are placeholders.
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"

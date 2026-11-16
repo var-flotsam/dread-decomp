@@ -19,6 +19,7 @@
 #include "game/CChozoCommanderAIComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CIngameMenu.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
@@ -510,7 +511,6 @@ struct UnkInlineString {
     u64 field_0xb8;
     u32 field_0xc0;
 };
-extern void* g_unk_7101a1b750[];
 
 struct UnkPathIds;
 

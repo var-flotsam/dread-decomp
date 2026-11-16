@@ -3,6 +3,7 @@
 // its objects (+0x40), or, held in neither, only notifies. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU432.h"
 #include "types.h"
 
 using base::global::CRntVector;
@@ -14,7 +15,6 @@ void fn_710111bb74(UnkSpawnGroupNotify_ovb0065* self, const char* event, UnkSpaw
 template <class Tag>
 struct UnkSlotArray;
 struct UnkTag_710031da18;
-void fn_710031da18(UnkSlotArray<UnkTag_710031da18>* v, u32 capacity);
 
 // A counted reference to an object whose +0x10 is the actor.
 struct UnkSpawnRef_l11bd1c : base::UnkRefCounted {

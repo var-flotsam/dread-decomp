@@ -345,7 +345,6 @@ struct UnkSetupPartId {
     ~UnkSetupPartId() { id.~CStrId(); }
 };
 
-bool fn_7100395c38(CBlackboard::CSection* section, const void* name, CRntString* out);
 void fn_71000730a0(const char* str, const char* separators, UnkSetupStrList* out);
 void fn_7100fabd60(UnkSubareaSetupState* self, const CStrId& id, bool a, bool b);
 

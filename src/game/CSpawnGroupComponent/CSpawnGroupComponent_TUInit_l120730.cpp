@@ -4,6 +4,7 @@
 // placeholders.
 #include "base/UnkStrIdRegistry.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CSpawnGroupComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -18,8 +19,6 @@ struct UnkSpawnGroupTU {
 
 extern UnkSpawnGroupTU g_unk_7172a06798 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_7172a065d8;
-extern UnkProperty g_unk_7172a065e0;
-extern UnkProperty g_unk_7172a06608;
 extern char g_unk_7172a06630;
 extern UnkValue g_unk_7172a06638;
 extern void* g_unk_7101cb2828[];
