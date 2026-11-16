@@ -9,6 +9,7 @@
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/global/UnkBucketSet.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU63.h"
 #include "types.h"
@@ -125,13 +126,8 @@ struct UnkResourceSetNode {
     UnkResourceSetNode* next;
 };
 
-struct UnkResourceSet {
-    base::global::CRntVector<UnkResourceSetNode*> buckets;
-    u32 first_bucket;  // where an iteration starts
-    UnkResourceSetNode* first;
-    u8 pad_0x38[0x10];
-    u32 changes;  // counts removals: an iteration stops when it moves
-};
+// version counts removals: an iteration stops when it moves.
+using UnkResourceSet = base::global::UnkBucketSet<UnkResourceSetNode>;
 
 struct UnkResourceGroup {
     u8 pad_0x0[0x8];
@@ -141,7 +137,7 @@ struct UnkResourceGroup {
     CFilePathStrId directory;
 };
 static_assert(__builtin_offsetof(UnkResourceGroup, objects.first_bucket) == 0x30, "UnkResourceGroup placeholder layout");
-static_assert(__builtin_offsetof(UnkResourceGroup, objects.changes) == 0x50, "UnkResourceGroup placeholder layout");
+static_assert(__builtin_offsetof(UnkResourceGroup, objects.version) == 0x50, "UnkResourceGroup placeholder layout");
 static_assert(__builtin_offsetof(UnkResourceGroup, others) == 0x58, "UnkResourceGroup placeholder layout");
 static_assert(__builtin_offsetof(UnkResourceGroup, files) == 0xa8, "UnkResourceGroup placeholder layout");
 static_assert(__builtin_offsetof(UnkResourceGroup, directory) == 0xd0, "UnkResourceGroup placeholder layout");
@@ -154,8 +150,8 @@ struct UnkResourceSetIter {
     u32 changes;
 
     explicit UnkResourceSetIter(UnkResourceSet* s)
-        : set(s), node(s->first), bucket(s->first_bucket), changes(s->changes) {}
-    bool Changed() const { return set->changes != changes; }
+        : set(s), node(s->first_node), bucket(s->first_bucket), changes(s->version) {}
+    bool Changed() const { return set->version != changes; }
     void Next() {
         node = node->next;
         while (!node) {

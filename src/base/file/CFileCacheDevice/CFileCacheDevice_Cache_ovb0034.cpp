@@ -7,6 +7,7 @@
 
 #include "base/UnkRegistry.h"
 #include "base/global/CRntVector.h"
+#include "base/global/UnkBucketSet.h"
 #include "base/animation/CAnimationResource.h"
 #include "base/file/CFileCacheDevice.h"
 #include "base/global/UnkStringPool.h"
@@ -27,21 +28,8 @@ struct UnkCacheNode_ovb0034 {
     UnkCacheNode_ovb0034* next;
 };
 
-// The set (the layout of base/file/UnkFileCacheSet.h): bucket array, count and modulus, first
-// non-empty bucket and node, the nodes' allocator and the modification count at +0x48.
-struct UnkCacheSet_ovb0034 {
-    UnkCacheNode_ovb0034** buckets;
-    u32 count;
-    u32 modulus;
-    u8 pad_0x10[0x18];
-    u32 first;
-    u32 pad_0x2c;
-    UnkCacheNode_ovb0034* first_node;
-    base::UnkAllocator* allocator;
-    u32 alloc_flags;
-    u32 size;
-    u32 version;
-};
+// The set (base/global/UnkBucketSet.h; the layout of base/file/UnkFileCacheSet.h).
+using UnkCacheSet_ovb0034 = base::global::UnkBucketSet<UnkCacheNode_ovb0034>;
 
 void fn_71000866dc(char* set, UnkPoolIter* it);
 
@@ -65,9 +53,9 @@ struct UnkCacheFound_ovb0034 {
 // Inlined: the lookup, built in place. The out-of-range case comes first, as the original lays
 // out its blocks.
 static inline void Find(UnkCacheFound_ovb0034* it, UnkCacheSet_ovb0034* set, const UnkCacheKey_ovb0034* key) {
-    u32 n = set->count;
+    u32 n = set->buckets.count;
     u32 bucket;
-    if (!n || (bucket = (key->lo ^ key->hi) % set->modulus) >= n) {
+    if (!n || (bucket = (key->lo ^ key->hi) % set->buckets.capacity) >= n) {
         new (it) UnkCacheFound_ovb0034(nullptr, nullptr, set, -1);
         return;
     }

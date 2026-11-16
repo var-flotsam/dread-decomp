@@ -606,15 +606,15 @@ __attribute__((always_inline)) static inline void InitSet(UnkFileCacheSet* s) {
     s->buckets.field_0x14 = true;
     s->buckets.flags = 0xe;
     s->buckets.allocator = fn_7100083990();
-    s->field_0x28 = -1;
-    s->field_0x30 = nullptr;
-    s->allocator = fn_7100083990();
-    s->flags = 0xe;
-    s->count = 0;
-    s->field_0x48 = 1;
-    s->pool.Init();
-    s->pool.field_0x38 = 0;
-    s->pool.field_0x3c = false;
+    s->first_bucket = -1;
+    s->first_node = nullptr;
+    s->node_allocator = fn_7100083990();
+    s->node_flags = 0xe;
+    s->node_count = 0;
+    s->version = 1;
+    s->nodes.Init();
+    s->nodes.field_0x38 = 0;
+    s->nodes.field_0x3c = false;
 }
 
 void fn_71000a4598(UnkVersionRegistry* self_) {

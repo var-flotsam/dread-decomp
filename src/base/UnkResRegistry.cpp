@@ -14,11 +14,11 @@
 #include "base/file/UnkFileCacheSet.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkBucketSet.h"
 #include "game/UnkTU27.h"
 #include "types.h"
 
 using base::UnkAllocator;
-using base::UnkBlockPool;
 using base::global::CRntVector;
 using base::global::CFilePathStrId;
 using base::global::CStrId;
@@ -172,19 +172,10 @@ void fn_71000ec708(UnkResDescArrays* self, u32 new_capacity) {
     }
 }
 
-// The registry's hash set of entries, laid out as the string pool's (base::global::UnkPoolSetWithNodes
-// in base/global/UnkStringPoolBody.h), with 0x14-byte nodes; fn_71000ec184 sets it up.
-struct UnkResSet {
-    CRntVector<char*> buckets;
-    u32 first_bucket;
-    char* first_node;
-    UnkAllocator* node_allocator;
-    u32 node_flags;
-    u32 node_count;
-    u32 version;
-    UnkBlockPool nodes;
-};
-static_assert(sizeof(UnkResSet) == 0x90, "");
+// The registry's hash set of entries (base/global/UnkBucketSet.h) with its node pool; fn_71000ec184
+// sets it up.
+struct UnkResSetNode;
+using UnkResSet = base::global::UnkPooledBucketSet<UnkResSetNode>;
 
 // Sets the set up with `nodes` pooled nodes of 0x60 bytes and `buckets` buckets (the file cache set's
 // set-up, base/file/UnkFileCacheSet.h, with the same layout).
@@ -214,7 +205,7 @@ void fn_71000e9c78(UnkResRegistry* self) {
     self->vtable_0x8 = g_unk_7101a1b888 + 0x60;
     fn_71000e9d60(self->field_0x10, 300, 0xe);
     UnkResSet* set = &self->set;
-    new (&set->buckets) CRntVector<char*>(0xe);
+    new (&set->buckets) CRntVector<UnkResSetNode*>(0xe);
     set->first_node = nullptr;
     set->first_bucket = -1;
     set->node_allocator = fn_7100083990();
