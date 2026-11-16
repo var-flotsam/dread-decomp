@@ -42,10 +42,22 @@ struct CollectionTypeMapper {
         bool operator==(const TElementConstIterator& other) const { return m_element == other.m_element; }
     };
     // A vector's key-element iterator: the index, the element, and the pair as it is read.
-    struct TKeyElementIterator : UnkCollectionIter<typename C::value_type> {
-        using UnkCollectionIter<typename C::value_type>::UnkCollectionIter;
+    struct TKeyElementIterator : base::UnkCollectionIter<typename C::value_type> {
+        using Iter = base::UnkCollectionIter<typename C::value_type>;
+        using Iter::Iter;
+        // Reflection's copies: the position is taken, then the pair is pointed at again (refl_IterSync).
+        TKeyElementIterator() : Iter(0, nullptr) { refl_IterSync<typename C::value_type, u32>(this); }
+        TKeyElementIterator& operator=(const TKeyElementIterator& other) {
+            Iter::operator=(other);
+            return *this;
+        }
+        bool operator==(const TKeyElementIterator& other) const { return this->element == other.element; }
     };
-    struct TKeyElementConstIterator;
+    // Its const form, laid out and copied the same way.
+    struct TKeyElementConstIterator : TKeyElementIterator {
+        using TKeyElementIterator::TKeyElementIterator;
+        TKeyElementConstIterator() {}
+    };
 
     // The CType slots. Reflection creates its arrays with allocation flags 0xf.
     static void Construct(void* obj) { new (obj) C(0xf); }
@@ -58,7 +70,7 @@ struct CollectionTypeMapper {
     static void* MoveAssign(void* dst, void* src) { return &(*static_cast<C*>(dst) = std::move(*static_cast<C*>(src))); }
     static bool Equals(const void* a, const void* b) { return *static_cast<const C*>(a) == *static_cast<const C*>(b); }
     static s32 Hash(const void*) { return -1; }
-    // The collection's descriptor (specialised per type).
+    // The collection's descriptor: specialised per type, where the generated description names it.
     static const class CType& TypeOf(const void* obj);
 
     // CCollectionType's accessors.
@@ -133,6 +145,30 @@ struct CollectionMapperDescription {
     static constexpr auto set_move = &CollectionTypeMapper<C>::SetMove;
     static constexpr auto const_begin = &CollectionTypeMapper<C>::ConstBegin;
     static constexpr auto const_end = &CollectionTypeMapper<C>::ConstEnd;
+    static constexpr auto type_of = &CollectionTypeMapper<C>::TypeOf;
+};
+
+// The members that touch only a vector's header (its pointer, count and allocator), for a vector whose
+// element type is not written yet.
+template <class C>
+struct VectorHeaderMapperDescription {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto construct = &Mapper::Construct;
+    static constexpr auto move_construct = &Mapper::MoveConstruct;
+    static constexpr auto hash = &Mapper::Hash;
+    static constexpr auto count = &Mapper::Count;
+    static constexpr auto begin = &Mapper::Begin;
+    static constexpr auto type_of = &Mapper::TypeOf;
+};
+
+// The header's slots and those that index the elements, for a vector whose element's size is known though
+// what it holds is only declared (a std::unique_ptr, a vector).
+template <class C>
+struct VectorAccessMapperDescription : VectorHeaderMapperDescription<C> {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto at = &Mapper::At;
+    static constexpr auto find = &Mapper::Find;
+    static constexpr auto end = &Mapper::End;
 };
 
 // A small dictionary's mapper (base/global/CRntSmallDictionary.h): its element iterators are a vector's.
@@ -188,16 +224,24 @@ struct CollectionTypeMapper<global::CRntSmallDictionary<K, V>> {
     }
 };
 
-// The members of a small dictionary C's description that its mapper writes.
+// The members of a small dictionary C's description that touch only its header, for a dictionary whose
+// value type is not written yet.
 template <class C>
-struct SmallDictionaryMapperDescription {
+struct SmallDictionaryHeaderMapperDescription {
     using Mapper = CollectionTypeMapper<C>;
     static constexpr auto construct = &Mapper::Construct;
     static constexpr auto move_construct = &Mapper::MoveConstruct;
     static constexpr auto hash = &Mapper::Hash;
     static constexpr auto count = &Mapper::Count;
-    static constexpr auto at = &Mapper::At;
     static constexpr auto begin = &Mapper::Begin;
+    static constexpr auto type_of = &Mapper::TypeOf;
+};
+
+// And those that need its value whole.
+template <class C>
+struct SmallDictionaryMapperDescription : SmallDictionaryHeaderMapperDescription<C> {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto at = &Mapper::At;
     static constexpr auto end = &Mapper::End;
 };
 
@@ -213,7 +257,7 @@ struct SmallDictionaryKeyedMapperDescription : SmallDictionaryMapperDescription<
 };
 
 // A dictionary's mapper (base/global/CRntDictionary.h): an element iterator is at a node, null at the end.
-// The slots written so far are those that need none of its insertion, erase or clearing.
+// The slots written so far are those that need none of its insertion, erase or destruction.
 template <class K, class V>
 struct CollectionTypeMapper<global::CRntDictionary<K, V>> {
     using C = global::CRntDictionary<K, V>;
@@ -240,6 +284,7 @@ struct CollectionTypeMapper<global::CRntDictionary<K, V>> {
     static void* Find(void* collection, const void* key) {
         return static_cast<C*>(collection)->Find(*static_cast<const K*>(key));
     }
+    static void Clear(void* collection) { static_cast<C*>(collection)->Clear(); }
     static void SetCopy(void* collection, const void* key, const void* value) {
         if (V* v = static_cast<C*>(collection)->Find(*static_cast<const K*>(key)))
             *v = *static_cast<const V*>(value);
@@ -265,12 +310,14 @@ struct DictionaryMapperDescription {
     static constexpr auto count = &Mapper::Count;
     static constexpr auto begin = &Mapper::Begin;
     static constexpr auto end = &Mapper::End;
+    static constexpr auto type_of = &Mapper::TypeOf;
 };
 
-// And those that look a key up, for a dictionary whose key and value are whole.
+// And those that look a key up or destroy entries, for a dictionary whose key and value are whole.
 template <class C>
 struct DictionaryFindMapperDescription : DictionaryMapperDescription<C> {
     using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto clear = &Mapper::Clear;
     static constexpr auto find = &Mapper::Find;
     static constexpr auto set_copy = &Mapper::SetCopy;
     static constexpr auto set_move = &Mapper::SetMove;

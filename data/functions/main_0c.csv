@@ -380,7 +380,7 @@ address,size,name,name_source,subsystem,status
 0x7100c0b22c,8,fn_7100c0b22c,unknown,unknown,O
 0x7100c0b234,80,fn_7100c0b234,unknown,unknown,O
 0x7100c0b284,60,fn_7100c0b284,unknown,unknown,O
-0x7100c0b2c0,8,fn_7100c0b2c0,unknown,unknown,O
+0x7100c0b2c0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::Count,reflection,engine/reflection,O
 0x7100c0b2c8,8,fn_7100c0b2c8,unknown,unknown,O
 0x7100c0b2d0,16,fn_7100c0b2d0,unknown,unknown,O
 0x7100c0b2e0,16,fn_7100c0b2e0,unknown,unknown,O
@@ -390,11 +390,11 @@ address,size,name,name_source,subsystem,status
 0x7100c0b37c,52,fn_7100c0b37c,unknown,unknown,O
 0x7100c0b3b0,52,fn_7100c0b3b0,unknown,unknown,O
 0x7100c0b3e4,136,fn_7100c0b3e4,unknown,unknown,U
-0x7100c0b46c,8,fn_7100c0b46c,unknown,unknown,O
-0x7100c0b474,12,fn_7100c0b474,unknown,unknown,O
-0x7100c0b480,64,fn_7100c0b480,unknown,unknown,O
+0x7100c0b46c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::Hash,reflection,engine/reflection,O
+0x7100c0b474,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::TypeOf,reflection,engine/reflection,O
+0x7100c0b480,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::Construct,reflection,engine/reflection,O
 0x7100c0b4c0,4,fn_7100c0b4c0,unknown,unknown,O
-0x7100c0b4c4,64,fn_7100c0b4c4,unknown,unknown,O
+0x7100c0b4c4,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::MoveConstruct,reflection,engine/reflection,O
 0x7100c0b504,60,fn_7100c0b504,unknown,unknown,O
 0x7100c0b540,48,fn_7100c0b540,unknown,unknown,O
 0x7100c0b570,76,fn_7100c0b570,unknown,unknown,O
@@ -403,7 +403,7 @@ address,size,name,name_source,subsystem,status
 0x7100c0b98c,536,fn_7100c0b98c,unknown,unknown,O
 0x7100c0bba4,536,fn_7100c0bba4,unknown,unknown,O
 0x7100c0bdbc,472,fn_7100c0bdbc,unknown,unknown,O
-0x7100c0bf94,12,fn_7100c0bf94,unknown,unknown,O
+0x7100c0bf94,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorRailSegment>>::Begin,reflection,engine/reflection,O
 0x7100c0bfa0,20,fn_7100c0bfa0,unknown,unknown,O
 0x7100c0bfb4,168,fn_7100c0bfb4,unknown,unknown,O
 0x7100c0c05c,176,fn_7100c0c05c,unknown,unknown,O

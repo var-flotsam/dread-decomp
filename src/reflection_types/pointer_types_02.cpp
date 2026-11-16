@@ -337,27 +337,9 @@ void fn_71009c262c();
 void fn_71009fc424();
 void fn_71009fc47c();
 void fn_71009fc488();
-void fn_71009fc498();
-void fn_71009fc4ac();
-void fn_71009fc4b4();
-void fn_71009fc4c8();
-void fn_71009fc4d0();
-void fn_71009fc4dc();
-void fn_71009fc4e8();
-void fn_71009fc4ec();
-void fn_71009fc500();
 void fn_71009fc67c();
 void fn_71009fc6d4();
 void fn_71009fc6e0();
-void fn_71009fc6f0();
-void fn_71009fc704();
-void fn_71009fc70c();
-void fn_71009fc720();
-void fn_71009fc728();
-void fn_71009fc734();
-void fn_71009fc740();
-void fn_71009fc744();
-void fn_71009fc758();
 void fn_71009fc8d8();
 void fn_71009fc914();
 void fn_71009fc918();
@@ -394,27 +376,9 @@ void fn_7100a339e8();
 void fn_7100a33be0();
 void fn_7100a33c1c();
 void fn_7100a33c20();
-void fn_7100a33c5c();
-void fn_7100a33c70();
-void fn_7100a33c78();
-void fn_7100a33c8c();
-void fn_7100a33c9c();
-void fn_7100a33cc4();
-void fn_7100a33cec();
-void fn_7100a33d04();
-void fn_7100a33d5c();
 void fn_7100a33f20();
 void fn_7100a33f5c();
 void fn_7100a33f60();
-void fn_7100a33f9c();
-void fn_7100a33fb0();
-void fn_7100a33fb8();
-void fn_7100a33fcc();
-void fn_7100a33fdc();
-void fn_7100a34004();
-void fn_7100a3402c();
-void fn_7100a34044();
-void fn_7100a3409c();
 void fn_7100a34260();
 void fn_7100a342c0();
 void fn_7100a342cc();
@@ -424,27 +388,9 @@ void fn_7100a34530();
 void fn_7100a34728();
 void fn_7100a34764();
 void fn_7100a34768();
-void fn_7100a347a4();
-void fn_7100a347b8();
-void fn_7100a347c0();
-void fn_7100a347d4();
-void fn_7100a347e4();
-void fn_7100a3480c();
-void fn_7100a34834();
-void fn_7100a3484c();
-void fn_7100a348a4();
 void fn_7100a34a68();
 void fn_7100a34aa4();
 void fn_7100a34aa8();
-void fn_7100a34ae4();
-void fn_7100a34af8();
-void fn_7100a34b00();
-void fn_7100a34b14();
-void fn_7100a34b24();
-void fn_7100a34b4c();
-void fn_7100a34b74();
-void fn_7100a34b8c();
-void fn_7100a34be4();
 void fn_7100a398e0();
 void fn_7100a39940();
 void fn_7100a3994c();
@@ -478,27 +424,9 @@ void fn_7100a3a548();
 void fn_7100a56164();
 void fn_7100a561bc();
 void fn_7100a561c8();
-void fn_7100a561d8();
-void fn_7100a561ec();
-void fn_7100a561f4();
-void fn_7100a56208();
-void fn_7100a56210();
-void fn_7100a5621c();
-void fn_7100a56228();
-void fn_7100a5622c();
-void fn_7100a56240();
 void fn_7100a563bc();
 void fn_7100a56414();
 void fn_7100a56420();
-void fn_7100a56430();
-void fn_7100a56444();
-void fn_7100a5644c();
-void fn_7100a56460();
-void fn_7100a56468();
-void fn_7100a56474();
-void fn_7100a56480();
-void fn_7100a56484();
-void fn_7100a56498();
 void fn_7100a56618();
 void fn_7100a56654();
 void fn_7100a56658();
@@ -529,27 +457,9 @@ void fn_7100a62224();
 void fn_7100a62418();
 void fn_7100a62470();
 void fn_7100a6247c();
-void fn_7100a6248c();
-void fn_7100a624a0();
-void fn_7100a624a8();
-void fn_7100a624bc();
-void fn_7100a624c4();
-void fn_7100a624d0();
-void fn_7100a624dc();
-void fn_7100a624e0();
-void fn_7100a624f4();
 void fn_7100a62670();
 void fn_7100a626c8();
 void fn_7100a626d4();
-void fn_7100a626e4();
-void fn_7100a626f8();
-void fn_7100a62700();
-void fn_7100a62714();
-void fn_7100a6271c();
-void fn_7100a62728();
-void fn_7100a62734();
-void fn_7100a62738();
-void fn_7100a6274c();
 void fn_7100a628cc();
 void fn_7100a62908();
 void fn_7100a6290c();
@@ -712,27 +622,9 @@ void fn_7100ada13c();
 void fn_7100ada334();
 void fn_7100ada370();
 void fn_7100ada374();
-void fn_7100ada3b0();
-void fn_7100ada3c4();
-void fn_7100ada3cc();
-void fn_7100ada3e0();
-void fn_7100ada3f0();
-void fn_7100ada418();
-void fn_7100ada440();
-void fn_7100ada458();
-void fn_7100ada4b0();
 void fn_7100ada674();
 void fn_7100ada6b0();
 void fn_7100ada6b4();
-void fn_7100ada6f0();
-void fn_7100ada704();
-void fn_7100ada70c();
-void fn_7100ada720();
-void fn_7100ada730();
-void fn_7100ada758();
-void fn_7100ada780();
-void fn_7100ada798();
-void fn_7100ada7f0();
 void fn_7100adc77c();
 void fn_7100adc7b0();
 void fn_7100adc818();
@@ -790,27 +682,9 @@ void fn_7100b07aa0();
 void fn_7100b07c98();
 void fn_7100b07cd4();
 void fn_7100b07cd8();
-void fn_7100b07d14();
-void fn_7100b07d28();
-void fn_7100b07d30();
-void fn_7100b07d44();
-void fn_7100b07d54();
-void fn_7100b07d7c();
-void fn_7100b07da4();
-void fn_7100b07dbc();
-void fn_7100b07e14();
 void fn_7100b07fd8();
 void fn_7100b08014();
 void fn_7100b08018();
-void fn_7100b08054();
-void fn_7100b08068();
-void fn_7100b08070();
-void fn_7100b08084();
-void fn_7100b08094();
-void fn_7100b080bc();
-void fn_7100b080e4();
-void fn_7100b080fc();
-void fn_7100b08154();
 void fn_7100b085c0();
 void fn_7100b08620();
 void fn_7100b0862c();
@@ -823,27 +697,9 @@ void fn_7100b0bf24();
 void fn_7100b0c11c();
 void fn_7100b0c158();
 void fn_7100b0c15c();
-void fn_7100b0c198();
-void fn_7100b0c1ac();
-void fn_7100b0c1b4();
-void fn_7100b0c1c8();
-void fn_7100b0c1d8();
-void fn_7100b0c200();
-void fn_7100b0c228();
-void fn_7100b0c240();
-void fn_7100b0c298();
 void fn_7100b0c45c();
 void fn_7100b0c498();
 void fn_7100b0c49c();
-void fn_7100b0c4d8();
-void fn_7100b0c4ec();
-void fn_7100b0c4f4();
-void fn_7100b0c508();
-void fn_7100b0c518();
-void fn_7100b0c540();
-void fn_7100b0c568();
-void fn_7100b0c580();
-void fn_7100b0c5d8();
 void fn_7100b132cc();
 void fn_7100b13324();
 void fn_7100b13330();
@@ -853,27 +709,9 @@ void fn_7100b13588();
 void fn_7100b13780();
 void fn_7100b137bc();
 void fn_7100b137c0();
-void fn_7100b137fc();
-void fn_7100b13810();
-void fn_7100b13818();
-void fn_7100b1382c();
-void fn_7100b1383c();
-void fn_7100b13864();
-void fn_7100b1388c();
-void fn_7100b138a4();
-void fn_7100b138fc();
 void fn_7100b13ac0();
 void fn_7100b13afc();
 void fn_7100b13b00();
-void fn_7100b13b3c();
-void fn_7100b13b50();
-void fn_7100b13b58();
-void fn_7100b13b6c();
-void fn_7100b13b7c();
-void fn_7100b13ba4();
-void fn_7100b13bcc();
-void fn_7100b13be4();
-void fn_7100b13c3c();
 void fn_7100b13e00();
 void fn_7100b13e60();
 void fn_7100b13e6c();
@@ -1060,27 +898,9 @@ void fn_7100b77c4c();
 void fn_7100b77e44();
 void fn_7100b77e80();
 void fn_7100b77e84();
-void fn_7100b77ec0();
-void fn_7100b77ed4();
-void fn_7100b77edc();
-void fn_7100b77ef0();
-void fn_7100b77f00();
-void fn_7100b77f28();
-void fn_7100b77f50();
-void fn_7100b77f68();
-void fn_7100b77fc0();
 void fn_7100b78184();
 void fn_7100b781c0();
 void fn_7100b781c4();
-void fn_7100b78200();
-void fn_7100b78214();
-void fn_7100b7821c();
-void fn_7100b78230();
-void fn_7100b78240();
-void fn_7100b78268();
-void fn_7100b78290();
-void fn_7100b782a8();
-void fn_7100b78300();
 void fn_7100b7ed40();
 void fn_7100b7eda0();
 void fn_7100b7edac();
@@ -1126,27 +946,9 @@ void fn_7100b82fb0();
 void fn_7100b831a8();
 void fn_7100b831e4();
 void fn_7100b831e8();
-void fn_7100b83224();
-void fn_7100b83238();
-void fn_7100b83240();
-void fn_7100b83254();
-void fn_7100b83264();
-void fn_7100b8328c();
-void fn_7100b832b4();
-void fn_7100b832cc();
-void fn_7100b83324();
 void fn_7100b834e8();
 void fn_7100b83524();
 void fn_7100b83528();
-void fn_7100b83564();
-void fn_7100b83578();
-void fn_7100b83580();
-void fn_7100b83594();
-void fn_7100b835a4();
-void fn_7100b835cc();
-void fn_7100b835f4();
-void fn_7100b8360c();
-void fn_7100b83664();
 void fn_7100c04f94();
 void fn_7100c04fd0();
 void fn_7100c04fd4();
@@ -1426,27 +1228,9 @@ void fn_7100d3e1b0();
 void fn_7100d3e3a8();
 void fn_7100d3e3e4();
 void fn_7100d3e3e8();
-void fn_7100d3e424();
-void fn_7100d3e438();
-void fn_7100d3e440();
-void fn_7100d3e454();
-void fn_7100d3e464();
-void fn_7100d3e48c();
-void fn_7100d3e4b4();
-void fn_7100d3e4cc();
-void fn_7100d3e524();
 void fn_7100d3e6e8();
 void fn_7100d3e724();
 void fn_7100d3e728();
-void fn_7100d3e764();
-void fn_7100d3e778();
-void fn_7100d3e780();
-void fn_7100d3e794();
-void fn_7100d3e7a4();
-void fn_7100d3e7cc();
-void fn_7100d3e7f4();
-void fn_7100d3e80c();
-void fn_7100d3e864();
 void fn_7100d3ea28();
 void fn_7100d3ea88();
 void fn_7100d3ea94();
@@ -1606,27 +1390,9 @@ void fn_7100d7ef60();
 void fn_7100d7f158();
 void fn_7100d7f194();
 void fn_7100d7f198();
-void fn_7100d7f1d4();
-void fn_7100d7f1e8();
-void fn_7100d7f1f0();
-void fn_7100d7f204();
-void fn_7100d7f214();
-void fn_7100d7f23c();
-void fn_7100d7f264();
-void fn_7100d7f27c();
-void fn_7100d7f2d4();
 void fn_7100d7f498();
 void fn_7100d7f4d4();
 void fn_7100d7f4d8();
-void fn_7100d7f514();
-void fn_7100d7f528();
-void fn_7100d7f530();
-void fn_7100d7f544();
-void fn_7100d7f554();
-void fn_7100d7f57c();
-void fn_7100d7f5a4();
-void fn_7100d7f5bc();
-void fn_7100d7f614();
 void fn_7100d7f7d4();
 void fn_7100d7f82c();
 void fn_7100d7f838();
@@ -1742,7 +1508,9 @@ class CLightInfo;
 class CLightManager;
 class CLogicCamera;
 class CScenario;
+class CShotLaunchConfig;
 class CShotManager;
+class CTriggerLogicAction;
 class DoorStateInfo;
 class SDoorInfo;
 class SWorldGraphNode;
@@ -1770,7 +1538,6 @@ namespace base::global { template <class> class CWeakPtr; }
 namespace base::spatial { class CAABox2D; }
 namespace game::logic::collision { class CCollider; }
 namespace game::logic::collision { class CShape; }
-namespace game::logic::collision { class CShapeconst; }
 namespace gameeditor { class CGameModelQueryBoard; }
 namespace gameeditor { class CGameModelRoot; }
 namespace gameeditor { class TPropertyId; }
@@ -2312,21 +2079,16 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71009bf51c> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71009c229c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71009bf51c>();
+#include <memory>
 struct UnkRefl_fn_71009fc2bc;
 struct UnkRefl_fn_71009fabc0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71009fc2bc> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71009fabc0>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>>::TElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71009fc2bc> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>>::TElementIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71009fc4c8;
-    static constexpr UnkFn copy_construct = &fn_71009fc4d0;
-    static constexpr UnkFn move_construct = &fn_71009fc4dc;
-    static constexpr UnkFn destroy = &fn_71009fc4e8;
-    static constexpr UnkFn copy_assign = &fn_71009fc4ec;
-    static constexpr UnkFn move_assign = &fn_71009fc500;
-    static constexpr UnkFn equals = &fn_71009fc498;
-    static constexpr UnkFn hash = &fn_71009fc4ac;
-    static constexpr UnkFn type_of = &fn_71009fc4b4;
     static constexpr UnkFn get = &fn_71009fc424;
     static constexpr UnkFn set = &fn_71009fc47c;
     static constexpr UnkFn increment = &fn_71009fc488;
@@ -2339,21 +2101,16 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_71009fabc0> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71009fc2bc*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71009fabc0>();
+#include <memory>
 struct UnkRefl_fn_71009fc514;
 struct UnkRefl_fn_71009fac9c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71009fc514> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71009fac9c>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>>::TElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_71009fc514> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShotLaunchConfig>>>::TElementConstIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_71009fc720;
-    static constexpr UnkFn copy_construct = &fn_71009fc728;
-    static constexpr UnkFn move_construct = &fn_71009fc734;
-    static constexpr UnkFn destroy = &fn_71009fc740;
-    static constexpr UnkFn copy_assign = &fn_71009fc744;
-    static constexpr UnkFn move_assign = &fn_71009fc758;
-    static constexpr UnkFn equals = &fn_71009fc6f0;
-    static constexpr UnkFn hash = &fn_71009fc704;
-    static constexpr UnkFn type_of = &fn_71009fc70c;
     static constexpr UnkFn get = &fn_71009fc67c;
     static constexpr UnkFn set = &fn_71009fc6d4;
     static constexpr UnkFn increment = &fn_71009fc6e0;
@@ -2486,18 +2243,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100a33a74;
 struct UnkRefl_fn_7100a31a38;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a33a74> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100a31a38>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a33a74> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100a33c8c;
-    static constexpr UnkFn copy_construct = &fn_7100a33c9c;
-    static constexpr UnkFn move_construct = &fn_7100a33cc4;
-    static constexpr UnkFn destroy = &fn_7100a33cec;
-    static constexpr UnkFn copy_assign = &fn_7100a33d04;
-    static constexpr UnkFn move_assign = &fn_7100a33d5c;
-    static constexpr UnkFn equals = &fn_7100a33c5c;
-    static constexpr UnkFn hash = &fn_7100a33c70;
-    static constexpr UnkFn type_of = &fn_7100a33c78;
     static constexpr UnkFn get = &fn_7100a33be0;
     static constexpr UnkFn set = &fn_7100a33c1c;
     static constexpr UnkFn increment = &fn_7100a33c20;
@@ -2513,18 +2264,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100a33db4;
 struct UnkRefl_fn_7100a3201c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a33db4> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100a3201c>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a33db4> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<EShinesparkTravellingDirection>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100a33fcc;
-    static constexpr UnkFn copy_construct = &fn_7100a33fdc;
-    static constexpr UnkFn move_construct = &fn_7100a34004;
-    static constexpr UnkFn destroy = &fn_7100a3402c;
-    static constexpr UnkFn copy_assign = &fn_7100a34044;
-    static constexpr UnkFn move_assign = &fn_7100a3409c;
-    static constexpr UnkFn equals = &fn_7100a33f9c;
-    static constexpr UnkFn hash = &fn_7100a33fb0;
-    static constexpr UnkFn type_of = &fn_7100a33fb8;
     static constexpr UnkFn get = &fn_7100a33f20;
     static constexpr UnkFn set = &fn_7100a33f5c;
     static constexpr UnkFn increment = &fn_7100a33f60;
@@ -2582,18 +2327,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100a345bc;
 struct UnkRefl_fn_7100a329ac;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a345bc> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100a329ac>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a345bc> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100a347d4;
-    static constexpr UnkFn copy_construct = &fn_7100a347e4;
-    static constexpr UnkFn move_construct = &fn_7100a3480c;
-    static constexpr UnkFn destroy = &fn_7100a34834;
-    static constexpr UnkFn copy_assign = &fn_7100a3484c;
-    static constexpr UnkFn move_assign = &fn_7100a348a4;
-    static constexpr UnkFn equals = &fn_7100a347a4;
-    static constexpr UnkFn hash = &fn_7100a347b8;
-    static constexpr UnkFn type_of = &fn_7100a347c0;
     static constexpr UnkFn get = &fn_7100a34728;
     static constexpr UnkFn set = &fn_7100a34764;
     static constexpr UnkFn increment = &fn_7100a34768;
@@ -2609,18 +2348,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100a348fc;
 struct UnkRefl_fn_7100a32f90;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a348fc> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100a32f90>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a348fc> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<ECoolShinesparkSituation>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100a34b14;
-    static constexpr UnkFn copy_construct = &fn_7100a34b24;
-    static constexpr UnkFn move_construct = &fn_7100a34b4c;
-    static constexpr UnkFn destroy = &fn_7100a34b74;
-    static constexpr UnkFn copy_assign = &fn_7100a34b8c;
-    static constexpr UnkFn move_assign = &fn_7100a34be4;
-    static constexpr UnkFn equals = &fn_7100a34ae4;
-    static constexpr UnkFn hash = &fn_7100a34af8;
-    static constexpr UnkFn type_of = &fn_7100a34b00;
     static constexpr UnkFn get = &fn_7100a34a68;
     static constexpr UnkFn set = &fn_7100a34aa4;
     static constexpr UnkFn increment = &fn_7100a34aa8;
@@ -2729,21 +2462,16 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100a38bf4> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100a3a1d8*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100a38bf4>();
+#include <memory>
 struct UnkRefl_fn_7100a55ffc;
 struct UnkRefl_fn_7100a54b44;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a55ffc> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100a54b44>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::TElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a55ffc> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::TElementIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100a56208;
-    static constexpr UnkFn copy_construct = &fn_7100a56210;
-    static constexpr UnkFn move_construct = &fn_7100a5621c;
-    static constexpr UnkFn destroy = &fn_7100a56228;
-    static constexpr UnkFn copy_assign = &fn_7100a5622c;
-    static constexpr UnkFn move_assign = &fn_7100a56240;
-    static constexpr UnkFn equals = &fn_7100a561d8;
-    static constexpr UnkFn hash = &fn_7100a561ec;
-    static constexpr UnkFn type_of = &fn_7100a561f4;
     static constexpr UnkFn get = &fn_7100a56164;
     static constexpr UnkFn set = &fn_7100a561bc;
     static constexpr UnkFn increment = &fn_7100a561c8;
@@ -2756,21 +2484,16 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100a54b44> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100a55ffc*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100a54b44>();
+#include <memory>
 struct UnkRefl_fn_7100a56254;
 struct UnkRefl_fn_7100a54c20;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a56254> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100a54c20>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::TElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a56254> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::TElementConstIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100a56460;
-    static constexpr UnkFn copy_construct = &fn_7100a56468;
-    static constexpr UnkFn move_construct = &fn_7100a56474;
-    static constexpr UnkFn destroy = &fn_7100a56480;
-    static constexpr UnkFn copy_assign = &fn_7100a56484;
-    static constexpr UnkFn move_assign = &fn_7100a56498;
-    static constexpr UnkFn equals = &fn_7100a56430;
-    static constexpr UnkFn hash = &fn_7100a56444;
-    static constexpr UnkFn type_of = &fn_7100a5644c;
     static constexpr UnkFn get = &fn_7100a563bc;
     static constexpr UnkFn set = &fn_7100a56414;
     static constexpr UnkFn increment = &fn_7100a56420;
@@ -2858,21 +2581,16 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100a5a5c4> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100a6204c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100a5a5c4>();
+#include <memory>
 struct UnkRefl_fn_7100a622b0;
 struct UnkRefl_fn_7100a5a6a0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a622b0> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100a5a6a0>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::TElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a622b0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::TElementIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100a624bc;
-    static constexpr UnkFn copy_construct = &fn_7100a624c4;
-    static constexpr UnkFn move_construct = &fn_7100a624d0;
-    static constexpr UnkFn destroy = &fn_7100a624dc;
-    static constexpr UnkFn copy_assign = &fn_7100a624e0;
-    static constexpr UnkFn move_assign = &fn_7100a624f4;
-    static constexpr UnkFn equals = &fn_7100a6248c;
-    static constexpr UnkFn hash = &fn_7100a624a0;
-    static constexpr UnkFn type_of = &fn_7100a624a8;
     static constexpr UnkFn get = &fn_7100a62418;
     static constexpr UnkFn set = &fn_7100a62470;
     static constexpr UnkFn increment = &fn_7100a6247c;
@@ -2885,21 +2603,16 @@ struct base::reflection::UnkReflTypeGetter<UnkRefl_fn_7100a5a6a0> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100a622b0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100a5a6a0>();
+#include <memory>
 struct UnkRefl_fn_7100a62508;
 struct UnkRefl_fn_7100a5a77c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a62508> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100a5a77c>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::TElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100a62508> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::TElementConstIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100a62714;
-    static constexpr UnkFn copy_construct = &fn_7100a6271c;
-    static constexpr UnkFn move_construct = &fn_7100a62728;
-    static constexpr UnkFn destroy = &fn_7100a62734;
-    static constexpr UnkFn copy_assign = &fn_7100a62738;
-    static constexpr UnkFn move_assign = &fn_7100a6274c;
-    static constexpr UnkFn equals = &fn_7100a626e4;
-    static constexpr UnkFn hash = &fn_7100a626f8;
-    static constexpr UnkFn type_of = &fn_7100a62700;
     static constexpr UnkFn get = &fn_7100a62670;
     static constexpr UnkFn set = &fn_7100a626c8;
     static constexpr UnkFn increment = &fn_7100a626d4;
@@ -3515,18 +3228,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ada1c8;
 struct UnkRefl_fn_7100ad740c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ada1c8> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100ad740c>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ada1c8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ada3e0;
-    static constexpr UnkFn copy_construct = &fn_7100ada3f0;
-    static constexpr UnkFn move_construct = &fn_7100ada418;
-    static constexpr UnkFn destroy = &fn_7100ada440;
-    static constexpr UnkFn copy_assign = &fn_7100ada458;
-    static constexpr UnkFn move_assign = &fn_7100ada4b0;
-    static constexpr UnkFn equals = &fn_7100ada3b0;
-    static constexpr UnkFn hash = &fn_7100ada3c4;
-    static constexpr UnkFn type_of = &fn_7100ada3cc;
     static constexpr UnkFn get = &fn_7100ada334;
     static constexpr UnkFn set = &fn_7100ada370;
     static constexpr UnkFn increment = &fn_7100ada374;
@@ -3542,18 +3249,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100ada508;
 struct UnkRefl_fn_7100ad79f0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ada508> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100ad79f0>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100ada508> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<gameeditor::EPersistenceTarget>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100ada720;
-    static constexpr UnkFn copy_construct = &fn_7100ada730;
-    static constexpr UnkFn move_construct = &fn_7100ada758;
-    static constexpr UnkFn destroy = &fn_7100ada780;
-    static constexpr UnkFn copy_assign = &fn_7100ada798;
-    static constexpr UnkFn move_assign = &fn_7100ada7f0;
-    static constexpr UnkFn equals = &fn_7100ada6f0;
-    static constexpr UnkFn hash = &fn_7100ada704;
-    static constexpr UnkFn type_of = &fn_7100ada70c;
     static constexpr UnkFn get = &fn_7100ada674;
     static constexpr UnkFn set = &fn_7100ada6b0;
     static constexpr UnkFn increment = &fn_7100ada6b4;
@@ -3776,18 +3477,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b07b2c;
 struct UnkRefl_fn_7100b05c0c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b07b2c> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b05c0c>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b07b2c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b07d44;
-    static constexpr UnkFn copy_construct = &fn_7100b07d54;
-    static constexpr UnkFn move_construct = &fn_7100b07d7c;
-    static constexpr UnkFn destroy = &fn_7100b07da4;
-    static constexpr UnkFn copy_assign = &fn_7100b07dbc;
-    static constexpr UnkFn move_assign = &fn_7100b07e14;
-    static constexpr UnkFn equals = &fn_7100b07d14;
-    static constexpr UnkFn hash = &fn_7100b07d28;
-    static constexpr UnkFn type_of = &fn_7100b07d30;
     static constexpr UnkFn get = &fn_7100b07c98;
     static constexpr UnkFn set = &fn_7100b07cd4;
     static constexpr UnkFn increment = &fn_7100b07cd8;
@@ -3803,18 +3498,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b07e6c;
 struct UnkRefl_fn_7100b061f0;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b07e6c> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b061f0>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b07e6c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectDef*>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b08084;
-    static constexpr UnkFn copy_construct = &fn_7100b08094;
-    static constexpr UnkFn move_construct = &fn_7100b080bc;
-    static constexpr UnkFn destroy = &fn_7100b080e4;
-    static constexpr UnkFn copy_assign = &fn_7100b080fc;
-    static constexpr UnkFn move_assign = &fn_7100b08154;
-    static constexpr UnkFn equals = &fn_7100b08054;
-    static constexpr UnkFn hash = &fn_7100b08068;
-    static constexpr UnkFn type_of = &fn_7100b08070;
     static constexpr UnkFn get = &fn_7100b07fd8;
     static constexpr UnkFn set = &fn_7100b08014;
     static constexpr UnkFn increment = &fn_7100b08018;
@@ -3893,18 +3582,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b0bfb0;
 struct UnkRefl_fn_7100b0b068;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b0bfb0> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b0b068>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b0bfb0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b0c1c8;
-    static constexpr UnkFn copy_construct = &fn_7100b0c1d8;
-    static constexpr UnkFn move_construct = &fn_7100b0c200;
-    static constexpr UnkFn destroy = &fn_7100b0c228;
-    static constexpr UnkFn copy_assign = &fn_7100b0c240;
-    static constexpr UnkFn move_assign = &fn_7100b0c298;
-    static constexpr UnkFn equals = &fn_7100b0c198;
-    static constexpr UnkFn hash = &fn_7100b0c1ac;
-    static constexpr UnkFn type_of = &fn_7100b0c1b4;
     static constexpr UnkFn get = &fn_7100b0c11c;
     static constexpr UnkFn set = &fn_7100b0c158;
     static constexpr UnkFn increment = &fn_7100b0c15c;
@@ -3920,18 +3603,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b0c2f0;
 struct UnkRefl_fn_7100b0b64c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b0c2f0> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b0b64c>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b0c2f0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectStateDef*>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b0c508;
-    static constexpr UnkFn copy_construct = &fn_7100b0c518;
-    static constexpr UnkFn move_construct = &fn_7100b0c540;
-    static constexpr UnkFn destroy = &fn_7100b0c568;
-    static constexpr UnkFn copy_assign = &fn_7100b0c580;
-    static constexpr UnkFn move_assign = &fn_7100b0c5d8;
-    static constexpr UnkFn equals = &fn_7100b0c4d8;
-    static constexpr UnkFn hash = &fn_7100b0c4ec;
-    static constexpr UnkFn type_of = &fn_7100b0c4f4;
     static constexpr UnkFn get = &fn_7100b0c45c;
     static constexpr UnkFn set = &fn_7100b0c498;
     static constexpr UnkFn increment = &fn_7100b0c49c;
@@ -3989,18 +3666,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b13614;
 struct UnkRefl_fn_7100b0e450;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b13614> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b0e450>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b13614> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b1382c;
-    static constexpr UnkFn copy_construct = &fn_7100b1383c;
-    static constexpr UnkFn move_construct = &fn_7100b13864;
-    static constexpr UnkFn destroy = &fn_7100b1388c;
-    static constexpr UnkFn copy_assign = &fn_7100b138a4;
-    static constexpr UnkFn move_assign = &fn_7100b138fc;
-    static constexpr UnkFn equals = &fn_7100b137fc;
-    static constexpr UnkFn hash = &fn_7100b13810;
-    static constexpr UnkFn type_of = &fn_7100b13818;
     static constexpr UnkFn get = &fn_7100b13780;
     static constexpr UnkFn set = &fn_7100b137bc;
     static constexpr UnkFn increment = &fn_7100b137c0;
@@ -4016,18 +3687,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b13954;
 struct UnkRefl_fn_7100b0ea34;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b13954> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b0ea34>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b13954> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b13b6c;
-    static constexpr UnkFn copy_construct = &fn_7100b13b7c;
-    static constexpr UnkFn move_construct = &fn_7100b13ba4;
-    static constexpr UnkFn destroy = &fn_7100b13bcc;
-    static constexpr UnkFn copy_assign = &fn_7100b13be4;
-    static constexpr UnkFn move_assign = &fn_7100b13c3c;
-    static constexpr UnkFn equals = &fn_7100b13b3c;
-    static constexpr UnkFn hash = &fn_7100b13b50;
-    static constexpr UnkFn type_of = &fn_7100b13b58;
     static constexpr UnkFn get = &fn_7100b13ac0;
     static constexpr UnkFn set = &fn_7100b13afc;
     static constexpr UnkFn increment = &fn_7100b13b00;
@@ -4526,18 +4191,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b77cd8;
 struct UnkRefl_fn_7100b76a4c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b77cd8> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b76a4c>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b77cd8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b77ef0;
-    static constexpr UnkFn copy_construct = &fn_7100b77f00;
-    static constexpr UnkFn move_construct = &fn_7100b77f28;
-    static constexpr UnkFn destroy = &fn_7100b77f50;
-    static constexpr UnkFn copy_assign = &fn_7100b77f68;
-    static constexpr UnkFn move_assign = &fn_7100b77fc0;
-    static constexpr UnkFn equals = &fn_7100b77ec0;
-    static constexpr UnkFn hash = &fn_7100b77ed4;
-    static constexpr UnkFn type_of = &fn_7100b77edc;
     static constexpr UnkFn get = &fn_7100b77e44;
     static constexpr UnkFn set = &fn_7100b77e80;
     static constexpr UnkFn increment = &fn_7100b77e84;
@@ -4553,18 +4212,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b78018;
 struct UnkRefl_fn_7100b77030;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b78018> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b77030>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b78018> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSkin*>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b78230;
-    static constexpr UnkFn copy_construct = &fn_7100b78240;
-    static constexpr UnkFn move_construct = &fn_7100b78268;
-    static constexpr UnkFn destroy = &fn_7100b78290;
-    static constexpr UnkFn copy_assign = &fn_7100b782a8;
-    static constexpr UnkFn move_assign = &fn_7100b78300;
-    static constexpr UnkFn equals = &fn_7100b78200;
-    static constexpr UnkFn hash = &fn_7100b78214;
-    static constexpr UnkFn type_of = &fn_7100b7821c;
     static constexpr UnkFn get = &fn_7100b78184;
     static constexpr UnkFn set = &fn_7100b781c0;
     static constexpr UnkFn increment = &fn_7100b781c4;
@@ -4760,18 +4413,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b8303c;
 struct UnkRefl_fn_7100b82200;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b8303c> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b82200>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b8303c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b83254;
-    static constexpr UnkFn copy_construct = &fn_7100b83264;
-    static constexpr UnkFn move_construct = &fn_7100b8328c;
-    static constexpr UnkFn destroy = &fn_7100b832b4;
-    static constexpr UnkFn copy_assign = &fn_7100b832cc;
-    static constexpr UnkFn move_assign = &fn_7100b83324;
-    static constexpr UnkFn equals = &fn_7100b83224;
-    static constexpr UnkFn hash = &fn_7100b83238;
-    static constexpr UnkFn type_of = &fn_7100b83240;
     static constexpr UnkFn get = &fn_7100b831a8;
     static constexpr UnkFn set = &fn_7100b831e4;
     static constexpr UnkFn increment = &fn_7100b831e8;
@@ -4787,18 +4434,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100b8337c;
 struct UnkRefl_fn_7100b827e4;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b8337c> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100b827e4>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100b8337c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CSpriteSheetItem*>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100b83594;
-    static constexpr UnkFn copy_construct = &fn_7100b835a4;
-    static constexpr UnkFn move_construct = &fn_7100b835cc;
-    static constexpr UnkFn destroy = &fn_7100b835f4;
-    static constexpr UnkFn copy_assign = &fn_7100b8360c;
-    static constexpr UnkFn move_assign = &fn_7100b83664;
-    static constexpr UnkFn equals = &fn_7100b83564;
-    static constexpr UnkFn hash = &fn_7100b83578;
-    static constexpr UnkFn type_of = &fn_7100b83580;
     static constexpr UnkFn get = &fn_7100b834e8;
     static constexpr UnkFn set = &fn_7100b83524;
     static constexpr UnkFn increment = &fn_7100b83528;
@@ -5606,18 +5247,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d3e23c;
 struct UnkRefl_fn_7100d39c88;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d3e23c> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d39c88>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d3e23c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100d3e454;
-    static constexpr UnkFn copy_construct = &fn_7100d3e464;
-    static constexpr UnkFn move_construct = &fn_7100d3e48c;
-    static constexpr UnkFn destroy = &fn_7100d3e4b4;
-    static constexpr UnkFn copy_assign = &fn_7100d3e4cc;
-    static constexpr UnkFn move_assign = &fn_7100d3e524;
-    static constexpr UnkFn equals = &fn_7100d3e424;
-    static constexpr UnkFn hash = &fn_7100d3e438;
-    static constexpr UnkFn type_of = &fn_7100d3e440;
     static constexpr UnkFn get = &fn_7100d3e3a8;
     static constexpr UnkFn set = &fn_7100d3e3e4;
     static constexpr UnkFn increment = &fn_7100d3e3e8;
@@ -5633,18 +5268,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d3e57c;
 struct UnkRefl_fn_7100d3a26c;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d3e57c> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d3a26c>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d3e57c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<game::logic::collision::CCollider*>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100d3e794;
-    static constexpr UnkFn copy_construct = &fn_7100d3e7a4;
-    static constexpr UnkFn move_construct = &fn_7100d3e7cc;
-    static constexpr UnkFn destroy = &fn_7100d3e7f4;
-    static constexpr UnkFn copy_assign = &fn_7100d3e80c;
-    static constexpr UnkFn move_assign = &fn_7100d3e864;
-    static constexpr UnkFn equals = &fn_7100d3e764;
-    static constexpr UnkFn hash = &fn_7100d3e778;
-    static constexpr UnkFn type_of = &fn_7100d3e780;
     static constexpr UnkFn get = &fn_7100d3e6e8;
     static constexpr UnkFn set = &fn_7100d3e724;
     static constexpr UnkFn increment = &fn_7100d3e728;
@@ -5852,10 +5481,10 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d6d278;
 struct UnkRefl_fn_7100d6b088;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d6b088>(); }
-template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator>;
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d6b088>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6d278> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6d278> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
     static constexpr UnkFn get = &fn_7100d6d3e0;
@@ -5873,10 +5502,10 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d6d4ac;
 struct UnkRefl_fn_7100d6b164;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d6b164>(); }
-template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator>;
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d6b164>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6d4ac> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShapeconst*>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d6d4ac> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, game::logic::collision::CShape const*>>::TElementConstIterator> {
     static constexpr u64 size = 0x8;
     static constexpr bool owned = false;
     static constexpr UnkFn get = &fn_7100d6d614;
@@ -6182,18 +5811,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d7efec;
 struct UnkRefl_fn_7100d743ac;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d7efec> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d743ac>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::TKeyElementIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d7efec> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::TKeyElementIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100d7f204;
-    static constexpr UnkFn copy_construct = &fn_7100d7f214;
-    static constexpr UnkFn move_construct = &fn_7100d7f23c;
-    static constexpr UnkFn destroy = &fn_7100d7f264;
-    static constexpr UnkFn copy_assign = &fn_7100d7f27c;
-    static constexpr UnkFn move_assign = &fn_7100d7f2d4;
-    static constexpr UnkFn equals = &fn_7100d7f1d4;
-    static constexpr UnkFn hash = &fn_7100d7f1e8;
-    static constexpr UnkFn type_of = &fn_7100d7f1f0;
     static constexpr UnkFn get = &fn_7100d7f158;
     static constexpr UnkFn set = &fn_7100d7f194;
     static constexpr UnkFn increment = &fn_7100d7f198;
@@ -6209,18 +5832,12 @@ template const base::reflection::CType* base::reflection::refl_GetPointerType<Un
 struct UnkRefl_fn_7100d7f32c;
 struct UnkRefl_fn_7100d74990;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d7f32c> {
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100d74990>(); }
+template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::TKeyElementConstIterator>;
+template <>
+struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100d7f32c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEntity*>>::TKeyElementConstIterator> {
     static constexpr u64 size = 0x28;
     static constexpr bool owned = false;
-    static constexpr UnkFn construct = &fn_7100d7f544;
-    static constexpr UnkFn copy_construct = &fn_7100d7f554;
-    static constexpr UnkFn move_construct = &fn_7100d7f57c;
-    static constexpr UnkFn destroy = &fn_7100d7f5a4;
-    static constexpr UnkFn copy_assign = &fn_7100d7f5bc;
-    static constexpr UnkFn move_assign = &fn_7100d7f614;
-    static constexpr UnkFn equals = &fn_7100d7f514;
-    static constexpr UnkFn hash = &fn_7100d7f528;
-    static constexpr UnkFn type_of = &fn_7100d7f530;
     static constexpr UnkFn get = &fn_7100d7f498;
     static constexpr UnkFn set = &fn_7100d7f4d4;
     static constexpr UnkFn increment = &fn_7100d7f4d8;
