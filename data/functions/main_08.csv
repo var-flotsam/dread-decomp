@@ -2128,7 +2128,7 @@ address,size,name,name_source,subsystem,status
 0x710086420c,112,fn_710086420c,unknown,unknown,O
 0x710086427c,72,fn_710086427c,unknown,unknown,O
 0x71008642c4,176,fn_71008642c4,unknown,unknown,O
-0x7100864374,736,fn_7100864374,unknown,unknown,U
+0x7100864374,736,fn_7100864374,unknown,unknown,O
 0x7100864654,744,fn_7100864654,unknown,unknown,U
 0x710086493c,944,fn_710086493c,unknown,unknown,U
 0x7100864cec,328,fn_7100864cec,unknown,unknown,O
@@ -2342,7 +2342,7 @@ address,size,name,name_source,subsystem,status
 0x710086f4a0,268,fn_710086f4a0,unknown,unknown,O
 0x710086f5ac,252,fn_710086f5ac,unknown,unknown,O
 0x710086f6a8,112,fn_710086f6a8,unknown,unknown,O
-0x710086f718,344,fn_710086f718,unknown,unknown,U
+0x710086f718,344,fn_710086f718,unknown,unknown,O
 0x710086f870,368,fn_710086f870,unknown,unknown,U
 0x710086f9e0,324,fn_710086f9e0,unknown,unknown,U
 0x710086fb24,380,fn_710086fb24,unknown,unknown,U
@@ -4131,7 +4131,7 @@ address,size,name,name_source,subsystem,status
 0x71008c0948,428,fn_71008c0948,unknown,unknown,O
 0x71008c0af4,384,base::reflection::refl_InitType<EForcedDamageMode>,reflection,engine/reflection,O
 0x71008c0c74,444,fn_71008c0c74,unknown,unknown,O
-0x71008c0e30,608,fn_71008c0e30,unknown,unknown,U
+0x71008c0e30,608,fn_71008c0e30,unknown,unknown,O
 0x71008c1090,1192,fn_71008c1090,unknown,unknown,U
 0x71008c1538,32,fn_71008c1538,unknown,unknown,O
 0x71008c1558,356,fn_71008c1558,unknown,unknown,O

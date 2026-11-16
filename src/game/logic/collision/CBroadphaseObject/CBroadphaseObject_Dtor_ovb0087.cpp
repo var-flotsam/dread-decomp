@@ -12,8 +12,6 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern char g_unk_7101aa84e0[];
-extern char g_unk_7101aa8590[];
 struct UnkCameraCtrl_ovb0049;
 
 struct UnkBroadphaseHandler;

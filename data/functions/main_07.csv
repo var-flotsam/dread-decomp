@@ -752,7 +752,7 @@ address,size,name,name_source,subsystem,status
 0x7100722524,100,fn_7100722524,unknown,game?,O
 0x7100722588,1328,fn_7100722588,unknown,game?,U
 0x7100722ab8,1640,fn_7100722ab8,unknown,game?,U
-0x7100723120,728,fn_7100723120,unknown,game?,U
+0x7100723120,728,fn_7100723120,unknown,game?,O
 0x71007233f8,16,fn_71007233f8,unknown,game?,O
 0x7100723408,92,fn_7100723408,unknown,game?,O
 0x7100723464,20,fn_7100723464,unknown,game?,O

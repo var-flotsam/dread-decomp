@@ -13,6 +13,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -268,7 +269,6 @@ using base::input::UnkRumbleManager;
 struct UnkUserDataOwner;
 bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 extern UnkRumbleManager* g_unk_7101d47348;
-void fn_7100074e3c(UnkRumbleManager* self, bool enabled);
 
 void fn_7101187c30() {
     UnkUserDataOwner* owner = g_unk_7101d47308;
