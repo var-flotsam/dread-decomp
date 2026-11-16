@@ -4,6 +4,7 @@
 // placeholders.
 #define UNK_VECTOR_GROW_AT_ATTR __attribute__((always_inline))
 #include <new>
+#include "base/UnkVtableList.h"
 
 #include "base/UnkEmptyDtorElem.h"
 #include "base/global/CRntVector.h"
@@ -117,23 +118,10 @@ struct UnkSubNode_b0228 {
     UnkSubNode_b0228* next;  // 0x10
 };
 
-struct UnkSubList_b0228 {
-    void** vtable;                // 0x0
-    u32 count;                    // 0x8
-    UnkSubNode_b0228* head;       // 0x10
-    UnkSubNode_b0228* tail;       // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-
+struct UnkSubList_b0228 : base::UnkVtableList<UnkSubNode_b0228> {
     __attribute__((always_inline)) void Destroy(char* list_vtable) {
         vtable = reinterpret_cast<void**>(list_vtable + 0x10);
-        for (UnkSubNode_b0228* n = head; n;) {
-            UnkSubNode_b0228* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        Clear();
     }
 };
 
@@ -331,25 +319,15 @@ __attribute__((always_inline)) static inline void InsertBefore(UnkPlainList_b022
     }
 }
 
-
-
 struct UnkPairNodeK_b0228 {
     u32 first;                 // 0x0
     u32 second;                // 0x4
     UnkPairNodeK_b0228* next;   // 0x8
 };
 
-struct UnkPairListK_b0228 {
-    u8 pad_0x0[8];
-    u32 count;                      // 0x8
-    UnkPairNodeK_b0228* head;        // 0x10
-    UnkPairNodeK_b0228* tail;        // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;                      // 0x28
-
+struct UnkPairListK_b0228 : base::UnkVtableList<UnkPairNodeK_b0228> {
     UnkPairNodeK_b0228* Alloc() { return static_cast<UnkPairNodeK_b0228*>(allocator->vf_0x40(16, 8, flags)); }
 };
-
 
 void fn_71002a5fe8(UnkPoints_ovb0229* list, const UnkPoint_ovb0229* point, UnkPoints_ovb0229::Node* node_pos) {
     auto* self = reinterpret_cast<UnkPairListK_b0228*>(list);
@@ -687,45 +665,33 @@ struct UnkListP_b0228 {
     }
 };
 
-struct UnkListQ_b0228 {
-    void** vtable;
-    u32 count = 0;
-    UnkNodeQ_b0228* head = nullptr;
-    UnkNodeQ_b0228* tail = nullptr;
-    base::UnkAllocator* allocator;
-    u32 flags = 0x13;
-    UnkListQ_b0228() : vtable(reinterpret_cast<void**>(g_unk_7101a20f68 + 0x10)), allocator(fn_7100083990()) {}
-    ~UnkListQ_b0228() {
+struct UnkListQ_b0228 : base::UnkVtableList<UnkNodeQ_b0228> {
+    UnkListQ_b0228() {
         vtable = reinterpret_cast<void**>(g_unk_7101a20f68 + 0x10);
-        for (UnkNodeQ_b0228* n = head; n;) {
-            UnkNodeQ_b0228* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
         count = 0;
         head = nullptr;
         tail = nullptr;
+        allocator = fn_7100083990();
+        flags = 0x13;
+    }
+    ~UnkListQ_b0228() {
+        vtable = reinterpret_cast<void**>(g_unk_7101a20f68 + 0x10);
+        Clear();
     }
 };
 
-struct UnkListR_b0228 {
-    void** vtable;
-    u32 count = 0;
-    UnkNodeR_b0228* head = nullptr;
-    UnkNodeR_b0228* tail = nullptr;
-    base::UnkAllocator* allocator;
-    u32 flags = 0x13;
-    UnkListR_b0228() : vtable(reinterpret_cast<void**>(g_unk_7101a20f88 + 0x10)), allocator(fn_7100083990()) {}
-    ~UnkListR_b0228() {
+struct UnkListR_b0228 : base::UnkVtableList<UnkNodeR_b0228> {
+    UnkListR_b0228() {
         vtable = reinterpret_cast<void**>(g_unk_7101a20f88 + 0x10);
-        for (UnkNodeR_b0228* n = head; n;) {
-            UnkNodeR_b0228* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
         count = 0;
         head = nullptr;
         tail = nullptr;
+        allocator = fn_7100083990();
+        flags = 0x13;
+    }
+    ~UnkListR_b0228() {
+        vtable = reinterpret_cast<void**>(g_unk_7101a20f88 + 0x10);
+        Clear();
     }
 };
 

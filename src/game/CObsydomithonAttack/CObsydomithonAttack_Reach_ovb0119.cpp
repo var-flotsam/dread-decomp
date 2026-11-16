@@ -5,6 +5,7 @@
 // with both distances set to the x distance to the target, and the AI's mode (+0x1140). Names and
 // layouts are placeholders.
 #include <math.h>
+#include "base/UnkVtableList.h"
 
 #include "base/global/CRntVector.h"
 #include "game/CObsydomithonAttack.h"
@@ -21,13 +22,7 @@ using base::global::CStrId;
 extern char g_unk_7101a21540[];  // the node list's vtable
 
 // A list of nodes (link at +8) freed through the allocator.
-struct UnkAttackNodeList_b0119 {
-    void* vtable;
-    u32 count;
-    void* head;
-    void* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkAttackNodeList_b0119 : base::UnkVtableList<void> {
     ~UnkAttackNodeList_b0119() {
         vtable = g_unk_7101a21540 + 0x10;
         void* n = head;
@@ -63,7 +58,6 @@ struct UnkAttackQuery_b0119 {
     bool field_0x19;
     u8 pad_0x1a[0xe];
     UnkAttackNodeList_b0119 nodes;  // 0x28
-    u8 pad_0x50[0x8];
 
     UnkAttackQuery_b0119(UnkActor* actor, void* params) {
         fn_71002c6f80(reinterpret_cast<UnkAttackQuery_ovb0115*>(this), actor, params);

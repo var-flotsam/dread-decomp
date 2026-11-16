@@ -4,6 +4,7 @@
 // and +0xb0, and two items whose colour it sets. Names and layouts are placeholders inferred from
 // the code.
 #include <string.h>
+#include "base/UnkLinkedList.h"
 
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
@@ -45,13 +46,7 @@ struct UnkSoundIdListNode {
     UnkSoundIdListNode* next;
 };
 
-struct UnkSoundIdList {
-    u32 count;
-    UnkSoundIdListNode* head;
-    UnkSoundIdListNode* tail;
-    UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkSoundIdList : base::UnkLinkedList<UnkSoundIdListNode> {
     UnkSoundIdListNode* Find(u32 key) {
         for (UnkSoundIdListNode* n = head; n; n = n->next)
             if (n->key == key)

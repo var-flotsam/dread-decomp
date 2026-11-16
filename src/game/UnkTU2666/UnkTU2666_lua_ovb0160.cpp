@@ -2,6 +2,7 @@
 // and hands them, as string ids, string keys or hashes, to the game manager, the sound, music or
 // effect singletons (created on first use) or the object a name finds. Names and layouts are placeholders.
 #include <new>
+#include "base/UnkVtableList.h"
 
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkNamedRegistry.h"
@@ -632,17 +633,14 @@ s32 fn_71010935b0(lua_State*) {
 }
 
 // A list of strings (nodes linked through +0x30), emptied when it goes.
-struct UnkLuaNameList_b0160 {
-    void** vtable;
-    u32 count;                      // 0x8
-    u8* head;                       // 0x10
-    u8* tail;                       // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 field_0x28;
-
-    UnkLuaNameList_b0160() : vtable(g_unk_7101a1a070 + 2), count(0), head(nullptr), tail(nullptr) {
+struct UnkLuaNameList_b0160 : base::UnkVtableList<u8> {
+    UnkLuaNameList_b0160() {
+        vtable = g_unk_7101a1a070 + 2;
+        count = 0;
+        head = nullptr;
+        tail = nullptr;
         allocator = fn_7100083990();
-        field_0x28 = 0x13;
+        flags = 0x13;
     }
     ~UnkLuaNameList_b0160() {
         vtable = g_unk_7101a1a070 + 2;

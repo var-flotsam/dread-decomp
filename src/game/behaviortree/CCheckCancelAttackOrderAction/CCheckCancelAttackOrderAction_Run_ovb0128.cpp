@@ -11,17 +11,12 @@
 #include "game/UnkTU394.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 extern char g_unk_7101a21540[];  // the node list's vtable
 
 // A list of nodes (link at +8) freed through the allocator.
-struct UnkCancelNodeList_ovb0128 {
-    void* vtable;
-    u32 count;
-    void* head;
-    void* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkCancelNodeList_ovb0128 : base::UnkVtableList<void> {
     ~UnkCancelNodeList_ovb0128() {
         vtable = g_unk_7101a21540 + 0x10;
         void* n = head;
@@ -58,7 +53,6 @@ struct UnkCancelQuery_ovb0128 {
     bool field_0x1b;
     u8 pad_0x1c[0xc];
     UnkCancelNodeList_ovb0128 nodes;  // 0x28
-    u8 pad_0x50[0x8];
 
     UnkCancelQuery_ovb0128(UnkActor* actor, void* params) {
         fn_71002c6f80(reinterpret_cast<UnkAttackQuery_ovb0115*>(this), actor, params);

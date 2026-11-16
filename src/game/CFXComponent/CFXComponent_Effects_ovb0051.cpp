@@ -18,6 +18,7 @@
 #include "game/UnkTU253.h"
 #include "game/UnkTU285.h"
 #include "types.h"
+#include "base/UnkLinkedList.h"
 
 using base::global::UnkStringData;
 
@@ -181,24 +182,6 @@ struct UnkFXIdNode_ovb51 {
 };
 
 // A list of string-id nodes freed through its allocator.
-struct UnkFXIdList_ovb51 {
-    u32 count;
-    UnkFXIdNode_ovb51* head;
-    UnkFXIdNode_ovb51* tail;
-    base::UnkAllocator* allocator;
-
-    void Clear() {
-        for (UnkFXIdNode_ovb51* n = head; n;) {
-            UnkFXIdNode_ovb51* next = n->next;
-            n->id.~UnkFXNodeId_ovb51();
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
-};
 
 struct UnkFXComponent_ovb51 {
     u8 pad_0x0[0x30];
@@ -225,7 +208,7 @@ struct UnkFXComponent_ovb51 {
     void* effect_b;  // 0x158
     UnkFXScene_ovb51* attached_scene;  // 0x160, the scene the fifth manager model is attached to
     u8 pad_0x168[0x18];
-    UnkFXIdList_ovb51 ids;  // 0x180
+    base::UnkLinkedList<UnkFXIdNode_ovb51> ids;  // 0x180
 };
 static_assert(__builtin_offsetof(UnkFXComponent_ovb51, ids) == 0x180, "UnkFXComponent_ovb51 layout");
 
@@ -363,7 +346,7 @@ void fn_71009f19ac(UnkFXComponent_ovb51* self);
 
 void fn_710114f6b8(UnkFXComponent_ovb51* self) {
     fn_710114f780(self);
-    self->ids.Clear();
+    self->ids.ClearDestroying();
     fn_71009f19ac(self);
 }
 

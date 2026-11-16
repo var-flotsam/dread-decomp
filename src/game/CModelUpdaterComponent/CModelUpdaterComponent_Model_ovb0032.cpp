@@ -5,6 +5,7 @@
 // actor's model updater (fn_7101173ddc), and the release of its loaded model (fn_7101174314). Names
 // and layouts are placeholders inferred from the code.
 #include <new>
+#include "base/UnkVtableList.h"
 
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
@@ -300,16 +301,7 @@ struct UnkModelEventNode_ovb0032 {
 };
 
 // A singly linked list of events (as base/UnkSList.h, with larger values).
-struct UnkModelEventList_ovb0032 {
-    u8 pad_0x0[0x8];
-    union {
-        u32 count;  // 0x8
-    };
-    UnkModelEventNode_ovb0032* head;  // 0x10
-    UnkModelEventNode_ovb0032* tail;  // 0x18
-    UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
-
+struct UnkModelEventList_ovb0032 : base::UnkVtableList<UnkModelEventNode_ovb0032> {
     void PushBack(const UnkModelEvent_ovb0032& event) {
         auto* n = static_cast<UnkModelEventNode_ovb0032*>(
             allocator->vf_0x40(sizeof(UnkModelEventNode_ovb0032), 8, flags));

@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CRntString;
 
@@ -17,28 +18,7 @@ struct UnkRequestListNode {
     UnkRequestListNode* next;
 };
 
-struct UnkRequestList {
-    void** vtable;
-    // A union member: the original reloads the count after storing a new node's links.
-    union {
-        u32 count;
-    };
-    UnkRequestListNode* head;
-    UnkRequestListNode* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    // Frees every node.
-    void Clear() {
-        for (UnkRequestListNode* n = head; n;) {
-            UnkRequestListNode* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
+struct UnkRequestList : base::UnkVtableList<UnkRequestListNode> {
     __attribute__((always_inline)) ~UnkRequestList() {
         vtable = reinterpret_cast<void**>(g_unk_7101aa9ac0 + 0x10);
         Clear();
