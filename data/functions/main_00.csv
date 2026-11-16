@@ -4938,7 +4938,7 @@ address,size,name,name_source,subsystem,status
 0x71000d6698,256,fn_71000d6698,unknown,unknown,O
 0x71000d6798,80,fn_71000d6798,unknown,unknown,O
 0x71000d67e8,84,fn_71000d67e8,unknown,unknown,O
-0x71000d683c,8,fn_71000d683c,unknown,unknown,O
+0x71000d683c,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Count",reflection,engine/reflection,O
 0x71000d6844,204,fn_71000d6844,unknown,unknown,O
 0x71000d6910,4,fn_71000d6910,unknown,unknown,O
 0x71000d6914,264,fn_71000d6914,unknown,unknown,O
@@ -4947,16 +4947,16 @@ address,size,name,name_source,subsystem,status
 0x71000d6a50,88,fn_71000d6a50,unknown,unknown,O
 0x71000d6aa8,108,fn_71000d6aa8,unknown,unknown,O
 0x71000d6b14,108,fn_71000d6b14,unknown,unknown,O
-0x71000d6b80,12,fn_71000d6b80,unknown,unknown,O
-0x71000d6b8c,8,fn_71000d6b8c,unknown,unknown,O
+0x71000d6b80,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Equals",reflection,engine/reflection,O
+0x71000d6b8c,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Hash",reflection,engine/reflection,O
 0x71000d6b94,12,fn_71000d6b94,unknown,unknown,O
-0x71000d6ba0,4,fn_71000d6ba0,unknown,unknown,O
+0x71000d6ba0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Construct",reflection,engine/reflection,O
 0x71000d6ba4,4,fn_71000d6ba4,unknown,unknown,O
 0x71000d6ba8,236,fn_71000d6ba8,unknown,unknown,O
 0x71000d6c94,332,fn_71000d6c94,unknown,unknown,U
 0x71000d6de0,376,fn_71000d6de0,unknown,unknown,O
-0x71000d6f58,12,fn_71000d6f58,unknown,unknown,O
-0x71000d6f64,8,fn_71000d6f64,unknown,unknown,O
+0x71000d6f58,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::Begin",reflection,engine/reflection,O
+0x71000d6f64,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::reflection::CTypedValue>>::End",reflection,engine/reflection,O
 0x71000d6f6c,184,fn_71000d6f6c,unknown,unknown,O
 0x71000d7024,180,fn_71000d7024,unknown,unknown,O
 0x71000d70d8,144,fn_71000d70d8,unknown,unknown,O

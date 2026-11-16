@@ -4531,11 +4531,6 @@ UnkResult fn_7100fff928(char* p0, char* p1) {
     return ret;
 }
 
-u32 fn_7100fff9b0(char* p0) {
-    u32 r0_0 = (u32)*(u32*)((char*)(p0) + 12);
-    return r0_0;
-}
-
 namespace callee { char* fn_7100fffd7c(u64); }
 namespace callee { char* fn_7101238df0(u64, u32, u64); }
 void fn_7100fff9b8(char* p0) {
@@ -4692,24 +4687,10 @@ L_7100fffb8c:;
     return ((char*)X0);
 }
 
-bool fn_7100fffcc0(char* p0, char* p1) {
-    bool r0_0 = (u64)(u64)(p0) == (u64)(p1);
-    return r0_0;
-}
-
-u32 fn_7100fffccc() {
-    u32 r0_0 = 0xffffffff;
-    return r0_0;
-}
-
 extern char g_unk_71729f2680[];
 char* fn_7100fffcd4() {
     char* r0_0 = (char*)g_unk_71729f2680;
     return r0_0;
-}
-
-void fn_7100fffce0() {
-    return;
 }
 
 namespace callee { char* fn_7100fffd7c(u64); }
