@@ -78,7 +78,6 @@ s32 fn_710107f9e0(lua_State* L) {
 // ---- the music manager ----
 struct UnkMgr_0xf18;
 struct UnkTuneMgrView_b0019;
-f32 fn_7100fdc468(UnkTuneMgrView_b0019* self, const u64* id);
 f32 fn_7100fdc500(UnkTuneMgrView_b0019* self, const u64* id);
 
 static inline void* MusicManager_b0161() {

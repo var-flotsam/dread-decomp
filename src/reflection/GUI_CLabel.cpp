@@ -18,6 +18,14 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CRntString; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CRntString>::Get();
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // GUI::CLabel
 void fn_71011ef99c();
@@ -53,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSequentialTyping", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Outline_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_Outline_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011ef99c);
@@ -63,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "Outline");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_IgnoreTextWidthAutosize_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_IgnoreTextWidthAutosize_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011efa60);
@@ -73,7 +81,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "IgnoreTextWidthAutosize");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_Font_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011efb14);
@@ -83,7 +91,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "Font");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_EmbeddedSpritesSuffix_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_EmbeddedSpritesSuffix_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011efc28);
@@ -93,7 +101,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "EmbeddedSpritesSuffix");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_Text_GetterFunction", true);
-        fn->return_type = fn_7100007f84();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CRntString>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011efd60);
@@ -103,7 +111,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::global::CRntString, "Text");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_TextAlignment_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011efe68);
@@ -113,7 +121,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "TextAlignment");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextVerticalAlignment_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_TextVerticalAlignment_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011effbc);
@@ -123,7 +131,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "TextVerticalAlignment");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxTextWidth_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_MaxTextWidth_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f0110);
@@ -133,7 +141,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "MaxTextWidth");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MinCharWidth_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_MinCharWidth_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f01c4);
@@ -143,7 +151,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(s32, "MinCharWidth");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CurrentPage_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CurrentPage_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f0278);
@@ -153,7 +161,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(s32, "CurrentPage");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxVisibleLines_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_MaxVisibleLines_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f0364);
@@ -163,7 +171,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(s32, "MaxVisibleLines");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxLinesPerPage_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_MaxLinesPerPage_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f0418);
@@ -173,7 +181,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(s32, "MaxLinesPerPage");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_LineHeightOverride_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_LineHeightOverride_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f04cc);

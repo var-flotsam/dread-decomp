@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CBlackboard.h"
 #include "game/CBombGun.h"
 #include "game/CHydrogigaAIComponent.h"
 #include "game/UnkGameManager.h"
@@ -12,6 +13,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2562.h"
 #include "game/UnkTU2669.h"
@@ -35,9 +37,7 @@ char* fn_7100219210(char* p0);
 namespace callee { char* fn_71011a2d7c(u64); }
 void fn_71011a19a4(void* self);
 void fn_7100def678(UnkGameManager* self, const CRntString& name, const char* fmt, ...);
-char* fn_7100d7820c(char* p0, u32 p1, u32 p2, u32 p3, u32 p4);
 void fn_7100de70a8(UnkGameManager* self);
-void fn_7101047ea8(void* self);
 void fn_7100e2c28c(void* self);
 char* fn_7100ed779c(char* p0);
 void fn_7100ed6bc4(void* self);

@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "base/UnkBlockFreeList.h"
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntStringAssign.h"
 #include "base/global/CRntVector.h"
@@ -42,33 +43,30 @@ static_assert(sizeof(UnkToken_l0fc570) == 0x150, "");
 
 struct UnkTokens_l0fc570 {
     char* vtable;
-    u32 count;
-    UnkToken_l0fc570* head;
-    UnkToken_l0fc570* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+    base::UnkLinkedList<UnkToken_l0fc570> body;  // 0x8
     char* pool_vtable;  // +0x30: the node pool
     base::UnkAllocator* pool_parent;
     UnkBlockFreeList pool_blocks;
 
+    // base::UnkLinkedList::Clear, destroying each token first.
     void Clear() {
-        for (UnkToken_l0fc570* node = head; node;) {
+        for (UnkToken_l0fc570* node = body.head; node;) {
             UnkToken_l0fc570* next = node->next;
             node->~UnkToken_l0fc570();
-            allocator->vf_0x48(node);
+            body.allocator->vf_0x48(node);
             node = next;
         }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        body.count = 0;
+        body.head = nullptr;
+        body.tail = nullptr;
     }
 
     // Gives the node pool room for `n` nodes when it has less, and allocates the nodes from it.
     void Reserve(u32 n) {
         if (pool_blocks.size / sizeof(UnkToken_l0fc570) >= n)
             return;
-        base::UnkAllocator* parent = pool_parent ? pool_parent : allocator;
-        u32 pool_flags = flags;
+        base::UnkAllocator* parent = pool_parent ? pool_parent : body.allocator;
+        u32 pool_flags = body.flags;
         if (void* buffer = pool_blocks.buffer) {
             fn_71000837f4(&pool_blocks);
             pool_parent->vf_0x48(buffer);
@@ -81,21 +79,13 @@ struct UnkTokens_l0fc570 {
             u64 size = n * sizeof(UnkToken_l0fc570);
             fn_710008378c(&pool_blocks, parent->vf_0x40(size, 8, pool_flags), size, sizeof(UnkToken_l0fc570));
         }
-        allocator = reinterpret_cast<base::UnkAllocator*>(&pool_vtable);
+        body.allocator = reinterpret_cast<base::UnkAllocator*>(&pool_vtable);
     }
 
     UnkToken_l0fc570* Append() {
-        UnkToken_l0fc570* node = new (allocator->vf_0x40(sizeof(UnkToken_l0fc570), 8, flags)) UnkToken_l0fc570;
-        if (count == 0) {
-            head = node;
-            tail = node;
-            count = 1;
-        } else {
-            tail->next = node;
-            node->next = nullptr;
-            count = count + 1;
-            tail = node;
-        }
+        UnkToken_l0fc570* node =
+            new (body.allocator->vf_0x40(sizeof(UnkToken_l0fc570), 8, body.flags)) UnkToken_l0fc570;
+        body.PushBack(node);
         return node;
     }
 };

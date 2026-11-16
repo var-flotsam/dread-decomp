@@ -80,8 +80,6 @@ static inline const UnkQualifiedId& Qid(UnkDialogDef& def) {
     return def.qid;
 }
 
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-
 // The language singleton (created on first use; 0x2068 bytes) and a localized text it gives for a
 // key: a 0x20-byte text destroyed by fn_7100066e44.
 struct UnkLanguage;

@@ -4,6 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ void fn_7100f10c4c(void* self);
 void fn_7100f10e18(void* self);
 void fn_7100f10f20(void* self);
 void fn_7100f0f4d0();
-extern char g_unk_7101caa450[];  // CPlayerInfo's vtable
 
 // A string id's data with a plain count: these copies increment it with int alias info (the
 // original reuses the pools it loaded once across the increments).

@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkLuaDoorTarget;
 struct UnkListedItem;
 struct UnkActor;
 struct UnkEmmyRelaxAI_b59;
@@ -49,3 +50,4 @@ void fn_71005479a0(UnkEmmyRelaxAI_b59* self);
 // Hands the game manager the string id for the barrier state (the barrier or no-barrier name, or the default).
 void fn_710054095c(UnkEmmyAI2_b57a3* self);
 void fn_7100540dd0(char* self);
+UnkLuaDoorTarget* fn_710055b104(void* object);

@@ -397,8 +397,6 @@ int fn_7101097ee0(lua_State* L) {
 
 // "NumEmmisDefeated" (src/game_s7/fn_7100ae39e0.cpp).
 
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-
 struct UnkGameManagerData_b0007 {
     u8 pad_0x0[0x968];
     CBlackboard blackboard;

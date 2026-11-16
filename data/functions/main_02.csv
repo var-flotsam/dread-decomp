@@ -632,7 +632,7 @@ address,size,name,name_source,subsystem,status
 0x7100216b00,300,fn_7100216b00,unknown,unknown,U
 0x7100216c2c,120,fn_7100216c2c,unknown,unknown,O
 0x7100216ca4,140,fn_7100216ca4,unknown,unknown,U
-0x7100216d30,56,fn_7100216d30,unknown,unknown,U
+0x7100216d30,56,fn_7100216d30,unknown,unknown,O
 0x7100216d70,140,fn_7100216d70,unknown,unknown,O
 0x7100216dfc,252,fn_7100216dfc,unknown,unknown,O
 0x7100216ef8,76,fn_7100216ef8,unknown,unknown,O
@@ -2118,7 +2118,7 @@ address,size,name,name_source,subsystem,status
 0x71002445d0,60,fn_71002445d0,unknown,unknown,O
 0x710024460c,264,fn_710024460c,unknown,unknown,O
 0x7100244714,48,fn_7100244714,unknown,unknown,O
-0x7100244744,736,fn_7100244744,unknown,unknown,U
+0x7100244744,736,fn_7100244744,unknown,unknown,O
 0x7100244a24,80,fn_7100244a24,unknown,unknown,O
 0x7100244a74,56,fn_7100244a74,unknown,unknown,O
 0x7100244aac,240,fn_7100244aac,unknown,unknown,O
@@ -2228,7 +2228,7 @@ address,size,name,name_source,subsystem,status
 0x71002479c0,256,fn_71002479c0,unknown,unknown,O
 0x7100247ac0,264,fn_7100247ac0,unknown,unknown,O
 0x7100247bc8,48,fn_7100247bc8,unknown,unknown,O
-0x7100247bf8,656,fn_7100247bf8,unknown,unknown,U
+0x7100247bf8,656,fn_7100247bf8,unknown,unknown,O
 0x7100247e88,80,fn_7100247e88,unknown,unknown,O
 0x7100247ed8,56,fn_7100247ed8,unknown,unknown,O
 0x7100247f10,144,fn_7100247f10,unknown,unknown,O
@@ -3397,7 +3397,7 @@ address,size,name,name_source,subsystem,status
 0x7100273f08,228,fn_7100273f08,unknown,unknown,O
 0x7100273fec,4,fn_7100273fec,unknown,unknown,O
 0x7100273ff0,228,fn_7100273ff0,unknown,unknown,O
-0x71002740e0,1128,fn_71002740e0,unknown,unknown,U
+0x71002740e0,1128,fn_71002740e0,unknown,unknown,O
 0x7100274548,88,navmesh::CNavMesh::refl_AddAttributes,reflection,ai/navmesh,O
 0x71002745a0,244,navmesh::CNavMesh::refl_GetClass,reflection,ai/navmesh,O
 0x7100274694,4,navmesh::CNavMesh::refl_AddFields,reflection,ai/navmesh,O
@@ -5730,7 +5730,7 @@ address,size,name,name_source,subsystem,status
 0x71002ee984,60,fn_71002ee984,unknown,unknown,O
 0x71002ee9c0,8,fn_71002ee9c0,unknown,unknown,O
 0x71002ee9c8,48,fn_71002ee9c8,unknown,unknown,O
-0x71002ee9f8,524,fn_71002ee9f8,unknown,unknown,U
+0x71002ee9f8,524,fn_71002ee9f8,unknown,unknown,O
 0x71002eec04,80,fn_71002eec04,unknown,unknown,O
 0x71002eec54,84,fn_71002eec54,unknown,unknown,O
 0x71002eeca8,144,fn_71002eeca8,unknown,unknown,O
@@ -5766,7 +5766,7 @@ address,size,name,name_source,subsystem,status
 0x71002ef4e4,100,fn_71002ef4e4,unknown,unknown,O
 0x71002ef548,116,fn_71002ef548,unknown,unknown,O
 0x71002ef5bc,176,fn_71002ef5bc,unknown,unknown,O
-0x71002ef66c,568,fn_71002ef66c,unknown,unknown,U
+0x71002ef66c,568,fn_71002ef66c,unknown,unknown,O
 0x71002ef8a4,400,fn_71002ef8a4,unknown,unknown,O
 0x71002efa40,1324,fn_71002efa40,unknown,unknown,O
 0x71002eff6c,88,CPlaythroughDef::refl_AddAttributes,reflection,game/core,O

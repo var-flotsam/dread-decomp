@@ -14,6 +14,7 @@
 #include "game/CBreakableTileGroup.h"
 #include "game/CGrabComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
@@ -190,8 +191,6 @@ void fn_71010d98bc(UnkPlayerMovementC_b0204* self, UnkWeakTarget* target) {
     else
         AssignRef(&self->handle, static_cast<UnkWeakHandle*>(nullptr));
 }
-
-extern char* g_unk_71726b2398;       // the instance, reached through the GOT
 
 struct UnkSceneLink_b0204 {
     u8 pad_0x0[0x10];

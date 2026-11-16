@@ -18,6 +18,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // GUI::CText
 void fn_7100b8708c();
@@ -33,7 +37,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_Font_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b8708c);
@@ -43,7 +47,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "Font");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextString_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_TextString_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b8719c);
@@ -53,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "TextString");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_TextAlignment_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b87318);
@@ -63,7 +67,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "TextAlignment");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_Text_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b87488);

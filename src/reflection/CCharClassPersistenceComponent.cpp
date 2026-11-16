@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CCharClassPersistenceComponent
 extern base::reflection::CType g_unk_717275b580;
@@ -64,7 +67,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field2 = fn_7100096524(cls, CStrId("sFloatProperty", true), &g_unk_717275b580, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSection_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sSection_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71009c9eb0);

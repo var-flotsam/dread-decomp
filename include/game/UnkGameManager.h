@@ -94,7 +94,11 @@ struct UnkGameManagerIdLists {
 };
 
 struct UnkGameManager {
-    u8 pad_0x0[0xc0];
+    u8 pad_0x0[0x38];
+    // An embedded object of unit 2592 (CPlayerInfo's by its reflection hint); its functions
+    // (fn_7100f0e228, fn_7100f0e4cc, fn_7100f0e238, fn_7100f0d7b0 ...) take its address.
+    u8 field_0x38[1];
+    u8 pad_0x39[0x87];
     s32 field_0xc0;  // a mode (1 or 2) that overrides an actor's while fn_7100df5c38 holds (fn_7100bc77ec)
     s32 field_0xc4;
     s32 field_0xc8;
@@ -104,7 +108,9 @@ struct UnkGameManager {
     void* field_0x498;  // an object set up through its vf_0x70 unless its vf_0x68 says it is (fn_7100b2de48)
     u8 pad_0x4a0[0x168];
     UnkGameManagerSub_0x608* field_0x608;
-    u8 pad_0x610[0x358];
+    u8 pad_0x610[0x820 - 0x610];
+    CBlackboard field_0x820;  // a second blackboard (the archive flags, fn_71009d2dc0)
+    u8 pad_0x910[0x968 - 0x910];
     CBlackboard field_0x968;  // the embedded blackboard (fn_7101047208, fn_71010472e0, fn_7101047270)
     u8 pad_0xa58[0x5a8];
     UnkGameManagerIdMap field_0x1000;  // string ids replaced by others (fn_7100dfbda4)
@@ -120,7 +126,9 @@ struct UnkGameManager {
     void* field_0x2258;  // a GUI flag reference: its +0x10 holds the composition (fn_7100b2de48)
     u8 pad_0x2260[0x10];
     void* field_0x2270;    // another
-    u8 pad_0x2278[0x1d8];
+    u8 pad_0x2278[0x1cc];
+    f32 field_0x2444;  // the game time (fn_7100a5ee80 adds to it and compares; fn_7101105990 copies it)
+    u8 pad_0x2448[0x8];
     UnkGameManagerIdLists field_0x2450;  // objects by the id they register under (fn_7100de9540)
     u8 pad_0x2468[0x1a0];  // +0x24f8: a callback set that fn_7100b2de48's states watch
     UnkGameManagerHashMap field_0x2608;  // objects by id (fn_7100deba8c)
@@ -131,6 +139,8 @@ struct UnkGameManager {
     u8 pad_0x2780[0x240];
     u8 field_0x29c0;       // a flag that blocks fn_71002fe470
 };
+static_assert(__builtin_offsetof(UnkGameManager, field_0xc0) == 0xc0, "UnkGameManager placeholder layout");
+static_assert(__builtin_offsetof(UnkGameManager, field_0x2444) == 0x2444, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x498) == 0x498, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x1000) == 0x1000, "UnkGameManager placeholder layout");
 static_assert(__builtin_offsetof(UnkGameManager, field_0x1040) == 0x1040, "UnkGameManager placeholder layout");

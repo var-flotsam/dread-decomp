@@ -18,7 +18,8 @@ void fn_71004a4ffc(void*);
 void fn_71004ae6f4(void*);
 void fn_71004b42b8(void*);
 void fn_71004b4ee8(void*);
-void fn_71004b9cc4(void*);
+struct UnkFireBallAttackDef_l4b9cc4;
+void fn_71004b9cc4(UnkFireBallAttackDef_l4b9cc4*);
 void fn_71004a1790(void*);
 
 template <class T>
@@ -35,7 +36,7 @@ void fn_71004ce858(UnkNode* self) {
     fn_71004ae6f4(At(self, 0x658));
     fn_71004b42b8(At(self, 0x7e8));
     fn_71004b4ee8(At(self, 0x8e8));
-    fn_71004b9cc4(At(self, 0x9f0));
+    fn_71004b9cc4(reinterpret_cast<UnkFireBallAttackDef_l4b9cc4*>(At(self, 0x9f0)));
     fn_71004a1790(At(self, 0xb38));
     St<u64>(self, 0xc40, 0);
     St<u64>(self, 0xc48, 0);

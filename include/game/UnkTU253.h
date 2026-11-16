@@ -8,6 +8,8 @@
 #include "base/color/CColor4F.h"
 #include "types.h"
 
+struct UnkPowerBombPartList_ovb0127;
+struct UnkPowerBombPart_ovb0127;
 struct UnkSlots;
 struct UnkModelData;
 struct UnkResetOwner;
@@ -19,4 +21,6 @@ bool fn_71001c32bc(UnkSource_710020c780* source, const u64* key, u32 flag, f32* 
 bool fn_71001c287c(void* target, u32 a, u32 b, base::math::CVector4D* colour, u32 c);
 void fn_71001c09c4(UnkSource_710020c780* source, base::reflection::UnkReflObject* obj);
 bool fn_71001c2bac(UnkSlots* self, u64 key, u32 kind, base::color::CColor4F* out, u32 mode);
-void fn_71001c2ec0(void* target, u32 a, u32 b, base::math::CVector4D* colour, u32 c, f32 time);
+bool fn_71001c2ec0(void* target, u32 a, u32 b, base::math::CVector4D* colour, u32 c, f32 time);
+u32 fn_71001c1440(UnkPowerBombPartList_ovb0127* list);
+UnkPowerBombPart_ovb0127* fn_71001c1450(UnkPowerBombPartList_ovb0127* list, u32 index);

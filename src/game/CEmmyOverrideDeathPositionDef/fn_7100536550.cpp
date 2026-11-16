@@ -113,8 +113,6 @@ extern char g_unk_71726dfdb8[];
 void fn_7100531a8c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005318e0();
 extern UnkPropertyEx<> g_unk_71726dfe00;
-extern void* g_unk_7101a45fe8[];
-extern void* g_unk_7101a45f90[];
 extern char g_unk_71726dfe40[];
 extern char g_unk_71726dfe41[];
 UnkEnumType* fn_71005321d8();

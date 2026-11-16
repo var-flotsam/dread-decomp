@@ -4456,7 +4456,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8b688,208,fn_7100c8b688,unknown,game/cutscene?,O
 0x7100c8b758,316,fn_7100c8b758,unknown,game/cutscene?,O
 0x7100c8b894,308,fn_7100c8b894,unknown,game/cutscene?,O
-0x7100c8b9c8,476,fn_7100c8b9c8,unknown,game/cutscene?,U
+0x7100c8b9c8,476,fn_7100c8b9c8,unknown,game/cutscene?,O
 0x7100c8bba4,500,fn_7100c8bba4,unknown,game/cutscene?,O
 0x7100c8bd98,304,fn_7100c8bd98,unknown,game/cutscene?,U
 0x7100c8bec8,576,fn_7100c8bec8,unknown,game/cutscene?,U
@@ -4637,8 +4637,8 @@ address,size,name,name_source,subsystem,status
 0x7100c9233c,140,fn_7100c9233c,unknown,unknown,O
 0x7100c923c8,156,fn_7100c923c8,unknown,unknown,O
 0x7100c92464,164,fn_7100c92464,unknown,unknown,O
-0x7100c92508,516,fn_7100c92508,unknown,unknown,U
-0x7100c9270c,548,fn_7100c9270c,unknown,unknown,U
+0x7100c92508,516,fn_7100c92508,unknown,unknown,O
+0x7100c9270c,548,fn_7100c9270c,unknown,unknown,O
 0x7100c92930,12,fn_7100c92930,unknown,unknown,O
 0x7100c9293c,20,fn_7100c9293c,unknown,unknown,O
 0x7100c92950,216,fn_7100c92950,unknown,unknown,O

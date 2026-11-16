@@ -2,10 +2,9 @@
 // vtable (g_unk_7101a833b0), the ids of the 50 effect slots from +0x218 (0x58 bytes each) released last
 // to first, then the component base destructor (fn_71010c4194). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "game/CMaterialFXComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
-
-extern char g_unk_7101a833b0[];
 
 struct UnkMaterialFXSlot {
     base::UnkStrIdMember id;

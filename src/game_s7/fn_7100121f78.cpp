@@ -7,6 +7,7 @@
 
 #include "base/global/CRntVector.h"
 #include "game/CGoliathXBurstProjectionBombMovement.h"
+#include "game/SLogicPathNode.h"
 #include "game/UnkTU2563.h"
 #include "types.h"
 
@@ -165,7 +166,6 @@ struct UnkArraysRecord {
 // Copy-assignment of an array of polymorphic records (destroyed through vtable slot 1): the
 // elements are destroyed, the array reserves the other's capacity (moving each record over and
 // destroying the old one) and each of the other's records is appended by fn_7100e4ea08.
-extern char g_unk_7101cac8f0[];
 
 struct UnkPolyValues {
     char* vtable;

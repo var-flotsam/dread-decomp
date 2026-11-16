@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CRntString; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CRntString>::Get();
 
 // CBombGun
 namespace CBombGun {
@@ -66,7 +69,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDamageSource_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDamageSource_GetterFunction", true);
-        fn->return_type = fn_7100007f84();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CRntString>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100831618);

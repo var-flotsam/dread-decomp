@@ -29,8 +29,6 @@ static inline const UnkQualifiedId& Qid(UnkDialogDef& def) {
     return def.qid;
 }
 
-bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
-
 struct UnkLanguage;
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }

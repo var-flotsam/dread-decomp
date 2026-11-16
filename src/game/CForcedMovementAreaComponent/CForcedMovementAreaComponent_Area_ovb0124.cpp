@@ -8,6 +8,7 @@
 
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
@@ -64,15 +65,8 @@ struct UnkAreaRefs_ovb0124 {
 };
 
 // A map from string ids to arrays of references.
-struct UnkAreaMap_ovb0124 {
-    UnkAreaRefs_ovb0124* values;
-    base::UnkStrIdMember* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;  // 0x20
-};
+// allocator: 0x20
+using UnkAreaMap_ovb0124 = base::global::CRntSmallDictionary<base::UnkStrIdMember, UnkAreaRefs_ovb0124>;
 
 __attribute__((noinline)) void fn_71007e9580(void* p) {
     UnkAreaMap_ovb0124* self = static_cast<UnkAreaMap_ovb0124*>(p);

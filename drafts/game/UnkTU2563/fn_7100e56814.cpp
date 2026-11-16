@@ -3,6 +3,7 @@
 #include <new>
 
 #include "base/UnkFreedVectorPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU2563.h"
@@ -11,15 +12,7 @@
 using base::global::CStrId;
 
 // Records with their ids alongside in a second array.
-struct UnkPairIdArray_le56814 {
-    UnkFreedVectorPair* records;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkPairIdArray_le56814 = base::global::CRntSmallDictionary<CStrId, UnkFreedVectorPair>;
 
 // Grows both arrays to `new_capacity`.
 void fn_7100e56814(void* array, u32 new_capacity) {
@@ -28,25 +21,25 @@ void fn_7100e56814(void* array, u32 new_capacity) {
         UnkFreedVectorPair* records = static_cast<UnkFreedVectorPair*>(
             self->allocator->vf_0x40((u64)new_capacity * sizeof(UnkFreedVectorPair), 8, self->flags));
         CStrId* ids = static_cast<CStrId*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(CStrId), 8, self->flags));
-        if (UnkFreedVectorPair* old = self->records) {
+        if (UnkFreedVectorPair* old = self->values) {
             UnkFreedVectorPair* dst = records;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
                 new (dst) UnkFreedVectorPair(static_cast<UnkFreedVectorPair&&>(*old));
                 old->~UnkFreedVectorPair();
             }
-            self->allocator->vf_0x48(self->records);
+            self->allocator->vf_0x48(self->values);
         }
-        if (CStrId* old = self->ids) {
+        if (CStrId* old = self->keys) {
             CStrId* dst = ids;
             for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
                 dst->data = old->data;
                 old->data = &g_unk_7101d47108->empty;
                 old->Reset();
             }
-            self->allocator->vf_0x48(self->ids);
+            self->allocator->vf_0x48(self->keys);
         }
-        self->records = records;
-        self->ids = ids;
+        self->values = records;
+        self->keys = ids;
         self->capacity = new_capacity;
     }
 }

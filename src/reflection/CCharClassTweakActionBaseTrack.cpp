@@ -19,6 +19,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CCharClassTweakActionBaseTrack
 void fn_7100d2c7f0();
@@ -34,7 +36,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrame_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bMaintainFrame_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2c7f0);
@@ -44,7 +46,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bMaintainFrame", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrameUsePercentage_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bMaintainFrameUsePercentage_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2c880);

@@ -140,7 +140,7 @@ address,size,name,name_source,subsystem,status
 0x71004030f4,244,CCentralUnitAIComponent::refl_GetClass,reflection,game/ai,O
 0x71004031e8,744,CCentralUnitAIComponent::refl_AddFields,reflection,game/ai,O
 0x71004034d0,356,CCentralUnitAIComponent::refl_InitClass,reflection,game/ai,O
-0x7100403634,616,fn_7100403634,unknown,game/ai?,U
+0x7100403634,616,fn_7100403634,unknown,game/ai?,O
 0x710040389c,224,fn_710040389c,unknown,game/ai?,O
 0x710040397c,36,fn_710040397c,unknown,game/ai?,O
 0x71004039a0,120,fn_71004039a0,unknown,game/ai?,O
@@ -168,7 +168,7 @@ address,size,name,name_source,subsystem,status
 0x71004065f4,432,fn_71004065f4,unknown,game/ai?,U
 0x71004067a4,220,fn_71004067a4,unknown,game/ai?,O
 0x7100406880,560,fn_7100406880,unknown,game/ai?,O
-0x7100406ab0,676,fn_7100406ab0,unknown,game/ai?,U
+0x7100406ab0,676,fn_7100406ab0,unknown,game/ai?,O
 0x7100406d54,220,fn_7100406d54,unknown,game/ai?,O
 0x7100406e30,28,fn_7100406e30,unknown,game/ai?,O
 0x7100406e4c,132,fn_7100406e4c,unknown,game/ai?,O
@@ -2990,7 +2990,7 @@ address,size,name,name_source,subsystem,status
 0x710048a304,368,fn_710048a304,unknown,unknown,O
 0x710048a474,380,fn_710048a474,unknown,unknown,O
 0x710048a5f0,28,fn_710048a5f0,unknown,unknown,O
-0x710048a60c,768,fn_710048a60c,unknown,unknown,U
+0x710048a60c,768,fn_710048a60c,unknown,unknown,O
 0x710048a90c,36,fn_710048a90c,unknown,unknown,O
 0x710048a930,12,fn_710048a930,unknown,unknown,O
 0x710048a93c,12,fn_710048a93c,unknown,unknown,O
@@ -4401,7 +4401,7 @@ address,size,name,name_source,subsystem,status
 0x71004b9584,244,CCharClassCooldownXBossWindTunnelAttack::refl_GetClass,reflection,game/characters,O
 0x71004b9678,1260,CCharClassCooldownXBossWindTunnelAttack::refl_AddFields,reflection,game/characters,O
 0x71004b9b64,352,CCharClassCooldownXBossWindTunnelAttack::refl_InitClass,reflection,game/characters,O
-0x71004b9cc4,508,fn_71004b9cc4,unknown,unknown,U
+0x71004b9cc4,508,fn_71004b9cc4,unknown,unknown,O
 0x71004b9ec0,512,fn_71004b9ec0,unknown,unknown,O
 0x71004ba0c0,36,fn_71004ba0c0,unknown,unknown,O
 0x71004ba0e4,40,fn_71004ba0e4,unknown,unknown,O
@@ -4614,7 +4614,7 @@ address,size,name,name_source,subsystem,status
 0x71004bd260,72,CCooldownXBossFireWallDef::refl_CopyAssign,reflection,game,O
 0x71004bd2a8,72,CCooldownXBossFireWallDef::refl_MoveAssign,reflection,game,O
 0x71004bd2f0,600,fn_71004bd2f0,unknown,unknown,O
-0x71004bd548,656,fn_71004bd548,unknown,unknown,U
+0x71004bd548,656,fn_71004bd548,unknown,unknown,O
 0x71004bd7d8,144,fn_71004bd7d8,unknown,unknown,O
 0x71004bd868,8,fn_71004bd868,unknown,unknown,O
 0x71004bd870,12,fn_71004bd870,unknown,unknown,O
@@ -4746,8 +4746,8 @@ address,size,name,name_source,subsystem,status
 0x71004c028c,156,fn_71004c028c,unknown,unknown,O
 0x71004c0328,48,fn_71004c0328,unknown,unknown,O
 0x71004c0358,172,fn_71004c0358,unknown,unknown,O
-0x71004c0404,684,fn_71004c0404,unknown,unknown,U
-0x71004c06b0,684,fn_71004c06b0,unknown,unknown,U
+0x71004c0404,684,fn_71004c0404,unknown,unknown,O
+0x71004c06b0,684,fn_71004c06b0,unknown,unknown,O
 0x71004c095c,556,fn_71004c095c,unknown,unknown,O
 0x71004c0b88,12,fn_71004c0b88,unknown,unknown,O
 0x71004c0b94,24,fn_71004c0b94,unknown,unknown,O

@@ -1,5 +1,6 @@
 // Unit 23 (data/tu_map.csv, no reliable name): shrinks a keyed vector (0x40-byte values, 8-byte keys) to
 // exactly its count, reallocating both arrays. Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "types.h"
 
@@ -15,15 +16,14 @@ struct UnkKeyedValue_b0252 {
     }
 };
 
-struct UnkKeyedVector_b0252 {
-    UnkKeyedValue_b0252* values;  // 0x0
-    UnkAliasU64_b0252* keys;      // 0x8
-    u32 count;                    // 0x10
-    u32 capacity;                 // 0x14
-    u32 step;                     // 0x18
-    u32 flags;                    // 0x1c
-    base::UnkAllocator* allocator;  // 0x20
-};
+// values: 0x0
+// keys: 0x8
+// count: 0x10
+// capacity: 0x14
+// step: 0x18
+// flags: 0x1c
+// allocator: 0x20
+using UnkKeyedVector_b0252 = base::global::CRntSmallDictionary<UnkAliasU64_b0252, UnkKeyedValue_b0252>;
 
 void fn_71000159e4(UnkKeyedVector_b0252* self) {
     if (self->count == self->capacity)

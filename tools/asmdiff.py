@@ -428,7 +428,8 @@ def name_aliases(name: str) -> list[str]:
     descriptor constructor T::refl_InitClass is CClass's constructor instantiated for T::refl_Description
     in a source written with base/reflection/ReflectedClass.h; refl_InitType<T>, the CEnumType, CFlagsetType,
     CPointerType or CCollectionType constructor instantiated for T; refl_GetType<T>, a pointer type's
-    PointerType<T>::Get (base/reflection/CPointerType.h)."""
+    PointerType<T>::Get (base/reflection/CPointerType.h) or a plain type's PrimitiveType<T>::Get
+    (base/reflection/UnkReflPrimitiveType.h)."""
     if name.endswith("::refl_InitClass"):
         return [f"base::reflection::CClass::CClass<{name[:-len('::refl_InitClass')]}::refl_Description>"]
     # An enum's or a flag set's, written with base/reflection/ValueOps.h (tools/gen_types.py), is its
@@ -439,7 +440,8 @@ def name_aliases(name: str) -> list[str]:
                 f"base::reflection::CPointerType::CPointerType<{t}>",
                 f"base::reflection::CCollectionType::CCollectionType<{t}>"]
     if name.startswith("base::reflection::refl_GetType<") and name.endswith(">"):
-        return [f"base::reflection::PointerType<{name[len('base::reflection::refl_GetType<'):-1]}>::Get"]
+        t = name[len("base::reflection::refl_GetType<"):-1]
+        return [f"base::reflection::PointerType<{t}>::Get", f"base::reflection::PrimitiveType<{t}>::Get"]
     return []
 
 

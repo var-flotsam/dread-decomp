@@ -12,6 +12,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1730.h"
 #include "game/UnkTU811.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
@@ -28,7 +29,6 @@ extern UnkPropertyName g_unk_71726debd8;
 struct UnkActorTarget;
 void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 extern u32 g_unk_7101649db8;
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
 struct UnkEmmyRelaxOwner_b59 {
     u8 pad_0x0[0x220];

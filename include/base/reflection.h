@@ -149,3 +149,4 @@ void fn_71000a1710(UnkReflValueArg* out, const base::reflection::UnkReflValue* v
 void fn_71000a1978(base::reflection::UnkReflValue* out, const base::reflection::UnkTypedRef* src, u32, u32 kind);
 void fn_7100d9012c(void* member);
 void fn_7100d90218(UnkOwnedC_ld8d45c* self);
+void fn_7100d8ce3c(void* self);

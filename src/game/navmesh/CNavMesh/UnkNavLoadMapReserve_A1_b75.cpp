@@ -7,6 +7,7 @@
 #include <new>
 
 #include "base/UnkCloneRecords.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkObject_0x100.h"
@@ -72,15 +73,7 @@ struct UnkKeyId {
     }
 };
 
-struct UnkOuterMap {
-    UnkInnerMap* values;
-    UnkKeyId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkOuterMap = base::global::CRntSmallDictionary<UnkKeyId, UnkInnerMap>;
 
 template <void (*Clear)(UnkInnerMap*)>
 __attribute__((always_inline)) static inline void Reserve(UnkOuterMap* self, u32 capacity) {

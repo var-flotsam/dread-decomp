@@ -4,6 +4,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "base/UnkLinkedList.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "game/CGameManager/CTunableGameManager.h"
@@ -19,22 +20,11 @@ struct UnkResultListNode_de8ac4 {
 };
 struct UnkResultList_de8ac4 {
     void** vtable;
-    u32 count;
-    UnkResultListNode_de8ac4* head;
-    UnkResultListNode_de8ac4* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+    base::UnkLinkedList<UnkResultListNode_de8ac4> body;  // 0x8
 
     ~UnkResultList_de8ac4() {
         vtable = reinterpret_cast<void**>(g_unk_7101aa9ac0 + 0x10);
-        for (UnkResultListNode_de8ac4* n = head; n;) {
-            UnkResultListNode_de8ac4* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        body.Clear();
     }
 };
 static_assert(sizeof(UnkResultList_de8ac4) == 0x30, "layout");

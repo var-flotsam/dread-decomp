@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CLogicDroppedItemManager::CTunableDroppableBillboard
 extern bool g_unk_71727c1320;
@@ -61,7 +63,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAbsorbDissolvingPickables", 0x79, (DefaultValue, false), (Description, "Whether player can absorb pickables that have started their dissolution process"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAttractionDistanceCm_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fDefaultAttractionDistanceCm_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100e2f79c);
@@ -71,7 +73,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultAttractionDistanceCm", (DefaultValue, 800.0f), (Description, "Distance, in centimeters, from which the drop will start to be attracted"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMiniXAttractionDistanceCm_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fMiniXAttractionDistanceCm_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100e2f894);

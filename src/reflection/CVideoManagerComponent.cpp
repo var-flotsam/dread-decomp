@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CFilePathStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 
 // CVideoManagerComponent
 void fn_7100aa8ef8();
@@ -34,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sVideo_2_Path", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sVideoAux_1_Path_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sVideoAux_1_Path_GetterFunction", true);
-        fn->return_type = fn_710000ad9c();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100aa8ef8);
@@ -44,7 +47,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sVideoAux_1_Path");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sVideoAux_2_Path_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sVideoAux_2_Path_GetterFunction", true);
-        fn->return_type = fn_710000ad9c();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100aa8fa0);

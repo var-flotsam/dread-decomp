@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
 // CEnemyLifeComponent
 void fn_710115dae8();
@@ -27,7 +30,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sImpactBackAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sImpactBackAnim_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710115dae8);
@@ -37,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sImpactBackAnim", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadBackAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDeadBackAnim_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710115dae8);
@@ -47,7 +50,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sDeadBackAnim", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadAirAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDeadAirAnim_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710115dae8);
@@ -57,7 +60,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "sDeadAirAnim", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sDeadAirBackAnim_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sDeadAirBackAnim_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710115dae8);

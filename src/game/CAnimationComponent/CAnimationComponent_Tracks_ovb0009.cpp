@@ -51,8 +51,6 @@ struct UnkCls_710117af10;
 struct UnkTrackBlend;
 struct UnkTrackAction_1444;
 
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
-
 // A request's mode (passed by value, through memory).
 struct UnkFlags_7101176ea8 {
     u32 value;
@@ -499,12 +497,12 @@ struct UnkMtx44_b46a2 {
 UnkVec3f fn_710007a320(const UnkVec3f* v, f32 angle);
 
 // fn_7101179878 for the action `id` names, at `seconds` turned into frames on its clock.
-void fn_7101179de0(UnkAnimActionSetsOwner* self, void* id, u64 key, f32 seconds, UnkMtx44_b46a2* out, u32 b) {
+bool fn_7101179de0(UnkAnimActionSetsOwner* self, void* id, u64 key, f32 seconds, UnkMtx44_b46a2* out, u32 b) {
     void* entry = fn_7101176d34(reinterpret_cast<UnkStruct_7101176ea8*>(self), id);
     if (!entry)
-        return;
+        return false;
     f32 frames = fn_7100b8aff0(seconds, static_cast<const UnkAnimTiming*>(entry));
-    fn_7101179878(self, entry, 0, key, out, b, frames);
+    return fn_7101179878(self, entry, 0, key, out, b, frames);
 }
 
 // ---- Updates --------------------------------------------------------------------------------

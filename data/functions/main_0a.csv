@@ -188,7 +188,7 @@ address,size,name,name_source,subsystem,status
 0x7100a08780,1148,CWeightActivatedPlatformSmartObjectComponent::refl_AddFields,reflection,game/components,O
 0x7100a08bfc,352,CWeightActivatedPlatformSmartObjectComponent::refl_InitClass,reflection,game/components,O
 0x7100a08d5c,772,fn_7100a08d5c,unknown,game/components?,U
-0x7100a09060,636,fn_7100a09060,unknown,game/components?,U
+0x7100a09060,636,fn_7100a09060,unknown,game/components?,O
 0x7100a092dc,44,fn_7100a092dc,unknown,game/components?,O
 0x7100a09308,28,fn_7100a09308,unknown,game/components?,O
 0x7100a09324,36,fn_7100a09324,unknown,game/components?,O
@@ -215,15 +215,15 @@ address,size,name,name_source,subsystem,status
 0x7100a0af50,516,fn_7100a0af50,unknown,game/components?,O
 0x7100a0b154,812,fn_7100a0b154,unknown,game/components?,O
 0x7100a0b480,1004,fn_7100a0b480,unknown,game/components?,O
-0x7100a0b86c,584,fn_7100a0b86c,unknown,game/components?,U
+0x7100a0b86c,584,fn_7100a0b86c,unknown,game/components?,O
 0x7100a0bab4,316,fn_7100a0bab4,unknown,game/components?,O
 0x7100a0bbf0,752,fn_7100a0bbf0,unknown,game/components?,O
 0x7100a0bee0,924,fn_7100a0bee0,unknown,game/components?,O
-0x7100a0c27c,616,fn_7100a0c27c,unknown,game/components?,U
+0x7100a0c27c,616,fn_7100a0c27c,unknown,game/components?,O
 0x7100a0c4e4,296,fn_7100a0c4e4,unknown,game/components?,O
 0x7100a0c60c,536,fn_7100a0c60c,unknown,game/components?,U
 0x7100a0c824,220,fn_7100a0c824,unknown,game/components?,O
-0x7100a0c900,604,fn_7100a0c900,unknown,game/components?,U
+0x7100a0c900,604,fn_7100a0c900,unknown,game/components?,O
 0x7100a0cb5c,308,fn_7100a0cb5c,unknown,game/components?,O
 0x7100a0cc90,28,fn_7100a0cc90,unknown,game/components?,O
 0x7100a0ccac,132,fn_7100a0ccac,unknown,game/components?,O
@@ -839,7 +839,7 @@ address,size,name,name_source,subsystem,status
 0x7100a226c4,244,CFreezeRoomComponent::refl_GetClass,reflection,game/components,O
 0x7100a227b8,968,CFreezeRoomComponent::refl_AddFields,reflection,game/components,O
 0x7100a22b80,372,CFreezeRoomComponent::refl_InitClass,reflection,game/components,O
-0x7100a22cf4,876,fn_7100a22cf4,unknown,game/components?,U
+0x7100a22cf4,876,fn_7100a22cf4,unknown,game/components?,O
 0x7100a23060,272,fn_7100a23060,unknown,game/components?,O
 0x7100a23170,36,fn_7100a23170,unknown,game/components?,O
 0x7100a23194,56,fn_7100a23194,unknown,game/components?,O
@@ -897,7 +897,7 @@ address,size,name,name_source,subsystem,status
 0x7100a245e8,12,CFreezeRoomComponent::refl_Destroy,reflection,game/components,O
 0x7100a245f4,8,CFreezeRoomComponent::refl_CopyAssign,reflection,game/components,O
 0x7100a245fc,8,CFreezeRoomComponent::refl_MoveAssign,reflection,game/components,O
-0x7100a24610,1088,fn_7100a24610,unknown,game/components?,U
+0x7100a24610,1088,fn_7100a24610,unknown,game/components?,O
 0x7100a24a50,160,fn_7100a24a50,unknown,game/components?,O
 0x7100a24af0,332,fn_7100a24af0,unknown,game/components?,O
 0x7100a24c3c,384,base::reflection::refl_InitType<EThermalHeatRoomType>,reflection,engine/reflection,O
@@ -909,7 +909,7 @@ address,size,name,name_source,subsystem,status
 0x7100a259f4,244,CHeatRoomComponent::refl_GetClass,reflection,game/components,O
 0x7100a25ae8,1440,CHeatRoomComponent::refl_AddFields,reflection,game/components,O
 0x7100a26088,372,CHeatRoomComponent::refl_InitClass,reflection,game/components,O
-0x7100a261fc,796,fn_7100a261fc,unknown,game/components?,U
+0x7100a261fc,796,fn_7100a261fc,unknown,game/components?,O
 0x7100a26518,400,fn_7100a26518,unknown,game/components?,O
 0x7100a266a8,36,fn_7100a266a8,unknown,game/components?,O
 0x7100a266cc,56,fn_7100a266cc,unknown,game/components?,O
@@ -2745,7 +2745,7 @@ address,size,name,name_source,subsystem,status
 0x7100a6bdf0,1992,CAccessPointComponent::CTunableAccessPointComponent::refl_AddFields,reflection,game/components,O
 0x7100a6c5b8,388,CAccessPointComponent::CTunableAccessPointComponent::refl_InitClass,reflection,game/components,O
 0x7100a6c73c,696,fn_7100a6c73c,unknown,unknown,O
-0x7100a6c9f4,1108,fn_7100a6c9f4,unknown,unknown,U
+0x7100a6c9f4,1108,fn_7100a6c9f4,unknown,unknown,O
 0x7100a6ce48,1380,fn_7100a6ce48,unknown,unknown,U
 0x7100a6d3ac,44,fn_7100a6d3ac,unknown,unknown,O
 0x7100a6d3d8,28,fn_7100a6d3d8,unknown,unknown,O
@@ -2754,7 +2754,7 @@ address,size,name,name_source,subsystem,status
 0x7100a6d528,120,fn_7100a6d528,unknown,unknown,O
 0x7100a6d5a0,56,fn_7100a6d5a0,unknown,unknown,O
 0x7100a6d5d8,68,fn_7100a6d5d8,unknown,unknown,O
-0x7100a6d61c,632,fn_7100a6d61c,unknown,unknown,U
+0x7100a6d61c,632,fn_7100a6d61c,unknown,unknown,O
 0x7100a6d894,456,fn_7100a6d894,unknown,unknown,O
 0x7100a6da5c,616,fn_7100a6da5c,unknown,unknown,O
 0x7100a6dcc4,512,fn_7100a6dcc4,unknown,unknown,O
@@ -2932,7 +2932,7 @@ address,size,name,name_source,subsystem,status
 0x7100a74870,60,fn_7100a74870,unknown,unknown,O
 0x7100a748ac,264,fn_7100a748ac,unknown,unknown,O
 0x7100a749b4,48,fn_7100a749b4,unknown,unknown,O
-0x7100a749e4,784,fn_7100a749e4,unknown,unknown,U
+0x7100a749e4,784,fn_7100a749e4,unknown,unknown,O
 0x7100a74cf4,80,fn_7100a74cf4,unknown,unknown,O
 0x7100a74d44,56,fn_7100a74d44,unknown,unknown,O
 0x7100a74d7c,224,fn_7100a74d7c,unknown,unknown,O
@@ -2969,7 +2969,7 @@ address,size,name,name_source,subsystem,status
 0x7100a75990,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>::End",reflection,engine/reflection,O
 0x7100a75998,144,fn_7100a75998,unknown,unknown,U
 0x7100a75a28,64,fn_7100a75a28,unknown,unknown,O
-0x7100a75a70,1136,fn_7100a75a70,unknown,unknown,U
+0x7100a75a70,1136,fn_7100a75a70,unknown,unknown,O
 0x7100a75ee0,4,CCharClassAccessPointComponent::refl_AddAttributes,reflection,game/characters,O
 0x7100a75ee4,244,CCharClassAccessPointComponent::refl_GetClass,reflection,game/characters,O
 0x7100a75fd8,2088,CCharClassAccessPointComponent::refl_AddFields,reflection,game/characters,O
@@ -3305,8 +3305,8 @@ address,size,name,name_source,subsystem,status
 0x7100a849c8,244,CMapAcquisitionComponent::refl_GetClass,reflection,game/components,O
 0x7100a84abc,312,CMapAcquisitionComponent::refl_AddFields,reflection,game/components,O
 0x7100a84bf4,388,CMapAcquisitionComponent::refl_InitClass,reflection,game/components,O
-0x7100a84d78,572,fn_7100a84d78,unknown,game/components?,U
-0x7100a84fb4,556,fn_7100a84fb4,unknown,game/components?,U
+0x7100a84d78,572,fn_7100a84d78,unknown,game/components?,O
+0x7100a84fb4,556,fn_7100a84fb4,unknown,game/components?,O
 0x7100a851e0,44,fn_7100a851e0,unknown,game/components?,O
 0x7100a8520c,28,fn_7100a8520c,unknown,game/components?,O
 0x7100a85228,36,fn_7100a85228,unknown,game/components?,O
@@ -3315,7 +3315,7 @@ address,size,name,name_source,subsystem,status
 0x7100a853c4,120,fn_7100a853c4,unknown,game/components?,O
 0x7100a8543c,92,fn_7100a8543c,unknown,game/components?,O
 0x7100a85498,100,fn_7100a85498,unknown,game/components?,O
-0x7100a854fc,632,fn_7100a854fc,unknown,game/components?,U
+0x7100a854fc,632,fn_7100a854fc,unknown,game/components?,O
 0x7100a85774,456,fn_7100a85774,unknown,game/components?,O
 0x7100a8593c,420,fn_7100a8593c,unknown,game/components?,U
 0x7100a85ae0,80,fn_7100a85ae0,unknown,game/components?,O
@@ -3771,7 +3771,7 @@ address,size,name,name_source,subsystem,status
 0x7100a9652c,4,base::reflection::ValueOps<CThermalDeviceComponent::EPipeGroup>::Destroy,reflection,engine/reflection,O
 0x7100a96530,20,base::reflection::ValueOps<CThermalDeviceComponent::EPipeGroup>::CopyAssign,reflection,engine/reflection,O
 0x7100a96544,20,base::reflection::ValueOps<CThermalDeviceComponent::EPipeGroup>::MoveAssign,reflection,engine/reflection,O
-0x7100a96560,1168,fn_7100a96560,unknown,unknown,U
+0x7100a96560,1168,fn_7100a96560,unknown,unknown,O
 0x7100a969f0,4,CTotalRechargeComponent::refl_AddAttributes,reflection,game/components,O
 0x7100a969f4,244,CTotalRechargeComponent::refl_GetClass,reflection,game/components,O
 0x7100a96ae8,676,CTotalRechargeComponent::refl_AddFields,reflection,game/components,O
@@ -3920,7 +3920,7 @@ address,size,name,name_source,subsystem,status
 0x7100a9c7f4,244,CUsableComponent::CTunableUsableComponent::refl_GetClass,reflection,game/components,O
 0x7100a9c8e8,2364,CUsableComponent::CTunableUsableComponent::refl_AddFields,reflection,game/components,O
 0x7100a9d224,388,CUsableComponent::CTunableUsableComponent::refl_InitClass,reflection,game/components,O
-0x7100a9d3a8,872,fn_7100a9d3a8,unknown,unknown,U
+0x7100a9d3a8,872,fn_7100a9d3a8,unknown,unknown,O
 0x7100a9d710,484,fn_7100a9d710,unknown,unknown,O
 0x7100a9d8f4,696,fn_7100a9d8f4,unknown,unknown,O
 0x7100a9dbac,460,fn_7100a9dbac,unknown,unknown,O

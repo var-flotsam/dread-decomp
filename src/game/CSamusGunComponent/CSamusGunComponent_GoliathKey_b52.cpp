@@ -9,12 +9,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 using base::reflection::CClass;
 
-extern char* g_unk_71726b2398;
 extern u64 g_unk_710164ad60;
 extern u64 g_unk_710164ad68;
 

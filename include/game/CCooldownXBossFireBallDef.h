@@ -7,3 +7,4 @@
 #include "types.h"
 extern char g_unk_7101a3e2b0[];
 extern UnkTunable g_unk_71726d6438;
+extern char g_unk_7101a3e300[];

@@ -1,10 +1,11 @@
 #pragma once
 
-// CAnimationComponent: functions of this translation unit that other files call (tools/tu_map.py unit 2720,
+// CAnimationComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2720,
 // 0x7101174bd0-0x710117f300). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "base/global/CStrId.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkFlags_7101176ea8;
@@ -39,7 +40,10 @@ bool fn_7101178524(UnkAnimFlagsHolder_b47a3* self, u32 bit);
 bool fn_7101179870(UnkStateSet_1441* self);
 void fn_710117774c(UnkShakernautCtrl_b53* ctrl);
 void fn_7101178010(void* target, u64 id, bool flag, f32 time);
-void fn_7101179878(UnkAnimActionSetsOwner* anim, void* entry, u32 a, u64 key, UnkMtx44_b46a2* out, u32 b, f32 c);
+bool fn_7101179878(UnkAnimActionSetsOwner* anim, void* entry, u32 a, u64 key, UnkMtx44_b46a2* out, u32 b, f32 c);
+// fn_7101179878 for the action `id` names, at `seconds` turned into frames on its clock; false when there is no
+// such action.
+bool fn_7101179de0(UnkAnimActionSetsOwner* self, void* id, u64 key, f32 seconds, UnkMtx44_b46a2* out, u32 b);
 void fn_710117ab64(UnkAnimationComponent* self, bool, const void* arg);
 void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void* fn_7101177d2c(UnkAnimationComponent* self, u64 key);
@@ -51,3 +55,9 @@ s32 fn_7101177da8(void* object, u64 hash);
 bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);
 bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags, const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
 const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
+f32 fn_710117808c(UnkAnimationComponent* self, u64 key);
+void fn_710117b794(void* list, u32 capacity, u32 a, u32 step, base::UnkAllocator* allocator);
+extern void* g_unk_7101cb46c0[];
+extern char g_unk_7101cb4840[];
+extern char g_unk_7101cb4860[];
+extern void* g_unk_7101cb4880[];

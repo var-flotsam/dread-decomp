@@ -18,7 +18,6 @@ struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     u64 kind;
     f32 value;
 };
-extern UnkDesc_SpitSend g_unk_710164b968;  // reached through the GOT
 
 struct UnkFireMessage_b57 {
     virtual void vf_0x0();

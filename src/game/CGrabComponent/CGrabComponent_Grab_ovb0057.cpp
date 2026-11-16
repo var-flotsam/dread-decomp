@@ -20,6 +20,7 @@
 #include "game/CGrabComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU1730.h"
@@ -37,8 +38,6 @@ struct UnkKraidGrab_b57a4;
 void fn_71010ff850(void* target, bool flag, void* arg);
 bool fn_710119dc88(UnkSubAreaGuiCache* self, void* actor, bool flag);
 
-extern void* g_unk_7101cb3230[];  // the component's vtable
-extern char* g_unk_71726b2398;
 extern u8 g_unk_7172a09100[] __attribute__((visibility("hidden")));
 
 // As in src/game/CCharClassToStateTrack/CCharClassToStateTrack_Fill.cpp.
@@ -239,10 +238,6 @@ void fn_710113f6d8();
 bool fn_710113d4f4(UnkGrabComponent_ovb0057* self, UnkGrabRequest_ovb0057* req, void* part,
                    UnkGrabActor_ovb0057* other);
 
-// The registry of grabbing components.
-struct UnkGrabListTag_ovb0057;
-using UnkGrabList_ovb0057 = base::UnkSList<UnkGrabListTag_ovb0057>;
-extern UnkGrabList_ovb0057 g_unk_7172a090b8;
 
 static inline s32 IndexOf(UnkGrabList_ovb0057* list, u64 v) {
     u32 i = 0;

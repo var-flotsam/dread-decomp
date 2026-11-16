@@ -11,6 +11,7 @@
 #include "base/UnkHashStream.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CRntFile.h"
@@ -552,24 +553,16 @@ void fn_7100e56634(UnkRec60IdArray_b0223* self, const UnkRec60IdArray_b0223* oth
     }
 }
 
-struct UnkRec60Array_b0223 {
-    UnkRec60_b0223* data;
-    void** field_0x8;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkRec60Array_b0223 = base::global::CRntSmallDictionary<void*, UnkRec60_b0223>;
 
 struct UnkRecord60Array;
 void fn_7100e54ef0(UnkSecondPtrArray<UnkFreedVectorPair>* self);
 
 UnkRec60Array_b0223* fn_7100e54cc4(UnkRec60Array_b0223* self, const UnkRec60Array_b0223* other) {
     if (self != other) {
-        if (self->data)
+        if (self->values)
             for (u64 i = 0; i < self->count; ++i)
-                self->data[i].~UnkRec60_b0223();
+                self->values[i].~UnkRec60_b0223();
         self->count = 0;
         if (other->count != self->capacity) {
             fn_7100e54ef0(reinterpret_cast<UnkSecondPtrArray<UnkFreedVectorPair>*>(self));
@@ -577,14 +570,13 @@ UnkRec60Array_b0223* fn_7100e54cc4(UnkRec60Array_b0223* self, const UnkRec60Arra
         }
         self->count = other->count;
         for (u64 i = 0; i < self->count; ++i)
-            new (&self->data[i]) UnkRec60_b0223(other->data[i]);
-        __builtin_memcpy(self->field_0x8, other->field_0x8, (u64)other->count * sizeof(void*));
+            new (&self->values[i]) UnkRec60_b0223(other->values[i]);
+        __builtin_memcpy(self->keys, other->keys, (u64)other->count * sizeof(void*));
         self->count = other->count;
     }
     return self;
 }
 
-void fn_7100e4efa0(UnkRec60IdArray_b0223* self);
 void fn_7100e56c64(UnkRec60IdArray_b0223* self);
 
 UnkRec60IdArray_b0223* fn_7100e56a74(UnkRec60IdArray_b0223* self, const UnkRec60IdArray_b0223* other) {
@@ -791,15 +783,7 @@ struct UnkBoundsItem_b0223 {
 static_assert(sizeof(UnkBoundsItem_b0223) == 0x28, "layout");
 
 template <class V>
-struct UnkKeyedItems_b0223 {
-    V* items;
-    UnkMinimapId_b0223* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyedItems_b0223 = base::global::CRntSmallDictionary<UnkMinimapId_b0223, V>;
 
 // Grows both arrays, moving the items and the ids.
 void fn_7100e5ba88(UnkKeyedItems_b0223<UnkBoundsItem_b0223>* self, u32 capacity) {
@@ -808,13 +792,13 @@ void fn_7100e5ba88(UnkKeyedItems_b0223<UnkBoundsItem_b0223>* self, u32 capacity)
         V* items = static_cast<V*>(self->allocator->vf_0x40((u64)capacity * sizeof(V), 8, self->flags));
         auto* keys = static_cast<UnkMinimapId_b0223*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkMinimapId_b0223), 8, self->flags));
-        if (V* src = self->items) {
+        if (V* src = self->values) {
             V* dst = items;
             for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
                 new (dst) V(static_cast<V&&>(*src));
                 src->~V();
             }
-            self->allocator->vf_0x48(self->items);
+            self->allocator->vf_0x48(self->values);
         }
         if (UnkMinimapId_b0223* src = self->keys) {
             UnkMinimapId_b0223* dst = keys;
@@ -824,7 +808,7 @@ void fn_7100e5ba88(UnkKeyedItems_b0223<UnkBoundsItem_b0223>* self, u32 capacity)
             }
             self->allocator->vf_0x48(self->keys);
         }
-        self->items = items;
+        self->values = items;
         self->keys = keys;
         self->capacity = capacity;
     }
@@ -832,21 +816,21 @@ void fn_7100e5ba88(UnkKeyedItems_b0223<UnkBoundsItem_b0223>* self, u32 capacity)
 
 // Removes the item `it` names (and its id) by moving the last item into its slot.
 UnkBoundsItem_b0223* fn_7100e5c218(UnkKeyedItems_b0223<UnkBoundsItem_b0223>* self, UnkBoundsItem_b0223* it) {
-    u32 index = (u32)(it - self->items);
-    self->items[index].~UnkBoundsItem_b0223();
+    u32 index = (u32)(it - self->values);
+    self->values[index].~UnkBoundsItem_b0223();
     self->keys[index].~UnkMinimapId_b0223();
     u32 last = self->count - 1;
     if (last != index) {
-        UnkBoundsItem_b0223* dst = &self->items[index];
-        UnkBoundsItem_b0223* src = &self->items[last];
+        UnkBoundsItem_b0223* dst = &self->values[index];
+        UnkBoundsItem_b0223* src = &self->values[last];
         new (dst) UnkBoundsItem_b0223(static_cast<UnkBoundsItem_b0223&&>(*src));
-        self->items[self->count - 1].~UnkBoundsItem_b0223();
+        self->values[self->count - 1].~UnkBoundsItem_b0223();
         UnkMinimapId_b0223* keys = self->keys;
         new (&keys[index]) UnkMinimapId_b0223(static_cast<UnkMinimapId_b0223&&>(keys[self->count - 1]));
         self->keys[self->count - 1].~UnkMinimapId_b0223();
     }
     self->count = self->count - 1;
-    return &self->items[index];
+    return &self->values[index];
 }
 
 // The list of an item: the fields of an array, moved in place.
@@ -899,19 +883,19 @@ struct UnkRecord60;
 inline UnkListItem_b0223::~UnkListItem_b0223() { fn_7100e4a1d0(reinterpret_cast<UnkRecord60*>(this)); }
 
 UnkListItem_b0223* fn_7100e5a5f8(UnkKeyedItems_b0223<UnkListItem_b0223>* self, UnkListItem_b0223* it) {
-    u32 index = (u32)(it - self->items);
-    self->items[index].~UnkListItem_b0223();
+    u32 index = (u32)(it - self->values);
+    self->values[index].~UnkListItem_b0223();
     self->keys[index].~UnkMinimapId_b0223();
     u32 last = self->count - 1;
     if (last != index) {
-        UnkListItem_b0223* dst = &self->items[index];
-        UnkListItem_b0223* src = &self->items[last];
+        UnkListItem_b0223* dst = &self->values[index];
+        UnkListItem_b0223* src = &self->values[last];
         new (dst) UnkListItem_b0223(static_cast<UnkListItem_b0223&&>(*src));
-        self->items[self->count - 1].~UnkListItem_b0223();
+        self->values[self->count - 1].~UnkListItem_b0223();
         UnkMinimapId_b0223* keys = self->keys;
         new (&keys[index]) UnkMinimapId_b0223(static_cast<UnkMinimapId_b0223&&>(keys[self->count - 1]));
         self->keys[self->count - 1].~UnkMinimapId_b0223();
     }
     self->count = self->count - 1;
-    return &self->items[index];
+    return &self->values[index];
 }
