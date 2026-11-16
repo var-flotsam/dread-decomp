@@ -186,6 +186,19 @@ public:
         data = other.data;
         other.data = &g_unk_7101d47108->empty;
     }
+    // ReleaseAndTake as the move of the keyed arrays' iterator values and of their records
+    // (fn_7100e558f8, fn_7100e5ae40): the moved-from id gets the empty id through a store with no
+    // type-based alias info, so what follows (the pool, counts, array pointers, the holder's kind)
+    // is loaded again, as the original does. Elsewhere (fn_71000d8b90, fn_71002d9994) the original
+    // keeps those values across the store, so it is a member of its own.
+    void ReleaseAndTakeReloading(CStrId& other) {
+        Reset();
+        data = other.data;
+        union Slot {
+            UnkStringData* p;
+        };
+        reinterpret_cast<Slot*>(&other.data)->p = &g_unk_7101d47108->empty;
+    }
 };
 
 // The id type of a reflected function's name (UnkReflFunction+0x30). It is built by the same

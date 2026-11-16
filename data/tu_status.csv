@@ -2562,7 +2562,7 @@ index,start,end,name,confidence,subsystem,state,functions,bytes,O,m,verified,M,W
 2560,0x7100e1bc3c,0x7100e1dbbc,UnkTU2560,high,unknown,partial,26,8060,22,0,0,0,0,4,0,4664,4664
 2561,0x7100e1dbc0,0x7100e1e35c,CLogicDroppedItemManager::CTunableDroppableBillboard,high,unknown,partial,2,1936,1,0,0,0,0,1,0,532,532
 2562,0x7100e1e35c,0x7100e31c18,CLogicDroppedItemManager::CTunableDroppableBillboard,medium,game,partial,92,80060,63,1,0,0,0,28,0,28520,28520
-2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1229,16,3,0,0,39,0,158296,159440
+2563,0x7100e31c18,0x7100e65204,CMinimapData,medium,unknown,partial,1284,210376,1231,16,3,0,0,37,0,159708,160852
 2564,0x7100e65204,0x7100e768b0,CMinimapDef,medium,unknown,partial,293,71332,282,3,1,0,0,8,0,55820,56048
 2565,0x7100e768b0,0x7100e7cdfc,UnkTU2565,high,unknown,partial,150,25924,138,0,0,0,0,12,0,17304,17304
 2566,0x7100e7cdfc,0x7100eb695c,CMinimapManager::CTunableMinimapManager,medium,unknown,partial,848,236376,746,15,7,0,0,87,0,123012,125948

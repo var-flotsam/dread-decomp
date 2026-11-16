@@ -154,6 +154,16 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
+keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
+pointers or the holder's kind, as if the store of the empty id into the moved-from slot could change them;
+two functions matched only with a union-typed store at that point in their own files. Making
+`ReleaseAndTake` itself store that way regressed five matched functions (`fn_71000d8b90`, `fn_71002d9994`,
+`fn_71006ca3fc`, `fn_71006df684`, `fn_710109b790`), whose originals keep the values, so the original has both
+forms. The second is now a member of its own, `ReleaseAndTakeReloading`, with the union store and its reason in
+the header (owner's go-ahead, 2026-11-16). `fn_7100e558f8` and `fn_7100e5ae40` match with it and leave
+`drafts/`; seven other drafts that call `ReleaseAndTake` do not match with the other member.
+
 **Opus batch lean-o1: 50 ready functions of 400 to 1,000 bytes (2026-11-16).** The pilot's shape, scaled on the
 owner's go-ahead: the next ten units with three or more ready functions of that size, 10 Opus workers, 5 each,
 budget 5. Results: 13 matches (26%; 9 on the first graded attempt, 3 on the second, 1 on the third), 10
