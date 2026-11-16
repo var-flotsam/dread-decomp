@@ -120,6 +120,21 @@ class Main(unittest.TestCase):
                                 ("tools/gen_statics.py", "--version", "9.9.9"),
                                 ("tools/gen_lift.py", "--version", "9.9.9")])
 
+    def test_gen_types_runs_its_chain(self):
+        self.run_main("--regen", "gen_types")
+        gens = [c for c in self.calls if c[0].startswith("tools/gen_")]
+        self.assertEqual(gens, [("tools/gen_types.py", "--version", "9.9.9"),
+                                ("tools/gen_functions_csv.py", "--version", "9.9.9"),
+                                ("tools/gen_types.py", "--version", "9.9.9"),
+                                ("tools/gen_clones.py", "--version", "9.9.9"),
+                                ("tools/gen_lift.py", "--prune")])
+
+    def test_gen_types_with_gen_clones_runs_clones_once(self):
+        self.run_main("--regen", "gen_clones,gen_types")
+        gens = [c[0] for c in self.calls if c[0].startswith("tools/gen_")]
+        self.assertEqual(gens.count("tools/gen_clones.py"), 1)
+        self.assertLess(gens.index("tools/gen_functions_csv.py"), gens.index("tools/gen_clones.py"))
+
     def test_regression_against_saved_baseline(self):
         self.baseline_file.parent.mkdir(parents=True)
         self.baseline_file.write_text("0x7100000100\n0x7100000999\n")
@@ -135,6 +150,14 @@ class Main(unittest.TestCase):
         rc, out = self.run_main()
         self.assertEqual(rc, 1)
         self.assertIn("no longer O: 0x7100000200", out)
+
+    def test_lost_definition_line_counts(self):
+        self.outputs[("tools/check.py", True)] = (1, status("0x7100000100") + [
+            "U  0x7100000300          fn_7100000300  REGRESSION (was O, no source defines it: a name check.py "
+            "cannot resolve? tools/rename.py)"])
+        rc, out = self.run_main()
+        self.assertEqual(rc, 1)
+        self.assertIn("no longer O: 0x7100000300", out)
 
     def test_duplicates_fail(self):
         self.outputs[("tools/check.py", True)] = (0, status("0x7100000100") + ["DUPLICATE 0x7100000100 a.cpp b.cpp"])
