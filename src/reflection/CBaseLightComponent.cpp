@@ -18,6 +18,13 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::math { class CVector3D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
+namespace base::math { class CVector4D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector4D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CBaseLightComponent
 void fn_71008ef0bc();
@@ -54,7 +61,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLightPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vLightPos_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x100;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef0bc);
@@ -64,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vLightPos");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fIntensity_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef184);
@@ -74,7 +81,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fIntensity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fVIntensity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fVIntensity_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef23c);
@@ -84,7 +91,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fVIntensity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fFIntensity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fFIntensity_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef2f4);
@@ -94,7 +101,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fFIntensity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAmbient_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vAmbient_GetterFunction", true);
-        fn->return_type = fn_71000248c4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef3ac);
@@ -104,7 +111,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vAmbient");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDiffuse_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vDiffuse_GetterFunction", true);
-        fn->return_type = fn_71000248c4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef468);
@@ -114,7 +121,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vDiffuse", (DefaultValue, base::math::CVector4D{1.0f, 1.0f, 1.0f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular0_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vSpecular0_GetterFunction", true);
-        fn->return_type = fn_71000248c4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef524);
@@ -124,7 +131,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vSpecular0");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vSpecular1_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vSpecular1_GetterFunction", true);
-        fn->return_type = fn_71000248c4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef5e0);
@@ -134,7 +141,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vSpecular1");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVertexLight_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bVertexLight_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef69c);
@@ -154,7 +161,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field9 = fn_7100096524(cls, CStrId("eLightPreset", true), &g_unk_716e5992a0, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vLightPresetParams_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vLightPresetParams_GetterFunction", true);
-        fn->return_type = fn_71000248c4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef810);
@@ -164,7 +171,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vLightPresetParams");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bSubstractive_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bSubstractive_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef8cc);
@@ -174,7 +181,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bSubstractive");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseFaceCull_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseFaceCull_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef988);
@@ -184,7 +191,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bUseFaceCull");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseSpecular_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseSpecular_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008efa44);

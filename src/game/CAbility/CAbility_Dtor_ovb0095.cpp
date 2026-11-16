@@ -45,9 +45,6 @@ bool fn_71002f92d4(UnkAbilityAmount_ovb0095* self) {
     return false;
 }
 
-extern void* g_unk_7101a225f8[];  // the value holders' vtable
-extern void* g_unk_7101a22650[];  // the vtable of the member at +0x10
-
 struct UnkCameraCtrl_ovb0049;
 struct UnkOpticAbility_ovb0059;
 

@@ -18,6 +18,13 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CFilePathStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
+namespace base::math { class CVector3D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCubeMapComponent
 void fn_71007a07a0();
@@ -44,7 +51,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vCubePos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vCubePos_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x100;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a07a0);
@@ -54,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vCubePos");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMin_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a088c);
@@ -64,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttMin", (DefaultValue, 400.0f), (MaxValueProperty, CStrId("fAttMax", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fAttMax_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0938);
@@ -74,7 +81,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttMax", (DefaultValue, 500.0f), (MinValueProperty, CStrId("fAttMin", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vBoxBounds_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vBoxBounds_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x100;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0a3c);
@@ -84,7 +91,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vBoxBounds", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (MinValueProperty, CStrId("m_vBoxBounds", true)));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fIntensity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fIntensity_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0b28);
@@ -94,7 +101,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fIntensity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnableCulling_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bEnableCulling_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0bdc);
@@ -104,7 +111,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bEnableCulling");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePathSpecular_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sTexturePathSpecular_GetterFunction", true);
-        fn->return_type = fn_710000ad9c();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0cac);
@@ -114,7 +121,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sTexturePathSpecular");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sTexturePathDiffuse_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sTexturePathDiffuse_GetterFunction", true);
-        fn->return_type = fn_710000ad9c();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007a0d58);

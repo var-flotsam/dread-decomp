@@ -18,6 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::math { class CVector4D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector4D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassDoorLifeComponent
 void fn_71008b2d64();
@@ -47,7 +52,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMinTimeClosed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fMinTimeClosed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b2d64);
@@ -57,7 +62,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fMinTimeClosed", (DefaultValue, 0.0f), (Description, "Minimum time to stay closed"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fMaxDistanceOpened_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fMaxDistanceOpened_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b2df4);
@@ -67,7 +72,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fMaxDistanceOpened", (DefaultValue, 500.0f), (Description, "Max distance to be opened"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUsesPresenceDetection_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUsesPresenceDetection_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b2e84);
@@ -77,7 +82,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bUsesPresenceDetection", (DefaultValue, false), (Description, "Whether this door uses presence detection (requires collider)"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPresenceOpenEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bPresenceOpenEnabled_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b2f14);
@@ -87,7 +92,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bPresenceOpenEnabled", (DefaultValue, false), (Description, "Whether this door should try to open when player is outside of the presence collider"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseDoorLockOnLocked_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseDoorLockOnLocked_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b2fa4);
@@ -97,7 +102,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bUseDoorLockOnLocked", (DefaultValue, false), (Description, "Whether this door has a separate door lock actor to be used when it's locked"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vDefaultLightColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vDefaultLightColor_GetterFunction", true);
-        fn->return_type = fn_71000248c4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b3034);
@@ -107,7 +112,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vDefaultLightColor", (DefaultValue, base::math::CVector4D{1.0f, 0.8f, 0.34f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_vBlockLightColor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_vBlockLightColor_GetterFunction", true);
-        fn->return_type = fn_71000248c4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b311c);
@@ -117,7 +122,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vBlockLightColor", (DefaultValue, base::math::CVector4D{0.1f, 0.1f, 0.1f, 1.0f}));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bVerticalDimensionInFrustum_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bVerticalDimensionInFrustum_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b3204);
@@ -127,7 +132,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bVerticalDimensionInFrustum", (DefaultValue, false), (Description, "Vertical Dimension has to be in frustum to react"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bHorizontalDimensionInFrustum_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bHorizontalDimensionInFrustum_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b3294);
@@ -137,7 +142,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bHorizontalDimensionInFrustum", (DefaultValue, false), (Description, "Horizontal Dimension has to be in frustum to react"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bUseHeatDeviceActivation_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bUseHeatDeviceActivation_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b3324);
@@ -147,7 +152,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bUseHeatDeviceActivation", (DefaultValue, false), (Description, "Whether this door uses heat device to open"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartOpened_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bStartOpened_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008b33b4);

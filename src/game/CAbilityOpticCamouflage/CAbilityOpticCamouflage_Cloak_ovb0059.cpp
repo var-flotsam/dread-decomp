@@ -22,8 +22,6 @@
 #include "types.h"
 
 extern void* g_unk_7101a230a8[];  // the ability's vtable
-extern void* g_unk_7101a225f8[];  // the value holders' vtable
-extern void* g_unk_7101a22650[];  // the vtable of the member at +0x10
 
 struct UnkListener_b40;
 struct UnkSpecialEnergyComponent;

@@ -7,3 +7,4 @@
 
 struct UnkProperty;
 extern UnkProperty g_unk_7172730210;  // "Dead".
+extern void* g_unk_7101a7df38[];

@@ -26,6 +26,7 @@
 #include "game/UnkTU23.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkTU2666.h"
 #include "game/UnkTU2676.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2685.h"
@@ -346,8 +347,6 @@ s32 fn_7101082860(lua_State* L) {
     }
     return 0;
 }
-
-s32 fn_7101097578(const char* name);
 
 struct UnkMaskStaticZero_b0163 {
     u32 value;

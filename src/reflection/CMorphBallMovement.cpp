@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CMorphBallMovement
 void fn_710094fe70();
@@ -27,7 +30,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsMorphBall_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bIsMorphBall_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710094fe70);
@@ -35,7 +38,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsMorphBall", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsSamus_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bIsSamus_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710094feb8);
@@ -106,7 +109,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bForceSpringBallAvailable", 0x40, (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fWalkingSpeedFactor_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_fWalkingSpeedFactor_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710094ff98);

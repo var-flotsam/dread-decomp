@@ -18,9 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/CPointerType.h"
+namespace base::global { class CFilePathStrId; }
+extern template const base::reflection::CType* base::reflection::PointerType<base::global::CFilePathStrId const*>::Get();
 
 // CPositionalSoundComponent
-const base::reflection::CType* fn_71000a7740();
 void fn_710114cf08();
 void fn_710114affc(UnkReflFunction* fn, const char* name);
 void fn_710114d078();
@@ -44,44 +46,44 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFadeOutTime", 0xbc, (DefaultValue, 0.2f));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound1_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sSound1_GetterFunction", true);
-        fn->return_type = fn_71000a7740();
+        fn->return_type = base::reflection::PointerType<base::global::CFilePathStrId const*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710114cf08);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound1_SetterFunction", true)))
         fn_710114affc(fn, "_sSound1_SetterFunction");
-    UnkReflField* field10 = fn_7100096524(cls, CStrId("sSound1", true), fn_71000a7740(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field10 = fn_7100096524(cls, CStrId("sSound1", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound2_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sSound2_GetterFunction", true);
-        fn->return_type = fn_71000a7740();
+        fn->return_type = base::reflection::PointerType<base::global::CFilePathStrId const*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710114d078);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound2_SetterFunction", true)))
         fn_710114b178(fn, "_sSound2_SetterFunction");
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("sSound2", true), fn_71000a7740(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field11 = fn_7100096524(cls, CStrId("sSound2", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound3_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sSound3_GetterFunction", true);
-        fn->return_type = fn_71000a7740();
+        fn->return_type = base::reflection::PointerType<base::global::CFilePathStrId const*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710114d1e8);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound3_SetterFunction", true)))
         fn_710114b2f4(fn, "_sSound3_SetterFunction");
-    UnkReflField* field12 = fn_7100096524(cls, CStrId("sSound3", true), fn_71000a7740(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field12 = fn_7100096524(cls, CStrId("sSound3", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound4_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sSound4_GetterFunction", true);
-        fn->return_type = fn_71000a7740();
+        fn->return_type = base::reflection::PointerType<base::global::CFilePathStrId const*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710114d358);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sSound4_SetterFunction", true)))
         fn_710114b470(fn, "_sSound4_SetterFunction");
-    UnkReflField* field13 = fn_7100096524(cls, CStrId("sSound4", true), fn_71000a7740(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field13 = fn_7100096524(cls, CStrId("sSound4", true), base::reflection::PointerType<base::global::CFilePathStrId const*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

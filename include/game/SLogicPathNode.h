@@ -16,3 +16,4 @@ f32 fn_7101059514(UnkDashPath* path);
 void fn_7101059794(f32 distance, UnkDashPath* path, u32* index, f32* fraction);
 void fn_710106146c(UnkInsertTarget* target, const UnkArgObj* obj, u32 value);
 void fn_71010592b0(UnkMinimapPath* path, const base::math::CVector3D* point);  // Adds a point.
+extern char g_unk_7101cac8f0[];

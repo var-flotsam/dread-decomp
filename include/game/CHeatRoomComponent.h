@@ -9,3 +9,4 @@ struct UnkHeatRoom_b49;
 void fn_7100a24a50(void* p);
 void fn_7100a26828(UnkHeatRoom_b49* self);
 extern void* g_unk_7101a8d830[];
+extern char g_unk_7101a8d620[];

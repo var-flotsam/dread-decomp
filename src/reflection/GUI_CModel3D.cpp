@@ -18,6 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class CStrId; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // GUI::CModel3D
 void fn_71011f4e1c();
@@ -55,7 +60,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_ApplyScaleToEntities_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_ApplyScaleToEntities_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f4e1c);
@@ -65,7 +70,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "ApplyScaleToEntities");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_InlineDefModelPath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_InlineDefModelPath_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f4ee0);
@@ -75,7 +80,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "InlineDefModelPath");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_InlineDefAnimPath_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_InlineDefAnimPath_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f5000);
@@ -85,7 +90,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "InlineDefAnimPath");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_EntityDefCharClass_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_EntityDefCharClass_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f5120);
@@ -95,7 +100,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(CStrId, "EntityDefCharClass");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetX_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_PosOffsetX_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f52c4);
@@ -105,7 +110,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "PosOffsetX");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetY_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_PosOffsetY_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f5388);
@@ -115,7 +120,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "PosOffsetY");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_PosOffsetZ_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_PosOffsetZ_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f544c);
@@ -125,7 +130,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "PosOffsetZ");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MinModelDistance_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_MinModelDistance_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f5510);
@@ -135,7 +140,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "MinModelDistance");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_MaxModelDistance_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_MaxModelDistance_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f55d4);
@@ -145,7 +150,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "MaxModelDistance");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_CurrentModelDistance_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_CurrentModelDistance_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f5698);
@@ -155,7 +160,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "CurrentModelDistance");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_HeightInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_HeightInterpSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f5728);
@@ -165,7 +170,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "HeightInterpSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DistanceInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_DistanceInterpSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f57b8);
@@ -175,7 +180,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "DistanceInterpSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_RotationInterpSpeed_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_RotationInterpSpeed_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f5848);
@@ -185,7 +190,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "RotationInterpSpeed");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_AutorotateVelocity_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_AutorotateVelocity_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f58d8);
@@ -195,7 +200,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "AutorotateVelocity");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_DefaultCenterToFloorDist_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_DefaultCenterToFloorDist_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71011f5968);

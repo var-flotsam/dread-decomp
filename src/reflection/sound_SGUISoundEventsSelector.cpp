@@ -17,9 +17,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+namespace base::global { class TRntString256; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::TRntString256>::Get();
 
 // sound::SGUISoundEventsSelector
-const base::reflection::CType* fn_710009ffd4();
 void fn_7100fcbc78();
 void fn_7100fc8c70(UnkReflFunction* fn, const char* name);
 namespace sound::SGUISoundEventsSelector {
@@ -27,14 +29,14 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_strTargetFilter_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_strTargetFilter_GetterFunction", true);
-        fn->return_type = fn_710009ffd4();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::TRntString256>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100fcbc78);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_strTargetFilter_SetterFunction", true)))
         fn_7100fc8c70(fn, "_strTargetFilter_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("strTargetFilter", true), fn_710009ffd4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field0 = fn_7100096524(cls, CStrId("strTargetFilter", true), &base::reflection::PrimitiveType<base::global::TRntString256>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

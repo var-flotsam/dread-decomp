@@ -19,3 +19,5 @@ void fn_71002f9f18(UnkSmLockon_A1_b64*, s32 kind);
 void fn_71002fa068(UnkSmLockon_A1_b64* self);
 void fn_71002fa2bc(UnkOpticAbility_ovb0059* self);
 extern void* g_unk_7101a223f8[];  // CAbility's vtable.
+extern void* g_unk_7101a225f8[];
+extern void* g_unk_7101a22650[];

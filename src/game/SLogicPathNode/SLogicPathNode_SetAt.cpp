@@ -5,9 +5,8 @@
 // (fn_710106111c); then the element's first three words, or all five, are assigned. Names and
 // layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/SLogicPathNode.h"
 #include "types.h"
-
-extern char g_unk_7101cac8f0[];
 
 struct UnkPathPoint {
     void** vtable;

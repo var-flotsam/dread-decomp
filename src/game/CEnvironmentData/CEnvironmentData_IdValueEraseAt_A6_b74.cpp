@@ -12,11 +12,6 @@
 #include "game/UnkTU2599.h"
 #include "types.h"
 
-extern char g_unk_7101cab360[];
-extern char g_unk_7101cab388[];
-extern char g_unk_7101cab3b0[];
-extern char g_unk_7101cab3d8[];
-
 template <char* Vtable, u64 Size>
 struct UnkIdValueEraseTag_A6_b74;
 

@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CCharClassSwarmControllerComponent
 void fn_7100737778();
@@ -36,7 +39,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeInNode_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fMinTimeInNode_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100737778);
@@ -46,7 +49,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fMinTimeInNode", (DefaultValue, 2.0f), (Description, "Minimum time waiting in a node [2]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTimeInNodeRandomness_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fTimeInNodeRandomness_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100737808);
@@ -56,7 +59,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fTimeInNodeRandomness", (DefaultValue, 2.0f), (Description, "Minimum time waiting in a node [2]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fTargetChangeProbability_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fTargetChangeProbability_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100737898);
@@ -67,7 +70,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sIndividualLife", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Life of each individual of groups [1]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fAttackPathOffset_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_fAttackPathOffset_GetterFunction", true);
-        fn->return_type = fn_710000abbc();
+        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100737928);
@@ -77,7 +80,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(f32, "fAttackPathOffset", (DefaultValue, 1.0f), (Description, "Offset used to check if Samus is above the attack path [0]"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iMaxChangingTargetSimul_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_iMaxChangingTargetSimul_GetterFunction", true);
-        fn->return_type = fn_7100014768();
+        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007379b8);

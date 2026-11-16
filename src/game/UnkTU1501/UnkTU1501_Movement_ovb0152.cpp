@@ -20,6 +20,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/CPlayerInfo.h"
+#include "game/CSamusGrappleMovementState.h"
 #include "game/CSamusGunComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
@@ -211,7 +212,6 @@ struct UnkSamusSettings {
     bool field_0x78;
 };
 extern base::reflection::UnkTunable g_unk_71726b0fc0;
-extern base::reflection::UnkTunable g_unk_717273ba88;
 
 struct UnkLeg_b152 {
     void** vtable;

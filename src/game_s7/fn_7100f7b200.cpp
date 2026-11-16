@@ -3,6 +3,7 @@
 // others: the header ids, then the unit's own statics and registrations (helpers in
 // UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
+#include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
@@ -457,7 +458,6 @@ UnkEnumType* fn_7100f427a4();
 extern UnkNamedValue g_unk_71729e0aa0;
 extern UnkStruct_71729e0ab0 g_unk_71729e0ab0;
 void fn_7100ad3404(UnkStruct_71729e0ab0* self, UnkNamedValueTmp* values, u64 count);
-void fn_7100d8ce3c(void* self);  // its destructor, as registered
 
 void fn_7100f7b200() {
     InitHeaderIds(&g_unk_71729e7958.ids);

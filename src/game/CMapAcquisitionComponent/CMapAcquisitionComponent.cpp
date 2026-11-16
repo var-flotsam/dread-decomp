@@ -1,6 +1,7 @@
 // CMapAcquisitionComponent's static initialiser: the unit header, the component's id, a plain and
 // an extended bool property, and the class's registration.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -16,7 +17,6 @@ extern CStrId g_unk_7172750da0;
 extern UnkProperty g_unk_7172750da8;
 extern UnkPropertyEx<> g_unk_7172750dd0;
 extern char g_unk_7101a92110[];
-extern void* g_unk_7101a45fe8[];
 extern char g_unk_7101a92168[];
 void fn_7100a88028(UnkProperty* p);
 void fn_7100a84880(void* p);

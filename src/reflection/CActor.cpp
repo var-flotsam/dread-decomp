@@ -20,6 +20,15 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+class CActorComponent;
+namespace base::global { class CStrId; }
+namespace base::global { template <class, class> class CRntSmallDictionary; }
+extern template const base::reflection::CType* base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
+namespace base::math { class CVector3D; }
+extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CActor
 void fn_710023e0f8();
@@ -31,7 +40,6 @@ void fn_7100228b24(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d60ff0;
 void fn_710023e348();
 void fn_7100228ee4(UnkReflFunction* fn, const char* name);
-const base::reflection::CType* fn_7100229060();
 void fn_710023e44c();
 void fn_710022913c(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
@@ -46,7 +54,7 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sName_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sName_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e0f8);
@@ -58,7 +66,7 @@ void refl_AddFields(CClass* cls) {
     field1->attrs.Add<bool>(fn_7100090a20(), true);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sActorDefName_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_sActorDefName_GetterFunction", true);
-        fn->return_type = fn_7100009658();
+        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e1ac);
@@ -66,20 +74,20 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sActorDefName", (Persistence, 0));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e278);
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vPos_SetterFunction", true)))
         fn_7100228b24(fn, "_vPos_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("vPos", true), fn_71000246e4(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field3 = fn_7100096524(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field3->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
     field3->attrs.Add(fn_71000926d0(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"oBBox"}, 0xa, nullptr, 0xf)));
     field3->attrs.Add<const char*>(fn_7100007e80(), "Position");
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vAng_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_vAng_GetterFunction", true);
-        fn->return_type = fn_71000246e4();
+        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e348);
@@ -89,12 +97,12 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vAng", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Angle"));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_pComponents_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_pComponents_GetterFunction", true);
-        fn->return_type = fn_7100229060();
+        fn->return_type = base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e44c);
     }
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("pComponents", true), fn_7100229060(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field5 = fn_7100096524(cls, CStrId("pComponents", true), base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field5->attrs.Add<bool>(fn_7100234780(), true);
     field5->attrs.Add<const char*>(fn_7100007e80(), "List of entity components");
     field5->attrs.Add<bool>(fn_7100090090(), true);
@@ -117,7 +125,7 @@ void refl_AddFields(CClass* cls) {
     }
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bEnabled_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710023e998);

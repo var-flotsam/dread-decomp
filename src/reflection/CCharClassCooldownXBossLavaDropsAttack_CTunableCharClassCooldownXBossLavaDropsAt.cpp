@@ -21,6 +21,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack
 extern bool g_unk_71726d37e0;
@@ -155,7 +157,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CCharClassCooldownXBossLavaDropsAttack
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossLavaDropsAttack, CCharClassCooldownXBossAttack);
 
-const base::reflection::CType* fn_7100005178();
 const base::reflection::CType* fn_71004acd8c();
 const base::reflection::CType* fn_71004ad458();
 void fn_71004aeb6c();
@@ -294,7 +295,7 @@ struct base::reflection::CollectionTypeDescription<UnkRefl_fn_71004adb24> {
     static constexpr SlotFn equals = &fn_71004b25d8;
     static constexpr SlotFn hash = &fn_71004b25e4;
     static constexpr SlotFn type_of = &fn_71004b25ec;
-    static const CType* key() { return fn_7100005178(); }
+    static const CType* key() { return &base::reflection::PrimitiveType<unsigned int>::Get(); }
     static const CType* element() { return CCooldownXBossLavaDropsMovementDef::refl_GetClass(); }
     static const CType* iterator() { return fn_71004acd8c(); }
     static const CType* const_iterator() { return fn_71004ad458(); }
@@ -383,12 +384,12 @@ extern base::global::CStrId g_unk_7101d5a458;
 void fn_71004acf44(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = fn_7100005178();
+        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71004b21a8);
     }
-    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
@@ -416,12 +417,12 @@ extern base::global::CStrId g_unk_7101d5a458;
 void fn_71004ad534(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = fn_7100005178();
+        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71004b2330);
     }
-    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, fn_7100005178(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);

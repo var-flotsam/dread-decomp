@@ -3,6 +3,7 @@
 // UnkTU1601: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1601,
 // 0x7100a8fbd8-0x7100a969f0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkCallbackSetElem;
@@ -14,3 +15,4 @@ extern void* g_unk_7101a92ed0[];
 void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
 void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
 void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
+extern base::reflection::CType g_unk_7172752160;

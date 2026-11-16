@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "types.h"
 
+struct UnkTuneMgrView_b0019;
 struct UnkMusicMode;
 struct UnkArray;
 struct UnkKind;
@@ -25,3 +26,4 @@ void fn_7100fde6c4(UnkNode_0x68*);  // A node's destructor.
 void fn_7100fd90d8(f32 a, f32 b, void* music, const base::global::CRntString* name, u32 c, const UnkMusicMode* d, u32 e, u32 f, void* g);
 bool fn_7100fd76d4(void* manager, const base::global::CRntString* name);
 extern char g_unk_7101cac1e0[];
+f32 fn_7100fdc468(UnkTuneMgrView_b0019* manager, const u64* path);

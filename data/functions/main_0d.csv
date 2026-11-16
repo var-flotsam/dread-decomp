@@ -3484,7 +3484,7 @@ address,size,name,name_source,subsystem,status
 0x7100d78878,220,fn_7100d78878,unknown,unknown,O
 0x7100d78954,220,fn_7100d78954,unknown,unknown,O
 0x7100d78a30,7296,fn_7100d78a30,unknown,unknown,O
-0x7100d7a6b0,1176,fn_7100d7a6b0,unknown,unknown,U
+0x7100d7a6b0,1176,fn_7100d7a6b0,unknown,unknown,O
 0x7100d7ab48,104,fn_7100d7ab48,unknown,unknown,O
 0x7100d7abb0,104,fn_7100d7abb0,unknown,unknown,O
 0x7100d7ac18,444,fn_7100d7ac18,unknown,unknown,U
@@ -4133,7 +4133,7 @@ address,size,name,name_source,subsystem,status
 0x7100d88344,172,fn_7100d88344,unknown,unknown,O
 0x7100d883f0,344,fn_7100d883f0,unknown,unknown,O
 0x7100d88548,276,fn_7100d88548,unknown,unknown,O
-0x7100d8865c,456,fn_7100d8865c,unknown,unknown,U
+0x7100d8865c,456,fn_7100d8865c,unknown,unknown,O
 0x7100d88824,328,fn_7100d88824,unknown,unknown,O
 0x7100d8896c,564,fn_7100d8896c,unknown,unknown,U
 0x7100d88ba0,596,fn_7100d88ba0,unknown,unknown,U
@@ -4150,7 +4150,7 @@ address,size,name,name_source,subsystem,status
 0x7100d89224,256,fn_7100d89224,unknown,unknown,O
 0x7100d89324,264,fn_7100d89324,unknown,unknown,O
 0x7100d8942c,48,fn_7100d8942c,unknown,unknown,O
-0x7100d8945c,656,fn_7100d8945c,unknown,unknown,U
+0x7100d8945c,656,fn_7100d8945c,unknown,unknown,O
 0x7100d896ec,80,fn_7100d896ec,unknown,unknown,O
 0x7100d8973c,56,fn_7100d8973c,unknown,unknown,O
 0x7100d89774,144,fn_7100d89774,unknown,unknown,O
@@ -4269,7 +4269,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8f8d0,20,base::reflection::ValueOps<CEnvironmentMusicPresets*>::CopyAssign,reflection,engine/reflection,O
 0x7100d8f8e4,20,base::reflection::ValueOps<CEnvironmentMusicPresets*>::MoveAssign,reflection,engine/reflection,O
 0x7100d8f8f8,236,fn_7100d8f8f8,unknown,unknown,O
-0x7100d8f9e4,1628,fn_7100d8f9e4,unknown,unknown,U
+0x7100d8f9e4,1628,fn_7100d8f9e4,unknown,unknown,O
 0x7100d90040,236,fn_7100d90040,unknown,unknown,O
 0x7100d9012c,236,fn_7100d9012c,unknown,unknown,O
 0x7100d90218,236,fn_7100d90218,unknown,unknown,O
@@ -4285,7 +4285,7 @@ address,size,name,name_source,subsystem,status
 0x7100d90be4,76,fn_7100d90be4,unknown,unknown,O
 0x7100d90c30,76,fn_7100d90c30,unknown,unknown,O
 0x7100d90c7c,76,fn_7100d90c7c,unknown,unknown,O
-0x7100d90cd0,1288,fn_7100d90cd0,unknown,unknown,U
+0x7100d90cd0,1288,fn_7100d90cd0,unknown,unknown,O
 0x7100d911d8,908,fn_7100d911d8,unknown,unknown,O
 0x7100d91564,384,base::reflection::refl_InitType<EFXType>,reflection,engine/reflection,O
 0x7100d916e4,1580,fn_7100d916e4,unknown,unknown,O
@@ -4839,7 +4839,7 @@ address,size,name,name_source,subsystem,status
 0x7100daa638,756,fn_7100daa638,unknown,unknown,U
 0x7100daa92c,436,fn_7100daa92c,unknown,unknown,U
 0x7100daaae0,192,fn_7100daaae0,unknown,unknown,U
-0x7100daaba0,424,fn_7100daaba0,unknown,unknown,U
+0x7100daaba0,424,fn_7100daaba0,unknown,unknown,O
 0x7100daad48,240,fn_7100daad48,unknown,unknown,U
 0x7100daae38,44,fn_7100daae38,unknown,unknown,O
 0x7100daae64,128,fn_7100daae64,unknown,unknown,O

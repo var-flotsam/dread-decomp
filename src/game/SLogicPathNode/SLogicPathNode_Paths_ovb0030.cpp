@@ -29,7 +29,6 @@ using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
 
 extern char g_unk_71729ffb90[] __attribute__((visibility("hidden")));  // SLogicPathNode's class
-extern char g_unk_7101cac8f0[];  // the path point's vtable
 extern void* g_unk_7101cac898[];
 
 // ---- Positions and bounds ----

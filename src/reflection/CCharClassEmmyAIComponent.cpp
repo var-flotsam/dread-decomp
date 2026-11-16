@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/UnkReflPrimitiveType.h"
+extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CCharClassEmmyAIComponent
 void fn_710051ef68();
@@ -29,7 +31,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bControlsEmmyZoneLight_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bControlsEmmyZoneLight_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710051ef68);
@@ -39,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bControlsEmmyZoneLight", (DefaultValue, false));
     if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanUseTunnels_GetterFunction", true))) {
         fn->name = base::global::UnkStrId("_m_bCanUseTunnels_GetterFunction", true);
-        fn->return_type = fn_710000d228();
+        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710051eff8);

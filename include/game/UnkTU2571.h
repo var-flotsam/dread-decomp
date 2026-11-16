@@ -7,3 +7,4 @@
 #include "types.h"
 void fn_7100ec65fc(u8* self);
 extern base::global::CStrId g_unk_71729ce198 __attribute__((visibility("hidden")));
+extern base::global::CStrId g_unk_71729ce1a0[3] __attribute__((visibility("hidden")));

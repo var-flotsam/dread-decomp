@@ -17,10 +17,12 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/CPointerType.h"
+class CLogicCamera;
+extern template const base::reflection::CType* base::reflection::PointerType<CLogicCamera*>::Get();
 
 // CLogicCameraComponent
 const base::reflection::CType* fn_7100910720();
-const base::reflection::CType* fn_71009112ac();
 void fn_71009115e0();
 namespace CLogicCameraComponent {
 void refl_AddAttributes(CClass*) {}
@@ -29,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetLogicCamera", true))) {
             fn->name = base::global::UnkStrId("GetLogicCamera", true);
-            fn->return_type = fn_71009112ac();
+            fn->return_type = base::reflection::PointerType<CLogicCamera*>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009115e0);

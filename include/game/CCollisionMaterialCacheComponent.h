@@ -7,3 +7,5 @@
 
 struct UnkStruct_710024fa0c;
 UnkStruct_710024fa0c* fn_7100798eec(void* actor);
+u32 fn_7100798e88();
+u32 fn_7100798e90(void* source);

@@ -6,3 +6,4 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 extern base::global::CStrId g_unk_7172a01968[2] __attribute__((visibility("hidden")));
+s32 fn_7101097578(const char* name);

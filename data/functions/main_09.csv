@@ -1190,14 +1190,14 @@ address,size,name,name_source,subsystem,status
 0x7100925fc0,244,CMaterialFXComponent::refl_GetClass,reflection,game/components,O
 0x71009260b4,4,CMaterialFXComponent::refl_AddFields,reflection,game/components,O
 0x71009260b8,388,CMaterialFXComponent::refl_InitClass,reflection,game/components,O
-0x710092623c,508,fn_710092623c,unknown,game/components?,U
+0x710092623c,508,fn_710092623c,unknown,game/components?,O
 0x7100926438,36,fn_7100926438,unknown,game/components?,O
 0x710092645c,56,fn_710092645c,unknown,game/components?,O
 0x7100926494,248,fn_7100926494,unknown,game/components?,O
 0x710092658c,84,fn_710092658c,unknown,game/components?,O
 0x71009265e0,660,fn_71009265e0,unknown,game/components?,U
 0x7100926874,556,fn_7100926874,unknown,game/components?,m
-0x7100926aa0,564,fn_7100926aa0,unknown,game/components?,U
+0x7100926aa0,564,fn_7100926aa0,unknown,game/components?,O
 0x7100926cd4,496,fn_7100926cd4,unknown,game/components?,U
 0x7100926ec4,720,fn_7100926ec4,unknown,game/components?,U
 0x7100927194,64,fn_7100927194,unknown,game/components?,O
@@ -2496,7 +2496,7 @@ address,size,name,name_source,subsystem,status
 0x7100982ac8,20,base::reflection::ValueOps<ESamusUsingGrapplePullPointStatePullStage>::MoveAssign,reflection,engine/reflection,O
 0x7100982ae0,412,fn_7100982ae0,unknown,unknown,O
 0x7100982c7c,440,fn_7100982c7c,unknown,unknown,U
-0x7100982e34,568,fn_7100982e34,unknown,unknown,U
+0x7100982e34,568,fn_7100982e34,unknown,unknown,O
 0x710098306c,368,fn_710098306c,unknown,unknown,O
 0x71009831dc,264,fn_71009831dc,unknown,unknown,O
 0x71009832e4,368,fn_71009832e4,unknown,unknown,O
@@ -2513,7 +2513,7 @@ address,size,name,name_source,subsystem,status
 0x7100984e54,1340,fn_7100984e54,unknown,unknown,U
 0x7100985390,508,fn_7100985390,unknown,unknown,U
 0x710098558c,488,fn_710098558c,unknown,unknown,U
-0x7100985774,660,fn_7100985774,unknown,unknown,U
+0x7100985774,660,fn_7100985774,unknown,unknown,O
 0x7100985a08,384,fn_7100985a08,unknown,unknown,U
 0x7100985b88,656,fn_7100985b88,unknown,unknown,O
 0x7100985e18,504,fn_7100985e18,unknown,unknown,O
@@ -3975,7 +3975,7 @@ address,size,name,name_source,subsystem,status
 0x71009cedb8,180,fn_71009cedb8,unknown,game/components?,O
 0x71009cee6c,180,fn_71009cee6c,unknown,game/components?,O
 0x71009cef20,508,fn_71009cef20,unknown,game/components?,O
-0x71009cf11c,804,fn_71009cf11c,unknown,game/components?,U
+0x71009cf11c,804,fn_71009cf11c,unknown,game/components?,O
 0x71009cf440,744,fn_71009cf440,unknown,game/components?,O
 0x71009cf728,36,fn_71009cf728,unknown,game/components?,O
 0x71009cf74c,24,fn_71009cf74c,unknown,game/components?,O
@@ -3987,7 +3987,7 @@ address,size,name,name_source,subsystem,status
 0x71009cf870,136,fn_71009cf870,unknown,game/components?,O
 0x71009cf8f8,760,fn_71009cf8f8,unknown,game/components?,O
 0x71009cfbf0,680,fn_71009cfbf0,unknown,game/components?,U
-0x71009cfe98,632,fn_71009cfe98,unknown,game/components?,U
+0x71009cfe98,632,fn_71009cfe98,unknown,game/components?,O
 0x71009d0110,116,fn_71009d0110,unknown,game/components?,O
 0x71009d0184,184,fn_71009d0184,unknown,game/components?,O
 0x71009d023c,456,fn_71009d023c,unknown,game/components?,O
@@ -4004,7 +4004,7 @@ address,size,name,name_source,subsystem,status
 0x71009d1b8c,2508,fn_71009d1b8c,unknown,game/components?,U
 0x71009d2558,1672,fn_71009d2558,unknown,game/components?,U
 0x71009d2be0,480,fn_71009d2be0,unknown,game/components?,O
-0x71009d2dc0,872,fn_71009d2dc0,unknown,game/components?,U
+0x71009d2dc0,872,fn_71009d2dc0,unknown,game/components?,O
 0x71009d3128,1620,fn_71009d3128,unknown,game/components?,U
 0x71009d377c,176,fn_71009d377c,unknown,game/components?,O
 0x71009d382c,16,fn_71009d382c,unknown,game/components?,O
@@ -4041,7 +4041,7 @@ address,size,name,name_source,subsystem,status
 0x71009d4940,208,fn_71009d4940,unknown,game/components?,O
 0x71009d4a10,368,fn_71009d4a10,unknown,game/components?,O
 0x71009d4b80,24,fn_71009d4b80,unknown,game/components?,O
-0x71009d4ba0,1084,fn_71009d4ba0,unknown,game/components?,U
+0x71009d4ba0,1084,fn_71009d4ba0,unknown,game/components?,O
 0x71009d4fdc,4,CPickableSpringBallComponent::refl_AddAttributes,reflection,game/components,O
 0x71009d4fe0,244,CPickableSpringBallComponent::refl_GetClass,reflection,game/components,O
 0x71009d50d4,4,CPickableSpringBallComponent::refl_AddFields,reflection,game/components,O
