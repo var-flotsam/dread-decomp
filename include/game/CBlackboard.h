@@ -13,6 +13,8 @@
 #include "base/global/CRntString.h"
 #include "types.h"
 
+namespace base { namespace reflection { class CType; } }
+
 // A section's properties as parallel arrays: 24-byte values and the ids that name them. They
 // share a count, a capacity, a growth step and the allocation flags.
 struct UnkPropertyArrays {
@@ -115,3 +117,4 @@ void fn_7101047ea8(void* self);
 bool fn_71010474f4(CBlackboard* self, const base::global::CStrId& section, const base::global::CStrId& name);
 bool fn_7100395c38(CBlackboard::CSection* section, const void* key, base::global::CRntString* out);
 bool fn_7100395a30(CBlackboard::CSection* section, const void* key, s32* out);
+const base::reflection::CType* fn_7101045d7c();

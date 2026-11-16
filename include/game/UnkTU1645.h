@@ -56,3 +56,4 @@ extern UnkPropertyEx<> g_unk_717275ad20;
 extern UnkPropertyEx<> g_unk_7172759b10;
 extern UnkPropertyEx<> g_unk_7172759b90;
 extern UnkPropertyEx<> g_unk_7172759bd0;
+extern UnkPropertyEx<> g_unk_717275adf0;

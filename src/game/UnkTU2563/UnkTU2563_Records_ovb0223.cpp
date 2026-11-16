@@ -577,7 +577,6 @@ UnkRec60Array_b0223* fn_7100e54cc4(UnkRec60Array_b0223* self, const UnkRec60Arra
     return self;
 }
 
-void fn_7100e4efa0(UnkRec60IdArray_b0223* self);
 void fn_7100e56c64(UnkRec60IdArray_b0223* self);
 
 UnkRec60IdArray_b0223* fn_7100e56a74(UnkRec60IdArray_b0223* self, const UnkRec60IdArray_b0223* other) {

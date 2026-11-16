@@ -4,14 +4,13 @@
 // found. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CDemolitionBlockLifeComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern UnkProperty g_unk_7172730c98;
 
 struct UnkDemolitionBlockValue_b48 {
     CStrId id;

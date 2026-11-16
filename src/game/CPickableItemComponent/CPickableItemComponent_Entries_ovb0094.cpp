@@ -189,9 +189,7 @@ void fn_71009d0570(UnkPickTimed_ovb0094* self, f32 dt) {
 
 using base::global::CStrId;
 
-extern UnkProperty g_unk_717273fe08;
 struct UnkPickList_ovb0094;
-extern u8 g_unk_717273fe60[];
 
 struct UnkPickTile_ovb0094 {
     u8 unk_0x0[0x3c];

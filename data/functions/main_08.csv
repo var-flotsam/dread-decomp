@@ -4089,7 +4089,7 @@ address,size,name,name_source,subsystem,status
 0x71008bd0f4,244,CChozoCommanderXLifeComponent::refl_GetClass,reflection,game/components,O
 0x71008bd1e8,376,CChozoCommanderXLifeComponent::refl_AddFields,reflection,game/components,O
 0x71008bd360,352,CChozoCommanderXLifeComponent::refl_InitClass,reflection,game/components,O
-0x71008bd4c0,640,fn_71008bd4c0,unknown,game/components?,U
+0x71008bd4c0,640,fn_71008bd4c0,unknown,game/components?,O
 0x71008bd740,36,fn_71008bd740,unknown,game/components?,O
 0x71008bd764,112,fn_71008bd764,unknown,game/components?,O
 0x71008bd7d4,164,fn_71008bd7d4,unknown,game/components?,O
@@ -4219,7 +4219,7 @@ address,size,name,name_source,subsystem,status
 0x71008c4960,352,CDemolitionBlockLifeComponent::refl_InitClass,reflection,game/components,O
 0x71008c4ac0,180,fn_71008c4ac0,unknown,game/components?,O
 0x71008c4b74,592,fn_71008c4b74,unknown,game/components?,U
-0x71008c4dc4,804,fn_71008c4dc4,unknown,game/components?,U
+0x71008c4dc4,804,fn_71008c4dc4,unknown,game/components?,O
 0x71008c50e8,36,fn_71008c50e8,unknown,game/components?,O
 0x71008c510c,120,fn_71008c510c,unknown,game/components?,O
 0x71008c5184,656,fn_71008c5184,unknown,game/components?,U
@@ -4232,7 +4232,7 @@ address,size,name,name_source,subsystem,status
 0x71008c5ad0,2836,fn_71008c5ad0,unknown,game/components?,U
 0x71008c65e4,80,fn_71008c65e4,unknown,game/components?,O
 0x71008c6634,272,fn_71008c6634,unknown,game/components?,U
-0x71008c6744,608,fn_71008c6744,unknown,game/components?,U
+0x71008c6744,608,fn_71008c6744,unknown,game/components?,O
 0x71008c69a4,360,fn_71008c69a4,unknown,game/components?,U
 0x71008c6b0c,192,fn_71008c6b0c,unknown,game/components?,O
 0x71008c6bcc,4744,fn_71008c6bcc,unknown,game/components?,U
@@ -4274,7 +4274,7 @@ address,size,name,name_source,subsystem,status
 0x71008c8fa8,168,fn_71008c8fa8,unknown,game/components?,O
 0x71008c9050,24,fn_71008c9050,unknown,game/components?,O
 0x71008c9068,56,fn_71008c9068,unknown,game/components?,O
-0x71008c90a0,1072,fn_71008c90a0,unknown,game/components?,U
+0x71008c90a0,1072,fn_71008c90a0,unknown,game/components?,O
 0x71008c94d0,4,CDoorCentralUnitLifeComponent::refl_AddAttributes,reflection,game/components,O
 0x71008c94d4,244,CDoorCentralUnitLifeComponent::refl_GetClass,reflection,game/components,O
 0x71008c95c8,208,CDoorCentralUnitLifeComponent::refl_AddFields,reflection,game/components,O

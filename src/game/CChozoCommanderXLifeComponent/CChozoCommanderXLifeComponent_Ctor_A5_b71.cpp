@@ -7,13 +7,13 @@
 #include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CChozoCommanderXLifeComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkLifeBase_A5_b71;
 void fn_71008bfca4(void* self);
-extern void* g_unk_7101a7df38[];
 
 struct UnkXLifeCtor_A5_b71 {
     void** vtable;

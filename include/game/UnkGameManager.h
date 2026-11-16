@@ -108,7 +108,9 @@ struct UnkGameManager {
     void* field_0x498;  // an object set up through its vf_0x70 unless its vf_0x68 says it is (fn_7100b2de48)
     u8 pad_0x4a0[0x168];
     UnkGameManagerSub_0x608* field_0x608;
-    u8 pad_0x610[0x358];
+    u8 pad_0x610[0x820 - 0x610];
+    CBlackboard field_0x820;  // a second blackboard (the archive flags, fn_71009d2dc0)
+    u8 pad_0x910[0x968 - 0x910];
     CBlackboard field_0x968;  // the embedded blackboard (fn_7101047208, fn_71010472e0, fn_7101047270)
     u8 pad_0xa58[0x5a8];
     UnkGameManagerIdMap field_0x1000;  // string ids replaced by others (fn_7100dfbda4)

@@ -4,6 +4,8 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CCollisionMaterialCacheComponent.h"
+#include "game/UnkTU1428.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU57.h"
@@ -72,9 +74,6 @@ struct UnkEventOwner_m_ovb0137 {
 struct UnkEventContext_m_ovb0137 {
     UnkEventOwner_m_ovb0137* owner;
 };
-
-void* fn_710094c9ac(UnkEventOwner_m_ovb0137* owner);  // the owner's material source, if any
-u32 fn_7100798e88();
 
 static inline bool IsSet(const UnkStrIdPathResource& r) {
     return r.ids.id.data != &g_unk_7101d47108->empty && r.ids.path.data != &g_unk_7101d47200->empty;

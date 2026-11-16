@@ -8,3 +8,6 @@
 struct UnkKey;
 struct UnkSlots;
 UnkSlots* fn_710080fa28(UnkKey* key);
+bool fn_710080f9e0(const UnkKey* key, const UnkKey* other);
+void fn_710080fb00(UnkKey* key, void* owner);
+bool fn_710080fb08(UnkKey* key);

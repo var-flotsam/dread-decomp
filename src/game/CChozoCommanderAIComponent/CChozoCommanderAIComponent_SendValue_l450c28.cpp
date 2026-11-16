@@ -76,8 +76,6 @@ struct UnkCommanderAI_l450c28 {
 };
 static_assert(__builtin_offsetof(UnkCommanderAI_l450c28, send_pending) == 0x15f00, "layout");
 
-f32 fn_710117808c(UnkAnimationComponent* self, u64 key);
-
 void fn_7100450c28(UnkCommanderAI_l450c28* self) {
     if (!self->send_pending)
         return;

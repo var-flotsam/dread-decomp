@@ -3397,7 +3397,7 @@ address,size,name,name_source,subsystem,status
 0x7100273f08,228,fn_7100273f08,unknown,unknown,O
 0x7100273fec,4,fn_7100273fec,unknown,unknown,O
 0x7100273ff0,228,fn_7100273ff0,unknown,unknown,O
-0x71002740e0,1128,fn_71002740e0,unknown,unknown,U
+0x71002740e0,1128,fn_71002740e0,unknown,unknown,O
 0x7100274548,88,navmesh::CNavMesh::refl_AddAttributes,reflection,ai/navmesh,O
 0x71002745a0,244,navmesh::CNavMesh::refl_GetClass,reflection,ai/navmesh,O
 0x7100274694,4,navmesh::CNavMesh::refl_AddFields,reflection,ai/navmesh,O

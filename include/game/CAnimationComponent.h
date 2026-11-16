@@ -1,10 +1,11 @@
 #pragma once
 
-// CAnimationComponent: functions of this translation unit that other files call (tools/tu_map.py unit 2720,
+// CAnimationComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2720,
 // 0x7101174bd0-0x710117f300). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "base/global/CStrId.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkFlags_7101176ea8;
@@ -54,3 +55,9 @@ s32 fn_7101177da8(void* object, u64 hash);
 bool fn_710117aaac(void* cls, const base::reflection::CClass* track_class, f32 frames);
 bool fn_7101177044(UnkStruct_7101176ea8* self, void* r, s32 idx, void* data, UnkFlags_7101176ea8 flags, const UnkS16& a, const UnkS12& b, UnkFlags_7101176ea8 c);
 const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 kind);
+f32 fn_710117808c(UnkAnimationComponent* self, u64 key);
+void fn_710117b794(void* list, u32 capacity, u32 a, u32 step, base::UnkAllocator* allocator);
+extern void* g_unk_7101cb46c0[];
+extern char g_unk_7101cb4840[];
+extern char g_unk_7101cb4860[];
+extern void* g_unk_7101cb4880[];

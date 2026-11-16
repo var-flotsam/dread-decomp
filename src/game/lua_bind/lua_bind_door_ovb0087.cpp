@@ -18,6 +18,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -39,8 +40,6 @@ struct UnkLuaDoorTarget {
     u32 count;               // 0x16b8
 };
 static_assert(__builtin_offsetof(UnkLuaDoorTarget, count) == 0x16b8, "layout");
-
-UnkLuaDoorTarget* fn_710055b104(void* object);
 
 struct UnkLuaDoorState {
     u8 pad_0x0[0x10];
