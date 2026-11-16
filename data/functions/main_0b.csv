@@ -1875,7 +1875,7 @@ address,size,name,name_source,subsystem,status
 0x7100b5aef0,8,GUI::CMissionLog::refl_Equals,reflection,gui,O
 0x7100b5aef8,8,GUI::CMissionLog::refl_Hash,reflection,gui,O
 0x7100b5af00,28,GUI::CMissionLog::refl_TypeOf,reflection,gui,O
-0x7100b5af1c,252,GUI::CMissionLog::refl_Construct,reflection,gui,U
+0x7100b5af1c,252,GUI::CMissionLog::refl_Construct,reflection,gui,O
 0x7100b5b018,12,GUI::CMissionLog::refl_Destroy,reflection,gui,O
 0x7100b5b024,12,fn_7100b5b024,unknown,gui?,O
 0x7100b5b030,8,fn_7100b5b030,unknown,gui?,O
