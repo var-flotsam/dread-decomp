@@ -25,6 +25,7 @@ struct UnkShipRechargeEntity_b49a4;
 struct UnkSoundHandle;
 struct UnkStrIdPathPair;
 struct UnkWeakTarget;
+void* fn_7100d7842c(void* self);
 UnkKraidCreatureVec fn_7100d7be08(void* actor);
 void fn_7100d7c510(UnkShipRechargeEntity_b49a4* entity, UnkSoundHandle* handle, f32 fade, f32 delay);
 const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);

@@ -227,7 +227,6 @@ struct UnkTextCommand {
 // string.
 void fn_7100066d4c(UnkLayoutText* self, const UnkLayoutText* other);
 void fn_7100067430(UnkLayoutText* self, u32 c);
-void fn_71000673e8(UnkLayoutText* self, const UnkTextCommand* command);
 UnkLayoutText fn_7100067484(const UnkLayoutText* self, u32 start, u32 count);
 CRntString fn_710006c080(const char32_t* text);
 

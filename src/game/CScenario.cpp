@@ -173,7 +173,6 @@ bool fn_7100395a30(CBlackboard::CSection* section, const void* name, s32* out);
 // The language singleton (as src/game/UnkAdamDialog.cpp declares it): created on first use, it
 // gives localized texts.
 struct UnkLanguage;
-bool fn_710119c9fc(UnkLanguage* language);
 // The text the label is given (game/UnkGuiLabel.h), with its destructor.
 struct UnkDialogText : UnkGuiText {
     ~UnkDialogText() { fn_7100066e44(this); }
