@@ -1,6 +1,7 @@
 // Unit 107 (the kd-tree builder's boxes): the mean squared distance per axis from a point to the
 // centres of a range of boxes, growing the box array on demand. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU107.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -45,7 +46,6 @@ struct UnkBoxVector_b0236 {
     }
 };
 
-void fn_710010e364(UnkBoxVector_b0236* self, u32 n);
 
 // The box at `index`, growing the array to hold it when it may grow.
 static inline UnkBox_b0236& BoxAt(UnkBoxVector_b0236* boxes, u32 index) {
