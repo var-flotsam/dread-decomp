@@ -26,6 +26,47 @@ struct UnkPooledStrId : UnkPooledString {
     // A move takes the string and leaves the pool's empty one (fn_710001e4e8).
     UnkPooledStrId(UnkPooledStrId&& other) : UnkPooledString(other) { other.data = &Pool->empty; }
 
+    // Another reference to an id's string, such as the global empty id's (fn_710001de1c). The string
+    // is stored in the body: the original loads it before it computes the member's address.
+    explicit UnkPooledStrId(global::UnkStringData* const& string) {
+        data = string;
+        if (&Pool->empty != data)
+            ++data->ref_count;
+    }
+
+    // As CStrId's: the new string gains a reference before the old one is released.
+    UnkPooledStrId& operator=(const UnkPooledStrId& other) {
+        if (data != other.data) {
+            global::UnkStringData* d = other.data;
+            global::UnkStringPool* pool = Pool;
+            if (d != &pool->empty)
+                ++d->ref_count;
+            if (data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0)
+                    fn_71000803a4(pool, data);
+            }
+            data = d;
+        }
+        return *this;
+    }
+    // Releases the string as the destructor does, then takes the other's (fn_710001dffc).
+    UnkPooledStrId& operator=(UnkPooledStrId&& other) {
+        if (global::UnkStringPool* pool = Pool) {
+            if (data && data != &pool->empty) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = Pool;
+                }
+            }
+            data = &pool->empty;
+        }
+        data = other.data;
+        other.data = &Pool->empty;
+        return *this;
+    }
+
     bool operator==(const UnkPooledStrId& other) const { return data == other.data; }
 
     ~UnkPooledStrId() {

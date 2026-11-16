@@ -13,7 +13,7 @@
 // The descriptor's own functions (its CType value slots and CCollectionType's accessors, from +0x108)
 // are the mapper's static members, one instantiation per collection type. They are written for
 // CRntVector<T> (base/global/CRntVector.h), whose key is the element's index; a keyed collection's are
-// not written yet. Erase, SetCopy, SetMove, ConstBegin and ConstEnd are not written yet either.
+// not written yet. ConstBegin and ConstEnd are not written yet either.
 
 #include <new>
 #include <utility>
@@ -64,6 +64,20 @@ struct CollectionTypeMapper {
         u32 index = *static_cast<const u32*>(key);
         return index < c->count ? &c->data[index] : nullptr;
     }
+    static void Erase(void* collection, const void* key) {
+        // The index goes to a position counted from the collection's own address and back, as in the original.
+        auto* origin = static_cast<typename C::value_type*>(collection);
+        auto* position = origin + *static_cast<const u32*>(key);
+        static_cast<C*>(collection)->EraseAt(position - origin);
+    }
+    static void SetCopy(void* collection, const void* key, const void* value) {
+        static_cast<C*>(collection)->GrowAt(*static_cast<const u32*>(key)) =
+            *static_cast<const typename C::value_type*>(value);
+    }
+    static void SetMove(void* collection, const void* key, void* value) {
+        static_cast<C*>(collection)->GrowAt(*static_cast<const u32*>(key)) =
+            std::move(*static_cast<typename C::value_type*>(value));
+    }
     static void Begin(void* collection, void* it) {
         static_cast<TElementIterator*>(it)->m_element = static_cast<C*>(collection)->data;
     }
@@ -93,6 +107,10 @@ struct CollectionMapperDescription {
     static constexpr auto find = &CollectionTypeMapper<C>::Find;
     static constexpr auto begin = &CollectionTypeMapper<C>::Begin;
     static constexpr auto end = &CollectionTypeMapper<C>::End;
+    static constexpr auto equals = &CollectionTypeMapper<C>::Equals;
+    static constexpr auto erase = &CollectionTypeMapper<C>::Erase;
+    static constexpr auto set_copy = &CollectionTypeMapper<C>::SetCopy;
+    static constexpr auto set_move = &CollectionTypeMapper<C>::SetMove;
 };
 
 }  // namespace base::reflection

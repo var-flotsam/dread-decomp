@@ -171,6 +171,19 @@ written with a byte-order mark is not read by `coord.py record`; strip it. Recom
 about five ready functions of one unit, 400 to 1,000 bytes, budget 5) over more small-function batches; 1,540
 such functions are ready and untried.
 
+**Vector descriptors: Equals, Erase, SetCopy and SetMove (2026-11-15).** These four join
+`CollectionTypeMapper<C>`, which leaves only `TypeOf` and the key-element iterators (`ConstBegin`, `ConstEnd`)
+by address. They match every reference there is with no dump (lifted, clone and hand-written copies of 12
+vectors of pointers, enums and numbers), and none of the 6063 sources that include the header changes.
+- `operator==` walks both arrays by pointer with a 64-bit down-counter and compares `*b == *a`, the shape
+  of the hand-matched copies (src/game_s1/fn_71000d25f0.cpp).
+- `EraseAt` shifts trivially copyable elements down with one `memcpy`, as in src/base/reflection/UnkArrayEraseAt_A1_b72.cpp.
+- The erase slot reaches its index through a position counted from the collection's own address and
+  back (`(origin + key) - origin`, origin being the vector cast to its element type). That is the
+  original's shape: with `data` as the origin, the round trip folds away and two instructions go missing.
+- SetCopy and SetMove return nothing. Returning the element costs an extra instruction.
+- gen_types now keeps by address only a slot that a hand-written source defines (the erase of 13 pointer
+  vectors, for example), not the whole vector.
 **Lean batch lean-b5: 99 ready functions of 26 units with three or four each (2026-11-15).** The units with
 four or more ready functions were used up by lean-b4, so this batch took units of three and four: 26 Sonnet
 workers, budget 3, reference matches for 81 of 99. Results: 18 matches, 22 registers-only, 59 that differ; 257

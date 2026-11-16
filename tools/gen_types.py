@@ -590,10 +590,11 @@ def reflection_names(orig: asmdiff.Original, version: str) -> dict[int, str]:
               for m in MAPPER_DESC_RE.finditer(f.read_text(encoding="utf-8"))}
     named_ptrs = named_pointers(orig, pairs, known)
     colls, _ = scan_collections(orig, set())
+    by_hand = defined_by_hand()
     for _, body in colls:
         v = mapped_vector(body, named_ptrs, frozenset(name for name, _ in named.values()))
         if v and v[0] in mapped:
-            out.update(collection_ops_names(orig, body, *v))
+            out.update(collection_ops_names(orig, body, *v, mapper_members(orig, body, by_hand)))
     return out
 
 
@@ -675,9 +676,16 @@ def emit_collection(init: int, body: list[str]) -> list[str]:
 MAPPER_SLOTS = {"construct": "Construct", "copy_construct": "CopyConstruct", "move_construct": "MoveConstruct",
                 "destroy": "Destroy", "copy_assign": "CopyAssign", "move_assign": "MoveAssign", "hash": "Hash",
                 "count": "Count", "clear": "Clear", "add_copy": "AddCopy", "add_move": "AddMove", "at": "At",
-                "find": "Find", "begin": "Begin", "end": "End"}
-# The CRntVector members those call out of line, by the slot that calls them (its tail call).
-MAPPER_HELPERS = {"add_copy": "InsertCopy", "add_move": "InsertMove"}
+                "find": "Find", "begin": "Begin", "end": "End", "equals": "Equals", "erase": "Erase",
+                "set_copy": "SetCopy", "set_move": "SetMove"}
+# The CRntVector member each calls out of line, and its declaration (E: the element type).
+# Class elements whose header gives CollectionTypeMapper what it needs: the include a generated file adds.
+CLASS_ELEMENT_HEADERS = {"base::core::AssetName": "base/core/AssetName.h"}
+
+MAPPER_HELPERS = {"add_copy": ("InsertCopy", "void {C}::InsertCopy({E} const&, u32)"),
+                  "add_move": ("InsertMove", "void {C}::InsertMove({E}&&, u32)"),
+                  "set_copy": ("GrowAt", "{E}& {C}::GrowAt(u32)"),
+                  "set_move": ("GrowAt", "{E}& {C}::GrowAt(u32)")}
 VECTOR_RE = re.compile(r"base::global::CRntVector<(.+)>")
 MAPPER_DESC_RE = re.compile(r": base::reflection::CollectionMapperDescription<(.+)> \{$", re.M)
 
@@ -690,7 +698,7 @@ def collection_slots(body: list[str]) -> dict[str, int]:
 def mapped_vector(body: list[str], named_ptrs: dict[int, str], enums: frozenset[str]) -> tuple[str, str] | None:
     """(C, element) of a vector collection whose slots CollectionTypeMapper<C> writes today: kind 1 and 0x28
     bytes, C named by its element iterator's named form (named_pointers), every mapper slot a function, and an
-    element that is a pointer, an enum or a plain number. Elements that are classes need their own headers."""
+    element that is a pointer, an enum, a plain number or a class of CLASS_ELEMENT_HEADERS."""
     text = "\n".join(body)
     if "size = 0x28;" not in text or "kind = 0x1;" not in text:
         return None
@@ -701,43 +709,63 @@ def mapped_vector(body: list[str], named_ptrs: dict[int, str], enums: frozenset[
     if v is None or not set(MAPPER_SLOTS) <= set(collection_slots(body)):
         return None
     element = v.group(1)
-    if element.endswith("*") or element in enums or element in PRIMITIVE_VALUE_TYPES.values():
+    if (element.endswith("*") or element in enums or element in PRIMITIVE_VALUE_TYPES.values()
+            or element in CLASS_ELEMENT_HEADERS):
         return it.group(1), element
     return None
 
 
-def tail_call(orig: asmdiff.Original, addr: int) -> int | None:
-    """The target of the branch a function ends with, if it ends with one."""
+def call_target(orig: asmdiff.Original, addr: int) -> int | None:
+    """The one function a slot calls (a `bl`, or the branch it ends with); None for none or several."""
     insns = disasm(orig, addr)
+    calls = [x.operands[0].imm for x in insns
+             if x.mnemonic == "bl" and x.operands[0].type == capstone.arm64.ARM64_OP_IMM]
     if insns and insns[-1].mnemonic == "b" and insns[-1].operands[0].type == capstone.arm64.ARM64_OP_IMM:
-        return insns[-1].operands[0].imm
-    return None
+        calls.append(insns[-1].operands[0].imm)
+    return calls[0] if len(calls) == 1 else None
 
 
-def collection_ops_names(orig: asmdiff.Original, body: list[str], vector: str, element: str) -> dict[int, str]:
-    """data/functions/ names of a vector collection's mapper functions and of the CRntVector members they call."""
+def mapper_helpers(orig: asmdiff.Original, body: list[str], members) -> dict[str, int]:
+    """{member: the CRntVector member it calls} for the members of `members` that call one."""
     slots = collection_slots(body)
-    out = {slots[d]: f"base::reflection::CollectionTypeMapper<{vector}>::{m}" for d, m in MAPPER_SLOTS.items()}
-    for d, helper in MAPPER_HELPERS.items():
-        target = tail_call(orig, slots[d])
-        if target is not None:
-            out[target] = f"base::global::CRntVector<{element}>::{helper}"
+    return {d: t for d in members if d in MAPPER_HELPERS and (t := call_target(orig, slots[d])) is not None}
+
+
+def mapper_members(orig: asmdiff.Original, body: list[str], by_hand: set[int]) -> frozenset[str]:
+    """The description members the mapper writes for a vector collection: every one whose slot, and the
+    CRntVector member it calls, no hand-written source defines (those keep their addresses)."""
+    slots = collection_slots(body)
+    free = {d for d in MAPPER_SLOTS if slots[d] not in by_hand}
+    helpers = mapper_helpers(orig, body, free)
+    return frozenset(d for d in free if helpers.get(d) not in by_hand)
+
+
+def collection_ops_names(orig: asmdiff.Original, body: list[str], vector: str, element: str,
+                         members) -> dict[int, str]:
+    """data/functions/ names of a vector collection's mapper functions (`members`) and of the CRntVector
+    members they call."""
+    slots = collection_slots(body)
+    out = {slots[d]: f"base::reflection::CollectionTypeMapper<{vector}>::{MAPPER_SLOTS[d]}" for d in members}
+    for d, target in mapper_helpers(orig, body, members).items():
+        out[target] = f"base::global::CRntVector<{element}>::{MAPPER_HELPERS[d][0]}"
     return out
 
 
-def emit_collection_ops(init: int, body: list[str], vector: str, element: str,
+def emit_collection_ops(init: int, body: list[str], vector: str, element: str, members,
                         enums: frozenset[str] = frozenset()) -> list[str]:
-    """A vector collection's description with the mapper's functions (CollectionMapperDescription<C>); the
-    CRntVector members they call are declared instantiated elsewhere, so that only the slots are emitted."""
-    rest = [line for line in body if not any(f" {d} = " in line for d in MAPPER_SLOTS)]
+    """A vector collection's description with the mapper's functions (CollectionMapperDescription<C>) for
+    `members`, the others by address; the CRntVector members they call are declared instantiated elsewhere,
+    so that only the slots are emitted."""
+    rest = [line for line in body if not any(f" {d} = " in line for d in members)]
     out = emit_collection(init, rest)
     desc = f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> {{"
     out[out.index(desc)] = (f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> "
                             f": base::reflection::CollectionMapperDescription<{vector}> {{")
     node = pointer_value_type(f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator")[1]
-    helpers = [f"extern template void base::global::CRntVector<{element}>::InsertCopy({element} const&, u32);",
-               f"extern template void base::global::CRntVector<{element}>::InsertMove({element}&&, u32);"]
-    return type_declarations(node, enums) + helpers + out
+    helpers = sorted({"extern template " + MAPPER_HELPERS[d][1].format(C=vector, E=element) + ";"
+                      for d in members if d in MAPPER_HELPERS})
+    include = [f'#include "{CLASS_ELEMENT_HEADERS[element]}"'] if element in CLASS_ELEMENT_HEADERS else []
+    return type_declarations(node, enums) + include + helpers + out
 
 
 def defined_by_hand() -> set[int]:
@@ -1138,9 +1166,9 @@ def main() -> int:
     prim_bodies = dict(prims)
     known_types = enum_names_known | {name for name, _ in named_flags.values()}
     by_hand = defined_by_hand()
-    # a slot or helper the mapper would name that a hand-written source defines keeps the vector by address
-    named_colls = {i: v for i, b in colls if (v := mapped_vector(b, named_ptrs, enum_names_known))
-                   and not set(collection_ops_names(orig, b, *v)) & by_hand}
+    # (C, element, the members the mapper writes); a slot a hand-written source defines keeps its address
+    named_colls = {i: (*v, m) for i, b in colls if (v := mapped_vector(b, named_ptrs, enum_names_known))
+                   and (m := mapper_members(orig, b, by_hand))}
     coll_bodies = dict(colls)
 
     def collection_block(init: int, body: list[str]) -> list[str]:
@@ -1202,8 +1230,11 @@ def main() -> int:
         failed_prims = {g for g, v in named_prims.items()
                         if not set(primitive_ops_names(prim_bodies[g], v)) | {g} <= ok}
         # the helpers are not emitted: the slots that call them match only if the call names them
-        failed_colls = {i for i in named_colls
-                        if not set(collection_slots(coll_bodies[i])[d] for d in MAPPER_SLOTS) | {i} <= ok}
+        # {collection: the mapper members that do not match}; those keep their addresses, and a collection
+        # whose constructor or every member fails is kept by address whole
+        failed_colls = {i: frozenset(d for d in v[2] if collection_slots(coll_bodies[i])[d] not in ok)
+                        for i, v in named_colls.items()}
+        failed_colls = {i: bad for i, bad in failed_colls.items() if bad or i not in ok}
         if not failed and not failed_ptrs and not failed_flags and not failed_prims and not failed_colls:
             break
         print(f"named forms that do not match, kept by address: enums {' '.join(f'{i:x}' for i in sorted(failed))}; "
@@ -1212,9 +1243,11 @@ def main() -> int:
         named_ptrs = {g: v for g, v in named_ptrs.items() if g not in failed_ptrs}
         named_flags = {i: v for i, v in named_flags.items() if i not in failed_flags}
         named_prims = {g: v for g, v in named_prims.items() if g not in failed_prims}
-        named_colls = {i: v for i, v in named_colls.items() if i not in failed_colls}
+        named_colls = {i: (*v[:2], v[2] - failed_colls.get(i, frozenset())) for i, v in named_colls.items()}
+        named_colls = {i: v for i, v in named_colls.items() if v[2] and i in ok}
         if failed_colls:
-            print(f"vector collections kept by address: {' '.join(f'{i:x}' for i in sorted(failed_colls))}")
+            print("vector collection slots kept by address: " + "; ".join(
+                f"{i:x} {' '.join(sorted(bad)) or '(constructor)'}" for i, bad in sorted(failed_colls.items())))
         if failed_prims:
             print(f"plain types kept by address: {' '.join(f'{g:x}' for g in sorted(failed_prims))}")
         if failed_flags:

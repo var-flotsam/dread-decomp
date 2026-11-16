@@ -974,24 +974,6 @@ UnkResult fn_71000d248c(char* p0, char* p1) {
     return ret;
 }
 
-namespace callee { char* fn_71000d2c3c(char*, u32); }
-char* fn_71000d25a0(char* p0, char* p1, char* p2) {
-    u32 r0_1 = (u32)*(u32*)((char*)(p1) + 0);
-    u32 r1_19 = (u32)*(u32*)((char*)(p2) + 0);
-    char* r2_0 = callee::fn_71000d2c3c(p0, r0_1);
-    *(u32*)((char*)(r2_0) + 0) = (u32)(u64)(r1_19);
-    return r2_0;
-}
-
-namespace callee { char* fn_71000d2c3c(char*, u32); }
-char* fn_71000d25c8(char* p0, char* p1, char* p2) {
-    u32 r0_1 = (u32)*(u32*)((char*)(p1) + 0);
-    u32 r1_19 = (u32)*(u32*)((char*)(p2) + 0);
-    char* r2_0 = callee::fn_71000d2c3c(p0, r0_1);
-    *(u32*)((char*)(r2_0) + 0) = (u32)(u64)(r1_19);
-    return r2_0;
-}
-
 extern char g_unk_7101d5d978[];
 char* fn_71000d2644() {
     char* r0_0 = (char*)g_unk_7101d5d978;

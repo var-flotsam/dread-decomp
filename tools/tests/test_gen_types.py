@@ -330,18 +330,25 @@ class TypeNames(unittest.TestCase):
         for other in ("base::global::CRntVector<CFoo>", "base::global::CRntDictionary<CFoo, CBar>"):
             named_other = {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}
             self.assertIsNone(gt.mapped_vector(body, named_other, frozenset()))
+        # a class with a header that gives the mapper what it needs
+        asset = "base::global::CRntVector<base::core::AssetName>"
+        self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "base::core::AssetName")},
+                                          frozenset()), (asset, "base::core::AssetName"))
+        self.assertIn('#include "base/core/AssetName.h"',
+                      gt.emit_collection_ops(0x7100000010, body, asset, "base::core::AssetName", frozenset({"count"})))
         self.assertEqual(gt.mapped_vector(body, {0x7100000520: named[0x7100000520].replace("CActor*", "EFoo")},
                                           frozenset({"EFoo"})), ("base::global::CRntVector<EFoo>", "EFoo"))
         self.assertIsNone(gt.mapped_vector(body, {0x7100000520: named[0x7100000520] + "x"}, frozenset()))
         self.assertIsNone(gt.mapped_vector([line.replace("0x28", "0x48") for line in body], named, frozenset()))
-        out = gt.emit_collection_ops(0x7100000010, body, vector, "CActor*")
+        members = frozenset(gt.MAPPER_SLOTS) - {"erase"}  # erase defined by hand: kept by address
+        out = gt.emit_collection_ops(0x7100000010, body, vector, "CActor*", members)
         self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
                       f": base::reflection::CollectionMapperDescription<{vector}> {{", out)
         self.assertIn("class CActor;", out)
         self.assertIn(f"extern template void {vector}::InsertCopy(CActor* const&, u32);", out)
         self.assertIn("    static constexpr UnkFn erase = &fn_71000001d0;", out)
-        self.assertIn("    static constexpr UnkFn equals = &fn_7100000160;", out)
-        self.assertFalse(any(" count = " in line or " construct = " in line for line in out))
+        self.assertIn(f"extern template CActor*& {vector}::GrowAt(u32);", out)
+        self.assertFalse(any(" count = " in line or " construct = " in line or " equals = " in line for line in out))
         self.assertEqual(gt.MAPPER_DESC_RE.findall("\n".join(out)), [vector])
 
 

@@ -171,9 +171,9 @@ address,size,name,name_source,subsystem,status
 0x7100204e50,92,fn_7100204e50,unknown,unknown,O
 0x7100204eac,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::At,reflection,engine/reflection,O
 0x7100204eb8,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::Find,reflection,engine/reflection,O
-0x7100204edc,40,fn_7100204edc,unknown,unknown,O
-0x7100204f04,40,fn_7100204f04,unknown,unknown,O
-0x7100204f2c,76,fn_7100204f2c,unknown,unknown,O
+0x7100204edc,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::SetCopy,reflection,engine/reflection,O
+0x7100204f04,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::SetMove,reflection,engine/reflection,O
+0x7100204f2c,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::Equals,reflection,engine/reflection,O
 0x7100204f78,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::Hash,reflection,engine/reflection,O
 0x7100204f80,12,fn_7100204f80,unknown,unknown,O
 0x7100204f8c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::Construct,reflection,engine/reflection,O
@@ -1904,9 +1904,9 @@ address,size,name,name_source,subsystem,status
 0x710023efb4,92,fn_710023efb4,unknown,unknown,O
 0x710023f010,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::At,reflection,engine/reflection,O
 0x710023f01c,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::Find,reflection,engine/reflection,O
-0x710023f040,40,fn_710023f040,unknown,unknown,O
-0x710023f068,40,fn_710023f068,unknown,unknown,O
-0x710023f090,76,fn_710023f090,unknown,unknown,O
+0x710023f040,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::SetCopy,reflection,engine/reflection,O
+0x710023f068,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::SetMove,reflection,engine/reflection,O
+0x710023f090,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::Equals,reflection,engine/reflection,O
 0x710023f0dc,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::Hash,reflection,engine/reflection,O
 0x710023f0e4,12,fn_710023f0e4,unknown,unknown,O
 0x710023f0f0,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::Construct,reflection,engine/reflection,O
@@ -1917,7 +1917,7 @@ address,size,name,name_source,subsystem,status
 0x710023f330,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::MoveAssign,reflection,engine/reflection,O
 0x710023f37c,432,base::global::CRntVector<CActor*>::InsertCopy,reflection,engine/base,O
 0x710023f52c,432,base::global::CRntVector<CActor*>::InsertMove,reflection,engine/base,O
-0x710023f6dc,336,fn_710023f6dc,unknown,unknown,O
+0x710023f6dc,336,base::global::CRntVector<CActor*>::GrowAt,reflection,engine/base,O
 0x710023f82c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::Begin,reflection,engine/reflection,O
 0x710023f838,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::End,reflection,engine/reflection,O
 0x710023f84c,168,fn_710023f84c,unknown,unknown,O
@@ -3199,9 +3199,9 @@ address,size,name,name_source,subsystem,status
 0x710026bd8c,92,fn_710026bd8c,unknown,ai/navmesh?,O
 0x710026bde8,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::At,reflection,engine/reflection,O
 0x710026bdf4,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::Find,reflection,engine/reflection,O
-0x710026be18,40,fn_710026be18,unknown,ai/navmesh?,O
-0x710026be40,40,fn_710026be40,unknown,ai/navmesh?,O
-0x710026be68,76,fn_710026be68,unknown,ai/navmesh?,O
+0x710026be18,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::SetCopy,reflection,engine/reflection,O
+0x710026be40,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::SetMove,reflection,engine/reflection,O
+0x710026be68,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::Equals,reflection,engine/reflection,O
 0x710026beb4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::Hash,reflection,engine/reflection,O
 0x710026bebc,12,fn_710026bebc,unknown,ai/navmesh?,O
 0x710026bec8,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::Construct,reflection,engine/reflection,O
@@ -3212,7 +3212,7 @@ address,size,name,name_source,subsystem,status
 0x710026c108,76,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::MoveAssign,reflection,engine/reflection,O
 0x710026c154,432,base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>::InsertCopy,reflection,engine/base,O
 0x710026c304,432,base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>::InsertMove,reflection,engine/base,O
-0x710026c4b4,336,fn_710026c4b4,unknown,ai/navmesh?,O
+0x710026c4b4,336,base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>::GrowAt,reflection,engine/base,O
 0x710026c604,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::Begin,reflection,engine/reflection,O
 0x710026c610,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::End,reflection,engine/reflection,O
 0x710026c624,168,fn_710026c624,unknown,ai/navmesh?,O

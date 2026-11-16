@@ -93,12 +93,13 @@ struct CRntVector {
     // Copies other's elements over this one's (fn_710001e744).
     void Assign(const CRntVector& other);
 
-    // Equal when the counts are and every element compares equal (fn_710001e1d0).
+    // Equal when the counts are and every element compares equal, the other's element on the left
+    // (fn_710001e1d0 for base::core::AssetName, and the pointer and number vectors' Equals).
     bool operator==(const CRntVector& other) const {
         if (count != other.count)
             return false;
         for (u32 i = 0; i < count; ++i)
-            if (!(data[i] == other.data[i]))
+            if (!(other.data[i] == data[i]))
                 return false;
         return true;
     }
@@ -201,10 +202,15 @@ struct CRntVector {
     // keeps the loop counter and the source offset in separate registers.
     void EraseAt(u32 index) {
         if (index < count) {
-            data[index].~T();
-            for (u32 i = index; i < count - 1; ++i) {
-                new (&data[i]) T(static_cast<T&&>(data[i + 1]));
-                data[i + 1].~T();
+            if constexpr (kTrivial) {
+                T* p = data + index;
+                __builtin_memcpy(p, p + 1, (count - index - 1) * sizeof(T));
+            } else {
+                data[index].~T();
+                for (u32 i = index; i < count - 1; ++i) {
+                    new (&data[i]) T(static_cast<T&&>(data[i + 1]));
+                    data[i + 1].~T();
+                }
             }
             count = count - 1;
         }
