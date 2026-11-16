@@ -12,7 +12,6 @@ using base::global::CStrId;
 
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
-bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
 
 // The blackboard at +0x820 of the game manager.
 static inline CBlackboard* Blackboard_ovb0094(UnkGameManager* manager) {

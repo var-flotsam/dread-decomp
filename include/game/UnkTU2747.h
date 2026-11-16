@@ -34,4 +34,5 @@ void fn_71011cdfa8(UnkGuiDisplayObject* self, f32 dt);
 void fn_71011ce208(UnkGuiDisplayObject* self, f32 value);
 void fn_71011cec68(UnkGuiDisplayObject* self, f32 value);
 void fn_71011cee10(UnkGuiDisplayObject* self);
+void fn_71011cd5a0(UnkGuiDisplayObject* object);
 UnkVec2Result fn_71011cf12c(UnkGuiDisplayObject* self, const UnkVec2Result& point);

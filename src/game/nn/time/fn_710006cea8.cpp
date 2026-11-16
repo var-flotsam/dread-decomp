@@ -14,8 +14,6 @@
 using base::global::CStrId;
 using base::input::UnkRumbleManager;
 
-bool fn_71010474f4(CBlackboard* self, const CStrId& section, const CStrId& name);
-extern UnkRumbleManager* g_unk_7101d47348;
 
 struct UnkSoundHolderRumble_l06cea8 {
     u8 pad_0x0[0x40];

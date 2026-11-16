@@ -2,17 +2,13 @@
 // labels (select, confirm or none; cancel) and refreshes both buttons. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-// As src/game/GUI/CIntTunableButton/CIntTunableButton_Step_ovb0134.cpp declares them (the text
-// setter is given the label's string id).
-struct UnkGuiObj;
-void fn_71011ecfbc(UnkGuiObj* label, const char32_t* text);
-void fn_71011cd5a0(UnkGuiObj*);
 
 // The map menu controller's members this function reads.
 struct UnkMapMenuTeleport_lb44344 {
@@ -27,8 +23,8 @@ struct UnkMapMenuTeleport_lb44344 {
 };
 static_assert(__builtin_offsetof(UnkMapMenuTeleport_lb44344, known_ids) == 0x8f0, "layout");
 
-static inline UnkGuiObj* TargetOf(UnkGuiHandleObj* handle) {
-    return handle ? reinterpret_cast<UnkGuiObj*>(handle->target) : nullptr;
+static inline UnkGuiDisplayObject* TargetOf(UnkGuiHandleObj* handle) {
+    return handle ? handle->target : nullptr;
 }
 
 // The selected id's position among the known teleporters, -1 when it is not one.
@@ -40,7 +36,8 @@ static inline s32 FindSelected(const UnkMapMenuTeleport_lb44344* self) {
     return -1;
 }
 
-static inline void SetLabel(UnkGuiObj* object, const char* text) {
+// The label's text setter is given the label's string id.
+static inline void SetLabel(UnkGuiDisplayObject* object, const char* text) {
     CStrId label(text, true);
     fn_71011ecfbc(object, reinterpret_cast<const char32_t*>(&label));
 }

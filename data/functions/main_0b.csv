@@ -1512,7 +1512,7 @@ address,size,name,name_source,subsystem,status
 0x7100b433b8,92,fn_7100b433b8,unknown,unknown,O
 0x7100b43414,1820,fn_7100b43414,unknown,unknown,U
 0x7100b43b30,2068,fn_7100b43b30,unknown,unknown,U
-0x7100b44344,424,fn_7100b44344,unknown,unknown,U
+0x7100b44344,424,fn_7100b44344,unknown,unknown,O
 0x7100b444ec,1360,fn_7100b444ec,unknown,unknown,U
 0x7100b44a3c,40,fn_7100b44a3c,unknown,unknown,O
 0x7100b44a64,128,fn_7100b44a64,unknown,unknown,O

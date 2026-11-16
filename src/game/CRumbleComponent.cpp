@@ -26,7 +26,6 @@ struct UnkHandle {
 };
 
 // The rumble manager, created on first use.
-extern UnkRumbleManager* g_unk_7101d47348;
 
 static inline UnkRumbleManager* RumbleManager() {
     if (!g_unk_7101d47348) {

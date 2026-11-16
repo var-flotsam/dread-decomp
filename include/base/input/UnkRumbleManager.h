@@ -94,3 +94,7 @@ static_assert(sizeof(UnkRumbleManager) == 0x2210, "UnkRumbleManager placeholder 
 // Its constructor (a plain function; callers pass the storage). Defined in
 // src/base/input/CRumbleManager.cpp.
 void fn_71000733e4(base::input::UnkRumbleManager* self);
+
+// The rumble manager singleton, created and constructed (fn_71000733e4) on first use by its
+// users. It lives in .bss (tools/data_map.py gives no unit).
+extern base::input::UnkRumbleManager* g_unk_7101d47348;

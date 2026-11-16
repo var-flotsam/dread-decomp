@@ -12,6 +12,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBossAIComponent.h"
+#include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiLabel.h"
@@ -108,7 +109,6 @@ extern const UnkColor g_unk_7101aa00b8;
 extern const UnkColor g_unk_7101aa00c8;
 
 const char32_t* fn_7100af4650(s32 id, u32 flags);
-void fn_71011ecfbc(UnkGuiObj* label, const char32_t* text);
 void fn_71011cfc24(UnkGuiObj* object, const UnkColor& color, u32 value);
 f32 fn_7100dce130(UnkStats* stats);
 

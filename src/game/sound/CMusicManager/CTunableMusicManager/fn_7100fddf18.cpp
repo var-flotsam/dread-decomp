@@ -3,4 +3,4 @@
 #include "game/sound/UnkMusicPathVec.h"
 #include "types.h"
 
-void fn_7100fddf18(UnkPathVec_b0019* self, const UnkPathVec_b0019* other) { self->CopyFrom(*other); }
+UnkMusicPathList::UnkMusicPathList(const UnkMusicPathList& other) { CopyFrom(other); }

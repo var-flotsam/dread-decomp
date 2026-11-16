@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -16,9 +17,6 @@ struct UnkGuiEvent_b49 {
     u8 pad_0x0[0x20];
     u64 kind;  // 0x20
 };
-
-using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011cd5a0(UnkGuiObj* object);
 
 static inline UnkGuiDisplayObject* AsContainer(UnkGuiDisplayObject* obj) {
     return obj && fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(obj->GetClass()),

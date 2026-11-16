@@ -17,12 +17,11 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkGuiSprite.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011cd5a0(UnkGuiObj* object);
 extern CStrId g_unk_717275c5e0 __attribute__((visibility("hidden")));  // the composition's key
 
 using base::reflection::UnkReflObject;
