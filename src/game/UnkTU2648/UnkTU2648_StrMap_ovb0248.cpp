@@ -11,7 +11,7 @@
 using base::global::CStrId;
 
 void fn_7101041d34(void* value, const void* other);  // the value's copy constructor
-void fn_7101036fb8(void* value, void* other);        // the value's move constructor
+void fn_7101036fb8(void* value, const void* other);        // the value's move constructor
 
 struct UnkVirtualValue_b0248 {
     virtual void vf_0x0();
