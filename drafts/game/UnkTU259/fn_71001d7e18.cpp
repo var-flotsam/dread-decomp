@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -43,15 +44,7 @@ struct UnkResRecord_l1d7e18 {
 };
 static_assert(sizeof(UnkResRecord_l1d7e18) == 0x10, "UnkResRecord_l1d7e18 layout");
 
-struct UnkResRecordArrays_l1d7e18 {
-    UnkResRecord_l1d7e18* records;
-    CStrId* names;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkResRecordArrays_l1d7e18 = base::global::CRntSmallDictionary<CStrId, UnkResRecord_l1d7e18>;
 
 // Grows both arrays to `new_capacity`: the records are copied and the old ones destroyed, the
 // names moved.
@@ -61,24 +54,24 @@ void fn_71001d7e18(UnkResRecordArrays_l1d7e18* self, u32 new_capacity) {
     UnkResRecord_l1d7e18* records = static_cast<UnkResRecord_l1d7e18*>(
         self->allocator->vf_0x40((u64)new_capacity * sizeof(UnkResRecord_l1d7e18), 8, self->flags));
     CStrId* names = static_cast<CStrId*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(CStrId), 8, self->flags));
-    if (UnkResRecord_l1d7e18* old = self->records) {
+    if (UnkResRecord_l1d7e18* old = self->values) {
         UnkResRecord_l1d7e18* dst = records;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
             new (dst) UnkResRecord_l1d7e18(*old);
             old->~UnkResRecord_l1d7e18();
         }
-        self->allocator->vf_0x48(self->records);
+        self->allocator->vf_0x48(self->values);
     }
-    if (CStrId* old = self->names) {
+    if (CStrId* old = self->keys) {
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j, ++old) {
             names[j].data = old->data;
             old->data = &g_unk_7101d47108->empty;
             old->Reset();
         }
-        self->allocator->vf_0x48(self->names);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->records = records;
-    self->names = names;
+    self->values = records;
+    self->keys = names;
     self->capacity = new_capacity;
 }

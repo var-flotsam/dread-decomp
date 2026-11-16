@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkFreedVectorPair.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -22,15 +23,7 @@ struct UnkIdPairRecord_le611dc {
 };
 static_assert(sizeof(UnkIdPairRecord_le611dc) == 0x80, "");
 
-struct UnkIdPairRecordArray_le611dc {
-    UnkIdPairRecord_le611dc* records;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdPairRecordArray_le611dc = base::global::CRntSmallDictionary<CStrId, UnkIdPairRecord_le611dc>;
 
 // The array's type as its caller (src/game_aca57c/fn_7100e5f64c.cpp) declares it.
 template <u32 Size>
@@ -43,7 +36,7 @@ void fn_7100e611dc(UnkRecordIdArray<0x80>* array) {
     UnkIdPairRecord_le611dc* records = static_cast<UnkIdPairRecord_le611dc*>(
         self->allocator->vf_0x40((u64)self->count * sizeof(UnkIdPairRecord_le611dc), 8, self->flags));
     CStrId* ids = static_cast<CStrId*>(self->allocator->vf_0x40((u64)self->count * sizeof(CStrId), 8, self->flags));
-    if (UnkIdPairRecord_le611dc* old = self->records) {
+    if (UnkIdPairRecord_le611dc* old = self->values) {
         UnkIdPairRecord_le611dc* dst = records;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
             dst->field_0x0 = old->field_0x0;
@@ -57,17 +50,17 @@ void fn_7100e611dc(UnkRecordIdArray<0x80>* array) {
             old->pair.~UnkFreedVectorPair();
             old->id.Reset();
         }
-        self->allocator->vf_0x48(self->records);
+        self->allocator->vf_0x48(self->values);
     }
-    if (CStrId* old = self->ids) {
+    if (CStrId* old = self->keys) {
         CStrId* dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
             new (dst) CStrId(*old);
             old->Reset();
         }
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->records = records;
-    self->ids = ids;
+    self->values = records;
+    self->keys = ids;
     self->capacity = self->count;
 }

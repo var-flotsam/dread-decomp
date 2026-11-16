@@ -1,6 +1,7 @@
 // Two parallel arrays (0x18-byte records that start with an id, and a CStrId per record) that
 // share a count, a capacity and allocation flags; the same shape as the tunables' registry
 // (fn_710013ec80, src/base/UnkTunableRegistry.cpp). Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -18,15 +19,7 @@ struct UnkIdRecord18B {
 static_assert(sizeof(UnkIdRecord18B) == 0x18, "");
 
 
-struct UnkIdRecord18BArrays {
-    UnkIdRecord18B* records;
-    CStrId* names;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    UnkAllocator* allocator;
-};
+using UnkIdRecord18BArrays = base::global::CRntSmallDictionary<CStrId, UnkIdRecord18B>;
 
 // Grows both arrays to `new_capacity`: the records are copied and their ids released, the
 // names moved.
@@ -35,7 +28,7 @@ void fn_71000a6ca8(UnkIdRecord18BArrays* self, u32 new_capacity) {
         UnkIdRecord18B* records = static_cast<UnkIdRecord18B*>(
             self->allocator->vf_0x40((u64)new_capacity * sizeof(UnkIdRecord18B), 8, self->flags));
         CStrId* names = static_cast<CStrId*>(self->allocator->vf_0x40((u64)new_capacity * sizeof(CStrId), 8, self->flags));
-        if (UnkIdRecord18B* old = self->records) {
+        if (UnkIdRecord18B* old = self->values) {
             UnkIdRecord18B* dst = records;
             for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
                 new (&dst->id) CStrId(old->id);
@@ -44,9 +37,9 @@ void fn_71000a6ca8(UnkIdRecord18BArrays* self, u32 new_capacity) {
                 dst->field_0x14 = old->field_0x14;
                 old->id.Reset();
             }
-            self->allocator->vf_0x48(self->records);
+            self->allocator->vf_0x48(self->values);
         }
-        if (CStrId* old = self->names) {
+        if (CStrId* old = self->keys) {
             CStrId* dst = names;
             for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
                 union Slot {
@@ -56,10 +49,10 @@ void fn_71000a6ca8(UnkIdRecord18BArrays* self, u32 new_capacity) {
                 reinterpret_cast<Slot*>(&old->data)->p = &g_unk_7101d47108->empty;
                 old->Reset();
             }
-            self->allocator->vf_0x48(self->names);
+            self->allocator->vf_0x48(self->keys);
         }
-        self->records = records;
-        self->names = names;
+        self->values = records;
+        self->keys = names;
         self->capacity = new_capacity;
     }
 }

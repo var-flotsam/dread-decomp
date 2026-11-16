@@ -2,6 +2,7 @@
 // CLogicDroppedItemManager::CTunableDroppableBillboard): the billboard tunable's constructor and
 // destructors, the per-entry copy, the manager's frame update and the pickup effects. Names and layouts
 // are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
@@ -148,22 +149,7 @@ struct UnkDropItem_ovb0208 {
 static_assert(sizeof(UnkDropItem_ovb0208) == 0x78, "item size");
 
 // The items, with the handle of the slot each belongs to.
-struct UnkDropItemMap_ovb0208 {
-    UnkDropItem_ovb0208* items;  // 0x0
-    u64* handles;                // 0x8
-    u32 count;                   // 0x10
-    u32 capacity;                // 0x14
-    u32 field_0x18;
-    u32 field_0x1c;
-    void* allocator;  // 0x20
-
-    UnkDropItem_ovb0208* Find(u64 handle) {
-        for (u32 i = 0; i < count; ++i)
-            if (handles[i] == handle)
-                return &items[i];
-        return &items[count];
-    }
-};
+using UnkDropItemMap_ovb0208 = base::global::CRntSmallDictionary<u64, UnkDropItem_ovb0208>;
 
 void fn_7100f05fb4(UnkDropSlot_ovb0208* slot, bool);
 void fn_7100f05cc8(UnkDropSlot_ovb0208* slot);
@@ -208,7 +194,7 @@ void fn_7100e2c28c(void* self_) {
         if (handle == ~0ull)
             continue;
         UnkDropItem_ovb0208* item = self->items.Find(handle);
-        if (item == &self->items.items[self->items.count])
+        if (item == self->items.End())
             continue;
         const f32* pos = reinterpret_cast<const f32*>(&self->elems[i].bytes[0x84]);
         f32 sx = pos[0], sy = pos[1], sz = pos[2];
@@ -234,7 +220,7 @@ static inline __attribute__((always_inline)) void ApplySlot(UnkDropManagerE_ovb0
     if (handle == ~0ull)
         return;
     UnkDropItem_ovb0208* item = self->items.Find(handle);
-    if (item == &self->items.items[self->items.count])
+    if (item == self->items.End())
         return;
     f32 sx = slot->x, sy = slot->y, sz = slot->z;
     if (--item->count == 0) {

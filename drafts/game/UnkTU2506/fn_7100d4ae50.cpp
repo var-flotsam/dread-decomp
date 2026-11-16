@@ -1,6 +1,7 @@
 // Unit 2506: grows an array of handle groups (a count and up to 128 refcounted handles each) and its
 // parallel handle array to `capacity`, copying the handles over and releasing the old ones.
 // Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "types.h"
 
@@ -22,15 +23,7 @@ struct UnkHandleGroup_ld4ae50 {
 };
 #pragma pack(pop)
 
-struct UnkHandleGroupArray_ld4ae50 {
-    UnkHandleGroup_ld4ae50* groups;
-    UnkRefCountedU_ovb0244** handles;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkHandleGroupArray_ld4ae50 = base::global::CRntSmallDictionary<UnkRefCountedU_ovb0244*, UnkHandleGroup_ld4ae50>;
 
 static inline void Release(UnkRefCountedU_ovb0244* h) {
     if (h) {
@@ -70,7 +63,7 @@ void fn_7100d4ae50(UnkHandleGroupArray_ld4ae50* self, u32 capacity) {
         self->allocator->vf_0x40((u64)capacity * sizeof(UnkHandleGroup_ld4ae50), 8, self->flags));
     UnkRefCountedU_ovb0244** handles =
         static_cast<UnkRefCountedU_ovb0244**>(self->allocator->vf_0x40((u64)capacity * 8, 8, self->flags));
-    UnkHandleGroup_ld4ae50* old_groups = self->groups;
+    UnkHandleGroup_ld4ae50* old_groups = self->values;
     if (old_groups) {
         if (self->count) {
             UnkHandleGroup_ld4ae50* dst = groups;
@@ -79,11 +72,11 @@ void fn_7100d4ae50(UnkHandleGroupArray_ld4ae50* self, u32 capacity) {
                 CopyGroup(dst, src);
                 ClearGroup(src);
             }
-            old_groups = self->groups;
+            old_groups = self->values;
         }
         self->allocator->vf_0x48(old_groups);
     }
-    UnkRefCountedU_ovb0244** old_handles = self->handles;
+    UnkRefCountedU_ovb0244** old_handles = self->keys;
     if (old_handles) {
         if (self->count) {
             u64 idx = 0;
@@ -102,11 +95,11 @@ void fn_7100d4ae50(UnkHandleGroupArray_ld4ae50* self, u32 capacity) {
                     }
                 }
             }
-            old_handles = self->handles;
+            old_handles = self->keys;
         }
         self->allocator->vf_0x48(old_handles);
     }
-    self->groups = groups;
-    self->handles = handles;
+    self->values = groups;
+    self->keys = handles;
     self->capacity = capacity;
 }

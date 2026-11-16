@@ -17,6 +17,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkPairArrays.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -61,15 +62,7 @@ struct UnkBTObserverEntry_ovb0055 {
 };
 static_assert(sizeof(UnkBTObserverEntry_ovb0055) == 0x80, "UnkBTObserverEntry_ovb0055 layout");
 
-struct UnkBTObserverEntries_ovb0055 {
-    UnkBTObserverEntry_ovb0055* values;
-    u32* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkBTObserverEntries_ovb0055 = base::global::CRntSmallDictionary<u32, UnkBTObserverEntry_ovb0055>;
 
 __attribute__((noinline)) void fn_7100ca720c(UnkBTObserverEntries_ovb0055* self) {
     if (self->values) {
@@ -112,12 +105,12 @@ void fn_7100ca9158(base::UnkPairArrays* pairs, u32 capacity) {
         }
         self->allocator->vf_0x48(self->values);
     }
-    if (self->ids) {
-        __builtin_memcpy(ids, self->ids, (u64)self->count * sizeof(u32));
-        self->allocator->vf_0x48(self->ids);
+    if (self->keys) {
+        __builtin_memcpy(ids, self->keys, (u64)self->count * sizeof(u32));
+        self->allocator->vf_0x48(self->keys);
     }
     self->values = values;
-    self->ids = ids;
+    self->keys = ids;
     self->capacity = capacity;
 }
 

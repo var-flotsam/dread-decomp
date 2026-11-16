@@ -1,6 +1,7 @@
 // Shrink-to-fit of a container of two parallel arrays (pointer-sized values and string ids)
 // sharing a count and capacity: both are reallocated to exactly `count`, the values copied,
 // the ids copied and destroyed one by one, the old arrays freed.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -8,15 +9,7 @@
 using base::UnkAllocator;
 using base::global::CStrId;
 
-struct UnkStrIdTable {
-    void** values;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    UnkAllocator* allocator;
-};
+using UnkStrIdTable = base::global::CRntSmallDictionary<CStrId, void*>;
 
 // CStrId's destructor, decrementing and testing in two steps (the original reloads the id
 // after the decrement).
@@ -43,15 +36,15 @@ void fn_7100d86d30(UnkStrIdTable* self) {
         __builtin_memcpy(values, self->values, (u64)self->count * sizeof(void*));
         self->allocator->vf_0x48(self->values);
     }
-    if (CStrId* old = self->ids) {
+    if (CStrId* old = self->keys) {
         CStrId* dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++old, ++dst) {
             new (dst) CStrId(*old);
             Release(old);
         }
-        self->allocator->vf_0x48(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
     self->values = values;
-    self->ids = ids;
+    self->keys = ids;
     self->capacity = self->count;
 }
