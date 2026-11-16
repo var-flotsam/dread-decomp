@@ -15,6 +15,7 @@
 #include "game/UnkTU194.h"
 #include "game/UnkTU230.h"
 #include "game/UnkTU259.h"
+#include "game/msapi/material/SAlpha.h"
 #include "types.h"
 
 struct UnkRenderItem_b0247 {
@@ -109,9 +110,14 @@ struct UnkGfx258_b0247 {
     u8 field_0x318366b;
 };
 
-void fn_71001a7bfc(UnkRenderItem_b0247* item, u32 mode);
 bool fn_7100196e80(UnkRenderCmd_b0247* cmd);
-void fn_71001d010c(UnkGfx258_b0247* self, UnkRenderItem_b0247* item, bool flag);
+// Binds a render item (src/game/UnkTU259/UnkTU259_BindItem_l1d010c.cpp lays out the two types it reads).
+struct UnkGfx_l1d010c;
+struct UnkDrawItem_l1d010c;
+void fn_71001d010c(UnkGfx_l1d010c* self, UnkDrawItem_l1d010c* item, bool flag);
+static inline void BindItem(UnkGfx258_b0247* self, UnkRenderItem_b0247* item, bool flag) {
+    fn_71001d010c(reinterpret_cast<UnkGfx_l1d010c*>(self), reinterpret_cast<UnkDrawItem_l1d010c*>(item), flag);
+}
 void fn_71001d03f8(UnkGfx258_b0247* self, void* arg, bool a, bool b);
 
 void fn_71001c5a74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
@@ -134,7 +140,7 @@ void fn_71001c5a74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     if (self->field_0x317acc0 == current) {
         g_unk_716e554938++;
     } else if (self->field_0x318366b) {
-        fn_71001d010c(self, current, false);
+        BindItem(self, current, false);
     }
     fn_71001d03f8(self, cmd->field_0x0, true, true);
 }
@@ -159,7 +165,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
     self->field_0x317ab28 = &g_unk_7101a1a680;
     self->field_0x317acc0 = nullptr;
     if (self->field_0x318366b)
-        fn_71001d010c(self, item, true);
+        BindItem(self, item, true);
     fn_71001d03f8(self, cmd->field_0x0, true, false);
     if (self->field_0x318366b) {
         fn_710015a3e0(1);
@@ -315,7 +321,7 @@ void fn_71001c4894(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         if (self->field_0x317acc0 == item)
             g_unk_716e554938++;
         else
-            fn_71001d010c(self, item, false);
+            BindItem(self, item, false);
     }
     for (u32 i = 0; i != n; i++) {
         auto* group = static_cast<UnkSubmitGroup_b0247*>(

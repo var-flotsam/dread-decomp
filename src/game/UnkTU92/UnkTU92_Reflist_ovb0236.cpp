@@ -3,6 +3,7 @@
 // it resolves to, a kind, two more values and the parent entry); fn_71000ee314 starts the listing with the root value,
 // fn_71000eef84 resizes it, fn_71000eed30 hands the current entry's count (an object's members or a collection's size)
 // to the caller's reference. Names and layouts are placeholders.
+#include "base/UnkNoArg.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -100,7 +101,7 @@ void fn_71000eef84(UnkEntryList_b0236* list, u32 n) {
 
 // Hands the current entry's count to `out`: the number of members of an object (kind 0) or the size of a collection
 // (kind 1, through its type's slot 0x108), or the entry's own typed reference (kind 2).
-bool fn_71000eed30(u32 flag, UnkListEntry_b0236* entry, UnkTypedRef* out) {
+bool fn_71000eed30(UnkNoArg, UnkListEntry_b0236* entry, UnkTypedRef* out) {
     UnkTypedRef src;
     u32 size_count;
     UnkTypedRef tmp;

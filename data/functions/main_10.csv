@@ -3952,7 +3952,7 @@ address,size,name,name_source,subsystem,status
 0x71010c4230,4,fn_71010c4230,unknown,unknown,O
 0x71010c4234,24,fn_71010c4234,unknown,unknown,O
 0x71010c424c,4,fn_71010c424c,unknown,unknown,O
-0x71010c4250,828,fn_71010c4250,unknown,unknown,U
+0x71010c4250,828,fn_71010c4250,unknown,unknown,O
 0x71010c458c,28,fn_71010c458c,unknown,unknown,O
 0x71010c45a8,368,fn_71010c45a8,unknown,unknown,O
 0x71010c4718,104,fn_71010c4718,unknown,unknown,O

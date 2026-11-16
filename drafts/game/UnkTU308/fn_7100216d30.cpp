@@ -17,9 +17,9 @@ struct UnkScaleRecord {
 
 void fn_7100216d30(UnkScaleRecord* self, f32 factor) {
     f32 v = self->base * factor;
-    s64 fixed = (s64)(v * 10000.0f);
-    self->scaled = fixed;
     self->field_0x28 = v;
     self->scale = v;
+    s64 fixed = (s64)(v * 10000.0f);
+    self->scaled = fixed;
     self->isZero = fixed == 0;
 }

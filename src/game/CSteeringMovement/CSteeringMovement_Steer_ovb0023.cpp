@@ -5,6 +5,7 @@
 // direction and its length capped at +0x234, then runs vf_0x288 and vf_0x290. Names and layouts are
 // placeholders.
 #include <math.h>
+#include "game/CMovementComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -48,8 +49,6 @@ struct UnkSteeringMovementV_ovb0023 {
     void (*vf_0x288)(UnkSteeringMovement_ovb0023* self, f32 dt);
     void (*vf_0x290)(UnkSteeringMovement_ovb0023* self, f32 dt);
 };
-
-void fn_71010d1b60(UnkSteeringMovement_ovb0023* self, f32 dt);
 
 void fn_71010df1fc(UnkSteeringMovement_ovb0023* self, f32 dt) {
     fn_71010d1b60(self, dt);

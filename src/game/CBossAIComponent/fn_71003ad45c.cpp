@@ -1,6 +1,7 @@
 // Unless the object at +0x14908 has its flag at +0x50c set, and when the value at +0x1140 is
 // positive and the flag at +0x50e is set, stores the value at +0x14804 (-1 when fn_71003ad4dc
 // accepts it).
+#include "game/CBossAIComponent.h"
 #include "types.h"
 
 struct UnkSubject {
@@ -18,8 +19,6 @@ struct UnkSelf {
     u8 pad_0x14808[0x100];
     UnkSubject* field_0x14908;
 };
-
-bool fn_71003ad4dc(UnkSelf* self, f32 value, s32 index);
 
 void fn_71003ad45c(UnkSelf* self) {
     if (self->field_0x14908->field_0x50c)
