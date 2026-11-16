@@ -8,8 +8,10 @@
 #include "game/UnkNavMeshCell.h"
 #include "types.h"
 
+struct UnkNavMesh;
 struct UnkNavLoadCell;
 struct UnkOwner_710027a41c;
 bool fn_710027a5f0(UnkOwner_710027a41c* self, const base::math::CVector2D* point, u16 index);
 void fn_7100279600(base::global::CRntVector<UnkNavLoadCell>* self, u32 capacity);  // The cell array's reserve.
 void fn_710027ebe4(base::global::CRntVector<UnkNavMeshEdge>* self, const base::global::CRntVector<UnkNavMeshEdge>* other);
+u32 fn_710027a320(UnkNavMesh* mesh);

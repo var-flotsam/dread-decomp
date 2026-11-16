@@ -4674,7 +4674,7 @@ address,size,name,name_source,subsystem,status
 0x7100c93d38,20,base::reflection::ValueOps<cutscene::EDevelopmentState>::CopyAssign,reflection,engine/reflection,O
 0x7100c93d4c,20,base::reflection::ValueOps<cutscene::EDevelopmentState>::MoveAssign,reflection,engine/reflection,O
 0x7100c93d60,664,fn_7100c93d60,unknown,unknown,O
-0x7100c93ff8,400,fn_7100c93ff8,unknown,unknown,U
+0x7100c93ff8,400,fn_7100c93ff8,unknown,unknown,O
 0x7100c94190,180,fn_7100c94190,unknown,unknown,O
 0x7100c94244,716,fn_7100c94244,unknown,unknown,O
 0x7100c94510,384,base::reflection::refl_InitType<EInFrustumMode>,reflection,engine/reflection,O

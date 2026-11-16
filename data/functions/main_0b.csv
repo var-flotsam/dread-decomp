@@ -2832,7 +2832,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8a5d8,504,fn_7100b8a5d8,unknown,unknown,O
 0x7100b8a7d0,708,fn_7100b8a7d0,unknown,unknown,U
 0x7100b8aa94,640,fn_7100b8aa94,unknown,unknown,U
-0x7100b8ad14,504,fn_7100b8ad14,unknown,unknown,U
+0x7100b8ad14,504,fn_7100b8ad14,unknown,unknown,O
 0x7100b8af0c,228,fn_7100b8af0c,unknown,unknown,U
 0x7100b8aff0,236,fn_7100b8aff0,unknown,unknown,U
 0x7100b8b0dc,736,fn_7100b8b0dc,unknown,unknown,U

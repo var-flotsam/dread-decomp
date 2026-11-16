@@ -10,3 +10,5 @@ struct UnkColliderNode_A6_b70;
 void fn_7100d35944(UnkColliderDtor* self);
 void fn_7100d35a74(UnkColliderDtor* self);
 void fn_7100d35af4(UnkColliderNode_A6_b70* self);
+extern char g_unk_7101aa84e0[];
+extern char g_unk_7101aa8590[];

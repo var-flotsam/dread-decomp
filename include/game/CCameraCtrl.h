@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkCam_l450950;
 struct UnkArg_fc;
 struct UnkBase_7100763ed4;
 struct UnkChozoCommanderDropCameraCtrl;
@@ -14,3 +15,4 @@ void fn_71010ed044(UnkBase_7100763ed4*);
 void fn_71010ed98c(UnkFixedCamera_fc* self, UnkArg_fc* arg, u32 flag);
 void fn_71010edd64(UnkGrabCameraCtrl* self);  // Derived classes call it as their base's deactivation.
 void fn_71010ee17c(UnkChozoCommanderDropCameraCtrl* self);  // The camera-controller base's step.
+void fn_71010ed948(UnkCam_l450950* camera, void* owner, bool flag);

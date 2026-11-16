@@ -100,6 +100,7 @@ address,digest,verdict,rules,detail
 0x7100572a68,825235b2f78d997f3e2579529208032f,pass,2,
 0x71006c083c,e01bf5f33f060f8d620f49fe0899d74e,pass,2,
 0x71006eb484,47135ee84631131e2dc775321549c3d7,inconclusive,2,only 89% of the original's instructions ran
+0x71006fc4fc,6aeaeae9f17f329ae66c7cb1aad41398,pass,2,
 0x7100700594,21cf0846eb26c983648e2fde4f1454a4,pass,2,
 0x7100702e38,e8a3b617d8371e10e90470dd2f75dbbd,pass,2,
 0x7100714808,0722c41dde09ac2c8cbd44951f777767,inconclusive,2,1 of 6 conditional branches went only one way

@@ -1988,7 +1988,7 @@ address,size,name,name_source,subsystem,status
 0x7100d35454,244,game::logic::collision::CBroadphaseObject::refl_GetClass,reflection,game,O
 0x7100d35548,324,game::logic::collision::CBroadphaseObject::refl_AddFields,reflection,game,O
 0x7100d3568c,332,game::logic::collision::CBroadphaseObject::refl_InitClass,reflection,game,O
-0x7100d357d8,364,fn_7100d357d8,unknown,game?,U
+0x7100d357d8,364,fn_7100d357d8,unknown,game?,O
 0x7100d35944,196,fn_7100d35944,unknown,game?,O
 0x7100d35a08,100,fn_7100d35a08,unknown,game?,O
 0x7100d35a6c,4,fn_7100d35a6c,unknown,linker,L
@@ -4206,7 +4206,7 @@ address,size,name,name_source,subsystem,status
 0x7100d8ced8,492,fn_7100d8ced8,unknown,engine/reflection?,O
 0x7100d8d0c4,144,fn_7100d8d0c4,unknown,engine/reflection?,O
 0x7100d8d154,776,fn_7100d8d154,unknown,engine/reflection?,U
-0x7100d8d45c,532,fn_7100d8d45c,unknown,engine/reflection?,U
+0x7100d8d45c,532,fn_7100d8d45c,unknown,engine/reflection?,O
 0x7100d8d670,484,fn_7100d8d670,unknown,engine/reflection?,O
 0x7100d8d854,620,fn_7100d8d854,unknown,engine/reflection?,U
 0x7100d8dac0,112,fn_7100d8dac0,unknown,engine/reflection?,O
