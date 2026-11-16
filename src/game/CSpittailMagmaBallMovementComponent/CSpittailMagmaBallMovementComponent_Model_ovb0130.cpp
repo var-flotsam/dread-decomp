@@ -1,6 +1,7 @@
 // CSpittailMagmaBallMovementComponent's unit (tools/tu_map.py, unit 1069): the pool's factory for the ball's
 // model (fn_71006cae2c), the ball's handle appended to its spawner's list (fn_71006ca2ac) and the set-up
 // that creates its model (fn_71006ca3fc). Names and layouts are placeholders.
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -26,54 +27,9 @@ bool fn_71006caf80(UnkSpittailModelHolder* self, const base::global::CFilePathSt
 
 struct UnkModel;
 
-struct UnkPoolNode_ovb0130 {
-    void* key;
-    void* value;
-    UnkPoolNode_ovb0130* next;   // 0x10: the list of all nodes
-    UnkPoolNode_ovb0130* prev;   // 0x18
-    UnkPoolNode_ovb0130* chain;  // 0x20: the next node in the bucket
-};
-
 // The pool's chained hash map, as src/game/CAbilitySonar/CAbilitySonar_Pulse_ovb0085.cpp has it.
-struct UnkPoolMap_ovb0130 {
-    using Node = UnkPoolNode_ovb0130;
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    Node** buckets;       // 0x10
-    u32 bucket_count;     // 0x18
-    u32 bucket_capacity;  // 0x1c
-    u8 pad_0x20[0x18];
-    Node* tail;  // 0x38
-    Node* head;  // 0x40
-
-    __attribute__((always_inline)) void Insert(void* key, void* value) {
-        Node** slot = nullptr;
-        if (bucket_count) {
-            u32 i = (u32)(u64)key % bucket_capacity;
-            slot = &buckets[i];
-        }
-        Node* c = *slot;
-        auto* n = static_cast<Node*>(allocator->vf_0x40(0x28, 8, flags));
-        if (n) {
-            n->key = key;
-            n->value = value;
-            n->next = nullptr;
-            n->prev = nullptr;
-            n->chain = nullptr;
-        }
-        n->chain = c;
-        *slot = n;
-        if (!head) {
-            head = n;
-        } else if (tail) {
-            __builtin_memcpy(&n->prev, &tail, sizeof(Node*));  // the original reloads the tail
-            tail->next = n;
-        }
-        tail = n;
-        ++count;
-    }
-};
+// The render pool's objects, by their base.
+using UnkPoolMap_ovb0130 = base::global::CRntDictionary<void*, void*>;
 
 struct UnkDeletable_ovb0130 {
     void** vtable;
