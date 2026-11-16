@@ -7,6 +7,8 @@
 #include "types.h"
 
 struct UnkLayoutText;
+struct UnkTextCommand;
+void fn_71000673e8(UnkLayoutText* text, const UnkTextCommand* command);
 struct UnkWideStr_0x20;
 void fn_7100067ea4(void* self);  // The event base's constructor.
 void fn_7100066e44(void* text);

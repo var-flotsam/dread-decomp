@@ -2250,7 +2250,7 @@ address,size,name,name_source,subsystem,status
 0x710119cb14,48,fn_710119cb14,unknown,unknown,O
 0x710119cb44,804,fn_710119cb44,unknown,unknown,m
 0x710119ce68,472,fn_710119ce68,unknown,unknown,O
-0x710119d040,732,fn_710119d040,unknown,unknown,U
+0x710119d040,732,fn_710119d040,unknown,unknown,O
 0x710119d31c,4,fn_710119d31c,unknown,unknown,O
 0x710119d320,12,fn_710119d320,unknown,unknown,O
 0x710119d32c,8,fn_710119d32c,unknown,unknown,O
