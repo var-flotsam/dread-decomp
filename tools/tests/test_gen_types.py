@@ -370,12 +370,18 @@ class TypeNames(unittest.TestCase):
         other = dict_.replace("CEntity*", "SGeoData")
         self.assertIsNone(gt.mapped_collection(
             body, {0x7100000520: f"base::reflection::CollectionTypeMapper<{other}>::TElementIterator"}, frozenset()))
-        self.assertEqual(gt.mapper_slots(dict_), gt.SMALL_DICT_SLOTS)
-        out = gt.emit_collection_ops(0x7100000010, body, dict_, "CEntity*", frozenset(gt.SMALL_DICT_SLOTS))
+        # string-id keys compare, so the keyed slots are written too; a string key's are not
+        self.assertEqual(gt.mapper_slots(dict_), gt.SMALL_DICT_SLOTS + gt.SMALL_DICT_KEYED_SLOTS)
+        self.assertEqual(gt.mapper_slots("base::global::CRntSmallDictionary<base::global::CRntString, int>"),
+                         gt.SMALL_DICT_SLOTS)
+        members = frozenset(gt.SMALL_DICT_SLOTS + gt.SMALL_DICT_KEYED_SLOTS)
+        out = gt.emit_collection_ops(0x7100000010, body, dict_, "CEntity*", members)
         self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
-                      f": base::reflection::SmallDictionaryMapperDescription<{dict_}> {{", out)
+                      f": base::reflection::SmallDictionaryKeyedMapperDescription<{dict_}> {{", out)
         self.assertIn('#include "base/global/CRntSmallDictionary.h"', out)
+        self.assertIn('#include "base/global/CStrId.h"', out)
         self.assertIn("    static constexpr UnkFn erase = &fn_71000001d0;", out)
+        self.assertFalse(any(" find = " in line or "extern template" in line for line in out))
         self.assertFalse(any(" count = " in line or " construct = " in line for line in out))
         self.assertEqual(gt.MAPPER_DESC_RE.findall("\n".join(out)), [dict_])
 

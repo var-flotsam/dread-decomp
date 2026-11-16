@@ -133,8 +133,8 @@ struct CollectionMapperDescription {
     static constexpr auto const_end = &CollectionTypeMapper<C>::ConstEnd;
 };
 
-// A small dictionary's mapper (base/global/CRntSmallDictionary.h): its element iterators are a vector's,
-// and the slots written so far are those that need none of its growth, copies or removal.
+// A small dictionary's mapper (base/global/CRntSmallDictionary.h): its element iterators are a vector's.
+// The slots written so far are those that need none of its growth or copies; its erase is still by address.
 template <class K, class V>
 struct CollectionTypeMapper<global::CRntSmallDictionary<K, V>> {
     using C = global::CRntSmallDictionary<K, V>;
@@ -153,11 +153,30 @@ struct CollectionTypeMapper<global::CRntSmallDictionary<K, V>> {
     // Reflection creates its dictionaries with allocation flags 0xe.
     static void Construct(void* obj) { new (obj) C(0xe); }
     static void MoveConstruct(void* dst, void* src) { new (dst) C(std::move(*static_cast<C*>(src))); }
+    static void* MoveAssign(void* dst, void* src) { return &(*static_cast<C*>(dst) = std::move(*static_cast<C*>(src))); }
+    static bool Equals(const void* a, const void* b) { return *static_cast<const C*>(a) == *static_cast<const C*>(b); }
     static s32 Hash(const void*) { return -1; }
     static const class CType& TypeOf(const void* obj);
 
     static u32 Count(const void* collection) { return static_cast<const C*>(collection)->count; }
     static void* At(void* collection, u32 index) { return &static_cast<C*>(collection)->values[index]; }
+    static void* Find(void* collection, const void* key) {
+        C* c = static_cast<C*>(collection);
+        V* value = c->Find(*static_cast<const K*>(key));
+        return value == c->End() ? nullptr : value;
+    }
+    static void SetCopy(void* collection, const void* key, const void* value) {
+        C* c = static_cast<C*>(collection);
+        V* v = c->Find(*static_cast<const K*>(key));
+        if (v != c->End())
+            *v = *static_cast<const V*>(value);
+    }
+    static void SetMove(void* collection, const void* key, void* value) {
+        C* c = static_cast<C*>(collection);
+        V* v = c->Find(*static_cast<const K*>(key));
+        if (v != c->End())
+            *v = std::move(*static_cast<V*>(value));
+    }
     static void Begin(void* collection, void* it) {
         static_cast<TElementIterator*>(it)->m_element = static_cast<C*>(collection)->values;
     }
@@ -178,6 +197,17 @@ struct SmallDictionaryMapperDescription {
     static constexpr auto at = &Mapper::At;
     static constexpr auto begin = &Mapper::Begin;
     static constexpr auto end = &Mapper::End;
+};
+
+// And those that compare keys, for a dictionary whose key type has an operator==.
+template <class C>
+struct SmallDictionaryKeyedMapperDescription : SmallDictionaryMapperDescription<C> {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto move_assign = &Mapper::MoveAssign;
+    static constexpr auto equals = &Mapper::Equals;
+    static constexpr auto find = &Mapper::Find;
+    static constexpr auto set_copy = &Mapper::SetCopy;
+    static constexpr auto set_move = &Mapper::SetMove;
 };
 
 }  // namespace base::reflection

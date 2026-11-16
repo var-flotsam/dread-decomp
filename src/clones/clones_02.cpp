@@ -15,14 +15,6 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
-struct UnkClone_fn_71005e3d30;
-void fn_71005e3fb0(void*, void*);
-template <> struct base::UnkOwnerVecInsertTraits<UnkClone_fn_71005e3d30> {
-    static void append(void* v, void* e) { fn_71005e3fb0(v, e); }
-};
-template void base::refl_OwnerVecInsert(base::global::CRntVector<UnkCloneOwnerVecHandle<UnkClone_fn_71005e3d30>>*, UnkCloneOwnerVecHandle<UnkClone_fn_71005e3d30>*, u32);
-struct UnkClone_fn_71005e3fb0;
-template void base::global::CRntVector<UnkCloneVecHandle<UnkClone_fn_71005e3fb0>>::EmplaceBack(UnkCloneVecHandle<UnkClone_fn_71005e3fb0>&&);
 struct UnkClone_fn_71005e5404;
 template base::UnkNamedObject* base::refl_RegisterNamed<UnkClone_fn_71005e5404>(base::UnkNamedRegistry*, base::UnkNamedObject*, const char*);
 struct UnkClone_fn_71005e5d08;
@@ -5784,3 +5776,15 @@ template <> struct UnkHashKeyTraits<UnkClone_fn_71008dba20> {
 template u32 refl_HashKeyFields<UnkClone_fn_71008dba20, 0x10>(char*);
 struct UnkClone_fn_71008dbbdc;
 template void base::refl_StrIdListCtor<UnkClone_fn_71008dbbdc>(char*);
+struct UnkClone_fn_71008dbca8;
+extern char g_unk_7101a7eae0[];
+template <> struct base::UnkDtorTraits<UnkClone_fn_71008dbca8> {
+    static char* vtable() { return g_unk_7101a7eae0; }
+};
+template void base::refl_RefPairArrayDeletingDtor<UnkClone_fn_71008dbca8, 0xc, 0x48, 0, 8>(char*);
+struct UnkClone_fn_71008dc010;
+const base::reflection::CType* fn_710000abbc();
+template <> struct base::reflection::UnkFieldTraits<UnkClone_fn_71008dc010> {
+    static const CType* type() { return fn_710000abbc(); }
+};
+template base::reflection::UnkReflValue base::reflection::refl_GetFieldValue<UnkClone_fn_71008dc010, u32, 0x410>(void*, char*);
