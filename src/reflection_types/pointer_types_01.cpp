@@ -1779,46 +1779,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710025a70c> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710025eb44*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710025a70c>();
-struct UnkRefl_fn_7100263828;
-struct UnkRefl_fn_7100262878;
 template <>
-const CType& base::reflection::ValueOps<CActorSublayer*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100262878>(); }
+const CType& base::reflection::ValueOps<CActorSublayer*>::TypeOf(const void*) { return *base::reflection::PointerType<CActorSublayer*>::Get(); }
 template struct base::reflection::ValueOps<CActorSublayer*>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100263828> : base::reflection::ValueOpsDescription<CActorSublayer*> {
+struct base::reflection::PointerTypeDescription<CActorSublayer*> : base::reflection::ValueOpsDescription<CActorSublayer*> {
+    static constexpr const char* name = "CActorSublayer*";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100263994;
     static constexpr SlotFn set = &fn_71002639f4;
     static constexpr SlotFn increment = &fn_7100263a00;
     static const CType* pointee() { return &g_unk_71726a1cd8; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, CActorSublayer**, void*);
+template const base::reflection::CType* base::reflection::PointerType<CActorSublayer*>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100262878> {
-    static constexpr const char* name = "CActorSublayer*";
-    using Init = UnkRefl_fn_7100263828;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100263828*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100262878>();
-struct UnkRefl_fn_7100263a8c;
-struct UnkRefl_fn_7100262954;
-template <>
-const CType& base::reflection::ValueOps<CActorSublayer const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100262954>(); }
+const CType& base::reflection::ValueOps<CActorSublayer const*>::TypeOf(const void*) { return *base::reflection::PointerType<CActorSublayer const*>::Get(); }
 template struct base::reflection::ValueOps<CActorSublayer const*>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100263a8c> : base::reflection::ValueOpsDescription<CActorSublayer const*> {
+struct base::reflection::PointerTypeDescription<CActorSublayer const*> : base::reflection::ValueOpsDescription<CActorSublayer const*> {
+    static constexpr const char* name = "CActorSublayer const*";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100263bf8;
     static constexpr SlotFn set = &fn_7100263c58;
     static constexpr SlotFn increment = &fn_7100263c64;
     static const CType* pointee() { return &g_unk_71726a1cd8; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100262954> {
-    static constexpr const char* name = "CActorSublayer const*";
-    using Init = UnkRefl_fn_7100263a8c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100263a8c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100262954>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, CActorSublayer const**, void*);
+template const base::reflection::CType* base::reflection::PointerType<CActorSublayer const*>::Get();
 struct UnkRefl_fn_71002668f0;
 struct UnkRefl_fn_7100265254;
 template <>
@@ -1873,126 +1861,90 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100265844> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100266d8c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100265844>();
-struct UnkRefl_fn_710026ad08;
-struct UnkRefl_fn_7100269a24;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100269a24>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026ad08> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710026ae70;
     static constexpr SlotFn set = &fn_710026aec8;
     static constexpr SlotFn increment = &fn_710026aed4;
     static const CType* pointee() { return fn_7100269948(); }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100269a24> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator";
-    using Init = UnkRefl_fn_710026ad08;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710026ad08*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100269a24>();
-struct UnkRefl_fn_710026af60;
-struct UnkRefl_fn_7100269b00;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100269b00>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026af60> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710026b0c8;
     static constexpr SlotFn set = &fn_710026b120;
     static constexpr SlotFn increment = &fn_710026b12c;
     static const CType* pointee() { return fn_7100269948(); }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100269b00> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator";
-    using Init = UnkRefl_fn_710026af60;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710026af60*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100269b00>();
-struct UnkRefl_fn_710026b1b8;
-struct UnkRefl_fn_710026a0e4;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710026a0e4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026b1b8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710026b324;
     static constexpr SlotFn set = &fn_710026b360;
     static constexpr SlotFn increment = &fn_710026b364;
     static const CType* pointee() { return &g_unk_71726a2d38; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710026a0e4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator";
-    using Init = UnkRefl_fn_710026b1b8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710026b1b8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710026a0e4>();
-struct UnkRefl_fn_710026b4f8;
-struct UnkRefl_fn_710026a6c8;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710026a6c8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710026b4f8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710026b664;
     static constexpr SlotFn set = &fn_710026b6a0;
     static constexpr SlotFn increment = &fn_710026b6a4;
     static const CType* pointee() { return &g_unk_71726a2e78; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710026a6c8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator";
-    using Init = UnkRefl_fn_710026b4f8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710026b4f8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710026a6c8>();
-struct UnkRefl_fn_7100271690;
-struct UnkRefl_fn_710026dad8;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710026dad8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100271690> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002717fc;
     static constexpr SlotFn set = &fn_710027185c;
     static constexpr SlotFn increment = &fn_7100271868;
     static const CType* pointee() { return &g_unk_71726a39b8; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710026dad8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator";
-    using Init = UnkRefl_fn_7100271690;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100271690*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710026dad8>();
-struct UnkRefl_fn_71002718f4;
-struct UnkRefl_fn_710026dbb4;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710026dbb4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002718f4> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100271a60;
     static constexpr SlotFn set = &fn_7100271ac0;
     static constexpr SlotFn increment = &fn_7100271acc;
     static const CType* pointee() { return &g_unk_71726a39b8; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710026dbb4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71002718f4;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002718f4*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710026dbb4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_7100271b58;
 struct UnkRefl_fn_710026e198;
 template <>
@@ -2048,47 +2000,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710026e77c> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100271f50*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710026e77c>();
 #include <memory>
-struct UnkRefl_fn_71002b8694;
-struct UnkRefl_fn_71002b6c14;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002b6c14>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002b8694> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002b87fc;
     static constexpr SlotFn set = &fn_71002b8854;
     static constexpr SlotFn increment = &fn_71002b8860;
     static const CType* pointee() { return fn_71002b6b38(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002b6c14> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator";
-    using Init = UnkRefl_fn_71002b8694;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002b8694*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002b6c14>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71002b88ec;
-struct UnkRefl_fn_71002b6cf0;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002b6cf0>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002b88ec> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002b8a54;
     static constexpr SlotFn set = &fn_71002b8aac;
     static constexpr SlotFn increment = &fn_71002b8ab8;
     static const CType* pointee() { return fn_71002b6b38(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002b6cf0> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71002b88ec;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002b88ec*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002b6cf0>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CEvaluator>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71002b8b44;
 struct UnkRefl_fn_71002b72d4;
 template <>
@@ -2171,47 +2111,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002bd4d8> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002bd6c0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002bd4d8>();
 #include <memory>
-struct UnkRefl_fn_71002bf14c;
-struct UnkRefl_fn_71002bdb3c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002bdb3c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002bf14c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002bf2b4;
     static constexpr SlotFn set = &fn_71002bf30c;
     static constexpr SlotFn increment = &fn_71002bf318;
     static const CType* pointee() { return fn_71002bd4d8(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002bdb3c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator";
-    using Init = UnkRefl_fn_71002bf14c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002bf14c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002bdb3c>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71002bf3a4;
-struct UnkRefl_fn_71002bdc18;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002bdc18>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002bf3a4> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002bf50c;
     static constexpr SlotFn set = &fn_71002bf564;
     static constexpr SlotFn increment = &fn_71002bf570;
     static const CType* pointee() { return fn_71002bd4d8(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002bdc18> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71002bf3a4;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002bf3a4*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002bdc18>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<querysystem::CFilter>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71002bf5fc;
 struct UnkRefl_fn_71002be1fc;
 template <>
@@ -2266,46 +2194,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002be7e0> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002bfa54*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002be7e0>();
-struct UnkRefl_fn_71002c9c44;
-struct UnkRefl_fn_71002c7664;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002c7664>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002c9c44> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002c9db0;
     static constexpr SlotFn set = &fn_71002c9e10;
     static constexpr SlotFn increment = &fn_71002c9e1c;
     static const CType* pointee() { return &g_unk_71726a7610; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002c7664> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator";
-    using Init = UnkRefl_fn_71002c9c44;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002c9c44*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002c7664>();
-struct UnkRefl_fn_71002c9ea8;
-struct UnkRefl_fn_71002c7740;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002c7740>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002c9ea8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002ca014;
     static constexpr SlotFn set = &fn_71002ca074;
     static constexpr SlotFn increment = &fn_71002ca080;
     static const CType* pointee() { return &g_unk_71726a7610; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002c7740> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator";
-    using Init = UnkRefl_fn_71002c9ea8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002c9ea8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002c7740>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71002ca10c;
 struct UnkRefl_fn_71002c7d24;
 template <>
@@ -2360,46 +2276,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002c8308> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002ca44c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002c8308>();
-struct UnkRefl_fn_71002ca78c;
-struct UnkRefl_fn_71002c8cd0;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002c8cd0>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002ca78c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002ca8f8;
     static constexpr SlotFn set = &fn_71002ca958;
     static constexpr SlotFn increment = &fn_71002ca964;
     static const CType* pointee() { return &g_unk_71726a7b48; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002c8cd0> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator";
-    using Init = UnkRefl_fn_71002ca78c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002ca78c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002c8cd0>();
-struct UnkRefl_fn_71002ca9f0;
-struct UnkRefl_fn_71002c8dac;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002c8dac>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002ca9f0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002cab5c;
     static constexpr SlotFn set = &fn_71002cabbc;
     static constexpr SlotFn increment = &fn_71002cabc8;
     static const CType* pointee() { return &g_unk_71726a7b48; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002c8dac> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator";
-    using Init = UnkRefl_fn_71002ca9f0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002ca9f0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002c8dac>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71002cac54;
 struct UnkRefl_fn_71002c9390;
 template <>
@@ -2508,68 +2412,50 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002d77dc> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002d8d4c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002d77dc>();
-struct UnkRefl_fn_71002d9420;
-struct UnkRefl_fn_71002d9344;
 template <>
-const CType& base::reflection::ValueOps<animtree::CAnimTreeElementDef*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002d9344>(); }
+const CType& base::reflection::ValueOps<animtree::CAnimTreeElementDef*>::TypeOf(const void*) { return *base::reflection::PointerType<animtree::CAnimTreeElementDef*>::Get(); }
 template struct base::reflection::ValueOps<animtree::CAnimTreeElementDef*>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002d9420> : base::reflection::ValueOpsDescription<animtree::CAnimTreeElementDef*> {
+struct base::reflection::PointerTypeDescription<animtree::CAnimTreeElementDef*> : base::reflection::ValueOpsDescription<animtree::CAnimTreeElementDef*> {
+    static constexpr const char* name = "animtree::CAnimTreeElementDef*";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002d9588;
     static constexpr SlotFn set = &fn_71002d95e0;
     static constexpr SlotFn increment = &fn_71002d95ec;
     static const CType* pointee() { return fn_71002dbcf4(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002d9344> {
-    static constexpr const char* name = "animtree::CAnimTreeElementDef*";
-    using Init = UnkRefl_fn_71002d9420;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002d9420*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002d9344>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, animtree::CAnimTreeElementDef**, void*);
+template const base::reflection::CType* base::reflection::PointerType<animtree::CAnimTreeElementDef*>::Get();
 #include <memory>
-struct UnkRefl_fn_71002dd2d8;
-struct UnkRefl_fn_71002dc0d8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002dc0d8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002dd2d8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002dd440;
     static constexpr SlotFn set = &fn_71002dd498;
     static constexpr SlotFn increment = &fn_71002dd4a4;
     static const CType* pointee() { return fn_71002dbffc(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002dc0d8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator";
-    using Init = UnkRefl_fn_71002dd2d8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002dd2d8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002dc0d8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71002dd530;
-struct UnkRefl_fn_71002dc1b4;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002dc1b4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002dd530> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002dd698;
     static constexpr SlotFn set = &fn_71002dd6f0;
     static constexpr SlotFn increment = &fn_71002dd6fc;
     static const CType* pointee() { return fn_71002dbffc(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002dc1b4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71002dd530;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002dd530*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002dc1b4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71002dd788;
 struct UnkRefl_fn_71002dc798;
 template <>
@@ -2624,46 +2510,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002dcd7c> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002ddbe0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002dcd7c>();
-struct UnkRefl_fn_71002ed2f8;
-struct UnkRefl_fn_71002eaab8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002eaab8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002ed2f8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002ed460;
     static constexpr SlotFn set = &fn_71002ed4b8;
     static constexpr SlotFn increment = &fn_71002ed4c4;
     static const CType* pointee() { return fn_71002ea7d8(); }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002eaab8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator";
-    using Init = UnkRefl_fn_71002ed2f8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002ed2f8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002eaab8>();
-struct UnkRefl_fn_71002ed550;
-struct UnkRefl_fn_71002eab94;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002eab94>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002ed550> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002ed6b8;
     static constexpr SlotFn set = &fn_71002ed710;
     static constexpr SlotFn increment = &fn_71002ed71c;
     static const CType* pointee() { return fn_71002ea7d8(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002eab94> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator";
-    using Init = UnkRefl_fn_71002ed550;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002ed550*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002eab94>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71002ed7a8;
 struct UnkRefl_fn_71002eb178;
 template <>
@@ -2718,26 +2592,20 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002eb75c> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002edba0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002eb75c>();
-struct UnkRefl_fn_71002ee2b8;
-struct UnkRefl_fn_71002ee1dc;
 template <>
-const CType& base::reflection::ValueOps<CPlaythroughDef const*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71002ee1dc>(); }
+const CType& base::reflection::ValueOps<CPlaythroughDef const*>::TypeOf(const void*) { return *base::reflection::PointerType<CPlaythroughDef const*>::Get(); }
 template struct base::reflection::ValueOps<CPlaythroughDef const*>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71002ee2b8> : base::reflection::ValueOpsDescription<CPlaythroughDef const*> {
+struct base::reflection::PointerTypeDescription<CPlaythroughDef const*> : base::reflection::ValueOpsDescription<CPlaythroughDef const*> {
+    static constexpr const char* name = "const CPlaythroughDef*";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71002ee420;
     static constexpr SlotFn set = &fn_71002ee478;
     static constexpr SlotFn increment = &fn_71002ee484;
     static const CType* pointee() { return fn_71002effc4(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002ee1dc> {
-    static constexpr const char* name = "const CPlaythroughDef*";
-    using Init = UnkRefl_fn_71002ee2b8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002ee2b8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002ee1dc>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, CPlaythroughDef const**, void*);
+template const base::reflection::CType* base::reflection::PointerType<CPlaythroughDef const*>::Get();
 struct UnkRefl_fn_71002f2edc;
 struct UnkRefl_fn_71002f1284;
 template <>
@@ -2847,47 +2715,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71002f2004> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71002f3a84*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71002f2004>();
 #include <memory>
-struct UnkRefl_fn_7100367018;
-struct UnkRefl_fn_71003649d8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71003649d8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100367018> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100367180;
     static constexpr SlotFn set = &fn_71003671d8;
     static constexpr SlotFn increment = &fn_71003671e4;
     static const CType* pointee() { return fn_71003648fc(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71003649d8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator";
-    using Init = UnkRefl_fn_7100367018;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100367018*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71003649d8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_7100367270;
-struct UnkRefl_fn_7100364ab4;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100364ab4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100367270> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71003673d8;
     static constexpr SlotFn set = &fn_7100367430;
     static constexpr SlotFn increment = &fn_710036743c;
     static const CType* pointee() { return fn_71003648fc(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100364ab4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100367270;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100367270*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100364ab4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAttackPreset>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71003674c8;
 struct UnkRefl_fn_7100365098;
 template <>
@@ -2942,46 +2798,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710036567c> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100367920*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710036567c>();
-struct UnkRefl_fn_71003ecc88;
-struct UnkRefl_fn_71003eb9e8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71003eb9e8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71003ecc88> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71003ecdf4;
     static constexpr SlotFn set = &fn_71003ece54;
     static constexpr SlotFn increment = &fn_71003ece60;
     static const CType* pointee() { return &g_unk_71726c1960; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71003eb9e8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator";
-    using Init = UnkRefl_fn_71003ecc88;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71003ecc88*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71003eb9e8>();
-struct UnkRefl_fn_71003eceec;
-struct UnkRefl_fn_71003ebac4;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71003ebac4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71003eceec> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71003ed058;
     static constexpr SlotFn set = &fn_71003ed0b8;
     static constexpr SlotFn increment = &fn_71003ed0c4;
     static const CType* pointee() { return &g_unk_71726c1960; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71003ebac4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator";
-    using Init = UnkRefl_fn_71003eceec;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71003eceec*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71003ebac4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71003ed150;
 struct UnkRefl_fn_71003ec0a8;
 template <>
@@ -3064,47 +2908,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100407170> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710040724c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100407170>();
 #include <memory>
-struct UnkRefl_fn_710045f690;
-struct UnkRefl_fn_710045d378;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710045d378>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710045f690> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710045f7f8;
     static constexpr SlotFn set = &fn_710045f850;
     static constexpr SlotFn increment = &fn_710045f85c;
     static const CType* pointee() { return fn_710045d29c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710045d378> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator";
-    using Init = UnkRefl_fn_710045f690;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710045f690*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710045d378>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_710045f8e8;
-struct UnkRefl_fn_710045d454;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710045d454>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710045f8e8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710045fa50;
     static constexpr SlotFn set = &fn_710045faa8;
     static constexpr SlotFn increment = &fn_710045fab4;
     static const CType* pointee() { return fn_710045d29c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710045d454> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_710045f8e8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710045f8e8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710045d454>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CChozoRobotSoldierCannonShotPattern>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710045fb40;
 struct UnkRefl_fn_710045da38;
 template <>
@@ -3160,47 +2992,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710045e01c> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710045ff98*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710045e01c>();
 #include <memory>
-struct UnkRefl_fn_71004a57ec;
-struct UnkRefl_fn_71004a2cec;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004a2cec>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004a57ec> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004a5954;
     static constexpr SlotFn set = &fn_71004a59ac;
     static constexpr SlotFn increment = &fn_71004a59b8;
     static const CType* pointee() { return fn_71004a2c10(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004a2cec> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator";
-    using Init = UnkRefl_fn_71004a57ec;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004a57ec*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004a2cec>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71004a5a44;
-struct UnkRefl_fn_71004a2dc8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004a2dc8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004a5a44> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004a5bac;
     static constexpr SlotFn set = &fn_71004a5c04;
     static constexpr SlotFn increment = &fn_71004a5c10;
     static const CType* pointee() { return fn_71004a2c10(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004a2dc8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71004a5a44;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004a5a44*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004a2dc8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71004a5c9c;
 struct UnkRefl_fn_71004a33ac;
 template <>
@@ -3256,47 +3076,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004a3990> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004a60f4*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004a3990>();
 #include <memory>
-struct UnkRefl_fn_71004a654c;
-struct UnkRefl_fn_71004a3c4c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004a3c4c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004a654c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004a66b8;
     static constexpr SlotFn set = &fn_71004a6718;
     static constexpr SlotFn increment = &fn_71004a6724;
     static const CType* pointee() { return &g_unk_71726d2360; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004a3c4c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator";
-    using Init = UnkRefl_fn_71004a654c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004a654c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004a3c4c>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71004a67b0;
-struct UnkRefl_fn_71004a3d28;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004a3d28>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004a67b0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004a691c;
     static constexpr SlotFn set = &fn_71004a697c;
     static constexpr SlotFn increment = &fn_71004a6988;
     static const CType* pointee() { return &g_unk_71726d2360; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004a3d28> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71004a67b0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004a67b0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004a3d28>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaCarpetDef>>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71004a6a14;
 struct UnkRefl_fn_71004a430c;
 template <>
@@ -3352,47 +3160,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004a48f0> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004a6ed4*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004a48f0>();
 #include <memory>
-struct UnkRefl_fn_71004aef0c;
-struct UnkRefl_fn_71004abe2c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004abe2c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004aef0c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004af074;
     static constexpr SlotFn set = &fn_71004af0cc;
     static constexpr SlotFn increment = &fn_71004af0d8;
     static const CType* pointee() { return fn_71004abd50(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004abe2c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator";
-    using Init = UnkRefl_fn_71004aef0c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004aef0c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004abe2c>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71004af164;
-struct UnkRefl_fn_71004abf08;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004abf08>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004af164> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004af2cc;
     static constexpr SlotFn set = &fn_71004af324;
     static constexpr SlotFn increment = &fn_71004af330;
     static const CType* pointee() { return fn_71004abd50(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004abf08> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71004af164;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004af164*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004abf08>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossLavaDropsDef>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71004af3bc;
 struct UnkRefl_fn_71004ac4ec;
 template <>
@@ -3502,47 +3298,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004ada48> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004b0498*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004ada48>();
 #include <memory>
-struct UnkRefl_fn_71004ba8fc;
-struct UnkRefl_fn_71004b5f78;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004b5f78>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004ba8fc> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004baa64;
     static constexpr SlotFn set = &fn_71004baabc;
     static constexpr SlotFn increment = &fn_71004baac8;
     static const CType* pointee() { return fn_71004b5e9c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004b5f78> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator";
-    using Init = UnkRefl_fn_71004ba8fc;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004ba8fc*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004b5f78>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71004bab54;
-struct UnkRefl_fn_71004b6054;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004b6054>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004bab54> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004bacbc;
     static constexpr SlotFn set = &fn_71004bad14;
     static constexpr SlotFn increment = &fn_71004bad20;
     static const CType* pointee() { return fn_71004b5e9c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004b6054> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71004bab54;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004bab54*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004b6054>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71004badac;
 struct UnkRefl_fn_71004b6638;
 template <>
@@ -3598,47 +3382,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004b6c1c> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004bb204*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004b6c1c>();
 #include <memory>
-struct UnkRefl_fn_71004bb65c;
-struct UnkRefl_fn_71004b6ed8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004b6ed8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004bb65c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004bb7c8;
     static constexpr SlotFn set = &fn_71004bb828;
     static constexpr SlotFn increment = &fn_71004bb834;
     static const CType* pointee() { return &g_unk_71726d5aa8; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004b6ed8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator";
-    using Init = UnkRefl_fn_71004bb65c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004bb65c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004b6ed8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71004bb8c0;
-struct UnkRefl_fn_71004b6fb4;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71004b6fb4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71004bb8c0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71004bba2c;
     static constexpr SlotFn set = &fn_71004bba8c;
     static constexpr SlotFn increment = &fn_71004bba98;
     static const CType* pointee() { return &g_unk_71726d5aa8; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004b6fb4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71004bb8c0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004bb8c0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004b6fb4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71004bbb24;
 struct UnkRefl_fn_71004b7598;
 template <>
@@ -3748,47 +3520,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71004b8af8> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71004bccd0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71004b8af8>();
 #include <memory>
-struct UnkRefl_fn_710055c930;
-struct UnkRefl_fn_7100532390;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100532390>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710055c930> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710055ca98;
     static constexpr SlotFn set = &fn_710055caf0;
     static constexpr SlotFn increment = &fn_710055cafc;
     static const CType* pointee() { return fn_71005322b4(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100532390> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator";
-    using Init = UnkRefl_fn_710055c930;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055c930*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100532390>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_710055cb88;
-struct UnkRefl_fn_710053246c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710053246c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710055cb88> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710055ccf0;
     static constexpr SlotFn set = &fn_710055cd48;
     static constexpr SlotFn increment = &fn_710055cd54;
     static const CType* pointee() { return fn_71005322b4(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710053246c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_710055cb88;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055cb88*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710053246c>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710055cde0;
 struct UnkRefl_fn_7100532a50;
 template <>
@@ -3844,47 +3604,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100533034> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055d238*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100533034>();
 #include <memory>
-struct UnkRefl_fn_710055dbac;
-struct UnkRefl_fn_7100533c90;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100533c90>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710055dbac> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710055dd14;
     static constexpr SlotFn set = &fn_710055dd6c;
     static constexpr SlotFn increment = &fn_710055dd78;
     static const CType* pointee() { return fn_7100533bb4(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100533c90> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator";
-    using Init = UnkRefl_fn_710055dbac;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055dbac*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100533c90>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_710055de04;
-struct UnkRefl_fn_7100533d6c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100533d6c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710055de04> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710055df6c;
     static constexpr SlotFn set = &fn_710055dfc4;
     static constexpr SlotFn increment = &fn_710055dfd0;
     static const CType* pointee() { return fn_7100533bb4(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100533d6c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_710055de04;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055de04*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100533d6c>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710055e05c;
 struct UnkRefl_fn_7100534350;
 template <>
@@ -3940,47 +3688,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100534934> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055e4b4*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100534934>();
 #include <memory>
-struct UnkRefl_fn_710055ee28;
-struct UnkRefl_fn_71005354ec;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005354ec>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710055ee28> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710055ef90;
     static constexpr SlotFn set = &fn_710055efe8;
     static constexpr SlotFn increment = &fn_710055eff4;
     static const CType* pointee() { return fn_7100535410(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005354ec> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator";
-    using Init = UnkRefl_fn_710055ee28;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055ee28*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005354ec>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_710055f080;
-struct UnkRefl_fn_71005355c8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005355c8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710055f080> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710055f1e8;
     static constexpr SlotFn set = &fn_710055f240;
     static constexpr SlotFn increment = &fn_710055f24c;
     static const CType* pointee() { return fn_7100535410(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005355c8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_710055f080;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055f080*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005355c8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710055f2d8;
 struct UnkRefl_fn_7100535bac;
 template <>
@@ -4036,47 +3772,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100536190> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710055f730*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100536190>();
 #include <memory>
-struct UnkRefl_fn_71005770f0;
-struct UnkRefl_fn_71005752f4;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005752f4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005770f0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100577258;
     static constexpr SlotFn set = &fn_71005772b0;
     static constexpr SlotFn increment = &fn_71005772bc;
     static const CType* pointee() { return fn_7100575218(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005752f4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator";
-    using Init = UnkRefl_fn_71005770f0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005770f0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005752f4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_7100577348;
-struct UnkRefl_fn_71005753d0;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005753d0>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100577348> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005774b0;
     static constexpr SlotFn set = &fn_7100577508;
     static constexpr SlotFn increment = &fn_7100577514;
     static const CType* pointee() { return fn_7100575218(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005753d0> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100577348;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100577348*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005753d0>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CEnemyPreset>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71005775a0;
 struct UnkRefl_fn_71005759b4;
 template <>
@@ -4132,47 +3856,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100575f98> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005779f8*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100575f98>();
 #include <memory>
-struct UnkRefl_fn_71005affa8;
-struct UnkRefl_fn_71005ae0d8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005ae0d8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005affa8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005b0110;
     static constexpr SlotFn set = &fn_71005b0168;
     static constexpr SlotFn increment = &fn_71005b0174;
     static const CType* pointee() { return fn_71005adffc(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005ae0d8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator";
-    using Init = UnkRefl_fn_71005affa8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005affa8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005ae0d8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71005b0200;
-struct UnkRefl_fn_71005ae1b4;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005ae1b4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005b0200> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005b0368;
     static constexpr SlotFn set = &fn_71005b03c0;
     static constexpr SlotFn increment = &fn_71005b03cc;
     static const CType* pointee() { return fn_71005adffc(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005ae1b4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71005b0200;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005b0200*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005ae1b4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPolypFallPattern>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71005b0458;
 struct UnkRefl_fn_71005ae798;
 template <>
@@ -4228,47 +3940,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005aed7c> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005b08b0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005aed7c>();
 #include <memory>
-struct UnkRefl_fn_71005d740c;
-struct UnkRefl_fn_71005d3d58;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005d3d58>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005d740c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005d7574;
     static constexpr SlotFn set = &fn_71005d75cc;
     static constexpr SlotFn increment = &fn_71005d75d8;
     static const CType* pointee() { return fn_71005d3c7c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005d3d58> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator";
-    using Init = UnkRefl_fn_71005d740c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005d740c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005d3d58>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71005d7664;
-struct UnkRefl_fn_71005d3e34;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005d3e34>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005d7664> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005d77cc;
     static constexpr SlotFn set = &fn_71005d7824;
     static constexpr SlotFn increment = &fn_71005d7830;
     static const CType* pointee() { return fn_71005d3c7c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005d3e34> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71005d7664;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005d7664*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005d3e34>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71005d78bc;
 struct UnkRefl_fn_71005d4418;
 template <>
@@ -4324,47 +4024,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005d49fc> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005d7d14*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005d49fc>();
 #include <memory>
-struct UnkRefl_fn_71005d816c;
-struct UnkRefl_fn_71005d4cb8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005d4cb8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005d816c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005d82d8;
     static constexpr SlotFn set = &fn_71005d8338;
     static constexpr SlotFn increment = &fn_71005d8344;
     static const CType* pointee() { return &g_unk_71726ed360; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005d4cb8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator";
-    using Init = UnkRefl_fn_71005d816c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005d816c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005d4cb8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71005d83d0;
-struct UnkRefl_fn_71005d4d94;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005d4d94>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005d83d0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005d853c;
     static constexpr SlotFn set = &fn_71005d859c;
     static constexpr SlotFn increment = &fn_71005d85a8;
     static const CType* pointee() { return &g_unk_71726ed360; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005d4d94> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71005d83d0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005d83d0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005d4d94>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CAcidBlobsLaunchPattern>>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71005d8634;
 struct UnkRefl_fn_71005d5378;
 template <>
@@ -4420,47 +4108,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005d595c> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005d8af4*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005d595c>();
 #include <memory>
-struct UnkRefl_fn_71005e048c;
-struct UnkRefl_fn_71005dd2bc;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005dd2bc>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005e048c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005e05f4;
     static constexpr SlotFn set = &fn_71005e064c;
     static constexpr SlotFn increment = &fn_71005e0658;
     static const CType* pointee() { return fn_71005dd1e0(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005dd2bc> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator";
-    using Init = UnkRefl_fn_71005e048c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005e048c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005dd2bc>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71005e06e4;
-struct UnkRefl_fn_71005dd398;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005dd398>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005e06e4> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005e084c;
     static constexpr SlotFn set = &fn_71005e08a4;
     static constexpr SlotFn increment = &fn_71005e08b0;
     static const CType* pointee() { return fn_71005dd1e0(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005dd398> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71005e06e4;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005e06e4*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005dd398>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71005e093c;
 struct UnkRefl_fn_71005dd97c;
 template <>
@@ -4516,47 +4192,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005ddf60> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005e0d94*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005ddf60>();
 #include <memory>
-struct UnkRefl_fn_71005e11ec;
-struct UnkRefl_fn_71005de21c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005de21c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005e11ec> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005e1358;
     static constexpr SlotFn set = &fn_71005e13b8;
     static constexpr SlotFn increment = &fn_71005e13c4;
     static const CType* pointee() { return &g_unk_71726eee58; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005de21c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator";
-    using Init = UnkRefl_fn_71005e11ec;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005e11ec*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005de21c>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71005e1450;
-struct UnkRefl_fn_71005de2f8;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005de2f8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005e1450> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005e15bc;
     static constexpr SlotFn set = &fn_71005e161c;
     static constexpr SlotFn increment = &fn_71005e1628;
     static const CType* pointee() { return &g_unk_71726eee58; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005de2f8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71005e1450;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005e1450*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005de2f8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CBouncingCreaturesLaunchPattern>>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71005e16b4;
 struct UnkRefl_fn_71005de8dc;
 template <>
@@ -4612,47 +4276,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005deec0> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005e1b74*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005deec0>();
 #include <memory>
-struct UnkRefl_fn_71005eb358;
-struct UnkRefl_fn_71005e88d4;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005e88d4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005eb358> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005eb4c0;
     static constexpr SlotFn set = &fn_71005eb518;
     static constexpr SlotFn increment = &fn_71005eb524;
     static const CType* pointee() { return fn_71005e87f8(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005e88d4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator";
-    using Init = UnkRefl_fn_71005eb358;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005eb358*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005e88d4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71005eb5b0;
-struct UnkRefl_fn_71005e89b0;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005e89b0>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005eb5b0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005eb718;
     static constexpr SlotFn set = &fn_71005eb770;
     static constexpr SlotFn increment = &fn_71005eb77c;
     static const CType* pointee() { return fn_71005e87f8(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005e89b0> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71005eb5b0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005eb5b0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005e89b0>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71005eb808;
 struct UnkRefl_fn_71005e8f94;
 template <>
@@ -4708,47 +4360,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005e9578> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005ebc60*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005e9578>();
 #include <memory>
-struct UnkRefl_fn_71005ec0b8;
-struct UnkRefl_fn_71005e9834;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005e9834>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005ec0b8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005ec224;
     static constexpr SlotFn set = &fn_71005ec284;
     static constexpr SlotFn increment = &fn_71005ec290;
     static const CType* pointee() { return &g_unk_71726f1088; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005e9834> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator";
-    using Init = UnkRefl_fn_71005ec0b8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005ec0b8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005e9834>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71005ec31c;
-struct UnkRefl_fn_71005e9910;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71005e9910>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71005ec31c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71005ec488;
     static constexpr SlotFn set = &fn_71005ec4e8;
     static constexpr SlotFn increment = &fn_71005ec4f4;
     static const CType* pointee() { return &g_unk_71726f1088; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005e9910> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71005ec31c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005ec31c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005e9910>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CKraidSpinningNailsDef>>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71005ec580;
 struct UnkRefl_fn_71005e9ef4;
 template <>
@@ -4804,47 +4444,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71005ea4d8> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71005eca40*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71005ea4d8>();
 #include <memory>
-struct UnkRefl_fn_7100615710;
-struct UnkRefl_fn_710060f218;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710060f218>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100615710> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100615878;
     static constexpr SlotFn set = &fn_71006158d0;
     static constexpr SlotFn increment = &fn_71006158dc;
     static const CType* pointee() { return fn_710060f13c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710060f218> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator";
-    using Init = UnkRefl_fn_7100615710;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100615710*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710060f218>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_7100615968;
-struct UnkRefl_fn_710060f2f4;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710060f2f4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100615968> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100615ad0;
     static constexpr SlotFn set = &fn_7100615b28;
     static constexpr SlotFn increment = &fn_7100615b34;
     static const CType* pointee() { return fn_710060f13c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710060f2f4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100615968;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100615968*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710060f2f4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CShootDCBones>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_7100615bc0;
 struct UnkRefl_fn_710060f8d8;
 template <>
@@ -4900,47 +4528,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710060febc> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100616018*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710060febc>();
 #include <memory>
-struct UnkRefl_fn_710061698c;
-struct UnkRefl_fn_7100610b28;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100610b28>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710061698c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100616af4;
     static constexpr SlotFn set = &fn_7100616b4c;
     static constexpr SlotFn increment = &fn_7100616b58;
     static const CType* pointee() { return fn_7100610a4c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100610b28> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator";
-    using Init = UnkRefl_fn_710061698c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710061698c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100610b28>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_7100616be4;
-struct UnkRefl_fn_7100610c04;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100610c04>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100616be4> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100616d4c;
     static constexpr SlotFn set = &fn_7100616da4;
     static constexpr SlotFn increment = &fn_7100616db0;
     static const CType* pointee() { return fn_7100610a4c(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100610c04> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100616be4;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100616be4*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100610c04>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<COffset>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_7100616e3c;
 struct UnkRefl_fn_71006111e8;
 template <>
@@ -5050,47 +4666,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100612744> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100618050*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100612744>();
 #include <memory>
-struct UnkRefl_fn_71006189d8;
-struct UnkRefl_fn_7100613220;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100613220>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71006189d8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100618b40;
     static constexpr SlotFn set = &fn_7100618b98;
     static constexpr SlotFn increment = &fn_7100618ba4;
     static const CType* pointee() { return fn_7100613144(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100613220> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator";
-    using Init = UnkRefl_fn_71006189d8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71006189d8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100613220>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_7100618c30;
-struct UnkRefl_fn_71006132fc;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71006132fc>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100618c30> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100618d98;
     static constexpr SlotFn set = &fn_7100618df0;
     static constexpr SlotFn increment = &fn_7100618dfc;
     static const CType* pointee() { return fn_7100613144(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71006132fc> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100618c30;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100618c30*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71006132fc>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CPattern>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_7100618e88;
 struct UnkRefl_fn_71006138e0;
 template <>
@@ -5145,46 +4749,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100613ec4> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71006192e0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100613ec4>();
-struct UnkRefl_fn_7100666be8;
-struct UnkRefl_fn_7100665b08;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100665b08>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100666be8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100666d54;
     static constexpr SlotFn set = &fn_7100666db4;
     static constexpr SlotFn increment = &fn_7100666dc0;
     static const CType* pointee() { return &g_unk_71726fdd80; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100665b08> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator";
-    using Init = UnkRefl_fn_7100666be8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100666be8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100665b08>();
-struct UnkRefl_fn_7100666e4c;
-struct UnkRefl_fn_7100665be4;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100665be4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100666e4c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100666fb8;
     static constexpr SlotFn set = &fn_7100667018;
     static constexpr SlotFn increment = &fn_7100667024;
     static const CType* pointee() { return &g_unk_71726fdd80; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100665be4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100666e4c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100666e4c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100665be4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71006670b0;
 struct UnkRefl_fn_71006661c8;
 template <>
@@ -5239,46 +4831,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71006667ac> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71006673f0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71006667ac>();
-struct UnkRefl_fn_710066fc74;
-struct UnkRefl_fn_710066eb34;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710066eb34>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710066fc74> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710066fde0;
     static constexpr SlotFn set = &fn_710066fe40;
     static constexpr SlotFn increment = &fn_710066fe4c;
     static const CType* pointee() { return &g_unk_71726fefa8; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710066eb34> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator";
-    using Init = UnkRefl_fn_710066fc74;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710066fc74*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710066eb34>();
-struct UnkRefl_fn_710066fed8;
-struct UnkRefl_fn_710066ec10;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710066ec10>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710066fed8> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100670044;
     static constexpr SlotFn set = &fn_71006700a4;
     static constexpr SlotFn increment = &fn_71006700b0;
     static const CType* pointee() { return &g_unk_71726fefa8; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710066ec10> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator";
-    using Init = UnkRefl_fn_710066fed8;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710066fed8*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710066ec10>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710067013c;
 struct UnkRefl_fn_710066f1f4;
 template <>
@@ -5334,47 +4914,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710066f7d8> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710067047c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710066f7d8>();
 #include <memory>
-struct UnkRefl_fn_710070acc0;
-struct UnkRefl_fn_7100708d2c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100708d2c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710070acc0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710070ae28;
     static constexpr SlotFn set = &fn_710070ae80;
     static constexpr SlotFn increment = &fn_710070ae8c;
     static const CType* pointee() { return fn_7100708c50(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100708d2c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator";
-    using Init = UnkRefl_fn_710070acc0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710070acc0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100708d2c>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_710070af18;
-struct UnkRefl_fn_7100708e08;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100708e08>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710070af18> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710070b080;
     static constexpr SlotFn set = &fn_710070b0d8;
     static constexpr SlotFn increment = &fn_710070b0e4;
     static const CType* pointee() { return fn_7100708c50(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100708e08> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_710070af18;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710070af18*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100708e08>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CTentacle>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710070b170;
 struct UnkRefl_fn_71007093ec;
 template <>
@@ -5429,46 +4997,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007099d0> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710070b5c8*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007099d0>();
-struct UnkRefl_fn_710075a4fc;
-struct UnkRefl_fn_7100755378;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100755378>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710075a4fc> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710075a668;
     static constexpr SlotFn set = &fn_710075a6c8;
     static constexpr SlotFn increment = &fn_710075a6d4;
     static const CType* pointee() { return &g_unk_71727115d0; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100755378> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementIterator";
-    using Init = UnkRefl_fn_710075a4fc;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075a4fc*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100755378>();
-struct UnkRefl_fn_710075a760;
-struct UnkRefl_fn_7100755454;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100755454>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710075a760> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710075a8cc;
     static constexpr SlotFn set = &fn_710075a92c;
     static constexpr SlotFn increment = &fn_710075a938;
     static const CType* pointee() { return &g_unk_71727115d0; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100755454> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator";
-    using Init = UnkRefl_fn_710075a760;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075a760*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100755454>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710075a9c4;
 struct UnkRefl_fn_7100755a38;
 template <>
@@ -5523,66 +5079,48 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710075601c> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075af7c*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710075601c>();
-struct UnkRefl_fn_710075b534;
-struct UnkRefl_fn_71007562dc;
 template <>
-const CType& base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71007562dc>(); }
+const CType& base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::TypeOf(const void*) { return *base::reflection::PointerType<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::Get(); }
 template struct base::reflection::ValueOps<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710075b534> : base::reflection::ValueOpsDescription<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*> {
+struct base::reflection::PointerTypeDescription<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*> : base::reflection::ValueOpsDescription<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*> {
+    static constexpr const char* name = "base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710075b6a0;
     static constexpr SlotFn set = &fn_710075b700;
     static constexpr SlotFn increment = &fn_710075b70c;
     static const CType* pointee() { return &g_unk_7172711ad0; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>**, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007562dc> {
-    static constexpr const char* name = "base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>*";
-    using Init = UnkRefl_fn_710075b534;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075b534*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007562dc>();
-struct UnkRefl_fn_710075b798;
-struct UnkRefl_fn_71007563b8;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71007563b8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710075b798> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710075b904;
     static constexpr SlotFn set = &fn_710075b964;
     static constexpr SlotFn increment = &fn_710075b970;
     static const CType* pointee() { return &g_unk_7172711710; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007563b8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementIterator";
-    using Init = UnkRefl_fn_710075b798;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075b798*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007563b8>();
-struct UnkRefl_fn_710075b9fc;
-struct UnkRefl_fn_7100756494;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100756494>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710075b9fc> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710075bb68;
     static constexpr SlotFn set = &fn_710075bbc8;
     static constexpr SlotFn increment = &fn_710075bbd4;
     static const CType* pointee() { return &g_unk_7172711710; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100756494> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator";
-    using Init = UnkRefl_fn_710075b9fc;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075b9fc*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100756494>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TMinimapTileStates>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710075bc60;
 struct UnkRefl_fn_7100756a78;
 template <>
@@ -5637,46 +5175,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710075705c> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075bfa0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710075705c>();
-struct UnkRefl_fn_710075c2e0;
-struct UnkRefl_fn_710075732c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710075732c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710075c2e0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710075c44c;
     static constexpr SlotFn set = &fn_710075c4ac;
     static constexpr SlotFn increment = &fn_710075c4b8;
     static const CType* pointee() { return &g_unk_7172711ec8; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710075732c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementIterator";
-    using Init = UnkRefl_fn_710075c2e0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075c2e0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710075732c>();
-struct UnkRefl_fn_710075c544;
-struct UnkRefl_fn_7100757408;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_7100757408>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710075c544> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710075c6b0;
     static constexpr SlotFn set = &fn_710075c710;
     static constexpr SlotFn increment = &fn_710075c71c;
     static const CType* pointee() { return &g_unk_7172711ec8; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100757408> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator";
-    using Init = UnkRefl_fn_710075c544;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075c544*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100757408>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<CBreakableTileGroupComponent::TActorTileStatesMap>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710075c7a8;
 struct UnkRefl_fn_71007579ec;
 template <>
@@ -5732,47 +5258,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100757fd0> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710075cc00*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100757fd0>();
 #include <memory>
-struct UnkRefl_fn_710077692c;
-struct UnkRefl_fn_710076a988;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710076a988>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710077692c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100776a94;
     static constexpr SlotFn set = &fn_7100776aec;
     static constexpr SlotFn increment = &fn_7100776af8;
     static const CType* pointee() { return fn_710076a8ac(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710076a988> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator";
-    using Init = UnkRefl_fn_710077692c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710077692c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710076a988>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_7100776b84;
-struct UnkRefl_fn_710076aa64;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710076aa64>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100776b84> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100776cec;
     static constexpr SlotFn set = &fn_7100776d44;
     static constexpr SlotFn increment = &fn_7100776d50;
     static const CType* pointee() { return fn_710076a8ac(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710076aa64> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100776b84;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100776b84*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710076aa64>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_7100776ddc;
 struct UnkRefl_fn_710076b048;
 template <>
@@ -5827,46 +5341,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710076b62c> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100777234*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710076b62c>();
-struct UnkRefl_fn_7100777968;
-struct UnkRefl_fn_710076bcec;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710076bcec>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100777968> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100777ad4;
     static constexpr SlotFn set = &fn_7100777b34;
     static constexpr SlotFn increment = &fn_7100777b40;
     static const CType* pointee() { return &g_unk_71727147a8; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710076bcec> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementIterator";
-    using Init = UnkRefl_fn_7100777968;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100777968*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710076bcec>();
-struct UnkRefl_fn_7100777bcc;
-struct UnkRefl_fn_710076bdc8;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710076bdc8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100777bcc> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100777d38;
     static constexpr SlotFn set = &fn_7100777d98;
     static constexpr SlotFn increment = &fn_7100777da4;
     static const CType* pointee() { return &g_unk_71727147a8; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710076bdc8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100777bcc;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100777bcc*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710076bdc8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_7100777e30;
 struct UnkRefl_fn_710076c3ac;
 template <>
@@ -5921,46 +5423,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710076c990> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71007783d0*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710076c990>();
-struct UnkRefl_fn_710079aa28;
-struct UnkRefl_fn_71007991c0;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71007991c0>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710079aa28> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710079ab94;
     static constexpr SlotFn set = &fn_710079abf4;
     static constexpr SlotFn increment = &fn_710079ac00;
     static const CType* pointee() { return &g_unk_7172791c90; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007991c0> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementIterator";
-    using Init = UnkRefl_fn_710079aa28;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710079aa28*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007991c0>();
-struct UnkRefl_fn_710079ac8c;
-struct UnkRefl_fn_710079929c;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710079929c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710079ac8c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710079adf8;
     static constexpr SlotFn set = &fn_710079ae58;
     static constexpr SlotFn increment = &fn_710079ae64;
     static const CType* pointee() { return &g_unk_7172791c90; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710079929c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator";
-    using Init = UnkRefl_fn_710079ac8c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710079ac8c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710079929c>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_710079aef0;
 struct UnkRefl_fn_7100799880;
 template <>
@@ -6015,26 +5505,20 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100799e64> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710079b2e8*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100799e64>();
-struct UnkRefl_fn_710079b6e0;
-struct UnkRefl_fn_710079a138;
 template <>
-const CType& base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710079a138>(); }
+const CType& base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::TypeOf(const void*) { return *base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::Get(); }
 template struct base::reflection::ValueOps<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_710079b6e0> : base::reflection::ValueOpsDescription<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*> {
+struct base::reflection::PointerTypeDescription<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*> : base::reflection::ValueOpsDescription<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*> {
+    static constexpr const char* name = "base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_710079b84c;
     static constexpr SlotFn set = &fn_710079b8ac;
     static constexpr SlotFn increment = &fn_710079b8b8;
     static const CType* pointee() { return &g_unk_7172718518; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710079a138> {
-    static constexpr const char* name = "base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*";
-    using Init = UnkRefl_fn_710079b6e0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_710079b6e0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710079a138>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>**, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>*>::Get();
 struct UnkRefl_fn_71007aad78;
 struct UnkRefl_fn_71007a18b8;
 template <>
@@ -6089,68 +5573,50 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007a1ea8> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71007ab170*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007a1ea8>();
-struct UnkRefl_fn_71007ae00c;
-struct UnkRefl_fn_71007adf30;
 template <>
-const CType& base::reflection::ValueOps<CCutscene*>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71007adf30>(); }
+const CType& base::reflection::ValueOps<CCutscene*>::TypeOf(const void*) { return *base::reflection::PointerType<CCutscene*>::Get(); }
 template struct base::reflection::ValueOps<CCutscene*>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71007ae00c> : base::reflection::ValueOpsDescription<CCutscene*> {
+struct base::reflection::PointerTypeDescription<CCutscene*> : base::reflection::ValueOpsDescription<CCutscene*> {
+    static constexpr const char* name = "CCutscene*";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71007ae178;
     static constexpr SlotFn set = &fn_71007ae1d8;
     static constexpr SlotFn increment = &fn_71007ae1e4;
     static const CType* pointee() { return &g_unk_7172a00ad0; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007adf30> {
-    static constexpr const char* name = "CCutscene*";
-    using Init = UnkRefl_fn_71007ae00c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71007ae00c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007adf30>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, CCutscene**, void*);
+template const base::reflection::CType* base::reflection::PointerType<CCutscene*>::Get();
 #include <memory>
-struct UnkRefl_fn_71007ca72c;
-struct UnkRefl_fn_71007c92bc;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71007c92bc>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71007ca72c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71007ca894;
     static constexpr SlotFn set = &fn_71007ca8ec;
     static constexpr SlotFn increment = &fn_71007ca8f8;
     static const CType* pointee() { return fn_71007c91e0(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007c92bc> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator";
-    using Init = UnkRefl_fn_71007ca72c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71007ca72c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007c92bc>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71007ca984;
-struct UnkRefl_fn_71007c9398;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71007c9398>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71007ca984> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71007caaec;
     static constexpr SlotFn set = &fn_71007cab44;
     static constexpr SlotFn increment = &fn_71007cab50;
     static const CType* pointee() { return fn_71007c91e0(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007c9398> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71007ca984;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71007ca984*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007c9398>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71007cabdc;
 struct UnkRefl_fn_71007c997c;
 template <>
@@ -6206,47 +5672,35 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007c9f60> {
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71007cb034*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007c9f60>();
 #include <memory>
-struct UnkRefl_fn_71007f10d0;
-struct UnkRefl_fn_71007ef2f4;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71007ef2f4>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71007f10d0> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71007f1238;
     static constexpr SlotFn set = &fn_71007f1290;
     static constexpr SlotFn increment = &fn_71007f129c;
     static const CType* pointee() { return fn_71007ef218(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007ef2f4> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator";
-    using Init = UnkRefl_fn_71007f10d0;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71007f10d0*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007ef2f4>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementIterator>::Get();
 #include <memory>
-struct UnkRefl_fn_71007f1328;
-struct UnkRefl_fn_71007ef3d0;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71007ef3d0>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71007f1328> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71007f1490;
     static constexpr SlotFn set = &fn_71007f14e8;
     static constexpr SlotFn increment = &fn_71007f14f4;
     static const CType* pointee() { return fn_71007ef218(); }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71007ef3d0> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71007f1328;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71007f1328*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71007ef3d0>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::unique_ptr<CBarelyFrozenIceInfo>>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_71007f1580;
 struct UnkRefl_fn_71007ef9b4;
 template <>
@@ -6409,46 +5863,34 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_7100810b80> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100813ea8*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_7100810b80>();
-struct UnkRefl_fn_7100892b1c;
-struct UnkRefl_fn_710088e20c;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710088e20c>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100892b1c> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100892c88;
     static constexpr SlotFn set = &fn_7100892ce8;
     static constexpr SlotFn increment = &fn_7100892cf4;
     static const CType* pointee() { return &g_unk_717272c488; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710088e20c> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementIterator";
-    using Init = UnkRefl_fn_7100892b1c;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100892b1c*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710088e20c>();
-struct UnkRefl_fn_7100892d80;
-struct UnkRefl_fn_710088e2e8;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_710088e2e8>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_7100892d80> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_7100892eec;
     static constexpr SlotFn set = &fn_7100892f4c;
     static constexpr SlotFn increment = &fn_7100892f58;
     static const CType* pointee() { return &g_unk_717272c488; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_710088e2e8> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator";
-    using Init = UnkRefl_fn_7100892d80;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100892d80*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710088e2e8>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::TElementConstIterator>::Get();
 struct UnkRefl_fn_7100892fe4;
 struct UnkRefl_fn_710088e8cc;
 template <>
@@ -6503,43 +5945,31 @@ struct base::reflection::PointerTypeGetter<UnkRefl_fn_710088eeb0> {
 };
 template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_7100893500*, void*);
 template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_710088eeb0>();
-struct UnkRefl_fn_71008a8ae4;
-struct UnkRefl_fn_71008a4b24;
 template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71008a4b24>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71008a8ae4> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71008a8c50;
     static constexpr SlotFn set = &fn_71008a8cb0;
     static constexpr SlotFn increment = &fn_71008a8cbc;
     static const CType* pointee() { return &g_unk_717272e190; }
 };
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator>::Get();
 template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71008a4b24> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementIterator";
-    using Init = UnkRefl_fn_71008a8ae4;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71008a8ae4*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71008a4b24>();
-struct UnkRefl_fn_71008a8d48;
-struct UnkRefl_fn_71008a4c00;
-template <>
-const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::refl_GetPointerType<UnkRefl_fn_71008a4c00>(); }
+const CType& base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator>::TypeOf(const void*) { return *base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator>::Get(); }
 template struct base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator>;
 template <>
-struct base::reflection::PointerTypeDescription<UnkRefl_fn_71008a8d48> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator> {
+struct base::reflection::PointerTypeDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator> : base::reflection::ValueOpsDescription<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator> {
+    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator";
     static constexpr bool owned = false;
     static constexpr SlotFn get = &fn_71008a8eb4;
     static constexpr SlotFn set = &fn_71008a8f14;
     static constexpr SlotFn increment = &fn_71008a8f20;
     static const CType* pointee() { return &g_unk_717272e190; }
 };
-template <>
-struct base::reflection::PointerTypeGetter<UnkRefl_fn_71008a4c00> {
-    static constexpr const char* name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator";
-    using Init = UnkRefl_fn_71008a8d48;
-};
-template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, UnkRefl_fn_71008a8d48*, void*);
-template const base::reflection::CType* base::reflection::refl_GetPointerType<UnkRefl_fn_71008a4c00>();
+template base::reflection::CPointerType::CPointerType(const base::global::CStrId&, base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator*, void*);
+template const base::reflection::CType* base::reflection::PointerType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SBeamBoxActivatable>>::TElementConstIterator>::Get();
