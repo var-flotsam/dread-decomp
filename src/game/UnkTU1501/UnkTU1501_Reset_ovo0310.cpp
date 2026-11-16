@@ -1,6 +1,7 @@
 // CSamusMovement's unit (unit 1501): the movement reset on entering/leaving morph ball, the per-frame
 // state clear, and the floor-slide check. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkTU437.h"
@@ -272,7 +273,6 @@ void fn_71009e9268(UnkMove_b152* self, bool flag) {
 
 
 struct UnkGroundPlayer_b52;
-bool fn_71010d1598(UnkGroundPlayer_b52*);
 struct UnkSlideState;
 bool fn_7100996bc4(UnkSlideState* self);
 struct UnkAimComponent;

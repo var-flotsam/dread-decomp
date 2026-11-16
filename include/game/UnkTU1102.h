@@ -7,6 +7,7 @@
 #include "base/UnkRefHandle.h"
 #include "types.h"
 
+struct UnkRefPtrList_b50;
 struct UnkActor;
 struct UnkXParasiteAI;
 struct UnkXParasiteMode_A3_b75;
@@ -19,3 +20,4 @@ void fn_71006ea824(UnkXParasiteAI* self, UnkActor* target);
 extern base::global::CStrId g_unk_717270b8e0 __attribute__((visibility("hidden")));
 // Another copy of the handle assignment (base/UnkRefHandle.h), the one this unit's callback sets use.
 base::UnkRefHandle* fn_71006eb8cc(base::UnkRefHandle* self, const base::UnkRefHandle* other);
+void fn_71006ebe54(UnkRefPtrList_b50* list, u32 capacity);

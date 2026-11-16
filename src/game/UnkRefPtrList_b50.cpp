@@ -1,6 +1,7 @@
 // A list of reference-counted pointers at +0x14740 of an owner (tools/tu_map.py unit 1102, no
 // class name). fn_71006eb700 appends one: grow by the step, reserve (fn_71006ebe54), clear the new
 // slot, then assign it (take a reference, drop the old one). Names and layouts are placeholders.
+#include "game/UnkTU1102.h"
 #include "types.h"
 
 typedef u32 __attribute__((may_alias)) UnkRefCount_b50;
@@ -35,8 +36,6 @@ struct UnkRefPtrList_b50 {
     u32 capacity;
     u32 step;
 };
-
-void fn_71006ebe54(UnkRefPtrList_b50* list, u32 capacity);
 
 void fn_71006eb700(char* owner, const UnkRefPtr_b50& value) {
     UnkRefPtrList_b50* list = (UnkRefPtrList_b50*)(owner + 0x14740);

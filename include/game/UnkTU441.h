@@ -10,4 +10,4 @@
 struct UnkQuadNode_ovb0259;
 
 extern u32 g_unk_71726b21d4 __attribute__((visibility("hidden")));  // Live pairs.
-void fn_710035d9e0(void* pool, const base::global::CFilePathStrId* path, UnkQuadNode_ovb0259** out, const base::global::CStrId* name);
+UnkQuadNode_ovb0259* fn_710035d9e0(void* pool, const base::global::CFilePathStrId* path, UnkQuadNode_ovb0259** out, const base::global::CStrId* name);

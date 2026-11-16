@@ -6,8 +6,10 @@
 #include <math.h>
 
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkGroundPlayer_b52;
@@ -34,16 +36,16 @@ struct UnkMorphBall_38e8 {
     f32 field_0x15c;
 };
 
-bool fn_71010d1598(UnkGroundPlayer_b52*);
-bool fn_7100df5874(UnkPlayer*);
-bool fn_7100df5a4c(UnkGameManager* self);
+struct UnkMorphBallDamp;
 
-bool fn_71009438e8(UnkMorphBall_38e8* self) {
+bool fn_71009438e8(UnkMorphBallDamp* ball) {
+    UnkMorphBall_38e8* self = reinterpret_cast<UnkMorphBall_38e8*>(ball);
     f32 angle = -1.0f;
     if (self->field_0x128 && self->field_0x128->field_0x10) {
         f32 dot = self->field_0x154 * 0.0f + self->field_0x158 + self->field_0x15c * 0.0f;
         f32 upper = !(dot >= 1.0f) ? dot : 1.0f;
-        angle = acosf((dot <= -1.0f) ? -1.0f : upper);
+        bool aboveMin = !(dot <= -1.0f);
+        angle = acosf(aboveMin ? upper : -1.0f);
     }
     if (!fn_71010d1598(reinterpret_cast<UnkGroundPlayer_b52*>(self))) {
         if (!(angle > 0.7853982f) || !(angle < 1.5707964f))

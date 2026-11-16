@@ -5650,7 +5650,7 @@ address,size,name,name_source,subsystem,status
 0x71006ea160,176,fn_71006ea160,unknown,game/ai?,O
 0x71006ea210,492,XParasiteAI_ApplyBehavior,inferred,game/ai?,O
 0x71006ea3fc,392,XParasiteAI_SetCanBeAbsorbed,inferred,game/ai?,O
-0x71006ea584,672,fn_71006ea584,unknown,game/ai?,U
+0x71006ea584,672,fn_71006ea584,unknown,game/ai?,O
 0x71006ea824,220,fn_71006ea824,unknown,game/ai?,O
 0x71006ea900,164,fn_71006ea900,unknown,game/ai?,O
 0x71006ea9a4,580,XParasiteAI_SetPrey,inferred,game/ai?,O
@@ -6045,7 +6045,7 @@ address,size,name,name_source,subsystem,status
 0x71006fc464,4,fn_71006fc464,unknown,unknown,O
 0x71006fc468,4,fn_71006fc468,unknown,unknown,O
 0x71006fc470,140,fn_71006fc470,unknown,unknown,O
-0x71006fc4fc,320,fn_71006fc4fc,unknown,unknown,U
+0x71006fc4fc,320,fn_71006fc4fc,unknown,unknown,m
 0x71006fc63c,104,fn_71006fc63c,unknown,unknown,O
 0x71006fc6a4,112,fn_71006fc6a4,unknown,unknown,O
 0x71006fc714,176,fn_71006fc714,unknown,unknown,O

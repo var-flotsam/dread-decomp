@@ -11,6 +11,8 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU137.h"
+#include "game/UnkTU287.h"
 #include "game/UnkTU324.h"
 #include "types.h"
 
@@ -69,8 +71,6 @@ struct UnkModelInstance {
 static_assert(sizeof(UnkModelInstance) == 0x180, "UnkModelInstance layout");
 
 // Constructs an instance named `name` (its node built with it).
-void fn_7100147c4c(UnkModelInstance* self, const base::global::CStrId* name);
-void* fn_710020a43c(UnkModelNode* node);  // the node's owned object (+0x108) prepared
 
 struct UnkInstanceNode {
     u64 key;

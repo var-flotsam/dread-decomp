@@ -970,7 +970,7 @@ address,size,name,name_source,subsystem,status
 0x7100351fe0,220,fn_7100351fe0,unknown,unknown,O
 0x71003520bc,388,fn_71003520bc,unknown,unknown,O
 0x7100352240,380,fn_7100352240,unknown,unknown,O
-0x71003523bc,488,fn_71003523bc,unknown,unknown,U
+0x71003523bc,488,fn_71003523bc,unknown,unknown,O
 0x71003525a4,1072,fn_71003525a4,unknown,unknown,U
 0x71003529d4,16,fn_71003529d4,unknown,unknown,O
 0x71003529e4,72,fn_71003529e4,unknown,unknown,O
@@ -1181,7 +1181,7 @@ address,size,name,name_source,subsystem,status
 0x710035d558,108,fn_710035d558,unknown,unknown,O
 0x710035d5c4,504,fn_710035d5c4,unknown,unknown,U
 0x710035d7bc,548,fn_710035d7bc,unknown,unknown,O
-0x710035d9e0,328,fn_710035d9e0,unknown,unknown,U
+0x710035d9e0,328,fn_710035d9e0,unknown,unknown,O
 0x710035db30,760,fn_710035db30,unknown,unknown,O
 0x710035de30,140,fn_710035de30,unknown,unknown,O
 0x710035debc,28,fn_710035debc,unknown,unknown,O
@@ -3077,7 +3077,7 @@ address,size,name,name_source,subsystem,status
 0x710039d420,340,fn_710039d420,unknown,ai/behaviortree?,O
 0x710039d574,196,fn_710039d574,unknown,ai/behaviortree?,O
 0x710039d638,36,fn_710039d638,unknown,ai/behaviortree?,O
-0x710039d65c,504,fn_710039d65c,unknown,ai/behaviortree?,U
+0x710039d65c,504,fn_710039d65c,unknown,ai/behaviortree?,O
 0x710039d854,28,fn_710039d854,unknown,ai/behaviortree?,O
 0x710039d870,8,behaviortree::CIsAtDistanceXCondition::refl_Equals,reflection,ai/behaviortree,O
 0x710039d878,8,behaviortree::CIsAtDistanceXCondition::refl_Hash,reflection,ai/behaviortree,O
