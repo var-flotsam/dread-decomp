@@ -37,6 +37,8 @@ FIELD = re.compile(r'fn_7100096524\(cls, CStrId\("([^"]+)", true\), ([^,]+), (0x
 FUNCTION = re.compile(r"^void fn_(71[0-9a-f]{8})\((?:base::reflection::)?CClass\* cls\) \{\n(.*?)^\}", re.M | re.S)
 GETTER = re.compile(r"DREAD_REFL_(?:ROOT_)?CLASS_GETTER(?:_INLINE_NAME)?\(([^)]*)\)")
 NAMED = re.compile(r'(?:PointerTypeGetter|PrimitiveTypeDescription)<UnkRefl_fn_(71[0-9a-f]{8})>(?: : [^{]*)? \{\s*static constexpr const char\* name = "([^"]*)";')
+KEYED_NAMED = re.compile(r'struct base::reflection::(?:Pointer|Primitive)TypeDescription<(?!Unk)(.+?)>(?: : [^{]*)? \{\s*'
+                         r'static constexpr const char\* name = "([^"]*)";')
 
 
 # The readable form (base/reflection/ReflectedClass.h, ReflectedFields.h): a class's functions in a
@@ -84,12 +86,35 @@ def members(text: str) -> list[tuple[str, int, str, str]]:
 
 
 def getter_names(type_rows: list[dict], type_sources: list[str]) -> dict[int, str]:
-    """{type getter address: type name} from data/reflection_types.csv and the generated type sources."""
+    """{type getter address: type name} from data/reflection_types.csv and the generated type sources. A
+    description keyed by its type (PointerType<T>, PrimitiveType<T>) carries no address: its getter is the
+    function data/functions/ calls refl_GetType<T>."""
     names = {int(r["getter"], 16): r["type"] for r in type_rows if r.get("getter")}
+    keyed = {}
     for text in type_sources:
         for addr, name in NAMED.findall(text):
             names.setdefault(int(addr, 16), name)
+        keyed.update(KEYED_NAMED.findall(text))
+    if keyed:
+        by_type = keyed_getters()
+        for t, name in keyed.items():
+            a = by_type.get(t)
+            if a is not None:
+                names.setdefault(a, name)
     return names
+
+
+def keyed_getters() -> dict[str, int]:
+    """{T: address} of the functions data/functions/ calls refl_GetType<T>, by the sources' spelling of T."""
+    from gen_types import source_spelling
+    out = {}
+    for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
+        with f.open(newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                m = re.fullmatch(r"base::reflection::refl_GetType<(.+)>", r["name"])
+                if m:
+                    out[source_spelling(m.group(1))] = int(r["address"], 16)
+    return out
 
 
 def type_name(expr: str, getters: dict[int, str], objects: dict[int, str]) -> str:

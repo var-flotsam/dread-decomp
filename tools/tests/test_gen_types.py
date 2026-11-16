@@ -221,7 +221,8 @@ class EnumValueOps(unittest.TestCase):
                           "base::reflection::CPointerType::CPointerType<base::EFoo>",
                           "base::reflection::CCollectionType::CCollectionType<base::EFoo>"])
         self.assertEqual(asmdiff.name_aliases("base::reflection::refl_GetType<a::CFoo*>"),
-                         ["base::reflection::PointerType<a::CFoo*>::Get"])
+                         ["base::reflection::PointerType<a::CFoo*>::Get",
+                          "base::reflection::PrimitiveType<a::CFoo*>::Get"])
 
 
 class TypeKeyed(unittest.TestCase):
@@ -262,6 +263,36 @@ class TypeKeyed(unittest.TestCase):
         defn = "template const base::reflection::CType* base::reflection::PointerType<a::CFoo*>::Get();"
         self.assertEqual(gt.settle_externs([ext, "x", ext]), [ext, "x"])
         self.assertEqual(gt.settle_externs([ext, "x", defn]), ["x", defn])
+
+    def test_plain_type_keyed_by_type(self):
+        body = ['    static constexpr const char* name = "int";', "    static constexpr u64 length = 3;",
+                "    static constexpr u64 size = 0x4;", "    static constexpr SlotFn construct = &fn_7100000010;",
+                "    static constexpr SlotFn add_attributes = &fn_7100000070;"]
+        out = gt.emit_primitive(0x7100000300, body, "int", keyed=True)
+        self.assertFalse(any("UnkRefl" in ln or "fn_7100000300" in ln for ln in out))
+        self.assertIn("const CType& base::reflection::ValueOps<int>::TypeOf(const void*) "
+                      "{ return base::reflection::PrimitiveType<int>::Get(); }", out)
+        self.assertIn("struct base::reflection::PrimitiveTypeDescription<int> : base::reflection::ValueOpsDescription<int> {",
+                      out)
+        self.assertNotIn(body[2], out)  # size comes from the base
+        self.assertNotIn(body[3], out)  # so does construct
+        self.assertIn(body[4], out)
+        self.assertEqual(out[-1], "template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();")
+        self.assertEqual(gt.KEYED_PLAIN_RE.findall("\n".join(out)), ["int"])
+        self.assertEqual(gt.keyed_primitives({1: "int", 2: "float", 3: "float"}), {1: "int"})
+        self.assertEqual(gt.type_keyed_names(1, None, "int"), {1: "base::reflection::refl_GetType<int>"})
+
+    def test_related_plain_types_by_type(self):
+        block = ["template <>", "struct base::reflection::PointerTypeDescription<int*> {",
+                 "    static const CType* pointee() { return fn_7100000100(); }", "};"]
+        out = gt.related_by_type(block, {}, frozenset(), {0x7100000100: "int"})
+        self.assertIn("    static const CType* pointee() { return &base::reflection::PrimitiveType<int>::Get(); }", out)
+        ext = "extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();"
+        self.assertLess(out.index(ext), out.index("template <>"))
+        defn = "template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();"
+        ptr = "template const base::reflection::CType* base::reflection::PointerType<int>::Get();"
+        self.assertEqual(gt.settle_externs([ext, "x", defn]), ["x", defn])
+        self.assertEqual(gt.settle_externs([ext, "x", ptr]), [ext, "x", ptr])  # a different getter
 
     def test_collections_keyed_once_per_type(self):
         colls = {10: ("V<int>", "int", {"count"}), 20: ("V<int>", "int", {"count"}), 30: ("V<float>", "float", {"count"})}

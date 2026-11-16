@@ -1,9 +1,8 @@
 // Unit 289: stores a new 3-float position into the cursor and its target when it moved by more than 1e-4. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
-struct UnkVec3_b0246 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkTarget_b0246 {
     u8 pad_0x0[0x88];
@@ -25,7 +24,7 @@ struct UnkCursor_b0246 {
 };
 
 static inline bool Near(f32 a, f32 b) { return (a - 1e-4f <= b) && (a + 1e-4f >= b); }
-void fn_710020bbe4(UnkCursor_b0246* self, UnkVec3_b0246* v) {
+void fn_710020bbe4(UnkCursor_b0246* self, CVector3D* v) {
     if (Near(self->x, v->x) && Near(self->y, v->y) && Near(self->z, v->z))
         return;
     f32 z = v->z;

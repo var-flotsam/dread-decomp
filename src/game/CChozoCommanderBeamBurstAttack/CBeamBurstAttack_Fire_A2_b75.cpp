@@ -8,6 +8,7 @@
 // (+0x280) 0x28d8e7efe4423be0, hands the navigation object (+0x298) a query (vtable 0x7101a24b58) facing the
 // other actor and sets the state (+0x58) to 4. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
@@ -29,13 +30,11 @@ extern const u64 g_unk_7101649438;  // reached through the GOT
 extern const u64 g_unk_7101649440;  // reached through the GOT
 extern const u64 g_unk_7101649448;  // reached through the GOT
 
-struct UnkBeamBurstDir_A2_b75 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkBeamBurstQuery_A2_b75 {
     void** vtable;
-    UnkBeamBurstDir_A2_b75 field_0x8;
+    CVector3D field_0x8;
     u8 field_0x14;
     u8 pad_0x15[7];
     u8 field_0x1c;

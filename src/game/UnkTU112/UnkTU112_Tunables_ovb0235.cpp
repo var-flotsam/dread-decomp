@@ -8,6 +8,7 @@
 
 #include "base/UnkHashStream.h"
 #include "base/UnkTunableLine.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
@@ -79,15 +80,7 @@ static_assert(sizeof(UnkNewTunableGroup) == 0x80, "");
 struct UnkTunableGroupArrays;
 void fn_710013ec80(UnkTunableGroupArrays* self, u32 new_capacity);
 
-struct UnkTunableGroupNames {
-    UnkNewTunableGroup* groups;
-    CStrId* names;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    UnkAllocator* allocator;
-};
+using UnkTunableGroupNames = base::global::CRntSmallDictionary<CStrId, UnkNewTunableGroup>;
 
 struct UnkTunableGroup_A1b71;
 struct UnkTunableGroupArrays_A1b71;
@@ -101,13 +94,13 @@ UnkTunableGroup_A1b71* fn_710013c2ac(UnkTunableGroupArrays_A1b71* self_, const C
         n = self->count;
     }
     // The key is copied as raw bytes, then retained: the original reloads the count after the copy.
-    CStrId* k = &self->names[n];
+    CStrId* k = &self->keys[n];
     __builtin_memcpy(k, key, sizeof(*k));
     if (&g_unk_7101d47108->empty != k->data)
         ++k->data->ref_count;
-    new (&self->groups[self->count]) UnkNewTunableGroup();
+    new (&self->values[self->count]) UnkNewTunableGroup();
     u32 count = ++self->count;
-    return reinterpret_cast<UnkTunableGroup_A1b71*>(count ? &self->groups[count] - 1 : self->groups);
+    return reinterpret_cast<UnkTunableGroup_A1b71*>(count ? &self->values[count] - 1 : self->values);
 }
 
 // ---- a tunable's field

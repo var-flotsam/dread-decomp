@@ -40,6 +40,8 @@ class UnkSelf_7100369c44;
 struct UnkSluggerAI;
 struct UnkSluggerEvent;
 struct UnkWarLotusAI;
+struct UnkRobotSoldierAI_A2_b69;
+bool fn_71011057fc(UnkRobotSoldierAI_A2_b69* ai);
 struct CAttack;
 struct UnkAttackListSelf_b0143;
 // The attack of the list named `name`.
@@ -76,5 +78,7 @@ bool fn_71011136b8(const UnkCompared_0x48* a, const UnkCompared_0x48* b);
 void fn_7101114588(UnkEntryVector* v, const UnkEntry* value);
 extern u8* g_unk_7172a062e0 __attribute__((visibility("hidden")));
 void fn_710111094c(base::reflection::UnkReflObject* ai, u32 value);
+// Stores the reflected value `b` under the property name `a` in the AI's blackboard (+0x1260); returns false.
+bool fn_710110a82c(char* self, void* a, void* b);
 extern base::reflection::CType g_unk_7172a05520;
 extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));

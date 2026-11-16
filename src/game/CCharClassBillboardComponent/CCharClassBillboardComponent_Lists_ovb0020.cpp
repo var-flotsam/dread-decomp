@@ -5,6 +5,7 @@
 // not empty, appends an item to the list at +0xe0, switches off the item's toggle (+0x18; fn_71001f3224 and
 // fn_71001f32b0) and removes it from the list at +0x108. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "base/math/CVector.h"
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkTU272.h"
 #include "types.h"
@@ -28,21 +29,19 @@ struct UnkResult_0x18_ovb0020 {
     u64 kind_and_flag;
 };
 
-struct UnkVec3_ovb0020 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
-static inline __attribute__((always_inline)) UnkVec3_ovb0020* PickVec3_ovb0020(UnkValueSource_ovb0020* src) {
+static inline __attribute__((always_inline)) CVector3D* PickVec3_ovb0020(UnkValueSource_ovb0020* src) {
     if (src->kind == 1 || src->set->count >= 9)
-        return static_cast<UnkVec3_ovb0020*>(src->holder);
-    return reinterpret_cast<UnkVec3_ovb0020*>(src);
+        return static_cast<CVector3D*>(src->holder);
+    return reinterpret_cast<CVector3D*>(src);
 }
 
 struct UnkCharClassBillboard_ovb0020 {
     u8 unk_0x0[0x80];
-    UnkVec3_ovb0020 field_0x80;
+    CVector3D field_0x80;
     u8 unk_0x8c[4];
-    UnkVec3_ovb0020 field_0x90;
+    CVector3D field_0x90;
 };
 
 struct UnkBillboardOwner_ovb0020 {
@@ -50,9 +49,9 @@ struct UnkBillboardOwner_ovb0020 {
     UnkCharClassBillboard_ovb0020* target;
 };
 
-static inline __attribute__((always_inline)) UnkResult_0x18_ovb0020 SetVec3_ovb0020(UnkVec3_ovb0020* dst,
+static inline __attribute__((always_inline)) UnkResult_0x18_ovb0020 SetVec3_ovb0020(CVector3D* dst,
                                                                                     UnkValueSource_ovb0020** source) {
-    UnkVec3_ovb0020* v = PickVec3_ovb0020(*source);
+    CVector3D* v = PickVec3_ovb0020(*source);
     dst->x = v->x;
     dst->y = v->y;
     dst->z = v->z;

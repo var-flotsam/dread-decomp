@@ -12,6 +12,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkParallelFind.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -177,15 +178,7 @@ struct UnkNavPair_a3068 {
     u64 second;
 };
 
-struct UnkNavPairArray_a3068 {
-    UnkNavPair_a3068* values;
-    base::UnkStrIdMember* keys;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkNavPairArray_a3068 = base::global::CRntSmallDictionary<base::UnkStrIdMember, UnkNavPair_a3068>;
 
 void fn_7100ec3068(UnkNavPairArray_a3068* self, u32 n) {
     if (self->capacity >= n)

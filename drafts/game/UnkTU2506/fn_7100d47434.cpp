@@ -1,6 +1,7 @@
 // Unit 2506: erases one group (and its handle) from a group array, moving the last group and handle into
 // its place; returns the group now at the erased position. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "types.h"
 
@@ -40,15 +41,7 @@ struct UnkRefCountedU_ovb0244 {
     };
 };
 
-struct UnkGroupArray_ovb0244 {
-    UnkSlotGroup_ovb0244* groups;
-    UnkRefCountedU_ovb0244** handles;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkGroupArray_ovb0244 = base::global::CRntSmallDictionary<UnkRefCountedU_ovb0244*, UnkSlotGroup_ovb0244>;
 
 void fn_7100d48e50(UnkSlotGroup_ovb0244* self);
 
@@ -60,23 +53,23 @@ static inline void Release(UnkRefCountedU_ovb0244* h) {
 }
 
 UnkSlotGroup_ovb0244* fn_7100d47434(UnkGroupArray_ovb0244* self, UnkSlotGroup_ovb0244* group) {
-    u32 index = group - self->groups;
-    fn_7100d48e50(&self->groups[index]);
-    Release(self->handles[index]);
+    u32 index = group - self->values;
+    fn_7100d48e50(&self->values[index]);
+    Release(self->keys[index]);
     u32 last = self->count - 1;
     if (last != index) {
-        CopyGroup(self->groups[index], self->groups[last]);
-        fn_7100d48e50(&self->groups[self->count - 1]);
+        CopyGroup(self->values[index], self->values[last]);
+        fn_7100d48e50(&self->values[self->count - 1]);
 
-        UnkRefCountedU_ovb0244** handles = self->handles;
+        UnkRefCountedU_ovb0244** handles = self->keys;
         handles[index] = nullptr;
         if (UnkRefCountedU_ovb0244* h = handles[self->count - 1]) {
             ++h->ref_count;
             Release(handles[index]);
             handles[index] = h;
         }
-        Release(self->handles[self->count - 1]);
+        Release(self->keys[self->count - 1]);
     }
     --self->count;
-    return &self->groups[index];
+    return &self->values[index];
 }

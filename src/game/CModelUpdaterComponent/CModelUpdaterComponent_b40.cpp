@@ -3,6 +3,7 @@
 // +0x10c), run the virtual at 0xa8, and return the int 1 as a reflected value. Names are placeholders.
 #include "../../game_s7/UnkPropS7.h"
 #include "base/global/timeline/CEvent.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU218.h"
@@ -10,9 +11,7 @@
 
 using base::reflection::UnkReflValue;
 
-struct Vec3_b40a3 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 template <u32 Offset>
 static inline __attribute__((always_inline)) UnkReflValue ReadVector_b40a3(char* obj, UnkReflValue* const* args) {
@@ -28,7 +27,7 @@ static inline __attribute__((always_inline)) UnkReflValue ReadVector_b40a3(char*
     {
         f32 x, y, z;
         fn_710007cf30(stream, "fff", &x, &y, &z);
-        *reinterpret_cast<Vec3_b40a3*>(target + Offset) = Vec3_b40a3{x, y, z};
+        *reinterpret_cast<CVector3D*>(target + Offset) = CVector3D{x, y, z};
     }
     void** vtable = *reinterpret_cast<void***>(target);
     reinterpret_cast<void (*)(char*, f32)>(vtable[0xa8 / 8])(target, 0.0f);

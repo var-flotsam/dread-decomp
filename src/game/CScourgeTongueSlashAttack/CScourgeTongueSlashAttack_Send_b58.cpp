@@ -6,6 +6,7 @@
 // Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
@@ -28,20 +29,16 @@ struct UnkScourgeTongueSlashAttack_b58a4 {
     s32 side;  // 0x38
 };
 
-struct UnkPoint_b58a4 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
-void fn_710069ba34(UnkScourgeTongueSlashAttack_b58a4* self, const UnkPoint_b58a4* point) {
+void fn_710069ba34(UnkScourgeTongueSlashAttack_b58a4* self, const CVector3D* point) {
     UnkActor* owner = self->owner;
     if (!owner)
         return;
     UnkScourgeAI_b58a4* ai = static_cast<UnkScourgeAI_b58a4*>(owner->field_0x240);
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_710069ef44())) {
         UnkActor* actor = self->owner;
-        UnkPoint_b58a4 pos = {actor->field_0x44, actor->field_0x54, actor->field_0x64};
+        CVector3D pos = {actor->field_0x44, actor->field_0x54, actor->field_0x64};
         f32 dx = point->x - pos.x;
         f32 dy = point->y - pos.y;
         f32 dz = point->z - pos.z;

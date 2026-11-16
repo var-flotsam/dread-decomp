@@ -1,6 +1,7 @@
 // CSamusGrappleMovementState unit (tools/tu_map.py, unit 1461): entering the state with a kind. It clears
 // the 2D direction at +0xba4 and its flags, then sets flags per kind; for kind 13 it takes the direction
 // from the movement's state of the kind fn_71009a60fc names. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CMovementComponent.h"
@@ -44,9 +45,7 @@ struct UnkGrappleState_B71a6 {
     bool flag_0xbb1;
 };
 
-struct UnkNegVec3_B71a6 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 bool fn_71009ad430(UnkGrappleMoveState_B71a6* state);
 u32 fn_71009a60fc();
@@ -104,7 +103,7 @@ void fn_710099adcc(UnkGrappleState_B71a6* self, s32 kind) {
         if (self->dir_x + 0.001f >= 0 && self->dir_x - 0.001f <= 0 && self->dir_y + 0.001f >= 0 &&
             self->dir_y - 0.001f <= 0) {
             f32 nx = -state->dir[0], ny = -state->dir[1], nz = -state->dir[2];
-            UnkNegVec3_B71a6 v;
+            CVector3D v;
             v.x = nx;
             v.y = ny;
             v.z = nz;

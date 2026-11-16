@@ -1,6 +1,7 @@
 // CSoundListenerComponent unit (tools/tu_map.py, the name from reflection): a Vec3 property setter, the
 // same code as fn_710105ce04 (src/game/SLogicPathNode/SLogicPathNode_SetPos.cpp). Names and layouts are
 // placeholders.
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkValueSet_slc {
@@ -20,13 +21,11 @@ struct UnkResult_0x18_slc {
     u64 kind_and_flag;
 };
 
-struct UnkVec3_slc {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkTarget_slc {
     u8 unk_0x0[0x40];
-    UnkVec3_slc pos;
+    CVector3D pos;
 };
 
 struct UnkOwner_slc {
@@ -37,11 +36,11 @@ struct UnkOwner_slc {
 UnkResult_0x18_slc fn_710090eeb0(void* unused, UnkOwner_slc* owner, UnkValueSource_slc** source) {
     UnkTarget_slc* target = owner->target;
     UnkValueSource_slc* src = *source;
-    UnkVec3_slc* v;
+    CVector3D* v;
     if (src->kind == 1 || src->set->count >= 9)
-        v = static_cast<UnkVec3_slc*>(src->holder);
+        v = static_cast<CVector3D*>(src->holder);
     else
-        v = reinterpret_cast<UnkVec3_slc*>(src);
+        v = reinterpret_cast<CVector3D*>(src);
     target->pos.x = v->x;
     target->pos.y = v->y;
     target->pos.z = v->z;

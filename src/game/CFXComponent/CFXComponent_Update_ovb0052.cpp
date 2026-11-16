@@ -4,6 +4,7 @@
 // and the removal of one node (fn_7101157324). Names and layouts are placeholders.
 #include "base/UnkParentPoolList.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/CActorComponent.h"
 #include "game/CComponent.h"
 #include "game/CFXComponent.h"
@@ -247,17 +248,15 @@ void fn_7101152f88(UnkFXComponent_b0052* self, f32 value) {
     }
 }
 
-struct UnkFXPos_b0052 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
-static inline UnkFXPos_b0052 Position(const UnkFXActor_b0052* e) { return {e->x, e->y, e->z}; }
+static inline CVector3D Position(const UnkFXActor_b0052* e) { return {e->x, e->y, e->z}; }
 
 // 0 within the near radius of the player, 1 within the far one, -1 beyond. (Written as a switch:
 // the original branches where a chain of ifs becomes a select.)
 static inline s32 Band(UnkFXComponent_b0052* self, UnkFXActor_b0052* player) {
-    UnkFXPos_b0052 p = Position(player);
-    UnkFXPos_b0052 a = Position(self->actor);
+    CVector3D p = Position(player);
+    CVector3D a = Position(self->actor);
     f32 dx = p.x - a.x;
     f32 dy = p.y - a.y;
     f32 dz = p.z - a.z;

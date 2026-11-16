@@ -264,17 +264,16 @@ void fn_7101075f0c();
 void fn_7101075f68();
 void fn_7101075f90();
 void fn_7101075fc0();
-struct UnkRefl_fn_7100005178;
 template <>
-const CType& base::reflection::ValueOps<unsigned int>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100005178>(); }
+const CType& base::reflection::ValueOps<unsigned int>::TypeOf(const void*) { return base::reflection::PrimitiveType<unsigned int>::Get(); }
 template struct base::reflection::ValueOps<unsigned int>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100005178> : base::reflection::ValueOpsDescription<unsigned int> {
+struct base::reflection::PrimitiveTypeDescription<unsigned int> : base::reflection::ValueOpsDescription<unsigned int> {
     static constexpr const char* name = "unsigned";
     static constexpr u64 length = 8;
     static constexpr SlotFn add_attributes = &fn_71000e5fa8;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100005178>();
+template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 struct UnkRefl_fn_7100007f84;
 template <>
 struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100007f84> {
@@ -293,17 +292,16 @@ struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100007f84> {
     static constexpr SlotFn add_attributes = &fn_71000a7068;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100007f84>();
-struct UnkRefl_fn_7100008500;
 template <>
-const CType& base::reflection::ValueOps<char>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100008500>(); }
+const CType& base::reflection::ValueOps<char>::TypeOf(const void*) { return base::reflection::PrimitiveType<char>::Get(); }
 template struct base::reflection::ValueOps<char>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100008500> : base::reflection::ValueOpsDescription<char> {
+struct base::reflection::PrimitiveTypeDescription<char> : base::reflection::ValueOpsDescription<char> {
     static constexpr const char* name = "char";
     static constexpr u64 length = 4;
     static constexpr SlotFn add_attributes = &fn_71000e5fa0;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100008500>();
+template const base::reflection::CType& base::reflection::PrimitiveType<char>::Get();
 struct UnkRefl_fn_7100009658;
 template <>
 struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100009658> {
@@ -322,17 +320,16 @@ struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100009658> {
     static constexpr SlotFn add_attributes = &fn_71000a74a4;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100009658>();
-struct UnkRefl_fn_710000abbc;
 template <>
-const CType& base::reflection::ValueOps<float>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000abbc>(); }
+const CType& base::reflection::ValueOps<float>::TypeOf(const void*) { return base::reflection::PrimitiveType<float>::Get(); }
 template struct base::reflection::ValueOps<float>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000abbc> : base::reflection::ValueOpsDescription<float> {
+struct base::reflection::PrimitiveTypeDescription<float> : base::reflection::ValueOpsDescription<float> {
     static constexpr const char* name = "float";
     static constexpr u64 length = 5;
     static constexpr SlotFn add_attributes = &fn_71000e5fac;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000abbc>();
+template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 struct UnkRefl_fn_710000ad9c;
 template <>
 struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000ad9c> {
@@ -351,17 +348,16 @@ struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000ad9c> {
     static constexpr SlotFn add_attributes = &fn_71000a7660;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000ad9c>();
-struct UnkRefl_fn_710000d228;
 template <>
-const CType& base::reflection::ValueOps<bool>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000d228>(); }
+const CType& base::reflection::ValueOps<bool>::TypeOf(const void*) { return base::reflection::PrimitiveType<bool>::Get(); }
 template struct base::reflection::ValueOps<bool>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000d228> : base::reflection::ValueOpsDescription<bool> {
+struct base::reflection::PrimitiveTypeDescription<bool> : base::reflection::ValueOpsDescription<bool> {
     static constexpr const char* name = "bool";
     static constexpr u64 length = 4;
     static constexpr SlotFn add_attributes = &fn_71000e5f9c;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000d228>();
+template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 struct UnkRefl_fn_710000fd7c;
 template <>
 struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000fd7c> {
@@ -398,39 +394,36 @@ struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710000ffd0> {
     static constexpr SlotFn add_attributes = &fn_71000943bc;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_710000ffd0>();
-struct UnkRefl_fn_7100010e58;
 template <>
-const CType& base::reflection::ValueOps<unsigned long>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100010e58>(); }
+const CType& base::reflection::ValueOps<unsigned long>::TypeOf(const void*) { return base::reflection::PrimitiveType<unsigned long>::Get(); }
 template struct base::reflection::ValueOps<unsigned long>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100010e58> : base::reflection::ValueOpsDescription<unsigned long> {
+struct base::reflection::PrimitiveTypeDescription<unsigned long> : base::reflection::ValueOpsDescription<unsigned long> {
     static constexpr const char* name = "unsigned long";
     static constexpr u64 length = 13;
     static constexpr SlotFn add_attributes = &fn_71000e5fc0;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100010e58>();
-struct UnkRefl_fn_7100014768;
+template const base::reflection::CType& base::reflection::PrimitiveType<unsigned long>::Get();
 template <>
-const CType& base::reflection::ValueOps<int>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100014768>(); }
+const CType& base::reflection::ValueOps<int>::TypeOf(const void*) { return base::reflection::PrimitiveType<int>::Get(); }
 template struct base::reflection::ValueOps<int>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100014768> : base::reflection::ValueOpsDescription<int> {
+struct base::reflection::PrimitiveTypeDescription<int> : base::reflection::ValueOpsDescription<int> {
     static constexpr const char* name = "int";
     static constexpr u64 length = 3;
     static constexpr SlotFn add_attributes = &fn_71000e5fa4;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100014768>();
-struct UnkRefl_fn_7100024324;
+template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 template <>
-const CType& base::reflection::ValueOps<long>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100024324>(); }
+const CType& base::reflection::ValueOps<long>::TypeOf(const void*) { return base::reflection::PrimitiveType<long>::Get(); }
 template struct base::reflection::ValueOps<long>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100024324> : base::reflection::ValueOpsDescription<long> {
+struct base::reflection::PrimitiveTypeDescription<long> : base::reflection::ValueOpsDescription<long> {
     static constexpr const char* name = "long";
     static constexpr u64 length = 4;
     static constexpr SlotFn add_attributes = &fn_71000e61ac;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_7100024324>();
+template const base::reflection::CType& base::reflection::PrimitiveType<long>::Get();
 struct UnkRefl_fn_7100024504;
 template <>
 struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_7100024504> {
@@ -701,61 +694,56 @@ struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a0318> {
     static constexpr SlotFn add_attributes = &fn_71000a73f8;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a0318>();
-struct UnkRefl_fn_71000a3640;
 template <>
-const CType& base::reflection::ValueOps<double>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3640>(); }
+const CType& base::reflection::ValueOps<double>::TypeOf(const void*) { return base::reflection::PrimitiveType<double>::Get(); }
 template struct base::reflection::ValueOps<double>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a3640> : base::reflection::ValueOpsDescription<double> {
+struct base::reflection::PrimitiveTypeDescription<double> : base::reflection::ValueOpsDescription<double> {
     static constexpr const char* name = "double";
     static constexpr u64 length = 6;
     static constexpr SlotFn add_attributes = &fn_71000e5fb0;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3640>();
-struct UnkRefl_fn_71000a388c;
+template const base::reflection::CType& base::reflection::PrimitiveType<double>::Get();
 template <>
-const CType& base::reflection::ValueOps<signed char>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a388c>(); }
+const CType& base::reflection::ValueOps<signed char>::TypeOf(const void*) { return base::reflection::PrimitiveType<signed char>::Get(); }
 template struct base::reflection::ValueOps<signed char>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a388c> : base::reflection::ValueOpsDescription<signed char> {
+struct base::reflection::PrimitiveTypeDescription<signed char> : base::reflection::ValueOpsDescription<signed char> {
     static constexpr const char* name = "signed char";
     static constexpr u64 length = 11;
     static constexpr SlotFn add_attributes = &fn_71000e5fb4;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a388c>();
-struct UnkRefl_fn_71000a3ad4;
+template const base::reflection::CType& base::reflection::PrimitiveType<signed char>::Get();
 template <>
-const CType& base::reflection::ValueOps<short>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3ad4>(); }
+const CType& base::reflection::ValueOps<short>::TypeOf(const void*) { return base::reflection::PrimitiveType<short>::Get(); }
 template struct base::reflection::ValueOps<short>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a3ad4> : base::reflection::ValueOpsDescription<short> {
+struct base::reflection::PrimitiveTypeDescription<short> : base::reflection::ValueOpsDescription<short> {
     static constexpr const char* name = "short";
     static constexpr u64 length = 5;
     static constexpr SlotFn add_attributes = &fn_71000e61a8;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3ad4>();
-struct UnkRefl_fn_71000a3d20;
+template const base::reflection::CType& base::reflection::PrimitiveType<short>::Get();
 template <>
-const CType& base::reflection::ValueOps<unsigned char>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3d20>(); }
+const CType& base::reflection::ValueOps<unsigned char>::TypeOf(const void*) { return base::reflection::PrimitiveType<unsigned char>::Get(); }
 template struct base::reflection::ValueOps<unsigned char>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a3d20> : base::reflection::ValueOpsDescription<unsigned char> {
+struct base::reflection::PrimitiveTypeDescription<unsigned char> : base::reflection::ValueOpsDescription<unsigned char> {
     static constexpr const char* name = "unsigned char";
     static constexpr u64 length = 13;
     static constexpr SlotFn add_attributes = &fn_71000e5fb8;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3d20>();
-struct UnkRefl_fn_71000a3f68;
+template const base::reflection::CType& base::reflection::PrimitiveType<unsigned char>::Get();
 template <>
-const CType& base::reflection::ValueOps<unsigned short>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3f68>(); }
+const CType& base::reflection::ValueOps<unsigned short>::TypeOf(const void*) { return base::reflection::PrimitiveType<unsigned short>::Get(); }
 template struct base::reflection::ValueOps<unsigned short>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a3f68> : base::reflection::ValueOpsDescription<unsigned short> {
+struct base::reflection::PrimitiveTypeDescription<unsigned short> : base::reflection::ValueOpsDescription<unsigned short> {
     static constexpr const char* name = "unsigned short";
     static constexpr u64 length = 14;
     static constexpr SlotFn add_attributes = &fn_71000e5fbc;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a3f68>();
+template const base::reflection::CType& base::reflection::PrimitiveType<unsigned short>::Get();
 struct UnkRefl_fn_71000a41b4;
 template <>
 struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a41b4> {
@@ -792,28 +780,26 @@ struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000a87a4> {
     static constexpr SlotFn add_attributes = &fn_71000a8984;
 };
 template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000a87a4>();
-struct UnkRefl_fn_71000e5fc4;
 template <>
-const CType& base::reflection::ValueOps<unsigned long long>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000e5fc4>(); }
+const CType& base::reflection::ValueOps<unsigned long long>::TypeOf(const void*) { return base::reflection::PrimitiveType<unsigned long long>::Get(); }
 template struct base::reflection::ValueOps<unsigned long long>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000e5fc4> : base::reflection::ValueOpsDescription<unsigned long long> {
+struct base::reflection::PrimitiveTypeDescription<unsigned long long> : base::reflection::ValueOpsDescription<unsigned long long> {
     static constexpr const char* name = "unsigned long long";
     static constexpr u64 length = 18;
     static constexpr SlotFn add_attributes = &fn_71000e61a4;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000e5fc4>();
-struct UnkRefl_fn_71000e61b0;
+template const base::reflection::CType& base::reflection::PrimitiveType<unsigned long long>::Get();
 template <>
-const CType& base::reflection::ValueOps<long long>::TypeOf(const void*) { return base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000e61b0>(); }
+const CType& base::reflection::ValueOps<long long>::TypeOf(const void*) { return base::reflection::PrimitiveType<long long>::Get(); }
 template struct base::reflection::ValueOps<long long>;
 template <>
-struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_71000e61b0> : base::reflection::ValueOpsDescription<long long> {
+struct base::reflection::PrimitiveTypeDescription<long long> : base::reflection::ValueOpsDescription<long long> {
     static constexpr const char* name = "long long";
     static constexpr u64 length = 9;
     static constexpr SlotFn add_attributes = &fn_71000e6390;
 };
-template const base::reflection::CType& base::reflection::refl_GetPrimitiveType<UnkRefl_fn_71000e61b0>();
+template const base::reflection::CType& base::reflection::PrimitiveType<long long>::Get();
 struct UnkRefl_fn_710025d654;
 template <>
 struct base::reflection::PrimitiveTypeDescription<UnkRefl_fn_710025d654> {

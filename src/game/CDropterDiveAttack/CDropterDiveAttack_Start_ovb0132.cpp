@@ -3,6 +3,7 @@
 // is ready), rounds the point (fn_710007b4b0), records the owner's position at +0x40 and the flat
 // direction to the point at +0x58, and enters state 1 (fn_71004e9b20). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
 #include "types.h"
@@ -15,9 +16,7 @@ bool fn_71009e12d0(void*);
 struct UnkVec3fR;
 void fn_710007b4b0(UnkVec3fR* v);
 
-struct UnkDropterVec3_ovb0132 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 // A transform as the collision object's vf_0x70 returns it: the translation column at +0xc, +0x1c, +0x2c.
 struct UnkDropterMatrix_ovb0132 {
@@ -44,9 +43,9 @@ struct UnkDropterDive_ovb0132 {
     u8 pad_0x0[0x8];
     UnkActor* owner;  // +0x8
     u8 pad_0x10[0x30];
-    UnkDropterVec3_ovb0132 start;  // +0x40
+    CVector3D start;  // +0x40
     u8 pad_0x4c[0xc];
-    UnkDropterVec3_ovb0132 dir;  // +0x58
+    CVector3D dir;  // +0x58
 };
 
 void fn_71004e9b20(UnkDropterDive_ovb0132* self, bool a, bool b);
@@ -73,19 +72,16 @@ void fn_71004e997c(UnkDropterDive_ovb0132* self) {
     f32 y = *py;
     f32 x = *px;
     f32 z = *pz;
-    UnkDropterVec3_ovb0132 pos = {x, y, z};
+    CVector3D pos = {x, y, z};
     fn_710007b4b0(reinterpret_cast<UnkVec3fR*>(&pos));
     UnkActor* owner = self->owner;
     f32 ox = owner->field_0x44;
     f32 oy = owner->field_0x54;
-    UnkDropterVec3_ovb0132 d;
+    CVector3D d;
     d.x = pos.x - ox;
     d.y = pos.y - oy;
     d.z = 0.0f;
-    f32 inv = 1.0f / (__builtin_sqrtf(d.x * d.x + d.y * d.y + d.z * d.z) + 0.0001f);
-    d.x *= inv;
-    d.y *= inv;
-    d.z *= inv;
+    d = Normalized(d);
     owner = self->owner;
     f32 sx = owner->field_0x44;
     f32 sy = owner->field_0x54;

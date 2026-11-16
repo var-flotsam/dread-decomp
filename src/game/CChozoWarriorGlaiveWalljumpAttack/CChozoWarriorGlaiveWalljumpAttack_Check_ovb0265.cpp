@@ -3,6 +3,7 @@
 // walls and not in the way of the target. `arg` and `mode` reach the base untouched in the original. Names and layouts
 // are placeholders.
 #include "base/UnkMatrix44.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CChozoWarriorAttack.h"
@@ -33,15 +34,9 @@ f32 fn_710049b2fc(UnkWarriorAI* ai);
 f32 fn_710049b360(UnkWarriorAI* ai);
 bool fn_710049cbd8(UnkWarriorAI* ai);
 
-struct UnkV3s_ovb0265 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
-static inline UnkV3s_ovb0265 operator-(const UnkV3s_ovb0265& a, const UnkV3s_ovb0265& b) {
-    return {a.x - b.x, a.y - b.y, a.z - b.z};
-}
-
-static inline UnkV3s_ovb0265 Pos(const UnkActor* actor) {
+static inline CVector3D Pos(const UnkActor* actor) {
     return {actor->field_0x44, actor->field_0x54, actor->field_0x64};
 }
 
@@ -80,8 +75,8 @@ bool fn_7100495740(UnkWalljumpAttack* self, void* arg, u32 mode) {
             goto done;
     } else {
         UnkActor* target = fn_7100d7c990(self->owner);
-        UnkV3s_ovb0265 d = Pos(target) - Pos(self->owner);
-        f32 length = sqrtf(d.x * d.x + d.y * d.y + d.z * d.z);
+        CVector3D d = Pos(target) - Pos(self->owner);
+        f32 length = Length(d);
         if (!target)
             goto done;
         f32 inv = 1.0f / (length + 0.0001f);

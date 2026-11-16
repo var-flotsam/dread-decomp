@@ -4,6 +4,7 @@
 // and End (+0x168). Shaped like src/base/reflection/UnkReflKeyedB0_b44.cpp. The records are
 // destroyed by fn_7100ea7034. Names and layouts are placeholders.
 #include "../../base/reflection/UnkTempIterValue_b44.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU2566.h"
 #include "types.h"
@@ -17,15 +18,7 @@ struct UnkRecord118_b45a3 {
     ~UnkRecord118_b45a3() { fn_7100ea7034(reinterpret_cast<UnkRecord118*>(this)); }
 };
 
-struct UnkKeyed118Array_b45a3 {
-    UnkRecord118_b45a3* values;
-    u32* keys;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyed118Array_b45a3 = base::global::CRntSmallDictionary<u32, UnkRecord118_b45a3>;
 
 __attribute__((always_inline)) static inline void Clear(UnkKeyed118Array_b45a3* self) {
     if (self->values)

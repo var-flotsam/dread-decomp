@@ -2,6 +2,7 @@
 // (record at +0x8, flag at +0x50): a candidate replaces the kept one when there is none or it lies
 // farther from the point at +0x54 (x, y, z squared on both sides). Result 1 when taken, else the
 // guarded "skip" 0. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "game/CAimComponent.h"
 #include "game/UnkTU365.h"
 #include "types.h"
@@ -25,16 +26,14 @@ static inline UnkVisitResult_b0040 Skip_l9500d8() {
     return g_unk_71726a4778;
 }
 
-struct UnkPoint3_l9500d8 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkFarthest_l9500d8 {
     u8 pad_0x0[8];
     UnkAimTarget best;  // 0x8
     bool has_best;  // 0x50
     u8 pad_0x51[3];
-    UnkPoint3_l9500d8 point;  // 0x54
+    CVector3D point;  // 0x54
 };
 static_assert(__builtin_offsetof(UnkFarthest_l9500d8, point) == 0x54, "layout");
 

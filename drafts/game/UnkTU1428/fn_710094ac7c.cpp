@@ -131,8 +131,7 @@ void fn_710094ac7c(UnkBallMovement_l94ac7c* self) {
     self->field_0x2610 = 0.0f;
     self->field_0x7c8 = 0;
     self->field_0x1e0 = 0;
-    // The game manager's +0x2444 (not in its layout yet).
-    self->field_0x2424 = *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(g_unk_7101d47310) + 0x2444);
+    self->field_0x2424 = g_unk_7101d47310->field_0x2444;
     UnkActor* actor = self->actor;
     self->field_0x241c = actor->field_0x44;
     self->field_0x2420 = 0.0f;

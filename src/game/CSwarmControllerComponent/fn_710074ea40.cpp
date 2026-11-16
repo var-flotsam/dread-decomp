@@ -2,6 +2,7 @@
 // array of words to a capacity, moving the entries over one by one. Names and layouts are placeholders.
 #include <string.h>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -52,15 +53,14 @@ struct UnkSwarmEntry_l74ea40 {
 };
 static_assert(sizeof(UnkSwarmEntry_l74ea40) == 0x40, "layout");
 
-struct UnkSwarmEntryArray_l74ea40 {
-    UnkSwarmEntry_l74ea40* entries;  // 0x0
-    void** items;                    // 0x8
-    u32 count;                       // 0x10
-    u32 capacity;                    // 0x14
-    u32 step;                        // 0x18
-    u32 flags;                       // 0x1c
-    base::UnkAllocator* allocator;   // 0x20
-};
+// entries: 0x0
+// items: 0x8
+// count: 0x10
+// capacity: 0x14
+// step: 0x18
+// flags: 0x1c
+// allocator: 0x20
+using UnkSwarmEntryArray_l74ea40 = base::global::CRntSmallDictionary<void*, UnkSwarmEntry_l74ea40>;
 
 // Reserves room for n entries in both arrays.
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
@@ -70,19 +70,19 @@ void fn_710074ea40(UnkSwarmEntryArray_l74ea40* self, u32 n) {
     auto* entries = static_cast<UnkSwarmEntry_l74ea40*>(
         self->allocator->vf_0x40((u64)n * sizeof(UnkSwarmEntry_l74ea40), 8, self->flags));
     auto* items = static_cast<void**>(self->allocator->vf_0x40((u64)n * sizeof(void*), 8, self->flags));
-    if (UnkSwarmEntry_l74ea40* old = self->entries) {
+    if (UnkSwarmEntry_l74ea40* old = self->values) {
         UnkSwarmEntry_l74ea40* dst = entries;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++old) {
             new (dst) UnkSwarmEntry_l74ea40(*old);
             old->~UnkSwarmEntry_l74ea40();
         }
-        self->allocator->vf_0x48(self->entries);
+        self->allocator->vf_0x48(self->values);
     }
-    if (self->items) {
-        memcpy(items, self->items, (u64)self->count * sizeof(void*));
-        self->allocator->vf_0x48(self->items);
+    if (self->keys) {
+        memcpy(items, self->keys, (u64)self->count * sizeof(void*));
+        self->allocator->vf_0x48(self->keys);
     }
-    self->entries = entries;
-    self->items = items;
+    self->values = entries;
+    self->keys = items;
     self->capacity = n;
 }

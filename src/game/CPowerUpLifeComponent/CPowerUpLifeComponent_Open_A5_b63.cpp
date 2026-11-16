@@ -6,6 +6,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CActorComponent.h"
 #include "game/CScenario.h"
@@ -20,9 +21,7 @@ struct UnkScriptCaller;
 struct UnkEntityState;
 struct UnkStruct_710024fa0c;
 
-struct UnkPowerUpPos_A5_b63 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkPowerUpEntity_A5_b63 {
     virtual void vf_0x0();
@@ -31,7 +30,7 @@ struct UnkPowerUpEntity_A5_b63 {
 
 struct UnkPowerUpEntityVtbl_A5_b63 {
     u8 pad_0x0[0xd0];
-    void (*vf_0xd0)(UnkPowerUpEntity_A5_b63*, const UnkPowerUpPos_A5_b63*, bool);
+    void (*vf_0xd0)(UnkPowerUpEntity_A5_b63*, const CVector3D*, bool);
 };
 
 struct UnkPowerUpLink_A5_b63 : base::UnkRefCounted {
@@ -76,7 +75,7 @@ u32 fn_71008e51c4(UnkPowerUpLife_A5_b63* self) {
         f32 x = owner->x;
         f32 y = owner->y;
         f32 z = owner->z;
-        UnkPowerUpPos_A5_b63 pos;
+        CVector3D pos;
         pos.x = x;
         pos.y = y;
         pos.z = z;

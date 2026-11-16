@@ -178,12 +178,10 @@ struct UnkVec3;
 struct UnkTileOutlines;
 struct UnkTileOutline;
 
-struct UnkLavaPoint_ovb0059 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkLavaOutline_ovb0059 {
-    base::global::CRntVector<UnkLavaPoint_ovb0059> points;
+    base::global::CRntVector<CVector3D> points;
     f32 field_0x28;
     bool field_0x2c;
     bool field_0x2d;
@@ -208,11 +206,11 @@ void fn_71004c51e4(UnkLavaAttackOutlines_ovb0059* self, const base::math::CVecto
     UnkLavaOutline_ovb0059 outline;
     base::math::CVector2D flat_from;
     fn_710007b430(&flat_from, from);
-    UnkLavaPoint_ovb0059 point_from = {flat_from.x, flat_from.y, 0.0f};
+    CVector3D point_from = {flat_from.x, flat_from.y, 0.0f};
     fn_7100118b94(&outline, reinterpret_cast<UnkVec3*>(&point_from));
     base::math::CVector2D flat_to;
     fn_710007b430(&flat_to, to);
-    UnkLavaPoint_ovb0059 point_to = {flat_to.x, flat_to.y, 0.0f};
+    CVector3D point_to = {flat_to.x, flat_to.y, 0.0f};
     fn_7100118b94(&outline, reinterpret_cast<UnkVec3*>(&point_to));
     fn_7100d62d40(reinterpret_cast<UnkTileOutlines*>(self->outlines), reinterpret_cast<UnkTileOutline*>(&outline));
 }

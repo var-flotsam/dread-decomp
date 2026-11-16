@@ -32,9 +32,6 @@ struct UnkLogicShapeComponent_A5_b66 {
     UnkLogicShape_A5_b66* shape;  // 0x30
 };
 
-struct UnkLogicShapePosition_A5_b66 {
-    f32 x, y, z;
-};
 
 UnkReflValue fn_71009158dc(void*, char* obj, UnkReflValue* const*) {
     UnkLogicShapeComponent_A5_b66* self = *reinterpret_cast<UnkLogicShapeComponent_A5_b66**>(obj + 8);
@@ -44,7 +41,7 @@ UnkReflValue fn_71009158dc(void*, char* obj, UnkReflValue* const*) {
             f32 x = actor->field_0x44;
             f32 y = actor->field_0x54;
             f32 z = actor->field_0x64;
-            UnkLogicShapePosition_A5_b66 pos;
+            CVector3D pos;
             pos.x = x;
             pos.y = y;
             pos.z = z;

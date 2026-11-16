@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU1110.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -23,7 +24,6 @@ bool fn_7100639ec0(UnkPoisonFlyReset_b66a4* self);
 bool fn_71006de888(UnkVulkranRefList_b66a4* self);
 bool fn_71006bd074(UnkUnit1055Object_b66a4* self);
 bool fn_71006a1e04(UnkU1038Self_A4_b71* self);
-bool fn_71006f345c(void* self);
 
 struct UnkSonarModel_ovb0085;
 void* fn_7100339900(UnkRenderPool* pool, const CFilePathStrId* path, UnkSonarModel_ovb0085** out,

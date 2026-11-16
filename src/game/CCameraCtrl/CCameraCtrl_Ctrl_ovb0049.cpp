@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "game/CCameraCtrl.h"
 #include "game/CGameObject.h"
 #include "game/UnkGameManager.h"
@@ -19,9 +20,7 @@ using base::global::UnkStringPool;
 
 struct UnkPlayer;
 
-struct UnkCameraVec3_ovb0049 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkCameraVec4_ovb0049 {
     f32 x, y, z, w;
@@ -29,8 +28,8 @@ struct UnkCameraVec4_ovb0049 {
 
 // A camera pose: position, target, orientation and two scalars.
 struct UnkCameraPose_ovb0049 {
-    UnkCameraVec3_ovb0049 position;
-    UnkCameraVec3_ovb0049 target;
+    CVector3D position;
+    CVector3D target;
     UnkCameraVec4_ovb0049 rotation;  // w: the field of view (45 by default)
     f32 field_0x28;
     f32 field_0x2c;
@@ -170,14 +169,14 @@ void fn_71010ed7e8(UnkCameraCtrl_ovb0049* self, UnkWeakTarget* target) {
         self->current.rotation.w = 45.0f;
 }
 
-static inline void CopyVec(UnkCameraVec3_ovb0049* dst, const UnkCameraVec3_ovb0049* src) {
+static inline void CopyVec(CVector3D* dst, const CVector3D* src) {
     dst->x = src->x;
     dst->y = src->y;
     dst->z = src->z;
 }
 
 void fn_71010ed5d4(UnkCameraCtrl_ovb0049* self, UnkWeakTarget* target, const CStrId* name,
-                   const UnkCameraVec3_ovb0049* position, const UnkCameraVec3_ovb0049* look, f32 fov, f32 a, f32 b) {
+                   const CVector3D* position, const CVector3D* look, f32 fov, f32 a, f32 b) {
     AssignRef(&self->handle, target ? GetWeakHandle(target) : nullptr);
     self->name = *name;
     CopyVec(&self->current.position, position);

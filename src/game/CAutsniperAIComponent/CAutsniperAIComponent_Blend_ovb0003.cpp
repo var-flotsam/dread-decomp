@@ -7,6 +7,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
@@ -91,14 +92,10 @@ void fn_71003db2c4(UnkSelfB55* self, f32 value);
 void fn_71003db3cc(UnkSelfB55* self, f32 value);
 void fn_71003dace0(UnkAutsniperAI_ovb0003* self);
 
-struct UnkVec3_ovb0003 {
-    f32 x, y, z;
-};
-
-static inline f32 Dot(const UnkVec3_ovb0003& a, const UnkVec3_ovb0003& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
+using base::math::CVector3D;
 
 // The matrix's column `i` as a vector.
-static inline UnkVec3_ovb0003 Column(const UnkMatrix44& m, s32 i) { return {m.m[i], m.m[i + 4], m.m[i + 8]}; }
+static inline CVector3D Column(const UnkMatrix44& m, s32 i) { return {m.m[i], m.m[i + 4], m.m[i + 8]}; }
 
 static inline f32 Lerp(f32 from, f32 to, f32 t) {
     if (t >= 1.0f)
@@ -147,7 +144,7 @@ void fn_71003dace0(UnkAutsniperAI_ovb0003* self) {
     UnkKraidCreatureVec v = fn_7100d7be08(owner);
     if (v.x * v.x + v.y * v.y + v.z * v.z > 1.0f) {
         const UnkMatrix44& m = fn_710002614c(&self->owner->transform);
-        UnkVec3_ovb0003 axis = Column(m, 2);
+        CVector3D axis = Column(m, 2);
         f32 d = axis.x * v.x + axis.y * v.y + axis.z * v.z;
         f32 speed = self->blend.params->speed;
         velocity.x = speed;

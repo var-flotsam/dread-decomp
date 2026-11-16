@@ -4,6 +4,7 @@
 // one): a zero at +0x8 from two flags depending on whether the owner's AI is a CAutclastAIComponent, the
 // pair at +0xb8 when +0xc4 is set, a zero at +0x10 when both +0xea and +0xeb are set; the request flag
 // (+0xe9) is cleared afterwards. Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -11,11 +12,7 @@
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
-struct UnkVec3_b257c {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 template <class T>
 struct UnkOpt_b257c {
@@ -35,7 +32,7 @@ struct UnkSinkParams_b257c {
     UnkOpt_b257c<u32> field_0x8;
     UnkOpt_b257c<f32> field_0x10;
     UnkPair_b257c field_0x18;
-    UnkOpt_b257c<UnkVec3_b257c> field_0x28;
+    UnkOpt_b257c<CVector3D> field_0x28;
     u32 kind;  // 0x38
 };
 

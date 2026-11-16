@@ -2,13 +2,12 @@
 // file when there is data left (zero otherwise) and moves the shape's matrix translation by it;
 // always succeeds. Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
+#include "base/math/CVector.h"
 #include "types.h"
 
 using base::global::CRntFile;
 
-struct UnkShapeOffset_b46a3 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkShapeXform_b46a3 {
     u8 pad_0x0[0x8];
@@ -16,7 +15,7 @@ struct UnkShapeXform_b46a3 {
 };
 
 bool fn_7100d6c288(UnkShapeXform_b46a3* self, CRntFile* file) {
-    UnkShapeOffset_b46a3 v;
+    CVector3D v;
     v.x = 0.0f;
     v.y = 0.0f;
     v.z = 0.0f;
