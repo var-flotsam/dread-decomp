@@ -3,13 +3,13 @@
 // from the movement's state of the kind fn_71009a60fc names. Names and layouts are placeholders.
 #include "base/math/UnkSegment2D.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU55.h"
 #include "types.h"
 
 struct UnkGroundPlayer_b52;
-bool fn_71010d1598(UnkGroundPlayer_b52*);
 struct UnkVec3;
 
 struct UnkGrappleMoveState_B71a6 {

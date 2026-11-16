@@ -1,17 +1,31 @@
-#include "fn_7101077a70_shared.h"
+// Unit 2666 (Lua bindings): loads the language text file "system/localization/<name>.txt" (in lower
+// case) into the language singleton, creating it on first use. Names and layouts are placeholders.
 #include <string.h>
 #include "base/global/CRntString.h"
-#include "../../../src/game_aca57c/UnkBufferString.h"
-
-using base::global::CRntString;
+#include "base/global/CRntVector.h"
+#include "game/UnkTU0.h"
+#include "game/UnkTU2677.h"
+#include "game/UnkTU2733.h"
+#include "game/UnkTU57.h"
+#include "types.h"
+#include "../../game_aca57c/UnkBufferString.h"
 
 extern void* g_unk_7101a1b750[];
-struct UnkLanguage;
-extern UnkLanguage* g_unk_7101d47358;
-void fn_710119c020(UnkLanguage* language);
-void fn_710119cb44(UnkLanguage* language, const char* path, bool flag);
-void fn_710007f564(void* self, const char* str);  // appends a string
-void* fn_71000839a0(u64 size, u32 flags);
+
+// Copies `src` into `dst` with A-Z turned into a-z.
+static inline void CopyLower(char* dst, const char* src) {
+    dst[0] = 0;
+    u32 length = static_cast<u32>(strlen(src));
+    if (length) {
+        for (u32 i = 0; i < length; ++i) {
+            char c = src[i];
+            if (static_cast<u32>(c - 'A') < 26)
+                c += 0x20;
+            dst[i] = c;
+        }
+        dst[length] = 0;
+    }
+}
 
 s32 fn_7101077a70(lua_State* L) {
     const char* name;
@@ -21,17 +35,7 @@ s32 fn_7101077a70(lua_State* L) {
         fn_710007e77c(path.Str(), "system/localization/");
         fn_710007f564(path.Str(), name);
         fn_710007f564(path.Str(), ".txt");
-        const char* text = path.Str()->data;
-        lower[0] = 0;
-        u32 n = strlen(text);
-        u64 length = n;
-        if (length) {
-            for (u64 i = 0; i < length; ++i) {
-                char c = text[i];
-                lower[i] = (u8)(c - 'A') < 26 ? c + ('a' - 'A') : c;
-            }
-            lower[length] = 0;
-        }
+        CopyLower(lower, path.Str()->data);
         {
             UnkBufferString<0x80, g_unk_7101a1b750> lowered(lower);
             fn_710007eaa0(path.Str(), lowered.Str());

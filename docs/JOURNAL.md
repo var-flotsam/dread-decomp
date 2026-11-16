@@ -154,6 +154,15 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Opus retry of older near-miss drafts, lean-r2 (2026-11-16).** The 56 drafts from earlier runs (mostly the
+overnight batches of 2026-11-09 to 11-11) that scored 70% or more and differ in more than registers, same shape
+as lean-r1. 8 matched, 9 functions into `src/` with one verified by `tools/equiv_test.py` (its loop compare
+rewritten by the coordinator after the worker's run); about 2.06 million tokens, about 230,000 per match, half
+lean-r1's rate. Many old drafts held a union, barrier or field memcpy that the workers took out, and the readable
+text is further from the original than the old score showed. The remaining near-misses are mostly reloads after
+a store the original treats as aliasing, select or compare operand order (`fcsel` with swapped arms), and
+statics whose offsets depend on the rest of their unit. Recommendation: no further retries of old drafts.
+
 **Opus retry of near-miss drafts, lean-r1 (2026-11-16).** The 38 drafts of this session's batches that scored 70%
 or more and differ in more than registers, given back to Opus from their draft text (`prepare.py --drafts`, budget
 4); jobs of one function were packed five to a worker across units. 12 matched; one of them only with whole-element

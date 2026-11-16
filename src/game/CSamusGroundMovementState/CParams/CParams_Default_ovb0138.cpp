@@ -6,6 +6,7 @@
 // or fn_71010d15ac holds. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
@@ -84,7 +85,6 @@ struct UnkGroundState_ovb0138 {
 bool fn_71009ed058(UnkGroundMovement_ovb0138* movement, UnkGroundRequest_ovb0138* req);
 void fn_71009ea070(UnkGroundMovement_ovb0138* movement);
 struct UnkGroundPlayer_b52;
-bool fn_71010d1598(UnkGroundPlayer_b52*);
 bool fn_71010d15ac(UnkGroundMovement_ovb0138* movement);
 
 struct UnkStandState_ovb0103;

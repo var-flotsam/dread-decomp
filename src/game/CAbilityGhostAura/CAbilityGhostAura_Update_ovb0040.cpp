@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbility.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU365.h"
@@ -126,7 +127,6 @@ struct UnkGhostAuraPos_b0040 {
     u32 z = 0;
 };
 
-bool fn_71010d1598(UnkGroundPlayer_b52*);
 bool fn_71002f927c(UnkAbility_b66a2* self);
 void fn_71002f8de4(UnkSmAbility_A2_b63* self, f32 dt);
 void fn_71003096fc(UnkGhostAura_b0040* self, f32 dt);
