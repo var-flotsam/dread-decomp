@@ -20,6 +20,7 @@
 #include "base/global/UnkStringPool.h"
 #include "game/CBlackboard.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
@@ -35,8 +36,6 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 using base::global::UnkPoolIter;
-
-extern void* g_unk_7101a1b5a0[];
 
 // ---- the 0x118-byte record's assignments ----
 

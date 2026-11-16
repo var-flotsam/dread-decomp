@@ -16,6 +16,7 @@
 #include "base/math/CVector4D.h"
 #include "base/tunable/CTunable.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU254.h"
 #include "game/UnkTU2553.h"
@@ -103,7 +104,6 @@ struct UnkMinimapIconDef {
     f32 margins[4];
 };
 
-extern void* g_unk_7101a1b5a0[];
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 // A string (base::global::CRntString's layout) built from the empty literal by fn_710007e704.
