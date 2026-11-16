@@ -9,22 +9,40 @@
 
 namespace base::global {
 
+class CRntString;
+
 struct UnkStringData {
     u8 unk_0x0[0x8];
-    // A union member: Clang gives union accesses no type-based alias info, so the decrement
-    // forces the reloads the original has (CStrId::data and ref_count after `--ref_count`).
     // A union member: Clang gives union accesses no type-based alias info, so the decrement in
-    // CStrId's move-assignment forces the reloads the original has.
+    // CStrId's move-assignment and destructors forces the reloads the original has
+    // (CStrId::data and ref_count after `--ref_count`).
     union {
-        s32 ref_count;
+        s32 ref_count;  // 0x8
     };
-};
+    u8 unk_0xc[0x4];
+    // The string itself: a CRntString in the original (base/global/CRntString.h), of which only
+    // the text and the key are read through an id. Its key, the 64-bit hash, is read as two words.
+    const char* text;  // 0x10 (CRntString::data)
+    u8 unk_0x18[0x18];
+    u32 hash[2];  // 0x30 (CRntString::key)
+    u8 unk_0x38[0xc];
+    // How often the text was read (UnkStrIdBase::Text). A union member for the same reason as
+    // ref_count: after the increment the original reloads the id and whatever else it read.
+    union {
+        s32 reads;  // 0x44
+    };
 
-// A pooled string as the hash maps read it: its 64-bit hash, as two words, at 0x30 (inferred).
-struct UnkHashedString : UnkStringData {
-    u8 unk_0xc[0x24];
-    u32 hash[2];
+    // The key read whole, as one 64-bit word (the timeline and parasite lookups).
+    u64 Key() const { return *reinterpret_cast<const u64*>(hash); }
+    // The whole string, for the calls that take the CRntString by reference.
+    const CRntString& String() const { return *reinterpret_cast<const CRntString*>(&text); }
 };
+static_assert(__builtin_offsetof(UnkStringData, text) == 0x10, "UnkStringData layout");
+static_assert(__builtin_offsetof(UnkStringData, hash) == 0x30, "UnkStringData layout");
+static_assert(__builtin_offsetof(UnkStringData, reads) == 0x44, "UnkStringData layout");
+
+// A pooled string as the hash maps read it (its hash at 0x30): the same layout.
+using UnkHashedString = UnkStringData;
 
 struct UnkStringPool {
     u8 unk_0x0[0x10];
@@ -32,6 +50,10 @@ struct UnkStringPool {
 };
 
 }  // namespace base::global
+
+// The empty text an id with no string reads as (also what the CRntString constructors pass to the
+// pool for a string with no text; fn_7100000850, src/base/global/fn_71000003d4.cpp).
+extern const char g_unk_710162e2ed[] __attribute__((visibility("hidden")));
 
 // The global string pool (reached through the GOT).
 extern base::global::UnkStringPool* g_unk_7101d47108;
@@ -98,6 +120,12 @@ public:
             data = &g_unk_7101d47108->empty;
     }
     UnkStrIdBase(const UnkStrIdBase& other) = default;
+
+    // The id's text, counting the read (inlined wherever an id is shown or compared as text).
+    const char* Text() const {
+        ++data->reads;
+        return data->text ? data->text : g_unk_710162e2ed;
+    }
 
 protected:
     // Inlined into the move-assignments. Unlike the destructors, it decrements and tests in

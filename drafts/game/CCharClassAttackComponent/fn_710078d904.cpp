@@ -10,16 +10,6 @@
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
 
-// A string id's data as the name read sees it: the text at +0x10 and a use count at +0x44.
-struct UnkStrIdText_l78d904 {
-    u8 pad_0x0[0x10];
-    const char* str;
-    u8 pad_0x18[0x2c];
-    union {
-        s32 use_count;
-    };
-};
-
 struct UnkAttackMask_l78d904 {
     u8 pad_0x0[0x60];
     CStrId name;
@@ -32,8 +22,6 @@ UnkReflValue fn_710078d904(void*, char* obj, UnkReflValue* const* args) {
     // The original reads the id even when the argument has no type (then through a null pointer).
     const CStrId* id = arg->type ? base::reflection::refl_ArgValue<CStrId>(arg) : nullptr;
     target->name = *id;
-    UnkStrIdText_l78d904* text = reinterpret_cast<UnkStrIdText_l78d904*>(target->name.data);
-    ++text->use_count;
-    target->mask = fn_7100414070(text->str ? text->str : g_unk_710162e2ed);
+    target->mask = fn_7100414070(id->Text());
     return base::reflection::refl_EmptyValue();
 }

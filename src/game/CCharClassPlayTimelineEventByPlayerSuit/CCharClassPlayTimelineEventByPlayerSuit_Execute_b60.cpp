@@ -24,15 +24,9 @@ bool fn_7100bc9f90(const UnkModeCondition<0x30>* self, UnkModeActor* actor);
 struct UnkPlayer;
 struct UnkInventory;
 
-struct UnkTimelineNameData_b60d {
-    base::global::UnkStringData base;
-    u8 unk_0xc[0x24];
-    u64 hash;
-};
-
 struct UnkPlayTimelineBySuitEvent_b60 {
     u8 unk_0x0[0x10];
-    UnkTimelineNameData_b60d* ids[4];
+    base::global::UnkStringData* ids[4];
 };
 
 struct UnkPlayTimelineBySuitTarget_b60 {
@@ -59,8 +53,8 @@ static inline const UnkQualifiedId& ItemId_b60(UnkPropertyEx<>& item) {
 }
 
 void fn_7100bc9d0c(UnkPlayTimelineBySuitEvent_b60* self, UnkPlayTimelineBySuitTarget_b60* target) {
-    if (&self->ids[0]->base == &g_unk_7101d47108->empty || &self->ids[1]->base == &g_unk_7101d47108->empty ||
-        &self->ids[2]->base == &g_unk_7101d47108->empty || &self->ids[3]->base == &g_unk_7101d47108->empty)
+    if (self->ids[0] == &g_unk_7101d47108->empty || self->ids[1] == &g_unk_7101d47108->empty ||
+        self->ids[2] == &g_unk_7101d47108->empty || self->ids[3] == &g_unk_7101d47108->empty)
         return;
     UnkActor* actor = target->actor;
     if (!actor)
@@ -78,7 +72,7 @@ void fn_7100bc9d0c(UnkPlayTimelineBySuitEvent_b60* self, UnkPlayTimelineBySuitTa
             f32 varia = fn_7101142928(inventory, ItemId_b60(g_unk_717275a498));
             f32 gravity = fn_7101142928(inventory, ItemId_b60(g_unk_717275a458));
             f32 hyper = fn_7101142928(inventory, ItemId_b60(g_unk_717275a418));
-            UnkTimelineNameData_b60d* const* id;
+            base::global::UnkStringData* const* id;
             if (hyper > 0.0f)
                 id = &self->ids[3];
             else if (gravity > 0.0f)
@@ -87,7 +81,7 @@ void fn_7100bc9d0c(UnkPlayTimelineBySuitEvent_b60* self, UnkPlayTimelineBySuitTa
                 id = &self->ids[1];
             else
                 id = &self->ids[0];
-            key = (*id)->hash;
+            key = (*id)->Key();
         }
     }
     const u32* value;

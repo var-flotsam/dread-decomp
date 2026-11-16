@@ -9,17 +9,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-// The pooled data as seen here: the string at +0x10 and a counter at +0x44 bumped whenever the
-// string is read.
-struct UnkStringText136f38 {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    union {
-        s32 field_0x44;
-    };
-};
-
 struct UnkIdPair136f38 {
     u8 pad_0x0[0x8];
     CStrId first;
@@ -31,21 +20,24 @@ struct UnkIdPair136f38 {
 // no destructor of its own.
 struct UnkNewId136f38 {
     base::global::UnkStringData* data;
-    void Build(const CRntString& str, bool flag) { fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, flag); }
+    UnkNewId136f38(const CRntString& str, bool flag) { fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, flag); }
+    CStrId&& Move() { return static_cast<CStrId&&>(*reinterpret_cast<CStrId*>(this)); }
 };
 
+// The id's pooled string, counting the read. The pooled text is a whole CRntString in the original
+// (UnkStringData lays out only its text and key).
 static inline const CRntString& TextOf(const CStrId& id) {
-    ++reinterpret_cast<UnkStringText136f38*>(id.data)->field_0x44;
-    return reinterpret_cast<UnkStringText136f38*>(id.data)->str;
+    ++id.data->reads;
+    return id.data->String();
 }
+
+// The string concatenations, out of line.
+static inline CRntString operator+(const CRntString& a, const char* b) { return fn_710007ef90(&a, b); }
+static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
 
 void fn_7100136f38(UnkIdPair136f38* self) {
     if (self->first.data != &g_unk_7101d47108->empty) {
-        UnkNewId136f38 id;
-        CRntString head = fn_710007ef90(&TextOf(self->first), "|");
-        CRntString full = fn_710007eee0(&head, &TextOf(self->second));
-        id.Build(full, true);
-        self->joined = static_cast<CStrId&&>(*reinterpret_cast<CStrId*>(&id));
+        self->joined = UnkNewId136f38(TextOf(self->first) + "|" + TextOf(self->second), true).Move();
     } else {
         self->joined = self->second;
     }
