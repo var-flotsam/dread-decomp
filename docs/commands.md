@@ -373,6 +373,15 @@ python tools/struct_check.py --base origin/main   # exit 1 when a name gained a 
 python tools/struct_check.py PATH...              # only names with a definition under these paths
 ```
 
+### `tools/lost_matches.py`
+
+Fail a change that turns a matched function (status O) back into anything else.
+
+```sh
+python tools/lost_matches.py --base origin/main               # working tree vs the base (CI)
+python tools/lost_matches.py --base REF --head REF            # two commits, e.g. a past merge
+```
+
 ### `tools/name_check.py`
 
 Does every name that is not an address stand for one address of the original?
