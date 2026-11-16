@@ -154,7 +154,6 @@ void fn_7100979144(UnkCharacterMovement_ovb0021* self, UnkWeakTarget* target, f3
 
 // ----
 struct UnkOwner_710027a41c;
-u32 fn_710027a320(UnkNavMesh* mesh);
 
 struct UnkCharacterMovementCell_ovb0021 {
     u8 unk_0x0[0x420];

@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCameraCtrl.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
@@ -50,8 +51,6 @@ struct UnkIdTableSlot1d30_l450950 {
     u8 pad_0x0[0x1d30];
     CStrId field_0x1d30;
 };
-
-void fn_71010ed948(UnkCam_l450950* camera, void* owner, bool flag);
 
 // Unlinks `node` and frees it; the node after it, or null when it is not in the list.
 static inline UnkCamNode_l450950* Erase(UnkCommanderAI_l450950* self, UnkCamNode_l450950* node) {

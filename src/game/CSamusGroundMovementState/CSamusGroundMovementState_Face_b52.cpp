@@ -5,6 +5,7 @@
 // turned into rotation angles (fn_710007a7f0) and set through the actor's vtable slot 0xd8.
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
@@ -31,7 +32,6 @@ struct UnkGroundPlayer_b52 {
     UnkGroundPlayerState_b52* state;  // 0x2d08
 };
 
-bool fn_71010d1598(UnkGroundPlayer_b52* player);
 bool fn_71009e1fd4(UnkGroundPlayer_b52* player);
 
 typedef void (*UnkGroundSetAngles_b52)(UnkActor*, const UnkVec3f*, bool);

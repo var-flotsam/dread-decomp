@@ -6,12 +6,12 @@
 // +0x48 (fn_7100997128). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CMovementComponent.h"
 #include "game/CSamusFloorSlideMovementState/CParams.h"
 #include "game/UnkCollisionRecord.h"
 #include "types.h"
 
 struct UnkGroundPlayer_b52;
-bool fn_71010d1598(UnkGroundPlayer_b52*);
 bool fn_71010d15b4(UnkGroundPlayer_b52*);
 struct UnkMovementTransitions;
 

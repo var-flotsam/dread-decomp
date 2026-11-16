@@ -6,21 +6,17 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkAssignedSlot.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2510.h"
+#include "game/UnkTU365.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-// The out-of-line assignment both hit references share (declared as the other hand-written files
-// do).
-struct UnkAssignedSlot {
-    void* ptr;
-};
-void fn_71002a5d1c(UnkAssignedSlot* self, const UnkAssignedSlot* other);
 
 // A reference to a counted object (base::UnkRefCounted), released when the count drops to zero.
-// The second one keeps its pointer in a union: the original reloads it after the count increment.
 struct UnkHitRefA_ovb0198u {
     base::UnkRefCounted* ptr;
 
@@ -49,9 +45,7 @@ struct UnkHitRefA_ovb0198u {
     }
 };
 struct UnkHitRefB_ovb0198u {
-    union {
-        base::UnkRefCounted* ptr;
-    };
+    base::UnkRefCounted* ptr;
 
     UnkHitRefB_ovb0198u() : ptr(nullptr) {}
     UnkHitRefB_ovb0198u(const UnkHitRefB_ovb0198u& other) : ptr(nullptr) { Set(other.ptr); }
@@ -136,8 +130,6 @@ static_assert(sizeof(UnkCollisionHit_ovb0198u) == 0x48, "UnkCollisionHit_ovb0198
 
 // The segment query's callback object: the closest hit so far and the segment's origin. The
 // vtables (reached through the GOT) are the callback's and its base's.
-extern void* g_unk_7101a20fa8[];
-extern void* g_unk_7101a20ed8[];
 struct UnkSegmentHitQuery_ovb0198u {
     void** vtable;
     UnkCollisionHit_ovb0198u hit;
@@ -174,9 +166,6 @@ struct UnkHitSegment_ovb0198u {
 };
 
 
-struct UnkTree;
-struct UnkBox;
-bool fn_7100d5c518(UnkTree* self, u32 mask, const UnkBox* box, void* arg, u32 arg2);
 
 struct UnkProbePoint2D_ovb0198u : CVector2D {
     explicit UnkProbePoint2D_ovb0198u(const CVector3D& v) { fn_710007b430(this, &v); }
@@ -209,9 +198,9 @@ struct UnkHitObject_ovb0198u {
     UnkHitEntity_ovb0198u* entity;  // 0x10
 };
 
-static inline CVector3D Origin_ovb0198u(const CVector3D& a) {
-    UnkProbePoint2D_ovb0198u first(a);
-    return CVector3D{first.x, first.y, 0.0f};
+// A point on the plane as a 3D point.
+static inline CVector3D OnPlane_ovb0198u(const CVector2D& p) {
+    return CVector3D{p.x, p.y, 0.0f};
 }
 
 struct UnkAimFilterSelf_ovb0198u {
@@ -223,7 +212,7 @@ bool fn_71003523bc(UnkAimFilterSelf_ovb0198u* self, const CVector3D* a, const CV
     UnkTree* tree = gm->field_0x608 ? static_cast<UnkTree*>(gm->field_0x608->field_0x820) : nullptr;
     if (!tree)
         return false;
-    UnkSegmentHitQuery_ovb0198u query(Origin_ovb0198u(*a));
+    UnkSegmentHitQuery_ovb0198u query(OnPlane_ovb0198u(UnkProbePoint2D_ovb0198u{*a}));
     UnkHitSegment_ovb0198u segment(UnkProbePoint2D_ovb0198u{*a}, UnkProbePoint2D_ovb0198u{*b});
     if (!fn_7100d5c518(tree, 0x1089, reinterpret_cast<const UnkBox*>(&segment), &query, 2))
         return true;

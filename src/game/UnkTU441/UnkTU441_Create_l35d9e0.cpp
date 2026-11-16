@@ -1,0 +1,101 @@
+// Unit 441: the render pool's creator for fade quads: a 0x180-byte model instance named `name` whose node is
+// prepared and, for a non-empty path, loaded from it (one that fails is destroyed and freed); the rest are
+// added to the pool's chained hash set and returned, also through `out` when given.
+// Names and layouts are placeholders.
+#include <new>
+
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CRntVector.h"
+#include "base/global/CStrId.h"
+#include "game/UnkTU137.h"
+#include "game/UnkTU287.h"
+#include "types.h"
+#include "game/UnkTU441.h"
+
+struct UnkModelInstance;
+struct UnkModelNode;
+struct UnkTaggedObject;
+void fn_7100147ca4(UnkTaggedObject* self);
+
+struct UnkQuadRender_ovb0259 {
+    u8 pad_0x0[0x78];
+    void* field_0x78;
+};
+
+struct UnkQuadNode_ovb0259 {
+    u8 pad_0x0[0x18];
+    u8 node[0x160];  // 0x18
+    UnkQuadRender_ovb0259* render;  // 0x178
+};
+
+struct UnkResHolder2;
+bool fn_710035db30(UnkResHolder2* self, const base::global::CFilePathStrId& path);
+
+struct UnkQuadSetNode_l35d9e0 {
+    u64 key;
+    u64 value;
+    UnkQuadSetNode_l35d9e0* next;   // the list of all nodes
+    UnkQuadSetNode_l35d9e0* prev;
+    UnkQuadSetNode_l35d9e0* chain;  // the next node in the bucket
+
+    explicit UnkQuadSetNode_l35d9e0(u64 k) : key(k), value(k), next(nullptr), prev(nullptr), chain(nullptr) {}
+
+    UnkQuadSetNode_l35d9e0*& Next() { return next; }
+    UnkQuadSetNode_l35d9e0*& Prev() { return prev; }
+};
+
+struct UnkQuadSet_l35d9e0 {
+    base::UnkAllocator* allocator;
+    u32 flags;                            // 0x8
+    u32 count;                            // 0xc
+    UnkQuadSetNode_l35d9e0** buckets;     // 0x10
+    u32 bucket_count;                     // 0x18
+    u32 bucket_capacity;                  // 0x1c
+    u8 pad_0x20[0x18];
+    UnkQuadSetNode_l35d9e0* tail;  // 0x38
+    UnkQuadSetNode_l35d9e0* head;  // 0x40
+
+    void Insert(u64 key) {
+        UnkQuadSetNode_l35d9e0** bucket = nullptr;
+        if (bucket_count != 0) {
+            u32 i = (u32)key % bucket_capacity;
+            bucket = &buckets[i];
+        }
+        UnkQuadSetNode_l35d9e0* old = *bucket;
+        auto* node = static_cast<UnkQuadSetNode_l35d9e0*>(
+            allocator->vf_0x40(sizeof(UnkQuadSetNode_l35d9e0), 8, flags));
+        if (node)
+            new (node) UnkQuadSetNode_l35d9e0(key);
+        node->chain = old;
+        *bucket = node;
+        if (!head)
+            head = node;
+        else if (tail) {
+            node->Prev() = tail;
+            tail->Next() = node;
+        }
+        tail = node;
+        ++count;
+    }
+};
+
+UnkQuadNode_ovb0259* fn_710035d9e0(void* pool, const base::global::CFilePathStrId* path, UnkQuadNode_ovb0259** out,
+                                   const base::global::CStrId* name) {
+    UnkQuadSet_l35d9e0* set = static_cast<UnkQuadSet_l35d9e0*>(pool);
+    auto* quad = static_cast<UnkQuadNode_ovb0259*>(fn_71000839a0(sizeof(UnkQuadNode_ovb0259), 0x38));
+    fn_7100147c4c(reinterpret_cast<UnkModelInstance*>(quad), name);
+    UnkQuadNode_ovb0259* result = nullptr;
+    if (quad) {
+        fn_710020a43c(reinterpret_cast<UnkModelNode*>(quad->node));
+        if (path->data != &g_unk_7101d47200->empty && !fn_710035db30(reinterpret_cast<UnkResHolder2*>(quad), *path)) {
+            fn_7100147ca4(reinterpret_cast<UnkTaggedObject*>(quad));
+            operator delete(quad);
+            return nullptr;
+        }
+        set->Insert((u64)quad);
+        result = quad;
+    }
+    if (out)
+        *out = quad;
+    return result;
+}

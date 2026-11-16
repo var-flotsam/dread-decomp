@@ -29,11 +29,11 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710002fb80,400,drafts/game/UnkTU39/fn_710002fb80.cpp,control flow,28.0,72,lean-ob1,loop layout: the skip path (node = next) is placed before the timer update; nested-if form gets layout right b
 0x710002ffb4,372,drafts/game/UnkTU39/fn_710002ffb4.cpp,operations,17.0,77,pilot50,list unlink loop and tail layout differ (operations)
 0x71000687d8,376,drafts/game/UnkTU42/fn_71000687d8.cpp,operations,10.6,74,lean,
-0x710006981c,288,drafts/game/UnkTU42/fn_710006981c.cpp,conditions,97.2,2,overnight,
 0x710006993c,100,drafts/game/UnkTU42/fn_710006993c.cpp,control flow,0.0,20,lean-b6,original keeps a second empty check and 64-bit byte-length distance; mine folds to 32-bit count
 0x71000699a0,100,drafts/game/UnkTU42/fn_71000699a0.cpp,control flow,0.0,20,lean-b6,original keeps a second empty check and 64-bit byte-length distance; mine folds to 32-bit count
 0x710006c598,468,drafts/game/nn/time/fn_710006c598.cpp,operations,8.5,105,lean-ob1,ours folds add into pre-index ldp for the last point (1-instr shift skews the positional score); rest of tail
 0x710006c76c,472,drafts/game/nn/time/fn_710006c76c.cpp,control flow,18.9,95,lean-ob1,count reload after unlink needs union around count (UnkSList form; not allowed); add folded into pre-index ldp
+0x710006cea8,568,drafts/game/nn/time/fn_710006cea8.cpp,match,100.0,0,lean-ob2,matches; held: copies fn_71010474f4 and g_unk_7101d47348; which have no header yet
 0x710006e7a4,348,drafts/game/UnkTU46/fn_710006e7a4.cpp,registers or order,92.0,7,overnight,
 0x710006f914,376,drafts/game/UnkTU47/fn_710006f914.cpp,match,100.0,0,lean-r1,matches only with whole-element __builtin_memcpy copies of one-field structs (the count reload after each copy); held as a steering form
 0x7100070204,160,drafts/game/UnkTU47/fn_7100070204.cpp,control flow,56.8,15,lean-b2,second index search: original hoists i=0 before the count test; ours splits an empty-table block
@@ -234,9 +234,13 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71002ac720,300,drafts/game/navmesh/SNavMeshPath/fn_71002ac720.cpp,operations,22.7,53,lean-b3,grow loop pointer form (base at field_0x119; counted down) and stack temp layout differ
 0x71002aca40,364,drafts/game/navmesh/SNavMeshPath/fn_71002aca40.cpp,operations,53.8,42,lean-b3,loop induction and zero-iteration path (mov w23;#1) differ
 0x71002ae1b0,268,drafts/game/navmesh/SNavMeshPath/fn_71002ae1b0.cpp,operations,0.0,63,lean-b3,count*0x120 size check plus separately kept base pointer and multiplier not reproduced
+0x71002af6fc,356,drafts/game/UnkTU367/fn_71002af6fc.cpp,operations,5.5,84,lean-ob2,early return true block placed inline instead of shared tail; body close
+0x71002afcd8,392,drafts/game/UnkTU367/fn_71002afcd8.cpp,operations,63.3,36,lean-ob2,original keeps and of open flag after open guard (no fold); door loop end hoist
 0x71002b0e78,312,drafts/game/UnkTU367/fn_71002b0e78.cpp,operations,59.0,31,lean,
+0x71002b106c,516,drafts/game/UnkTU368/fn_71002b106c.cpp,operations,29.5,85,lean-ob2,original reloads cell->tile (+0x68) after each *reason store (6 loads); a typed u32 store does not alias it; c
 0x71002b1c7c,356,drafts/game/UnkTU369/fn_71002b1c7c.cpp,control flow,13.5,66,lean-b6,inlined find/index-end test and early base load; loop shape not reproduced
 0x71002b1de0,204,drafts/game/UnkTU369/fn_71002b1de0.cpp,control flow,9.8,35,lean-b6,index find with end test and early array base load; loop shape not reproduced
+0x71002b3114,532,drafts/game/UnkTU372/fn_71002b3114.cpp,calls,0.0,124,lean-ob2,entry loop: original reloads the zeroed shared ref after the refcount increment (no-TBAA count); ours keeps fe
 0x71002b361c,444,drafts/game/UnkTU372/fn_71002b361c.cpp,control flow,56.8,44,pilot50,bit-0 test of merged flag (tbnz vs cbnz) and block layout
 0x71002b5004,460,drafts/game/UnkTU373/fn_71002b5004.cpp,control flow,5.2,105,pilot50,heap sift-down control flow; count widening and loop shape differ
 0x71002cb9e0,92,drafts/game/UnkTU395/fn_71002cb9e0.cpp,operations,17.4,16,lean-b5,loop reloads data and count each pass and masks index with lsl/lsr 4; compare order differs
@@ -250,13 +254,14 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710030bf8c,308,drafts/game/CAbilityGhostAura/fn_710030bf8c.cpp,control flow,26.0,56,lean-b2,ignore-track bool and early-return structure differ; GOT load of tunable flag; unverified branch layout
 0x710030c1c0,384,drafts/game/CAbilityGhostAura/fn_710030c1c0.cpp,control flow,15.8,80,lean-b2,aim x loaded as integer word; state switch layout; extra branches (15 vs 12)
 0x710030dda8,328,drafts/game/CAbilityGhostAura/fn_710030dda8.cpp,registers or order,63.4,30,lean-b2,instruction order of segment stores and argument setup; same instructions
+0x710031433c,456,drafts/game/CAbilityGhostAura/fn_710031433c.cpp,operations,34.2,68,lean-ob2,states-array address hoisted and shared between the two finds (original recomputes it; the shared header pins
 0x710033187c,716,drafts/game/CAbilityShinespark/fn_710033187c.cpp,control flow,11.4,157,fable1,
+0x7100332dc4,376,drafts/game/CAbilityShinespark/fn_7100332dc4.cpp,control flow,67.7,29,lean-ob2,after appending the id; original reloads count on both paths (id store seems to alias count); ours keeps it on
 0x710034dc8c,200,drafts/game/UnkTU437/fn_710034dc8c.cpp,control flow,35.3,32,lean-b5,merged null checks / branch count 5 vs 4; load order
-0x71003523bc,488,drafts/game/UnkTU437/fn_71003523bc.cpp,operations,98.4,2,overnight,
+0x7100353be8,556,drafts/game/UnkTU437/fn_7100353be8.cpp,operations,1.4,133,lean-ob2,original keeps the pointee slot address in x23 (extra saved reg; 0x80 frame); ours 0x70; so everything after s
 0x7100354b34,272,drafts/game/UnkTU437/fn_7100354b34.cpp,control flow,52.9,27,lean-b5,early-return branch layout and list loop/prologue differ
 0x7100358d68,364,drafts/game/UnkTU437/fn_7100358d68.cpp,control flow,8.8,78,lean-b5,loop shape over two packed lists; flag-guarded loop bodies not reproduced
 0x710035d5c4,504,drafts/game/UnkTU441/fn_710035d5c4.cpp,registers or order,96.0,5,overnight,
-0x710039d65c,504,drafts/game/behaviortree/CIsAtDistanceXCondition/fn_710039d65c.cpp,control flow,93.1,5,overnight,
 0x71003aa8e0,360,drafts/game/behaviortree/CBehaviorTree/fn_71003aa8e0.cpp,registers or order,97.8,2,lean-b5,count increment scheduled after the head/tail store instead of before it
 0x71003aaa48,136,drafts/game/behaviortree/CBehaviorTree/fn_71003aaa48.cpp,registers or order,94.1,2,lean-b5,count increment scheduled after the head/tail store instead of before it
 0x71003aab64,168,drafts/game/behaviortree/CBehaviorTree/fn_71003aab64.cpp,registers or order,95.2,2,lean-b5,count increment scheduled after the head/tail store instead of before it
@@ -265,14 +270,17 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71003b7704,372,drafts/game/CAutclastChargeAttack/fn_71003b7704.cpp,operations,43.0,43,lean-b6,copy ctor: field copy grouping (0x58..0x6e as 22 bytes; word copies from 0x70) and register use differ; later
 0x71003bb534,544,drafts/game/CAutectorAIComponent/fn_71003bb534.cpp,registers or order,90.4,13,overnight,
 0x71003d4300,1380,drafts/game/CAutsniperShootAttack/fn_71003d4300.cpp,control flow,5.5,305,lean,
+0x71003df480,564,drafts/game/CBatalloonAIComponent/fn_71003df480.cpp,operations,31.9,94,lean-ob2,pointer getter test: original loads m_get before comparing pointer==type and reloads the pointee after the cal
 0x71003f1d94,656,drafts/game/CBigkranXSpitAttack/fn_71003f1d94.cpp,control flow,52.4,77,lean,
 0x7100403c5c,1068,drafts/game/CCentralUnitAIComponent/fn_7100403c5c.cpp,operations,94.4,15,lean,
 0x71004065f4,432,drafts/game/CCentralUnitAIComponent/fn_71004065f4.cpp,control flow,39.8,60,lean,
 0x7100438a44,208,drafts/game/CChozoCommanderPowerPulseAttack/fn_7100438a44.cpp,conditions,23.1,40,lean,
 0x7100455200,728,drafts/game/CChozoCommanderAIComponent/fn_7100455200.cpp,build fails,,,lean-o2,operand order of the two data-vs-empty-string compares (cmp data; empty) in Contains and CStrId dtor
 0x71004563f8,448,drafts/game/CChozoCommanderAIComponent/fn_71004563f8.cpp,operations,47.8,58,lean-o2,velocity stores addressed through step+0x60 (pre-index x20) and z store not delayed; load scheduling
+0x7100457274,796,drafts/game/CChozoCommanderAIComponent/fn_7100457274.cpp,operations,88.9,22,lean-ob2,only w27/w28 swapped (count vs grown capacity in the inlined copy loop); KIND says operations because cmp oper
 0x71004806fc,552,drafts/game/CChozoWarriorXChangeWallAttack/fn_71004806fc.cpp,registers or order,99.3,1,overnight,
 0x7100483ce4,572,drafts/game/CChozoWarriorXSpitAttack/fn_7100483ce4.cpp,operations,99.3,1,overnight,
+0x710050f4ac,720,drafts/game/CEmmyGrabSamusAttack/fn_710050f4ac.cpp,build fails,,,lean-ob2,0x18 constant hoisted to a saved register (umaddl vs madd); push path 14 instructions longer; same family as 7
 0x710051b5a8,1372,drafts/game/behaviortree/CEmmySearchingAction/fn_710051b5a8.cpp,control flow,7.0,318,lean,
 0x710054b4b0,324,drafts/game/UnkTU811/fn_710054b4b0.cpp,registers or order,93.8,5,overnight,
 0x7100551470,184,drafts/game/UnkTU811/fn_7100551470.cpp,control flow,28.3,31,lean-b4,branch layout around movement null checks and mode==4 differs
@@ -291,6 +299,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100697834,248,drafts/game/CScorpiusAIComponent/fn_7100697834.cpp,operations,32.3,40,lean-b5,branch layout and per-branch tunable load; out params typed as u32 bits
 0x71006c1a90,372,drafts/game/CSluggerSpitAttack/fn_71006c1a90.cpp,control flow,36.6,56,lean-b5,control flow/register allocation of the aim-point branches
 0x71006c3bcc,144,drafts/game/CSluggerSpitAttack/fn_71006c3bcc.cpp,build fails,,,lean-b5,same ctor as 71006c083c; best form is its draft (not graded under this address); store order of 0x5c pair
+0x71006cc484,484,drafts/game/CSunnapAIComponent/fn_71006cc484.cpp,control flow,8.3,100,lean-ob2,lookup loop: original peels the first compare; growth copy is memberwise (8;8;4 bytes; count reloaded) while o
 0x71006efe18,384,drafts/game/CYamplotXAIComponent/fn_71006efe18.cpp,operations,18.2,78,lean-b5,hidden-global load and tree/object load order; register allocation of identity-matrix stores; frame size match
 0x71006f09cc,232,drafts/game/CYamplotXAIComponent/fn_71006f09cc.cpp,operations,34.5,37,lean-b5,edge-count expression folded differently (original keeps closed-flag and count compares separate per path)
 0x71006f0ab4,188,drafts/game/CYamplotXAIComponent/fn_71006f0ab4.cpp,control flow,19.1,33,lean-b5,control flow: closed flag hoisted before compare and sret/degenerate-segment layout differ
@@ -305,16 +314,18 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71007149f4,900,drafts/game/UnkTU1141/fn_71007149f4.cpp,operations,32.3,152,lean,
 0x7100719064,732,drafts/game/CAudioComponent/fn_7100719064.cpp,control flow,6.8,170,lean-o2,slot filter on the kind bits at +0xc4 not yet the original form; loop strength reduction and spill of a|b diff
 0x7100719894,604,drafts/game/CAudioComponent/fn_7100719894.cpp,control flow,5.3,141,lean-o2,our build unswitches the search loop on time < 0 (two loop copies); original keeps the fade-time select inside
+0x710071a398,396,drafts/game/CAudioComponent/fn_710071a398.cpp,calls,0.0,99,lean-ob2,ours unswitches the inner loop on the near-zero scale test (two calls); original selects with fcsel
 0x710071a524,696,drafts/game/CAudioComponent/fn_710071a524.cpp,calls,15.5,121,lean-o2,ours merges the two fn_7100105a80 calls (at once / fade) and CSEs the near-zero test; original keeps 7 calls a
 0x710071da58,852,drafts/game/CAudioComponent/fn_710071da58.cpp,control flow,52.1,99,lean-o2,link user-count block: original duplicates the zero-links path (users 0) and swaps the count/key registers; re
 0x710071ddac,536,drafts/game/CAudioComponent/fn_710071ddac.cpp,operations,5.2,126,lean-o2,loop strength reduction: original walks a pointer with a byte down-counter; ours keeps base+offset or a u32 co
+0x7100729978,960,drafts/game/CBillboardComponent/fn_7100729978.cpp,control flow,65.4,79,lean-ob2,entry copy matches; the four-corner test: original merges corners 2-3 into a bool and keeps two destructor cal
 0x7100744e4c,356,drafts/game/UnkTU1159/fn_7100744e4c.cpp,registers or order,98.9,1,overnight,
-0x71007452d0,216,drafts/game/UnkTU1159/fn_71007452d0.cpp,operations,85.2,8,pilot50,no-owner path merges with mode==1 path; operations differ in last block
 0x710074a568,336,drafts/game/CSwarmControllerComponent/fn_710074a568.cpp,control flow,74.4,20,lean-b4,original shares the count-1 store after the move path (reload after order copy); ours hoists count-1 into the
 0x710074b41c,352,drafts/game/CSwarmControllerComponent/fn_710074b41c.cpp,control flow,20.5,69,lean-b4,group lookup: original keeps the second i<count compare unfolded with one groups-null test and no address test
 0x710074bdd4,324,drafts/game/CSwarmControllerComponent/fn_710074bdd4.cpp,build fails,,,lean-b4,set-or-add of u32 key/f32 value pairs in CRntVector at +0x168; original builds the pair as one 64-bit value be
 0x710074d808,340,drafts/game/CSwarmControllerComponent/fn_710074d808.cpp,registers or order,69.4,26,lean-b4,registers only (callee-saved allocation and the order of the argument moves); same instructions
 0x710074dda0,56,drafts/game/CSwarmControllerComponent/fn_710074dda0.cpp,control flow,35.7,6,lean-b4,original keeps an unfolded done flag (cset then cbz; zero path jumps past test); ours folds to b.ne
+0x7100750948,364,drafts/game/CBossCameraCtrl/fn_7100750948.cpp,operations,25.3,68,lean-ob2,find loop shape (original walks two pointers with byte counter); dtor reloads handle before vcall
 0x710077b638,204,drafts/game/UnkTU1176/fn_710077b638.cpp,control flow,94.1,3,overnight,
 0x710077ded0,520,drafts/game/CProtoCentralUnitComponent/fn_710077ded0.cpp,operations,96.9,4,overnight,
 0x710078d46c,184,drafts/game/CCharClassAttackComponent/fn_710078d46c.cpp,control flow,84.8,4,lean-r1,At() lookup: original has a separate empty-table return (values+0) and a byte-offset Find loop; an index-phi A
@@ -326,16 +337,18 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710080f3c4,260,drafts/game/CScorpiusFXComponent/fn_710080f3c4.cpp,calls,23.1,45,lean,
 0x710081bb50,384,drafts/game/CGrappleBeamComponent/fn_710081bb50.cpp,control flow,55.2,43,lean-b6,merged failure-return layout and string record copy order/guard sequence
 0x710081cc58,116,drafts/game/CGrappleBeamComponent/fn_710081cc58.cpp,registers or order,82.8,5,lean-b6,passes tools/equiv_test.py; held: 1 declaration problem: src/game/CGrappleBeamComponent/fn_710081cc58.cpp:7 fn_7100331c7c: void fn_7100331c7c(void*; UnkNoArg) -> declared in include/game/CAbilityShinespark.h: include that header an...
+0x7100841f60,796,drafts/game/CGunComponent/fn_7100841f60.cpp,control flow,50.5,96,lean-ob2,pending-removal search: original loop exits on != with no count>index check before the swap-erase (stores thro
 0x71008625a0,284,drafts/game/CCollisionComponent/fn_71008625a0.cpp,registers or order,74.6,18,pilot50,passes tools/equiv_test.py; held: 1 declaration problem: src/game/CCollisionComponent/fn_71008625a0.cpp:59 fn_71008625a0: defined as UnkRecord* fn_71008625a0(UnkCollisionOwner*; void*; UnkNameRef*) -> declared elsewhere with other ...
 0x710086f9e0,324,drafts/game/UnkTU1325/fn_710086f9e0.cpp,registers or order,90.1,8,overnight,
 0x710088adf0,376,drafts/game/CCharClassMushroomPlatformComponent/fn_710088adf0.cpp,control flow,34.0,54,test40,block layout differs: original puts owner-target tail before state switch; loop shape differs
+0x710088af9c,596,drafts/game/CCharClassMushroomPlatformComponent/fn_710088af9c.cpp,build fails,,,lean-ob2,state search loop: original keeps the byte count (lsl/cbz) the shared A5_b73 header gets only with a barrier;
 0x710089a7c0,384,drafts/game/CCharClassSteamJetComponent/fn_710089a7c0.cpp,operations,89.6,10,lean-b6,listener pointer not hoisted and handle slot address hoisted into a register (register allocation/operations);
+0x71009319dc,600,drafts/game/CMeleeComponent/fn_71009319dc.cpp,build fails,,,lean-ob2,logic lines up; ours CSEs &head and &pool.blocks across the inlined clear/reserve/push (pre-index ldr writebac
+0x710093fab8,720,drafts/game/UnkTU1428/fn_710093fab8.cpp,calls,66.3,58,lean-ob2,one extra call (a tail duplicated); sound-handle check order; pitch clamp selected instead of branched
 0x71009403c4,204,drafts/game/UnkTU1428/fn_71009403c4.cpp,control flow,9.6,46,lean-b4,switch jump table layout unknown; compiler merges case loads into an address select
-0x71009438e8,244,drafts/game/UnkTU1428/fn_71009438e8.cpp,operations,98.4,1,overnight,
 0x7100947dc4,356,drafts/game/UnkTU1428/fn_7100947dc4.cpp,operations,48.3,44,lean-b4,struct layout (flags at 0x23d6/0x23d7 and unaligned u64 merging); store grouping; packed struct used
 0x710094a224,372,drafts/game/UnkTU1428/fn_710094a224.cpp,operations,29.0,63,lean-b4,original keeps old translation in integer registers (w21-w23); ours uses float registers
 0x710094d5b4,424,drafts/game/UnkTU1428/fn_710094d5b4.cpp,registers or order,99.1,1,overnight,
-0x71009500d8,388,drafts/game/UnkTU1428/fn_71009500d8.cpp,conditions,96.9,3,overnight,
 0x710096b334,432,drafts/game/UnkTU1442/fn_710096b334.cpp,registers or order,98.1,2,overnight,
 0x7100973f30,276,drafts/game/UnkTU1444/fn_7100973f30.cpp,operations,92.8,5,overnight,
 0x7100979a60,208,drafts/game/CCharacterMovement/fn_7100979a60.cpp,registers or order,96.2,2,lean,passes tools/equiv_test.py; held: 1 declaration problem: src/game/CCharacterMovement/fn_7100979a60.cpp:52 fn_7100979a60: defined as UnkCmResult fn_7100979a60(UnkCm*) -> declared elsewhere with other types; use this parameter list a...
@@ -350,28 +363,35 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71009ebbd8,484,drafts/game/UnkTU1501/fn_71009ebbd8.cpp,control flow,11.6,107,lean-o2,move loop unrolled/rotated by two in ours; end pointer form; 0x38 copy merged
 0x71009ebe68,112,drafts/game/UnkTU1501/fn_71009ebe68.cpp,operations,7.1,25,lean-b2,mode-list search loop shape (byte-count loop; no post-index; cbz on 64-bit length) not reproduced
 0x71009ecf34,292,drafts/game/UnkTU1501/fn_71009ecf34.cpp,registers or order,89.0,8,lean-b2,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU1501/fn_71009ecf34.cpp:70 fn_71009ecf34: defined as void fn_71009ecf34(UnkMovement_l9ecf34*; UnkSample_l9ecf34*; u32) -> declared elsewhere with other types; us...
+0x71009ee384,828,drafts/game/UnkTU1501/fn_71009ee384.cpp,registers or order,95.2,10,lean-ob2,scheduling of the query and segment setup stores (hit zero at +0x44; bool; segment end)
 0x71009eff9c,344,drafts/game/UnkTU1501/fn_71009eff9c.cpp,control flow,57.0,29,lean-b2,direction compare if-converted to selects where the original branches with duplicated tails; running/booster b
 0x71009f0c34,508,drafts/game/UnkTU1501/fn_71009f0c34.cpp,registers or order,96.1,5,lean-o2,push loop: index and storage base swap x22/x23
 0x7100a0ea54,208,drafts/game/UnkTU1518/fn_7100a0ea54.cpp,registers or order,96.2,2,overnight,
 0x7100a0fcc4,128,drafts/game/CDemolitionBlockSonarTargetComponent/fn_7100a0fcc4.cpp,control flow,28.1,19,lean-b6,control flow: original has two separate full-checks and hoisted items base at +4 (list layout unclear)
 0x7100a102e8,368,drafts/game/CDemolitionBlockSonarTargetComponent/fn_7100a102e8.cpp,control flow,1.1,91,lean-b6,element copy loop shape; original uses byte-offset index and keeps 0x18 word copy inside; vtable GOT load
 0x7100a2b3bc,424,drafts/game/CTimelineComponent/fn_7100a2b3bc.cpp,control flow,25.2,79,lean,
+0x7100a2d054,476,drafts/game/CTimelineComponent/fn_7100a2d054.cpp,control flow,1.4,117,lean-ob2,move loop index widened to 64 bits (one more saved register); key copy loop unrolled (original reloads count p
 0x7100a3ade0,288,drafts/game/CChangeStateDoorsLogicAction/fn_7100a3ade0.cpp,operations,68.1,22,test40,src/dst callee-saved regs swapped; tail load addressing
 0x7100a5fccc,256,drafts/game/CTriggerComponent/fn_7100a5fccc.cpp,control flow,27.7,46,lean-b6,loop shape: original peels first iteration with branchy any/all flags; ours branches differently
+0x7100a601cc,536,drafts/game/CTriggerComponent/fn_7100a601cc.cpp,registers or order,93.3,9,lean-ob2,slot search guard: original tests the byte size (cbz x8); ours the count (cbz w8); rest equal
 0x7100a63ae4,200,drafts/game/CTriggerComponent/fn_7100a63ae4.cpp,operations,34.0,31,lean-b6,unrolled loop and merged stp store pair; needs union around ptr to avoid hoisting
 0x7100a787cc,944,drafts/game/CCapsuleUsableComponent/fn_7100a787cc.cpp,operations,3.4,228,lean,
+0x7100aa3b9c,716,drafts/game/CUsableComponent/fn_7100aa3b9c.cpp,build fails,,,lean-ob2,0x18 constant hoisted to a saved register (umaddl vs madd); later blocks laid out differently; 12 bytes longer
 0x7100ac90a8,364,drafts/game/CWeightActivablePropComponent/fn_7100ac90a8.cpp,operations,90.1,9,lean-r1,store schedule of the member clears at 0x110-0x150 (0x128 pairs with the 0x130 vtable in the original)
 0x7100ac9280,284,drafts/game/CWeightActivablePropComponent/fn_7100ac9280.cpp,operations,38.0,44,lean-b5,listener-list add loop and store order differ
 0x7100acae80,224,drafts/game/CWeightActivablePropComponent/fn_7100acae80.cpp,operations,39.3,34,lean-b5,store/load scheduling of constructor field stores differs
+0x7100ad8550,788,drafts/base/reflection/fn_7100ad8550.cpp,operations,15.7,166,lean-ob2,one extra add: original reuses the empty-string pointer register for the third string id (x9 shared by +0xb0 a
 0x7100aed3a8,288,drafts/game/CGameBlackboard/fn_7100aed3a8.cpp,operations,15.3,60,lean-b5,same shape as aedb24: ldp pairing of other dict and mode-branch order differ
 0x7100aedb24,288,drafts/game/CGameBlackboard/fn_7100aedb24.cpp,operations,15.3,60,lean-b5,other dict values/keys not paired by ldp; mode-check branch order
 0x7100aee42c,272,drafts/game/CGameBlackboard/fn_7100aee42c.cpp,operations,4.4,64,lean-b5,loop shape/hoisting (ldp of other dict) and index widening differ
 0x7100aef4ec,392,drafts/game/CGameBlackboard/fn_7100aef4ec.cpp,control flow,44.9,47,lean-b5,second half: reloads of array pointers/count after the move and second-slot release differ
+0x7100af0030,500,drafts/game/UnkTU1648/fn_7100af0030.cpp,control flow,50.8,60,lean-ob2,count is PRE-d across the id copy store (original reloads it after the merge: its id store aliases u32); later
 0x7100b174b0,316,drafts/game/GUI/IDisplayObjectTrack/fn_7100b174b0.cpp,conditions,62.0,30,lean-b4,load order in linear case; signed prev compare; cubic term order
 0x7100b17dac,84,drafts/game/GUI/IDisplayObjectTrack/fn_7100b17dac.cpp,operations,19.0,14,lean-b4,index masked lsl/lsr and data reload in loop not reproduced
 0x7100b188d0,324,drafts/game/GUI/IDisplayObjectTrack/fn_7100b188d0.cpp,operations,19.8,63,lean-b4,register/ordering of count and global loads in prologue; shifted tail
 0x7100b19584,84,drafts/game/GUI/IDisplayObjectTrack/fn_7100b19584.cpp,operations,14.3,15,lean-b4,index masked lsl/lsr and data reload in loop not reproduced
 0x7100b1a1d0,368,drafts/game/GUI/IDisplayObjectTrack/fn_7100b1a1d0.cpp,operations,48.9,47,lean-b4,register allocation: original keeps this in x21 and forms &keys late; ours hoists it
+0x7100b44344,424,drafts/game/UnkTU1689/fn_7100b44344.cpp,match,100.0,0,lean-ob2,matches; held: copies fn_71011ecfbc and fn_71011cd5a0; whose UnkGuiObj declarations cannot move to one header yet
 0x7100b4c684,596,drafts/game/UnkTU1691/fn_7100b4c684.cpp,conditions,98.7,2,overnight,
 0x7100b5ccec,212,drafts/game/GUI/CMissionLog/fn_7100b5ccec.cpp,build fails,,,lean-b5,element destructor call: original computes the destroy argument early (x19+0x10) before the stores; ours later
 0x7100b5cdc0,224,drafts/game/GUI/CMissionLog/fn_7100b5cdc0.cpp,build fails,,,lean-b5,same: destroy argument address hoisted in the original
@@ -379,6 +399,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100bcfe4c,516,drafts/game/CCharClassSetActionToOtherEntityEvent/fn_7100bcfe4c.cpp,registers or order,98.4,2,overnight,
 0x7100c0b2f0,92,drafts/game/SCameraRailNode/fn_7100c0b2f0.cpp,operations,0.0,18,lean-b5,loop count reload and index lsl/lsr 3 masking not reproduced
 0x7100c0b3e4,136,drafts/game/SCameraRailNode/fn_7100c0b3e4.cpp,operations,38.2,21,lean-b5,float compare form (fcmp operand order and fccmp/b.lt vs b.hi) and instruction order
+0x7100c77fec,740,drafts/game/UnkTU2178/fn_7100c77fec.cpp,control flow,27.6,124,lean-ob2,find loop shape and load order (count before data); null-handle assign skips store in original (AssignRef-like
 0x7100c88920,392,drafts/game/UnkTU2200/fn_7100c88920.cpp,registers or order,98.0,2,lean-b4,two loop-increment instructions in other order
 0x7100c8bd98,304,drafts/game/UnkTU2200/fn_7100c8bd98.cpp,operations,32.5,50,lean,
 0x7100c91878,304,drafts/game/UnkTU2200/fn_7100c91878.cpp,control flow,51.3,37,lean-b4,two move paths tail-merged (shared u32/u64 tail); control flow differs
@@ -387,6 +408,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100ca1e50,88,drafts/game/CBreakableTileGroup/fn_7100ca1e50.cpp,control flow,4.5,19,lean-b6,compiler merges the two sign tests into orr and the null returns; original keeps separate tbnz and a hoisted n
 0x7100ca1ecc,380,drafts/game/CBreakableTileGroup/fn_7100ca1ecc.cpp,control flow,30.5,64,pilot50,control flow: one branch fewer than original; float compare chain order
 0x7100ca7054,328,drafts/game/CBTObserverComponent/fn_7100ca7054.cpp,operations,31.7,54,lean-b2,original reloads count and ids after the values store and indexes with zero-extended u64; ours holds them in r
+0x7100ca7740,448,drafts/game/CBTObserverComponent/fn_7100ca7740.cpp,control flow,0.0,92,lean-ob2,two dictionary finds get merged/threaded differently (original keeps 2 specialised find(to) copies; saves x23)
 0x7100caacd0,128,drafts/game/CBTObserverComponent/fn_7100caacd0.cpp,registers or order,84.4,5,lean-b2,load of ids pointer vs *id order before the loop
 0x7100d35b14,208,drafts/game/logic/collision/CBroadphaseObject/fn_7100d35b14.cpp,operations,66.7,16,test40,tail/head store sunk into shared block; stp pair not formed
 0x7100d371a8,96,drafts/game/logic/collision/CCollider/fn_7100d371a8.cpp,operations,0.0,21,lean-b4,original keeps separate begin and iterator registers (x20;x21) and a count<<3 zero test; mine merges them
@@ -401,19 +423,29 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100d4aa08,728,drafts/game/UnkTU2506/fn_7100d4aa08.cpp,control flow,4.7,173,lean-p1,loop induction: original walks a pointer with a byte countdown and tests n*0x48 for zero (matched only via a b
 0x7100d4ae50,676,drafts/game/UnkTU2506/fn_7100d4ae50.cpp,conditions,96.4,6,lean-p1,matches with a union around the group count (u32 at +0); without it the copy loop skips the count reload on th
 0x7100d4ba54,280,drafts/game/UnkTU2506/fn_7100d4ba54.cpp,control flow,46.6,36,pilot50,control flow: loop-count phi and tail layout differ; load order of groups/count
+0x7100d56b08,484,drafts/game/UnkTU2509/fn_7100d56b08.cpp,operations,60.3,48,lean-ob2,stack slot layout off by 8 and box/contact store scheduling
+0x7100d570cc,556,drafts/game/UnkTU2509/fn_7100d570cc.cpp,operations,5.0,130,lean-ob2,original passes arg2 as a 4th arg to fn_710012bb00; whose src definition takes 3 (57.1% only with a 4th u32 pa
+0x7100d5925c,840,drafts/game/UnkTU2510/fn_7100d5925c.cpp,match,100.0,0,lean-ob2,matches; held: returns fn_7100d541c0's UnkContact where src/game/logic/collision/UnkCollisionWorld.cpp declares UnkColliderResult (unify the two first)
 0x7100d59dd8,1324,drafts/game/UnkTU2510/fn_7100d59dd8.cpp,control flow,11.8,288,fable1,
 0x7100d5b268,540,drafts/game/UnkTU2510/fn_7100d5b268.cpp,operations,22.2,89,pilot50,13-word copy gets merged into wide loads; init/store scheduling and hoisted out-slot compare differ
 0x7100d5be04,440,drafts/game/UnkTU2510/fn_7100d5be04.cpp,operations,19.1,88,pilot50,entry guard ccmp and loop shape; KIND operations
 0x7100d5c6dc,392,drafts/game/UnkTU2510/fn_7100d5c6dc.cpp,operations,84.7,15,pilot50,entry cond ccmp and loop counter form (cbz vs adds)
 0x7100d63a40,564,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d63a40.cpp,calls,7.5,128,pilot50,clang unswitches loop on null sink: duplicate segment ctor and test calls (7 vs 5)
+0x7100d63e50,568,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d63e50.cpp,operations,7.7,129,lean-ob2,hit contact address hoisted into a register; extra spills; frame 0x10 larger
+0x7100d64270,596,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d64270.cpp,control flow,7.6,137,lean-ob2,hit contact address hoisted into a register; extra spills; frame 0x10 larger
+0x7100d6675c,376,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d6675c.cpp,control flow,19.1,70,lean-ob2,frame 0x10 larger (edge and hit share a slot in the original); loop shape
 0x7100d66bc4,448,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d66bc4.cpp,operations,11.6,95,pilot50,stack slot sharing of hit/point and edge; operations differ
+0x7100d6702c,340,drafts/game/logic/collision/CPolygonCollectionShape/fn_7100d6702c.cpp,operations,58.8,35,lean-ob2,frame 0x10 larger: original shares the edge and hit slot
 0x7100d77e38,284,drafts/game/UnkTU2523/fn_7100d77e38.cpp,operations,2.7,69,lean-b2,unaligned tail stores and store scheduling; extra callee-saved register
+0x7100d77f54,436,drafts/game/UnkTU2523/fn_7100d77f54.cpp,operations,56.0,45,lean-ob2,list count not reloaded after the tail->next store (reference needed a union); 12-byte vector copy stores in o
 0x7100d7ac18,444,drafts/game/UnkTU2523/fn_7100d7ac18.cpp,operations,95.5,5,overnight,
 0x7100d822c0,292,drafts/game/UnkTU2523/fn_7100d822c0.cpp,operations,52.1,35,lean-b2,store order/scheduling of tail fields; 35 insns differ
 0x7100d8664c,152,drafts/game/UnkTU2523/fn_7100d8664c.cpp,operations,7.9,34,lean-b2,inner find loop shape and hoisted ldp of other map fields
 0x7100d87d90,400,drafts/game/UnkTU2523/fn_7100d87d90.cpp,operations,1.0,99,lean-b2,callback-set base construction store order and extra callee-saved registers
 0x7100d88030,168,drafts/game/UnkTU2523/fn_7100d88030.cpp,operations,14.3,34,lean-b2,index zero-extension via lsl/lsr 6 and loop/prologue register shape
 0x7100d88ba0,596,drafts/game/UnkTU2523/fn_7100d88ba0.cpp,registers or order,97.3,4,overnight,
+0x7100d8bbac,652,drafts/game/UnkTU2524/fn_7100d8bbac.cpp,control flow,51.5,77,lean-ob2,control flow: after the callback the group loop duplicates its advance block where the original branches back
+0x7100da9990,580,drafts/game/CAIManager/CTunableAIManager/fn_7100da9990.cpp,operations,83.4,24,lean-ob2,original passes x2=0 to fn_71001bab30 whose definition takes 2 params (needs a 3rd); position stores interleav
 0x7100daaae0,192,drafts/game/CAIManager/CTunableAIManager/fn_7100daaae0.cpp,control flow,42.0,27,lean-b4,find-then-at lookup layout differs
 0x7100daad48,240,drafts/game/CAIManager/CTunableAIManager/fn_7100daad48.cpp,control flow,42.6,31,lean-b4,lookup loop layout and register choice differ
 0x7100daaf3c,260,drafts/game/CAIManager/CTunableAIManager/fn_7100daaf3c.cpp,control flow,7.7,53,lean-b4,hash compare order and pool layout differ
@@ -429,6 +461,8 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100dcdd0c,112,drafts/game/UnkTU2544/fn_7100dcdd0c.cpp,operations,16.7,23,lean-b4,compiler hoists null check above stage pick; empty-id global loaded differently
 0x7100dd09a0,148,drafts/game/UnkTU2544/fn_7100dd09a0.cpp,operations,56.8,16,lean-b4,inner search loop is pointer-strength-reduced; original indexes with u64 j and neg-count compare
 0x7100dd2ca8,1260,drafts/game/UnkTU2545/fn_7100dd2ca8.cpp,control flow,46.4,168,lean,
+0x7100ddb4f0,384,drafts/game/UnkTU2547/fn_7100ddb4f0.cpp,operations,31.2,64,lean-ob2,block layout: shared default-table tail and branch order differ
+0x7100dddc28,632,drafts/game/UnkTU2548/fn_7100dddc28.cpp,control flow,72.2,41,lean-ob2,fill loop must reload data after each vtable store: matches only with the default ctor storing the vtable thro
 0x7100de4a60,312,drafts/game/UnkTU2553/fn_7100de4a60.cpp,calls,65.8,26,lean-b1,tail shape of the last or-chain and one call count differ
 0x7100de8ac4,508,drafts/game/UnkTU2553/fn_7100de8ac4.cpp,calls,10.2,82,lean-p1,loop body identical; original peels the first element of the 0x208-byte entry loop; ours does not
 0x7100de917c,364,drafts/game/UnkTU2553/fn_7100de917c.cpp,operations,50.5,45,lean-b1,key id store comes after its refcount increment; list element zero-then-defaults init order (flags first) diff
@@ -441,7 +475,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e0ebdc,144,drafts/game/CLightManager/fn_7100e0ebdc.cpp,operations,47.2,18,lean-b6,store to out->node merged with hoisted add x0 (post-index); original adds x0 only in the destroy branch
 0x7100e13abc,328,drafts/game/UnkTU2557/fn_7100e13abc.cpp,registers or order,96.3,3,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2557/fn_7100e13abc.cpp:77 fn_7100e13abc: defined as void* fn_7100e13abc(UnkPoolMap_b0247*; const CFilePathStrId*; UnkTexObject_b0247**; UnkWidgetArg*) -> declar...
 0x7100e1cbdc,148,drafts/game/UnkTU2560/fn_7100e1cbdc.cpp,operations,94.6,2,overnight,
-0x7100e1d620,368,drafts/game/UnkTU2560/fn_7100e1d620.cpp,operations,94.6,5,overnight,
 0x7100e2d4ec,284,drafts/game/UnkTU2562/fn_7100e2d4ec.cpp,operations,9.9,57,lean-b5,box merge scheduling and loop shape differ; z loaded as integer word in original
 0x7100e2eef8,312,drafts/game/UnkTU2562/fn_7100e2eef8.cpp,registers or order,71.8,22,lean-b5,same instructions; register/order differences
 0x7100e2f030,220,drafts/game/UnkTU2562/fn_7100e2f030.cpp,operations,29.1,38,lean-b5,loop induction var: original keeps the active-byte pointer and post-index fuses slot address; ours uses flags/
@@ -470,13 +503,13 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e7c334,256,drafts/game/UnkTU2565/fn_7100e7c334.cpp,operations,12.5,56,lean-b5,tail pointer (self+0x5f58) kept in a register across memset; frame and store order differ
 0x7100e8e8bc,496,drafts/game/UnkTU2566/fn_7100e8e8bc.cpp,build fails,,,lean-o1,layout matches; keys pointer and offset IV registers swapped in the first search; one extra instruction later
 0x7100e8f600,188,drafts/game/UnkTU2566/fn_7100e8f600.cpp,conditions,83.0,8,lean-b1,order of the two type-id compares / which class getter call is the fallthrough
-0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,operations,75.3,21,pilot50,operations: orr operand order; fcsel order; fade branch layout
+0x7100e903ec,340,drafts/game/UnkTU2566/fn_7100e903ec.cpp,conditions,77.6,19,lean-r2,hidden-flag merge order of and/orr; clamp blocks laid out differently (shared store)
 0x7100e90540,380,drafts/game/UnkTU2566/fn_7100e90540.cpp,control flow,22.1,73,lean-b1,hash-table walk control flow (loop shape; version read via self-relative offset) differs
 0x7100e90c28,580,drafts/game/UnkTU2566/fn_7100e90c28.cpp,operations,89.7,15,lean-o2,first argument of fn_7100148128: original passes the created object kept in x8 (mov x0;x8); ours reloads the s
 0x7100e911c8,196,drafts/game/UnkTU2566/fn_7100e911c8.cpp,registers or order,98.0,1,overnight,
 0x7100e948b4,440,drafts/game/UnkTU2566/fn_7100e948b4.cpp,operations,63.4,39,lean-p1,scheduling of the screen-size loads (s8/s9 swapped) and two extra instructions in the offset/saved-view part;
 0x7100e9565c,332,drafts/game/UnkTU2566/fn_7100e9565c.cpp,operations,15.7,65,lean-b1,pool global loaded PC-relative not via GOT; first-element release and shift loop differ; erase-by-value on id
-0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,conditions,93.1,14,lean,
+0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,registers or order,93.6,13,lean-r2,keys loop: original reloads count after the moved-from id store (no-TBAA store; union in fn_71000a6ca8); ours
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9af80,632,drafts/game/UnkTU2566/fn_7100e9af80.cpp,operations,50.0,70,lean-o2,first 80 insns match; ours sinks the last point's bounds update into a shared tail where the original keeps it
 0x7100e9b7d4,320,drafts/game/UnkTU2566/fn_7100e9b7d4.cpp,operations,59.0,31,lean-b1,combining found and value: original ANDs the raw call result with the flag; ours masks it and uses tst/cset
@@ -524,7 +557,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100f14ca0,268,drafts/game/UnkTU2596/fn_7100f14ca0.cpp,operations,97.0,2,overnight,
 0x7100f5d270,256,drafts/game/UnkTU2599/fn_7100f5d270.cpp,registers or order,95.3,3,overnight,
 0x7100f86fec,340,drafts/game/UnkTU2601/fn_7100f86fec.cpp,registers or order,94.1,5,overnight,
-0x7100f89e44,404,drafts/game/UnkTU2602/fn_7100f89e44.cpp,conditions,98.0,2,overnight,
 0x7100f984ac,300,drafts/game/UnkTU2607/fn_7100f984ac.cpp,registers or order,94.7,4,lean-b1,instruction order only: progress store vs adrp; mov x20/x22
 0x7100f985d8,240,drafts/game/UnkTU2607/fn_7100f985d8.cpp,operations,50.0,28,lean-b1,range pair phi kept in float regs (original in w regs); register choice and branch layout differ
 0x7100f9a190,316,drafts/game/UnkTU2607/fn_7100f9a190.cpp,operations,41.8,45,lean-b1,progress store through computed address with int constant (sibling needs empty barrier); rest same
@@ -589,7 +621,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710106fe80,332,drafts/game/UnkTU2661/fn_710106fe80.cpp,operations,36.1,51,lean-b3,holder destructor reloads owner pointer after clearing its back-link; ours does not (and GOT global not shown
 0x7101070630,92,drafts/game/UnkTU2661/fn_7101070630.cpp,operations,26.1,15,lean-b3,index offset masked to 35 bits and memcpy call form
 0x7101071bc0,792,drafts/game/UnkTU2661/fn_7101071bc0.cpp,control flow,60.1,79,fable1,
-0x7101077a70,456,drafts/game/UnkTU2666/fn_7101077a70.cpp,operations,98.2,2,overnight,"uses fn_7101077a70_shared.h, its batch's scratch header"
 0x710107bc60,400,drafts/game/UnkTU2666/fn_710107bc60.cpp,operations,50.0,50,lean-b4,stack slot order (value float and string-id temps) and GOT register choice; one attempt unused
 0x710107e260,392,drafts/game/UnkTU2666/fn_710107e260.cpp,registers or order,99.0,1,overnight,
 0x7101086370,360,drafts/game/UnkTU2666/fn_7101086370.cpp,match,100.0,0,lean-b4,byte match only with single-member unions around id (0x1780) and reads (0x44); forcing the id reload after the
@@ -689,7 +720,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71011b77e8,516,drafts/game/UnkTU2744/fn_71011b77e8.cpp,control flow,9.4,116,lean-p1,block layout (search loop unswitched on null key; tail pop out of line); node handle not reloaded after unlink
 0x71011b9a1c,424,drafts/game/UnkTU2744/fn_71011b9a1c.cpp,registers or order,99.1,1,overnight,
 0x71011d968c,244,drafts/game/GUI/CDisplayObjectContainer/fn_71011d968c.cpp,control flow,15.9,51,pilot50,search loop exit condition: clang emits cset/orr instead of csel+ccmp
-0x71011fd160,212,drafts/game/GUI/CSpriteGrid/fn_71011fd160.cpp,operations,86.8,7,test40,stack slot assignment of three 8-byte locals
+0x71011fd160,212,drafts/game/GUI/CSpriteGrid/fn_71011fd160.cpp,registers or order,96.2,2,lean-r2,registers only: the copied frame size is loaded into w8/w9 swapped (ldp/stp after fn_71011b7fc8)
 0x710120fe24,268,drafts/game/UnkTU2772/fn_710120fe24.cpp,control flow,13.4,54,lean-b3,original is one jump table over kinds 1-6 whose cases re-compare the kind; the switch form gives a different d
 0x710120ff8c,48,drafts/game/UnkTU2772/fn_710120ff8c.cpp,operations,66.7,4,lean-b3,index sign-extend folds into sbfiz; table address form
 0x710120ffc8,384,drafts/game/UnkTU2772/fn_710120ffc8.cpp,control flow,1.0,83,lean-b3,original jump table cases re-compare the kind before each lookup (22 branches vs 16); the chain or switch form
