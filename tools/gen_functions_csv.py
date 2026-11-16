@@ -254,7 +254,16 @@ def main() -> int:
     # They are template instances placed in whichever unit uses the enum, so they say nothing about their
     # neighbours' subsystem (below).
     import gen_types
-    value_ops = gen_types.reflection_names(orig, args.version)
+    keyed: dict[int, str] = {}
+    value_ops = gen_types.reflection_names(orig, args.version, keyed)
+    # a type-keyed description's getter and constructor take the name its source defines them under, in place
+    # of reflection data's spelling of the type (a name no other function has)
+    taken = {n for n, _ in names.values()}
+    # those reflection data already named stay neighbours for the subsystem inference below, as before
+    anchors = {a for a in keyed if a in names}
+    for a, n in sorted(keyed.items()):
+        if a in funcs and (n not in taken or names.get(a, ("",))[0] == n):
+            names[a] = (n, "reflection")
     for a, n in sorted(value_ops.items()):
         put(a, n, "reflection")
 
@@ -298,7 +307,7 @@ def main() -> int:
             s = subsystem_for(owner)
             if s:
                 sub[a] = s
-    named_idx = [i for i, a in enumerate(ordered) if a in sub and a not in value_ops]
+    named_idx = [i for i, a in enumerate(ordered) if a in sub and (a not in value_ops or a in anchors)]
     for left, right in zip(named_idx, named_idx[1:]):
         if sub[ordered[left]] == sub[ordered[right]] and right - left <= 64:
             for i in range(left + 1, right):

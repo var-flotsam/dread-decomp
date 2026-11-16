@@ -3520,9 +3520,14 @@ def defined_outside(out: Path, also: tuple[str, ...] = ()) -> set[int]:
                 # source: the addresses data/functions/ gives those names.
                 for t in VALUE_OPS_RE.findall(text):
                     skip |= named_value_ops().get(t, set())
+                    # and its getter, when its description is keyed by T (refl_GetType<T>, base/reflection/CPointerType.h)
+                    if f"base::reflection::PointerType<{t}>::Get();" in text:
+                        skip |= named_value_ops().get(("getter", t), set())
                 # A vector's or small dictionary's functions, from CollectionTypeMapper<C> (base/reflection/CollectionTypeMapper.h).
                 for c in MAPPER_DESC_RE.findall(text):
                     skip |= named_value_ops().get(("mapper", c), set())
+                    # and its constructor, when its description is keyed by C (refl_InitType<C>)
+                    skip |= named_value_ops().get(c, set())
     return skip
 
 
@@ -3533,13 +3538,15 @@ _VALUE_OPS: dict[str, set[int]] | None = None
 
 
 def named_value_ops() -> dict:
-    """{type: addresses} of the functions data/functions/ names ValueOps<T>::<op> or refl_InitType<T>, and
+    """{type: addresses} of the functions data/functions/ names ValueOps<T>::<op>, refl_InitType<T> or
+    refl_GetType<T> (under ("getter", T); a type-keyed description's constructor and getter), and
     {("mapper", C): addresses} of those it names CollectionTypeMapper<C>::<op>."""
     global _VALUE_OPS
     if _VALUE_OPS is None:
         from gen_types import source_spelling  # the sources' spelling of a std::unique_ptr
         _VALUE_OPS = {}
         pat = re.compile(r"^base::reflection::(?:ValueOps<(.+)>::\w+|refl_InitType<(.+)>)$")
+        getter = re.compile(r"^base::reflection::refl_GetType<(.+)>$")
         mapper = re.compile(r"^base::reflection::CollectionTypeMapper<(.+)>::\w+$")
         for f in sorted((ROOT / "data" / "functions").glob("main_*.csv")):
             with f.open(newline="", encoding="utf-8") as fh:
@@ -3550,6 +3557,8 @@ def named_value_ops() -> dict:
                         _VALUE_OPS.setdefault(m.group(1) or m.group(2), set()).add(int(r["address"], 16))
                     elif m := mapper.match(name):
                         _VALUE_OPS.setdefault(("mapper", m.group(1)), set()).add(int(r["address"], 16))
+                    elif m := getter.match(name):
+                        _VALUE_OPS.setdefault(("getter", m.group(1)), set()).add(int(r["address"], 16))
     return _VALUE_OPS
 
 

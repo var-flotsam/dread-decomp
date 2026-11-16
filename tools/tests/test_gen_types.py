@@ -217,7 +217,44 @@ class EnumValueOps(unittest.TestCase):
         import asmdiff
         self.assertEqual(asmdiff.name_aliases("base::reflection::refl_InitType<base::EFoo>"),
                          ["base::reflection::CEnumType::CEnumType<base::EFoo>",
-                          "base::reflection::CFlagsetType::CFlagsetType<base::EFoo>"])
+                          "base::reflection::CFlagsetType::CFlagsetType<base::EFoo>",
+                          "base::reflection::CPointerType::CPointerType<base::EFoo>",
+                          "base::reflection::CCollectionType::CCollectionType<base::EFoo>"])
+        self.assertEqual(asmdiff.name_aliases("base::reflection::refl_GetType<a::CFoo*>"),
+                         ["base::reflection::PointerType<a::CFoo*>::Get"])
+
+
+class TypeKeyed(unittest.TestCase):
+    BODY = ["    static constexpr u64 size = 0x8;", "    static constexpr bool owned = false;",
+            "    static constexpr SlotFn construct = &fn_7100000010;", "    static constexpr SlotFn get = &fn_7100000020;",
+            "    static const CType* pointee() { return fn_7100000030(); }"]
+
+    def test_pointer_keyed_by_type(self):
+        out = gt.emit_pointer_ops(0x7100000100, "a::CFoo*", 0x7100000200, self.BODY, "a::CFoo*", keyed=True)
+        self.assertFalse(any("UnkRefl" in ln or "fn_7100000100" in ln or "fn_7100000200" in ln for ln in out))
+        self.assertIn("struct base::reflection::PointerTypeDescription<a::CFoo*> "
+                      ": base::reflection::ValueOpsDescription<a::CFoo*> {", out)
+        self.assertIn('    static constexpr const char* name = "a::CFoo*";', out)
+        self.assertNotIn(self.BODY[0], out)  # size comes from the base
+        self.assertNotIn(self.BODY[2], out)  # so does construct
+        self.assertIn(self.BODY[3], out)
+        self.assertEqual(out[-2], "template base::reflection::CPointerType::CPointerType("
+                                  "const base::global::CStrId&, a::CFoo**, void*);")
+        self.assertEqual(out[-1], "template const base::reflection::CType* base::reflection::PointerType<a::CFoo*>::Get();")
+        self.assertEqual(gt.KEYED_INIT_RE.findall("\n".join(out)), ["a::CFoo*"])
+
+    def test_keyed_only_when_one_getter_has_the_name(self):
+        pairs = [(1, "a::CFoo*", 10, []), (2, "a::CBar*", 20, []), (3, "a::CBaz*", 30, [])]
+        with mock.patch.dict(gt.POINTER_NAMES, {"a::CFoo*": 1, "a::CBar*": 2, "a::CBaz*": 1}, clear=True):
+            keyed = gt.keyed_pointers({1: "a::CFoo*", 2: "a::CBar*", 3: "a::CBaz*"}, pairs, [(9, "a::CBaz*", [])])
+        self.assertEqual(keyed, {1: "a::CFoo*"})
+
+    def test_collections_keyed_once_per_type(self):
+        colls = {10: ("V<int>", "int", {"count"}), 20: ("V<int>", "int", {"count"}), 30: ("V<float>", "float", {"count"})}
+        self.assertEqual(gt.keyed_collections(colls), {30})
+        self.assertEqual(gt.type_keyed_names(None, 30, "V<float>"), {30: "base::reflection::refl_InitType<V<float>>"})
+        self.assertEqual(gt.type_keyed_names(1, 10, "a::CFoo*"),
+                         {10: "base::reflection::refl_InitType<a::CFoo*>", 1: "base::reflection::refl_GetType<a::CFoo*>"})
 
     def test_flagset_named_form(self):
         body = ["    static constexpr u64 size = 0x4;", "    static constexpr SlotFn hash = &fn_7100000044;",

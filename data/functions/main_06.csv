@@ -381,15 +381,15 @@ address,size,name,name_source,subsystem,status
 0x710060f03c,36,fn_710060f03c,unknown,unknown,O
 0x710060f060,220,fn_710060f060,unknown,unknown,O
 0x710060f13c,220,base::reflection::refl_GetType<std::unique_ptr<CShootDCBones>>,reflection,engine/reflection,O
-0x710060f218,220,fn_710060f218,unknown,unknown,O
-0x710060f2f4,220,fn_710060f2f4,unknown,unknown,O
+0x710060f218,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShootDCBones, std::__1::default_delete<CShootDCBones>>>>::TElementIterator>",reflection,engine/reflection,O
+0x710060f2f4,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShootDCBones, std::__1::default_delete<CShootDCBones>>>>::TElementConstIterator>",reflection,engine/reflection,O
 0x710060f3d0,900,fn_710060f3d0,unknown,unknown,O
 0x710060f754,388,fn_710060f754,unknown,unknown,O
 0x710060f8d8,220,fn_710060f8d8,unknown,unknown,O
 0x710060f9b4,900,fn_710060f9b4,unknown,unknown,O
 0x710060fd38,388,fn_710060fd38,unknown,unknown,O
 0x710060febc,220,fn_710060febc,unknown,unknown,O
-0x710060ff98,480,fn_710060ff98,unknown,unknown,O
+0x710060ff98,480,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<CShootDCBones, std::__1::default_delete<CShootDCBones>>>>",reflection,engine/reflection,O
 0x7100610178,4,COffset::refl_AddAttributes,reflection,game,O
 0x710061017c,240,COffset::refl_GetClass,reflection,game,O
 0x710061026c,972,COffset::refl_AddFields,reflection,game,O
@@ -399,15 +399,15 @@ address,size,name,name_source,subsystem,status
 0x71006108f0,128,fn_71006108f0,unknown,game?,O
 0x7100610970,220,fn_7100610970,unknown,game?,O
 0x7100610a4c,220,fn_7100610a4c,unknown,game?,O
-0x7100610b28,220,fn_7100610b28,unknown,game?,O
-0x7100610c04,220,fn_7100610c04,unknown,game?,O
+0x7100610b28,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<COffset, std::__1::default_delete<COffset>>>>::TElementIterator>",reflection,engine/reflection,O
+0x7100610c04,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<COffset, std::__1::default_delete<COffset>>>>::TElementConstIterator>",reflection,engine/reflection,O
 0x7100610ce0,900,fn_7100610ce0,unknown,game?,O
 0x7100611064,388,fn_7100611064,unknown,game?,O
 0x71006111e8,220,fn_71006111e8,unknown,game?,O
 0x71006112c4,900,fn_71006112c4,unknown,game?,O
 0x7100611648,388,fn_7100611648,unknown,game?,O
 0x71006117cc,220,fn_71006117cc,unknown,game?,O
-0x71006118a8,480,fn_71006118a8,unknown,game?,O
+0x71006118a8,480,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<COffset, std::__1::default_delete<COffset>>>>",reflection,engine/reflection,O
 0x7100611a88,220,fn_7100611a88,unknown,game?,O
 0x7100611b64,220,fn_7100611b64,unknown,game?,O
 0x7100611c40,912,fn_7100611c40,unknown,game?,O
@@ -426,15 +426,15 @@ address,size,name,name_source,subsystem,status
 0x7100613044,36,fn_7100613044,unknown,unknown,O
 0x7100613068,220,fn_7100613068,unknown,unknown,O
 0x7100613144,220,base::reflection::refl_GetType<std::unique_ptr<CPattern>>,reflection,engine/reflection,O
-0x7100613220,220,fn_7100613220,unknown,unknown,O
-0x71006132fc,220,fn_71006132fc,unknown,unknown,O
+0x7100613220,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CPattern, std::__1::default_delete<CPattern>>>>::TElementIterator>",reflection,engine/reflection,O
+0x71006132fc,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CPattern, std::__1::default_delete<CPattern>>>>::TElementConstIterator>",reflection,engine/reflection,O
 0x71006133d8,900,fn_71006133d8,unknown,unknown,O
 0x710061375c,388,fn_710061375c,unknown,unknown,O
 0x71006138e0,220,fn_71006138e0,unknown,unknown,O
 0x71006139bc,900,fn_71006139bc,unknown,unknown,O
 0x7100613d40,388,fn_7100613d40,unknown,unknown,O
 0x7100613ec4,220,fn_7100613ec4,unknown,unknown,O
-0x7100613fa0,480,fn_7100613fa0,unknown,unknown,O
+0x7100613fa0,480,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<CPattern, std::__1::default_delete<CPattern>>>>",reflection,engine/reflection,O
 0x7100614180,4,CCharClassNailongAIComponent::refl_AddAttributes,reflection,game/characters,O
 0x7100614184,244,CCharClassNailongAIComponent::refl_GetClass,reflection,game/characters,O
 0x7100614278,2868,CCharClassNailongAIComponent::refl_AddFields,reflection,game/characters,O
@@ -474,7 +474,7 @@ address,size,name,name_source,subsystem,status
 0x7100615698,16,fn_7100615698,unknown,unknown,O
 0x71006156a8,32,fn_71006156a8,unknown,unknown,O
 0x71006156c8,72,fn_71006156c8,unknown,unknown,O
-0x7100615710,360,fn_7100615710,unknown,unknown,O
+0x7100615710,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShootDCBones, std::__1::default_delete<CShootDCBones>>>>::TElementIterator>",reflection,engine/reflection,O
 0x7100615878,88,fn_7100615878,unknown,unknown,O
 0x71006158d0,12,fn_71006158d0,unknown,unknown,O
 0x71006158dc,16,fn_71006158dc,unknown,unknown,O
@@ -487,7 +487,7 @@ address,size,name,name_source,subsystem,status
 0x710061593c,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShootDCBones, std::__1::default_delete<CShootDCBones>>>>::TElementIterator>::Destroy",reflection,engine/reflection,O
 0x7100615940,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShootDCBones, std::__1::default_delete<CShootDCBones>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
 0x7100615954,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShootDCBones, std::__1::default_delete<CShootDCBones>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
-0x7100615968,360,fn_7100615968,unknown,unknown,O
+0x7100615968,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShootDCBones, std::__1::default_delete<CShootDCBones>>>>::TElementConstIterator>",reflection,engine/reflection,O
 0x7100615ad0,88,fn_7100615ad0,unknown,unknown,O
 0x7100615b28,12,fn_7100615b28,unknown,unknown,O
 0x7100615b34,16,fn_7100615b34,unknown,unknown,O
@@ -551,7 +551,7 @@ address,size,name,name_source,subsystem,status
 0x7100616914,16,fn_7100616914,unknown,unknown,O
 0x7100616924,32,fn_7100616924,unknown,unknown,O
 0x7100616944,72,fn_7100616944,unknown,unknown,O
-0x710061698c,360,fn_710061698c,unknown,unknown,O
+0x710061698c,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<COffset, std::__1::default_delete<COffset>>>>::TElementIterator>",reflection,engine/reflection,O
 0x7100616af4,88,fn_7100616af4,unknown,unknown,O
 0x7100616b4c,12,fn_7100616b4c,unknown,unknown,O
 0x7100616b58,16,fn_7100616b58,unknown,unknown,O
@@ -564,7 +564,7 @@ address,size,name,name_source,subsystem,status
 0x7100616bb8,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<COffset, std::__1::default_delete<COffset>>>>::TElementIterator>::Destroy",reflection,engine/reflection,O
 0x7100616bbc,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<COffset, std::__1::default_delete<COffset>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
 0x7100616bd0,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<COffset, std::__1::default_delete<COffset>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
-0x7100616be4,360,fn_7100616be4,unknown,unknown,O
+0x7100616be4,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<COffset, std::__1::default_delete<COffset>>>>::TElementConstIterator>",reflection,engine/reflection,O
 0x7100616d4c,88,fn_7100616d4c,unknown,unknown,O
 0x7100616da4,12,fn_7100616da4,unknown,unknown,O
 0x7100616db0,16,fn_7100616db0,unknown,unknown,O
@@ -682,7 +682,7 @@ address,size,name,name_source,subsystem,status
 0x7100618960,16,fn_7100618960,unknown,unknown,O
 0x7100618970,32,fn_7100618970,unknown,unknown,O
 0x7100618990,72,fn_7100618990,unknown,unknown,O
-0x71006189d8,360,fn_71006189d8,unknown,unknown,O
+0x71006189d8,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CPattern, std::__1::default_delete<CPattern>>>>::TElementIterator>",reflection,engine/reflection,O
 0x7100618b40,88,fn_7100618b40,unknown,unknown,O
 0x7100618b98,12,fn_7100618b98,unknown,unknown,O
 0x7100618ba4,16,fn_7100618ba4,unknown,unknown,O
@@ -695,7 +695,7 @@ address,size,name,name_source,subsystem,status
 0x7100618c04,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CPattern, std::__1::default_delete<CPattern>>>>::TElementIterator>::Destroy",reflection,engine/reflection,O
 0x7100618c08,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CPattern, std::__1::default_delete<CPattern>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
 0x7100618c1c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CPattern, std::__1::default_delete<CPattern>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
-0x7100618c30,360,fn_7100618c30,unknown,unknown,O
+0x7100618c30,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CPattern, std::__1::default_delete<CPattern>>>>::TElementConstIterator>",reflection,engine/reflection,O
 0x7100618d98,88,fn_7100618d98,unknown,unknown,O
 0x7100618df0,12,fn_7100618df0,unknown,unknown,O
 0x7100618dfc,16,fn_7100618dfc,unknown,unknown,O
@@ -2444,8 +2444,8 @@ address,size,name,name_source,subsystem,status
 0x7100665544,384,base::reflection::refl_InitType<CCharClassRodomithonXAIComponent::SFirePillarConfig::EType>,reflection,engine/reflection,O
 0x71006656c4,704,fn_71006656c4,unknown,unknown,O
 0x7100665984,388,fn_7100665984,unknown,unknown,O
-0x7100665b08,220,fn_7100665b08,unknown,unknown,O
-0x7100665be4,220,fn_7100665be4,unknown,unknown,O
+0x7100665b08,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>,reflection,engine/reflection,O
+0x7100665be4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100665cc0,900,fn_7100665cc0,unknown,unknown,O
 0x7100666044,388,fn_7100666044,unknown,unknown,O
 0x71006661c8,220,fn_71006661c8,unknown,unknown,O
@@ -2462,7 +2462,7 @@ address,size,name,name_source,subsystem,status
 0x7100666b70,96,fn_7100666b70,unknown,unknown,O
 0x7100666bd0,12,fn_7100666bd0,unknown,unknown,O
 0x7100666bdc,12,fn_7100666bdc,unknown,unknown,O
-0x7100666be8,364,fn_7100666be8,unknown,unknown,O
+0x7100666be8,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>,reflection,engine/reflection,O
 0x7100666d54,96,fn_7100666d54,unknown,unknown,O
 0x7100666db4,12,fn_7100666db4,unknown,unknown,O
 0x7100666dc0,16,fn_7100666dc0,unknown,unknown,O
@@ -2475,7 +2475,7 @@ address,size,name,name_source,subsystem,status
 0x7100666e20,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>::Destroy,reflection,engine/reflection,O
 0x7100666e24,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x7100666e38,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x7100666e4c,364,fn_7100666e4c,unknown,unknown,O
+0x7100666e4c,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<CCharClassRodomithonXAIComponent::TVFirePillarConfigs>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100666fb8,96,fn_7100666fb8,unknown,unknown,O
 0x7100667018,12,fn_7100667018,unknown,unknown,O
 0x7100667024,16,fn_7100667024,unknown,unknown,O
@@ -2687,8 +2687,8 @@ address,size,name,name_source,subsystem,status
 0x710066e054,384,base::reflection::refl_InitType<CCharClassRodotukAIComponent::SAbsorbConfig::EType>,reflection,engine/reflection,O
 0x710066e1d4,2012,fn_710066e1d4,unknown,unknown,O
 0x710066e9b0,388,fn_710066e9b0,unknown,unknown,O
-0x710066eb34,220,fn_710066eb34,unknown,unknown,O
-0x710066ec10,220,fn_710066ec10,unknown,unknown,O
+0x710066eb34,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>,reflection,engine/reflection,O
+0x710066ec10,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator>,reflection,engine/reflection,O
 0x710066ecec,900,fn_710066ecec,unknown,unknown,O
 0x710066f070,388,fn_710066f070,unknown,unknown,O
 0x710066f1f4,220,fn_710066f1f4,unknown,unknown,O
@@ -2706,7 +2706,7 @@ address,size,name,name_source,subsystem,status
 0x710066fc38,36,fn_710066fc38,unknown,unknown,O
 0x710066fc5c,12,fn_710066fc5c,unknown,unknown,O
 0x710066fc68,12,fn_710066fc68,unknown,unknown,O
-0x710066fc74,364,fn_710066fc74,unknown,unknown,O
+0x710066fc74,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>,reflection,engine/reflection,O
 0x710066fde0,96,fn_710066fde0,unknown,unknown,O
 0x710066fe40,12,fn_710066fe40,unknown,unknown,O
 0x710066fe4c,16,fn_710066fe4c,unknown,unknown,O
@@ -2719,7 +2719,7 @@ address,size,name,name_source,subsystem,status
 0x710066feac,4,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>::Destroy,reflection,engine/reflection,O
 0x710066feb0,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>::CopyAssign,reflection,engine/reflection,O
 0x710066fec4,20,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementIterator>::MoveAssign,reflection,engine/reflection,O
-0x710066fed8,364,fn_710066fed8,unknown,unknown,O
+0x710066fed8,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<CCharClassRodotukAIComponent::TVAbsorbConfigs>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100670044,96,fn_7100670044,unknown,unknown,O
 0x71006700a4,12,fn_71006700a4,unknown,unknown,O
 0x71006700b0,16,fn_71006700b0,unknown,unknown,O
