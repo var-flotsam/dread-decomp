@@ -12,6 +12,8 @@
 #include <new>
 #include "../../lib/libcxx/sort.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU107.h"
+#include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkVec2_710010e470 {
@@ -92,20 +94,15 @@ struct UnkBoxArray_710010e470 {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-void fn_710010e364(UnkBoxArray_710010e470* self, u32 n);
+// fn_710010e364 on this view of the array (unit 107's UnkBoxVector_b0236, the same layout).
+static inline void Resize(UnkBoxArray_710010e470* self, u32 n) {
+    fn_710010e364(reinterpret_cast<UnkBoxVector_b0236*>(self), n);
+}
 
-// The empty box built from its two corners, the box around a range, and the range's split
-// position and spread (both returned in memory).
+// The empty box built from its two corners and the box around a range. The range's split position
+// (fn_710010df80) and spread (fn_710010e15c) are in game/UnkTU107.h.
 void fn_710010d61c(E* out, const f32* corners);
 void fn_710010d68c(E* box, E* const* first, E* const* last);
-struct UnkBoxSplit_710010e470 {
-    f32 v[2];
-    f32 field_0x8[3];
-    UnkBoxSplit_710010e470(const UnkBoxSplit_710010e470& other);
-};
-UnkBoxSplit_710010e470 fn_710010df80(void*, const UnkBoxArray_710010e470* boxes, u32 first, u32 last);
-UnkBoxSplit_710010e470 fn_710010e15c(void*, const UnkBoxArray_710010e470* boxes, u32 first, u32 last,
-                                     const UnkBoxSplit_710010e470* split);
 
 // Builds the tree over boxes [first, last): a node with the range's bounds, then either the box itself
 // (a leaf) or the two halves split on the axis with the larger spread, at the split position (or at the
@@ -113,7 +110,7 @@ UnkBoxSplit_710010e470 fn_710010e15c(void*, const UnkBoxArray_710010e470* boxes,
 // index after its subtree.
 // NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
 void fn_710010d9fc(UnkBoxArray_710010e470* tree, UnkBoxArray_710010e470* boxes, u32 first, u32 last) {
-    fn_710010e364(tree, tree->count + 1);
+    Resize(tree, tree->count + 1);
     E* node = tree->count ? &tree->data[tree->count - 1] : tree->data;
     {
         const f32 empty[4] = {3.4028235e38f, 3.4028235e38f, -3.4028235e38f, -3.4028235e38f};
@@ -144,7 +141,7 @@ void fn_710010d9fc(UnkBoxArray_710010e470* tree, UnkBoxArray_710010e470* boxes, 
                     boxes->capacity = c;
                 }
             }
-            fn_710010e364(boxes, first + 1);
+            Resize(boxes, first + 1);
         }
         const E& box = boxes->data[first];
         node->min_x = box.min_x;
@@ -153,10 +150,12 @@ void fn_710010d9fc(UnkBoxArray_710010e470* tree, UnkBoxArray_710010e470* boxes, 
         node->max_y = box.max_y;
         word = box.field_0x10;
     } else {
-        UnkBoxSplit_710010e470 split = fn_710010df80(nullptr, boxes, first, last);
-        UnkBoxSplit_710010e470 spread = fn_710010e15c(nullptr, boxes, first, last, &split);
-        u32 axis = spread.v[0] < spread.v[1];
-        f32 at = split.v[axis];
+        // The same array, as unit 107 lays it out.
+        UnkBoxVector_b0236* vector = reinterpret_cast<UnkBoxVector_b0236*>(boxes);
+        UnkVec3f split = fn_710010df80(nullptr, vector, first, last);
+        UnkVec3f spread = fn_710010e15c(nullptr, vector, first, last, &split);
+        u32 axis = spread.x < spread.y;
+        f32 at = axis ? split.y : split.x;
         E* lo = boxes->data + first;
         E* hi = boxes->data + last;
         E* mid = std::partition(lo, hi, [axis, at](const E& b) { return b.Center()[axis] < at; });
