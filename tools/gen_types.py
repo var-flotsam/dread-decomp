@@ -742,11 +742,15 @@ MAPPER_HELPERS = {"add_copy": ("InsertCopy", "void {C}::InsertCopy({E} const&, u
 VECTOR_RE = re.compile(r"base::global::CRntVector<(.+)>")
 SMALL_DICT_RE = re.compile(r"base::global::CRntSmallDictionary<(.+)>")
 DICT_RE = re.compile(r"base::global::CRntDictionary<(.+)>")
-MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|VectorHeader|SmallDictionary(?:Keyed|Header)?"
+MAPPER_DESC_RE = re.compile(r": base::reflection::(?:Collection|Vector(?:Header|Access)|SmallDictionary(?:Keyed|Header)?"
                             r"|Dictionary(?:Find)?)MapperDescription<(.+)> \{$", re.M)
 # The slots that touch only a vector's header, for an element that is only declared
 # (VectorHeaderMapperDescription).
 VECTOR_HEADER_SLOTS = ("construct", "move_construct", "hash", "count", "begin")
+# And those that also index its elements, for an element whose size is known though what it holds is only
+# declared, a std::unique_ptr or a vector (VectorAccessMapperDescription).
+VECTOR_ACCESS_SLOTS = VECTOR_HEADER_SLOTS + ("at", "find", "end")
+SIZED_ELEMENT_TEMPLATES = (UNIQUE_PTR, "base::global::CRntVector")
 # The slots CollectionTypeMapper writes for a small dictionary so far (SmallDictionaryMapperDescription), and
 # those of them that touch only its header, for a value that is only declared
 # (SmallDictionaryHeaderMapperDescription).
@@ -805,6 +809,13 @@ def mapped_vector(body: list[str], named_ptrs: dict[int, str], enums: frozenset[
     if declarable_element(element) and set(VECTOR_HEADER_SLOTS) <= set(collection_slots(body)):
         return it.group(1), element
     return None
+
+
+def sized_element(element: str) -> bool:
+    """Whether a declared element's size is known without its declarations: a std::unique_ptr or a vector of
+    anything (SIZED_ELEMENT_TEMPLATES)."""
+    node = parse_type(element)
+    return node is not None and node[1] is not None and not node[2] and node[0] in SIZED_ELEMENT_TEMPLATES
 
 
 def element_iterator(body: list[str], named_ptrs: dict[int, str]) -> re.Match | None:
@@ -913,7 +924,10 @@ def mapper_slots(collection: str, enums: frozenset[str] = frozenset()) -> tuple[
                 + ("type_of",))
     if DICT_RE.fullmatch(collection):
         return DICT_SLOTS + (DICT_FIND_SLOTS if dictionary_finds(collection) else ()) + ("type_of",)
-    return tuple(MAPPER_SLOTS) if whole_collection(collection, enums) else VECTOR_HEADER_SLOTS + ("type_of",)
+    if whole_collection(collection, enums):
+        return tuple(MAPPER_SLOTS)
+    v = VECTOR_RE.fullmatch(collection)
+    return (VECTOR_ACCESS_SLOTS if v and sized_element(v.group(1)) else VECTOR_HEADER_SLOTS) + ("type_of",)
 
 
 def call_target(orig: asmdiff.Original, addr: int) -> int | None:
@@ -975,7 +989,8 @@ def emit_collection_ops(init: int, body: list[str], vector: str, element: str, m
             else "SmallDictionaryMapperDescription" if small_dict
             else "DictionaryFindMapperDescription" if dictionary_finds(vector)
             else "DictionaryMapperDescription" if dictionary
-            else "CollectionMapperDescription" if whole else "VectorHeaderMapperDescription")
+            else "CollectionMapperDescription" if whole
+            else "VectorAccessMapperDescription" if sized_element(element) else "VectorHeaderMapperDescription")
     out[out.index(desc)] = (f"struct base::reflection::CollectionTypeDescription<UnkRefl_fn_{init:x}> "
                             f": base::reflection::{base}<{vector}> {{")
     node = pointer_value_type(f"base::reflection::CollectionTypeMapper<{vector}>::TElementIterator")[1]

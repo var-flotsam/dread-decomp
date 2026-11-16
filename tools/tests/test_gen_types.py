@@ -355,6 +355,14 @@ class TypeNames(unittest.TestCase):
         owned = "base::global::CRntVector<std::unique_ptr<CFoo>>"
         named_owned = {0x7100000520: named[0x7100000520].replace("CActor*", "std::unique_ptr<CFoo>")}
         self.assertEqual(gt.mapped_vector(body, named_owned, frozenset()), (owned, "std::unique_ptr<CFoo>"))
+        # an element whose size is known: the slots that index it too
+        self.assertEqual(gt.mapper_slots(owned), gt.VECTOR_ACCESS_SLOTS + ("type_of",))
+        out = gt.emit_collection_ops(0x7100000010, body, owned, "std::unique_ptr<CFoo>",
+                                     frozenset(gt.VECTOR_ACCESS_SLOTS))
+        self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
+                      f": base::reflection::VectorAccessMapperDescription<{owned}> {{", out)
+        self.assertTrue(gt.sized_element("base::global::CRntVector<CFoo>"))
+        self.assertFalse(gt.sized_element("CFoo") or gt.sized_element("std::unique_ptr<CFoo>*"))
         out = gt.emit_collection_ops(0x7100000010, body, foo, "CFoo", frozenset(gt.VECTOR_HEADER_SLOTS))
         self.assertIn("struct base::reflection::CollectionTypeDescription<UnkRefl_fn_7100000010> "
                       f": base::reflection::VectorHeaderMapperDescription<{foo}> {{", out)

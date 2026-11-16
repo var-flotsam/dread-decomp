@@ -149,6 +149,16 @@ struct VectorHeaderMapperDescription {
     static constexpr auto type_of = &Mapper::TypeOf;
 };
 
+// The header's slots and those that index the elements, for a vector whose element's size is known though
+// what it holds is only declared (a std::unique_ptr, a vector).
+template <class C>
+struct VectorAccessMapperDescription : VectorHeaderMapperDescription<C> {
+    using Mapper = CollectionTypeMapper<C>;
+    static constexpr auto at = &Mapper::At;
+    static constexpr auto find = &Mapper::Find;
+    static constexpr auto end = &Mapper::End;
+};
+
 // A small dictionary's mapper (base/global/CRntSmallDictionary.h): its element iterators are a vector's.
 // The slots written so far are those that need none of its growth or copies; its erase is still by address.
 template <class K, class V>
