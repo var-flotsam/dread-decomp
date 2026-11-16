@@ -3432,7 +3432,7 @@ address,size,name,name_source,subsystem,status
 0x7100ed5f2c,852,fn_7100ed5f2c,unknown,unknown,O
 0x7100ed6280,456,fn_7100ed6280,unknown,unknown,O
 0x7100ed6448,148,fn_7100ed6448,unknown,unknown,m
-0x7100ed64dc,192,fn_7100ed64dc,unknown,unknown,U
+0x7100ed64dc,192,fn_7100ed64dc,unknown,unknown,O
 0x7100ed659c,884,fn_7100ed659c,unknown,unknown,U
 0x7100ed6910,256,fn_7100ed6910,unknown,unknown,O
 0x7100ed6a10,224,fn_7100ed6a10,unknown,unknown,O

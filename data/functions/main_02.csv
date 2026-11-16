@@ -3446,7 +3446,7 @@ address,size,name,name_source,subsystem,status
 0x710027d180,460,fn_710027d180,unknown,ai/navmesh?,U
 0x710027d34c,1148,fn_710027d34c,unknown,ai/navmesh?,U
 0x710027d7c8,652,fn_710027d7c8,unknown,ai/navmesh?,U
-0x710027da54,80,fn_710027da54,unknown,ai/navmesh?,U
+0x710027da54,80,fn_710027da54,unknown,ai/navmesh?,O
 0x710027daa4,20,fn_710027daa4,unknown,ai/navmesh?,O
 0x710027dab8,1212,fn_710027dab8,unknown,ai/navmesh?,m
 0x710027df74,184,fn_710027df74,unknown,ai/navmesh?,O

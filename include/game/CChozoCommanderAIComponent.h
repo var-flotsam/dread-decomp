@@ -5,12 +5,10 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkPathVec_b0019;
 struct UnkPathRecord;
 struct UnkComponent;
 struct UnkMlogMessage_b42a1;
 void fn_7100456b7c(void* callbacks, const UnkMlogMessage_b42a1* message);
 void fn_71004567dc(void*, void**);  // Unregisters.
 void fn_71004554d8(UnkComponent* component);
-void fn_7100456980(UnkPathVec_b0019* v, u32 n);
 void fn_7100456ac0(UnkPathRecord* self);

@@ -2,6 +2,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
 using base::UnkDeferredCallback;

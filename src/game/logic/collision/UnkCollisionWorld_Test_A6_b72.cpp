@@ -2,20 +2,11 @@
 // collision objects hit, through the dispatcher fn_7100d5761c with each object's own layer mask (vf_0x58); false
 // when either is missing. Names and layouts are placeholders.
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU2510.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
-
-// The result of a query (as in UnkCollisionWorld.cpp): bit 0 a hit. Returned in memory: its copy is user-written.
-struct UnkColliderResult {
-    u32 bits;
-
-    UnkColliderResult() : bits(0) {}
-    UnkColliderResult(u32 b) : bits(b) {}
-    UnkColliderResult(const UnkColliderResult& o) : bits(o.bits) {}
-};
-
-UnkColliderResult fn_7100d5761c(UnkReflObject* objA, UnkReflObject* objB, u32 layersA, u32 layersB, void* c, u32 d);
 
 static inline u32 Layers_A6_b72(UnkReflObject* obj) {
     void** vtable = *reinterpret_cast<void***>(obj);

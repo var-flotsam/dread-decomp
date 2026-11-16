@@ -9,6 +9,7 @@
 #include "game/UnkTU2509.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 #include "game/UnkTU2510.h"
 
@@ -16,20 +17,6 @@ using base::reflection::UnkReflObject;
 
 extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
-
-// The result of a query (as in UnkCollisionWorld.cpp): bit 0 a hit, bit 1 stop. Returned in memory: its copy is
-// user-written. Also the result of the shape tester (fn_7100d51368).
-struct UnkShapeTestResult_ovb0107 {
-    union {
-        u32 flags;
-        u32 bits;
-    };
-    u32 field_0x4;
-    UnkShapeTestResult_ovb0107() : bits(0) {}
-    UnkShapeTestResult_ovb0107(u32 b) : bits(b) {}
-    UnkShapeTestResult_ovb0107(const UnkShapeTestResult_ovb0107& o) : bits(o.bits) {}
-};
-using UnkColliderResult = UnkShapeTestResult_ovb0107;
 
 // The "skip" result and its guard (shared with the other visitors).
 struct UnkVisitResult_b0040 {

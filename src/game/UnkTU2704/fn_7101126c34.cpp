@@ -11,19 +11,13 @@
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU365.h"
+#include "game/UnkShapeHit_A5_b68.h"
 #include "types.h"
 
 struct UnkRefl_fn_7100a48b60;
 template <>
 base::reflection::UnkReflObject*
 base::reflection::refl_FindTyped<UnkRefl_fn_7100a48b60>(void*);
-
-// Returned in memory (not trivially copyable); only bit 0 of the first word is read.
-struct UnkShapeHit_A5_b68 {
-    u32 flags;  // bit 0: hit
-    u8 pad_0x4[0x4];  // 8 bytes here (the frame the original has)
-    UnkShapeHit_A5_b68(const UnkShapeHit_A5_b68& other);
-};
 
 // The zone object's logic shape component.
 struct UnkZoneLogicShape_l126c34 {
