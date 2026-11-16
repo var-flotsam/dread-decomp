@@ -481,7 +481,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e0ebdc,144,drafts/game/CLightManager/fn_7100e0ebdc.cpp,operations,47.2,18,lean-b6,store to out->node merged with hoisted add x0 (post-index); original adds x0 only in the destroy branch
 0x7100e0f89c,232,drafts/game/UnkTU2557/fn_7100e0f89c.cpp,operations,13.8,47,lean-ob3,same stores; different schedule: original stores the -1.0f at 0x1fc late and the 28 bytes at 0x204 as one word
 0x7100e13abc,328,drafts/game/UnkTU2557/fn_7100e13abc.cpp,registers or order,96.3,3,overnight,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2557/fn_7100e13abc.cpp:77 fn_7100e13abc: defined as void* fn_7100e13abc(UnkPoolMap_b0247*; const CFilePathStrId*; UnkTexObject_b0247**; UnkWidgetArg*) -> declar...
-0x7100e161c0,304,drafts/game/CArenaManager/CTunableArenaManager/fn_7100e161c0.cpp,build fails,,,lean-ob3,matches with a union around the s32 read count at +0x44 of the name (forces the name pointer reload after the
 0x7100e1cbdc,148,drafts/game/UnkTU2560/fn_7100e1cbdc.cpp,operations,94.6,2,overnight,
 0x7100e2d4ec,284,drafts/game/UnkTU2562/fn_7100e2d4ec.cpp,operations,9.9,57,lean-b5,box merge scheduling and loop shape differ; z loaded as integer word in original
 0x7100e2eef8,312,drafts/game/UnkTU2562/fn_7100e2eef8.cpp,registers or order,71.8,22,lean-b5,same instructions; register/order differences
@@ -597,7 +596,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100fca47c,212,drafts/game/sound/SGUISoundEventsSelector/fn_7100fca47c.cpp,operations,27.8,38,lean-b5,loop shape and handle-load order (end-pointer loop; second handle preloaded)
 0x7100fcabdc,252,drafts/game/sound/SGUISoundEventsSelector/fn_7100fcabdc.cpp,control flow,22.2,40,lean-b5,search loop shape (lagging found pointer; byte counter); same as fcacd8 with extra count recheck
 0x7100fcacd8,248,drafts/game/sound/SGUISoundEventsSelector/fn_7100fcacd8.cpp,control flow,24.2,39,lean-b5,search loop shape (pointer loop with byte counter; lagging found pointer)
-0x7100fcd380,912,drafts/game/UnkTU2626/fn_7100fcd380.cpp,operations,61.8,85,lean-ob3,matches with a union around the string entry use count at +0x44 (drafts/7100fcd380.union.cpp): the original re
 0x7100fce18c,512,drafts/game/UnkTU2626/fn_7100fce18c.cpp,operations,71.9,35,lean-ob3,push tail: original reloads count after the key store (key type aliases); a two-word key struct (drafts/7100fc
 0x7100fd0d40,308,drafts/game/UnkTU2635/fn_7100fd0d40.cpp,control flow,1.3,74,pilot50,control flow: extra epilogue copy; no shared exit/flag register
 0x7100fd73a4,816,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fd73a4.cpp,registers or order,96.6,7,lean-ob3,file-path id assignment: src load order and empty compare operand order
@@ -751,7 +749,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710119a110,528,drafts/game/UnkTU2730/fn_710119a110.cpp,control flow,31.6,90,lean-o1,find-by-path loop block layout (end vs it register; exit branch direction); erase loop index form
 0x710119a610,612,drafts/game/UnkTU2730/fn_710119a610.cpp,registers or order,79.1,32,lean-o1,x19/x20 swapped (self vs path/node); uses a union read counter in the pooled-text view as in CAttack_Entries_o
 0x710119aee8,252,drafts/game/UnkTU2732/fn_710119aee8.cpp,control flow,1.1,50,lean-ob3,60-slot construction loop fully unrolled (original: a loop unrolled by 2); attempt 1 lost to a missing file of
-0x710119d040,732,drafts/game/UnkTU2733/fn_710119d040.cpp,control flow,25.1,137,lean-ob3,use-count store must alias the id and text loads (original reloads them; matches only with a union/no-TBAA fie
 0x71011a5798,448,drafts/game/UnkTU2737/fn_71011a5798.cpp,registers or order,98.2,2,overnight,
 0x71011a5ac0,264,drafts/game/UnkTU2737/fn_71011a5ac0.cpp,registers or order,97.0,2,overnight,
 0x71011a6bc0,220,drafts/game/CTeamManager/CTunableTeamManager/fn_71011a6bc0.cpp,control flow,20.0,41,test40,null-check order and loop exit layout differ
