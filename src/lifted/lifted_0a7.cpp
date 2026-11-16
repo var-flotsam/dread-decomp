@@ -1137,12 +1137,6 @@ L_7100a75338:;
     return *((char*)X0);
 }
 
-extern char g_unk_717274ef10[];
-char* fn_7100a754a0() {
-    char* r0_0 = (char*)g_unk_717274ef10;
-    return r0_0;
-}
-
 namespace callee { char* fn_7100a73ec8(u64); }
 namespace callee { char* fn_7101238df0(u64, u32, u64); }
 char* fn_7100a754b0(char* p0) {

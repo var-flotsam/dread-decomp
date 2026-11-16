@@ -10,3 +10,4 @@ struct UnkWidgetMember;
 void** fn_7100150b50(u32* count);
 UnkWidgetMember fn_7100151150(UnkWidgetArg* a);
 UnkWidgetMember fn_7100151360(UnkWidgetArg* a);
+UnkWidgetMember fn_71001512a0(UnkWidgetArg* a);

@@ -2119,12 +2119,6 @@ char* fn_710079c30c(char* p0, char* p1, char* p2) {
     return m0;
 }
 
-extern char g_unk_7172718518[];
-char* fn_710079c610() {
-    char* r0_0 = (char*)g_unk_7172718518;
-    return r0_0;
-}
-
 extern char g_unk_7101d47108[];
 namespace callee { char* fn_710079c890(char*, u32); }
 namespace callee { char* fn_7101238e00(u64, u64, u64); }

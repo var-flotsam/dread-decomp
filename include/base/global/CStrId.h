@@ -208,6 +208,15 @@ public:
         };
         reinterpret_cast<Slot*>(&other.data)->p = &g_unk_7101d47108->empty;
     }
+    // The same take into a slot that holds no id yet (an array's grown or moved-into storage):
+    // nothing is released first (fn_71002a6d38, fn_7100e6164c).
+    static void MoveConstructReloading(CStrId* slot, CStrId& other) {
+        slot->data = other.data;
+        union Slot {
+            UnkStringData* p;
+        };
+        reinterpret_cast<Slot*>(&other.data)->p = &g_unk_7101d47108->empty;
+    }
 
     // Ids are equal when they share the pooled string.
     bool operator==(const CStrId& other) const { return data == other.data; }

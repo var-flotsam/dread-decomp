@@ -3,11 +3,10 @@
 // lifetime are swapped out of the live range) and hands its two buffers back to the free list;
 // fn_710016e910 creates the 0x400 resource slots and their handles. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkSlot_b0235.h"
 #include "game/UnkTU182.h"
+#include "game/UnkTU210.h"
 #include "types.h"
-
-extern u32 g_unk_716e352430;
-extern void* g_unk_716e34e430[];
 
 struct UnkEmitterChild_b0235 {
     virtual void vf_0x0();
@@ -67,7 +66,7 @@ static inline __attribute__((always_inline)) void Age(UnkEmitter_b0235* self, f3
 static inline __attribute__((always_inline)) void Release(void*& slot) {
     if (slot) {
         u32 n = g_unk_716e352430;
-        g_unk_716e34e430[n] = slot;
+        g_unk_716e34e430[n] = static_cast<UnkSlot_b0235*>(slot);
         g_unk_716e352430 = n + 1;
     }
 }
@@ -89,15 +88,7 @@ void fn_7100170184(UnkEmitter_b0235* self, f32 dt) {
 struct UnkObj_7100161b90;
 struct UnkGfxBuffer252;
 
-struct UnkSlot_b0235 {
-    UnkGfxBuffer252* resource;
-    s32 slot;  // 0x8
-    u32 field_0xc;
-};
-
 extern UnkSlot_b0235* g_unk_716e34e420;
-extern UnkSlot_b0235* g_unk_716e34c420[];
-extern u32 g_unk_716e34e428;
 
 void fn_710016e910() {
     u8 zeros[0x24000];

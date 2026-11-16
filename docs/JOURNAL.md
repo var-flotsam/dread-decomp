@@ -174,6 +174,35 @@ test (as the original's inlined one), and two callers' declarations brought to t
 (`fn_710021e6e8`, `fn_7100146c50`). `fn_710100147c` now has one declaration in `include/game/UnkTU2640.h`.
 The draft near-misses that remain mostly need the original's reload after a store (a count, a tail, a kind) that
 readable source does not reproduce, or a static's place in the unit's data.
+**Unit 210's slots, the shot effect and CExplosionGfx (2026-11-16).** Unit 210's resource slot is
+`include/game/UnkSlot_b0235.h`, and its four shared globals (the slot table, its top, the release queue and its count)
+are declared once in `game/UnkTU210.h`. The release queue holds slots, so the emitter's store casts its `void*`.
+CTunableShotManager's 0xfc-byte effect slot and `fn_7100ddec50` are `include/game/CShotManager/UnkShotEffect_b0011.h`.
+CExplosionGfx's layout (reflected names) is `include/game/CExplosionGfxLayout.h`, shared by the spawn and the
+max-radius sources, and `fn_7100de08f0` and `fn_7100de1388` are declared in `game/CExplosionGfx.h`. `fn_710016eae4`
+and `fn_7100ed64dc` moved from `drafts/` to `src/` as matches. Parked: `fn_7100fddf18` (CMusicManager), which needs
+`UnkCopyVec_b56` moved from `src/game/UnkUnit2601/` into `include/` and `UnkPathVec_b0019` rebuilt on it with the
+record's non-trivial copy.
+
+**Unit 2510's collision types settled (2026-11-16).** Four findings, each from the original's code:
+- The tester's hit (`UnkShapeHit_A5_b68`, `include/game/UnkShapeHit_A5_b68.h`) is 8 bytes. `fn_7100d572f8` writes only
+  its first word; `fn_7101126c34` keeps it at sp+0 beside a point at sp+8 live across the call (at most 8);
+  `fn_71007e98c8` gives it the slot of a dead 12-byte array ahead of an 8-byte point. LLVM 9's stack colouring
+  merges the larger slot first and the earlier alloca on a tie, so that takes at least 8 and the call inside an
+  inlined helper, whose allocas the inliner puts first. A 4- or 16-byte hit each break one caller.
+- The collision result (`UnkColliderResult`, `include/game/logic/collision/UnkColliderResult.h`) is one 4-byte type
+  under three old names (`UnkContact`, `UnkColliderResult`, the 8-byte `UnkShapeTestResult_ovb0107`):
+  `fn_7100d590ac` returns the tester's result as its own, `fn_7100d595a4` returns `fn_7100d541c0`'s. Its copy
+  constructor must assign in the body: with an initialiser list `fn_7100d51368` compiles differently.
+- The query argument the drafts held as `u32` and the callers as `u16` is 32-bit throughout, from
+  `fn_7100d5b484`/`fn_7100d5bfbc` down to the handlers; only the visitor context stores it as 16 bits. With `u16`
+  parameters the handlers (`fn_7100d57ab4`, `fn_7100d57fd4`) or the dispatchers gain an extension.
+- `include/game/logic/collision/UnkBvhTree.h` holds the tree, its sub-trees (with all four `Query` members), nodes,
+  `UnkFlags`, `UnkBox`, the transform shape (`UnkShape`) and the collider view (`UnkBvhCollider`, which
+  `fn_7100d5bfbc` called `UnkShape`). The pair handlers' opaque `UnkCollider` self is the shape tester.
+`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5c1d0`, `fn_7100d5c370` (the last two as `UnkSubTree::Query`) and
+`fn_7101126c34` moved from `drafts/` to `src/` as matches.
+
 **One sub-id for fn_71003327a4 (2026-11-16).** Fifteen sources and four drafts each copied the 16-byte sub-id
 (`UnkSubId_7100fc4b34`), a `UnkQualifiedName` alias and `fn_71003327a4`'s declaration, the same text everywhere;
 they are now `include/game/UnkSubId_7100fc4b34.h`. `fn_7100e984a4` (unit 2566) moved from `drafts/` to `src/` as a
@@ -181,6 +210,37 @@ match. Parked: the UnkTU2510 group (`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5
 result is 4 bytes in `UnkCollisionWorld.cpp` and 8 in `UnkTU2510_Collision_ovb0175.cpp` (the tester-result size
 question of `UnkShapeHit_A5_b68` again), and `UnkShape`, `UnkBox`, `UnkSubTree` and `UnkFlags` have 7, 7, 4 and 3
 different texts; that is a unit-wide pass of its own.
+
+**Opus batch on the boot slice, lean-ob1 (2026-11-16).** 50 ready functions of 300 to 1,000 bytes reachable from
+`nnMain`, packed five to a worker across units (11 Opus workers, budget 4). 14 matched (28%; 3 on the first graded
+attempt, 7 on the second, 4 on the third) and 6 are registers-only; about 2.26 million tokens. Two matches wait in
+`drafts/`: `fn_710010e15c` (declared elsewhere returning a 20-byte struct where the original writes 12 bytes) and
+`fn_710020a18c` (matches only under the name `UnkWidget`, which five files define differently). `CStrId` gains
+`MoveConstructReloading`, the take into a slot that holds no id yet with the reloading store (`fn_71002a6d38` from
+this batch and `fn_7100e6164c` from lean-o2 match with it; `fn_7100e6164c`'s caller now declares the pointer it
+returns). The permuter matched `fn_71002211b4`. 15 functions into `src/`, about 150,000 tokens per match.
+Declarations: `g_unk_7101a1f000` (the tagged-object widgets' vtable) gets one declaration
+(`include/game/UnkWidgetVtable.h`, 15 copies moved), and two media files' `movie::MediaData` now declare the same
+members as the third. Recurring blocker for the next header decision: the use count at +0x44 of a pooled
+string's entry (`UnkStringEntry::tail.field_0x44`), which several originals reload after incrementing; the
+matched siblings write it with `__builtin_memcpy`.
+**One sub-id for fn_71003327a4 (2026-11-16).** Fifteen sources and four drafts each copied the 16-byte sub-id
+(`UnkSubId_7100fc4b34`), a `UnkQualifiedName` alias and `fn_71003327a4`'s declaration, the same text everywhere;
+they are now `include/game/UnkSubId_7100fc4b34.h`. `fn_7100e984a4` (unit 2566) moved from `drafts/` to `src/` as a
+match. Parked: the UnkTU2510 group (`fn_7100d595a4`, `fn_7100d5b918`, `fn_7100d5c1d0`, `fn_7100d5c370`): the query
+result is 4 bytes in `UnkCollisionWorld.cpp` and 8 in `UnkTU2510_Collision_ovb0175.cpp` (the tester-result size
+question of `UnkShapeHit_A5_b68` again), and `UnkShape`, `UnkBox`, `UnkSubTree` and `UnkFlags` have 7, 7, 4 and 3
+different texts; that is a unit-wide pass of its own.
+
+**The copy vector in include/ and the music path list on it (2026-11-16).** `UnkCopyVec_b56` (a CRntVector-layout
+array with an out-of-line Reserve per element type) moved from `src/game/UnkUnit2601/` to
+`include/base/UnkCopyVec_b56.h`. The music manager's path list is now `UnkPathVec_b0019 = UnkCopyVec_b56<UnkPathRecord_b0019>`
+in `include/game/sound/UnkMusicPathVec.h` (reserve `fn_7100456980` declared there, `operator[]` now `PathAt`), and
+the pooled string id four sources copied is `include/base/global/UnkPooledId.h`. The record's id must be that pooled
+id: with `CFilePathStrId` the copy constructor still matches but the destructor differs. Still a draft:
+`fn_7100fddf18`. `fn_7100fddcb4.cpp` declares it as a `CRntVector`-based `UnkPathList`'s copy constructor, and
+rebuilding that list on `UnkPathVec_b0019` drops `fn_7100fddcb4` to 16% even with `CRntVector::Free`'s body
+(the schedule changes); making `UnkCopyVec_b56` a `CRntVector` subclass is worse.
 
 **Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
 (`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;
@@ -191,6 +251,30 @@ information types; `fn_71009ea070` declared in `game/UnkTU1501.h`), and CMission
 declared once). `fn_710054095c`, `fn_71009ea070` and `fn_7100b5af1c` moved from `drafts/` to `src/` as matches.
 Parked: `fn_71000e76dc` (unit 85): its types are `include/base/reflection/`'s, which another thread is changing.
 
+**One spawn holder for unit 2704 (2026-11-16).** The 0x40-byte holder that CSpawnPointComponent's unit keeps in a
+`CRntVector` (virtual destructor, callback vector at +0x8, state at +0x30, refcounted handle at +0x38; the
+CGameLink<CActor> layout) had three views: the vector copy's (`UnkEntry_b42a3`), the insert's and the append
+draft's. All three now use `UnkSpawnHolder` in `include/game/UnkSpawnHolder.h`, and the append
+(`fn_7101131b98`) moved from `drafts/` to `src/` as a match. The copy is "construct empty, then `CopyFrom`": a copy
+constructor with the same body changes the insert's code (the callback vector's construction is no longer dead).
+Parked: `UnkShapeHit_A5_b68` (`fn_7101126c34`): with 8 bytes `fn_7101126c34` matches but `fn_71007e98c8`'s frame
+moves; with 16 the reverse, so the two callers' frames disagree and the size needs another look.
+
+**One navigation hit and one unit-442 path (2026-11-16).** `UnkNavMeshHit` (12 bytes: cell, side, point) had nine
+definitions in three texts; it is now `include/game/UnkNavMeshHit.h`, with every constructor any user had (empty,
+copy, and from a packed cell and side plus a point through `fn_71002875bc`, now declared in `game/UnkTU362.h`).
+`UnkPath442` is `include/game/UnkPath442.h` with its two accessors and a `SegmentCount()` member. The base movement
+initialisation `fn_71010d0b78` has one declaration in `game/CMovementComponent.h`, taking `CMovementComponent*`.
+`fn_71010cd6f4` and `fn_71010c80e0` (CEnemyMovement) moved from `drafts/` to `src/` as matches; every other user
+compiles to the same bytes.
+
+**A navigation cell's owner and flag in the shared layout (2026-11-16).** `UnkNavMeshCell`
+(`include/game/UnkNavMeshCell.h`) now lays out the owning mesh at +0x58 and the flag at +0x60, so the flag setter
+`fn_71002af93c` drops its private view (`UnkNavMeshCellFlag367`) and is declared once in `game/UnkTU367.h`. The mesh's
+callback `fn_710027da54` is declared in `game/navmesh/CNavMesh.h` and moved from `drafts/` to `src/` as a match. The
+cell's 16-bit id at +0x0 is read through an `Id()` accessor: a `u16` member there changes how `fn_71002afa48`
+(src/game/UnkNavMeshCellLoad.cpp) compiles, so the first eight bytes stay padding.
+
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
 pointers or the holder's kind, as if the store of the empty id into the moved-from slot could change them;
@@ -200,6 +284,7 @@ two functions matched only with a union-typed store at that point in their own f
 forms. The second is now a member of its own, `ReleaseAndTakeReloading`, with the union store and its reason in
 the header (owner's go-ahead, 2026-11-16). `fn_7100e558f8` and `fn_7100e5ae40` match with it and leave
 `drafts/`; seven other drafts that call `ReleaseAndTake` do not match with the other member.
+
 **Opus batch lean-o2: the yield falls (2026-11-16).** The next ten units in the same shape: 7 matches of 50
 (14%), 10 registers-only, 33 that differ; 186 graded attempts; about 2.16 million tokens. One more match came
 from the caller: `fn_7100e00cc0` matches with a `bool` parameter, and its only caller now declares it and its
@@ -255,6 +340,7 @@ vectors of pointers, enums and numbers), and none of the 6063 sources that inclu
 - SetCopy and SetMove return nothing. Returning the element costs an extra instruction.
 - gen_types now keeps by address only a slot that a hand-written source defines (the erase of 13 pointer
   vectors, for example), not the whole vector.
+
 **Lean batch lean-b5: 99 ready functions of 26 units with three or four each (2026-11-15).** The units with
 four or more ready functions were used up by lean-b4, so this batch took units of three and four: 26 Sonnet
 workers, budget 3, reference matches for 81 of 99. Results: 18 matches, 22 registers-only, 59 that differ; 257
@@ -315,6 +401,7 @@ first: 9% and 39%), with one shared construct tail (6% and 7%), or with the slot
 loop that stops when the counter wraps (14% and 7%): the original also hoists the path pool's address to
 the top. `permute.py` and `equiv_test.py` find a function only as `fn_<addr>` in the source (a body
 to permute) or in the object (a symbol to run), so neither takes a template member yet.
+
 **Lean batch lean-b4: 98 ready functions of 16 more units (2026-11-15).** Same shape (units 2686, 2688, 811, 111,
 2647, 25, 36, 2540, 1163, 2666, 208, 1428, 2200, 1671, 2544, 2503); 16 Sonnet workers, budget 3, reference matches
 for 71 of 98. Results: 18 matches (10 on the first graded attempt, 2 on the second, 6 on the third), 15
@@ -365,6 +452,7 @@ and `unsigned long` return the value, the rest -1 (`ValueOps.h`, `HashedByValue`
 `UnkReflPrimitiveTraits` now names its slots by role (`construct`, ..., `type_of`, and `add_attributes` for
 CType+0x70). The plain classes (`CStrId`, `CVector3D`, the colours, ...) keep the address form until their own
 operators are written.
+
 **Lean batch lean-b1: 98 ready functions, whole units to a worker (2026-11-15).** The first batch on the
 rewritten kit since workers take several functions of one unit. Queue: 98 `U` functions of 400 bytes or less
 from `tools/hubs.py --ready`, taken as whole units (13 units with four or more ready functions each, boot-slice
@@ -390,6 +478,7 @@ exactly `UnkVector`'s 0x28 bytes: the array and count at 0 and 8, growth step 10
 the allocator flags at 0x18 (0xf for the reflected vectors) and the allocator at 0x20. The class is renamed
 everywhere, with its header now `include/base/global/CRntVector.h`; no code changes. Earlier entries keep the old
 name. The allocator interface keeps its placeholder.
+
 **The minimap's 0x138-byte record is `CMinimapData::SMovingMagnetSurfaceData` (2026-11-15).** Four files of
 unit 2563 each had their own 0x138-byte record and called its move constructor `fn_7100e51078` as a free
 function on untyped pointers. The record is the element of `CMinimapData`'s `aMovingMagnetSurfaces` vector:

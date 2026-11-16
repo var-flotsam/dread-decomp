@@ -9,41 +9,10 @@
 #include "game/UnkTU23.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
+#include "game/sound/UnkMusicPathVec.h"
 #include "types.h"
 
-struct UnkPathRecord;
 struct UnkTuneStr_b0019;
-
-struct UnkPathRecord_b0019 {
-    u8 pad_0x0[0x18];
-};
-
-// The entry's file-path list; fn_7100456980 is its out-of-line reserve.
-struct UnkPathVec_b0019 {
-    UnkPathRecord_b0019* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool autoGrow;
-    u32 flags;
-    void* allocator;
-
-    UnkPathRecord_b0019& operator[](u32 i);
-};
-
-inline UnkPathRecord_b0019& UnkPathVec_b0019::operator[](u32 i) {
-    if (autoGrow && count <= i) {
-        u32 n = capacity;
-        if (capacity <= i && step != 0)
-            n = (i / step + 1) * step;
-        fn_7100456980(this, n);
-        fn_7100456980(this, i + 1);
-        for (u32 j = count; j < i + 1; ++j)
-            fn_7100456ac0(reinterpret_cast<UnkPathRecord*>(&data[j]));
-        count = i + 1;
-    }
-    return data[i];
-}
 
 struct UnkMusicEntry_b0019 {
     u8 pad_0x0[0x28];
@@ -86,7 +55,7 @@ static inline void SetAllHeld(UnkMusicMgr_b0019* self, bool held) {
     for (u64 i = 0; i < self->slot_count; ++i) {
         if (self->entries[i].paths.count == 0)
             continue;
-        fn_7100108a98(g_unk_7101d4d820, (u64)&self->entries[i].paths[0], held, 0.2f);
+        fn_7100108a98(g_unk_7101d4d820, (u64)&PathAt(self->entries[i].paths, 0), held, 0.2f);
     }
 }
 

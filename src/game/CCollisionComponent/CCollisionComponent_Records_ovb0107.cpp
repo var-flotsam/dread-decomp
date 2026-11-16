@@ -32,6 +32,7 @@
 #include "game/logic/collision/CBroadphaseObject.h"
 #include "game/logic/collision/CCollider.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -522,12 +523,6 @@ struct UnkShapeFilter_ovb0107 {
         : vtable(g_unk_7101aa8898 + 2), node(n), field_0x10(0), filter(f), field_0x20(false) {}
 };
 
-struct UnkShapeTestResult_ovb0107 {
-    u32 flags;
-    u32 field_0x4;
-    UnkShapeTestResult_ovb0107(const UnkShapeTestResult_ovb0107& other);
-};
-
 struct UnkCollisionOverlapQuery_ovb0107 {
     u32 mask;      // 0x0
     void* filter;  // 0x8
@@ -545,12 +540,12 @@ bool fn_7100865010(UnkCollisionOverlapQuery_ovb0107* self, UnkCollisionShapeNode
             UnkShapeTester_A5_b68* tester = Tester();
             self->result |= fn_7100d51368(tester, self->owner, self->shape, node->owner,
                                           fn_7100d36a2c(reinterpret_cast<UnkShape*>(node)), &filter,
-                                          self->flags).flags;
+                                          self->flags).bits;
         } else {
             UnkShapeTester_A5_b68* tester = Tester();
             self->result |= fn_7100d51368(tester, self->owner, self->shape, node->owner,
                                           fn_7100d36a2c(reinterpret_cast<UnkShape*>(node)), nullptr,
-                                          self->flags).flags;
+                                          self->flags).bits;
         }
     }
     return !(self->result & 2);

@@ -1,33 +1,14 @@
 // CCharacterMovement's unit: the navigation hit at the owner's position (virtual 0x2e0, from the
 // actor's position at +0x44/+0x54/+0x64), or an empty hit when virtual 0x2d0 gives no target.
-// UnkNavMeshHit as in src/game/navmesh/CNavMesh.cpp. Names are placeholders.
+// UnkNavMeshHit is game/UnkNavMeshHit.h. Names are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
+#include "game/UnkNavMeshHit.h"
 #include "game/UnkTU362.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-struct UnkNavMeshHit;
-struct UnkElem_7100286624;  // the same 12-byte record (src/game_lo/fn_7100286624.cpp)
-
-struct UnkNavMeshHit {
-    u16 cell;
-    u8 side;
-    CVector2D point;
-
-    UnkNavMeshHit() { fn_7100287598(this); }
-    UnkNavMeshHit(const UnkNavMeshHit& other) {
-        __builtin_memcpy(static_cast<void*>(&cell), &other.cell, 4);  // the cell, the side and the pad
-        point.x = other.point.x;
-        point.y = other.point.y;
-    }
-    ~UnkNavMeshHit() { fn_710028760c(reinterpret_cast<UnkElem_7100286624*>(this)); }
-
-    bool IsValid() const { return cell != 0xffff && side != 0xff; }
-};
-static_assert(sizeof(UnkNavMeshHit) == 0xc, "UnkNavMeshHit layout");
 
 struct UnkNavPosition_A5_b66 {
     f32 x, y, z;

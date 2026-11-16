@@ -15,6 +15,7 @@
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2547.h"
 #include "game/UnkTU365.h"
+#include "game/UnkShapeHit_A5_b68.h"
 #include "types.h"
 
 struct UnkDoorRegistry_b61;
@@ -28,13 +29,6 @@ template <>
 base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710028aca8>(void*);
 
 struct UnkShapeTester_A5_b68;
-
-// Returned in memory (not trivially copyable); only bit 0 of the first word is read.
-struct UnkShapeHit_A5_b68 {
-    u32 flags;
-    u8 pad_0x4[0xc];
-    UnkShapeHit_A5_b68(const UnkShapeHit_A5_b68& other);
-};
 
 // The owner's matrix translation (+0x44/+0x54/+0x64).
 struct UnkShapeOwner_A3_b70 {

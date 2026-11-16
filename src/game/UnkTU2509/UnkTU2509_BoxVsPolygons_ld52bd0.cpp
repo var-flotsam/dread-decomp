@@ -7,9 +7,10 @@
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CAABoxShape2D.h"
 #include "game/logic/collision/CShape.h"
+#include "game/logic/collision/UnkColliderResult.h"
 #include "types.h"
 
-struct UnkCollider;
+struct UnkShapeTester_A5_b68;
 struct UnkShape;
 struct UnkShape10;
 struct UnkBox2D;
@@ -19,31 +20,23 @@ struct UnkCollisionShape;
 struct UnkPolygonCollectionShape_b42a3;
 struct UnkBoxShape2D_7100d5e570;
 
-// The result of a contact query: bit 0 keeps a point, bit 1 stops the query.
-struct UnkContact {
-    u32 value;
-
-    UnkContact() { value = 0; }
-    UnkContact(const UnkContact& other) { value = other.value; }
-};
-
 struct UnkVisitResult_b0040;
 extern "C" int __cxa_guard_acquire(u64*);
 extern "C" void __cxa_guard_release(u64*);
 
-static inline const UnkContact& NoContact() {
+static inline const UnkColliderResult& NoContact() {
     if (__builtin_expect(!(__atomic_load_n(reinterpret_cast<u8*>(&g_unk_71726a4780), __ATOMIC_ACQUIRE) & 1), 0)) {
         if (__cxa_guard_acquire(&g_unk_71726a4780)) {
-            reinterpret_cast<UnkContact&>(g_unk_71726a4778).value = 0;
+            reinterpret_cast<UnkColliderResult&>(g_unk_71726a4778).bits = 0;
             __cxa_guard_release(&g_unk_71726a4780);
         }
     }
-    return reinterpret_cast<UnkContact&>(g_unk_71726a4778);
+    return reinterpret_cast<UnkColliderResult&>(g_unk_71726a4778);
 }
 
-static inline UnkContact MakeContact(u32 value) {
-    UnkContact c;
-    c.value = value;
+static inline UnkColliderResult MakeContact(u32 value) {
+    UnkColliderResult c;
+    c.bits = value;
     return c;
 }
 
@@ -95,7 +88,7 @@ static_assert(sizeof(UnkContactHit) == 0x30, "UnkContactHit layout");
 struct UnkContactSink {
     virtual void vf_0x0();
     virtual void vf_0x8();
-    virtual UnkContact vf_0x10(UnkContactHit hit);
+    virtual UnkColliderResult vf_0x10(UnkContactHit hit);
 };
 
 extern char g_unk_7101aa8870[];  // the local query's vtable
@@ -115,7 +108,7 @@ struct UnkLocalQuery_d52bd0 {
 
     // One polygon reported at `at` (moved by the query's offset and lifted to the middle of the
     // polygon's height); 1 without a sink.
-    UnkContact Report(s32 id, const UnkVec3f& at, const UnkPolygon_d52bd0& poly) {
+    UnkColliderResult Report(s32 id, const UnkVec3f& at, const UnkPolygon_d52bd0& poly) {
         if (sink) {
             return sink->vf_0x10(
                 UnkContactHit(id, Sum_d52bd0(Sum_d52bd0(at, offset), UnkVec3f(0.0f, 0.0f, poly.height * 0.5f))));
@@ -175,13 +168,13 @@ struct UnkCollectionShape_d52bd0 {
     UnkPolygonList_d52bd0 polygons;  // 0xa8
 };
 
-UnkContact fn_7100d63870(UnkShape10* self, const UnkBox2D* box, UnkLocalQuery* query, bool flag);
+UnkColliderResult fn_7100d63870(UnkShape10* self, const UnkBox2D* box, UnkLocalQuery* query, bool flag);
 
-UnkContact fn_7100d52bd0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6) {
+UnkColliderResult fn_7100d52bd0(UnkShapeTester_A5_b68* self, UnkShape* a, void* ta, UnkShape* b, void* tb, void* sink, u32 x6) {
     UnkCollectionShape_d52bd0* collection = reinterpret_cast<UnkCollectionShape_d52bd0*>(a);
     const UnkXform* xa = static_cast<const UnkXform*>(ta);
     const UnkXform* xb = static_cast<const UnkXform*>(tb);
-    UnkContact result = NoContact();
+    UnkColliderResult result = NoContact();
     // The option bits (bit 0: only what the tree finds is wanted). The original seems to receive them
     // as a small type of their own; the shared declaration of this function passes a u32.
     u16 options = x6;
@@ -201,7 +194,7 @@ UnkContact fn_7100d52bd0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, 
     UnkLocalQuery_d52bd0 query(origin, options, &collection->polygons, static_cast<UnkContactSink*>(sink));
     result = fn_7100d63870(reinterpret_cast<UnkShape10*>(collection), reinterpret_cast<const UnkBox2D*>(&local.min_x),
                            reinterpret_cast<UnkLocalQuery*>(&query), false);
-    if (!(options & 1) && !(result.value & 3)) {
+    if (!(options & 1) && !(result.bits & 3)) {
         UnkPoint2D_d52bd0 centre = local.Centre();
         u32 index = 0;
         for (UnkPolygon_d52bd0* poly = collection->polygons.begin(); poly != collection->polygons.end();
@@ -210,13 +203,13 @@ UnkContact fn_7100d52bd0(UnkCollider* self, UnkShape* a, void* ta, UnkShape* b, 
                 if (!sink)
                     return MakeContact(3);
                 UnkVec3f at = Sum_d52bd0(ToVec3(*poly->points), origin);
-                result.value = query.Report(index << 16, at, *poly).value | result.value;
+                result.bits = query.Report(index << 16, at, *poly).bits | result.bits;
             } else if (collection->field_0x98 && poly->field_0x2c &&
                        fn_7100116de0(reinterpret_cast<UnkEntry*>(poly), &centre, 1, 1, 1.0f)) {
                 if (!sink)
                     return MakeContact(3);
                 UnkVec3f at = Sum_d52bd0(ToVec3(local.Corner()), origin);
-                result.value = query.Report(index << 16, at, *poly).value | result.value;
+                result.bits = query.Report(index << 16, at, *poly).bits | result.bits;
                 break;
             }
         }
