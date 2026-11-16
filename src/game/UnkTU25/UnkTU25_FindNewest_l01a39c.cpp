@@ -4,6 +4,7 @@
 // are placeholders.
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/animation/CBlendSpace1D.h"
 #include "base/file/CThreadSafeDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -21,10 +22,8 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkRegistry_7100d92158;
-extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
 extern char g_unk_7101d4e578[] __attribute__((visibility("hidden")));
 bool fn_710007fbc0(const CRntString* self, const CRntString* other);
-UnkStrIdPathPair* fn_710008d830(UnkStrIdPathPair* dst, const UnkStrIdPathPair* src);
 
 // An id as it is read here: its pooled string.
 struct UnkIdWord_l01a39c {

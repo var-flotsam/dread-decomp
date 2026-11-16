@@ -9,6 +9,7 @@
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
+#include "base/animation/CBlendSpace1D.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -167,7 +168,6 @@ static_assert(sizeof(UnkActorDefEntry) == 0x48, "UnkActorDefEntry layout");
 // The registry and its insertion, as src/game_s7/fn_7100d92158.cpp declares them.
 struct UnkRegistry_7100d92158;
 struct UnkEntry_7100d92158;
-extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
 
 static inline const UnkEntry_7100d92158& AsRegistryEntry(const UnkActorDefEntry& entry) {
     return *reinterpret_cast<const UnkEntry_7100d92158*>(&entry);

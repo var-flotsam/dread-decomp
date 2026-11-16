@@ -8,13 +8,13 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/CInputComponent.h"
+#include "game/UnkTU2689.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-void fn_71010d7874(void* p);
 extern void* g_unk_7101a841a8[];
 
 // A string id of the pool *Pool, released in two steps.

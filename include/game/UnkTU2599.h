@@ -8,3 +8,4 @@ void fn_7100f799b0(void*, u32);  // Resizes an array.
 void fn_7100f7a7c8(void*, u32);  // Resizes an array.
 extern char g_unk_7101cab220[];  // SFogTransition's.
 extern char g_unk_7101cab338[];  // SVerticalFogTransition's.
+extern char g_unk_7101cab248[];

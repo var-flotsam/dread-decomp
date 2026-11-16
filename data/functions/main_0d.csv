@@ -4892,9 +4892,9 @@ address,size,name,name_source,subsystem,status
 0x7100dac000,312,fn_7100dac000,unknown,unknown,O
 0x7100dac138,328,fn_7100dac138,unknown,unknown,O
 0x7100dac280,100,fn_7100dac280,unknown,unknown,O
-0x7100dac2e4,708,fn_7100dac2e4,unknown,unknown,U
+0x7100dac2e4,708,fn_7100dac2e4,unknown,unknown,O
 0x7100dac5a8,36,fn_7100dac5a8,unknown,unknown,O
-0x7100dac5cc,920,fn_7100dac5cc,unknown,unknown,U
+0x7100dac5cc,920,fn_7100dac5cc,unknown,unknown,O
 0x7100dac964,492,fn_7100dac964,unknown,unknown,U
 0x7100dacb50,432,fn_7100dacb50,unknown,unknown,U
 0x7100dacd00,36,fn_7100dacd00,unknown,unknown,O
@@ -4910,7 +4910,7 @@ address,size,name,name_source,subsystem,status
 0x7100dae840,100,fn_7100dae840,unknown,unknown,O
 0x7100dae8a4,684,fn_7100dae8a4,unknown,unknown,O
 0x7100daeb50,304,fn_7100daeb50,unknown,unknown,U
-0x7100daec80,1028,fn_7100daec80,unknown,unknown,U
+0x7100daec80,1028,fn_7100daec80,unknown,unknown,O
 0x7100daf090,316,fn_7100daf090,unknown,unknown,O
 0x7100daf1cc,908,fn_7100daf1cc,unknown,unknown,O
 0x7100daf558,384,base::reflection::refl_InitType<EAmiibo>,reflection,engine/reflection,O

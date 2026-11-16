@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CCutsceneComponent.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -33,7 +34,6 @@ extern UnkStatics_7101073440 g_unk_7172a01490 __attribute__((visibility("hidden"
 
 typedef void (*UnkClassInit_l073440)(CClass* cls);
 
-const base::reflection::CType* fn_71007adf30();  // refl_GetType<CCutscene*>
 const CType* fn_71010626f0();
 const CType* fn_71010627cc();
 const CType* fn_7101062db0();

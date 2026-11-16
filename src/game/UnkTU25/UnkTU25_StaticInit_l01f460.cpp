@@ -23,7 +23,6 @@ struct UnkHeaderIds_l01f460 {
     UnkStrIdBase sources;
     UnkStrIdBase binaries;
 };
-extern char g_unk_7101d4e570[] __attribute__((visibility("hidden")));
 
 static inline UnkHeaderIds_l01f460& HeaderIds() { return *reinterpret_cast<UnkHeaderIds_l01f460*>(g_unk_7101d4e570); }
 

@@ -3,6 +3,7 @@
 // (helpers in UnkStaticInitS7.h). Names and layouts are placeholders.
 #include "../../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkBufferStringPool.h"
 
 using namespace unk_static_init;
@@ -42,7 +43,6 @@ static_assert(__builtin_offsetof(UnkStatics_7100b2bc80, field_0x174) == 0x174, "
 extern UnkStatics_7100b2bc80 g_unk_7172762d04 __attribute__((visibility("hidden")));
 
 extern UnkBufferParam g_unk_7172762b18;
-void fn_7100b228e0(void* self);  // its destructor, as registered
 void fn_71001d81bc(UnkMapFadeTimes* self);
 extern char g_unk_7172762b98[];
 extern UnkEnumType g_unk_7172762ba0;

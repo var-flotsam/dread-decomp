@@ -19,3 +19,4 @@ UnkStrIdPathPair* fn_710008d88c(UnkStrIdPathPair* dst, const void* id, const voi
 void fn_710008d2ec(UnkStrPair_0x10* self, const base::global::CFilePathStrId* path);
 // Sets `id` and `file` from the file-path id `path`; always returns true.
 bool fn_710008d99c(const base::global::CFilePathStrId* path, base::global::CStrId* id, base::global::CFilePathStrId* file);
+UnkStrIdPathPair* fn_710008d830(UnkStrIdPathPair* dst, const UnkStrIdPathPair* src);

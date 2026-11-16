@@ -38,7 +38,6 @@ struct UnkStruct_71727313d4 {
     f32 field_0x28;
     f32 field_0x2c;
 };
-extern UnkStruct_71727313d4 g_unk_71727313d4;
 extern const CVector2D g_unk_7101647778;
 
 extern void* g_unk_7101a7e840[];

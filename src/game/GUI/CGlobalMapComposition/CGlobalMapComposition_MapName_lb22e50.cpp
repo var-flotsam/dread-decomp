@@ -97,7 +97,7 @@ struct UnkMapAnimation {
 };
 
 // A display object as this file uses it: its animation calls and its name.
-struct UnkMapWidget {
+struct UnkMapWidget_lb28144 {
     virtual void vf_0x0();
     virtual void vf_0x8();
     virtual void vf_0x10();
@@ -168,10 +168,10 @@ struct UnkMapWidget {
     u8 pad_0x80[0xb0];
     CStrId name;  // 0x130
 };
-static_assert(__builtin_offsetof(UnkMapWidget, name) == 0x130, "UnkMapWidget layout");
+static_assert(__builtin_offsetof(UnkMapWidget_lb28144, name) == 0x130, "UnkMapWidget_lb28144 layout");
 
-static inline UnkMapWidget* Widget(UnkGuiDisplayObject* object) {
-    return reinterpret_cast<UnkMapWidget*>(object);
+static inline UnkMapWidget_lb28144* Widget(UnkGuiDisplayObject* object) {
+    return reinterpret_cast<UnkMapWidget_lb28144*>(object);
 }
 
 static inline UnkGuiItemState* Anchor(UnkGuiDisplayObject* object) {
@@ -228,7 +228,7 @@ struct UnkGlobalMapView_b28144 {
     f32 transport_timer;  // 0x598
     u8 pad_0x59c[0x5e0 - 0x59c];
     UnkGuiDisplayObject* root;     // 0x5e0
-    UnkMapWidget* current;         // 0x5e8
+    UnkMapWidget_lb28144* current;         // 0x5e8
     u8 pad_0x5f0[0x8];
     UnkGuiDisplayObject* frame;    // 0x5f8
     u8 pad_0x600[0x6f8 - 0x600];
@@ -263,7 +263,7 @@ void fn_7100b28144(UnkGlobalMapView_b28144* self) {
     fn_71011cdc30(map, true);
     Widget(map)->PlayAnimation("Transport_Destination", false);
     self->open_sound = fn_7100fc9d78(g_unk_717275c380, reinterpret_cast<UnkStateKey*>(&g_unk_71729f0248), self);
-    UnkMapWidget* destination = Widget(fn_71011d98ec(map, 0x14b4b26c34e9a94bull));
+    UnkMapWidget_lb28144* destination = Widget(fn_71011d98ec(map, 0x14b4b26c34e9a94bull));
     self->listener_a.Listen(destination->Animation());
 
     UnkMapLabel label(self->selected_area, 2);
@@ -279,10 +279,10 @@ void fn_7100b28144(UnkGlobalMapView_b28144* self) {
     }
     Widget(self->root)->PlayAnimation(label.Str()->data, false);
     self->close_sound = fn_7100fc9d78(g_unk_717275c380, reinterpret_cast<UnkStateKey*>(&g_unk_71729f0240), self);
-    UnkMapWidget* departure = Widget(fn_71011d98ec(area, 0x395e044e2bfbf935ull));
+    UnkMapWidget_lb28144* departure = Widget(fn_71011d98ec(area, 0x395e044e2bfbf935ull));
     self->listener_b.Listen(departure->Animation());
 
-    UnkMapWidget* sky_base = nullptr;
+    UnkMapWidget_lb28144* sky_base = nullptr;
     if (self->current->name == CStrId("MAP_SKYB", true))
         sky_base = self->current;
     else if (Widget(map)->name == CStrId("MAP_SKYB", true))

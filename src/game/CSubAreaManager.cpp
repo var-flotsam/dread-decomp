@@ -810,7 +810,6 @@ void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
 
 // A list of file-path ids (base/UnkResPathVec.h), assigned by fn_71000d0958.
 #include "base/UnkResPathVec.h"
-void* fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other);
 
 // The file-path ids of a sub-area's resources (or of the same list in another object).
 void fn_7100ee7e74(void* source, UnkResPathVec* out);

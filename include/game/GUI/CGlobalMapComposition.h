@@ -7,3 +7,4 @@
 
 struct UnkGlobalMapComposition;
 void fn_7100b26470(UnkGlobalMapComposition* self, void* object, bool flag);
+void fn_7100b228e0(void* self);

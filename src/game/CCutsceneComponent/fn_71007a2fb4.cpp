@@ -44,7 +44,6 @@ void fn_71007a55c8(UnkReflFunction* fn, const char* name);
 base::reflection::UnkReflValue fn_71007ade14(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_71007adc7c(UnkReflFunction* fn);
 void fn_71007a5744(UnkReflFunction* fn, const char* name);
-const base::reflection::CType* fn_71007adf30();
 void fn_71007ae270();
 base::reflection::UnkReflValue fn_71007ae2bc(void*, char* obj, base::reflection::UnkReflValue* const* args);
 void fn_7100302b38(UnkReflFunction* fn);

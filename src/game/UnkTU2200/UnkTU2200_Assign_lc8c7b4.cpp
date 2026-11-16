@@ -58,9 +58,7 @@ struct UnkPathArray_b239 {
     u64 field_0x20;
 };
 
-void fn_7100c8b894(UnkElem40Array_b42a3* self, const UnkElem40_b42a3* value);
 UnkElemA0Array_b42a3* fn_7100c8cb88(UnkElemA0Array_b42a3* self, const UnkElemA0Array_b42a3* other);
-void* fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other);
 UnkPathArray_b239* fn_7100c8cc78(UnkPathArray_b239* self, const UnkPathArray_b239* other);
 
 struct UnkVec3f_c8c7b4 {

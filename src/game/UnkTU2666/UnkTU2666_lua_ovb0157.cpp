@@ -102,7 +102,6 @@ s32 fn_7101092690(lua_State* L) {
 }
 
 u32 fn_710010a8a0(u32 v);
-void fn_7100108c2c(UnkSoundMgr* self, const u32* mask, u32 v, f32 f);
 
 s32 fn_710108e4f0(lua_State* L) {
     s32 value = 0;

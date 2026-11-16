@@ -1117,7 +1117,7 @@ address,size,name,name_source,subsystem,status
 0x7100b22834,12,GUI::CGlobalMapArea::refl_Destroy,reflection,gui,O
 0x7100b22840,160,fn_7100b22840,unknown,gui?,O
 0x7100b228e0,40,fn_7100b228e0,unknown,gui?,O
-0x7100b22910,1332,fn_7100b22910,unknown,gui?,U
+0x7100b22910,1332,fn_7100b22910,unknown,gui?,O
 0x7100b22e50,572,fn_7100b22e50,unknown,gui?,O
 0x7100b23090,756,fn_7100b23090,unknown,gui?,U
 0x7100b23384,4,GUI::CGlobalMapComposition::refl_AddAttributes,reflection,gui,O
@@ -1142,7 +1142,7 @@ address,size,name,name_source,subsystem,status
 0x7100b2788c,1120,fn_7100b2788c,unknown,gui?,U
 0x7100b27cec,292,fn_7100b27cec,unknown,gui?,O
 0x7100b27e10,820,fn_7100b27e10,unknown,gui?,U
-0x7100b28144,1320,fn_7100b28144,unknown,gui?,U
+0x7100b28144,1320,fn_7100b28144,unknown,gui?,O
 0x7100b2866c,904,fn_7100b2866c,unknown,gui?,U
 0x7100b289f4,336,fn_7100b289f4,unknown,gui?,O
 0x7100b28b44,2540,fn_7100b28b44,unknown,gui?,U
@@ -1229,7 +1229,7 @@ address,size,name,name_source,subsystem,status
 0x7100b2bb00,264,fn_7100b2bb00,unknown,gui?,m
 0x7100b2bc08,60,fn_7100b2bc08,unknown,gui?,O
 0x7100b2bc44,60,fn_7100b2bc44,unknown,gui?,O
-0x7100b2bc80,992,fn_7100b2bc80,unknown,gui?,U
+0x7100b2bc80,992,fn_7100b2bc80,unknown,gui?,O
 0x7100b2c060,4,GUI::CIngameMenu::refl_AddAttributes,reflection,gui,O
 0x7100b2c064,244,GUI::CIngameMenu::refl_GetClass,reflection,gui,O
 0x7100b2c158,4,GUI::CIngameMenu::refl_AddFields,reflection,gui,O

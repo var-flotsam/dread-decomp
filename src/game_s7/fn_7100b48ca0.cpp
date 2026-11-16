@@ -2,6 +2,7 @@
 // unit's own statics and registrations (helpers in UnkStaticInitS7.h). Layouts are placeholders.
 #include "UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU1689.h"
 
@@ -54,7 +55,6 @@ extern char g_unk_7172763b30[];
 void fn_7100b378f4(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100b37688();
 extern UnkBufferParam g_unk_7172763b78;
-void fn_7100b228e0(void* self);  // its destructor, as registered
 extern UnkBufferParam g_unk_7172763bf8;
 extern UnkStrIdBase g_unk_7172763c78;
 extern UnkStrIdBase g_unk_7172763c80;

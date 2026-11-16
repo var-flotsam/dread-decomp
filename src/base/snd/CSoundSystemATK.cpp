@@ -6,6 +6,7 @@
 #include <new>
 
 #include "base/UnkDefaultAllocator.h"
+#include "base/animation/CBlendSpace1D.h"
 #include "base/global/CRntString.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/snd/UnkSoundSystemATK.h"
@@ -857,7 +858,6 @@ struct UnkSoundRegistryEntry {
 static_assert(sizeof(UnkSoundRegistryEntry) == 0x48, "UnkSoundRegistryEntry layout");
 struct UnkRegistry_7100d92158;
 struct UnkEntry_7100d92158;
-extern UnkRegistry_7100d92158* g_unk_7101d4bbc0;
 
 // A word set to zero on first use (two of them, header statics).
 struct UnkZeroWord {

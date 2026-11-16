@@ -1,7 +1,9 @@
 // CAIManager::CTunableAIManager's unit: destructor of the record fn_7100dac280 builds (vtable
 // g_unk_7101aa9328). Fades out its two sounds, lifts the sound manager's mutes it set, then drops its
 // counted references. Names and layouts are placeholders.
+#include "base/snd/CSoundSystem.h"
 #include "base/snd/UnkSound.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU39.h"
@@ -9,11 +11,8 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101aa9328[];
-
 void fn_7100108be8(UnkSoundMgr* self, const u32* mask, f32 time);
 void fn_7100108c24(UnkSoundMgr* self, u32 group);
-void fn_7100108c2c(UnkSoundMgr* self, const u32* mask, u32 v, f32 f);
 
 // As src/game/CAudioComponent/CAudioComponent_b50.cpp defines them.
 struct UnkSoundObject_b50;

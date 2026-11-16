@@ -1531,7 +1531,7 @@ address,size,name,name_source,subsystem,status
 0x710093d6cc,380,fn_710093d6cc,unknown,unknown,O
 0x710093d848,696,fn_710093d848,unknown,unknown,O
 0x710093db00,2684,fn_710093db00,unknown,unknown,U
-0x710093e57c,1256,fn_710093e57c,unknown,unknown,U
+0x710093e57c,1256,fn_710093e57c,unknown,unknown,O
 0x710093ea64,36,fn_710093ea64,unknown,unknown,O
 0x710093ea88,112,fn_710093ea88,unknown,unknown,O
 0x710093eaf8,4,fn_710093eaf8,unknown,unknown,O
@@ -4435,7 +4435,7 @@ address,size,name,name_source,subsystem,status
 0x71009f1158,4,fn_71009f1158,unknown,unknown,O
 0x71009f115c,136,fn_71009f115c,unknown,unknown,O
 0x71009f11e4,264,fn_71009f11e4,unknown,unknown,O
-0x71009f12f0,952,fn_71009f12f0,unknown,unknown,U
+0x71009f12f0,952,fn_71009f12f0,unknown,unknown,O
 0x71009f16a8,4,CSceneComponent::refl_AddAttributes,reflection,game/components,O
 0x71009f16ac,244,CSceneComponent::refl_GetClass,reflection,game/components,O
 0x71009f17a0,4,CSceneComponent::refl_AddFields,reflection,game/components,O

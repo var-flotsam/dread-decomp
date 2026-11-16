@@ -2266,7 +2266,7 @@ address,size,name,name_source,subsystem,status
 0x7100f5db00,452,fn_7100f5db00,unknown,unknown,O
 0x7100f5dcc4,412,fn_7100f5dcc4,unknown,unknown,O
 0x7100f5de60,636,fn_7100f5de60,unknown,unknown,U
-0x7100f5e0dc,980,fn_7100f5e0dc,unknown,unknown,U
+0x7100f5e0dc,980,fn_7100f5e0dc,unknown,unknown,O
 0x7100f5e4b0,12,fn_7100f5e4b0,unknown,unknown,O
 0x7100f5e4bc,20,fn_7100f5e4bc,unknown,unknown,O
 0x7100f5e4d0,232,fn_7100f5e4d0,unknown,unknown,O
@@ -2341,7 +2341,7 @@ address,size,name,name_source,subsystem,status
 0x7100f5fa48,368,fn_7100f5fa48,unknown,unknown,O
 0x7100f5fbb8,464,fn_7100f5fbb8,unknown,unknown,O
 0x7100f5fd88,420,fn_7100f5fd88,unknown,unknown,O
-0x7100f5ff2c,652,fn_7100f5ff2c,unknown,unknown,U
+0x7100f5ff2c,652,fn_7100f5ff2c,unknown,unknown,O
 0x7100f601b8,1012,fn_7100f601b8,unknown,unknown,O
 0x7100f605ac,12,fn_7100f605ac,unknown,unknown,O
 0x7100f605b8,24,fn_7100f605b8,unknown,unknown,O
@@ -2865,8 +2865,8 @@ address,size,name,name_source,subsystem,status
 0x7100f6e60c,376,fn_7100f6e60c,unknown,unknown,O
 0x7100f6e784,480,fn_7100f6e784,unknown,unknown,O
 0x7100f6e964,428,fn_7100f6e964,unknown,unknown,O
-0x7100f6eb10,680,fn_7100f6eb10,unknown,unknown,U
-0x7100f6edb8,1052,fn_7100f6edb8,unknown,unknown,U
+0x7100f6eb10,680,fn_7100f6eb10,unknown,unknown,O
+0x7100f6edb8,1052,fn_7100f6edb8,unknown,unknown,O
 0x7100f6f1d4,12,fn_7100f6f1d4,unknown,unknown,O
 0x7100f6f1e0,24,fn_7100f6f1e0,unknown,unknown,O
 0x7100f6f1f8,232,fn_7100f6f1f8,unknown,unknown,O
@@ -3701,7 +3701,7 @@ address,size,name,name_source,subsystem,status
 0x7100f8d970,220,fn_7100f8d970,unknown,unknown,O
 0x7100f8da4c,312,fn_7100f8da4c,unknown,unknown,O
 0x7100f8db84,284,fn_7100f8db84,unknown,unknown,O
-0x7100f8dca0,1292,fn_7100f8dca0,unknown,unknown,U
+0x7100f8dca0,1292,fn_7100f8dca0,unknown,unknown,O
 0x7100f8e1ac,1244,fn_7100f8e1ac,unknown,unknown,U
 0x7100f8e688,624,fn_7100f8e688,unknown,unknown,U
 0x7100f8e8f8,600,fn_7100f8e8f8,unknown,unknown,U
@@ -3844,7 +3844,7 @@ address,size,name,name_source,subsystem,status
 0x7100f90d20,4,fn_7100f90d20,unknown,unknown,O
 0x7100f90d24,28,fn_7100f90d24,unknown,unknown,O
 0x7100f90d40,28,fn_7100f90d40,unknown,unknown,O
-0x7100f90d5c,696,fn_7100f90d5c,unknown,unknown,U
+0x7100f90d5c,696,fn_7100f90d5c,unknown,unknown,O
 0x7100f91014,64,fn_7100f91014,unknown,unknown,O
 0x7100f91054,256,fn_7100f91054,unknown,unknown,O
 0x7100f91154,68,fn_7100f91154,unknown,unknown,O
@@ -3897,7 +3897,7 @@ address,size,name,name_source,subsystem,status
 0x7100f923c8,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>>::End",reflection,engine/reflection,O
 0x7100f923d0,244,fn_7100f923d0,unknown,unknown,O
 0x7100f924c4,240,fn_7100f924c4,unknown,unknown,O
-0x7100f925c0,1156,fn_7100f925c0,unknown,unknown,U
+0x7100f925c0,1156,fn_7100f925c0,unknown,unknown,O
 0x7100f92a44,1836,fn_7100f92a44,unknown,unknown,O
 0x7100f93170,352,fn_7100f93170,unknown,unknown,O
 0x7100f932d0,384,fn_7100f932d0,unknown,unknown,O
@@ -6629,7 +6629,7 @@ address,size,name,name_source,subsystem,status
 0x7100fff2c8,48,fn_7100fff2c8,unknown,unknown,O
 0x7100fff2f8,48,fn_7100fff2f8,unknown,unknown,O
 0x7100fff328,352,fn_7100fff328,unknown,unknown,O
-0x7100fff488,720,fn_7100fff488,unknown,unknown,U
+0x7100fff488,720,fn_7100fff488,unknown,unknown,O
 0x7100fff758,80,fn_7100fff758,unknown,unknown,O
 0x7100fff7a8,56,fn_7100fff7a8,unknown,unknown,O
 0x7100fff7e0,12,fn_7100fff7e0,unknown,unknown,O

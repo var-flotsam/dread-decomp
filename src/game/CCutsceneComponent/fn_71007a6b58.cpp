@@ -2,6 +2,7 @@
 // past `index` when allowed and returns the element. New elements are value-initialised: zeroed,
 // then constructed by fn_71007a8db0 (the element's implicit default constructor, out of line).
 #include "base/global/CRntVector.h"
+#include "game/CCutsceneComponent.h"
 
 struct UnkElem_0x88 {
     UnkElem_0x88(UnkElem_0x88&& other);  // fn_71007abba4
@@ -10,8 +11,6 @@ struct UnkElem_0x88 {
 
     u8 field_0x8[0x80];
 };
-
-void fn_71007a8db0(UnkElem_0x88* elem);
 
 namespace {
 

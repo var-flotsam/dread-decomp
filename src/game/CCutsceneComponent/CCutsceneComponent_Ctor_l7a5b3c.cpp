@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCutsceneComponent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -17,7 +18,6 @@ struct UnkElem_0x88;
 struct UnkCutsceneEntry_l7a5b3c;
 
 void fn_710024f694(void* self);
-void fn_71007a8db0(UnkElem_0x88* elem);
 
 extern void* g_unk_7101a6ff40[];
 extern char g_unk_7101a70078[];

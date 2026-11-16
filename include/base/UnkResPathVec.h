@@ -27,3 +27,4 @@ static_assert(sizeof(UnkResPathVec) == 0x28, "UnkResPathVec layout");
 
 // Grows the list to at least `capacity` ids, moving them (src/base/core/CAsset/fn_7100018450.cpp).
 void fn_7100018450(UnkResPathVec* vec, u32 capacity);
+UnkResPathVec* fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other);
