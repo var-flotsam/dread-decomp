@@ -54,12 +54,17 @@ CPointerType::CPointerType(const base::global::CStrId& name, T*, void*)
 // description gives the name too. data/functions/ calls Get refl_GetType<T> (asmdiff.name_aliases).
 template <class T>
 struct PointerType {
-    static const CType* Get() {
-        static CPointerType s_type(base::global::CStrId(PointerTypeDescription<T>::name, true),
-                                   static_cast<T*>(nullptr), nullptr);
-        return &s_type;
-    }
+    static const CType* Get();
 };
+
+// Not inline: a description in another file names Get through an explicit instantiation declaration
+// (`extern template`), and the call stays a call, as in the original.
+template <class T>
+const CType* PointerType<T>::Get() {
+    static CPointerType s_type(base::global::CStrId(PointerTypeDescription<T>::name, true), static_cast<T*>(nullptr),
+                               nullptr);
+    return &s_type;
+}
 
 // The same for a type still keyed by address tags (its name does not parse, or two getters share it).
 // Per-getter facts (generated): the type's name and its descriptor constructor's tag.
