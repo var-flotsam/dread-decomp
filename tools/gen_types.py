@@ -1068,13 +1068,12 @@ def mapper_helpers(orig: asmdiff.Original, body: list[str], members, collection:
 
 def mapper_members(orig: asmdiff.Original, body: list[str], by_hand: set[int],
                    collection: str = "", enums: frozenset[str] = frozenset()) -> frozenset[str]:
-    """The description members the mapper writes for a collection: every one of mapper_slots whose slot, and
-    the CRntVector member it calls, no hand-written source defines (those keep their addresses)."""
+    """The description members the mapper writes for a collection: every one of mapper_slots whose slot no
+    hand-written source defines (those keep their addresses). The CRntVector member a slot calls is only
+    declared here (emit_collection_ops), so a hand-written definition of it takes nothing from the mapper."""
     slots = collection_slots(body)
-    free = {d for d in mapper_slots(collection, enums) if d in slots and slots[d] not in by_hand
-            and (d != "type_of" or returned_object(orig, slots[d]) is not None)}
-    helpers = mapper_helpers(orig, body, free, collection)
-    return frozenset(d for d in free if helpers.get(d) not in by_hand)
+    return frozenset(d for d in mapper_slots(collection, enums) if d in slots and slots[d] not in by_hand
+                     and (d != "type_of" or returned_object(orig, slots[d]) is not None))
 
 
 def collection_ops_names(orig: asmdiff.Original, body: list[str], vector: str, element: str,
