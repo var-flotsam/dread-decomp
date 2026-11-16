@@ -48,9 +48,19 @@
 #     below: src/, include/, lib/, data/functions/, the toolchain pins, check.py and the tools it
 #     imports, this file). Otherwise it is skipped, which a required check counts as passing, the
 #     same mechanism as for forks above. If `changes` itself fails, the check runs.
-#   - push to main and workflow_dispatch: always, with check.py's caches (build/check/2.1.0).
+#   - push to main: the same filter over the pushed range (before..after), since a merge whose pull
+#     request changed no input was already shown not to matter. A push that git cannot diff (a new
+#     branch, a force push whose old commit is gone) runs the check.
+#   - workflow_dispatch: always, with check.py's caches (build/check/2.1.0).
 #   - nightly (schedule): always, with --no-cache, so every object is rebuilt and rediffed and a
 #     cache fault cannot hide for more than a day. It also refreshes build/check for boot-nightly.yml.
+#
+# Priority. The runner is started by a Task Scheduler task, and Task Scheduler starts tasks at priority 7 by default,
+# Windows' BELOW_NORMAL class, which every child process inherits. While the PC is busy with anything at
+# normal priority the check then got only leftover CPU: a check that takes 3 minutes at night took 62 in
+# the day (run 832, 2026-11-16). The build step raises its own PowerShell to Normal before it starts
+# Python, so check.py and its compiler processes start at Normal too. The first step prints the class the
+# job started at.
 
 name: check (self-hosted)
 
@@ -78,7 +88,7 @@ env:
 jobs:
   changes:
     name: changes
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
     outputs:
       decomp: ${{ steps.diff.outputs.decomp }}
@@ -89,10 +99,22 @@ jobs:
           submodules: false
       - id: diff
         env:
-          BASE: ${{ github.event.pull_request.base.sha }}
-          HEAD: ${{ github.event.pull_request.head.sha }}
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.event.after }}
         run: |
-          git diff --name-only "$BASE...$HEAD" > "$RUNNER_TEMP/changed.txt"
+          if [ "$EVENT" = pull_request ]; then
+            range="$PR_BASE...$PR_HEAD"
+          elif git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            range="$BEFORE..$AFTER"
+          else
+            echo "the push's old commit ($BEFORE) is not in the history: the check runs"
+            echo "decomp=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git diff --name-only "$range" > "$RUNNER_TEMP/changed.txt"
           echo "$(wc -l < "$RUNNER_TEMP/changed.txt") files changed; the ones the check depends on:"
           if grep -E "$DECOMP_PATHS" "$RUNNER_TEMP/changed.txt"; then
             echo "decomp=true" >> "$GITHUB_OUTPUT"
@@ -106,8 +128,8 @@ jobs:
     needs: changes
     # Skipped (reported as passing) unless the repository variable is set and the code under test is this
     # repository's own: a pull request from a fork never reaches the self-hosted runner (see the header).
-    # A pull request also skips it when it changes nothing in DECOMP_PATHS; on any other outcome of
-    # `changes` (failed, or skipped on push/schedule/dispatch) the check runs.
+    # A pull request or a push also skips it when it changes nothing in DECOMP_PATHS; on any other outcome
+    # of `changes` (failed, or skipped on schedule/dispatch) the check runs.
     if: >-
       !cancelled() && vars.SELF_HOSTED_CHECK == 'true' &&
       (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) &&
@@ -124,6 +146,9 @@ jobs:
       - name: Toolchain and dump present
         shell: powershell
         run: |
+          $me = Get-Process -Id $PID
+          Write-Output "priority: $($me.PriorityClass) (raised to Normal for the steps that build; see the header)"
+          Write-Output "logical processors: $env:NUMBER_OF_PROCESSORS"
           $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
           Write-Output "python: $py (exists: $(Test-Path $py))"
           Write-Output "LOCALAPPDATA=$env:LOCALAPPDATA  USERPROFILE=$env:USERPROFILE"
@@ -148,12 +173,18 @@ jobs:
       - name: Build check (tools/check.py --update)
         shell: powershell
         run: |
+          # Normal priority, inherited by cmd, Python and every compiler process (see the header).
+          (Get-Process -Id $PID).PriorityClass = 'Normal'
           $py = if ($env:DREAD_PYTHON) { $env:DREAD_PYTHON } else { '.venv\Scripts\python.exe' }
           $log = Join-Path $env:RUNNER_TEMP 'check.log'
           $extra = if ('${{ github.event_name }}' -eq 'schedule') { '--no-cache' } else { '' }
-          cmd /c "`"$py`" tools/check.py --version 2.1.0 --update $extra > `"$log`" 2>&1"
+          # One compile per logical processor (check.py's default is 8).
+          $jobs = if ($env:NUMBER_OF_PROCESSORS) { $env:NUMBER_OF_PROCESSORS } else { '8' }
+          $sw = [Diagnostics.Stopwatch]::StartNew()
+          cmd /c "`"$py`" tools/check.py --version 2.1.0 --update -j $jobs $extra > `"$log`" 2>&1"
           $rc = $LASTEXITCODE
           Get-Content $log
+          Write-Output "check.py: $([int]$sw.Elapsed.TotalSeconds) s with -j $jobs"
           $bad = @(Select-String -Path $log -Pattern '^BUILD FAILED |REGRESSION \(was O\)$|^DUPLICATE ').Count
           Remove-Item $log -ErrorAction SilentlyContinue
           if ($bad -ne 0) {
