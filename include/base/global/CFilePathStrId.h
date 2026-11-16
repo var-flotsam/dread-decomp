@@ -102,10 +102,12 @@ public:
             UnkEnsureFilePathPool();
         data = &g_unk_7101d47200->empty;
     }
+    // Releases in two steps, as CStrId's destructor does.
     ~CFilePathStrId() {
         if (UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {
-                if (--data->ref_count == 0) {
+                --data->ref_count;
+                if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
                     pool = g_unk_7101d47200;
                 }
