@@ -8,12 +8,12 @@
 #include "UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU1689.h"
 #include "types.h"
 
 using base::global::CRntString;
 
-extern void* g_unk_7101a1b5a0[];
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 __attribute__((always_inline)) static inline void SetVtable(void* self, void** vtable) {

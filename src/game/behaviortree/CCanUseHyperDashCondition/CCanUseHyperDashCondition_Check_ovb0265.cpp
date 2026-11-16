@@ -4,6 +4,7 @@
 // placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -85,7 +86,6 @@ struct UnkSphereList {
     UnkSphereEntry** data;
     u32 count;
 };
-UnkSphereList* fn_7100ac73b0();
 
 template <const base::reflection::CClass* (*Getter)()>
 static inline UnkReflObject* Cast(UnkReflObject* p) {

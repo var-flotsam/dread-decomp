@@ -154,6 +154,19 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
+**Opus batch lean-o2: the yield falls (2026-11-16).** The next ten units in the same shape: 7 matches of 50
+(14%), 10 registers-only, 33 that differ; 186 graded attempts; about 2.16 million tokens. One more match came
+from the caller: `fn_7100e00cc0` matches with a `bool` parameter, and its only caller now declares it and its
+local as `bool` (the caller still matches). The permuter matched none of the 9 registers-only drafts;
+`tools/equiv_test.py` passed one. 9 functions into `src/`, about 270,000 tokens per match. Across the three
+Opus batches the rate went 47%, 26%, 14% as the units with the most alike functions were used first. The common
+failure, in more than ten functions this round and last, is a string-id move whose original reloads the pool,
+count or array after storing the empty id into the moved-from slot: the matched text needs a union or a
+memcpy there, which the rules keep out. A header change that gives `CStrId`'s move a clearing store that may
+alias as the original's does (a decision for the owner, since it is a steering form in a shared type) would be
+the largest lever left for these units. `g_unk_7101a1b5a0`, the buffer-string pool, now has one declaration
+(`include/game/UnkBufferStringPool.h`, 13 copies moved).
+
 **Opus batch lean-o1: 50 ready functions of 400 to 1,000 bytes (2026-11-16).** The pilot's shape, scaled on the
 owner's go-ahead: the next ten units with three or more ready functions of that size, 10 Opus workers, 5 each,
 budget 5. Results: 13 matches (26%; 9 on the first graded attempt, 3 on the second, 1 on the third), 10

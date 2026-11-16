@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkBufferStringPool.h"
 #include "game/UnkTU2566.h"
 #include "types.h"
 
@@ -44,7 +45,6 @@ __attribute__((always_inline)) inline UnkMovedString::UnkMovedString(UnkMovedStr
 }
 
 // A string with its own inline storage, copied (not moved) by fn_710007eaa0.
-extern void* g_unk_7101a1b5a0[];
 struct UnkStrStorage {
     void* vtable;
     u8 unk_0x8[0x20];

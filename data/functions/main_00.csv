@@ -5834,8 +5834,8 @@ address,size,name,name_source,subsystem,status
 0x71000ff210,32,fn_71000ff210,unknown,unknown,O
 0x71000ff230,8,fn_71000ff230,unknown,unknown,O
 0x71000ff238,36,fn_71000ff238,unknown,unknown,O
-0x71000ff25c,648,fn_71000ff25c,unknown,unknown,U
-0x71000ff4e4,644,fn_71000ff4e4,unknown,unknown,U
+0x71000ff25c,648,fn_71000ff25c,unknown,unknown,O
+0x71000ff4e4,644,fn_71000ff4e4,unknown,unknown,O
 0x71000ff768,348,fn_71000ff768,unknown,unknown,O
 0x71000ff8c4,148,fn_71000ff8c4,unknown,unknown,O
 0x71000ff958,104,fn_71000ff958,unknown,unknown,O
