@@ -20,6 +20,7 @@
 #include "game/UnkTU177.h"
 #include "game/UnkTU180.h"
 #include "game/UnkTU230.h"
+#include "game/UnkTU56.h"
 #include "game/UnkTU85.h"
 #include "game/UnkTUInit.h"
 #include "game/msapi/material/SAlpha.h"
@@ -512,7 +513,6 @@ UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
 UnkReflValue fn_710000cf10(void* field, const base::reflection::UnkReflAttrKey& key, bool inherited);
 void fn_710007ca94(CRntFile*, char*);
 // Reads `size` bytes (fn_710007c714 with one element).
-u64 fn_710007c70c(CRntFile* file, void* dest, u64 size);
 
 // A field's type: its class (vtable slot 0) and its size.
 struct UnkReadFieldType_ovb0098 {

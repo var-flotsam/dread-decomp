@@ -225,7 +225,6 @@ UnkReflValue fn_7100ef0cdc(void*, char* obj, UnkReflValue* const* args) {
 
 // ---- fn_7100ef11f4: the same over the owned id sets ----
 struct UnkNamedIds;
-void fn_7100ef1e1c(UnkNamedIds* self);
 struct UnkNamedIdsPtr_b189 {
     union {
         UnkNamedIds* ptr;

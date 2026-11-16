@@ -199,7 +199,6 @@ struct UnkSubAreaRecord_0x188 {
 
 // An owned id set (src/game_s7/fn_7100ef1e1c.cpp destroys one), deleted when released.
 struct UnkNamedIds;
-void fn_7100ef1e1c(UnkNamedIds* self);
 struct UnkNamedIdsPtr {
     UnkNamedIds* ptr;
     ~UnkNamedIdsPtr() {

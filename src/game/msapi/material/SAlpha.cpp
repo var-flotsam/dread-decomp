@@ -80,7 +80,6 @@ struct UnkMovedId {
 };
 
 // Reads `size` bytes (fn_710007c714 with one element).
-u64 fn_710007c70c(CRntFile* file, void* dest, u64 size);
 // The next string, in place (src/game_s7/UnkPropS7.h).
 
 // Reads the element count, then each element: its name, the byte, the count and the values.

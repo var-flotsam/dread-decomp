@@ -3662,7 +3662,7 @@ address,size,name,name_source,subsystem,status
 0x71002a5bd4,144,fn_71002a5bd4,unknown,unknown,O
 0x71002a5c64,184,fn_71002a5c64,unknown,unknown,O
 0x71002a5d1c,308,fn_71002a5d1c,unknown,unknown,O
-0x71002a5e50,408,fn_71002a5e50,unknown,unknown,U
+0x71002a5e50,408,fn_71002a5e50,unknown,unknown,O
 0x71002a5fe8,316,fn_71002a5fe8,unknown,unknown,O
 0x71002a6124,292,fn_71002a6124,unknown,unknown,O
 0x71002a6248,576,fn_71002a6248,unknown,unknown,O
@@ -3680,8 +3680,8 @@ address,size,name,name_source,subsystem,status
 0x71002a7394,84,fn_71002a7394,unknown,unknown,O
 0x71002a73e8,84,fn_71002a73e8,unknown,unknown,O
 0x71002a743c,144,fn_71002a743c,unknown,unknown,O
-0x71002a74cc,472,fn_71002a74cc,unknown,unknown,U
-0x71002a76a4,432,fn_71002a76a4,unknown,unknown,U
+0x71002a74cc,472,fn_71002a74cc,unknown,unknown,O
+0x71002a76a4,432,fn_71002a76a4,unknown,unknown,O
 0x71002a7854,8,navmesh::CNavMeshGenerator::refl_Equals,reflection,ai/navmesh,O
 0x71002a785c,8,navmesh::CNavMeshGenerator::refl_Hash,reflection,ai/navmesh,O
 0x71002a7864,28,navmesh::CNavMeshGenerator::refl_TypeOf,reflection,ai/navmesh,O

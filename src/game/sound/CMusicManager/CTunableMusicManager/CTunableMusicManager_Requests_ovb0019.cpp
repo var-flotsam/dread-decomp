@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
+#include "game/CChozoCommanderAIComponent.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
@@ -187,8 +188,6 @@ struct UnkTuneStr_b0019 {
 
 struct UnkPathRecord;
 
-void fn_7100456ac0(UnkPathRecord* self);
-
 struct UnkPathRecord_b0019 {
     u8 pad_0x0[0x18];
 };
@@ -205,8 +204,6 @@ struct UnkPathVec_b0019 {
 
     UnkPathRecord_b0019& operator[](u32 i);
 };
-
-void fn_7100456980(UnkPathVec_b0019* v, u32 n);
 
 inline UnkPathRecord_b0019& UnkPathVec_b0019::operator[](u32 i) {
     if (autoGrow && count <= i) {

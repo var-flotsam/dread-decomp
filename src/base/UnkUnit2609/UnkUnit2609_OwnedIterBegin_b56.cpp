@@ -4,6 +4,7 @@
 // line, and the temporary's variant reset (state 1 owns an object, fn_7100ef1e1c destroys it and
 // fn_7100083c00 frees it). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 template <int Tag>
@@ -11,7 +12,6 @@ struct UnkOwnedIter_b55;
 void fn_7100f9f5d0(UnkOwnedIter_b55<0>* self);
 
 struct UnkNamedIds;  // src/game/CSubAreaManager.cpp
-void fn_7100ef1e1c(UnkNamedIds* self);
 
 struct UnkOwnedIdxIter_b56 {
     u32 index;

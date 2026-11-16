@@ -777,7 +777,6 @@ static inline void* Allocate(UnkAtkHeap* heap, u64 size, u64 align) {
 extern base::UnkSubAllocator g_unk_7108b69000;
 extern char g_unk_7101d69000[];
 extern char g_unk_7102369000[];
-extern UnkAtkHeap g_unk_7108b690a8;
 extern char g_unk_7102b69000[];
 void fn_7100081500(base::UnkSubAllocator* self);  // shuts the sub-allocator down
 
