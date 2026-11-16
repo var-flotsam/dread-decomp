@@ -13,6 +13,7 @@
 // placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
@@ -221,11 +222,9 @@ struct UnkMeleeHitMsg_ovb0041 {
     u8 field_0x6c[4];  // 0x6c
 };
 
-struct UnkMeleePos_ovb0041 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
-bool fn_710092e0a8(UnkMelee2_ovb0041* self, const UnkMeleePos_ovb0041* pos, UnkMeleeVictim_ovb0041* victim, void* extra,
+bool fn_710092e0a8(UnkMelee2_ovb0041* self, const CVector3D* pos, UnkMeleeVictim_ovb0041* victim, void* extra,
                    bool meleeable, f32 scale);
 
 static inline bool OwnerHasTrack(UnkMelee2_ovb0041* self, const base::reflection::CClass* (*cls)()) {
@@ -251,7 +250,7 @@ static inline bool HitLands(UnkMelee2_ovb0041* self, UnkMeleeHitMsg_ovb0041* msg
     UnkAnimationComponent* own = self->owner->anim;
     if (!own || !fn_710117b348(own, fn_7100c13dd8())) {
         f32 x = victim->x, y = victim->y, z = victim->z;
-        UnkMeleePos_ovb0041 pos = {x, y, z};
+        CVector3D pos = {x, y, z};
         if (!fn_710092e0a8(self, &pos, victim, msg->field_0x6c, fn_710092e4e8(self, victim), 1.0f))
             return false;
     }

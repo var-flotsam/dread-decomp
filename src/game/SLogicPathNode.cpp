@@ -2,7 +2,7 @@
 // an array of 0x20-byte polymorphic nodes whose vf_0x18 gives the node's position.
 // fn_7101059530 measures the path up to a node.
 #include "base/global/CRntVector.h"
-#include "base/math/CVector.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -25,25 +25,16 @@ struct UnkLogicPath {
     base::global::CRntVector<UnkLogicPathNode> nodes;
 };
 
-static inline f32 Distance(const CVector3D* a, const CVector3D* b) {
-    f32 dx = a->x - b->x;
-    f32 dy = a->y - b->y;
-    f32 dz = a->z - b->z;
-    return sqrtf(dx * dx + dy * dy + dz * dz);
-}
-
 // The length of the path from its first node to node `index`, plus `fraction` of the segment
 // after it (when there is one); 0 for a negative index.
-// NON_MATCHING(minor): scheduling: in each distance the original loads b's z before a's (other
-// registers for the z difference), and for index 0 it sets the sum before the counter.
 f32 fn_7101059530(UnkLogicPath* self, s32 index, f32 fraction) {
     if (index < 0)
         return 0.0f;
-    f32 length = 0.0f;
     s32 i = 1;
+    f32 length = 0.0f;
     for (; i <= index; ++i)
-        length += Distance(self->nodes.data[i].vf_0x18(), self->nodes.data[i - 1].vf_0x18());
+        length += Distance(*self->nodes.data[i].vf_0x18(), *self->nodes.data[i - 1].vf_0x18());
     if (i < (s32)self->nodes.count)
-        length += Distance(self->nodes.data[(u32)i].vf_0x18(), self->nodes.data[(u32)index].vf_0x18()) * fraction;
+        length += Distance(*self->nodes.data[(u32)i].vf_0x18(), *self->nodes.data[(u32)index].vf_0x18()) * fraction;
     return length;
 }

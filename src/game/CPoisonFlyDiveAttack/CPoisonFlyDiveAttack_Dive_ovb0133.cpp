@@ -15,6 +15,7 @@
 //   (state 6, fn_7100632204); state 3 moves to state 4 as fn_7100632204 does (a kind-5 block carrying
 //   the vector at +0x48 for the owner's +0x298).
 #include "base/global/CRntVector.h"
+#include "base/math/CVectorOps.h"
 #include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -27,6 +28,7 @@
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
+using base::math::CVector3D;
 using base::reflection::UnkReflObject;
 
 extern "C" float sqrtf(float);
@@ -36,15 +38,7 @@ f32 fn_710063c10c(void* registry, UnkActor* actor);
 struct UnkAttackBase;
 void fn_71003608ac(UnkAttackBase* self);
 
-struct UnkV3s_ovb0133 {
-    f32 x, y, z;
-};
-
-static inline UnkV3s_ovb0133 operator-(const UnkV3s_ovb0133& a, const UnkV3s_ovb0133& b) {
-    return {a.x - b.x, a.y - b.y, a.z - b.z};
-}
-
-static inline UnkV3s_ovb0133 Pos(const UnkActor* actor) {
+static inline CVector3D Pos(const UnkActor* actor) {
     return {actor->field_0x44, actor->field_0x54, actor->field_0x64};
 }
 
@@ -75,8 +69,8 @@ void fn_710063208c(UnkPoisonFlyDive3_ovb0133* self) {
     UnkReflObject* ai = static_cast<UnkReflObject*>(self->owner->field_0x240);
     fn_710111094c(ai && fn_710009d50c(ai->vf_0x0(), fn_7100638be0()) ? ai : nullptr, 1);
     UnkActor* other = fn_7100d7c990(self->owner);
-    UnkV3s_ovb0133 d = Pos(other) - Pos(self->owner);
-    f32 inv = 1.0f / (sqrtf(d.x * d.x + d.y * d.y + d.z * d.z) + 0.0001f);
+    CVector3D d = Pos(other) - Pos(self->owner);
+    f32 inv = InvLengthEps(d);
     f32 x = d.x * inv, y = d.y * inv, z = d.z * inv;
     f32 dot = x * 1.0f + y * 0.0f + z * 0.0f;
     UnkVec3f v = dot > 0.0f ? UnkVec3f(1.0f, 0.0f, 0.0f) : UnkVec3f(-1.0f, -0.0f, -0.0f);
@@ -113,8 +107,8 @@ bool fn_71006312bc(UnkPoisonFlyDive6_ovb0133* self, void* arg, u32 mode) {
     UnkActor* other = fn_7100d7c990(self->owner);
     if (!other)
         return false;
-    UnkV3s_ovb0133 d = Pos(other) - Pos(self->owner);
-    f32 inv = 1.0f / (sqrtf(d.x * d.x + d.y * d.y + d.z * d.z) + 0.0001f);
+    CVector3D d = Pos(other) - Pos(self->owner);
+    f32 inv = InvLengthEps(d);
     ok = ok & (d.y * inv <= 0.1f);
     f32 reach = fn_7100977b20(self->owner->field_0x1f8);
     UnkManager_71726af468* m = g_unk_71726af468;

@@ -7,6 +7,7 @@
 // middle of the shape's box bottom (vf_0x10) and scaled by the box height / 100 (vf_0x20); then the
 // collider is removed (fn_7100863e04) and the flag at +0x72 cleared. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "base/math/CVector.h"
 #include "game/CCollisionComponent.h"
 #include "game/CFXComponent.h"
 #include "game/CShelmitPlasmaRayAttack.h"
@@ -28,13 +29,11 @@ struct UnkWorld;
 struct UnkPart;
 struct UnkObject;
 
-struct UnkPlasmaRayVec_b60a4 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkPlasmaRayBox_b60a4 {
-    UnkPlasmaRayVec_b60a4 min;
-    UnkPlasmaRayVec_b60a4 max;
+    CVector3D min;
+    CVector3D max;
 };
 
 struct UnkPlasmaRayShape_b60a4 {
@@ -55,9 +54,9 @@ struct UnkPlasmaRayCollider_b60a4 {
 struct UnkPlasmaRayEffect_b60a4 {
     virtual void vf_0x0();
     virtual void vf_0x8();
-    virtual void vf_0x10(const UnkPlasmaRayVec_b60a4* position);
+    virtual void vf_0x10(const CVector3D* position);
     virtual void vf_0x18();
-    virtual void vf_0x20(const UnkPlasmaRayVec_b60a4* scale);
+    virtual void vf_0x20(const CVector3D* scale);
     u8 pad_0x8[3];
     u8 id;
 };
@@ -110,7 +109,7 @@ void fn_71006b4900(UnkPlasmaRayAttack_b60a4* self) {
     if (world) {
         if (UnkPlasmaRayShape_b60a4* shape = reinterpret_cast<UnkPlasmaRayCollider_b60a4*>(collider)->shape) {
             UnkPlasmaRayBox_b60a4 box = shape->vf_0x28(shape->field_0x8);
-            UnkPlasmaRayVec_b60a4 position;
+            CVector3D position;
             position.x = (box.min.x + box.max.x) * 0.5f;
             position.y = box.min.y;
             position.z = 0.0f;
@@ -118,7 +117,7 @@ void fn_71006b4900(UnkPlasmaRayAttack_b60a4* self) {
             auto* effect = reinterpret_cast<UnkPlasmaRayEffect_b60a4*>(fn_7101152b90(world, 0x81576b5cecf37e8bULL));
             if (effect && fn_710114e668(reinterpret_cast<UnkObject*>(world), effect->id)) {
                 effect->vf_0x10(&position);
-                UnkPlasmaRayVec_b60a4 scale;
+                CVector3D scale;
                 scale.x = height / 100.0f;
                 scale.y = 1.0f;
                 scale.z = 1.0f;

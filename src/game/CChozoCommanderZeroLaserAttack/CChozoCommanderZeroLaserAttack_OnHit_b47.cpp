@@ -3,14 +3,13 @@
 // clear and the value at +0x58 has reached the tunable's +0xf8, runs fn_7100444378. Names and layouts
 // are placeholders.
 #include <math.h>
+#include "base/math/CVector.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
-struct UnkVec3_b47 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 // The dot product as a loop over the components (the original's order of loads and adds).
-static inline f32 Dot_b47(const UnkVec3_b47& a, const UnkVec3_b47& b) {
+static inline f32 Dot_b47(const CVector3D& a, const CVector3D& b) {
     const f32* p = &a.x;
     const f32* q = &b.x;
     f32 s = p[0] * q[0];
@@ -36,13 +35,13 @@ struct UnkZeroLaserAttack_b47 {
 
 struct UnkZeroLaserHit_b47 {
     u8 pad_0x0[0x2c];
-    UnkVec3_b47 dir;  // 0x2c
+    CVector3D dir;  // 0x2c
 };
 
 void fn_7100444378(UnkZeroLaserAttack_b47* self);
 
 void fn_71004446d4(UnkZeroLaserAttack_b47* self, void* unused, const UnkZeroLaserHit_b47* hit) {
-    const UnkVec3_b47 axis = {1.0f, 0.0f, 0.0f};
+    const CVector3D axis = {1.0f, 0.0f, 0.0f};
     if (fabsf(Dot_b47(hit->dir, axis)) > 0.9f && self->owner->field_0x220 && self->field_0x90 == 0 &&
         self->field_0x58 >= self->tunable->field_0xf8)
         fn_7100444378(self);

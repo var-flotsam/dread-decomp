@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "base/global/CRntVector.h"
+#include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -57,9 +58,7 @@ struct UnkProbeResult_l0d313c {
           points{{0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f}, {0.0f, 0.0f}}, distance(0.0f) {}
 };
 
-struct UnkProbeHit_l0d313c {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 static inline UnkNavMeshManager* NavMeshManager() {
     UnkNavMeshManager* manager = g_unk_71726a4510;
@@ -72,7 +71,7 @@ static inline UnkNavMeshManager* NavMeshManager() {
 }
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
-bool fn_71010d313c(UnkProbeMovement_l0d313c* self, const UnkProbeHit_l0d313c* dir, UnkProbeHit_l0d313c* out_point,
+bool fn_71010d313c(UnkProbeMovement_l0d313c* self, const CVector3D* dir, CVector3D* out_point,
                    u16* out_cell, u8* out_side, f32 reach, f32 limit) {
     UnkProbeActor_l0d313c* o = self->owner;
     UnkProbeStart_l0d313c pos(o);

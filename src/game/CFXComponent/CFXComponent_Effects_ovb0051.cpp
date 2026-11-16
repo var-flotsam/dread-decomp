@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "base/math/CVector.h"
 #include "game/CActorComponent.h"
 #include "game/CFXComponent.h"
 #include "game/CSceneComponent.h"
@@ -317,15 +318,13 @@ void fn_7101152008(UnkFXComponent_ovb51* self, bool on) {
 
 // ---- loops over every effect ----
 
-struct UnkFXVec3_ovb51 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 void fn_71011576dc(UnkFXComponent_ovb51* self, f32 scale) {
     self->scale = scale;
     for (UnkFXEntry_ovb51* e = self->effects.values; e != self->effects.End(); ++e) {
         if (e->effect) {
-            UnkFXVec3_ovb51 v = {scale, scale, scale};
+            CVector3D v = {scale, scale, scale};
             VCall<0x20>(e->effect, &v);
         }
     }

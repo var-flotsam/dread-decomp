@@ -4,6 +4,7 @@
 // the side it faces (vtable slot 0xd8 with the angles (0, +-pi/2, 0)) and sets the counter at +0x149cc
 // to 3. Names are placeholders.
 #include "base/UnkMatrix44.h"
+#include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkActor.h"
@@ -12,11 +13,7 @@
 
 struct UnkSelf;
 
-struct UnkWarriorTurnAngles_b58 {
-    f32 x;
-    f32 y;
-    f32 z;
-};
+using base::math::CVector3D;
 
 struct UnkWarriorTurnOwner_b58 {
     void** vtable;
@@ -40,7 +37,7 @@ void fn_71004994f4(UnkWarriorTurn_b58* self) {
     if (target && actor) {
         base::reflection::UnkReflTypeIdArg value;
         base::reflection::UnkReflTypeIdArg arg;
-        UnkWarriorTurnAngles_b58 angles;
+        CVector3D angles;
         fn_710049d094(self);
         fn_7100498db8(reinterpret_cast<UnkSelf*>(self));
         u64 hash = self->field_0x14b40;
@@ -53,7 +50,7 @@ void fn_71004994f4(UnkWarriorTurn_b58* self) {
         angles.x = 0.0f;
         angles.z = 0.0f;
         angles.y = y;
-        reinterpret_cast<void (*)(UnkWarriorTurnOwner_b58*, UnkWarriorTurnAngles_b58*, bool)>(o->vtable[0xd8 / 8])(
+        reinterpret_cast<void (*)(UnkWarriorTurnOwner_b58*, CVector3D*, bool)>(o->vtable[0xd8 / 8])(
             o, &angles, true);
         self->field_0x149cc = 3;
     }

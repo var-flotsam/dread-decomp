@@ -2,6 +2,7 @@
 // handling of a triggered event (forwarded to the owner's target when accepted). Names and layouts
 // are placeholders.
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/reflection/CClass.h"
 #include "game/UnkXformNode.h"
@@ -16,21 +17,19 @@ struct UnkPathOwner_b0143 {
     f32 field_0x64;
 };
 
-struct UnkPathPoint_b0143 {
-    f32 x, y, z;
-};
+using base::math::CVector3D;
 
 struct UnkPathSelf_b0143 {
     u8 pad_0x0[0x30];
     UnkPathOwner_b0143* owner;  // 0x30
     u8 pad_0x38[0x30];
-    UnkPathPoint_b0143* points;  // 0x68
+    CVector3D* points;  // 0x68
     u32 count;                   // 0x70
     u8 pad_0x74[0x20];
     u8 closed;  // 0x94
 };
 
-static inline const base::math::CVector2D& Pt(const UnkPathPoint_b0143* p) {
+static inline const base::math::CVector2D& Pt(const CVector3D* p) {
     return *reinterpret_cast<const base::math::CVector2D*>(p);
 }
 
@@ -41,7 +40,7 @@ bool fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out) {
     bool open = self->closed == 0;
     if (count == ((count != 0) & open))
         return false;
-    UnkPathPoint_b0143* points = self->points;
+    CVector3D* points = self->points;
     UnkSegment2D seg(Pt(points), Pt(count == 1 ? points : points + 1));
     f32 x = seg.start.x;
     f32 owner_x = self->owner->field_0x44;

@@ -4,6 +4,7 @@
 // (fn_71008189a4) and its damage request at +0x348 set to the gun's value (virtual slot 48); then the
 // release sound plays at the hooked object's position when the owner has its component at +0x1e0.
 // Names and layouts are placeholders.
+#include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CScenario.h"
@@ -44,9 +45,6 @@ static inline UnkGrappleObject* RefObject(UnkGrappleRef* ref) {
     return ref ? ref->obj : nullptr;
 }
 
-struct UnkGrapplePosition {
-    f32 x, y, z;
-};
 
 struct UnkGrappleOwner {
     u8 pad_0x0[0x1e0];
@@ -136,7 +134,7 @@ bool fn_7100833cf4(UnkGrappleBeamGun* self) {
         f32 x = actor->field_0x44;
         f32 y = actor->field_0x54;
         f32 z = actor->field_0x64;
-        UnkGrapplePosition pos;
+        CVector3D pos;
         pos.x = x;
         pos.y = y;
         pos.z = z;
