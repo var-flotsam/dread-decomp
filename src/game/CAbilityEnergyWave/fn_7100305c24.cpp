@@ -12,11 +12,12 @@
 #include "game/UnkTU85.h"
 #include "types.h"
 
-using base::global::UnkStringData;
 using base::reflection::CType;
 using base::reflection::UnkReflTypedPtr;
 
-extern base::reflection::UnkTunable g_unk_71726af060;
+// The ability's tunables (the reflection registers it as a CTunable).
+struct UnkTunableValue_ovb0262g;
+extern UnkTunableValue_ovb0262g g_unk_71726af060;
 
 struct UnkBoostField_l305c24 {
     u8 pad_0x0[0xb0];
@@ -30,14 +31,14 @@ struct UnkBoostClass_l305c24 {
     u32 count;                      // 0xf8
 
     UnkBoostField_l305c24* End() { return fields + count; }
-    UnkBoostField_l305c24* Find(u64 key) {
+    UnkBoostField_l305c24* Find(const u64& key) {
         for (u64 i = 0; i < count; ++i)
             if (keys[i] == key)
                 return &fields[i];
         return End();
     }
     // The field with that name hash, null when there is none.
-    UnkBoostField_l305c24* FindField(u64 key) {
+    UnkBoostField_l305c24* FindField(const u64& key) {
         UnkBoostField_l305c24* it = Find(key);
         return it != End() ? it : nullptr;
     }
@@ -53,7 +54,7 @@ struct UnkBoostValue_l305c24 {
     void* value;
 };
 
-static inline bool Get(UnkBoostObject_l305c24* obj, u64 key, f32* out) {
+static inline bool Get(UnkBoostObject_l305c24* obj, const u64& key, f32* out) {
     UnkBoostClass_l305c24* cls = obj->GetClass();
     UnkReflTypedPtr typed;
     typed.type = reinterpret_cast<char*>(obj->GetClass());
@@ -67,27 +68,16 @@ static inline bool Get(UnkBoostObject_l305c24* obj, u64 key, f32* out) {
     return false;
 }
 
-// A string id's data: using its text counts a use (+0x44); the text is at +0x10.
-struct UnkBoostStrData_l305c24 {
-    u8 pad_0x0[0x10];
-    const char* str;
-    u8 pad_0x18[0x2c];
-    union {
-        s32 field_0x44;
-    };
-};
-
 struct UnkBoostStats_l305c24 {
-    UnkBoostStrData_l305c24* name;
+    base::global::CStrId name;
 };
 
-f32 fn_7100305c24(UnkBoostStats_l305c24* stats) {
+f32 fn_7100305c24(void* object) {
+    auto* stats = static_cast<UnkBoostStats_l305c24*>(object);
     f32 v = 1.0f;
-    if (reinterpret_cast<UnkStringData*>(stats->name) != &g_unk_7101d47108->empty) {
-        ++stats->name->field_0x44;
-        const char* text = stats->name->str ? stats->name->str : g_unk_710162e2ed;
+    if (stats->name.data != &g_unk_7101d47108->empty) {
         char buf[0x100];
-        sprintf(buf, "fWeaponBoostDamageMult_%s", text);
+        sprintf(buf, "fWeaponBoostDamageMult_%s", stats->name.Text());
         u64 key;
         fn_710006663c(&key, buf);
         UnkBoostObject_l305c24* tunable = reinterpret_cast<UnkBoostObject_l305c24*>(&g_unk_71726af060);

@@ -37,25 +37,17 @@ struct UnkInlineString_lde9c74 {
     }
 };
 
-// The name an object in the list at +0x2698 carries (behind its +0x30): its key and a reference count.
-struct UnkObjectName_lde9c74 {
-    u8 pad_0x0[0x30];
-    s64 key;  // +0x30: the CRC-64 of the name
-    u8 pad_0x38[0xc];
-    s32 ref_count;  // +0x44
-};
-
 struct UnkNamedObject_lde9c74 {
     u8 pad_0x0[0x30];
-    UnkObjectName_lde9c74* name;
+    CStrId name;  // its key is the CRC-64 of the name
 };
 
 // Whether `map` holds an object under `id` (the id's data is the key; its +0x30 the hash).
 static inline bool MapHas(const UnkGameManagerHashMap& map, const CStrId& id) {
     if (map.count) {
         const UnkGameManagerKey* key = reinterpret_cast<const UnkGameManagerKey*>(id.data);
-        u64 hash = key->id;
-        UnkGameManagerNode** bucket = map.buckets + (((u32)(hash >> 32) ^ (u32)hash) % map.capacity);
+        u32 index = id.Hash() % map.capacity;
+        UnkGameManagerNode** bucket = map.buckets + index;
         if (bucket) {
             for (UnkGameManagerNode* n = *bucket; n; n = n->next) {
                 if (n->key == key)
@@ -72,9 +64,8 @@ static inline bool IsNameTaken(UnkGameManager* self, const CStrId& id, const cha
     for (UnkGameManagerListNode* n = self->field_0x2698; n; n = n->next) {
         UnkNamedObject_lde9c74* object = static_cast<UnkNamedObject_lde9c74*>(n->object);
         CRntString key(name);
-        UnkObjectName_lde9c74* objectName = object->name;
-        ++objectName->ref_count;
-        if (objectName->key == key.key)
+        ++object->name.data->reads;
+        if (object->name.data->Key() == key.key)
             return true;
     }
     return false;
@@ -96,8 +87,14 @@ void fn_7100de9c74(UnkGameManager* self, const char* name, CRntString* out) {
             fn_710007e7f8(prefix.Str(), text, length);
             fn_710007eaa0(stem.Str(), prefix.Str());
         }
-        sprintf(buffer, "%s_%i", stem.Str()->data ? stem.Str()->data : "", ++suffix);
-        id = CStrId(buffer, true);
+        sprintf(buffer, "%s_%i", stem.Str()->data ? stem.Str()->data : g_unk_710162e2ed, ++suffix);
+        base::global::UnkStrIdBase next(buffer, true);
+        // The old string is released, but the id is not reset to the empty one before it takes the new.
+        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
+            if (id.data && id.data != &pool->empty && --id.data->ref_count == 0)
+                fn_71000803a4(pool, id.data);
+        }
+        id.data = next.data;
     }
     fn_710007e77c(out, buffer);
 }

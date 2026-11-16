@@ -15,19 +15,10 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-// The pooled data of a string id: the string at +0x10 and a counter at +0x44 bumped whenever the string
-// is read.
-struct UnkStrIdData_l455200 {
-    u8 pad_0x0[0x10];
-    CRntString str;
-    u8 pad_0x40[0x4];
-    s32 reads;
-};
-
+// The pooled string of an id (a CRntString at +0x10), counting the read as UnkStrIdBase::Text does.
 static inline const CRntString& Str(const CStrId& id) {
-    UnkStrIdData_l455200* string = reinterpret_cast<UnkStrIdData_l455200*>(id.data);
-    ++string->reads;
-    return string->str;
+    ++id.data->reads;
+    return id.data->String();
 }
 
 // Whether `name` is set and its text contains that of `part`.
@@ -35,8 +26,7 @@ static inline bool Contains(const CStrId& name, const CStrId& part) {
     const CRntString& text = Str(name);
     if (name.data == &g_unk_7101d47108->empty)
         return false;
-    const CRntString& sub = Str(part);
-    return fn_710007fb9c(&text, sub.data ? sub.data : g_unk_710162e2ed);
+    return fn_710007fb9c(&text, part.Text());
 }
 
 struct UnkEventId_l455200 {

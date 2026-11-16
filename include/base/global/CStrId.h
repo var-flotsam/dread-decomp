@@ -9,6 +9,8 @@
 
 namespace base::global {
 
+class CRntString;
+
 struct UnkStringData {
     u8 unk_0x0[0x8];
     // A union member: Clang gives union accesses no type-based alias info, so the decrement in
@@ -29,6 +31,11 @@ struct UnkStringData {
     union {
         s32 reads;  // 0x44
     };
+
+    // The key read whole, as one 64-bit word (the timeline and parasite lookups).
+    u64 Key() const { return *reinterpret_cast<const u64*>(hash); }
+    // The whole string, for the calls that take the CRntString by reference.
+    const CRntString& String() const { return *reinterpret_cast<const CRntString*>(&text); }
 };
 static_assert(__builtin_offsetof(UnkStringData, text) == 0x10, "UnkStringData layout");
 static_assert(__builtin_offsetof(UnkStringData, hash) == 0x30, "UnkStringData layout");
