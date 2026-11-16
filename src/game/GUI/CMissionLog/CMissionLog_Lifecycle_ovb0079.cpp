@@ -18,19 +18,12 @@
 #include "game/GUI/CMissionLog.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
+#include "game/GUI/UnkMissionLogRecords.h"
 #include "types.h"
 
 using base::UnkRefPtrMember;
 using base::global::CRntString;
 using base::global::CStrId;
-
-
-struct UnkElem38;
-template <class Elem>
-struct UnkElemArray;
-using UnkElem38Array = UnkElemArray<UnkElem38>;
-
-void fn_7100b55d4c(UnkElem38Array* self);
 
 struct UnkMissionLog_ovb0079 {
     char* vtable;
@@ -61,7 +54,6 @@ void fn_7100b55bdc(UnkMissionLog_ovb0079* self) {
     fn_7100b55d4c(reinterpret_cast<UnkElem38Array*>(self->entries_0x248));
     fn_71011d8e90(reinterpret_cast<UnkGuiDisplayObject*>(self));
 }
-
 
 extern CStrId g_unk_7172765068 __attribute__((visibility("hidden")));
 
@@ -101,7 +93,6 @@ void fn_7100b59f20(UnkMissionLogEvent_ovb0079* self) {
     fn_7100a58e80(next, slot);
     fn_7101202488(&event);
 }
-
 
 struct UnkGuiObj;
 void fn_71011ecfbc(UnkGuiObj*, const char32_t*);

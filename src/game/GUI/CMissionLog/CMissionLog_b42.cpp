@@ -9,30 +9,13 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU83.h"
+#include "game/GUI/UnkMissionLogRecords.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 // The element and array types of src/game/GUI/CMissionLog/fn_7100b5bfdc.cpp (same names, same
 // layouts), so the reserve keeps that file's signature.
-struct UnkElem38 {
-    u8 unk_0x0[0x38];
-};
-
-template <class Elem>
-struct UnkElemArray {
-    Elem* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-using UnkElem38Array = UnkElemArray<UnkElem38>;
-
-void fn_7100b5c28c(UnkElem38Array* self, u32 capacity);
 void fn_7100b5cbf0(UnkElem38* self);  // the record's constructor
 // As src/game/GUI/CMissionLog/UnkMissionLogRecordMove.cpp defines it.
 struct UnkMissionLogRecord;

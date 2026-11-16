@@ -163,6 +163,14 @@ id: with `CFilePathStrId` the copy constructor still matches but the destructor 
 `fn_7100fddf18`. `fn_7100fddcb4.cpp` declares it as a `CRntVector`-based `UnkPathList`'s copy constructor, and
 rebuilding that list on `UnkPathVec_b0019` drops `fn_7100fddcb4` to 16% even with `CRntVector::Free`'s body
 (the schedule changes); making `UnkCopyVec_b56` a `CRntVector` subclass is worse.
+**Three single-unit layouts (2026-11-16).** Each held a matching draft: unit 811's E.M.M.I. AI view
+(`include/game/UnkEmmyAI2_b57a3.h`, the Send source's members plus the draft's barrier flag at +0x14c35;
+`fn_710054095c` declared in `game/UnkTU811.h`), unit 1501's ground-movement view
+(`include/game/UnkGroundMovement_ovb0138.h`, the ground state's members plus the draft's, with the actor and run
+information types; `fn_71009ea070` declared in `game/UnkTU1501.h`), and CMissionLog's 0x38-byte record array
+(`include/game/GUI/UnkMissionLogRecords.h`, replacing copies in six sources, with its reserve, append and destroy
+declared once). `fn_710054095c`, `fn_71009ea070` and `fn_7100b5af1c` moved from `drafts/` to `src/` as matches.
+Parked: `fn_71000e76dc` (unit 85): its types are `include/base/reflection/`'s, which another thread is changing.
 
 **`CStrId::ReleaseAndTakeReloading`: the id move whose original reloads after clearing (2026-11-16).** In the
 keyed arrays of units 2563 and 2566 the original, after moving a string id, reloads the pool, counts, array
