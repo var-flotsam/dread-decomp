@@ -254,7 +254,14 @@ def main() -> int:
     # They are template instances placed in whichever unit uses the enum, so they say nothing about their
     # neighbours' subsystem (below).
     import gen_types
-    value_ops = gen_types.reflection_names(orig, args.version)
+    keyed: dict[int, str] = {}
+    value_ops = gen_types.reflection_names(orig, args.version, keyed)
+    # a type-keyed description's getter and constructor take the name its source defines them under, in place
+    # of reflection data's spelling of the type (a name no other function has)
+    taken = {n for n, _ in names.values()}
+    for a, n in sorted(keyed.items()):
+        if a in funcs and (n not in taken or names.get(a, ("",))[0] == n):
+            names[a] = (n, "reflection")
     for a, n in sorted(value_ops.items()):
         put(a, n, "reflection")
 

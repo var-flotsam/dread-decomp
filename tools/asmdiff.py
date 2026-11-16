@@ -426,14 +426,20 @@ def diff_object(obj: Path, original: Original, resolve=None, strict: bool = Fals
 def name_aliases(name: str) -> list[str]:
     """Other qualified names under which an object defines the function data/functions/ calls `name`. A
     descriptor constructor T::refl_InitClass is CClass's constructor instantiated for T::refl_Description
-    in a source written with base/reflection/ReflectedClass.h; refl_InitType<E>, CEnumType's or CFlagsetType's for E."""
+    in a source written with base/reflection/ReflectedClass.h; refl_InitType<T>, the CEnumType, CFlagsetType,
+    CPointerType or CCollectionType constructor instantiated for T; refl_GetType<T>, a pointer type's
+    PointerType<T>::Get (base/reflection/CPointerType.h)."""
     if name.endswith("::refl_InitClass"):
         return [f"base::reflection::CClass::CClass<{name[:-len('::refl_InitClass')]}::refl_Description>"]
     # An enum's or a flag set's, written with base/reflection/ValueOps.h (tools/gen_types.py), is its
     # descriptor's constructor instantiated for the type.
     if name.startswith("base::reflection::refl_InitType<") and name.endswith(">"):
         t = name[len("base::reflection::refl_InitType<"):-1]
-        return [f"base::reflection::CEnumType::CEnumType<{t}>", f"base::reflection::CFlagsetType::CFlagsetType<{t}>"]
+        return [f"base::reflection::CEnumType::CEnumType<{t}>", f"base::reflection::CFlagsetType::CFlagsetType<{t}>",
+                f"base::reflection::CPointerType::CPointerType<{t}>",
+                f"base::reflection::CCollectionType::CCollectionType<{t}>"]
+    if name.startswith("base::reflection::refl_GetType<") and name.endswith(">"):
+        return [f"base::reflection::PointerType<{name[len('base::reflection::refl_GetType<'):-1]}>::Get"]
     return []
 
 
