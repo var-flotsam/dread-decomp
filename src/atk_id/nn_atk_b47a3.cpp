@@ -1,6 +1,7 @@
 // nn::atk unit (tools/tu_map.py): small accessors of the sound library's objects (a clamped volume setter,
 // a kind mask test, list counts and walks, a buffer initialiser, two size computations). Names and
 // layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkLink_b47a3 {
@@ -52,8 +53,6 @@ u32 fn_710121532c(UnkAtkListHolder_b47a3* self) {
         ++n;
     return n;
 }
-
-u64 fn_710120f124(void* param);
 
 u64 fn_710122ee14(void* self, s32 count, void* param) {
     u64 extra = fn_710120f124(param);

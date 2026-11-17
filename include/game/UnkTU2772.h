@@ -71,3 +71,5 @@ void fn_710120d54c(void* sound, u32 frames);
 void* fn_7101228d6c();
 void fn_7101238f90(s64 nanoseconds);
 u32 fn_710123a3f0(UnkAtkTask* task);
+u64 fn_710120f124(void* param);
+void fn_710120f188(void* a, void* b, void* c, void* d);

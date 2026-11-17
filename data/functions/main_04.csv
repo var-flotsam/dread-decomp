@@ -2421,7 +2421,7 @@ address,size,name,name_source,subsystem,status
 0x7100474eec,44,CChozoRobotSoldierAIComponent::refl_Construct,reflection,game/ai,O
 0x7100474f18,12,CChozoRobotSoldierAIComponent::refl_Destroy,reflection,game/ai,O
 0x7100474f24,92,fn_7100474f24,unknown,unknown,O
-0x7100474f80,160,fn_7100474f80,unknown,unknown,U
+0x7100474f80,160,fn_7100474f80,unknown,unknown,m
 0x7100475020,472,fn_7100475020,unknown,unknown,O
 0x71004751f8,76,fn_71004751f8,unknown,unknown,O
 0x7100475244,300,fn_7100475244,unknown,unknown,O

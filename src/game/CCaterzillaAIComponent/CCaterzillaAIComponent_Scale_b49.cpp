@@ -2,6 +2,7 @@
 // its two vectors (+0x60, +0x6c) by the component's factor (+0x14728) while +0x14724 is set. The
 // factor is read again for the second vector (a float store could change it). Names and layouts are
 // placeholders.
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkCaterzillaOut_b49 {
@@ -16,8 +17,6 @@ struct UnkCaterzillaAIScale_b49 {
     u8 pad_0x14725[3];
     f32 factor;
 };
-
-void fn_7101111c24(UnkCaterzillaAIScale_b49* self, UnkCaterzillaOut_b49* out);
 
 void fn_71003f8450(UnkCaterzillaAIScale_b49* self, UnkCaterzillaOut_b49* out) {
     fn_7101111c24(self, out);

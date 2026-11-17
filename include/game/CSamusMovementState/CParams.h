@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSamusParams_l9b06dc;
 struct CSamusAirMovementState;
 void fn_71009b0ce4(CSamusAirMovementState* self, void* arg);
 extern void* g_unk_7101a87850[];
+void fn_71009b06dc(UnkSamusParams_l9b06dc* self);

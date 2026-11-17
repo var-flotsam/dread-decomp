@@ -12,3 +12,4 @@ bool fn_71009ae798(UnkFootstepMode* mode);
 void* fn_71009ad440(UnkHangMoveState_A6_b70* state);
 extern void* g_unk_7101a874f0[];
 u32 fn_71009a60fc();
+extern void* g_unk_7101a87520[];

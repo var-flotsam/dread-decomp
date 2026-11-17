@@ -14,3 +14,7 @@ extern UnkStateKey g_unk_71729f0188;  // The focus sound's event.
 // Plays the sound the selector picks for the event `key` names, for the object `state`; the empty handle
 // (no reference, serial -1) when it picks none.
 UnkSoundHandle fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);
+namespace unk_static_init {
+struct UnkEnumType;  // game_5821e4/UnkStaticInit.h: a reflected enum type object
+}  // namespace unk_static_init
+extern unk_static_init::UnkEnumType g_unk_71729f02b0;  // The HUD ammo counters' fill sound event.
