@@ -3,13 +3,13 @@
 // activatable component's destructor (fn_71007b00cc). Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CThermalRoomConnectionFX.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 template <u32 IdOffset>
 struct UnkActivatable_b44a2;
 void fn_71007b00cc(UnkActivatable_b44a2<0x48>* self);
-extern void* g_unk_7101a7b058[];
 
 struct UnkThermalRoomCallbacks_l87a7d4;
 template <>

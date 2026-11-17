@@ -11,6 +11,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/CCharClassLavaPoolComponent.h"
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
@@ -37,9 +39,6 @@ static_assert(__builtin_offsetof(UnkLavaPoolTU, component_type) == 0x178, "layou
 extern UnkLavaPoolTU g_unk_7172733538 __attribute__((visibility("hidden")));
 
 extern CStrId g_unk_7172733330;
-extern UnkProperty g_unk_7172733338;
-extern UnkPropertyEx<> g_unk_7172733360;
-extern base::reflection::CType g_unk_7172733a70;
 extern base::reflection::CType g_unk_71727333a8;  // CLavaPoolConfig
 extern char g_unk_71727333a0[];
 extern char g_unk_71727334e0[];

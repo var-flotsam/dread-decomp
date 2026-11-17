@@ -18,7 +18,6 @@
 
 struct UnkGunComponent;
 using base::global::CStrId;
-base::reflection::UnkReflObject* fn_71008407d8(UnkGunComponent* self);
 
 struct UnkMagnetGun_l9aadf4 {
     u8 pad_0x0[0x178];

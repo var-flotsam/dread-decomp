@@ -41,8 +41,6 @@ struct UnkDlgId_ovb0069 {
     }
 };
 
-extern UnkDlgId_ovb0069 g_unk_717275db70 __attribute__((visibility("hidden")));
-
 static inline UnkGuiObj* FindLabel(void* self, const UnkDlgId_ovb0069& id) {
     UnkGuiObj* obj;
     {

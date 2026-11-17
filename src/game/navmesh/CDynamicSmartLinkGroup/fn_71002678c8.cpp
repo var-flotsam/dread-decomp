@@ -7,12 +7,11 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/navmesh/CDynamicSmartLinkGroup.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
-
-extern const CType g_unk_71726a2bf8 __attribute__((visibility("hidden")));
 
 template <class T>
 struct UnkArgument {

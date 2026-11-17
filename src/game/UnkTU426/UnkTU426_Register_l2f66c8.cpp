@@ -9,8 +9,6 @@
 #include "game/UnkTU426.h"
 #include "types.h"
 
-extern char g_unk_71727b9eb0[];
-
 // As src/game_s7/fn_7100d92158.cpp defines it.
 // A registry entry (built out of line by fn_710002003c).
 struct UnkEntry_7100d92158 {

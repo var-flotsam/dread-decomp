@@ -8,6 +8,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CCustomMarkersDialog.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2527.h"
 #include "types.h"
@@ -15,7 +16,6 @@
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-extern void* g_unk_7101a99520[];
 u32 fn_7100afe1ac(char* p0);
 
 __attribute__((visibility("hidden"))) extern CFilePathStrId g_unk_717275d3e8;

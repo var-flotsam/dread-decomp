@@ -8,12 +8,12 @@
 #include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
+#include "game/CWaterTriggerChangeComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkStateObject;
 void fn_7100a68c38(char* self);
-extern void* g_unk_7101a8f860[];
 
 struct UnkWaterTriggerChangeComponent {
     void** vtable;

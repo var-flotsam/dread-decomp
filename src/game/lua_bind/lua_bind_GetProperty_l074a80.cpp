@@ -20,8 +20,6 @@ struct UnkStrIdHandle {
     UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
 };
 
-s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name);
-
 int fn_7101074a80(lua_State* L) {
     UnkGameManager* manager = g_unk_7101d47310;
     const char* section;

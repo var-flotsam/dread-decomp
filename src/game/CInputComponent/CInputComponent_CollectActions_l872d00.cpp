@@ -1,11 +1,11 @@
 // CInputComponent unit: for each input action bit, asks the game manager's input mapping
 // (fn_7100f0cc48) which buttons it is bound to, and appends the action to a fixed-capacity list
 // when every pressed button is part of that binding. Names and layouts are placeholders.
+#include "game/CPlayerInfo.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkEventTable_b0188;
-u32 fn_7100f0cc48(UnkEventTable_b0188* table, u32 value);
 
 struct UnkActionList_l872d00 {
     u32 capacity;

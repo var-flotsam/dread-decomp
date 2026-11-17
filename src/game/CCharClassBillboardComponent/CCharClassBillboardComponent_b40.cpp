@@ -9,8 +9,6 @@
 #include "game/UnkTU2560.h"
 #include "types.h"
 
-void fn_7100e1ceb0(void* manager, const u64* key);
-
 struct UnkKeyed_bb {
     u8 pad_0x0[0x30];
     u64 key;

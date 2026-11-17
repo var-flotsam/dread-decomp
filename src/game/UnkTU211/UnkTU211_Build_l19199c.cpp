@@ -3,6 +3,8 @@
 // labelled wrapper around a nested description, a five-value node, or an emitter over a value list
 // (fn_710016d154) with its argument node. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU208.h"
+#include "game/UnkTU211.h"
 #include "types.h"
 
 struct UnkKeyPlayer_b0197;
@@ -13,21 +15,15 @@ struct UnkKeyRequest_b0197 {
 struct UnkOwner4_ovb0167;
 struct UnkCurveEmitter_ovb0167;
 
-u64 fn_710019199c(UnkKeyPlayer_b0197* self, const UnkKeyRequest_b0197* request, void* track);
 void fn_710016d154(UnkCurveEmitter_ovb0167* self, UnkOwner4_ovb0167* owner, void* arg, u32 count, const f32* values,
                    f32 scale);
-u32 fn_710016bad0(void* scene);
 
-extern char g_unk_7101a1db78[];
 extern char g_unk_7101a1dd18[];
 extern char g_unk_7101a1dd48[];
 extern char g_unk_7101a1dd78[];
 extern char g_unk_7101a1dda8[];
 extern char g_unk_7101a1ddd8[];
 extern char g_unk_7101a1d8d8[];
-extern char g_unk_7101a1dca0[];
-extern char g_unk_7101a1dcc8[];
-extern char g_unk_7101a1dcf0[];
 
 struct UnkTrack_l19199c {
     void* vtable;

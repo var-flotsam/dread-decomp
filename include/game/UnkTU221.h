@@ -11,3 +11,4 @@ struct UnkStruct_710019ab0c;
 void fn_710019ab0c(UnkStruct_710019ab0c* self);
 void fn_710019a4e8(UnkBillboardDrawable* self, u32 a, u32 b);  // The drawable's constructor.
 void fn_710019b184(UnkBillboardDrawable* self, u32 index, u32 part, const UnkMatrix44* matrix);
+void fn_710019adec(void* member);

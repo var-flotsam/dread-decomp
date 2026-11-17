@@ -7,6 +7,7 @@
 #include "base/reflection.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CCameraComponent.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -26,7 +27,6 @@ extern char g_unk_7172a0426b[];
 extern UnkValue g_unk_7172a04270;
 extern UnkErasedVector g_unk_7172a04280;
 
-const base::reflection::CType* fn_71010df6c0();
 // The pointer types CCameraComponent* and the other the unit describes (generated getters).
 const base::reflection::CType* fn_71010e17f4();
 const base::reflection::CType* fn_71010e18d0();

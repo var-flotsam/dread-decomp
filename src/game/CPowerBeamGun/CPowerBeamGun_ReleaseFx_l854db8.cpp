@@ -3,6 +3,7 @@
 // placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
+#include "game/CGun.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU2739.h"
 
@@ -16,7 +17,6 @@ struct UnkPlasmaBeamGun_ovb0135 {
 };
 
 struct UnkSPBGun;
-void fn_7100835940(UnkSPBGun* self);
 
 static inline UnkFxCache* GetCache() {
     if (!g_unk_71726b0cd8) {

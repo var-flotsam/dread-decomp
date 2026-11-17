@@ -6,14 +6,11 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/CComponent.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
 using base::global::CRntVector;
-
-extern char g_unk_7101a8dcc0[];
-extern char g_unk_7101a8de98[];
-extern char g_unk_7101a8de78[];
 
 // The table's type as fn_7100a2d678's definition (src/game/CTimelineComponent/CTimelineComponent_Tracks_ovb0089.cpp)
 // declares it.

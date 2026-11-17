@@ -29,7 +29,6 @@ struct UnkGasAttack_b69a4 {
 };
 
 extern char g_unk_7172703318[] __attribute__((visibility("hidden")));  // reached without the GOT
-void* fn_7101105970(UnkScorpiusAI_b69a4* ai);
 bool fn_7100689c08(UnkGasAttack_b69a4* self, void* arg, u32 flag);
 
 bool fn_7100688420(UnkGasAttack_b69a4* self, void* arg, u32 flag) {

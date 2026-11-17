@@ -9,7 +9,6 @@
 
 struct UnkSelectorNode_A2_b68;
 struct UnkStruct_71003aad48;
-bool fn_71003aad48(UnkStruct_71003aad48* self, void* key);
 struct UnkNode_7100394bd8;
 void fn_7100394bd8(UnkNode_7100394bd8* self, UnkSelectorNode_A2_b68* child, s32 status);
 

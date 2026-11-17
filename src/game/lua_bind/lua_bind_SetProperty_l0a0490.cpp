@@ -23,7 +23,6 @@ struct UnkStrIdHandle {
     UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
 };
 
-s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name);
 struct UnkEnumType;
 UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
 

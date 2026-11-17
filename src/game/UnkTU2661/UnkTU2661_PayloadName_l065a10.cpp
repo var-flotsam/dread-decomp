@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/UnkTU212.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -81,7 +82,6 @@ struct UnkNodeArrayCopy {
 // Sorts nodes by fn_710019536c's value, largest first (libc++'s std::sort, src/game_s7/fn_7101072a80.cpp).
 void fn_7101072a80(UnkNamedNode** first, UnkNamedNode** last);
 // The first node at or under `node` with a payload (or null).
-UnkNamedNode* fn_7100195310(UnkNamedNode* node);
 
 // The "DC_Root" id of the reflection id table.
 static inline const CStrId& DcRoot_l065a10() {

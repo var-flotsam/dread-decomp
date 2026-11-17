@@ -5,10 +5,9 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101ca9fe0[];
 
 // A counted reference released on destruction.
 struct UnkShotRef_lecc148 {

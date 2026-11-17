@@ -6,6 +6,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU221.h"
 #include "types.h"
 
 struct UnkMember_b40 {
@@ -69,7 +70,6 @@ void fn_71001c3a8c(UnkCountedObject_b40<0x78>* self) { self->~UnkCountedObject_b
 
 // Unit 241 too: two more members (destroyed by fn_710019adec and fn_7100196e7c) and a string id at
 // 0x2e8 between the counted resource and the end.
-void fn_710019adec(void* member);
 void fn_7100196e7c(void* member);
 
 struct UnkSubA_b40 {

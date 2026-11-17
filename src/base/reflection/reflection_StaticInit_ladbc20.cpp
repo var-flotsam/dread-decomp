@@ -48,7 +48,6 @@ void fn_7100ad5470();
 extern char g_unk_7172756f88[];
 
 // gameeditor::EPersistenceTarget
-extern UnkReflType g_unk_7172756f90;
 void fn_7100ad6bcc(UnkReflType* self, const base::global::CStrId& name, void (*init)(),
                    void* extra);  // base::reflection::refl_InitType<gameeditor::EPersistenceTarget>
 void fn_7100ad6720();

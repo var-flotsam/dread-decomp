@@ -12,6 +12,8 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CCharClassLiquidPoolComponent.h"
+#include "game/CCharClassWaterPoolComponent.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
@@ -42,8 +44,6 @@ extern UnkProperty g_unk_7172734638;
 extern void* g_unk_7101a81150[];  // the property's vtable
 void fn_710090ba1c(void* item);   // base::reflection::refl_Register<..>, instantiated in src/reflection_statics
 void fn_7100906580(void* p);
-extern UnkPropertyEx<> g_unk_7172734660;  // the water pool's property
-extern base::reflection::CType g_unk_7172733a70;
 extern char g_unk_71727346a0[];
 extern char g_unk_71727346a1[];
 // CWaterPoolComponent::FloatingEntitiesInfo.

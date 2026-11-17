@@ -11,6 +11,7 @@
 #include "game/CAutoolAIComponent.h"
 #include "game/CBlackboard.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/CRotationalPlatformComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkCollisionRecord.h"
@@ -39,8 +40,6 @@ struct UnkRotationalPlatformTU {
     UnkReflType type;              // 0x50
 };
 
-extern UnkRotationalPlatformTU g_unk_7172740970 __attribute__((visibility("hidden")));
-extern UnkProperty g_unk_71727408f0;
 extern const u64 g_unk_710164b458;
 extern const u64 g_unk_710164b460;
 

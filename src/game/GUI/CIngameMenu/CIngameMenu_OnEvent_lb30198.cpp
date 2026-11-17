@@ -16,7 +16,6 @@
 
 using unk_prop_bag::UnkPropBag;
 
-UnkPropBag* fn_71012024f4(UnkGuiEvent* ev);
 struct UnkEnumType;
 extern UnkEnumType g_unk_71729f01b0;
 

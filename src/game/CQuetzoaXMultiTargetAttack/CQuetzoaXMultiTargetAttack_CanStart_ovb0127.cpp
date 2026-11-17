@@ -13,7 +13,6 @@
 using base::reflection::UnkReflObject;
 
 // The attack's name id (its data pointer first).
-const u64* fn_7100360890(CAttack* attack);
 extern u64 g_unk_71726fa880 __attribute__((visibility("hidden")));  // the default name's data
 
 struct UnkQuetzoaXAI_ovb0127 {

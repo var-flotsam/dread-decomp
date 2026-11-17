@@ -15,15 +15,12 @@
 
 using base::global::CStrId;
 
-bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
-
 extern u64 g_unk_717273ee08 __attribute__((visibility("hidden")));
 
 struct UnkNavMeshNamedDef_b49 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern UnkNavMeshNamedDef_b49 g_unk_717273e3e0;
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNavMeshNamedDef_b49& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])

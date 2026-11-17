@@ -6,6 +6,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
+#include "game/navmesh/CDynamicSmartLinkGroup.h"
 #include "types.h"
 
 using base::reflection::CClass;
@@ -24,7 +25,6 @@ static_assert(__builtin_offsetof(UnkStatics_l2693a0, fns) == 0x28, "fns");
 static_assert(__builtin_offsetof(UnkStatics_l2693a0, field_0xb8) == 0xb8, "type");
 
 extern UnkStatics_l2693a0 g_unk_71726a2a08 __attribute__((visibility("hidden")));
-extern const CType g_unk_71726a2bf8 __attribute__((visibility("hidden")));
 
 extern char g_unk_71726a21c8[];
 extern char g_unk_71726a21c9[];

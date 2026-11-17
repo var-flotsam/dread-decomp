@@ -2,6 +2,7 @@
 // +0x10 object has a kind (+0x20) equal to the one at 0x71726d1260 and the hit info's flags (+0xb5) have 0x50
 // set, it writes 0 to *out and returns 1; for the kind at 0x71726d1268 it writes 2 and returns 1; otherwise it
 // defers to fn_71011061ac. Names and layouts are placeholders.
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ struct UnkGoliathHitInfo_b55;
 struct UnkGoliathHitTarget_b55;
 
 struct UnkChozoWarriorKind_b67a2;
-extern UnkChozoWarriorKind_b67a2* g_unk_71726d1260 __attribute__((visibility("hidden")));
 extern UnkChozoWarriorKind_b67a2* g_unk_71726d1268 __attribute__((visibility("hidden")));
 
 struct UnkChozoWarriorHitObject_b67a2 {

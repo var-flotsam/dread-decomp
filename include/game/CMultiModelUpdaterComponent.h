@@ -8,3 +8,4 @@
 struct UnkModelEntry_A5_b67;
 struct UnkMultiModel_A5_b67;
 bool fn_7100938fcc(UnkMultiModel_A5_b67* self, UnkModelEntry_A5_b67* entry);
+bool fn_7100938ebc(void* updater, const u64* id);

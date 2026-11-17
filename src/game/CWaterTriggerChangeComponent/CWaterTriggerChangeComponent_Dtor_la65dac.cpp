@@ -6,11 +6,10 @@
 #include "base/UnkDestructors.h"
 #include "base/UnkStrIdTable.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CWaterTriggerChangeComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a8f860[];
 
 struct UnkWaterTriggerCallbacks_la65dac;
 template <>

@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/UnkTU2577.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -23,7 +24,6 @@ extern base::reflection::CType g_unk_71729ec6e0;
 void fn_7100f9d2c4(CType* self, const CStrId& name, const CType* base, void* a, void (*init)(CClass*), void* b);
 void fn_7100f9cde8(CClass* cls);
 extern char g_unk_71729ec818[];
-const base::reflection::CType* fn_7100ef0e00();  // base::reflection::refl_GetType<CSubareaCharclassGroup*>
 extern char g_unk_71729ec819[];
 const base::reflection::CType* fn_7100f9d5bc();  // base::reflection::refl_GetType<std::unique_ptr<CSubareaCharclassGroup>>
 extern char g_unk_71729ec81a[];

@@ -6,10 +6,12 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU1730.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -17,8 +19,6 @@ extern const u64 g_unk_71016496f0;
 extern base::global::CStrId g_unk_71726c94d8;
 
 struct UnkScorpiusAI_b69a4;
-void fn_7100ed77b8(void* player, UnkCollisionObject* object);
-void* fn_7101105970(UnkScorpiusAI_b69a4* ai);  // the AI's current attack
 
 struct UnkChozoCommanderOwner_l454b90 {
     u8 pad_0x0[0x38];

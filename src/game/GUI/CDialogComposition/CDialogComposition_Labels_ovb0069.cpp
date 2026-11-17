@@ -13,6 +13,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CDialogComposition.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -45,7 +46,6 @@ struct UnkDlgId_ovb0069 {
     }
 };
 
-extern UnkDlgId_ovb0069 g_unk_717275db70 __attribute__((visibility("hidden")));
 extern UnkDlgId_ovb0069 g_unk_717275db78 __attribute__((visibility("hidden")));
 extern UnkDlgId_ovb0069 g_unk_717275db90 __attribute__((visibility("hidden")));
 

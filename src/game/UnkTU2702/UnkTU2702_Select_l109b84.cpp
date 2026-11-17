@@ -14,8 +14,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-const u64* fn_7100360890(CAttack* attack);
-extern char g_unk_7101a21540[];  // the node list's vtable
 extern CStrId g_unk_7172a06360 __attribute__((visibility("hidden")));
 
 // A list of nodes (link at +8) freed through the allocator.

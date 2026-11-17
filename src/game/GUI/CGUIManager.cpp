@@ -35,7 +35,6 @@
 using unk_prop_bag::UnkPropBag;
 
 // The event's property bag (+0x10), created on first use and then owned by the event.
-UnkPropBag* fn_71012024f4(UnkGuiEvent* ev);
 bool fn_71011cffe4(UnkGuiDisplayObject* object, UnkGuiDisplayObject* container);
 extern const base::global::CStrId g_unk_7172a0d0d0 __attribute__((visibility("hidden")));
 
@@ -329,7 +328,6 @@ struct UnkSpriteSheetTag;
 using UnkSpriteSheetMap = base::UnkStrIdHashMap<UnkSpriteSheetTag>;
 using UnkSpriteSheetNode = base::UnkStrIdHashNode<UnkSpriteSheetTag>;
 
-const base::reflection::CType* fn_71011b1d2c();
 void fn_7100b80fe8(UnkSpriteSheetMap* self);
 
 // The std::unique_ptr the sprite sheet file is read into.
@@ -417,7 +415,6 @@ struct UnkSkinTag;
 using UnkSkinMap = base::UnkStrIdHashMap<UnkSkinTag>;
 using UnkSkinNode = base::UnkStrIdHashNode<UnkSkinTag>;
 
-const base::reflection::CType* fn_71011b1924();
 void fn_7100121268(UnkSkinMap* self);
 
 // The std::unique_ptr the skin file is read into.
@@ -490,7 +487,6 @@ void fn_71011ba714(UnkGuiRoot* root, const UnkStrPair_0x10* path) {
 
 // The root's third container (a std::unique_ptr at +0x38; its type is fn_71011b1b28): an array of
 // words.
-const base::reflection::CType* fn_71011b1b28();
 using UnkWordArray = base::global::CRntVector<u64>;
 
 struct UnkOwnedWords {

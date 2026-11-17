@@ -147,7 +147,6 @@ void fn_710016cea4(UnkGridEmitter_ovb0167* self, UnkOwner8_ovb0167* owner, void*
     self->origin_y = (f32)(rows - 1) * 0.5f;
 }
 
-extern char g_unk_7101a1db78[];
 extern char g_unk_7101a1da88[];
 
 // A short list of floats the emitter reads: element count, a mode (2 once set), the second and the

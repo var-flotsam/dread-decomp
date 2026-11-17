@@ -3,14 +3,13 @@
 // then the base AI component's destructor (fn_7100661914). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAttack.h"
 #include "game/CRobotAIComponent.h"
 #include "game/CShakernautAIComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a62a50[];  // the first attack's vtable
-
-void fn_71003606c0(void*);
 
 // A counted reference released on destruction.
 struct UnkShakernautRef_l6ad518 {

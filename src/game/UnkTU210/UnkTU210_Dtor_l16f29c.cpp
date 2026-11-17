@@ -4,9 +4,8 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkSlot_b0235.h"
 #include "game/UnkTU210.h"
+#include "game/UnkTU221.h"
 #include "types.h"
-
-void fn_710019adec(void* member);
 
 // The buffer members' vtables (each + 0x10).
 extern char g_unk_7101a1dbd0[];  // the emitter's own

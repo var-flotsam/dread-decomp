@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBillboardComponent.h"
 #include "game/CCharClassComponent.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ using base::global::CStrId;
 
 struct UnkStruct_71008bca30;
 struct UnkItemBase_71011a91c4;
-extern char g_unk_7101a6d578[];
 
 struct UnkBillboardComponent_l72f1a4 {
     void* vtable;

@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "game/CInventoryComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/CMultiModelUpdaterComponent.h"
 #include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -17,7 +18,6 @@ using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
 struct UnkInventory;
-bool fn_7100938ebc(void*, const u64*);
 
 extern char g_unk_710164b2a0[];
 extern char g_unk_710164b2a8[];

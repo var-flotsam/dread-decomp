@@ -6,6 +6,7 @@
 // src/game/CBehaviorTreeAIComponent/fn_7100369650.cpp does). Always returns 2. Names and layouts are
 // placeholders.
 #include "base/global/CRntVector.h"
+#include "game/CAttack.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkBufferStringPool.h"
@@ -13,8 +14,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "base/UnkVtableList.h"
-
-extern char g_unk_7101a21540[];  // the node list's vtable
 
 // A list of nodes (link at +8) freed through the allocator.
 struct UnkCancelNodeList_ovb0128 : base::UnkVtableList<void> {

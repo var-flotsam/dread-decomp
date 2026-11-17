@@ -6,6 +6,7 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
+#include "game/UnkTU2744.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -61,9 +62,6 @@ extern char g_unk_7172a0cc70;
 extern char g_unk_7172a0cc71;
 extern char g_unk_7172a0cc72;
 extern char g_unk_7172a0cc73;
-const base::reflection::CType* fn_71011b1924();
-const base::reflection::CType* fn_71011b1b28();
-const base::reflection::CType* fn_71011b1d2c();
 
 static inline void InitId(CStrId& id, const char* name) {
     new (&id) CStrId(name, true);

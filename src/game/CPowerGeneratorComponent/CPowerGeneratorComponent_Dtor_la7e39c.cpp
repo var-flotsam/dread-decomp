@@ -7,11 +7,10 @@
 #include "base/UnkStrIdTable.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CPowerGeneratorComponent.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a90f90[];
 
 template <u32 IdOffset>
 struct UnkActivatable_b44a2;

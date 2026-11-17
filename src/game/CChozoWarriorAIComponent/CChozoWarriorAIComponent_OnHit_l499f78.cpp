@@ -4,12 +4,12 @@
 // fn_71011088e4. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CAttackComponent.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 
 extern "C" int rand();
 
 struct UnkChozoWarriorKind_b67a2;
-extern UnkChozoWarriorKind_b67a2* g_unk_71726d1260 __attribute__((visibility("hidden")));
 
 struct UnkChozoWarriorHitObject_b67a2 {
     u8 pad_0x0[0x20];

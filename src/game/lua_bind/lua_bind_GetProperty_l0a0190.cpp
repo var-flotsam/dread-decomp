@@ -20,8 +20,6 @@ struct UnkStrIdHandle {
     UnkStrIdHandle(const CStrId& id);  // fn_7100ae986c
 };
 
-s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name);
-
 // The blackboard at +0xeb8 of the game manager (include/game/UnkGameManager.h does not name it yet).
 static inline CBlackboard* Blackboard_l0a0190(UnkGameManager* manager) {
     return reinterpret_cast<CBlackboard*>(reinterpret_cast<u8*>(manager) + 0xeb8);

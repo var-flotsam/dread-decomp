@@ -28,8 +28,6 @@ struct UnkStrIdHandle {
 struct UnkEnumType;
 UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
 
-s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name);
-
 // Writes the typed value under `name` in `section`.
 static inline void Write(CBlackboard::CSection* section, UnkStrIdHandle* name, const base::reflection::CType* type,
                          void* value) {

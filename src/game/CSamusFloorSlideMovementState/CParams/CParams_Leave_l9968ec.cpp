@@ -6,6 +6,7 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkTU1455.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
 
@@ -76,7 +77,6 @@ struct UnkLeaveState_l9968ec {
 };
 
 struct UnkMove_b152;
-f32 fn_71009e754c(UnkMove_b152* self);
 
 static inline s32 Sign(f32 v) {
     return (v > 0.0f) - (v < 0.0f);

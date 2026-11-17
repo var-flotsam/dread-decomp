@@ -5,9 +5,6 @@
 #include "types.h"
 
 struct UnkAtkTask;
-void* fn_7101228d6c();
-u32 fn_710123a3f0(UnkAtkTask* task);
-void fn_7101238f90(s64 nanoseconds);
 void fn_710123a410(UnkAtkTask* pool);                          // nn::audio::RequestDetachMemoryPool
 u32 fn_710123a420(void* renderer, void* config);               // nn::audio::ExecuteAudioRendererRendering
 void fn_710123a430(void* event);                               // nn::os::WaitSystemEvent

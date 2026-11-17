@@ -7,6 +7,7 @@
 
 #include "base/global/CRntVector.h"
 #include "game/UnkTU208.h"
+#include "game/UnkTU211.h"
 #include "types.h"
 
 struct UnkKeyPlayer_b0197;
@@ -19,12 +20,10 @@ struct UnkNodeOwner;
 struct UnkGridEmitter_ovb0167;
 struct UnkOwner8_ovb0167;
 
-u64 fn_7100191d40(UnkKeyPlayer_b0197* self, const UnkKeyRequest_b0197* request, void* track);
 void fn_710016d59c(UnkValueNode* self, UnkNodeOwner* owner, void* arg, u32 countA, const u32* valuesA, u32 countB,
                    const u32* valuesB, f32 scale);
 void fn_710016cea4(UnkGridEmitter_ovb0167* self, UnkOwner8_ovb0167* owner, void* arg, u32 cell_count, u32 columns,
                    u32 rows, void* cells);
-u32 fn_710016bad0(void* scene);
 
 extern char g_unk_7101a1de08[];
 extern char g_unk_7101a1de38[];
@@ -32,9 +31,6 @@ extern char g_unk_7101a1de68[];
 extern char g_unk_7101a1de98[];
 extern char g_unk_7101a1dec8[];
 extern char g_unk_7101a1d908[];
-extern char g_unk_7101a1dca0[];
-extern char g_unk_7101a1dcc8[];
-extern char g_unk_7101a1dcf0[];
 
 struct UnkEntry_l191d40 {
     u32 words[2] = {};

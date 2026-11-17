@@ -4,13 +4,13 @@
 // placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CAttack.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 extern void* g_unk_7101a40960[];  // CDaivoAIComponent's vtable
 extern void* g_unk_7101a40548[];  // the attack's vtable
 
-void fn_71003606c0(void*);
 void fn_7101059d40(char* self);
 void fn_71006c5c8c(void* self);
 

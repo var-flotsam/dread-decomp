@@ -2,6 +2,7 @@
 // format 0x37 texture of the given size in the next free record, its rows padded to the device's
 // alignment (device info 0x38), and registers it with a free descriptor id. Names and layouts are
 // placeholders.
+#include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU176.h"
 #include "game/UnkTU182.h"
@@ -37,25 +38,7 @@ struct UnkGfxHeap {
     u64 base;  // 0x100
 };
 
-extern UnkGfxTexture* g_unk_716e2a3568[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
-extern u32 g_unk_716e2a7568;   // live records
-extern u32 g_unk_7101a1d814;   // free texture descriptor ids (2048 at start)
-extern s32 g_unk_716e2a7708[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];  // free texture descriptor ids, a stack
-extern u8 g_unk_716e2a76e8[];  // the texture pool
-extern UnkObject_0x130* g_unk_716e2a76a0;
-
-void* fn_7100153a10(UnkGfxHeap* heap, void* old, u64 size, u64 align);
-
-extern void (*g_unk_716e29b0d0)(void* builder, s32 value);
-extern void (*g_unk_716e29b0d8)(void* builder, s32 value);
-extern void (*g_unk_716e29b118)(void* builder, s32 format);
-extern void (*g_unk_716e29b100)(void* builder, s32 width, s32 height);
 extern void (*g_unk_716e29b160)(void* builder, s64 stride);
-extern u64 (*g_unk_716e29b140)(void* builder);  // storage alignment
-extern u64 (*g_unk_716e29b138)(void* builder);  // storage size
-extern void (*g_unk_716e29b148)(void* builder, UnkGfxHeap* heap, u64 offset);
-extern u8 (*g_unk_716e29b288)(void* texture, void* builder);  // an NVN boolean
-extern void (*g_unk_716e29afc8)(void* pool, s32 id, void* texture, void* view);
 
 // Through a wrapper: the arguments are evaluated before the entry point is loaded.
 template <class R, class... A, class... B>

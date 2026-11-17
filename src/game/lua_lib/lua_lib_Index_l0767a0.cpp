@@ -31,7 +31,6 @@ struct UnkLuaDisplayTarget_l0767a0 {
     CStrId name;  // 0x130
 };
 
-void* fn_71000978e4(char* cls, const CStrId* name);
 __attribute__((visibility("hidden"))) int fn_7101075c30(lua_State* L);
 
 static inline UnkLuaDisplayObject_ovb0109* ToDisplayObject(lua_State* L, int index) {

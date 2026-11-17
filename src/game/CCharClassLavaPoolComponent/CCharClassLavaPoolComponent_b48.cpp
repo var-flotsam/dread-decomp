@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassLavaPoolComponent.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkGameManager.h"
@@ -20,8 +21,6 @@
 #include "game/UnkTypedValue.h"
 
 using base::global::CStrId;
-
-extern UnkProperty g_unk_7172733338;
 
 struct UnkLavaPoolValue_b48 {
     union {

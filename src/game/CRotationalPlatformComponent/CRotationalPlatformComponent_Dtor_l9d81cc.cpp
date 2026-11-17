@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CRotationalPlatformComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU341.h"
 #include "game/navmesh/SNavMeshPath.h"
@@ -14,8 +15,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a89c50[];  // the component's vtables
 
 // A type-erased callback: storage and the manager that destroys it.
 struct UnkCallbackManager_l9d81cc {

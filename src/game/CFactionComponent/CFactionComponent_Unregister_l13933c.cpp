@@ -2,18 +2,11 @@
 // (CFactionComponent_Register_ovb0139.cpp). Unless the game manager's check (fn_7100deabe4) holds and for a kind
 // (+0x70) from 1 to 7, it is removed from its own faction's list, then (as the original has it) never from the list of all.
 // Names and layouts are placeholders.
-#include "base/UnkSList.h"
+#include "game/CFactionComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
-struct UnkFactionListTag_ovb0139;
-using UnkFactionList_ovb0139 = base::UnkSList<UnkFactionListTag_ovb0139>;
 using UnkFactionNode_l13933c = UnkFactionList_ovb0139::Node;
-
-extern UnkFactionList_ovb0139 g_unk_7172a08ad8;  // players
-extern UnkFactionList_ovb0139 g_unk_7172a08b48;  // neutral
-extern UnkFactionList_ovb0139 g_unk_7172a08bb8;  // enemies
-extern UnkFactionList_ovb0139 g_unk_7172a08c28;  // all
 
 struct UnkFaction_ovb0139 {
     u8 pad_0x0[0x70];

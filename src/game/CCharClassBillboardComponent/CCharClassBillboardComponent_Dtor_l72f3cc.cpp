@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBillboardComponent.h"
 #include "game/CCharClassComponent.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkRenderManager.h"
@@ -15,9 +16,7 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 struct UnkItemBase_71011a91c4;
-extern char g_unk_7101a6d578[];
 
-void fn_7100e1ceb0(void* manager, const u64* key);
 void fn_7100e1d0a8(void* manager, const u64* key);
 struct UnkBillboardComponent_l72f1a4 {
     void* vtable;
