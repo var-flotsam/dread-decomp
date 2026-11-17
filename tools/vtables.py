@@ -171,6 +171,22 @@ def read(version: str) -> list[dict]:
                  "family": int(r["family"])} for r in csv.DictReader(fh)]
 
 
+def sibling_map(version: str) -> dict[int, set[int]]:
+    """Function -> the functions that share one of its (family, slot) places, itself included; empty when
+    slots.csv has not been built. The lean kit shows a worker a matched sibling (tools/batch/lean/similar.py)."""
+    if not slots_path(version).exists():
+        return {}
+    places: dict[tuple[int, int], set[int]] = defaultdict(set)
+    for s in read(version):
+        places[(s["family"], s["slot"])].add(s["function"])
+    out: dict[int, set[int]] = defaultdict(set)
+    for fns in places.values():
+        if len(fns) > 1:
+            for fn in fns:
+                out[fn] |= fns
+    return dict(out)
+
+
 def unnamed(row: dict) -> bool:
     return row["name_source"] == "unknown"
 

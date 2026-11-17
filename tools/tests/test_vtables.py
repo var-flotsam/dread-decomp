@@ -123,6 +123,22 @@ class Views(unittest.TestCase):
     def test_function_in_no_table_says_so(self):
         self.assertIn("in no table", vtables.function_view(slot_rows(), funcs(), LONE, limit=10)[0])
 
+    def test_sibling_map_joins_the_functions_of_one_slot_and_is_empty_without_the_file(self):
+        import tempfile
+        from pathlib import Path
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as tmp:
+            with mock.patch.object(vtables, "BUILD", Path(tmp)):
+                self.assertEqual(vtables.sibling_map("9.9.9"), {})
+                vtables.write("9.9.9", [{"table": f"0x{r['table']:x}", "slot": r["slot"],
+                                         "function": f"0x{r['function']:x}", "family": r["family"]}
+                                        for r in slot_rows()])
+                sib = vtables.sibling_map("9.9.9")
+        self.assertEqual(sib[UPDATE], {UPDATE, UPDATE2})
+        self.assertEqual(sib[DRAW2], {DRAW, DRAW2})
+        self.assertNotIn(DTOR, sib)       # one implementation: no sibling
+        self.assertNotIn(OTHER_A, sib)
+
     def test_resolve_takes_an_address_or_a_unique_name(self):
         self.assertEqual(vtables.resolve(f"{DRAW:x}", funcs()), DRAW)
         self.assertEqual(vtables.resolve("fn_draw2", funcs()), DRAW2)
