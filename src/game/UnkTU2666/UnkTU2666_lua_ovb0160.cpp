@@ -52,6 +52,9 @@ using base::reflection::CType;
 using base::reflection::UnkReflObject;
 using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EDeserializeCollectionElementMode : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode>::object asm("g_unk_7101d67c10");
 
 struct lua_State;
 
@@ -691,7 +694,7 @@ s32 fn_7101095ee0(lua_State* L) {
     if (value.type) {
         UnkTypedRef ref;
         {
-            ref.type = reinterpret_cast<const CType*>(&g_unk_7101d67c10);
+            ref.type = reinterpret_cast<const CType*>(&base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode>::object);
             ref.ptr = &mode;
             UnkLuaReadScratch_b49a6 scratch = {};
             fn_7100fc22a0(L, 2, &ref, 2, &scratch);

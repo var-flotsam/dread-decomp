@@ -19,6 +19,17 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+#include "base/reflection/TypeObject.h"
+enum class ECutPathMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ECutPathMode>::object asm("g_unk_71726b1db0");
+enum class EXpawnAngPolicy : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EXpawnAngPolicy>::object asm("g_unk_71726b1f10");
+enum class ENavigablePathType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ENavigablePathType>::object asm("g_unk_717270c618");
+enum class EInFrustumMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EInFrustumMode>::object asm("g_unk_71727952a8");
+enum class ELOSMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ELOSMode>::object asm("g_unk_7172a05520");
 void fn_7100415b48();
 void fn_7100411160(UnkReflFunction* fn, const char* name);
 void fn_7100415bd8();
@@ -187,7 +198,7 @@ void fn_7100408c20(CClass* cls) {
     [&] {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_eInFrustumMode_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_m_eInFrustumMode_GetterFunction", true);
-            fn->return_type = &g_unk_71727952a8;
+            fn->return_type = &base::reflection::TypeObject<EInFrustumMode>::object;
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100415e18);
@@ -195,8 +206,8 @@ void fn_7100408c20(CClass* cls) {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_eInFrustumMode_SetterFunction", true)))
             fn_71004118cc(fn, "_m_eInFrustumMode_SetterFunction");
     }();
-    UnkReflField* field15 = AddReflectedField(cls, CStrId("eInFrustumMode", true), &g_unk_71727952a8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field15->attrs.Add<s32>(fn_7100075240(), &g_unk_71727952a8, 0);
+    UnkReflField* field15 = AddReflectedField(cls, CStrId("eInFrustumMode", true), &base::reflection::TypeObject<EInFrustumMode>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field15->attrs.Add<s32>(fn_7100075240(), &base::reflection::TypeObject<EInFrustumMode>::object, 0);
     field15->attrs.Add<const char*>(fn_7100007e80(), "How to check if entity is in frustum");
     [&] {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_bWantsAdjustHeightOnMelee_GetterFunction", true))) {
@@ -383,8 +394,8 @@ void fn_7100408c20(CClass* cls) {
     field45->attrs.Add<f32>(fn_7100075240(), 0.0f);
     UnkReflField* field46 = AddReflectedField(cls, CStrId("vNavMeshAStarExtraSize", true), fn_7100024504(), 0x3a4, -1, -1);
     field46->attrs.Add<base::math::CVector2D>(fn_7100075240(), base::math::CVector2D{0.0f, 0.0f});
-    UnkReflField* field47 = AddReflectedField(cls, CStrId("eNavigablePathType", true), &g_unk_717270c618, 0xec, -1, -1);
-    field47->attrs.Add<s32>(fn_7100075240(), &g_unk_717270c618, 0);
+    UnkReflField* field47 = AddReflectedField(cls, CStrId("eNavigablePathType", true), &base::reflection::TypeObject<ENavigablePathType>::object, 0xec, -1, -1);
+    field47->attrs.Add<s32>(fn_7100075240(), &base::reflection::TypeObject<ENavigablePathType>::object, 0);
     UnkReflField* field48 = AddReflectedField(cls, CStrId("fMinYNormalInPath", true), fn_710000abbc(), 0xf0, -1, -1);
     field48->attrs.Add<f32>(fn_7100075240(), 0.7f);
     UnkReflField* field49 = AddReflectedField(cls, CStrId("fNavigablePathCutDistance", true), fn_710000abbc(), 0xf4, -1, -1);
@@ -406,8 +417,8 @@ void fn_7100408c20(CClass* cls) {
     UnkReflField* field56 = AddReflectedField(cls, CStrId("bGeneratePathInOpenDoors", true), fn_710000d228(), 0x114, -1, -1);
     field56->attrs.Add<bool>(fn_7100075240(), true);
     field56->attrs.Add<const char*>(fn_7100007e80(), "Generate path inside open doors");
-    UnkReflField* field57 = AddReflectedField(cls, CStrId("eCutPathMode", true), &g_unk_71726b1db0, 0x110, -1, -1);
-    field57->attrs.Add<s32>(fn_7100075240(), &g_unk_71726b1db0, 0);
+    UnkReflField* field57 = AddReflectedField(cls, CStrId("eCutPathMode", true), &base::reflection::TypeObject<ECutPathMode>::object, 0x110, -1, -1);
+    field57->attrs.Add<s32>(fn_7100075240(), &base::reflection::TypeObject<ECutPathMode>::object, 0);
     field57->attrs.Add<const char*>(fn_7100007e80(), "Mode to cut final navigable path");
     UnkReflField* field58 = AddReflectedField(cls, CStrId("tPresets", true), &g_unk_71726e36c8, 0x58, -1, -1);
     field58->attrs_0x70.Add<bool>(fn_7100091d40(), true);
@@ -424,8 +435,8 @@ void fn_7100408c20(CClass* cls) {
     UnkReflField* field65 = AddReflectedField(cls, CStrId("bEndDetectionRequiresLOS", true), fn_710000d228(), 0x36c, -1, -1);
     field65->attrs.Add<bool>(fn_7100075240(), false);
     field65->attrs.Add<const char*>(fn_7100007e80(), "Is LOS required to detect the target at end");
-    UnkReflField* field66 = AddReflectedField(cls, CStrId("eDetectionLOSMode", true), &g_unk_7172a05520, 0x370, -1, -1);
-    field66->attrs.Add<s32>(fn_7100075240(), &g_unk_7172a05520, 1);
+    UnkReflField* field66 = AddReflectedField(cls, CStrId("eDetectionLOSMode", true), &base::reflection::TypeObject<ELOSMode>::object, 0x370, -1, -1);
+    field66->attrs.Add<s32>(fn_7100075240(), &base::reflection::TypeObject<ELOSMode>::object, 1);
     field66->attrs.Add<const char*>(fn_7100007e80(), "LOS mode for detection");
     UnkReflField* field67 = AddReflectedField(cls, CStrId("bStartDetectionRequiresTargetInFront", true), fn_710000d228(), 0x374, -1, -1);
     field67->attrs.Add<bool>(fn_7100075240(), false);
@@ -584,8 +595,8 @@ void fn_7100408c20(CClass* cls) {
     field111->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
     UnkReflField* field112 = AddReflectedField(cls, CStrId("v3MorphingOffset", true), fn_71000246e4(), 0x460, -1, -1);
     field112->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    UnkReflField* field113 = AddReflectedField(cls, CStrId("eXpawnAngPolicy", true), &g_unk_71726b1f10, 0x46c, -1, -1);
-    field113->attrs.Add<s32>(fn_7100075240(), &g_unk_71726b1f10, 0);
+    UnkReflField* field113 = AddReflectedField(cls, CStrId("eXpawnAngPolicy", true), &base::reflection::TypeObject<EXpawnAngPolicy>::object, 0x46c, -1, -1);
+    field113->attrs.Add<s32>(fn_7100075240(), &base::reflection::TypeObject<EXpawnAngPolicy>::object, 0);
     UnkReflField* field114 = AddReflectedField(cls, CStrId("fXCellMorphingEffectScale", true), fn_710000abbc(), 0x470, -1, -1);
     field114->attrs.Add<f32>(fn_7100075240(), 1.0f);
     UnkReflField* field115 = AddReflectedField(cls, CStrId("sPushAnim", true), fn_7100009658(), 0x478, -1, -1);

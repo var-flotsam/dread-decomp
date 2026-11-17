@@ -3,6 +3,9 @@
 #include "game/UnkTU1112.h"
 
 using namespace unk_static_init;
+#include "base/reflection/TypeObject.h"
+enum class ENavigablePathType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ENavigablePathType>::object asm("g_unk_717270c618");
 
 struct UnkStatics_71006f3d00 {
     HeaderIds ids;
@@ -18,6 +21,6 @@ void fn_71006f3c74() __attribute__((visibility("hidden")));
 
 void fn_71006f3d00() {
     InitHeaderIds(&g_unk_717270c778.ids);
-    InitEnum(&reinterpret_cast<UnkEnumType&>(g_unk_717270c618), "ENavigablePathType", fn_71006f3ae8, fn_71006f393c,
+    InitEnum(&reinterpret_cast<UnkEnumType&>(base::reflection::TypeObject<ENavigablePathType>::object), "ENavigablePathType", fn_71006f3ae8, fn_71006f393c,
              g_unk_717270c730, &g_unk_717270c738, fn_71006f3c68, &g_unk_717270c758, fn_71006f3c74);
 }

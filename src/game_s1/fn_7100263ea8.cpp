@@ -6,6 +6,9 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkTU2201.h"
 #include "game/UnkTU32.h"
+#include "base/reflection/TypeObject.h"
+namespace cutscene { enum class ETakePlayMode : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<cutscene::ETakePlayMode>::object asm("g_unk_7172794fb0");
 
 extern base::reflection::CType g_unk_7108b6da30;
 
@@ -27,7 +30,7 @@ __attribute__((flatten)) void fn_7100263ea8(char* self) { base::refl_PushPair<Un
 
 __attribute__((flatten)) void fn_710011e050(char* self) { base::refl_PushPair<UnkU32TypePair>(self); }
 
-// The unsigned integer type and g_unk_7172794fb0 (cutscene::ETakePlayMode's type, built by
+// The unsigned integer type and base::reflection::TypeObject<cutscene::ETakePlayMode>::object (cutscene::ETakePlayMode's type, built by
 // src/base/reflection/fn_7100b04900.cpp), in the CCutsceneComponent unit: fn_71007adc7c.
 #include "game/UnkTUInit.h"
 
@@ -35,7 +38,7 @@ struct UnkU32TypePairB;
 template <>
 struct base::UnkPushPairTraits<UnkU32TypePairB> {
     static void* first() { return const_cast<reflection::CType*>(fn_7100005178()); }
-    static void* second() { return &g_unk_7172794fb0; }
+    static void* second() { return &base::reflection::TypeObject<cutscene::ETakePlayMode>::object; }
 };
 
 __attribute__((flatten)) void fn_71007adc7c(char* self) { base::refl_PushPair<UnkU32TypePairB>(self); }
