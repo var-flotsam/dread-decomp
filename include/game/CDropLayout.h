@@ -5,6 +5,7 @@
 // registers none of its members (tools/gen_fields.py --class CDrop), so the names and the layout are
 // placeholders. The dropped-item manager (unit 2562) keeps its drops in arrays and fills each from a table
 // of entries built on the stack.
+#include "base/UnkStrIdPathPair.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -43,18 +44,6 @@ struct UnkDropTable {
 };
 static_assert(sizeof(UnkDropTable) == 0x440, "placeholder layout");
 
-// An id/path resource record (0x18 bytes), released with fn_7100026f70. It is the record
-// base/UnkStrIdPathPair.h calls UnkStrIdPathResource (fn_71000267f8 points one at a path; the manager's
-// records at 0xa020 are built as this type by fn_7100e211cc and loaded as that one by fn_7100e21b8c);
-// the two are not one type yet because UnkStrIdPathResource has no constructor.
-struct UnkDropResource {
-    base::global::CStrId id;
-    base::global::CFilePathStrId path;
-    u64 field_0x10;
-    UnkDropResource() : id(g_unk_7101d470e0), path(g_unk_7101d470e8), field_0x10(0) {}
-};
-static_assert(sizeof(UnkDropResource) == 0x18, "placeholder layout");
-
 struct CDrop {
     // CGameObject
     void** vtable;
@@ -80,9 +69,10 @@ struct CDrop {
     // the byte on whole.
     u8 mode : 2;
     u8 field_0x49c_2 : 6;
-    UnkDropResource field_0x4a0;
-    UnkDropResource field_0x4b8;
-    UnkDropResource field_0x4d0;
+    // Its three models (fn_7100e2a034 and fn_7100e2a734 point them at paths), released with fn_7100026f70.
+    UnkStrIdPathResource field_0x4a0;
+    UnkStrIdPathResource field_0x4b8;
+    UnkStrIdPathResource field_0x4d0;
     bool field_0x4e8;
 
     // Vtable slot 0x38, called once the drop is filled in.

@@ -41,11 +41,9 @@ struct UnkBillboardManager_e2a734 {
 
 static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
 
-// Points a drop's model record at the ids parsed from a path (the path is built first). The record is the
-// id/path/resource triple fn_71000267f8 is declared over (UnkStrIdPathResource, base/UnkStrIdPathPair.h),
-// which CDrop's layout still types as UnkDropResource.
-static inline void LoadPath(const CRntString& path, UnkDropResource* model) {
-    fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(model), UnkPathIdsFromText(path).ids);
+// Points a drop's model record at the ids parsed from a path (the path is built first).
+static inline void LoadPath(const CRntString& path, UnkStrIdPathResource* model) {
+    fn_71000267f8(model, UnkPathIdsFromText(path).ids);
 }
 
 static inline const UnkBillboardTunable_e2a734& Tunable() {
