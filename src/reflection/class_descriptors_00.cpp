@@ -279,28 +279,25 @@ struct refl_Description : ClassDescription {
 }  // namespace CAfterElementDeserializationWrapper
 DREAD_REFLECTED_DESCRIPTOR(CAfterElementDeserializationWrapper);
 
-DREAD_REFL_TAG(71000e872c);
-bool fn_71000e8894(const void* a, const void* b) { return a == b; }
-s32 fn_71000e88a0() { return -1; }
-const base::reflection::CType& fn_71000e88a8(const void* obj);
-void fn_71000e88b4(void* dst, const void* src);
-void fn_71000e88b8(void* dst, const void* src);
-void fn_71000e88bc(void* obj);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_71000e872c> {
+// base::reflection::CVariable
+namespace base::reflection::CVariable {
+bool refl_Equals(const void* a, const void* b) { return a == b; }
+s32 refl_Hash() { return -1; }
+const base::reflection::CType& refl_TypeOf(const void* obj);
+void refl_CopyConstruct(void* dst, const void* src);
+void refl_MoveConstruct(void* dst, const void* src);
+void refl_Destroy(void* obj);
+struct refl_Description : ClassDescription {
     static constexpr u64 size = 0xb0;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_71000e8894;
-    static constexpr HashFn fn_0x60 = &fn_71000e88a0;
-    static constexpr TypeOfFn fn_0x68 = &fn_71000e88a8;
-    static constexpr SlotFn fn_0x28 = nullptr;
-    static constexpr CopyConstructFn fn_0x30 = &fn_71000e88b4;
-    static constexpr CopyConstructFn fn_0x38 = &fn_71000e88b8;
-    static constexpr DestroyFn fn_0x40 = &fn_71000e88bc;
-    static constexpr AssignFn fn_0x48 = nullptr;
-    static constexpr AssignFn fn_0x50 = nullptr;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
 };
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_71000e872c*);
+}  // namespace base::reflection::CVariable
+DREAD_REFLECTED_DESCRIPTOR(base::reflection::CVariable);
 
 // base::serialization::CTypedRefWriter::SBaseContext
 namespace base::serialization::CTypedRefWriter::SBaseContext {
@@ -840,32 +837,6 @@ struct refl_Description : ClassDescription {
 }  // namespace engine::scene::CSceneSlot
 DREAD_REFLECTED_DESCRIPTOR(engine::scene::CSceneSlot);
 
-DREAD_REFL_TAG(710022f608);
-bool fn_7100245578(const void* a, const void* b);
-s32 fn_7100245674() { return -1; }
-const base::reflection::CType& fn_710024567c(const void* obj);
-void fn_7100245688();
-void fn_71002456f0(void* dst, const void* src);
-void fn_71002457b8(void* dst, const void* src);
-void fn_71002457bc(void* obj) { static_cast<base::reflection::UnkReflObjectB*>(obj)->~UnkReflObjectB(); }
-void* fn_71002457c8(void* dst, const void* src);
-void* fn_7100245814(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710022f608> {
-    static constexpr u64 size = 0x40;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100245578;
-    static constexpr HashFn fn_0x60 = &fn_7100245674;
-    static constexpr TypeOfFn fn_0x68 = &fn_710024567c;
-    static constexpr SlotFn fn_0x28 = &fn_7100245688;
-    static constexpr CopyConstructFn fn_0x30 = &fn_71002456f0;
-    static constexpr CopyConstructFn fn_0x38 = &fn_71002457b8;
-    static constexpr DestroyFn fn_0x40 = &fn_71002457bc;
-    static constexpr AssignFn fn_0x48 = &fn_71002457c8;
-    static constexpr AssignFn fn_0x50 = &fn_7100245814;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_710022f608*);
-
 // CActorLayer
 namespace CActorLayer {
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -891,58 +862,6 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CActorLayer
 DREAD_REFLECTED_DESCRIPTOR(CActorLayer);
-
-DREAD_REFL_TAG(7100259fa4);
-bool fn_7100260ba0(const void* a, const void* b) { return a == b; }
-s32 fn_7100260bac() { return -1; }
-const base::reflection::CType& fn_7100260bb4(const void* obj);
-void fn_7100260bc0();
-void fn_7100260bc8(void* dst, const void* src);
-void fn_7100260bd0(void* dst, const void* src);
-void fn_7100260c14(void* obj);
-void* fn_7100260c50(void* dst, const void* src);
-void* fn_7100260c8c(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100259fa4> {
-    static constexpr u64 size = 0xd8;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100260ba0;
-    static constexpr HashFn fn_0x60 = &fn_7100260bac;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100260bb4;
-    static constexpr SlotFn fn_0x28 = &fn_7100260bc0;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100260bc8;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100260bd0;
-    static constexpr DestroyFn fn_0x40 = &fn_7100260c14;
-    static constexpr AssignFn fn_0x48 = &fn_7100260c50;
-    static constexpr AssignFn fn_0x50 = &fn_7100260c8c;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100259fa4*);
-
-DREAD_REFL_TAG(710025a588);
-bool fn_7100260dc8(const void* a, const void* b) { return a == b; }
-s32 fn_7100260dd4() { return -1; }
-const base::reflection::CType& fn_7100260ddc(const void* obj);
-void fn_7100260de8();
-void fn_7100260df0(void* dst, const void* src);
-void fn_7100260df8(void* dst, const void* src);
-void fn_7100260e3c(void* obj);
-void* fn_7100260e78(void*, const void*) { return nullptr; }
-void* fn_7100260e80(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_710025a588> {
-    static constexpr u64 size = 0xd8;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100260dc8;
-    static constexpr HashFn fn_0x60 = &fn_7100260dd4;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100260ddc;
-    static constexpr SlotFn fn_0x28 = &fn_7100260de8;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100260df0;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100260df8;
-    static constexpr DestroyFn fn_0x40 = &fn_7100260e3c;
-    static constexpr AssignFn fn_0x48 = &fn_7100260e78;
-    static constexpr AssignFn fn_0x50 = &fn_7100260e80;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_710025a588*);
 
 // CActorSublayer
 namespace CActorSublayer {
@@ -1894,58 +1813,6 @@ struct refl_Description : ClassDescription {
 }  // namespace GUI::CDisplayObjectTrackFloat::SKey
 DREAD_REFLECTED_DESCRIPTOR(GUI::CDisplayObjectTrackFloat::SKey);
 
-DREAD_REFL_TAG(7100b0f8c4);
-bool fn_7100b179c8(const void* a, const void* b) { return a == b; }
-s32 fn_7100b179d4() { return -1; }
-const base::reflection::CType& fn_7100b179dc(const void* obj);
-void fn_7100b179e8();
-void fn_7100b179f0(void* dst, const void* src);
-void fn_7100b179f8(void* dst, const void* src);
-void fn_7100b17a48(void* obj);
-void* fn_7100b17a60(void* dst, const void* src);
-void* fn_7100b17afc(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b0f8c4> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100b179c8;
-    static constexpr HashFn fn_0x60 = &fn_7100b179d4;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100b179dc;
-    static constexpr SlotFn fn_0x28 = &fn_7100b179e8;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100b179f0;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100b179f8;
-    static constexpr DestroyFn fn_0x40 = &fn_7100b17a48;
-    static constexpr AssignFn fn_0x48 = &fn_7100b17a60;
-    static constexpr AssignFn fn_0x50 = &fn_7100b17afc;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100b0f8c4*);
-
-DREAD_REFL_TAG(7100b0fea8);
-bool fn_7100b17c48(const void* a, const void* b) { return a == b; }
-s32 fn_7100b17c54() { return -1; }
-const base::reflection::CType& fn_7100b17c5c(const void* obj);
-void fn_7100b17c68();
-void fn_7100b17c70(void* dst, const void* src);
-void fn_7100b17c78(void* dst, const void* src);
-void fn_7100b17cc8(void* obj);
-void* fn_7100b17ce0(void*, const void*) { return nullptr; }
-void* fn_7100b17ce8(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b0fea8> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100b17c48;
-    static constexpr HashFn fn_0x60 = &fn_7100b17c54;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100b17c5c;
-    static constexpr SlotFn fn_0x28 = &fn_7100b17c68;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100b17c70;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100b17c78;
-    static constexpr DestroyFn fn_0x40 = &fn_7100b17cc8;
-    static constexpr AssignFn fn_0x48 = &fn_7100b17ce0;
-    static constexpr AssignFn fn_0x50 = &fn_7100b17ce8;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100b0fea8*);
-
 // GUI::CDisplayObjectTrackBool::SKey
 namespace GUI::CDisplayObjectTrackBool::SKey {
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -1972,58 +1839,6 @@ struct refl_Description : ClassDescription {
 }  // namespace GUI::CDisplayObjectTrackBool::SKey
 DREAD_REFLECTED_DESCRIPTOR(GUI::CDisplayObjectTrackBool::SKey);
 
-DREAD_REFL_TAG(7100b10ec0);
-bool fn_7100b191b8(const void* a, const void* b) { return a == b; }
-s32 fn_7100b191c4() { return -1; }
-const base::reflection::CType& fn_7100b191cc(const void* obj);
-void fn_7100b191d8();
-void fn_7100b191e0(void* dst, const void* src);
-void fn_7100b191e8(void* dst, const void* src);
-void fn_7100b19238(void* obj);
-void* fn_7100b19250(void* dst, const void* src);
-void* fn_7100b192f4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b10ec0> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100b191b8;
-    static constexpr HashFn fn_0x60 = &fn_7100b191c4;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100b191cc;
-    static constexpr SlotFn fn_0x28 = &fn_7100b191d8;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100b191e0;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100b191e8;
-    static constexpr DestroyFn fn_0x40 = &fn_7100b19238;
-    static constexpr AssignFn fn_0x48 = &fn_7100b19250;
-    static constexpr AssignFn fn_0x50 = &fn_7100b192f4;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100b10ec0*);
-
-DREAD_REFL_TAG(7100b114a4);
-bool fn_7100b19420(const void* a, const void* b) { return a == b; }
-s32 fn_7100b1942c() { return -1; }
-const base::reflection::CType& fn_7100b19434(const void* obj);
-void fn_7100b19440();
-void fn_7100b19448(void* dst, const void* src);
-void fn_7100b19450(void* dst, const void* src);
-void fn_7100b194a0(void* obj);
-void* fn_7100b194b8(void*, const void*) { return nullptr; }
-void* fn_7100b194c0(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b114a4> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100b19420;
-    static constexpr HashFn fn_0x60 = &fn_7100b1942c;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100b19434;
-    static constexpr SlotFn fn_0x28 = &fn_7100b19440;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100b19448;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100b19450;
-    static constexpr DestroyFn fn_0x40 = &fn_7100b194a0;
-    static constexpr AssignFn fn_0x48 = &fn_7100b194b8;
-    static constexpr AssignFn fn_0x50 = &fn_7100b194c0;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100b114a4*);
-
 // GUI::CDisplayObjectTrackString::SKey
 namespace GUI::CDisplayObjectTrackString::SKey {
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -2049,58 +1864,6 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace GUI::CDisplayObjectTrackString::SKey
 DREAD_REFLECTED_DESCRIPTOR(GUI::CDisplayObjectTrackString::SKey);
-
-DREAD_REFL_TAG(7100b124bc);
-bool fn_7100b1ab84(const void* a, const void* b) { return a == b; }
-s32 fn_7100b1ab90() { return -1; }
-const base::reflection::CType& fn_7100b1ab98(const void* obj);
-void fn_7100b1aba4();
-void fn_7100b1abac(void* dst, const void* src);
-void fn_7100b1abb4(void* dst, const void* src);
-void fn_7100b1ac1c(void* obj);
-void* fn_7100b1ac58(void* dst, const void* src);
-void* fn_7100b1acf8(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b124bc> {
-    static constexpr u64 size = 0x48;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100b1ab84;
-    static constexpr HashFn fn_0x60 = &fn_7100b1ab90;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100b1ab98;
-    static constexpr SlotFn fn_0x28 = &fn_7100b1aba4;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100b1abac;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100b1abb4;
-    static constexpr DestroyFn fn_0x40 = &fn_7100b1ac1c;
-    static constexpr AssignFn fn_0x48 = &fn_7100b1ac58;
-    static constexpr AssignFn fn_0x50 = &fn_7100b1acf8;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100b124bc*);
-
-DREAD_REFL_TAG(7100b12aa0);
-bool fn_7100b1ae44(const void* a, const void* b) { return a == b; }
-s32 fn_7100b1ae50() { return -1; }
-const base::reflection::CType& fn_7100b1ae58(const void* obj);
-void fn_7100b1ae64();
-void fn_7100b1ae6c(void* dst, const void* src);
-void fn_7100b1ae74(void* dst, const void* src);
-void fn_7100b1aedc(void* obj);
-void* fn_7100b1af18(void*, const void*) { return nullptr; }
-void* fn_7100b1af20(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100b12aa0> {
-    static constexpr u64 size = 0x48;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100b1ae44;
-    static constexpr HashFn fn_0x60 = &fn_7100b1ae50;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100b1ae58;
-    static constexpr SlotFn fn_0x28 = &fn_7100b1ae64;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100b1ae6c;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100b1ae74;
-    static constexpr DestroyFn fn_0x40 = &fn_7100b1aedc;
-    static constexpr AssignFn fn_0x48 = &fn_7100b1af18;
-    static constexpr AssignFn fn_0x50 = &fn_7100b1af20;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100b12aa0*);
 
 // GUI::CSkin
 namespace GUI::CSkin {
@@ -2369,32 +2132,6 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace game::logic::collision::CCollisionImporter
 DREAD_REFLECTED_DESCRIPTOR(game::logic::collision::CCollisionImporter);
-
-DREAD_REFL_TAG(7100d75c70);
-bool fn_7100d87128(const void* a, const void* b);
-s32 fn_7100d87224() { return -1; }
-const base::reflection::CType& fn_7100d8722c(const void* obj);
-void fn_7100d87238();
-void fn_7100d872a0(void* dst, const void* src);
-void fn_7100d87368(void* dst, const void* src);
-void fn_7100d8736c(void* obj) { static_cast<base::reflection::UnkReflObjectB*>(obj)->~UnkReflObjectB(); }
-void* fn_7100d87378(void* dst, const void* src);
-void* fn_7100d873c4(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100d75c70> {
-    static constexpr u64 size = 0x40;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100d87128;
-    static constexpr HashFn fn_0x60 = &fn_7100d87224;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100d8722c;
-    static constexpr SlotFn fn_0x28 = &fn_7100d87238;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100d872a0;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100d87368;
-    static constexpr DestroyFn fn_0x40 = &fn_7100d8736c;
-    static constexpr AssignFn fn_0x48 = &fn_7100d87378;
-    static constexpr AssignFn fn_0x50 = &fn_7100d873c4;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100d75c70*);
 
 // CEnvironmentManager
 namespace CEnvironmentManager {
@@ -2877,58 +2614,6 @@ struct refl_Description : ClassDescription {
 }  // namespace minimap::CAnimatedValue::SAnimConfig
 DREAD_REFLECTED_DESCRIPTOR(minimap::CAnimatedValue::SAnimConfig);
 
-DREAD_REFL_TAG(7100ed0d50);
-bool fn_7100edabe0(const void* a, const void* b);
-s32 fn_7100edac70() { return -1; }
-const base::reflection::CType& fn_7100edac78(const void* obj);
-void fn_7100edac84();
-void fn_7100edac8c(void* dst, const void* src);
-void fn_7100edac94(void* dst, const void* src);
-void fn_7100edacec(void* obj);
-void* fn_7100edad6c(void* dst, const void* src);
-void* fn_7100edae8c(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100ed0d50> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100edabe0;
-    static constexpr HashFn fn_0x60 = &fn_7100edac70;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100edac78;
-    static constexpr SlotFn fn_0x28 = &fn_7100edac84;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100edac8c;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100edac94;
-    static constexpr DestroyFn fn_0x40 = &fn_7100edacec;
-    static constexpr AssignFn fn_0x48 = &fn_7100edad6c;
-    static constexpr AssignFn fn_0x50 = &fn_7100edae8c;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100ed0d50*);
-
-DREAD_REFL_TAG(7100ed1334);
-bool fn_7100edb070(const void* a, const void* b);
-s32 fn_7100edb100() { return -1; }
-const base::reflection::CType& fn_7100edb108(const void* obj);
-void fn_7100edb114();
-void fn_7100edb11c(void* dst, const void* src);
-void fn_7100edb124(void* dst, const void* src);
-void fn_7100edb194(void* obj);
-void* fn_7100edb214(void*, const void*) { return nullptr; }
-void* fn_7100edb21c(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100ed1334> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100edb070;
-    static constexpr HashFn fn_0x60 = &fn_7100edb100;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100edb108;
-    static constexpr SlotFn fn_0x28 = &fn_7100edb114;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100edb11c;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100edb124;
-    static constexpr DestroyFn fn_0x40 = &fn_7100edb194;
-    static constexpr AssignFn fn_0x48 = &fn_7100edb214;
-    static constexpr AssignFn fn_0x50 = &fn_7100edb21c;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100ed1334*);
-
 // CShotAudioWeaponStates
 namespace CShotAudioWeaponStates {
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -2954,58 +2639,6 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CShotAudioWeaponStates
 DREAD_REFLECTED_DESCRIPTOR(CShotAudioWeaponStates);
-
-DREAD_REFL_TAG(7100ed21e4);
-bool fn_7100edc67c(const void* a, const void* b) { return a == b; }
-s32 fn_7100edc688() { return -1; }
-const base::reflection::CType& fn_7100edc690(const void* obj);
-void fn_7100edc69c();
-void fn_7100edc6a4(void* dst, const void* src);
-void fn_7100edc6ac(void* dst, const void* src);
-void fn_7100edc6f8(void* obj);
-void* fn_7100edc734(void* dst, const void* src);
-void* fn_7100edc7cc(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100ed21e4> {
-    static constexpr u64 size = 0x50;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100edc67c;
-    static constexpr HashFn fn_0x60 = &fn_7100edc688;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100edc690;
-    static constexpr SlotFn fn_0x28 = &fn_7100edc69c;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100edc6a4;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100edc6ac;
-    static constexpr DestroyFn fn_0x40 = &fn_7100edc6f8;
-    static constexpr AssignFn fn_0x48 = &fn_7100edc734;
-    static constexpr AssignFn fn_0x50 = &fn_7100edc7cc;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100ed21e4*);
-
-DREAD_REFL_TAG(7100ed27c8);
-bool fn_7100edc90c(const void* a, const void* b) { return a == b; }
-s32 fn_7100edc918() { return -1; }
-const base::reflection::CType& fn_7100edc920(const void* obj);
-void fn_7100edc92c();
-void fn_7100edc934(void* dst, const void* src);
-void fn_7100edc93c(void* dst, const void* src);
-void fn_7100edc988(void* obj);
-void* fn_7100edc9c4(void*, const void*) { return nullptr; }
-void* fn_7100edc9cc(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100ed27c8> {
-    static constexpr u64 size = 0x50;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100edc90c;
-    static constexpr HashFn fn_0x60 = &fn_7100edc918;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100edc920;
-    static constexpr SlotFn fn_0x28 = &fn_7100edc92c;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100edc934;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100edc93c;
-    static constexpr DestroyFn fn_0x40 = &fn_7100edc988;
-    static constexpr AssignFn fn_0x48 = &fn_7100edc9c4;
-    static constexpr AssignFn fn_0x50 = &fn_7100edc9cc;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100ed27c8*);
 
 // CShotAudioWeaponPresets
 namespace CShotAudioWeaponPresets {
@@ -3611,58 +3244,6 @@ struct refl_Description : ClassDescription {
 }  // namespace CSubareaInfo
 DREAD_REFLECTED_DESCRIPTOR(CSubareaInfo);
 
-DREAD_REFL_TAG(7100faebe0);
-bool fn_7100fb0a8c(const void* a, const void* b);
-s32 fn_7100fb0b1c() { return -1; }
-const base::reflection::CType& fn_7100fb0b24(const void* obj);
-void fn_7100fb0b30();
-void fn_7100fb0b38(void* dst, const void* src);
-void fn_7100fb0b40(void* dst, const void* src);
-void fn_7100fb0b98(void* obj);
-void* fn_7100fb0c18(void* dst, const void* src);
-void* fn_7100fb0d38(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100faebe0> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100fb0a8c;
-    static constexpr HashFn fn_0x60 = &fn_7100fb0b1c;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100fb0b24;
-    static constexpr SlotFn fn_0x28 = &fn_7100fb0b30;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100fb0b38;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100fb0b40;
-    static constexpr DestroyFn fn_0x40 = &fn_7100fb0b98;
-    static constexpr AssignFn fn_0x48 = &fn_7100fb0c18;
-    static constexpr AssignFn fn_0x50 = &fn_7100fb0d38;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100faebe0*);
-
-DREAD_REFL_TAG(7100faf1c4);
-bool fn_7100fb0f1c(const void* a, const void* b);
-s32 fn_7100fb0fac() { return -1; }
-const base::reflection::CType& fn_7100fb0fb4(const void* obj);
-void fn_7100fb0fc0();
-void fn_7100fb0fc8(void* dst, const void* src);
-void fn_7100fb0fd0(void* dst, const void* src);
-void fn_7100fb1040(void* obj);
-void* fn_7100fb10c0(void*, const void*) { return nullptr; }
-void* fn_7100fb10c8(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7100faf1c4> {
-    static constexpr u64 size = 0x18;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7100fb0f1c;
-    static constexpr HashFn fn_0x60 = &fn_7100fb0fac;
-    static constexpr TypeOfFn fn_0x68 = &fn_7100fb0fb4;
-    static constexpr SlotFn fn_0x28 = &fn_7100fb0fc0;
-    static constexpr CopyConstructFn fn_0x30 = &fn_7100fb0fc8;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7100fb0fd0;
-    static constexpr DestroyFn fn_0x40 = &fn_7100fb1040;
-    static constexpr AssignFn fn_0x48 = &fn_7100fb10c0;
-    static constexpr AssignFn fn_0x50 = &fn_7100fb10c8;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7100faf1c4*);
-
 // CSubareaSetup
 namespace CSubareaSetup {
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -3981,58 +3562,6 @@ struct refl_Description : ClassDescription {
 }  // namespace sound::CAudioPresetModifier
 DREAD_REFLECTED_DESCRIPTOR(sound::CAudioPresetModifier);
 
-DREAD_REFL_TAG(7101035ab0);
-bool fn_710103bd14(const void* a, const void* b) { return a == b; }
-s32 fn_710103bd20() { return -1; }
-const base::reflection::CType& fn_710103bd28(const void* obj);
-void fn_710103bd34();
-void fn_710103bd3c(void* dst, const void* src);
-void fn_710103bd44(void* dst, const void* src);
-void fn_710103bd48(void* obj);
-void* fn_710103bd84(void* dst, const void* src);
-void* fn_710103be38(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7101035ab0> {
-    static constexpr u64 size = 0x60;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_710103bd14;
-    static constexpr HashFn fn_0x60 = &fn_710103bd20;
-    static constexpr TypeOfFn fn_0x68 = &fn_710103bd28;
-    static constexpr SlotFn fn_0x28 = &fn_710103bd34;
-    static constexpr CopyConstructFn fn_0x30 = &fn_710103bd3c;
-    static constexpr CopyConstructFn fn_0x38 = &fn_710103bd44;
-    static constexpr DestroyFn fn_0x40 = &fn_710103bd48;
-    static constexpr AssignFn fn_0x48 = &fn_710103bd84;
-    static constexpr AssignFn fn_0x50 = &fn_710103be38;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7101035ab0*);
-
-DREAD_REFL_TAG(7101036094);
-bool fn_710103c0a4(const void* a, const void* b) { return a == b; }
-s32 fn_710103c0b0() { return -1; }
-const base::reflection::CType& fn_710103c0b8(const void* obj);
-void fn_710103c0c4();
-void fn_710103c0cc(void* dst, const void* src);
-void fn_710103c0d4(void* dst, const void* src);
-void fn_710103c118(void* obj);
-void* fn_710103c154(void*, const void*) { return nullptr; }
-void* fn_710103c15c(void*, const void*) { return nullptr; }
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7101036094> {
-    static constexpr u64 size = 0x60;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_710103c0a4;
-    static constexpr HashFn fn_0x60 = &fn_710103c0b0;
-    static constexpr TypeOfFn fn_0x68 = &fn_710103c0b8;
-    static constexpr SlotFn fn_0x28 = &fn_710103c0c4;
-    static constexpr CopyConstructFn fn_0x30 = &fn_710103c0cc;
-    static constexpr CopyConstructFn fn_0x38 = &fn_710103c0d4;
-    static constexpr DestroyFn fn_0x40 = &fn_710103c118;
-    static constexpr AssignFn fn_0x48 = &fn_710103c154;
-    static constexpr AssignFn fn_0x50 = &fn_710103c15c;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7101036094*);
-
 // sound::CAudioPresets
 namespace sound::CAudioPresets {
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -4070,32 +3599,6 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CBlackboard::CSection
 DREAD_REFLECTED_DESCRIPTOR(CBlackboard::CSection);
-
-DREAD_REFL_TAG(7101051230);
-bool fn_7101052704(const void* a, const void* b);
-s32 fn_7101052800() { return -1; }
-const base::reflection::CType& fn_7101052808(const void* obj);
-void fn_7101052814();
-void fn_710105287c(void* dst, const void* src);
-void fn_7101052944(void* dst, const void* src);
-void fn_7101052948(void* obj) { static_cast<base::reflection::UnkReflObjectB*>(obj)->~UnkReflObjectB(); }
-void* fn_7101052954(void* dst, const void* src);
-void* fn_71010529a0(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7101051230> {
-    static constexpr u64 size = 0x40;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7101052704;
-    static constexpr HashFn fn_0x60 = &fn_7101052800;
-    static constexpr TypeOfFn fn_0x68 = &fn_7101052808;
-    static constexpr SlotFn fn_0x28 = &fn_7101052814;
-    static constexpr CopyConstructFn fn_0x30 = &fn_710105287c;
-    static constexpr CopyConstructFn fn_0x38 = &fn_7101052944;
-    static constexpr DestroyFn fn_0x40 = &fn_7101052948;
-    static constexpr AssignFn fn_0x48 = &fn_7101052954;
-    static constexpr AssignFn fn_0x50 = &fn_71010529a0;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7101051230*);
 
 // CEditorPathSegment
 namespace CEditorPathSegment {
@@ -4258,32 +3761,6 @@ struct refl_Description : ClassDescription {
 };
 }  // namespace CSpawnerActorBlueprint
 DREAD_REFLECTED_DESCRIPTOR(CSpawnerActorBlueprint);
-
-DREAD_REFL_TAG(7101122058);
-bool fn_7101130378(const void* a, const void* b);
-s32 fn_7101130474() { return -1; }
-const base::reflection::CType& fn_710113047c(const void* obj);
-void fn_7101130488();
-void fn_71011304f0(void* dst, const void* src);
-void fn_71011305b8(void* dst, const void* src);
-void fn_71011305bc(void* obj) { static_cast<base::reflection::UnkReflObjectB*>(obj)->~UnkReflObjectB(); }
-void* fn_71011305c8(void* dst, const void* src);
-void* fn_7101130614(void* dst, const void* src);
-template <>
-struct base::reflection::UnkReflClassTraits<UnkRefl_fn_7101122058> {
-    static constexpr u64 size = 0x40;
-    static constexpr bool abstract = false;
-    static constexpr EqualsFn fn_0x58 = &fn_7101130378;
-    static constexpr HashFn fn_0x60 = &fn_7101130474;
-    static constexpr TypeOfFn fn_0x68 = &fn_710113047c;
-    static constexpr SlotFn fn_0x28 = &fn_7101130488;
-    static constexpr CopyConstructFn fn_0x30 = &fn_71011304f0;
-    static constexpr CopyConstructFn fn_0x38 = &fn_71011305b8;
-    static constexpr DestroyFn fn_0x40 = &fn_71011305bc;
-    static constexpr AssignFn fn_0x48 = &fn_71011305c8;
-    static constexpr AssignFn fn_0x50 = &fn_7101130614;
-};
-template base::reflection::CClass::CClass(const base::global::CStrId&, const base::reflection::CClass*, base::reflection::ClassSetupFn, base::reflection::ClassSetupFn, UnkRefl_fn_7101122058*);
 
 // TCheckpointOffset
 namespace TCheckpointOffset {

@@ -20,6 +20,7 @@ class CEnvironmentSoundData;
 class CSubareaCharclassGroup;
 class CSubareaInfo;
 class CSubareaSetup;
+class ESubAreaItem;
 class SLogicPathNode;
 class SLogicSubPath;
 namespace CBlackboard { class TSectionContainer; }
@@ -27,9 +28,12 @@ namespace CCutscene { class CActor; }
 namespace CFXPool { class CDefinition; }
 namespace base::core { class CAssetLink; }
 namespace base::global { class CStrId; }
+namespace base::global { template <class, class, class> class CArray; }
 namespace base::global { template <class, class> class CRntDictionary; }
 namespace base::global { template <class, class> class CRntSmallDictionary; }
 namespace base::global { template <class> class CRntVector; }
+namespace base::snd { class EMaterial; }
+namespace sound { class CAudioMaterial; }
 namespace sound { class CAudioPreset; }
 namespace sound { class SStateFadeOut; }
 namespace sound { class TBossMusicPreset; }
@@ -40,6 +44,7 @@ namespace sound { class TMusicFile; }
 namespace sound { class TMusicTrack; }
 namespace sound { class TScenarioMusicPreset; }
 namespace sound::CSoundEventsDef { class TSoundEventRules; }
+template <class> class EnumClass { public: struct Count; };
 
 // The pair base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData>'s key-element iterator yields.
 template <>
@@ -180,6 +185,46 @@ struct ConstKeyElementValue<base::global::CRntVector<std::unique_ptr<CSubareaInf
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CRntVector<std::unique_ptr<CSubareaInfo>>>);
+
+// The pair base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>'s key-element iterator yields.
+template <>
+s32 KeyElementValue<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>::refl_Hash() { return -1; }
+template <>
+struct KeyElementValue<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x18;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>);
+
+// The pair base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>'s const key-element iterator yields.
+template <>
+s32 ConstKeyElementValue<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>::refl_Hash() { return -1; }
+template <>
+void* ConstKeyElementValue<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>::refl_CopyAssign(void*, const void*) { return nullptr; }
+template <>
+void* ConstKeyElementValue<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>::refl_MoveAssign(void*, const void*) { return nullptr; }
+template <>
+struct ConstKeyElementValue<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x18;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CArray<base::global::CStrId, EnumClass<ESubAreaItem>::Count, ESubAreaItem>>);
 
 // The pair base::global::CRntVector<std::unique_ptr<CSubareaSetup>>'s key-element iterator yields.
 template <>
@@ -672,6 +717,50 @@ struct ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Desc
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>);
+
+// The pair base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>'s key-element iterator yields.
+template <>
+bool KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Equals(const void* a, const void* b) { return a == b; }
+template <>
+s32 KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Hash() { return -1; }
+template <>
+struct KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x60;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>);
+
+// The pair base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>'s const key-element iterator yields.
+template <>
+bool ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Equals(const void* a, const void* b) { return a == b; }
+template <>
+s32 ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Hash() { return -1; }
+template <>
+void* ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_CopyAssign(void*, const void*) { return nullptr; }
+template <>
+void* ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_MoveAssign(void*, const void*) { return nullptr; }
+template <>
+struct ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x60;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>);
 
 // The pair base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>'s key-element iterator yields.
 template <>

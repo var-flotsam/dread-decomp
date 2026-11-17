@@ -1153,14 +1153,14 @@ address,size,name,name_source,subsystem,status
 0x710022ecd4,220,fn_710022ecd4,unknown,engine/reflection?,O
 0x710022edb0,900,fn_710022edb0,unknown,engine/reflection?,O
 0x710022f134,388,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_InitClass",reflection,engine/reflection,O
-0x710022f2b8,220,fn_710022f2b8,unknown,engine/reflection?,O
+0x710022f2b8,220,fn_710022f2b8,unknown,unknown,O
 0x710022f394,468,"base::reflection::refl_InitType<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>",reflection,engine/reflection,O
-0x710022f568,160,fn_710022f568,unknown,engine/reflection?,O
-0x710022f608,388,fn_710022f608,unknown,engine/reflection?,O
-0x710022f78c,380,fn_710022f78c,unknown,engine/reflection?,O
+0x710022f568,160,fn_710022f568,unknown,unknown,O
+0x710022f608,388,CGameLink<CActor>::refl_InitClass,reflection,game/core,O
+0x710022f78c,380,fn_710022f78c,unknown,unknown,O
 0x710022f908,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::TElementIterator>,reflection,engine/reflection,O
 0x710022f9e4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::TElementConstIterator>,reflection,engine/reflection,O
-0x710022fac0,900,fn_710022fac0,unknown,engine/reflection?,O
+0x710022fac0,900,fn_710022fac0,unknown,unknown,O
 0x710022fe44,388,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_InitClass,reflection,engine/reflection,O
 0x710022ffc8,220,fn_710022ffc8,unknown,engine/reflection?,O
 0x71002300a4,900,fn_71002300a4,unknown,engine/reflection?,O
@@ -2130,40 +2130,40 @@ address,size,name,name_source,subsystem,status
 0x7100244c2c,60,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Destroy",reflection,engine/reflection,O
 0x7100244c68,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_CopyAssign",reflection,engine/reflection,O
 0x7100244c70,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_MoveAssign",reflection,engine/reflection,O
-0x7100244c78,80,fn_7100244c78,unknown,engine/reflection?,O
-0x7100244cc8,56,fn_7100244cc8,unknown,engine/reflection?,O
+0x7100244c78,80,fn_7100244c78,unknown,unknown,O
+0x7100244cc8,56,fn_7100244cc8,unknown,unknown,O
 0x7100244d00,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Count",reflection,engine/reflection,O
-0x7100244d08,120,fn_7100244d08,unknown,engine/reflection?,O
-0x7100244d80,264,fn_7100244d80,unknown,engine/reflection?,O
-0x7100244e88,4,fn_7100244e88,unknown,engine/reflection?,O
-0x7100244e8c,4,fn_7100244e8c,unknown,engine/reflection?,O
-0x7100244e90,48,fn_7100244e90,unknown,engine/reflection?,O
-0x7100244ec0,88,fn_7100244ec0,unknown,engine/reflection?,O
-0x7100244f18,108,fn_7100244f18,unknown,engine/reflection?,O
-0x7100244f84,284,fn_7100244f84,unknown,engine/reflection?,O
+0x7100244d08,120,fn_7100244d08,unknown,unknown,O
+0x7100244d80,264,fn_7100244d80,unknown,unknown,O
+0x7100244e88,4,fn_7100244e88,unknown,unknown,O
+0x7100244e8c,4,fn_7100244e8c,unknown,unknown,O
+0x7100244e90,48,fn_7100244e90,unknown,unknown,O
+0x7100244ec0,88,fn_7100244ec0,unknown,unknown,O
+0x7100244f18,108,fn_7100244f18,unknown,unknown,O
+0x7100244f84,284,fn_7100244f84,unknown,unknown,O
 0x71002450a0,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Equals",reflection,engine/reflection,O
 0x71002450ac,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Hash",reflection,engine/reflection,O
 0x71002450b4,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::TypeOf",reflection,engine/reflection,O
 0x71002450c0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Construct",reflection,engine/reflection,O
-0x71002450c4,152,fn_71002450c4,unknown,engine/reflection?,O
-0x710024515c,220,fn_710024515c,unknown,engine/reflection?,O
-0x7100245238,308,fn_7100245238,unknown,engine/reflection?,O
-0x710024536c,300,fn_710024536c,unknown,engine/reflection?,O
+0x71002450c4,152,fn_71002450c4,unknown,unknown,O
+0x710024515c,220,fn_710024515c,unknown,unknown,O
+0x7100245238,308,fn_7100245238,unknown,unknown,O
+0x710024536c,300,fn_710024536c,unknown,unknown,O
 0x7100245498,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Begin",reflection,engine/reflection,O
 0x71002454a4,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::End",reflection,engine/reflection,O
-0x71002454ac,140,fn_71002454ac,unknown,engine/reflection?,O
-0x7100245538,64,fn_7100245538,unknown,engine/reflection?,O
-0x7100245578,252,fn_7100245578,unknown,engine/reflection?,O
-0x7100245674,8,fn_7100245674,unknown,engine/reflection?,O
-0x710024567c,12,fn_710024567c,unknown,engine/reflection?,O
-0x7100245688,104,fn_7100245688,unknown,engine/reflection?,O
-0x71002456f0,200,fn_71002456f0,unknown,engine/reflection?,O
-0x71002457b8,4,fn_71002457b8,unknown,engine/reflection?,O
-0x71002457bc,12,fn_71002457bc,unknown,engine/reflection?,O
-0x71002457c8,76,fn_71002457c8,unknown,engine/reflection?,O
-0x7100245814,144,fn_7100245814,unknown,engine/reflection?,O
-0x71002458a4,252,fn_71002458a4,unknown,engine/reflection?,O
-0x71002459a0,92,fn_71002459a0,unknown,engine/reflection?,O
+0x71002454ac,140,fn_71002454ac,unknown,unknown,O
+0x7100245538,64,fn_7100245538,unknown,unknown,O
+0x7100245578,252,CGameLink<CActor>::refl_Equals,reflection,game/core,O
+0x7100245674,8,CGameLink<CActor>::refl_Hash,reflection,game/core,O
+0x710024567c,12,CGameLink<CActor>::refl_TypeOf,reflection,game/core,O
+0x7100245688,104,CGameLink<CActor>::refl_Construct,reflection,game/core,O
+0x71002456f0,200,CGameLink<CActor>::refl_CopyConstruct,reflection,game/core,O
+0x71002457b8,4,CGameLink<CActor>::refl_MoveConstruct,reflection,game/core,O
+0x71002457bc,12,CGameLink<CActor>::refl_Destroy,reflection,game/core,O
+0x71002457c8,76,CGameLink<CActor>::refl_CopyAssign,reflection,game/core,O
+0x7100245814,144,CGameLink<CActor>::refl_MoveAssign,reflection,game/core,O
+0x71002458a4,252,fn_71002458a4,unknown,unknown,O
+0x71002459a0,92,fn_71002459a0,unknown,unknown,O
 0x71002459fc,4,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Equals,reflection,engine/reflection,O
 0x7100245a00,8,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Hash,reflection,engine/reflection,O
 0x7100245a08,12,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_TypeOf,reflection,engine/reflection,O
@@ -2548,10 +2548,10 @@ address,size,name,name_source,subsystem,status
 0x7100259a68,220,fn_7100259a68,unknown,unknown,O
 0x7100259b44,220,fn_7100259b44,unknown,unknown,O
 0x7100259c20,900,fn_7100259c20,unknown,unknown,O
-0x7100259fa4,388,fn_7100259fa4,unknown,unknown,O
-0x710025a128,220,fn_710025a128,unknown,unknown,O
-0x710025a204,900,fn_710025a204,unknown,unknown,O
-0x710025a588,388,fn_710025a588,unknown,unknown,O
+0x7100259fa4,388,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_InitClass",reflection,engine/reflection,O
+0x710025a128,220,fn_710025a128,unknown,engine/reflection?,O
+0x710025a204,900,fn_710025a204,unknown,engine/reflection?,O
+0x710025a588,388,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_InitClass",reflection,engine/reflection,O
 0x710025a70c,220,fn_710025a70c,unknown,unknown,O
 0x710025a7e8,504,fn_710025a7e8,unknown,unknown,O
 0x710025a9e0,428,fn_710025a9e0,unknown,unknown,O
@@ -2807,26 +2807,26 @@ address,size,name,name_source,subsystem,status
 0x71002609cc,116,fn_71002609cc,unknown,unknown,O
 0x7100260a40,332,fn_7100260a40,unknown,unknown,O
 0x7100260b8c,20,fn_7100260b8c,unknown,unknown,O
-0x7100260ba0,12,fn_7100260ba0,unknown,unknown,O
-0x7100260bac,8,fn_7100260bac,unknown,unknown,O
-0x7100260bb4,12,fn_7100260bb4,unknown,unknown,O
-0x7100260bc0,8,fn_7100260bc0,unknown,unknown,O
-0x7100260bc8,8,fn_7100260bc8,unknown,unknown,O
-0x7100260bd0,68,fn_7100260bd0,unknown,unknown,O
-0x7100260c14,60,fn_7100260c14,unknown,unknown,O
-0x7100260c50,60,fn_7100260c50,unknown,unknown,O
-0x7100260c8c,180,fn_7100260c8c,unknown,unknown,O
-0x7100260d40,80,fn_7100260d40,unknown,unknown,O
-0x7100260d90,56,fn_7100260d90,unknown,unknown,O
-0x7100260dc8,12,fn_7100260dc8,unknown,unknown,O
-0x7100260dd4,8,fn_7100260dd4,unknown,unknown,O
-0x7100260ddc,12,fn_7100260ddc,unknown,unknown,O
-0x7100260de8,8,fn_7100260de8,unknown,unknown,O
-0x7100260df0,8,fn_7100260df0,unknown,unknown,O
-0x7100260df8,68,fn_7100260df8,unknown,unknown,O
-0x7100260e3c,60,fn_7100260e3c,unknown,unknown,O
-0x7100260e78,8,fn_7100260e78,unknown,unknown,O
-0x7100260e80,8,fn_7100260e80,unknown,unknown,O
+0x7100260ba0,12,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_Equals",reflection,engine/reflection,O
+0x7100260bac,8,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_Hash",reflection,engine/reflection,O
+0x7100260bb4,12,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_TypeOf",reflection,engine/reflection,O
+0x7100260bc0,8,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_Construct",reflection,engine/reflection,O
+0x7100260bc8,8,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7100260bd0,68,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7100260c14,60,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_Destroy",reflection,engine/reflection,O
+0x7100260c50,60,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100260c8c,180,"base::reflection::KeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100260d40,80,fn_7100260d40,unknown,engine/reflection?,O
+0x7100260d90,56,fn_7100260d90,unknown,engine/reflection?,O
+0x7100260dc8,12,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_Equals",reflection,engine/reflection,O
+0x7100260dd4,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_Hash",reflection,engine/reflection,O
+0x7100260ddc,12,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_TypeOf",reflection,engine/reflection,O
+0x7100260de8,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_Construct",reflection,engine/reflection,O
+0x7100260df0,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7100260df8,68,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7100260e3c,60,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_Destroy",reflection,engine/reflection,O
+0x7100260e78,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100260e80,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>::refl_MoveAssign",reflection,engine/reflection,O
 0x7100260e88,80,fn_7100260e88,unknown,unknown,O
 0x7100260ed8,56,fn_7100260ed8,unknown,unknown,O
 0x7100260f10,8,fn_7100260f10,unknown,unknown,O
