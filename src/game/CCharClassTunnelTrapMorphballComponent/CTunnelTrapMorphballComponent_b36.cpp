@@ -10,8 +10,6 @@ struct UnkTunnelTrapMorphball {
     UnkWeakHandle* field_0x68;  // the weak handle of the target
 };
 
-void fn_7100a44074(UnkTunnelTrapMorphball* self);
-
 // Unregisters from the target (when the handle still has one) and drops the handle, then runs
 // fn_7100a44074 or fn_7100a443c8 by `flag`.
 void fn_7100a44350(UnkTunnelTrapMorphball* self, bool flag) {

@@ -2,6 +2,7 @@
 // placeholders.
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
+#include "game/CCharClassComponent.h"
 #include "game/UnkTU56.h"
 #include "types.h"
 
@@ -14,8 +15,6 @@ struct UnkCollisionClassDef {
     bool field_0x88;
     bool field_0x89;
 };
-
-bool fn_71011aced4(UnkCollisionClassDef* self, CRntFile* file);  // the base read
 
 // The read: after the base, a string into +0x58 and two flags into +0x88 and +0x89.
 bool fn_710079a840(UnkCollisionClassDef* self, CRntFile* file) {

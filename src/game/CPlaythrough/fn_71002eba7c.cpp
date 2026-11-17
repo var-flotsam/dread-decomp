@@ -8,11 +8,10 @@
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/CPlaythrough.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-extern void* g_unk_7101a22200[];  // the object's vtable
 
 // Two zeroed blocks of two words, the step and mode, and an allocator.
 struct UnkModeArray {

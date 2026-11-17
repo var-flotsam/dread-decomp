@@ -189,8 +189,6 @@ void fn_710114eaa4(UnkFXComponent_b0052* self, f32 dt);
 void fn_710114eb28(UnkFXComponent_b0052* self, f32 dt);
 void fn_710114ebb8(UnkFXComponent_b0052* self, f32 dt);
 void fn_7101150088(UnkFXComponent_b0052* self, s32 band);
-void fn_71011531cc(UnkFXComponent_b0052* self, u32 flag, void* arg, f32 value);
-void fn_710115351c(UnkFXComponent_b0052* self);
 void fn_710114ec8c(UnkFXComponent_b0052* self, f32 dt);
 void fn_710114eeac(UnkFXComponent_b0052* self);
 

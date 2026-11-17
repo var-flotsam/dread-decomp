@@ -22,6 +22,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -166,8 +167,6 @@ struct UnkSaveStation2_ovb0118 {
 };
 
 typedef u32 __attribute__((may_alias)) UnkAliasU32_ovb0118;
-
-bool fn_7100fd6f74(void* music, const char* name, const u32* mask);
 
 inline const u32& AllMusicLayers_ovb0118() {
     static u32 s_value = ~base::reflection::refl_GetEnumZero<0x71726c4090>() & 0x1ff;

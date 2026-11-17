@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CCharClassEventScenarioComponent.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
@@ -71,11 +72,9 @@ __attribute__((noinline)) void fn_7100a4c444(UnkColliderTrigger_b0058* self, voi
 
 // The collision manager (as src/game/CBreakableTileGroup_Reset_b49.cpp declares it).
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
-UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 
 static inline UnkManager_7100863a8c* Manager() {
     UnkManager_7100863a8c* m = g_unk_71726a4788;

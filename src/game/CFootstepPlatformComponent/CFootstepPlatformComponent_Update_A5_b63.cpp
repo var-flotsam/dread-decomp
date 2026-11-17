@@ -31,7 +31,6 @@ struct UnkEvacPart_b61;
 struct UnkEvacTimeline_b61;
 
 struct UnkFootstepStatic_b45a2;
-extern u64 g_unk_710164ab58;
 
 struct UnkFootstepOwner_A5_b63 {
     u8 pad_0x0[0x44];

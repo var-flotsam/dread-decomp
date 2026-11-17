@@ -20,6 +20,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1643.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU2550.h"
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2560.h"
@@ -93,7 +94,6 @@ void fn_7100dfff10(UnkGameManager* self);
 void fn_7100ed4454(void* self);
 
 struct UnkManager_7100863a8c;  // src/game/CCollisionComponent/fn_7100863a8c.cpp
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 void fn_7100ebf558(UnkNavMeshManager* self);
 

@@ -32,7 +32,6 @@ void fn_7100a9d710(void* self);
 
 // Another static of the unit, built and destroyed by two copies of one function.
 struct UnkLinkGroups;
-extern UnkLinkGroups g_unk_7172753260;
 
 static inline UnkProperty* AsProperty(u8* p) {
     return reinterpret_cast<UnkProperty*>(p);

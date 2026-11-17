@@ -1,10 +1,10 @@
 // Copy constructor of a layered class with a refcounted pointer at +0x88.
+#include "game/CCooldownXBossAttack.h"
 #include "game/CAbilityGhostAura.h"
 #include "types.h"
 
 extern void* g_unk_7101a24060[];
 extern void* g_unk_7101a3e3a8[];
-extern void* g_unk_7101a3e8b8[];
 
 struct UnkRefObj {
     virtual void vf_0x0();

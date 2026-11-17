@@ -9,7 +9,9 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/CGrabComponent.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -50,8 +52,6 @@ struct UnkMatrix4_b0233 {
     f32 m[16];
 };
 
-void fn_710113cb74(void* component, UnkTeleporterActor_b0233* actor, void* unused, UnkMatrix4_b0233* matrix);
-void fn_7100233f84(UnkTeleporterObject_b0233* object, UnkMatrix4_b0233* matrix, bool);
 void fn_7100aa1b08(UnkTeleporterOwner_b0233* self, UnkTeleporterObject_b0233* object, void* arg);
 
 bool fn_7100a8f1d0(UnkTeleporterOwner_b0233* self, UnkTeleporterObject_b0233* object, void* arg) {
@@ -194,7 +194,6 @@ struct UnkTeleporterSelf_b0233 {
     u32 mode;  // 0x588
 };
 
-void fn_7100a9f300(UnkTeleporterSelf_b0233* self);
 void fn_7100a8e614(UnkTeleporterSelf_b0233* self);
 struct UnkEnergyWaveFxComp_b49;
 

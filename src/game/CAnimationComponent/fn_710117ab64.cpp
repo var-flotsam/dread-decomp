@@ -4,6 +4,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU1134.h"
 #include "types.h"
 
 static inline UnkGuiKeyList* KeyList(UnkTrackEntry* entry) {
@@ -20,7 +21,6 @@ void fn_710117ab64(UnkAnimationComponent* self, bool add, base::global::CStrId* 
 }
 
 struct UnkTrackObject_710117adc0;
-bool fn_710070d820(UnkTrackObject_710117adc0* obj);
 
 bool fn_710117ad58(UnkAnimationComponent* self) {
     for (UnkTrackEntry** it = self->field_0x40->field_0xf0.values; it != self->field_0x40->field_0xf0.End(); ++it)

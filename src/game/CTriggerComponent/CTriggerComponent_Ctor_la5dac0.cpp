@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CComponent.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
@@ -15,7 +16,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern void* g_unk_7101a8f5c8[];
 void fn_7100a62f34(void* member);
 
 struct UnkTriggerComponent_la5dac0 {

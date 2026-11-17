@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CSmartObjectComponent.h"
+#include "game/CWaterPlatformUsableComponent.h"
 #include "types.h"
 
 struct UnkRefl_fn_710033dc00;
@@ -16,7 +17,6 @@ base::reflection::UnkReflObject* base::reflection::refl_FindTyped<UnkRefl_fn_710
 struct UnkPlatformSm_A5_b72;
 
 struct UnkWaterPlatform_A5_b73;
-bool fn_7100aa5980(UnkWaterPlatform_A5_b73* self);
 void fn_7100aa5e84(UnkWaterPlatform_A5_b73* self, bool start, f32 dt);
 
 struct UnkWaterPlatformLink_A5_b73 {

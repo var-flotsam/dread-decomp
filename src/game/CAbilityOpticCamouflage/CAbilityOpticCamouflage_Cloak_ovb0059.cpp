@@ -14,6 +14,7 @@
 #include "game/CFXComponent.h"
 #include "game/CGameObject.h"
 #include "game/CGunComponent.h"
+#include "game/CSpecialEnergyComponent.h"
 #include "game/UnkTU247.h"
 #include "game/UnkTU2712.h"
 #include "game/UnkTU39.h"
@@ -36,7 +37,6 @@ struct UnkV4_b47 {
 };
 
 struct UnkCameraCtrl_ovb0049;
-bool fn_7100a1f84c(UnkSpecialEnergyComponent* self);
 f32 fn_7100301700(void* p);
 struct UnkPart;
 struct UnkWorld;

@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CSPBGun.h"
 #include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkTimelineCalls.h"
@@ -31,8 +32,6 @@ struct UnkHyperBeamSoundHandle {
 };
 
 struct UnkSPBGun_A5_b63;
-bool fn_710085e6d4(UnkSPBGun_A5_b63* self);
-bool fn_710085e7e8(UnkSPBGun_A5_b63* self);
 
 
 struct UnkSPBGun_A5_b63 {

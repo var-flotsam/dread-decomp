@@ -9,6 +9,7 @@
 #include "base/UnkCountedDeferredSet.h"
 #include "types.h"
 
+struct UnkStruct_71007142e8;
 struct UnkAnimTags_ovb0010;
 struct UnkFlags_7101176ea8;
 struct UnkS12;
@@ -69,3 +70,4 @@ void fn_7101178e08(UnkActorTarget* target, u32 value, bool apply, bool flag, f32
 bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
 void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
 void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);
+void fn_7101179d08(UnkAnimationComponent* self, UnkStruct_71007142e8* motion, const void* key);

@@ -9,6 +9,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/CShotManager/CTunableShotManager.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -74,7 +75,6 @@ struct UnkPowerBeamGun_ovb0138 {
     bool field_0x1880;
 };
 
-void fn_710034f54c(void* object, u32 id, UnkBeamVec_ovb0138* dir);
 void fn_71008538e8(UnkPowerBeamGun_ovb0138* self, UnkBeamShot_ovb0138* shot, const UnkBeamVec_ovb0138* pos,
                    const UnkBeamVec_ovb0138* dir, const UnkBeamVec_ovb0138* side, u32 id, bool flag);
 

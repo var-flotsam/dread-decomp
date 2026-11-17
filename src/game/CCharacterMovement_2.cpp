@@ -4,11 +4,11 @@
 // are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CCharacterMovement.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d47d1c(UnkManager_7100863a8c* self, void* owner, void* block);
 
 struct UnkMovement_71009796dc {

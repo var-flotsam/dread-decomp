@@ -23,7 +23,7 @@ struct CCameraBoundaryCtrl {
 
 bool fn_71010e63ec(UnkCameraBoundaryData* data, CCameraBoundaryCtrl* ctrl, f32 a, f32 b, f32 c);
 
-void fn_710076438c(CCameraBoundaryCtrl* self, f32 dt) {
+void fn_710076438c(CCameraBoundaryCtrl* self, f32 dt, bool) {  // the bool its callers pass is not read
     UnkCameraBoundaryOwner* owner = self->owner;
     f32 value = owner->data->field_0xc40;
     if (value > 0.0f)

@@ -11,7 +11,6 @@
 struct UnkHandleOwner_71010c4230;
 
 struct UnkSpawnGroupKey;
-extern UnkSpawnGroupKey g_unk_7172a067b8 __attribute__((visibility("hidden")));
 
 struct UnkSpawnGroupElem {
     void** vtable;

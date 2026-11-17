@@ -4,4 +4,10 @@
 // 0x71008424e4-0x71008495a4). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkHyperBeamGun_b56;
+
 bool fn_7100845fac(void* beam);
+s32 fn_71008434b8(void* self);
+void fn_7100843a50(char* self, bool on);
+void fn_71008449ec(UnkHyperBeamGun_b56* self, bool a, bool b);

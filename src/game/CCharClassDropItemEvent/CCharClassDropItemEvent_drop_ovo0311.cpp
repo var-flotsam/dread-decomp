@@ -30,7 +30,6 @@ struct UnkXformAtF0;
 
 void fn_710110e278(UnkSwarmSelf_b0143* self, void* a, void* b, void* c, bool flag);
 void fn_71007c1ab0x(UnkDropSpawnComp_ovb0096* self, void* unused) asm("fn_71007c1fb0");
-UnkVec3f fn_710007a450(void* xform, const UnkVec3f* v);
 
 struct UnkDropEvent_ovb0267 {
     UnkActor* actor;

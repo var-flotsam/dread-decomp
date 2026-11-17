@@ -3,6 +3,7 @@
 // character class (+0x220) or the charge (+0x398) has reached the threshold: the list value at +0x5a8
 // (fn_7100030dec) when the list is not empty, else the tunable's +0x2c (g_unk_71726b0fc0).
 // Names and layouts are placeholders.
+#include "game/CAbilitySpeedBooster.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbility.h"
 #include "game/UnkTU39.h"
@@ -15,7 +16,6 @@ struct UnkFloatList_b46a1 {
 
 struct UnkSmAbility3_A2_b63;
 
-extern base::reflection::UnkTunable g_unk_71726b0fc0;
 
 struct UnkSpeedBoosterActor_A2_b69 {
     u8 pad_0x0[0x220];

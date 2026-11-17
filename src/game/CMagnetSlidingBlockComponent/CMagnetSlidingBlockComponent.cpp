@@ -2,6 +2,7 @@
 // property, the class's registration, four names and the looping vibration file.
 #include "base/global/CFilePathStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CMagnetSlidingBlockComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -21,7 +22,6 @@ struct UnkMagnetSlidingBlockTU {
 
 extern UnkMagnetSlidingBlockTU g_unk_71727375b0 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172737528;
-extern UnkProperty g_unk_7172737530;
 extern char g_unk_7101a82b50[];
 void fn_71009217a4(UnkProperty* p);
 void fn_710091d7d0(void* p);

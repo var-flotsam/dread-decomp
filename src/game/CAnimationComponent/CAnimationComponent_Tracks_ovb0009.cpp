@@ -27,6 +27,7 @@
 #include "game/UnkTU1728.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2689.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU83.h"
 #include "game/UnkXformNode.h"
@@ -741,7 +742,6 @@ void fn_7101176bec(UnkAnimComponent_b1c* self) {
 // ---- Slow motion ------------------------------------------------------------------------------
 
 struct UnkPlayer;
-f32 fn_71010d6858();
 
 // The slow-motion flags as bytes of the game manager's word at +0xc4.
 struct UnkSlomoFlags {

@@ -7,6 +7,9 @@
 #include "types.h"
 #include "base/reflection/TypeObject.h"
 
+struct UnkLiquidPoolActorPart_ovb0075;
+struct UnkSluggerPos;
+struct UnkQuetzoaDodgeAI_A3_b76;
 struct UnkNavMeshHits;
 struct UnkNavQuery_b0080;
 struct UnkYamplotNav_b0080;
@@ -95,3 +98,7 @@ void* fn_7101105970(UnkScorpiusAI_b69a4* ai);
 UnkNavGroupInfo* fn_710110c3d8(UnkNavComponent* component);
 void fn_710110f318(UnkYamplotNav_b0080* self, u16 cell, UnkNavQuery_b0080* query, UnkNavMeshHits* hits);
 void fn_7101111c24(UnkCaterzillaAIScale_b49* self, UnkCaterzillaOut_b49* out);
+void fn_71010ff50c(UnkLiquidPoolActorPart_ovb0075* part, bool a, u32);
+UnkSluggerPos fn_71011008a8(void* ai, u32 index);
+void fn_7101105e14(UnkQuetzoaDodgeAI_A3_b76* self, f32 value);
+void fn_710110bc0c(void* self, void* arg, u32 id, u32 kind, s32 amount);

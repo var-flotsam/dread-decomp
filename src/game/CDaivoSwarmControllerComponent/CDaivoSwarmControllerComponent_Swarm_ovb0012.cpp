@@ -120,8 +120,6 @@ struct UnkSwarmUpdate_b65a4;
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Hold_b66a4.cpp declares it.
 // As src/game/CRedenkiSwarmControllerComponent/CRedenkiSwarmControllerComponent_Update_b65a4.cpp declares them.
 void fn_710074dda0(UnkDaivoSwarm_b0012* self, UnkSwarmMember_b0012* member);
-void fn_7100656f3c(UnkDaivoSwarm_b0012* self, UnkSwarmPath_b0012* path, const UnkVec3Result* dir, const f32* speed,
-                   bool* out, const UnkZeroVec_b0012* offset, f32 radius, f32 limit);
 
 static inline UnkVec3Result Position(UnkDaivoSwarm_b0012* self) {
     return fn_710064fef8(reinterpret_cast<UnkSwarmHold_b66a4*>(self));

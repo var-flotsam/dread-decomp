@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkDropRequest_ovb0208;
+struct UnkDropTarget_ovb0208;
 struct UnkBillboardEntry_bbc;
 struct UnkRecord_b218;
 namespace base::global {
@@ -16,3 +18,4 @@ void fn_7100e1bca4(void* self);
 void* fn_7100e1cb50(void* manager, u64* key, void* arg);
 UnkBillboardEntry_bbc* fn_7100e1caf0(void* manager, u32 id);
 void fn_7100e1ceb0(void* manager, const u64* key);
+void fn_7100e1cd34(void* self, UnkDropTarget_ovb0208* target, UnkDropRequest_ovb0208* request);

@@ -20,6 +20,7 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU1730.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU58.h"
@@ -203,7 +204,6 @@ UnkNavMeshCell* fn_7100979b30(UnkCharacterMovementCell_ovb0021* self) {
 
 // ----
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 // The collision manager's two parallel lists that share one count: entries at +0x118, the owners they
 // belong to at +0x120.

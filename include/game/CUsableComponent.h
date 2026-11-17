@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkTeleporterSelf_b0233;
 struct UnkSaveStationTunables_ovb0118;
 struct UnkLinkGroups;
 struct UnkAmmoRecharge_la77790;
@@ -39,3 +40,5 @@ void fn_7100a9dd78(UnkLinkGroups* self);
 extern u8 g_unk_7172753170[];
 extern u8 g_unk_7172753198[];
 extern u8 g_unk_71727531c0[];
+void fn_7100a9f300(UnkTeleporterSelf_b0233* self);
+extern UnkLinkGroups g_unk_7172753260;

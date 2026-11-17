@@ -2,6 +2,7 @@
 // owner's CShelmitAIComponent through fn_71006baf90). Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CShelmitAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -18,8 +19,6 @@ struct UnkPlasmaRayAttack {
     u8 pad_0x10[0x20];
     u32 state;  // 0x30
 };
-
-void fn_71006baf90(UnkShelmitAI* ai);
 
 void fn_71006b638c(UnkPlasmaRayAttack* self) {
     switch (self->state) {
