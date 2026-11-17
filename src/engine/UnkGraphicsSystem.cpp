@@ -390,7 +390,7 @@ void fn_7100160e50(s32 a, s32 b, bool c);
 void fn_710015a0e0(u32 value);
 void fn_710015a760(bool);
 void* fn_710015db80();
-void fn_710015d900(void* a, u32 b, u32 c);
+void fn_710015d900(void* a, bool b, bool c);
 // Sets `count` vectors (four floats each, or one float) of a uniform at `location` of a program state.
 // The location of uniform `id` of a program's stage, if it has one.
 

@@ -879,7 +879,7 @@ address,size,name,name_source,subsystem,status
 0x710102c0e8,432,fn_710102c0e8,unknown,unknown,O
 0x710102c298,248,fn_710102c298,unknown,unknown,O
 0x710102c390,384,fn_710102c390,unknown,unknown,O
-0x710102c510,1684,fn_710102c510,unknown,unknown,U
+0x710102c510,1684,fn_710102c510,unknown,unknown,O
 0x710102cba4,936,fn_710102cba4,unknown,unknown,O
 0x710102cf4c,388,sound::CAudioMaterial::refl_InitClass,reflection,audio,O
 0x710102d0d0,372,fn_710102d0d0,unknown,audio?,O
@@ -1450,7 +1450,7 @@ address,size,name,name_source,subsystem,status
 0x7101043904,48,fn_7101043904,unknown,game/core?,O
 0x7101043934,100,fn_7101043934,unknown,game/core?,O
 0x7101043998,108,fn_7101043998,unknown,game/core?,O
-0x7101043a04,1392,fn_7101043a04,unknown,game/core?,U
+0x7101043a04,1392,fn_7101043a04,unknown,game/core?,O
 0x7101043f74,536,fn_7101043f74,unknown,game/core?,O
 0x710104418c,1624,fn_710104418c,unknown,game/core?,U
 0x71010447e4,8,CGameObject::refl_Equals,reflection,game/core,O
@@ -1795,7 +1795,7 @@ address,size,name,name_source,subsystem,status
 0x710104f8e0,212,fn_710104f8e0,unknown,unknown,O
 0x710104f9b4,48,fn_710104f9b4,unknown,unknown,O
 0x710104f9e4,256,fn_710104f9e4,unknown,unknown,O
-0x710104fae4,440,fn_710104fae4,unknown,unknown,U
+0x710104fae4,440,fn_710104fae4,unknown,unknown,O
 0x710104fc9c,404,fn_710104fc9c,unknown,unknown,U
 0x710104fe30,308,fn_710104fe30,unknown,unknown,U
 0x710104ff64,340,fn_710104ff64,unknown,unknown,O
@@ -4096,7 +4096,7 @@ address,size,name,name_source,subsystem,status
 0x71010c6e1c,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::End",reflection,engine/reflection,O
 0x71010c6e30,152,fn_71010c6e30,unknown,unknown,O
 0x71010c6ec8,168,fn_71010c6ec8,unknown,unknown,O
-0x71010c6f70,788,fn_71010c6f70,unknown,unknown,U
+0x71010c6f70,788,fn_71010c6f70,unknown,unknown,O
 0x71010c7284,164,fn_71010c7284,unknown,unknown,O
 0x71010c7328,296,fn_71010c7328,unknown,unknown,O
 0x71010c7450,140,fn_71010c7450,unknown,unknown,O

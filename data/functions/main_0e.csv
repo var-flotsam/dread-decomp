@@ -324,7 +324,7 @@ address,size,name,name_source,subsystem,status
 0x7100e0de24,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::refl_MoveAssign",reflection,engine/reflection,O
 0x7100e0de54,232,fn_7100e0de54,unknown,engine/reflection?,O
 0x7100e0df3c,380,fn_7100e0df3c,unknown,engine/reflection?,O
-0x7100e0e0b8,768,fn_7100e0e0b8,unknown,engine/reflection?,U
+0x7100e0e0b8,768,fn_7100e0e0b8,unknown,engine/reflection?,O
 0x7100e0e3b8,80,fn_7100e0e3b8,unknown,engine/reflection?,O
 0x7100e0e408,96,fn_7100e0e408,unknown,engine/reflection?,O
 0x7100e0e468,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::refl_Equals",reflection,engine/reflection,O
@@ -510,7 +510,7 @@ address,size,name,name_source,subsystem,status
 0x7100e1d8d8,596,fn_7100e1d8d8,unknown,unknown,O
 0x7100e1db30,140,fn_7100e1db30,unknown,unknown,O
 0x7100e1dbc0,532,fn_7100e1dbc0,unknown,unknown,O
-0x7100e1dde0,1404,fn_7100e1dde0,unknown,unknown,U
+0x7100e1dde0,1404,fn_7100e1dde0,unknown,unknown,O
 0x7100e1e35c,4,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_AddAttributes,reflection,game,O
 0x7100e1e360,244,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_GetClass,reflection,game,O
 0x7100e1e454,9672,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_AddFields,reflection,game,O

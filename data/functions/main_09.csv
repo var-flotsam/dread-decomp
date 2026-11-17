@@ -712,7 +712,7 @@ address,size,name,name_source,subsystem,status
 0x7100916dd4,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, bool>>::End",reflection,engine/reflection,O
 0x7100916de8,152,fn_7100916de8,unknown,unknown,O
 0x7100916e80,164,fn_7100916e80,unknown,unknown,O
-0x7100916f30,1076,fn_7100916f30,unknown,unknown,U
+0x7100916f30,1076,fn_7100916f30,unknown,unknown,O
 0x7100917364,4,CMagmaKraidScenarioControllerComponent::refl_AddAttributes,reflection,game/components,O
 0x7100917368,244,CMagmaKraidScenarioControllerComponent::refl_GetClass,reflection,game/components,O
 0x710091745c,376,CMagmaKraidScenarioControllerComponent::refl_AddFields,reflection,game/components,O
@@ -1433,7 +1433,7 @@ address,size,name,name_source,subsystem,status
 0x7100937048,4,fn_7100937048,unknown,game/components?,O
 0x710093704c,348,fn_710093704c,unknown,game/components?,O
 0x71009371a8,80,fn_71009371a8,unknown,game/components?,O
-0x71009371f8,404,fn_71009371f8,unknown,game/components?,U
+0x71009371f8,404,fn_71009371f8,unknown,game/components?,O
 0x710093738c,28,fn_710093738c,unknown,game/components?,O
 0x71009373a8,132,fn_71009373a8,unknown,game/components?,O
 0x710093742c,4,fn_710093742c,unknown,game/components?,O
@@ -2073,7 +2073,7 @@ address,size,name,name_source,subsystem,status
 0x7100968c54,12,CEnemyMovementWalkingAnims::refl_Destroy,reflection,game,O
 0x7100968c60,48,CEnemyMovementWalkingAnims::refl_CopyAssign,reflection,game,O
 0x7100968c90,48,CEnemyMovementWalkingAnims::refl_MoveAssign,reflection,game,O
-0x7100968cc0,668,fn_7100968cc0,unknown,unknown,U
+0x7100968cc0,668,fn_7100968cc0,unknown,unknown,O
 0x7100968f60,160,fn_7100968f60,unknown,unknown,O
 0x7100969000,88,fn_7100969000,unknown,unknown,O
 0x7100969058,20,fn_7100969058,unknown,unknown,O
@@ -4591,7 +4591,7 @@ address,size,name,name_source,subsystem,status
 0x71009f92d0,8,fn_71009f92d0,unknown,game/components?,O
 0x71009f92d8,4,fn_71009f92d8,unknown,game/components?,O
 0x71009f92dc,8,fn_71009f92dc,unknown,game/components?,O
-0x71009f92e4,676,fn_71009f92e4,unknown,game/components?,U
+0x71009f92e4,676,fn_71009f92e4,unknown,game/components?,O
 0x71009f9588,324,fn_71009f9588,unknown,game/components?,O
 0x71009f96cc,28,fn_71009f96cc,unknown,game/components?,O
 0x71009f96e8,132,fn_71009f96e8,unknown,game/components?,O
@@ -4775,7 +4775,7 @@ address,size,name,name_source,subsystem,status
 0x71009fde00,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CShotLaunchConfig, std::__1::default_delete<CShotLaunchConfig>>>>::End",reflection,engine/reflection,O
 0x71009fde14,260,fn_71009fde14,unknown,unknown,O
 0x71009fdf18,268,fn_71009fdf18,unknown,unknown,O
-0x71009fe030,860,fn_71009fe030,unknown,unknown,U
+0x71009fe030,860,fn_71009fe030,unknown,unknown,O
 0x71009fe38c,4,CShotVariableAngleLaunchConfig::refl_AddAttributes,reflection,game,O
 0x71009fe390,244,CShotVariableAngleLaunchConfig::refl_GetClass,reflection,game,O
 0x71009fe484,1352,CShotVariableAngleLaunchConfig::refl_AddFields,reflection,game,O
