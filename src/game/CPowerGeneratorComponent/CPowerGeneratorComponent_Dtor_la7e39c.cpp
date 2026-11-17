@@ -4,6 +4,7 @@
 // activatable component's destructor (fn_71007b00cc). Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
+#include "game/CDemolitionBlockComponent.h"
 #include "base/UnkStrIdTable.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
@@ -12,9 +13,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-template <u32 IdOffset>
-struct UnkActivatable_b44a2;
-void fn_71007b00cc(UnkActivatable_b44a2<0x48>* self);
 
 struct UnkPowerGeneratorCallbacks_la7e39c;
 template <>

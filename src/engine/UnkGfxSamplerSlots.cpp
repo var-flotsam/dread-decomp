@@ -47,7 +47,8 @@ struct UnkGfxTexture {
     s32 height = 0;
     s32 kind = -1;     // 0x8
     s32 format;        // 0xc
-    u8 pad_0x10[0x8];
+    s32 field_0x10;
+    u8 pad_0x14[0x4];
     u8 texture[0xc0];  // 0x18: the NVN texture
     s32 id = 0;               // 0xd8: texture descriptor id
     u8 pad_0xdc[0x4];

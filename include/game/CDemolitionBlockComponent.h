@@ -6,3 +6,7 @@
 #include "types.h"
 void fn_71007b1528(char* self);
 void fn_71007b1928(void*, void*);  // Moves the entry at the second pointer into the first.
+
+template <u32 IdOffset>
+struct UnkActivatable_b44a2;
+void fn_71007b00cc(UnkActivatable_b44a2<0x48>* self);  // The activatable component's destructor.
