@@ -1188,7 +1188,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100f85380,816,drafts/game/UnkTU2601/fn_7100f85380.cpp,calls,72.5,51,lean-r2kd,element ctor now inlined (out-of-class inline ctor); CStrId inline ctor adds a null check and reload: an uncon
 0x7100f86fec,340,drafts/game/UnkTU2601/fn_7100f86fec.cpp,registers or order,94.1,5,overnight,
 0x7100f89818,400,drafts/game/UnkTU2602/fn_7100f89818.cpp,operations,50.0,49,lean-ob3,second music-manager lookup: original reloads the table count (+0x1d8) after the manager check; ours reuses it
-0x7100f899a8,700,drafts/game/UnkTU2602/fn_7100f899a8.cpp,match,100.0,0,lean-r2kg,matches; held: fn_7100d90304 is a destructor here and a free function in base/reflection.h
 0x7100f8e1ac,1244,drafts/game/UnkTU2604/fn_7100f8e1ac.cpp,operations,54.2,142,lean-r2k,matches up to 0x18..0x2c copy: needs those three fields as one struct with a user-provided empty ctor (20-byte
 0x7100f8e688,624,drafts/game/UnkTU2604/fn_7100f8e688.cpp,registers or order,62.8,58,lean-r2kd,registers only: the list-head link copy (mov to the head slot) placed in the loop-top block instead of before
 0x7100f8e8f8,600,drafts/game/UnkTU2604/fn_7100f8e8f8.cpp,registers or order,94.7,8,lean-r2kd,register choice in the inlined bucket hash (x8/x9 swapped; msub/ldr order); CStrId has no move constructor; so
@@ -1236,7 +1235,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100fdbd98,1580,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdbd98.cpp,operations,44.6,210,lean-r2kb,9 instructions short; original rematerializes the string-pool GOT loads and spills differently; path record ve
 0x7100fdc598,584,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdc598.cpp,control flow,50.8,50,lean-o1,tune loop: original reloads count/items/id after the f32 store at tune+0x38 (no TBAA); only a union around tha
 0x7100fdc7e0,584,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdc7e0.cpp,control flow,70.5,42,lean-o1,tune loop: original skips the tune-count reload on the empty-tune path (load placement/branch layout); value s
-0x7100fdca88,704,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdca88.cpp,match,100.0,0,lean-r2kb,matches; held: names fn_7100d90304 as its map value's destructor; which include/base/reflection.h declares as void(void*)
 0x7100fdcf2c,804,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdcf2c.cpp,calls,0.0,65,lean-oc1,slot_active.GrowAt (CRntVector<u8>) is inlined twice only with always_inline (UNK_VECTOR_GROW_AT_ATTR; as CMus
 0x7100fdd4fc,404,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdd4fc.cpp,registers or order,98.0,2,lean-o1,w9 vs w10 for the first value copy in the append loop
 0x7100fde040,564,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fde040.cpp,operations,72.3,37,lean-r2kg,linking a node: original reloads tail after tail->next store and count before ++ (link stores alias; no TBAA);

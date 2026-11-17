@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CBossAIComponent.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/UnkMusicMapValue.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -114,7 +115,6 @@ UnkReflValue fn_7100fdda0c(void*, char* obj, UnkReflValue* const* args) {
 // Two identical reflected functions (fn_7100f8a77c in unit 2602, fn_7100fdd870 in unit 2637): take an
 // object and a bool; when the bool is set, pass the object's part at +8 to fn_7100fed650 and to the
 // music manager's fn_7100fd9aa0. Return an empty value.
-void fn_7100fed650(char* part, char* object);
 void fn_7100fd9aa0(char* manager, char* part);
 
 static inline __attribute__((always_inline)) UnkReflValue AddMusicPart_b41a3(UnkReflValue* const* args) {
