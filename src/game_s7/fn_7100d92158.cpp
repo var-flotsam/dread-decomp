@@ -3,30 +3,12 @@
 #include "base/animation/CBlendSpace1D.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU2527.h"
 #include "game/UnkTU27.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// An id released in two steps (the original reloads the id and its count after the decrement).
-template <UnkStringPool** Pool>
-struct UnkEntryId_7100d92158 {
-    UnkStringData* data;
-
-    ~UnkEntryId_7100d92158() {
-        if (UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 struct UnkDesc_7100d92158;
 
@@ -34,9 +16,9 @@ struct UnkDesc_7100d92158;
 struct UnkEntry_7100d92158 {
     UnkDesc_7100d92158* desc;
     void* factory;
-    UnkEntryId_7100d92158<&g_unk_7101d47108> id;
-    UnkEntryId_7100d92158<&g_unk_7101d47200> path_0x18;
-    UnkEntryId_7100d92158<&g_unk_7101d47200> path_0x20;
+    UnkStrIdTwoStep id;
+    UnkPathIdTwoStep path_0x18;
+    UnkPathIdTwoStep path_0x20;
     u64 field_0x28;
     void* field_0x30;
     u64 field_0x38;

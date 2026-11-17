@@ -1,5 +1,6 @@
 // CCollisionComponent unit: creates a 0x330-byte record, appends it to the component's list and
 // stores an owner plus a shared string id in it. Names and layouts are placeholders.
+#include "base/UnkPooledStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 
@@ -51,12 +52,8 @@ struct UnkCollisionOwner {
     u32 alloc_flags;
 };
 
-struct UnkNameRef {
-    UnkStringData* data;
-};
-
 // NON_MATCHING(minor): same instructions; register assignment (x19/x20 swapped) and one store order differ
-UnkRecord* fn_71008625a0(UnkCollisionOwner* self, void* owner, UnkNameRef* name) {
+UnkRecord* fn_71008625a0(UnkCollisionOwner* self, void* owner, base::UnkPooledString* name) {
     UnkRecord* rec = (UnkRecord*)fn_71000839a0(0x330, self->alloc_flags);
     fn_7100d45754((char*)rec);
     if (rec) {

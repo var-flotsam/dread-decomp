@@ -24,7 +24,7 @@ extern base::reflection::CType g_unk_717274caa0;
 namespace CLogicActionTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vLogicActions", true), &g_unk_717274caa0, 0x40, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("vLogicActions", true), &g_unk_717274caa0, 0x40, -1, -1);
     field0->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void*, const void*) { return false; }

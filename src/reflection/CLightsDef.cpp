@@ -29,17 +29,17 @@ namespace CLightsDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x58);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("vLights", true), &g_unk_71727bac20, 0x60, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("vLights", true), &g_unk_71727bac20, 0x60, -1, -1);
     field1->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateElement", true));
     field1->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteElement", true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateElement", true))) {
+    DREAD_REFLECTED_FUNCTION("CreateElement") {
         fn_7100d9d680(fn, "CreateElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create LightInfo");
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteElement", true))) {
+    DREAD_REFLECTED_FUNCTION("DeleteElement") {
         fn_7100d9d800(fn, "DeleteElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete LightInfo");
         fn_710009ae5c(fn, fn->params.count);

@@ -37,31 +37,31 @@ void fn_710075d94c();
 namespace CBreakableTileGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uGroupId_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_uGroupId_GetterFunction") {
         fn->name = base::global::UnkStrId("_uGroupId_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710075d2e4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_uGroupId_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_uGroupId_SetterFunction")
         fn_71007542cc(fn, "_uGroupId_SetterFunction");
     DREAD_REFLECTED_PROPERTY(u32, "uGroupId", (EditorModeDataFlow, 1), (DefaultPasteValue, u32(0x0u)));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>", "aGridTiles", 0x50, (CreateElement, CStrId("CreateNewTile", true)), (DeleteElement, "DeleteTileAt"), (AfterElementDeserialization, "AfterGridDeserialization"));
     DREAD_REFLECTED_FIELD(bool, "bFakeHusks", 0x4c, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eCollisionMaterial_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_eCollisionMaterial_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_eCollisionMaterial_GetterFunction", true);
         fn->return_type = &g_unk_7172791c90;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710075d374);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eCollisionMaterial_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_eCollisionMaterial_SetterFunction")
         fn_7100754448(fn, "_m_eCollisionMaterial_SetterFunction");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eCollisionMaterial", true), &g_unk_7172791c90, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("eCollisionMaterial", true), &g_unk_7172791c90, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172791c90, 0);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Collision Material");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNewTile", true))) {
+    DREAD_REFLECTED_FUNCTION("CreateNewTile") {
         fn->name = base::global::UnkStrId("CreateNewTile", true);
         fn->return_type = &g_unk_71727115d0;
         fn->field_0xb2 = 0x101;
@@ -75,9 +75,9 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(2)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vGridCoords", true));
         fn->ParamAttrs(3)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sHiddenSG", true));
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteTileAt", true)))
+    DREAD_REFLECTED_FUNCTION("DeleteTileAt")
         fn_71007545bc(fn, "DeleteTileAt");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterGridDeserialization", true))) {
+    DREAD_REFLECTED_FUNCTION("AfterGridDeserialization") {
         fn->name = base::global::UnkStrId("AfterGridDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

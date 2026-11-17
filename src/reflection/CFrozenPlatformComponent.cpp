@@ -25,7 +25,7 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CFrozenPlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpWeightPlatform", true), &g_unk_71727b6270, 0x58, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpWeightPlatform", true), &g_unk_71727b6270, 0x58, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

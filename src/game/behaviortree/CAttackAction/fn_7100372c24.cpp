@@ -4,6 +4,7 @@
 // fn_7100394530).
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/behaviortree/CAttackAction.h"
 #include "game/behaviortree/CStringEqualsCondition.h"
 #include "types.h"
@@ -11,24 +12,6 @@
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// A string id whose release decrements and tests the count in two steps.
-struct UnkEntryId {
-    UnkStringData* data;
-
-    ~UnkEntryId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 struct UnkBase_7100393ea0 {
     void** vtable;
@@ -44,14 +27,14 @@ struct UnkBase_7100394530 {
 
 struct UnkObject_7100372c24 : UnkBase_7100393ea0 {
     CRntString field_0x30;
-    UnkEntryId field_0x60;
+    UnkStrIdTwoStep field_0x60;
 
     ~UnkObject_7100372c24() { vtable = &g_unk_7101a25010[2]; }
 };
 
 struct UnkObject_71003a3bfc : UnkBase_7100394530 {
     CRntString field_0x38;
-    UnkEntryId field_0x68;
+    UnkStrIdTwoStep field_0x68;
 
     ~UnkObject_71003a3bfc() { vtable = &g_unk_7101a28ac0[2]; }
 };

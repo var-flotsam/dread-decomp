@@ -163,7 +163,7 @@ UnkHolder_b0181* fn_7101068b1c(base::global::CRntVector<UnkHolder_b0181>* self, 
     if (n == self->capacity) {
         if (self->step == 0)
             goto hang;
-        new_capacity = (n / self->step + 1) * self->step;
+        new_capacity = self->GrownCapacity(n);
         if ((s32)n >= (s32)new_capacity)
             goto hang;
         if (n < new_capacity) {
@@ -221,7 +221,7 @@ UnkNodeEntry_b0181* fn_7101068980(base::global::CRntVector<UnkNodeEntry_b0181>* 
     if (n == self->capacity) {
         if (self->step == 0)
             goto hang;
-        new_capacity = (n / self->step + 1) * self->step;
+        new_capacity = self->GrownCapacity(n);
         if ((s32)n >= (s32)new_capacity)
             goto hang;
         if (n < new_capacity) {

@@ -26,12 +26,12 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CDemolitionBlockLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddDamageSource", true))) {
+    DREAD_REFLECTED_FUNCTION("AddDamageSource") {
         fn_71008c4ac0(fn, "AddDamageSource");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Add Damage source (POWER_BEAM, CHARGE_BEAM, ...)"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpOtherBlock", true), &g_unk_717269bb48, 0x3a8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpOtherBlock", true), &g_unk_717269bb48, 0x3a8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 12);
 }
 bool refl_Equals(const void*, const void*) { return false; }

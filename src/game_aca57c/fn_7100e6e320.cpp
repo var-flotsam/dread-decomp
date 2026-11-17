@@ -3,30 +3,14 @@
 // and copies the plain values.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-__attribute__((always_inline)) static inline void MoveId(UnkReleasedStrId* self, UnkReleasedStrId* other) {
-    self->~UnkReleasedStrId();
+__attribute__((always_inline)) static inline void MoveId(UnkStrIdTwoStep* self, UnkStrIdTwoStep* other) {
+    self->~UnkStrIdTwoStep();
     self->data = other->data;
     other->data = &g_unk_7101d47108->empty;
 }
@@ -42,10 +26,10 @@ struct UnkWords5 {
 };
 
 struct UnkRecordC8 {
-    UnkReleasedStrId id_0x0;
+    UnkStrIdTwoStep id_0x0;
     u64 field_0x8;
-    UnkReleasedStrId id_0x10;
-    UnkReleasedStrId id_0x18;
+    UnkStrIdTwoStep id_0x10;
+    UnkStrIdTwoStep id_0x18;
     UnkStrBuffer field_0x20;
     u32 field_0xa8;
     u32 field_0xac;

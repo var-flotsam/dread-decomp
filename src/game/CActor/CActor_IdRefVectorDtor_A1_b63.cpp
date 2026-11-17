@@ -2,8 +2,8 @@
 // its copies): the array's elements are released and the array freed, then the id. Names are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU341.h"
-#include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
 struct UnkRefObject_A1_b63 {

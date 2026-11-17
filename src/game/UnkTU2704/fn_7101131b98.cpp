@@ -14,7 +14,7 @@ void fn_7101131b98(base::global::CRntVector<UnkSpawnHolder>* self, const UnkSpaw
     u32 old_capacity = self->capacity;
     u32 new_capacity = old_capacity;
     if (old_capacity <= n && self->step != 0)
-        new_capacity = (n / self->step + 1) * self->step;
+        new_capacity = self->GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }

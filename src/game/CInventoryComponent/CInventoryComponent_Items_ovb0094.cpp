@@ -4,6 +4,7 @@
 // a stream (fn_7101144178), applying the blackboard section an id names (fn_7101149354) and writing the
 // missile amounts to the blackboard (fn_71011406cc). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
@@ -27,39 +28,9 @@ struct UnkInvValue_ovb0094 {
     u8 unk_0x0[0x10];
 };
 
-// A map node: a string id and an owned value.
-struct UnkInvNode_ovb0094 {
-    UnkStrIdMember id;
-    UnkInvValue_ovb0094* value;  // 0x8
-    UnkInvNode_ovb0094* next;  // 0x10
-};
-
-struct UnkInvMap_ovb0094 {
-    base::UnkAllocator* allocator;  // 0x0
-    u32 flags;                      // 0x8
-    u32 count;                      // 0xc
-    UnkInvNode_ovb0094** buckets;   // 0x10
-    u32 field_0x18;
-    u32 bucket_count;  // 0x1c
-    u8 unk_0x20[0x18];
-    UnkInvNode_ovb0094* tail;  // 0x38
-    UnkInvNode_ovb0094* head;  // 0x40
-
-    void Clear() {
-        if (count) {
-            for (UnkInvNode_ovb0094* node = head; node;) {
-                UnkInvNode_ovb0094* next = node->next;
-                node->id.~UnkStrIdMember();
-                allocator->vf_0x48(node);
-                node = next;
-            }
-            __builtin_memset(buckets, 0, (u64)bucket_count * sizeof(void*));
-            count = 0;
-            tail = nullptr;
-            head = nullptr;
-        }
-    }
-};
+// The owned values by name.
+using UnkInvMap_ovb0094 = base::global::CRntDictionary<base::global::CStrId, UnkInvValue_ovb0094*>;
+using UnkInvNode_ovb0094 = UnkInvMap_ovb0094::TNode;
 
 struct UnkInvOwner_ovb0094 {
     u8 unk_0x0[0x40];
@@ -68,7 +39,7 @@ struct UnkInvOwner_ovb0094 {
 
 // Deletes the values of the map at +0x40, then clears it.
 void fn_7101141378(UnkInvOwner_ovb0094* self) {
-    for (UnkInvNode_ovb0094* node = self->map.head; node; node = node->next)
+    for (UnkInvNode_ovb0094* node = self->map.first; node; node = node->next)
         delete node->value;
     self->map.Clear();
 }
@@ -181,22 +152,11 @@ void fn_71011406cc(UnkInvMissiles_ovb0094* self) {
 
 struct UnkStateObject;
 
-// The component the destructor fn_7101141558 tears down, with its fields written out flat.
+// The component the destructor fn_7101141558 tears down.
 struct UnkInvComponent_ovb0094 {
     void** vtable;
     u8 unk_0x8[0x38];
-    base::UnkAllocator* node_allocator;  // 0x40
-    u32 node_flags;                      // 0x48
-    u32 node_count;                      // 0x4c
-    void** buckets;                      // 0x50
-    u32 bucket_count;                    // 0x58
-    u32 bucket_capacity;                 // 0x5c
-    u32 bucket_step;                     // 0x60
-    bool field_0x64;
-    u32 bucket_flags;                    // 0x68
-    base::UnkAllocator* bucket_allocator;  // 0x70
-    void* tail;                          // 0x78
-    void* head;                          // 0x80
+    base::global::CRntDictionary<CStrId, void*> map;  // 0x40
     CStrId id;                           // 0x88
     void* field_0x90;
     void* field_0x98;
@@ -205,46 +165,14 @@ struct UnkInvComponent_ovb0094 {
     u32 field_0xac;
     base::UnkAllocator* field_0xb0;
 
-    // Sets the bucket count to n, clearing the new buckets.
-    void ResizeBuckets(u32 n) {
-        if (bucket_count < n) {
-            void** p;
-            if (bucket_capacity >= n) {
-                p = buckets;
-            } else {
-                p = static_cast<void**>(bucket_allocator->vf_0x40((u64)n * sizeof(void*), 8, bucket_flags));
-                if (buckets) {
-                    __builtin_memcpy(p, buckets, (u64)bucket_count * sizeof(void*));
-                    bucket_allocator->vf_0x48(buckets);
-                }
-                bucket_capacity = n;
-                buckets = p;
-            }
-            __builtin_memset(&p[bucket_count], 0, (u64)(n - bucket_count) * sizeof(void*));
-            bucket_count = n;
-        } else if (bucket_count != n) {
-            bucket_count = n;
-        }
-    }
 };
 static_assert(__builtin_offsetof(UnkInvComponent_ovb0094, field_0xb0) == 0xb0, "UnkInvComponent_ovb0094 layout");
 
 void fn_710114112c(UnkInvComponent_ovb0094* self) {
     fn_71010c4148(reinterpret_cast<UnkStateObject*>(self));
     self->vtable = &g_unk_7101cb33c8[2];
-    self->node_allocator = fn_7100083990();
-    self->node_flags = 0xe;
-    self->node_count = 0;
-    self->buckets = nullptr;
-    self->bucket_count = 0;
-    self->bucket_capacity = 0;
-    self->bucket_step = 10;
-    self->field_0x64 = true;
-    self->bucket_flags = 0xe;
-    self->bucket_allocator = fn_7100083990();
-    self->tail = nullptr;
-    self->head = nullptr;
-    self->ResizeBuckets(11);
+    new (&self->map) base::global::CRntDictionary<CStrId, void*>(0xe);
+    self->map.ResizeBuckets(11);
     self->id.data = nullptr;
     {
         base::global::UnkStrIdBase empty(base::global::UnkStrIdInline(), nullptr, true);

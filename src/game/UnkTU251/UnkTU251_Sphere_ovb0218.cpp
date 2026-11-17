@@ -3,7 +3,7 @@
 // +0x20. Names and layouts are placeholders.
 #include <new>
 
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkSphere.h"
@@ -47,58 +47,11 @@ void fn_71001bdd50(UnkSphereOwner_b218* self, const UnkVec3f* position) {
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
-
 void fn_710019fa64(void* self);
-
-struct UnkSourceNode_b218 {
-    u64 key;
-    u64 value;
-    UnkSourceNode_b218* next;
-    UnkSourceNode_b218* prev;
-    UnkSourceNode_b218* chain;
-
-    explicit UnkSourceNode_b218(u64 k) : key(k), value(k), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    UnkSourceNode_b218*& Next() { return next; }
-    UnkSourceNode_b218*& Prev() { return prev; }
-};
 
 struct UnkSourceRegistry_b218 {
     u64 field_0x0;
-    base::UnkAllocator* allocator;  // 0x8
-    u32 flags;                      // 0x10
-    u32 count;                      // 0x14
-    UnkSourceNode_b218** buckets;   // 0x18
-    u32 bucket_count;               // 0x20
-    u32 bucket_capacity;            // 0x24
-    u8 pad_0x28[0x18];
-    UnkSourceNode_b218* tail;  // 0x40
-    UnkSourceNode_b218* head;  // 0x48
-
-    void Insert(u64 key) {
-        UnkSourceNode_b218** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)key % bucket_capacity;
-            if (bucket_count <= i)
-                __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-            bucket = &buckets[i];
-        }
-        UnkSourceNode_b218* old = *bucket;
-        auto* node = static_cast<UnkSourceNode_b218*>(allocator->vf_0x40(sizeof(UnkSourceNode_b218), 8, flags));
-        if (node)
-            new (node) UnkSourceNode_b218(key);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
+    base::global::CRntDictionary<u64, u64> objects;  // 0x8: each object its own value
 };
 
 struct UnkSourceObject_b218 {
@@ -114,7 +67,7 @@ UnkSphereSource* fn_71001bd7bc(void* registry_, void* key, UnkReflObject* obj, u
         object->id = *static_cast<CStrId*>(key);
         if (obj)
             fn_710019e95c(object, obj);
-        registry->Insert(reinterpret_cast<u64>(object));
+        registry->objects.InsertChecked(reinterpret_cast<u64>(object), reinterpret_cast<u64>(object));
     }
     return reinterpret_cast<UnkSphereSource*>(object);
 }

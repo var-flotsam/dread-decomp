@@ -23,7 +23,7 @@ using base::reflection::DestroyDestructorFirst;
 namespace animtree::CAnimTreeDef { const base::reflection::CClass* refl_GetClass(); }
 namespace animtree::CAnimTreeRes {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x30200u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x30200u);
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(animtree::CAnimTreeDef, "oAnimTreeDef", 0x58);

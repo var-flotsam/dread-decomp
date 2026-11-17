@@ -91,7 +91,7 @@ void fn_710006b6e4(UnkTrackArray* self, base::global::CRntFile* file) {
         u32 c = self->count;
         u32 cap = self->capacity;
         if (cap <= c && self->step != 0)
-            cap = (c / self->step + 1) * self->step;
+            cap = self->GrownCapacity(c);
         if (!((s32)c < (s32)cap))
             for (;;) {
             }

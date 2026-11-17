@@ -29,24 +29,24 @@ void fn_710051e924(UnkReflFunction* fn, const char* name);
 namespace CCharClassEmmyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bControlsEmmyZoneLight_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bControlsEmmyZoneLight_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bControlsEmmyZoneLight_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710051ef68);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bControlsEmmyZoneLight_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bControlsEmmyZoneLight_SetterFunction")
         fn_710051e7a8(fn, "_m_bControlsEmmyZoneLight_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bControlsEmmyZoneLight", (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanUseTunnels_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bCanUseTunnels_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bCanUseTunnels_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710051eff8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanUseTunnels_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bCanUseTunnels_SetterFunction")
         fn_710051e924(fn, "_m_bCanUseTunnels_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCanUseTunnels", (DefaultValue, true));
     DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x618, (DefaultValue, CStrId(g_unk_7101d470e0)));

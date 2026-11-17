@@ -13,6 +13,7 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/ReflectedFields.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
@@ -21,9 +22,9 @@ DREAD_REFL_TAG(710009cab0);
 void fn_710009c7b4(base::reflection::CClass*) {}
 void fn_710009f1a4();
 void fn_710009c8a8(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x8, -1, -1);
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sBaseTypeName_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_sBaseTypeName_GetterFunction") {
             fn->name = base::global::UnkStrId("_sBaseTypeName_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
@@ -31,7 +32,7 @@ void fn_710009c8a8(CClass* cls) {
             fn->invoker = reinterpret_cast<void*>(&fn_710009f1a4);
         }
     }();
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("sBaseTypeName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("sBaseTypeName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
 }
 bool fn_710009f168(const void* a, const void* b) { return a == b; }
 s32 fn_710009f174() { return -1; }

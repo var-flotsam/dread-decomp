@@ -4,6 +4,7 @@
 // of src/base/reflection/UnkUnit83/UnkReflFunctionArrayInsert_b62a1.cpp. Names are placeholders.
 #include "base/UnkCollectionIter.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -49,11 +50,6 @@ struct UnkVectorView {
     }
 };
 
-struct Name {
-    UnkStringData* data;
-    Name(Name&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-};
-
 struct UnkReflFunctionData {
     struct Pair {
         void* field_0x0;
@@ -68,7 +64,7 @@ struct UnkReflFunctionData {
 
     void* vtbl;
     UnkVectorView<const void*> params;
-    Name name;
+    UnkMovedStrId name;
     const void* return_type;
     void* field_0x40;
     void* invoker;
@@ -79,7 +75,7 @@ struct UnkReflFunctionData {
 
     UnkReflFunctionData(UnkReflFunctionData&& other)
         : vtbl(g_unk_7101a1b460 + 0x10), params(static_cast<UnkVectorView<const void*>&&>(other.params)),
-          name(static_cast<Name&&>(other.name)), return_type(other.return_type), field_0x40(other.field_0x40),
+          name(static_cast<UnkMovedStrId&&>(other.name)), return_type(other.return_type), field_0x40(other.field_0x40),
           invoker(other.invoker), field_0x50(static_cast<UnkKeyedArray&&>(other.field_0x50)), field_0x78(other.field_0x78),
           param_attrs(static_cast<UnkVectorView<void*>&&>(other.param_attrs)), field_0xb0_w(other.field_0xb0_w) {}
 };
@@ -89,5 +85,5 @@ static_assert(sizeof(UnkReflFunctionData) == 0xb8, "UnkReflFunction layout");
 
 void fn_71000dd2b4(void* dst, const void* src) {
     using namespace refl_function_iter_a1_b75;
-    base::refl_IterValueMove<UnkReflFunctionData, Name>(dst, src);
+    base::refl_IterValueMove<UnkReflFunctionData, UnkMovedStrId>(dst, src);
 }

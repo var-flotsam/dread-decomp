@@ -11,13 +11,13 @@ import gen_fields
 
 SOURCE = '''// Generated
 void fn_7100000100(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "A node");
+    TypeAttributes(cls)->Add<const char*>(fn_7100007e80(), "A node");
 }
 void fn_7100000200(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eKind", true), &g_unk_7101d00010, 0x10, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eKind", true), &g_unk_7101d00010, 0x10, -1, -1);
     field0->attrs.Add<s32>(fn_7100075240(), &g_unk_7101d00010, 0);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("fWeight", true), fn_7100000abc(), 0x14, -1, -1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("pOwner", true), fn_7100000def(), 8, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("fWeight", true), fn_7100000abc(), 0x14, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("pOwner", true), fn_7100000def(), 8, -1, -1);
 }
 void fn_7100000300(base::reflection::CClass*) {}
 DREAD_REFL_CLASS_GETTER(7100000400, 7100000500, "game::CNode", 7100000600, 7100000100, 7100000200);
@@ -49,7 +49,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWeight", 0x14, (DefaultValue, 1.0f));
     DREAD_REFLECTED_CLASS_FIELD(game::CBase, "oBase", 0x18);
     DREAD_REFLECTED_PROPERTY(bool, "bOn", (DefaultValue, false));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("eKind", true), &g_unk_7101d00010, 0x10, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("eKind", true), &g_unk_7101d00010, 0x10, -1, -1);
 }
 }  // namespace game::CNode
 '''

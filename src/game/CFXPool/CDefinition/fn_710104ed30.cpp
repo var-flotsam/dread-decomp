@@ -27,46 +27,30 @@ __attribute__((always_inline)) static inline bool Equal(const UnkRecord80IterVal
 // released (and left as the empty id) before the array is freed.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkEmptiedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkEmptiedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-struct UnkIdWordPair {
-    UnkEmptiedStrId id;
+struct UnkPathWordPair {
+    UnkPathIdTwoStep id;
     u64 field_0x8;
 };
 
-void fn_710104ed30(base::global::CRntVector<UnkIdWordPair>* self) {
+void fn_710104ed30(base::global::CRntVector<UnkPathWordPair>* self) {
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
-            self->data[i].~UnkIdWordPair();
+            self->data[i].~UnkPathWordPair();
         self->count = 0;
         self->allocator->vf_0x48(self->data);
         self->capacity = 0;
     }
 }
 
-void fn_710104f8e0(base::global::CRntVector<UnkIdWordPair>* self) {
+void fn_710104f8e0(base::global::CRntVector<UnkPathWordPair>* self) {
     if (self->data) {
         for (u64 i = 0; i < self->count; ++i)
-            self->data[i].~UnkIdWordPair();
+            self->data[i].~UnkPathWordPair();
         self->count = 0;
         self->allocator->vf_0x48(self->data);
         self->capacity = 0;

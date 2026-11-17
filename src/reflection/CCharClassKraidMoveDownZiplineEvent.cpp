@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassKraidMoveDownZiplineEvent
 namespace CCharClassKraidMoveDownZiplineEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Kraid Move Down Zipline");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Kraid", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Kraid Move Down Zipline");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Kraid", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -2,8 +2,9 @@
 
 // The body of a singly linked list whose nodes come from an allocator: the count, the head and
 // tail nodes, the allocator and the flags its nodes are allocated with (0x28 bytes). Lists with a
-// vtable or a word before it (base/CDeviceQueue.h's UnkDeviceList, base/UnkSList.h) have the same
-// body at +8. `Node` is any type with a `next` pointer to its own type. Names are placeholders.
+// vtable or a word before it (base/UnkVtableList.h, base/CDeviceQueue.h's UnkDeviceList,
+// base/UnkSList.h) have the same body at +8. `Node` is any type with a `next` pointer to its own
+// type. Names are placeholders.
 //
 // The count is a union member: Clang gives union accesses no type-based alias info, so it is
 // reloaded after the node links are stored, as in the original (the behaviour tree's pending
@@ -28,6 +29,20 @@ struct UnkLinkedList {
     void Clear() {
         for (Node* n = head; n;) {
             Node* next = n->next;
+            allocator->vf_0x48(n);
+            n = next;
+        }
+        count = 0;
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    // Clear for nodes with a destructor: destroys each node before freeing it (the file path
+    // list's, fn_71011abec4).
+    void ClearDestroying() {
+        for (Node* n = head; n;) {
+            Node* next = n->next;
+            n->~Node();
             allocator->vf_0x48(n);
             n = next;
         }

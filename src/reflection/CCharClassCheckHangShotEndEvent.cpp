@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCheckHangShotEndEvent
 namespace CCharClassCheckHangShotEndEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Check Hang Shot End");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Samus", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Check Hang Shot End");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Samus", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bCheckStealth", 0xc, (DefaultValue, false));

@@ -6,7 +6,7 @@
 // list. Begin of the same maps: a temporary iterator starts at the map's first node and is advanced (fn_71000c2f58),
 // the result starts at the node it reached and is advanced in turn, and the temporary's cached entry (kind 1: a key and
 // a value) is destroyed.
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
@@ -32,45 +32,16 @@ struct UnkMapKey {
     }
 };
 
+// A value destroyed by Destroy.
 template <class Value, void (*Destroy)(Value*)>
-struct UnkMapNode {
-    UnkMapKey key;
-    Value value;  // destroyed by Destroy
-    UnkMapNode* next;  // the map's node list
-};
+struct UnkMapValue {
+    Value value;
 
-struct UnkIdMapStorage {
-    base::UnkAllocator* allocator;
-    u32 field_0x8;
-    u32 count;
-    void** buckets;
-    u32 field_0x18;
-    u32 bucket_count;
-    u8 unk_0x20[0x18];
-    void* tail;
-    void* head;
+    ~UnkMapValue() { Destroy(&value); }
 };
 
 template <class Value, void (*Destroy)(Value*)>
-struct UnkIdMap : UnkIdMapStorage {
-    using Node = UnkMapNode<Value, Destroy>;
-
-    __attribute__((always_inline)) void Clear() {
-        if (!this->count)
-            return;
-        for (Node* n = static_cast<Node*>(this->head); n;) {
-            Node* next = n->next;
-            Destroy(&n->value);
-            n->key.~UnkMapKey();
-            this->allocator->vf_0x48(n);
-            n = next;
-        }
-        __builtin_memset(this->buckets, 0, (u64)this->bucket_count * sizeof(void*));
-        this->count = 0;
-        this->tail = nullptr;
-        this->head = nullptr;
-    }
-};
+using UnkIdMap = base::global::CRntDictionary<base::global::CStrId, UnkMapValue<Value, Destroy>>;
 
 using base::reflection::UnkReflValue;
 

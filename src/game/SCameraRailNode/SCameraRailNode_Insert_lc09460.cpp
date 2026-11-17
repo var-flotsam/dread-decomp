@@ -65,7 +65,7 @@ void fn_7100c09460(UnkRailNodes_lc09460* self, UnkRailNode_b43a3* value, u32 ind
         UnkRailNode_b43a3* p;
         u32 new_capacity = cap;
         if (cap <= n && self->step != 0)
-            new_capacity = (index / self->step + 1) * self->step;
+            new_capacity = self->GrownCapacity(index);
         if ((s32)new_capacity <= (s32)index)
             for (;;) {
             }
@@ -80,7 +80,7 @@ void fn_7100c09460(UnkRailNodes_lc09460* self, UnkRailNode_b43a3* value, u32 ind
         MoveNode(&p[index], value);
     } else {
         if (cap <= n && self->step != 0) {
-            u32 grown = (n / self->step + 1) * self->step;
+            u32 grown = self->GrownCapacity(n);
             if (cap < grown) {
                 UnkRailNode_b43a3* q = MoveTo(self, grown);
                 n = self->count;

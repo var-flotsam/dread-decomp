@@ -5,21 +5,12 @@
 // mercury-engine-data-structures; the rest are placeholders.
 #include "base/UnkFreedVectorPair.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
 struct CMinimapData {
     struct SMovingMagnetSurfaceData;
-};
-
-// A string id moved by taking its pointer and leaving the other one empty (CStrId itself has no move
-// constructor: it would copy and take a reference). The record's destructor (fn_7100e4e310) releases it.
-struct UnkMovedStrId {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
 };
 
 // An element of aMovingMagnetSurfaces (0x138 bytes). The first three members are the reflected ones; after

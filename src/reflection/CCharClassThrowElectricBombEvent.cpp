@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassThrowElectricBombEvent
 namespace CCharClassThrowElectricBombEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Throw Electric Bomb");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("NOT IMPLEMENTED", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Throw Electric Bomb");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("NOT IMPLEMENTED", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sBone", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

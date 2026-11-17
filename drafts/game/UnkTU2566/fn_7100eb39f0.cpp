@@ -3,9 +3,11 @@
 // placeholders.
 #include <new>
 
+#include "base/global/UnkBucketSet.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPool.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU2566.h"
 #include "game/UnkTU2567.h"
 #include "types.h"
@@ -79,21 +81,9 @@ struct UnkMinimapParts_leb39f0 {
     }
 };
 
-// An empty string id, creating the pool first when there is none.
-struct UnkEmptyId_leb39f0 {
-    UnkStringData* data;
-
-    UnkEmptyId_leb39f0() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkMinimapValue_leb39f0 {
     UnkMinimapParts_leb39f0 parts;
-    UnkEmptyId_leb39f0 id;  // 0x15e8
+    UnkEmptyStrId id;  // 0x15e8
 
     UnkMinimapValue_leb39f0() { parts.Resize(4); }
 };
@@ -107,20 +97,8 @@ struct UnkMinimapNode_leb39f0 {
 };
 static_assert(__builtin_offsetof(UnkMinimapNode_leb39f0, next) == 0x15f8, "UnkMinimapNode_leb39f0 layout");
 
-// The set: buckets, the first non-empty bucket and its first node, the node allocator and its flags,
-// the node count and a modification count.
-struct UnkMinimapSet_leb39f0 {
-    UnkMinimapNode_leb39f0** buckets;
-    u32 bucket_count;  // 0x8
-    u32 modulus;       // 0xc
-    u8 pad_0x10[0x18];
-    u32 first_bucket;  // 0x28
-    UnkMinimapNode_leb39f0* first_node;  // 0x30
-    base::UnkAllocator* node_allocator;  // 0x38
-    u32 node_flags;  // 0x40
-    u32 node_count;  // 0x44
-    u32 version;     // 0x48
-};
+// The set (base/global/UnkBucketSet.h).
+using UnkMinimapSet_leb39f0 = base::global::UnkBucketSet<UnkMinimapNode_leb39f0>;
 
 UnkKeyIter_b0200 fn_7100eb39f0(UnkKeyBuckets_b0200* buckets, const CStrId* key) {
     UnkMinimapSet_leb39f0* set = reinterpret_cast<UnkMinimapSet_leb39f0*>(buckets);
@@ -130,9 +108,9 @@ UnkKeyIter_b0200 fn_7100eb39f0(UnkKeyBuckets_b0200* buckets, const CStrId* key) 
     if (node)
         new (node) UnkMinimapNode_leb39f0(*key);
     u32 bucket;
-    if (set->bucket_count) {
+    if (set->buckets.count) {
         const UnkKeyObject_b0200* object = reinterpret_cast<const UnkKeyObject_b0200*>(key->data);
-        bucket = (object->hash_a ^ object->hash_b) % set->modulus;
+        bucket = (object->hash_a ^ object->hash_b) % set->buckets.capacity;
     } else {
         bucket = -1;
     }

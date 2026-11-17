@@ -55,27 +55,22 @@ static inline UnkRumbleManager* RumbleManager() {
     return g_unk_7101d47348;
 }
 
-struct UnkMagnetStringData_b0086 {
-    u8 unk_0x0[0x8];
-    s32 ref_count;
-};
-
-// A file-path id (pool g_unk_7101d47200) whose count is a plain int.
+// A file-path id (pool g_unk_7101d47200).
 struct UnkMagnetPathId_b0086 {
     UnkStringData* data;
 
     explicit UnkMagnetPathId_b0086(const base::global::UnkFilePathStrIdBase& other) : data(other.data) {
         if (&g_unk_7101d47200->empty != data)
-            ++reinterpret_cast<UnkMagnetStringData_b0086*>(data)->ref_count;
+            ++data->ref_count;
     }
     UnkMagnetPathId_b0086& operator=(const base::global::UnkFilePathStrIdBase& other) {
         if (other.data != data) {
             UnkStringData* d = other.data;
             UnkStringPool* pool = g_unk_7101d47200;
             if (d != &pool->empty)
-                ++reinterpret_cast<UnkMagnetStringData_b0086*>(d)->ref_count;
+                ++d->ref_count;
             if (data != &pool->empty) {
-                if (--reinterpret_cast<UnkMagnetStringData_b0086*>(data)->ref_count == 0)
+                if (--data->ref_count == 0)
                     fn_71000803a4(pool, data);
             }
             data = d;
@@ -85,7 +80,7 @@ struct UnkMagnetPathId_b0086 {
     ~UnkMagnetPathId_b0086() {
         if (UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {
-                if (--reinterpret_cast<UnkMagnetStringData_b0086*>(data)->ref_count == 0) {
+                if (--data->ref_count == 0) {
                     fn_71000803a4(pool, data);
                     pool = g_unk_7101d47200;
                 }

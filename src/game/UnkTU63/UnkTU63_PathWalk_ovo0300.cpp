@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU63.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::UnkStrIdMemberOf;
 
@@ -19,14 +20,7 @@ struct UnkListedPath_b0248 {
     UnkListedPath_b0248* next;
 };
 
-struct UnkFilePathList_b0248 {
-    void** vtable;
-    u32 count;
-    UnkListedPath_b0248* head;
-    UnkListedPath_b0248* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkFilePathList_b0248 : base::UnkVtableList<UnkListedPath_b0248> {
     UnkFilePathList_b0248() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;

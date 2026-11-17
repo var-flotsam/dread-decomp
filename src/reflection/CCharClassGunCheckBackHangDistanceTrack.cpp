@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassGunCheckBackHangDistanceTrack
 namespace CCharClassGunCheckBackHangDistanceTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Gun Check Back Hang Distance");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Gun", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Gun Check Back Hang Distance");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Gun", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

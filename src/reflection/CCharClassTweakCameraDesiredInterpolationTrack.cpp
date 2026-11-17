@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakCameraDesiredInterpolationTrack
 namespace CCharClassTweakCameraDesiredInterpolationTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Camera Interpolation");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Camera Interpolation");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDesiredInterpolation", 0x18, (DefaultValue, -1.0f));

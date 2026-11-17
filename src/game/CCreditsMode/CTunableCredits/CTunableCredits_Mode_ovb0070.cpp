@@ -19,6 +19,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "base/UnkLoadingMask.h"
+#include "base/UnkVtableList.h"
 
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
 // guarded constants.
@@ -69,16 +70,6 @@ struct UnkCreditsNode_ovb0070 {
     UnkCreditsNode_ovb0070* next;
 };
 
-// The list of lines (+0x90): its nodes come from `allocator`.
-struct UnkCreditsLineList_ovb0070 {
-    void** vtable;
-    u32 count;
-    UnkCreditsNode_ovb0070* head;
-    UnkCreditsNode_ovb0070* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-};
-
 struct UnkCreditsMode_ovb0070 {
     u8 pad_0x0[0x50];
     f32 time;   // 0x50
@@ -87,7 +78,7 @@ struct UnkCreditsMode_ovb0070 {
     f32 field_0x5c;
     UnkGuiDisplayObject* objects[4];  // 0x60
     u8 pad_0x80[0x10];
-    UnkCreditsLineList_ovb0070 lines;  // 0x90
+    base::UnkVtableList<UnkCreditsNode_ovb0070> lines;  // 0x90, the list of lines
     u8 pad_0xc0[0x9b0];
     UnkWeakHandle* field_0xa70;
     UnkWeakHandle* field_0xa78;

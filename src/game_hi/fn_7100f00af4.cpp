@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/msapi/res/CRenderRes.h"
 #include "types.h"
+#include "base/UnkLinkedList.h"
 
 struct UnkRefObj {
     virtual void vf_0x0();
@@ -55,13 +56,7 @@ struct UnkListNode {
     };
 };
 
-struct UnkList {
-    u32 count;
-    UnkListNode* head;
-    UnkListNode* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkList : base::UnkLinkedList<UnkListNode> {
     UnkListNode* Find(u32 key) {
         for (UnkListNode* n = head; n; n = n->next)
             if (n->key == key)
@@ -85,30 +80,6 @@ struct UnkList {
                 tail = n;
                 ++count;
             }
-        }
-    }
-    void Remove(UnkListNode* node) {
-        UnkListNode* prev = nullptr;
-        for (UnkListNode* n = head; n;) {
-            UnkListNode* next = n->next;
-            if (n == node) {
-                if (prev) {
-                    prev->next = next;
-                    if (tail == node)
-                        tail = prev;
-                } else {
-                    head = next;
-                }
-                if (--count == 0) {
-                    head = nullptr;
-                    tail = nullptr;
-                }
-                node->~UnkListNode();
-                allocator->vf_0x48(node);
-                return;
-            }
-            prev = n;
-            n = next;
         }
     }
 };

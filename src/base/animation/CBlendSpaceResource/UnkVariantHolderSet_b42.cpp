@@ -6,27 +6,11 @@
 // layouts are placeholders.
 #include "base/UnkCountedResource.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-struct UnkReleasedFilePathId_b42a1 {
-    UnkStringData* data;
-
-    ~UnkReleasedFilePathId_b42a1() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 struct UnkCountedPtr_b42a1 {
     UnkCountedResource* ptr;
@@ -42,7 +26,7 @@ struct UnkCountedPtr_b42a1 {
 template <u32 Skip>
 struct UnkIdRef_b42a1 {
     u8 unk_0x0[Skip];
-    UnkReleasedFilePathId_b42a1 id;
+    UnkPathIdTwoStep id;
     UnkCountedPtr_b42a1 ref;
 };
 

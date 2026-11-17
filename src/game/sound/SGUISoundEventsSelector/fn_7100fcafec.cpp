@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/sound/SGUISoundEventsSelector.h"
 #include "types.h"
 
@@ -13,27 +14,9 @@ using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkEntryId {
-    UnkStringData* data;
-
-    ~UnkEntryId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkIdEntry_0x10 {
     u64 field_0x0;
-    UnkEntryId id;
+    UnkStrIdTwoStep id;
 };
 
 struct UnkNamedBase_0x38 {

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CharClassRechargePlayerLife
 namespace CharClassRechargePlayerLife {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Recharge Player Life");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Samus", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Recharge Player Life");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Samus", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fRefillTime", 0xc, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));

@@ -6,15 +6,13 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
 #include "game/UnkTU140.h"
 #include "game/UnkTU32.h"
 #include "types.h"
-
-extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
 void fn_71001fae8c(void* sub, const base::global::CStrId* name);
 
@@ -72,55 +70,8 @@ struct UnkEffect_9930 {
 };
 static_assert(sizeof(UnkEffect_9930) == 0x210, "UnkEffect_9930 layout");
 
-struct UnkEffectNode_9930 {
-    u64 key;
-    u64 value;
-    UnkEffectNode_9930* next;   // the list of all nodes
-    UnkEffectNode_9930* prev;
-    UnkEffectNode_9930* chain;  // the next node in the bucket
-
-    UnkEffectNode_9930(u64 k, u64 v) : key(k), value(v), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    UnkEffectNode_9930*& Next() { return next; }
-    UnkEffectNode_9930*& Prev() { return prev; }
-};
-
 // The pool as a chained hash set of the objects (as in UnkModelInstanceSet.cpp).
-struct UnkEffectSet_9930 {
-    base::UnkAllocator* allocator;
-    u32 flags;                    // 0x8
-    u32 count;                    // 0xc
-    UnkEffectNode_9930** buckets;  // 0x10
-    u32 bucket_count;             // 0x18
-    u32 bucket_capacity;          // 0x1c
-    u8 pad_0x20[0x18];
-    UnkEffectNode_9930* tail;  // 0x38
-    UnkEffectNode_9930* head;  // 0x40
-
-    void Insert(u64 key, u64 value) {
-        UnkEffectNode_9930** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)key % bucket_capacity;
-            if (bucket_count <= i)
-                __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-            bucket = &buckets[i];
-        }
-        UnkEffectNode_9930* old = *bucket;
-        auto* node = static_cast<UnkEffectNode_9930*>(allocator->vf_0x40(sizeof(UnkEffectNode_9930), 8, flags));
-        if (node)
-            new (node) UnkEffectNode_9930(key, value);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
-};
+using UnkEffectSet_9930 = base::global::CRntDictionary<u64, u64>;
 
 void* fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::global::CStrId* name) {
     UnkEffectSet_9930* set = reinterpret_cast<UnkEffectSet_9930*>(pool);
@@ -145,7 +96,7 @@ void* fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::gl
             effect->Sub()->vf_0x90();
         }
         node = effect->Node();
-        set->Insert((u64)node, (u64)effect);
+        set->InsertChecked((u64)node, (u64)effect);
     }
     if (out)
         *out = reinterpret_cast<UnkSceneObject*>(effect);

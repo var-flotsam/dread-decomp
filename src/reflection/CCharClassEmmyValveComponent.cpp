@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -54,7 +55,7 @@ void fn_71007b4c44();
 namespace CEmmyValveComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetState", true))) {
+    DREAD_REFLECTED_FUNCTION("SetState") {
         fn->name = base::global::UnkStrId("SetState", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -62,7 +63,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71007b4bb0);
         fn_7100302d14(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CleanForceStateFlag", true))) {
+    DREAD_REFLECTED_FUNCTION("CleanForceStateFlag") {
         fn->name = base::global::UnkStrId("CleanForceStateFlag", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

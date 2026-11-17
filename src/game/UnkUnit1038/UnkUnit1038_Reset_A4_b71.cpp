@@ -4,19 +4,14 @@
 #include "base/UnkDestructors.h"
 #include "game/UnkTU1110.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkU1038Node_A4_b71 {
     base::UnkRefPtrMember ref;
     UnkU1038Node_A4_b71* next;
 };
 
-struct UnkU1038List_A4_b71 {
-    u8 pad_0x0[8];
-    u32 count;
-    UnkU1038Node_A4_b71* head;
-    UnkU1038Node_A4_b71* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkU1038List_A4_b71 : base::UnkVtableList<UnkU1038Node_A4_b71> {
     __attribute__((always_inline)) void Clear() {
         for (UnkU1038Node_A4_b71* n = head; n;) {
             UnkU1038Node_A4_b71* cur = n;
@@ -33,7 +28,7 @@ struct UnkU1038List_A4_b71 {
 struct UnkU1038Self_A4_b71 {
     u8 pad_0x0[0x260];
     UnkU1038List_A4_b71 a;  // 0x260
-    u8 pad_0x288[0x2d8 - 0x288];
+    u8 pad_0x290[0x2d8 - 0x290];
     UnkU1038List_A4_b71 b;  // 0x2d8
 };
 

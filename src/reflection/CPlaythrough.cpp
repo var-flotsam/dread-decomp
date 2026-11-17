@@ -38,44 +38,44 @@ void fn_71002ee14c();
 void fn_71002ee510();
 namespace CPlaythrough {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterDeserialize");
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterDeserialize");
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPlaythroughName_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sPlaythroughName_GetterFunction") {
         fn->name = base::global::UnkStrId("_sPlaythroughName_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002edffc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPlaythroughName_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sPlaythroughName_SetterFunction")
         fn_71002ea054(fn, "_sPlaythroughName_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPlaythroughName", (XmlAttribute, true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_oPlayDefLink_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_oPlayDefLink_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_oPlayDefLink_GetterFunction", true);
         fn->return_type = &g_unk_7101d4ec50;
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002ee0fc);
     }
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("oPlayDefLink", true), &g_unk_7101d4ec50, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dctCheckpointDatas_GetterFunction", true))) {
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("oPlayDefLink", true), &g_unk_7101d4ec50, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION("_dctCheckpointDatas_GetterFunction") {
         fn->name = base::global::UnkStrId("_dctCheckpointDatas_GetterFunction", true);
         fn->return_type = &g_unk_71726acd78;
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002ee124);
     }
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("dctCheckpointDatas", true), &g_unk_71726acd78, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterDeserialize", true))) {
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("dctCheckpointDatas", true), &g_unk_71726acd78, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION("AfterDeserialize") {
         fn->name = base::global::UnkStrId("AfterDeserialize", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002ee14c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("GetDef", true))) {
+    DREAD_REFLECTED_FUNCTION("GetDef") {
         fn->name = base::global::UnkStrId("GetDef", true);
         fn->return_type = base::reflection::PointerType<CPlaythroughDef const*>::Get();
         fn->field_0xb2 = 0;

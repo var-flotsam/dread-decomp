@@ -72,39 +72,9 @@ struct UnkDeviceList : UnkLinkedList<UnkDeviceNode> {
     }
 };
 
-// The queue's name: a string id whose destructor decrements and tests in two steps (the original
-// reloads the id and its count after the decrement), unlike CStrId's.
-class UnkDeviceName : public global::UnkStrIdBase {
-public:
-    ~UnkDeviceName() {
-        if (global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-    // As CStrId's copy-assignment.
-    UnkDeviceName& operator=(const UnkDeviceName& other) {
-        if (data != other.data) {
-            global::UnkStringData* d = other.data;
-            global::UnkStringPool* pool = g_unk_7101d47108;
-            if (d != &pool->empty)
-                ++d->ref_count;
-            if (data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
-            }
-            data = d;
-        }
-        return *this;
-    }
-};
+// The queue's name: a CStrId (its two-step destructor and copy-assignment are what the queue's
+// destructor and fn_7100084efc's callers inline).
+using UnkDeviceName = global::CStrId;
 
 // Vtable via GOT 0x7101cbc370 (slots as UnkDevice).
 class CDeviceQueue {

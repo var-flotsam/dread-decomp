@@ -7,7 +7,7 @@
 #include <new>
 
 #include "base/UnkCountedResource.h"
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "game/UnkTU290.h"
 #include "types.h"
 
@@ -71,56 +71,8 @@ static_assert(sizeof(UnkDirLightObject) == 0x140, "UnkDirLightObject layout");
 // Its constructor (the second argument is passed through).
 void fn_7100143b3c(UnkDirLightObject* self, const void* arg);
 
-struct UnkDirLightMapNode {
-    UnkDirLightBase* key;
-    UnkDirLightObject* value;
-    UnkDirLightMapNode* next;   // the list of all nodes
-    UnkDirLightMapNode* prev;
-    UnkDirLightMapNode* chain;  // the next node in the bucket
-
-    UnkDirLightMapNode(UnkDirLightBase* k, UnkDirLightObject* v)
-        : key(k), value(v), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    // The list links, through accessors (their stores may alias the map's list ends).
-    UnkDirLightMapNode*& Next() { return next; }
-    UnkDirLightMapNode*& Prev() { return prev; }
-};
-
-struct UnkDirLightMap {
-    base::UnkAllocator* allocator;
-    u32 flags;                      // 0x8
-    u32 count;                      // 0xc
-    UnkDirLightMapNode** buckets;   // 0x10
-    u32 bucket_count;               // 0x18
-    u32 bucket_capacity;            // 0x1c
-    u8 pad_0x20[0x18];
-    UnkDirLightMapNode* tail;  // 0x38
-    UnkDirLightMapNode* head;  // 0x40
-
-    // Adds a node at the front of the key's bucket (the key's low 32 bits modulo the capacity;
-    // none, dereferenced all the same, for an empty bucket array) and at the end of the list.
-    void Insert(UnkDirLightBase* key, UnkDirLightObject* value) {
-        UnkDirLightMapNode** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)(u64)key % bucket_capacity;
-            bucket = buckets + i;
-        }
-        UnkDirLightMapNode* old = *bucket;
-        auto* node = static_cast<UnkDirLightMapNode*>(allocator->vf_0x40(sizeof(UnkDirLightMapNode), 8, flags));
-        if (node)
-            new (node) UnkDirLightMapNode(key, value);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
-};
+// The scene objects by their base.
+using UnkDirLightMap = base::global::CRntDictionary<UnkDirLightBase*, UnkDirLightObject*>;
 
 // Creates a scene object, hands it the resource (also at +0x98 and through its node's vf_0x90
 // when there is one) and enters it in the map. Stores the object in `out` when given and returns

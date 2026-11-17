@@ -98,6 +98,7 @@ void fn_71000733e4(UnkRumbleManager* self) {
 
 #include "base/UnkResKey.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CRntDictionary.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 
@@ -171,47 +172,9 @@ struct UnkRumbleFile {
     UnkRumblePath path;
 };
 
-// The cache's map nodes (0x28 bytes): the path, the file, the node list links and the bucket chain.
-// The list links are union members: the original reloads them after each link store.
-struct UnkRumbleFileNode {
-    UnkStringData* key;
-    UnkRumbleFile* value;
-    union {
-        UnkRumbleFileNode* next;
-    };
-    union {
-        UnkRumbleFileNode* prev;
-    };
-    UnkRumbleFileNode* chain;
-};
-
-struct UnkRumbleFileMap {
-    base::UnkAllocator* allocator;  // 0x20d0
-    u32 flags;
-    u32 count;
-    UnkRumbleFileNode** buckets;  // 0x20e0
-    u32 bucketCount;
-    u32 bucketCapacity;
-    u8 unk_0x20f0[0x18];
-    UnkRumbleFileNode* last;   // 0x2108
-    UnkRumbleFileNode* first;  // 0x2110
-};
-
-// The halves of the id's 64-bit hash (at +0x30) combined.
-static inline u32 PathHash(const UnkStringData* data) {
-    const char* raw = reinterpret_cast<const char*>(data);
-    return *reinterpret_cast<const u32*>(raw + 0x30) ^ *reinterpret_cast<const u32*>(raw + 0x34);
-}
-
-// The bucket a key hashes to; null while the map has no buckets.
-static inline UnkRumbleFileNode** Bucket(UnkRumbleFileMap* map, const UnkStringData* key) {
-    UnkRumbleFileNode** bucket = nullptr;
-    if (map->bucketCount) {
-        u32 i = PathHash(key) % map->bucketCapacity;
-        bucket = map->buckets + i;
-    }
-    return bucket;
-}
+// The cache: the rumble files by path.
+using UnkRumbleFileMap = base::global::CRntDictionary<CFilePathStrId, UnkRumbleFile*>;
+using UnkRumbleFileNode = UnkRumbleFileMap::TNode;
 
 // Builds the rumble file's path for `name` (defined in this unit, which lets the compiler see that
 // it keeps no pointer to `out`).
@@ -223,13 +186,13 @@ UnkRumbleFile* fn_710007454c(UnkRumbleManager* self, const void* name) {
     UnkRumblePath path;
     fn_7100072c00(name, path.Id());
     UnkRumbleFileMap* map = reinterpret_cast<UnkRumbleFileMap*>(reinterpret_cast<char*>(self) + 0x20d0);
-    if (map->bucketCount) {
-        if (UnkRumbleFileNode** bucket = Bucket(map, path.data)) {
-            for (UnkRumbleFileNode* n = *bucket; n; n = n->chain) {
-                if (n->key == path.data) {
+    if (map->buckets.count) {
+        if (UnkRumbleFileNode* const* bucket = map->BucketFor(*path.Id())) {
+            for (UnkRumbleFileNode* n = *bucket; n; n = n->bucket_next) {
+                if (n->key.data == path.data) {
                     UnkRumbleFileNode* found = *bucket;
-                    while (found->key != path.data)
-                        found = found->chain;
+                    while (found->key.data != path.data)
+                        found = found->bucket_next;
                     UnkRumbleFile* file = found->value;
                     ++file->res.ptr->ref_count;
                     return file;
@@ -250,33 +213,7 @@ UnkRumbleFile* fn_710007454c(UnkRumbleManager* self, const void* name) {
             file->field_0x10 = (u32)r->field_0x68;
             file->field_0x8 = r->source ? r->source->vf_0x28() : 0;
             file->path = path;
-            UnkRumbleFileNode** bucket = nullptr;
-            if (map->bucketCount) {
-                u32 i = PathHash(path.data) % map->bucketCapacity;
-                bucket = map->buckets + i;
-            }
-            UnkRumbleFileNode* chain = *bucket;
-            UnkRumbleFileNode* node =
-                static_cast<UnkRumbleFileNode*>(map->allocator->vf_0x40(sizeof(UnkRumbleFileNode), 8, map->flags));
-            if (node) {
-                node->key = path.data;
-                if (&g_unk_7101d47200->empty != path.data)
-                    ++path.data->ref_count;
-                node->value = file;
-                node->next = nullptr;
-                node->prev = nullptr;
-                node->chain = nullptr;
-            }
-            node->chain = chain;
-            *bucket = node;
-            if (!map->first) {
-                map->first = node;
-            } else if (map->last) {
-                node->prev = map->last;
-                map->last->next = node;
-            }
-            map->last = node;
-            ++map->count;
+            map->Insert(*path.Id(), file);
         }
     }
     return file;

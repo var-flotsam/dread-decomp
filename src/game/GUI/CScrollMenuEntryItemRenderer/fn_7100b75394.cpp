@@ -5,29 +5,17 @@
 #include "game/GUI/CScrollMenuEntryItemRenderer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkListNode {
     u64 field_0x0;
     UnkListNode* next;
 };
 
-struct UnkNodeList {
-    void** vtable;
-    u32 count;
-    UnkListNode* head;
-    UnkListNode* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkNodeList : base::UnkVtableList<UnkListNode> {
     ~UnkNodeList() {
         vtable = g_unk_7101a9ee50 + 2;
-        for (UnkListNode* node = head; node;) {
-            UnkListNode* next = node->next;
-            allocator->vf_0x48(node);
-            node = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        Clear();
     }
 };
 

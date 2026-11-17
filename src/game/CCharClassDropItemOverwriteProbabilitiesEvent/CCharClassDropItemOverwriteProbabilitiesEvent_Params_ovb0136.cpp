@@ -9,6 +9,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CCharClassDropItemCrazyEvent.h"
 #include "game/CCharClassDropItemOverwriteProbabilitiesEvent.h"
@@ -215,32 +216,15 @@ UnkOverwriteEvent_ovb0136* fn_7100cb84ec(UnkOverwriteEvent_ovb0136* self, const 
     return self;
 }
 
-struct UnkReleasedId_ovb0136 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedId_ovb0136() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkOverwriteEventDtor_ovb0136 {
     void** vtable;
     u8 pad_0x8[0x50];
-    UnkReleasedId_ovb0136 field_0x58;
+    UnkStrIdTwoStep field_0x58;
     u8 pad_0x60[0x18];
-    UnkReleasedId_ovb0136 field_0x78;
+    UnkStrIdTwoStep field_0x78;
     u8 pad_0x80[0x8];
-    UnkReleasedId_ovb0136 field_0x88;
-    base::global::CRntVector<UnkReleasedId_ovb0136> field_0x90;
+    UnkStrIdTwoStep field_0x88;
+    base::global::CRntVector<UnkStrIdTwoStep> field_0x90;
 
     __attribute__((always_inline)) ~UnkOverwriteEventDtor_ovb0136() {
         vtable = reinterpret_cast<void**>(g_unk_7101aa5860 + 0x10);

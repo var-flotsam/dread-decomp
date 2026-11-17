@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // base::curves::CCurveResource
 namespace base::curves::CCurveResource {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10000u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10000u);
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void*, const void*) { return false; }

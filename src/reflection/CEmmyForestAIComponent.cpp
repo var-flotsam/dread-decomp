@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -25,14 +26,14 @@ void fn_71004f33b0();
 namespace CEmmyForestAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartWeightedEdges", true))) {
+    DREAD_REFLECTED_FUNCTION("StartWeightedEdges") {
         fn->name = base::global::UnkStrId("StartWeightedEdges", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71004f337c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopWeightedEdges", true))) {
+    DREAD_REFLECTED_FUNCTION("StopWeightedEdges") {
         fn->name = base::global::UnkStrId("StopWeightedEdges", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

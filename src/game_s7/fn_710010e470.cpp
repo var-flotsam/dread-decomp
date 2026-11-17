@@ -84,18 +84,9 @@ void fn_710010f4b0()
 
 // ---- fn_710010d9fc: building the box tree ----
 
-// The boxes and the tree's nodes (base/global/CRntVector.h's layout); fn_710010e364 resizes either.
-struct UnkBoxArray_710010e470 {
-    E* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool growable;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-// fn_710010e364 on this view of the array (unit 107's UnkBoxVector_b0236, the same layout).
-static inline void Resize(UnkBoxArray_710010e470* self, u32 n) {
+// The boxes and the tree's nodes are both arrays of E; fn_710010e364 resizes either (on unit 107's
+// UnkBoxVector_b0236, the same layout).
+static inline void Resize(base::global::CRntVector<E>* self, u32 n) {
     fn_710010e364(reinterpret_cast<UnkBoxVector_b0236*>(self), n);
 }
 
@@ -109,7 +100,8 @@ void fn_710010d68c(E* box, E* const* first, E* const* last);
 // middle after a sort when that leaves one side with less than a third). An inner node's word is the
 // index after its subtree.
 // NON_MATCHING(major): written from the original's behaviour, not compared instruction by instruction.
-void fn_710010d9fc(UnkBoxArray_710010e470* tree, UnkBoxArray_710010e470* boxes, u32 first, u32 last) {
+void fn_710010d9fc(base::global::CRntVector<E>* tree, base::global::CRntVector<E>* boxes, u32 first,
+                   u32 last) {
     Resize(tree, tree->count + 1);
     E* node = tree->count ? &tree->data[tree->count - 1] : tree->data;
     {
@@ -127,9 +119,9 @@ void fn_710010d9fc(UnkBoxArray_710010e470* tree, UnkBoxArray_710010e470* boxes, 
     u32 n = last - first;
     u32 word;
     if (n < 2) {
-        if (boxes->growable && boxes->count <= first) {
+        if (boxes->field_0x14 && boxes->count <= first) {
             if (boxes->capacity <= first && boxes->step != 0) {
-                u32 c = (first / boxes->step + 1) * boxes->step;
+                u32 c = boxes->GrownCapacity(first);
                 if (boxes->capacity < c) {
                     E* p = static_cast<E*>(boxes->allocator->vf_0x40((u64)c * sizeof(E), 8, boxes->flags));
                     if (boxes->data) {

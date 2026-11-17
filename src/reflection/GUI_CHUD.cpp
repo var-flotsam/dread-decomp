@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -25,7 +26,7 @@ void fn_71011dd184(UnkReflFunction* fn, const char* name);
 namespace GUI::CHUD {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnItemCreation", true)))
+    DREAD_REFLECTED_FUNCTION("OnItemCreation")
         fn_71011dd184(fn, "OnItemCreation");
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetDoorLockedEvent
 namespace CCharClassSetDoorLockedEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Door Locked or Unloked");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Door", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Door Locked or Unloked");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Door", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CName, "sEntityName", 0x10, (DefaultValue, base::global::CName("")));

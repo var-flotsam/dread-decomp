@@ -27,14 +27,14 @@ void fn_71008169ac(UnkReflFunction* fn, const char* name);
 namespace CCharClassGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoEnableGlow_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bAutoEnableGlow_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bAutoEnableGlow_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100816d34);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bAutoEnableGlow_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bAutoEnableGlow_SetterFunction")
         fn_71008169ac(fn, "_m_bAutoEnableGlow_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAutoEnableGlow", (DefaultValue, true), (Description, "Auto enable glow fx?"));
     DREAD_REFLECTED_FIELD(CStrId, "sGrappleDragWide", 0x60, (DefaultValue, ""), (Description, "Grapple Draw Animation Override"));

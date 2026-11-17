@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU39.h"
+#include "base/UnkVtableList.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
@@ -20,14 +21,7 @@ struct UnkKeyNode_b0250 {
 };
 
 template <void** Vtable>
-struct UnkKeyListBase_b0250 {
-    void** vtable;
-    u32 count;
-    UnkKeyNode_b0250* head;
-    UnkKeyNode_b0250* tail;
-    base::UnkAllocator* allocator;
-    u32 tag;
-
+struct UnkKeyListBase_b0250 : base::UnkVtableList<UnkKeyNode_b0250> {
     ~UnkKeyListBase_b0250() {
         vtable = &Vtable[2];
         for (UnkKeyNode_b0250* n = head; n;) {

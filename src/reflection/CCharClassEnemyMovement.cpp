@@ -145,14 +145,14 @@ namespace CCharClassEnemyMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanFall_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bCanFall_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bCanFall_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100965124);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bCanFall_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bCanFall_SetterFunction")
             fn_710095f1d4(fn, "_m_bCanFall_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bCanFall", (DefaultValue, true), (Description, "Can fall? (set fall animation is IsOnAir change)"));
@@ -160,677 +160,677 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EAIAnimationStates", "eInitialState", 0x70, (DefaultValue, 1), (Description, "Walking or Flying"));
     DREAD_REFLECTED_FIELD_OF("CCharClassEnemyMovement::ETurn180Mode", "eTurn180Mode", 0x74, (DefaultValue, 1), (Description, "AxisX, AxisY or Dot"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sIdleAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sIdleAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sIdleAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009651b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sIdleAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sIdleAnim_SetterFunction")
             fn_710095f350(fn, "_m_sIdleAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sIdleAnim", (DefaultValue, CStrId("relax", true)), (Description, "Idle animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingRelaxAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingRelaxAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkingRelaxAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009652b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingRelaxAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingRelaxAnim_SetterFunction")
             fn_710095f4cc(fn, "_m_sWalkingRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingRelaxAnim", (DefaultValue, CStrId("relax", true)), (Description, "Walking relax animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingFrontAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkingFrontAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009653b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingFrontAnim_SetterFunction")
             fn_710095f648(fn, "_m_sWalkingFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingFrontAnim", (DefaultValue, CStrId("walk", true)), (Description, "Walking front animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingBackAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkingBackAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009654b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingBackAnim_SetterFunction")
             fn_710095f7c4(fn, "_m_sWalkingBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingBackAnim", (DefaultValue, CStrId("back", true)), (Description, "Walking back animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontInitAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingFrontInitAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkingFrontInitAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009655b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontInitAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingFrontInitAnim_SetterFunction")
             fn_710095f940(fn, "_m_sWalkingFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingFrontInitAnim", (DefaultValue, CStrId("walkinit", true)), (Description, "Walking front init animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackInitAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingBackInitAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkingBackInitAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009656b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackInitAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingBackInitAnim_SetterFunction")
             fn_710095fabc(fn, "_m_sWalkingBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingBackInitAnim", (DefaultValue, CStrId("backinit", true)), (Description, "Walking back init animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontEndAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingFrontEndAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkingFrontEndAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009657b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingFrontEndAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingFrontEndAnim_SetterFunction")
             fn_710095fc38(fn, "_m_sWalkingFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingFrontEndAnim", (DefaultValue, CStrId("walkend", true)), (Description, "Walking front end animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackEndAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingBackEndAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkingBackEndAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009658b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkingBackEndAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkingBackEndAnim_SetterFunction")
             fn_710095fdb4(fn, "_m_sWalkingBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingBackEndAnim", (DefaultValue, CStrId("backend", true)), (Description, "Walking back end animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingRelaxAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingRelaxAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingRelaxAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009659b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingRelaxAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingRelaxAnim_SetterFunction")
             fn_710095ff30(fn, "_m_sFlyingRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingRelaxAnim", (DefaultValue, CStrId("relax", true)), (Description, "Flying relax animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingFrontAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingFrontAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100965ab4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingFrontAnim_SetterFunction")
             fn_71009600ac(fn, "_m_sFlyingFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingFrontAnim", (DefaultValue, CStrId("", true)), (Description, "Flying front animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingBackAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingBackAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100965bb4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingBackAnim_SetterFunction")
             fn_7100960228(fn, "_m_sFlyingBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingBackAnim", (DefaultValue, CStrId("", true)), (Description, "Flying back animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingUpAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingUpAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100965cb4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingUpAnim_SetterFunction")
             fn_71009603a4(fn, "_m_sFlyingUpAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingUpAnim", (DefaultValue, CStrId("", true)), (Description, "Flying up animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingDownAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingDownAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100965db4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingDownAnim_SetterFunction")
             fn_7100960520(fn, "_m_sFlyingDownAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingDownAnim", (DefaultValue, CStrId("", true)), (Description, "Flying down animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontInitAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingFrontInitAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingFrontInitAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100965eb4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontInitAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingFrontInitAnim_SetterFunction")
             fn_710096069c(fn, "_m_sFlyingFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingFrontInitAnim", (DefaultValue, CStrId("", true)), (Description, "Flying front init animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackInitAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingBackInitAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingBackInitAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100965fb4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackInitAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingBackInitAnim_SetterFunction")
             fn_7100960818(fn, "_m_sFlyingBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingBackInitAnim", (DefaultValue, CStrId("", true)), (Description, "Flying back init animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpInitAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingUpInitAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingUpInitAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009660b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpInitAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingUpInitAnim_SetterFunction")
             fn_7100960994(fn, "_m_sFlyingUpInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingUpInitAnim", (DefaultValue, CStrId("", true)), (Description, "Flying up init animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownInitAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingDownInitAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingDownInitAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009661b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownInitAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingDownInitAnim_SetterFunction")
             fn_7100960b10(fn, "_m_sFlyingDownInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingDownInitAnim", (DefaultValue, CStrId("", true)), (Description, "Flying down init animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontEndAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingFrontEndAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingFrontEndAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009662b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingFrontEndAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingFrontEndAnim_SetterFunction")
             fn_7100960c8c(fn, "_m_sFlyingFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingFrontEndAnim", (DefaultValue, CStrId("", true)), (Description, "Flying front end animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackEndAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingBackEndAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingBackEndAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009663b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingBackEndAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingBackEndAnim_SetterFunction")
             fn_7100960e08(fn, "_m_sFlyingBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingBackEndAnim", (DefaultValue, CStrId("", true)), (Description, "Flying back end animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpEndAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingUpEndAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingUpEndAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009664b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingUpEndAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingUpEndAnim_SetterFunction")
             fn_7100960f84(fn, "_m_sFlyingUpEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingUpEndAnim", (DefaultValue, CStrId("", true)), (Description, "Flying up end animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownEndAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingDownEndAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sFlyingDownEndAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009665b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sFlyingDownEndAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sFlyingDownEndAnim_SetterFunction")
             fn_7100961100(fn, "_m_sFlyingDownEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sFlyingDownEndAnim", (DefaultValue, CStrId("", true)), (Description, "Flying down end animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingStateChangeBlendTime_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fFlyingStateChangeBlendTime_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fFlyingStateChangeBlendTime_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009666b4);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingStateChangeBlendTime_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fFlyingStateChangeBlendTime_SetterFunction")
             fn_710096127c(fn, "_m_fFlyingStateChangeBlendTime_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fFlyingStateChangeBlendTime", (DefaultValue, -1.0f), (Description, "Flying State Change Blend Time"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingUpStartAng_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fFlyingUpStartAng_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fFlyingUpStartAng_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966744);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingUpStartAng_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fFlyingUpStartAng_SetterFunction")
             fn_71009613f8(fn, "_m_fFlyingUpStartAng_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fFlyingUpStartAng", (DefaultValue, 28.0f), (Description, "Flying State Change Blend Time"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingDownStartAng_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fFlyingDownStartAng_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fFlyingDownStartAng_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966830);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingDownStartAng_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fFlyingDownStartAng_SetterFunction")
             fn_7100961574(fn, "_m_fFlyingDownStartAng_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fFlyingDownStartAng", (DefaultValue, 28.0f), (Description, "Flying State Change Blend Time"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideRelaxAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sSideRelaxAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sSideRelaxAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710096691c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideRelaxAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sSideRelaxAnim_SetterFunction")
             fn_71009616f0(fn, "_m_sSideRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sSideRelaxAnim", (DefaultValue, CStrId("relax", true)), (Description, "Side relax animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideWalkAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sSideWalkAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sSideWalkAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966a1c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideWalkAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sSideWalkAnim_SetterFunction")
             fn_710096186c(fn, "_m_sSideWalkAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sSideWalkAnim", (DefaultValue, CStrId("walk", true)), (Description, "Side walk animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideWalkInitAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sSideWalkInitAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sSideWalkInitAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966b1c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sSideWalkInitAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sSideWalkInitAnim_SetterFunction")
             fn_71009619e8(fn, "_m_sSideWalkInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sSideWalkInitAnim", (DefaultValue, CStrId("walkinit", true)), (Description, "Side walk init animation"));
     DREAD_REFLECTED_FIELD_OF("EAnimationTag", "eSideLeftTag", 0x160, (DefaultValue, 2), (Description, "Side left prefix (left,right,water,charge...)"));
     DREAD_REFLECTED_FIELD_OF("EAnimationTag", "eSideRightTag", 0x164, (DefaultValue, 3), (Description, "Side right prefix (left,right,water,charge...)"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iNumScenarioCollisionSteps_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_iNumScenarioCollisionSteps_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_iNumScenarioCollisionSteps_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<int>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966c1c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iNumScenarioCollisionSteps_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_iNumScenarioCollisionSteps_SetterFunction")
             fn_7100961b64(fn, "_m_iNumScenarioCollisionSteps_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(s32, "iNumScenarioCollisionSteps", (DefaultValue, 2), (Description, "Num scenario collision steps"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bOnLastCollisionStepHitResetTickVelocities_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bOnLastCollisionStepHitResetTickVelocities_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bOnLastCollisionStepHitResetTickVelocities_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966cac);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bOnLastCollisionStepHitResetTickVelocities_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bOnLastCollisionStepHitResetTickVelocities_SetterFunction")
             fn_7100961ce0(fn, "_m_bOnLastCollisionStepHitResetTickVelocities_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bOnLastCollisionStepHitResetTickVelocities", (DefaultValue, false), (Description, "On Last Collision Step Hit Reset Tick Velocities"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseCurrentScenarioCollisionScene_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bUseCurrentScenarioCollisionScene_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bUseCurrentScenarioCollisionScene_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966d3c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseCurrentScenarioCollisionScene_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bUseCurrentScenarioCollisionScene_SetterFunction")
             fn_7100961e5c(fn, "_m_bUseCurrentScenarioCollisionScene_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bUseCurrentScenarioCollisionScene", (DefaultValue, true), (Description, "Use Current Scenario Collision Scene"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRotateWhenMoving_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bRotateWhenMoving_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bRotateWhenMoving_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966dcc);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRotateWhenMoving_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bRotateWhenMoving_SetterFunction")
             fn_7100961fd8(fn, "_m_bRotateWhenMoving_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bRotateWhenMoving", (DefaultValue, false), (Description, "Whether it should rotate in movement"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinSpeedToRotate_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fMinSpeedToRotate_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fMinSpeedToRotate_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966e5c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinSpeedToRotate_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fMinSpeedToRotate_SetterFunction")
             fn_7100962154(fn, "_m_fMinSpeedToRotate_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMinSpeedToRotate", (DefaultValue, 0.0f), (Description, "Min speed to rotate"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxSpeedToRotate_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fMaxSpeedToRotate_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fMaxSpeedToRotate_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966eec);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxSpeedToRotate_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fMaxSpeedToRotate_SetterFunction")
             fn_71009622d0(fn, "_m_fMaxSpeedToRotate_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMaxSpeedToRotate", (DefaultValue, 100.0f), (Description, "Max speed to rotate"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxAngleRotationY_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fMaxAngleRotationY_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fMaxAngleRotationY_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100966f7c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxAngleRotationY_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fMaxAngleRotationY_SetterFunction")
             fn_710096244c(fn, "_m_fMaxAngleRotationY_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMaxAngleRotationY", (DefaultValue, 0.5235988f), (Description, "Max angle to rotate in Y"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAngleRotationY_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fDefaultAngleRotationY_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fDefaultAngleRotationY_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967068);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAngleRotationY_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fDefaultAngleRotationY_SetterFunction")
             fn_71009625c8(fn, "_m_fDefaultAngleRotationY_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultAngleRotationY", (DefaultValue, 0.0f), (Description, "Default angle to rotate in Y"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxAngleRotationZ_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fMaxAngleRotationZ_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fMaxAngleRotationZ_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967154);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxAngleRotationZ_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fMaxAngleRotationZ_SetterFunction")
             fn_7100962744(fn, "_m_fMaxAngleRotationZ_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMaxAngleRotationZ", (DefaultValue, 0.5235988f), (Description, "Max angle to rotate in Z"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAngleRotationZ_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fDefaultAngleRotationZ_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fDefaultAngleRotationZ_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967240);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fDefaultAngleRotationZ_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fDefaultAngleRotationZ_SetterFunction")
             fn_71009628c0(fn, "_m_fDefaultAngleRotationZ_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultAngleRotationZ", (DefaultValue, 0.0f), (Description, "Default angle to rotate in Z"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fSpeedToRotateFallingFromPath_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fSpeedToRotateFallingFromPath_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fSpeedToRotateFallingFromPath_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710096732c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fSpeedToRotateFallingFromPath_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fSpeedToRotateFallingFromPath_SetterFunction")
             fn_7100962a3c(fn, "_m_fSpeedToRotateFallingFromPath_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSpeedToRotateFallingFromPath", (DefaultValue, 1.0f), (Description, "Speed to rotate when falling from path"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkUpAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkUpAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkUpAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009673bc);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkUpAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkUpAnim_SetterFunction")
             fn_7100962bb8(fn, "_m_sWalkUpAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkUpAnim", (DefaultValue, CStrId("walk", true)), (Description, "walk up animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWalkUpExitBlend_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fWalkUpExitBlend_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fWalkUpExitBlend_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009674bc);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWalkUpExitBlend_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fWalkUpExitBlend_SetterFunction")
             fn_7100962d34(fn, "_m_fWalkUpExitBlend_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fWalkUpExitBlend", (DefaultValue, -1.0f), (Description, "Blending when exiting from the walk up animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkDownAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_sWalkDownAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_sWalkDownAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
             fn->field_0xb2 = 0x101;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710096754c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sWalkDownAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_sWalkDownAnim_SetterFunction")
             fn_7100962eb0(fn, "_m_sWalkDownAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkDownAnim", (DefaultValue, CStrId("walk", true)), (Description, "walk down animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWalkDownExitBlend_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fWalkDownExitBlend_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fWalkDownExitBlend_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710096764c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fWalkDownExitBlend_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fWalkDownExitBlend_SetterFunction")
             fn_710096302c(fn, "_m_fWalkDownExitBlend_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fWalkDownExitBlend", (DefaultValue, -1.0f), (Description, "Blending when exiting from the walk down animation"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fStickyDistanceToAnticipateCornerAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fStickyDistanceToAnticipateCornerAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fStickyDistanceToAnticipateCornerAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009676dc);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fStickyDistanceToAnticipateCornerAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fStickyDistanceToAnticipateCornerAnim_SetterFunction")
             fn_71009631a8(fn, "_m_fStickyDistanceToAnticipateCornerAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fStickyDistanceToAnticipateCornerAnim", (DefaultValue, 50.0f), (Description, "Distance to next corner to set the corner animation in sticky enemies"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fStickyDistanceToQuitCornerAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fStickyDistanceToQuitCornerAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fStickyDistanceToQuitCornerAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710096776c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fStickyDistanceToQuitCornerAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fStickyDistanceToQuitCornerAnim_SetterFunction")
             fn_7100963324(fn, "_m_fStickyDistanceToQuitCornerAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fStickyDistanceToQuitCornerAnim", (DefaultValue, 75.0f), (Description, "Distance to previous corner to quit the corner animation in sticky enemies"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseDistanceModeToChangeCornerAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bUseDistanceModeToChangeCornerAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bUseDistanceModeToChangeCornerAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009677fc);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseDistanceModeToChangeCornerAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bUseDistanceModeToChangeCornerAnim_SetterFunction")
             fn_71009634a0(fn, "_m_bUseDistanceModeToChangeCornerAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bUseDistanceModeToChangeCornerAnim", (DefaultValue, true), (Description, "Whether it should use distances to change corner anims"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSynchronizeUpAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bSynchronizeUpAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bSynchronizeUpAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710096788c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSynchronizeUpAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bSynchronizeUpAnim_SetterFunction")
             fn_710096361c(fn, "_m_bSynchronizeUpAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bSynchronizeUpAnim", (DefaultValue, true), (Description, "Whether it should synchronize up corner anim"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSynchronizeDownAnim_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bSynchronizeDownAnim_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bSynchronizeDownAnim_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_710096791c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bSynchronizeDownAnim_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bSynchronizeDownAnim_SetterFunction")
             fn_7100963798(fn, "_m_bSynchronizeDownAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bSynchronizeDownAnim", (DefaultValue, true), (Description, "Whether it should synchronize down corner anim"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_71009679ac);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction")
             fn_7100963914(fn, "_m_fFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fFlyingAngleAccumulativeInterpolationSpeedFactor", (DefaultValue, 3.0f), (Description, "Flying angle accumulative interpolation speed factor"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967a3c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction")
             fn_7100963a90(fn, "_m_bUseFlyingAngleAccumulativeInterpolationSpeedFactor_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bUseFlyingAngleAccumulativeInterpolationSpeedFactor", (DefaultValue, false), (Description, "Whether to use the flying angle accumulative interpolation speed factor"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bInPathMode_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bInPathMode_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bInPathMode_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967acc);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bInPathMode_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bInPathMode_SetterFunction")
             fn_7100963c0c(fn, "_m_bInPathMode_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bInPathMode", (DefaultValue, false), (Description, "Whether it should use in path mode"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxDistanceToExecuteRule_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fMaxDistanceToExecuteRule_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fMaxDistanceToExecuteRule_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967b5c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMaxDistanceToExecuteRule_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fMaxDistanceToExecuteRule_SetterFunction")
             fn_7100963d88(fn, "_m_fMaxDistanceToExecuteRule_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMaxDistanceToExecuteRule", (DefaultValue, 0.0f), (Description, "Distance to execute smart link rule"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseBreakableTileBlockerCollidersOnSmartLink_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bUseBreakableTileBlockerCollidersOnSmartLink_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bUseBreakableTileBlockerCollidersOnSmartLink_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967bec);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bUseBreakableTileBlockerCollidersOnSmartLink_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bUseBreakableTileBlockerCollidersOnSmartLink_SetterFunction")
             fn_7100963f04(fn, "_m_bUseBreakableTileBlockerCollidersOnSmartLink_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bUseBreakableTileBlockerCollidersOnSmartLink", (DefaultValue, true), (Description, "Allows use of BREAKABLE_TILE_BLOCK colliders along the smartlink"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fSupportedOnFloorTolerance_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_fSupportedOnFloorTolerance_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_fSupportedOnFloorTolerance_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<float>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967c7c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fSupportedOnFloorTolerance_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_fSupportedOnFloorTolerance_SetterFunction")
             fn_7100964080(fn, "_m_fSupportedOnFloorTolerance_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSupportedOnFloorTolerance", (DefaultValue, 65.0f), (Description, "Supported On Floor Tolerance"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bBipedMode_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bBipedMode_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bBipedMode_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967d0c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bBipedMode_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bBipedMode_SetterFunction")
             fn_71009641fc(fn, "_m_bBipedMode_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bBipedMode", (DefaultValue, false), (Description, "Whether it should be always stand"));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreOpenCorner", 0x1b2, (DefaultValue, false));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRelocateOnFrozen_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bRelocateOnFrozen_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bRelocateOnFrozen_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967d9c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bRelocateOnFrozen_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bRelocateOnFrozen_SetterFunction")
             fn_7100964378(fn, "_m_bRelocateOnFrozen_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bRelocateOnFrozen", (DefaultValue, false), (Description, "Whether it should be always stand"));
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceNextTransformCharClassScale_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_bForceNextTransformCharClassScale_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_bForceNextTransformCharClassScale_GetterFunction", true);
             fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
             fn->field_0xb2 = 0;
             fn->field_0x40 = nullptr;
             fn->invoker = reinterpret_cast<void*>(&fn_7100967e2c);
         }
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bForceNextTransformCharClassScale_SetterFunction", true)))
+        DREAD_REFLECTED_FUNCTION("_m_bForceNextTransformCharClassScale_SetterFunction")
             fn_71009644f4(fn, "_m_bForceNextTransformCharClassScale_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "bForceNextTransformCharClassScale", (DefaultValue, false));

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassIgnoreHangTransitionToShootingPoseTrack
 namespace CCharClassIgnoreHangTransitionToShootingPoseTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Hang Transition To Shooting Pose");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Ignore");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Hang Transition To Shooting Pose");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Ignore");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -3,22 +3,19 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkPooledStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
-// The pair's two ids share one base holding the string (so a store to one pair's path may
-// alias another's id: the original reloads the moved-from id after the new pair's path is
-// written), and the move's store to the new id is untyped (the original reloads the array's
-// count on every pass). Moves and releases as base::UnkStrIdMemberOf.
-struct UnkIdData_b45a1 {
-    UnkStringData* data;
-};
-
+// The pair's two ids share one base holding the string, base::UnkPooledString (so a store to one
+// pair's path may alias another's id: the original reloads the moved-from id after the new pair's
+// path is written), and the move's store to the new id is untyped (the original reloads the
+// array's count on every pass). Moves and releases as base::UnkStrIdMemberOf.
 template <base::global::UnkStringPool*& Pool>
-struct UnkMovedId_b45a1 : UnkIdData_b45a1 {
+struct UnkMovedId_b45a1 : base::UnkPooledString {
     UnkMovedId_b45a1(UnkMovedId_b45a1&& other) {
         __builtin_memcpy(&data, &other.data, sizeof(data));
         other.data = &Pool->empty;

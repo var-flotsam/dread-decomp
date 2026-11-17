@@ -4,18 +4,11 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-struct UnkMovedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
 
 // Copied word by word.
 struct UnkWords17 {

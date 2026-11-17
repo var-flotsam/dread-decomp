@@ -13,6 +13,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
@@ -785,27 +786,6 @@ extern char g_unk_7101a207b0[];
 void fn_7100231fd4(void* member);  // the destructor of the component map at +0xa0
 struct UnkCameraCtrl_ovb0049;
 
-// A string id (of the pool `Pool` points to) whose destructor decrements and tests in two steps
-// (the original reloads the id after the decrement).
-template <UnkStringPool** Pool>
-struct UnkReleasedId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedId() {
-        if (UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-using UnkReleasedStrId = UnkReleasedId<&g_unk_7101d47108>;
-using UnkReleasedPathId = UnkReleasedId<&g_unk_7101d47200>;
 
 struct UnkShared54Ptr {
     UnkCountedResource* ptr;
@@ -821,8 +801,8 @@ struct UnkShared54Ptr {
 // The string id, file path and resource a path reference holds; fn_7100027044 runs before the three
 // are released.
 struct UnkPathRes_7100231e80 {
-    UnkReleasedStrId id;      // 0x0
-    UnkReleasedPathId path;   // 0x8
+    UnkStrIdTwoStep id;      // 0x0
+    UnkPathIdTwoStep path;   // 0x8
     UnkShared54Ptr resource;  // 0x10
 
     __attribute__((always_inline)) ~UnkPathRes_7100231e80() {
@@ -845,7 +825,7 @@ struct UnkEntityBase_7100231e80 {
     u8 pad_0x8[0x8];
     char* vtable_0x10;               // 0x10
     UnkPathRes_7100231e80 path_res;  // 0x18
-    UnkReleasedStrId name;           // 0x30
+    UnkStrIdTwoStep name;           // 0x30
     u8 pad_0x38[0x68];
     UnkComponentMap_7100231e80 components;  // 0xa0
     UnkMember_7100231e80 member;            // 0xd0

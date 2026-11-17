@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassBackAimSnapsToVerticalAxisTrack
 namespace CCharClassBackAimSnapsToVerticalAxisTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Back Aim Snaps To Vertical Axis");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Aim");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Back Aim Snaps To Vertical Axis");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Aim");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

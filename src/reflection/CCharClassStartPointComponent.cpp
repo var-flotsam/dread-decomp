@@ -61,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bMorphballMode", 0x7a, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bSaveGameToCheckpoint", 0x7b, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bIsBossStartPoint", 0x7c, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetSaveGameToCheckpoint", true)))
+    DREAD_REFLECTED_FUNCTION("SetSaveGameToCheckpoint")
         fn_710116b5f4(fn, "SetSaveGameToCheckpoint");
 }
 bool refl_Equals(const void*, const void*) { return false; }

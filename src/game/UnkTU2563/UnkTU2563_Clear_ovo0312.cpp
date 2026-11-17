@@ -2,6 +2,7 @@
 // released, each value's two lists freed, and the count zeroed. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 struct UnkRec60IdArray_b0223;
@@ -18,25 +19,9 @@ struct UnkListPair_o0312 {
 };
 static_assert(sizeof(UnkListPair_o0312) == 0x60, "layout");
 
-struct UnkReleasedStrId_o0312 {
-    base::global::UnkStringData* data;
-    __attribute__((always_inline)) ~UnkReleasedStrId_o0312() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkIdTable_o0312 {
     UnkListPair_o0312* values;
-    UnkReleasedStrId_o0312* keys;
+    UnkStrIdTwoStep* keys;
     u32 count;
 };
 
@@ -44,7 +29,7 @@ void fn_7100e4efa0(UnkRec60IdArray_b0223* table) {
     UnkIdTable_o0312* self = reinterpret_cast<UnkIdTable_o0312*>(table);
     if (self->keys && self->count) {
         for (u64 i = 0; i < self->count; ++i)
-            self->keys[i].~UnkReleasedStrId_o0312();
+            self->keys[i].~UnkStrIdTwoStep();
     }
     if (self->values && self->count) {
         u64 offset = 0;

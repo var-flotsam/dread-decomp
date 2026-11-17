@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -53,14 +54,14 @@ void fn_7100878dd4();
 namespace CActivatableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Activate", true))) {
+    DREAD_REFLECTED_FUNCTION("Activate") {
         fn->name = base::global::UnkStrId("Activate", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100878d94);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Deactivate", true))) {
+    DREAD_REFLECTED_FUNCTION("Deactivate") {
         fn->name = base::global::UnkStrId("Deactivate", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
