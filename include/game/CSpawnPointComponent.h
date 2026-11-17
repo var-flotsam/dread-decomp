@@ -53,7 +53,11 @@ struct CSpawnPointComponent : UnkBaseComponent {
     CGameLink<CActor> wpAreaOfInterestEnd;   // 0x238
     f32 fTimeOnAOIEndToUseAsMainAOI;         // 0x278
     bool bAutomanaged;                       // 0x27c
-    u8 pad_0x27d[0x288 - 0x27d];
+    u8 pad_0x27d[0x3];
+    // What fn_7101127f2c registers under the owner's name (fn_7101127e78): set when registered; it goes
+    // on into field_0x288 and field_0x290.
+    bool field_0x280;
+    u8 pad_0x281[0x7];
     base::global::CStrId field_0x288;
     // The blackboard properties by name: the keys are the properties' name ids, each value's id the
     // property's (fn_71011269c0, fn_7101126af4).
@@ -84,18 +88,19 @@ struct CSpawnPointComponent : UnkBaseComponent {
     u8 pad_0x388[0x390 - 0x388];
     base::global::CRntVector<CSpawnerActorBlueprint> voActorBlueprint;     // 0x390
 
-    // Resolves the link at +0x60 the way this unit resolves links (fn_710023b580, fn_7100234f78): once, while
-    // its state is 1.
-    void ResolveField0x60() {
-        if (field_0x60.state == 1) {
+    // Resolves one of the component's links the way this unit resolves links (fn_710023b580,
+    // fn_7100234f78): once, while its state is 1.
+    static void ResolveLink(CGameLink<CActor>& link) {
+        if (link.state == 1) {
             {
-                UnkRefPtr ref = fn_710023b580(&field_0x60.callbacks);
+                UnkRefPtr ref = fn_710023b580(&link.callbacks);
                 // The reference's pointer is the handle's.
-                fn_7100234f78(&field_0x60.handle, reinterpret_cast<const base::UnkRefHandle*>(&ref));
+                fn_7100234f78(&link.handle, reinterpret_cast<const base::UnkRefHandle*>(&ref));
             }
-            field_0x60.state = 2;
+            link.state = 2;
         }
     }
+    void ResolveField0x60() { ResolveLink(field_0x60); }
 
     // The owning actor (the base component's +0x30), through the view the caller has of it.
     template <class T>

@@ -27,7 +27,7 @@ void fn_7101127834(CSpawnPointComponent* self, CGameLink<CActor>* other) {
     CGameLink<CActor>& mine = self->field_0x60;
     if (IsGone(mine) || IsGone(*other))
         return;
-    auto* actor = *reinterpret_cast<UnkLinkOwner_l127834**>(reinterpret_cast<u8*>(self) + 0x18);
+    auto* actor = static_cast<UnkLinkOwner_l127834*>(self->field_0x18);
     u32 mineState = mine.state;
     u32 otherState = other->state;
     if (mineState != 0 && actor->field_0x1b2 && otherState != 0) {

@@ -11,7 +11,8 @@
 
 struct UnkBaseComponent {
     void** vtable;
-    u8 unk_0x8[0x10];
+    u8 unk_0x8[0x8];
+    void* field_0x10;  // passed to fn_7100253ad4 (the spawn point's fn_710112c3dc)
     void* field_0x18;  // the entity the component belongs to (fn_7100232864 enables and disables it)
     u8 unk_0x20[0x10];
     void* field_0x30;  // an owner whose +0x28 member the property handler reads
