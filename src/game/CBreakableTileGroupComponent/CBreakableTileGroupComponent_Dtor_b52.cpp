@@ -27,16 +27,12 @@ struct UnkBreakableTileGroup_b52 : UnkBaseComponent {
     void* link_callback;
     u64 field_0xc0;
     UnkStringData* field_0xc8;  // CStrId
-    UnkStrIdTable field_0xd0;
+    UnkOwnedStrIdTable field_0xd0;
 };
 
 void fn_71007585b4(UnkBreakableTileGroup_b52* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101a6e3d8 + 0x10);
-    fn_71004f11f8(&self->field_0xd0);
-    if (self->field_0xd0.keys)
-        self->field_0xd0.allocator->vf_0x48(self->field_0xd0.keys);
-    if (self->field_0xd0.values)
-        self->field_0xd0.allocator->vf_0x48(self->field_0xd0.values);
+    self->field_0xd0.~UnkOwnedStrIdTable();
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->field_0xc8;
         if (*id && *id != &pool->empty) {

@@ -56,7 +56,7 @@ struct UnkMapAcquisition_la84fb4 {
     UnkMapState_la84fb4 states[4];     // 0x5f8
     u8 pad_0x7b8[0x7c8 - 0x7b8];
     CStrId id;                         // 0x7c8
-    UnkStrIdTable table;               // 0x7d0
+    UnkOwnedStrIdTable table;          // 0x7d0
     u8 pad_0x7f8[0x820 - 0x7f8];
     UnkAttackListenerRaw listener;     // 0x820
 };
@@ -67,11 +67,7 @@ static_assert(__builtin_offsetof(UnkMapAcquisition_la84fb4, listener) == 0x820, 
 void fn_7100a84fb4(UnkMapAcquisition_la84fb4* self) {
     self->vtable = g_unk_7101a91d50 + 2;
     self->listener.Destroy(g_unk_7101a77000, fn_7100a2d4d0);
-    fn_71004f11f8(&self->table);
-    if (self->table.keys)
-        self->table.allocator->vf_0x48(self->table.keys);
-    if (self->table.values)
-        self->table.allocator->vf_0x48(self->table.values);
+    self->table.~UnkOwnedStrIdTable();
     self->id.Reset();
     for (int i = 3; i >= 0; --i)
         self->states[i].Destroy();

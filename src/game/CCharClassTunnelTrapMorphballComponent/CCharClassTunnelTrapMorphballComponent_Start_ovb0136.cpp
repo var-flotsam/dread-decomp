@@ -236,19 +236,6 @@ struct UnkTunnelTrapListener_ovb0136 {
     }
 };
 
-// The two id arrays (base/UnkStrIdTable.h): reset, then both arrays freed.
-struct UnkTunnelTrapTable_ovb0136 {
-    UnkStrIdTable table;
-
-    __attribute__((always_inline)) ~UnkTunnelTrapTable_ovb0136() {
-        fn_71004f11f8(&table);
-        if (table.keys)
-            table.allocator->vf_0x48(table.keys);
-        if (table.values)
-            table.allocator->vf_0x48(table.values);
-    }
-};
-
 struct UnkTunnelTrapMorphballComponent_ovb0136 {
     void** vtable;
     u8 pad_0x8[0x38];
@@ -257,7 +244,7 @@ struct UnkTunnelTrapMorphballComponent_ovb0136 {
     UnkTunnelTrapListener_ovb0136 listener;  // 0x50
     u8 pad_0x70[0x8];
     UnkStrIdTwoStep id;                             // 0x78
-    UnkTunnelTrapTable_ovb0136 table;                       // 0x80
+    UnkOwnedStrIdTable table;                               // 0x80
     base::global::CRntVector<UnkTunnelTrapPart2_ovb0136> parts;      // 0xa8
 
     __attribute__((always_inline)) ~UnkTunnelTrapMorphballComponent_ovb0136() {
