@@ -14,6 +14,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2544.h"
@@ -106,25 +107,14 @@ struct UnkSmMachine_b0195 {
     bool busy;
 };
 
-__attribute__((always_inline)) static inline bool FindState_b0195(UnkSmMachine_b0195* self, u32 id,
-                                                               UnkSmState_b0195*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b0195);
-    // Keeps the byte count as one register value, so the search loop is not strength-reduced.
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_b0195* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b0195)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_b0195(UnkSmMachine_b0195* self, u32 id, UnkSmState_b0195*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_b0195(UnkSmMachine_b0195* self, u32 id,
-                                                                 UnkSmState_b0195* current) {
+static inline void SwitchState_b0195(UnkSmMachine_b0195* self, u32 id, UnkSmState_b0195* current) {
     if (!current || current->id != id) {
         UnkSmState_b0195* found;
         UnkSmState_b0195* next;
@@ -157,7 +147,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_b0195(UnkSmMachine_b0195* self, u32 id) {
+static inline void RequestState_b0195(UnkSmMachine_b0195* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;
@@ -250,7 +240,7 @@ struct UnkKeyedFloats_b0195 {
     u32 count;
 };
 
-__attribute__((always_inline)) static inline bool KeyedEqual_b0195(UnkKeyedFloats_b0195* a, UnkKeyedFloats_b0195* b) {
+static inline bool KeyedEqual_b0195(UnkKeyedFloats_b0195* a, UnkKeyedFloats_b0195* b) {
     u64 n = a->count;
     if (n != b->count)
         return false;
@@ -420,7 +410,7 @@ struct UnkRushBoard_b0195 {
         bool flag_0x28;
     };
 
-    __attribute__((always_inline)) UnkRushBoard_b0195()
+    UnkRushBoard_b0195()
         : field_0x0(0), field_0x8(0), field_0x10(0), field_0x18(0xf), allocator(nullptr), field_0x28(0) {
         step = 10;
         field_0x14 = true;
@@ -520,7 +510,7 @@ struct UnkRushParam_b0195 {
 };
 extern void* g_unk_7101aa9608[];
 
-__attribute__((always_inline)) static inline void DestroyParam_b0195(UnkRushParam_b0195* p) {
+static inline void DestroyParam_b0195(UnkRushParam_b0195* p) {
     p->field_0x68 = 0;
     p->field_0x60 = 0;
     p->field_0x58 = 0;
@@ -601,7 +591,7 @@ static inline UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
 }
 
 template <const base::reflection::CType* (*Type)()>
-__attribute__((always_inline)) static inline void Store(CBlackboard* data, UnkPropertyEx<>& item, void* value) {
+static inline void Store(CBlackboard* data, UnkPropertyEx<>& item, void* value) {
     UnkQualifiedId& name = Qid(item);
     if (CBlackboard::CSection* section = fn_71010472e0(data, g_unk_71727bdb80)) {
         if (!data->field_0xe8) {
@@ -639,7 +629,7 @@ void fn_7100dcd070(UnkRush_b0195* self) {
 }
 
 template <UnkPropertyName* Name>
-__attribute__((always_inline)) static inline void SetFlag_b0195(CBlackboard* data) {
+static inline void SetFlag_b0195(CBlackboard* data) {
     UnkTypedValue v;
     CStrId section_name("USER_DATA", true);
     bool value = true;

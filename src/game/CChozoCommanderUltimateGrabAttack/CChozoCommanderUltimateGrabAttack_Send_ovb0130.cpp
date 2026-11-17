@@ -3,6 +3,7 @@
 // src/game/UnkStateMachineSet_b61.cpp). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -121,24 +122,14 @@ struct UnkSmOwner_ovb0130 {
     UnkSmMachine_ovb0130 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_ovb0130(UnkSmMachine_ovb0130* self, u32 id,
-                                                               UnkSmState_ovb0130*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_ovb0130);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_ovb0130* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_ovb0130)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_ovb0130(UnkSmMachine_ovb0130* self, u32 id, UnkSmState_ovb0130*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_ovb0130(UnkSmMachine_ovb0130* self, u32 id,
-                                                                 UnkSmState_ovb0130* current) {
+static inline void SwitchState_ovb0130(UnkSmMachine_ovb0130* self, u32 id, UnkSmState_ovb0130* current) {
     if (!current || current->id != id) {
         UnkSmState_ovb0130* found;
         UnkSmState_ovb0130* next;
@@ -171,7 +162,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_ovb0130(UnkSmMachine_ovb0130* self, u32 id) {
+static inline void RequestState_ovb0130(UnkSmMachine_ovb0130* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;

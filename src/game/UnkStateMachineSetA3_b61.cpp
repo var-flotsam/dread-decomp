@@ -12,6 +12,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
@@ -52,26 +53,16 @@ struct UnkSmMachine_b61 {
 };
 
 template <bool Launder>
-__attribute__((always_inline)) static inline bool FindState_b61(UnkSmMachine_b61* self, UnkSmStatePtr_b61* states,
-                                                               u32 id, UnkSmState_b61*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b61);
-    asm("" : "+r"(n));
+static inline bool FindState_b61(UnkSmMachine_b61* self, UnkSmStatePtr_b61* states, u32 id, UnkSmState_b61*& out) {
     UnkSmStatePtr_b61* p = states ? states : self->states;
     if (Launder)
         asm("" : "+r"(p));
-    for (; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b61)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+    out = FindStateById(p, self->count, id);
+    return out != nullptr;
 }
 
 template <u32 None, bool Launder = false>
-__attribute__((always_inline)) static inline void SwitchState_b61(UnkSmMachine_b61* self, UnkSmStatePtr_b61* states,
-                                                                 u32 id, UnkSmState_b61* current) {
+static inline void SwitchState_b61(UnkSmMachine_b61* self, UnkSmStatePtr_b61* states, u32 id, UnkSmState_b61* current) {
     if (!current || current->id != id) {
         UnkSmState_b61* found;
         UnkSmState_b61* next;
@@ -104,8 +95,7 @@ done:
 }
 
 template <u32 Last, u32 None, bool Launder = false>
-__attribute__((always_inline)) static inline void RequestStateAt_b61(UnkSmMachine_b61* self,
-                                                                    UnkSmStatePtr_b61* states, u32 id) {
+static inline void RequestStateAt_b61(UnkSmMachine_b61* self, UnkSmStatePtr_b61* states, u32 id) {
     u32* pending = &self->pending;
     *pending = id;
     if (id > Last)
@@ -116,7 +106,7 @@ __attribute__((always_inline)) static inline void RequestStateAt_b61(UnkSmMachin
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_b61(UnkSmMachine_b61* self, u32 id) {
+static inline void RequestState_b61(UnkSmMachine_b61* self, u32 id) {
     RequestStateAt_b61<Last, None>(self, nullptr, id);
 }
 
@@ -271,11 +261,11 @@ struct UnkGrabFx_b61 {
 };
 
 template <class T>
-static inline __attribute__((always_inline)) const T* Addr_b61(const T& value) {
+static inline const T* Addr_b61(const T& value) {
     return &value;
 }
 
-static inline __attribute__((always_inline)) void Fade_b61(UnkGrabFx_b61* self, f32 step) {
+static inline void Fade_b61(UnkGrabFx_b61* self, f32 step) {
     f32 level = self->level - step * 0.8f;
     level = level < 0.0f ? 0.0f : level;
     self->level = level;
@@ -444,7 +434,7 @@ struct UnkHydrogigaSm2_b61 {
     UnkSmMachine_b61 machine;
 };
 
-static inline __attribute__((always_inline)) bool TargetHeld_b61(UnkHydrogigaSm2_b61* self) {
+static inline bool TargetHeld_b61(UnkHydrogigaSm2_b61* self) {
     UnkActor* target = fn_7100d7c990(self->actor);
     if (!target)
         return false;

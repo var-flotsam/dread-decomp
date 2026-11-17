@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -47,24 +48,14 @@ struct UnkSmOwner_A5m_b64 {
     UnkSmMachine_A5m_b64 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_A5m_b64(UnkSmMachine_A5m_b64* self, u32 id,
-                                                               UnkSmState_A5m_b64*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_A5m_b64);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_A5m_b64* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_A5m_b64)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_A5m_b64(UnkSmMachine_A5m_b64* self, u32 id, UnkSmState_A5m_b64*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_A5m_b64(UnkSmMachine_A5m_b64* self, u32 id,
-                                                                 UnkSmState_A5m_b64* current) {
+static inline void SwitchState_A5m_b64(UnkSmMachine_A5m_b64* self, u32 id, UnkSmState_A5m_b64* current) {
     if (!current || current->id != id) {
         UnkSmState_A5m_b64* found;
         UnkSmState_A5m_b64* next;
@@ -97,7 +88,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_A5m_b64(UnkSmMachine_A5m_b64* self, u32 id) {
+static inline void RequestState_A5m_b64(UnkSmMachine_A5m_b64* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;
@@ -151,7 +142,7 @@ struct UnkLauncher_A5_b64 {
 
 // The b59 "apply pending" (src/game/UnkStateMachineUpdate_b59.cpp) of the same machine.
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void ApplyPending_A5m_b64(UnkSmMachine_A5m_b64* self) {
+static inline void ApplyPending_A5m_b64(UnkSmMachine_A5m_b64* self) {
     u32 id = self->pending;
     if (id > Last)
         return;

@@ -15,6 +15,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CSamusGunComponent.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU437.h"
@@ -73,26 +74,18 @@ struct UnkSmStatesAt_A1_b64 {
     u32 offset = 0;
 };
 
-__attribute__((always_inline)) static inline bool FindState_A1_b64(UnkSmMachine_A1_b64* self, UnkSmStatesAt_A1_b64 states,
-                                                               u32 id, UnkSmState_A1_b64*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_A1_b64);
-    asm("" : "+r"(n));
+static inline bool FindState_A1_b64(UnkSmMachine_A1_b64* self, UnkSmStatesAt_A1_b64 states,
+                                    u32 id, UnkSmState_A1_b64*& out) {
     UnkSmStatePtr_A1_b64* p = states.offset
         ? reinterpret_cast<UnkSmStatePtr_A1_b64*>(states.owner + states.offset) : self->states;
-    for (; n != 0; ++p, n -= sizeof(UnkSmStatePtr_A1_b64)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+    out = FindStateById(p, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_A1_b64(UnkSmMachine_A1_b64* self, UnkSmStatesAt_A1_b64 states, u32 id,
-                                                                 UnkSmState_A1_b64* current) {
+static inline void SwitchState_A1_b64(UnkSmMachine_A1_b64* self, UnkSmStatesAt_A1_b64 states, u32 id,
+                                      UnkSmState_A1_b64* current) {
     if (!current || current->id != id) {
         UnkSmState_A1_b64* found;
         UnkSmState_A1_b64* next;
@@ -125,8 +118,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Apply_A1_b64(UnkSmMachine_A1_b64* self,
-                                                           UnkSmStatesAt_A1_b64 states = UnkSmStatesAt_A1_b64()) {
+static inline void Apply_A1_b64(UnkSmMachine_A1_b64* self, UnkSmStatesAt_A1_b64 states = UnkSmStatesAt_A1_b64()) {
     u32 id = self->pending;
     if (id > Last)
         return;
@@ -134,8 +126,8 @@ __attribute__((always_inline)) static inline void Apply_A1_b64(UnkSmMachine_A1_b
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Update_A1_b64(UnkSmMachine_A1_b64* self, f32 dt,
-                                                            UnkSmStatesAt_A1_b64 states = UnkSmStatesAt_A1_b64()) {
+static inline void Update_A1_b64(UnkSmMachine_A1_b64* self, f32 dt,
+                                 UnkSmStatesAt_A1_b64 states = UnkSmStatesAt_A1_b64()) {
     self->busy = true;
     if (self->pending != None)
         Apply_A1_b64<Last, None>(self, states);
@@ -153,7 +145,7 @@ __attribute__((always_inline)) static inline void Update_A1_b64(UnkSmMachine_A1_
 
 // ---- Requests (the b60 request template on the same machine) ----
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_A1_b64(
+static inline void RequestState_A1_b64(
     UnkSmMachine_A1_b64* self, u32 id, UnkSmStatesAt_A1_b64 states = UnkSmStatesAt_A1_b64()) {
     u32* pending = &self->pending;
     *pending = id;
@@ -227,17 +219,17 @@ struct UnkSmAbility_A1_b64 {
 
 typedef bool (*UnkSmCheckFn_A1_b64)(UnkSmAbility_A1_b64*);
 
-__attribute__((always_inline)) static inline bool Check_A1_b64(UnkSmAbility_A1_b64* self, u32 offset) {
+static inline bool Check_A1_b64(UnkSmAbility_A1_b64* self, u32 offset) {
     return (*reinterpret_cast<UnkSmCheckFn_A1_b64**>(self))[offset / 8](self);
 }
 
-__attribute__((always_inline)) static inline u32 State_A1_b64(UnkSmMachine_A1_b64* self, u32 none) {
+static inline u32 State_A1_b64(UnkSmMachine_A1_b64* self, u32 none) {
     if (self->pending != none)
         return self->pending;
     return self->current ? self->current->id : none;
 }
 
-__attribute__((always_inline)) static inline bool IsState_A1_b64(UnkSmMachine_A1_b64* self, u32 none, u32 id) {
+static inline bool IsState_A1_b64(UnkSmMachine_A1_b64* self, u32 none, u32 id) {
     if (self->pending != none)
         return self->pending == id;
     return self->current && self->current->id == id;
@@ -572,7 +564,7 @@ struct UnkSmPlayer_A1_b64 {
     UnkAnimationComponent* animation;
 };
 
-__attribute__((always_inline)) static inline bool InTrack_A1_b64(const base::reflection::CClass* (*cls)()) {
+static inline bool InTrack_A1_b64(const base::reflection::CClass* (*cls)()) {
     UnkSmPlayer_A1_b64* player = reinterpret_cast<UnkSmPlayer_A1_b64*>(fn_7100defcd4(g_unk_7101d47310));
     return fn_710117b348(player->animation, cls());
 }
@@ -643,7 +635,7 @@ struct UnkSmLava_A1_b64 {
 
 void fn_71004d24d0(UnkSmLavaAI_A1_b64*, CVector3D*, f32);
 
-__attribute__((always_inline)) static inline UnkSmLavaAI_A1_b64* LavaAI_A1_b64(UnkActor* actor) {
+static inline UnkSmLavaAI_A1_b64* LavaAI_A1_b64(UnkActor* actor) {
     UnkSmLavaAI_A1_b64* ai = static_cast<UnkSmLavaAI_A1_b64*>(actor->field_0x240);
     if (!ai)
         return nullptr;
@@ -773,7 +765,7 @@ struct UnkSmWarriorOwner_A1_b64 {
     UnkSmWarriorAI_A1_b64* component;
 };
 
-__attribute__((always_inline)) static inline void WarriorStep_A1_b64(UnkSmGrab_A1_b64<0x80>* self) {
+static inline void WarriorStep_A1_b64(UnkSmGrab_A1_b64<0x80>* self) {
     fn_7100489f3c(reinterpret_cast<UnkSelf*>(self));
     UnkSmWarriorOwner_A1_b64** owner = reinterpret_cast<UnkSmWarriorOwner_A1_b64**>(reinterpret_cast<char*>(self) + 8);
     if (reinterpret_cast<u8*>(self)[0x132]) {
@@ -874,11 +866,11 @@ struct UnkSmLockonOwner_A1_b64 {
 };
 
 // A lock-on target: two weak handles (the owner's actor and the target) and the target's id.
-__attribute__((always_inline)) static inline UnkWeakTarget* Get_A1_b64(UnkWeakHandle* handle) {
+static inline UnkWeakTarget* Get_A1_b64(UnkWeakHandle* handle) {
     return handle ? handle->target : nullptr;
 }
 
-__attribute__((always_inline)) static inline void Drop_A1_b64(UnkWeakHandle* handle) {
+static inline void Drop_A1_b64(UnkWeakHandle* handle) {
     if (handle && --handle->ref_count == 0)
         handle->vf_0x10();
 }

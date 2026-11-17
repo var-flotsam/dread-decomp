@@ -3,6 +3,7 @@
 // src/game/UnkStateMachineSetA3_b61.cpp under this file's names, with the states array addressed from
 // the owner). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTimelineCalls.h"
 #include "types.h"
 struct UnkSmState_A3_b64 {
@@ -34,26 +35,18 @@ struct UnkSmMachine_A3_b64 {
 };
 
 template <bool Launder>
-__attribute__((always_inline)) static inline bool FindState_A3_b64(UnkSmMachine_A3_b64* self, UnkSmStatePtr_A3_b64* states,
-                                                               u32 id, UnkSmState_A3_b64*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_A3_b64);
-    asm("" : "+r"(n));
+static inline bool FindState_A3_b64(UnkSmMachine_A3_b64* self, UnkSmStatePtr_A3_b64* states,
+                                    u32 id, UnkSmState_A3_b64*& out) {
     UnkSmStatePtr_A3_b64* p = states ? states : self->states;
     if (Launder)
         asm("" : "+r"(p));
-    for (; n != 0; ++p, n -= sizeof(UnkSmStatePtr_A3_b64)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+    out = FindStateById(p, self->count, id);
+    return out != nullptr;
 }
 
 template <u32 None, bool Launder = false>
-__attribute__((always_inline)) static inline void SwitchState_A3_b64(UnkSmMachine_A3_b64* self, UnkSmStatePtr_A3_b64* states,
-                                                                 u32 id, UnkSmState_A3_b64* current) {
+static inline void SwitchState_A3_b64(UnkSmMachine_A3_b64* self, UnkSmStatePtr_A3_b64* states,
+                                      u32 id, UnkSmState_A3_b64* current) {
     if (!current || current->id != id) {
         UnkSmState_A3_b64* found;
         UnkSmState_A3_b64* next;
@@ -86,8 +79,7 @@ done:
 }
 
 template <u32 Last, u32 None, bool Launder = false>
-__attribute__((always_inline)) static inline void RequestStateAt_A3_b64(UnkSmMachine_A3_b64* self,
-                                                                    UnkSmStatePtr_A3_b64* states, u32 id) {
+static inline void RequestStateAt_A3_b64(UnkSmMachine_A3_b64* self, UnkSmStatePtr_A3_b64* states, u32 id) {
     u32* pending = &self->pending;
     *pending = id;
     if (id > Last)
@@ -98,7 +90,7 @@ __attribute__((always_inline)) static inline void RequestStateAt_A3_b64(UnkSmMac
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_A3_b64(UnkSmMachine_A3_b64* self, u32 id) {
+static inline void RequestState_A3_b64(UnkSmMachine_A3_b64* self, u32 id) {
     RequestStateAt_A3_b64<Last, None>(self, nullptr, id);
 }
 
