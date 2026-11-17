@@ -14,6 +14,7 @@
 #include "game/UnkSlots.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -56,33 +57,20 @@ struct UnkSmOwner_ovb0103 {
     UnkSmMachine_ovb0103 machine;
 };
 
-// Pin: the states array's address is not derived from another one the caller computed.
-template <bool Pin>
-__attribute__((always_inline)) static inline bool FindState_ovb0103(UnkSmMachine_ovb0103* self, u32 id,
-                                                               UnkSmState_ovb0103*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_ovb0103);
-    asm("" : "+r"(n));
-    UnkSmStatePtr_ovb0103* p = self->states;
-    if (Pin)
-    for (; n != 0; ++p, n -= sizeof(UnkSmStatePtr_ovb0103)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_ovb0103(UnkSmMachine_ovb0103* self, u32 id, UnkSmState_ovb0103*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
-template <u32 None, bool Pin = true>
-__attribute__((always_inline)) static inline void SwitchState_ovb0103(UnkSmMachine_ovb0103* self, u32 id,
+template <u32 None>
+static inline void SwitchState_ovb0103(UnkSmMachine_ovb0103* self, u32 id,
                                                                  UnkSmState_ovb0103* current) {
     if (!current || current->id != id) {
         UnkSmState_ovb0103* found;
         UnkSmState_ovb0103* next;
         u32 enter;
-        if (FindState_ovb0103<Pin>(self, id, found)) {
+        if (FindState_ovb0103(self, id, found)) {
             next = found;
             enter = true;
         } else {
@@ -110,7 +98,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_ovb0103(UnkSmMachine_ovb0103* self, u32 id) {
+static inline void RequestState_ovb0103(UnkSmMachine_ovb0103* self, u32 id) {
     // Stored through a plain u32 pointer, as in the template's original.
     u32* pending = &self->pending;
     *pending = id;
