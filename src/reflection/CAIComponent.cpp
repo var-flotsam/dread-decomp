@@ -36,7 +36,7 @@ void fn_71010f7fc0(UnkReflFunction* fn, const char* name);
 namespace CAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddPresetLogicPath", true))) {
+    DREAD_REFLECTED_FUNCTION("AddPresetLogicPath") {
         fn->name = base::global::UnkStrId("AddPresetLogicPath", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -45,11 +45,11 @@ void refl_AddFields(CClass* cls) {
         fn_71011155bc(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Add Preset Navigation Path");
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddIdleLogicPath", true))) {
+    DREAD_REFLECTED_FUNCTION("AddIdleLogicPath") {
         fn_71010f7d90(fn, "AddIdleLogicPath");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Add Idle Navigation Path");
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddBlackboardParam", true))) {
+    DREAD_REFLECTED_FUNCTION("AddBlackboardParam") {
         fn_71010f7f0c(fn, "AddBlackboardParam");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Add Blackboard Param");
     }
@@ -62,20 +62,20 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fPathRightCut", 0x13c4, (DefaultValue, 0.0f), (Description, "Desired right cut distance for this ground enemy's (patrol) path"));
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceClockwise", 0x13c8, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only clockwise limit"));
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceCounterClockwise", 0x13cc, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only counter clockwise limit"));
-    UnkReflField* field9 = fn_7100096524(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
+    UnkReflField* field9 = AddReflectedField(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
     field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SFallBackPath>", "tFallbackPaths", 0x1390);
-    UnkReflField* field11 = fn_7100096524(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x13b8, -1, -1);
+    UnkReflField* field11 = AddReflectedField(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x13b8, -1, -1);
     field11->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 2);
     DREAD_REFLECTED_FIELD(bool, "bIndividualRequiresActivationPerception", 0x121c, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreAttack_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bIgnoreAttack_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bIgnoreAttack_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101115c1c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bIgnoreAttack_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bIgnoreAttack_SetterFunction")
         fn_71010f7fc0(fn, "_m_bIgnoreAttack_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bIgnoreAttack", (DefaultValue, false), (Description, "Ignore Attack?"));
     DREAD_REFLECTED_FIELD(bool, "bInBlindAttack", 0x14699, (DefaultValue, false), (Persistence, 0), (EditorVisible, false));

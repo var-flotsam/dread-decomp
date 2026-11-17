@@ -27,18 +27,18 @@ void fn_7100c47e64();
 void fn_7100c47bb8(UnkReflFunction* fn, const char* name);
 namespace CCharClassReferenceBoneToCreateBoundingBoxTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Reference Bone To Create Bounding Box");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Reference Bone To Create Bounding Box");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sBone_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sBone_GetterFunction") {
         fn->name = base::global::UnkStrId("_sBone_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CName>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c47e64);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sBone_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sBone_SetterFunction")
         fn_7100c47bb8(fn, "_sBone_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CName, "sBone", (DefaultValue, base::global::CName("")));
 }

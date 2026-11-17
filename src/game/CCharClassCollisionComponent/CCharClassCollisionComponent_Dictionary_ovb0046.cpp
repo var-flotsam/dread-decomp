@@ -11,6 +11,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CCharClassCollisionComponent.h"
 #include "game/CCharClassComponent.h"
 #include "game/UnkTU57.h"
@@ -18,21 +19,12 @@
 
 using base::UnkStrIdMember;
 
-// A string id moved out by taking its data and leaving the pool's empty string.
-struct UnkMovedStrId_ovb0046 {
-    base::global::UnkStringData* data;
-
-    UnkMovedStrId_ovb0046(UnkMovedStrId_ovb0046&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
-
 __attribute__((flatten)) void fn_710079bb14(void* dst, const void* src) {
-    base::refl_IterValueMove<u32, UnkMovedStrId_ovb0046>(dst, src);
+    base::refl_IterValueMove<u32, UnkMovedStrId>(dst, src);
 }
 
 __attribute__((flatten)) void fn_710079c034(void* dst, const void* src) {
-    base::refl_IterValueMove<u32, UnkMovedStrId_ovb0046>(dst, src);
+    base::refl_IterValueMove<u32, UnkMovedStrId>(dst, src);
 }
 
 // The dictionary: materials, their keys, the shared count, then the arrays' growth settings.

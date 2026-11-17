@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -24,14 +25,14 @@ void fn_7100aed380();
 namespace CGameBlackboard {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_dctDeltaValues_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_dctDeltaValues_GetterFunction") {
         fn->name = base::global::UnkStrId("_dctDeltaValues_GetterFunction", true);
         fn->return_type = &g_unk_717275b988;
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100aed380);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("dctDeltaValues", true), &g_unk_717275b988, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("dctDeltaValues", true), &g_unk_717275b988, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

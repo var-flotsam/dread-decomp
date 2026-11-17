@@ -5,29 +5,11 @@
 // reference; state 2 holds nothing to destroy) to state 0.
 #include "base/UnkCountedResource.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// A string id of CFilePathStrId's pool whose destructor decrements and tests in two steps (the original reloads the id
-// after the decrement).
-struct UnkReleasedFilePathId {
-    UnkStringData* data;
-
-    ~UnkReleasedFilePathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 // A reference-counted resource (base/UnkCountedResource.h), dropped when the pointer dies.
 struct UnkCountedPtr {
@@ -42,7 +24,7 @@ struct UnkCountedPtr {
 };
 
 struct UnkIdRef {
-    UnkReleasedFilePathId id;
+    UnkPathIdTwoStep id;
     UnkCountedPtr ref;
 };
 

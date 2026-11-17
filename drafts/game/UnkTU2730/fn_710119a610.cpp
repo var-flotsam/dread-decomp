@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkBucketSet.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkSubId_7100fc4b34.h"
 #include "types.h"
@@ -81,16 +82,8 @@ struct UnkSubIdNode_l19a610 {
     UnkSubIdNode_l19a610* next;  // 0x18
 };
 
-// The chained map: buckets of node lists, the first used bucket and its node, the nodes' allocator.
-struct UnkSubIdMap_l19a610 {
-    base::global::CRntVector<UnkSubIdNode_l19a610*> buckets;
-    u32 first_bucket;              // 0x28
-    UnkSubIdNode_l19a610* first;   // 0x30
-    base::UnkAllocator* allocator;  // 0x38
-    u32 flags;                     // 0x40
-    u32 size;                      // 0x44
-    u32 version;                   // 0x48
-
+// The chained map (base/global/UnkBucketSet.h).
+struct UnkSubIdMap_l19a610 : base::global::UnkBucketSet<UnkSubIdNode_l19a610> {
     UnkSubIdNode_l19a610** Bucket(u32 index) {
         return reinterpret_cast<UnkSubIdNode_l19a610**>(
             fn_7100332978(reinterpret_cast<UnkMap_71003327a4*>(&buckets), index));
@@ -137,7 +130,7 @@ const UnkSubId_7100fc4b34& fn_710119a610(UnkQualifiedName* self, const void* pat
         UnkNameId_l19a610 id(*str.Str());
         UnkStruct_71003327a4_Value value(reinterpret_cast<UnkStruct_71003327a4*>(owner), str.Str());
         ++map.version;
-        node = static_cast<UnkSubIdNode_l19a610*>(map.allocator->vf_0x40(sizeof(UnkSubIdNode_l19a610), 8, map.flags));
+        node = static_cast<UnkSubIdNode_l19a610*>(map.node_allocator->vf_0x40(sizeof(UnkSubIdNode_l19a610), 8, map.node_flags));
         if (node) {
             new (&node->key) CStrId(reinterpret_cast<const CStrId&>(id));
             new (&node->value.id) CStrId(value.field_0x0);
@@ -148,11 +141,11 @@ const UnkSubId_7100fc4b34& fn_710119a610(UnkQualifiedName* self, const void* pat
         u32 first = map.first_bucket;
         map.first_bucket = index < first ? index : first;
         if (index <= first)
-            map.first = node;
+            map.first_node = node;
         UnkSubIdNode_l19a610** slot = map.Bucket(index);
         node->next = *slot;
         *slot = node;
-        ++map.size;
+        ++map.node_count;
     }
     return node->value;
 }

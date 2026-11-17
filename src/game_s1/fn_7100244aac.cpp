@@ -1,15 +1,12 @@
 // Equality of two holders of a string id and an array of weak handles, held either in place or
 // by reference (kind 2), as fn_7100a74690 (src/game/CNavMeshItemComponent/fn_71009c2f58.cpp) does for an array of
 // pointers: the same id and handles to the same targets: fn_7100244aac, fn_71002443e0.
+#include "base/UnkPooledStrId.h"
 #include "base/global/CStrId.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-struct UnkId {
-    UnkStringData* data;
-};
 
 struct UnkHandleArray {
     UnkWeakHandle** data;
@@ -17,12 +14,12 @@ struct UnkHandleArray {
 };
 
 struct UnkIdHandles {
-    UnkId id;
+    base::UnkPooledString id;
     UnkHandleArray handles;
 };
 
 struct UnkIdHandlesRef {
-    UnkId* id;
+    base::UnkPooledString* id;
     UnkHandleArray* handles;
 };
 
@@ -33,15 +30,15 @@ struct UnkHandlesHolder {
     UnkIdHandles& Value() { return *reinterpret_cast<UnkIdHandles*>(storage); }
     UnkIdHandlesRef& Ref() { return *reinterpret_cast<UnkIdHandlesRef*>(storage); }
 
-    UnkId& Id() { return kind == 2 ? *Ref().id : Value().id; }
+    base::UnkPooledString& Id() { return kind == 2 ? *Ref().id : Value().id; }
     UnkHandleArray& Handles() { return kind == 2 ? *Ref().handles : Value().handles; }
 };
 
 static inline UnkWeakTarget* Target(UnkWeakHandle* handle) { return handle ? handle->target : nullptr; }
 
 static inline __attribute__((always_inline)) bool Equal(UnkHandlesHolder* self, UnkHandlesHolder* other) {
-    UnkId& x = self->Id();
-    UnkId& y = other->Id();
+    base::UnkPooledString& x = self->Id();
+    base::UnkPooledString& y = other->Id();
     if (x.data != y.data)
         return false;
     UnkHandleArray& a = self->Handles();

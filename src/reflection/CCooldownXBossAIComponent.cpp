@@ -25,16 +25,16 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CCooldownXBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpWindTunnelDamageTrigger", true), &g_unk_71727b6270, 0x15690, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpWindTunnelDamageTrigger", true), &g_unk_71727b6270, 0x15690, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpLavaCarpetFloorFX", true), &g_unk_71727b6270, 0x156d0, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpLavaCarpetFloorFX", true), &g_unk_71727b6270, 0x156d0, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpCoolShinesparkTrigger", true), &g_unk_71727b6270, 0x15710, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpCoolShinesparkTrigger", true), &g_unk_71727b6270, 0x15710, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpDeathCutscenePlayer", true), &g_unk_71727b6270, 0x15790, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpDeathCutscenePlayer", true), &g_unk_71727b6270, 0x15790, -1, -1);
     field3->attrs.Add<const char*>(base::reflection::attr::DisplayName(), "Death Cutscene Player");
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("wpDeathFromGrabCutscenePlayer", true), &g_unk_71727b6270, 0x157d0, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("wpDeathFromGrabCutscenePlayer", true), &g_unk_71727b6270, 0x157d0, -1, -1);
     field4->attrs.Add<const char*>(base::reflection::attr::DisplayName(), "Death From Grab Cutscene Player");
     field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
 }

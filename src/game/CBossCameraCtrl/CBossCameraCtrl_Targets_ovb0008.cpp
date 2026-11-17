@@ -120,7 +120,7 @@ void fn_7100750804(UnkBossCameraCtrl_ovb0008* self, UnkWeakTarget* target) {
     u32 n = v.count;
     u32 capacity = v.capacity;
     if (capacity <= n && v.step != 0)
-        capacity = (n / v.step + 1) * v.step;
+        capacity = v.GrownCapacity(n);
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }

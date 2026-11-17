@@ -24,7 +24,7 @@ void fn_710085fff4(UnkReflFunction* fn, const char* name);
 namespace CCollisionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateCollider", true))) {
+    DREAD_REFLECTED_FUNCTION("CreateCollider") {
         fn_710085fff4(fn, "CreateCollider");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Create Collider"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

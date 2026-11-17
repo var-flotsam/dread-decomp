@@ -14,6 +14,7 @@
 #include <nn/os.h>
 
 #include "base/UnkDefaultAllocator.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/snd/UnkSoundSystemATK.h"
@@ -44,31 +45,11 @@ struct UnkSndVoice_b0185 {
 };
 static_assert(__builtin_offsetof(UnkSndVoice_b0185, field_0x11b) == 0x11b, "layout");
 
+// The sound system's maps of ids to sounds (and of keys to their records).
 template <class K>
-struct UnkSndNode_b0185 {
-    K key;                    // 0x0
-    void* value;              // 0x8
-    UnkSndNode_b0185* next;   // 0x10: the list of all nodes
-    UnkSndNode_b0185* prev;   // 0x18
-    UnkSndNode_b0185* chain;  // 0x20: the next node of the bucket
-
-    // The list links, through accessors (their stores may alias each other).
-    UnkSndNode_b0185*& Next() { return next; }
-    UnkSndNode_b0185*& Prev() { return prev; }
-};
-
+using UnkSndMap_b0185 = base::global::CRntDictionary<K, void*>;
 template <class K>
-struct UnkSndMap_b0185 {
-    base::UnkAllocator* allocator;  // 0x0
-    u32 flags;                      // 0x8
-    u32 count;                      // 0xc
-    UnkSndNode_b0185<K>** buckets;  // 0x10
-    u32 used;                       // 0x18
-    u32 bucket_count;               // 0x1c
-    u8 pad_0x20[0x18];
-    UnkSndNode_b0185<K>* tail;  // 0x38
-    UnkSndNode_b0185<K>* head;  // 0x40
-};
+using UnkSndNode_b0185 = typename base::global::CRntDictionary<K, void*>::TNode;
 static_assert(sizeof(UnkSndMap_b0185<u32>) == 0x48, "layout");
 
 struct UnkSndSys_b0185 {
@@ -117,47 +98,17 @@ static inline u64 Hash_b0185(UnkStringData* data) {
 // Looks `key` up in an id map (the bucket is the key's low 32 bits modulo the bucket count).
 template <class K>
 static inline __attribute__((always_inline)) UnkSndNode_b0185<K>* FindNode_b0185(UnkSndMap_b0185<K>& map, K key) {
-    if (!map.used)
+    if (!map.buckets.count)
         return nullptr;
-    UnkSndNode_b0185<K>** bucket = static_cast<u32>(key) % map.bucket_count + map.buckets;
+    UnkSndNode_b0185<K>** bucket = static_cast<u32>(key) % map.buckets.capacity + map.buckets.data;
     if (!bucket)
         return nullptr;
     UnkSndNode_b0185<K>* n = *bucket;
-    for (; n; n = n->chain) {
+    for (; n; n = n->bucket_next) {
         if (n->key == key)
             break;
     }
     return n;
-}
-
-// Adds a node for `key` (its value null) to the map, at the head of its bucket and at the end of the list.
-template <class K>
-static inline __attribute__((always_inline)) void AddNode_b0185(UnkSndMap_b0185<K>& m, const K& key) {
-    UnkSndNode_b0185<K>** bucket = m.used ? static_cast<u32>(key) % m.bucket_count + m.buckets : nullptr;
-    UnkSndNode_b0185<K>* old_head = *bucket;
-    UnkSndNode_b0185<K>* n =
-        static_cast<UnkSndNode_b0185<K>*>(m.allocator->vf_0x40(sizeof(UnkSndNode_b0185<K>), 8, m.flags));
-    if (n) {
-        n->key = key;
-        n->value = nullptr;
-        n->next = nullptr;
-        n->prev = nullptr;
-        n->chain = nullptr;
-    }
-    n->chain = old_head;
-    *bucket = n;
-    UnkSndNode_b0185<K>** link = &m.head;
-    if (!*link) {
-        *link = n;
-    } else if (m.tail) {
-        // the original reloads the tail after storing the back link
-        UnkSndNode_b0185<K>* last = m.tail;
-        __builtin_memcpy(&n->prev, &last, sizeof last);
-        link = &m.tail->next;
-        *link = n;
-    }
-    m.tail = n;
-    ++m.count;
 }
 
 // Takes the node for `key` out of its bucket and the list of all nodes and frees it (the layout of
@@ -165,26 +116,26 @@ static inline __attribute__((always_inline)) void AddNode_b0185(UnkSndMap_b0185<
 template <class K>
 static inline __attribute__((always_inline)) void EraseNode_b0185(UnkSndMap_b0185<K>& m, const K& key) {
     typedef UnkSndNode_b0185<K> Node;
-    Node** bucket = static_cast<u32>(key) % m.bucket_count + m.buckets;
+    Node** bucket = static_cast<u32>(key) % m.buckets.capacity + m.buckets.data;
     Node* n = *bucket;
     if (!n)
         return;
     if (n->key == key) {
-        *bucket = n->chain;
+        *bucket = n->bucket_next;
     } else {
         Node* before;
         do {
             before = n;
-            n = n->chain;
+            n = n->bucket_next;
             if (!n)
                 return;
         } while (n->key != key);
-        before->chain = n->chain;
+        before->bucket_next = n->bucket_next;
     }
-    if (m.head == n)
-        m.head = n->next;
-    if (m.tail == n)
-        m.tail = n->Prev();
+    if (m.first == n)
+        m.first = n->next;
+    if (m.last == n)
+        m.last = n->Prev();
     if (n->Prev())
         n->Prev()->Next() = n->Next();
     if (n->Next())
@@ -207,7 +158,7 @@ void fn_7100101e78(UnkSndSys_b0185* self, const u32* id) {
     nn::os::GetCurrentThread();
     UnkSndIdPayload_b0185 payload = {key, 0, 0};
     fn_71000fbaf8(Atk(self), 0, &payload);
-    AddNode_b0185(self->sounds_a, *id);
+    self->sounds_a.Insert(*id, nullptr);
 }
 
 void fn_71001021d4(UnkSndSys_b0185* self, const u32* id) {
@@ -217,7 +168,7 @@ void fn_71001021d4(UnkSndSys_b0185* self, const u32* id) {
     nn::os::GetCurrentThread();
     UnkSndIdPayload_b0185 payload = {key, 1, 0};
     fn_71000fbaf8(Atk(self), 0, &payload);
-    AddNode_b0185(self->sounds_b, *id);
+    self->sounds_b.Insert(*id, nullptr);
 }
 
 // ---- a sound's volume from a level ----
@@ -261,7 +212,7 @@ void fn_71000f4414(void* sound);
 
 // Takes the id out of the second map and frees its sound from the engine heap.
 void fn_7100102310(UnkSndSys_b0185* self, const u32* id) {
-    if (!self->sounds_b.used)
+    if (!self->sounds_b.buckets.count)
         return;
     UnkSndMap_b0185<u32>& m = self->sounds_b;
     UnkSndNode_b0185<u32>* node = FindNode_b0185(m, *id);
@@ -299,7 +250,7 @@ void fn_71000f3768(UnkSndSound_b0185* sound);
 
 // Takes the id out of the first map, dropping its sound's use of its key (the map at +0x400878).
 void fn_7100101fb0(UnkSndSys_b0185* self, const u32* id) {
-    if (!self->sounds_a.used)
+    if (!self->sounds_a.buckets.count)
         return;
     UnkSndMap_b0185<u32>& m = self->sounds_a;
     UnkSndNode_b0185<u32>* node = FindNode_b0185(m, *id);
@@ -311,14 +262,14 @@ void fn_7100101fb0(UnkSndSys_b0185* self, const u32* id) {
         UnkSndMap_b0185<u64>& uses = *self->map_d;
         u64 sound_key = sound->key;
         UnkSndKeyUse_b0185* use = nullptr;
-        if (uses.used) {
-            UnkSndNode_b0185<u64>** bucket = static_cast<u32>(sound_key) % uses.bucket_count + uses.buckets;
+        if (uses.buckets.count) {
+            UnkSndNode_b0185<u64>** bucket = static_cast<u32>(sound_key) % uses.buckets.capacity + uses.buckets.data;
             if (bucket) {
-                for (UnkSndNode_b0185<u64>* p = *bucket; p; p = p->chain) {
+                for (UnkSndNode_b0185<u64>* p = *bucket; p; p = p->bucket_next) {
                     if (p->key == sound_key) {
                         UnkSndNode_b0185<u64>* q = *bucket;
                         while (q->key != sound_key)
-                            q = q->chain;
+                            q = q->bucket_next;
                         use = static_cast<UnkSndKeyUse_b0185*>(q->value);
                         break;
                     }

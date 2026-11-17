@@ -4,6 +4,7 @@
 #include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 // A counted reference to a weak handle.
 struct UnkTeamRef_l1a73c0 {
@@ -27,13 +28,7 @@ struct UnkTeamNode_l1a73c0 {
 };
 
 // The member list (UnkTeamList in the unit's other file).
-struct UnkTeamMembers_l1a73c0 {
-    void** vtable;
-    u32 count;
-    UnkTeamNode_l1a73c0* head;
-    UnkTeamNode_l1a73c0* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkTeamMembers_l1a73c0 : base::UnkVtableList<UnkTeamNode_l1a73c0> {
     UnkTeamNode_l1a73c0* Find(UnkWeakTarget* actor) {
         UnkTeamRef_l1a73c0 key(actor ? fn_7100d78378(actor) : nullptr);
         for (UnkTeamNode_l1a73c0* n = head; n; n = n->next) {

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassActivatableEntitiesEvent
 namespace CCharClassActivatableEntitiesEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Activetable or Deactivatable entities");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Activatable", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Activetable or Deactivatable entities");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Activatable", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sIdActivation", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

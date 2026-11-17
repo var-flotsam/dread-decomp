@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassIgnoreFollowPathSpeedInterpolationTrack
 namespace CCharClassIgnoreFollowPathSpeedInterpolationTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Follow Path Speed Interpolation");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Ignore", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Follow Path Speed Interpolation");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Ignore", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

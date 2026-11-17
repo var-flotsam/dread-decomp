@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPlayTimelineEventByPlayerSuit
 namespace CCharClassPlayTimelineEventByPlayerSuit {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Timeline by Player Suit");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Timelines", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Timeline by Player Suit");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Timelines", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sNamePower", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

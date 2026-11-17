@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAffectsScrewAttackDamageTrack
 namespace CCharClassAffectsScrewAttackDamageTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Affects Screw Attack Damage");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("IA", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Affects Screw Attack Damage");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("IA", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

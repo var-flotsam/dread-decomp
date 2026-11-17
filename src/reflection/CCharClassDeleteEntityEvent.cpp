@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDeleteEntityEvent
 namespace CCharClassDeleteEntityEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Delete Entity");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Entity", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Delete Entity");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Entity", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToDelete", 0xc, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));

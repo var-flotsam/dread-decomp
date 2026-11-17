@@ -6,6 +6,7 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkPooledStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -91,16 +92,12 @@ void fn_71007fc850(UnkFrozenAsPlatformComponent_b0119* self) {
 // placeholders.
 struct UnkFrozenIceBase_b44a2;
 
-struct UnkId_b0119 {
-    UnkStringData* data;
-};
-
 struct UnkFrozenAsPlatformInit_b0119 {
     char* vtable;
     u8 pad_0x8[0x98];
     u8 field_0xa0[0x30];  // a base::global::CRntString with its storage
     CStrId field_0xd0;
-    base::global::CRntVector<UnkId_b0119> field_0xd8;
+    base::global::CRntVector<base::UnkPooledString> field_0xd8;
     f32 field_0x100;
     u8 pad_0x104[0x4];
     CStrId field_0x108;
@@ -108,14 +105,14 @@ struct UnkFrozenAsPlatformInit_b0119 {
 
     // Grows the vector at +0xd8: the ids are moved bitwise and the old ones released.
     __attribute__((always_inline)) void ReserveIds(u32 capacity) {
-        base::global::CRntVector<UnkId_b0119>* v = &field_0xd8;
+        base::global::CRntVector<base::UnkPooledString>* v = &field_0xd8;
         if (v->capacity >= capacity)
             return;
-        auto* ids = static_cast<UnkId_b0119*>(v->allocator->vf_0x40((u64)capacity * sizeof(UnkId_b0119), 8, v->flags));
-        if (UnkId_b0119* old = v->data) {
+        auto* ids = static_cast<base::UnkPooledString*>(v->allocator->vf_0x40((u64)capacity * sizeof(base::UnkPooledString), 8, v->flags));
+        if (base::UnkPooledString* old = v->data) {
             u64 j = 0;
             for (u32 i = 0; i < v->count; ++i, ++j, ++old) {
-                __builtin_memcpy(&ids[j], old, sizeof(UnkId_b0119));
+                __builtin_memcpy(&ids[j], old, sizeof(base::UnkPooledString));
                 UnkStringPool* pool = g_unk_7101d47108;
                 old->data = &pool->empty;
                 if ((pool = g_unk_7101d47108)) {
@@ -141,7 +138,7 @@ void fn_71007fc694(UnkFrozenAsPlatformInit_b0119* self) {
     self->vtable = g_unk_7101a74408 + 0x10;
     new (self->field_0xa0) base::global::CRntString("DAMAGE");
     new (&self->field_0xd0) CStrId(g_unk_7101d470e0);
-    new (&self->field_0xd8) base::global::CRntVector<UnkId_b0119>(0xf);
+    new (&self->field_0xd8) base::global::CRntVector<base::UnkPooledString>(0xf);
     self->ReserveIds(4);
     self->field_0x100 = 100.0f;
     new (&self->field_0x108) CStrId(g_unk_7101d470e0);

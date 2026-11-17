@@ -2,7 +2,7 @@
 // released and taken over (the source ends up empty) and the reference-counted pointer at 0x48 is assigned.
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
-#include "game_s2/UnkTwoStepStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 struct UnkMovedRecord {

@@ -47,100 +47,100 @@ void fn_7100a02810(UnkReflFunction* fn, const char* name);
 namespace CSmartObjectComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseStart_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sOnUseStart_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sOnUseStart_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a04d10);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseStart_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sOnUseStart_SetterFunction")
         fn_7100a01964(fn, "_m_sOnUseStart_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseStart", (DefaultValue, CStrId(g_unk_7101d470e0)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseFailure_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sOnUseFailure_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sOnUseFailure_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a04e10);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseFailure_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sOnUseFailure_SetterFunction")
         fn_7100a01ae0(fn, "_m_sOnUseFailure_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseFailure", (DefaultValue, CStrId(g_unk_7101d470e0)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseSuccess_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sOnUseSuccess_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sOnUseSuccess_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a04f10);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sOnUseSuccess_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sOnUseSuccess_SetterFunction")
         fn_7100a01c5c(fn, "_m_sOnUseSuccess_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseSuccess", (DefaultValue, CStrId(g_unk_7101d470e0)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sUsableEntity_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sUsableEntity_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sUsableEntity_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a05010);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sUsableEntity_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sUsableEntity_SetterFunction")
         fn_7100a01dd8(fn, "_m_sUsableEntity_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sUsableEntity", (DefaultValue, CStrId(g_unk_7101d470e0)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultUseAction_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sDefaultUseAction_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sDefaultUseAction_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a05110);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultUseAction_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sDefaultUseAction_SetterFunction")
         fn_7100a01f54(fn, "_m_sDefaultUseAction_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sDefaultUseAction", (DefaultValue, CStrId("useinit", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultAbortAction_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sDefaultAbortAction_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sDefaultAbortAction_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a051b8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDefaultAbortAction_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sDefaultAbortAction_SetterFunction")
         fn_7100a020d0(fn, "_m_sDefaultAbortAction_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sDefaultAbortAction", (DefaultValue, CStrId("useabort", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartEnabled_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bStartEnabled_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bStartEnabled_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a05260);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStartEnabled_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bStartEnabled_SetterFunction")
         fn_7100a0224c(fn, "_m_bStartEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bStartEnabled", (DefaultValue, true));
     DREAD_REFLECTED_FIELD(f32, "fInterpolationTime", 0x40, (DefaultValue, 1.0f), (Description, "Interpolation time"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnLevelChangeUse", true)))
+    DREAD_REFLECTED_FUNCTION("OnLevelChangeUse")
         fn_7100a023c8(fn, "OnLevelChangeUse");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetUseState", true))) {
+    DREAD_REFLECTED_FUNCTION("SetUseState") {
         fn_7100a02540(fn, "SetUseState");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Use State"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseAccepted", true))) {
+    DREAD_REFLECTED_FUNCTION("OnUseAccepted") {
         fn_7100a025f4(fn, "OnUseAccepted");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Use Accepted"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseDeclined", true))) {
+    DREAD_REFLECTED_FUNCTION("OnUseDeclined") {
         fn_7100a026a8(fn, "OnUseDeclined");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Use Declined"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseContinued", true))) {
+    DREAD_REFLECTED_FUNCTION("OnUseContinued") {
         fn_7100a0275c(fn, "OnUseContinued");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Use Continued"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("RefreshUsableEntity", true))) {
+    DREAD_REFLECTED_FUNCTION("RefreshUsableEntity") {
         fn_7100a02810(fn, "RefreshUsableEntity");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Refresh Usable Entity"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

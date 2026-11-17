@@ -31,11 +31,11 @@ namespace animtree::CAnimTreeDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sRootNode", 0x10);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("aNodes", true), &g_unk_71726aa3a0, 0x18, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("aNodes", true), &g_unk_71726aa3a0, 0x18, -1, -1);
     field1->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterNodeDefDeserialization", true));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<animtree::CAnimTreeElementDef>>", "aControls", 0x48);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>", "aLinks", 0x78);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodeDefDeserialization", true)))
+    DREAD_REFLECTED_FUNCTION("AfterNodeDefDeserialization")
         fn_71002d69a4(fn, "AfterNodeDefDeserialization");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -234,23 +234,23 @@ extern base::reflection::CType g_unk_7101d679f0;
 void fn_71002d9bdc();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71002d6cd8(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002d9b8c);
     }
-    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002d9bdc);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -267,22 +267,22 @@ extern base::reflection::CType g_unk_7101d679f0;
 void fn_71002d9e50();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71002d72c8(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002d9e00);
     }
-    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71002d9e50);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }

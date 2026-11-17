@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassThrowWeaponEvent
 namespace CCharClassThrowWeaponEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Throw Weapon");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("NOT IMPLEMENTED", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Throw Weapon");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("NOT IMPLEMENTED", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToLive", 0xc, (DefaultValue, 0.0f));

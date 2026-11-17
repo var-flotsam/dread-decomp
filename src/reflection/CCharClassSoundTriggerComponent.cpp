@@ -57,27 +57,27 @@ void fn_7100718010(UnkReflFunction* fn, const char* name);
 namespace CSoundTrigger {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eReverb_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_eReverb_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_eReverb_GetterFunction", true);
         fn->return_type = &g_unk_7108b6cc88;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100718544);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eReverb_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_eReverb_SetterFunction")
         fn_7100717e9c(fn, "_m_eReverb_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7108b6cc88, 0);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
         fn->return_type = &g_unk_7108b6cde8;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007185d0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iLowPassFilter_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_SetterFunction")
         fn_7100718010(fn, "_m_iLowPassFilter_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("iLowPassFilter", true), &g_unk_7108b6cde8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("iLowPassFilter", true), &g_unk_7108b6cde8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7108b6cde8, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -10,6 +10,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU63.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::UnkStrIdMemberOf;
 
@@ -33,14 +34,7 @@ struct UnkListedPath_b0248 {
     UnkListedPath_b0248* next;
 };
 
-struct UnkFilePathList_b0248 {
-    void** vtable;
-    u32 count;
-    UnkListedPath_b0248* head;
-    UnkListedPath_b0248* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkFilePathList_b0248 : base::UnkVtableList<UnkListedPath_b0248> {
     UnkFilePathList_b0248() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;
@@ -64,15 +58,6 @@ struct UnkFilePathList_b0248 {
 struct UnkListedPair_b0248 {
     UnkStrIdPathPair pair;
     UnkListedPair_b0248* next;
-};
-
-struct UnkPairList_b0248 {
-    u8 pad_0x0[8];
-    u32 count;  // 0x8
-    UnkListedPair_b0248* head;  // 0x10
-    UnkListedPair_b0248* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
 };
 
 class UnkRegistryHandler_b0248 {
@@ -125,7 +110,7 @@ bool fn_7100087b0c(UnkRegistry_b0248* self, UnkRegistryHandler_b0248* handler, U
 bool fn_71000878f0(UnkRegistry_0x70* registry, const UnkStrPair_0x10* key_, u32 flags, void* out_) {
     auto* self = reinterpret_cast<UnkRegistry_b0248*>(registry);
     auto* key = reinterpret_cast<const UnkRegistryKey_b0248*>(key_);
-    auto* out = static_cast<UnkPairList_b0248*>(out_);
+    auto* out = static_cast<base::UnkVtableList<UnkListedPair_b0248>*>(out_);
     if (!self->count)
         return false;
     UnkRegistryString_b0248* id = key->id;

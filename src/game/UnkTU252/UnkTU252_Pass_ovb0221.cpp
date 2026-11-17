@@ -89,62 +89,15 @@ bool fn_71001c02e8(UnkGfxSlots252* self, u32 index, const UnkGfxData252* vertice
 
 #include <new>
 
-#include "base/global/CRntVector.h"
-
-extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
+#include "base/global/CRntDictionary.h"
 
 struct UnkPass213Activate;
 void fn_710019545c(void* self);
 void fn_7100195548(UnkPass213Activate* self, u32 width, u32 height);
 
-struct UnkPoolNode_b54a1 {
-    u64 key;
-    u64 value;
-    UnkPoolNode_b54a1* next;
-    UnkPoolNode_b54a1* prev;
-    UnkPoolNode_b54a1* chain;
-
-    explicit UnkPoolNode_b54a1(u64 k) : key(k), value(k), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    UnkPoolNode_b54a1*& Next() { return next; }
-    UnkPoolNode_b54a1*& Prev() { return prev; }
-};
-
 struct UnkPool252 {
     u64 field_0x0;
-    base::UnkAllocator* allocator;  // 0x8
-    u32 flags;                      // 0x10
-    u32 count;                      // 0x14
-    UnkPoolNode_b54a1** buckets;    // 0x18
-    u32 bucket_count;               // 0x20
-    u32 bucket_capacity;            // 0x24
-    u8 pad_0x28[0x18];
-    UnkPoolNode_b54a1* tail;  // 0x40
-    UnkPoolNode_b54a1* head;  // 0x48
-
-    void Insert(u64 key) {
-        UnkPoolNode_b54a1** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)key % bucket_capacity;
-            if (bucket_count <= i)
-                __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-            bucket = &buckets[i];
-        }
-        UnkPoolNode_b54a1* old = *bucket;
-        auto* node = static_cast<UnkPoolNode_b54a1*>(allocator->vf_0x40(sizeof(UnkPoolNode_b54a1), 8, flags));
-        if (node)
-            new (node) UnkPoolNode_b54a1(key);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
+    base::global::CRntDictionary<u64, u64> objects;  // 0x8: each object its own value
 };
 
 struct UnkPassSlot252 {
@@ -164,7 +117,7 @@ void fn_71001bef34(UnkPassOwner252* self, u32 index, u32 width, u32 height) {
     void* obj = fn_71000839a0(0x40, 0x3c);
     fn_710019545c(obj);
     if (obj)
-        pool->Insert(reinterpret_cast<u64>(obj));
+        pool->objects.InsertChecked(reinterpret_cast<u64>(obj), reinterpret_cast<u64>(obj));
     self->passes[index].pass = static_cast<UnkPass213Activate*>(obj);
     fn_7100195548(static_cast<UnkPass213Activate*>(obj), width, height);
 }

@@ -6,6 +6,7 @@
 #include "base/UnkCloneRecords.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU2563.h"
 #include "types.h"
 
@@ -14,22 +15,7 @@ using base::global::UnkStringPool;
 
 // A string id whose destructor decrements and tests in two steps (the original reloads the id
 // after the decrement).
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
+using UnkReleasedStrId = UnkStrIdTwoStep;
 
 struct UnkReleasedStrIdArray {
     UnkReleasedStrId* data;

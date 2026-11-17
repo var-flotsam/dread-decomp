@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassIgnoreConvertToSamusTrack
 namespace CCharClassIgnoreConvertToSamusTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Convert To Samus");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Ignore");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Ignore Convert To Samus");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Ignore");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

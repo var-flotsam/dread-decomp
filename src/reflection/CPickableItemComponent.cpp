@@ -27,12 +27,12 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sBTType", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(CStrId, "sBTHiddenSceneGroup", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetCustomParams", true))) {
+    DREAD_REFLECTED_FUNCTION("SetCustomParams") {
         fn_71009cedb8(fn, "SetCustomParams");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Item Params"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnItemEnd", true))) {
+    DREAD_REFLECTED_FUNCTION("OnItemEnd") {
         fn_71009cee6c(fn, "OnItemEnd");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Item End"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

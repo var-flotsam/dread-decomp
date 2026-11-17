@@ -5,6 +5,7 @@
 // destructor (fn_71008e05e8). Names and layouts are placeholders.
 #include "base/UnkErasedVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CPowerUpLifeComponent.h"
@@ -42,23 +43,6 @@ struct UnkPowerUpLifeRef_ovb0126 {
     }
 };
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkPowerUpLifeId_ovb0126 {
-    UnkStringData* data;
-    __attribute__((always_inline)) ~UnkPowerUpLifeId_ovb0126() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkPowerUpLifeListBase_ovb0126 {
     char* vtable;
     UnkOwnedErasedVector callables;
@@ -80,8 +64,8 @@ struct UnkPowerUpLife_ovb0126 {
     u8 pad_0x8[0x380];
     UnkPowerUpLifeList_ovb0126 list;  // 0x388
     UnkPowerUpLifeRef_ovb0126 handle;  // 0x3c8
-    UnkPowerUpLifeId_ovb0126 name;     // 0x3d0
-    UnkPowerUpLifeId_ovb0126 id;       // 0x3d8
+    UnkStrIdTwoStep name;     // 0x3d0
+    UnkStrIdTwoStep id;       // 0x3d8
 
     __attribute__((always_inline)) void Destroy() {
         vtable = g_unk_7101a7f4c0 + 0x10;
@@ -89,8 +73,8 @@ struct UnkPowerUpLife_ovb0126 {
             if (UnkPowerUpLifeTarget_ovb0126* target = h->target)
                 target->Notify();
         }
-        id.~UnkPowerUpLifeId_ovb0126();
-        name.~UnkPowerUpLifeId_ovb0126();
+        id.~UnkStrIdTwoStep();
+        name.~UnkStrIdTwoStep();
         handle.~UnkPowerUpLifeRef_ovb0126();
         list.~UnkPowerUpLifeList_ovb0126();
         fn_71008e05e8(this);

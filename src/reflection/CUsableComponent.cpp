@@ -28,22 +28,22 @@ namespace CUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bFadeInActived", 0xfd, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnCanNotUseAccepted", true))) {
+    DREAD_REFLECTED_FUNCTION("OnCanNotUseAccepted") {
         fn_7100a9c458(fn, "OnCanNotUseAccepted");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Can Not Use Accepted"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OnUseSuccessAccepted", true))) {
+    DREAD_REFLECTED_FUNCTION("OnUseSuccessAccepted") {
         fn_7100a9c50c(fn, "OnUseSuccessAccepted");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("On Dialog Continued"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Activate", true))) {
+    DREAD_REFLECTED_FUNCTION("Activate") {
         fn_7100a9c5c0(fn, "Activate");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Activates the statue"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("Discover", true))) {
+    DREAD_REFLECTED_FUNCTION("Discover") {
         fn_7100a9c674(fn, "Discover");
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("_bTransition", true));

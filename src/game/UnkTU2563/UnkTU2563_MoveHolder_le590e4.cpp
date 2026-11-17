@@ -5,16 +5,13 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 
 // A string id that is moved from: the source gets the empty string.
-struct UnkMovedId_e590e4 {
-    UnkStringData* data;
-
-    UnkMovedId_e590e4(UnkMovedId_e590e4&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-};
+using UnkMovedId_e590e4 = UnkMovedStrId;
 
 struct UnkBuffer_e590e4 {
     void* data;

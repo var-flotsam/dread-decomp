@@ -6,13 +6,12 @@
 #include "base/global/CRntVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkCachedSegment2D;
 f32 fn_7100126238(UnkCachedSegment2D* self);
 
 extern char g_unk_7101a210d8[];
-
-
 
 struct UnkNavVertex {
     base::math::CVector2D xy;
@@ -81,17 +80,13 @@ struct UnkEdgePair {
     f32 lengthSq;
 };
 
-struct UnkEdgePairList {
-    struct Node {
-        UnkEdgePair value;
-        Node* next;
-    };
-    void* vtable;
-    u32 count;
-    Node* head;
-    Node* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+struct UnkEdgePairListNode {
+    UnkEdgePair value;
+    UnkEdgePairListNode* next;
+};
+
+struct UnkEdgePairList : base::UnkVtableList<UnkEdgePairListNode> {
+    using Node = UnkEdgePairListNode;
 
     UnkEdgePairList() {
         count = 0;
@@ -217,8 +212,6 @@ static inline bool Near(f32 p, f32 v) {
 static inline bool Near(const base::math::CVector2D& p, const base::math::CVector2D& v) {
     return Near(p.x, v.x) && Near(p.y, v.y);
 }
-
-
 
 bool fn_71002a25f0(UnkNoArg, UnkNavPoly* a, u32 edgeA, UnkNavPoly* b, u32 edgeB);
 void fn_71002a28f4(void* self, UnkNavPoly* a, u32 edgeA, UnkNavPoly* b, u32 edgeB, UnkNavPolyList* polys,

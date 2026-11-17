@@ -5,6 +5,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -55,10 +56,7 @@ struct UnkReflFunctionVtbl {
 };
 
 struct UnkReflFunctionData {
-    struct Name {
-        UnkStringData* data;
-        Name(Name&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-    };
+
     struct Pair {
         void* field_0x0;
         u32 field_0x8;
@@ -76,7 +74,7 @@ struct UnkReflFunctionData {
 
     const UnkReflFunctionVtbl* vtbl;
     UnkVectorView<const void*> params;
-    Name name;
+    UnkMovedStrId name;
     const void* return_type;
     void* field_0x40;
     void* invoker;
@@ -88,7 +86,7 @@ struct UnkReflFunctionData {
     UnkReflFunctionData(UnkReflFunctionData&& other)
         : vtbl(reinterpret_cast<const UnkReflFunctionVtbl*>(g_unk_7101a1b460 + 0x10)),
           params(static_cast<UnkVectorView<const void*>&&>(other.params)),
-          name(static_cast<Name&&>(other.name)), return_type(other.return_type), field_0x40(other.field_0x40),
+          name(static_cast<UnkMovedStrId&&>(other.name)), return_type(other.return_type), field_0x40(other.field_0x40),
           invoker(other.invoker), field_0x50(other.field_0x50), field_0x78(other.field_0x78, other.field_0x50),
           param_attrs(static_cast<UnkVectorView<void*>&&>(other.param_attrs)), field_0xb0_w(other.field_0xb0_w) {}
 

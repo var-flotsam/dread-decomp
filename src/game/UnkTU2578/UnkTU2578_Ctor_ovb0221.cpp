@@ -3,6 +3,7 @@
 // registrations with 11 buckets, three lists of (id, instance) nodes and one of instances, each behind a vtable
 // pointer (the objects of src/game_7100ece7fc/fn_7100f02528.cpp), the two item pointers, the blend colour (1, 1),
 // the enabled flag and the stack of blend ids. Names and layouts are placeholders.
+#include "base/UnkVtableList.h"
 #include <new>
 
 #include "base/UnkChainedMap.h"
@@ -15,16 +16,15 @@ struct UnkSoundIdNodeB;
 
 // A list of reference nodes behind a vtable pointer.
 template <void** Vtable, class Node>
-struct UnkSoundIdListOwner {
-    void** vtable;
-    u32 count;
-    Node* head;
-    Node* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    UnkSoundIdListOwner()
-        : vtable(&Vtable[2]), count(0), head(nullptr), tail(nullptr), allocator(fn_7100083990()), flags(0x13) {}
+struct UnkSoundIdListOwner : base::UnkVtableList<Node> {
+    UnkSoundIdListOwner() {
+        this->vtable = &Vtable[2];
+        this->count = 0;
+        this->head = nullptr;
+        this->tail = nullptr;
+        this->allocator = fn_7100083990();
+        this->flags = 0x13;
+    }
 };
 
 struct UnkMap11 : UnkChainedMap {

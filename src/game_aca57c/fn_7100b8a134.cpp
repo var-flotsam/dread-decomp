@@ -5,17 +5,11 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::UnkAllocator;
 using base::global::UnkStringData;
-
-// A string id whose move leaves the pool's empty string behind.
-struct UnkMovedStrId {
-    UnkStringData* data;
-
-    UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-};
 
 struct UnkMovedArray {
     void* data;

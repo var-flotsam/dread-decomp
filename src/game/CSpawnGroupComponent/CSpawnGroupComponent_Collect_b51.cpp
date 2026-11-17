@@ -4,18 +4,15 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkTU604.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
-struct UnkList_71011199cc {
-    struct Node {
-        u64 value;
-        Node* next;
-    };
-    char* vtable;
-    u32 count;
-    Node* head;
-    Node* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+struct UnkList_71011199ccNode {
+    u64 value;
+    UnkList_71011199ccNode* next;
+};
+
+struct UnkList_71011199cc : base::UnkVtableList<UnkList_71011199ccNode> {
+    using Node = UnkList_71011199ccNode;
 
     UnkList_71011199cc() {
         vtable = reinterpret_cast<char*>(g_unk_7101a32680) + 0x10;

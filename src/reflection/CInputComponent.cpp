@@ -30,7 +30,7 @@ void fn_7100874290();
 namespace CInputComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IgnoreInput", true))) {
+    DREAD_REFLECTED_FUNCTION("IgnoreInput") {
         fn->name = base::global::UnkStrId("IgnoreInput", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -38,12 +38,12 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710087412c);
         fn_7100874050(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IgnoreInputFor", true))) {
+    DREAD_REFLECTED_FUNCTION("IgnoreInputFor") {
         fn_7100870a5c(fn, "IgnoreInputFor");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Ignore input for"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bInputIgnored_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bInputIgnored_GetterFunction") {
         fn->name = base::global::UnkStrId("_bInputIgnored_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;

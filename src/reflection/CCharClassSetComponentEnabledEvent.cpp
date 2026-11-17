@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetComponentEnabledEvent
 namespace CCharClassSetComponentEnabledEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Component Enabled");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Entity", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Component Enabled");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Entity", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sComponent", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

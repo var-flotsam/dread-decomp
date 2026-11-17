@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/UnkLinkedList.h"
 
 using base::global::CStrId;
 
@@ -22,12 +23,7 @@ struct UnkNode_ld476e4 {
     UnkNode_ld476e4* next;
 };
 
-struct UnkList_ld476e4 {
-    u32 count;
-    UnkNode_ld476e4* head;
-    UnkNode_ld476e4* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkList_ld476e4 : base::UnkLinkedList<UnkNode_ld476e4> {
     void Remove(UnkNode_ld476e4* node);
 };
 

@@ -14,24 +14,15 @@ struct UnkCopyPair_l01e3b4 {
     base::global::CFilePathStrId path;
 };
 
-struct UnkCopyPairVec_l01e3b4 {
-    UnkCopyPair_l01e3b4* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 // Signature as src/base/UnkUnit25/UnkStrIdPathPairVecReserve_b45.cpp defines it.
 struct UnkStrIdPathPairVec_b45a1;
 
-static inline void Reserve_l01e3b4(UnkCopyPairVec_l01e3b4* self, u32 n) {
+static inline void Reserve_l01e3b4(base::global::CRntVector<UnkCopyPair_l01e3b4>* self, u32 n) {
     fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
 }
 
-void fn_710001e3b4(UnkCopyPairVec_l01e3b4* self, const UnkCopyPairVec_l01e3b4* other) {
+void fn_710001e3b4(base::global::CRntVector<UnkCopyPair_l01e3b4>* self,
+                   const base::global::CRntVector<UnkCopyPair_l01e3b4>* other) {
     self->data = nullptr;
     self->count = 0;
     self->capacity = 0;
@@ -45,7 +36,7 @@ void fn_710001e3b4(UnkCopyPairVec_l01e3b4* self, const UnkCopyPairVec_l01e3b4* o
         u32 old_capacity = self->capacity;
         u32 new_capacity = old_capacity;
         if (old_capacity <= n && self->step != 0)
-            new_capacity = (n / self->step + 1) * self->step;
+            new_capacity = self->GrownCapacity(n);
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }

@@ -5,28 +5,11 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// A string id whose release decrements and tests the count in two steps.
-struct UnkOwnerId {
-    UnkStringData* data;
-
-    ~UnkOwnerId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 struct UnkOwnedObj {
     virtual void vf_0x0();
@@ -54,7 +37,7 @@ extern void* g_unk_7101cab468[];
 
 struct UnkOwner_7100fb4f70 {
     void** vtable;
-    UnkOwnerId id;
+    UnkStrIdTwoStep id;
     base::global::CRntVector<UnkOwnedPtr> objects;
 
     ~UnkOwner_7100fb4f70() {

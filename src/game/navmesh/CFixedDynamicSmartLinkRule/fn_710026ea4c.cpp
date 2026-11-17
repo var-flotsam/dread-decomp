@@ -4,6 +4,7 @@
 // 0x88: restore the vtable, release the id, destroy the member and run the base destructor (fn_710026a9fc); the
 // deleting one then frees the object.
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/navmesh/CFixedDynamicSmartLinkRule.h"
 #include "types.h"
 
@@ -21,29 +22,11 @@ struct UnkMember_0x68 {
     ~UnkMember_0x68() { fn_710026ead0(this); }
 };
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkEntryId {
-    UnkStringData* data;
-
-    ~UnkEntryId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 extern void* g_unk_7101a20da8[];
 
 struct UnkObject_710026eb5c : UnkBase_0x20 {
     UnkMember_0x68 field_0x20;
-    UnkEntryId field_0x88;
+    UnkStrIdTwoStep field_0x88;
 
     ~UnkObject_710026eb5c() { vtable = &g_unk_7101a20da8[2]; }
 };

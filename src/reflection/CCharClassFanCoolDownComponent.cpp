@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -54,21 +55,21 @@ void fn_7100880f0c();
 namespace CFanCoolDownComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StartFan", true))) {
+    DREAD_REFLECTED_FUNCTION("StartFan") {
         fn->name = base::global::UnkStrId("StartFan", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100880ea4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("BlockFan", true))) {
+    DREAD_REFLECTED_FUNCTION("BlockFan") {
         fn->name = base::global::UnkStrId("BlockFan", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100880ed8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopFan", true))) {
+    DREAD_REFLECTED_FUNCTION("StopFan") {
         fn->name = base::global::UnkStrId("StopFan", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

@@ -35,34 +35,34 @@ void fn_7100d5de80(UnkReflFunction* fn, const char* name);
 namespace game::logic::collision::CAABoxShape2D {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Min_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_v2Min_GetterFunction") {
         fn->name = base::global::UnkStrId("_v2Min_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d5ed18);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Min_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_v2Min_SetterFunction")
         fn_7100d5db88(fn, "_v2Min_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "v2Min", (DefaultValue, base::math::CVector2D{-200.0f, -200.0f}), (Description, base::global::CRntString("Min Point")));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Max_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_v2Max_GetterFunction") {
         fn->name = base::global::UnkStrId("_v2Max_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d5edcc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_v2Max_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_v2Max_SetterFunction")
         fn_7100d5dd04(fn, "_v2Max_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "v2Max", (DefaultValue, base::math::CVector2D{200.0f, 200.0f}), (Description, base::global::CRntString("Max Point")));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bOutwardsNormal_GetterFunction") {
         fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d5ee80);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bOutwardsNormal_SetterFunction")
         fn_7100d5de80(fn, "_bOutwardsNormal_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOutwardsNormal", (DefaultValue, false));
 }

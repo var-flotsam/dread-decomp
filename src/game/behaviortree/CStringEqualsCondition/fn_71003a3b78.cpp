@@ -1,8 +1,8 @@
 // Destructor: resets the vtable, releases the string id at +0x68, then the sub-object at +0x38 and the base.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/behaviortree/CStringEqualsCondition.h"
-#include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
 struct UnkObj {

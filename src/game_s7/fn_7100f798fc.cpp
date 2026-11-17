@@ -4,6 +4,7 @@
 // A temporary iterator is advanced (fn_7100f5aff0 and its copy), the result starts at the node it reached and is
 // advanced in turn, and the temporary's cached entry (kind 1: a key and a value) is destroyed.
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection.h"
 #include "game/UnkTU2604.h"
 #include "game/UnkTU2640.h"
@@ -13,30 +14,12 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkMapKey {
-    UnkStringData* data;
-
-    ~UnkMapKey() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 template <u32 ValueSize, void (*Destroy)(void*)>
 struct UnkMapIter {
     void* node;
     union {
         struct {
-            UnkMapKey key;
+            UnkStrIdTwoStep key;
             u8 value[ValueSize];  // destroyed by Destroy
         } entry;  // kind 1
     };
@@ -48,7 +31,7 @@ struct UnkMapIter {
         switch (kind) {
         case 1:
             Destroy(entry.value);
-            entry.key.~UnkMapKey();
+            entry.key.~UnkStrIdTwoStep();
             kind = 0;
             break;
         case 2:

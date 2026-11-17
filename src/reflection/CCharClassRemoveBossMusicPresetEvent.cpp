@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassRemoveBossMusicPresetEvent
 namespace CCharClassRemoveBossMusicPresetEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Remove Boss Music Preset");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Remove Boss Music Preset");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

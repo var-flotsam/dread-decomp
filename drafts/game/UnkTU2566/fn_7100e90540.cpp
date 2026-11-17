@@ -1,6 +1,7 @@
 // Unit 2566 (the minimap manager): advances every item of the item table (a chained hash table walked from
 // its cursor, stopping when the table changes under the walk), then the transitions of two arrays of
 // records and three single ones, by `dt`. Names and layouts are placeholders.
+#include "base/global/UnkBucketSet.h"
 #include "game/UnkTU2567.h"
 #include "types.h"
 
@@ -36,14 +37,9 @@ struct UnkMinimapTransitionArray {
 };
 
 struct UnkMinimapItemTable {
-    UnkMinimapItemNode** buckets;  // 0x0
-    u32 bucket_count;              // 0x8
-    u8 pad_0xc[0x1c];
-    u32 cursor_bucket;             // 0x28
-    UnkMinimapItemNode* cursor;    // 0x30
-    u8 pad_0x38[0x10];
-    u32 version;                   // 0x48
-    u8 pad_0x4c[0x10c];
+    // The pooled set fn_7100eb2cc0 sets up (base/file/UnkFileCacheSet.h, nodes of 0x1600 bytes).
+    base::global::UnkPooledBucketSet<UnkMinimapItemNode> items;  // 0x0
+    u8 pad_0x90[0xc8];
     UnkMinimapTransitionArray a;   // 0x158
     u8 pad_0x170[0x70];
     UnkMinimapTransitionArray b;   // 0x1e0
@@ -57,17 +53,17 @@ struct UnkMinimapManager {
 
 void fn_7100e90540(UnkMinimapManager* self, f32 dt) {
     UnkMinimapItemTable& table = self->table;
-    UnkMinimapItemNode* node = table.cursor;
-    u32 bucket = table.cursor_bucket;
-    u32 version = table.version;
+    UnkMinimapItemNode* node = table.items.first_node;
+    u32 bucket = table.items.first_bucket;
+    u32 version = table.items.version;
     while (node) {
         for (UnkMinimapItemSlot& slot : *node)
             fn_7100eb8978(reinterpret_cast<UnkMinimapItem*>(&slot), dt);
-        if (table.version != version)
+        if (table.items.version != version)
             break;
         node = node->next;
-        while (!node && ++bucket < table.bucket_count)
-            node = table.buckets[bucket];
+        while (!node && ++bucket < table.items.buckets.count)
+            node = table.items.buckets.data[bucket];
     }
     for (u32 i = 0; i < table.b.count; ++i)
         fn_7100eb7470(table.b.data[i].transition, dt);

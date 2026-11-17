@@ -24,7 +24,7 @@ void fn_71007aecb8(UnkReflFunction* fn, const char* name);
 namespace CDamageComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DamageValues", true))) {
+    DREAD_REFLECTED_FUNCTION("DamageValues") {
         fn_71007aecb8(fn, "DamageValues");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Initialize From File"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

@@ -28,8 +28,8 @@ void fn_7100cb869c();
 void fn_7100cb7a04(UnkReflFunction* fn, const char* name);
 namespace CCharClassDropItemOverwriteProbabilitiesEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Overwrite Probabilities");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Drops");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Overwrite Probabilities");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Drops");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iMinNumOfDroppedItems", 0xc, (DefaultValue, 0));
@@ -63,14 +63,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bIgnoreAttractionRadius", 0x82, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bDoNotDropWithNormalMelee", 0x83, (DefaultValue, false));
     DREAD_REFLECTED_FIELD_OF("SDropProbabilities::SType", "eType", 0x84, (DefaultValue, 1));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodes_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sNodes_GetterFunction") {
         fn->name = base::global::UnkStrId("_sNodes_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100cb869c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sNodes_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sNodes_SetterFunction")
         fn_7100cb7a04(fn, "_sNodes_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sNodes", (DefaultValue, CStrId(g_unk_7101d470e0)));
 }

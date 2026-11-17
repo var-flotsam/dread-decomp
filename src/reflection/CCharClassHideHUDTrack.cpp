@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassHideHUDTrack
 namespace CCharClassHideHUDTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Hide HUD");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "State");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Hide HUD");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "State");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bHUD", 0x18, (DefaultValue, true));

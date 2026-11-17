@@ -35,37 +35,37 @@ void fn_7100ab3724(UnkReflFunction* fn, const char* name);
 namespace CCharClassWeaponMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageID_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sDamageID_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sDamageID_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CRntString>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100ab3a44);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageID_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sDamageID_SetterFunction")
         fn_7100ab342c(fn, "_m_sDamageID_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageID");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sDamageSource_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sDamageSource_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CRntString>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100ab3af0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sDamageSource_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sDamageSource_SetterFunction")
         fn_7100ab35a8(fn, "_m_sDamageSource_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource");
     DREAD_REFLECTED_FIELD_OF("EDamageType", "eDamageType", 0xcc, (DefaultValue, 0), (Description, base::global::CRntString("")));
     DREAD_REFLECTED_FIELD_OF("EDamageStrength", "eDamageStrength", 0xd0, (DefaultValue, 0), (Description, base::global::CRntString("")));
     DREAD_REFLECTED_FIELD(f32, "fSpeed", 0xd4, (DefaultValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCollisionMask_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sCollisionMask_GetterFunction") {
         fn->name = base::global::UnkStrId("_sCollisionMask_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100ab3bb4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCollisionMask_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sCollisionMask_SetterFunction")
         fn_7100ab3724(fn, "_sCollisionMask_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionMask", (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bWantsProcessBreakableTileHit", 0xe4, (DefaultValue, true));

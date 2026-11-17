@@ -73,7 +73,7 @@ static inline void AppendCopy(UnkIdVec_ovb0245* v, const UnkIdEntry_ovb0245& val
     u32 old_capacity = v->capacity;
     u32 new_capacity = old_capacity;
     if (old_capacity <= n && v->step != 0)
-        new_capacity = (n / v->step + 1) * v->step;
+        new_capacity = v->GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }

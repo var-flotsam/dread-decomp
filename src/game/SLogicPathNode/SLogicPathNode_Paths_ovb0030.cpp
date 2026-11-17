@@ -221,7 +221,7 @@ UnkReflObject* fn_71010590dc(char* self, u32 index, void* arg) {
     base::global::CRntVector<UnkPathPointV>* v = &node->points;
     if (v->field_0x14 && v->count <= index) {
         if (v->capacity <= index && v->step != 0) {
-            u32 grown = (index / v->step + 1) * v->step;
+            u32 grown = v->GrownCapacity(index);
             v->Reserve(grown);
         }
         fn_710106111c(reinterpret_cast<UnkPathPointArray*>(v), index + 1);

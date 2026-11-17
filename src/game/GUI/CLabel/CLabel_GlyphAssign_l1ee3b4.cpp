@@ -48,7 +48,7 @@ static inline void AddGlyph(UnkGlyphVector_l1ee3b4* glyphs, const UnkLabelGlyph_
     u32 n = glyphs->count;
     u32 capacity = glyphs->capacity;
     if (capacity <= n && glyphs->step != 0)
-        capacity = (n / glyphs->step + 1) * glyphs->step;
+        capacity = glyphs->GrownCapacity(n);
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakGrappleInitActionTrack
 namespace CCharClassTweakGrappleInitActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Grapple Init Action");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Grapple Init Action");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sInvertAction", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));

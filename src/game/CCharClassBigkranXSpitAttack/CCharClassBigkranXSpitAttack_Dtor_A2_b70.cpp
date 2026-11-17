@@ -18,7 +18,7 @@ static_assert(__builtin_offsetof(UnkSpitAttack_A2_b70, name) == 0x170, "UnkSpitA
 
 __attribute__((always_inline)) static inline void Destroy_A2_b70(UnkSpitAttack_A2_b70* self) {
     self->vtable = g_unk_7101a312d0 + 2;
-    self->name.~UnkDeviceName();
+    self->name.base::global::CStrId::~CStrId();
     self->list.Free();
     fn_7100364430(self);
 }

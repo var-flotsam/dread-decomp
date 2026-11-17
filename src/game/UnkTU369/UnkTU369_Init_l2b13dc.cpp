@@ -34,7 +34,7 @@ static inline void AppendCell(UnkCells_l2b13dc* cells) {
     u32 n = cells->count;
     u32 new_capacity = cells->capacity;
     if (new_capacity <= n && cells->step != 0)
-        new_capacity = (n / cells->step + 1) * cells->step;
+        new_capacity = cells->GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }

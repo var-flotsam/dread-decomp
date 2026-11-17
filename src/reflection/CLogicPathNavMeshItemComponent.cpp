@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -26,9 +27,9 @@ void fn_7100500260(UnkReflFunction* fn);
 namespace CLogicPathNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateLogicPathStage", true)))
+    DREAD_REFLECTED_FUNCTION("CreateLogicPathStage")
         fn_71009bcc50(fn, "CreateLogicPathStage");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddStageColliderWithOffSet", true))) {
+    DREAD_REFLECTED_FUNCTION("AddStageColliderWithOffSet") {
         fn->name = base::global::UnkStrId("AddStageColliderWithOffSet", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

@@ -35,27 +35,27 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sOnSetupUseStateLuaCallback", 0x580, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sUseEndActionOverride", 0x590, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bCheckpointBeforeUsage", 0x59c, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_ePipeGroup1_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_ePipeGroup1_GetterFunction", true);
         fn->return_type = &g_unk_7172752160;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a94804);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_ePipeGroup1_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_SetterFunction")
         fn_7100a90798(fn, "_m_ePipeGroup1_SetterFunction");
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("ePipeGroup1", true), &g_unk_7172752160, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePipeGroup1", true), &g_unk_7172752160, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field6->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172752160, 0);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_ePipeGroup2_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_ePipeGroup2_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_ePipeGroup2_GetterFunction", true);
         fn->return_type = &g_unk_7172752160;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a94890);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_ePipeGroup2_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_ePipeGroup2_SetterFunction")
         fn_7100a9090c(fn, "_m_ePipeGroup2_SetterFunction");
-    UnkReflField* field7 = fn_7100096524(cls, CStrId("ePipeGroup2", true), &g_unk_7172752160, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field7 = AddReflectedField(cls, CStrId("ePipeGroup2", true), &g_unk_7172752160, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field7->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172752160, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -26,12 +26,12 @@ namespace CCharClassCollisionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "v3SpawnPointCollisionSizeInc", 0x8c, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Life of the enemy"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eDefaultCollisionMaterial", true), &g_unk_7172791c90, 0x98, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("eDefaultCollisionMaterial", true), &g_unk_7172791c90, 0x98, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172791c90, 0);
     field1->attrs.Add<const char*>(base::reflection::attr::Description(), "General Collision Material");
     DREAD_REFLECTED_FIELD(bool, "bShouldIgnoreSlopeSupport", 0xc8, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bForceSlopeDirectionOnFloorHit", 0xc9, (DefaultValue, false));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("mExplicitCollisionMaterials", true), &g_unk_7172718518, 0xa0, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("mExplicitCollisionMaterials", true), &g_unk_7172718518, 0xa0, -1, -1);
     field4->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void*, const void*) { return false; }

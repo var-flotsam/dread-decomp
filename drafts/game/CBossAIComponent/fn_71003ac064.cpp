@@ -7,6 +7,7 @@
 #include "base/UnkErasedVector.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -34,17 +35,6 @@ struct UnkBossCallbackSet_l3ac064 : UnkBossCallbackSetBase_l3ac064 {
     }
 };
 static_assert(sizeof(UnkBossCallbackSet_l3ac064) == 0x40, "layout");
-
-struct UnkBossEmptyId_l3ac064 {
-    UnkStringData* data;
-
-    UnkBossEmptyId_l3ac064() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
 
 struct UnkBossLandmarkPoint_l3ac064 {
     bool found = false;
@@ -85,7 +75,7 @@ struct UnkBossAI_l3ac064 {
     u8 life_bar[0x18];                         // 0x148f0
     void* field_0x14908;
     UnkBossCallbackSet_l3ac064 callbacks_b;    // 0x14910
-    UnkBossEmptyId_l3ac064 id;                 // 0x14950
+    UnkEmptyStrId id;                 // 0x14950
     UnkBossCallbackSet_l3ac064 callbacks_c;    // 0x14958
     bool field_0x14998;
 };
@@ -126,7 +116,7 @@ void fn_71003ac064(UnkComponent* self_) {
     fn_710035d4e0(self->life_bar);
     self->field_0x14908 = nullptr;
     new (&self->callbacks_b) UnkBossCallbackSet_l3ac064;
-    new (&self->id) UnkBossEmptyId_l3ac064;
+    new (&self->id) UnkEmptyStrId;
     new (&self->callbacks_c) UnkBossCallbackSet_l3ac064;
     self->field_0x14998 = true;
 }

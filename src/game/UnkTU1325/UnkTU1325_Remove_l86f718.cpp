@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CStrId;
 
@@ -24,14 +25,6 @@ struct UnkTimedEntry_l86f718 {
 };
 static_assert(__builtin_offsetof(UnkTimedEntry_l86f718, next) == 0x48, "UnkTimedEntry_l86f718 layout");
 
-struct UnkTimedEntryList_l86f718 {
-    u64 field_0x0;
-    u32 count;                       // 0x8
-    UnkTimedEntry_l86f718* head;     // 0x10
-    UnkTimedEntry_l86f718* tail;     // 0x18
-    base::UnkAllocator* allocator;   // 0x20
-};
-
 // The value list's destructor: its base vtable back, then its nodes freed.
 static inline void ReleaseValues(UnkTimedValues_l86f718& list) {
     list.field_0x0 = reinterpret_cast<u64>(g_unk_7101a46040 + 2);
@@ -46,7 +39,7 @@ static inline void ReleaseValues(UnkTimedValues_l86f718& list) {
 }
 
 // Destroys an entry and gives its memory back to the list's allocator.
-static inline void DestroyEntry(UnkTimedEntryList_l86f718* list, UnkTimedEntry_l86f718* entry) {
+static inline void DestroyEntry(base::UnkVtableList<UnkTimedEntry_l86f718>* list, UnkTimedEntry_l86f718* entry) {
     if (entry) {
         ReleaseValues(entry->values);
         entry->id.Reset();
@@ -56,7 +49,7 @@ static inline void DestroyEntry(UnkTimedEntryList_l86f718* list, UnkTimedEntry_l
 
 // Removes `node` and returns the one after it (null when it is not in the list).
 UnkTimedNode* fn_710086f718(UnkTimedList* self, UnkTimedNode* node) {
-    auto* list = reinterpret_cast<UnkTimedEntryList_l86f718*>(self);
+    auto* list = reinterpret_cast<base::UnkVtableList<UnkTimedEntry_l86f718>*>(self);
     auto* entry = reinterpret_cast<UnkTimedEntry_l86f718*>(node);
     UnkTimedEntry_l86f718* last = nullptr;
     UnkTimedEntry_l86f718* it = list->head;

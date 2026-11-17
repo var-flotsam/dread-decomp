@@ -4,6 +4,7 @@
 // (fn_7100339d48 for switch objects, fn_7100339900 for models), put on layer 0 (fn_7100219ae0) and
 // switched off; its bit in the in-use mask is cleared. Names and layouts are placeholders.
 #include <new>
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -72,72 +73,8 @@ struct UnkFxCache;
 struct UnkFxObjectPool_ovb0135Base;
 bool fn_71011aa9d0(UnkFxCache* cache);
 
-struct UnkFxPoolNode_ovb0135 {
-    CFilePathStrId key;
-    UnkFxObjectPool_ovb0135* value;  // 0x8
-    UnkFxPoolNode_ovb0135* next;     // 0x10: the list of all nodes
-    UnkFxPoolNode_ovb0135* prev;     // 0x18
-    UnkFxPoolNode_ovb0135* chain;    // 0x20: the next node in the bucket
-};
-
-struct UnkFxPoolMap_ovb0135 {
-    using Node = UnkFxPoolNode_ovb0135;
-    base::UnkAllocator* allocator;  // 0x38
-    u32 flags;                      // 0x40
-    u32 count;                      // 0x44
-    Node** buckets;                 // 0x48
-    u32 bucket_count;               // 0x50
-    u32 bucket_capacity;            // 0x54
-    u8 pad_0x58[0x18];
-    Node* tail;  // 0x70
-    Node* head;  // 0x78
-
-    static u32 Hash(const CFilePathStrId& key) {
-        const u32* h = reinterpret_cast<const u32*>(reinterpret_cast<const u8*>(key.data) + 0x30);
-        return h[0] ^ h[1];
-    }
-    Node** Slot(const CFilePathStrId& key) {
-        if (!bucket_count)
-            return nullptr;
-        u32 i = Hash(key) % bucket_capacity;
-        return &buckets[i];
-    }
-    Node* Find(const CFilePathStrId& key) {
-        Node** slot = Slot(key);
-        if (!slot)
-            return nullptr;
-        for (Node* n = *slot; n; n = n->chain)
-            if (n->key.data == key.data)
-                return n;
-        return nullptr;
-    }
-    void Insert(const CFilePathStrId& key, UnkFxObjectPool_ovb0135* value) {
-        Node** slot = nullptr;
-        if (bucket_count) {
-            u32 i = Hash(key) % bucket_capacity;
-            slot = &buckets[i];
-        }
-        Node* c = *slot;
-        auto* n = static_cast<Node*>(allocator->vf_0x40(0x28, 8, flags));
-        if (n) {
-            new (&n->key) CFilePathStrId(key);
-            n->value = value;
-            n->next = nullptr;
-            n->prev = nullptr;
-            n->chain = nullptr;
-        }
-        n->chain = c;
-        *slot = n;
-        if (!head) {
-            head = n;
-        } else if (tail) {
-            __builtin_memcpy(&n->prev, &tail, sizeof(Node*));
-            tail->next = n;
-        }
-        tail = n;
-        ++count;
-    }
-};
+// The pools by effect path.
+using UnkFxPoolMap_ovb0135 = base::global::CRntDictionary<CFilePathStrId, UnkFxObjectPool_ovb0135*>;
 
 struct UnkFxCache_ovb0135 {
     u8 pad_0x0[0x38];
@@ -156,7 +93,7 @@ static inline void Preload(UnkFxCache* cache, const CFilePathStrId* path, u32 co
     UnkFxPoolMap_ovb0135* map = &reinterpret_cast<UnkFxCache_ovb0135*>(cache)->pools;
     UnkFxObjectPool_ovb0135* pool;
     bool found;
-    if (UnkFxPoolNode_ovb0135* node = map->Find(*path)) {
+    if (UnkFxPoolMap_ovb0135::TNode* node = map->FindNode(*path)) {
         pool = node->value;
         found = true;
     } else {

@@ -39,64 +39,64 @@ void fn_71008f3e20(UnkReflFunction* fn, const char* name);
 namespace CSegmentLightComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDir_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_vDir_GetterFunction") {
         fn->name = base::global::UnkStrId("_vDir_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x100;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f49e4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDir_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_vDir_SetterFunction")
         fn_71008f36b4(fn, "_vDir_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vDir", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 1));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSegmentLength_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fSegmentLength_GetterFunction") {
         fn->name = base::global::UnkStrId("_fSegmentLength_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f4c34);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fSegmentLength_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fSegmentLength_SetterFunction")
         fn_71008f3830(fn, "_fSegmentLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fSegmentLength", (DefaultValue, 400.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAttMin_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAttMin_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f4db0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMin_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAttMin_SetterFunction")
         fn_71008f39ac(fn, "_fAttMin_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttMin", (DefaultValue, 400.0f), (MaxValueProperty, CStrId("fAttMax", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAttMax_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAttMax_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f4e60);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttMax_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAttMax_SetterFunction")
         fn_71008f3b28(fn, "_fAttMax_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttMax", (DefaultValue, 500.0f), (MinValueProperty, CStrId("fAttMin", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttConstantFactor_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAttConstantFactor_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAttConstantFactor_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f4f34);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttConstantFactor_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAttConstantFactor_SetterFunction")
         fn_71008f3ca4(fn, "_fAttConstantFactor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttConstantFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttQuadraticFactor_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAttQuadraticFactor_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAttQuadraticFactor_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008f4fdc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAttQuadraticFactor_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAttQuadraticFactor_SetterFunction")
         fn_71008f3e20(fn, "_fAttQuadraticFactor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttQuadraticFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
 }

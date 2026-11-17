@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakHangToMorphBallActionTrack
 namespace CCharClassTweakHangToMorphBallActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Hang To Morph Ball Action");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Hang To Morph Ball Action");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

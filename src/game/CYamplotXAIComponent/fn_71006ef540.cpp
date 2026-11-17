@@ -3,9 +3,9 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBossAIComponent.h"
-#include "game_s2/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStrId;

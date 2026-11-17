@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassKraidBellyDamageTrack
 namespace CCharClassKraidBellyDamageTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Belly Damage");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Kraid", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Belly Damage");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Kraid", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

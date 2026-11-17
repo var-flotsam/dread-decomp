@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetCutsceneActorVolumeOverrideEvent
 namespace CCharClassSetCutsceneActorVolumeOverrideEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Cutscene Actor Volume Override");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Cutscene", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Cutscene Actor Volume Override");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Cutscene", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CName, "sActorName", 0x10, (DefaultValue, base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu)));

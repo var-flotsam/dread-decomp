@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU2566.h"
 #include "types.h"
 
@@ -15,14 +16,6 @@ using base::global::CRntString;
 
 // As src/game/logic/collision/CCollider/fn_7100d3d424.cpp declares it.
 struct UnkRecord118;
-
-struct UnkMovedStrId118 {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMovedStrId118(UnkMovedStrId118&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
 
 // Copied as a block of N bytes.
 template <u32 N>
@@ -53,9 +46,9 @@ using UnkString20_118 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
 struct UnkRecord118_b49 {
     u64 field_0x0;
-    UnkMovedStrId118 field_0x8;
-    UnkMovedStrId118 field_0x10;
-    UnkMovedStrId118 field_0x18;
+    UnkMovedStrId field_0x8;
+    UnkMovedStrId field_0x10;
+    UnkMovedStrId field_0x18;
     UnkBlock118<4> field_0x20[7];
     UnkPad118 pad_0x3c;
     UnkBlock118<0x14> field_0x40;

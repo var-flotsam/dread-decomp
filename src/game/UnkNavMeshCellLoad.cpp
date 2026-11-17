@@ -54,7 +54,7 @@ static inline UnkNavEdgeVector* Edges(UnkNavMeshCell* cell) {
 static inline UnkNavEdgeRecord& EdgeAt(UnkNavEdgeVector* v, u32 index) {
     if (v->field_0x14 && v->count <= index) {
         if (v->capacity <= index && v->step != 0)
-            v->Reserve((index / v->step + 1) * v->step);
+            v->Reserve(v->GrownCapacity(index));
         fn_71002b0e78(v, index + 1);
     }
     return v->data[index];

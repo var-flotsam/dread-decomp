@@ -8,6 +8,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -28,9 +29,9 @@ void fn_71000e8118(UnkReflField* field, u64 index);
 namespace game::logic::collision::CCollider {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("pShape", true), base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0xffffffff, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("pShape", true), base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0xffffffff, -1, -1);
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_pShape_GetterFunction", true))) {
+        DREAD_REFLECTED_FUNCTION("_m_pShape_GetterFunction") {
             fn->name = base::global::UnkStrId("_m_pShape_GetterFunction", true);
             fn->return_type = base::reflection::PointerType<game::logic::collision::CShape*>::Get();
             fn->field_0xb2 = 0;

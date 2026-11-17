@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAnimSpeedTrack
 namespace CCharClassAnimSpeedTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Anim Speed");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Anim Speed", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Anim Speed");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Anim Speed", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSpeedMultiplier", 0x18, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 10.0f));

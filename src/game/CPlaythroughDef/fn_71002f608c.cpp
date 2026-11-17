@@ -5,16 +5,11 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 extern char unk_7101a222c8[];
 
-struct UnkNodeList_71002f608c {
-    char* vtable;
-    u32 count;
-    char* head;
-    char* tail;
-    base::UnkAllocator* allocator;
-};
+using UnkNodeList_71002f608c = base::UnkVtableList<char>;
 
 template <char* Vtable, u32 Next>
 __attribute__((always_inline)) inline void DestroyStrList(UnkNodeList_71002f608c* self) {

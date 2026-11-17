@@ -12,6 +12,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkOwner;
 
@@ -25,14 +26,7 @@ struct UnkPoolPlayerRef_ovb0069 {
     UnkOwner* actor;  // 0x10
 };
 
-struct UnkPoolList_ovb0069 {
-    void** vtable;
-    u32 count;
-    UnkPoolNode_ovb0069* head;
-    UnkPoolNode_ovb0069* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkPoolList_ovb0069 : base::UnkVtableList<UnkPoolNode_ovb0069> {
     s32 IndexOf(UnkOwner* value) const {
         u32 i = 0;
         for (UnkPoolNode_ovb0069* n = head; n; n = n->next, ++i)

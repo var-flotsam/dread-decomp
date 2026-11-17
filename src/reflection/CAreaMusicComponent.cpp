@@ -33,14 +33,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fEnterFadeOut", 0xad0, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fExitFadeIn", 0xad4, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fExitFadeOut", 0xad8, (DefaultValue, 0.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPreset_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sPreset_GetterFunction") {
         fn->name = base::global::UnkStrId("_sPreset_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007161c4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sPreset_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sPreset_SetterFunction")
         fn_7100715c7c(fn, "_sPreset_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPreset");
     DREAD_REFLECTED_FIELD_OF("EMusicFadeType", "eEnterFadeType", 0xadc, (DefaultValue, 1), (Description, base::global::CRntString("")));

@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 extern CStrId* g_unk_7101d676d8[];
 namespace CCharClassStopVibrationEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Stop Vibration");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Vibration", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Stop Vibration");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Vibration", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Extension, CStrId(*g_unk_7101d676d8[6])));
