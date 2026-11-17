@@ -111,7 +111,7 @@ struct UnkApMapNode_la6ce48 {
 struct UnkApRegistry_la6ce48 {
     bool initialized;
     CStrId name;
-    UnkStrIdTable table;  // 0x10
+    UnkOwnedStrIdTable table;  // 0x10
 };
 static_assert(sizeof(UnkApRegistry_la6ce48) == 0x38, "layout");
 
@@ -162,11 +162,7 @@ void fn_7100a6ce48(UnkAp_la6ce48* self) {
     fn_7100065f0c(self->field_0x978);
 
     UnkApRegistry_la6ce48& registry = self->registry;
-    fn_71004f11f8(&registry.table);
-    if (registry.table.keys)
-        registry.table.allocator->vf_0x48(registry.table.keys);
-    if (registry.table.values)
-        registry.table.allocator->vf_0x48(registry.table.values);
+    registry.table.~UnkOwnedStrIdTable();
     registry.name.~CStrId();
 
     self->list.Free();

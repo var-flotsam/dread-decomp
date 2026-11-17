@@ -69,16 +69,6 @@ struct UnkDemolitionWeakKind_l8c4dc4 {
     static void Detach(UnkWeakTarget* owner, void* listener) { fn_710117b3f0(owner, listener); }
 };
 
-struct UnkDemolitionTable_l8c4dc4 : UnkStrIdTable {
-    ~UnkDemolitionTable_l8c4dc4() {
-        fn_71004f11f8(this);
-        if (keys)
-            allocator->vf_0x48(keys);
-        if (values)
-            allocator->vf_0x48(values);
-    }
-};
-
 // Releases an id and path pair with its resource (fn_7100026f70).
 static inline void ReleasePath(UnkStrIdPathResource* path) {
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(path));
@@ -88,7 +78,7 @@ struct UnkDemolitionBlockLife_l8c4dc4 {
     void** vtable;
     u8 pad_0x8[0x258];
     base::UnkStrIdMember name;              // 0x260
-    UnkDemolitionTable_l8c4dc4 table;       // 0x268
+    UnkOwnedStrIdTable table;               // 0x268
     u8 pad_0x290[0x8];
     UnkStrIdPathResource path_0x298;
     UnkStrIdPathResource path_0x2b0;
@@ -119,7 +109,7 @@ void fn_71008c4dc4(UnkDemolitionBlockLife_l8c4dc4* self) {
     ReleasePath(&self->path_0x2c8);
     ReleasePath(&self->path_0x2b0);
     ReleasePath(&self->path_0x298);
-    self->table.~UnkDemolitionTable_l8c4dc4();
+    self->table.~UnkOwnedStrIdTable();
     using base::UnkStrIdMember;
     self->name.~UnkStrIdMember();
     fn_710115f91c(self);

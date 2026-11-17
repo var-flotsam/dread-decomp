@@ -50,15 +50,7 @@ static_assert(sizeof(UnkBeamEntry_l8a6128) == 0x48, "entry size");
 struct UnkBeamIdList_l8a6128 {
     u8 field_0x0;
     base::UnkStrIdMember id;
-    UnkStrIdTable table;
-
-    ~UnkBeamIdList_l8a6128() {
-        fn_71004f11f8(&table);
-        if (table.keys)
-            table.allocator->vf_0x48(table.keys);
-        if (table.values)
-            table.allocator->vf_0x48(table.values);
-    }
+    UnkOwnedStrIdTable table;
 };
 
 // The counted link a listener holds; the object it is registered with is at +0x10.

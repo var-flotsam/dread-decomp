@@ -18,16 +18,12 @@ struct UnkWeightActivablePlatform_b52 {
     base::UnkStrIdMember field_0x270;
     u8 unk_0x278[0x10];
     base::UnkStrIdMember field_0x288;
-    UnkStrIdTable field_0x290;
+    UnkOwnedStrIdTable field_0x290;
 };
 
 void fn_7100952fec(UnkWeightActivablePlatform_b52* self) {
     self->vtable = g_unk_7101a849b8 + 2;
-    fn_71004f11f8(&self->field_0x290);
-    if (self->field_0x290.keys)
-        self->field_0x290.allocator->vf_0x48(self->field_0x290.keys);
-    if (self->field_0x290.values)
-        self->field_0x290.allocator->vf_0x48(self->field_0x290.values);
+    self->field_0x290.~UnkOwnedStrIdTable();
     self->field_0x288.~UnkStrIdMemberOf();
     self->field_0x270.~UnkStrIdMemberOf();
     fn_71009516e0(self);

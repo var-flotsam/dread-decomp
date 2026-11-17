@@ -47,7 +47,7 @@ struct UnkPowerBombBlockLife_ovb0127 {
     void** vtable;
     u8 pad_0x8[0x240];
     base::global::CStrId field_0x248;
-    UnkStrIdTable field_0x250;
+    UnkOwnedStrIdTable field_0x250;
     UnkPowerBombListener_ovb0127 field_0x278;
     UnkPowerBombListener_ovb0127 field_0x298;
 };
@@ -59,12 +59,7 @@ void fn_71008e3034(UnkPowerBombBlockLife_ovb0127* self) {
     self->vtable = g_unk_7101a7f280 + 2;
     self->field_0x298.Destroy(g_unk_7101a22d48 + 2, DetachA);
     self->field_0x278.Destroy(g_unk_7101a77000 + 2, DetachB);
-    UnkStrIdTable* table = &self->field_0x250;
-    fn_71004f11f8(table);
-    if (table->keys)
-        table->allocator->vf_0x48(table->keys);
-    if (table->values)
-        table->allocator->vf_0x48(table->values);
+    self->field_0x250.~UnkOwnedStrIdTable();
     self->field_0x248.Reset();
     fn_710115f91c(self);
 }

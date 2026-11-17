@@ -13,15 +13,11 @@ using base::global::UnkStringPool;
 struct UnkValveRecord_b44a2 {
     u64 field_0x0;
     UnkStringData* field_0x8;  // CStrId
-    UnkStrIdTable field_0x10;
+    UnkOwnedStrIdTable field_0x10;
 };
 
 void fn_71007b4578(UnkValveRecord_b44a2* self) {
-    fn_71004f11f8(&self->field_0x10);
-    if (self->field_0x10.keys)
-        self->field_0x10.allocator->vf_0x48(self->field_0x10.keys);
-    if (self->field_0x10.values)
-        self->field_0x10.allocator->vf_0x48(self->field_0x10.values);
+    self->field_0x10.~UnkOwnedStrIdTable();
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->field_0x8;
         if (*id && *id != &pool->empty) {

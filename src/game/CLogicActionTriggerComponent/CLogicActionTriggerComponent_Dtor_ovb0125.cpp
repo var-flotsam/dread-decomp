@@ -15,17 +15,13 @@ struct UnkLogicActionTrigger_ovb0125 : UnkBaseComponent {
     UnkOwnedList actions;  // 0x40
     u8 pad_0x68[0x8];
     CStrId field_0x70;
-    UnkStrIdTable field_0x78;
+    UnkOwnedStrIdTable field_0x78;
 };
 static_assert(__builtin_offsetof(UnkLogicActionTrigger_ovb0125, field_0x78) == 0x78, "layout");
 
 void fn_710090f358(UnkLogicActionTrigger_ovb0125* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101a81370 + 0x10);
-    fn_71004f11f8(&self->field_0x78);
-    if (self->field_0x78.keys)
-        self->field_0x78.allocator->vf_0x48(self->field_0x78.keys);
-    if (self->field_0x78.values)
-        self->field_0x78.allocator->vf_0x48(self->field_0x78.values);
+    self->field_0x78.~UnkOwnedStrIdTable();
     self->field_0x70.Reset();
     self->actions.~UnkOwnedList();
     fn_71010c4194(self);
