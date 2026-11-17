@@ -177,7 +177,7 @@ def main():
         block.clear()
 
     for l in lines:
-        if l.startswith("  ") and "RELOC" not in l and "KIND" not in l and "ALIAS" not in l:
+        if l.startswith("  ") and not any(t in l for t in ("RELOC", "KIND", "ALIAS", "SHAPE")):
             block.append(l)
         else:
             flush()

@@ -133,6 +133,17 @@ python tools/tu_map.py --report               # coverage, confidence histogram, 
 python tools/tu_map.py --top 20               # the largest units
 ```
 
+### `tools/vtables.py`
+
+Function-pointer tables of main (virtual tables, mostly) and the slot families they form: which functions share a slot, so one slot name names every override and a function's matched siblings can be read beside it.
+
+```sh
+python tools/vtables.py --version 2.1.0                   # write build/vtables/2.1.0/slots.csv and print the summary
+python tools/vtables.py --version 2.1.0 --summary --top 20   # the largest families: tables, slots, functions, unnamed, U
+python tools/vtables.py --version 2.1.0 --function 7100b8ebb8   # its tables and slots, and its siblings by status
+python tools/vtables.py --version 2.1.0 --family 0 [--slot 12]  # a family slot by slot: implementations, unnamed, matched
+```
+
 ### `tools/data_map.py`
 
 Recover which translation unit each address of main's .data and .bss belongs to, so a global can be declared in its unit's header and, later, defined in its unit's source.

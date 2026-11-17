@@ -666,6 +666,47 @@ def classify(orig: bytes, ours: bytes) -> str:
     return "registers (same instructions, other order or registers)"
 
 
+_FRAME = re.compile(r"^(?:sub sp, sp, #(0x[0-9a-f]+|\d+)|stp \S+, \S+, \[sp, #-(0x[0-9a-f]+|\d+)\]!)$")
+_CALLEE_SAVED = {f"x{n}" for n in range(19, 31)} | {f"d{n}" for n in range(8, 16)}
+_SLOT = re.compile(r"\[(sp|x29)(?:, #(-?(?:0x[0-9a-f]+|\d+)))?\]")
+
+
+def structure(orig: bytes, ours: bytes) -> str:
+    """How far apart two versions are in shape, apart from registers and offsets: the share of the
+    original's opcode sequence that ours has in the same order (a positional score counts one inserted
+    instruction as a difference in every line after it), the stack frame size each sets up, and how
+    many distinct stack slots each body reads or writes outside its prologue and epilogue (a gap there
+    is a spill or a local that lives in memory on one side only)."""
+    import capstone
+    from difflib import SequenceMatcher
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+
+    def scan(code: bytes):
+        insns = list(cs.disasm(code, 0))
+        ops = [i.mnemonic for i in insns]
+        frame, fp, slots = 0, 0, set()
+        for i in insns:
+            m = _FRAME.match(f"{i.mnemonic} {i.op_str}")
+            if m:
+                frame += int(m.group(1) or m.group(2), 0)
+                continue
+            if i.mnemonic == "add" and i.op_str.startswith("x29, sp, #"):
+                fp = int(i.op_str.rsplit("#", 1)[1], 0)
+                continue
+            regs = [r.strip() for r in i.op_str.split("[", 1)[0].split(",") if r.strip()]
+            if i.mnemonic in ("stp", "ldp", "str", "ldr") and regs and all(r in _CALLEE_SAVED for r in regs):
+                continue  # saving or restoring a callee-saved register
+            for base, off in _SLOT.findall(i.op_str):
+                slots.add(int(off or "0", 0) + (fp if base == "x29" else 0))
+        return ops, frame, slots
+
+    oa, fa, sa = scan(orig)
+    ob, fb, sb = scan(ours)
+    same = SequenceMatcher(None, oa, ob, autojunk=False).ratio()
+    return (f"opcodes {same:.1%} in the same order; frame {fa:#x} vs {fb:#x}; "
+            f"{len(sa)} vs {len(sb)} stack slots used in the body (original first)")
+
+
 def _is_test(insn: str) -> bool:
     m = insn.split(" ", 1)[0]
     return m.startswith("b.") or m in _COND_BRANCHES or m in ("cmp", "cmn", "tst", "ccmp", "ccmn", "cset", "csel")

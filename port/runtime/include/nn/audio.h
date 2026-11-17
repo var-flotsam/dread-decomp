@@ -62,9 +62,11 @@ struct WaveBuffer {
 static_assert(sizeof(WaveBuffer) == 0x30, "nn::audio::WaveBuffer");
 
 bool IsVoiceValid(const VoiceType* voice);
+bool IsVoiceDroppedFlagOn(const VoiceType* voice);
 void SetVoicePriority(VoiceType* voice, s32 priority);
 VoiceType::PlayState GetVoicePlayState(const VoiceType* voice);
 void SetVoicePlayState(VoiceType* voice, VoiceType::PlayState state);
+s64 GetVoicePlayedSampleCount(const VoiceType* voice);
 bool AppendWaveBuffer(VoiceType* voice, const WaveBuffer* buffer);
 
 // The renderer's parameters, which nn::atk fills from the sound system's settings to size its

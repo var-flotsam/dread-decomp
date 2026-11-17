@@ -113,8 +113,8 @@ git fetch upstream
 git switch -c <topic> upstream/main
 ```
 
-- Pick work with `tools/hubs.py --version 2.1.0 --boot` (the unmatched functions with the most
-  unmatched callers along the boot path, then the whole binary), or `--ready` (functions whose
+- Pick work with `tools/hubs.py --version 2.1.0` (the unmatched functions with the most
+  unmatched callers; the boot path has no priority while the port is on hold), or `--ready` (functions whose
   callees are all matched). `docs/HANDOFF.md` ("Workstreams and next steps") says what is next; open
   an issue first for anything large (a new generator, a new subsystem, a change to shared
   headers) so two people don't do the same thing.

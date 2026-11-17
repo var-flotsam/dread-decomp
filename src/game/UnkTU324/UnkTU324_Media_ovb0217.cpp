@@ -124,7 +124,6 @@ struct UnkMedia324_b0217 {
 };
 
 void fn_7100224da0(UnkMedia324_b0217* self);
-void fn_71002204d8(void* table, u32 count);
 
 static inline void SetState(UnkMedia324_b0217* self, s32 state) {
     fn_710006691c(&self->listener_lock);
