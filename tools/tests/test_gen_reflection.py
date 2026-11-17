@@ -330,3 +330,29 @@ class AttributeKeysByName(unittest.TestCase):
         keys = gr.attribute_keys()
         self.assertEqual(keys.get(0x7100007e80), "Description")
         self.assertNotIn(0x710000bf80, keys)  # Persistence is a typed key, written with its enum
+
+
+class LooseClassLines(unittest.TestCase):
+    def test_namespace_form(self):
+        saved = gr.role_helper
+        gr.role_helper = lambda orig, slot, addr: "s32 refl_Hash() { return -1; }" if slot == 0x60 else None
+        try:
+            lines = gr.loose_class_lines(None, "CFoo::SBar", 0x28, True, {0x58: 0x30, 0x60: 0x10, 0x68: 0x20})
+        finally:
+            gr.role_helper = saved
+        self.assertEqual(lines, [
+            "// CFoo::SBar",
+            "namespace CFoo::SBar {",
+            "s32 refl_Hash() { return -1; }",
+            "const base::reflection::CType& refl_TypeOf(const void* obj);",
+            "bool refl_Equals(const void* a, const void* b);",
+            "struct refl_Description : ClassDescription {",
+            "    static constexpr u64 size = 0x28;",
+            "    static constexpr bool abstract = true;",
+            "    static constexpr auto equals = &refl_Equals;",
+            "    static constexpr auto hash = &refl_Hash;",
+            "    static constexpr auto type_of = &refl_TypeOf;",
+            "};",
+            "}  // namespace CFoo::SBar",
+            "DREAD_REFLECTED_DESCRIPTOR(CFoo::SBar);",
+        ])
