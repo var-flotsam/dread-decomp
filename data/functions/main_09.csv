@@ -1544,7 +1544,7 @@ address,size,name,name_source,subsystem,status
 0x710093fab8,720,fn_710093fab8,unknown,unknown,U
 0x710093fd88,336,fn_710093fd88,unknown,unknown,O
 0x710093fed8,48,fn_710093fed8,unknown,unknown,O
-0x710093ff08,580,fn_710093ff08,unknown,unknown,U
+0x710093ff08,580,fn_710093ff08,unknown,unknown,O
 0x710094014c,140,fn_710094014c,unknown,unknown,O
 0x71009401d8,492,fn_71009401d8,unknown,unknown,U
 0x71009403c4,204,fn_71009403c4,unknown,unknown,U
@@ -1570,7 +1570,7 @@ address,size,name,name_source,subsystem,status
 0x7100946804,664,fn_7100946804,unknown,unknown,U
 0x7100946a9c,700,fn_7100946a9c,unknown,unknown,U
 0x7100946d58,600,fn_7100946d58,unknown,unknown,U
-0x7100946fb0,744,fn_7100946fb0,unknown,unknown,U
+0x7100946fb0,744,fn_7100946fb0,unknown,unknown,O
 0x7100947298,52,fn_7100947298,unknown,unknown,O
 0x71009472cc,740,fn_71009472cc,unknown,unknown,U
 0x71009475b0,464,fn_71009475b0,unknown,unknown,O
@@ -2495,7 +2495,7 @@ address,size,name,name_source,subsystem,status
 0x7100982ab4,20,base::reflection::ValueOps<ESamusUsingGrapplePullPointStatePullStage>::CopyAssign,reflection,engine/reflection,O
 0x7100982ac8,20,base::reflection::ValueOps<ESamusUsingGrapplePullPointStatePullStage>::MoveAssign,reflection,engine/reflection,O
 0x7100982ae0,412,fn_7100982ae0,unknown,unknown,O
-0x7100982c7c,440,fn_7100982c7c,unknown,unknown,U
+0x7100982c7c,440,fn_7100982c7c,unknown,unknown,O
 0x7100982e34,568,fn_7100982e34,unknown,unknown,O
 0x710098306c,368,fn_710098306c,unknown,unknown,O
 0x71009831dc,264,fn_71009831dc,unknown,unknown,O
@@ -2514,14 +2514,14 @@ address,size,name,name_source,subsystem,status
 0x7100985390,508,fn_7100985390,unknown,unknown,U
 0x710098558c,488,fn_710098558c,unknown,unknown,U
 0x7100985774,660,fn_7100985774,unknown,unknown,O
-0x7100985a08,384,fn_7100985a08,unknown,unknown,U
+0x7100985a08,384,fn_7100985a08,unknown,unknown,O
 0x7100985b88,656,fn_7100985b88,unknown,unknown,O
 0x7100985e18,504,fn_7100985e18,unknown,unknown,O
 0x7100986010,1360,fn_7100986010,unknown,unknown,U
 0x7100986560,892,fn_7100986560,unknown,unknown,U
 0x71009868dc,4128,fn_71009868dc,unknown,unknown,U
-0x71009878fc,340,fn_71009878fc,unknown,unknown,U
-0x7100987a50,348,fn_7100987a50,unknown,unknown,U
+0x71009878fc,340,fn_71009878fc,unknown,unknown,O
+0x7100987a50,348,fn_7100987a50,unknown,unknown,O
 0x7100987bac,20,fn_7100987bac,unknown,unknown,O
 0x7100987bc0,44,fn_7100987bc0,unknown,unknown,O
 0x7100987bec,44,fn_7100987bec,unknown,unknown,O
@@ -2588,7 +2588,7 @@ address,size,name,name_source,subsystem,status
 0x71009886c4,632,CSamusAirMovementState::CTunableSamusAirMovementState::refl_AddFields,reflection,game/player,O
 0x710098893c,388,CSamusAirMovementState::CTunableSamusAirMovementState::refl_InitClass,reflection,game/player,O
 0x7100988ac0,696,fn_7100988ac0,unknown,unknown,O
-0x7100988d78,132,fn_7100988d78,unknown,unknown,U
+0x7100988d78,132,fn_7100988d78,unknown,unknown,m
 0x7100988dfc,144,fn_7100988dfc,unknown,unknown,O
 0x7100988e8c,140,fn_7100988e8c,unknown,unknown,O
 0x7100988f18,128,fn_7100988f18,unknown,unknown,O
@@ -2598,7 +2598,7 @@ address,size,name,name_source,subsystem,status
 0x710098908c,432,fn_710098908c,unknown,unknown,U
 0x710098923c,60,fn_710098923c,unknown,unknown,O
 0x7100989278,1244,fn_7100989278,unknown,unknown,U
-0x7100989754,536,fn_7100989754,unknown,unknown,U
+0x7100989754,536,fn_7100989754,unknown,unknown,O
 0x710098996c,568,fn_710098996c,unknown,unknown,U
 0x7100989ba4,220,fn_7100989ba4,unknown,unknown,U
 0x7100989c80,624,fn_7100989c80,unknown,unknown,U
@@ -2646,7 +2646,7 @@ address,size,name,name_source,subsystem,status
 0x710098dae0,8,fn_710098dae0,unknown,unknown,O
 0x710098dae8,28,fn_710098dae8,unknown,unknown,O
 0x710098db04,36,fn_710098db04,unknown,unknown,O
-0x710098db28,324,fn_710098db28,unknown,unknown,U
+0x710098db28,324,fn_710098db28,unknown,unknown,O
 0x710098dc6c,192,fn_710098dc6c,unknown,unknown,O
 0x710098dd2c,128,fn_710098dd2c,unknown,unknown,U
 0x710098ddac,192,fn_710098ddac,unknown,unknown,O
@@ -3060,7 +3060,7 @@ address,size,name,name_source,subsystem,status
 0x71009a609c,96,fn_71009a609c,unknown,unknown,O
 0x71009a60fc,8,fn_71009a60fc,unknown,unknown,O
 0x71009a6104,8,fn_71009a6104,unknown,unknown,O
-0x71009a610c,188,fn_71009a610c,unknown,unknown,U
+0x71009a610c,188,fn_71009a610c,unknown,unknown,m
 0x71009a61c8,292,fn_71009a61c8,unknown,unknown,O
 0x71009a62ec,36,fn_71009a62ec,unknown,unknown,O
 0x71009a6310,444,fn_71009a6310,unknown,unknown,O

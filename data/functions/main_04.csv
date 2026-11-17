@@ -2397,7 +2397,7 @@ address,size,name,name_source,subsystem,status
 0x7100473a08,280,fn_7100473a08,unknown,game/ai?,O
 0x7100473b20,4,fn_7100473b20,unknown,game/ai?,O
 0x7100473b24,900,fn_7100473b24,unknown,game/ai?,U
-0x7100473ea8,308,fn_7100473ea8,unknown,game/ai?,U
+0x7100473ea8,308,fn_7100473ea8,unknown,game/ai?,O
 0x7100473fdc,108,fn_7100473fdc,unknown,game/ai?,O
 0x7100474048,932,fn_7100474048,unknown,game/ai?,U
 0x71004743ec,4,fn_71004743ec,unknown,game/ai?,O
@@ -2421,7 +2421,7 @@ address,size,name,name_source,subsystem,status
 0x7100474eec,44,CChozoRobotSoldierAIComponent::refl_Construct,reflection,game/ai,O
 0x7100474f18,12,CChozoRobotSoldierAIComponent::refl_Destroy,reflection,game/ai,O
 0x7100474f24,92,fn_7100474f24,unknown,unknown,O
-0x7100474f80,160,fn_7100474f80,unknown,unknown,U
+0x7100474f80,160,fn_7100474f80,unknown,unknown,m
 0x7100475020,472,fn_7100475020,unknown,unknown,O
 0x71004751f8,76,fn_71004751f8,unknown,unknown,O
 0x7100475244,300,fn_7100475244,unknown,unknown,O
@@ -5536,7 +5536,7 @@ address,size,name,name_source,subsystem,status
 0x71004e42bc,388,CDredhedDiveAttack::refl_InitClass,reflection,game/ai,O
 0x71004e4440,56,fn_71004e4440,unknown,game/ai?,O
 0x71004e4478,96,fn_71004e4478,unknown,game/ai?,O
-0x71004e44d8,308,fn_71004e44d8,unknown,game/ai?,U
+0x71004e44d8,308,fn_71004e44d8,unknown,game/ai?,O
 0x71004e460c,128,fn_71004e460c,unknown,game/ai?,O
 0x71004e468c,640,fn_71004e468c,unknown,game/ai?,U
 0x71004e490c,300,fn_71004e490c,unknown,game/ai?,U
