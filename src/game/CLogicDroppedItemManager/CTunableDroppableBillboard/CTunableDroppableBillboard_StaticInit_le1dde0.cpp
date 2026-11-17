@@ -49,11 +49,6 @@ struct UnkDropTunable_ovb0208 : UnkTunable {
 static_assert(sizeof(UnkDropTunable_ovb0208) == 0x258, "size");
 void fn_7100e20ba0(UnkDropTunable_ovb0208* self);
 
-extern CStrId g_unk_71727c1048;
-extern CStrId g_unk_71727c1058;
-extern CStrId g_unk_71727c1060;
-extern CStrId g_unk_71727c1068;
-extern CStrId g_unk_71727c1078;
 void fn_7100e1dbc0(void*) __attribute__((visibility("hidden")));
 extern char g_unk_71727c10c0[];
 extern UnkSoundHandle g_unk_71727c1328;

@@ -128,12 +128,6 @@ struct UnkDropScaleTunable_b0105 {
 };
 extern UnkDropScaleTunable_b0105 g_unk_7172a0a0a8;
 
-extern CStrId g_unk_71727c1048;
-extern CStrId g_unk_71727c1058;
-extern CStrId g_unk_71727c1060;
-extern CStrId g_unk_71727c1068;
-extern CStrId g_unk_71727c1078;
-
 struct UnkDropAmount_b0105 {
     u8 pad_0x0[0x460];
     CStrId item;  // 0x460

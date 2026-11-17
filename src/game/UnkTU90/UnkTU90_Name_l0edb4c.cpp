@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkTU80.h"
@@ -21,7 +22,6 @@ using base::reflection::UnkTypedRef;
 struct UnkWriter_b0202;
 
 void fn_71000ed480(UnkWriter_b0202* self, const UnkReflValueRef* ref);
-bool fn_710009d760(const UnkReflObject* obj, const CType* type);
 
 struct UnkWriteNode_l0edb4c {
     u8 pad_0x0[0xe0];

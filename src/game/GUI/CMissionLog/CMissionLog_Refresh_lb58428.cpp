@@ -3,6 +3,7 @@
 // current list and page, and labels the close button "close" or "back". Names and layouts are
 // placeholders.
 #include "base/global/CRntString.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -11,8 +12,6 @@
 #include "types.h"
 
 using base::global::CRntString;
-
-bool fn_7100deac24(UnkGameManager* manager);
 
 // A reference to a display object of the log's layout.
 struct UnkMissionLogRef_l58428 {
@@ -54,8 +53,6 @@ struct UnkMissionLog_l58428 : UnkGuiDisplayObject {
 static_assert(__builtin_offsetof(UnkMissionLog_l58428, objectives) == 0x238, "layout");
 static_assert(__builtin_offsetof(UnkMissionLog_l58428, page_counter) == 0x2b8, "layout");
 static_assert(__builtin_offsetof(UnkMissionLog_l58428, prev_arrow) == 0x300, "layout");
-
-void fn_71011d9050(void*);
 
 static inline UnkGuiDisplayObject* Get(UnkMissionLogRef_l58428* ref) {
     return ref ? ref->target : nullptr;

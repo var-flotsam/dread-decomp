@@ -4,6 +4,7 @@
 // block (+0x1f0, its +0x30) when there is one. Names and layout are placeholders.
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
+#include "game/UnkTU252.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -24,8 +25,6 @@ struct UnkPlanktonModel_b44a2 {
     u8 pad_0x0[0x130];
     void* field_0x130;
 };
-
-UnkPlanktonInstance_b44a2* fn_71001be428(void* model);
 
 struct UnkPlanktonFX_b44a2 {
     u8 pad_0x0[0x1294];

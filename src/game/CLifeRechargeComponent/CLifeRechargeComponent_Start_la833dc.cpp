@@ -4,6 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CFXComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -73,7 +74,6 @@ struct UnkLifeRecharge_la833dc {
 
 // The base step, as the ammo recharge's start declares it.
 struct UnkAmmoRecharge_la77790;
-void fn_7100aa2850(UnkAmmoRecharge_la77790* self);
 
 void fn_7100a833dc(UnkLifeRecharge_la833dc* self) {
     fn_7100aa2850(reinterpret_cast<UnkAmmoRecharge_la77790*>(self));

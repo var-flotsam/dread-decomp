@@ -12,7 +12,6 @@
 
 struct UnkStateObject;
 void fn_71007b15f4(char* self);
-extern void* g_unk_7101a70380[];
 
 struct UnkDemolitionBlockComponent {
     void** vtable;

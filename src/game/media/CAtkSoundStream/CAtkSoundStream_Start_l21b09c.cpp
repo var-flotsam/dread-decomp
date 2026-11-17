@@ -9,6 +9,7 @@
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU23.h"
+#include "game/media/CMediaStream.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -101,7 +102,6 @@ inline UnkPlayingSound_ovb0074* PlayingSound_l21b09c(const UnkPlayingHandle_ovb0
 }
 
 struct UnkMovieStreamNx_ovb0003;
-void fn_710021b7c4(UnkMovieStreamNx_ovb0003* self);
 
 void fn_710021b09c(UnkAtkSoundStream_l21b09c* self) {
     fn_710021b7c4(reinterpret_cast<UnkMovieStreamNx_ovb0003*>(self));

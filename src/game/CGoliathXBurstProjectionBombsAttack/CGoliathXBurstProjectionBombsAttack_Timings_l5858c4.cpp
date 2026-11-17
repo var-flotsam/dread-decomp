@@ -2,6 +2,7 @@
 // actions (+0x220), reads the motion's end (+0x2c) of the timelines named by g_unk_71726e55b8 and
 // g_unk_71726e55c0 into +0x30 and +0x34. Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/CGoliathXBurstProjectionBombsAttack.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
@@ -41,8 +42,6 @@ struct UnkTimeline {
 };
 
 struct UnkCls_710117af10;
-extern UnkCls_710117af10* g_unk_71726e55b8 __attribute__((visibility("hidden")));
-extern UnkCls_710117af10* g_unk_71726e55c0 __attribute__((visibility("hidden")));
 
 // What this unit reads of a UnkCls_710117af10: its key (+0x30).
 struct UnkGoliathXBombsName_l5858c4 {

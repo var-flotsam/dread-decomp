@@ -10,6 +10,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkTU1645.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTypedValue.h"
 #include "types.h"
@@ -31,14 +32,6 @@ struct UnkProfileSaveArg {
 };
 
 // The snapshot properties (src/game_s7/fn_7100ae39e0.cpp).
-extern UnkPropertyEx<> g_unk_717275b188;
-extern UnkPropertyEx<> g_unk_717275b1c8;
-extern UnkPropertyEx<> g_unk_717275b208;
-extern UnkPropertyEx<> g_unk_717275b248;
-extern UnkPropertyEx<> g_unk_717275b288;
-extern UnkPropertyEx<> g_unk_717275b2c8;
-extern UnkPropertyEx<> g_unk_717275b308;
-extern UnkPropertyEx<> g_unk_717275b348;
 
 // An empty block, released when it goes out of scope.
 struct UnkEmptyBlob_db19e0 {

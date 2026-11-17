@@ -4,6 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CFXComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -70,8 +71,6 @@ struct UnkAmmoRecharge_la77790 {
     UnkAmmoRechargeEffect_la77790* effect_0x548;
     UnkAmmoRechargeEffect_la77790* effect_0x550;
 };
-
-void fn_7100aa2850(UnkAmmoRecharge_la77790* self);
 
 void fn_7100a77790(UnkAmmoRecharge_la77790* self) {
     fn_7100aa2850(self);

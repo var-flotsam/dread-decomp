@@ -25,6 +25,7 @@
 #include "game/UnkTU376.h"
 #include "game/UnkTU55.h"
 #include "game/UnkTU56.h"
+#include "game/navmesh/CDynamicSmartLinkRules.h"
 #include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
@@ -1102,8 +1103,6 @@ struct alignas(8) UnkNavLoadRecord {
 static_assert(__builtin_offsetof(UnkNavLoadRecord, field_0x38) == 0x38, "UnkNavLoadRecord layout");
 static_assert(__builtin_offsetof(UnkNavLoadRecord, field_0x58) == 0x58, "UnkNavLoadRecord layout");
 static_assert(sizeof(UnkNavLoadRecord) == 0x100, "UnkNavLoadRecord layout");
-
-u32 fn_710026d2e4(const char* name);  // a name's enumerator
 
 static inline UnkObject_0x100* AsObject(UnkNavLoadRecord* r) { return reinterpret_cast<UnkObject_0x100*>(r); }
 

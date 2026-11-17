@@ -127,7 +127,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkHelper;
 struct UnkMovement_71010d0e38;
-bool fn_71009e12d0(void*);
 
 // An AI component as seen through the reflected object (vtable slot 0 gives its class).
 struct UnkMeleeAI_ovb0041 : UnkReflObject {

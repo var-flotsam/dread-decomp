@@ -2,6 +2,7 @@
 // that accepts the request (by key when keys are given), filling a launch state; when one fires and
 // a callback is set, the callback decides whether the stored state is kept or replaced by the new one.
 // Names and layouts are placeholders.
+#include "game/CCharClassShotComponent.h"
 #include "game/UnkAssignedSlot.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -11,7 +12,6 @@ void fn_71009f9d8c(UnkShotLaunchState* self);
 
 struct UnkShotDef_ovb0066;
 struct UnkShotEntry_ovb0066;
-bool fn_71009f8d1c(UnkShotDef_ovb0066* self, const u64* key, UnkShotEntry_ovb0066** out);
 
 struct UnkRefCounted_l9f92e4;
 

@@ -2,12 +2,12 @@
 // fn_71011986e0) about the component's path id (+0x150), passed as a copy. Names are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2730.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
 // As src/engine/HostArguments.cpp declares it.
-u32 fn_71011986e0(void* manager, const CFilePathStrId* path);
 
 struct UnkCutsceneComponent_b53 {
     u8 pad_0x0[0x150];

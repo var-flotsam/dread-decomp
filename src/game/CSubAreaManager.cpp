@@ -20,6 +20,7 @@
 #include "base/global/CRntDictionary.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -503,7 +504,6 @@ struct UnkSubAreaDropTargetView {
 };
 
 using base::input::UnkRumbleManager;
-void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;
@@ -514,7 +514,6 @@ void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);
 // The file device singleton and the sound manager (src/game/CGameManager.cpp).
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
-void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_7100108c94(UnkSoundMgr* self, const CFilePathStrId* path);
 // The file-path id array's element accessor (CRntVector::GrowAt, out of line).
 UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* self, u32 index);

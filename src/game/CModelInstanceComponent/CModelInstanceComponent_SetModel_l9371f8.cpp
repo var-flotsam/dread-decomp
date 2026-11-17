@@ -13,7 +13,6 @@ using base::global::CFilePathStrId;
 
 struct UnkModelInstanceComponent_mic;
 
-void fn_710021949c(UnkRenderManager* self, u64 object, u32 arg2, u32 arg3);
 bool fn_7100e0484c(UnkGameManager* manager, const CFilePathStrId* path);
 void fn_7100936da0(UnkModelInstanceComponent_mic* self);
 

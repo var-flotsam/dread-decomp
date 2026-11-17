@@ -4,6 +4,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
+#include "game/CBatalloonAIComponent.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
@@ -11,11 +13,9 @@ using base::reflection::CType;
 
 struct UnkNavComponent;
 struct UnkNavGroupInfo;
-UnkNavGroupInfo* fn_710110c3d8(UnkNavComponent* component);
 
 struct UnkSwifterMember_ovb0114;
 struct UnkSwifterActor_ovb0114;
-UnkSwifterActor_ovb0114** fn_71003df2d0(UnkSwifterMember_ovb0114* member);
 
 struct UnkBatalloonOwner_l3dd8b0 {
     u8 pad_0x0[0x220];

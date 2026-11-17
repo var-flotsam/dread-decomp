@@ -35,7 +35,6 @@ UnkReflType* fn_7100ad3ce4();  // base::reflection::refl_GetType<gameeditor::CGa
 // gameeditor::CGameModelQueryBoard::refl_InitClass
 void fn_7100ad4718(UnkReflType* self, const CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_7100ad3dc0();
-void fn_710023ae38(void* self);
 
 void fn_7100ad4c90() {
     InitHeader(g_unk_7172756cb8);

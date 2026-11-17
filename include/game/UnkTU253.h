@@ -24,3 +24,4 @@ bool fn_71001c2bac(UnkSlots* self, u64 key, u32 kind, base::color::CColor4F* out
 bool fn_71001c2ec0(void* target, u32 a, u32 b, base::math::CVector4D* colour, u32 c, f32 time);
 u32 fn_71001c1440(UnkPowerBombPartList_ovb0127* list);
 UnkPowerBombPart_ovb0127* fn_71001c1450(UnkPowerBombPartList_ovb0127* list, u32 index);
+bool fn_71001c1694(char* self, const void* name, f32* transform);

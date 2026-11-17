@@ -22,7 +22,6 @@ using base::global::CStrId;
 using unk_static_init::UnkEnumType;
 
 extern UnkEnumType g_unk_7101d60e78;      // the flags' type
-extern UnkPropertyEx<> g_unk_717275adb0;  // "UnlockedArchives"
 
 struct UnkProfileSaveArg {
     void* field_0x0;

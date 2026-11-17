@@ -4,12 +4,11 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/behaviortree/CBaseAction.h"
+#include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern void* g_unk_7101a24d08[];
 
 struct UnkSetAnimDependsOnDirAction {
     void** vtable;

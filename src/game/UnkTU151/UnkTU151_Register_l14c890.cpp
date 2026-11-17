@@ -8,6 +8,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU204.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -19,7 +20,6 @@ using base::global::UnkStringPool;
 
 struct UnkRegistry_710014c790;
 extern UnkRegistry_710014c790* unk_710b372d68;  // the registry (reached through the GOT)
-void* fn_7100169be4(UnkRegistry_710014c790* registry, const void* key);
 void fn_7100169d28(UnkRegistry_710014c790* registry, const void* key, UnkCountedResource* resource);
 
 // A file-path id held raw, as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp defines it.

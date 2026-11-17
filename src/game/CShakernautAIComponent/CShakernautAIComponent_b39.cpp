@@ -11,6 +11,7 @@
 #include "game/CComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU2523.h"
 #include "types.h"
 
@@ -81,7 +82,6 @@ base::global::CStrId fn_71006b1d64(UnkShakernautFlags_sna* self) {
 }
 
 struct UnkParent;
-bool fn_71009e12d0(void* obj);
 
 struct UnkShakernautParams_sna {
     u8 pad_0x0[0x720];

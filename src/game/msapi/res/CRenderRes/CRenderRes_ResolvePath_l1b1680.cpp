@@ -19,7 +19,6 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern CStrId g_unk_7101d4e590;
 extern const UnkResType g_unk_716e453ef8;
 // The type the paths this builds are paired with.
 __attribute__((visibility("hidden"))) extern const UnkResType g_unk_716e554390;

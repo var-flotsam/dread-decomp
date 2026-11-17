@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/CCharClassComponent.h"
 #include "types.h"
 
@@ -15,8 +16,6 @@ template <class Value>
 struct UnkIdTable;
 using UnkReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47108, true>;
 void fn_71000d99d0(UnkIdTable<UnkReleasedStrId>* self);
-
-extern char g_unk_7101a6f348[];
 
 // A table of values and keys whose clear is out of line; destroying it clears it and frees both arrays.
 struct UnkAttackIdTable_l78d144 {

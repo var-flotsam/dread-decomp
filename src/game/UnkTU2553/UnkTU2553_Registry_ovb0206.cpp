@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "base/UnkVtableList.h"
+#include "base/file/CPackManagerDevice.h"
+#include "game/UnkTU2730.h"
 
 #include <nn/os.h>
 
@@ -143,7 +145,6 @@ struct UnkEntityState;
 void fn_71011a2e1c(UnkGameManagerSub_0x608* env);
 void fn_71011a2dac(UnkGameManagerSub_0x608* env);
 void fn_7100dea304(UnkGameManager* self, void* object);
-void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_7100dec088(UnkGameManager* self);
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 
@@ -792,7 +793,6 @@ struct UnkActorWithDef_b43a3;
 struct UnkActor_71002329e8;
 struct UnkBoundObj;
 void fn_7100d8ba60(void* holder, void* entity);
-void fn_7101198450(void* gui, UnkReflObject* entity);
 bool fn_710119dd94(UnkActorTable_b43a3* self, UnkActorWithDef_b43a3* actor);
 
 struct UnkEntityNode_de6ee8 {

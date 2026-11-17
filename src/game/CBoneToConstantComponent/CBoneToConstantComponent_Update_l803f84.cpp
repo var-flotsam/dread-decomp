@@ -4,11 +4,10 @@
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
 #include "game/UnkTU218.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::math::CVector4D;
-
-bool fn_71001c1694(char* self, const void* name, f32* transform);
 
 struct UnkBoneConstantTarget {
     u8 pad_0x0[0x30];

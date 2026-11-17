@@ -4,6 +4,7 @@
 // owner at +0x8), descriptors as UnkSpitSend (src/game_s2/UnkSpitSend.h). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CAnimationComponent.h"
+#include "game/CGoliathXBurstProjectionBombsAttack.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
@@ -53,8 +54,6 @@ void fn_71005847a4(UnkGoliathXBombsAttack_b57a3* self, f32 dt) {
 // Always returns true.
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
-extern UnkCls_710117af10* g_unk_71726e55b8 __attribute__((visibility("hidden")));
-extern UnkCls_710117af10* g_unk_71726e55c0 __attribute__((visibility("hidden")));
 
 struct UnkGoliathXBombsIdNode_b57a3 {
     u8 pad_0x0[0x30];

@@ -18,8 +18,6 @@
 
 using base::global::CStrId;
 
-extern UnkPropertyEx<> g_unk_717275b0c8;
-
 struct UnkAmiiboSingleton_laf0d38;
 extern UnkAmiiboSingleton_laf0d38* g_unk_717275c378;
 void fn_710002a028(UnkAmiiboSingleton_laf0d38* self);  // constructor

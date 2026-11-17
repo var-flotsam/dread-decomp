@@ -1,11 +1,10 @@
 // CCharClassPlayerMovement's unit (tools/tu_map.py unit 1197): a constructor over the base (fn_710078e668):
 // its own vtable, then five empty string ids. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassCharacterMovement.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-void fn_710078e668(void* self);
 
 extern char g_unk_7101a6f760[];
 

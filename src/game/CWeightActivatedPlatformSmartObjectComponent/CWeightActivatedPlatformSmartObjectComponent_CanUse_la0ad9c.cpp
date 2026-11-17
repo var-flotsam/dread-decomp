@@ -7,6 +7,7 @@
 #include "game/CInputComponent.h"
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1428.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -19,8 +20,6 @@ struct UnkPlatformUpdate_A5_b76;
 bool fn_710117ad58(UnkAnimationComponent* self);
 f32 fn_7101178134(UnkAnimationComponent* self, u64 key);
 bool fn_7100aa1098(UnkUsable_A5_b73* self, UnkWeakTarget* target);
-void fn_71008724b4(f32 time, UnkInputComponent* self, void* arg, bool reset);
-void fn_710094b508(void* object);
 
 struct UnkWapHandle_la0ad9c {
     u8 pad_0x0[0x10];

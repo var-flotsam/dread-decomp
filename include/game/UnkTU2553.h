@@ -88,3 +88,4 @@ extern const u32 g_unk_7101648434[] __attribute__((visibility("hidden")));
 bool fn_7100df59a8(UnkGameManager*);
 extern u8 g_unk_71727be8a8[];
 extern UnkGameManagerIdList g_unk_71727bebc0;
+bool fn_7100deac24(UnkGameManager* self);

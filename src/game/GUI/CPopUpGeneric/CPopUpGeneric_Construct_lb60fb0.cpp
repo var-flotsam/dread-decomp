@@ -6,14 +6,13 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CPopUpGeneric.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 using base::global::CRntVector;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-extern char g_unk_7101a9da40[];  // the pop-up's vtable
 
 void fn_7100b61e50();
 void fn_7100b61e34();

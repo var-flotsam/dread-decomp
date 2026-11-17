@@ -398,7 +398,6 @@ void fn_710015d900(void* a, bool b, bool c);
 // program's key.
 struct UnkRegistry_710014c790;
 extern UnkRegistry_710014c790* unk_710b372d68;
-void* fn_7100169be4(UnkRegistry_710014c790* registry, const void* key);
 extern __attribute__((visibility("hidden"))) u8 g_unk_716e595bb8[];
 extern __attribute__((visibility("hidden"))) f32 g_unk_7101a1e710[4];  // the overlay's tint
 

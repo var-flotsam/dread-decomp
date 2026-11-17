@@ -6,6 +6,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "types.h"
 
 using base::global::UnkStrId;
@@ -45,8 +46,6 @@ struct UnkNode : UnkBehaviorTreeNodeBase {
     UnkStrIdBase field_0x90;
     UnkInlineStr field_0x98;
 };
-
-extern void* g_unk_7101a24d08[];
 
 void fn_710036f678(UnkNode* self) {
     fn_7100393e68(self);

@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include <new>
 
+#include "game/UnkTU1141.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -42,13 +43,11 @@ static_assert(sizeof(UnkMotionRule_l714ec0) == 0x14, "UnkMotionRule_l714ec0 layo
 extern u32 g_unk_717270ec80 __attribute__((visibility("hidden")));
 extern u8 g_unk_717270ebc8;
 extern u8 g_unk_717270ebdc;
-extern u8 g_unk_717270ebf0;
 extern u8 g_unk_717270ec04;
 extern u8 g_unk_717270ec18;
 extern u8 g_unk_717270ec2c;
 extern u8 g_unk_717270ec40;
 extern u8 g_unk_717270ec54;
-extern u8 g_unk_717270ec68;
 
 void fn_7100714ec0() {
     InitHeader(reinterpret_cast<UnkTUHeader&>(g_unk_717270ec80));

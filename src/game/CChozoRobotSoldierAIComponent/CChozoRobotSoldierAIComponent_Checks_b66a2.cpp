@@ -4,11 +4,11 @@
 // arguments), true unless `id` is in the u16 list at +0x27768 (count +0x27770). Names and layouts are
 // placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
 // As src/game/CBatalloonAIComponent/fn_71003de7b4.cpp declares it.
-bool fn_71009e12d0(void*);
 
 struct UnkChozoRobotSoldierAI_b66a2 {
     u8 pad_0x0[0x30];

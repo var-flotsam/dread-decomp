@@ -6,13 +6,13 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2636.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntVector;
 using base::global::CStrId;
 
-extern void* g_unk_7101cac0c0[];
 extern void* g_unk_7101cac148[];
 
 // The entry as its owner's destructor (fn_7100fd0264) declares it; its layout is UnkEntry_lfd11e8 below.

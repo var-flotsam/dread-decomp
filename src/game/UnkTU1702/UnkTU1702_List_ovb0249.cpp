@@ -13,6 +13,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU1645.h"
+#include "game/UnkTU1702.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 #include "base/global/CStrId.h"
@@ -87,8 +88,6 @@ struct UnkProfileSaveArg {
     void* field_0x0;
     void* field_0x8;
 };
-
-extern CStrId g_unk_7172764720 __attribute__((visibility("hidden")));
 
 static inline const CStrId& IdTableKey(u32 offset) {
     return *reinterpret_cast<const CStrId*>(GameManagerIdTable().pad_0x0 + offset);

@@ -4,11 +4,10 @@
 // "ContinueArrow_Loop" (its vf_0x1e8) and the bar (+0x2c0), whose length (+0x8c) over the page count
 // becomes the step (+0x2e0), and resets the pages (fn_71011ccd20 with 0); one without pages hides the
 // bar and both arrows. Names and layouts are placeholders.
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
-
-void fn_71011d9050(void* self);  // the base composition's update
 
 struct UnkPowerDescSource_b43a3 {
     u8 pad_0x0[0x18c];

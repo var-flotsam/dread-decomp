@@ -31,8 +31,6 @@ struct UnkLifeChange_ovb0000 {
     UnkLifeChange_ovb0000(f32 life_, bool increased_) : life(life_), increased(increased_) {}
 };
 
-void fn_710116179c(void* signal, UnkLifeChange_ovb0000* change);
-
 struct UnkStrIdHandle;
 void fn_7100ae986c(UnkStrIdHandle* self, const CStrId& id);
 void fn_7101144104(UnkInventory* inventory, const UnkQualifiedId& item, f32 amount, bool flag);

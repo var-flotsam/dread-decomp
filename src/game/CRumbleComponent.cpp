@@ -4,6 +4,7 @@
 // Holds fn_71009dacbc (start a rumble). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkTU50.h"
 #include "types.h"
@@ -88,7 +89,6 @@ struct UnkRumbleParams {
     u16 field_0x40;
 };
 
-bool fn_710007453c(UnkRumbleManager* self);
 void fn_7100072030(void* rumble, void* arg);
 
 // A rumble the component started (0x68 bytes): its handle, what it was played from and two flags.

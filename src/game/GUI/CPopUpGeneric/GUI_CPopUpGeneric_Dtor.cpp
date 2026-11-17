@@ -4,11 +4,11 @@
 // pointers (+0x240, +0x238); last the display object's destructor runs (fn_71011d8e90).
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "game/GUI/CPopUpGeneric.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU32.h"
 
 struct UnkTag_7100b6117c;
-extern char g_unk_7101a9da40[];  // the pop-up's vtable
 
 struct UnkIdPair;
 struct UnkPopUpMember_7100b61264;

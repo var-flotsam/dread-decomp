@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CLightsDef.h"
+#include "game/UnkTU2528.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -28,8 +29,6 @@ struct UnkLightsArray_b42a3 {
 
 // The element's move constructor (src/game_aca57c/fn_7100d9b18c.cpp).
 struct UnkIdRecord60;
-void fn_7100d9b18c(UnkIdRecord60* self, UnkIdRecord60* other);
-void fn_7100d9bffc(UnkLightsElem_b42a3* self, const UnkLightsElem_b42a3* other);  // the element's copy constructor
 
 // A string id released in two steps (the count is decremented, then reread).
 struct UnkLightsId_lda1730 {

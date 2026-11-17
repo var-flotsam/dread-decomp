@@ -68,3 +68,4 @@ struct UnkHalf_cu {
 static_assert(sizeof(UnkHalf_cu) == 0x40, "UnkHalf_cu layout");
 extern char g_unk_7101a20a08[];
 void fn_71002337d0(UnkScenarioObject_ovb0032* object, UnkScenario_ovb0032* scenario);
+void fn_710023ae38(void* self);

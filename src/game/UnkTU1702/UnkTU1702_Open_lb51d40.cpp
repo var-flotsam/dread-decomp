@@ -16,13 +16,12 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU1645.h"
+#include "game/UnkTU1702.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern CStrId g_unk_7172764720 __attribute__((visibility("hidden")));
 
 // An object reached through a reference that resolves it on first use (its vf_0x10).
 template <class T>

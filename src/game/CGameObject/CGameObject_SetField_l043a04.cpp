@@ -14,6 +14,7 @@
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkTU2676.h"
 #include "game/UnkTU85.h"
+#include "game/lua_lib.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -23,7 +24,6 @@ using base::reflection::CEnumType;
 using base::reflection::CType;
 
 bool fn_7100099724(const CEnumType* self, const base::global::CStrId* name, s32* out);
-char* fn_71010c1050(char* p0, u32 p1);
 
 struct UnkField_l043a04 {
     u8 pad_0x0[0x10];

@@ -3,6 +3,7 @@
 // request to its entries. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassShotComponent.h"
 #include "game/UnkComponent.h"
 #include "types.h"
 
@@ -61,8 +62,6 @@ struct UnkShotKeys_ovb0066 {
     u64* keys;
     u32 count;
 };
-
-bool fn_71009f8d1c(UnkShotDef_ovb0066* def, const u64* key, UnkShotEntry_ovb0066** out);
 
 bool fn_71009f9588(UnkShotComponent_ovb0066* self, void* a, void* b, void* c, bool d, bool e,
                    const UnkShotKeys_ovb0066* keys, f32 g, void* f) {

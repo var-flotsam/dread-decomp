@@ -3,9 +3,8 @@
 // the array freed), then the member at +0x20 (fn_710023ae38). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CXParasiteGoTransformBehavior.h"
+#include "game/UnkTU341.h"
 #include "types.h"
-
-void fn_710023ae38(void* self);
 
 struct UnkGoTransformEntry_b49a3 {
     virtual ~UnkGoTransformEntry_b49a3();

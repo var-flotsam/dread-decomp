@@ -2,9 +2,8 @@
 // three arrays whose first one points at objects with a back pointer. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/nn/time.h"
 #include "types.h"
-
-extern void* g_unk_7101a1a160[];
 
 struct UnkIdNode_l06c1a4 {
     base::global::CStrId id;  // 0x0

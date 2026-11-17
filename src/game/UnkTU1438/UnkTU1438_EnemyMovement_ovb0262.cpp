@@ -5,6 +5,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "game/CCharClassCharacterMovement.h"
 #include "game/CCharClassChozoRobotSoldierAIComponent.h"
 #include "types.h"
 
@@ -76,7 +77,6 @@ struct UnkEnemyMovement_ovb0262l {
 };
 static_assert(__builtin_offsetof(UnkEnemyMovement_ovb0262l, field_0x1c8) == 0x1c8, "layout");
 
-void fn_710078e668(void* self);
 void fn_710078e6ac(void* self);
 void fn_710096485c(void* record);
 void fn_7100964b64(void* record);

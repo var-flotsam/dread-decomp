@@ -11,6 +11,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshHit.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTU362.h"
 #include "types.h"
 
@@ -84,7 +85,6 @@ struct UnkNavGroupInfo {
     u8 pad_0x0[0x30];
     CStrId name;
 };
-UnkNavGroupInfo* fn_710110c3d8(UnkNavComponent* component);
 
 struct UnkNavActor {
     u8 pad_0x0[0x240];

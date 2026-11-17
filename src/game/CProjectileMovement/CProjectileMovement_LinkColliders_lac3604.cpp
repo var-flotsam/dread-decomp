@@ -16,7 +16,7 @@ struct UnkProjectileMovementOwner {
     UnkCollisionContainer* collision;
 };
 
-struct UnkProjectileMovement {
+struct UnkProjectileMovement_lac3604 {
     u8 pad_0x0[0x30];
     UnkProjectileMovementOwner* owner;
     u8 pad_0x38[0x4a8 - 0x38];
@@ -26,7 +26,7 @@ struct UnkProjectileMovement {
     UnkProjectileMovementDef* def;  // 0x5c8
 };
 
-void fn_7100ac3604(UnkProjectileMovement* self) {
+void fn_7100ac3604(UnkProjectileMovement_lac3604* self) {
     if (self->def->collider_id.data != &g_unk_7101d47108->empty) {
         if (UnkCollisionContainer* collision = self->owner->collision) {
             UnkWeakTarget* target = reinterpret_cast<UnkWeakTarget*>(

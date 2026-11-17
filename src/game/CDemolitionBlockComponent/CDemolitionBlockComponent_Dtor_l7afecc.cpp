@@ -10,8 +10,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101a70380[];
-
 // An array element (0x40 bytes) destroyed through its vtable.
 struct UnkDemolitionBlockEntry_l7afecc {
     virtual ~UnkDemolitionBlockEntry_l7afecc();

@@ -3,10 +3,10 @@
 // Names and layouts are placeholders.
 #include <string.h>
 
+#include "game/UnkTU9.h"
 #include "types.h"
 
 void* fn_7100002be0(u64 size);
-void fn_7100002cd0(void* p);
 
 template <typename T>
 struct UnkGrowArray_l002e74 {

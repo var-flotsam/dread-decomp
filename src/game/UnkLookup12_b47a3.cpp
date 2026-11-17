@@ -1,8 +1,7 @@
 // Unit 0x71010bee20 (tools/tu_map.py, no name hint): finds an entry by key through fn_71010c1050 and copies
 // its 12-byte value out, returning whether it was found. Names and layouts are placeholders.
+#include "game/lua_lib.h"
 #include "types.h"
-
-char* fn_71010c1050(char* p0, u32 p1);
 
 struct UnkTriple_b47a3 {
     u32 v[3];

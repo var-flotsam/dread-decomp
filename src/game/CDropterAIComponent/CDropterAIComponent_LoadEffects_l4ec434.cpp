@@ -5,19 +5,18 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
+#include "game/CDropterAIComponent.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/UnkTU140.h"
+#include "game/UnkTU252.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::math::CVector4D;
 
-extern const u64 g_unk_71726db100[] __attribute__((visibility("hidden")));
-extern const u64 g_unk_71726db108[] __attribute__((visibility("hidden")));
 extern const base::math::CVector4D g_unk_71016477b4;  // (0, 0, 0, 0)
 
-void fn_71001494f8(void* slot, u32 kind, u32 mode, CFilePathStrId* path, u32 flags);
 struct UnkPlanktonInstance_b44a2;
-UnkPlanktonInstance_b44a2* fn_71001be428(void* model);
 
 struct UnkDropterEffectMaterial {
     u8 pad_0x0[0x30];
