@@ -3,6 +3,7 @@
 // creates its two effects (hidden, with two of their parts switched off). Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAttack.h"
@@ -62,18 +63,6 @@ struct UnkGrabListener_505190 {
     UnkGrabListener_505190() : vtable(g_unk_7101a22d48 + 2), field_0x8(0), field_0x10(0), owner(nullptr) {}
 };
 
-// An empty string id.
-struct UnkGrabName_505190 {
-    base::global::UnkStringData* data;
-
-    UnkGrabName_505190() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 // CAttack's part, built out of line, then given the class's vtable.
 struct UnkGrabAttackBase_505190 {
     void** vtable;
@@ -123,7 +112,7 @@ struct UnkGrabAttack_505190 : UnkGrabAttackBase_505190 {
     u8 pad_0x788[8];
     u8 field_0x790 = 0;
     u64 field_0x798 = 0;
-    UnkGrabName_505190 name;  // 0x7a0
+    UnkEmptyStrId name;  // 0x7a0
     u64 field_0x7a8 = 0;
     bool field_0x7b0 = false;
     bool field_0x7b1 = false;

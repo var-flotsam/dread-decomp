@@ -6,9 +6,11 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU63.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntFile;
@@ -23,50 +25,9 @@ void fn_7100254d6c(void* self);
 void fn_7100254e84(void* self);
 void fn_7100255158(void* self);
 
-// A file-path id whose release decrements and tests the count in two steps.
-struct UnkPathId_ovb0066 {
-    UnkStringData* data;
-
-    ~UnkPathId_ovb0066() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkPathNode_ovb0066 {
-    UnkPathId_ovb0066 id;
+    UnkPathIdTwoStep id;
     UnkPathNode_ovb0066* next;
-};
-
-struct UnkPathList_ovb0066 {
-    void** vtable;
-    union {  // reloaded after a node's link is stored
-        u32 count;
-    };
-    UnkPathNode_ovb0066* head;
-    UnkPathNode_ovb0066* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    void Clear() {
-        for (UnkPathNode_ovb0066* n = head; n;) {
-            UnkPathNode_ovb0066* next = n->next;
-            n->id.~UnkPathId_ovb0066();
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
 };
 
 struct UnkCharClass_ovb0066 {
@@ -79,7 +40,7 @@ struct UnkCharClass_ovb0066 {
     u32 field_0xec;
     base::UnkAllocator* table_allocator;  // 0xf0
     UnkCountedResource* counted;          // 0xf8
-    UnkPathList_ovb0066 paths;            // 0x100
+    base::UnkVtableList<UnkPathNode_ovb0066> paths;            // 0x100
     u32 field_0x130;
     f32 field_0x134;
     bool field_0x138;
@@ -129,7 +90,7 @@ void fn_71011ac838(UnkCharClass_ovb0066* self) {
 }
 
 void fn_71011ac024(UnkCharClass_ovb0066* self) {
-    self->paths.Clear();
+    self->paths.ClearDestroying();
     fn_71011ac8e8(reinterpret_cast<UnkResIdTable*>(&self->refs));
     fn_7100255158(self);
 }
@@ -137,7 +98,7 @@ void fn_71011ac024(UnkCharClass_ovb0066* self) {
 void fn_71011abec4(UnkCharClass_ovb0066* self) {
     self->vtable = g_unk_7101cb57b8 + 2;
     self->paths.vtable = g_unk_7101a1b030 + 2;
-    self->paths.Clear();
+    self->paths.ClearDestroying();
     if (UnkCountedResource* counted = self->counted) {
         if (--counted->ref_count == 0)
             fn_710001737c(counted);

@@ -5,6 +5,7 @@
 #include "base/UnkResKey.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkBucketSet.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -22,19 +23,7 @@ struct UnkResLoadPathNode {
 };
 
 // A chained map of paths to resources (the registry's at +0x10, and each type node's at +0x8).
-struct UnkResLoadPathMap {
-    UnkResLoadPathNode** buckets;
-    u32 count;  // 0x8
-    u32 modulus;  // 0xc
-    u8 pad_0x10[0x18];
-    u32 first_bucket;  // 0x28
-    UnkResLoadPathNode* first_node;  // 0x30
-    base::UnkAllocator* node_allocator;  // 0x38
-    u32 node_flags;  // 0x40
-    u32 node_count;  // 0x44
-    u32 version;  // 0x48
-};
-static_assert(sizeof(UnkResLoadPathMap) == 0x50, "path map layout");
+using UnkResLoadPathMap = base::global::UnkBucketSet<UnkResLoadPathNode>;
 
 // A type's node: its name, its paths and the next node in the bucket.
 struct UnkResLoadTypeNode {
@@ -43,12 +32,8 @@ struct UnkResLoadTypeNode {
     UnkResLoadTypeNode* next;  // 0x58
 };
 
-struct UnkResLoadTypeMap {
-    UnkResLoadTypeNode** buckets;
-    u32 count;  // 0x8
-    u32 modulus;  // 0xc
-    u8 pad_0x10[0x80];
-};
+// The registry's type map, with its node pool.
+using UnkResLoadTypeMap = base::global::UnkPooledBucketSet<UnkResLoadTypeNode>;
 
 // An iterator into the type map.
 struct UnkResLoadTypeIter {
@@ -109,8 +94,8 @@ inline void AddPath(UnkResLoadPathMap* map, const UnkResKey* key, UnkCountedReso
         node->next = nullptr;
     }
     u32 i;
-    if (map->count)
-        i = IdHash(key->path.data) % map->modulus;
+    if (map->buckets.count)
+        i = IdHash(key->path.data) % map->buckets.capacity;
     else
         i = ~0u;
     u32 first = map->first_bucket;
@@ -173,9 +158,9 @@ UnkCountedResource* fn_71000eaf20(UnkResRegistry* registry, const UnkResKey* key
 
                 UnkResLoadTypeMap* types = &self->types;
                 UnkResLoadTypeNode* node = nullptr;
-                if (types->count) {
-                    u32 h = IdHash(key->type.data) % types->modulus;
-                    if (h < types->count) {
+                if (types->buckets.count) {
+                    u32 h = IdHash(key->type.data) % types->buckets.capacity;
+                    if (h < types->buckets.count) {
                         node = reinterpret_cast<UnkResLoadTypeNode*>(
                             *fn_71000ec52c(reinterpret_cast<UnkNamedSet_b257j*>(types), h));
                         UnkStringData* name = key->type.data;

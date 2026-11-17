@@ -7,6 +7,7 @@
 
 #include "base/global/CRntVector.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 extern char unk_7101a20260[];
 extern char unk_7101a202c0[];
@@ -16,23 +17,10 @@ struct UnkNode_7100218a2c {
     UnkNode_7100218a2c* next;
 };
 
-struct UnkNodeList_7100218a2c {
-    char* vtable;
-    u32 count;
-    UnkNode_7100218a2c* head;
-    UnkNode_7100218a2c* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkNodeList_7100218a2c : base::UnkVtableList<UnkNode_7100218a2c> {
     ~UnkNodeList_7100218a2c() {
         vtable = unk_7101a202c0 + 0x10;
-        for (UnkNode_7100218a2c* n = head; n;) {
-            UnkNode_7100218a2c* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        Clear();
     }
 };
 

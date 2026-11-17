@@ -2,84 +2,23 @@
 // ids: the clear destroys every node on the map's node list (the value at +8 with its own
 // destructor, then the key), frees it through the allocator, then empties the buckets and
 // resets the count and the list; the destructors clear the map and destroy its storage.
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
+using base::global::CStrId;
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkMapKey {
-    UnkStringData* data;
+// A value of Size bytes, destroyed by Destroy.
+template <u32 Size, void (*Destroy)(void*)>
+struct UnkMapValue {
+    u8 bytes[Size];
 
-    ~UnkMapKey() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
+    ~UnkMapValue() { Destroy(bytes); }
 };
 
+// The node's list link is at Next.
 template <u32 Next, void (*Destroy)(void*)>
-struct UnkMapNode {
-    UnkMapKey key;
-    u8 value[Next - 8];  // destroyed by Destroy
-    UnkMapNode* next;  // the map's node list
-};
-
-struct UnkIdMapStorage {
-    base::UnkAllocator* allocator;
-    u32 field_0x8;
-    u32 count;
-    void** buckets;
-    u32 field_0x18;
-    u32 bucket_count;
-    u8 unk_0x20[0x18];
-    void* tail;
-    void* head;
-};
-
-template <u32 Next, void (*Destroy)(void*), class Storage = UnkIdMapStorage>
-struct UnkIdMap : Storage {
-    using Node = UnkMapNode<Next, Destroy>;
-
-    __attribute__((always_inline)) void Clear() {
-        if (!this->count)
-            return;
-        for (Node* n = static_cast<Node*>(this->head); n;) {
-            Node* next = n->next;
-            Destroy(n->value);
-            n->key.~UnkMapKey();
-            this->allocator->vf_0x48(n);
-            n = next;
-        }
-        __builtin_memset(this->buckets, 0, (u64)this->bucket_count * sizeof(void*));
-        this->count = 0;
-        this->tail = nullptr;
-        this->head = nullptr;
-    }
-};
-
-// The storage's destructor frees the buckets (fn_7100d90040, fn_7100d8f8f8).
-template <int Id>
-struct UnkIdMapOwnedStorage : UnkIdMapStorage {
-    ~UnkIdMapOwnedStorage();
-};
-template <> UnkIdMapOwnedStorage<0>::~UnkIdMapOwnedStorage();  // fn_7100d90040
-template <> UnkIdMapOwnedStorage<1>::~UnkIdMapOwnedStorage();  // fn_7100d8f8f8
-
-// A map destroyed through its storage after clearing.
-template <u32 Next, void (*Destroy)(void*), int Id>
-struct UnkOwnedIdMap : UnkIdMap<Next, Destroy, UnkIdMapOwnedStorage<Id>> {
-    __attribute__((always_inline)) ~UnkOwnedIdMap() { this->Clear(); }
-};
+using UnkIdMap = base::global::CRntDictionary<CStrId, UnkMapValue<Next - 8, Destroy>>;
 
 #define DEFINE_CLEAR(addr, next, destroy)                                \
     void fn_##destroy(void* value);                                      \
@@ -94,11 +33,25 @@ DEFINE_CLEAR(71010045d4, 0x58, 7100fed6cc)
 DEFINE_CLEAR(71010057a4, 0x58, 7100fee034)
 DEFINE_CLEAR(71010422c4, 0x5d8, 7101036e34)
 
-void fn_7100f963c8(UnkOwnedIdMap<0x80, fn_7100f8da4c, 0>* self) {
+// Two maps' storage, whose destructors free the buckets.
+struct UnkIdMapStorage_80 : UnkIdMap<0x80, fn_7100f8da4c> {
+    ~UnkIdMapStorage_80();  // fn_7100d90040
+};
+struct UnkIdMapStorage_3b0 : UnkIdMap<0x3b0, fn_7100d8f9e4> {
+    ~UnkIdMapStorage_3b0();  // fn_7100d8f8f8
+};
+
+// A map destroyed through its storage after clearing.
+template <class Storage>
+struct UnkOwnedIdMap : Storage {
+    __attribute__((always_inline)) ~UnkOwnedIdMap() { this->Clear(); }
+};
+
+void fn_7100f963c8(UnkOwnedIdMap<UnkIdMapStorage_80>* self) {
     self->~UnkOwnedIdMap();
 }
 
-void fn_7100f9c84c(UnkOwnedIdMap<0x3b0, fn_7100d8f9e4, 1>* self) {
+void fn_7100f9c84c(UnkOwnedIdMap<UnkIdMapStorage_3b0>* self) {
     self->~UnkOwnedIdMap();
 }
 

@@ -49,23 +49,23 @@ UnkReflValue fn_71011f4ee0(void* self, const UnkHolder* holder) { return GetId<0
 UnkReflValue fn_71011f5000(void* self, const UnkHolder* holder) { return GetId<0x1e0>(holder); }
 
 // An empty id (the pool is created first if there is none yet), released like CStrId.
-struct UnkEmptyStrId {
+struct UnkReleasedEmptyStrId {
     union {
         CStrId id;
     };
 
-    __attribute__((always_inline)) UnkEmptyStrId() {
+    __attribute__((always_inline)) UnkReleasedEmptyStrId() {
         id.data = nullptr;
         if (!g_unk_7101d47108)
             base::global::UnkEnsureStringPool();
         id.data = &g_unk_7101d47108->empty;
     }
-    ~UnkEmptyStrId() { id.~CStrId(); }
+    ~UnkReleasedEmptyStrId() { id.~CStrId(); }
 };
 
 // Two getters that return an empty string id as a typed value.
 __attribute__((always_inline)) static inline UnkReflValue GetEmptyId() {
-    UnkEmptyStrId id;
+    UnkReleasedEmptyStrId id;
     const CType* type = fn_7100009658();  // refl_GetType<base::global::CStrId>
     UnkReflValue result;
     result.field_0x0 = nullptr;

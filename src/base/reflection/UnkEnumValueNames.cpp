@@ -103,7 +103,7 @@ static inline void PushBack(base::global::CRntVector<UnkEnumName>* v, UnkEnumNam
     u32 n = v->count;
     u32 cap = v->capacity;
     if (cap <= n && v->step != 0)
-        cap = (n / v->step + 1) * v->step;
+        cap = v->GrownCapacity(n);
     if ((s32)n >= (s32)cap)
         for (;;) {
         }

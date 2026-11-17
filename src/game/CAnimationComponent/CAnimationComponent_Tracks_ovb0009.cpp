@@ -810,32 +810,11 @@ struct UnkAnimListenersWalk : base::UnkCountedDeferredWalk<void> {
 struct UnkPairOwner;
 struct UnkValueSource;
 
-// A copied string id released in two steps (the original reloads `data` and the count after the
-// decrement), as CStrId::Reset does.
-struct UnkMsgName : base::global::UnkStrIdBase {
-    UnkMsgName(const CStrId& other) : UnkStrIdBase(other) {
-        if (&g_unk_7101d47108->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkMsgName() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 // What the listeners are told: kind 2, the event's data and the source's name.
 struct UnkAnimEventMsg {
     u32 kind;
     void* info;
-    UnkMsgName name;
+    base::global::CStrId name;
 
     UnkAnimEventMsg(void* info_, const CStrId& name_) : kind(2), info(info_), name(name_) {}
 };

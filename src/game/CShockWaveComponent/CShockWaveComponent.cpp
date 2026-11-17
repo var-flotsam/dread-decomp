@@ -8,6 +8,7 @@
 #include "game/UnkComponent.h"
 #include "game/UnkTU604.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkShockWaveMember;
 
@@ -21,23 +22,10 @@ struct UnkShockWaveNode {
     UnkShockWaveNode* next;
 };
 
-struct UnkShockWaveList {
-    void** vtable;
-    u32 count;
-    UnkShockWaveNode* head;
-    UnkShockWaveNode* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkShockWaveList : base::UnkVtableList<UnkShockWaveNode> {
     ~UnkShockWaveList() {
         vtable = &g_unk_7101a32680[2];
-        for (UnkShockWaveNode* n = head; n;) {
-            UnkShockWaveNode* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        Clear();
     }
 };
 

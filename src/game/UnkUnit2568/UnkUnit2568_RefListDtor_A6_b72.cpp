@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkTU2568.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkRefNode_A6_b72 {
     void* field_0x0;
@@ -13,13 +14,7 @@ struct UnkRefNode_A6_b72 {
     UnkRefNode_A6_b72* next;
 };
 
-struct UnkRefList_A6_b72 {
-    void** vtable;
-    u32 count;
-    UnkRefNode_A6_b72* head;
-    UnkRefNode_A6_b72* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkRefList_A6_b72 : base::UnkVtableList<UnkRefNode_A6_b72> {
     __attribute__((always_inline)) void Destroy() {
         vtable = reinterpret_cast<void**>(reinterpret_cast<char*>(g_unk_7101ca9f90) + 0x10);
         for (UnkRefNode_A6_b72* node = head; node;) {

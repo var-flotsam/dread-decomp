@@ -131,7 +131,7 @@ void fn_710016ac04(UnkController_u207* self, UnkTarget_ac04* target, const CStrI
     u32 cap = v->capacity;
     u32 grown = cap;
     if (cap <= n && v->step != 0)
-        grown = (n / v->step + 1) * v->step;
+        grown = v->GrownCapacity(n);
     if ((s32)n >= (s32)grown)
         for (;;) {
         }
@@ -186,7 +186,7 @@ void fn_710016aa9c(UnkController_u207* self, UnkTarget_aa9c* target) {
     u32 cap = v->capacity;
     u32 grown = cap;
     if (cap <= n && v->step != 0)
-        grown = (n / v->step + 1) * v->step;
+        grown = v->GrownCapacity(n);
     if ((s32)n >= (s32)grown)
         for (;;) {
         }

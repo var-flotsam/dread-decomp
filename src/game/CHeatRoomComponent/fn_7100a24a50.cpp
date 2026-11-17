@@ -7,6 +7,7 @@
 
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CBTObserverComponent.h"
 #include "game/CHeatRoomComponent.h"
 #include "game/CNavMeshItemComponent.h"
@@ -15,24 +16,6 @@
 using base::global::CRntString;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// A string id whose destructor reloads the id after the decrement.
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 // The property's value holder at 0x10: a name cleaned up out of line (fn_710007ed40) before it
 // is destroyed, and a member at 0xd0.
@@ -63,7 +46,7 @@ struct UnkPropertyBase {
 
 template <void** Vtable>
 struct UnkIdPropertyT : UnkPropertyBase {
-    UnkReleasedStrId id;
+    UnkStrIdTwoStep id;
 
     ~UnkIdPropertyT() { *reinterpret_cast<void***>(this) = Vtable + 2; }
 };

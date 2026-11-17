@@ -5,19 +5,14 @@
 #include "game/CInputComponent.h"
 #include "game/UnkTU2732.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkItemNode_l19ad3c {
     void* value;
     UnkItemNode_l19ad3c* next;
 };
 
-struct UnkItemList_l19ad3c {
-    u64 field_0x0;
-    u32 count;
-    UnkItemNode_l19ad3c* head;
-    UnkItemNode_l19ad3c* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkItemList_l19ad3c : base::UnkVtableList<UnkItemNode_l19ad3c> {
     bool Contains(void* object) const {
         for (UnkItemNode_l19ad3c* node = head; node; node = node->next) {
             if (node->value == object)

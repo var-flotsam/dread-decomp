@@ -4,6 +4,8 @@
 // scene nodes (fn_71011b364c), the screen scale setter (fn_71011b33cc), the
 // focus check (fn_71011b3778), the script call (fn_71011b685c) and the name list add
 // (fn_71011b8be0). Names and layouts are placeholders.
+#include "base/global/CRntDictionary.h"  // first: its __assert_fail is [[noreturn]]
+
 #include <new>
 #include <string.h>
 
@@ -75,32 +77,10 @@ UnkVec2Result fn_71011ba240(void* unused, UnkGuiDisplayObject* obj, const f32* p
 }
 
 // ---- the layer map and fn_71011ba3b0 ----
-struct UnkGuiNode_b0209;
+struct UnkGuiLayer_b0209;
 
-// The chained hash map of the GUI manager (the layout of src/base/UnkUnit122/UnkChainedMapErase_b54.cpp).
-struct UnkGuiMap_b0209 {
-    base::UnkAllocator* allocator;  // 0x0
-    u32 flags;                      // 0x8
-    u32 count;                      // 0xc
-    UnkGuiNode_b0209** buckets;     // 0x10
-    u32 bucket_count;               // 0x18
-    u32 bucket_capacity;            // 0x1c
-    u8 pad_0x20[0x18];
-    UnkGuiNode_b0209* tail;  // 0x38
-    UnkGuiNode_b0209* head;  // 0x40
-};
-static_assert(sizeof(UnkGuiMap_b0209) == 0x48, "layout");
-
-struct UnkGuiNode_b0209 {
-    CStrId key;
-    void* value;
-    UnkGuiNode_b0209* next;   // 0x10: the list of all nodes
-    UnkGuiNode_b0209* prev;   // 0x18
-    UnkGuiNode_b0209* chain;  // 0x20: the next node in the bucket
-
-    UnkGuiNode_b0209*& Next() { return next; }
-    UnkGuiNode_b0209*& Prev() { return prev; }
-};
+// The GUI manager's layers by name.
+using UnkGuiMap_b0209 = base::global::CRntDictionary<CStrId, UnkGuiLayer_b0209*>;
 
 struct UnkGuiLayer_b0209 {
     u64 field_0x0;
@@ -135,33 +115,7 @@ UnkGuiLayer_b0209* fn_71011ba3b0(UnkGuiMap_b0209* self, const CStrId* key) {
     layer->min_y = -3.4028235e38f;
     layer->field_0x40 = 0;
 
-    UnkGuiNode_b0209** slot = nullptr;
-    if (self->bucket_count) {
-        auto* d = reinterpret_cast<UnkIdHashData_b0209*>(key->data);
-        u32 hash = d->hash_a ^ d->hash_b;
-        u32 index = hash % self->bucket_capacity;
-        UnkGuiNode_b0209** buckets = self->buckets;
-        slot = buckets + index;
-    }
-    UnkGuiNode_b0209* chain = *slot;
-    auto* n = static_cast<UnkGuiNode_b0209*>(self->allocator->vf_0x40(0x28, 8, self->flags));
-    if (n) {
-        new (&n->key) CStrId(*key);
-        n->value = layer;
-        n->next = nullptr;
-        n->prev = nullptr;
-        n->chain = nullptr;
-    }
-    n->chain = chain;
-    *slot = n;
-    if (!self->head) {
-        self->head = n;
-    } else if (self->tail) {
-        n->Prev() = self->tail;
-        self->tail->Next() = n;
-    }
-    self->tail = n;
-    ++self->count;
+    self->Insert(*key, layer);
     return layer;
 }
 
@@ -174,98 +128,43 @@ struct UnkGuiEntry_b0209 {
     u8 field_0x3c;
 };
 
-struct UnkGuiTextNode_b0209 {
-    base::UnkStrIdMember key;
-    FilePathId path;
-    base::global::CRntString text;  // 0x10
-    u32 field_0x40;
-    u8 field_0x44;
-    UnkGuiTextNode_b0209* next;   // 0x48
-    UnkGuiTextNode_b0209* prev;   // 0x50
-    UnkGuiTextNode_b0209* chain;  // 0x58
-
-    UnkGuiTextNode_b0209*& Next() { return next; }
-    UnkGuiTextNode_b0209*& Prev() { return prev; }
-};
+// The text entries by name.
+using UnkGuiTextMap_b0209 = base::global::CRntDictionary<CStrId, UnkGuiEntry_b0209>;
+using UnkGuiTextNode_b0209 = UnkGuiTextMap_b0209::TNode;
 static_assert(sizeof(UnkGuiTextNode_b0209) == 0x60, "layout");
 
-struct UnkGuiTextMap_b0209 {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    UnkGuiTextNode_b0209** buckets;
-    u32 bucket_count;
-    u32 bucket_capacity;
-    u8 pad_0x20[0x18];
-    UnkGuiTextNode_b0209* tail;
-    UnkGuiTextNode_b0209* head;
-};
-
+// Adds the entry under the name, moved into the node.
 UnkGuiTextNode_b0209* fn_71011bd280(UnkGuiTextMap_b0209* self, const CStrId* key, UnkGuiEntry_b0209* entry) {
-    UnkGuiTextNode_b0209** slot = nullptr;
-    if (self->bucket_count) {
-        auto* d = reinterpret_cast<UnkIdHashData_b0209*>(key->data);
-        u32 hash = d->hash_a ^ d->hash_b;
-        u32 index = hash % self->bucket_capacity;
-        UnkGuiTextNode_b0209** buckets = self->buckets;
-        slot = buckets + index;
-    }
-    UnkGuiTextNode_b0209* chain = *slot;
-    auto* n = static_cast<UnkGuiTextNode_b0209*>(self->allocator->vf_0x40(0x60, 8, self->flags));
-    if (n) {
-        n->key.data = key->data;
-        if (&g_unk_7101d47108->empty != key->data)
-            ++key->data->ref_count;
-        new (&n->path) FilePathId(static_cast<FilePathId&&>(entry->path));
-        fn_710007eab4(&n->text, &entry->text);
-        u32 a = entry->field_0x38;
-        u8 b = entry->field_0x3c;
-        n->field_0x44 = b;
-        n->field_0x40 = a;
-        n->next = nullptr;
-        n->prev = nullptr;
-        n->chain = nullptr;
-    }
-    n->chain = chain;
-    *slot = n;
-    if (!self->head) {
-        self->head = n;
-    } else if (self->tail) {
-        n->Prev() = self->tail;
-        self->tail->Next() = n;
-    }
-    self->tail = n;
-    ++self->count;
-    return n;
+    return self->Insert(*key, static_cast<UnkGuiEntry_b0209&&>(*entry));
 }
 
 // The node's destructor, released through its members.
 __attribute__((noinline)) void fn_71011bbe4c(UnkGuiTextNode_b0209* self) {
-    self->~UnkGuiTextNode_b0209();
+    self->~TNode();
 }
 
 UnkGuiTextNode_b0209* fn_71011b8344(UnkGuiTextMap_b0209* self, const CStrId* key) {
     auto* d = reinterpret_cast<UnkIdHashData_b0209*>(key->data);
     u32 hash = d->hash_a ^ d->hash_b;
-    u32 index = hash % self->bucket_capacity;
-    UnkGuiTextNode_b0209** bucket = self->buckets + index;
+    u32 index = hash % self->buckets.capacity;
+    UnkGuiTextNode_b0209** bucket = self->buckets.data + index;
     UnkGuiTextNode_b0209* n = *bucket;
     if (!n)
         return nullptr;
     UnkGuiTextNode_b0209* before = nullptr;
     while (n->key.data != key->data) {
         before = n;
-        n = n->chain;
+        n = n->bucket_next;
         if (!n)
             return nullptr;
     }
-    // keeps &before->chain out of the search loop
+    // keeps &before->bucket_next out of the search loop
     asm("" : "+r"(before));
-    *(before ? &before->chain : bucket) = n->chain;
-    if (self->head == n)
-        self->head = n->next;
-    if (self->tail == n)
-        self->tail = n->prev;
+    *(before ? &before->bucket_next : bucket) = n->bucket_next;
+    if (self->first == n)
+        self->first = n->next;
+    if (self->last == n)
+        self->last = n->prev;
     if (n->Prev())
         n->Prev()->Next() = n->Next();
     UnkGuiTextNode_b0209* r = nullptr;
@@ -509,49 +408,21 @@ UnkRefPtr fn_71011b685c(void* self, const char* const* path, CRntString* name, v
 
 
 // ---- fn_71011b364c: puts each scene node on each of the five layers, then empties the map ----
-struct UnkGuiSceneNode_b0209 {
-    FilePathId key;
-    UnkItemBase_71011a91c4* value;
-    UnkGuiSceneNode_b0209* next;  // 0x10
-    UnkGuiSceneNode_b0209* prev;
-    UnkGuiSceneNode_b0209* chain;
-};
-
-struct UnkGuiSceneMap_b0209 {
-    base::UnkAllocator* allocator;  // 0x0
-    u32 flags;
-    u32 count;  // 0xc
-    UnkGuiSceneNode_b0209** buckets;
-    u32 bucket_count;
-    u32 bucket_capacity;  // 0x1c
-    u8 pad_0x20[0x18];
-    UnkGuiSceneNode_b0209* tail;  // 0x38
-    UnkGuiSceneNode_b0209* head;  // 0x40
-};
+// The scene items by file path.
+using UnkGuiSceneMap_b0209 = base::global::CRntDictionary<FilePathId, UnkItemBase_71011a91c4*>;
+using UnkGuiSceneNode_b0209 = UnkGuiSceneMap_b0209::TNode;
 
 struct UnkGuiScenesRoot_b0209 {
     u8 pad_0x0[0xf8];
     UnkGuiSceneMap_b0209 map;  // 0xf8
 };
-static_assert(__builtin_offsetof(UnkGuiScenesRoot_b0209, map.head) == 0x138, "layout");
+static_assert(__builtin_offsetof(UnkGuiScenesRoot_b0209, map.first) == 0x138, "layout");
 
 void fn_71011b364c(UnkGuiScenesRoot_b0209* self) {
     for (u32 layer = 0; layer != 5; ++layer) {
-        for (UnkGuiSceneNode_b0209* n = self->map.head; n; n = n->next)
+        for (UnkGuiSceneNode_b0209* n = self->map.first; n; n = n->next)
             fn_71002199d8(g_unk_7101d47300, n->value, layer);
-        UnkGuiSceneMap_b0209* map = &self->map;
-        if (map->count) {
-            for (UnkGuiSceneNode_b0209* n = map->head; n;) {
-                UnkGuiSceneNode_b0209* next = n->next;
-                n->key.~FilePathId();
-                map->allocator->vf_0x48(n);
-                n = next;
-            }
-            memset(map->buckets, 0, map->bucket_capacity * u64(8));
-            map->count = 0;
-            map->head = nullptr;
-            map->tail = nullptr;
-        }
+        self->map.Clear();
     }
 }
 

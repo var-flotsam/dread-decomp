@@ -9,9 +9,12 @@
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
+#include "base/global/UnkBucketSet.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU63.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -39,24 +42,6 @@ struct UnkIdTextData {
     };
 };
 
-// A path id whose release decrements and tests the count in two steps (src/game/CGameManager.cpp).
-struct UnkListedPathId {
-    UnkStringData* data;
-
-    ~UnkListedPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 // The same release for a path id that stays (it is left the empty id).
 static inline void ResetPath(CFilePathStrId* id) {
     UnkStringData*& data = id->data;
@@ -72,25 +57,18 @@ static inline void ResetPath(CFilePathStrId* id) {
     }
 }
 
-static inline const char* IdText(UnkListedPathId& id) {
+static inline const char* IdText(UnkPathIdTwoStep& id) {
     ++reinterpret_cast<UnkIdTextData*>(id.data)->reads;
     const CRntString& str = reinterpret_cast<UnkIdTextData*>(id.data)->str;
     return str.data ? str.data : g_unk_710162e2ed;
 }
 
 struct UnkListedPath {
-    UnkListedPathId id;
+    UnkPathIdTwoStep id;
     UnkListedPath* next;
 };
 // A list of path ids (its destructor is fn_7100087cf8).
-struct UnkFilePathList {
-    void** vtable;
-    u32 count;
-    UnkListedPath* head;
-    UnkListedPath* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;
@@ -103,7 +81,7 @@ struct UnkFilePathList {
         vtable = &g_unk_7101a1b030[2];
         for (UnkListedPath* n = head; n;) {
             UnkListedPath* next = n->next;
-            n->id.~UnkListedPathId();
+            n->id.~UnkPathIdTwoStep();
             allocator->vf_0x48(n);
             n = next;
         }
@@ -125,23 +103,18 @@ struct UnkResourceSetNode {
     UnkResourceSetNode* next;
 };
 
-struct UnkResourceSet {
-    base::global::CRntVector<UnkResourceSetNode*> buckets;
-    u32 first_bucket;  // where an iteration starts
-    UnkResourceSetNode* first;
-    u8 pad_0x38[0x10];
-    u32 changes;  // counts removals: an iteration stops when it moves
-};
+// version counts removals: an iteration stops when it moves.
+using UnkResourceSet = base::global::UnkBucketSet<UnkResourceSetNode>;
 
 struct UnkResourceGroup {
     u8 pad_0x0[0x8];
     UnkResourceSet objects;
     u8 others[0x50];
-    base::global::CRntVector<UnkListedPathId> files;
+    base::global::CRntVector<UnkPathIdTwoStep> files;
     CFilePathStrId directory;
 };
 static_assert(__builtin_offsetof(UnkResourceGroup, objects.first_bucket) == 0x30, "UnkResourceGroup placeholder layout");
-static_assert(__builtin_offsetof(UnkResourceGroup, objects.changes) == 0x50, "UnkResourceGroup placeholder layout");
+static_assert(__builtin_offsetof(UnkResourceGroup, objects.version) == 0x50, "UnkResourceGroup placeholder layout");
 static_assert(__builtin_offsetof(UnkResourceGroup, others) == 0x58, "UnkResourceGroup placeholder layout");
 static_assert(__builtin_offsetof(UnkResourceGroup, files) == 0xa8, "UnkResourceGroup placeholder layout");
 static_assert(__builtin_offsetof(UnkResourceGroup, directory) == 0xd0, "UnkResourceGroup placeholder layout");
@@ -154,8 +127,8 @@ struct UnkResourceSetIter {
     u32 changes;
 
     explicit UnkResourceSetIter(UnkResourceSet* s)
-        : set(s), node(s->first), bucket(s->first_bucket), changes(s->changes) {}
-    bool Changed() const { return set->changes != changes; }
+        : set(s), node(s->first_node), bucket(s->first_bucket), changes(s->version) {}
+    bool Changed() const { return set->version != changes; }
     void Next() {
         node = node->next;
         while (!node) {
@@ -186,7 +159,7 @@ void fn_7100ecb00c(UnkResourceGroup* self) {
     }
     fn_7100ecb3a4(&self->objects);
     fn_7100ecb4ac(self->others);
-    for (UnkListedPathId* it = self->files.data, *end = it + self->files.count; it != end; ++it)
+    for (UnkPathIdTwoStep* it = self->files.data, *end = it + self->files.count; it != end; ++it)
         fn_710008987c(FileDevice(), reinterpret_cast<CFilePathStrId*>(it), 0);
     self->files.Clear();
     if (self->directory.data != &g_unk_7101d47200->empty) {

@@ -20,6 +20,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -153,22 +154,7 @@ void fn_7100260718(char* self, void*) {
 }
 
 // A string id released on destruction (the empty string is left behind).
-struct UnkMapKey_ovb0036 {
-    UnkStringData* data;
-
-    ~UnkMapKey_ovb0036() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
+using UnkMapKey_ovb0036 = UnkStrIdTwoStep;
 
 // The map's 0x60-byte records, destroyed through their vtable.
 struct UnkMapRecord_ovb0036 {
@@ -309,19 +295,9 @@ struct UnkHashedKeyData_ovb0036 {
 };
 
 // The node's value: a vector, moved in.
-struct UnkNodeValue_ovb0036 {
-    u64* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 struct UnkKeyNode_ovb0036 {
     UnkStringData* key;
-    UnkNodeValue_ovb0036 value;  // 0x8
+    base::global::CRntVector<u64> value;  // 0x8
     UnkKeyNode_ovb0036* prev;   // 0x30
     UnkKeyNode_ovb0036* next;   // 0x38
     UnkKeyNode_ovb0036* chain;  // 0x40
@@ -382,7 +358,7 @@ struct UnkKeyNodeOwner_ovb0036 {
     UnkKeyNodeMap_ovb0036 map;  // 0x30
 };
 
-UnkNodeValue_ovb0036* fn_710025c1a4(UnkKeyNodeOwner_ovb0036* self, UnkStringData* const* key) {
+base::global::CRntVector<u64>* fn_710025c1a4(UnkKeyNodeOwner_ovb0036* self, UnkStringData* const* key) {
     UnkKeyNodeMap_ovb0036* map = &self->map;
     map->Erase(*key);
     base::UnkAllocator* allocator = fn_7100083990();

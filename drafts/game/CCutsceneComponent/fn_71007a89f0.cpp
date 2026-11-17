@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CCutsceneComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -20,18 +21,6 @@ struct UnkCutsceneSource_l7a89f0 {
     u32 size;  // 0x130
 };
 
-// A string id made the empty string.
-struct UnkEmptyName_l7a89f0 {
-    UnkStringData* data;
-
-    UnkEmptyName_l7a89f0() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkCutsceneCallbacks_l7a89f0 {
     void** vtable = g_unk_7101a20950 + 2;
     CRntVector<void*> list{15};  // 0x8
@@ -46,7 +35,7 @@ struct UnkCutsceneCallbacks_l7a89f0 {
 struct UnkCutsceneEntry_l7a89f0 {
     void** vtable = g_unk_7101a700a0 + 2;
     CRntVector<u8> bytes{15};  // 0x8
-    UnkEmptyName_l7a89f0 name;  // 0x30
+    UnkEmptyStrId name;  // 0x30
     UnkCutsceneCallbacks_l7a89f0 callbacks;  // 0x38
 };
 static_assert(sizeof(UnkCutsceneEntry_l7a89f0) == 0x88, "layout");

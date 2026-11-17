@@ -61,28 +61,22 @@ struct UnkHyperBeamEffectHandle {
     }
 };
 
-// The data of a string id with a plain count (these ids increment it with int alias info).
-struct UnkHyperBeamStringData {
-    u8 unk_0x0[0x8];
-    s32 ref_count;
-};
-
-// A file-path id (pool g_unk_7101d47200) whose count is a plain int.
+// A file-path id (pool g_unk_7101d47200).
 struct UnkHyperBeamPathId {
     UnkStringData* data;
 
     explicit UnkHyperBeamPathId(const base::global::UnkFilePathStrIdBase& other) : data(other.data) {
         if (&g_unk_7101d47200->empty != data)
-            ++reinterpret_cast<UnkHyperBeamStringData*>(data)->ref_count;
+            ++data->ref_count;
     }
     UnkHyperBeamPathId& operator=(const base::global::UnkFilePathStrIdBase& other) {
         if (other.data != data) {
             UnkStringData* d = other.data;
             UnkStringPool* pool = g_unk_7101d47200;
             if (d != &pool->empty)
-                ++reinterpret_cast<UnkHyperBeamStringData*>(d)->ref_count;
+                ++d->ref_count;
             if (data != &pool->empty) {
-                if (--reinterpret_cast<UnkHyperBeamStringData*>(data)->ref_count == 0)
+                if (--data->ref_count == 0)
                     fn_71000803a4(pool, data);
             }
             data = d;
@@ -92,7 +86,7 @@ struct UnkHyperBeamPathId {
     ~UnkHyperBeamPathId() {
         if (UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {
-                if (--reinterpret_cast<UnkHyperBeamStringData*>(data)->ref_count == 0) {
+                if (--data->ref_count == 0) {
                     fn_71000803a4(pool, data);
                     pool = g_unk_7101d47200;
                 }

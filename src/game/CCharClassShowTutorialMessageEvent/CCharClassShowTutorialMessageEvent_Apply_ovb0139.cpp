@@ -15,29 +15,9 @@ struct UnkTutorialComposition;
 
 struct UnkMlogMessage_b42a1;
 
-// The message's text id: copied like a CStrId, released in two steps like base::UnkStrIdMember.
-struct UnkMlogText_ovb0139 : base::global::UnkStrIdBase {
-    __attribute__((always_inline)) UnkMlogText_ovb0139(const CStrId& other) : UnkStrIdBase(other) {
-        if (&g_unk_7101d47108->empty != data)
-            ++data->ref_count;
-    }
-    __attribute__((always_inline)) ~UnkMlogText_ovb0139() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkMlogMessage_ovb0139 {
     u32 kind;
-    UnkMlogText_ovb0139 text;
+    base::global::CStrId text;
     base::global::CRntVector<base::UnkStrIdMember> args;
 
     __attribute__((always_inline)) UnkMlogMessage_ovb0139(u32 k, const CStrId& t) : kind(k), text(t), args(0xc) {}

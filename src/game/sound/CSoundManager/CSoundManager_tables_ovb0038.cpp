@@ -19,6 +19,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
@@ -221,15 +222,6 @@ void fn_7101029d40(UnkSoundIdTable_b0038* self, const UnkSoundIdTable_b0038* oth
         CopyId(&self->keys[i], &other->keys[i]);
 }
 
-// A string id taken over, the moved-from one left empty.
-struct UnkSoundMovedStrId_b0038 {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkSoundMovedStrId_b0038(UnkSoundMovedStrId_b0038&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
-
 // A pair of values held in place (state 1) or by reference (state 2).
 template <class X, class Y>
 struct UnkSoundPairRef_b0038 {
@@ -277,7 +269,7 @@ __attribute__((always_inline)) static inline void MoveConstruct(UnkSoundPairRef_
     }
 }
 
-using UnkSoundIdResourcePair_b0038 = UnkSoundPairRef_b0038<UnkSoundMovedStrId_b0038, UnkSoundIdResource_b0038>;
+using UnkSoundIdResourcePair_b0038 = UnkSoundPairRef_b0038<UnkMovedStrId, UnkSoundIdResource_b0038>;
 
 void fn_710102918c(UnkSoundIdResourcePair_b0038* self, UnkSoundIdResourcePair_b0038* other) {
     MoveConstruct(self, other);
@@ -571,43 +563,26 @@ void fn_710102b828(UnkSoundPtrArray_b0038* self, UnkSoundIter_b0038<0>* out) {
 // (released, taken, the other's left empty) and the record assigned by fn_7100027118. Names and
 // layouts are placeholders.
 
-struct UnkSoundStrId_b0038 {
-    base::global::UnkStringData* data;
-
-    ~UnkSoundStrId_b0038() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 // The id pointers are moved bitwise (the original reloads the pair's state after them).
-__attribute__((always_inline)) static inline void MoveAssign(UnkSoundStrId_b0038* self,
-                                                             UnkSoundStrId_b0038* other) {
-    self->~UnkSoundStrId_b0038();
+__attribute__((always_inline)) static inline void MoveAssign(UnkStrIdTwoStep* self,
+                                                             UnkStrIdTwoStep* other) {
+    self->~UnkStrIdTwoStep();
     __builtin_memcpy(&self->data, &other->data, sizeof(self->data));
     base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
     __builtin_memcpy(&other->data, &empty, sizeof(empty));
 }
 
-using UnkSoundIdRecordPair_b0038 = UnkSoundPairRef_b0038<UnkSoundStrId_b0038, UnkStrIdPathResource>;
+using UnkSoundIdRecordPair_b0038 = UnkSoundPairRef_b0038<UnkStrIdTwoStep, UnkStrIdPathResource>;
 
 template <class Y>
-__attribute__((always_inline)) static inline UnkSoundPairRef_b0038<UnkSoundStrId_b0038, Y>* MoveAssignSet(
-    UnkSoundPairRef_b0038<UnkSoundStrId_b0038, Y>* self, UnkSoundPairRef_b0038<UnkSoundStrId_b0038, Y>* other) {
+__attribute__((always_inline)) static inline UnkSoundPairRef_b0038<UnkStrIdTwoStep, Y>* MoveAssignSet(
+    UnkSoundPairRef_b0038<UnkStrIdTwoStep, Y>* self, UnkSoundPairRef_b0038<UnkStrIdTwoStep, Y>* other) {
     if (other->state == 1) {
         MoveAssign(&self->GetX(), &other->values.x);
         UnkStrIdPathResource* y = &other->values.y;
         fn_7100027118(&self->GetY(), y);
     } else if (other->state == 2) {
-        UnkSoundStrId_b0038* x = other->refs.x;
+        UnkStrIdTwoStep* x = other->refs.x;
         MoveAssign(&self->GetX(), x);
         UnkStrIdPathResource* y = other->refs.y;
         fn_7100027118(&self->GetY(), y);

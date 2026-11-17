@@ -51,7 +51,7 @@ UnkStringPoolHolder::UnkStringPoolHolder(u32 a, UnkStringPool** pool) {
     asm("" : "+r"(state));
     state->empty.tail.copy = true;
     state->empty.tail.field_0x44 = 0;
-    new (&state->set.buckets) CRntVector<char*>(0x25);
+    new (&state->set.buckets) CRntVector<UnkPoolNode*>(0x25);
     state->set.first_node = nullptr;
     state->set.first_bucket = -1;
     state->set.node_allocator = fn_7100083990();
@@ -147,18 +147,18 @@ void fn_7100080578(UnkPoolSetWithNodes* set, u32 buckets, u32 nodes) {
         fn_710008378c(&set->nodes.blocks, memory, (u64)nodes * sizeof(UnkPoolNode), sizeof(UnkPoolNode));
     }
     set->node_allocator = reinterpret_cast<UnkAllocator*>(&set->nodes);
-    CRntVector<char*>& v = set->buckets;
+    CRntVector<UnkPoolNode*>& v = set->buckets;
     u32 count = v.count;
     if (count < buckets) {
         if (v.capacity < buckets) {
-            char** grown = static_cast<char**>(v.allocator->vf_0x40((u64)buckets << 3, 8, v.flags));
-            char** old = v.data;
+            UnkPoolNode** grown = static_cast<UnkPoolNode**>(v.allocator->vf_0x40((u64)buckets << 3, 8, v.flags));
+            UnkPoolNode** old = v.data;
             if (old) {
                 // Bitwise copies: the original reloads the count after each store.
                 if (v.count) {
                     u32 i = 0;
                     do {
-                        __builtin_memcpy(&grown[i], &old[i], sizeof(char*));
+                        __builtin_memcpy(&grown[i], &old[i], sizeof(UnkPoolNode*));
                         ++i;
                     } while (i < v.count);
                 }

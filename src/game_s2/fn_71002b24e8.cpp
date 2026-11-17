@@ -2,7 +2,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
-#include "game_s2/UnkTwoStepStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStrId;

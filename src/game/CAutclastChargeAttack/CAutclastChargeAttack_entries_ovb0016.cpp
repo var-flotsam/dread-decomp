@@ -60,7 +60,7 @@ void fn_71003b7a64(UnkChargeEntries_ovb0016* entries, const UnkChargeEntry_ovb00
     u32 n = entries->count;
     u32 capacity = entries->capacity;
     if (capacity <= n && entries->step != 0)
-        capacity = (n / entries->step + 1) * entries->step;
+        capacity = entries->GrownCapacity(n);
     if ((s32)n >= (s32)capacity)
         for (;;) {
         }

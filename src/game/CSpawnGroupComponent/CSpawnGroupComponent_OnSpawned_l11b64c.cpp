@@ -68,7 +68,7 @@ static inline void Append(CRntVector<UnkWeakHandle*>& list, const UnkHandleRef_l
     u32 n = list.count;
     u32 new_capacity = list.capacity;
     if (new_capacity <= n && list.step != 0)
-        new_capacity = (n / list.step + 1) * list.step;
+        new_capacity = list.GrownCapacity(n);
     // A capacity that doesn't grow past the count (no step) hangs, as in the original.
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
