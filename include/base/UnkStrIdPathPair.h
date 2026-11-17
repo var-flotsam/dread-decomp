@@ -16,10 +16,13 @@ struct UnkStrIdPathPair {
 void fn_710008d8e8(UnkStrIdPathPair* self);
 
 // The pair with the resource the path resolves to (both functions are in unit 32 of
-// tools/tu_map.py).
+// tools/tu_map.py). A default one holds the empty ids and no resource (CDrop's three models,
+// fn_71007bf3f0; the dropped-item manager's seven, fn_7100e211cc).
 struct UnkStrIdPathResource {
     UnkStrIdPathPair ids;
     UnkCountedResource* resource;
+
+    UnkStrIdPathResource() : resource(nullptr) {}
 };
 static_assert(sizeof(UnkStrIdPathResource) == 0x18, "UnkStrIdPathResource placeholder layout");
 

@@ -1,4 +1,5 @@
 #include "base/global/CStrId.h"
+#include "game/UnkMotionRule.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -40,23 +41,6 @@ struct UnkArgs_b257a {
             obj->Release();
     }
 };
-
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_b257a() {
-    static UnkFlags_71007142e8 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_b257a() {
-    static UnkFlags_71007142e8 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_b257a().bits & 7);
-    return s_all;
-}
 
 struct UnkStruct_71007142e8 {
     f32 m[12];
@@ -222,7 +206,7 @@ void fn_710070dc8c(UnkTU1134_b257a* self, u32* event, bool reset) {
             fn_7100b8b3bc(reinterpret_cast<UnkTimeline*>(def), &motion,
                           self->field_0x28->field_0xb0, event, time, frames);
             if (reset)
-                fn_71007143c8(reinterpret_cast<UnkStruct_71007142e8*>(part), UnkFlagsAll_b257a());
+                fn_71007143c8(reinterpret_cast<UnkStruct_71007142e8*>(part), UnkFlagsAll_71007142e8());
             fn_7100714808(part, &motion, true);
         }
     }
@@ -238,7 +222,7 @@ void fn_710070da74(UnkTU1134_b257a* self, UnkTrackEvent_b257a* ev) {
     if (__builtin_expect((def_flags & no_flag) != 0, 1) || (def_flags & 2)) {
         u32 flags = ev->flags;
         if (flags & 1) {
-            UnkFlags_71007142e8 all = UnkFlagsAll_b257a();
+            UnkFlags_71007142e8 all = UnkFlagsAll_71007142e8();
             fn_7100714eb4(self->field_0x38, &all.bits);
             self->field_0xa8 = fn_7100c95f34(reinterpret_cast<UnkPlayer_b42*>(ev->entry));
         } else if (def->field_0x14 == 1 || (def_flags & 2) == 0) {

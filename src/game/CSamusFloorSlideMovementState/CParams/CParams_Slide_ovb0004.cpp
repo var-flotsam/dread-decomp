@@ -23,6 +23,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1455.h"
 #include "game/UnkTU1501.h"
@@ -601,23 +602,6 @@ void fn_7100994c08(UnkSlideState_ovb0004* self, const u64* event) {
 
 // ---- fn_7100991e30: the motion's end time over a timeline ----
 
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_71007142e8() {
-    static UnkFlags_71007142e8 s_none;
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_71007142e8() {
-    static UnkFlags_71007142e8 s_all(~UnkFlagsNone_71007142e8().bits & 7);
-    return s_all;
-}
-
 // The motion fn_71007142e8 initialises: the time it ends on at +0x2c.
 struct UnkStruct_71007142e8 {
     u8 pad_0x0[0x2c];
@@ -714,9 +698,7 @@ void fn_7100991b30(UnkFloorSlideStateData_ovb0004* self) {
     self->field_0x1c4 = false;
     self->field_0x1c8 = 0;
     self->field_0x1d0 = 0;
-    new (&self->path.ids.id) CStrId(g_unk_7101d470e0);
-    new (&self->path.ids.path) base::global::CFilePathStrId(g_unk_7101d470e8);
-    self->path.resource = nullptr;
+    new (&self->path) UnkStrIdPathResource();
     self->field_0x1f0 = 0;
     self->field_0x1f4 = false;
     fn_710002f4e4(self->timer);

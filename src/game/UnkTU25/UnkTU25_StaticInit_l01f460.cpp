@@ -31,7 +31,7 @@ static inline UnkHeaderIds_l01f460& HeaderIds() { return *reinterpret_cast<UnkHe
 struct UnkResTypes_l01f460;
 void fn_7100005534(UnkResTypes_l01f460* self, u32 capacity);
 
-struct UnkResTypes_l01f460 : base::global::CRntVector<unk_static_init::UnkResType> {
+struct UnkResTypes_l01f460 : base::global::CRntVector<UnkResFormat> {
     UnkResTypes_l01f460() : CRntVector(0xf) { fn_7100005534(this, 0); }
 };
 

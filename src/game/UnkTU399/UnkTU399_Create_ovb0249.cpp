@@ -6,6 +6,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU1141.h"
 #include "types.h"
@@ -53,23 +54,6 @@ UnkNode_b0249* fn_71002d5070(UnkNodeOwner_b0249* self, base::reflection::UnkRefl
 // action, hands the track the all-bits flag value (fn_7100714eb4, on its +0x38) and stores its progress (fn_710070d890)
 // at +0xa8. Names and layouts are placeholders.
 
-struct UnkFlags_b0249 {
-    u32 bits;
-    UnkFlags_b0249() : bits(0) {}
-    UnkFlags_b0249(u32 b) : bits(b) {}
-    UnkFlags_b0249(const UnkFlags_b0249& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_b0249& UnkFlagsNone_b0249() {
-    static UnkFlags_b0249 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_b0249& UnkFlagsAll_b0249() {
-    static UnkFlags_b0249 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_b0249().bits & 7);
-    return s_all;
-}
-
 struct UnkTrackHolder_b0249 {
     u8 pad_0x0[0x70];
     UnkTrack* track;  // 0x70
@@ -89,7 +73,7 @@ void fn_71002d596c(UnkTrackList_b0249* self) {
         if (!track || !fn_710070d500(track))
             continue;
         void* part = reinterpret_cast<char*>(track) + 0x38;
-        UnkFlags_b0249 flags = UnkFlagsAll_b0249();
+        UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
         fn_7100714eb4(part, &flags.bits);
         *reinterpret_cast<f32*>(reinterpret_cast<char*>(track) + 0xa8) = fn_710070d890(track);
     }

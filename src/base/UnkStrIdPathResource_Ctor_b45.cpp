@@ -5,12 +5,8 @@
 // placeholders.
 #include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
-#include "base/global/CFilePathStrId.h"
-#include "base/global/CStrId.h"
 #include "game/UnkTU32.h"
 #include "types.h"
-
-using base::global::CStrId;
 
 struct UnkPathSource_b45a1 {
     u8 pad_0x0[0x10];
@@ -30,8 +26,6 @@ struct UnkPathSourceRef_b45a1 {
 void fn_7100027464(UnkStrIdPathResource* self, const UnkPathSourceRef_b45a1* source) {
     ++source->ptr->use_count;
     UnkPathIdsFromText ids(source->ptr->text);
-    new (&self->ids.id) CStrId(g_unk_7101d470e0);
-    new (&self->ids.path) base::global::CFilePathStrId(g_unk_7101d470e8);
-    self->resource = nullptr;
+    new (self) UnkStrIdPathResource();
     fn_71000267f8(self, ids.ids);
 }

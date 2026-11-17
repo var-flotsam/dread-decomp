@@ -13,6 +13,7 @@
 #include "game/CLifeComponent.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/CPlayerLifeComponent.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkPlayerLifeTunable.h"
 #include "game/UnkTU2523.h"
@@ -46,9 +47,9 @@ void fn_71007bf3f0(CDrop* self) {
     self->field_0x498 = 0;
     self->mode = 1;
     self->field_0x49c_2 = 0;
-    new (&self->field_0x4a0) UnkDropResource();
-    new (&self->field_0x4b8) UnkDropResource();
-    new (&self->field_0x4d0) UnkDropResource();
+    new (&self->field_0x4a0) UnkStrIdPathResource();
+    new (&self->field_0x4b8) UnkStrIdPathResource();
+    new (&self->field_0x4d0) UnkStrIdPathResource();
     self->field_0x4e8 = false;
 }
 
@@ -62,8 +63,6 @@ void fn_71007bfa70(CDrop* self) {
     self->table.~UnkDropTable();
     fn_7101043934(reinterpret_cast<UnkCameraCtrl_ovb0049*>(self));
 }
-
-struct UnkDroppableTunable;
 
 static inline f32 ScaledAmount(f32 amount, f32 scale) {
     f32 v = amount * scale;
@@ -88,7 +87,7 @@ f32 fn_71007bffe4(CDrop* self) {
             return ScaledAmount(self->amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_PowerBombBig);
         if (item == g_unk_71727c1078.data) {
             f32 amount = self->amount;
-            f32 limit = *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_71727c10c8) + 0x60);
+            f32 limit = g_unk_71727c10c8.fMiniXMissileAmount;
             if (amount + 0.001f >= limit && amount - 0.001f <= limit)
                 return ScaledAmount(amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_MiniXMissile);
             return ScaledAmount(amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_MiniXLife);

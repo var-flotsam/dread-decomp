@@ -6,28 +6,12 @@
 #include <math.h>
 
 #include "game/CAnimationComponent.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
 
 struct UnkStruct_7101176ea8;
-
-struct UnkFlags_ovb0245 {
-    u32 bits;
-    UnkFlags_ovb0245() : bits(0) {}
-    UnkFlags_ovb0245(u32 b) : bits(b) {}
-    UnkFlags_ovb0245(const UnkFlags_ovb0245& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_ovb0245& UnkFlagsNone_ovb0245() {
-    static UnkFlags_ovb0245 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_ovb0245& UnkFlagsAll_ovb0245() {
-    static UnkFlags_ovb0245 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_ovb0245().bits & 7);
-    return s_all;
-}
 
 struct UnkStruct_71007142e8 {
     f32 m[12];
@@ -65,7 +49,7 @@ void fn_710046a228(UnkUppercutLength_ovb0245* self) {
     UnkStruct_71007142e8 motion;
     fn_71007142e8(&motion);
     UnkMotionTracks* tracks = timeline->tracks;
-    UnkFlags_ovb0245 flags = UnkFlagsAll_ovb0245();
+    UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     f32 x = motion.m[3];
     f32 y = motion.m[7];

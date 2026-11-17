@@ -1,6 +1,6 @@
 // Unit 2635: resets a music-state holder: returns its state machine to state 0 and, in mode 2, fades
 // every music channel out. Names and layouts are placeholders.
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
@@ -78,20 +78,20 @@ struct UnkMusicState_lfd0998 {
 static_assert(__builtin_offsetof(UnkMusicState_lfd0998, field_0xd4) == 0xd4, "");
 static_assert(__builtin_offsetof(UnkMusicState_lfd0998, field_0xb60) == 0xb60, "");
 
-inline const UnkLoadingMask& MaskNone4_lfd0998() {
-    static UnkLoadingMask s_mask;
+inline const UnkMask& MaskNone4_lfd0998() {
+    static UnkMask s_mask;
     return s_mask;
 }
-inline const UnkLoadingMask& MaskAll4_lfd0998() {
-    static UnkLoadingMask s_mask(~MaskNone4_lfd0998().bits & 0xf);
+inline const UnkMask& MaskAll4_lfd0998() {
+    static UnkMask s_mask(~MaskNone4_lfd0998().bits & 0xf);
     return s_mask;
 }
-inline const UnkLoadingMask& MaskNone9_lfd0998() {
-    static UnkLoadingMask s_mask;
+inline const UnkMask& MaskNone9_lfd0998() {
+    static UnkMask s_mask;
     return s_mask;
 }
-inline const UnkLoadingMask& MaskAll9_lfd0998() {
-    static UnkLoadingMask s_mask(~MaskNone9_lfd0998().bits & 0x1ff);
+inline const UnkMask& MaskAll9_lfd0998() {
+    static UnkMask s_mask(~MaskNone9_lfd0998().bits & 0x1ff);
     return s_mask;
 }
 
@@ -105,7 +105,7 @@ void fn_7100fd0998(UnkMusicState_lfd0998* self, s32 mode) {
     }
     if (mode == 2) {
         void* music = self->owner ? self->owner->music : nullptr;
-        fn_7100fd7b44(music, MaskAll4_lfd0998(), MaskAll9_lfd0998(), 0.0f);
+        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), MaskAll4_lfd0998(), MaskAll9_lfd0998(), 0.0f);
         self->field_0xb60 = 0;
     }
 }

@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
 #include "game/UnkTU341.h"
@@ -25,11 +26,6 @@ struct UnkDroppedItems_e2813c {
     CDrop drops[1];  // 0x7890
 };
 static_assert(__builtin_offsetof(UnkDroppedItems_e2813c, drops[0]) == 0x7890, "layout");
-
-struct UnkDroppableTunable_e2813c {
-    u8 pad_0x0[0x44];
-    f32 fLifeAmount;  // 0x44
-};
 
 void fn_7100e2813c(UnkDroppedItems_e2813c* self) {
     UnkDropTable table;
@@ -57,7 +53,7 @@ void fn_7100e2813c(UnkDroppedItems_e2813c* self) {
     CDrop* drop = &self->drops[0];
     {
         UnkDropTable copy = table;
-        f32 amount = reinterpret_cast<const UnkDroppableTunable_e2813c*>(&g_unk_71727c10c8)->fLifeAmount;
+        f32 amount = g_unk_71727c10c8.fLifeAmount;
         drop->item = g_unk_71727c1048;
         drop->owner = self;
         drop->callback = fn_7100e2f98c;
