@@ -138,11 +138,11 @@ address,size,name,name_source,subsystem,status
 0x710030850c,388,CAbilityGhostAura::CTunableAbilityGhostAura::refl_InitClass,reflection,game,O
 0x7100308690,696,fn_7100308690,unknown,unknown,O
 0x7100308950,320,fn_7100308950,unknown,unknown,O
-0x7100308a90,484,fn_7100308a90,unknown,unknown,U
+0x7100308a90,484,fn_7100308a90,unknown,unknown,O
 0x7100308c74,128,fn_7100308c74,unknown,unknown,O
 0x7100308cf4,20,fn_7100308cf4,unknown,unknown,O
 0x7100308d08,4,fn_7100308d08,unknown,unknown,O
-0x7100308d0c,1172,fn_7100308d0c,unknown,unknown,U
+0x7100308d0c,1172,fn_7100308d0c,unknown,unknown,O
 0x71003091a0,100,fn_71003091a0,unknown,unknown,O
 0x7100309204,868,fn_7100309204,unknown,unknown,U
 0x7100309568,8,fn_7100309568,unknown,unknown,O
@@ -516,7 +516,7 @@ address,size,name,name_source,subsystem,status
 0x710032aad8,304,fn_710032aad8,unknown,unknown,U
 0x710032ac08,296,fn_710032ac08,unknown,unknown,U
 0x710032ad30,1528,fn_710032ad30,unknown,unknown,U
-0x710032b328,288,fn_710032b328,unknown,unknown,U
+0x710032b328,288,fn_710032b328,unknown,unknown,O
 0x710032b448,2120,fn_710032b448,unknown,unknown,U
 0x710032bc90,220,fn_710032bc90,unknown,unknown,O
 0x710032bd6c,660,fn_710032bd6c,unknown,unknown,U
@@ -570,7 +570,7 @@ address,size,name,name_source,subsystem,status
 0x7100331870,12,fn_7100331870,unknown,unknown,O
 0x710033187c,716,fn_710033187c,unknown,unknown,U
 0x7100331b48,192,fn_7100331b48,unknown,unknown,O
-0x7100331c08,116,fn_7100331c08,unknown,unknown,U
+0x7100331c08,116,fn_7100331c08,unknown,unknown,m
 0x7100331c7c,272,fn_7100331c7c,unknown,unknown,O
 0x7100331d8c,8,CAbilityShinespark::refl_Equals,reflection,game,O
 0x7100331d94,8,CAbilityShinespark::refl_Hash,reflection,game,O
@@ -4415,7 +4415,7 @@ address,size,name,name_source,subsystem,status
 0x71003cc7dc,400,fn_71003cc7dc,unknown,game/ai?,O
 0x71003cc96c,228,fn_71003cc96c,unknown,game/ai?,O
 0x71003cca50,412,fn_71003cca50,unknown,game/ai?,O
-0x71003ccbec,612,fn_71003ccbec,unknown,game/ai?,U
+0x71003ccbec,612,fn_71003ccbec,unknown,game/ai?,O
 0x71003cce50,228,fn_71003cce50,unknown,game/ai?,O
 0x71003ccf34,28,fn_71003ccf34,unknown,game/ai?,O
 0x71003ccf50,132,fn_71003ccf50,unknown,game/ai?,O

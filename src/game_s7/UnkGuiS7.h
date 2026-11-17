@@ -15,6 +15,7 @@
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2747.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiLabel.h"
 #include "game/UnkGuiRoot.h"
@@ -84,7 +85,7 @@ struct UnkOwner {
 extern CStrId g_unk_7172769ca0[2] __attribute__((visibility("hidden")));  // background ids
 
 using ::fn_71011d9508;  // game/GUI/CDisplayObjectContainer.h
-void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
+using ::fn_71011cfba8;  // game/UnkTU2747.h
 void fn_71011ccb28(UnkGuiObj* object, f32 value);
 void fn_71011cc844(UnkGuiObj* object, f32 value);
 void fn_71011ed0f0(UnkGuiObj* label, s32 value);

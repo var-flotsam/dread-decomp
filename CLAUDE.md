@@ -15,22 +15,32 @@ read it whole). Forks: `CONTRIBUTING.md`. The maintainer: `docs/maintaining.md`.
 - **Goal.** Anyone builds a native port from their own files (keys, ROM, filesystem); the project hosts none of
   them. A full source port with no translation layer in the product: the semantic lifts the port runs today are
   scaffolding, reported in `docs/HANDOFF.md` as "lifted code still in the port", and must shrink to zero.
-- **The metric is readable, hand-typed code** (`tools/progress.py --origin`). Generated code, `src/lifted`
-  included, verifies correctness and does not count; it must eventually be replaced.
+- **The metric is readable, matching code, whoever or whatever wrote it** (owner, 2026-11-17). A function
+  counts when its bytes are proven (tiers below) and its text reads as source; a tool's output counts on the
+  same two tests, so a generator is finished by making its output readable, not by retyping it. Readable:
+  no `fn_<addr>` or `Unk` name, no offset cast, typed members, no steering form. Two figures: *strict* (no
+  placeholder anywhere) and *loose* (the function's own name, class and members are real; placeholder callees
+  allowed). A generated family also needs a sampled read: 20 random functions per generator release, pass or
+  fail for the family. `tools/progress.py --quality` is the floor today; `--origin` reports who wrote what and
+  is no longer the metric.
 - **Proof tiers.** 1, *matching*: a byte match, tried first for every function. 2, *verified equivalent*: the
   difference is registers or instruction order only (`trymatch.py`'s `KIND` says registers) and
   `tools/equiv_test.py` passes (verdicts in `data/equivalence.csv`; `check.py` fails a stale passing verdict);
   it counts as done and owes its match to a permuter (`tools/permute.py`), not to model attempts.
   3, *unverified*: anything else, including a `NON_MATCHING` function without a current passing verdict. It
-  does not count.
+  does not count. *Oracle-verified* (a text the port's P-code oracle accepts) is tier 3 with its own figure: a
+  test on sampled inputs, not a proof. It decides what the port may run, so a readable draft that passes
+  replaces its lift there, and it still owes a match.
 - **Order: behaviour, then readability, then bytes.** Among texts that behave as the original does, keep the
   readable one even when it does not match: a function that matches only with a union around a member, an
   empty barrier or an inlining attribute is committed readable, as tier 2. A text that reads better but behaves
   otherwise is never kept ("faithful first", below).
 - **Complete** = byte-matching and readable; **done** = matching or verified equivalent (the interim figure).
   `tools/progress.py --quality` reports the two qualities apart. A template family (the reflection boilerplate)
-  counts as hand-written once the template reads as source: no `fn_<addr>` or `Unk` names in its interface,
-  each use names the class and its members with no addresses, one line per field. Today's do not yet.
+  counts once the template reads as source: no `fn_<addr>` or `Unk` names in its interface, each use names the
+  class and its members with no addresses, one line per field. Today's do not yet. A semantic lift of a large
+  function is machine code transliterated and does not read as source; renaming its variables does not change
+  that.
 - `nn::atk` is decompiled too, as its own library (`docs/reference.md`).
 
 ## Hard rules (never break these)

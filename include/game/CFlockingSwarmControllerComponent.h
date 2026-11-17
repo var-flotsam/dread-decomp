@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkRedenkiSwarm_b46a2;
 struct UnkArray_fs;
 struct UnkGroup_fs;
 struct UnkParent_71007455dc;
@@ -18,3 +19,4 @@ UnkParent_71007455dc* fn_7100739c64(UnkSwarmUpdate_b65a4* self);
 UnkGroup_fs* fn_71007410a4(UnkArray_fs* array, u32 index);
 void fn_7100737d4c(UnkSwarmRecord_b65a4* record, const UnkSwarmPoint_b65a4* point);
 bool fn_710073fea8(UnkSwarmUpdate_b65a4* self, const UnkVec3Result* pos, UnkSwarmPoint_b65a4* out, f32 range);
+void fn_7100737d58(UnkRedenkiSwarm_b46a2* object);

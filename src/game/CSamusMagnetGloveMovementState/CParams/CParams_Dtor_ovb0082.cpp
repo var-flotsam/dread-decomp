@@ -2,11 +2,11 @@
 // (g_unk_7101a87520), the capsule shape at +0x278 (fn_7100d6006c), the counted pointers of the two magnet targets
 // (+0x1c0, +0x208) and of the link at +0x1a8 released, then the movement-state base destructor (fn_71009b0800).
 // Names and layouts are placeholders.
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101a87520[];
 void fn_71009b0800(void*);
 
 struct UnkMagnetRef_ovb0082 {

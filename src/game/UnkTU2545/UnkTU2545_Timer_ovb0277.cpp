@@ -13,6 +13,7 @@
 #include "game/nn/time.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 #include "game/UnkMask.h"
 
@@ -24,7 +25,6 @@ struct UnkHms {
 
 struct UnkWideStr_0x20;
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 
 struct UnkTimeText_b0277 {
     UnkGuiText text;

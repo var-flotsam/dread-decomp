@@ -59,7 +59,6 @@ extern UnkEnumType g_unk_71729f0290;
 extern UnkEnumType g_unk_71729f0298;
 extern UnkEnumType g_unk_71729f02a0;
 extern UnkEnumType g_unk_71729f02a8;
-extern UnkEnumType g_unk_71729f02b0;
 
 void fn_7100fcbf50() {
     InitHeaderIds(&g_unk_71729f02e8.ids);

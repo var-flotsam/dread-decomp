@@ -7,6 +7,11 @@
 #include "types.h"
 #include "base/reflection/TypeObject.h"
 
+struct UnkNavMeshHits;
+struct UnkNavQuery_b0080;
+struct UnkYamplotNav_b0080;
+struct UnkCaterzillaAIScale_b49;
+struct UnkCaterzillaOut_b49;
 struct UnkNavComponent;
 struct UnkNavGroupInfo;
 struct UnkAIBB_b0144;
@@ -88,3 +93,5 @@ template <> base::reflection::CType base::reflection::TypeObject<ELOSMode>::obje
 extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));
 void* fn_7101105970(UnkScorpiusAI_b69a4* ai);
 UnkNavGroupInfo* fn_710110c3d8(UnkNavComponent* component);
+void fn_710110f318(UnkYamplotNav_b0080* self, u16 cell, UnkNavQuery_b0080* query, UnkNavMeshHits* hits);
+void fn_7101111c24(UnkCaterzillaAIScale_b49* self, UnkCaterzillaOut_b49* out);

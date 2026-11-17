@@ -3,6 +3,7 @@
 // The repeated zero stores are the original's (value-initialised members then their constructors).
 // Names are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/CFlockingSwarmControllerComponent.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "types.h"
 
@@ -46,8 +47,6 @@ struct UnkRedenkiSwarm_b46a2 {
     f32 field_0x568;
     u32 field_0x56c;
 };
-
-void fn_7100737d58(UnkRedenkiSwarm_b46a2* self);
 
 void fn_710065b090(UnkRedenkiSwarm_b46a2* self) {
     fn_7100737d58(self);

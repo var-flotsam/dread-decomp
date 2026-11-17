@@ -3671,7 +3671,7 @@ address,size,name,name_source,subsystem,status
 0x71002a6ab8,292,fn_71002a6ab8,unknown,unknown,U
 0x71002a6bdc,348,fn_71002a6bdc,unknown,unknown,O
 0x71002a6d38,508,fn_71002a6d38,unknown,unknown,O
-0x71002a6f34,680,fn_71002a6f34,unknown,unknown,U
+0x71002a6f34,680,fn_71002a6f34,unknown,unknown,O
 0x71002a71dc,100,fn_71002a71dc,unknown,unknown,O
 0x71002a7240,84,fn_71002a7240,unknown,unknown,O
 0x71002a7294,4,operator.delete,symbol,unknown,O
