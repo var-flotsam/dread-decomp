@@ -14,9 +14,6 @@
 
 using base::global::CStrId;
 
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f0188;  // the focus sound's event
-
 // A display object as this file uses it: its animation call.
 struct UnkPortraitWidget_lb6f4d0 {
     virtual void vf_0x0();
@@ -124,7 +121,7 @@ void fn_7100b6f4d0(UnkSamusMenuComposition_lb6f4d0* self) {
         return;
     auto* focused = reinterpret_cast<UnkFocusedObject_lb6f4d0*>(focus->target);
     if (self->focused_before)
-        fn_7100fc9d78(g_unk_717275c380, reinterpret_cast<UnkStateKey*>(&g_unk_71729f0188), self);
+        fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0188, self);
     self->focused_before = true;
     self->focused_name = focused->name;
 

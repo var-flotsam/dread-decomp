@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkBlendState;
 struct UnkEntry_71001cdba4;
 void fn_710015a260(bool value);  // Sets the alpha write-mask flag for slots 0-7.
 void fn_710015a3e0(bool value);
@@ -38,3 +39,10 @@ extern bool g_unk_7101a1d7d9;
 extern s32 g_unk_7101a1d7f4;
 extern s32 g_unk_7101a1d7f8;
 extern s32 g_unk_7101a1d7fc;
+void fn_710015afd0(s32 a, s32 b, s32 c);
+void fn_710015acf0(const UnkBlendState* desc);  // Applies desc unless the top of the blend stack locks it.
+void fn_710015b160();  // Applies the top of the blend stack again.
+bool fn_710015b8a0(bool apply);  // Pops the blend stack; whether an entry is left.
+extern s32 g_unk_716e29c694;
+extern s32 g_unk_716e29c240;
+extern s32 g_unk_716e29c244;

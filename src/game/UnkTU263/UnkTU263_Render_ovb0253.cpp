@@ -2,6 +2,7 @@
 // each hands the target a global string id, binds a list and a block, sets the viewport from the
 // screen size, and runs a fixed run of its methods. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkMinimapRenderStatics.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
 #include "game/UnkTU259.h"
@@ -142,27 +143,13 @@ void fn_71001e2334(UnkPassOwner_b0253* self) {
     fn_71001cdd70(self->target);
 }
 
-// The pending texel upload: the flag, the rectangle to write and the pixels (1024 per row).
-struct UnkUploadState_b0253 {
-    u8 pending;  // 0x638
-    u8 pad_0x1[7];
-    u32 x_begin;  // 0x640
-    u32 x_end;    // 0x644
-    u32 y_begin;  // 0x648
-    u32 y_end;    // 0x64c
-    u8 pad_0x650[0x60];
-    u32* pixels;  // 0x6b0
-};
-static_assert(__builtin_offsetof(UnkUploadState_b0253, pixels) == 0x78, "UnkUploadState_b0253 layout");
-extern UnkUploadState_b0253 g_unk_716e596638 __attribute__((visibility("hidden")));
-
 struct UnkUploadOwner_b0253 {
     u8 pad_0x0[0x200];
     UnkBoundTarget* target;  // 0x200
 };
 
 void fn_71001e1684(UnkUploadOwner_b0253* self) {
-    UnkUploadState_b0253& up = g_unk_716e596638;
+    UnkMinimapRenderStatics& up = g_unk_716e596638;
     if (up.pending != 1)
         return;
     if (up.pixels) {

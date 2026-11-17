@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CButton.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
@@ -16,10 +17,7 @@
 
 using base::global::CStrId;
 
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f0188;
 struct UnkList_ovb0059;
-struct UnkGuiButtonIds;  // the button as its id checks see it (GUI_CButton.cpp)
 void fn_71012015a0(UnkList_ovb0059* self, const CStrId* id);
 char* fn_7101201658(char* p0);
 
@@ -112,7 +110,7 @@ inline void Focus(UnkGuiDisplayObject* obj) {
 }
 
 inline void PlaySelectSound(UnkButtonSelect_l1bf744* self) {
-    fn_7100fc9d78(g_unk_717275c380, reinterpret_cast<UnkStateKey*>(&g_unk_71729f0188), self);
+    fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0188, self);
 }
 
 void fn_71011bf744(UnkGuiButtonIds* button, u32 state) {

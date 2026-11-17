@@ -24,15 +24,7 @@ struct UnkInnerList_b0169 : base::UnkVtableList<UnkInnerNode_b0169> {
         if (n) {
             n->value = src->value;
             n->next = nullptr;
-            if (count) {
-                // Untyped store: the original reloads the count after linking the node in.
-                __builtin_memcpy(&tail->next, &n, sizeof(n));
-                n->next = nullptr;
-                tail = n;
-            } else {
-                head = tail = n;
-            }
-            ++count;
+            base::UnkLinkedList<UnkInnerNode_b0169>::PushBack(n);
         }
     }
 };
@@ -108,4 +100,35 @@ void fn_71008702a8(UnkTimedList_b0169* self) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a7a548) + 0x10;
     self->Clear();
     __builtin_operator_delete(self);
+}
+
+// Appends the entry's contents to the list as a new node, taking over its id.
+void fn_710086f9e0(UnkTimedList_b0169* self, UnkTimedEntry_b0169* other) {
+    UnkTimedNode_b0169* node = static_cast<UnkTimedNode_b0169*>(self->allocator->vf_0x40(0x50, 8, self->flags));
+    if (!node)
+        return;
+    node->id.data = other->id.data;
+    other->id.data = &g_unk_7101d47108->empty;
+    node->timer = other->timer;
+    node->inner.vtable = reinterpret_cast<char*>(g_unk_7101a46040) + 0x10;
+    node->inner.count = 0;
+    node->inner.head = node->inner.tail = nullptr;
+    node->inner.allocator = other->inner.allocator;
+    node->inner.flags = other->inner.flags;
+    for (UnkInnerNode_b0169* v = other->inner.head; v; v = v->next)
+        node->inner.PushBack(v);
+    node->both = other->both;
+    node->next = nullptr;
+    // self->PushBack(node), written out: calling the member schedules the empty list's `count = 1`
+    // after the head and tail stores, where the original sets it up first.
+    if (self->count == 0) {
+        self->head = node;
+        self->tail = node;
+        self->count = 1;
+    } else {
+        self->tail->next = node;
+        node->next = nullptr;
+        self->tail = node;
+        ++self->count;
+    }
 }
