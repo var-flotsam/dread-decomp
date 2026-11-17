@@ -49,21 +49,11 @@ struct UnkPullOffListener_ovb0138 {
     }
 };
 
-struct UnkPullOffTable_ovb0138 : UnkStrIdTable {
-    ~UnkPullOffTable_ovb0138() {
-        fn_71004f11f8(this);
-        if (keys)
-            allocator->vf_0x48(keys);
-        if (values)
-            allocator->vf_0x48(values);
-    }
-};
-
 struct UnkPullOffComponent_ovb0138 {
     char* vtable;
     u8 pad_0x8[0x90];
     base::UnkStrIdMember name;                 // 0x98
-    UnkPullOffTable_ovb0138 table;             // 0xa0
+    UnkOwnedStrIdTable table;                  // 0xa0
     UnkPullOffCallbackList_ovb0138 callbacks;  // 0xc8
     u8 pad_0x108[0x8];
     UnkPullOffListener_ovb0138 listener;       // 0x110
@@ -74,7 +64,7 @@ void fn_710082d908(UnkPullOffComponent_ovb0138* self) {
     self->vtable = reinterpret_cast<char*>(g_unk_7101a76dc0) + 0x10;
     self->listener.~UnkPullOffListener_ovb0138();
     self->callbacks.~UnkPullOffCallbackList_ovb0138();
-    self->table.~UnkPullOffTable_ovb0138();
+    self->table.~UnkOwnedStrIdTable();
     using base::UnkStrIdMember;
     self->name.~UnkStrIdMember();
     fn_710082ca68(reinterpret_cast<char*>(self));

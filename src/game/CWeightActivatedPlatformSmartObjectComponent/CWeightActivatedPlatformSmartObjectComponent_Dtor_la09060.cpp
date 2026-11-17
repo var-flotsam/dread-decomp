@@ -73,7 +73,7 @@ struct UnkWeightPlatform_la09060 {
     UnkWapWatch_la09060 watch;       // 0x540
     u8 pad_0x558[0x568 - 0x558];
     CStrId name;                     // 0x568
-    UnkStrIdTable table;             // 0x570
+    UnkOwnedStrIdTable table;        // 0x570
 };
 static_assert(__builtin_offsetof(UnkWeightPlatform_la09060, states) == 0x230, "layout");
 static_assert(__builtin_offsetof(UnkWeightPlatform_la09060, watch) == 0x540, "layout");
@@ -81,11 +81,7 @@ static_assert(__builtin_offsetof(UnkWeightPlatform_la09060, table) == 0x570, "la
 
 void fn_7100a09060(UnkWeightPlatform_la09060* self) {
     self->vtable = g_unk_7101a8b3a8 + 2;
-    fn_71004f11f8(&self->table);
-    if (self->table.keys)
-        self->table.allocator->vf_0x48(self->table.keys);
-    if (self->table.values)
-        self->table.allocator->vf_0x48(self->table.values);
+    self->table.~UnkOwnedStrIdTable();
     self->name.Reset();
     self->watch.Destroy();
     for (int i = 6; i >= 0; --i)

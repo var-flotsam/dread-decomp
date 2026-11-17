@@ -26,17 +26,13 @@ template <u32 IdOffset>
 struct UnkActivatable_b44a2 : UnkBaseComponent {
     u8 pad_0x40[IdOffset - 0x40];
     UnkStringData* field_0x48;  // CStrId
-    UnkStrIdTable field_0x50;
+    UnkOwnedStrIdTable field_0x50;
 };
 
 template <void** Vtable, void (*Base)(UnkBaseComponent*), u32 IdOffset>
 __attribute__((always_inline)) inline void UnkActivatableDtor_b44a2(UnkActivatable_b44a2<IdOffset>* self) {
     self->vtable = Vtable + 2;
-    fn_71004f11f8(&self->field_0x50);
-    if (self->field_0x50.keys)
-        self->field_0x50.allocator->vf_0x48(self->field_0x50.keys);
-    if (self->field_0x50.values)
-        self->field_0x50.allocator->vf_0x48(self->field_0x50.values);
+    self->field_0x50.~UnkOwnedStrIdTable();
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->field_0x48;
         if (*id && *id != &pool->empty) {

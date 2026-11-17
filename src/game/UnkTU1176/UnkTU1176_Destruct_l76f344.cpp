@@ -175,15 +175,7 @@ struct UnkListener_l76f344 {
 struct UnkStrIdList_l76f344 {
     u8 field_0x0;
     CStrId id;
-    UnkStrIdTable table;
-
-    ~UnkStrIdList_l76f344() {
-        fn_71004f11f8(&table);
-        if (table.keys)
-            table.allocator->vf_0x48(table.keys);
-        if (table.values)
-            table.allocator->vf_0x48(table.values);
-    }
+    UnkOwnedStrIdTable table;
 };
 static_assert(sizeof(UnkStrIdList_l76f344) == 0x38, "UnkStrIdList layout");
 

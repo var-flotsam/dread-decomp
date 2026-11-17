@@ -19,21 +19,11 @@ struct base::UnkCallbackTraits<UnkWaterTriggerCallbacks_la65dac> {
 };
 using UnkWaterTriggerCallbackList_la65dac = base::UnkCallbackListShort<UnkWaterTriggerCallbacks_la65dac>;
 
-struct UnkWaterTriggerTable_la65dac : UnkStrIdTable {
-    ~UnkWaterTriggerTable_la65dac() {
-        fn_71004f11f8(this);
-        if (keys)
-            allocator->vf_0x48(keys);
-        if (values)
-            allocator->vf_0x48(values);
-    }
-};
-
 struct UnkWaterTriggerComponent_la65dac {
     void** vtable;
     u8 pad_0x8[0x68];
     base::UnkStrIdMember name;                         // 0x70
-    UnkWaterTriggerTable_la65dac table;                // 0x78
+    UnkOwnedStrIdTable table;                          // 0x78
     void* field_0xa0;
     UnkWaterTriggerCallbackList_la65dac callbacks_a;   // 0xa8
     UnkWaterTriggerCallbackList_la65dac callbacks_b;   // 0xe8
@@ -54,7 +44,7 @@ void fn_7100a65dac(UnkWaterTriggerComponent_la65dac* self) {
     self->callbacks_c.~UnkWaterTriggerCallbackList_la65dac();
     self->callbacks_b.~UnkWaterTriggerCallbackList_la65dac();
     self->callbacks_a.~UnkWaterTriggerCallbackList_la65dac();
-    self->table.~UnkWaterTriggerTable_la65dac();
+    self->table.~UnkOwnedStrIdTable();
     using base::UnkStrIdMember;
     self->name.~UnkStrIdMember();
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));

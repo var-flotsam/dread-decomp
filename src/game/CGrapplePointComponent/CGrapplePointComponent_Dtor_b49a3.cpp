@@ -18,16 +18,12 @@ struct UnkGrapplePointComponent_b49a3 : UnkBaseComponent {
     UnkRefObject* ref;  // 0x40
     u8 pad_0x48[0x8];
     UnkStringData* id;  // 0x50, a CStrId
-    UnkStrIdTable table;  // 0x58
+    UnkOwnedStrIdTable table;  // 0x58
 };
 
 void fn_7100822278(UnkGrapplePointComponent_b49a3* self) {
     self->vtable = g_unk_7101a75660 + 2;
-    fn_71004f11f8(&self->table);
-    if (self->table.keys)
-        self->table.allocator->vf_0x48(self->table.keys);
-    if (self->table.values)
-        self->table.allocator->vf_0x48(self->table.values);
+    self->table.~UnkOwnedStrIdTable();
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->id;
         if (*id && *id != &pool->empty) {

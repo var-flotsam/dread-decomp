@@ -48,7 +48,7 @@ struct UnkRotationalPlatformComponent_l9d81cc {
     UnkCallbackList_l9d81cc list;  // 0x48
     u8 pad_0x88[0x18];
     CStrId field_0xa0;
-    UnkStrIdTable field_0xa8;
+    UnkOwnedStrIdTable field_0xa8;
     UnkLinkList* link;  // 0xd0
     void* field_0xd8;
     void* field_0xe0;
@@ -66,11 +66,7 @@ void fn_71009d81cc(UnkRotationalPlatformComponent_l9d81cc* self) {
     }
     self->field_0xd8 = nullptr;
     self->field_0xe0 = nullptr;
-    fn_71004f11f8(&self->field_0xa8);
-    if (self->field_0xa8.keys)
-        self->field_0xa8.allocator->vf_0x48(self->field_0xa8.keys);
-    if (self->field_0xa8.values)
-        self->field_0xa8.allocator->vf_0x48(self->field_0xa8.values);
+    self->field_0xa8.~UnkOwnedStrIdTable();
     self->field_0xa0.Reset();
     UnkCallbackList_l9d81cc* list = &self->list;
     list->vtable = &g_unk_7101a33fa0[2];

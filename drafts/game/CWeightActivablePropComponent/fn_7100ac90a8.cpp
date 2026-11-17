@@ -61,7 +61,7 @@ struct UnkWeightDtor_lac90a8 : UnkBaseComponent {
     UnkWeightListener_lac90a8 listener;  // 0x1e0
     u8 pad_0x200[8];
     UnkStringData* id;  // 0x208
-    UnkStrIdTable table;  // 0x210
+    UnkOwnedStrIdTable table;  // 0x210
 };
 static_assert(__builtin_offsetof(UnkWeightDtor_lac90a8, listener.link) == 0x1f8, "link");
 static_assert(__builtin_offsetof(UnkWeightDtor_lac90a8, table) == 0x210, "table");
@@ -69,11 +69,7 @@ static_assert(__builtin_offsetof(UnkWeightDtor_lac90a8, table) == 0x210, "table"
 void fn_7100ac90a8(UnkWeightDtor_lac90a8* self) {
     self->vtable = g_unk_7101a971b8 + 2;
     self->field_0x40 = g_unk_7101a971b8 + 0x34;
-    fn_71004f11f8(&self->table);
-    if (self->table.keys)
-        self->table.allocator->vf_0x48(self->table.keys);
-    if (self->table.values)
-        self->table.allocator->vf_0x48(self->table.values);
+    self->table.~UnkOwnedStrIdTable();
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->id;
         if (*id && *id != &pool->empty) {

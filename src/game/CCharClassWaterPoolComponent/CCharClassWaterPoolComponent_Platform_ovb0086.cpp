@@ -176,7 +176,7 @@ struct UnkWaterPoolComponent2_b0086 : UnkBaseComponent {
     UnkWaterPoolArray_b0086 callbacks;  // 0xc90, the callback sets (fn_710090dbb4.cpp)
     u8 pad_0xcb8[0x10];
     UnkStringData* field_0xcc8;  // CStrId
-    UnkStrIdTable field_0xcd0;
+    UnkOwnedStrIdTable field_0xcd0;
     u8 pad_0xcf8[8];
     UnkWaterPoolArray_b0086 field_0xd00;
     UnkStringData* field_0xd28;  // CStrId
@@ -199,11 +199,7 @@ void fn_7100908424(UnkWaterPoolComponent2_b0086* self) {
         self->field_0xd00.allocator->vf_0x48(self->field_0xd00.data);
         self->field_0xd00.capacity = 0;
     }
-    fn_71004f11f8(&self->field_0xcd0);
-    if (self->field_0xcd0.keys)
-        self->field_0xcd0.allocator->vf_0x48(self->field_0xcd0.keys);
-    if (self->field_0xcd0.values)
-        self->field_0xcd0.allocator->vf_0x48(self->field_0xcd0.values);
+    self->field_0xcd0.~UnkOwnedStrIdTable();
     ReleaseId(&self->field_0xcc8);
     if (self->callbacks.data) {
         fn_710090d2f4(reinterpret_cast<UnkCallbackSetVector*>(&self->callbacks), 0);
