@@ -73,7 +73,7 @@ struct UnkMinimapParts_leb39f0 {
         if (count < size) {
             for (u32 i = count; i < size; ++i)
                 fn_7100eb7680(&data()[i]);
-        } else {
+        } else if (count != size) {
             for (u64 i = size; i < count; ++i)
                 data()[i].~UnkMinimapPart_leb39f0();
         }
@@ -100,7 +100,7 @@ static_assert(__builtin_offsetof(UnkMinimapNode_leb39f0, next) == 0x15f8, "UnkMi
 // The set (base/global/UnkBucketSet.h).
 using UnkMinimapSet_leb39f0 = base::global::UnkBucketSet<UnkMinimapNode_leb39f0>;
 
-UnkKeyIter_b0200 fn_7100eb39f0(UnkKeyBuckets_b0200* buckets, const CStrId* key) {
+UnkPoolIter fn_7100eb39f0(UnkKeyBuckets_b0200* buckets, const CStrId* key) {
     UnkMinimapSet_leb39f0* set = reinterpret_cast<UnkMinimapSet_leb39f0*>(buckets);
     ++set->version;
     UnkMinimapNode_leb39f0* node = static_cast<UnkMinimapNode_leb39f0*>(
@@ -123,6 +123,5 @@ UnkKeyIter_b0200 fn_7100eb39f0(UnkKeyBuckets_b0200* buckets, const CStrId* key) 
     node->next = *head;
     *head = node;
     ++set->node_count;
-    UnkPoolIter it(reinterpret_cast<char*>(node), nullptr, reinterpret_cast<char*>(set), bucket);
-    return *reinterpret_cast<UnkKeyIter_b0200*>(&it);
+    return UnkPoolIter(reinterpret_cast<char*>(node), nullptr, reinterpret_cast<char*>(set), bucket);
 }

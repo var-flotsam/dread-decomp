@@ -26,9 +26,7 @@ struct UnkModeFlags {
 };
 
 struct UnkFadeParams {
-    f32 r;
-    f32 g;
-    f32 b;
+    base::math::CVector3D color;
     f32 a;
     f32 duration;
     f32 delay;
@@ -80,15 +78,15 @@ void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 delay, f32 
     self->params.duration = 0.0f;
     self->params.delay = 0.0f;
     self->elapsed = 0.0f;
-    self->params.b = 0.0f;
+    self->params.color.z = 0.0f;
     self->params.a = 0.0f;
-    self->params.r = 0.0f;
-    self->params.g = 0.0f;
+    self->params.color.x = 0.0f;
+    self->params.color.y = 0.0f;
     self->armed = true;
     self->params.duration = duration;
-    self->params.r = color->x;
-    self->params.g = color->y;
-    self->params.b = color->z;
+    self->params.color.x = color->x;
+    self->params.color.y = color->y;
+    self->params.color.z = color->z;
     self->params.a = alpha;
     self->params.delay = delay;
 }

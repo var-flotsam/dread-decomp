@@ -243,7 +243,7 @@ s32 fn_7101092ca0(lua_State* L) {
     if (ref.entry && ref.id != (u64)-1 && ref.entry->id == ref.id && ref.entry->playing) {
         UnkSoundMgr* sound = g_unk_7101d4d820;
         f32 level = volume;
-        fn_71000fbe1c(reinterpret_cast<u8*>(sound) + 8, 5, level * *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_7101d68580) + 0x3c), 0.0f);
+        fn_71000fbe1c(reinterpret_cast<UnkRampTable*>(reinterpret_cast<u8*>(sound) + 8), 5, level * *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_7101d68580) + 0x3c), 0.0f);
     }
     return 0;
 }

@@ -11,8 +11,9 @@
 using base::math::CVector3D;
 
 struct UnkCircle2D {
-    f32 x, y;
+    UnkVec2Result center;
     f32 radius;
+    UnkCircle2D(const UnkVec2Result& c, f32 r) : center(c), radius(r) {}
 };
 
 // One contact point (0x2c bytes): the position, two vectors that belong to the first and the
@@ -55,8 +56,8 @@ static inline bool UnkNearEps(f32 a, f32 b) {
 static inline u32 AddPoint(UnkContactBuffer<2>* out) {
     u32 i = out->count;
     if (i != 0xFFFFFFFF) {
-        out->count = i + 1;
         out->points[i] = UnkContactPoint();
+        out->count = i + 1;
     }
     return i;
 }
@@ -105,8 +106,8 @@ static inline void AddCrossing(const UnkSegment2D* seg, const UnkCircle2D* circl
     f32 x = dx * t + seg->start.x;
     f32 y = dy * t + seg->start.y;
     UnkVec2Result normal = fn_7100125e78(seg);
-    f32 out_x = x - circle->x;
-    f32 out_y = y - circle->y;
+    f32 out_x = x - circle->center.x;
+    f32 out_y = y - circle->center.y;
     Normalize(normal.x, normal.y);
     Normalize(out_x, out_y);
     AddContact(out, x, y, normal.x, normal.y, out_x, out_y);
@@ -123,8 +124,8 @@ bool fn_71001271d0(const void* b, const UnkCircle2D* a, UnkContactBuffer<2>* out
         return false;
 
     // The points start + t * (dx, dy) on the circle: qa t^2 + qb t + qc = 0.
-    f32 fx = seg->start.x - a->x;
-    f32 fy = seg->start.y - a->y;
+    f32 fx = seg->start.x - a->center.x;
+    f32 fy = seg->start.y - a->center.y;
     f32 qb = 2.0f * (dx * fx + dy * fy);
     f32 qc = fx * fx + fy * fy - a->radius * a->radius;
     f32 disc = qb * qb + qa * -4.0f * qc;
@@ -136,8 +137,8 @@ bool fn_71001271d0(const void* b, const UnkCircle2D* a, UnkContactBuffer<2>* out
         if (t >= 0.0f && t <= 1.0f) {
             f32 x = seg->start.x + dx * t;
             f32 y = seg->start.y + dy * t;
-            f32 nx = a->x - x;
-            f32 ny = a->y - y;
+            f32 nx = a->center.x - x;
+            f32 ny = a->center.y - y;
             Normalize(nx, ny);
             f32 bx = -nx;
             f32 by = -ny;

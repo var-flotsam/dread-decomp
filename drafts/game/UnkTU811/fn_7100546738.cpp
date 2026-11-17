@@ -70,8 +70,10 @@ struct UnkEmmyAI_l546738 {
 
 static inline f32 Distance(const CVector2D& a, const CVector2D& b) {
     f32 dx = a.x - b.x;
+    dx *= dx;
     f32 dy = a.y - b.y;
-    return sqrtf(dx * dx + dy * dy);
+    dy *= dy;
+    return sqrtf(dx + dy);
 }
 
 // The z axis of a transform matrix.
@@ -83,33 +85,29 @@ static inline CVector3D Forward(const UnkMatrix44& m) {
     return v;
 }
 
+// The navigation's target of each kind, when its record says that kind.
+static inline u32 TargetKind(UnkNavTargets_l546738* targets) {
+    if (!targets->record || !targets->record->info)
+        return 0;
+    return targets->record->info->kind;
+}
+
 // The point the navigation is heading to, when its path query has one.
 static inline const CVector3D* TargetPoint(UnkNavTargets_l546738* targets) {
-    if (!targets->record || !targets->record->info)
-        return nullptr;
-    if (targets->record->info->kind == 1 && targets->targetA) {
+    u32 kind = TargetKind(targets);
+    if (kind == 1 && targets->targetA) {
         UnkNavTargetA_l546738* target = targets->targetA;
         return fn_7100707c80(target->query) ? &target->point : nullptr;
     }
-    if (targets->record->info->kind == 7 && targets->targetB) {
+    if (TargetKind(targets) == 7 && targets->targetB) {
         UnkNavTargetB_l546738* target = targets->targetB;
         return fn_7100707c80(target->query) ? &target->point : nullptr;
     }
     return nullptr;
 }
 
-bool fn_7100546738(UnkEmmyAI_l546738* self, f32* distance) {
-    *distance = -1.0f;
-    if (!self->owner->movement)
-        return *distance >= 0.0f;
-    if (fn_71010cc3a4(self->owner->movement) == 4) {
-        *distance = 0.0f;
-        return true;
-    }
-    UnkMovement_l546738* movement = self->owner->movement;
-    if (!movement || fn_71010cc3a4(movement) != 1)
-        return *distance >= 0.0f;
-
+// The nearer of the path's end and the navigation target, written to `distance` when there is one.
+static inline void MeasureDistance(UnkEmmyAI_l546738* self, UnkMovement_l546738* movement, f32* distance) {
     CVector2D forward;
     {
         CVector3D forward3 = Forward(fn_710002614c(&self->owner->transform));
@@ -148,5 +146,18 @@ bool fn_7100546738(UnkEmmyAI_l546738* self, f32* distance) {
         *distance = pathDistance;
     else if (targetDistance >= 0.0f)
         *distance = targetDistance;
+}
+
+bool fn_7100546738(UnkEmmyAI_l546738* self, f32* distance) {
+    *distance = -1.0f;
+    if (self->owner->movement) {
+        if (fn_71010cc3a4(self->owner->movement) == 4) {
+            *distance = 0.0f;
+            return true;
+        }
+        UnkMovement_l546738* movement = self->owner->movement;
+        if (movement && fn_71010cc3a4(movement) == 1)
+            MeasureDistance(self, movement, distance);
+    }
     return *distance >= 0.0f;
 }

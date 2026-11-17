@@ -11,7 +11,8 @@ struct UnkAtkHeap;
 struct UnkIdMap;
 struct UnkTunable;
 struct UnkTunableTokens;
-void fn_71000fbe1c(void* self, u32 a, f32 b, f32 c);
+struct UnkRampTable;  // the sound system's per-channel ramps (unit 99)
+void fn_71000fbe1c(UnkRampTable* self, s32 channel, f32 value, f32 duration);
 void fn_71000fc570(const char* text, const char* separator, UnkTunableTokens* out);
 void fn_71000fc7cc(UnkTunableTokens* self);
 extern UnkTunable g_unk_7101d68580;  // base::snd::CSoundSystemATK's tunable.

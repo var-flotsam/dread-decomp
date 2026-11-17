@@ -17,6 +17,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU437.h"
 #include "game/UnkXformNode.h"
+#include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -39,15 +40,6 @@ struct UnkMeleeEntity_l352b14 {
     UnkXform xform;  // 0x38
 };
 
-// A counted reference to the target.
-struct UnkMeleeHandle_l352b14 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();  // frees it
-    s32 ref_count;  // 0x8
-    UnkMeleeEntity_l352b14* entity;  // 0x10
-};
-
 struct UnkMeleeConfig_l352b14 {
     u8 pad_0x0[0x144];
     u32 field_0x144;
@@ -59,12 +51,10 @@ static_assert(__builtin_offsetof(UnkMeleeConfig_l352b14, field_0x42d) == 0x42d, 
 
 struct UnkMelee_l352b14 {
     virtual s32 vf_0x0();
-    s32 State() {
-        return reinterpret_cast<s32 (*)(UnkMelee_l352b14*)>((*reinterpret_cast<void***>(this))[0x520 / 8])(this);
-    }
-    bool IsBusy() {
-        return reinterpret_cast<bool (*)(UnkMelee_l352b14*)>((*reinterpret_cast<void***>(this))[0x630 / 8])(this);
-    }
+    using StateFn = s32 (*)(UnkMelee_l352b14*);
+    using BusyFn = bool (*)(UnkMelee_l352b14*);
+    s32 State() { return (*reinterpret_cast<StateFn**>(this))[0x520 / 8](this); }
+    bool IsBusy() { return (*reinterpret_cast<BusyFn**>(this))[0x630 / 8](this); }
     u8 pad_0x8[0x1608];
     UnkMeleeConfig_l352b14* config;  // 0x1610
 };
@@ -122,29 +112,12 @@ struct UnkMeleeAim_l352b14 {
     u8 pad_0x0[0x30];
     UnkMeleeOwner_l352b14* owner;  // 0x30
     u8 pad_0x38[0x648];
-    UnkMeleeHandle_l352b14* target;  // 0x680
+    UnkWeakHandle* target;  // 0x680
 
-    void ResetTarget() {
-        if (UnkMeleeHandle_l352b14* old = target) {
-            if (--old->ref_count == 0)
-                old->vf_0x10();
-            target = nullptr;
-        }
-    }
-    void SetTarget(UnkMeleeHandle_l352b14* handle) {
-        if (target != handle) {
-            if (handle)
-                ++handle->ref_count;
-            if (UnkMeleeHandle_l352b14* old = target) {
-                if (--old->ref_count == 0)
-                    old->vf_0x10();
-            }
-            target = handle;
-        }
-    }
+    UnkMeleeEntity_l352b14* TargetEntity() { return reinterpret_cast<UnkMeleeEntity_l352b14*>(target->target); }
     // The unit direction from the owner to the target.
     UnkMeleeDir_l352b14 TargetDirection() {
-        UnkVec3f to = target->entity->xform.GetTranslation();
+        UnkVec3f to = TargetEntity()->xform.GetTranslation();
         UnkVec3f from = owner->xform.GetTranslation();
         f32 dx = to.x - from.x;
         f32 dy = to.y - from.y;
@@ -171,19 +144,18 @@ static inline const CStrId& MeleeCameraId() {
 
 void fn_7100352b14(void* body_field, UnkActor* owner, u32 flag) {
     UnkMeleeAim_l352b14* self = static_cast<UnkMeleeAim_l352b14*>(body_field);
-    self->ResetTarget();
+    ResetRef(&self->target);
     if (!owner || !reinterpret_cast<UnkMeleeSource_l352b14*>(owner)->field_0x1b8)
         return;
-    self->SetTarget(reinterpret_cast<UnkMeleeHandle_l352b14*>(
-        fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(owner))));
-    UnkMeleeHandle_l352b14* handle = self->target;
-    if (!handle || !handle->entity)
+    AssignRef(&self->target, fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(owner)));
+    UnkWeakHandle* handle = self->target;
+    if (!handle || !handle->target)
         return;
-    UnkMelee_l352b14* melee = reinterpret_cast<UnkMeleeTargetEntity_l352b14*>(handle->entity)->melee;
-    if (!melee || !(flag & 1))
+    UnkMelee_l352b14* melee = reinterpret_cast<UnkMeleeTargetEntity_l352b14*>(handle->target)->melee;
+    if (!melee)
         return;
     UnkMeleeConfig_l352b14* config = melee->config;
-    if (!config)
+    if (!(flag & 1) || !config)
         return;
 
     if (melee->State() != 0) {
@@ -191,8 +163,7 @@ void fn_7100352b14(void* body_field, UnkActor* owner, u32 flag) {
             return;
         UnkMeleeDir_l352b14 dir = self->TargetDirection();
         UnkTrackQuery query = {fn_7100d233f8(), nullptr, -1.0f};
-        const CStrId* preset = self->Preset(&query);
-        fn_7100e038b0(g_unk_7101d47310, const_cast<CStrId*>(preset), reinterpret_cast<UnkVec*>(&dir), 0);
+        fn_7100e038b0(g_unk_7101d47310, const_cast<CStrId*>(self->Preset(&query)), reinterpret_cast<UnkVec*>(&dir), 0);
         UnkGameManager* manager = g_unk_7101d47310;
         base::global::CRntString name(g_unk_71726b16c8.Text());
         fn_7100df6d3c(manager, &name, 0.01f, 0.33f);
@@ -212,7 +183,7 @@ void fn_7100352b14(void* body_field, UnkActor* owner, u32 flag) {
         return;
     UnkMeleeCamera_l352b14* camera = static_cast<UnkMeleeCamera_l352b14*>(found);
     fn_7100a20d7c(reinterpret_cast<UnkSyncBlockCameraTarget*>(camera),
-                  self->target ? reinterpret_cast<UnkWeakTarget*>(self->target->entity) : nullptr);
+                  self->target ? self->target->target : nullptr);
     camera->field_0x304 = config->field_0x148;
     camera->field_0x330 = config->field_0x42d;
     camera->field_0x2ec = UnkVec3f(100.0f, 50.0f, 0.0f);

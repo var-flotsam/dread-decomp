@@ -43,6 +43,27 @@ static inline UnkWeakHandle* PartnerHandle(UnkWeakHandle* link) {
     return GetWeakHandle(partner);
 }
 
+// The owner's position.
+static inline CVector3D Translation(const UnkActor* owner) {
+    return {owner->field_0x44, owner->field_0x54, owner->field_0x64};
+}
+
+static inline const base::reflection::CType* TypeOf(const CVector3D*) { return fn_71000246e4(); }
+static inline const base::reflection::CType* TypeOf(const bool*) { return fn_710000d228(); }
+
+// Stores `value` under `name` in the blackboard's section of the behaviour, unless the blackboard is locked.
+template <class T>
+static inline void SetProperty(CBlackboard* blackboard, u8* name, const T& value) {
+    if (CBlackboard::CSection* s = fn_71010472e0(blackboard, g_unk_71726b7cb8)) {
+        if (!blackboard->field_0xe8) {
+            UnkTypedValue v;
+            v.type = TypeOf(&value);
+            v.value = const_cast<T*>(&value);
+            fn_7100332c80(s, reinterpret_cast<UnkPropertyName*>(name), &v);
+        }
+    }
+}
+
 void fn_71006e9384(UnkXParasiteAI* self, const UnkXParasiteMode_A3_b75* mode) {
     if (self->state == 7)
         return;
@@ -63,15 +84,8 @@ void fn_71006e9384(UnkXParasiteAI* self, const UnkXParasiteMode_A3_b75* mode) {
     }
     if (self->state == 3) {
         UnkActor* owner = self->owner;
-        CVector3D pos = {owner->field_0x44, owner->field_0x54, owner->field_0x64};
-        if (CBlackboard::CSection* s = fn_71010472e0(&self->blackboard, g_unk_71726b7cb8)) {
-            if (!self->blackboard.field_0xe8) {
-                UnkTypedValue v;
-                v.type = fn_71000246e4();
-                v.value = &pos;
-                fn_7100332c80(s, reinterpret_cast<UnkPropertyName*>(g_unk_717270b8b8), &v);
-            }
-        }
+        CVector3D pos = Translation(owner);
+        SetProperty(&self->blackboard, g_unk_717270b8b8, pos);
     }
     if (self->state == 4) {
         fn_71006e9fcc(self, nullptr);
@@ -81,15 +95,7 @@ void fn_71006e9384(UnkXParasiteAI* self, const UnkXParasiteMode_A3_b75* mode) {
                 GetWeakHandle(reinterpret_cast<UnkWeakTarget*>(Grabbed(self->link)->partner_link->partner));
             AssignRef(&self->field_0x147b0, handle);
         }
-        bool grabbing = true;
-        if (CBlackboard::CSection* s = fn_71010472e0(&self->blackboard, g_unk_71726b7cb8)) {
-            if (!self->blackboard.field_0xe8) {
-                UnkTypedValue v;
-                v.type = fn_710000d228();
-                v.value = &grabbing;
-                fn_7100332c80(s, reinterpret_cast<UnkPropertyName*>(g_unk_717270b8f0), &v);
-            }
-        }
+        SetProperty(&self->blackboard, g_unk_717270b8f0, true);
     }
     if (self->state == 5) {
         UnkWeakHandle* other = static_cast<UnkWeakHandle*>(self->field_0x147a0);

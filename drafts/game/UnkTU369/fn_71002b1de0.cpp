@@ -1,41 +1,53 @@
-// Unit 369: takes an object out of the list of its pool entry, then reports the removal.
-// Names and layouts are placeholders.
+// Unit 369 (tools/tu_map.py): takes an object out of the list for its cell, then tells the
+// removal listeners. Names and layouts are placeholders.
+#include <string.h>
+
+#include "base/UnkCloneHelpers.h"
+#include "base/UnkDeferredSet.h"
 #include "base/global/CRntVector.h"
+#include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
-struct UnkPool;
-struct UnkListedObject_l2b1de0 {
+using base::global::CRntVector;
+
+struct UnkClone_fn_71002b1eac;
+using UnkRemovalListeners_l2b1de0 = base::UnkDeferredSet<base::UnkDeferredCallback<u64>>;
+extern template void base::refl_DeferredInvoke<UnkClone_fn_71002b1eac, u64>(UnkRemovalListeners_l2b1de0*,
+                                                                              const u64*);
+
+UnkOwnedList* fn_71002b1a3c(base::global::CRntVector<UnkOwnedList>* self, u32 index);
+
+struct UnkTrackedObject_l2b1de0 {
     u16 field_0x0;
-    u16 id;  // 0x2
-};
-struct UnkListOwner_l2b1de0 {
-    u8 pad_0x0[0xa8];
-    u8 listeners;  // 0xa8
+    u16 cell;  // 0x2
 };
 
-base::global::CRntVector<u64>* fn_71002b1a3c(UnkPool* pool, u32 id);
-void fn_71002b1eac(void* listeners, const u64* object);
+struct UnkObjectTracker_l2b1de0 {
+    CRntVector<UnkOwnedList> cells;  // 0x0
+    u8 pad_0x28[0x80];
+    UnkRemovalListeners_l2b1de0 removed;  // 0xa8
+};
+static_assert(__builtin_offsetof(UnkObjectTracker_l2b1de0, removed) == 0xa8, "layout");
 
-void fn_71002b1de0(UnkListOwner_l2b1de0* self, UnkListedObject_l2b1de0* object) {
+using UnkObjectList_l2b1de0 = CRntVector<UnkTrackedObject_l2b1de0*>;
+
+void fn_71002b1de0(UnkObjectTracker_l2b1de0* self, UnkTrackedObject_l2b1de0* object) {
+    u64 arg = reinterpret_cast<u64>(object);
     if (!object)
         return;
-    u64 key = (u64)object;
-    base::global::CRntVector<u64>* list = fn_71002b1a3c(reinterpret_cast<UnkPool*>(self), object->id);
-    u64* values = list->data;
+    UnkObjectList_l2b1de0* list = reinterpret_cast<UnkObjectList_l2b1de0*>(fn_71002b1a3c(&self->cells, object->cell));
+    UnkTrackedObject_l2b1de0** values = list->data;
     u32 n = list->count;
-    u64 i = 0;
-    u64 found = n;
-    for (; i != n; ++i) {
-        if (values[i] == key) {
-            found = i;
+    u64 index = 0;
+    for (; index < n; ++index)
+        if (values[index] == object)
             break;
-        }
-    }
-    if (i == n)
+    if (index == list->count)
         return;
-    if (n > (u32)found) {
-        __builtin_memcpy(&values[found], &values[found + 1], (u64)(n - found - 1) * sizeof(u64));
+    // Shift the later entries down over it.
+    if ((u32)index < n) {
+        memcpy(&values[index], &values[index + 1], (u64)(n - (u32)index - 1) * sizeof(*values));
         --list->count;
     }
-    fn_71002b1eac(&self->listeners, &key);
+    base::refl_DeferredInvoke<UnkClone_fn_71002b1eac, u64>(&self->removed, &arg);
 }

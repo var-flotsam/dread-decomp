@@ -86,11 +86,17 @@ bool fn_7100006e98(UnkBlend13* blend, bool force) {
             self->inputs[1].Set(0.0f, nullptr);
             break;
         }
-        u64 i = 1;
-        while (i != last_index && self->samples[i].position <= x)
-            ++i;
-        UnkBlendSample_l006e98* upper = &self->samples[i];
-        UnkBlendSample_l006e98* lower = &self->samples[i - 1];
+        // The first sample past the position; the last one when none of those between is.
+        UnkBlendSample_l006e98* lower = first;
+        UnkBlendSample_l006e98* upper = last;
+        for (u64 i = 1; i != last_index; ++i) {
+            UnkBlendSample_l006e98* sample = &self->samples[i];
+            if (sample->position > x) {
+                upper = sample;
+                break;
+            }
+            lower = sample;
+        }
         f32 t = (x - lower->position) / (upper->position - lower->position);
         self->inputs[0].Set(1.0f - t, lower);
         self->inputs[1].Set(t, upper);

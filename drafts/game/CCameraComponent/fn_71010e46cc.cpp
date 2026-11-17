@@ -1,5 +1,5 @@
 // CCameraComponent (unit 2691): walks the component's object list, calling each object's virtual
-// 0x48 until one reports not-ready through virtual 0x60, and flags it. Names and layouts are placeholders.
+// 0x48 and moving on while virtual 0x60 is true, then flags the one it settles on. Names and layouts are placeholders.
 #include "types.h"
 
 struct UnkCamObject_l0e46cc {
@@ -29,6 +29,20 @@ struct UnkCamComponent_l0e46cc {
     u8 pad_0x0[0x58];
     u32 count;
     UnkCamNode_l0e46cc* nodes;
+
+    // The object to settle after `object`: itself while vf_0x60 is false, else the first object
+    // after the head of the list for which it is false (none when there is no such object).
+    UnkCamObject_l0e46cc* Next(UnkCamObject_l0e46cc* object) {
+        if (!object->vf_0x60())
+            return object;
+        if (count < 2)
+            return nullptr;
+        for (UnkCamNode_l0e46cc* node = nodes->next; node; node = node->next) {
+            if (!node->value->vf_0x60())
+                return node->value;
+        }
+        return nullptr;
+    }
 };
 
 void fn_71010e46cc(UnkCamComponent_l0e46cc* self, bool flag) {
@@ -36,26 +50,13 @@ void fn_71010e46cc(UnkCamComponent_l0e46cc* self, bool flag) {
     if (!first)
         return;
     UnkCamObject_l0e46cc* object = first->value;
-    if (!object)
-        return;
-    UnkCamObject_l0e46cc* previous;
-    do {
-        previous = object;
+    while (object) {
+        UnkCamObject_l0e46cc* current = object;
         object->vf_0x48(0.0f, flag);
-        if (object->vf_0x60()) {
-            if (self->count < 2)
-                return;
-            UnkCamNode_l0e46cc* node = self->nodes->next;
-            for (; node; node = node->next) {
-                if (!node->value->vf_0x60())
-                    break;
-            }
-            if (!node)
-                return;
-            object = node->value;
-            if (!object)
-                return;
+        object = self->Next(current);
+        if (object == current) {
+            current->field_0x98 = !flag;
+            return;
         }
-    } while (object != previous);
-    object->field_0x98 = !flag;
+    }
 }

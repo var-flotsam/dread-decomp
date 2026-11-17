@@ -62,7 +62,9 @@ bool fn_710012bcd0(const UnkSweep2D* sweep, const UnkSegment2D* seg, UnkContact2
     f32 ex = seg->start.x - seg->end.x;
     f32 dx = sweep->delta.x;
     f32 dy = sweep->delta.y;
-    f32 denom = ey * dx - ex * dy;
+    f32 denom = dx * ey - dy * ex;
+    CVector2D normal = FrontNormal(ex, ey);
+    f32 negDenom = -denom;
     if (!(denom < -kCrossEpsilon)) {
         return false;
     }
@@ -70,18 +72,19 @@ bool fn_710012bcd0(const UnkSweep2D* sweep, const UnkSegment2D* seg, UnkContact2
     f32 sy = sweep->start.y;
     f32 wy = sy - seg->end.y;
     f32 wx = sx - seg->end.x;
-    CVector2D normal = FrontNormal(ex, ey);
-    f32 num = wx * normal.x + normal.y * wy;
+    f32 num = normal.x * wx + wy * normal.y;
     if (!(num >= 0.0f)) {
         return false;
     }
     f32 lengthSq = dx * dx + dy * dy;
-    f32 negDenom = -denom;
-    if (num * num > lengthSq * negDenom * negDenom) {
+    if (!(num * num <= lengthSq * negDenom * negDenom)) {
         return false;
     }
-    f32 u = wx * dy - wy * dx;
-    if (!(u >= denom * kCrossEpsilon && u <= denom * -kCrossEpsilon - denom)) {
+    f32 u = dy * wx - dx * wy;
+    // The crossing must fall between the segment's ends, widened a little either way.
+    f32 high = denom * -kCrossEpsilon - denom;
+    f32 low = denom * kCrossEpsilon;
+    if (!(u >= low && u <= high)) {
         return false;
     }
     f32 t = num / negDenom;

@@ -14,25 +14,33 @@ struct UnkAiTracked_l10f8ac {
 };
 static_assert(__builtin_offsetof(UnkAiTracked_l10f8ac, tracked) == 0x14520, "UnkAiTracked_l10f8ac layout");
 
-// The index of the first entry equal to `object`, or the count when it is not in the list.
-static u64 IndexOf_l10f8ac(const base::global::CRntVector<void*>& list, void* object) {
-    u64 i = 0;
-    for (; i != list.count; ++i) {
+// The first entry equal to `object`, or the end of the list when it is not in it.
+static void** Find_l10f8ac(base::global::CRntVector<void*>& list, void* object) {
+    for (u64 i = 0; i != list.count; ++i) {
         if (list.data[i] == object)
-            break;
+            return &list.data[i];
     }
-    return i;
+    return list.data + list.count;
+}
+
+// Removes the first entry equal to `object`, moving the later ones down.
+static void Remove_l10f8ac(base::global::CRntVector<void*>& list, void* object) {
+    u32 n = list.count;
+    for (u32 i = 0; i < n; ++i) {
+        if (list.data[i] == object) {
+            void** p = &list.data[i];
+            __builtin_memcpy(p, p + 1, (u64)(n - i - 1) * sizeof(void*));
+            --list.count;
+            return;
+        }
+    }
 }
 
 void fn_710110f8ac(void* self, void* object) {
     UnkAiTracked_l10f8ac* ai = static_cast<UnkAiTracked_l10f8ac*>(self);
     base::global::CRntVector<void*>& list = ai->tracked;
-    if (IndexOf_l10f8ac(list, object) == list.count)
+    if (Find_l10f8ac(list, object) == list.data + list.count)
         return;
-    u64 i = IndexOf_l10f8ac(list, object);
-    if (i != list.count) {
-        __builtin_memcpy(&list.data[(u32)i], &list.data[(u32)i + 1], (u64)(list.count - (u32)i - 1) * sizeof(void*));
-        --list.count;
-    }
+    Remove_l10f8ac(list, object);
     fn_7100874460(&ai->field_0x1928, &ai->field_0x30);
 }

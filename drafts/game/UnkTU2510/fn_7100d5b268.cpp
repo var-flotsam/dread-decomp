@@ -1,5 +1,5 @@
 // Unit 2510: queries a collision tree along the segment between two 3D points (flattened to 2D) and,
-// when the query reports a hit, copies the first hit record out. Names and layouts are placeholders.
+// when the query reports a hit, copies the hit's track out. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
@@ -8,6 +8,8 @@
 #include "game/UnkTU365.h"
 #include "types.h"
 
+// A collision shape (0xc0 bytes) built from a segment (fn_7100d693ac) and destroyed by
+// fn_7100d69400.
 struct UnkSegmentShape {
     u8 data[0xc0];
 };
@@ -15,52 +17,63 @@ struct UnkSegmentShape {
 struct UnkRefCounted_ld5b268 {
     virtual void vf_0x0();
     virtual void vf_0x8();
-    virtual void vf_0x10();
+    virtual void Delete();
     s32 ref_count;  // 0x8
 };
 
-struct UnkAssignedSlot {
-    UnkRefCounted_ld5b268* ref;
+// A counted reference; assigned by fn_71002a5d1c.
+struct UnkHitHandle_ld5b268 {
+    UnkRefCounted_ld5b268* ptr;
+
+    UnkHitHandle_ld5b268() : ptr(nullptr) {}
+    UnkHitHandle_ld5b268& operator=(const UnkHitHandle_ld5b268& o) {
+        fn_71002a5d1c(reinterpret_cast<UnkAssignedSlot*>(this), reinterpret_cast<const UnkAssignedSlot*>(&o));
+        return *this;
+    }
+    ~UnkHitHandle_ld5b268() {
+        UnkRefCounted_ld5b268* old = ptr;
+        if (old && --old->ref_count == 0)
+            old->Delete();
+    }
 };
 
-struct UnkHitOut_ld5b268 {
-    UnkAssignedSlot first;
-    UnkAssignedSlot second;
-    s32 words[13];
+// What the query found: two references, an index and twelve words.
+struct UnkHitTrack_ld5b268 {
+    UnkHitHandle_ld5b268 a;
+    UnkHitHandle_ld5b268 b;
+    s32 field_0x10;
+    u32 field_0x14[12];
+
+    UnkHitTrack_ld5b268() : field_0x10(-1) {
+        for (int i = 0; i < 12; i++)
+            field_0x14[i] = 0;
+    }
+    UnkHitTrack_ld5b268& operator=(const UnkHitTrack_ld5b268& o) {
+        if (&o != this) {
+            a = o.a;
+            b = o.b;
+            field_0x10 = o.field_0x10;
+            for (int i = 0; i < 12; i++)
+                field_0x14[i] = o.field_0x14[i];
+        }
+        return *this;
+    }
 };
 
+// The query's result object (vtable g_unk_7101a20fa8 while alive, g_unk_7101a20ed8 when destroyed).
 struct UnkTreeHit_ld5b268 {
     void** vtable;
-    UnkAssignedSlot first;
-    UnkAssignedSlot second;
-    s32 words[13];
-    u32 field_0x4c;
-    u8 flag;
-    u64 field_0x58;
-    u32 field_0x60;
+    UnkHitTrack_ld5b268 track;  // 0x8
+    bool field_0x50;
+    u32 field_0x54;  // left unset by the constructor, as in the original
+    base::math::CVector3D origin;  // 0x58
     u64 field_0x68;
 
-    explicit UnkTreeHit_ld5b268(const base::math::CVector3D* origin) {
+    explicit UnkTreeHit_ld5b268(const base::math::CVector3D* from)
+        : field_0x50(false), origin(*from), field_0x68(0) {
         vtable = g_unk_7101a20fa8 + 2;
-        first.ref = nullptr;
-        second.ref = nullptr;
-        words[0] = -1;
-        for (int i = 1; i < 13; i++)
-            words[i] = 0;
-        flag = 0;
-        field_0x68 = 0;
-        field_0x58 = *reinterpret_cast<const u64*>(origin);
-        field_0x60 = reinterpret_cast<const u32*>(origin)[2];
     }
-    ~UnkTreeHit_ld5b268() {
-        vtable = g_unk_7101a20ed8 + 2;
-        Release(second.ref);
-        Release(first.ref);
-    }
-    static void Release(UnkRefCounted_ld5b268* p) {
-        if (p && --p->ref_count == 0)
-            p->vf_0x10();
-    }
+    ~UnkTreeHit_ld5b268() { vtable = g_unk_7101a20ed8 + 2; }
 };
 
 static inline void SetIdentity(UnkMatrix44* m) {
@@ -75,12 +88,12 @@ struct UnkMtx44;
 struct UnkShape;
 
 bool fn_7100d5b268(UnkTree* tree, u32 mask, const base::math::CVector3D* from, const base::math::CVector3D* to,
-                   UnkHitOut_ld5b268* out) {
+                   UnkHitTrack_ld5b268* out) {
     UnkSegmentShape shape;
-    base::math::CVector2D b;
     {
         base::math::CVector2D a;
         fn_710007b430(&a, from);
+        base::math::CVector2D b;
         fn_710007b430(&b, to);
         UnkSegment2D seg(a, b);
         fn_7100d693ac(&shape, &seg);
@@ -92,12 +105,8 @@ bool fn_7100d5b268(UnkTree* tree, u32 mask, const base::math::CVector3D* from, c
         SetIdentity(&identity);
         hit = fn_7100d5b484(tree, mask, reinterpret_cast<UnkShape*>(&shape),
                             reinterpret_cast<const UnkMtx44*>(&identity), &result, 0);
-        if (&result.first != &out->first && out && hit) {
-            fn_71002a5d1c(&out->first, &result.first);
-            fn_71002a5d1c(&out->second, &result.second);
-            for (int i = 0; i < 13; i++)
-                out->words[i] = result.words[i];
-        }
+        if (out && hit)
+            *out = result.track;
     }
     fn_7100d69400(&shape);
     return hit;

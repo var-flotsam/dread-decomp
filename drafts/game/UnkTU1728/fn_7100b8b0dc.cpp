@@ -42,7 +42,7 @@ struct UnkTimeline_b8b0dc {
 };
 
 static inline bool IsNear(f32 a, f32 b) {
-    return a - 0.001f <= b && a + 0.001f >= b;
+    return a + 0.001f >= b && a - 0.001f <= b;
 }
 
 // The frame at `time`, rounded to hundredths.
@@ -68,28 +68,33 @@ static inline f32 FrameAt(UnkTimeline_b8b0dc* self, f32 time) {
 
 void fn_7100b8b0dc(UnkTimeline_b8b0dc* self, void* target, UnkMotionTracks* tracks, const u32* flags, f32 time,
                    f32 delta) {
-    if (delta != 0.0f && (((*flags & 2) && (self->directions & 1)) || ((*flags & 4) && (self->directions & 2)))) {
-        for (;;) {
-            f32 end = delta + time;
-            bool looping = self->loop == 1;
-            f32 length = self->length;
-            if (!looping && IsNear(end, length))
-                end = length;
-            bool overflow = end > length;
-            f32 clamped = overflow ? length : end;
+    if (delta != 0.0f) {
+        u32 wanted = *flags;
+        u32 directions = self->directions;
+        // Forward wanted and allowed, or backward.
+        if (((wanted & 2) && (directions & 1)) || ((wanted & 4) && (directions & 2))) {
+            for (;;) {
+                f32 end = delta + time;
+                bool looping = self->loop == 1;
+                f32 length = self->length;
+                if (!looping && IsNear(end, length))
+                    end = length;
+                bool overflow = end > length;
+                f32 clamped = overflow ? length : end;
 
-            UnkStruct_71007142e8 motion;
-            fn_71007142e8(&motion);
-            f32 from = FrameAt(self, time);
-            f32 to = FrameAt(self, clamped);
-            fn_7100b8b3bc(reinterpret_cast<UnkTimeline*>(self), &motion, tracks, flags, from, to);
-            fn_7100714808(target, &motion, true);
-            if (!(looping && overflow))
-                break;
+                UnkStruct_71007142e8 motion;
+                fn_71007142e8(&motion);
+                f32 from = FrameAt(self, time);
+                f32 to = FrameAt(self, clamped);
+                fn_7100b8b3bc(reinterpret_cast<UnkTimeline*>(self), &motion, tracks, flags, from, to);
+                fn_7100714808(target, &motion, true);
+                if (!(looping && overflow))
+                    break;
 
-            f32 rest = (end - time) - (clamped - time);
-            delta = IsNear(rest, 0.0f) ? 0.0f : rest;
-            time = 0.0f;
+                f32 rest = (end - time) - (clamped - time);
+                delta = IsNear(rest, 0.0f) ? 0.0f : rest;
+                time = 0.0f;
+            }
         }
     }
 }

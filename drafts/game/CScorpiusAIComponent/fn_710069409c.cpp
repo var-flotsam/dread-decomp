@@ -48,23 +48,36 @@ struct UnkSendValue_l69409c {
     f32 value;
 };
 
+// A typed value: a 4-byte payload and its kind (1: float).
+struct UnkSendFloat_l69409c {
+    f32 value;
+    u32 kind;
+};
+
+static inline UnkSendFloat_l69409c MakeSendFloat_l69409c(f32 value) {
+    UnkSendFloat_l69409c v;
+    v.value = value;
+    v.kind = 1;
+    return v;
+}
+
 // The range a send applies over.
 struct UnkSendRange_l69409c {
     s64 field_0x0;
-    f32 value;
-    u32 field_0xc;
+    UnkSendFloat_l69409c value;
 
-    explicit UnkSendRange_l69409c(f32 v) : field_0x0(-1), value(v), field_0xc(1) {}
+    explicit UnkSendRange_l69409c(UnkSendFloat_l69409c v) : field_0x0(-1), value(v) {}
 };
 
 bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
 
-// Sends `hash` under `kind` with the mode, range and value descriptor given; the mode and the mask
+// Sends `hash` under `kind` with the mode, the range of `a` and the value descriptor given; the mode and the mask
 // are filled in the caller's.
 static inline bool Send(void* target, u64 hash, u64 kind, base::reflection::UnkReflTypeIdArg* mode,
-                        u32 modeId, UnkSendRange_l69409c range, const UnkSendValue_l69409c* desc,
+                        u32 modeId, UnkSendFloat_l69409c a, const UnkSendValue_l69409c* desc,
                         base::reflection::UnkReflTypeIdArg* mask) {
     mode->id = modeId;
+    UnkSendRange_l69409c range(a);
     mask->id = UnkAll_SpitSend().value;
     return fn_7101176690(target, hash, kind, mode, &range, desc, mask);
 }
@@ -86,15 +99,18 @@ bool fn_710069409c(UnkScorpiusAI_b59a4* self, const UnkScorpiusKey_b59a4* id, bo
     }
     base::reflection::UnkReflTypeIdArg mask;
     u64 hash;
-    base::reflection::UnkReflTypeIdArg mode2, mask2, mode3, mask3;
     u32 modeId = flag ? 2 : 0;
-    UnkSendRange_l69409c range(a);
-    bool sent = Send(target, id->Hash(), track, &mode, modeId, range, &desc, &mask);
+    UnkSendFloat_l69409c value = MakeSendFloat_l69409c(a);
+    bool sent = Send(target, id->Hash(), track, &mode, modeId, value, &desc, &mask);
     {
         CRntString name = fn_710007ef90(&id->Str(), "_taillayer");
         fn_7100066630(&hash, &name);
     }
+    // Declared past a goto so that they get no lifetime markers: each send keeps its own slots.
+    goto send;
+    base::reflection::UnkReflTypeIdArg mode2, mask2, mode3, mask3;
+send:
     if (fn_7101176e78(static_cast<UnkStruct_7101176ea8*>(target), reinterpret_cast<void*>(hash), nullptr))
-        return sent & Send(target, hash, layer, &mode2, modeId, range, &desc, &mask2);
-    return sent & Send(target, id->Hash(), layer, &mode3, modeId, range, &desc, &mask3);
+        return sent & Send(target, hash, layer, &mode2, modeId, value, &desc, &mask2);
+    return sent & Send(target, id->Hash(), layer, &mode3, modeId, value, &desc, &mask3);
 }

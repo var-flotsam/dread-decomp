@@ -61,16 +61,28 @@ static inline void Face(UnkSamusMovement_l9eaa88* self, f32 yaw) {
     actor->field_0x3c0 = true;
 }
 
-// Plays `action` when there is one.
-static inline void Play(UnkSamusMovement_l9eaa88* self, const CStrId& action) {
-    if (action.data != &g_unk_7101d47108->empty)
-        base::reflection::refl_EmitU32(self->actor->animation, action.data->Key(), 0xf4061ff25a2163d6ull, 0,
-                                       &g_unk_710164b968, &g_unk_7172769740);
+// Plays `action` when there is one (refl_EmitU32 with the caller's slots for the value and the type id).
+static inline void Play(UnkSamusMovement_l9eaa88* self, const CStrId& action, base::reflection::UnkReflTypeIdArg* mode,
+                        base::reflection::UnkReflTypeIdArg* mask) {
+    if (&g_unk_7101d47108->empty != action.data) {
+        void* animation = self->actor->animation;
+        u64 key = action.data->Key();
+        mode->id = 0;
+        mask->id = base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id();
+        fn_7101176690(animation, key, 0xf4061ff25a2163d6ull, mode, &g_unk_710164b968, &g_unk_7172769740, mask);
+    }
 }
 
 bool fn_71009eaa88(void* movement) {
     UnkSamusMovement_l9eaa88* self = static_cast<UnkSamusMovement_l9eaa88*>(movement);
     UnkTrackQuery query = {fn_7100c1ee78(), nullptr, -1.0f};
+    // Declared past a goto (no lifetime markers), so each side's request keeps its own slots.
+    goto start;
+    base::reflection::UnkReflTypeIdArg right_mode;
+    base::reflection::UnkReflTypeIdArg right_mask;
+    base::reflection::UnkReflTypeIdArg left_mode;
+    base::reflection::UnkReflTypeIdArg left_mask;
+start:
     UnkAnimationComponent* animation = static_cast<UnkAnimationComponent*>(self->actor->animation);
     if (!animation)
         return false;
@@ -79,10 +91,10 @@ bool fn_71009eaa88(void* movement) {
         return false;
     if (self->field_0x6e8 >= 0.0f) {
         Face(self, 1.57f);
-        Play(self, Track(query)->right);
+        Play(self, Track(query)->right, &right_mode, &right_mask);
     } else {
         Face(self, -1.57f);
-        Play(self, Track(query)->left);
+        Play(self, Track(query)->left, &left_mode, &left_mask);
     }
     fn_7101176a88(static_cast<UnkActorTarget*>(self->actor->animation), true);
     return true;
