@@ -6,28 +6,14 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkMask.h"
 #include "game/UnkTU2677.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
+#include "game/sound/UnkMusicKind.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-struct UnkMusicMgr_b0019;
-struct UnkTuneKey_b0019;
-
-struct UnkMask {
-    u32 bits;
-    UnkMask(u32 b) : bits(b) {}
-    UnkMask(const UnkMask& o) : bits(o.bits) {}
-};
-
-struct UnkKind {
-    u32 value;
-    UnkKind(u32 v) : value(v) {}
-    UnkKind(const UnkKind& o) : value(o.value) {}
-};
-
-void fn_7100fd82dc(UnkMusicMgr_b0019* self, UnkTuneKey_b0019* key, UnkKind kind, UnkMask mask, f32 time);
 
 // The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
 // guarded constants.
@@ -76,8 +62,8 @@ s32 fn_7101091580(lua_State* L) {
         u32 bits = 1u << mode;
         void* manager = MusicManager();
         CRntString key(name);
-        fn_7100fd82dc(static_cast<UnkMusicMgr_b0019*>(manager), reinterpret_cast<UnkTuneKey_b0019*>(&key),
-                      UnkKind(bits), UnkMask(UnkLoadingMaskOf<UnkLoadingMaskTag>::All().bits), 0.0f);
+        fn_7100fd82dc(static_cast<UnkMusicMgr_b0019*>(manager), &key, UnkKind(bits),
+                      UnkMask(UnkLoadingMaskOf<UnkLoadingMaskTag>::All().bits), 0.0f);
     }
     return 0;
 }

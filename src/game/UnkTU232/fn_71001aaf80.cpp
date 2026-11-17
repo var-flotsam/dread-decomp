@@ -1,41 +1,16 @@
 // Unit 232 (data/tu_map.csv, no reliable name): the link of a resource block, the inverse of its
 // release (UnkTU232_Reloc_ovb0252.cpp): the header's offsets turn into pointers, then the texture and
 // the second resource its two paths name are loaded and kept. Names and layouts are placeholders.
+#include "base/UnkAssetResRef.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkResKey.h"
 #include "base/UnkStrIdPathPair.h"
+#include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTU239.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
-
-extern const UnkResType g_unk_716e454278;
-
-// A counted reference to a resource (as UnkResRef, base/UnkResKey.h, with the source's pointer read
-// first when assigning).
-struct UnkLinkResRef_l1aaf80 {
-    UnkCountedResource* ptr;
-
-    UnkLinkResRef_l1aaf80& operator=(const UnkLinkResRef_l1aaf80& other) {
-        UnkCountedResource* p = other.ptr;
-        if (ptr != p) {
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-        return *this;
-    }
-    ~UnkLinkResRef_l1aaf80() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
-
-UnkLinkResRef_l1aaf80 fn_7100017878(void* self, const UnkStrIdPathPair* ids);
 
 // The block's header: its strings are stored as offsets from the header until it is linked.
 struct UnkLinkHeader_l1aaf80 {
@@ -57,8 +32,8 @@ struct UnkLinkOwner_l1aaf80 {
     u8 pad_0x1[0x7];
     void* loader;                    // 0x8
     UnkLinkHeader_l1aaf80* header;   // 0x10
-    UnkLinkResRef_l1aaf80 texture;   // 0x18
-    UnkLinkResRef_l1aaf80 second;    // 0x20
+    UnkAssetResRef texture;   // 0x18
+    UnkAssetResRef second;    // 0x20
     void* field_0x28;
     void* field_0x30;
 };
@@ -69,7 +44,7 @@ static inline void Link(const char*& str, u64 base) {
         str = reinterpret_cast<const char*>(reinterpret_cast<u64>(str) + base);
 }
 
-static inline UnkLinkResRef_l1aaf80 Load(void* loader, const UnkResKey& key) {
+static inline UnkAssetResRef Load(void* loader, const UnkResKey& key) {
     return fn_7100017878(loader, reinterpret_cast<const UnkStrIdPathPair*>(&key));
 }
 

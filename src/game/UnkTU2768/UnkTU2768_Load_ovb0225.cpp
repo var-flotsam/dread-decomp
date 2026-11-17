@@ -9,6 +9,8 @@
 #include "game/UnkTU2768.h"
 #include "types.h"
 
+using base::global::CRntString;
+
 // The loader at +0x8 of the owner: its state word, a completion callback and a ready flag.
 struct UnkLoader_b0225 {
     u32 state;  // 0x0
@@ -53,7 +55,6 @@ struct UnkUserDataOwner {
 static_assert(sizeof(UnkUserDataOwner) == 0x2b8, "UnkUserDataOwner layout");
 
 void fn_7100fc73f4(UnkLoader_b0225* loader, u64 arg);
-void fn_7100fc7500(UnkLoader_b0225* loader, u64 a1, u64 a2, u64 a3, u64 a4, u64 a5, u64 a6, u64 a7, u64 a8, u64 a9);
 void fn_7100fc7b70(UnkLoader_b0225* loader);
 void fn_7100066698(nn::os::LightEventType* event);
 
@@ -89,10 +90,14 @@ s32 fn_710120330c(UnkUserDataOwner* self, u64 arg, bool b) {
     return Finish(self, b);
 }
 
-s32 fn_71012033b0(UnkUserDataOwner* self, u64 a1, u64 a2, u64 a3, u64 a4, u64 a5, u64 a6, bool b, u64 a7, u64 a8,
-                  u64 a9) {
+// The loader is the scenario load request (src/game/UnkScenarioLoadRequest.cpp), seen here only by the
+// members this unit reads.
+s32 fn_71012033b0(UnkUserDataOwner* self, const CRntString* scenario, const CRntString* name,
+                  const CRntString* scenario2, const CRntString* name2, UnkPtrList* blackboards, void (*fn)(),
+                  bool b, const CRntString* project, const CRntString* s2, const CRntString* s3) {
     UnkMutexLock lock(&self->mutex);
-    fn_7100fc7500(&self->loader, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+    fn_7100fc7500(reinterpret_cast<UnkScenarioLoadRequest*>(&self->loader), scenario, name, scenario2, name2,
+                  blackboards, fn, project, s2, s3);
     return Finish(self, b);
 }
 

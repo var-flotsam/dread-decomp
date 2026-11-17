@@ -168,7 +168,6 @@ struct UnkEnemyLifeComponent2_ovb0043 {
     UnkEnemyLifeActor2_ovb0043* actor;  // 0x30
 };
 
-bool fn_7101158d78(UnkEnemyLifeComponent2_ovb0043* self, bool flag);
 void fn_71011a726c(char* instance, UnkEnemyLifeActor2_ovb0043* actor);
 
 // The global instance (0x108 bytes), created on first use.
@@ -182,10 +181,10 @@ static inline char* Instance_ovb0043() {
     return instance;
 }
 
-// The base step (fn_7101158d78); when it succeeds and the AI's state (+0x1610) does not hold back
+// The base step (fn_7101158d78, the character life component's, with the fraction passed on); when it succeeds and the AI's state (+0x1610) does not hold back
 // (+0xc4 clear), the owner is passed to the global instance (fn_71011a726c, then fn_71011a710c).
-bool fn_710115bdcc(UnkEnemyLifeComponent2_ovb0043* self, bool flag) {
-    bool result = fn_7101158d78(self, flag);
+bool fn_710115bdcc(UnkEnemyLifeComponent2_ovb0043* self, f32 fraction, bool flag) {
+    bool result = fn_7101158d78(reinterpret_cast<UnkCharacterLifeComponent*>(self), fraction, flag);
     if (result) {
         UnkEnemyLifeActor2_ovb0043* actor = self->actor;
         UnkEnemyLifeAI2_ovb0043* ai = actor->ai;
