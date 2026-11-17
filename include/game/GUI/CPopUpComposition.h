@@ -1,6 +1,6 @@
 #pragma once
 
-// CPopUpComposition: functions of this translation unit that other files call (tools/tu_map.py unit 1708,
+// CPopUpComposition: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1708,
 // 0x7100b5e364-0x7100b60d54). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"

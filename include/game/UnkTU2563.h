@@ -38,3 +38,4 @@ struct UnkRecord80;
 void fn_7100e4ee60(UnkIdRecordTable<UnkIdRecord28>* self);
 void fn_7100e4ed10(UnkRecordIdArray<UnkRecordA8>* self);
 void fn_7100e4eb8c(UnkRecordIdArray<UnkRecord80>* self);
+

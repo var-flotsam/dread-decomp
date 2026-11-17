@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU108: functions of this translation unit that other files call (tools/tu_map.py unit 108,
+// UnkTU108: functions and globals of this translation unit that other files use (tools/tu_map.py unit 108,
 // 0x7100110c54-0x71001239b0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"

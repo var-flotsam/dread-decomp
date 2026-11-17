@@ -34,13 +34,13 @@ inline CRntString Join(const CRntString& a, const CRntString& b) {
 
 void fn_7100beaf3c(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* type = fn_7100096524(cls, CStrId("eType", true), reinterpret_cast<CType*>(&g_unk_71727b8dd8), 0x18, -1, -1);
+    UnkReflField* type = AddReflectedField(cls, CStrId("eType", true), reinterpret_cast<CType*>(&g_unk_71727b8dd8), 0x18, -1, -1);
     type->attrs.Add<s32>(fn_7100075240(), reinterpret_cast<CType*>(&g_unk_71727b8dd8), 0);
-    UnkReflField* path = fn_7100096524(cls, CStrId("sPath", true), fn_710000ad9c(), 0x20, -1, -1);
+    UnkReflField* path = AddReflectedField(cls, CStrId("sPath", true), fn_710000ad9c(), 0x20, -1, -1);
     path->attrs.Add<CFilePathStrId>(fn_7100075240(), CFilePathStrId(g_unk_7101d470e8));
     path->attrs.Add<CRntString>(fn_7100091900(),
                                 Join(Join(StringOf(g_unk_716e454078.extensions[0]), "|"), StringOf(g_unk_716e453ff8.extensions[0])));
-    UnkReflField* link = fn_7100096524(cls, CStrId("eLinkType", true), reinterpret_cast<CType*>(&g_unk_71727b8ef8), 0x28, -1, -1);
+    UnkReflField* link = AddReflectedField(cls, CStrId("eLinkType", true), reinterpret_cast<CType*>(&g_unk_71727b8ef8), 0x28, -1, -1);
     link->attrs.Add<s32>(fn_7100075240(), reinterpret_cast<CType*>(&g_unk_71727b8ef8), 0);
     DREAD_REFLECTED_FIELD(CStrId, "sTarget", 0x30, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x38, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));

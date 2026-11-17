@@ -76,6 +76,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100096c80,688,drafts/base/reflection/CClass/fn_7100096c80.cpp,registers or order,99.4,1,lean,
 0x710009c460,480,drafts/base/reflection/CPointerType/fn_710009c460.cpp,calls,7.5,60,pilot50,original keeps sp-vs-sret self-assign compare (loop unswitched; 18 calls); ours folds it (9 calls)
 0x710009deb0,768,drafts/base/reflection/CType/fn_710009deb0.cpp,control flow,80.7,37,lean-ob1,fast path rechecks value.type (no jump threading) and keeps the pool in a register; last run crashed in try.py
+0x710009e1b0,2168,drafts/base/reflection/CType/fn_710009e1b0.cpp,match,100.0,0,lean-r6k,matches; held: declares five reflection type getters returning a global UnkEnumType that no header declares yet; needs one shared declaration of them
 0x71000a1d34,416,drafts/base/reflection/fn_71000a1d34.cpp,control flow,2.7,101,lean-r2kd,block layout and load placement: original loads ref type/ptr at entry; jumps straight to init when the value i
 0x71000a23f0,720,drafts/base/reflection/fn_71000a23f0.cpp,control flow,17.8,147,lean-r2kd,loop counter form and stack slot placement of the value and typed ref; value paths duplicated differently
 0x71000a27e0,992,drafts/base/reflection/fn_71000a27e0.cpp,calls,29.8,143,lean-r2kd,loop over the iterator not unswitched on a null iterator type as the original is; register allocation and an e
