@@ -39,11 +39,11 @@ address,size,name,name_source,subsystem,status
 0x7100b01160,244,GUI::CDialogComposition::refl_GetClass,reflection,gui,O
 0x7100b01254,4,GUI::CDialogComposition::refl_AddFields,reflection,gui,O
 0x7100b01258,352,GUI::CDialogComposition::refl_InitClass,reflection,gui,O
-0x7100b013b8,452,fn_7100b013b8,unknown,gui?,U
+0x7100b013b8,452,fn_7100b013b8,unknown,gui?,O
 0x7100b0157c,604,fn_7100b0157c,unknown,gui?,U
 0x7100b017d8,36,fn_7100b017d8,unknown,gui?,O
 0x7100b017fc,256,fn_7100b017fc,unknown,gui?,U
-0x7100b018fc,776,fn_7100b018fc,unknown,gui?,U
+0x7100b018fc,776,fn_7100b018fc,unknown,gui?,O
 0x7100b01c04,4,fn_7100b01c04,unknown,gui?,O
 0x7100b01c08,244,fn_7100b01c08,unknown,gui?,O
 0x7100b01cfc,196,fn_7100b01cfc,unknown,gui?,O
@@ -1289,7 +1289,7 @@ address,size,name,name_source,subsystem,status
 0x7100b2f03c,532,fn_7100b2f03c,unknown,gui?,O
 0x7100b2f250,1120,fn_7100b2f250,unknown,gui?,O
 0x7100b2f6b0,2792,fn_7100b2f6b0,unknown,gui?,O
-0x7100b30198,496,fn_7100b30198,unknown,gui?,U
+0x7100b30198,496,fn_7100b30198,unknown,gui?,O
 0x7100b30388,204,fn_7100b30388,unknown,gui?,O
 0x7100b30454,1236,fn_7100b30454,unknown,gui?,U
 0x7100b30928,984,fn_7100b30928,unknown,gui?,U
@@ -1965,7 +1965,7 @@ address,size,name,name_source,subsystem,status
 0x7100b5e5c0,520,fn_7100b5e5c0,unknown,gui?,O
 0x7100b5e7c8,564,fn_7100b5e7c8,unknown,gui?,O
 0x7100b5e9fc,36,fn_7100b5e9fc,unknown,gui?,O
-0x7100b5ea20,868,fn_7100b5ea20,unknown,gui?,U
+0x7100b5ea20,868,fn_7100b5ea20,unknown,gui?,O
 0x7100b5ed84,404,fn_7100b5ed84,unknown,gui?,O
 0x7100b5ef18,168,fn_7100b5ef18,unknown,gui?,O
 0x7100b5efc0,60,fn_7100b5efc0,unknown,gui?,O
@@ -4801,8 +4801,8 @@ address,size,name,name_source,subsystem,status
 0x7100bc7f7c,12,CCharClassPlayRandomTimelineEvent::refl_Destroy,reflection,game/characters,O
 0x7100bc7f88,48,CCharClassPlayRandomTimelineEvent::refl_CopyAssign,reflection,game/characters,O
 0x7100bc7fb8,48,CCharClassPlayRandomTimelineEvent::refl_MoveAssign,reflection,game/characters,O
-0x7100bc7fe8,1124,fn_7100bc7fe8,unknown,game/characters?,U
-0x7100bc844c,780,fn_7100bc844c,unknown,game/characters?,U
+0x7100bc7fe8,1124,fn_7100bc7fe8,unknown,game/characters?,O
+0x7100bc844c,780,fn_7100bc844c,unknown,game/characters?,O
 0x7100bc8760,188,fn_7100bc8760,unknown,game/characters?,O
 0x7100bc881c,232,CCharClassPlayTimelineEvent::refl_AddAttributes,reflection,game/characters,O
 0x7100bc8904,244,CCharClassPlayTimelineEvent::refl_GetClass,reflection,game/characters,O

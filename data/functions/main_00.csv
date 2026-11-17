@@ -2476,7 +2476,7 @@ address,size,name,name_source,subsystem,status
 0x71000934b8,752,fn_71000934b8,unknown,unknown,m
 0x71000937a8,680,fn_71000937a8,unknown,unknown,U
 0x7100093a50,360,fn_7100093a50,unknown,unknown,O
-0x7100093bb8,536,fn_7100093bb8,unknown,unknown,U
+0x7100093bb8,536,fn_7100093bb8,unknown,unknown,O
 0x7100093dd0,400,fn_7100093dd0,unknown,unknown,O
 0x7100093f60,428,fn_7100093f60,unknown,unknown,O
 0x710009410c,384,base::reflection::refl_InitType<base::reflection::EAttributeTarget>,reflection,engine/reflection,O
@@ -5481,7 +5481,7 @@ address,size,name,name_source,subsystem,status
 0x71000e6db0,156,fn_71000e6db0,unknown,unknown,O
 0x71000e6e4c,396,fn_71000e6e4c,unknown,unknown,O
 0x71000e6fd8,236,fn_71000e6fd8,unknown,unknown,O
-0x71000e70c4,656,fn_71000e70c4,unknown,unknown,U
+0x71000e70c4,656,fn_71000e70c4,unknown,unknown,O
 0x71000e7354,204,fn_71000e7354,unknown,unknown,O
 0x71000e7420,156,fn_71000e7420,unknown,unknown,O
 0x71000e74bc,80,fn_71000e74bc,unknown,unknown,O
@@ -5500,7 +5500,7 @@ address,size,name,name_source,subsystem,status
 0x71000e8118,104,fn_71000e8118,unknown,unknown,O
 0x71000e8180,104,fn_71000e8180,unknown,unknown,O
 0x71000e81e8,192,fn_71000e81e8,unknown,unknown,O
-0x71000e82a8,980,fn_71000e82a8,unknown,unknown,U
+0x71000e82a8,980,fn_71000e82a8,unknown,unknown,O
 0x71000e8680,168,fn_71000e8680,unknown,unknown,O
 0x71000e8728,4,fn_71000e8728,unknown,unknown,O
 0x71000e872c,360,base::reflection::CVariable::refl_InitClass,reflection,engine/reflection,O
