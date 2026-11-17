@@ -9,6 +9,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
+#include "base/UnkVtableList.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -54,30 +55,25 @@ static inline void* FindObject(UnkGameManager* manager, const CStrId& id, u32 ki
     return fn_7100deba8c(manager, &hash, &kind);
 }
 
-// A list of strings (nodes linked through +0x30) filled by the argument reader's "S".
-struct UnkLuaNameList_lfbaeb0 {
-    void** vtable;
-    u32 count;  // 0x8
-    u8* head;  // 0x10
-    u8* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 field_0x28;
+// A node of the argument reader's string list: a string and the next node.
+struct UnkLuaNameNode_lfbaeb0 {
+    CRntString text;
+    UnkLuaNameNode_lfbaeb0* next;  // 0x30
+};
 
-    UnkLuaNameList_lfbaeb0() : vtable(g_unk_7101a1a070 + 2), count(0), head(nullptr), tail(nullptr) {
-        allocator = fn_7100083990();
-        field_0x28 = 0x13;
-    }
-    ~UnkLuaNameList_lfbaeb0() {
+// A list of strings filled by the argument reader's "S".
+struct UnkLuaNameList_lfbaeb0 : base::UnkVtableList<UnkLuaNameNode_lfbaeb0> {
+    UnkLuaNameList_lfbaeb0() {
         vtable = g_unk_7101a1a070 + 2;
-        for (u8* node = head; node;) {
-            u8* next = *reinterpret_cast<u8**>(node + 0x30);
-            fn_710007ecd4(reinterpret_cast<CRntString*>(node));
-            allocator->vf_0x48(node);
-            node = next;
-        }
         count = 0;
         head = nullptr;
         tail = nullptr;
+        allocator = fn_7100083990();
+        flags = 0x13;
+    }
+    ~UnkLuaNameList_lfbaeb0() {
+        vtable = g_unk_7101a1a070 + 2;
+        ClearDestroying();
     }
 };
 
@@ -136,11 +132,11 @@ int fn_7100fbaeb0(lua_State* L) {
     if (!target)
         return 0;
     CRntVector<UnkIdPair_lfbaeb0> pairs(0xf);
-    for (u8* node = names.head; node;) {
-        UnkPairId_lfbaeb0 first(*reinterpret_cast<CRntString*>(node));
-        node = *reinterpret_cast<u8**>(node + 0x30);
-        UnkPairId_lfbaeb0 second(*reinterpret_cast<CRntString*>(node));
-        node = *reinterpret_cast<u8**>(node + 0x30);
+    for (UnkLuaNameNode_lfbaeb0* node = names.head; node;) {
+        UnkPairId_lfbaeb0 first(node->text);
+        node = node->next;
+        UnkPairId_lfbaeb0 second(node->text);
+        node = node->next;
         pairs.PushBackCopy(UnkIdPair_lfbaeb0(first, second));
     }
     {

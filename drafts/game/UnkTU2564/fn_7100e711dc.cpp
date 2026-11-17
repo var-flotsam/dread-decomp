@@ -1,6 +1,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -34,13 +35,7 @@ struct UnkIdWords4_b0234 {
     UnkWord_b0234 field_0x14;
 };
 
-struct UnkIdWordsArray_b0234 {
-    UnkIdWords4_b0234* values;
-    CStrId* keys;
-    u32 count;
-    u32 capacity;
-    u32 step;
-};
+using UnkIdWordsArray_b0234 = base::global::CRntSmallDictionary<CStrId, UnkIdWords4_b0234>;
 
 void fn_7100e71984(UnkIdWordsArray_b0234* self, u32 capacity);
 

@@ -5,6 +5,7 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/CRntVector.h"
 #include "types.h"
 
 struct UnkPathRecord_lfdd4fc {
@@ -18,15 +19,7 @@ struct UnkPathRecord_lfdd4fc {
     }
 };
 
-struct UnkPathRecordVec_lfdd4fc {
-    UnkPathRecord_lfdd4fc* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    void* allocator;
-};
+using UnkPathRecordVec_lfdd4fc = base::global::CRntVector<UnkPathRecord_lfdd4fc>;
 
 // Releases a record's path id, leaving the empty id (the two-step release: the count is reread after the
 // decrement).

@@ -367,3 +367,22 @@ class KeyValueClass(unittest.TestCase):
         self.assertIsNone(gr.key_value_class(
             "base::reflection::CollectionTypeMapper<base::global::CArray<int,4>>::TKeyElementIterator::value_type"))
         self.assertIsNone(gr.key_value_class("CFoo::SBar"))
+
+
+class TemplateValueNames(unittest.TestCase):
+    def test_nested_member_types(self):
+        name = "base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>" \
+               "::TKeyElementIterator::value_type"
+        cls, (_, decls, _) = gr.key_value_class(name)
+        self.assertEqual(cls, "base::reflection::KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>")
+        self.assertIn("namespace GUI { template <class> class CDisplayObjectTrack { public: struct SKey; }; }", decls)
+
+    def test_value_templates(self):
+        self.assertEqual(gr.value_template_class("CGameLink<CActor>")[0], "CGameLink<CActor>")
+        self.assertIsNone(gr.value_template_class("CActor"))
+        self.assertEqual(gr.template_value_kind("CGameLink<CActor>"), "class_values")
+
+    def test_value_members_are_not_types(self):
+        self.assertIsNone(gr.key_value_class(
+            "base::reflection::CollectionTypeMapper<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>"
+            "::TKeyElementIterator::value_type"))

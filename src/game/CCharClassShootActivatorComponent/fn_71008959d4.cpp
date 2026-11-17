@@ -12,8 +12,6 @@
 
 using base::global::CStrId;
 
-void fn_7100895498(UnkEntryVector* v, u32 n);
-
 // A callback set's base: an owned array of callbacks and a count.
 struct UnkShootSetBase_l8959d4 {  // vtable g_unk_7101a20998
     virtual void vf0();
@@ -49,15 +47,7 @@ struct UnkShootEntry_l8959d4 {
 };
 static_assert(sizeof(UnkShootEntry_l8959d4) == 0x48, "layout");
 
-struct UnkShootEntryVector_l8959d4 {
-    UnkShootEntry_l8959d4* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkShootEntryVector_l8959d4 = base::global::CRntVector<UnkShootEntry_l8959d4>;
 
 void fn_71008959d4(UnkShootEntryVector_l8959d4* v, const UnkShootEntry_l8959d4* value, u32 index) {
     if (index == v->count) {

@@ -5,12 +5,11 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflFunctionVtable.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-extern char g_unk_7101a1b460[];  // UnkReflFunction's virtual table (its address point is +0x10)
 
 namespace refl_reserve_functions_l097f80 {
 

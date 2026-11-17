@@ -5,13 +5,12 @@
 #include "base/global/CRntVector.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkTU50.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
 using base::input::UnkRumbleManager;
 
 struct UnkHandleTarget_ovb0082 {
@@ -31,9 +30,7 @@ struct UnkHandle {
 };
 
 struct UnkRumbleParams;
-UnkHandle fn_7100074354(UnkRumbleManager* self, const UnkRumbleParams* params);
 // The unit's looping vibration file.
-extern CFilePathStrId g_unk_71729db988 __attribute__((visibility("hidden")));
 
 static inline UnkRumbleManager* RumbleManager() {
     if (!g_unk_7101d47348) {
@@ -71,20 +68,6 @@ struct UnkRumbleParams_lf0dac0 {
           field_0x28(1.0f), field_0x2c(1.0f), field_0x30(0.5f), field_0x34(0.0f), field_0x38(0.0f),
           field_0x3c(1.0f), field_0x40(false), loop(false) {}
 
-    void SetPath(const CFilePathStrId& other) {
-        UnkStringData* old = path.data;
-        UnkStringData* d = other.data;
-        if (d != old) {
-            UnkStringPool* pool = g_unk_7101d47200;
-            if (d != &pool->empty)
-                ++d->ref_count;
-            if (old != &pool->empty) {
-                if (--old->ref_count == 0)
-                    fn_71000803a4(pool, old);
-            }
-            path.data = d;
-        }
-    }
 };
 
 struct UnkPlayerInfoEffect_lf0dac0 {
@@ -125,7 +108,7 @@ void fn_7100f0dac0(UnkPlayerInfoEffect_lf0dac0* self, const UnkVec3f* pos, f32 a
     if (IsPlaying(self->rumble))
         fn_7100072328(self->rumble.Get(), 0.2f, 0.0f);
     UnkRumbleParams_lf0dac0 params;
-    params.SetPath(g_unk_71729db988);
+    params.path = g_unk_71729db988;
     params.field_0x10 = 0;
     params.loop = true;
     self->rumble = fn_7100074354(RumbleManager(), reinterpret_cast<const UnkRumbleParams*>(&params));

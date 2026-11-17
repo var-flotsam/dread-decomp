@@ -44,20 +44,6 @@ struct UnkAimRefPtr_l3437a4 {
     ~UnkAimRefPtr_l3437a4() { Release(ptr); }
 };
 
-// A string id's destructor on the global pool: decrement, then test the reloaded count.
-static inline void ReleaseId(UnkStringData** id) {
-    if (UnkStringPool* pool = g_unk_7101d47108) {
-        if (*id && *id != &pool->empty) {
-            --(*id)->ref_count;
-            if ((*id)->ref_count == 0) {
-                fn_71000803a4(pool, *id);
-                pool = g_unk_7101d47108;
-            }
-        }
-        *id = &pool->empty;
-    }
-}
-
 // A listener registered with the owner of its counted link (+0x18).
 struct UnkAimLink_l3437a4 {
     virtual void vf_0x0();
@@ -140,13 +126,13 @@ struct UnkAim_l3437a4 : UnkBaseComponent {
     u8 pad_0x330[0x368 - 0x330];
     u8 field_0x368[0xb0];
     u8 field_0x418[0xc8];
-    UnkStringData* field_0x4e0;  // CStrId
-    UnkStringData* field_0x4e8;  // CStrId
+    base::global::CStrId field_0x4e0;
+    base::global::CStrId field_0x4e8;
     u8 pad_0x4f0[0x530 - 0x4f0];
     UnkAimListener_l3437a4 listener_a;  // 0x530
     UnkAimListener_l3437a4 listener_b;  // 0x550
     u8 pad_0x570[0x5c0 - 0x570];
-    UnkStringData* field_0x5c0;  // CStrId
+    base::global::CStrId field_0x5c0;
     UnkAimRef_l3437a4* field_0x5c8;
     u8 pad_0x5d0[0x630 - 0x5d0];
     UnkAimRef_l3437a4* field_0x630;
@@ -180,7 +166,7 @@ void fn_71003437a4(UnkAim_l3437a4* self) {
     Release(self->field_0x638);
     Release(self->field_0x630);
     Release(self->field_0x5c8);
-    ReleaseId(&self->field_0x5c0);
+    self->field_0x5c0.Reset();
 
     UnkAimListener_l3437a4* b = &self->listener_b;
     b->vtable = g_unk_7101a22d48 + 2;
@@ -205,8 +191,8 @@ void fn_71003437a4(UnkAim_l3437a4* self) {
                 link->vf_0x10();
     }
 
-    ReleaseId(&self->field_0x4e8);
-    ReleaseId(&self->field_0x4e0);
+    self->field_0x4e8.Reset();
+    self->field_0x4e0.Reset();
     fn_7100030a50(reinterpret_cast<UnkMoveSlot_0xb0*>(self->field_0x418));
     fn_7100030a50(reinterpret_cast<UnkMoveSlot_0xb0*>(self->field_0x368));
 

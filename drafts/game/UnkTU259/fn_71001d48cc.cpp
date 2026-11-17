@@ -19,7 +19,6 @@ extern f32 g_unk_7101a1e720[] __attribute__((visibility("hidden")));
 
 s32 fn_710015c460();
 f32 fn_7100132fb0();  // the display's aspect correction
-void fn_71001cc608(UnkGraphicsSystem* self, void* program);
 
 struct UnkGfxCamera {
     u8 unk_0x0[0x20];

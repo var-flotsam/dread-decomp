@@ -3,6 +3,7 @@
 // and the handler list copied node by node; the source's two handles are cleared last.
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "base/UnkVtableList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
@@ -25,36 +26,20 @@ struct UnkHandlerNode_ld3678c {
     UnkHandlerNode_ld3678c(const UnkHandlerEntry_ld3678c& e) : entry(e), next(nullptr) {}
 };
 
-// The handler list: a vtable, the count, both ends, and the allocator its nodes come from.
-struct UnkHandlerList_ld3678c {
-    char* vtable;
-    s32 count;
-    UnkHandlerNode_ld3678c* head;  // 0x10
-    UnkHandlerNode_ld3678c* tail;  // 0x18
-    base::UnkAllocator* allocator; // 0x20
-    u32 flags;                     // 0x28
-
+// The handler list (a vtable list of handler entries).
+struct UnkHandlerList_ld3678c : base::UnkVtableList<UnkHandlerNode_ld3678c> {
     // Copies another list's allocator and nodes (nodes that cannot be allocated are left out).
-    UnkHandlerList_ld3678c(const UnkHandlerList_ld3678c& other)
-        : vtable(g_unk_7101aa8590 + 0x10), count(0), head(nullptr), tail(nullptr), allocator(other.allocator),
-          flags(other.flags) {
+    UnkHandlerList_ld3678c(const UnkHandlerList_ld3678c& other) {
+        vtable = g_unk_7101aa8590 + 0x10;
+        count = 0;
+        head = nullptr;
+        tail = nullptr;
+        allocator = other.allocator;
+        flags = other.flags;
         for (UnkHandlerNode_ld3678c* node = other.head; node; node = node->next) {
             void* mem = allocator->vf_0x40(sizeof(UnkHandlerNode_ld3678c), 8, flags);
             if (mem)
                 PushBack(new (mem) UnkHandlerNode_ld3678c(node->entry));
-        }
-    }
-
-    void PushBack(UnkHandlerNode_ld3678c* n) {
-        if (count) {
-            tail->next = n;
-            n->next = nullptr;
-            tail = n;
-            ++count;
-        } else {
-            head = n;
-            tail = n;
-            count = 1;
         }
     }
 };

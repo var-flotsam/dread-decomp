@@ -22,6 +22,7 @@
 #include "game/CAttack.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
@@ -36,7 +37,6 @@ extern "C" float sqrtf(float);
 f32 fn_710063c10c(void* registry, UnkActor* actor);
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 
 static inline CVector3D Pos(const UnkActor* actor) {
     return {actor->field_0x44, actor->field_0x54, actor->field_0x64};

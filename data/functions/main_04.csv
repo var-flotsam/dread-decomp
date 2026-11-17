@@ -2844,7 +2844,7 @@ address,size,name,name_source,subsystem,status
 0x71004804d4,388,CChozoWarriorXChangeWallAttack::refl_InitClass,reflection,game/ai,O
 0x7100480658,68,fn_7100480658,unknown,game/ai?,O
 0x710048069c,96,fn_710048069c,unknown,game/ai?,O
-0x71004806fc,552,fn_71004806fc,unknown,game/ai?,U
+0x71004806fc,552,fn_71004806fc,unknown,game/ai?,O
 0x7100480924,4,fn_7100480924,unknown,game/ai?,O
 0x7100480928,100,fn_7100480928,unknown,game/ai?,O
 0x710048098c,164,fn_710048098c,unknown,game/ai?,O

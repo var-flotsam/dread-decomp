@@ -8,6 +8,7 @@
 #include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
+using base::global::CRntVector;
 using base::global::CStrId;
 using base::global::UnkStringData;
 
@@ -28,25 +29,6 @@ struct UnkKeyedArray {
     UnkKeyedArray(const UnkKeyedArray& other)
         : data(other.data), keys(other.keys), count(other.count), capacity(other.capacity), step(other.step),
           flags(other.flags), allocator(other.allocator) {}
-};
-
-template <class T>
-struct UnkVectorView {
-    T* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    UnkVectorView(UnkVectorView&& other)
-        : data(other.data), count(other.count), capacity(other.capacity), step(other.step),
-          field_0x14(other.field_0x14), flags(other.flags), allocator(other.allocator) {
-        other.data = nullptr;
-        other.count = 0;
-        other.capacity = 0;
-    }
 };
 
 struct UnkReflFunctionData;
@@ -73,22 +55,22 @@ struct UnkReflFunctionData {
     };
 
     const UnkReflFunctionVtbl* vtbl;
-    UnkVectorView<const void*> params;
+    CRntVector<const void*> params;
     UnkMovedStrId name;
     const void* return_type;
     void* field_0x40;
     void* invoker;
     UnkKeyedArray<void> field_0x50;
     Pair field_0x78;
-    UnkVectorView<void*> param_attrs;
+    CRntVector<void*> param_attrs;
     u32 field_0xb0_w;
 
     UnkReflFunctionData(UnkReflFunctionData&& other)
         : vtbl(reinterpret_cast<const UnkReflFunctionVtbl*>(g_unk_7101a1b460 + 0x10)),
-          params(static_cast<UnkVectorView<const void*>&&>(other.params)),
+          params(static_cast<CRntVector<const void*>&&>(other.params)),
           name(static_cast<UnkMovedStrId&&>(other.name)), return_type(other.return_type), field_0x40(other.field_0x40),
           invoker(other.invoker), field_0x50(other.field_0x50), field_0x78(other.field_0x78, other.field_0x50),
-          param_attrs(static_cast<UnkVectorView<void*>&&>(other.param_attrs)), field_0xb0_w(other.field_0xb0_w) {}
+          param_attrs(static_cast<CRntVector<void*>&&>(other.param_attrs)), field_0xb0_w(other.field_0xb0_w) {}
 
     void Destroy() { vtbl->dtor(this); }
 };
