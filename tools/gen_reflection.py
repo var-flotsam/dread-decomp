@@ -863,7 +863,8 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
     scope with another type, `extern [const] Layout g_unk_<addr>;`, becomes `TypeObject<T, [const] Layout>`
     where that declaration was, so its uses keep their type; otherwise such an object stays."""
     lines = text.split(chr(10))
-    used = sorted(set(re.findall(r"\bg_unk_[0-9a-f]{10}\b", text)) & set(objects))
+    # An object already named by type keeps only its label, asm("g_unk_<addr>").
+    used = sorted(set(re.findall(r"(?<!asm\(\")\bg_unk_[0-9a-f]{10}\b", text)) & set(objects))
     first: list[str] = []
     in_place = False
     for g in used:
@@ -908,7 +909,7 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
             head = i + 1
         elif line and not line.startswith("//"):
             break
-    first = [line for line in dict.fromkeys(['#include "base/reflection/TypeObject.h"'] + first) if line not in lines]
+    first = [line for line in dict.fromkeys(['#include "base/reflection/TypeObject.h"'] + first) if line not in lines[:head]]
     return chr(10).join(lines[:head] + first + lines[head:])
 
 

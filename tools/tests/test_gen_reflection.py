@@ -412,6 +412,13 @@ class TypeObjectsByType(unittest.TestCase):
                                'asm("g_unk_7101d4d5d0");',
                                "void f() { use(&base::reflection::TypeObject<a::E, UnkEnumType>::object); }"])
 
+    def test_twice_is_once(self):
+        text = "\n".join(['#include "a.h"', "extern UnkEnumType g_unk_7101d4d5d0;", "extern base::reflection::CType g_unk_7101d4d5e0;",
+                          "void f() { use(&g_unk_7101d4d5d0, &g_unk_7101d4d5e0); }"])
+        objects = {"g_unk_7101d4d5d0": ("enum", "a::E"), "g_unk_7101d4d5e0": ("enum", "a::F")}
+        once = gr.type_objects_by_type(text, objects, layouts=True)
+        self.assertEqual(gr.type_objects_by_type(once, objects, layouts=True), once)
+
     def test_layouts_off_leaves_them(self):
         text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
         self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)
