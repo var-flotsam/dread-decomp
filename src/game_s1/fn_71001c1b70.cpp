@@ -281,7 +281,7 @@ bool fn_71001c2bac(UnkBoneOwner* self, u64 id, u32 a, CColor4F* out, u32 mode) {
     clamped.g = NonNegative(m.y);
     clamped.b = NonNegative(m.z);
     clamped.a = NonNegative(m.w);
-    fn_7100030728(out, &clamped);
+    *out = clamped;
     return r;
 }
 

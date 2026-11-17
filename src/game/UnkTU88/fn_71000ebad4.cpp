@@ -3,6 +3,7 @@
 // dictionaries, the pooled type set and the first set. Names and layouts are placeholders.
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkResDesc.h"
 #include "base/core/CAsset.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntSmallDictionary.h"
@@ -15,13 +16,11 @@ using base::global::CStrId;
 using base::global::UnkStringPool;
 
 struct UnkSetNode_b257j;
-struct UnkResDesc;
 struct UnkFirstSetNode_l0ebad4;
 
 using UnkNamedSet_b257j = base::global::UnkBucketSet<UnkSetNode_b257j>;
 void fn_71000ea16c(UnkNamedSet_b257j* self);
 void fn_71000ea064(void* list);
-void fn_71000e8dd0(UnkResDesc*);
 
 extern char g_unk_7101a1b888[];  // the registry's vtable
 extern char g_unk_7101a1b918[];
@@ -37,11 +36,6 @@ struct base::UnkPoolListTraits<UnkResListTag_l0ebad4> {
 // A 0x80-byte record (base/core/CAsset.h), destroyed out of line.
 struct UnkRecord80Slot_l0ebad4 {
     u8 bytes[0x80];
-};
-
-// The registry's record of a resource type (UnkResDesc, 0x90 bytes), destroyed out of line.
-struct UnkResDescSlot_l0ebad4 {
-    u8 bytes[0x90];
 };
 
 template <class V, class Destroy>
@@ -80,7 +74,7 @@ struct UnkResRegistry_l0ebad4 {
     char* vtable_0x8;
     base::global::UnkBucketSet<UnkFirstSetNode_l0ebad4> first;                         // 0x10
     base::global::UnkPooledBucketSet<UnkSetNode_b257j> types;                          // 0x60
-    base::global::CRntSmallDictionary<CStrId, UnkResDescSlot_l0ebad4> descs;           // 0xf0
+    base::global::CRntSmallDictionary<CStrId, UnkResDesc> descs;                       // 0xf0
     base::global::CRntSmallDictionary<CStrId, UnkRecord80Slot_l0ebad4> records;        // 0x118
     CFilePathStrId path;                                                               // 0x140
     base::UnkPoolList<UnkResListTag_l0ebad4, 8, 0x10> list;                            // 0x148
@@ -97,9 +91,7 @@ void fn_71000ebad4(UnkResRegistry_l0ebad4* self) {
     DestroyDictionary(&self->records, [](UnkRecord80Slot_l0ebad4* record) {
         fn_7100017ce8(reinterpret_cast<UnkRecord80*>(record));
     });
-    DestroyDictionary(&self->descs, [](UnkResDescSlot_l0ebad4* desc) {
-        fn_71000e8dd0(reinterpret_cast<UnkResDesc*>(desc));
-    });
+    DestroyDictionary(&self->descs, [](UnkResDesc* desc) { desc->~UnkResDesc(); });
     base::global::UnkPooledBucketSet<UnkSetNode_b257j>* types = &self->types;
     types->nodes.field_0x3c = true;
     fn_71000ea16c(types);

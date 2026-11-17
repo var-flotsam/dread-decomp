@@ -47,7 +47,7 @@ void fn_7100f061a8(UnkPickableParts* self, f32 alpha) {
         color.g = part->color.g;
         color.b = part->color.b;
         color.a = alpha <= 0.0f ? 0.0f : alpha;
-        fn_7100030728(&part->color, &color);
+        part->color = color;
         part->field_0x12c = 0;
     }
 }

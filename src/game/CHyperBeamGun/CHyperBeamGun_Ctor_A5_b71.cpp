@@ -78,7 +78,7 @@ void fn_7100848e00_A5_b71(UnkHyperBeamGunCtor_A5_b71* self) {
     self->field_0x1914 = 0;
     self->field_0x1918 = -1;
     base::color::CColor4F c(0.0f, 1.0f, 0.0f, 1.0f);
-    fn_7100030728(&self->color, &c);
+    self->color = c;
     self->kind = 5;
     fn_7100023854(reinterpret_cast<UnkNode*>(self));
 }

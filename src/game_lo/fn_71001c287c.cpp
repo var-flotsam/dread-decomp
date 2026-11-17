@@ -19,6 +19,6 @@ bool fn_71001c287c(UnkSlots* self, u32 a, u32 b, CColor4F* out, u32 mode) {
     tmp.g = UnkClampPositive(box.y);
     tmp.b = UnkClampPositive(box.z);
     tmp.a = UnkClampPositive(box.w);
-    fn_7100030728(out, &tmp);
+    *out = tmp;
     return r;
 }

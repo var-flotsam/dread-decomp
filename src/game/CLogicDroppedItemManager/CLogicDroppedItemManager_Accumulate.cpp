@@ -1,6 +1,7 @@
 // CLogicDroppedItemManager::CTunableDroppableBillboard unit: two passes that run a query
 // (fn_7100e2e8a4 or fn_7100e2e9b0, with 0 as the last argument) and then add the item's position
 // (+0x7c) to a running sum at +0xa010, counting the items. Names and layouts are placeholders.
+#include "game/UnkTU2562.h"
 #include "types.h"
 
 struct UnkDroppedItem {
@@ -31,13 +32,13 @@ static inline void Accumulate(UnkDroppedSum* total, const UnkDroppedItem* item) 
     total->count++;
 }
 
-void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg) {
+void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg, bool) {
     UnkDroppedSum* total = &self->total;
     fn_7100e2e9b0(self, item, arg, 0);
     Accumulate(total, item);
 }
 
-void fn_7100e2fa00(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg) {
+void fn_7100e2fa00(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg, bool) {
     UnkDroppedSum* total = &self->total;
     fn_7100e2e8a4(self, item, arg, 0);
     Accumulate(total, item);

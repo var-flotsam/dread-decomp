@@ -50,11 +50,11 @@ void fn_7100e29aa4(UnkDroppedItems_e29aa4* self) {
     second.field_0x8 = ids[tunable->field_0x78];
     {
         CColor4F white(1.0f, 1.0f, 1.0f, 1.0f);
-        fn_7100030728(&second.color, &white);
+        second.color = white;
     }
     {
         CColor4F none(0.0f, 0.0f, 0.0f, 0.0f);
-        fn_7100030728(&second.field_0x20, &none);
+        second.field_0x20 = none;
     }
     second.field_0x34 = 1.0f;
     fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1070), &second.id, 0x23,
@@ -70,11 +70,11 @@ void fn_7100e29aa4(UnkDroppedItems_e29aa4* self) {
     first.field_0x8 = ids[3];
     {
         CColor4F white(1.0f, 1.0f, 1.0f, 1.0f);
-        fn_7100030728(&first.color, &white);
+        first.color = white;
     }
     {
         CColor4F red(1.0f, 0.0f, 0.0f, 0.0f);
-        fn_7100030728(&first.field_0x20, &red);
+        first.field_0x20 = red;
     }
     first.color.a = 1.0f;
     fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1070), &first.id, 0x23,
@@ -89,8 +89,7 @@ void fn_7100e29aa4(UnkDroppedItems_e29aa4* self) {
         drop->owner = self;
         drop->callback = fn_7100e2f99c;
         drop->amount = amount;
-        fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(&drop->table),
-                      reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&copy));
+        drop->table = copy;
         g_unk_717269c4d8 = true;
         drop->Start();
         g_unk_717269c4d8 = false;

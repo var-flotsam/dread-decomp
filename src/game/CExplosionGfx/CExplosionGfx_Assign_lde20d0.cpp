@@ -63,9 +63,11 @@ static_assert(sizeof(UnkExplosionGfx_de1c40) == 0x278, "layout");
 UnkExplosionGfx_de1c40* fn_7100de20d0(UnkExplosionGfx_de1c40* self, const UnkExplosionGfx_de1c40* other) {
     // field_0x8 and field_0x10.
     __builtin_memcpy(&self->field_0x8, &other->field_0x8, 0x10);
-    fn_7100030728(&self->color_0x18, &other->color_0x18);
-    fn_7100030728(&self->color_0x28, &other->color_0x28);
-    fn_7100030728(&self->color_0x38, &other->color_0x38);
+    // The colours by member call: the implicit assignment this is takes the destination's address
+    // before the source's (`a = b` would take the source's first).
+    self->color_0x18.operator=(other->color_0x18);
+    self->color_0x28.operator=(other->color_0x28);
+    self->color_0x38.operator=(other->color_0x38);
     self->field_0x48 = other->field_0x48;
     fn_710007b518(&self->oConstantColor0TransitionInit, &other->oConstantColor0TransitionInit);
     fn_710007b518(&self->oConstantColor0TransitionEnd, &other->oConstantColor0TransitionEnd);

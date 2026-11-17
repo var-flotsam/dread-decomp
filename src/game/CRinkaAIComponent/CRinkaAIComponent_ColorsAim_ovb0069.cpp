@@ -65,10 +65,10 @@ void fn_710065de1c(UnkRinkaColorAI_ovb0069* self) {
     CColor4F glow(1.0f, 1.0f, 1.0f, 1.0f);
     CColor4F part_a(1.0f, 1.0f, 1.0f, 1.0f);
     CColor4F part_b(1.0f, 1.0f, 1.0f, 1.0f);
-    fn_7100030728(&body, &g_unk_710164a454);
-    fn_7100030728(&glow, &g_unk_710164a464);
-    fn_7100030728(&part_a, &g_unk_710164a474);
-    fn_7100030728(&part_b, &g_unk_710164a484);
+    body = g_unk_710164a454;
+    glow = g_unk_710164a464;
+    part_a = g_unk_710164a474;
+    part_b = g_unk_710164a484;
     if (self->owner->render->model) {
         fn_71001c2764(self->owner->render->model->slots, 0, 0, Vec(body), 1, true);
         fn_71001c2764(self->owner->render->model->slots, 0, 1, Vec(glow), 1, true);

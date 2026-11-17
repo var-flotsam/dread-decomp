@@ -23,7 +23,7 @@ void fn_7100abfeec(UnkSuperMissileMovement* self) {
     self->field_0x448 = 0x18;
     self->vtable = g_unk_7101a96378 + 2;
     base::color::CColor4F c(0.0f, 1.0f, 0.1f, 1.0f);
-    fn_7100030728(&self->color, &c);
+    self->color = c;
     self->field_0x4e8 = true;
     reinterpret_cast<void (*)(UnkSuperMissileMovement*)>(self->vtable[3])(self);
 }
