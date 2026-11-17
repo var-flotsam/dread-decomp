@@ -1,14 +1,11 @@
 // Constructor of an object with eight 0x150-byte entries: runs the base constructor
 // (fn_7100fe1028), sets both vtables, constructs each entry with its kind (fn_7100fd10cc) and
 // gives all but the first a derived vtable.
+#include "game/UnkEntry_0x150.h"
 #include "game/UnkTU2635.h"
+#include "game/UnkTU2636.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
-
-struct UnkEntry_0x150 {
-    void** vtable;
-    u8 unk_0x8[0x148];
-};
 
 struct UnkObject_7100fcfcdc {
     void** vtable;
@@ -36,7 +33,6 @@ extern void* g_unk_7101cabbe8[];
 extern void* g_unk_7101cabb60[];
 extern void* g_unk_7101cabf20[];
 extern void* g_unk_7101cabe98[];
-void fn_7100fd10cc(UnkEntry_0x150* self, s32 kind);
 
 void fn_7100fcfcdc(UnkMusicBank_0xb78* bank, u32 kind) {
     auto* self = reinterpret_cast<UnkObject_7100fcfcdc*>(bank);  // this file's view of the bank

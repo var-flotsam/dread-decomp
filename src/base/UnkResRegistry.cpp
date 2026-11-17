@@ -1,13 +1,14 @@
 // base::res's type registry: the object g_unk_7101d472f8 points at (0x1b8 bytes, created by
 // fn_71000ea018 before the render resource types are registered), its constructor, the record a
-// resource type is described by (UnkResDesc: built by fn_71000e9a7c, copied by fn_71000ec89c;
-// src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp fills them in) and the growth of the registry's two parallel
+// resource type is described by (UnkResDesc, base/UnkResDesc.h: built by fn_71000e9a7c, copied by
+// fn_71000ec89c) and the growth of the registry's two parallel
 // arrays of records and type names (fn_71000ec708). Names and layouts are placeholders inferred
 // from the code.
 #include <new>
 
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
+#include "base/UnkResDesc.h"
 #include "base/UnkResKey.h"
 #include "base/UnkResPathVec.h"
 #include "base/global/CRntSmallDictionary.h"
@@ -24,8 +25,6 @@ using base::global::CRntVector;
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::global::UnkStringPool;
-
-struct UnkResFactory;
 
 // The record's list of file-path ids (base/UnkResPathVec.h): its copy reserves the source's
 // capacity (fn_7100018450) and appends the ids one by one.
@@ -51,56 +50,6 @@ __attribute__((always_inline)) inline UnkResPathVec::UnkResPathVec(const UnkResP
         ++count;
     }
 }
-
-// A callback: a context and a function, copied member by member.
-struct UnkResCallback {
-    void* context;
-    void (*function)();
-
-    UnkResCallback(void* context, void (*function)()) : context(context), function(function) {}
-    UnkResCallback(const UnkResCallback& other) : context(other.context), function(other.function) {}
-};
-
-// A file-path id member of the record: CFilePathStrId's copies, and an empty id whose
-// pointer is cleared before the pool is made sure of.
-struct UnkResRegistryPathId : base::global::UnkFilePathStrIdBase {
-    UnkResRegistryPathId() : UnkFilePathStrIdBase{nullptr} {
-        if (!g_unk_7101d47200)
-            base::global::UnkEnsureFilePathPool();
-        data = &g_unk_7101d47200->empty;
-    }
-    explicit UnkResRegistryPathId(const UnkFilePathStrIdBase& other) : UnkFilePathStrIdBase(other) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    UnkResRegistryPathId(const UnkResRegistryPathId& other) : UnkResRegistryPathId(static_cast<const UnkFilePathStrIdBase&>(other)) {}
-};
-
-// The record's type and registry, set together (and copied as one block).
-struct UnkResDescHead {
-    const UnkResType* resource_type;
-    void* registry;  // the registry's second base (+8), or null
-
-    UnkResDescHead(const UnkResType* type, void* registry) : resource_type(type), registry(registry) {}
-};
-
-// The record a resource type is registered with (0x90 bytes).
-struct UnkResDesc : UnkResDescHead {
-    CStrId name;                   // 0x10
-    UnkResRegistryPathId field_0x18;
-    UnkResRegistryPathId field_0x20;
-    UnkResCallback field_0x28;
-    UnkResCallback field_0x38;
-    UnkResFactory* factory;        // 0x48
-    u32 type;                      // 0x50
-    u64 field_0x58;
-    UnkResPathVec paths;           // 0x60
-    UnkResRegistryPathId field_0x88;
-
-    UnkResDesc(const UnkResType* type, UnkResFactory* factory) asm("fn_71000e9a7c");
-    ~UnkResDesc() asm("fn_71000e8dd0");
-};
-static_assert(sizeof(UnkResDesc) == 0x90, "");
 
 // Clang 9, the matching compiler, ignores the asm label on the record's constructor and emits its
 // mangled symbol, so this alias gives the definition the address's name; a newer Clang (the

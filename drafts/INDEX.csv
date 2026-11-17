@@ -111,7 +111,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71000e8044,212,drafts/game/UnkTU85/fn_71000e8044.cpp,control flow,34.0,31,lean-b1,control flow: not-found path jumps to shared end compare instead of duplicating it; found path laid out after
 0x71000e9d60,416,drafts/game/UnkTU88/fn_71000e9d60.cpp,registers or order,99.0,1,overnight,
 0x71000eaf20,984,drafts/game/UnkTU88/fn_71000eaf20.cpp,registers or order,65.4,85,lean-ob1,registers only with a u32 flag (src/base/UnkResRegistry.cpp declares u8; the caller's declaration must follow)
-0x71000ebad4,1020,drafts/game/UnkTU88/fn_71000ebad4.cpp,match,100.0,0,lean-r2kg,matches; held: fn_71000e8dd0 is UnkResDesc's destructor; whose type lives only in .cpp files
 0x71000ed2b8,456,drafts/game/UnkTU90/fn_71000ed2b8.cpp,operations,7.9,98,lean-r2kg,original copies the pushed entry's 7 padding bytes (0x11-0x17) from an unset stack temp; ours drops them (shif
 0x71000ef534,560,drafts/game/UnkTU93/fn_71000ef534.cpp,calls,2.9,132,lean-r2kg,id dtor merged into one block (original duplicates it per path; 3 fn_71000803a4 calls vs 2); pool kept in an e
 0x71000f07fc,732,drafts/game/UnkTU94/fn_71000f07fc.cpp,registers or order,97.3,5,lean-ob1,registers only in the top-entry address (stack.Top()); defined as bool (original returns 1) while src/game/Unk
@@ -1255,7 +1254,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100fd0398,924,drafts/game/UnkTU2635/fn_7100fd0398.cpp,control flow,1.6,227,lean-r2ke,calls now line up (16); original keeps the found state in two regs plus a found flag (x25/x26 frame) in the id
 0x7100fd0998,636,drafts/game/UnkTU2635/fn_7100fd0998.cpp,control flow,5.7,146,lean-r2ke,original keeps search result in two regs plus a found flag (frame 0x50; x23/x24); mine merges d8 test with ccm
 0x7100fd0d40,308,drafts/game/UnkTU2635/fn_7100fd0d40.cpp,control flow,1.3,74,pilot50,control flow: extra epilogue copy; no shared exit/flag register
-0x7100fd11e8,624,drafts/game/UnkTU2636/fn_7100fd11e8.cpp,match,100.0,0,lean-r2kg,matches; held: UnkEntry_0x150's destructor is declared in fn_7100fd0264.cpp too (needs one header type)
 0x7100fd73a4,816,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fd73a4.cpp,registers or order,96.6,7,lean-ob3,file-path id assignment: src load order and empty compare operand order
 0x7100fdb640,340,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdb640.cpp,build fails,,,lean-b3,states loop is index-based instead of pointer walk (b58 FindState inlined); rest matches
 0x7100fdb9e0,80,drafts/game/sound/CMusicManager/CTunableMusicManager/fn_7100fdb9e0.cpp,control flow,50.0,10,lean-oc1,hold-flag test is branchy in the original (phi of 1 / held==0); flag looks bool though declared u32
