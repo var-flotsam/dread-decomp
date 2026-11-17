@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CShakernautDoubleGroundShockAttack::EState, CShakernautDoubleGroundShockAttack::ESide enums.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -29,7 +30,8 @@ struct UnkStatics_71006a5da0 {
 };
 extern UnkStatics_71006a5da0 g_unk_71727057a0 __attribute__((visibility("hidden")));
 extern char g_unk_71727054d8[];
-extern UnkEnumType g_unk_71727054e0;
+namespace CShakernautDoubleGroundShockAttack { enum class EState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CShakernautDoubleGroundShockAttack::EState, UnkEnumType>::object asm("g_unk_71727054e0");
 void fn_71006a3d0c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006a37a0();
 extern char g_unk_71727055f8[];
@@ -37,7 +39,8 @@ extern UnkConversion g_unk_7172705600;
 extern UnkConversion g_unk_7172705620;
 void fn_71006a5780() __attribute__((visibility("hidden")));
 void fn_71006a578c() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172705640;
+namespace CShakernautDoubleGroundShockAttack { enum class ESide : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CShakernautDoubleGroundShockAttack::ESide, UnkEnumType>::object asm("g_unk_7172705640");
 void fn_71006a4038(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006a3e8c();
 extern char g_unk_7172705758[];
@@ -50,9 +53,9 @@ void fn_71006a5da0() {
     InitHeaderIds(&g_unk_71727057a0.ids);
     fn_71006a3524();
     fn_710009ec00(g_unk_71727054d8, g_unk_71727057a0.field_0xb0);
-    InitEnum(&g_unk_71727054e0, "CShakernautDoubleGroundShockAttack::EState", fn_71006a3d0c, fn_71006a37a0,
+    InitEnum(&base::reflection::TypeObject<CShakernautDoubleGroundShockAttack::EState, UnkEnumType>::object, "CShakernautDoubleGroundShockAttack::EState", fn_71006a3d0c, fn_71006a37a0,
              g_unk_71727055f8, &g_unk_7172705600, fn_71006a5780, &g_unk_7172705620, fn_71006a578c);
-    InitEnum(&g_unk_7172705640, "CShakernautDoubleGroundShockAttack::ESide", fn_71006a4038, fn_71006a3e8c,
+    InitEnum(&base::reflection::TypeObject<CShakernautDoubleGroundShockAttack::ESide, UnkEnumType>::object, "CShakernautDoubleGroundShockAttack::ESide", fn_71006a4038, fn_71006a3e8c,
              g_unk_7172705758, &g_unk_7172705760, fn_71006a5798, &g_unk_7172705780, fn_71006a57a4);
     InitId(&g_unk_71727057a0.field_0x20, "left_attack_groundshock_relaxtoattack");
     InitId(&g_unk_71727057a0.field_0x28, "right_attack_groundshock_relaxtoattack");

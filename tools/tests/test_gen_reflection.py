@@ -401,3 +401,17 @@ class TypeObjectsByType(unittest.TestCase):
     def test_other_declarations_stay(self):
         text = "extern u8 g_unk_7101d4d5d0[0x10];\nvoid f() { use(g_unk_7101d4d5d0); }"
         self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)
+
+    def test_layouts_keep_their_type_in_place(self):
+        text = "\n".join(['#include "a.h"', "struct UnkEnumType;", "extern UnkEnumType g_unk_7101d4d5d0;",
+                          "void f() { use(&g_unk_7101d4d5d0); }"])
+        out = gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "a::E")}, layouts=True).split("\n")
+        self.assertEqual(out, ['#include "a.h"', '#include "base/reflection/TypeObject.h"', "struct UnkEnumType;",
+                               "namespace a { enum class E : u32; }",
+                               'template <> UnkEnumType base::reflection::TypeObject<a::E, UnkEnumType>::object '
+                               'asm("g_unk_7101d4d5d0");',
+                               "void f() { use(&base::reflection::TypeObject<a::E, UnkEnumType>::object); }"])
+
+    def test_layouts_off_leaves_them(self):
+        text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
+        self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)

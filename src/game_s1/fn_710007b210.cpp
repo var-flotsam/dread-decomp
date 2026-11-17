@@ -8,6 +8,7 @@
 #include "game/UnkTU22.h"
 #include "game/UnkTUInit.h"
 #include "base/UnkEnumInfo.h"
+#include "base/reflection/TypeObject.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -20,8 +21,10 @@ static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
 
-extern UnkEnumInfo g_unk_7101d58900;
-extern UnkEnumInfo g_unk_7101d58a60;
+namespace base::math { enum class ETransformSpace : u32; }
+template <> UnkEnumInfo base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object asm("g_unk_7101d58900");
+namespace base::math { enum class EMaxAxis : u32; }
+template <> UnkEnumInfo base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object asm("g_unk_7101d58a60");
 extern UnkConverter g_unk_7101d58a20;
 extern UnkConverter g_unk_7101d58a40;
 extern UnkConverter g_unk_7101d58b80;
@@ -39,12 +42,12 @@ void fn_710007b118() HIDDEN;
 void fn_710007b210() {
     {
         CStrId name("base::math::ETransformSpace", true);
-        fn_710007aac8(&g_unk_7101d58900, &name, fn_710007a91c, nullptr);
+        fn_710007aac8(&base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object, &name, fn_710007a91c, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d58900, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d58a18, &g_unk_7101d58900);
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d58a18, &base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d58900.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d58a20.from = a;
         g_unk_7101d58a20.to = b;
@@ -52,7 +55,7 @@ void fn_710007b210() {
         g_unk_7101d58a20.next = nullptr;
         fn_71000a16c4(&g_unk_7101d58a20);
         void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d58900.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<base::math::ETransformSpace, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d58a40.from = c;
         g_unk_7101d58a40.to = d;
         g_unk_7101d58a40.convert = fn_710007b100;
@@ -61,12 +64,12 @@ void fn_710007b210() {
     }
     {
         CStrId name("base::math::EMaxAxis", true);
-        fn_710007af74(&g_unk_7101d58a60, &name, fn_710007ac48, nullptr);
+        fn_710007af74(&base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object, &name, fn_710007ac48, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d58a60, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d58b78, &g_unk_7101d58a60);
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d58b78, &base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d58a60.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d58b80.from = a;
         g_unk_7101d58b80.to = b;
@@ -74,7 +77,7 @@ void fn_710007b210() {
         g_unk_7101d58b80.next = nullptr;
         fn_71000a16c4(&g_unk_7101d58b80);
         void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d58a60.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<base::math::EMaxAxis, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d58ba0.from = c;
         g_unk_7101d58ba0.to = d;
         g_unk_7101d58ba0.convert = fn_710007b118;

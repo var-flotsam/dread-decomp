@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CNailuggerAcidBallsAttack::EState enum.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -12,7 +13,8 @@ struct UnkStatics_7100625ba0 {
 };
 extern UnkStatics_7100625ba0 g_unk_71726f8550 __attribute__((visibility("hidden")));
 extern char g_unk_71726f83e8[];
-extern UnkEnumType g_unk_71726f83f0;
+namespace CNailuggerAcidBallsAttack { enum class EState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CNailuggerAcidBallsAttack::EState, UnkEnumType>::object asm("g_unk_71726f83f0");
 void fn_71006247ac(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006245a0();
 extern char g_unk_71726f8508[];
@@ -25,7 +27,7 @@ void fn_7100625ba0() {
     InitHeaderIds(&g_unk_71726f8550.ids);
     fn_7100624324();
     fn_710009ec00(g_unk_71726f83e8, g_unk_71726f8550.field_0x28);
-    InitEnum(&g_unk_71726f83f0, "CNailuggerAcidBallsAttack::EState", fn_71006247ac, fn_71006245a0,
+    InitEnum(&base::reflection::TypeObject<CNailuggerAcidBallsAttack::EState, UnkEnumType>::object, "CNailuggerAcidBallsAttack::EState", fn_71006247ac, fn_71006245a0,
              g_unk_71726f8508, &g_unk_71726f8510, fn_7100625710, &g_unk_71726f8530, fn_710062571c);
     InitId(&g_unk_71726f8550.field_0x20, "nailuggeracidball");
 }

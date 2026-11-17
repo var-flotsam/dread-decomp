@@ -1,6 +1,6 @@
 // CDoorShieldLifeComponent's unit (tools/tu_map.py), fn_71008db4e4: stores the door's "ChangeWhenVisible"
 // (g_unk_7172731138, bool at +0x408) and "NextState" (g_unk_7172731160, the CDoorLifeComponent::SState enum
-// g_unk_7172731200 at +0x40c) in the current scenario's blackboard section (unless it is locked). Keys at
+// base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object at +0x40c) in the current scenario's blackboard section (unless it is locked). Keys at
 // +0x678 (count +0x680, values at +0x670), looked up as in src/game/CDoorLifeComponent/CDoorLifeComponent_b49.cpp.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
@@ -14,12 +14,14 @@
 #include "game/UnkTUProperty.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
+#include "base/reflection/TypeObject.h"
 
 using base::global::CStrId;
 
 // The "NextState" property and the CDoorLifeComponent::SState enum (src/game_s7/fn_71008da6c0.cpp).
 struct UnkEnumType;
-extern UnkEnumType g_unk_7172731200;
+namespace CDoorLifeComponent { enum class SState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object asm("g_unk_7172731200");
 
 static inline void SetSectionValue(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name,
                                    const base::reflection::CType* type, void* value) {
@@ -90,5 +92,5 @@ void fn_71008db4e4(UnkDoorShieldStore_A4_b76* self) {
     CStrId section_id = fn_71011a2fbc(g_unk_7101d47310->field_0x608);
     UnkDoorShieldValue_A4_b76* name = self->Find(g_unk_7172731160);
     SetSectionValue(blackboard, section_id, &name->name,
-                    reinterpret_cast<const base::reflection::CType*>(&g_unk_7172731200), state);
+                    reinterpret_cast<const base::reflection::CType*>(&base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object), state);
 }

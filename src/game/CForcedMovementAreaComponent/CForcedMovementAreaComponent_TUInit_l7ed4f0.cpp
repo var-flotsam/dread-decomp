@@ -3,6 +3,7 @@
 // message names. Names and layouts are placeholders.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -21,7 +22,8 @@ struct UnkStatics_71007ed4f0 {
     u8 field_0x68[8];
 };
 extern UnkStatics_71007ed4f0 g_unk_717271fd98 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_717271fc20;
+namespace CForcedMovementAreaComponent { enum class EForcedDirection : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CForcedMovementAreaComponent::EForcedDirection, UnkEnumType>::object asm("g_unk_717271fc20");
 void fn_71007e8e2c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71007e8c80();
 extern char g_unk_717271fd38[];
@@ -48,7 +50,7 @@ void fn_71007ed4f0() {
     InitId(&tu.field_0x38, "ForcedMovementAreaComponent");
     new (&tu.id) CStrId(fn_7100de8f78(ForcedMovementAreaId()));
     fn_7100000250(fn_710000051c, &tu.id, g_unk_7101a19000);
-    InitEnum(&g_unk_717271fc20, "CForcedMovementAreaComponent::EForcedDirection", fn_71007e8e2c, fn_71007e8c80,
+    InitEnum(&base::reflection::TypeObject<CForcedMovementAreaComponent::EForcedDirection, UnkEnumType>::object, "CForcedMovementAreaComponent::EForcedDirection", fn_71007e8e2c, fn_71007e8c80,
              g_unk_717271fd38, &g_unk_717271fd40, fn_71007ece64, &g_unk_717271fd60, fn_71007ece70);
     fn_71007e8fb0();
     fn_710009ec00(g_unk_717271fd80, tu.field_0x68);

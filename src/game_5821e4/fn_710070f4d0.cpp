@@ -1,5 +1,6 @@
 // Static initialiser of the unit of the CAnimationPrefix::SPrefix::Enum enum.
 #include "UnkStaticInit.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -27,7 +28,8 @@ struct UnkStatics_710070f4d0 {
     UnkStrIdBase field_0xb0;
 };
 extern UnkStatics_710070f4d0 g_unk_717270e130 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_717270dfd0;
+namespace CAnimationPrefix::SPrefix { enum class Enum : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CAnimationPrefix::SPrefix::Enum, UnkEnumType>::object asm("g_unk_717270dfd0");
 void fn_710070ef18(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710070e70c();
 extern char g_unk_717270e0e8[];
@@ -38,7 +40,7 @@ void fn_710070f338() __attribute__((visibility("hidden")));
 
 void fn_710070f4d0() {
     InitHeaderIds(&g_unk_717270e130.ids);
-    InitEnum(&g_unk_717270dfd0, "CAnimationPrefix::SPrefix::Enum", fn_710070ef18, fn_710070e70c,
+    InitEnum(&base::reflection::TypeObject<CAnimationPrefix::SPrefix::Enum, UnkEnumType>::object, "CAnimationPrefix::SPrefix::Enum", fn_710070ef18, fn_710070e70c,
              g_unk_717270e0e8, &g_unk_717270e0f0, fn_710070f32c, &g_unk_717270e110, fn_710070f338);
     InitId(&g_unk_717270e130.field_0x18, "water");
     InitId(&g_unk_717270e130.field_0x20, "speedbooster");

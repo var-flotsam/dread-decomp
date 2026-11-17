@@ -3,6 +3,7 @@
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,8 @@ struct UnkStatics_7100325290 {
 };
 extern UnkStatics_7100325290 g_unk_71726b00b8 __attribute__((visibility("hidden")));
 extern char g_unk_71726afcf0[];
-extern UnkEnumType g_unk_71726afcf8;
+namespace CAbilityOpticCamouflage { enum class ESelectionMode : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionMode, UnkEnumType>::object asm("g_unk_71726afcf8");
 void fn_7100320638(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003204ec();
 extern char g_unk_71726afe10[];
@@ -26,7 +28,8 @@ extern UnkConversion g_unk_71726afe18;
 extern UnkConversion g_unk_71726afe38;
 void fn_7100324a80() __attribute__((visibility("hidden")));
 void fn_7100324a8c() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726afe58;
+namespace CAbilityOpticCamouflage { enum class ESelectionInput : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionInput, UnkEnumType>::object asm("g_unk_71726afe58");
 void fn_7100320904(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003207b8();
 extern char g_unk_71726aff70[];
@@ -45,8 +48,8 @@ void fn_7100325290() {
     g_unk_71726b00b8.field_0x40 = true;
     fn_7100320270();
     fn_710009ec00(g_unk_71726afcf0, g_unk_71726b00b8.field_0x48);
-    InitEnum(&g_unk_71726afcf8, "CAbilityOpticCamouflage::ESelectionMode", fn_7100320638, fn_71003204ec, g_unk_71726afe10, &g_unk_71726afe18, fn_7100324a80, &g_unk_71726afe38, fn_7100324a8c);
-    InitEnum(&g_unk_71726afe58, "CAbilityOpticCamouflage::ESelectionInput", fn_7100320904, fn_71003207b8, g_unk_71726aff70, &g_unk_71726aff78, fn_7100324a98, &g_unk_71726aff98, fn_7100324aa4);
+    InitEnum(&base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionMode, UnkEnumType>::object, "CAbilityOpticCamouflage::ESelectionMode", fn_7100320638, fn_71003204ec, g_unk_71726afe10, &g_unk_71726afe18, fn_7100324a80, &g_unk_71726afe38, fn_7100324a8c);
+    InitEnum(&base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionInput, UnkEnumType>::object, "CAbilityOpticCamouflage::ESelectionInput", fn_7100320904, fn_71003207b8, g_unk_71726aff70, &g_unk_71726aff78, fn_7100324a98, &g_unk_71726aff98, fn_7100324aa4);
     fn_7100320a88();
     fn_710009ec00(g_unk_71726affb8, g_unk_71726b00b8.field_0x180);
     InitTunable(&g_unk_71726affc0, fn_7100136ecc, g_unk_7101a23250, fn_7100075104);

@@ -856,26 +856,52 @@ def enum_type_objects() -> dict[str, tuple[str, str]]:
     return out
 
 
-def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]]) -> str:
+def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts: bool = False) -> str:
     """`text` with each type object of `objects` written by its type, `base::reflection::TypeObject<T>::object`
     (base/reflection/TypeObject.h): T's declaration and the specialisation's go after the file's includes, in
-    place of the object's own `extern CType g_unk_<addr>;`. An object the file declares with another type stays."""
+    place of the object's own `extern CType g_unk_<addr>;`. With `layouts`, an object the file declares at file
+    scope with another type, `extern [const] Layout g_unk_<addr>;`, becomes `TypeObject<T, [const] Layout>`
+    where that declaration was, so its uses keep their type; otherwise such an object stays."""
     lines = text.split(chr(10))
     used = sorted(set(re.findall(r"\bg_unk_[0-9a-f]{10}\b", text)) & set(objects))
     first: list[str] = []
+    in_place = False
     for g in used:
         decl = re.compile(rf"extern (?:base::reflection::)?CType {g};")
         others = [line for line in lines if re.search(rf"\b{g}\b", line) and "extern" in line and not decl.fullmatch(line)]
-        if others:
-            continue
         kind, t = objects[g]
         scope, _, leaf = t.rpartition("::")
-        first.append(gen_types.enum_declaration(t) if kind == "enum" else gen_types.declare_in(scope, f"struct {leaf};"))
+        declared = gen_types.enum_declaration(t) if kind == "enum" else gen_types.declare_in(scope, f"struct {leaf};")
+        if others:
+            layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};")
+            match = [layout.fullmatch(line) for line in others]
+            if not layouts or len(others) != 1 or not match[0]:
+                continue
+            spelled = match[0].group(1)
+            if spelled in ("CType", "base::reflection::CType"):
+                spelled_t = t
+                head = "base::reflection::CType"
+            else:
+                spelled_t = f"{t}, {spelled}"
+                head = spelled
+            name = f"base::reflection::TypeObject<{spelled_t}>::object"
+            at = lines.index(others[0])
+            lines[at:at + 1] = [*declared.split(chr(10)), f'template <> {head} {name} asm("{g}");']
+            lines = [re.sub(rf"\b{g}\b", name, line) if i < at or i > at + declared.count(chr(10)) + 1 else line
+                     for i, line in enumerate(lines)]
+            in_place = True
+            continue
+        first.append(declared)
         first.append(f'template <> base::reflection::CType base::reflection::TypeObject<{t}>::object asm("{g}");')
         lines = [line if decl.fullmatch(line) else re.sub(rf"\b{g}\b", f"base::reflection::TypeObject<{t}>::object", line)
                  for line in lines if not decl.fullmatch(line)]
+    if layouts:
+        # A CType object read back as a CType is the object itself.
+        lines = [re.sub(r"reinterpret_cast<const (?:base::reflection::)?CType&>\((base::reflection::TypeObject<[^<>]*>::object)\)",
+                        r"\1", line) for line in lines]
     if not first:
-        return text
+        joined = chr(10).join(lines)
+        return with_include(joined, '#include "base/reflection/TypeObject.h"') if in_place else joined
     head = 0
     for i, line in enumerate(lines):
         if line.startswith(("#include", "using ")):

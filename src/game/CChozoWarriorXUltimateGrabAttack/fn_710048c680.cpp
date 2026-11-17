@@ -3,6 +3,7 @@
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,8 @@ struct UnkStatics_710048c680 {
     u8 field_0x170[8];
 };
 extern UnkStatics_710048c680 g_unk_71726cf4d0 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726cf338;
+namespace CChozoWarriorXUltimateGrabAttack { enum class SState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CChozoWarriorXUltimateGrabAttack::SState, UnkEnumType>::object asm("g_unk_71726cf338");
 void fn_7100486004(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100485a98();
 extern char g_unk_71726cf450[];
@@ -33,7 +35,7 @@ void fn_710048c680() {
     InitHeaderIds(&g_unk_71726cf4d0.ids);
     InitId(&g_unk_71726cf4d0.field_0x18, "ugrabsamuswarriorxintroground");
     InitId(&g_unk_71726cf4d0.field_0x20, "ugrabsamuswarriorxintrowall");
-    InitEnum(&g_unk_71726cf338, "CChozoWarriorXUltimateGrabAttack::SState", fn_7100486004, fn_7100485a98,
+    InitEnum(&base::reflection::TypeObject<CChozoWarriorXUltimateGrabAttack::SState, UnkEnumType>::object, "CChozoWarriorXUltimateGrabAttack::SState", fn_7100486004, fn_7100485a98,
              g_unk_71726cf450, &g_unk_71726cf458, fn_710048a930, &g_unk_71726cf478, fn_710048a93c);
     fn_7100486188();
     fn_710009ec00(g_unk_71726cf498, g_unk_71726cf4d0.field_0x38);

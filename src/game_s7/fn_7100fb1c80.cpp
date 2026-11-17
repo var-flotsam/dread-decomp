@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,8 @@ extern UnkConversion g_unk_71729ee368;
 extern UnkConversion g_unk_71729ee388;
 void fn_7100faf7f0() __attribute__((visibility("hidden")));
 void fn_7100faf7fc() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71729ee248;
+enum class ESubAreaItem : u32;
+template <> UnkEnumType base::reflection::TypeObject<ESubAreaItem, UnkEnumType>::object asm("g_unk_71729ee248");
 extern char g_unk_71729ee360[];
 void fn_7100fae524(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100fae138();
@@ -87,9 +89,9 @@ void fn_7100fb1c80() {
         fn_7100fadb10(g_unk_71729ee200, (const UnkStrIdBase*)ids, 9);
     }();
     __cxa_atexit(fn_7100ee1548, g_unk_71729ee200, g_unk_7101a19000);
-    InitEnum(&g_unk_71729ee248, "ESubAreaItem", fn_7100fae524, fn_7100fae138, g_unk_71729ee360, &g_unk_71729ee368, fn_7100faf7f0, &g_unk_71729ee388, fn_7100faf7fc);
-    InitConversion(&g_unk_71729ee3a8, &g_unk_71729ee248, TypeOf<fn_7100005178>, fn_7100faf808);
-    InitConversion(&g_unk_71729ee3c8, TypeOf<fn_7100005178>, &g_unk_71729ee248, fn_7100faf814);
+    InitEnum(&base::reflection::TypeObject<ESubAreaItem, UnkEnumType>::object, "ESubAreaItem", fn_7100fae524, fn_7100fae138, g_unk_71729ee360, &g_unk_71729ee368, fn_7100faf7f0, &g_unk_71729ee388, fn_7100faf7fc);
+    InitConversion(&g_unk_71729ee3a8, &base::reflection::TypeObject<ESubAreaItem, UnkEnumType>::object, TypeOf<fn_7100005178>, fn_7100faf808);
+    InitConversion(&g_unk_71729ee3c8, TypeOf<fn_7100005178>, &base::reflection::TypeObject<ESubAreaItem, UnkEnumType>::object, fn_7100faf814);
     fn_710009ec00(g_unk_71729ee3e8, fn_7100fae6a4());
     fn_710009ec00(g_unk_71729ee3e9, fn_7100fae780());
     {

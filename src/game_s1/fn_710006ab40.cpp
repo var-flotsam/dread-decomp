@@ -8,6 +8,7 @@
 #include "game/UnkTU22.h"
 #include "game/UnkTUInit.h"
 #include "base/UnkEnumInfo.h"
+#include "base/reflection/TypeObject.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -20,8 +21,10 @@ static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
 
-extern UnkEnumInfo g_unk_7101d57f90;
-extern UnkEnumInfo g_unk_7101d580f0;
+namespace base::global::timeline { enum class ELayer : u32; }
+template <> UnkEnumInfo base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object asm("g_unk_7101d57f90");
+namespace base::global::timeline { struct TLayers; }
+template <> UnkEnumInfo base::reflection::TypeObject<base::global::timeline::TLayers, UnkEnumInfo>::object asm("g_unk_7101d580f0");
 extern UnkConverter g_unk_7101d580b0;
 extern UnkConverter g_unk_7101d580d0;
 extern UnkConverter g_unk_7101d581e8;
@@ -38,12 +41,12 @@ void fn_710006aa48() HIDDEN;
 void fn_710006ab40() {
     {
         CStrId name("base::global::timeline::ELayer", true);
-        fn_710006a754(&g_unk_7101d57f90, &name, fn_710006a428, nullptr);
+        fn_710006a754(&base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object, &name, fn_710006a428, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d57f90, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d580a8, &g_unk_7101d57f90);
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d580a8, &base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d57f90.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d580b0.from = a;
         g_unk_7101d580b0.to = b;
@@ -51,7 +54,7 @@ void fn_710006ab40() {
         g_unk_7101d580b0.next = nullptr;
         fn_71000a16c4(&g_unk_7101d580b0);
         void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d57f90.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<base::global::timeline::ELayer, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d580d0.from = c;
         g_unk_7101d580d0.to = d;
         g_unk_7101d580d0.convert = fn_710006aa30;
@@ -60,12 +63,12 @@ void fn_710006ab40() {
     }
     {
         CStrId name("base::global::timeline::TLayers", true);
-        fn_710006a8d4(&g_unk_7101d580f0, &name, nullptr);
+        fn_710006a8d4(&base::reflection::TypeObject<base::global::timeline::TLayers, UnkEnumInfo>::object, &name, nullptr);
     }
-    fn_7100000250(fn_710009a368, &g_unk_7101d580f0, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d581e0, &g_unk_7101d580f0);
+    fn_7100000250(fn_710009a368, &base::reflection::TypeObject<base::global::timeline::TLayers, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d581e0, &base::reflection::TypeObject<base::global::timeline::TLayers, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d580f0.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<base::global::timeline::TLayers, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100005178>()->desc_0x8->field_0x30;
         g_unk_7101d581e8.from = a;
         g_unk_7101d581e8.to = b;
@@ -73,7 +76,7 @@ void fn_710006ab40() {
         g_unk_7101d581e8.next = nullptr;
         fn_71000a16c4(&g_unk_7101d581e8);
         void* c = TypeOf<fn_7100005178>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d580f0.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<base::global::timeline::TLayers, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d58208.from = c;
         g_unk_7101d58208.to = d;
         g_unk_7101d58208.convert = fn_710006aa48;

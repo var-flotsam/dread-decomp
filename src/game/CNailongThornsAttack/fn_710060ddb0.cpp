@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CNailongThornsAttack::EState enum.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,8 @@ struct UnkStatics_710060ddb0 {
 };
 extern UnkStatics_710060ddb0 g_unk_71726f4d08 __attribute__((visibility("hidden")));
 extern char g_unk_71726f4ba0[];
-extern UnkEnumType g_unk_71726f4ba8;
+namespace CNailongThornsAttack { enum class EState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CNailongThornsAttack::EState, UnkEnumType>::object asm("g_unk_71726f4ba8");
 void fn_710060aeb0(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710060abe4();
 extern char g_unk_71726f4cc0[];
@@ -31,7 +33,7 @@ void fn_710060ddb0() {
     InitHeaderIds(&g_unk_71726f4d08.ids);
     fn_710060a968();
     fn_710009ec00(g_unk_71726f4ba0, g_unk_71726f4d08.field_0x58);
-    InitEnum(&g_unk_71726f4ba8, "CNailongThornsAttack::EState", fn_710060aeb0, fn_710060abe4,
+    InitEnum(&base::reflection::TypeObject<CNailongThornsAttack::EState, UnkEnumType>::object, "CNailongThornsAttack::EState", fn_710060aeb0, fn_710060abe4,
              g_unk_71726f4cc0, &g_unk_71726f4cc8, fn_710060d870, &g_unk_71726f4ce8, fn_710060d87c);
     InitId(&g_unk_71726f4d08.field_0x20, "attack_charge_loop");
     InitId(&g_unk_71726f4d08.field_0x28, "attack_release");

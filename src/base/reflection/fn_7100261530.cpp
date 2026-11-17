@@ -7,6 +7,7 @@
 #include "base/reflection.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 // The shared helpers see a reflected type through the placeholder layout (UnkReflType).
 static inline UnkReflType* AsUnk(base::reflection::CType* t) { return reinterpret_cast<UnkReflType*>(t); }
@@ -37,7 +38,8 @@ extern char g_unk_71726a0b58;
 extern char g_unk_71726a0b59;
 extern UnkReflType g_unk_71726a0b60;
 extern char g_unk_71726a0cd0;
-extern UnkReflType g_unk_71726a0cd8;
+enum class EActorLayer : u32;
+template <> UnkReflType base::reflection::TypeObject<EActorLayer, UnkReflType>::object asm("g_unk_71726a0cd8");
 extern char g_unk_71726a0df0;
 UnkReflType* fn_7100257370();
 UnkReflType* fn_710025744c();
@@ -126,9 +128,9 @@ void fn_7100261530() {
                "base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>",
                fn_710025a7e8);
     fn_710009ec00(&g_unk_71726a0cd0, &g_unk_71726a0b60);
-    InitEnum(&g_unk_71726a0cd8, "EActorLayer", fn_710025ab8c, fn_710025a9e0);
-    fn_710009ec00(&g_unk_71726a0df0, &g_unk_71726a0cd8);
-    InitEnumConverters(&g_unk_71726a0cd8, g_unk_71726a0df8, fn_710025ef30, g_unk_71726a0e18, fn_710025ef3c);
-    InitEnumConverters(&g_unk_71726a0cd8, g_unk_71726a0e38, fn_710025ef48, g_unk_71726a0e58, fn_710025ef54,
+    InitEnum(&base::reflection::TypeObject<EActorLayer, UnkReflType>::object, "EActorLayer", fn_710025ab8c, fn_710025a9e0);
+    fn_710009ec00(&g_unk_71726a0df0, &base::reflection::TypeObject<EActorLayer, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<EActorLayer, UnkReflType>::object, g_unk_71726a0df8, fn_710025ef30, g_unk_71726a0e18, fn_710025ef3c);
+    InitEnumConverters(&base::reflection::TypeObject<EActorLayer, UnkReflType>::object, g_unk_71726a0e38, fn_710025ef48, g_unk_71726a0e58, fn_710025ef54,
                        refl_TypeOf<fn_7100005178>);
 }

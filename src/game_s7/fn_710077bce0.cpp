@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTU1176.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -56,7 +57,8 @@ extern UnkConversion g_unk_7172714368;
 extern UnkConversion g_unk_7172714388;
 void fn_7100777950() __attribute__((visibility("hidden")));
 void fn_710077795c() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172714248;
+namespace CCentralUnitComponent { enum class ECentralUnitMode : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CCentralUnitComponent::ECentralUnitMode, UnkEnumType>::object asm("g_unk_7172714248");
 extern char g_unk_7172714360[];
 void fn_710076bb6c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710076b960();
@@ -117,7 +119,7 @@ void fn_710077bce0() {
     InitId(&g_unk_71727141f0, "CENTRAL_UNIT");
     InitProperty(&g_unk_71727141f8, g_unk_7101a6edd0, g_unk_71726db788, "State", TypeOf<fn_7100014768>(), fn_71007798d0, fn_710076b8e8);
     InitProperty(&g_unk_7172714220, g_unk_7101a6edd0, g_unk_71726db788, "EmmyDisabled", TypeOf<fn_710000d228>(), fn_71007798d0, fn_710076b8e8);
-    InitEnum(&g_unk_7172714248, "CCentralUnitComponent::ECentralUnitMode", fn_710076bb6c, fn_710076b960, g_unk_7172714360, &g_unk_7172714368, fn_7100777950, &g_unk_7172714388, fn_710077795c);
+    InitEnum(&base::reflection::TypeObject<CCentralUnitComponent::ECentralUnitMode, UnkEnumType>::object, "CCentralUnitComponent::ECentralUnitMode", fn_710076bb6c, fn_710076b960, g_unk_7172714360, &g_unk_7172714368, fn_7100777950, &g_unk_7172714388, fn_710077795c);
     fn_710009ec00(g_unk_71727143a8, fn_710076bcec());
     fn_710009ec00(g_unk_71727143a9, fn_710076bdc8());
     {

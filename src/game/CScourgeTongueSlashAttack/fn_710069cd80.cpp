@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CScourgeTongueSlashAttack::EState enum.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -17,7 +18,8 @@ struct UnkStatics_710069cd80 {
 };
 extern UnkStatics_710069cd80 g_unk_7172704928 __attribute__((visibility("hidden")));
 extern char g_unk_71727047c0[];
-extern UnkEnumType g_unk_71727047c8;
+namespace CScourgeTongueSlashAttack { enum class EState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CScourgeTongueSlashAttack::EState, UnkEnumType>::object asm("g_unk_71727047c8");
 void fn_710069a57c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710069a250();
 extern char g_unk_71727048e0[];
@@ -30,7 +32,7 @@ void fn_710069cd80() {
     InitHeaderIds(&g_unk_7172704928.ids);
     fn_7100699fd4();
     fn_710009ec00(g_unk_71727047c0, g_unk_7172704928.field_0x50);
-    InitEnum(&g_unk_71727047c8, "CScourgeTongueSlashAttack::EState", fn_710069a57c, fn_710069a250,
+    InitEnum(&base::reflection::TypeObject<CScourgeTongueSlashAttack::EState, UnkEnumType>::object, "CScourgeTongueSlashAttack::EState", fn_710069a57c, fn_710069a250,
              g_unk_71727048e0, &g_unk_71727048e8, fn_710069c7cc, &g_unk_7172704908, fn_710069c7d8);
     InitId(&g_unk_7172704928.field_0x20, "tongue_slash_attack_init");
     InitId(&g_unk_7172704928.field_0x28, "tongue_slash_attack_1");

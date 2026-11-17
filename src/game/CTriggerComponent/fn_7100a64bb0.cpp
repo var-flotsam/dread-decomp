@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/CTriggerComponent.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -63,7 +64,8 @@ extern UnkConversion g_unk_717274dd90;
 extern UnkConversion g_unk_717274ddb0;
 void fn_7100a62edc() __attribute__((visibility("hidden")));
 void fn_7100a62ee8() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_717274dc70;
+namespace CTriggerComponent { enum class EEvent : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CTriggerComponent::EEvent, UnkEnumType>::object asm("g_unk_717274dc70");
 extern char g_unk_717274dd88[];
 void fn_7100a5b92c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a5b600();
@@ -110,7 +112,7 @@ void fn_7100a64bb0() {
     __cxa_atexit(fn_710009891c, &g_unk_717274dad8, g_unk_7101a19000);
     fn_710009ec00(g_unk_717274dc48, &g_unk_717274dad8);
     InitConversion(&g_unk_717274dc50, fn_7100a5a3c0, fn_7100a5a5c4, fn_7100a62ed0);
-    InitEnum(&g_unk_717274dc70, "CTriggerComponent::EEvent", fn_7100a5b92c, fn_7100a5b600, g_unk_717274dd88, &g_unk_717274dd90, fn_7100a62edc, &g_unk_717274ddb0, fn_7100a62ee8);
+    InitEnum(&base::reflection::TypeObject<CTriggerComponent::EEvent, UnkEnumType>::object, "CTriggerComponent::EEvent", fn_7100a5b92c, fn_7100a5b600, g_unk_717274dd88, &g_unk_717274dd90, fn_7100a62edc, &g_unk_717274ddb0, fn_7100a62ee8);
     fn_7100a5bab0();
     fn_710009ec00(g_unk_717274ddd0, g_unk_717274e4b8.field_0x48);
     fn_7100a5d274();

@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -20,7 +21,8 @@ extern char g_unk_71726fede8[];
 extern char g_unk_71726fede9[];
 extern UnkTunable g_unk_71726fedf0;
 extern void* g_unk_7101a5dc20[];
-extern UnkEnumType g_unk_71726fee48;
+namespace CCharClassRodotukAIComponent::SAbsorbConfig { enum class EType : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CCharClassRodotukAIComponent::SAbsorbConfig::EType, UnkEnumType>::object asm("g_unk_71726fee48");
 void fn_710066e054(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710066de48();
 extern char g_unk_71726fef60[];
@@ -59,7 +61,7 @@ void fn_7100671920() {
     fn_710066d22c();
     fn_710009ec00(g_unk_71726fede9, g_unk_71726ff920.field_0x160);
     InitTunable(&g_unk_71726fedf0, fn_7100136ecc, g_unk_7101a5dc20, fn_7100075104);
-    InitEnum(&g_unk_71726fee48, "CCharClassRodotukAIComponent::SAbsorbConfig::EType", fn_710066e054, fn_710066de48,
+    InitEnum(&base::reflection::TypeObject<CCharClassRodotukAIComponent::SAbsorbConfig::EType, UnkEnumType>::object, "CCharClassRodotukAIComponent::SAbsorbConfig::EType", fn_710066e054, fn_710066de48,
              g_unk_71726fef60, &g_unk_71726fef68, fn_710066fc5c, &g_unk_71726fef88, fn_710066fc68);
     {
         CStrId n("CCharClassRodotukAIComponent::SAbsorbConfig", true);
