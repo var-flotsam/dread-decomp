@@ -2,6 +2,7 @@
 // Static initialiser of the unit of CTrainUsableComponent and ETrainDirection.
 #include "../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,8 @@ struct UnkStatics_7100a9a600 {
     u8 field_0x30[8];
 };
 extern UnkStatics_7100a9a600 g_unk_7172752d18 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172752bb0;
+enum class ETrainDirection : u32;
+template <> UnkEnumType base::reflection::TypeObject<ETrainDirection, UnkEnumType>::object asm("g_unk_7172752bb0");
 void fn_710042fd24(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100a98a00();
 extern char g_unk_7172752cc8[];
@@ -29,7 +31,7 @@ void fn_7100a9a600() {
     InitHeaderIds(&g_unk_7172752d18.ids);
     InitId(&g_unk_7172752d18.field_0x18, "CTrainUsableComponent");
     InitId(&g_unk_7172752d18.field_0x20, "initopen");
-    InitEnum(&g_unk_7172752bb0, "ETrainDirection", fn_7100a98b4c, fn_7100a98a00,
+    InitEnum(&base::reflection::TypeObject<ETrainDirection, UnkEnumType>::object, "ETrainDirection", fn_7100a98b4c, fn_7100a98a00,
              g_unk_7172752cc8, &g_unk_7172752cd0, fn_7100a9a480, &g_unk_7172752cf0, fn_7100a9a48c);
     fn_7100a98cd0();
     fn_710009ec00(g_unk_7172752d10, g_unk_7172752d18.field_0x30);

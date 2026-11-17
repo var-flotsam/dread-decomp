@@ -18,15 +18,17 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::global::timeline { struct TLayers; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::timeline::TLayers>::object asm("g_unk_7101d580f0");
 
 // CCharClassGrabComponent
-extern base::reflection::CType g_unk_7101d580f0;
 namespace CCharClassGrabComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sFireCameraFXPreset", 0x88, (DefaultValue, ""), (Description, "Fire Camera FX Preset"));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("oAnimationLayers", true), &g_unk_7101d580f0, 0x90, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7101d580f0, s32(base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>()));
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("oAnimationLayers", true), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, 0x90, -1, -1);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, s32(base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>()));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

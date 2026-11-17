@@ -14,6 +14,7 @@
 #include "game/UnkTUProperty.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
+#include "base/reflection/TypeObject.h"
 
 using base::global::CStrId;
 
@@ -109,7 +110,8 @@ static_assert(__builtin_offsetof(UnkDoorLife, field_0xa18) == 0xa18, "UnkDoorLif
 
 // The "NextState" property and the CDoorLifeComponent::SState enum (src/game_s7/fn_71008da6c0.cpp).
 struct UnkEnumType;
-extern UnkEnumType g_unk_7172731200;
+namespace CDoorLifeComponent { enum class SState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object asm("g_unk_7172731200");
 
 // Stores the typed value under `name` in the blackboard section `section` names (unless the
 // blackboard is locked).
@@ -171,7 +173,7 @@ bool fn_71008d586c(UnkDoorLife* self, bool force, bool notify, const CStrId* id)
         CStrId section = fn_71011a2fbc(gm->field_0x608);
         UnkDoorPropertyValue* value = FindValue(self, g_unk_7172731160.name.data);
         SetSectionValue(&gm->field_0x968, section, &value->name,
-                        reinterpret_cast<const base::reflection::CType*>(&g_unk_7172731200), &self->field_0x40c);
+                        reinterpret_cast<const base::reflection::CType*>(&base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object), &self->field_0x40c);
     }
     return true;
 }

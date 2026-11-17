@@ -48,8 +48,8 @@ void fn_7100ddf434(CClass* cls) {
     UnkReflField* field12 = AddReflectedField(cls, CStrId("oConstantColor0TransitionEnd", true), fn_71000248c4(), 0x5c, -1, -1);
     field12->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{g_unk_71016477c4.x, g_unk_71016477c4.y, g_unk_71016477c4.z, g_unk_71016477c4.w});
     UnkReflField* field13 = AddReflectedField(cls, CStrId("eConstant0TransitionMode", true),
-                                          &reinterpret_cast<base::reflection::CType&>(g_unk_71727be388), 0x94, -1, -1);
-    field13->attrs.Add<s32>(fn_7100075240(), &reinterpret_cast<base::reflection::CType&>(g_unk_71727be388), 0);
+                                          &reinterpret_cast<base::reflection::CType&>(base::reflection::TypeObject<CExplosionGfx::ETransitionOperationMode, UnkReflType>::object), 0x94, -1, -1);
+    field13->attrs.Add<s32>(fn_7100075240(), &reinterpret_cast<base::reflection::CType&>(base::reflection::TypeObject<CExplosionGfx::ETransitionOperationMode, UnkReflType>::object), 0);
     UnkReflField* field14 = AddReflectedField(cls, CStrId("fConstantColor0TransitionTime", true), fn_710000abbc(), 0x8c, -1, -1);
     field14->attrs.Add<f32>(fn_7100075240(), 0.0f);
     UnkReflField* field15 = AddReflectedField(cls, CStrId("oConstantColor1TransitionInit", true), fn_71000248c4(), 0x6c, -1, -1);
@@ -57,8 +57,8 @@ void fn_7100ddf434(CClass* cls) {
     UnkReflField* field16 = AddReflectedField(cls, CStrId("oConstantColor1TransitionEnd", true), fn_71000248c4(), 0x7c, -1, -1);
     field16->attrs.Add<base::math::CVector4D>(fn_7100075240(), base::math::CVector4D{g_unk_71016477c4.x, g_unk_71016477c4.y, g_unk_71016477c4.z, g_unk_71016477c4.w});
     UnkReflField* field17 = AddReflectedField(cls, CStrId("eConstant1TransitionMode", true),
-                                          &reinterpret_cast<base::reflection::CType&>(g_unk_71727be388), 0x98, -1, -1);
-    field17->attrs.Add<s32>(fn_7100075240(), &reinterpret_cast<base::reflection::CType&>(g_unk_71727be388), 0);
+                                          &reinterpret_cast<base::reflection::CType&>(base::reflection::TypeObject<CExplosionGfx::ETransitionOperationMode, UnkReflType>::object), 0x98, -1, -1);
+    field17->attrs.Add<s32>(fn_7100075240(), &reinterpret_cast<base::reflection::CType&>(base::reflection::TypeObject<CExplosionGfx::ETransitionOperationMode, UnkReflType>::object), 0);
     UnkReflField* field18 = AddReflectedField(cls, CStrId("fConstantColor1TransitionTime", true), fn_710000abbc(), 0x90, -1, -1);
     field18->attrs.Add<f32>(fn_7100075240(), 0.0f);
 }

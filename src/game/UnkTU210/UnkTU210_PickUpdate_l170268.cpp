@@ -1,0 +1,244 @@
+// A unit with no known name (tools/tu_map.py unit 210): picks a GPU particle emitter's update function
+// (+0x430) by which of its optional attribute buffers it has, one variant for each combination of the
+// attribute bits. Names and layouts are placeholders.
+#include "types.h"
+
+struct UnkEmitter_l170268;
+using UnkEmitterUpdate_l170268 = void (*)(UnkEmitter_l170268* self);
+
+// The update variants, one per combination of attribute bits.
+void fn_710017077c(UnkEmitter_l170268* self);
+void fn_7100170780(UnkEmitter_l170268* self);
+void fn_7100170784(UnkEmitter_l170268* self);
+void fn_7100170788(UnkEmitter_l170268* self);
+void fn_710017078c(UnkEmitter_l170268* self);
+void fn_7100170790(UnkEmitter_l170268* self);
+void fn_7100170794(UnkEmitter_l170268* self);
+void fn_7100170798(UnkEmitter_l170268* self);
+void fn_710017079c(UnkEmitter_l170268* self);
+void fn_71001707a0(UnkEmitter_l170268* self);
+void fn_71001707a4(UnkEmitter_l170268* self);
+void fn_71001707a8(UnkEmitter_l170268* self);
+void fn_71001707ac(UnkEmitter_l170268* self);
+void fn_71001707b0(UnkEmitter_l170268* self);
+void fn_71001707b4(UnkEmitter_l170268* self);
+void fn_71001707b8(UnkEmitter_l170268* self);
+void fn_71001707bc(UnkEmitter_l170268* self);
+void fn_71001707c0(UnkEmitter_l170268* self);
+void fn_71001707c4(UnkEmitter_l170268* self);
+void fn_71001707c8(UnkEmitter_l170268* self);
+void fn_71001707cc(UnkEmitter_l170268* self);
+void fn_71001707d0(UnkEmitter_l170268* self);
+void fn_71001707d4(UnkEmitter_l170268* self);
+void fn_71001707d8(UnkEmitter_l170268* self);
+void fn_71001707dc(UnkEmitter_l170268* self);
+void fn_71001707e0(UnkEmitter_l170268* self);
+void fn_71001707e4(UnkEmitter_l170268* self);
+void fn_71001707e8(UnkEmitter_l170268* self);
+void fn_71001707ec(UnkEmitter_l170268* self);
+void fn_71001707f0(UnkEmitter_l170268* self);
+void fn_71001707f4(UnkEmitter_l170268* self);
+void fn_71001707f8(UnkEmitter_l170268* self);
+void fn_71001707fc(UnkEmitter_l170268* self);
+void fn_7100170800(UnkEmitter_l170268* self);
+void fn_7100170804(UnkEmitter_l170268* self);
+void fn_7100170808(UnkEmitter_l170268* self);
+void fn_710017080c(UnkEmitter_l170268* self);
+void fn_7100170810(UnkEmitter_l170268* self);
+void fn_7100170814(UnkEmitter_l170268* self);
+void fn_7100170818(UnkEmitter_l170268* self);
+void fn_710017081c(UnkEmitter_l170268* self);
+void fn_7100170820(UnkEmitter_l170268* self);
+void fn_7100170824(UnkEmitter_l170268* self);
+void fn_7100170828(UnkEmitter_l170268* self);
+void fn_710017082c(UnkEmitter_l170268* self);
+void fn_7100170830(UnkEmitter_l170268* self);
+void fn_7100170834(UnkEmitter_l170268* self);
+void fn_7100170838(UnkEmitter_l170268* self);
+void fn_710017083c(UnkEmitter_l170268* self);
+void fn_7100170840(UnkEmitter_l170268* self);
+void fn_7100170844(UnkEmitter_l170268* self);
+void fn_7100170848(UnkEmitter_l170268* self);
+void fn_710017084c(UnkEmitter_l170268* self);
+void fn_7100170850(UnkEmitter_l170268* self);
+void fn_7100170854(UnkEmitter_l170268* self);
+void fn_7100170858(UnkEmitter_l170268* self);
+void fn_710017085c(UnkEmitter_l170268* self);
+void fn_7100170860(UnkEmitter_l170268* self);
+void fn_7100170864(UnkEmitter_l170268* self);
+void fn_7100170868(UnkEmitter_l170268* self);
+void fn_710017086c(UnkEmitter_l170268* self);
+void fn_7100170870(UnkEmitter_l170268* self);
+void fn_7100170874(UnkEmitter_l170268* self);
+void fn_7100170878(UnkEmitter_l170268* self);
+void fn_710017087c(UnkEmitter_l170268* self);
+void fn_7100170880(UnkEmitter_l170268* self);
+void fn_7100170884(UnkEmitter_l170268* self);
+void fn_7100170888(UnkEmitter_l170268* self);
+void fn_710017088c(UnkEmitter_l170268* self);
+void fn_7100170890(UnkEmitter_l170268* self);
+void fn_7100170894(UnkEmitter_l170268* self);
+void fn_7100170898(UnkEmitter_l170268* self);
+void fn_710017089c(UnkEmitter_l170268* self);
+void fn_71001708a0(UnkEmitter_l170268* self);
+void fn_71001708a4(UnkEmitter_l170268* self);
+void fn_71001708a8(UnkEmitter_l170268* self);
+void fn_71001708ac(UnkEmitter_l170268* self);
+void fn_71001708b0(UnkEmitter_l170268* self);
+void fn_71001708b4(UnkEmitter_l170268* self);
+void fn_71001708b8(UnkEmitter_l170268* self);
+void fn_71001708bc(UnkEmitter_l170268* self);
+void fn_71001708c0(UnkEmitter_l170268* self);
+void fn_71001708c4(UnkEmitter_l170268* self);
+void fn_71001708c8(UnkEmitter_l170268* self);
+void fn_71001708cc(UnkEmitter_l170268* self);
+void fn_71001708d0(UnkEmitter_l170268* self);
+void fn_71001708d4(UnkEmitter_l170268* self);
+void fn_71001708d8(UnkEmitter_l170268* self);
+void fn_71001708dc(UnkEmitter_l170268* self);
+void fn_71001708e0(UnkEmitter_l170268* self);
+void fn_71001708e4(UnkEmitter_l170268* self);
+void fn_71001708e8(UnkEmitter_l170268* self);
+void fn_71001708ec(UnkEmitter_l170268* self);
+void fn_71001708f0(UnkEmitter_l170268* self);
+void fn_71001708f4(UnkEmitter_l170268* self);
+void fn_71001708f8(UnkEmitter_l170268* self);
+
+struct UnkEmitter_l170268 {
+    u8 pad_0x0[0xb0];
+    void* field_0xb0;
+    u8 pad_0xb8[0xd8 - 0xb8];
+    void* field_0xd8;
+    u8 pad_0xe0[0x100 - 0xe0];
+    void* field_0x100;
+    u8 pad_0x108[0x150 - 0x108];
+    void* field_0x150;
+    u8 pad_0x158[0x170 - 0x158];
+    void* field_0x170;
+    u8 pad_0x178[0x190 - 0x178];
+    void* field_0x190;
+    u8 pad_0x198[0x1b0 - 0x198];
+    void* field_0x1b0;
+    u8 pad_0x1b8[0x1d0 - 0x1b8];
+    void* field_0x1d0;
+    u8 pad_0x1d8[0x430 - 0x1d8];
+    UnkEmitterUpdate_l170268 update;  // 0x430
+};
+static_assert(__builtin_offsetof(UnkEmitter_l170268, update) == 0x430, "UnkEmitter_l170268 layout");
+
+void fn_7100170268(UnkEmitter_l170268* self) {
+    u32 kind = 0;
+    if (self->field_0xb0)
+        kind = 0x60;
+    else if (self->field_0xd8 || self->field_0x100)
+        kind = 0x20;
+    if (self->field_0x150)
+        kind |= 0x10;
+    if (self->field_0x170)
+        kind |= 8;
+    if (self->field_0x190)
+        kind |= 4;
+    if (self->field_0x1b0)
+        kind |= 2;
+    if (self->field_0x1d0)
+        kind |= 1;
+
+    switch (kind) {
+    case 0x7f: self->update = fn_710017077c; break;
+    case 0x00: self->update = fn_71001708f8; break;
+    case 0x01: self->update = fn_71001708c8; break;
+    case 0x02: self->update = fn_7100170898; break;
+    case 0x03: self->update = fn_7100170868; break;
+    case 0x04: self->update = fn_7100170838; break;
+    case 0x05: self->update = fn_7100170808; break;
+    case 0x06: self->update = fn_71001707d8; break;
+    case 0x07: self->update = fn_71001707a8; break;
+    case 0x08: self->update = fn_71001708ec; break;
+    case 0x09: self->update = fn_71001708bc; break;
+    case 0x0a: self->update = fn_710017088c; break;
+    case 0x0b: self->update = fn_710017085c; break;
+    case 0x0c: self->update = fn_710017082c; break;
+    case 0x0d: self->update = fn_71001707fc; break;
+    case 0x0e: self->update = fn_71001707cc; break;
+    case 0x0f: self->update = fn_710017079c; break;
+    case 0x10: self->update = fn_71001708e0; break;
+    case 0x11: self->update = fn_71001708b0; break;
+    case 0x12: self->update = fn_7100170880; break;
+    case 0x13: self->update = fn_7100170850; break;
+    case 0x14: self->update = fn_7100170820; break;
+    case 0x15: self->update = fn_71001707f0; break;
+    case 0x16: self->update = fn_71001707c0; break;
+    case 0x17: self->update = fn_7100170790; break;
+    case 0x18: self->update = fn_71001708d4; break;
+    case 0x19: self->update = fn_71001708a4; break;
+    case 0x1a: self->update = fn_7100170874; break;
+    case 0x1b: self->update = fn_7100170844; break;
+    case 0x1c: self->update = fn_7100170814; break;
+    case 0x1d: self->update = fn_71001707e4; break;
+    case 0x1e: self->update = fn_71001707b4; break;
+    case 0x1f: self->update = fn_7100170784; break;
+    case 0x20: self->update = fn_71001708f4; break;
+    case 0x21: self->update = fn_71001708c4; break;
+    case 0x22: self->update = fn_7100170894; break;
+    case 0x23: self->update = fn_7100170864; break;
+    case 0x24: self->update = fn_7100170834; break;
+    case 0x25: self->update = fn_7100170804; break;
+    case 0x26: self->update = fn_71001707d4; break;
+    case 0x27: self->update = fn_71001707a4; break;
+    case 0x28: self->update = fn_71001708e8; break;
+    case 0x29: self->update = fn_71001708b8; break;
+    case 0x2a: self->update = fn_7100170888; break;
+    case 0x2b: self->update = fn_7100170858; break;
+    case 0x2c: self->update = fn_7100170828; break;
+    case 0x2d: self->update = fn_71001707f8; break;
+    case 0x2e: self->update = fn_71001707c8; break;
+    case 0x2f: self->update = fn_7100170798; break;
+    case 0x30: self->update = fn_71001708dc; break;
+    case 0x31: self->update = fn_71001708ac; break;
+    case 0x32: self->update = fn_710017087c; break;
+    case 0x33: self->update = fn_710017084c; break;
+    case 0x34: self->update = fn_710017081c; break;
+    case 0x35: self->update = fn_71001707ec; break;
+    case 0x36: self->update = fn_71001707bc; break;
+    case 0x37: self->update = fn_710017078c; break;
+    case 0x38: self->update = fn_71001708d0; break;
+    case 0x39: self->update = fn_71001708a0; break;
+    case 0x3a: self->update = fn_7100170870; break;
+    case 0x3b: self->update = fn_7100170840; break;
+    case 0x3c: self->update = fn_7100170810; break;
+    case 0x3d: self->update = fn_71001707e0; break;
+    case 0x3e: self->update = fn_71001707b0; break;
+    case 0x3f: self->update = fn_7100170780; break;
+    case 0x60: self->update = fn_71001708f0; break;
+    case 0x61: self->update = fn_71001708c0; break;
+    case 0x62: self->update = fn_7100170890; break;
+    case 0x63: self->update = fn_7100170860; break;
+    case 0x64: self->update = fn_7100170830; break;
+    case 0x65: self->update = fn_7100170800; break;
+    case 0x66: self->update = fn_71001707d0; break;
+    case 0x67: self->update = fn_71001707a0; break;
+    case 0x68: self->update = fn_71001708e4; break;
+    case 0x69: self->update = fn_71001708b4; break;
+    case 0x6a: self->update = fn_7100170884; break;
+    case 0x6b: self->update = fn_7100170854; break;
+    case 0x6c: self->update = fn_7100170824; break;
+    case 0x6d: self->update = fn_71001707f4; break;
+    case 0x6e: self->update = fn_71001707c4; break;
+    case 0x6f: self->update = fn_7100170794; break;
+    case 0x70: self->update = fn_71001708d8; break;
+    case 0x71: self->update = fn_71001708a8; break;
+    case 0x72: self->update = fn_7100170878; break;
+    case 0x73: self->update = fn_7100170848; break;
+    case 0x74: self->update = fn_7100170818; break;
+    case 0x75: self->update = fn_71001707e8; break;
+    case 0x76: self->update = fn_71001707b8; break;
+    case 0x77: self->update = fn_7100170788; break;
+    case 0x78: self->update = fn_71001708cc; break;
+    case 0x79: self->update = fn_710017089c; break;
+    case 0x7a: self->update = fn_710017086c; break;
+    case 0x7b: self->update = fn_710017083c; break;
+    case 0x7c: self->update = fn_710017080c; break;
+    case 0x7d: self->update = fn_71001707dc; break;
+    case 0x7e: self->update = fn_71001707ac; break;
+    }
+}

@@ -4,12 +4,12 @@
 // fn_71011dc794. Names are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2577.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
 
-const base::reflection::CType* fn_7100ef0e00();
 void* fn_7100eef488(char* self, u32 index, void* arg);
 
 static inline __attribute__((always_inline)) void* ArgPtr_b41a3(UnkReflValue* arg) {

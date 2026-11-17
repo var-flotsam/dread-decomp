@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
@@ -23,9 +24,12 @@ void fn_7100e1b604() __attribute__((visibility("hidden")));
 extern char g_unk_71727c0cd8;
 extern char g_unk_71727c0e10;
 extern char g_unk_71727c0f70;
-extern UnkReflType g_unk_71727c0bc0;
-extern UnkReflType g_unk_71727c0d20;
-extern UnkReflType g_unk_71727c0e58;
+enum class ETooltipCond : u32;
+template <> UnkReflType base::reflection::TypeObject<ETooltipCond, UnkReflType>::object asm("g_unk_71727c0bc0");
+struct TTooltipConditions;
+template <> UnkReflType base::reflection::TypeObject<TTooltipConditions, UnkReflType>::object asm("g_unk_71727c0d20");
+enum class ETooltipType : u32;
+template <> UnkReflType base::reflection::TypeObject<ETooltipType, UnkReflType>::object asm("g_unk_71727c0e58");
 extern UnkTUHeader g_unk_71727c0fb8 __attribute__((visibility("hidden")));
 void fn_7100e177ec(UnkReflType* self, const base::global::CStrId& name, void* extra);
 extern UnkConverter g_unk_71727c0ce0;

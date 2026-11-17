@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCharClassScorpiusAIComponent.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -17,7 +18,8 @@ struct UnkStatics_7100690990 {
     u8 field_0x170[8];
 };
 extern UnkStatics_7100690990 g_unk_7172703f08 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172703d20;
+enum class EForceOpticCamouflageMode : u32;
+template <> UnkEnumType base::reflection::TypeObject<EForceOpticCamouflageMode, UnkEnumType>::object asm("g_unk_7172703d20");
 void fn_710068de8c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710068dce0();
 extern char g_unk_7172703e38[];
@@ -36,7 +38,7 @@ void fn_7100690990() {
     InitHeaderIds(&g_unk_7172703f08.ids);
     InitId(&g_unk_7172703f08.field_0x18, "Life|CTunableCharClassLifeComponent");
     InitId(&g_unk_7172703f08.field_0x20, "fLifeScorpiusStage1");
-    InitEnum(&g_unk_7172703d20, "EForceOpticCamouflageMode", fn_710068de8c, fn_710068dce0,
+    InitEnum(&base::reflection::TypeObject<EForceOpticCamouflageMode, UnkEnumType>::object, "EForceOpticCamouflageMode", fn_710068de8c, fn_710068dce0,
              g_unk_7172703e38, &g_unk_7172703e40, fn_71006907c4, &g_unk_7172703e60, fn_71006907d0);
     fn_710068e010();
     fn_710009ec00(g_unk_7172703e80, g_unk_7172703f08.field_0x38);

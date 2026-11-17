@@ -373,9 +373,9 @@ void fn_7100db21d0() {
     fn_7100000250(fn_710000051c, TUAt<CStrId, 0x18>(g_unk_71727bc9d0), &g_unk_7101a19000);
     new (TUAt<CStrId, 0x20>(g_unk_71727bc9d0)) CStrId("ITEM_WEAPON_MISSILE_CURRENT", true);
     fn_7100000250(fn_710000051c, TUAt<CStrId, 0x20>(g_unk_71727bc9d0), &g_unk_7101a19000);
-    InitEnum(&g_unk_71727bc870, "EAmiibo", fn_7100daf558, fn_7100daf1cc);
-    fn_710009ec00(&g_unk_71727bc988, &g_unk_71727bc870);
-    InitEnumConverters(&g_unk_71727bc870, g_unk_71727bc990, fn_7100db2038, g_unk_71727bc9b0, fn_7100db2044);
+    InitEnum(&base::reflection::TypeObject<EAmiibo, UnkReflType>::object, "EAmiibo", fn_7100daf558, fn_7100daf1cc);
+    fn_710009ec00(&g_unk_71727bc988, &base::reflection::TypeObject<EAmiibo, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<EAmiibo, UnkReflType>::object, g_unk_71727bc990, fn_7100db2038, g_unk_71727bc9b0, fn_7100db2044);
 }
 
 void fn_7100e0ecb0() {
@@ -561,12 +561,12 @@ extern void* g_unk_7101aa9278[];
 
 void fn_7100da7050() {
     InitHeader(g_unk_71727bc598);
-    InitEnum(&g_unk_71727bc290, "CAIManager::EAIGroup", fn_7100da6938, fn_7100da684c);
-    fn_710009ec00(&g_unk_71727bc3a8, &g_unk_71727bc290);
-    InitEnumConverters(&g_unk_71727bc290, g_unk_71727bc3b0, fn_7100dab9bc, g_unk_71727bc3d0, fn_7100dab9c8);
-    InitEnum(&g_unk_71727bc3f0, "CAIManager::EBumpMode", fn_7100da6cc4, fn_7100da6ab8);
-    fn_710009ec00(&g_unk_71727bc508, &g_unk_71727bc3f0);
-    InitEnumConverters(&g_unk_71727bc3f0, g_unk_71727bc510, fn_7100dab9d4, g_unk_71727bc530, fn_7100dab9e0);
+    InitEnum(&base::reflection::TypeObject<CAIManager::EAIGroup, UnkReflType>::object, "CAIManager::EAIGroup", fn_7100da6938, fn_7100da684c);
+    fn_710009ec00(&g_unk_71727bc3a8, &base::reflection::TypeObject<CAIManager::EAIGroup, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CAIManager::EAIGroup, UnkReflType>::object, g_unk_71727bc3b0, fn_7100dab9bc, g_unk_71727bc3d0, fn_7100dab9c8);
+    InitEnum(&base::reflection::TypeObject<CAIManager::EBumpMode, UnkReflType>::object, "CAIManager::EBumpMode", fn_7100da6cc4, fn_7100da6ab8);
+    fn_710009ec00(&g_unk_71727bc508, &base::reflection::TypeObject<CAIManager::EBumpMode, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CAIManager::EBumpMode, UnkReflType>::object, g_unk_71727bc510, fn_7100dab9d4, g_unk_71727bc530, fn_7100dab9e0);
     new (TUAt<CFilePathStrId, 0x30>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice00_weak.bcmdl", true);
     new (TUAt<CFilePathStrId, 0x38>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice01_weak.bcmdl", true);
     new (TUAt<CFilePathStrId, 0x40>(g_unk_71727bc5b0)) CFilePathStrId("actors/props/barelyice/models/barelyice02_weak.bcmdl", true);
@@ -634,9 +634,9 @@ void fn_7100ebefd0() {
     InitHeader(g_unk_71729ce040);
     InitClass(&g_unk_71729cdd78, "minimap::CAnimatedValue::SAnimConfig", fn_7100eb6b48, fn_7100eb695c);
     fn_710009ec00(&g_unk_71729cdeb0, &g_unk_71729cdd78);
-    InitEnum(&g_unk_71729cdeb8, "minimap::EIconAnimID", fn_7100eb71d8, fn_7100eb6ccc);
-    fn_710009ec00(&g_unk_71729cdfd0, &g_unk_71729cdeb8);
-    InitEnumConverters(&g_unk_71729cdeb8, g_unk_71729cdfd8, fn_7100ebecec, g_unk_71729cdff8, fn_7100ebecf8);
+    InitEnum(&base::reflection::TypeObject<minimap::EIconAnimID, UnkReflType>::object, "minimap::EIconAnimID", fn_7100eb71d8, fn_7100eb6ccc);
+    fn_710009ec00(&g_unk_71729cdfd0, &base::reflection::TypeObject<minimap::EIconAnimID, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<minimap::EIconAnimID, UnkReflType>::object, g_unk_71729cdfd8, fn_7100ebecec, g_unk_71729cdff8, fn_7100ebecf8);
     new (TUAt<CStrId, 0x0>(g_unk_71729ce058)) CStrId("digital_medium", true);
     fn_7100000250(fn_710000051c, TUAt<CStrId, 0x0>(g_unk_71729ce058), &g_unk_7101a19000);
     g_unk_71729ce018.field_0x0 = 0;

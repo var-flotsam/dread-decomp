@@ -838,6 +838,81 @@ def types_by_type(text: str, keyed: dict[int, tuple[str, str]], enums: frozenset
     return chr(10).join(lines[:head] + first + lines[head:])
 
 
+# An enum's or flag set's TypeOf in src/reflection_types/ (tools/gen_types.py): the type object it returns.
+TYPE_OBJECT_RE = re.compile(r"^const CType& base::reflection::ValueOps<(.+)>::TypeOf\(const void\*\) \{ return (g_unk_[0-9a-f]{10}); \}$",
+                            re.M)
+
+
+def enum_type_objects() -> dict[str, tuple[str, str]]:
+    """{g_unk_<addr>: (kind, T)} of the type objects src/reflection_types/ names by their enum or flag set
+    (kind enum or flagset): the objects base/reflection/TypeObject.h names by type."""
+    out = {}
+    for f in sorted((ROOT / "src" / "reflection_types").glob("*.cpp")):
+        kind = "enum" if f.name.startswith("enum_types_") else "flagset" if f.name.startswith("flagset_types_") else None
+        if kind:
+            for t, g in TYPE_OBJECT_RE.findall(f.read_text(encoding="utf-8")):
+                if gen_types.QUALIFIED_RE.fullmatch(t):
+                    out[g] = (kind, t)
+    return out
+
+
+def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts: bool = False) -> str:
+    """`text` with each type object of `objects` written by its type, `base::reflection::TypeObject<T>::object`
+    (base/reflection/TypeObject.h): T's declaration and the specialisation's go after the file's includes, in
+    place of the object's own `extern CType g_unk_<addr>;`. With `layouts`, an object the file declares at file
+    scope with another type, `extern [const] Layout g_unk_<addr>;`, becomes `TypeObject<T, [const] Layout>`
+    where that declaration was, so its uses keep their type; otherwise such an object stays."""
+    lines = text.split(chr(10))
+    # An object already named by type keeps only its label, asm("g_unk_<addr>").
+    used = sorted(set(re.findall(r"(?<!asm\(\")\bg_unk_[0-9a-f]{10}\b", text)) & set(objects))
+    first: list[str] = []
+    in_place = False
+    for g in used:
+        decl = re.compile(rf"extern (?:base::reflection::)?CType {g};")
+        others = [line for line in lines if re.search(rf"\b{g}\b", line) and "extern" in line and not decl.fullmatch(line)]
+        kind, t = objects[g]
+        scope, _, leaf = t.rpartition("::")
+        declared = gen_types.enum_declaration(t) if kind == "enum" else gen_types.declare_in(scope, f"struct {leaf};")
+        if others:
+            layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};(?:\s*//.*)?")
+            match = [layout.fullmatch(line) for line in others]
+            if not layouts or len(others) != 1 or not match[0]:
+                continue
+            spelled = match[0].group(1)
+            if spelled in ("CType", "base::reflection::CType"):
+                spelled_t = t
+                head = "base::reflection::CType"
+            else:
+                spelled_t = f"{t}, {spelled}"
+                head = spelled
+            name = f"base::reflection::TypeObject<{spelled_t}>::object"
+            at = lines.index(others[0])
+            lines[at:at + 1] = [*declared.split(chr(10)), f'template <> {head} {name} asm("{g}");']
+            lines = [re.sub(rf"\b{g}\b", name, line) if i < at or i > at + declared.count(chr(10)) + 1 else line
+                     for i, line in enumerate(lines)]
+            in_place = True
+            continue
+        first.append(declared)
+        first.append(f'template <> base::reflection::CType base::reflection::TypeObject<{t}>::object asm("{g}");')
+        lines = [line if decl.fullmatch(line) else re.sub(rf"\b{g}\b", f"base::reflection::TypeObject<{t}>::object", line)
+                 for line in lines if not decl.fullmatch(line)]
+    if layouts:
+        # A CType object read back as a CType is the object itself.
+        lines = [re.sub(r"reinterpret_cast<const (?:base::reflection::)?CType&>\((base::reflection::TypeObject<[^<>]*>::object)\)",
+                        r"\1", line) for line in lines]
+    if not first:
+        joined = chr(10).join(lines)
+        return with_include(joined, '#include "base/reflection/TypeObject.h"') if in_place else joined
+    head = 0
+    for i, line in enumerate(lines):
+        if line.startswith(("#include", "using ")):
+            head = i + 1
+        elif line and not line.startswith("//"):
+            break
+    first = [line for line in dict.fromkeys(['#include "base/reflection/TypeObject.h"'] + first) if line not in lines[:head]]
+    return chr(10).join(lines[:head] + first + lines[head:])
+
+
 # An attribute key's named getter (base/reflection/ReflectedFields.h): the name it registers.
 ATTR_KEY_RE = re.compile(r"^inline const UnkReflAttrKey& (\w+)\(\) \{ return fn_([0-9a-f]{10})\(\); \}$", re.M)
 
@@ -1375,6 +1450,28 @@ def main() -> int:
         if new != old:
             by_type += 1
             f.write_text(new, encoding="utf-8", newline=chr(10))
+    # Type objects by type: each file that changes is compiled first, and keeps its addresses if it doesn't build
+    # (a declaration of T that collides with one of the file's own).
+    objects = enum_type_objects()
+    work = ROOT / "build" / "reflection_type_objects"
+    work.mkdir(parents=True, exist_ok=True)
+
+    def by_object_type(f: Path) -> bool:
+        old = f.read_text(encoding="utf-8")
+        new = type_objects_by_type(old, objects)
+        if new == old:
+            return False
+        trial = f.with_name(f"{f.stem}.type_objects.cpp")
+        trial.write_text(new, encoding="utf-8", newline=chr(10))
+        try:
+            ok = subprocess.run(buildcfg.cxx_command(trial, work / f"{f.stem}.o"), capture_output=True, text=True).returncode == 0
+        finally:
+            trial.unlink()
+        if ok:
+            f.write_text(new, encoding="utf-8", newline=chr(10))
+        return ok
+    with ThreadPoolExecutor() as pool:
+        objects_by_type = sum(pool.map(by_object_type, sorted(OUT.glob("*.cpp"))))
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
           f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; {padded_ok} of the getters in padded TUs; skipped {skipped_layout} (other statics) and "
@@ -1382,7 +1479,7 @@ def main() -> int:
           f"types of a local class; {len(others_ok)} of {len(others)} other registration functions (and {others_local} in their getter's TU); "
           f"{len(inits_ok)} of {len(inits)} function initialisers; "
           f"{ctors_generated} of {len(ctors)} descriptor constructors outside generated getter TUs; "
-          f"type getters, attribute keys and reflected functions written by name in {by_type} files. Skipped TUs: build/reflection_tus.json")
+          f"type getters, attribute keys and reflected functions written by name in {by_type} files, type objects by type in {objects_by_type}. Skipped TUs: build/reflection_tus.json")
     return 0
 
 

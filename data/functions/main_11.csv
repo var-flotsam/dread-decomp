@@ -90,7 +90,7 @@ address,size,name,name_source,subsystem,status
 0x7101108c9c,3004,fn_7101108c9c,unknown,unknown,U
 0x7101109858,764,fn_7101109858,unknown,unknown,U
 0x7101109b54,48,fn_7101109b54,unknown,unknown,O
-0x7101109b84,624,fn_7101109b84,unknown,unknown,U
+0x7101109b84,624,fn_7101109b84,unknown,unknown,O
 0x7101109df4,152,fn_7101109df4,unknown,unknown,O
 0x7101109e8c,536,fn_7101109e8c,unknown,unknown,U
 0x710110a0a4,192,fn_710110a0a4,unknown,unknown,U
@@ -982,7 +982,7 @@ address,size,name,name_source,subsystem,status
 0x710113912c,8,fn_710113912c,unknown,game/components?,O
 0x7101139134,40,fn_7101139134,unknown,game/components?,O
 0x710113915c,480,fn_710113915c,unknown,game/components?,O
-0x710113933c,720,fn_710113933c,unknown,game/components?,U
+0x710113933c,720,fn_710113933c,unknown,game/components?,O
 0x710113960c,28,fn_710113960c,unknown,game/components?,O
 0x7101139628,132,fn_7101139628,unknown,game/components?,O
 0x71011396ac,8,CFactionComponent::refl_Equals,reflection,game/components,O
@@ -2414,7 +2414,7 @@ address,size,name,name_source,subsystem,status
 0x71011a870c,1572,fn_71011a870c,unknown,unknown,O
 0x71011a8d30,280,fn_71011a8d30,unknown,unknown,O
 0x71011a8e48,280,fn_71011a8e48,unknown,unknown,O
-0x71011a8f60,612,fn_71011a8f60,unknown,unknown,U
+0x71011a8f60,612,fn_71011a8f60,unknown,unknown,O
 0x71011a91c4,460,fn_71011a91c4,unknown,unknown,O
 0x71011a9390,340,fn_71011a9390,unknown,unknown,O
 0x71011a94e4,248,fn_71011a94e4,unknown,unknown,O
@@ -2436,7 +2436,7 @@ address,size,name,name_source,subsystem,status
 0x71011aa898,312,fn_71011aa898,unknown,unknown,U
 0x71011aa9d0,8,fn_71011aa9d0,unknown,unknown,O
 0x71011aa9d8,280,fn_71011aa9d8,unknown,unknown,O
-0x71011aaaf0,604,fn_71011aaaf0,unknown,unknown,U
+0x71011aaaf0,604,fn_71011aaaf0,unknown,unknown,O
 0x71011aad4c,340,fn_71011aad4c,unknown,unknown,O
 0x71011aaea0,224,fn_71011aaea0,unknown,unknown,O
 0x71011aaf80,100,fn_71011aaf80,unknown,unknown,O
@@ -2599,7 +2599,7 @@ address,size,name,name_source,subsystem,status
 0x71011b8be0,304,fn_71011b8be0,unknown,unknown,O
 0x71011b8d10,180,fn_71011b8d10,unknown,unknown,O
 0x71011b8dc4,740,fn_71011b8dc4,unknown,unknown,O
-0x71011b90a8,796,fn_71011b90a8,unknown,unknown,U
+0x71011b90a8,796,fn_71011b90a8,unknown,unknown,O
 0x71011b93c4,232,fn_71011b93c4,unknown,unknown,O
 0x71011b94ac,432,fn_71011b94ac,unknown,unknown,O
 0x71011b965c,352,fn_71011b965c,unknown,unknown,O
@@ -2719,7 +2719,7 @@ address,size,name,name_source,subsystem,status
 0x71011bd500,696,fn_71011bd500,unknown,gui?,U
 0x71011bd7b8,320,fn_71011bd7b8,unknown,gui?,U
 0x71011bd900,760,fn_71011bd900,unknown,gui?,O
-0x71011bdc00,1232,fn_71011bdc00,unknown,gui?,U
+0x71011bdc00,1232,fn_71011bdc00,unknown,gui?,O
 0x71011be0d0,428,fn_71011be0d0,unknown,gui?,O
 0x71011be27c,384,base::reflection::refl_InitType<GUI::CButton::TextAlign>,reflection,engine/reflection,O
 0x71011be3fc,4,GUI::CButton::refl_AddAttributes,reflection,gui,O
@@ -2735,7 +2735,7 @@ address,size,name,name_source,subsystem,status
 0x71011bf558,264,fn_71011bf558,unknown,gui?,O
 0x71011bf660,188,fn_71011bf660,unknown,gui?,O
 0x71011bf71c,40,fn_71011bf71c,unknown,gui?,O
-0x71011bf744,1052,fn_71011bf744,unknown,gui?,U
+0x71011bf744,1052,fn_71011bf744,unknown,gui?,O
 0x71011bfb60,40,fn_71011bfb60,unknown,gui?,O
 0x71011bfb88,84,fn_71011bfb88,unknown,gui?,O
 0x71011bfbdc,84,fn_71011bfbdc,unknown,gui?,O
@@ -2880,7 +2880,7 @@ address,size,name,name_source,subsystem,status
 0x71011ce630,76,fn_71011ce630,unknown,unknown,O
 0x71011ce67c,8,fn_71011ce67c,unknown,unknown,O
 0x71011ce684,100,fn_71011ce684,unknown,unknown,O
-0x71011ce6e8,660,fn_71011ce6e8,unknown,unknown,U
+0x71011ce6e8,660,fn_71011ce6e8,unknown,unknown,O
 0x71011ce97c,56,fn_71011ce97c,unknown,unknown,O
 0x71011ce9b4,268,fn_71011ce9b4,unknown,unknown,O
 0x71011ceac0,116,fn_71011ceac0,unknown,unknown,O
@@ -3251,7 +3251,7 @@ address,size,name,name_source,subsystem,status
 0x71011d62fc,180,fn_71011d62fc,unknown,unknown,O
 0x71011d63b0,100,fn_71011d63b0,unknown,unknown,O
 0x71011d6414,108,fn_71011d6414,unknown,unknown,O
-0x71011d6480,1412,fn_71011d6480,unknown,unknown,U
+0x71011d6480,1412,fn_71011d6480,unknown,unknown,O
 0x71011d6a04,220,base::reflection::refl_GetType<GUI::CDisplayObjectContainer*>,reflection,engine/reflection,O
 0x71011d6ae0,220,fn_71011d6ae0,unknown,engine/reflection?,O
 0x71011d6bbc,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<GUI::CDisplayObjectContainer*>>::TElementIterator>,reflection,engine/reflection,O

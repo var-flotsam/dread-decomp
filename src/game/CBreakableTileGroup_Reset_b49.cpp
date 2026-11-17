@@ -3,6 +3,7 @@
 // tile array at +0x48 (0xa8-byte tiles, destroyed by fn_7100c9dd20) and the arrays at +0x58 and +0x50
 // are deleted, and the counters are cleared. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkBreakableTile.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
@@ -11,11 +12,6 @@ struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
-
-struct UnkBreakableTile_b49 {
-    u8 data[0xa8];
-    ~UnkBreakableTile_b49() asm("fn_7100c9dd20");
-};
 
 struct UnkBreakableTileGroupData {
     u8 pad_0x0[0x14];

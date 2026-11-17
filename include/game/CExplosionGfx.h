@@ -5,9 +5,10 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/TypeObject.h"
+#include "game/CExplosionGfxLayout.h"
 #include "types.h"
 
-struct CExplosionGfx;
 struct UnkExplosionTarget;
 struct UnkReflType;
 struct UnkTUHeader;
@@ -23,7 +24,7 @@ UnkReflType* fn_7100dded9c();
 UnkReflType* fn_7100ddee78();
 extern UnkTUHeader g_unk_71727be710 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_71727be730 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727be388;
+template <> UnkReflType base::reflection::TypeObject<CExplosionGfx::ETransitionOperationMode, UnkReflType>::object asm("g_unk_71727be388");
 extern UnkConverter g_unk_71727be4a8;
 extern UnkConverter g_unk_71727be4c8;
 void fn_7100ddf1c0(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);

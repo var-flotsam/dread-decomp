@@ -14,6 +14,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1134.h"
+#include "game/UnkTU212.h"
 #include "game/nn/time.h"
 #include "types.h"
 
@@ -203,7 +204,6 @@ void __stable_sort<UnkNamedNodeOrder&, UnkNamedNode**>(UnkNamedNode** first, Unk
 
 // The child at `index`, and the first node at or under `node` with a payload (or null).
 UnkNamedNode* fn_7100195304(UnkNamedNode* node, u32 index);
-UnkNamedNode* fn_7100195310(UnkNamedNode* node);
 
 // A copy of a node array: the same capacity from the same allocator.
 struct UnkNodeArrayCopy {

@@ -4,6 +4,11 @@
 #include "game/SDeathImpactDisplacement.h"
 
 using namespace unk_static_init;
+#include "base/reflection/TypeObject.h"
+enum class ECutPathMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ECutPathMode>::object asm("g_unk_71726b1db0");
+enum class EXpawnAngPolicy : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EXpawnAngPolicy>::object asm("g_unk_71726b1f10");
 
 struct UnkStatics_710035d230 {
     HeaderIds ids;
@@ -29,9 +34,9 @@ extern char g_unk_71726b2070[];
 
 void fn_710035d230() {
     InitHeaderIds(&g_unk_71726b2078.ids);
-    InitEnum(&reinterpret_cast<UnkEnumType&>(g_unk_71726b1db0), "ECutPathMode", fn_710035c5fc, fn_710035c4b0,
+    InitEnum(&reinterpret_cast<UnkEnumType&>(base::reflection::TypeObject<ECutPathMode>::object), "ECutPathMode", fn_710035c5fc, fn_710035c4b0,
              g_unk_71726b1ec8, &g_unk_71726b1ed0, fn_710035d094, &g_unk_71726b1ef0, fn_710035d0a0);
-    InitEnum(&reinterpret_cast<UnkEnumType&>(g_unk_71726b1f10), "EXpawnAngPolicy", fn_710035c9e8, fn_710035c77c,
+    InitEnum(&reinterpret_cast<UnkEnumType&>(base::reflection::TypeObject<EXpawnAngPolicy>::object), "EXpawnAngPolicy", fn_710035c9e8, fn_710035c77c,
              g_unk_71726b2028, &g_unk_71726b2030, fn_710035d0ac, &g_unk_71726b2050, fn_710035d0b8);
     fn_710035cb6c();
     fn_710009ec00(g_unk_71726b2070, g_unk_71726b2078.field_0x20);

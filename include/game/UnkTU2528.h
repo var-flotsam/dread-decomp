@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
@@ -31,8 +32,10 @@ UnkReflType* fn_7100d9af70();
 UnkReflType* fn_7100d9b04c();
 extern UnkReflType g_unk_71727ba620;
 extern UnkTUHeader g_unk_71727ba980 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727ba2e0;
-extern UnkReflType g_unk_71727ba480;
+enum class ELightType : u32;
+template <> UnkReflType base::reflection::TypeObject<ELightType, UnkReflType>::object asm("g_unk_71727ba2e0");
+enum class ELightAttachment : u32;
+template <> UnkReflType base::reflection::TypeObject<ELightAttachment, UnkReflType>::object asm("g_unk_71727ba480");
 extern UnkConverter g_unk_71727ba400;
 extern UnkConverter g_unk_71727ba420;
 extern UnkConverter g_unk_71727ba440;

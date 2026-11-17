@@ -9,6 +9,7 @@
 #include "game/CDemolitionBlockLifeComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -30,7 +31,8 @@ static_assert(__builtin_offsetof(UnkDemolitionBlockLifeTU, phase_one_two_sound) 
 static_assert(__builtin_offsetof(UnkDemolitionBlockLifeTU, type) == 0xd0, "layout");
 
 extern UnkDemolitionBlockLifeTU g_unk_7172730d30 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_7172730b30;  // also named in src/reflection/
+enum class EDemolitionPhase : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EDemolitionPhase>::object asm("g_unk_7172730b30");
 void fn_71008c448c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71008c4220();
 extern char g_unk_7172730c48;
@@ -53,9 +55,9 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
 void fn_71008c90a0() {
     UnkDemolitionBlockLifeTU& tu = g_unk_7172730d30;
     InitHeader(tu.header);
-    InitEnum(AsUnk(&g_unk_7172730b30), "EDemolitionPhase", fn_71008c448c, fn_71008c4220);
-    fn_710009ec00(&g_unk_7172730c48, AsUnk(&g_unk_7172730b30));
-    InitEnumConverters(AsUnk(&g_unk_7172730b30), g_unk_7172730c50, fn_71008c89d8, g_unk_7172730c70, fn_71008c89e4);
+    InitEnum(AsUnk(&base::reflection::TypeObject<EDemolitionPhase>::object), "EDemolitionPhase", fn_71008c448c, fn_71008c4220);
+    fn_710009ec00(&g_unk_7172730c48, AsUnk(&base::reflection::TypeObject<EDemolitionPhase>::object));
+    InitEnumConverters(AsUnk(&base::reflection::TypeObject<EDemolitionPhase>::object), g_unk_7172730c50, fn_71008c89d8, g_unk_7172730c70, fn_71008c89e4);
     new (&g_unk_7172730c90) CStrId("BLOCKLIFE", true);
     fn_7100000250(fn_710000051c, &g_unk_7172730c90, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_7172730c98, g_unk_7101a7e5d0, g_unk_71726db788, "Dead",

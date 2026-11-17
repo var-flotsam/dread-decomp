@@ -18,9 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+enum class ELinkType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ELinkType>::object asm("g_unk_71727b8ef8");
 
 // CCharClassFXCreateTrailEvent
-extern base::reflection::CType g_unk_71727b8ef8;
 namespace CCharClassFXCreateTrailEvent {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Create Trail");
@@ -29,8 +31,8 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMaterial", 0x18, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("eLinkType", true), &g_unk_71727b8ef8, 0x20, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727b8ef8, 4);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("eLinkType", true), &base::reflection::TypeObject<ELinkType>::object, 0x20, -1, -1);
+    field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD(CStrId, "sBone", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(f32, "fColorR", 0x30, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fColorG", 0x34, (DefaultValue, 1.0f));

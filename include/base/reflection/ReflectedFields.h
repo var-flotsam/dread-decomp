@@ -13,8 +13,8 @@
 
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
-#include "game/UnkTU36.h"  // g_unk_7101d55008, EditorModeDataFlow's enum type
-#include "game/UnkTU89.h"  // g_unk_7101d679f0, Persistence's enum type
+#include "game/UnkTU36.h"  // base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, EditorModeDataFlow's enum type
+#include "game/UnkTU89.h"  // base::reflection::TypeObject<base::serialization::EPersistence>::object, Persistence's enum type
 #include "types.h"
 
 #include <type_traits>
@@ -118,7 +118,7 @@ inline void AddAttribute(UnkReflAttrs& attrs, const CType*, const TypedAttrKey& 
 namespace base::reflection::attr {
 inline const UnkReflAttrKey& Version() { return fn_7100005070(); }
 inline const UnkReflAttrKey& Description() { return fn_7100007e80(); }
-inline TypedAttrKey Persistence() { return {fn_710000bf80(), &g_unk_7101d679f0}; }
+inline TypedAttrKey Persistence() { return {fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object}; }
 inline const UnkReflAttrKey& sBinaryDeserialize() { return fn_7100011040(); }
 inline const UnkReflAttrKey& XmlAttribute() { return fn_710001b9f0(); }
 inline const UnkReflAttrKey& sSerializationType() { return fn_7100026bf0(); }
@@ -153,7 +153,7 @@ inline const UnkReflAttrKey& TypeSelectionEnabled() { return fn_7100091d40(); }
 inline const UnkReflAttrKey& SPointChClassSelectEnabled() { return fn_7100091e50(); }
 inline const UnkReflAttrKey& AddNewItemButtonEnabled() { return fn_7100091f60(); }
 inline const UnkReflAttrKey& DeleteItemButtonEnabled() { return fn_7100092070(); }
-inline TypedAttrKey EditorModeDataFlow() { return {fn_71000923a0(), &g_unk_7101d55008}; }
+inline TypedAttrKey EditorModeDataFlow() { return {fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object}; }
 inline const UnkReflAttrKey& bEditorModeDataFlowInit() { return fn_71000924b0(); }
 inline const UnkReflAttrKey& bSkipDataFlowOrder() { return fn_71000925c0(); }
 inline const UnkReflAttrKey& CompleteGameModelActionTreeFrom() { return fn_71000926d0(); }

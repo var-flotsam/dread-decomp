@@ -2,17 +2,11 @@
 // (fn_7100deabe4) holds and for a kind (+0x70) from 1 to 7, it is appended to the list of its own faction (1: g_unk_7172a08ad8,
 // 2: g_unk_7172a08b48, 4: g_unk_7172a08bb8) unless already listed, then likewise to the list of all (g_unk_7172a08c28).
 // Names and layouts are placeholders.
-#include "base/UnkSList.h"
+#include "game/CFactionComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
-struct UnkFactionListTag_ovb0139;
-using UnkFactionList_ovb0139 = base::UnkSList<UnkFactionListTag_ovb0139>;
 
-extern UnkFactionList_ovb0139 g_unk_7172a08ad8;  // players
-extern UnkFactionList_ovb0139 g_unk_7172a08b48;  // neutral
-extern UnkFactionList_ovb0139 g_unk_7172a08bb8;  // enemies
-extern UnkFactionList_ovb0139 g_unk_7172a08c28;  // all
 
 struct UnkFaction_ovb0139 {
     u8 pad_0x0[0x70];

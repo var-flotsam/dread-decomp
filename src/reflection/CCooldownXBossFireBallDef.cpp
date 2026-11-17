@@ -22,6 +22,9 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CCooldownXBossFireBallDef
@@ -387,7 +390,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_71004bfdb8();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_71004bfe08();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71004b7ff4(CClass* cls) {
@@ -399,7 +401,7 @@ void fn_71004b7ff4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71004bfdb8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCooldownXBossFireBallDef::refl_GetClass();
@@ -408,7 +410,7 @@ void fn_71004b7ff4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71004bfe08);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCooldownXBossFireBallDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -420,7 +422,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_71004bff40();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_71004bff90();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71004b85e4(CClass* cls) {
@@ -432,7 +433,7 @@ void fn_71004b85e4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71004bff40);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCooldownXBossFireBallDef::refl_GetClass();
@@ -441,5 +442,5 @@ void fn_71004b85e4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71004bff90);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCooldownXBossFireBallDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }

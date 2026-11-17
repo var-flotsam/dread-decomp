@@ -8,6 +8,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkTU811.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkValueSet_A3_b65 {
     u8 unk_0x0[0x18];
@@ -123,7 +124,7 @@ UnkResult_0x18_A3_b65 fn_7100565430(void* unused, UnkEmmyPropOwner_A3_b65* owner
 }
 
 // The same unit: a two-argument call (a perception-type name looked up in
-// CEmmyAIComponent::ETargetPerceptionType, g_unk_71726dfca0, and a pointer), each argument null when it
+// CEmmyAIComponent::ETargetPerceptionType, base::reflection::TypeObject<CEmmyAIComponent::ETargetPerceptionType, UnkEnumType>::object, and a pointer), each argument null when it
 // holds no value, passed to fn_7100546a30 with the owner actor (+0x30).
 template <class T>
 static inline __attribute__((always_inline)) T* PickArgOrNull_A3_b65(UnkValueSource_A3_b65* src) {
@@ -134,7 +135,8 @@ static inline __attribute__((always_inline)) T* PickArgOrNull_A3_b65(UnkValueSou
 
 struct UnkEmmyRelaxAI_b59;
 struct UnkEnumType;
-extern UnkEnumType g_unk_71726dfca0;  // as src/game/CEmmyOverrideDeathPositionDef/fn_7100536550.cpp declares it
+namespace CEmmyAIComponent { enum class ETargetPerceptionType : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CEmmyAIComponent::ETargetPerceptionType, UnkEnumType>::object asm("g_unk_71726dfca0");
 s32 fn_710009976c(const base::reflection::CEnumType* self, const base::global::CStrId* name);
 
 struct UnkEmmyPerceptionComponent_A3_b65 {
@@ -153,7 +155,7 @@ UnkResult_0x18_A3_b65 fn_7100565b44(void* unused, UnkEmmyPerceptionOwner_A3_b65*
     UnkEmmyPerceptionComponent_A3_b65* target = owner->target;
     base::global::CStrId* name = PickArgOrNull_A3_b65<base::global::CStrId>(&args[0]);
     void* arg = PickArgOrNull_A3_b65<void>(&args[1]);
-    s32 type = fn_710009976c(reinterpret_cast<base::reflection::CEnumType*>(&g_unk_71726dfca0), name);
+    s32 type = fn_710009976c(reinterpret_cast<base::reflection::CEnumType*>(&base::reflection::TypeObject<CEmmyAIComponent::ETargetPerceptionType, UnkEnumType>::object), name);
     fn_7100546a30(reinterpret_cast<UnkEmmyRelaxAI_b59*>(target), type, fn_7100d7c990(target->owner), arg);
     UnkResult_0x18_A3_b65 result = {};
     result.kind_and_flag = 0x100000002;

@@ -6,3 +6,5 @@
 #include "types.h"
 extern char g_unk_7101a1db18[];
 extern char g_unk_7101a1db48[];
+u32 fn_710016bad0(void* scene);
+extern char g_unk_7101a1db78[];

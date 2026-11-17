@@ -6,7 +6,9 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CSpawnPointComponent.h"
 #include "game/UnkTU2704.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -82,7 +84,7 @@ extern UnkConversion g_unk_7172a074e8;
 extern UnkConversion g_unk_7172a07508;
 void fn_710112ef68() __attribute__((visibility("hidden")));
 void fn_710112ef74() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172a073c8;
+template <> UnkEnumType base::reflection::TypeObject<CSpawnPointComponent::EDynamicSpawnPositionMode, UnkEnumType>::object asm("g_unk_7172a073c8");
 extern char g_unk_7172a074e0[];
 void fn_7101123478(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71011232cc();
@@ -90,7 +92,7 @@ extern UnkConversion g_unk_7172a07648;
 extern UnkConversion g_unk_7172a07668;
 void fn_710112ef80() __attribute__((visibility("hidden")));
 void fn_710112ef8c() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172a07528;
+template <> UnkEnumType base::reflection::TypeObject<CSpawnPointComponent::EXCellSpawnPositionMode, UnkEnumType>::object asm("g_unk_7172a07528");
 extern char g_unk_7172a07640[];
 void fn_7101123744(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71011235f8();
@@ -170,8 +172,8 @@ void fn_7101132ba0() {
     }
     __cxa_atexit(fn_710009891c, &g_unk_7172a07250, g_unk_7101a19000);
     fn_710009ec00(g_unk_7172a073c0, &g_unk_7172a07250);
-    InitEnum(&g_unk_7172a073c8, "CSpawnPointComponent::EDynamicSpawnPositionMode", fn_7101123478, fn_71011232cc, g_unk_7172a074e0, &g_unk_7172a074e8, fn_710112ef68, &g_unk_7172a07508, fn_710112ef74);
-    InitEnum(&g_unk_7172a07528, "CSpawnPointComponent::EXCellSpawnPositionMode", fn_7101123744, fn_71011235f8, g_unk_7172a07640, &g_unk_7172a07648, fn_710112ef80, &g_unk_7172a07668, fn_710112ef8c);
+    InitEnum(&base::reflection::TypeObject<CSpawnPointComponent::EDynamicSpawnPositionMode, UnkEnumType>::object, "CSpawnPointComponent::EDynamicSpawnPositionMode", fn_7101123478, fn_71011232cc, g_unk_7172a074e0, &g_unk_7172a074e8, fn_710112ef68, &g_unk_7172a07508, fn_710112ef74);
+    InitEnum(&base::reflection::TypeObject<CSpawnPointComponent::EXCellSpawnPositionMode, UnkEnumType>::object, "CSpawnPointComponent::EXCellSpawnPositionMode", fn_7101123744, fn_71011235f8, g_unk_7172a07640, &g_unk_7172a07648, fn_710112ef80, &g_unk_7172a07668, fn_710112ef8c);
     fn_7101123918();
     fn_710009ec00(g_unk_7172a07688, g_unk_7172a08680.field_0x58);
     fn_710009ec00(g_unk_7172a07689, fn_71011201e4());

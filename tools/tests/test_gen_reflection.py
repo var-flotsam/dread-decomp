@@ -386,3 +386,45 @@ class TemplateValueNames(unittest.TestCase):
         self.assertIsNone(gr.key_value_class(
             "base::reflection::CollectionTypeMapper<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>"
             "::TKeyElementIterator::value_type"))
+
+
+class TypeObjectsByType(unittest.TestCase):
+    def test_rewrites_uses_and_declares(self):
+        text = "\n".join(['#include "base/reflection/CClass.h"', "extern base::reflection::CType g_unk_7101d4d5d0;",
+                          "void f() { use(&g_unk_7101d4d5d0); }"])
+        out = gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "base::animation::EBlendFunction")})
+        self.assertNotIn("extern base::reflection::CType g_unk_7101d4d5d0;", out)
+        self.assertIn("use(&base::reflection::TypeObject<base::animation::EBlendFunction>::object)", out)
+        self.assertIn('template <> base::reflection::CType base::reflection::TypeObject<base::animation::EBlendFunction>::object '
+                      'asm("g_unk_7101d4d5d0");', out)
+
+    def test_other_declarations_stay(self):
+        text = "extern u8 g_unk_7101d4d5d0[0x10];\nvoid f() { use(g_unk_7101d4d5d0); }"
+        self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)
+
+    def test_layouts_keep_their_type_in_place(self):
+        text = "\n".join(['#include "a.h"', "struct UnkEnumType;", "extern UnkEnumType g_unk_7101d4d5d0;",
+                          "void f() { use(&g_unk_7101d4d5d0); }"])
+        out = gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "a::E")}, layouts=True).split("\n")
+        self.assertEqual(out, ['#include "a.h"', '#include "base/reflection/TypeObject.h"', "struct UnkEnumType;",
+                               "namespace a { enum class E : u32; }",
+                               'template <> UnkEnumType base::reflection::TypeObject<a::E, UnkEnumType>::object '
+                               'asm("g_unk_7101d4d5d0");',
+                               "void f() { use(&base::reflection::TypeObject<a::E, UnkEnumType>::object); }"])
+
+    def test_twice_is_once(self):
+        text = "\n".join(['#include "a.h"', "extern UnkEnumType g_unk_7101d4d5d0;", "extern base::reflection::CType g_unk_7101d4d5e0;",
+                          "void f() { use(&g_unk_7101d4d5d0, &g_unk_7101d4d5e0); }"])
+        objects = {"g_unk_7101d4d5d0": ("enum", "a::E"), "g_unk_7101d4d5e0": ("enum", "a::F")}
+        once = gr.type_objects_by_type(text, objects, layouts=True)
+        self.assertEqual(gr.type_objects_by_type(once, objects, layouts=True), once)
+
+    def test_layouts_drop_a_trailing_comment(self):
+        text = "extern UnkReflType g_unk_7101d4d5d0;  // a::E\nvoid f() { use(&g_unk_7101d4d5d0); }"
+        out = gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "a::E")}, layouts=True)
+        self.assertIn('template <> UnkReflType base::reflection::TypeObject<a::E, UnkReflType>::object asm("g_unk_7101d4d5d0");', out)
+        self.assertNotIn("// a::E", out)
+
+    def test_layouts_off_leaves_them(self):
+        text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
+        self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)

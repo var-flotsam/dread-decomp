@@ -3,6 +3,7 @@
 // CCharClassLiquidPoolComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1394,
 // 0x71008fdfb8-0x71009058b0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkBaseComponent;
@@ -17,3 +18,4 @@ f32 fn_7100902abc(void* a);
 void fn_7100900414(UnkBaseComponent* self);
 void fn_7100904c48(UnkPropertyArrays* self, u32 capacity);  // Reserve.
 extern void* g_unk_7101a80ae8[];
+extern base::reflection::CType g_unk_7172733a70;

@@ -4,6 +4,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 using base::global::CFilePathStrId;
 
@@ -24,7 +25,8 @@ struct UnkMeleeTU {
 };
 
 extern UnkMeleeTU g_unk_7172738588 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_7172738458;  // also named in src/reflection/
+namespace CMeleeComponent { enum class EMeleeTrailFXType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CMeleeComponent::EMeleeTrailFXType>::object asm("g_unk_7172738458");
 void fn_710092872c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71009285e0(void* e);  // src/clones/clones_03.cpp
 extern char g_unk_7172738570;
@@ -56,9 +58,9 @@ void fn_7100932100() {
     fn_7100000250(fn_710000051c, &tu.melee_trail_end, &g_unk_7101a19000);
     new (&tu.melee_trail_end_dash) CStrId("meleetrailenddash", true);
     fn_7100000250(fn_710000051c, &tu.melee_trail_end_dash, &g_unk_7101a19000);
-    InitEnum(AsUnk(&g_unk_7172738458), "CMeleeComponent::EMeleeTrailFXType", fn_710092872c,
+    InitEnum(AsUnk(&base::reflection::TypeObject<CMeleeComponent::EMeleeTrailFXType>::object), "CMeleeComponent::EMeleeTrailFXType", fn_710092872c,
              reinterpret_cast<void (*)()>(fn_71009285e0));
-    fn_710009ec00(&g_unk_7172738570, AsUnk(&g_unk_7172738458));
+    fn_710009ec00(&g_unk_7172738570, AsUnk(&base::reflection::TypeObject<CMeleeComponent::EMeleeTrailFXType>::object));
     fn_71009288b0();
     fn_710009ec00(&g_unk_7172738571, &tu.type);
 }

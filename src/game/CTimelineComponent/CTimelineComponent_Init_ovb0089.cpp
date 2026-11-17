@@ -6,6 +6,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 // The unit's data: the header, two floats and a flag.
 struct UnkTimelineTUData_ovb0089 {
@@ -17,7 +18,8 @@ struct UnkTimelineTUData_ovb0089 {
 };
 
 extern UnkTimelineTUData_ovb0089 g_unk_7172746f68 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172746d98;  // CTimelineComponent::ENextPolicy
+namespace CTimelineComponent { enum class ENextPolicy : u32; }
+template <> UnkReflType base::reflection::TypeObject<CTimelineComponent::ENextPolicy, UnkReflType>::object asm("g_unk_7172746d98");
 void fn_7100a29e60();
 void fn_7100a2a00c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 extern char g_unk_7172746eb0;
@@ -37,9 +39,9 @@ void fn_7100a2ea20() {
     data.field_0x20 = -1.0f;
     data.field_0x24 = -1.0f;
     data.field_0x28 = true;
-    InitEnum(&g_unk_7172746d98, "CTimelineComponent::ENextPolicy", fn_7100a2a00c, fn_7100a29e60);
-    fn_710009ec00(&g_unk_7172746eb0, &g_unk_7172746d98);
-    InitEnumConverters(&g_unk_7172746d98, g_unk_7172746eb8, fn_7100a2d660, g_unk_7172746ed8, fn_7100a2d66c);
+    InitEnum(&base::reflection::TypeObject<CTimelineComponent::ENextPolicy, UnkReflType>::object, "CTimelineComponent::ENextPolicy", fn_7100a2a00c, fn_7100a29e60);
+    fn_710009ec00(&g_unk_7172746eb0, &base::reflection::TypeObject<CTimelineComponent::ENextPolicy, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CTimelineComponent::ENextPolicy, UnkReflType>::object, g_unk_7172746eb8, fn_7100a2d660, g_unk_7172746ed8, fn_7100a2d66c);
     fn_7100a2a190();
     fn_710009ec00(&g_unk_7172746ef8, &g_unk_7172746f98);
     UnkBlockArrayPool* pool = &g_unk_7172746f00;

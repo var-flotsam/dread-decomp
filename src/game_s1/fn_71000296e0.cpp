@@ -8,6 +8,7 @@
 #include "game/UnkTU22.h"
 #include "game/UnkTUInit.h"
 #include "base/UnkEnumInfo.h"
+#include "base/reflection/TypeObject.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -20,9 +21,12 @@ static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
 
-extern UnkEnumInfo g_unk_7101d4ef10;
-extern UnkEnumInfo g_unk_7101d4f070;
-extern UnkEnumInfo g_unk_7101d4f1d0;
+namespace base::curves { enum class EKeysType : u32; }
+template <> UnkEnumInfo base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object asm("g_unk_7101d4ef10");
+namespace base::curves { enum class ETimeType : u32; }
+template <> UnkEnumInfo base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object asm("g_unk_7101d4f070");
+namespace base::curves { enum class EInterpMode : u32; }
+template <> UnkEnumInfo base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object asm("g_unk_7101d4f1d0");
 extern UnkConverter g_unk_7101d4f030;
 extern UnkConverter g_unk_7101d4f050;
 extern UnkConverter g_unk_7101d4f190;
@@ -47,12 +51,12 @@ void fn_710002956c() HIDDEN;
 void fn_71000296e0() {
     {
         CStrId name("base::curves::EKeysType", true);
-        fn_7100028d58(&g_unk_7101d4ef10, &name, fn_7100028aec, nullptr);
+        fn_7100028d58(&base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object, &name, fn_7100028aec, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d4ef10, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d4f028, &g_unk_7101d4ef10);
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d4f028, &base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d4ef10.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d4f030.from = a;
         g_unk_7101d4f030.to = b;
@@ -60,7 +64,7 @@ void fn_71000296e0() {
         g_unk_7101d4f030.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f030);
         void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d4ef10.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<base::curves::EKeysType, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d4f050.from = c;
         g_unk_7101d4f050.to = d;
         g_unk_7101d4f050.convert = fn_710002953c;
@@ -69,12 +73,12 @@ void fn_71000296e0() {
     }
     {
         CStrId name("base::curves::ETimeType", true);
-        fn_7100029084(&g_unk_7101d4f070, &name, fn_7100028ed8, nullptr);
+        fn_7100029084(&base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object, &name, fn_7100028ed8, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d4f070, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d4f188, &g_unk_7101d4f070);
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d4f188, &base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d4f070.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d4f190.from = a;
         g_unk_7101d4f190.to = b;
@@ -82,7 +86,7 @@ void fn_71000296e0() {
         g_unk_7101d4f190.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f190);
         void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d4f070.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<base::curves::ETimeType, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d4f1b0.from = c;
         g_unk_7101d4f1b0.to = d;
         g_unk_7101d4f1b0.convert = fn_7100029554;
@@ -91,12 +95,12 @@ void fn_71000296e0() {
     }
     {
         CStrId name("base::curves::EInterpMode", true);
-        fn_71000293b0(&g_unk_7101d4f1d0, &name, fn_7100029204, nullptr);
+        fn_71000293b0(&base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object, &name, fn_7100029204, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d4f1d0, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d4f2e8, &g_unk_7101d4f1d0);
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d4f2e8, &base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d4f1d0.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d4f2f0.from = a;
         g_unk_7101d4f2f0.to = b;
@@ -104,7 +108,7 @@ void fn_71000296e0() {
         g_unk_7101d4f2f0.next = nullptr;
         fn_71000a16c4(&g_unk_7101d4f2f0);
         void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d4f1d0.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<base::curves::EInterpMode, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d4f310.from = c;
         g_unk_7101d4f310.to = d;
         g_unk_7101d4f310.convert = fn_710002956c;

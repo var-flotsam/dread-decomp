@@ -3,6 +3,7 @@
 // are placeholders. fn_710085e328 unregisters them again.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
+#include "game/CGun.h"
 #include "game/CPlasmaBeamGun.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkTU2739.h"
@@ -15,8 +16,6 @@ struct UnkSPBGun {
     u8 pad_0x0[0x1870];
     bool fx_registered;
 };
-
-void fn_710083593c(UnkSPBGun* self);
 
 static inline UnkModelManager* GetManager() {
     if (!g_unk_71726b0cd8) {
@@ -41,8 +40,6 @@ void fn_710085e1c8(UnkSPBGun* self) {
     PreloadFx("actors/weapons/powerbeam/fx/explosioncharge.bcptl", 3);
     self->fx_registered = true;
 }
-
-void fn_7100835940(UnkSPBGun* self);
 
 static inline void ReleaseFx(const char* path) {
     UnkFxCache* cache = reinterpret_cast<UnkFxCache*>(GetManager());

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
@@ -14,7 +15,8 @@ void fn_7100c79130();
 void fn_7100c7a8c0() __attribute__((visibility("hidden")));
 void fn_7100c7a8cc() __attribute__((visibility("hidden")));
 extern char g_unk_7172792120;
-extern UnkReflType g_unk_7172792008;
+namespace game::curves { enum class EProcessorType : u32; }
+template <> UnkReflType base::reflection::TypeObject<game::curves::EProcessorType, UnkReflType>::object asm("g_unk_7172792008");
 extern UnkTUHeader g_unk_7172792168 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_7172792128;
 extern UnkConverter g_unk_7172792148;

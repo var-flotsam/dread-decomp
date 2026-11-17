@@ -8,6 +8,27 @@
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
+#include "base/reflection/TypeObject.h"
+namespace base::snd { enum class EAttenuationCurve : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EAttenuationCurve>::object asm("g_unk_7108b6cb28");
+namespace base::snd { enum class EReverbIntensity : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
+namespace base::snd { enum class ELowPassFilter : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ELowPassFilter>::object asm("g_unk_7108b6cde8");
+namespace base::snd { enum class EPositionalType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EPositionalType>::object asm("g_unk_7108b6cf48");
+namespace base::snd { enum class ESndPlayerId : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ESndPlayerId>::object asm("g_unk_7108b6d110");
+namespace base::snd { enum class ESndLogicId : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ESndLogicId>::object asm("g_unk_7108b6d270");
+namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");
+namespace game::logic::collision { enum class EColMat : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
+enum class ELightType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ELightType>::object asm("g_unk_71727ba2e0");
+enum class ELightAttachment : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ELightAttachment>::object asm("g_unk_71727ba480");
 
 struct UnkArgument {
     u8 pad_0x0[8];
@@ -25,17 +46,19 @@ __attribute__((always_inline)) static inline UnkReflValue GetWord(UnkArgument* a
     return result;
 }
 
-extern const CType g_unk_71727ca958;
-extern const CType g_unk_71727caab8;
+enum class EMinimapFowType : u32;
+template <> const CType base::reflection::TypeObject<EMinimapFowType, const CType>::object asm("g_unk_71727ca958");
+enum class EMarkerType : u32;
+template <> const CType base::reflection::TypeObject<EMarkerType, const CType>::object asm("g_unk_71727caab8");
 
 UnkReflValue fn_7100d9c14c(void* unused,
                            UnkArgument* argument) { return GetWord<0x0>(argument,
-                                                                        &reinterpret_cast<const CType&>(g_unk_71727ba2e0)); }
+                                                                        &base::reflection::TypeObject<ELightType>::object); }
 UnkReflValue fn_7100d9c1e0(void* unused,
                            UnkArgument* argument) { return GetWord<0x4>(argument,
-                                                                        &reinterpret_cast<const CType&>(g_unk_71727ba480)); }
-UnkReflValue fn_7100eaa018(void* unused, UnkArgument* argument) { return GetWord<0x98>(argument, &g_unk_71727ca958); }
-UnkReflValue fn_7100eaca98(void* unused, UnkArgument* argument) { return GetWord<0x0>(argument, &g_unk_71727caab8); }
+                                                                        &base::reflection::TypeObject<ELightAttachment>::object); }
+UnkReflValue fn_7100eaa018(void* unused, UnkArgument* argument) { return GetWord<0x98>(argument, &base::reflection::TypeObject<EMinimapFowType, const CType>::object); }
+UnkReflValue fn_7100eaca98(void* unused, UnkArgument* argument) { return GetWord<0x0>(argument, &base::reflection::TypeObject<EMarkerType, const CType>::object); }
 
 // The same getter in other units, each with its own offset and type (as the units declare the types).
 #include "../game_s7/UnkStaticInitS7.h"
@@ -43,23 +66,19 @@ UnkReflValue fn_7100eaca98(void* unused, UnkArgument* argument) { return GetWord
 
 using unk_static_init::UnkEnumType;
 
-extern base::reflection::CType g_unk_7108b6cc88;
-extern base::reflection::CType g_unk_7108b6cde8;
-extern UnkEnumType g_unk_7172730858;
-extern UnkEnumType g_unk_7172743e90;
-extern base::reflection::CType g_unk_7108b6d110;
-extern base::reflection::CType g_unk_7108b6d270;
-extern base::reflection::CType g_unk_7108b6cb28;
-extern base::reflection::CType g_unk_7108b6cf48;
+enum class EDamageStrength : u32;
+template <> UnkEnumType base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object asm("g_unk_7172730858");
+enum class ESwifterSpawnGroupDirection : u32;
+template <> UnkEnumType base::reflection::TypeObject<ESwifterSpawnGroupDirection, UnkEnumType>::object asm("g_unk_7172743e90");
 
-UnkReflValue fn_7100718544(void* unused, UnkArgument* argument) { return GetWord<0xac0>(argument, &g_unk_7108b6cc88); }
-UnkReflValue fn_71007185d0(void* unused, UnkArgument* argument) { return GetWord<0xac4>(argument, &g_unk_7108b6cde8); }
-UnkReflValue fn_710075d374(void* unused, UnkArgument* argument) { return GetWord<0xf8>(argument, &g_unk_7172791c90); }
-UnkReflValue fn_710078dfbc(void* unused, UnkArgument* argument) { return GetWord<0x78>(argument, &g_unk_7172730858); }
-UnkReflValue fn_7100a13530(void* unused, UnkArgument* argument) { return GetWord<0x420>(argument, &g_unk_7172743e90); }
-UnkReflValue fn_7100a94804(void* unused, UnkArgument* argument) { return GetWord<0x53c>(argument, &g_unk_7172752160); }
-UnkReflValue fn_7100a94890(void* unused, UnkArgument* argument) { return GetWord<0x540>(argument, &g_unk_7172752160); }
-UnkReflValue fn_710103acd4(void* unused, UnkArgument* argument) { return GetWord<0x568>(argument, &g_unk_7108b6d110); }
-UnkReflValue fn_710103ad60(void* unused, UnkArgument* argument) { return GetWord<0x56c>(argument, &g_unk_7108b6d270); }
-UnkReflValue fn_710103adec(void* unused, UnkArgument* argument) { return GetWord<0x570>(argument, &g_unk_7108b6cb28); }
-UnkReflValue fn_710103ae78(void* unused, UnkArgument* argument) { return GetWord<0x574>(argument, &g_unk_7108b6cf48); }
+UnkReflValue fn_7100718544(void* unused, UnkArgument* argument) { return GetWord<0xac0>(argument, &base::reflection::TypeObject<base::snd::EReverbIntensity>::object); }
+UnkReflValue fn_71007185d0(void* unused, UnkArgument* argument) { return GetWord<0xac4>(argument, &base::reflection::TypeObject<base::snd::ELowPassFilter>::object); }
+UnkReflValue fn_710075d374(void* unused, UnkArgument* argument) { return GetWord<0xf8>(argument, &base::reflection::TypeObject<game::logic::collision::EColMat>::object); }
+UnkReflValue fn_710078dfbc(void* unused, UnkArgument* argument) { return GetWord<0x78>(argument, &base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object); }
+UnkReflValue fn_7100a13530(void* unused, UnkArgument* argument) { return GetWord<0x420>(argument, &base::reflection::TypeObject<ESwifterSpawnGroupDirection, UnkEnumType>::object); }
+UnkReflValue fn_7100a94804(void* unused, UnkArgument* argument) { return GetWord<0x53c>(argument, &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object); }
+UnkReflValue fn_7100a94890(void* unused, UnkArgument* argument) { return GetWord<0x540>(argument, &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object); }
+UnkReflValue fn_710103acd4(void* unused, UnkArgument* argument) { return GetWord<0x568>(argument, &base::reflection::TypeObject<base::snd::ESndPlayerId>::object); }
+UnkReflValue fn_710103ad60(void* unused, UnkArgument* argument) { return GetWord<0x56c>(argument, &base::reflection::TypeObject<base::snd::ESndLogicId>::object); }
+UnkReflValue fn_710103adec(void* unused, UnkArgument* argument) { return GetWord<0x570>(argument, &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object); }
+UnkReflValue fn_710103ae78(void* unused, UnkArgument* argument) { return GetWord<0x574>(argument, &base::reflection::TypeObject<base::snd::EPositionalType>::object); }

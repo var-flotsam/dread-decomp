@@ -19,13 +19,16 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace gameeditor { enum class EEditorModeDataFlow : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CEntity
 extern base::reflection::CType g_unk_7108b6d3d0;
 void fn_7100d823f4();
-extern base::reflection::CType g_unk_7101d55008;
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100d82448();
 void fn_71000e8118(UnkReflField* field, u64 index);
 void fn_7100d71900(UnkReflFunction* fn, const char* name);
@@ -47,8 +50,8 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100d823f4);
     }
     UnkReflField* field0 = AddReflectedField(cls, CStrId("oBBox", true), &g_unk_7108b6d3d0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Entity BBox");
     field0->attrs.Add<CStrId>(base::reflection::attr::DisplayName(), CStrId("Bounding Box", true));
     field0->attrs.Add<bool>(base::reflection::attr::WidgetReadOnly(), true);

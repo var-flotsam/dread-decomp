@@ -6,6 +6,7 @@
 #include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU1689.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -50,7 +51,8 @@ extern UnkConversion g_unk_7172763b38;
 extern UnkConversion g_unk_7172763b58;
 void fn_7100b47ea0() __attribute__((visibility("hidden")));
 void fn_7100b47eac() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172763a18;
+namespace GUI::CMapMenuController { enum class SState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<GUI::CMapMenuController::SState, UnkEnumType>::object asm("g_unk_7172763a18");
 extern char g_unk_7172763b30[];
 void fn_7100b378f4(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100b37688();
@@ -84,7 +86,7 @@ void fn_7100b48ca0() {
     InitPropertyEx(&g_unk_71727639d0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a9caf0, fn_71002ef5bc, "NavigationMenuOpen", TypeOf<fn_710000d228>(), fn_7100b481b8, fn_7100b37360);
     fn_7100b37430();
     fn_710009ec00(g_unk_7172763a10, g_unk_7172763d5c.field_0x10c);
-    InitEnum(&g_unk_7172763a18, "GUI::CMapMenuController::SState", fn_7100b378f4, fn_7100b37688, g_unk_7172763b30, &g_unk_7172763b38, fn_7100b47ea0, &g_unk_7172763b58, fn_7100b47eac);
+    InitEnum(&base::reflection::TypeObject<GUI::CMapMenuController::SState, UnkEnumType>::object, "GUI::CMapMenuController::SState", fn_7100b378f4, fn_7100b37688, g_unk_7172763b30, &g_unk_7172763b38, fn_7100b47ea0, &g_unk_7172763b58, fn_7100b47eac);
     InitId(&g_unk_7172763d5c.field_0x1c, "IngameMenu");
     InitId(&g_unk_7172763d5c.field_0x24, "#GUI_GENERAL_LABEL_UNKNOWN");
     InitId(&g_unk_7172763d5c.field_0x2c, "ev_doorprof");

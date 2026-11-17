@@ -10,6 +10,7 @@
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTUProperty.h"
 #include "game_s2/UnkChargeComponent.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -92,7 +93,8 @@ extern UnkConversion g_unk_71726dfb00;
 extern UnkConversion g_unk_71726dfb20;
 void fn_710055c3d8() __attribute__((visibility("hidden")));
 void fn_710055c3e4() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726df9e0;
+enum class EIceMode : u32;
+template <> UnkEnumType base::reflection::TypeObject<EIceMode, UnkEnumType>::object asm("g_unk_71726df9e0");
 extern char g_unk_71726dfaf8[];
 void fn_7100531314(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005311c8();
@@ -100,7 +102,8 @@ extern UnkConversion g_unk_71726dfc60;
 extern UnkConversion g_unk_71726dfc80;
 void fn_710055c3f0() __attribute__((visibility("hidden")));
 void fn_710055c3fc() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726dfb40;
+enum class EMinimapMode : u32;
+template <> UnkEnumType base::reflection::TypeObject<EMinimapMode, UnkEnumType>::object asm("g_unk_71726dfb40");
 extern char g_unk_71726dfc58[];
 void fn_7100531760(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100531494();
@@ -108,7 +111,8 @@ extern UnkConversion g_unk_71726dfdc0;
 extern UnkConversion g_unk_71726dfde0;
 void fn_710055c408() __attribute__((visibility("hidden")));
 void fn_710055c414() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726dfca0;
+namespace CEmmyAIComponent { enum class ETargetPerceptionType : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CEmmyAIComponent::ETargetPerceptionType, UnkEnumType>::object asm("g_unk_71726dfca0");
 extern char g_unk_71726dfdb8[];
 void fn_7100531a8c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005318e0();
@@ -199,9 +203,9 @@ extern UnkStrIdBase g_unk_71726e0bb8;
 
 void fn_7100536550() {
     InitHeaderIds(&g_unk_71726e1f30.ids);
-    InitEnum(&g_unk_71726df9e0, "EIceMode", fn_7100531314, fn_71005311c8, g_unk_71726dfaf8, &g_unk_71726dfb00, fn_710055c3d8, &g_unk_71726dfb20, fn_710055c3e4);
-    InitEnum(&g_unk_71726dfb40, "EMinimapMode", fn_7100531760, fn_7100531494, g_unk_71726dfc58, &g_unk_71726dfc60, fn_710055c3f0, &g_unk_71726dfc80, fn_710055c3fc);
-    InitEnum(&g_unk_71726dfca0, "CEmmyAIComponent::ETargetPerceptionType", fn_7100531a8c, fn_71005318e0, g_unk_71726dfdb8, &g_unk_71726dfdc0, fn_710055c408, &g_unk_71726dfde0, fn_710055c414);
+    InitEnum(&base::reflection::TypeObject<EIceMode, UnkEnumType>::object, "EIceMode", fn_7100531314, fn_71005311c8, g_unk_71726dfaf8, &g_unk_71726dfb00, fn_710055c3d8, &g_unk_71726dfb20, fn_710055c3e4);
+    InitEnum(&base::reflection::TypeObject<EMinimapMode, UnkEnumType>::object, "EMinimapMode", fn_7100531760, fn_7100531494, g_unk_71726dfc58, &g_unk_71726dfc60, fn_710055c3f0, &g_unk_71726dfc80, fn_710055c3fc);
+    InitEnum(&base::reflection::TypeObject<CEmmyAIComponent::ETargetPerceptionType, UnkEnumType>::object, "CEmmyAIComponent::ETargetPerceptionType", fn_7100531a8c, fn_71005318e0, g_unk_71726dfdb8, &g_unk_71726dfdc0, fn_710055c408, &g_unk_71726dfde0, fn_710055c414);
     InitPropertyEx(&g_unk_71726dfe00, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc, "EMMY_RANGE_TUTO_IDX", TypeOf<fn_7100014768>(), fn_71004fd2cc, fn_71004fa3b8);
     fn_7100531c10();
     fn_710009ec00(g_unk_71726dfe40, g_unk_71726e1f30.field_0x540);

@@ -312,8 +312,6 @@ bool fn_7101110268(UnkTrackSelf2_b0143* self) {
 
 
 
-const u64* fn_7100360890(CAttack* attack);
-
 typedef CAttack* UnkAttackPtr_b0143 __attribute__((aligned(4)));
 
 struct UnkAttackListSelf_b0143 {

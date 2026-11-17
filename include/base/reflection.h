@@ -9,7 +9,9 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
+#include "game/UnkTUInit.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkOwnedC_ld8d45c;
 struct UnkReflValueArg;
@@ -150,3 +152,5 @@ void fn_71000a1978(base::reflection::UnkReflValue* out, const base::reflection::
 void fn_7100d9012c(void* member);
 void fn_7100d90218(UnkOwnedC_ld8d45c* self);
 void fn_7100d8ce3c(void* self);
+namespace gameeditor { enum class EPersistenceTarget : u32; }
+template <> UnkReflType base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object asm("g_unk_7172756f90");

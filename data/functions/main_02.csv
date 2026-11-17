@@ -476,7 +476,7 @@ address,size,name,name_source,subsystem,status
 0x710020e958,4,fn_710020e958,unknown,unknown,O
 0x710020e95c,4,fn_710020e95c,unknown,unknown,O
 0x710020e960,1368,fn_710020e960,unknown,unknown,U
-0x710020eeb8,488,fn_710020eeb8,unknown,unknown,U
+0x710020eeb8,488,fn_710020eeb8,unknown,unknown,O
 0x710020f0a0,8,fn_710020f0a0,unknown,unknown,O
 0x710020f0b0,140,fn_710020f0b0,unknown,unknown,O
 0x710020f13c,76,fn_710020f13c,unknown,unknown,O
@@ -950,7 +950,7 @@ address,size,name,name_source,subsystem,status
 0x7100220ae0,244,media::CMovieAudioStreamNx::refl_GetClass,reflection,media,O
 0x7100220bd4,4,media::CMovieAudioStreamNx::refl_AddFields,reflection,media,O
 0x7100220bd8,340,media::CMovieAudioStreamNx::refl_InitClass,reflection,media,O
-0x7100220d2c,964,fn_7100220d2c,unknown,media?,U
+0x7100220d2c,964,fn_7100220d2c,unknown,media?,O
 0x71002210f0,196,fn_71002210f0,unknown,media?,O
 0x71002211b4,596,fn_71002211b4,unknown,media?,O
 0x7100221408,264,fn_7100221408,unknown,media?,O
@@ -2512,7 +2512,7 @@ address,size,name,name_source,subsystem,status
 0x7100256184,120,fn_7100256184,unknown,game?,O
 0x71002561fc,108,fn_71002561fc,unknown,game?,O
 0x7100256268,372,fn_7100256268,unknown,game?,O
-0x71002563dc,784,fn_71002563dc,unknown,game?,U
+0x71002563dc,784,fn_71002563dc,unknown,game?,O
 0x71002566ec,32,fn_71002566ec,unknown,game?,O
 0x710025670c,28,fn_710025670c,unknown,game?,O
 0x7100256728,128,fn_7100256728,unknown,game?,O
@@ -2950,7 +2950,7 @@ address,size,name,name_source,subsystem,status
 0x7100265b1c,240,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass,reflection,ai/navmesh,O
 0x7100265c0c,148,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_AddFields,reflection,ai/navmesh,O
 0x7100265ca0,388,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_InitClass,reflection,ai/navmesh,O
-0x7100265e24,1088,fn_7100265e24,unknown,ai/navmesh?,U
+0x7100265e24,1088,fn_7100265e24,unknown,ai/navmesh?,O
 0x7100266264,8,fn_7100266264,unknown,ai/navmesh?,O
 0x710026626c,8,fn_710026626c,unknown,ai/navmesh?,O
 0x7100266274,28,fn_7100266274,unknown,ai/navmesh?,O
@@ -3080,7 +3080,7 @@ address,size,name,name_source,subsystem,status
 0x7100269170,132,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_Destroy,reflection,ai/navmesh,O
 0x71002691f4,212,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_CopyAssign,reflection,ai/navmesh,O
 0x71002692c8,212,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_MoveAssign,reflection,ai/navmesh,O
-0x71002693a0,832,fn_71002693a0,unknown,ai/navmesh?,U
+0x71002693a0,832,fn_71002693a0,unknown,ai/navmesh?,O
 0x71002696e0,4,navmesh::CDynamicSmartLinkRule::refl_AddAttributes,reflection,ai/navmesh,O
 0x71002696e4,244,navmesh::CDynamicSmartLinkRule::refl_GetClass,reflection,ai/navmesh,O
 0x71002697d8,4,navmesh::CDynamicSmartLinkRule::refl_AddFields,reflection,ai/navmesh,O
@@ -5970,7 +5970,7 @@ address,size,name,name_source,subsystem,status
 0x71002f65d4,36,fn_71002f65d4,unknown,unknown,O
 0x71002f65f8,40,fn_71002f65f8,unknown,unknown,O
 0x71002f6620,168,fn_71002f6620,unknown,unknown,O
-0x71002f66c8,808,fn_71002f66c8,unknown,unknown,U
+0x71002f66c8,808,fn_71002f66c8,unknown,unknown,O
 0x71002f69f0,80,fn_71002f69f0,unknown,unknown,O
 0x71002f6a40,128,fn_71002f6a40,unknown,unknown,O
 0x71002f6ac0,264,fn_71002f6ac0,unknown,unknown,O
@@ -5996,7 +5996,7 @@ address,size,name,name_source,subsystem,status
 0x71002f78a8,136,fn_71002f78a8,unknown,unknown,O
 0x71002f7930,252,fn_71002f7930,unknown,unknown,O
 0x71002f7a2c,476,fn_71002f7a2c,unknown,unknown,O
-0x71002f7c08,508,fn_71002f7c08,unknown,unknown,U
+0x71002f7c08,508,fn_71002f7c08,unknown,unknown,O
 0x71002f7e04,248,fn_71002f7e04,unknown,unknown,O
 0x71002f7efc,384,fn_71002f7efc,unknown,unknown,O
 0x71002f8080,276,fn_71002f8080,unknown,unknown,O

@@ -11,6 +11,17 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/CPointerType.h"
+#include "base/reflection/TypeObject.h"
+namespace base::snd { enum class EReverbIntensity : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
+namespace base::snd { enum class ELowPassFilter : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ELowPassFilter>::object asm("g_unk_7108b6cde8");
+enum class EShellState : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EShellState>::object asm("g_unk_7172707020");
+namespace game::logic::collision { enum class EColMat : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
+enum class EInFrustumMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EInFrustumMode>::object asm("g_unk_71727952a8");
 class CActorComponent;
 extern template const base::reflection::CType* base::reflection::PointerType<CActorComponent*>::Get();
 namespace animtree { class CAnimTreeElementDef; }
@@ -98,7 +109,6 @@ void fn_7100415c24();
 void fn_7100415cb4();
 void fn_7100415d44();
 void fn_7100415dd4();
-extern base::reflection::CType g_unk_71727952a8;
 void fn_7100415e60();
 void fn_7100415ef0();
 void fn_7100415f80();
@@ -199,7 +209,6 @@ void fn_71005faae4();
 void fn_71006020c0();
 void fn_7100601f24(UnkReflFunction* fn);
 void fn_71006b22a4();
-extern base::reflection::CType g_unk_7172707020;
 void fn_71006bcbcc();
 void fn_71006f7b58();
 void fn_71006f7be8();
@@ -209,9 +218,7 @@ void fn_71006f7d98();
 void fn_71006f7e28();
 void fn_710071154c();
 void fn_7100716208();
-extern base::reflection::CType g_unk_7108b6cc88;
 void fn_710071858c();
-extern base::reflection::CType g_unk_7108b6cde8;
 void fn_7100718618();
 void fn_7100723730();
 void fn_71007237d8();
@@ -233,7 +240,6 @@ void fn_71007378e4();
 void fn_7100737974();
 void fn_7100737a04();
 void fn_710075d330();
-extern base::reflection::CType g_unk_7172791c90;
 void fn_710075d3bc();
 void fn_710075d8e4();
 void fn_710075db78();
@@ -783,7 +789,7 @@ void fn_71004118cc(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100415e60);
-    fn->params.PushBack(&g_unk_71727952a8);
+    fn->params.PushBack(&base::reflection::TypeObject<EInFrustumMode>::object);
 }
 
 void fn_7100411a40(UnkReflFunction* fn, const char* name) {
@@ -1674,7 +1680,7 @@ void fn_71006b9d50(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_71006bcbcc);
-    fn->params.PushBack(&g_unk_7172707020);
+    fn->params.PushBack(&base::reflection::TypeObject<EShellState>::object);
 }
 
 void fn_71006f7008(UnkReflFunction* fn, const char* name) {
@@ -1755,7 +1761,7 @@ void fn_7100717e9c(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_710071858c);
-    fn->params.PushBack(&g_unk_7108b6cc88);
+    fn->params.PushBack(&base::reflection::TypeObject<base::snd::EReverbIntensity>::object);
 }
 
 void fn_7100718010(UnkReflFunction* fn, const char* name) {
@@ -1764,7 +1770,7 @@ void fn_7100718010(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100718618);
-    fn->params.PushBack(&g_unk_7108b6cde8);
+    fn->params.PushBack(&base::reflection::TypeObject<base::snd::ELowPassFilter>::object);
 }
 
 void fn_7100721b74(UnkReflFunction* fn, const char* name) {
@@ -1953,7 +1959,7 @@ void fn_7100754448(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_710075d3bc);
-    fn->params.PushBack(&g_unk_7172791c90);
+    fn->params.PushBack(&base::reflection::TypeObject<game::logic::collision::EColMat>::object);
 }
 
 void fn_71007545bc(UnkReflFunction* fn, const char* name) {

@@ -17,6 +17,9 @@
 using base::global::CRntString;
 using base::reflection::CType;
 using namespace unk_static_init;
+#include "base/reflection/TypeObject.h"
+namespace GUI::CHUD { enum class EForceVisibilityState : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<GUI::CHUD::EForceVisibilityState>::object asm("g_unk_7172a0f690");
 
 static inline UnkReflType* AsUnk(const CType* t) {
     return reinterpret_cast<UnkReflType*>(const_cast<CType*>(t));
@@ -84,7 +87,6 @@ extern char g_unk_7172a0f7a8[];
 extern CType g_unk_7172a0f298;
 extern CType g_unk_7172a0f3d8;
 extern CType g_unk_7172a0f518;
-extern CType g_unk_7172a0f690;
 extern UnkHudParams_l1e88e0 g_unk_7172a0f7b0;
 extern UnkHudParams_l1e88e0 g_unk_7172a0f888;
 extern UnkHudHandle_l1e88e0 g_unk_7172a0f960;
@@ -140,8 +142,8 @@ void fn_71011e88e0() {
     InitVector(AsUnk(&g_unk_7172a0f518), "base::global::CRntVector<std::unique_ptr<GUI::CHUD::SResourceAnimation>>",
                fn_71011dec04);
     fn_710009ec00(g_unk_7172a0f688, &g_unk_7172a0f518);
-    InitEnum(AsUnk(&g_unk_7172a0f690), "GUI::CHUD::EForceVisibilityState", fn_71011deff0, fn_71011dede4);
-    fn_710009ec00(g_unk_7172a0f7a8, &g_unk_7172a0f690);
+    InitEnum(AsUnk(&base::reflection::TypeObject<GUI::CHUD::EForceVisibilityState>::object), "GUI::CHUD::EForceVisibilityState", fn_71011deff0, fn_71011dede4);
+    fn_710009ec00(g_unk_7172a0f7a8, &base::reflection::TypeObject<GUI::CHUD::EForceVisibilityState>::object);
 
     new (&g_unk_7172a0f7b0) UnkHudParams_l1e88e0();
     fn_7100000250(fn_71011df170, &g_unk_7172a0f7b0, g_unk_7101a19000);

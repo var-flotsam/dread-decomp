@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "game/CBreakableTileGroup.h"
 #include "game/CBreakableTileManager/CTunableBreakableTileManager.h"
+#include "game/UnkBreakableTile.h"
 #include "types.h"
 
 struct UnkQueryObj {
@@ -22,13 +23,6 @@ struct UnkQueryObj {
     u8 pad_0x3d[0x6b];
 };
 static_assert(sizeof(UnkQueryObj) == 0xa8, "UnkQueryObj placeholder layout");
-
-// A tile as the array's constructor and destructor see it.
-struct UnkBreakableTile_b49 {
-    u8 data[0xa8];
-    UnkBreakableTile_b49() asm("fn_7100c9db18");
-    ~UnkBreakableTile_b49() asm("fn_7100c9dd20");
-};
 
 struct UnkTilePos {
     f32 x, y;

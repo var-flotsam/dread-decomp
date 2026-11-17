@@ -19,6 +19,9 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace engine::utils { enum class ELightPreset : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<engine::utils::ELightPreset>::object asm("g_unk_716e5992a0");
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 namespace base::math { class CVector4D; }
@@ -45,7 +48,6 @@ void fn_71008ef5e0();
 void fn_71008ee5b8(UnkReflFunction* fn, const char* name);
 void fn_71008ef69c();
 void fn_71008ee734(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_716e5992a0;
 void fn_71008ef758();
 void fn_71008ee8b0(UnkReflFunction* fn, const char* name);
 void fn_71008ef810();
@@ -151,14 +153,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bVertexLight");
     DREAD_REFLECTED_FUNCTION("_eLightPreset_GetterFunction") {
         fn->name = base::global::UnkStrId("_eLightPreset_GetterFunction", true);
-        fn->return_type = &g_unk_716e5992a0;
+        fn->return_type = &base::reflection::TypeObject<engine::utils::ELightPreset>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ef758);
     }
     DREAD_REFLECTED_FUNCTION("_eLightPreset_SetterFunction")
         fn_71008ee8b0(fn, "_eLightPreset_SetterFunction");
-    UnkReflField* field9 = AddReflectedField(cls, CStrId("eLightPreset", true), &g_unk_716e5992a0, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field9 = AddReflectedField(cls, CStrId("eLightPreset", true), &base::reflection::TypeObject<engine::utils::ELightPreset>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_vLightPresetParams_GetterFunction") {
         fn->name = base::global::UnkStrId("_vLightPresetParams_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();

@@ -5,13 +5,13 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAttack.h"
 #include "game/CQuetzoaXAIComponent.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a58d90[];
-void fn_71003606c0(void*);  // as src/game_5821e4/CAttackDtor.h declares it
 void fn_7100649ca8(char* self);  // CQuetzoaAIComponent's destructor
 
 struct UnkQuetzoaXDtor_A4_b70;

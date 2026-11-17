@@ -8,11 +8,11 @@
 #include "game/CCharClassActivatableComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"
+#include "game/CThermalRoomConnectionFX.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkStateObject;
-extern void* g_unk_7101a7b058[];
 
 struct UnkThermalRoomConnectionFX {
     void** vtable;

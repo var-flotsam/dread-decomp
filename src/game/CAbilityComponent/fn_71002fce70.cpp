@@ -2,6 +2,7 @@
 // taken here because they share its template.
 #include "base/UnkStaticStrId.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkBreakableTile.h"
 #include "types.h"
 
 using base::UnkStaticId;
@@ -18,12 +19,6 @@ struct UnkStaticIds19And1 {
 ARRAY_DTOR(71007fd8b0, UnkStaticIds19And1, 1, g_unk_7172721508)
 ARRAY_DTOR(7100536450, UnkStaticId, 3, g_unk_71726e2308)
 
-// A string id and a file path.
-struct UnkStaticIdPath {
-    UnkStaticId id;
-    UnkStaticPathId path;
-};
-extern UnkStaticIdPath g_unk_7172795f50[3] __attribute__((visibility("hidden")));
 // NON_MATCHING(minor): the two pools' registers differ and the original is 40 bytes longer.
 void fn_7100c9cb50() { base::DestroyArray<UnkStaticIdPath, 3, g_unk_7172795f50>(); }
 

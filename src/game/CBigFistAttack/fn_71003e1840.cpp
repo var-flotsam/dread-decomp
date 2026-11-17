@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CBigFistAttack::EBigFistAttackState enum.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,8 @@ struct UnkStatics_71003e1840 {
     u8 field_0x50[8];
 };
 extern UnkStatics_71003e1840 g_unk_71726c0518 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726c03b0;
+namespace CBigFistAttack { enum class EBigFistAttackState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CBigFistAttack::EBigFistAttackState, UnkEnumType>::object asm("g_unk_71726c03b0");
 void fn_71003e045c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003e0250();
 extern char g_unk_71726c04c8[];
@@ -28,7 +30,7 @@ extern char g_unk_71726c0510[];
 
 void fn_71003e1840() {
     InitHeaderIds(&g_unk_71726c0518.ids);
-    InitEnum(&g_unk_71726c03b0, "CBigFistAttack::EBigFistAttackState", fn_71003e045c, fn_71003e0250,
+    InitEnum(&base::reflection::TypeObject<CBigFistAttack::EBigFistAttackState, UnkEnumType>::object, "CBigFistAttack::EBigFistAttackState", fn_71003e045c, fn_71003e0250,
              g_unk_71726c04c8, &g_unk_71726c04d0, fn_71003e13b8, &g_unk_71726c04f0, fn_71003e13c4);
     fn_71003e05e0();
     fn_710009ec00(g_unk_71726c0510, g_unk_71726c0518.field_0x50);

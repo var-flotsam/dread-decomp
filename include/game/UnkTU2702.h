@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkAIBB_b0144;
 struct UnkPropertyName;
@@ -80,5 +81,7 @@ extern u8* g_unk_7172a062e0 __attribute__((visibility("hidden")));
 void fn_710111094c(base::reflection::UnkReflObject* ai, u32 value);
 // Stores the reflected value `b` under the property name `a` in the AI's blackboard (+0x1260); returns false.
 bool fn_710110a82c(char* self, void* a, void* b);
-extern base::reflection::CType g_unk_7172a05520;
+enum class ELOSMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ELOSMode>::object asm("g_unk_7172a05520");
 extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));
+void* fn_7101105970(UnkScorpiusAI_b69a4* ai);

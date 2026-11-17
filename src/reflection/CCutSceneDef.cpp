@@ -22,6 +22,13 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+struct TAnimationTagFlagSet;
+template <> base::reflection::CType base::reflection::TypeObject<TAnimationTagFlagSet>::object asm("g_unk_717270e348");
+namespace cutscene { enum class EDevelopmentState : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<cutscene::EDevelopmentState>::object asm("g_unk_7172795110");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
@@ -29,7 +36,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 // CCutSceneDef
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100c8d374();
-extern base::reflection::CType g_unk_7172795110;
 extern base::reflection::CType g_unk_7172793b40;
 extern base::reflection::CType g_unk_7172793350;
 namespace CFXPoolPack { const base::reflection::CClass* refl_GetClass(); }
@@ -46,8 +52,8 @@ void refl_AddFields(CClass* cls) {
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c8d374);
     }
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eDevelopmentState", true), &g_unk_7172795110, 0x0, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172795110, 1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eDevelopmentState", true), &base::reflection::TypeObject<cutscene::EDevelopmentState>::object, 0x0, -1, -1);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<cutscene::EDevelopmentState>::object, 1);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Development State");
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Id"));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sActionSet", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Description, "ActionSet File"));
@@ -94,7 +100,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CCutSceneDef);
 
 // CCutSceneDef::CActorDef
-extern base::reflection::CType g_unk_717270e348;
 extern base::reflection::CType g_unk_7172793748;
 namespace CCutSceneDef::CActorDef {
 void refl_AddAttributes(CClass*) {}
@@ -104,8 +109,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sInGameEntityId", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "InGame Entity Id"));
     DREAD_REFLECTED_FIELD(bool, "bInGameEntityVisibleOnEnd", 0x20, (DefaultValue, true), (Description, "Set InGame Entity Visible On End"));
     DREAD_REFLECTED_FIELD(bool, "bExitClearTags", 0x21, (DefaultValue, false), (Description, "InGame Entity Exit Clear Animation Tags"));
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("fExitAnimTags", true), &g_unk_717270e348, 0x24, -1, -1);
-    field5->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_717270e348, s32(base::reflection::refl_GetEnumZero<0x7172794a88>()));
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("fExitAnimTags", true), &base::reflection::TypeObject<TAnimationTagFlagSet>::object, 0x24, -1, -1);
+    field5->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<TAnimationTagFlagSet>::object, s32(base::reflection::refl_GetEnumZero<0x7172794a88>()));
     field5->attrs.Add<const char*>(base::reflection::attr::Description(), "InGame Entity Exit Animation Tags");
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, float>", "dBlendSpaceVars", 0x28, (Description, "BlendSpace variable values"));
     DREAD_REFLECTED_FIELD(base::global::CName, "sSkelRootNode", 0x50, (DefaultValue, base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu)), (Description, "Node in the cutscene entity skeleton to be used to match the final position"));
@@ -664,7 +669,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_7100c8e80c();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100c8e85c();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c8398c(CClass* cls) {
@@ -676,7 +680,7 @@ void fn_7100c8398c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c8e80c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutSceneDef::CActorDef::refl_GetClass();
@@ -685,7 +689,7 @@ void fn_7100c8398c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c8e85c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutSceneDef::CActorDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -697,7 +701,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_7100c8e974();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100c8e9c4();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c83f7c(CClass* cls) {
@@ -709,7 +712,7 @@ void fn_7100c83f7c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c8e974);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutSceneDef::CActorDef::refl_GetClass();
@@ -718,7 +721,7 @@ void fn_7100c83f7c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c8e9c4);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutSceneDef::CActorDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -730,7 +733,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_7100c901dc();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100c9022c();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c84f5c(CClass* cls) {
@@ -742,7 +744,7 @@ void fn_7100c84f5c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c901dc);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutSceneDef::CAnimationLayerDef::refl_GetClass();
@@ -751,7 +753,7 @@ void fn_7100c84f5c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c9022c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutSceneDef::CAnimationLayerDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -763,7 +765,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_7100c903f8();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100c90448();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c8554c(CClass* cls) {
@@ -775,7 +776,7 @@ void fn_7100c8554c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c903f8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutSceneDef::CAnimationLayerDef::refl_GetClass();
@@ -784,7 +785,7 @@ void fn_7100c8554c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c90448);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutSceneDef::CAnimationLayerDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -796,7 +797,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_7100c91b30();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100c91b80();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c86aa4(CClass* cls) {
@@ -808,7 +808,7 @@ void fn_7100c86aa4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c91b30);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutSceneDef::CTakeDef::refl_GetClass();
@@ -817,7 +817,7 @@ void fn_7100c86aa4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c91b80);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutSceneDef::CTakeDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -829,7 +829,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_7100c91e20();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7100c91e70();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c87094(CClass* cls) {
@@ -841,7 +840,7 @@ void fn_7100c87094(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c91e20);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutSceneDef::CTakeDef::refl_GetClass();
@@ -850,5 +849,5 @@ void fn_7100c87094(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100c91e70);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutSceneDef::CTakeDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }

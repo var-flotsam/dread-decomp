@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTU740.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -32,7 +33,8 @@ struct UnkStatics_71004a9c40 {
 extern UnkStatics_71004a9c40 g_unk_71726d3398 __attribute__((visibility("hidden")));
 extern char g_unk_71726d1f40[];
 extern void* g_unk_7101a3e038[];
-extern UnkEnumType g_unk_71726d1f78;
+enum class ELavaCarpetState : u32;
+template <> UnkEnumType base::reflection::TypeObject<ELavaCarpetState, UnkEnumType>::object asm("g_unk_71726d1f78");
 void fn_71004a2404(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71004a2138();
 extern char g_unk_71726d2090[];
@@ -93,7 +95,7 @@ void fn_71004a9c40() {
     fn_71004a1a2c();
     fn_710009ec00(g_unk_71726d1f40, g_unk_71726d3398.field_0x70);
     InitTunable(&g_unk_71726d1f48, fn_7100136ecc, g_unk_7101a3e038, fn_7100075104);
-    InitEnum(&g_unk_71726d1f78, "ELavaCarpetState", fn_71004a2404, fn_71004a2138, g_unk_71726d2090, &g_unk_71726d2098, fn_71004a52c4, &g_unk_71726d20b8, fn_71004a52d0);
+    InitEnum(&base::reflection::TypeObject<ELavaCarpetState, UnkEnumType>::object, "ELavaCarpetState", fn_71004a2404, fn_71004a2138, g_unk_71726d2090, &g_unk_71726d2098, fn_71004a52c4, &g_unk_71726d20b8, fn_71004a52d0);
     fn_71004a2588();
     fn_710009ec00(g_unk_71726d20d8, g_unk_71726d3398.field_0x1a8);
     InitId(&g_unk_71726d3398.field_0x28, "attack_lavacarpet_left2right-init");

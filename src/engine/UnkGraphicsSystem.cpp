@@ -1347,7 +1347,6 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
 
 // The draw modes (fn_71001cb604).
 void fn_710015a7d0(u32 value);
-void fn_710015b160();
 s32 fn_710015c460();
 // The location of the uniform named `name` of a program's stage, 0 when it has none.
 // Sets `count` matrices of a uniform at `location` of a program state.
