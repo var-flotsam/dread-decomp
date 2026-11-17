@@ -17,6 +17,9 @@
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CType;
+#include "base/reflection/TypeObject.h"
+namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");
 
 extern UnkTUHeader g_unk_7172752700 __attribute__((visibility("hidden")));
 extern char g_unk_7172752730[] __attribute__((visibility("hidden")));  // the component's class
@@ -102,10 +105,10 @@ void fn_7100a96560() {
 
     {
         CStrId name("CThermalDeviceComponent::EPipeGroup", true);
-        fn_7100a91d80(&g_unk_7172752160, name, fn_7100a919f4, nullptr);
+        fn_7100a91d80(&base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, name, fn_7100a919f4, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7172752160, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7172752278, &g_unk_7172752160);
-    InitEnumConverters(reinterpret_cast<UnkReflType*>(&g_unk_7172752160), g_unk_7172752280, fn_7100a9434c,
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7172752278, &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object);
+    InitEnumConverters(reinterpret_cast<UnkReflType*>(&base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object), g_unk_7172752280, fn_7100a9434c,
                        g_unk_71727522a0, fn_7100a94358);
 }

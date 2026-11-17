@@ -19,14 +19,17 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace IPath { enum class EType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CHecathonAIComponent
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_71727bb8e8;
 void fn_71005abe98();
 void fn_71005a9250(UnkReflFunction* fn, const char* name);
 void fn_71005abef0();
@@ -37,13 +40,13 @@ namespace CHecathonAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x146d8, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("ePatrolPathType", true), &g_unk_71727bb8e8, 0x14718, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("ePatrolPathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x14718, -1, -1);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<IPath::EType>::object, 3);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("wpHarassPath", true), &g_unk_717269bb48, 0x14720, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("eHarassPathType", true), &g_unk_71727bb8e8, 0x14760, -1, -1);
-    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("eHarassPathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x14760, -1, -1);
+    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<IPath::EType>::object, 3);
     DREAD_REFLECTED_FUNCTION("_fTimeToGoPatrol_GetterFunction") {
         fn->name = base::global::UnkStrId("_fTimeToGoPatrol_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();

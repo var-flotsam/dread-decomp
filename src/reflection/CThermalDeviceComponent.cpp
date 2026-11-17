@@ -19,9 +19,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");
 
 // CThermalDeviceComponent
-extern base::reflection::CType g_unk_7172752160;
 void fn_7100a94804();
 void fn_7100a90798(UnkReflFunction* fn, const char* name);
 void fn_7100a94890();
@@ -37,26 +39,26 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bCheckpointBeforeUsage", 0x59c, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_ePipeGroup1_GetterFunction", true);
-        fn->return_type = &g_unk_7172752160;
+        fn->return_type = &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a94804);
     }
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_SetterFunction")
         fn_7100a90798(fn, "_m_ePipeGroup1_SetterFunction");
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePipeGroup1", true), &g_unk_7172752160, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field6->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172752160, 0);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePipeGroup1", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field6->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0);
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup2_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_ePipeGroup2_GetterFunction", true);
-        fn->return_type = &g_unk_7172752160;
+        fn->return_type = &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100a94890);
     }
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup2_SetterFunction")
         fn_7100a9090c(fn, "_m_ePipeGroup2_SetterFunction");
-    UnkReflField* field7 = AddReflectedField(cls, CStrId("ePipeGroup2", true), &g_unk_7172752160, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field7->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172752160, 0);
+    UnkReflField* field7 = AddReflectedField(cls, CStrId("ePipeGroup2", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field7->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

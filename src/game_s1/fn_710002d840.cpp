@@ -9,6 +9,9 @@
 #include "game/UnkTU36.h"
 #include "game/UnkTUInit.h"
 #include "base/UnkEnumInfo.h"
+#include "base/reflection/TypeObject.h"
+namespace gameeditor { enum class EEditorModeDataFlow : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -33,11 +36,11 @@ void fn_710002d62c(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
 void fn_710002d840() {
     {
         CStrId name("gameeditor::EEditorModeDataFlow", true);
-        fn_710002d62c(&reinterpret_cast<UnkEnumInfo&>(g_unk_7101d55008), &name, fn_710002d420, nullptr);
+        fn_710002d62c(&reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object), &name, fn_710002d420, nullptr);
     }
-    fn_7100000250(fn_7100099468, &reinterpret_cast<UnkEnumInfo&>(g_unk_7101d55008), &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d55120, &reinterpret_cast<UnkEnumInfo&>(g_unk_7101d55008));
-    void* a = reinterpret_cast<UnkEnumInfo&>(g_unk_7101d55008).desc_0x8->field_0x30;
+    fn_7100000250(fn_7100099468, &reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object), &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d55120, &reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object));
+    void* a = reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object).desc_0x8->field_0x30;
     void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
     g_unk_7101d55128.from = a;
     g_unk_7101d55128.to = b;
@@ -45,7 +48,7 @@ void fn_710002d840() {
     g_unk_7101d55128.next = nullptr;
     fn_71000a16c4(&g_unk_7101d55128);
     void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-    void* d = reinterpret_cast<UnkEnumInfo&>(g_unk_7101d55008).desc_0x8->field_0x30;
+    void* d = reinterpret_cast<UnkEnumInfo&>(base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object).desc_0x8->field_0x30;
     g_unk_7101d55148.from = c;
     g_unk_7101d55148.to = d;
     g_unk_7101d55148.convert = fn_710002d7b8;

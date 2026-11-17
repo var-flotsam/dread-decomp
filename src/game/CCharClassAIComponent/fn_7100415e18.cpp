@@ -6,6 +6,9 @@
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
+#include "base/reflection/TypeObject.h"
+enum class EInFrustumMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EInFrustumMode>::object asm("g_unk_71727952a8");
 
 struct UnkSource {
     u8 pad_0x0[0xc8];
@@ -23,6 +26,6 @@ UnkReflValue fn_7100415e18(void* unused, UnkArgument* argument) {
     result.field_0x0 = nullptr;
     result.type = nullptr;
     result.kind = 2;
-    fn_71000a18d4(&result, &g_unk_71727952a8, &value, 0);
+    fn_71000a18d4(&result, &base::reflection::TypeObject<EInFrustumMode>::object, &value, 0);
     return result;
 }

@@ -22,6 +22,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace gameeditor { enum class EEditorModeDataFlow : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
@@ -30,7 +35,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 void fn_710105cdb4();
 void fn_7101054b10(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d60ff0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace SLogicPathNode {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -46,7 +50,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Position"));
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 3);
+    field0->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 3);
     field0->attrs.Add<bool>(base::reflection::attr::bEditorModeDataFlowInit(), true);
     DREAD_REFLECTED_FIELD(f32, "fSwarmRadius", 0x14, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fDiversionChance", 0x18, (DefaultValue, 1.0f));
@@ -469,7 +473,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_710105db6c();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_710105dbbc();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71010563b4(CClass* cls) {
@@ -481,7 +484,7 @@ void fn_71010563b4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710105db6c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = SLogicPathNode::refl_GetClass();
@@ -490,7 +493,7 @@ void fn_71010563b4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710105dbbc);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, SLogicPathNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -502,7 +505,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_710105dd24();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_710105dd74();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71010569a4(CClass* cls) {
@@ -514,7 +516,7 @@ void fn_71010569a4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710105dd24);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = SLogicPathNode::refl_GetClass();
@@ -523,7 +525,7 @@ void fn_71010569a4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710105dd74);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, SLogicPathNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -535,7 +537,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_710105ea20();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_710105ea70();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7101057344(CClass* cls) {
@@ -547,7 +548,7 @@ void fn_7101057344(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710105ea20);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = SLogicSubPath::refl_GetClass();
@@ -556,7 +557,7 @@ void fn_7101057344(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710105ea70);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, SLogicSubPath::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -568,7 +569,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_710105ec80();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_710105ecd0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7101057934(CClass* cls) {
@@ -580,7 +580,7 @@ void fn_7101057934(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710105ec80);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = SLogicSubPath::refl_GetClass();
@@ -589,5 +589,5 @@ void fn_7101057934(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710105ecd0);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, SLogicSubPath::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }

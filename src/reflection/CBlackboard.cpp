@@ -18,11 +18,13 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 
 // CBlackboard
 extern base::reflection::CType g_unk_71729fc870;
 void fn_7101049fa8();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_7101045544(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_710104a108();
@@ -39,7 +41,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101049fa8);
     }
     UnkReflField* field0 = AddReflectedField(cls, CStrId("hashSections", true), &g_unk_71729fc870, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 1);
     field0->attrs.Add<const char*>(base::reflection::attr::CreateElement(), "CreateSection");
     field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterSectionsDeserialization", true));
     DREAD_REFLECTED_FUNCTION("CreateSection") {

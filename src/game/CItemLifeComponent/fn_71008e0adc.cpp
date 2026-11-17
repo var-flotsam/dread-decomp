@@ -19,6 +19,8 @@
 #include "game/UnkTU341.h"
 #include "game/UnkTUProperty.h"
 #include "types.h"
+#include "game/UnkTU883.h"
+#include "game/CDropComponent.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
@@ -32,9 +34,6 @@ struct UnkActor;
 struct UnkWeakTarget;
 struct UnkItemLifeOwner_l8e0adc;
 
-char* fn_71005c1008(u64 id);
-void fn_71007c1ce0(char* p, UnkHitInfo_A5_b63* info);
-UnkStruct_710024fa0c* fn_71008e0e54(UnkStruct_7100233684* entity);
 
 struct UnkItemLifePart_l8e0adc {
     UnkStringData* name;

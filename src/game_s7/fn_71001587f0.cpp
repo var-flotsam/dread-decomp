@@ -47,7 +47,6 @@ extern void (*g_unk_716e29b688)(void* object);
 extern void (*g_unk_716e29b588)(void* object);
 extern void (*g_unk_716e29b640)(void* object);
 extern void (*g_unk_716e29b650)(void* object, s32 value);
-extern void (*g_unk_716e29b6b0)(void* object, s32 a, s32 b);
 extern void (*g_unk_716e29b648)(void* object, s32 value);
 extern void (*g_unk_716e29b590)(void* object, s32 value);
 extern void (*g_unk_716e29b030)(void* builder, void* device);

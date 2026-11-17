@@ -15,6 +15,11 @@
 
 using namespace unk_static_init;
 using base::global::CRntString;
+#include "base/reflection/TypeObject.h"
+namespace SLoadScenarioRequest { enum class EMode : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLoadScenarioRequest::EMode>::object asm("g_unk_71727be938");
+enum class EDifficultyMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EDifficultyMode>::object asm("g_unk_71727bea58");
 
 struct UnkStatics_le06590 {
     HeaderIds ids;
@@ -93,11 +98,9 @@ extern char g_unk_71727be901[];
 extern UnkTunable g_unk_71727be908;
 extern void* g_unk_7101aa9a70[];
 
-extern base::reflection::CType g_unk_71727be938;
 void fn_7100de441c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100de42d0();
 extern char g_unk_71727bea50[];
-extern base::reflection::CType g_unk_71727bea58;
 void fn_7100de47a8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100de459c();
 extern char g_unk_71727beb70[];
@@ -130,14 +133,14 @@ void fn_7100e06590() {
     fn_710009ec00(g_unk_71727be901, s.enemies_entry);
     InitTunable(&g_unk_71727be908, fn_7100136ecc, g_unk_7101aa9a70, fn_7100075104);
 
-    UnkEnumType* mode = reinterpret_cast<UnkEnumType*>(&g_unk_71727be938);
+    UnkEnumType* mode = reinterpret_cast<UnkEnumType*>(&base::reflection::TypeObject<SLoadScenarioRequest::EMode>::object);
     {
         CStrId name("SLoadScenarioRequest::EMode", true);
         fn_7100de441c(mode, name, fn_7100de42d0, nullptr);
     }
     fn_7100000250(fn_7100099468, mode, g_unk_7101a19000);
     fn_710009ec00(g_unk_71727bea50, mode);
-    InitEnum(reinterpret_cast<UnkEnumType*>(&g_unk_71727bea58), "EDifficultyMode", fn_7100de47a8, fn_7100de459c,
+    InitEnum(reinterpret_cast<UnkEnumType*>(&base::reflection::TypeObject<EDifficultyMode>::object), "EDifficultyMode", fn_7100de47a8, fn_7100de459c,
              g_unk_71727beb70, &g_unk_71727beb78, fn_7100e04e68, &g_unk_71727beb98, fn_7100e04e74);
 
     g_unk_71727bebb8 = 6;

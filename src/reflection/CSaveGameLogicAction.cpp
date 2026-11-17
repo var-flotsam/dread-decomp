@@ -19,17 +19,19 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CSaveGameLogicAction
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
 namespace CSaveGameLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CSaveGameLogicAction::EDestination", "eDestination", 0x10, (DefaultValue, 1));
     DREAD_REFLECTED_FIELD(CStrId, "sCheckpointKey", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field2 = AddReflectedField(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x20, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x60, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

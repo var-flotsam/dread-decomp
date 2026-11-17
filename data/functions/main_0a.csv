@@ -974,7 +974,7 @@ address,size,name,name_source,subsystem,status
 0x7100a282f0,12,CHeatRoomComponent::refl_Destroy,reflection,game/components,O
 0x7100a282fc,8,CHeatRoomComponent::refl_CopyAssign,reflection,game/components,O
 0x7100a28304,8,CHeatRoomComponent::refl_MoveAssign,reflection,game/components,O
-0x7100a28310,1260,fn_7100a28310,unknown,game/components?,U
+0x7100a28310,1260,fn_7100a28310,unknown,game/components?,O
 0x7100a287fc,4,CNoFreezeRoomComponent::refl_AddAttributes,reflection,game/components,O
 0x7100a28800,244,CNoFreezeRoomComponent::refl_GetClass,reflection,game/components,O
 0x7100a288f4,4,CNoFreezeRoomComponent::refl_AddFields,reflection,game/components,O

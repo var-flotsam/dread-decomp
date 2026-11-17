@@ -20,6 +20,9 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::CType;
+#include "base/reflection/TypeObject.h"
+namespace CLiquidPoolBaseComponent { enum class ELiquidType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object asm("g_unk_7172733be8");
 
 // The unit's statics (the compiler merges them into one block).
 struct UnkLiquidPoolTU {
@@ -62,7 +65,6 @@ extern char g_unk_7172733a69[];
 void fn_71008ffb38(CType* self, const CStrId& name, void* a, void* b);
 extern char g_unk_7172733be0[];
 // CLiquidPoolBaseComponent::ELiquidType and its converters to and from int.
-extern base::reflection::CType g_unk_7172733be8;
 void fn_71008fff3c(CType* self, const CStrId& name, void (*init)(void*), void* extra);
 void fn_71008ffd30(void* e);  // src/clones/clones_03.cpp
 extern char g_unk_7172733d00[];
@@ -118,11 +120,11 @@ void fn_7100905300() {
 
     {
         CStrId name("CLiquidPoolBaseComponent::ELiquidType", true);
-        fn_71008fff3c(&g_unk_7172733be8, name, fn_71008ffd30, nullptr);
+        fn_71008fff3c(&base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object, name, fn_71008ffd30, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7172733be8, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7172733d00, &g_unk_7172733be8);
-    InitEnumConverters(reinterpret_cast<UnkReflType*>(&g_unk_7172733be8), g_unk_7172733d08, fn_7100903848,
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7172733d00, &base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object);
+    InitEnumConverters(reinterpret_cast<UnkReflType*>(&base::reflection::TypeObject<CLiquidPoolBaseComponent::ELiquidType>::object), g_unk_7172733d08, fn_7100903848,
                        g_unk_7172733d28, fn_7100903854);
 
     InitEffect(&tu.effects[0], "actors/characters/samus/fx/watersplash.bcptl");

@@ -25,9 +25,6 @@ static_assert(__builtin_offsetof(UnkHeatRoomTU, component_type) == 0xb0, "layout
 
 extern UnkHeatRoomTU g_unk_7172746770 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<> g_unk_71727461c8;
-extern UnkPropertyEx<0x160> g_unk_7172746208;
-extern void* g_unk_7101a45fe8[];
-extern void* g_unk_7101a45f90[];
 extern UnkReflType g_unk_7172746390;
 void fn_7100a24c3c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_7100a24af0();

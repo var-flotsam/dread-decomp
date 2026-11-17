@@ -19,9 +19,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::global::timeline { struct TLayers; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::timeline::TLayers>::object asm("g_unk_7101d580f0");
 
 // CCharClassTimelineComponent
-extern base::reflection::CType g_unk_7101d580f0;
 namespace CCharClassTimelineComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -29,8 +31,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CTimelineComponent::ENextPolicy", "eNextPolicy", 0x58, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0x68, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0x6c, (DefaultValue, 0.0f));
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLayerInFrustumToLaunchInRandomDelayPolicy", true), &g_unk_7101d580f0, 0x70, -1, -1);
-    field4->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7101d580f0, s32(base::reflection::refl_GetEnumZero<0x7101d57cc8>()));
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLayerInFrustumToLaunchInRandomDelayPolicy", true), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, 0x70, -1, -1);
+    field4->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::global::timeline::TLayers>::object, s32(base::reflection::refl_GetEnumZero<0x7101d57cc8>()));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

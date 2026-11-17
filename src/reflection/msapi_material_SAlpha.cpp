@@ -20,6 +20,9 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<char>::Get();
 
 // msapi::material::SAlpha
@@ -230,7 +233,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(msapi::material::SFill, base::core::CBaseObject);
 
 // msapi::material::SConstant
-extern base::reflection::CType g_unk_7101d679f0;
 const base::reflection::CType* fn_7100008500();
 namespace msapi::material::SConstant {
 void refl_AddAttributes(CClass* cls) {
@@ -240,7 +242,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("cType", true), &base::reflection::PrimitiveType<char>::Get(), 0x10, -1, -1);
     field1->attrs.AddTyped<u8, &fn_7100008500>(base::reflection::attr::DefaultValue(), 102);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

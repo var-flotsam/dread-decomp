@@ -4,22 +4,29 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CType.h"
+#include "base/reflection/UnkReflPrimitiveType.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::reflection::CType;
+using base::reflection::PrimitiveType;
 using base::reflection::TypeOfFn;
 using base::reflection::UnkTypedRef;
 
-struct UnkEnumType;
-struct UnkVersionEntry;
-
-UnkEnumType* fn_71000a0318();  // refl_GetType<base::global::TRntString512>
-UnkEnumType* fn_710009ffd4();  // base::global::TRntString256's type
-UnkEnumType* fn_710009fb38();  // refl_GetType<base::global::TRntString128>
-UnkEnumType* fn_710009f69c();  // refl_GetType<base::global::TRntString64>
-UnkEnumType* fn_710009f200();  // refl_GetType<base::global::TRntString32>
-bool fn_71000e6db0(UnkVersionEntry* self);
+// The string types' getters (src/reflection_types/).
+namespace base::global {
+class TRntString32;
+class TRntString64;
+class TRntString128;
+class TRntString256;
+class TRntString512;
+}  // namespace base::global
+extern template const CType& PrimitiveType<base::global::TRntString32>::Get();
+extern template const CType& PrimitiveType<base::global::TRntString64>::Get();
+extern template const CType& PrimitiveType<base::global::TRntString128>::Get();
+extern template const CType& PrimitiveType<base::global::TRntString256>::Get();
+extern template const CType& PrimitiveType<base::global::TRntString512>::Get();
 
 // A visitor over reflected values: one function per primitive type, taking a pointer to the value.
 struct UnkReflVisitor {
@@ -94,7 +101,7 @@ inline u32 VisitString(UnkReflVisitor* visitor, void* data) {
     CRntString* str = static_cast<CRntString*>(data);
     if (visitor->vf_0x168(str->data ? str->data : g_unk_710162e2ed))
         return 1;
-    return VisitTyped(visitor, reinterpret_cast<const CType*>(GetType()), data);
+    return VisitTyped(visitor, &GetType(), data);
 }
 
 u32 fn_710009e1b0(void*, const UnkTypedRef* ref, UnkReflVisitor* visitor) {
@@ -170,15 +177,15 @@ u32 fn_710009e1b0(void*, const UnkTypedRef* ref, UnkReflVisitor* visitor) {
         return visitor->vf_0x130(&dyn);
     }
     case (s64)0xc45934b5455cb361:
-        return VisitString<fn_710009f200>(visitor, ref->ptr);
+        return VisitString<&PrimitiveType<base::global::TRntString32>::Get>(visitor, ref->ptr);
     case (s64)0xde99f196920e66b5:
-        return VisitString<fn_710009f69c>(visitor, ref->ptr);
+        return VisitString<&PrimitiveType<base::global::TRntString64>::Get>(visitor, ref->ptr);
     case 0x2371dae4d1d885c4:
-        return VisitString<fn_710009fb38>(visitor, ref->ptr);
+        return VisitString<&PrimitiveType<base::global::TRntString128>::Get>(visitor, ref->ptr);
     case 0x26de4835f38bb831:
-        return VisitString<fn_710009ffd4>(visitor, ref->ptr);
+        return VisitString<&PrimitiveType<base::global::TRntString256>::Get>(visitor, ref->ptr);
     case 0x21406426265e3dc2:
-        return VisitString<fn_71000a0318>(visitor, ref->ptr);
+        return VisitString<&PrimitiveType<base::global::TRntString512>::Get>(visitor, ref->ptr);
     }
     return visitor->vf_0x138(ref);
 }

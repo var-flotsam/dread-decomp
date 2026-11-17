@@ -25,6 +25,9 @@ extern void (*g_unk_716e29b698)(void* object, u8 value);
 extern void (*g_unk_716e29b6a0)(void* object, s32 value);
 // An NVN C entry point, stored by the loader (its name is unknown).
 extern void (*g_unk_716e29b6a8)(void* object, u8 value);
+extern void (*g_unk_716e29b6b0)(void* object, s32 which, s32 value);
+extern void (*g_unk_716e29b9b8)(void* context, s32 which, s32 value);
+extern void (*g_unk_716e29b9b0)(void* context, s32 which, s32 value);
 extern void (*g_unk_716e29bbb0)(void* sync, void* device);  // NVN's sync initialiser.
 extern void (*g_unk_716e29b6b8)(void* object, s32 a, s32 b, s32 c, s32 d);
 extern void (*g_unk_716e29afc8)(void* pool, s32 id, void* texture, void* view);

@@ -19,6 +19,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace CAbilityOpticCamouflage { enum class ESelectionMode : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionMode>::object asm("g_unk_71726afcf8");
+namespace CAbilityOpticCamouflage { enum class ESelectionInput : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionInput>::object asm("g_unk_71726afe58");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CAbilityOpticCamouflage
@@ -51,8 +56,6 @@ DREAD_REFLECTED_CLASS(CAbilityOpticCamouflage, CAbility);
 
 // CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage
 extern bool g_unk_71726b0050;
-extern base::reflection::CType g_unk_71726afcf8;
-extern base::reflection::CType g_unk_71726afe58;
 extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726affc0;
 void fn_71003232d8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
@@ -68,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamagePerSecondMoving", 0x34, (DefaultValue, 10.0f), (ShowInConfig, true), (Description, "Damage per second moving"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 0.5f), (InternalTag, "OpticCamouflage"));
     DREAD_REFLECTED_FIELD(s32, "iMode", 0x38, (DefaultValue, 0));
     UnkReflField* field3 = AddReflectedField(cls, CStrId("iSelectionMode", true), &base::reflection::PrimitiveType<int>::Get(), 0x84, -1, -1);
-    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71726afcf8, 0);
+    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionMode>::object, 0);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Which action should player do with input to activate/deactivate");
     field3->attrs.Add<bool>(base::reflection::attr::ShowInConfig(), true);
     field3->attrs.Add<const char*>(base::reflection::attr::InternalTag(), "OpticCamouflage");
@@ -76,7 +79,7 @@ void refl_AddFields(CClass* cls) {
     field3->attrs.Add<s32>(base::reflection::attr::MaxValueI(), 1);
     field3->attrs.Add<s32>(base::reflection::attr::ControlIntStep(), 1);
     UnkReflField* field4 = AddReflectedField(cls, CStrId("iSelectionInput", true), &base::reflection::PrimitiveType<int>::Get(), 0x88, -1, -1);
-    field4->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71726afe58, 0);
+    field4->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CAbilityOpticCamouflage::ESelectionInput>::object, 0);
     field4->attrs.Add<const char*>(base::reflection::attr::Description(), "Which input to use when activating ability");
     field4->attrs.Add<bool>(base::reflection::attr::ShowInConfig(), true);
     field4->attrs.Add<const char*>(base::reflection::attr::InternalTag(), "OpticCamouflage");
