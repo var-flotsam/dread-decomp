@@ -222,7 +222,6 @@ struct UnkSwarmMember_ovb6;
 struct UnkRedenkiController_b55;
 struct UnkTarget;
 void fn_710074c304(UnkSwarmList_A5_b65* self);
-void fn_7100655280(UnkRedenkiController_b55* self, UnkTarget* target);
 
 struct UnkRedenkiMember_ovb0084;
 
@@ -1055,7 +1054,6 @@ struct UnkTarget;
 struct UnkMessage;
 struct UnkSwarmMember_ovb6;
 struct UnkRedenkiController_b55;
-void fn_7100655280(UnkRedenkiController_b55* self, UnkTarget* target);
 extern char g_unk_710164a438[];
 
 struct UnkRedenkiHandler_ovb0084 {

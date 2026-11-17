@@ -3,13 +3,12 @@
 // shape at +0x278 (fn_7100d5ff7c) and an empty handle; the base's kind becomes 13. Names and layouts are placeholders.
 #include <new>
 
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
+#include "game/CSamusMovementState/CParams.h"
 #include "game/logic/collision/CCapsuleShape2D.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkSamusParams_l9b06dc;
-void fn_71009b06dc(UnkSamusParams_l9b06dc* self);
-extern void* g_unk_7101a87520[];
 
 struct UnkMagnetSegment_l9a610c {
     u32 field_0x0;

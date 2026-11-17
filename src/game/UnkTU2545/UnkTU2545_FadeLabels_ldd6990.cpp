@@ -3,12 +3,12 @@
 // Names and layouts are placeholders.
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkStateMachineFind.h"
+#include "game/UnkTU2545.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 struct UnkPanel_b0277;
-void fn_7100dd60fc(UnkPanel_b0277* self);
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 
 struct UnkFlowState_ldd6990 {
     virtual void vf_0x0();

@@ -3,13 +3,8 @@
 // are placeholders.
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkTU1449.h"
+#include "game/UnkTU1454.h"
 #include "types.h"
-
-extern void* g_unk_7101a86030[];
-extern void* g_unk_7101a86130[];
-extern void* g_unk_7101a861e0[];
-extern void* g_unk_7101a86238[];
-extern void* g_unk_7101a86278[];
 
 // The common base: a vtable and a reflected value at +0x18 (0x30 bytes).
 struct UnkEventBase_l987a50 {

@@ -14,8 +14,6 @@
 
 using base::global::CRntString;
 
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f02b0;  // the fill sound's event
 
 // The frame timer: the frame's length at +0x30.
 struct UnkFrameTimer_4f8c {

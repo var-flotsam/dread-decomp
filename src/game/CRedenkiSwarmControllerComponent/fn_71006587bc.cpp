@@ -3,6 +3,7 @@
 // reach (at most 15) around it. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/CRedenkiSwarmControllerComponent.h"
 #include "game/UnkTU1159.h"
 #include "types.h"
 
@@ -10,7 +11,6 @@ extern "C" int rand();
 
 struct UnkRedenkiController_b55;
 struct UnkTarget;
-void fn_7100655280(UnkRedenkiController_b55* self, UnkTarget* target);
 
 struct UnkSwarmArea_l6587bc {
     u8 pad_0x0[0x44];

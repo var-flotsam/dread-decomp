@@ -1,11 +1,10 @@
 // nn::atk unit: carves a buffer into voice objects (each optionally followed by an extension block whose size
 // fn_710120f124 gives), constructs each one and appends it to the pool's free list, once.
 // Names and layouts are placeholders.
+#include "game/UnkTU2772.h"
 #include "types.h"
 
 struct UnkAtkInitObj;
-u64 fn_710120f124(void* param);
-void fn_710120f188(void* a, void* b, void* c, void* d);
 void fn_710122cc20(UnkAtkInitObj* self, void* owner);
 
 struct UnkAtkLink_l22ee50 {

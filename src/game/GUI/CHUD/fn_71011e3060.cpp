@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CInventoryComponent.h"
+#include "game/GUI/CHUD.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -32,7 +33,6 @@ struct UnkHudOwnedRef_3060 {
 };
 
 struct UnkHudOwnedPtr;
-void fn_71011e7700(base::global::CRntVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value);
 
 // Appends an owned object to the array (fn_71011e7700 takes it over).
 static inline void Append(base::global::CRntVector<UnkHudOwnedRef_3060>* array, UnkHudOwnedRef_3060&& value) {

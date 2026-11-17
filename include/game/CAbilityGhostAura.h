@@ -24,3 +24,7 @@ extern char g_unk_7101a22ce8[];
 void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
 CGrappleBeamGun* fn_710030c5fc(UnkAuraGunOwner* self, const base::global::CStrId& id);
 extern void* g_unk_7101a22a88[];
+extern f32 g_unk_7101a22a70;
+extern f32 g_unk_7101a22a74;
+extern f32 g_unk_7101a22a78;
+extern f32 g_unk_7101a22a7c;

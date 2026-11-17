@@ -4,12 +4,12 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU223.h"
+#include "game/UnkTU2545.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 struct UnkPanel_b0277;
-void fn_7100dd60fc(UnkPanel_b0277* self);
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 
 struct UnkFlowRender_ldd82a8 {
     u8 pad_0x0[0x78];

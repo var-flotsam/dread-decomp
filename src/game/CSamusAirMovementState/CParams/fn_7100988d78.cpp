@@ -4,10 +4,10 @@
 #include <new>
 
 #include "base/math/CVector.h"
+#include "game/CSamusMovementState/CParams.h"
 #include "types.h"
 
 struct UnkSamusParams_l9b06dc;
-void fn_71009b06dc(UnkSamusParams_l9b06dc* self);
 
 extern char g_unk_7101a862e0[];
 

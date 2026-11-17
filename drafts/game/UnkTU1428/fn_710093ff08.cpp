@@ -3,6 +3,7 @@
 // the way), whether it hit, and the hit. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/math/CVector.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkAssignedSlot.h"
 #include "game/UnkGameManager.h"
@@ -20,8 +21,6 @@ bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf,
 struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
-
-extern void* g_unk_7101a23590[];
 
 // A reference to a counted object, released when the count drops to zero; assigned out of line.
 struct UnkDropRef_l93ff08 {

@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -60,7 +61,6 @@ static_assert(__builtin_offsetof(UnkNavQuery_b0080, field_0x190) == 0x190, "layo
 
 struct UnkYamplotNav_b0080;
 s32 fn_71006f328c(void* ctx, UnkNavMeshSideSegment* seg);
-void fn_710110f318(UnkYamplotNav_b0080* self, u16 cell, UnkNavQuery_b0080* query, UnkNavMeshHits* hits);
 
 static inline UnkNavMeshManager* NavManager_b0080() {
     if (!g_unk_71726a4510) {

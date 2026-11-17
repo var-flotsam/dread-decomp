@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -69,7 +70,6 @@ struct UnkGoalFilter_l473ea8 {
 struct UnkYamplotNav_b0080;
 struct UnkNavQuery_b0080;
 struct UnkCellFilter_l474f80;
-void fn_710110f318(UnkYamplotNav_b0080* self, u16 cell, UnkNavQuery_b0080* query, UnkNavMeshHits* hits);
 __attribute__((visibility("hidden"))) bool fn_7100474f80(UnkCellFilter_l474f80* self, u32 key, u8 side);
 
 static inline UnkNavMeshManager* NavManager_l473ea8() {

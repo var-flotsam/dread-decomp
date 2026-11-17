@@ -2,6 +2,7 @@
 // owner's position and swept by the projection of `delta`, hits anything in the game manager's collision
 // tracker or in the tracker of the owner's +0x240 object. Names and layouts are placeholders.
 #include "base/math/CVector.h"
+#include "game/CAbilityShinespark.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU365.h"
@@ -18,8 +19,6 @@ struct UnkMatrix44_7100078c9c {
 
 struct UnkQuetzoaPart_l64b884;
 UnkTree* fn_710110c498(UnkQuetzoaPart_l64b884* part);
-
-extern void* g_unk_7101a23590[];
 
 struct UnkHitObj_l64b884 {
     virtual void vf_0x0();

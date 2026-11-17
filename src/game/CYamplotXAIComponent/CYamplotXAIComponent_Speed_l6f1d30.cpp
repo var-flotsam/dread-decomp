@@ -5,6 +5,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -12,7 +13,6 @@ using base::global::UnkStringPool;
 
 struct UnkCaterzillaAIScale_b49;
 struct UnkCaterzillaOut_b49;
-void fn_7101111c24(UnkCaterzillaAIScale_b49* self, UnkCaterzillaOut_b49* out);
 
 // A copied string id whose destructor does not test for a null id.
 struct UnkYamplotId_l6f1ed8 {

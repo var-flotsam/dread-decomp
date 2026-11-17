@@ -1,11 +1,9 @@
 // Unit 1454: the constructor of the object fn_71009878fc destroys: a state itself (id given), two state
 // machines with three and two states, a few flags, then fn_7100982e34 registers the states. Names and
 // layouts are placeholders.
+#include "game/UnkTU1454.h"
 #include "types.h"
 
-extern void* g_unk_7101a86030[];  // the object's vtable
-extern void* g_unk_7101a86278[];  // the first machine's vtable
-extern void* g_unk_7101a86238[];  // the second machine's vtable
 extern void* g_unk_7101a86188[];  // the first machine's states' vtable
 extern void* g_unk_7101a860d8[];  // the second machine's states' vtable
 

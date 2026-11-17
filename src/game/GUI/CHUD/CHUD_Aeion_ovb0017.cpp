@@ -9,6 +9,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CSpecialEnergyComponent.h"
+#include "game/GUI/CHUD.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -271,7 +272,6 @@ struct UnkHudOwnedRef_ovb0017 {
 };
 
 struct UnkHudOwnedPtr;
-void fn_71011e7700(base::global::CRntVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value);
 
 using UnkHudOwnedVector_ovb0017 = base::global::CRntVector<UnkHudOwnedRef_ovb0017>;
 

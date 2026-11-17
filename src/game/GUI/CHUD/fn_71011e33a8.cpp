@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "base/global/CRntVector.h"
+#include "game/GUI/CHUD.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -29,7 +30,6 @@ struct UnkHudOwnedRef_33a8 {
 };
 
 struct UnkHudOwnedPtr;
-void fn_71011e7700(base::global::CRntVector<UnkHudOwnedPtr>* self, UnkHudOwnedPtr* value);
 
 // Hands a new object to the array (the array's out-of-line EmplaceBack).
 static inline void Add(base::global::CRntVector<UnkHudOwnedPtr>* list, UnkHudOwned_33a8* object) {

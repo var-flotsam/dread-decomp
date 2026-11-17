@@ -4,11 +4,11 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/CFlockingSwarmControllerComponent.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
 #include "types.h"
 
 struct UnkRedenkiSwarm_b46a2;
-void fn_7100737d58(UnkRedenkiSwarm_b46a2* object);
 
 struct UnkSwarmCtrlBase_l64effc {
     void** vtable;
