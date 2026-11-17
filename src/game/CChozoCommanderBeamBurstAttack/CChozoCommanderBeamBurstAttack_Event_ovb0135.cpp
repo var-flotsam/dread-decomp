@@ -23,7 +23,6 @@
 #include "types.h"
 
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 
 struct UnkBurstEventId_ovb0135 {
     u8 pad_0x0[0x30];

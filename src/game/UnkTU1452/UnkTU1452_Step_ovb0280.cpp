@@ -14,6 +14,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
@@ -39,10 +40,10 @@ struct UnkStandTrackParams_ovb0280 {
     u32 flags;
     u32 mask;
 
-    __attribute__((always_inline)) UnkStandTrackParams_ovb0280(UnkStandTrackTime_ovb0280 time_,
+    UnkStandTrackParams_ovb0280(UnkStandTrackTime_ovb0280 time_,
                                                                UnkStandTrackBlend_ovb0280 blend_, u32 mask_)
         : id(-1), time(time_), blend(blend_), flags(0), mask(mask_) {}
-    __attribute__((always_inline)) UnkStandTrackParams_ovb0280()
+    UnkStandTrackParams_ovb0280()
         : UnkStandTrackParams_ovb0280(reinterpret_cast<const UnkStandTrackTime_ovb0280&>(g_unk_710164b958),
                                       reinterpret_cast<const UnkStandTrackBlend_ovb0280&>(g_unk_7172769740),
                                       base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>()) {}
@@ -50,7 +51,7 @@ struct UnkStandTrackParams_ovb0280 {
 
 struct UnkStandParamsVtable_ovb0280 {
     void* vtable;
-    __attribute__((always_inline)) UnkStandParamsVtable_ovb0280() { vtable = g_unk_7101a22cb8 + 2; }
+    UnkStandParamsVtable_ovb0280() { vtable = g_unk_7101a22cb8 + 2; }
 };
 
 struct UnkStandRequest_ovb0280 : UnkStandParamsVtable_ovb0280 {
@@ -60,7 +61,7 @@ struct UnkStandRequest_ovb0280 : UnkStandParamsVtable_ovb0280 {
     u32 field_0x40;
     u32 field_0x44;
 
-    __attribute__((always_inline)) UnkStandRequest_ovb0280() {
+    UnkStandRequest_ovb0280() {
         field_0x38 = 3;
         __builtin_memset(&field_0x3c, 0, 8);
         field_0x44 = 0;
@@ -199,24 +200,14 @@ struct UnkSmOwner_b60 {
     UnkSmMachine_b60 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_b60(UnkSmMachine_b60* self, u32 id,
-                                                               UnkSmState_b60*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b60);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_b60* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b60)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_b60(UnkSmMachine_b60* self, u32 id, UnkSmState_b60*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_b60(UnkSmMachine_b60* self, u32 id,
-                                                                 UnkSmState_b60* current) {
+static inline void SwitchState_b60(UnkSmMachine_b60* self, u32 id, UnkSmState_b60* current) {
     if (!current || current->id != id) {
         UnkSmState_b60* found;
         UnkSmState_b60* next;
@@ -249,7 +240,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_b60(UnkSmMachine_b60* self, u32 id) {
+static inline void RequestState_b60(UnkSmMachine_b60* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;
@@ -261,7 +252,7 @@ __attribute__((always_inline)) static inline void RequestState_b60(UnkSmMachine_
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void ApplyPending_b60(UnkSmMachine_b60* self) {
+static inline void ApplyPending_b60(UnkSmMachine_b60* self) {
     u32 id = self->pending;
     if (id > Last)
         return;

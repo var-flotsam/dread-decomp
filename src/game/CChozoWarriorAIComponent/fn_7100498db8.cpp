@@ -21,7 +21,6 @@ struct UnkSelf {
 };
 
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 struct UnkActorTarget;
 
 void fn_7100498db8(UnkSelf* self) {

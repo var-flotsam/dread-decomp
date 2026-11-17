@@ -7,6 +7,7 @@
 
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CName.h"
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkDoorState_b58 {
@@ -38,16 +39,8 @@ struct UnkDoorStateMachine_b58 {
     bool field_0xa8;
 };
 
-// The original walks the states with a byte count it tests for zero after the shift (the barrier keeps
-// the compiler from testing the count instead) and steps the pointer before the count.
 static inline UnkDoorState_b58* FindState_b58(UnkDoorStateMachine_b58* self, s32 id) {
-    u64 n = (u64)self->count * sizeof(UnkDoorStatePtr_b58);
-    asm("" : "+r"(n));
-    for (UnkDoorStatePtr_b58* p = self->states; n != 0; ++p, n -= sizeof(UnkDoorStatePtr_b58)) {
-        if ((*p)->id == id)
-            return *p;
-    }
-    return nullptr;
+    return FindStateById(self->states, self->count, id);
 }
 
 static inline void RequestState_b58(UnkDoorStateMachine_b58* self, s32 id) {

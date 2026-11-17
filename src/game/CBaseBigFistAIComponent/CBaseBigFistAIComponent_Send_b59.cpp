@@ -6,12 +6,12 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 #include "game/UnkBossAIComponent.h"
 
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 struct UnkComponent;
 
 struct UnkBigFistIdData_b59 {

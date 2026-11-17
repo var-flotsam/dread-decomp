@@ -1291,7 +1291,7 @@ address,size,name,name_source,subsystem,status
 0x710043db5c,696,fn_710043db5c,unknown,game/ai?,O
 0x710043de14,976,fn_710043de14,unknown,game/ai?,U
 0x710043e1e4,100,fn_710043e1e4,unknown,game/ai?,O
-0x710043e248,1556,fn_710043e248,unknown,game/ai?,U
+0x710043e248,1556,fn_710043e248,unknown,game/ai?,O
 0x710043e85c,4,fn_710043e85c,unknown,game/ai?,O
 0x710043e860,32,fn_710043e860,unknown,game/ai?,O
 0x710043e880,372,fn_710043e880,unknown,game/ai?,O

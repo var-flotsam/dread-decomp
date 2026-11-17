@@ -33,6 +33,9 @@ struct UnkFilePathStrIdBase {
     UnkStringData* data;
 };
 
+// Tag for CFilePathStrId's second copy constructor.
+struct UnkCopyByPointer {};
+
 class CFilePathStrId : public UnkFilePathStrIdBase {
 public:
     CFilePathStrId(const char* str, bool flag) asm("fn_71000166c8");  // fn_71000166c8
@@ -57,6 +60,12 @@ public:
             data = &g_unk_7101d47200->empty;
     }
     CFilePathStrId(const CFilePathStrId& other) : UnkFilePathStrIdBase(other) {
+        if (&g_unk_7101d47200->empty != data)
+            ++data->ref_count;
+    }
+    // The same copy, reading the other id's pointer instead of copying its base whole: the form the
+    // sound description's default path has (game/sound/UnkSoundDesc.h; fn_7100552af0 shows it).
+    CFilePathStrId(UnkCopyByPointer, const CFilePathStrId& other) : UnkFilePathStrIdBase{other.data} {
         if (&g_unk_7101d47200->empty != data)
             ++data->ref_count;
     }

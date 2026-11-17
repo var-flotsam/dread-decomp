@@ -8,6 +8,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilitySpeedBooster.h"
 #include "game/CChozoWarriorAttack.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
@@ -61,26 +62,18 @@ struct UnkSmStatesAt_A2_b63 {
     u32 offset = 0;
 };
 
-__attribute__((always_inline)) static inline bool FindState_A2_b63(UnkSmMachine_A2_b63* self, UnkSmStatesAt_A2_b63 states,
-                                                               u32 id, UnkSmState_A2_b63*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_A2_b63);
-    asm("" : "+r"(n));
+static inline bool FindState_A2_b63(UnkSmMachine_A2_b63* self, UnkSmStatesAt_A2_b63 states,
+                                    u32 id, UnkSmState_A2_b63*& out) {
     UnkSmStatePtr_A2_b63* p = states.offset
         ? reinterpret_cast<UnkSmStatePtr_A2_b63*>(states.owner + states.offset) : self->states;
-    for (; n != 0; ++p, n -= sizeof(UnkSmStatePtr_A2_b63)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+    out = FindStateById(p, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_A2_b63(UnkSmMachine_A2_b63* self, UnkSmStatesAt_A2_b63 states, u32 id,
-                                                                 UnkSmState_A2_b63* current) {
+static inline void SwitchState_A2_b63(UnkSmMachine_A2_b63* self, UnkSmStatesAt_A2_b63 states, u32 id,
+                                      UnkSmState_A2_b63* current) {
     if (!current || current->id != id) {
         UnkSmState_A2_b63* found;
         UnkSmState_A2_b63* next;
@@ -113,8 +106,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Apply_A2_b63(UnkSmMachine_A2_b63* self,
-                                                           UnkSmStatesAt_A2_b63 states = UnkSmStatesAt_A2_b63()) {
+static inline void Apply_A2_b63(UnkSmMachine_A2_b63* self, UnkSmStatesAt_A2_b63 states = UnkSmStatesAt_A2_b63()) {
     u32 id = self->pending;
     if (id > Last)
         return;
@@ -215,7 +207,7 @@ void* fn_7100300bd0(void*, u32);
 void fn_710033bc80(UnkSmAbility2_A2_b63*, f32);
 void fn_710033bf64(UnkSmAbility2_A2_b63*, f32);
 
-__attribute__((always_inline)) static inline u32 State_A2_b63(UnkSmMachine_A2_b63* self, u32 none) {
+static inline u32 State_A2_b63(UnkSmMachine_A2_b63* self, u32 none) {
     if (self->pending != none)
         return self->pending;
     return self->current ? self->current->id : none;
@@ -325,7 +317,7 @@ void fn_7100328784(UnkSmAbility3_A2_b63* self, f32 dt) {
 
 // ---- Requests (the b60 request template on the same machine) ----
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_A2_b63(
+static inline void RequestState_A2_b63(
     UnkSmMachine_A2_b63* self, u32 id, UnkSmStatesAt_A2_b63 states = UnkSmStatesAt_A2_b63()) {
     u32* pending = &self->pending;
     *pending = id;
@@ -350,14 +342,14 @@ struct UnkSmGrab_A2_b63 {
     bool requested;  // set with the requests of states 7 and 12
 };
 
-__attribute__((always_inline)) static inline bool InTrack_A2_b63(const base::reflection::CClass* (*cls)()) {
+static inline bool InTrack_A2_b63(const base::reflection::CClass* (*cls)()) {
     UnkSmActor_A2_b63* player = reinterpret_cast<UnkSmActor_A2_b63*>(fn_7100defcd4(g_unk_7101d47310));
     return fn_710117b348(player->animation, cls());
 }
 
 // TrackFirst: states 4 and 9 test the track before the blocked flag.
 template <u32 Offset, bool TrackFirst>
-__attribute__((always_inline)) static inline void Grab_A2_b63(UnkSmGrab_A2_b63<Offset>* self) {
+static inline void Grab_A2_b63(UnkSmGrab_A2_b63<Offset>* self) {
     UnkSmState_A2_b63* current = self->machine.current;
     if (!current)
         return;
@@ -420,7 +412,7 @@ void fn_7100489b18(UnkSmGrab_A2_b63<0x80>* self) {
 
 // The same attacks: request one of two states by the done flag.
 template <u32 Offset, u32 IfDone, u32 Otherwise>
-__attribute__((always_inline)) static inline void GrabNext_A2_b63(UnkSmGrab_A2_b63<Offset>* self) {
+static inline void GrabNext_A2_b63(UnkSmGrab_A2_b63<Offset>* self) {
     if (self->done)
         RequestState_A2_b63<12, 0x7fffffff>(&self->machine, IfDone);
     else
@@ -455,7 +447,7 @@ struct UnkSmLinked_A2_b63 {
     UnkSmMachine_A2_b63 machine;
 };
 
-__attribute__((always_inline)) static inline void Unlink_A2_b63(UnkWeakHandle** slot, void* link) {
+static inline void Unlink_A2_b63(UnkWeakHandle** slot, void* link) {
     if (UnkWeakHandle* handle = *slot) {
         if (UnkWeakTarget* target = handle->target)
             fn_710117b3f0(target, link);
@@ -464,7 +456,7 @@ __attribute__((always_inline)) static inline void Unlink_A2_b63(UnkWeakHandle** 
 }
 
 template <u32 Offset>
-__attribute__((always_inline)) static inline void StartLinked_A2_b63(UnkSmLinked_A2_b63<Offset>* self) {
+static inline void StartLinked_A2_b63(UnkSmLinked_A2_b63<Offset>* self) {
     RequestState_A2_b63<12, 0x7fffffff>(&self->machine, 1);
     Unlink_A2_b63(&self->handle_a, self->link_a);
     Unlink_A2_b63(&self->handle_b, self->link_b);

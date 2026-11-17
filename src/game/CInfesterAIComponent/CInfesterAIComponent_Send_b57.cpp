@@ -16,7 +16,6 @@ using base::global::CStrId;
 
 struct UnkQuetzoaAIComponent;
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 struct UnkFlagTarget;
 
 struct UnkInfesterOwner_b57a3 {

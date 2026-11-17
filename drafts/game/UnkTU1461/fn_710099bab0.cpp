@@ -1,10 +1,11 @@
 // CSamusGrappleMovementState's unit (tools/tu_map.py, unit 1461): picks the animation action the grapple
 // state plays (a pair of action ids, the second for when the aim points back against the facing) and
 // returns it as a request with the default time and blend. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -54,7 +55,7 @@ struct UnkGrappleTrackRecord_l99bab0 {
 
 struct UnkGrappleMoveState_l99bab0 {
     u8 pad_0x0[0x10];
-    u32 kind;
+    u32 id;
 };
 
 struct UnkGrappleAnimActor_l99bab0 {
@@ -111,11 +112,7 @@ struct UnkGrappleState_l99bab0 {
 static inline UnkGrappleMoveState_l99bab0* FindState(UnkGrappleMovement_l99bab0* self, u32 kind) {
     if (kind > 14)
         return nullptr;
-    for (u64 size = (u64)self->state_count * sizeof(self->states[0]), i = 0; size != 0; size -= 8, ++i) {
-        if (self->states[i]->kind == kind)
-            return self->states[i];
-    }
-    return nullptr;
+    return FindStateById(self->states, self->state_count, kind);
 }
 
 static inline bool IsPlaying(UnkGrappleAnimActor_l99bab0* actor, const base::reflection::CClass* cls) {

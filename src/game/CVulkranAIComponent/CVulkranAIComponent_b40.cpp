@@ -10,7 +10,6 @@
 #include "types.h"
 
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 
 struct UnkOwner_vk {
     u8 pad_0x0[0x218];

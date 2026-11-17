@@ -16,6 +16,7 @@
 #include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2547.h"
@@ -61,24 +62,14 @@ struct UnkSmOwnerA5_b61 {
     UnkSmMachineA5_b61 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindStateA5_b61(UnkSmMachineA5_b61* self, u32 id,
-                                                               UnkSmStateA5_b61*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtrA5_b61);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtrA5_b61* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtrA5_b61)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindStateA5_b61(UnkSmMachineA5_b61* self, u32 id, UnkSmStateA5_b61*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchStateA5_b61(UnkSmMachineA5_b61* self, u32 id,
-                                                                 UnkSmStateA5_b61* current) {
+static inline void SwitchStateA5_b61(UnkSmMachineA5_b61* self, u32 id, UnkSmStateA5_b61* current) {
     if (!current || current->id != id) {
         UnkSmStateA5_b61* found;
         UnkSmStateA5_b61* next;
@@ -111,7 +102,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestStateA5_b61(UnkSmMachineA5_b61* self, u32 id) {
+static inline void RequestStateA5_b61(UnkSmMachineA5_b61* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;

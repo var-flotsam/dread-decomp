@@ -123,7 +123,6 @@ void fn_71004434a0();
 void fn_71004434b0();
 void fn_7100443500();
 void fn_7100443504();
-void fn_7100443508();
 void fn_71004435a8();
 
 void fn_710043e248(UnkUltimateGrabStates_43e248* self) {
@@ -182,7 +181,7 @@ void fn_710043e248(UnkUltimateGrabStates_43e248* self) {
     s[10].field_0x50 = {self, fn_7100443504};
 
     m.Add(&s[11]);
-    s[11].field_0x30 = {self, fn_7100443508};
+    s[11].field_0x30 = {self, reinterpret_cast<void (*)()>(fn_7100443508)};
     s[11].field_0x50 = {self, fn_71004435a8};
 
     m.Request(1);

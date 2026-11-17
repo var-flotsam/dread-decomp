@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2595.h"
 #include "game/UnkTU2656.h"
@@ -79,23 +80,13 @@ struct UnkSmOwner_b0225 {
 };
 static_assert(__builtin_offsetof(UnkSmOwner_b0225, timer) == 0x258, "owner layout");
 
-__attribute__((always_inline)) static inline bool FindState_b0225(UnkSmMachine_b0225* self, u32 id,
-                                                                 UnkSmState_b0225*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b0225);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_b0225* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b0225)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_b0225(UnkSmMachine_b0225* self, u32 id, UnkSmState_b0225*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` and clears the pending id.
-__attribute__((always_inline)) static inline void SwitchState_b0225(UnkSmMachine_b0225* self, u32 id,
-                                                                   UnkSmState_b0225* current) {
+static inline void SwitchState_b0225(UnkSmMachine_b0225* self, u32 id, UnkSmState_b0225* current) {
     if (!current || current->id != id) {
         UnkSmState_b0225* found;
         UnkSmState_b0225* next;
@@ -127,7 +118,7 @@ done:
     self->pending = 0x7fffffff;
 }
 
-__attribute__((always_inline)) static inline void RequestState_b0225(UnkSmMachine_b0225* self, u32 id) {
+static inline void RequestState_b0225(UnkSmMachine_b0225* self, u32 id) {
     u32* pending = &self->pending;
     *pending = id;
     if (self->busy)
