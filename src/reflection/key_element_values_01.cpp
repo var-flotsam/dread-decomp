@@ -60,8 +60,10 @@ namespace GUI { class CSkin; }
 namespace GUI { class CSpriteSheet; }
 namespace GUI { class CSpriteSheetItem; }
 namespace GUI { class IDisplayObjectTrack; }
+namespace GUI { template <class> class CDisplayObjectTrack { public: struct SKey; }; }
 namespace GUI::CMissionLog { class TMissionLogEntries; }
 namespace base::global { class CFilePathStrId; }
+namespace base::global { class CRntString; }
 namespace base::global { class CStrId; }
 namespace base::global { template <class, class> class CRntDictionary; }
 namespace base::global { template <class, class> class CRntPooledDictionary; }
@@ -358,6 +360,138 @@ struct ConstKeyElementValue<base::global::CRntVector<GUI::IDisplayObjectTrack*>>
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CRntVector<GUI::IDisplayObjectTrack*>>);
+
+// The pair base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>'s key-element iterator yields.
+template <>
+bool KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>::refl_Equals(const void* a, const void* b) { return a == b; }
+template <>
+s32 KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>::refl_Hash() { return -1; }
+template <>
+struct KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x18;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>);
+
+// The pair base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>'s const key-element iterator yields.
+template <>
+bool ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>::refl_Equals(const void* a, const void* b) { return a == b; }
+template <>
+s32 ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>::refl_Hash() { return -1; }
+template <>
+void* ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>::refl_CopyAssign(void*, const void*) { return nullptr; }
+template <>
+void* ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>::refl_MoveAssign(void*, const void*) { return nullptr; }
+template <>
+struct ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x18;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<float>::SKey>>);
+
+// The pair base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>'s key-element iterator yields.
+template <>
+bool KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>::refl_Equals(const void* a, const void* b) { return a == b; }
+template <>
+s32 KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>::refl_Hash() { return -1; }
+template <>
+struct KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x18;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>);
+
+// The pair base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>'s const key-element iterator yields.
+template <>
+bool ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>::refl_Equals(const void* a, const void* b) { return a == b; }
+template <>
+s32 ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>::refl_Hash() { return -1; }
+template <>
+void* ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>::refl_CopyAssign(void*, const void*) { return nullptr; }
+template <>
+void* ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>::refl_MoveAssign(void*, const void*) { return nullptr; }
+template <>
+struct ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x18;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<bool>::SKey>>);
+
+// The pair base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>'s key-element iterator yields.
+template <>
+bool KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>::refl_Equals(const void* a, const void* b) { return a == b; }
+template <>
+s32 KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>::refl_Hash() { return -1; }
+template <>
+struct KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x48;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>);
+
+// The pair base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>'s const key-element iterator yields.
+template <>
+bool ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>::refl_Equals(const void* a, const void* b) { return a == b; }
+template <>
+s32 ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>::refl_Hash() { return -1; }
+template <>
+void* ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>::refl_CopyAssign(void*, const void*) { return nullptr; }
+template <>
+void* ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>::refl_MoveAssign(void*, const void*) { return nullptr; }
+template <>
+struct ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>::refl_Description : ClassDescription {
+    static constexpr u64 size = 0x48;
+    static constexpr auto equals = &refl_Equals;
+    static constexpr auto hash = &refl_Hash;
+    static constexpr auto type_of = &refl_TypeOf;
+    static constexpr auto construct = &refl_Construct;
+    static constexpr auto copy_construct = &refl_CopyConstruct;
+    static constexpr auto move_construct = &refl_MoveConstruct;
+    static constexpr auto destroy = &refl_Destroy;
+    static constexpr auto copy_assign = &refl_CopyAssign;
+    static constexpr auto move_assign = &refl_MoveAssign;
+};
+DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CRntVector<GUI::CDisplayObjectTrack<base::global::CRntString>::SKey>>);
 
 // The pair GUI::CMissionLog::TMissionLogEntries's key-element iterator yields.
 template <>
