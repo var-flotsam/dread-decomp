@@ -16,3 +16,7 @@ void fn_7100e2c124(f32 value, UnkNoArg, UnkDropTarget_ovb0208* target, const bas
                    u32 c, u32 d, u32 e, bool flag);
 // Copies a drop's entry set.
 UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other);
+// The drops' callbacks, each given the manager.
+void fn_7100e2f98c(void* owner);
+void fn_7100e2f994(void* owner);
+void fn_7100e2f99c(void* owner);

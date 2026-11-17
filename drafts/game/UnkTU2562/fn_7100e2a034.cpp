@@ -3,10 +3,13 @@
 // Names and layouts are placeholders.
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkNoArg.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkTU2561.h"
+#include "game/UnkTU2562.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -20,13 +23,9 @@ struct UnkDroppedItem;
 struct UnkDropTarget_ovb0208;
 struct UnkDropEntrySet_ovb0208;
 
-extern CStrId g_unk_71727c1078;
-extern CStrId g_unk_71727c1088[];  // the billboards' default ids
 // The billboards' path prefix and suffixes.
 __attribute__((visibility("hidden"))) extern CRntString g_unk_71727c13c8[];
 
-void fn_7100e2c124(f32 value, void* self, UnkDropTarget_ovb0208* target, const CStrId* id, u32 a, u32 b, u32 c, u32 d, u32 e,
-                   bool flag);
 UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other);
 void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg);
 
@@ -153,7 +152,7 @@ void fn_7100e2a034(UnkDropManager_e2a034* self) {
     entry.field_0x34 = Tunable().field_0x7c;
     SetColor(entry.color0, CColor4F(0.1f, 1.0f, 0.0f, 1.0f));
     SetColor(entry.color1, CColor4F(0.0f, 0.0f, 0.0f, 0.0f));
-    fn_7100e2c124(0.5f, nullptr, reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1078), &entry.id0, 0x10, 0x10, 0x10, 0,
+    fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1078), &entry.id0, 0x10, 0x10, 0x10, 0,
                   0, true);
 
     UnkDropBillboard_e2a034* billboard = &self->billboard;

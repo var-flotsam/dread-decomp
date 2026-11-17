@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAISmartObjectComponent.h"
 #include "game/CDrop.h"
+#include "game/CDropLayout.h"
 #include "game/CGameObject.h"
 #include "game/CLifeComponent.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
@@ -26,67 +27,15 @@ struct UnkIdPair;
 struct UnkCameraCtrl_ovb0049;
 extern char g_unk_7101a71568[];  // CDrop's vtable
 
-// An id released in two steps (CStrId::Reset) when its owner is destroyed.
-struct UnkDropId_b0105 {
-    union {
-        CStrId id;
-    };
-    ~UnkDropId_b0105() { id.Reset(); }
-};
-
-// One of the drop's 15 entries (0x48 bytes).
-struct UnkDropEntry_b0105 {
-    u64 field_0x0;
-    UnkDropId_b0105 field_0x8;
-    UnkDropId_b0105 field_0x10;
-    u8 pad_0x18[0x30];
-};
-static_assert(sizeof(UnkDropEntry_b0105) == 0x48, "UnkDropEntry_b0105 layout");
-
-// An id/path resource record (0x18 bytes), released with fn_7100026f70.
-struct UnkDropResource_b0105 {
-    CStrId id;
-    CFilePathStrId path;
-    u64 field_0x10;
-    UnkDropResource_b0105() : id(g_unk_7101d470e0), path(g_unk_7101d470e8), field_0x10(0) {}
-};
-
-struct UnkDrop_b0105 {
-    void** vtable;
-    u64 field_0x8;
-    u64 field_0x10;
-    u64 field_0x18;
-    UnkDropEntry_b0105 entries[15];  // 0x20
-    u8 pad_0x458[8];
-    UnkDropId_b0105 field_0x460;
-    u32 field_0x468;
-    UnkDropId_b0105 field_0x470;
-    u64 field_0x478;
-    u64 field_0x480;
-    u32 field_0x488;
-    u32 field_0x48c;
-    u32 field_0x490;
-    u32 field_0x494;
-    u32 field_0x498;
-    bool field_0x49c;
-    UnkDropResource_b0105 field_0x4a0;
-    UnkDropResource_b0105 field_0x4b8;
-    UnkDropResource_b0105 field_0x4d0;
-    bool field_0x4e8;
-};
-static_assert(__builtin_offsetof(UnkDrop_b0105, field_0x4d0) == 0x4d0, "UnkDrop_b0105 layout");
-
-void fn_71007bf3f0(UnkDrop_b0105* self) {
+void fn_71007bf3f0(CDrop* self) {
     fn_7101043904(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101a71568) + 2;
-    self->field_0x10 = 0;
-    self->field_0x18 = 0;
-    // The entries are the table fn_71007bf550 builds, seen without its leading count: the count shares the
-    // first entry's field_0x0 here.
-    fn_71007bf550(reinterpret_cast<UnkTable_71007bf550*>(self->entries));
-    new (&self->field_0x460.id) CStrId(g_unk_710162e2ed, true);
+    self->owner = nullptr;
+    self->callback = nullptr;
+    new (&self->table) UnkDropTable;
+    new (&self->item) CStrId(g_unk_710162e2ed, true);
     self->field_0x468 = 0;
-    new (&self->field_0x470.id) CStrId(g_unk_710162e2ed, true);
+    new (&self->field_0x470) CStrId(g_unk_710162e2ed, true);
     self->field_0x480 = 0;
     self->field_0x478 = 0;
     self->field_0x48c = 0;
@@ -94,21 +43,20 @@ void fn_71007bf3f0(UnkDrop_b0105* self) {
     self->field_0x494 = 0;
     self->field_0x498 = 0;
     self->field_0x49c = true;
-    new (&self->field_0x4a0) UnkDropResource_b0105();
-    new (&self->field_0x4b8) UnkDropResource_b0105();
-    new (&self->field_0x4d0) UnkDropResource_b0105();
+    new (&self->field_0x4a0) UnkDropResource();
+    new (&self->field_0x4b8) UnkDropResource();
+    new (&self->field_0x4d0) UnkDropResource();
     self->field_0x4e8 = false;
 }
 
-void fn_71007bfa70(UnkDrop_b0105* self) {
+void fn_71007bfa70(CDrop* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101a71568) + 2;
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->field_0x4d0));
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->field_0x4b8));
     fn_7100026f70(reinterpret_cast<UnkIdPair*>(&self->field_0x4a0));
-    self->field_0x470.~UnkDropId_b0105();
-    self->field_0x460.~UnkDropId_b0105();
-    for (u32 i = 15; i-- > 0;)
-        self->entries[i].~UnkDropEntry_b0105();
+    self->field_0x470.~CStrId();
+    self->item.~CStrId();
+    self->table.~UnkDropTable();
     fn_7101043934(reinterpret_cast<UnkCameraCtrl_ovb0049*>(self));
 }
 
@@ -128,26 +76,13 @@ struct UnkDropScaleTunable_b0105 {
 };
 extern UnkDropScaleTunable_b0105 g_unk_7172a0a0a8;
 
-extern CStrId g_unk_71727c1048;
-extern CStrId g_unk_71727c1058;
-extern CStrId g_unk_71727c1060;
-extern CStrId g_unk_71727c1068;
-extern CStrId g_unk_71727c1078;
-
-struct UnkDropAmount_b0105 {
-    u8 pad_0x0[0x460];
-    CStrId item;  // 0x460
-    u8 pad_0x468[0x20];
-    f32 amount;  // 0x488
-};
-
 static inline f32 ScaledAmount(f32 amount, f32 scale) {
     f32 v = amount * scale;
     return v > 0.0f ? __builtin_ceilf(v) : __builtin_floorf(v);
 }
 
 // The drop's amount; in game mode 3 scaled by the item's multiplier and rounded away from zero.
-f32 fn_71007bffe4(UnkDropAmount_b0105* self) {
+f32 fn_71007bffe4(CDrop* self) {
     if (fn_7100dffc58(g_unk_7101d47310) == 3) {
         base::global::UnkStringData* item = self->item.data;
         if (item == g_unk_71727c1048.data)
