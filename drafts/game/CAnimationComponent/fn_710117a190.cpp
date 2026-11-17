@@ -1,6 +1,7 @@
 // CAnimationComponent's unit (tools/tu_map.py): an event starting. Adds its key to the key lists it
 // names, tells the queued listeners (kind 3), then copies or re-anchors the owner's transform and
 // restarts the owner's effect as the event's flags ask. Names and layouts are placeholders.
+#include "base/UnkCountedDeferredSet.h"
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGuiRoot.h"
@@ -17,43 +18,15 @@ void fn_7100143618(UnkAnimEffect* self, bool flag, f32 value);
 
 __attribute__((visibility("hidden"))) extern u32 g_unk_7172a0ae60;  // flag bits a new matrix clears
 
-// The component's listener lists (+0x438), as UnkAnimListeners_b52 (CAnimationComponent_b52.cpp).
-struct UnkAnimListeners_a190 {
-    void** active;
-    u32 active_count;
-    u8 pad_0xc[0x1c];
-    void** pending;
-    u32 pending_count;
-    u8 pad_0x34[0x1c];
-    void** queued;    // 0x50
-    u32 queued_count; // 0x58
-    u8 pad_0x5c[0x1c];
-    union {
-        s32 lock;  // 0x78
-    };
+void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);
+void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
+
+// A walk over the component's listeners (+0x438); ending the last one applies the changes made
+// meanwhile (fn_710117ecb0).
+struct UnkAnimListenersWalk_a190 : base::UnkCountedDeferredWalk<void> {
+    using UnkCountedDeferredWalk::UnkCountedDeferredWalk;
+    ~UnkAnimListenersWalk_a190() { fn_710117ecb0(this); }
 };
-
-struct UnkAnimListenersLock_a190 {
-    UnkAnimListeners_a190* listeners;
-
-    explicit UnkAnimListenersLock_a190(UnkAnimListeners_a190* l);
-    ~UnkAnimListenersLock_a190();
-};
-
-struct UnkAnimListenersLock;
-void fn_710117ecb0(UnkAnimListenersLock* self);
-
-inline UnkAnimListenersLock_a190::UnkAnimListenersLock_a190(UnkAnimListeners_a190* l) {
-    listeners = l;
-    ++l->lock;
-}
-
-inline UnkAnimListenersLock_a190::~UnkAnimListenersLock_a190() {
-    fn_710117ecb0(reinterpret_cast<UnkAnimListenersLock*>(this));
-}
-
-struct UnkAnimListeners_b52;
-void fn_710117eb1c(UnkAnimListeners_b52* self, void* value);
 struct UnkPairOwner;
 struct UnkValueSource;
 UnkValueSource** fn_71002dba48(UnkPairOwner* self);
@@ -144,7 +117,7 @@ struct UnkAnimComponent_a190 {
     u8 pad_0x300[0x80];
     UnkGuiKeyList keys_0x380;
     u8 pad_0x3b0[0x88];
-    UnkAnimListeners_a190 listeners;  // 0x438
+    base::UnkCountedDeferredSet<void> listeners;  // 0x438
 };
 static_assert(__builtin_offsetof(UnkAnimComponent_a190, listeners) == 0x438, "layout");
 
@@ -163,12 +136,12 @@ void fn_710117a190(UnkAnimComponent_a190* self, UnkAnimSource_a190* source, UnkA
     {
         UnkAnimEventMsg_a190 msg(
             event->data, *reinterpret_cast<CStrId*>(fn_71002dba48(reinterpret_cast<UnkPairOwner*>(source))));
-        UnkAnimListenersLock_a190 lock(&self->listeners);
-        void** end = self->listeners.queued + self->listeners.queued_count;
-        for (void** it = self->listeners.queued; it != end; ++it) {
+        UnkAnimListenersWalk_a190 walk(&self->listeners);
+        void** end = self->listeners.items.data + self->listeners.items.count;
+        for (void** it = self->listeners.items.data; it != end; ++it) {
             UnkAnimListener_a190* listener = static_cast<UnkAnimListener_a190*>(*it);
             if (!listener || !listener->callback || !listener->callback(listener->context, &msg))
-                fn_710117eb1c(reinterpret_cast<UnkAnimListeners_b52*>(&self->listeners), listener);
+                fn_710117eb1c(&self->listeners, listener);
         }
     }
 
@@ -191,7 +164,7 @@ void fn_710117a190(UnkAnimComponent_a190* self, UnkAnimSource_a190* source, UnkA
         m.m[3] = x;
         m.m[7] = y;
         m.m[11] = z;
-        __builtin_memcpy(self->xform.m, &m, sizeof(m));
+        *reinterpret_cast<UnkMatrix44*>(self->xform.m) = m;
         self->xform.flags = (self->xform.flags | 8) & ~g_unk_7172a0ae60;
     }
 

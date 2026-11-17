@@ -10,6 +10,7 @@
 #include "base/UnkAtExit.h"
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCollectionIter.h"
+#include "base/UnkCountedDeferredSet.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
@@ -201,28 +202,19 @@ UnkRefHandle* refl_AssignHandle(UnkRefHandle* self, const UnkRefHandle* other) {
 }
 }
 
-// A deferred pointer set with a signed lock count at +0x78 and three arrays (fn_71008415d8 and
-// its identical copies). With the count at or below zero, the item is moved to the back of the
-// third array; otherwise it is appended to the first and dropped from the second. Names and
-// roles are placeholders inferred from the code.
+// Adds an item to a counted deferred set (base/UnkCountedDeferredSet.h; fn_71008415d8 and its
+// identical copies). With no walk in progress, the item is moved to the back of the set;
+// otherwise it is recorded as added and dropped from the removed ones.
 namespace base {
-
-template <class Tag>
-struct UnkCountedDeferredSet {
-    global::CRntVector<Tag*> items;
-    global::CRntVector<Tag*> pending_a;
-    global::CRntVector<Tag*> pending_b;
-    s32 lock;
-};
 
 template <class Tag>
 void refl_CountedDeferredAdd(UnkCountedDeferredSet<Tag>* s, Tag* item) {
     if (s->lock <= 0) {
-        s->pending_b.Remove(item);
-        s->pending_b.PushBack(item);
-    } else {
+        s->items.Remove(item);
         s->items.PushBack(item);
-        s->pending_a.Remove(item);
+    } else {
+        s->pending_add.PushBack(item);
+        s->pending_remove.Remove(item);
     }
 }
 
