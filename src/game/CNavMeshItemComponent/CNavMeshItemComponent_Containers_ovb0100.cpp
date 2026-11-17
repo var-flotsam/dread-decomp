@@ -30,6 +30,7 @@
 #include "game/UnkNavMeshManager.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 using base::UnkDeferredCallback;
 using base::UnkDeferredSet;
@@ -86,7 +87,8 @@ struct UnkSourceArg;
 
 // CNavMeshItemStage::ESide's enum type (src/game/CElectricGeneratorComponent/fn_7100a7dd80.cpp).
 struct UnkEnumType;
-extern UnkEnumType g_unk_717273ef58;
+namespace CNavMeshItemStage { enum class ESide : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CNavMeshItemStage::ESide, UnkEnumType>::object asm("g_unk_717273ef58");
 s32 fn_710009976c(const base::reflection::CEnumType* self, const base::global::CStrId* name);
 
 struct UnkNavSourceDesc_ovb0100 {
@@ -173,7 +175,7 @@ UnkReflValue fn_71009c2b04(void*, char* obj, UnkReflValue* const* values) {
             UnkNavSource_ovb0100* src = self->SourceAt(i);
             if (src && src->desc->id == id) {
                 src->side =
-                    fn_710009976c(reinterpret_cast<base::reflection::CEnumType*>(&g_unk_717273ef58), name);
+                    fn_710009976c(reinterpret_cast<base::reflection::CEnumType*>(&base::reflection::TypeObject<CNavMeshItemStage::ESide, UnkEnumType>::object), name);
                 break;
             }
         }

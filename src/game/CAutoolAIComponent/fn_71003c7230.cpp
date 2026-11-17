@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CAutoolAIComponent::EThrusterMode enum.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,8 @@ struct UnkStatics_71003c7230 {
 };
 extern UnkStatics_71003c7230 g_unk_71726be9a0 __attribute__((visibility("hidden")));
 extern char g_unk_71726be828[];
-extern UnkEnumType g_unk_71726be830;
+namespace CAutoolAIComponent { enum class EThrusterMode : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CAutoolAIComponent::EThrusterMode, UnkEnumType>::object asm("g_unk_71726be830");
 void fn_71003c2f9c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003c2df0();
 extern char g_unk_71726be948[];
@@ -30,6 +32,6 @@ void fn_71003c7230() {
     InitId(&g_unk_71726be9a0.field_0x28, "bottom_thruster");
     fn_71003c2a94();
     fn_710009ec00(g_unk_71726be828, g_unk_71726be9a0.field_0x38);
-    InitEnum(&g_unk_71726be830, "CAutoolAIComponent::EThrusterMode", fn_71003c2f9c, fn_71003c2df0,
+    InitEnum(&base::reflection::TypeObject<CAutoolAIComponent::EThrusterMode, UnkEnumType>::object, "CAutoolAIComponent::EThrusterMode", fn_71003c2f9c, fn_71003c2df0,
              g_unk_71726be948, &g_unk_71726be950, fn_71003c6db8, &g_unk_71726be970, fn_71003c6dc4);
 }

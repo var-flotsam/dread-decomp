@@ -9,6 +9,7 @@
 #include "game/UnkTU22.h"
 #include "game/UnkTUInit.h"
 #include "base/UnkEnumInfo.h"
+#include "base/reflection/TypeObject.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -21,7 +22,8 @@ static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
 
-extern UnkEnumInfo g_unk_7101d4d5d0;
+namespace base::animation { enum class EBlendFunction : u32; }
+template <> UnkEnumInfo base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object asm("g_unk_7101d4d5d0");
 extern u8 g_unk_7101d4d6e8[];
 extern UnkConverter g_unk_7101d4d6f0;
 extern UnkConverter g_unk_7101d4d710;
@@ -33,11 +35,11 @@ void fn_7100014bf0() HIDDEN;
 void fn_7100014c70() {
     {
         CStrId name("base::animation::EBlendFunction", true);
-        fn_71000145e8(&g_unk_7101d4d5d0, &name, fn_710001449c, nullptr);
+        fn_71000145e8(&base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object, &name, fn_710001449c, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d4d5d0, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d4d6e8, &g_unk_7101d4d5d0);
-    void* a = g_unk_7101d4d5d0.desc_0x8->field_0x30;
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d4d6e8, &base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object);
+    void* a = base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object.desc_0x8->field_0x30;
     void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
     g_unk_7101d4d6f0.from = a;
     g_unk_7101d4d6f0.to = b;
@@ -45,7 +47,7 @@ void fn_7100014c70() {
     g_unk_7101d4d6f0.next = nullptr;
     fn_71000a16c4(&g_unk_7101d4d6f0);
     void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-    void* d = g_unk_7101d4d5d0.desc_0x8->field_0x30;
+    void* d = base::reflection::TypeObject<base::animation::EBlendFunction, UnkEnumInfo>::object.desc_0x8->field_0x30;
     g_unk_7101d4d710.from = c;
     g_unk_7101d4d710.to = d;
     g_unk_7101d4d710.convert = fn_7100014bf0;

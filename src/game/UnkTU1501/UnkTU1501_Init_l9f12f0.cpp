@@ -11,6 +11,7 @@
 #include "game/UnkTU1501.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -42,7 +43,8 @@ extern UnkStatics_71009f12f0 g_unk_7172740fc8 __attribute__((visibility("hidden"
 
 extern char g_unk_7172740dd8[];
 extern char g_unk_7172740e61[];
-extern UnkEnumType g_unk_7172740e68;
+namespace CSamusMovement { enum class EUpdateCollisionsPhaseOrder : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CSamusMovement::EUpdateCollisionsPhaseOrder, UnkEnumType>::object asm("g_unk_7172740e68");
 void fn_71009df32c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71009df1e0();
 extern char g_unk_7172740f80[];
@@ -79,6 +81,6 @@ void fn_71009f12f0() {
     InitTunable(reinterpret_cast<UnkTunable*>(&g_unk_7172740de0), fn_7100136ecc, g_unk_7101a8a468, fn_7100075104);
     fn_71009dda1c();
     fn_710009ec00(g_unk_7172740e61, g_unk_7172740fc8.field_0x1e8);
-    InitEnum(&g_unk_7172740e68, "CSamusMovement::EUpdateCollisionsPhaseOrder", fn_71009df32c, fn_71009df1e0,
+    InitEnum(&base::reflection::TypeObject<CSamusMovement::EUpdateCollisionsPhaseOrder, UnkEnumType>::object, "CSamusMovement::EUpdateCollisionsPhaseOrder", fn_71009df32c, fn_71009df1e0,
              g_unk_7172740f80, &g_unk_7172740f88, fn_71009f0c1c, &g_unk_7172740fa8, fn_71009f0c28);
 }

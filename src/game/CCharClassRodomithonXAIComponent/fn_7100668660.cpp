@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -15,7 +16,8 @@ struct UnkStatics_7100668660 {
 };
 extern UnkStatics_7100668660 g_unk_71726fe6f8 __attribute__((visibility("hidden")));
 extern char g_unk_71726fdc18[];
-extern UnkEnumType g_unk_71726fdc20;
+namespace CCharClassRodomithonXAIComponent::SFirePillarConfig { enum class EType : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CCharClassRodomithonXAIComponent::SFirePillarConfig::EType, UnkEnumType>::object asm("g_unk_71726fdc20");
 void fn_7100665544(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100665338();
 extern char g_unk_71726fdd38[];
@@ -51,7 +53,7 @@ void fn_7100668660() {
     InitHeaderIds(&g_unk_71726fe6f8.ids);
     fn_7100664e84();
     fn_710009ec00(g_unk_71726fdc18, g_unk_71726fe6f8.field_0x28);
-    InitEnum(&g_unk_71726fdc20, "CCharClassRodomithonXAIComponent::SFirePillarConfig::EType", fn_7100665544, fn_7100665338,
+    InitEnum(&base::reflection::TypeObject<CCharClassRodomithonXAIComponent::SFirePillarConfig::EType, UnkEnumType>::object, "CCharClassRodomithonXAIComponent::SFirePillarConfig::EType", fn_7100665544, fn_7100665338,
              g_unk_71726fdd38, &g_unk_71726fdd40, fn_7100666bd0, &g_unk_71726fdd60, fn_7100666bdc);
     {
         CStrId n("CCharClassRodomithonXAIComponent::SFirePillarConfig", true);

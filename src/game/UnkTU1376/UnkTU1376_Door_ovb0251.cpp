@@ -38,6 +38,7 @@
 #include "game/UnkTU365.h"
 #include "game/UnkTU372.h"
 #include "game/UnkTU39.h"
+#include "base/reflection/TypeObject.h"
 #include "game/UnkTU437.h"
 #include "game/UnkTUProperty.h"
 #include "game/lua_lib.h"
@@ -443,7 +444,8 @@ struct UnkStruct_71727313a4 {
     CColor4F colours[3];
 };
 struct UnkEnumType;
-extern UnkEnumType g_unk_7172731200;
+namespace CDoorLifeComponent { enum class SState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object asm("g_unk_7172731200");
 
 struct UnkDoorGfx_b0251 {
     u8 pad_0x0[0x138];
@@ -525,7 +527,7 @@ bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id) {
         if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section_id)) {
             if (!blackboard->field_0xe8) {
                 UnkTypedValue tv;
-                tv.type = reinterpret_cast<const base::reflection::CType*>(&g_unk_7172731200);
+                tv.type = reinterpret_cast<const base::reflection::CType*>(&base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object);
                 tv.value = &self->field_0x40c;
                 fn_7100332c80(s, &name->name, &tv);
             }

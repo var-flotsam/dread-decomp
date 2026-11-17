@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCharClassPoisonFlyAIComponent.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -17,7 +18,8 @@ struct UnkStatics_7100638950 {
 extern UnkStatics_7100638950 g_unk_71726fa2e0 __attribute__((visibility("hidden")));
 extern char g_unk_71726fa0f0[];
 extern void* g_unk_7101a584e0[];
-extern UnkEnumType g_unk_71726fa160;
+namespace CCharClassPoisonFlyAIComponent { enum class ESubspecies : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CCharClassPoisonFlyAIComponent::ESubspecies, UnkEnumType>::object asm("g_unk_71726fa160");
 void fn_7100638090(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100637f44();
 extern char g_unk_71726fa278[];
@@ -35,7 +37,7 @@ void fn_7100638950() {
     fn_71006367c4();
     fn_710009ec00(g_unk_71726fa0f0, g_unk_71726fa2e0.field_0x28);
     InitTunable(&g_unk_71726fa0f8, fn_7100136ecc, g_unk_7101a584e0, fn_7100075104);
-    InitEnum(&g_unk_71726fa160, "CCharClassPoisonFlyAIComponent::ESubspecies", fn_7100638090, fn_7100637f44,
+    InitEnum(&base::reflection::TypeObject<CCharClassPoisonFlyAIComponent::ESubspecies, UnkEnumType>::object, "CCharClassPoisonFlyAIComponent::ESubspecies", fn_7100638090, fn_7100637f44,
              g_unk_71726fa278, &g_unk_71726fa280, fn_71006387b8, &g_unk_71726fa2a0, fn_71006387c4);
     fn_7100638214();
     fn_710009ec00(g_unk_71726fa2c0, g_unk_71726fa2e0.field_0x160);

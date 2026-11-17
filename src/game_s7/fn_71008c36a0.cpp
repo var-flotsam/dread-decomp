@@ -1,6 +1,7 @@
 // Copies of fn_7100359b10 (src/game_s2/fn_7100359b10.cpp) for other types, with their own callees and data (they name their own callees, data and strings; the comments describe the original): fn_71008c36a0, fn_710021c330, fn_71009547c0, fn_7100982ae0.
 // Static initialiser of the unit of the EAimDirection.
 #include "../game_s7/UnkStaticInitS7.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -11,10 +12,14 @@ extern UnkStatics_7100359b10 g_unk_717273afa8 __attribute__((visibility("hidden"
 extern UnkStatics_7100359b10 g_unk_717273a268 __attribute__((visibility("hidden")));
 extern UnkStatics_7100359b10 g_unk_71727309b8 __attribute__((visibility("hidden")));
 extern UnkStatics_7100359b10 g_unk_716e599aa8 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_717273ae48;
-extern UnkEnumType g_unk_717273a108;
-extern UnkEnumType g_unk_7172730858;
-extern UnkEnumType g_unk_716e599948;
+enum class ESamusUsingGrapplePullPointStatePullStage : u32;
+template <> UnkEnumType base::reflection::TypeObject<ESamusUsingGrapplePullPointStatePullStage, UnkEnumType>::object asm("g_unk_717273ae48");
+enum class EAIAnimationStates : u32;
+template <> UnkEnumType base::reflection::TypeObject<EAIAnimationStates, UnkEnumType>::object asm("g_unk_717273a108");
+enum class EDamageStrength : u32;
+template <> UnkEnumType base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object asm("g_unk_7172730858");
+namespace media { enum class EMovieStatus : u32; }
+template <> UnkEnumType base::reflection::TypeObject<media::EMovieStatus, UnkEnumType>::object asm("g_unk_716e599948");
 void fn_71003598f8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71009826c4();
 void fn_710095410c();
@@ -47,25 +52,25 @@ void fn_7100954438(UnkEnumType* type, const CStrId& name, void (*factory)(), voi
 void fn_71009828d0(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71008c36a0() {
     InitHeaderIds(&g_unk_71727309b8.ids);
-    InitEnum(&g_unk_7172730858, "EDamageStrength", fn_71008c348c, fn_71008c31c0,
+    InitEnum(&base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object, "EDamageStrength", fn_71008c348c, fn_71008c31c0,
              g_unk_7172730970, &g_unk_7172730978, fn_71008c360c, &g_unk_7172730998, fn_71008c3618);
 }
 
 void fn_710021c330() {
     InitHeaderIds(&g_unk_716e599aa8.ids);
-    InitEnum(&g_unk_716e599948, "media::EMovieStatus", fn_710021c118, fn_710021be4c,
+    InitEnum(&base::reflection::TypeObject<media::EMovieStatus, UnkEnumType>::object, "media::EMovieStatus", fn_710021c118, fn_710021be4c,
              g_unk_716e599a60, &g_unk_716e599a68, fn_710021c298, &g_unk_716e599a88, fn_710021c2a4);
 }
 
 void fn_71009547c0() {
     InitHeaderIds(&g_unk_717273a268.ids);
-    InitEnum(&g_unk_717273a108, "EAIAnimationStates", fn_7100954438, fn_710095410c,
+    InitEnum(&base::reflection::TypeObject<EAIAnimationStates, UnkEnumType>::object, "EAIAnimationStates", fn_7100954438, fn_710095410c,
              g_unk_717273a220, &g_unk_717273a228, fn_71009546e4, &g_unk_717273a248, fn_71009546f0);
 }
 
 void fn_7100982ae0() {
     InitHeaderIds(&g_unk_717273afa8.ids);
-    InitEnum(&g_unk_717273ae48, "ESamusUsingGrapplePullPointStatePullStage", fn_71009828d0, fn_71009826c4,
+    InitEnum(&base::reflection::TypeObject<ESamusUsingGrapplePullPointStatePullStage, UnkEnumType>::object, "ESamusUsingGrapplePullPointStatePullStage", fn_71009828d0, fn_71009826c4,
              g_unk_717273af60, &g_unk_717273af68, fn_7100982a50, &g_unk_717273af88, fn_7100982a5c);
 }
 

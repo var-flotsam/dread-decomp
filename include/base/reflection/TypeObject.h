@@ -9,14 +9,19 @@
 // Without an initialiser that is a declaration, not a definition (the object is the original's, built by its
 // static initialiser in src/reflection_types/), so a use reads `&TypeObject<EFoo>::object` and still links to
 // the same object.
+//
+// A source that declares the object with a layout of its own (UnkEnumType, UnkReflType) names that layout as the
+// second argument, so its uses keep the type they have:
+//
+//     template <> UnkEnumType base::reflection::TypeObject<EFoo, UnkEnumType>::object asm("g_unk_7101d4d5d0");
 
 #include "base/reflection/CClass.h"
 
 namespace base::reflection {
 
-template <class T>
+template <class T, class Layout = CType>
 struct TypeObject {
-    static CType object;
+    static Layout object;
 };
 
 }  // namespace base::reflection

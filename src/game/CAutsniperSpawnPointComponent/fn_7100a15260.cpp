@@ -27,6 +27,7 @@
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2559.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 extern UnkTUHeader g_unk_71727553d0 __attribute__((visibility("hidden")));
 extern UnkTUHeader g_unk_717274c100 __attribute__((visibility("hidden")));
@@ -36,14 +37,22 @@ extern UnkTUHeader g_unk_71727454b0 __attribute__((visibility("hidden")));
 extern UnkTUHeader g_unk_71727446e0 __attribute__((visibility("hidden")));
 extern UnkTUHeader g_unk_717273db38 __attribute__((visibility("hidden")));
 extern UnkTUHeader g_unk_717273a448 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172755268;
-extern UnkReflType g_unk_717274bf98;
-extern UnkReflType g_unk_717274b478;
-extern UnkReflType g_unk_717274a090;
-extern UnkReflType g_unk_7172745348;
-extern UnkReflType g_unk_7172744578;
-extern UnkReflType g_unk_717273d9d0;
-extern UnkReflType g_unk_717273a2e0;
+namespace CCharClassProjectileMovement { enum class EProjectileMeleeHitReaction : u32; }
+template <> UnkReflType base::reflection::TypeObject<CCharClassProjectileMovement::EProjectileMeleeHitReaction, UnkReflType>::object asm("g_unk_7172755268");
+namespace CPerceptionModifierLogicAction { enum class EMode : u32; }
+template <> UnkReflType base::reflection::TypeObject<CPerceptionModifierLogicAction::EMode, UnkReflType>::object asm("g_unk_717274bf98");
+namespace CEmmyStateOverrideLogicAction { enum class EMode : u32; }
+template <> UnkReflType base::reflection::TypeObject<CEmmyStateOverrideLogicAction::EMode, UnkReflType>::object asm("g_unk_717274b478");
+namespace CSaveGameLogicAction { enum class EDestination : u32; }
+template <> UnkReflType base::reflection::TypeObject<CSaveGameLogicAction::EDestination, UnkReflType>::object asm("g_unk_717274a090");
+enum class ESlidleOutSpawnPointDir : u32;
+template <> UnkReflType base::reflection::TypeObject<ESlidleOutSpawnPointDir, UnkReflType>::object asm("g_unk_7172745348");
+enum class EAutsniperSpawnPointDir : u32;
+template <> UnkReflType base::reflection::TypeObject<EAutsniperSpawnPointDir, UnkReflType>::object asm("g_unk_7172744578");
+enum class ENavMeshItemType : u32;
+template <> UnkReflType base::reflection::TypeObject<ENavMeshItemType, UnkReflType>::object asm("g_unk_717273d9d0");
+namespace CCharClassEnemyMovement { enum class ETurn180Mode : u32; }
+template <> UnkReflType base::reflection::TypeObject<CCharClassEnemyMovement::ETurn180Mode, UnkReflType>::object asm("g_unk_717273a2e0");
 void fn_7100ac0400();
 void fn_7100a508e0();
 void fn_7100a4cec8();
@@ -119,72 +128,72 @@ void fn_7100956118(UnkReflType* self, const CStrId& name, void (*init)(), void* 
 void fn_71009bb50c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_7100a15260() {
     InitHeader(g_unk_71727446e0);
-    InitEnum(&g_unk_7172744578, "EAutsniperSpawnPointDir", fn_7100a14bf8, fn_7100a14aac);
-    fn_710009ec00(&g_unk_7172744690, &g_unk_7172744578);
-    InitEnumConverters(&g_unk_7172744578, g_unk_7172744698, fn_7100a15168, g_unk_71727446b8, fn_7100a15174);
+    InitEnum(&base::reflection::TypeObject<EAutsniperSpawnPointDir, UnkReflType>::object, "EAutsniperSpawnPointDir", fn_7100a14bf8, fn_7100a14aac);
+    fn_710009ec00(&g_unk_7172744690, &base::reflection::TypeObject<EAutsniperSpawnPointDir, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<EAutsniperSpawnPointDir, UnkReflType>::object, g_unk_7172744698, fn_7100a15168, g_unk_71727446b8, fn_7100a15174);
     fn_7100a14d7c();
     fn_710009ec00(&g_unk_71727446d8, &g_unk_7172744700);
 }
 
 void fn_7100a1d550() {
     InitHeader(g_unk_71727454b0);
-    InitEnum(&g_unk_7172745348, "ESlidleOutSpawnPointDir", fn_7100a1cd3c, fn_7100a1cb90);
-    fn_710009ec00(&g_unk_7172745460, &g_unk_7172745348);
-    InitEnumConverters(&g_unk_7172745348, g_unk_7172745468, fn_7100a1d440, g_unk_7172745488, fn_7100a1d44c);
+    InitEnum(&base::reflection::TypeObject<ESlidleOutSpawnPointDir, UnkReflType>::object, "ESlidleOutSpawnPointDir", fn_7100a1cd3c, fn_7100a1cb90);
+    fn_710009ec00(&g_unk_7172745460, &base::reflection::TypeObject<ESlidleOutSpawnPointDir, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<ESlidleOutSpawnPointDir, UnkReflType>::object, g_unk_7172745468, fn_7100a1d440, g_unk_7172745488, fn_7100a1d44c);
     fn_7100a1cec0();
     fn_710009ec00(&g_unk_71727454a8, &g_unk_71727454d0);
 }
 
 void fn_7100a419e0() {
     InitHeader(g_unk_717274a1f8);
-    InitEnum(&g_unk_717274a090, "CSaveGameLogicAction::EDestination", fn_7100a40d1c, fn_7100a40bd0);
-    fn_710009ec00(&g_unk_717274a1a8, &g_unk_717274a090);
-    InitEnumConverters(&g_unk_717274a090, g_unk_717274a1b0, fn_7100a41910, g_unk_717274a1d0, fn_7100a4191c);
+    InitEnum(&base::reflection::TypeObject<CSaveGameLogicAction::EDestination, UnkReflType>::object, "CSaveGameLogicAction::EDestination", fn_7100a40d1c, fn_7100a40bd0);
+    fn_710009ec00(&g_unk_717274a1a8, &base::reflection::TypeObject<CSaveGameLogicAction::EDestination, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CSaveGameLogicAction::EDestination, UnkReflType>::object, g_unk_717274a1b0, fn_7100a41910, g_unk_717274a1d0, fn_7100a4191c);
     fn_7100a40ea0();
     fn_710009ec00(&g_unk_717274a1f0, &g_unk_717274a218);
 }
 
 void fn_7100a4d830() {
     InitHeader(g_unk_717274b5e0);
-    InitEnum(&g_unk_717274b478, "CEmmyStateOverrideLogicAction::EMode", fn_7100a4d014, fn_7100a4cec8);
-    fn_710009ec00(&g_unk_717274b590, &g_unk_717274b478);
-    InitEnumConverters(&g_unk_717274b478, g_unk_717274b598, fn_7100a4d72c, g_unk_717274b5b8, fn_7100a4d738);
+    InitEnum(&base::reflection::TypeObject<CEmmyStateOverrideLogicAction::EMode, UnkReflType>::object, "CEmmyStateOverrideLogicAction::EMode", fn_7100a4d014, fn_7100a4cec8);
+    fn_710009ec00(&g_unk_717274b590, &base::reflection::TypeObject<CEmmyStateOverrideLogicAction::EMode, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CEmmyStateOverrideLogicAction::EMode, UnkReflType>::object, g_unk_717274b598, fn_7100a4d72c, g_unk_717274b5b8, fn_7100a4d738);
     fn_7100a4d198();
     fn_710009ec00(&g_unk_717274b5d8, &g_unk_717274b600);
 }
 
 void fn_7100a51650() {
     InitHeader(g_unk_717274c100);
-    InitEnum(&g_unk_717274bf98, "CPerceptionModifierLogicAction::EMode", fn_7100a50a2c, fn_7100a508e0);
-    fn_710009ec00(&g_unk_717274c0b0, &g_unk_717274bf98);
-    InitEnumConverters(&g_unk_717274bf98, g_unk_717274c0b8, fn_7100a514f8, g_unk_717274c0d8, fn_7100a51504);
+    InitEnum(&base::reflection::TypeObject<CPerceptionModifierLogicAction::EMode, UnkReflType>::object, "CPerceptionModifierLogicAction::EMode", fn_7100a50a2c, fn_7100a508e0);
+    fn_710009ec00(&g_unk_717274c0b0, &base::reflection::TypeObject<CPerceptionModifierLogicAction::EMode, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CPerceptionModifierLogicAction::EMode, UnkReflType>::object, g_unk_717274c0b8, fn_7100a514f8, g_unk_717274c0d8, fn_7100a51504);
     fn_7100a50bb0();
     fn_710009ec00(&g_unk_717274c0f8, &g_unk_717274c120);
 }
 
 void fn_7100ac1950() {
     InitHeader(g_unk_71727553d0);
-    InitEnum(&g_unk_7172755268, "CCharClassProjectileMovement::EProjectileMeleeHitReaction", fn_7100ac05ac, fn_7100ac0400);
-    fn_710009ec00(&g_unk_7172755380, &g_unk_7172755268);
-    InitEnumConverters(&g_unk_7172755268, g_unk_7172755388, fn_7100ac1844, g_unk_71727553a8, fn_7100ac1850);
+    InitEnum(&base::reflection::TypeObject<CCharClassProjectileMovement::EProjectileMeleeHitReaction, UnkReflType>::object, "CCharClassProjectileMovement::EProjectileMeleeHitReaction", fn_7100ac05ac, fn_7100ac0400);
+    fn_710009ec00(&g_unk_7172755380, &base::reflection::TypeObject<CCharClassProjectileMovement::EProjectileMeleeHitReaction, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CCharClassProjectileMovement::EProjectileMeleeHitReaction, UnkReflType>::object, g_unk_7172755388, fn_7100ac1844, g_unk_71727553a8, fn_7100ac1850);
     fn_7100ac0730();
     fn_710009ec00(&g_unk_71727553c8, &g_unk_71727553f0);
 }
 
 void fn_7100967ec0() {
     InitHeader(g_unk_717273a448);
-    InitEnum(&g_unk_717273a2e0, "CCharClassEnemyMovement::ETurn180Mode", fn_7100956118, fn_7100955f6c);
-    fn_710009ec00(&g_unk_717273a3f8, &g_unk_717273a2e0);
-    InitEnumConverters(&g_unk_717273a2e0, g_unk_717273a400, fn_710096501c, g_unk_717273a420, fn_7100965028);
+    InitEnum(&base::reflection::TypeObject<CCharClassEnemyMovement::ETurn180Mode, UnkReflType>::object, "CCharClassEnemyMovement::ETurn180Mode", fn_7100956118, fn_7100955f6c);
+    fn_710009ec00(&g_unk_717273a3f8, &base::reflection::TypeObject<CCharClassEnemyMovement::ETurn180Mode, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CCharClassEnemyMovement::ETurn180Mode, UnkReflType>::object, g_unk_717273a400, fn_710096501c, g_unk_717273a420, fn_7100965028);
     fn_710095629c();
     fn_710009ec00(&g_unk_717273a440, &g_unk_717273a468);
 }
 
 void fn_71009bbed0() {
     InitHeader(g_unk_717273db38);
-    InitEnum(&g_unk_717273d9d0, "ENavMeshItemType", fn_71009bb50c, fn_71009bb360);
-    fn_710009ec00(&g_unk_717273dae8, &g_unk_717273d9d0);
-    InitEnumConverters(&g_unk_717273d9d0, g_unk_717273daf0, fn_71009bbdc0, g_unk_717273db10, fn_71009bbdcc);
+    InitEnum(&base::reflection::TypeObject<ENavMeshItemType, UnkReflType>::object, "ENavMeshItemType", fn_71009bb50c, fn_71009bb360);
+    fn_710009ec00(&g_unk_717273dae8, &base::reflection::TypeObject<ENavMeshItemType, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<ENavMeshItemType, UnkReflType>::object, g_unk_717273daf0, fn_71009bbdc0, g_unk_717273db10, fn_71009bbdcc);
     fn_71009bb690();
     fn_710009ec00(&g_unk_717273db30, &g_unk_717273db58);
 }

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/CCooldownXBossLavaDropsMovementDef.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -24,7 +25,8 @@ extern UnkStatics_71004b3200 g_unk_71726d4d68 __attribute__((visibility("hidden"
 extern char g_unk_71726d37b0[];
 extern UnkTunable g_unk_71726d37b8;
 extern void* g_unk_7101a3e130[];
-extern UnkEnumType g_unk_71726d37e8;
+enum class ELavaDropArm : u32;
+template <> UnkEnumType base::reflection::TypeObject<ELavaDropArm, UnkEnumType>::object asm("g_unk_71726d37e8");
 void fn_71004aacc0(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71004aaab4();
 extern char g_unk_71726d3900[];
@@ -32,7 +34,8 @@ extern UnkConversion g_unk_71726d3908;
 extern UnkConversion g_unk_71726d3928;
 void fn_71004ae9cc() __attribute__((visibility("hidden")));
 void fn_71004ae9d8() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726d3948;
+enum class ELavaDropArmPos : u32;
+template <> UnkEnumType base::reflection::TypeObject<ELavaDropArmPos, UnkEnumType>::object asm("g_unk_71726d3948");
 void fn_71004aaf8c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71004aae40();
 extern char g_unk_71726d3a60[];
@@ -93,8 +96,8 @@ void fn_71004b3200() {
     fn_71004aa3a8();
     fn_710009ec00(g_unk_71726d37b0, g_unk_71726d4d68.field_0x38);
     InitTunable(&g_unk_71726d37b8, fn_7100136ecc, g_unk_7101a3e130, fn_7100075104);
-    InitEnum(&g_unk_71726d37e8, "ELavaDropArm", fn_71004aacc0, fn_71004aaab4, g_unk_71726d3900, &g_unk_71726d3908, fn_71004ae9cc, &g_unk_71726d3928, fn_71004ae9d8);
-    InitEnum(&g_unk_71726d3948, "ELavaDropArmPos", fn_71004aaf8c, fn_71004aae40, g_unk_71726d3a60, &g_unk_71726d3a68, fn_71004ae9e4, &g_unk_71726d3a88, fn_71004ae9f0);
+    InitEnum(&base::reflection::TypeObject<ELavaDropArm, UnkEnumType>::object, "ELavaDropArm", fn_71004aacc0, fn_71004aaab4, g_unk_71726d3900, &g_unk_71726d3908, fn_71004ae9cc, &g_unk_71726d3928, fn_71004ae9d8);
+    InitEnum(&base::reflection::TypeObject<ELavaDropArmPos, UnkEnumType>::object, "ELavaDropArmPos", fn_71004aaf8c, fn_71004aae40, g_unk_71726d3a60, &g_unk_71726d3a68, fn_71004ae9e4, &g_unk_71726d3a88, fn_71004ae9f0);
     fn_71004ab110();
     fn_710009ec00(g_unk_71726d3aa8, g_unk_71726d4d68.field_0x170);
     fn_71004ab5ac();

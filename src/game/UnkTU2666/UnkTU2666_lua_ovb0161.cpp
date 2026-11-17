@@ -38,6 +38,7 @@
 #include "game/lua_lib.h"
 #include "game/malloc.h"
 #include "game/sound/CMusicManager.h"
+#include "base/reflection/TypeObject.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
@@ -487,7 +488,8 @@ s32 fn_710108c790(lua_State* L) {
 
 // ---- the player's damage request ----
 struct UnkEnumType;
-extern UnkEnumType g_unk_7172730858;
+enum class EDamageStrength : u32;
+template <> UnkEnumType base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object asm("g_unk_7172730858");
 s32 fn_710009976c(const base::reflection::CEnumType* self, const base::global::CStrId* name);
 struct UnkStruct_71008c0c74;
 struct UnkBase_71003cc474;
@@ -532,7 +534,7 @@ s32 fn_71010961e0(lua_State* L) {
             request.field_0x50 = 1.0f;
             {
                 CStrId id(name, true);
-                request.field_0xc8 = fn_710009976c(reinterpret_cast<const base::reflection::CEnumType*>(&g_unk_7172730858), &id);
+                request.field_0xc8 = fn_710009976c(reinterpret_cast<const base::reflection::CEnumType*>(&base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object), &id);
             }
             player->field_0x1b8->vf_0x188(&request);
         }
@@ -552,7 +554,7 @@ s32 fn_71010962e0(lua_State* L) {
             request.field_0x50 = 1.0f;
             {
                 CStrId id(name, true);
-                request.field_0xc8 = fn_710009976c(reinterpret_cast<const base::reflection::CEnumType*>(&g_unk_7172730858), &id);
+                request.field_0xc8 = fn_710009976c(reinterpret_cast<const base::reflection::CEnumType*>(&base::reflection::TypeObject<EDamageStrength, UnkEnumType>::object), &id);
             }
             player->field_0x1b8->vf_0x188(&request);
         }
