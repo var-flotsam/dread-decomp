@@ -28,8 +28,8 @@ struct UnkVulkranRefPtr_ovb0121 {
     UnkVulkranRef_ovb0121* p;
 
     __attribute__((always_inline)) ~UnkVulkranRefPtr_ovb0121() {
-        if (p && --p->ref_count == 0)
-            p->vf_0x10();
+        if (auto* held = p; held && --held->ref_count == 0)
+            held->vf_0x10();
     }
 };
 

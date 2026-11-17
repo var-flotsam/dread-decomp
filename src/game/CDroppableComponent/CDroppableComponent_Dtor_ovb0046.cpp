@@ -22,8 +22,8 @@ struct UnkDropShared_ovb0046 {
 struct UnkDropSharedPtr_ovb0046 {
     UnkDropShared_ovb0046* ptr;
     __attribute__((always_inline)) ~UnkDropSharedPtr_ovb0046() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->vf_0x10();
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            held->vf_0x10();
     }
 };
 

@@ -18,8 +18,8 @@ struct UnkCreditsRefObj_b44a3 {
 struct UnkCreditsRef_b44a3 {
     UnkCreditsRefObj_b44a3* ptr;
     ~UnkCreditsRef_b44a3() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->vf_0x10();
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            held->vf_0x10();
     }
 };
 

@@ -150,8 +150,8 @@ struct UnkSlot_ovb0048 {
 
     UnkSlot_ovb0048() : ptr(nullptr) {}
     ~UnkSlot_ovb0048() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            delete held;
     }
 
     UnkSlot_ovb0048& operator=(const UnkSlot_ovb0048& other) {

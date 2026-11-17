@@ -91,8 +91,9 @@ struct UnkRefPtrMember {
     UnkRefCounted* ptr;
 
     ~UnkRefPtrMember() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
+        if (UnkRefCounted* p = ptr)
+            if (--p->ref_count == 0)
+                delete p;
     }
 };
 

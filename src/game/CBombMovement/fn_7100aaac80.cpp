@@ -15,8 +15,8 @@ struct UnkRef {
     UnkRefCounted* ptr = nullptr;
 
     ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->Delete();
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            held->Delete();
     }
 };
 

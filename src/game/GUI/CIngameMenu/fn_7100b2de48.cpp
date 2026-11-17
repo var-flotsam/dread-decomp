@@ -518,8 +518,8 @@ struct UnkResourceHandle {
     UnkCountedResource* ptr;
 
     ~UnkResourceHandle() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            fn_710001737c(held);
     }
 };
 struct UnkResourceManager;

@@ -39,8 +39,8 @@ struct UnkCountedRef_l76f344 {
     UnkCounted_l76f344* ptr;
 
     ~UnkCountedRef_l76f344() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->Release();
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            held->Release();
     }
 };
 
