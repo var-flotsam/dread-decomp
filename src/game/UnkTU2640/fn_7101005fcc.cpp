@@ -2,6 +2,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -58,6 +59,7 @@ struct UnkMap_b0213 {
     UnkMapNode_b0213* head;
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7101005fcc(UnkMap_b0213* self, const CStrId* key, UnkMapValue_b0213* value) {
     UnkMapNode_b0213** slot = nullptr;
     if (self->bucket_count) {
