@@ -28,3 +28,13 @@ const base::global::CStrId* fn_710112bf20(void* link);
 base::reflection::UnkReflObject* fn_7101126814(const base::global::CStrId* id);
 void fn_7101131b98(base::global::CRntVector<UnkSpawnHolder>* self, const UnkSpawnHolder* value);
 extern void* g_unk_7101cb2880[];
+struct CSpawnerActorBlueprint;
+extern void* g_unk_7101cb28c8[];  // CSpawnPointComponent's vtable (its destructor fn_7101125c90 stores it).
+// Drop the collider made for the scene shape (fn_71011264b4) or the collision scene shape (fn_71011265c0)
+// and what that shape is tracked as.
+void fn_71011264b4(CSpawnPointComponent* self);
+void fn_71011265c0(CSpawnPointComponent* self);
+// Make them again for `shape`: the scene shape's (fn_7101128e88), the collision scene shape's (fn_7101129064).
+void fn_7101128e88(CSpawnPointComponent* self, void* shape);
+void fn_7101129064(CSpawnPointComponent* self, void* shape);
+void fn_71011266cc(base::global::CRntVector<CSpawnerActorBlueprint>* self);  // Frees the vector.
