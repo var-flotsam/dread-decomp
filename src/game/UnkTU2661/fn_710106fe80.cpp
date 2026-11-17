@@ -25,7 +25,7 @@ struct UnkTunableHolder_l06fe80 {
         vtable = g_unk_7101cac988 + 2;
         if (owner->field_0xc8 == this)
             owner->field_0xc8 = nullptr;
-        fn_7100232124(owner);
+        fn_7100232124(reinterpret_cast<UnkBoundObj*>(owner));  // the shared UnkBoundObj has no layout yet
     }
 };
 static_assert(sizeof(UnkTunableHolder_l06fe80) == 0x30, "holder size");

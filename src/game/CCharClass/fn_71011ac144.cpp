@@ -4,6 +4,7 @@
 // their names. Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkAssetResRef.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/animation/CBlendSpace1D.h"
@@ -47,30 +48,6 @@ struct UnkCountedRef_l2a6d38 {
 using UnkCountedRefArrays_l2a6d38 = base::global::CRntSmallDictionary<CStrId, UnkCountedRef_l2a6d38>;
 void fn_71002a6d38(UnkCountedRefArrays_l2a6d38* self, u32 new_capacity);
 
-// A counted reference to a resource, as the registry returns it (in memory); as in
-// src/base/core/CAssetLink.cpp.
-struct UnkAssetResRef_1ac144 {
-    UnkCountedResource* ptr;
-
-    UnkAssetResRef_1ac144() : ptr(nullptr) {}
-    UnkAssetResRef_1ac144& operator=(const UnkAssetResRef_1ac144& other) {
-        if (ptr != other.ptr) {
-            UnkCountedResource* p = other.ptr;
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-        return *this;
-    }
-    ~UnkAssetResRef_1ac144() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
-
 // An action set: a counted resource with its name at +0x58.
 struct UnkActionSet_l1ac144 : UnkCountedResource {
     CStrId name;  // 0x58
@@ -96,13 +73,13 @@ struct UnkActionSetIds_l1ac144 {
     UnkActionSetIds_l1ac144(CStrId c, CFilePathStrId p) : category(c), path(p) {}
 };
 
-static inline UnkAssetResRef_1ac144 Resolve(UnkRegistry_7100d92158* registry, const UnkActionSetIds_l1ac144& ids) {
+static inline UnkAssetResRef Resolve(UnkRegistry_7100d92158* registry, const UnkActionSetIds_l1ac144& ids) {
     return fn_710002038c(registry, reinterpret_cast<const UnkStrIdPathPair*>(&ids), true, nullptr);
 }
 
 // The resource as an action set (a new reference), or none when it is not one.
-static inline UnkAssetResRef_1ac144 AsActionSet(const UnkAssetResRef_1ac144& found) {
-    UnkAssetResRef_1ac144 set;
+static inline UnkAssetResRef AsActionSet(const UnkAssetResRef& found) {
+    UnkAssetResRef set;
     UnkCountedResource* res = found.ptr;
     if (res && fn_710009d50c(reinterpret_cast<base::reflection::UnkReflObject*>(res)->vf_0x0(), fn_7100b8bbf4()))
         Assign(set.ptr, res);
@@ -133,7 +110,7 @@ bool fn_71011ac144(UnkCharClass_l1ac144* self, base::global::CRntFile* file) {
     for (s32 i = 0; i < count; ++i) {
         const char* path;
         fn_710007cee4(file, &path);
-        UnkAssetResRef_1ac144 set = AsActionSet(Resolve(
+        UnkAssetResRef set = AsActionSet(Resolve(
             g_unk_7101d4bbc0, UnkActionSetIds_l1ac144(reinterpret_cast<const CStrId&>(g_unk_71727b9630),
                                                       CFilePathStrId(path, true))));
         UnkActionSet_l1ac144* actions = static_cast<UnkActionSet_l1ac144*>(set.ptr);
