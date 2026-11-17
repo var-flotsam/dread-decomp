@@ -12,7 +12,7 @@ using base::global::CStrId;
 
 struct UnkTailBlock {
     CStrId field_0x0;
-    UnkStrIdTable field_0x8;
+    UnkOwnedStrIdTable field_0x8;
 };
 
 struct UnkComponent {
@@ -23,11 +23,7 @@ struct UnkComponent {
 
 void fn_71004f0428(UnkComponent* self) {
     self->vtable = g_unk_7101a43038 + 2;
-    fn_71004f11f8(&self->field_0x2a708.field_0x8);
-    if (self->field_0x2a708.field_0x8.keys)
-        self->field_0x2a708.field_0x8.allocator->vf_0x48(self->field_0x2a708.field_0x8.keys);
-    if (self->field_0x2a708.field_0x8.values)
-        self->field_0x2a708.field_0x8.allocator->vf_0x48(self->field_0x2a708.field_0x8.values);
+    self->field_0x2a708.field_0x8.~UnkOwnedStrIdTable();
     self->field_0x2a708.field_0x0.Reset();
     fn_710053f510(self);
 }

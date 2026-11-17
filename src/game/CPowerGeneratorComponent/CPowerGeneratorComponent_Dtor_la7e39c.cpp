@@ -52,21 +52,11 @@ struct UnkPowerGeneratorListener_la7e39c {
     }
 };
 
-struct UnkPowerGeneratorTable_la7e39c : UnkStrIdTable {
-    ~UnkPowerGeneratorTable_la7e39c() {
-        fn_71004f11f8(this);
-        if (keys)
-            allocator->vf_0x48(keys);
-        if (values)
-            allocator->vf_0x48(values);
-    }
-};
-
 struct UnkPowerGenerator_la7e39c {
     void** vtable;
     u8 pad_0x8[0x80];
     base::UnkStrIdMember name;                           // 0x88
-    UnkPowerGeneratorTable_la7e39c table;                // 0x90
+    UnkOwnedStrIdTable table;                            // 0x90
     UnkPowerGeneratorCallbackList_la7e39c callbacks_a;   // 0xb8
     UnkPowerGeneratorCallbackList_la7e39c callbacks_b;   // 0xf8
     u8 pad_0x138[0x8];
@@ -81,7 +71,7 @@ void fn_7100a7e39c(UnkPowerGenerator_la7e39c* self) {
     self->listener.~UnkPowerGeneratorListener_la7e39c();
     self->callbacks_b.~UnkPowerGeneratorCallbackList_la7e39c();
     self->callbacks_a.~UnkPowerGeneratorCallbackList_la7e39c();
-    self->table.~UnkPowerGeneratorTable_la7e39c();
+    self->table.~UnkOwnedStrIdTable();
     using base::UnkStrIdMember;
     self->name.~UnkStrIdMember();
     fn_71007b00cc(reinterpret_cast<UnkActivatable_b44a2<0x48>*>(self));

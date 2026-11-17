@@ -77,18 +77,6 @@ struct UnkArenaRefArray_ovb0108 {
     }
 };
 
-struct UnkArenaTable_ovb0108 {
-    UnkStrIdTable table;
-
-    ~UnkArenaTable_ovb0108() {
-        fn_71004f11f8(&table);
-        if (table.keys)
-            table.allocator->vf_0x48(table.keys);
-        if (table.values)
-            table.allocator->vf_0x48(table.values);
-    }
-};
-
 struct UnkArenaEntry_ovb0108 {
     base::UnkStrIdMember field_0x0;
     UnkArenaRefArray_ovb0108 field_0x8;
@@ -97,7 +85,7 @@ struct UnkArenaEntry_ovb0108 {
     bool all_dead;  // 0x40
     u8 unk_0x41[0xf];
     base::UnkStrIdMember field_0x50;
-    UnkArenaTable_ovb0108 field_0x58;
+    UnkOwnedStrIdTable field_0x58;
 };
 static_assert(sizeof(UnkArenaEntry_ovb0108) == 0x80, "UnkArenaEntry_ovb0108 layout");
 
@@ -126,7 +114,7 @@ void fn_7100e14d74(UnkArenaEntry_ovb0108* self, UnkGameManagerSub_0x608* owner, 
     {
         UnkTypedValue v;
         CStrId section_id = fn_71011a2fbc(owner);
-        UnkStrIdTable& table = self->field_0x58.table;
+        UnkStrIdTable& table = self->field_0x58;
         u64 index = IndexOf(table, g_unk_71727c0970.name);
         UnkStrIdTableValue* value = &table.values[index];
         if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section_id)) {
