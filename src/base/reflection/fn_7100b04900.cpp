@@ -113,9 +113,9 @@ void fn_7100de25a0() {
     InitHeader(g_unk_71727be710);
     fn_710009ec00(&g_unk_71727be380, fn_7100dded9c());
     fn_710009ec00(&g_unk_71727be381, fn_7100ddee78());
-    InitEnum(&g_unk_71727be388, "CExplosionGfx::ETransitionOperationMode", fn_7100ddf1c0, fn_7100ddef54);
-    fn_710009ec00(&g_unk_71727be4a0, &g_unk_71727be388);
-    InitEnumConverters(&g_unk_71727be388, g_unk_71727be4a8, fn_7100de1b0c, g_unk_71727be4c8, fn_7100de1b18);
+    InitEnum(&base::reflection::TypeObject<CExplosionGfx::ETransitionOperationMode, UnkReflType>::object, "CExplosionGfx::ETransitionOperationMode", fn_7100ddf1c0, fn_7100ddef54);
+    fn_710009ec00(&g_unk_71727be4a0, &base::reflection::TypeObject<CExplosionGfx::ETransitionOperationMode, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CExplosionGfx::ETransitionOperationMode, UnkReflType>::object, g_unk_71727be4a8, fn_7100de1b0c, g_unk_71727be4c8, fn_7100de1b18);
     fn_7100ddf344();
     fn_710009ec00(&g_unk_71727be4e8, &g_unk_71727be730);
 }
