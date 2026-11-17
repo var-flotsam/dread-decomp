@@ -2018,7 +2018,7 @@ address,size,name,name_source,subsystem,status
 0x710076e66c,380,fn_710076e66c,unknown,unknown,O
 0x710076e7e8,380,fn_710076e7e8,unknown,unknown,O
 0x710076e964,2528,fn_710076e964,unknown,unknown,U
-0x710076f344,3404,fn_710076f344,unknown,unknown,U
+0x710076f344,3404,fn_710076f344,unknown,unknown,O
 0x7100770090,44,fn_7100770090,unknown,unknown,O
 0x71007700bc,28,fn_71007700bc,unknown,unknown,O
 0x71007700d8,36,fn_71007700d8,unknown,unknown,O
@@ -2323,7 +2323,7 @@ address,size,name,name_source,subsystem,status
 0x710077a700,300,fn_710077a700,unknown,unknown,O
 0x710077a82c,320,fn_710077a82c,unknown,unknown,O
 0x710077a96c,404,fn_710077a96c,unknown,unknown,O
-0x710077ab00,624,fn_710077ab00,unknown,unknown,U
+0x710077ab00,624,fn_710077ab00,unknown,unknown,O
 0x710077ad70,288,fn_710077ad70,unknown,unknown,O
 0x710077ae90,244,fn_710077ae90,unknown,unknown,O
 0x710077af84,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>>::Begin,reflection,engine/reflection,O

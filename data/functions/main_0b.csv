@@ -1016,7 +1016,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1c838,352,GUI::CEndingRewardsComposition::refl_InitClass,reflection,gui,O
 0x7100b1c998,80,fn_7100b1c998,unknown,gui?,O
 0x7100b1c9e8,88,fn_7100b1c9e8,unknown,gui?,O
-0x7100b1ca40,3460,fn_7100b1ca40,unknown,gui?,U
+0x7100b1ca40,3460,fn_7100b1ca40,unknown,gui?,O
 0x7100b1d7c4,44,fn_7100b1d7c4,unknown,gui?,O
 0x7100b1d7f0,160,fn_7100b1d7f0,unknown,gui?,O
 0x7100b1d890,520,fn_7100b1d890,unknown,gui?,O
@@ -1288,7 +1288,7 @@ address,size,name,name_source,subsystem,status
 0x7100b2ef8c,176,fn_7100b2ef8c,unknown,gui?,O
 0x7100b2f03c,532,fn_7100b2f03c,unknown,gui?,O
 0x7100b2f250,1120,fn_7100b2f250,unknown,gui?,O
-0x7100b2f6b0,2792,fn_7100b2f6b0,unknown,gui?,U
+0x7100b2f6b0,2792,fn_7100b2f6b0,unknown,gui?,O
 0x7100b30198,496,fn_7100b30198,unknown,gui?,U
 0x7100b30388,204,fn_7100b30388,unknown,gui?,O
 0x7100b30454,1236,fn_7100b30454,unknown,gui?,U
@@ -5811,7 +5811,7 @@ address,size,name,name_source,subsystem,status
 0x7100beacc0,160,fn_7100beacc0,unknown,unknown,O
 0x7100bead60,232,ICharClassFXCreateAndLinkEvent::refl_AddAttributes,reflection,unknown,O
 0x7100beae48,244,ICharClassFXCreateAndLinkEvent::refl_GetClass,reflection,unknown,O
-0x7100beaf3c,3784,ICharClassFXCreateAndLinkEvent::refl_AddFields,reflection,unknown,U
+0x7100beaf3c,3784,ICharClassFXCreateAndLinkEvent::refl_AddFields,reflection,unknown,O
 0x7100bebe04,364,ICharClassFXCreateAndLinkEvent::refl_InitClass,reflection,unknown,O
 0x7100bebf70,160,fn_7100bebf70,unknown,unknown,O
 0x7100bec010,12,ICharClassFXCreateAndLinkEvent::refl_Equals,reflection,unknown,O

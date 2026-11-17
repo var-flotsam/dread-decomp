@@ -3333,7 +3333,7 @@ address,size,name,name_source,subsystem,status
 0x710019fe7c,364,fn_710019fe7c,unknown,unknown,O
 0x710019ffe8,2068,fn_710019ffe8,unknown,unknown,U
 0x71001a07fc,16,fn_71001a07fc,unknown,unknown,O
-0x71001a080c,2068,fn_71001a080c,unknown,unknown,U
+0x71001a080c,2068,fn_71001a080c,unknown,unknown,O
 0x71001a1020,336,fn_71001a1020,unknown,unknown,O
 0x71001a1170,388,fn_71001a1170,unknown,unknown,O
 0x71001a12f4,908,fn_71001a12f4,unknown,unknown,O

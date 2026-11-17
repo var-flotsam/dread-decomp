@@ -16,12 +16,15 @@
 #include "game/UnkTU341.h"
 #include "types.h"
 
+struct UnkPair_7100778228;
+void fn_7100778228(UnkPair_7100778228*);
+
 struct UnkEntry_cu {
     UnkHalf_cu first;
     UnkHalf_cu second;
     UnkEntry_cu(UnkEntry_cu&& other)
         : first(static_cast<UnkHalf_cu&&>(other.first)), second(static_cast<UnkHalf_cu&&>(other.second)) {}
-    ~UnkEntry_cu() asm("fn_7100778228");
+    ~UnkEntry_cu() { fn_7100778228(reinterpret_cast<UnkPair_7100778228*>(this)); }
 };
 
 void fn_710077a630(base::global::CRntVector<UnkEntry_cu>* self, u32 n) {
