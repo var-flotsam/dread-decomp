@@ -7,6 +7,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/CSpawnPointComponent.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -31,10 +33,9 @@ struct UnkAutsharpSpawnPoint_ovb0023 {
 extern char g_unk_710164b4f8[];
 extern char g_unk_710164b500[];
 
-void fn_710112b7c4(UnkAutsharpSpawnPoint_ovb0023* self);
-
 void fn_7100a14190(UnkAutsharpSpawnPoint_ovb0023* self) {
-    fn_710112b7c4(self);
+    // The spawn point component is this component's base (this unit's view has no base yet).
+    fn_710112b7c4(reinterpret_cast<CSpawnPointComponent*>(self));
     UnkFlagTarget* target = self->owner->field_0x228;
     if (target) {
         if (self->field_0x3b8 == 0)
