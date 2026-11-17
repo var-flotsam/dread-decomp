@@ -56,6 +56,8 @@ address,digest,verdict,rules,detail
 0x7100216568,9d5819b29aaa14cdffe97a1dee3d0213,pass,2,both runs faulted; on different accesses
 0x7100216698,ba9319342c60e06c89ec25a9c1c55b74,pass,2,
 0x710021688c,cbd0ad11d3e1511ce8aab8f793590b5b,pass,2,
+0x71002169e0,42c72ab4b3522e67433a8a3b97146126,pass,2,
+0x7100216ca4,5481964823677a0563ce220156a548d6,pass,2,
 0x710023b424,969cca954272de5fa2098bfd510be899,pass,2,
 0x710024657c,f867b4a21c73dac11accd22bf2bd1caf,pass,2,
 0x710025fdf4,d273febb0112307f30a0f741971c9183,inconclusive,2,unresolved UnkEntry_710025fdf4::UnkEntry_710025fdf4(UnkEntry_710025fdf4 const&)
