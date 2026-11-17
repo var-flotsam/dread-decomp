@@ -41,6 +41,7 @@
 #include "game/UnkTU0.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2505.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
@@ -366,7 +367,6 @@ void fn_7100eead58(CSubAreaManager* self, const CStrId& prev_a, const CStrId& pr
 void fn_7100ee6d00(CSubAreaManager* self, UnkSubArea* prev, UnkSubArea* cur, UnkIdSet* set, bool flag);
 void fn_7100ee8ea4(CSubAreaManager* self, UnkIdSet* set);
 void fn_7100ee6884(CSubAreaManager* self);
-void fn_7100ee62bc(CSubAreaManager* self, UnkSubArea* area);
 
 // Makes `area` the current sub-area (unless it already is and `force` is unset).
 // NON_MATCHING(minor): scheduling only: the flag's `and w, #1` is placed before the store of the
@@ -508,8 +508,6 @@ using base::input::UnkRumbleManager;
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
-void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* obj);
-void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);
 
 // The file device singleton and the sound manager (src/game/CGameManager.cpp).
 extern base::file::UnkFileDevice* g_unk_7101d4d828;

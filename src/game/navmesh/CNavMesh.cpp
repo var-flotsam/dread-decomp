@@ -22,6 +22,8 @@
 #include "game/UnkTU2568.h"
 #include "game/UnkTU362.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU372.h"
+#include "game/UnkTU374.h"
 #include "game/UnkTU376.h"
 #include "game/UnkTU55.h"
 #include "game/UnkTU56.h"
@@ -960,7 +962,6 @@ struct UnkNavMeshItem;  // src/game/navmesh/UnkNavMeshItem.cpp
 // destroyed by fn_71002b52a4.
 struct UnkNavLoadLink;
 void fn_71002b525c(UnkNavLoadLink* self, UnkNavMeshItem* item);
-void fn_71002b52a4(UnkNavLoadLink* self);
 struct UnkKeyList;
 void fn_71002b5338(UnkKeyList* self, base::global::CRntFile* file);
 
@@ -996,8 +997,6 @@ struct UnkNavMeshItemPair;
 void fn_71002b2f68(UnkNavMeshItem* self, u64 field_0x0, const CStrId& id, s32 field_0x10, bool flag,
                    const UnkNavMeshItemEntries* entries, const UnkNavMeshItemPair* pair, u16 field_0x1ec,
                    u8 field_0x1ee);
-void fn_71002b3114(UnkNavMeshItem* self, UnkNavMeshItem* other);
-void fn_71002b3328(UnkNavMeshItem* self);
 void fn_71002b3524(UnkNavMeshItem* self, base::global::CRntFile* file);  // reads the item's data
 
 struct alignas(8) UnkNavLoadItem {

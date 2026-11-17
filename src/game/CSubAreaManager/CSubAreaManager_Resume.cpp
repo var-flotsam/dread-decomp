@@ -2,10 +2,10 @@
 // its flag at +0x181 or the mode at +0x108 is already 1, clears +0x10c and runs fn_7100ee62bc on it,
 // keeping the mode unchanged. Names and layouts are placeholders (the full ones are in
 // src/game/CSubAreaManager.cpp).
+#include "game/UnkTU2577.h"
 #include "types.h"
 struct CSubAreaManager;
 struct UnkSubArea;
-void fn_7100ee62bc(CSubAreaManager* self, UnkSubArea* area);
 struct UnkSubAreaView {
     u8 pad_0x0[0x181];
     // A union member (no type-based alias info), as in CSubAreaManager.cpp: reloaded after every store.

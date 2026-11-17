@@ -24,6 +24,7 @@
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU112.h"
 #include "game/UnkTU2505.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
@@ -195,7 +196,6 @@ void fn_710086023c(char* self, u32 capacity, u32 step, u32 flags) {
 
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
-void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 void fn_7100d46e4c(UnkManager_7100863a8c* self, UnkCollisionObject* group);
 UnkCollisionObject*& fn_7100863cb4(base::global::CRntVector<UnkCollisionObject*>* self, u32 index);
 
@@ -557,7 +557,6 @@ struct UnkTracker_7100863a8c;
 
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
-void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 
 void fn_7100863e04(UnkCollisionContainer* self, UnkCollisionObject* obj) {
     if (!self->records.count)

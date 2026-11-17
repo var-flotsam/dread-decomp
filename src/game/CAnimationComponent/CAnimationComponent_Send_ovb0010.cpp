@@ -94,8 +94,6 @@ struct UnkAnimTags_ovb0010 {
     u32 field_0x78;
 };
 
-void fn_71011787dc(UnkAnimTags_ovb0010* self, bool flag);
-
 inline const u32& AllTags_ovb0010() {
     static u32 s_value = ~base::reflection::refl_GetEnumZero<0x7172794a88>() & 0x7fff;
     return s_value;

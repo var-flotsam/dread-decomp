@@ -19,6 +19,7 @@
 #include "game/CSpawnPointComponent.h"
 #include "game/CSpawnerActorBlueprint.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
@@ -231,8 +232,6 @@ void fn_7101127e78(CSpawnPointComponent* self) {
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
-void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
-void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);
 struct UnkStruct_7100861148_Collider;
 
 static inline UnkManager_7100863a8c* Manager() {
