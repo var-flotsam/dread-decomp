@@ -38,3 +38,12 @@ void fn_71011265c0(CSpawnPointComponent* self);
 void fn_7101128e88(CSpawnPointComponent* self, void* shape);
 void fn_7101129064(CSpawnPointComponent* self, void* shape);
 void fn_71011266cc(base::global::CRntVector<CSpawnerActorBlueprint>* self);  // Frees the vector.
+// Destroys the last actor blueprint; false when there is none.
+bool fn_710112c3dc(CSpawnPointComponent* self);
+struct UnkWeakTarget;
+// Records a spawn request: the first target's weak handle (+0x348), the flags at +0x330..+0x338 and the last
+// target's weak handle (+0x340).
+void fn_7101127c24(CSpawnPointComponent* self, UnkWeakTarget* first, bool a, bool b, u32 value, bool c,
+                   UnkWeakTarget* second);
+// Makes the colliders again for the two shape links (wpSceneShapeId, wpCollisionSceneShapeId) when set.
+void fn_710112b7c4(CSpawnPointComponent* self);
