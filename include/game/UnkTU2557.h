@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkLoadingScreenData;
@@ -17,7 +18,8 @@ void fn_7100e138a8() __attribute__((visibility("hidden")));
 extern void* g_unk_71727c0708;  // A render object the loading screen keeps (pool 0).
 extern char g_unk_71727c0828;
 extern UnkLoadingScreenData g_unk_71727c0870 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727c0710;
+enum class ELoadingScreen : u32;
+template <> UnkReflType base::reflection::TypeObject<ELoadingScreen, UnkReflType>::object asm("g_unk_71727c0710");
 extern UnkConverter g_unk_71727c0830;
 extern UnkConverter g_unk_71727c0850;
 void fn_7100e0f4d4(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);

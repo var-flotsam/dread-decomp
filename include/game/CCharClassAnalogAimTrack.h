@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeaderAndClass;
@@ -15,7 +16,8 @@ void fn_7100ceb4cc() __attribute__((visibility("hidden")));
 void fn_7100ceb4d8() __attribute__((visibility("hidden")));
 extern char g_unk_71727a0730;
 extern char g_unk_71727a0850;
-extern UnkReflType g_unk_71727a0738;
+namespace CCharClassAnalogAimTrack { enum class EAbortAnalogAimInput : u32; }
+template <> UnkReflType base::reflection::TypeObject<CCharClassAnalogAimTrack::EAbortAnalogAimInput, UnkReflType>::object asm("g_unk_71727a0738");
 extern UnkTUHeaderAndClass g_unk_71727a0898 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727a0858;
 extern UnkConverter g_unk_71727a0878;

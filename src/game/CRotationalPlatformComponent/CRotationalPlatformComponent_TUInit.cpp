@@ -6,6 +6,7 @@
 #include "game/CRotationalPlatformComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 // The unit's data (its statics, merged into one block).
 struct UnkRotationalPlatformTU {
@@ -20,7 +21,8 @@ struct UnkRotationalPlatformTU {
     UnkReflType type;              // 0x50
 };
 
-extern base::reflection::CType g_unk_7172740788;  // also named in src/reflection/
+enum class ERotationDirection : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ERotationDirection>::object asm("g_unk_7172740788");
 void fn_71009d7c0c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71009d7ac0(void* e);  // src/clones/clones_03.cpp
 extern char g_unk_71727408a0;
@@ -42,9 +44,9 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
 void fn_71009d9650() {
     UnkRotationalPlatformTU& tu = g_unk_7172740970;
     InitHeader(tu.header);
-    InitEnum(AsUnk(&g_unk_7172740788), "ERotationDirection", fn_71009d7c0c, reinterpret_cast<void (*)()>(fn_71009d7ac0));
-    fn_710009ec00(&g_unk_71727408a0, AsUnk(&g_unk_7172740788));
-    InitEnumConverters(AsUnk(&g_unk_7172740788), g_unk_71727408a8, fn_71009d8fe4, g_unk_71727408c8, fn_71009d8ff0);
+    InitEnum(AsUnk(&base::reflection::TypeObject<ERotationDirection>::object), "ERotationDirection", fn_71009d7c0c, reinterpret_cast<void (*)()>(fn_71009d7ac0));
+    fn_710009ec00(&g_unk_71727408a0, AsUnk(&base::reflection::TypeObject<ERotationDirection>::object));
+    InitEnumConverters(AsUnk(&base::reflection::TypeObject<ERotationDirection>::object), g_unk_71727408a8, fn_71009d8fe4, g_unk_71727408c8, fn_71009d8ff0);
     new (&g_unk_71727408e8) CStrId("ROTATIONAL", true);
     fn_7100000250(fn_710000051c, &g_unk_71727408e8, &g_unk_7101a19000);
     InitPropertyVtableFirst(&g_unk_71727408f0, reinterpret_cast<void**>(g_unk_7101a89e08), g_unk_71726db788, "Used",

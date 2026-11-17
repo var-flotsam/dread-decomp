@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
@@ -19,8 +20,10 @@ void fn_7100c93c60() __attribute__((visibility("hidden")));
 void fn_7100c93c6c() __attribute__((visibility("hidden")));
 extern char g_unk_71727950c8;
 extern char g_unk_7172795228;
-extern UnkReflType g_unk_7172794fb0;
-extern UnkReflType g_unk_7172795110;
+namespace cutscene { enum class ETakePlayMode : u32; }
+template <> UnkReflType base::reflection::TypeObject<cutscene::ETakePlayMode, UnkReflType>::object asm("g_unk_7172794fb0");
+namespace cutscene { enum class EDevelopmentState : u32; }
+template <> UnkReflType base::reflection::TypeObject<cutscene::EDevelopmentState, UnkReflType>::object asm("g_unk_7172795110");
 extern UnkTUHeader g_unk_7172795270 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71727950d0;
 extern UnkConverter g_unk_71727950f0;

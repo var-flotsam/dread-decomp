@@ -104,7 +104,7 @@ void fn_7100adbc20() {
     InitClass(AsUnk(&g_unk_7172756e50), "gameeditor::CGameModelRoot", fn_7100ad5fa4, fn_7100ad5470);
     fn_710009ec00(g_unk_7172756f88, &g_unk_7172756e50);
 
-    UnkReflType* target = &g_unk_7172756f90;
+    UnkReflType* target = &base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object;
     InitEnum(target, "gameeditor::EPersistenceTarget", fn_7100ad6bcc, fn_7100ad6720);
     fn_710009ec00(g_unk_71727570a8, target);
     InitEnumConverters(target, g_unk_71727570b0, fn_7100ad9ce8, g_unk_71727570d0, fn_7100ad9cf4);

@@ -5,12 +5,14 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
 
 void fn_7100da56a4();
 extern char g_unk_71727bc228;
-extern UnkReflType g_unk_71727bc110;
+namespace SLinkType { enum class ELinkType : u32; }
+template <> UnkReflType base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object asm("g_unk_71727bc110");
 extern UnkTUHeader g_unk_71727bc230 __attribute__((visibility("hidden")));
 void fn_7100da5c70(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);

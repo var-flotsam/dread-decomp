@@ -5,4 +5,6 @@
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "types.h"
-extern base::reflection::CType g_unk_7101d679f0;
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");

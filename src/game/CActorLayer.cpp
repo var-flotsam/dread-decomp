@@ -137,17 +137,17 @@ void fn_71002584a0(CClass* cls) {
     sublayers->attrs.Add<bool>(fn_7100234780(), true);
     sublayers->attrs.Add<bool>(fn_7100092b10(), true);
     sublayers->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterSublayerDeserialization");
-    sublayers->attrs_0x70.Add<s32>(fn_710025d990(), TypeOf(g_unk_7172756f90), 2);
+    sublayers->attrs_0x70.Add<s32>(fn_710025d990(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 2);
 
     AddGetter(cls, "_m_dctActorGroups_GetterFunction", TypeOf(g_unk_717269c300), fn_7100260950);
     UnkReflField* groups = AddReflectedField(cls, CStrId("dctActorGroups", true), TypeOf(g_unk_717269c300), 0xffffffff,
                                          cls->m_array_0x110.size() - 1, -1);
     groups->attrs.Add<const char*>(fn_710008ff80(), "AfterActorGroupDeserialization");
-    groups->attrs.Add<s32>(fn_710025d990(), TypeOf(g_unk_7172756f90), 2);
-    groups->attrs_0x70.Add<u32>(fn_710025daa0(), TypeOf(g_unk_71727bc110), 0);
+    groups->attrs.Add<s32>(fn_710025d990(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 2);
+    groups->attrs_0x70.Add<u32>(fn_710025daa0(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
     groups->attrs_0x70.Add<bool>(fn_710025dbb0(), true);
     groups->attrs_0x70.Add<const char*>(fn_710008ff80(), "AfterActorGroupLinkDeserialization");
-    groups->attrs_0x70.Add<s32>(fn_710025dcc0(), TypeOf(g_unk_7172756f90), 1);
+    groups->attrs_0x70.Add<s32>(fn_710025dcc0(), TypeOf(base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object), 1);
 
     AddHook(cls, "AfterActorGroupDeserialization", fn_710025915c);
     AddHook(cls, "AfterActorGroupLinkDeserialization", fn_71002592d0);

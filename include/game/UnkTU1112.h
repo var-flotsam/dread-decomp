@@ -5,4 +5,6 @@
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "types.h"
-extern base::reflection::CType g_unk_717270c618;
+#include "base/reflection/TypeObject.h"
+enum class ENavigablePathType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ENavigablePathType>::object asm("g_unk_717270c618");

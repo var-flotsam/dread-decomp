@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUData;
@@ -23,7 +24,8 @@ extern char g_unk_71729cdeb0;
 extern char g_unk_71729cdfd0;
 extern UnkArray_71729ce018 g_unk_71729ce018;
 extern UnkReflType g_unk_71729cdd78;
-extern UnkReflType g_unk_71729cdeb8;
+namespace minimap { enum class EIconAnimID : u32; }
+template <> UnkReflType base::reflection::TypeObject<minimap::EIconAnimID, UnkReflType>::object asm("g_unk_71729cdeb8");
 extern UnkTUHeader g_unk_71729ce040 __attribute__((visibility("hidden")));
 extern UnkTUData g_unk_71729ce058 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_71729cdfd8;

@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkCallbackSetElem;
 struct UnkCallbackSetVector;
@@ -15,4 +16,5 @@ extern void* g_unk_7101a92ed0[];
 void fn_7100a956b8(UnkCallbackSetVector* v, u32 n);
 void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
 void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
-extern base::reflection::CType g_unk_7172752160;
+namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");

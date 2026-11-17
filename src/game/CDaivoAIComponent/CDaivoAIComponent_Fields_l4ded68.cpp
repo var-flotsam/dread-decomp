@@ -31,11 +31,11 @@ static inline const base::reflection::CType* TypeOf(UnkEnumType& t) {
 void fn_71004ded68(CClass* cls) {
     namespace attr = base::reflection::attr;
     UnkReflField* actor = AddReflectedField(cls, CStrId("wpSwarmActor", true), TypeOf(g_unk_717269bb48), 0x14840, -1, -1);
-    actor->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(g_unk_71727bc110), 0);
+    actor->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
     UnkReflField* begin = AddReflectedField(cls, CStrId("wpSwarmAOIBegin", true), TypeOf(g_unk_717269bb48), 0x147c0, -1, -1);
-    begin->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(g_unk_71727bc110), 0);
+    begin->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
     UnkReflField* end = AddReflectedField(cls, CStrId("wpSwarmAOIEnd", true), TypeOf(g_unk_717269bb48), 0x14800, -1, -1);
-    end->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(g_unk_71727bc110), 0);
+    end->attrs.Add<s32>(attr::eLinkTarget(), TypeOf(base::reflection::TypeObject<SLinkType::ELinkType, UnkReflType>::object), 0);
 
     auto* path = static_cast<UnkDaivoField_l4ded68*>(
         base::reflection::refl_FindField(cls, base::global::CName("wpPathToFollow")));
