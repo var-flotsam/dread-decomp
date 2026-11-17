@@ -2,14 +2,14 @@
 // to its target (src/game/UnkTimelineMotion.cpp calls it): while there are frames and a mode, the
 // target keeps the frames (+0x6c), the per-frame translation (the matrix's last column divided by the
 // frames with mode bit 1, else the zero vector; +0x60), the matrix (+0x0), the mode (+0x5c) and a
-// flag 8 in its flags (+0x58), minus the bits of g_unk_717270ec80. Names and layouts are placeholders.
+// flag 8 in its flags (+0x58), minus the bits of g_unk_717270ec80's first word. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkTU1141.h"
+#include "game/UnkTUInit.h"
 #include "types.h"
 
 using base::math::CVector3D;
-
-extern __attribute__((visibility("hidden"))) u32 g_unk_717270ec80;
 
 // Declared as src/game/UnkTimelineMotion.cpp does; the mode is its first word.
 struct UnkMotionMode;
@@ -47,6 +47,6 @@ void fn_7100714700(f32 frames, void* target, const UnkMatrix44* motion, const Un
     out[1] = w[1];
     out[2] = w[2];
     UnkCopyMatrix(&self->matrix, *motion);
-    self->flags = (self->flags | 8) & ~g_unk_717270ec80;
+    self->flags = (self->flags | 8) & ~g_unk_717270ec80.field_0x0;
     self->mode = *bits;
 }

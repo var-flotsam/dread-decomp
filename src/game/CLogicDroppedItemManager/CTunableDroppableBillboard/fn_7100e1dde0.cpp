@@ -1,12 +1,14 @@
 // Static initialiser of CLogicDroppedItemManager::CTunableDroppableBillboard's unit: the header ids, the pickup
 // effect and its sound presets, the drops' ids, the billboard animations' ids, the billboard tunable, the
 // drops' textures and materials, and three empty sound handles. Names and layouts are placeholders.
-#include "../../../../src/game_5821e4/UnkStaticInit.h"
+#include "../../../game_5821e4/UnkStaticInit.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDropTunable_ovb0208.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2561.h"
+#include "game/UnkTU2562.h"
 #include "game/UnkTU57.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
@@ -38,16 +40,6 @@ struct UnkStatics_le1dde0 {
 static_assert(__builtin_offsetof(UnkStatics_le1dde0, field_0x60) == 0x60, "layout");
 static_assert(__builtin_offsetof(UnkStatics_le1dde0, billboard_entry) == 0x160, "layout");
 extern UnkStatics_le1dde0 g_unk_71727c1358 __attribute__((visibility("hidden")));
-
-// As src/game/UnkTU2562/UnkTU2562_Billboard_ovb0208.cpp defines it.
-extern void* g_unk_7101aa9cc8[];
-struct UnkDropTunable_ovb0208 : UnkTunable {
-    u8 pad_0x8[0x90];
-    base::global::CRntString n0, n1, n2, n3, n4, n5, n6, n7, n8;  // 0x98
-    u8 pad_0x248[0x10];
-};
-static_assert(sizeof(UnkDropTunable_ovb0208) == 0x258, "size");
-void fn_7100e20ba0(UnkDropTunable_ovb0208* self);
 
 void fn_7100e1dbc0(void*) __attribute__((visibility("hidden")));
 extern char g_unk_71727c10c0[];

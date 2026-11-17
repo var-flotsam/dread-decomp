@@ -3,27 +3,11 @@
 // with the default vector; the angle part only clears the angles, the scale part only the scale.
 // Names and layouts are placeholders.
 #include "base/math/UnkZeroVector3.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU32.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_71007142e8() {
-    static UnkFlags_71007142e8 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_71007142e8() {
-    static UnkFlags_71007142e8 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_71007142e8().bits & 7);
-    return s_all;
-}
 
 struct UnkStruct_71007142e8 {
     UnkXform xform;  // 0x0

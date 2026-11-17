@@ -564,7 +564,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71006b1228,708,drafts/game/CShakernautAIComponent/fn_71006b1228.cpp,operations,40.1,105,lean-r2ke,original merges file-static path ids g_unk_7172706498 and g_unk_71727064a0 with the guarded request (GlobalMer
 0x71006b7508,1000,drafts/game/behaviortree/CShelmitChargeAction/fn_71006b7508.cpp,build fails,,,lean-r2kf,order of the zeroing moves (ai; owner target; char class) on the no-owner and not-Shelmit paths
 0x71006b78f0,744,drafts/game/behaviortree/CShelmitChargeAction/fn_71006b78f0.cpp,build fails,,,lean-r2kf,target null check hoisted above stage-2 hash compare; flag test form (cset/eor/orr) and zeroing order differ
-0x71006ba298,528,drafts/game/CShelmitAIComponent/fn_71006ba298.cpp,match,100.0,0,lean-r2kg,matches; held: g_unk_710164a730/738 also declared in CShelmitAIComponent_ReflSetMode_b66a4.cpp (needs a unit header)
 0x71006c1a90,372,drafts/game/CSluggerSpitAttack/fn_71006c1a90.cpp,control flow,36.6,56,lean-b5,control flow/register allocation of the aim-point branches
 0x71006c32a0,904,drafts/game/CSluggerSpitAttack/fn_71006c32a0.cpp,control flow,35.4,144,lean-r2kf,register pressure: ours keeps the string-pool GOT address in x27 instead of spilling the out-slot argument to
 0x71006c3bcc,144,drafts/game/CSluggerSpitAttack/fn_71006c3bcc.cpp,build fails,,,lean-b5,same ctor as 71006c083c; best form is its draft (not graded under this address); store order of 0x5c pair
@@ -597,7 +596,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100705a64,408,drafts/game/UnkTU1127/fn_7100705a64.cpp,operations,52.4,48,lean-r2kg,inlined erase: the widened loop counter copy (mov) is placed before the first release in the original; and the
 0x710070dc8c,364,drafts/game/UnkTU1134/fn_710070dc8c.cpp,registers or order,97.8,2,overnight,
 0x71007149f4,900,drafts/game/UnkTU1141/fn_71007149f4.cpp,operations,32.3,152,lean,
-0x7100714ec0,1300,drafts/game/UnkTU1141/fn_7100714ec0.cpp,match,100.0,0,lean-r2kg,matches; held: shares its unit globals with UnkUnit1141_b42.cpp and CMovementComponent (needs a unit header with their real types)
 0x7100719064,732,drafts/game/CAudioComponent/fn_7100719064.cpp,control flow,6.8,170,lean-o2,slot filter on the kind bits at +0xc4 not yet the original form; loop strength reduction and spill of a|b diff
 0x7100719894,604,drafts/game/CAudioComponent/fn_7100719894.cpp,control flow,5.3,141,lean-o2,our build unswitches the search loop on time < 0 (two loop copies); original keeps the fade-time select inside
 0x710071a398,396,drafts/game/CAudioComponent/fn_710071a398.cpp,calls,0.0,99,lean-ob2,ours unswitches the inner loop on the near-zero scale test (two calls); original selects with fcsel
@@ -718,7 +716,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710088fce4,812,drafts/game/CCharClassShootActivatorComponent/fn_710088fce4.cpp,operations,11.3,173,lean-r2kb,each array flag at +0x14 is stored from the array base (add+strb) in the original; ours folds it to the object
 0x710089a7c0,384,drafts/game/CCharClassSteamJetComponent/fn_710089a7c0.cpp,operations,89.6,10,lean-b6,listener pointer not hoisted and handle slot address hoisted into a register (register allocation/operations);
 0x71008ace98,532,drafts/game/CBeamDoorLifeComponent/fn_71008ace98.cpp,operations,0.0,133,lean-r2kg,one extra callee-saved register (x23) in the open path; rest lines up shifted by one insn
-0x71008bbc24,868,drafts/game/CCharClassLifeComponent/fn_71008bbc24.cpp,match,100.0,0,lean-r2kg,matches; held: g_unk_7172a0a0a8 typed differently in CDrop_Members_ovb0105.cpp
 0x71008be4e0,1916,drafts/game/CChozoCommanderXLifeComponent/fn_71008be4e0.cpp,build fails,,,lean-r2kd,same calls and flow; the request-argument slots share stack with the temporary strings (original gives them th
 0x71008bf4fc,1096,drafts/game/CChozoCommanderXLifeComponent/fn_71008bf4fc.cpp,build fails,,,lean-r2kd,same calls and flow; the listener link address (self+0x260) is kept in a callee-saved register (one extra CSR)
 0x71008c0004,612,drafts/game/CChozoCommanderXLifeComponent/fn_71008c0004.cpp,operations,0.7,149,lean-r2kd,same instructions; stack slot order (id above the string; value below) and map pointer kept in x21/pool in x22
@@ -1087,7 +1084,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e15cec,1236,drafts/game/CArenaManager/CTunableArenaManager/fn_7100e15cec.cpp,build fails,,,lean-r2kg,stack slot layout of the two section ids; fn_7100e161c0's first argument is never loaded in the first loop (Un
 0x7100e19f84,760,drafts/game/UnkTU2559/fn_7100e19f84.cpp,conditions,98.9,2,lean-r2kg,graded draft had the two csinc results swapped (fixed in draft after budget; ungraded: decayed>0 ? 1 : 2; fn_7
 0x7100e1cbdc,148,drafts/game/UnkTU2560/fn_7100e1cbdc.cpp,operations,94.6,2,overnight,
-0x7100e1dde0,1404,drafts/game/CLogicDroppedItemManager/CTunableDroppableBillboard/fn_7100e1dde0.cpp,match,100.0,0,lean-r2kg,matches; held: declares six drop-id and preset globals another file also declares (needs a unit header)
 0x7100e211cc,1012,drafts/game/UnkTU2562/fn_7100e211cc.cpp,registers or order,49.4,128,lean-r2kd,base register for the 0x7808 block (0x7814 vs 0x7808) and the dictionary address hoisted
 0x7100e22a74,1560,drafts/game/UnkTU2562/fn_7100e22a74.cpp,operations,96.7,13,lean-r2kb,Reserve move loop of the 12-byte entry: original copies 3 words with may-alias accesses (reloads count and dat
 0x7100e2a034,1792,drafts/game/UnkTU2562/fn_7100e2a034.cpp,control flow,12.8,390,lean-r2k,prologue/stack now match; CStrId move-assign of the X-Parasite id lays out its release blocks differently (poo

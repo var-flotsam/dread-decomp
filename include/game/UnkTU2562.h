@@ -10,6 +10,7 @@ void fn_7100e211cc(void* self);
 
 struct UnkDropTarget_ovb0208;
 struct UnkDropEntrySet_ovb0208;
+struct UnkDropTunable_ovb0208;
 // Hands the billboard singleton a drop request for `target`. The second argument register is never read
 // (an UnkNoArg: the callers leave it unloaded).
 void fn_7100e2c124(f32 value, UnkNoArg, UnkDropTarget_ovb0208* target, const base::global::CStrId* id, u32 a, u32 b,
@@ -20,3 +21,6 @@ UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkD
 void fn_7100e2f98c(void* owner);
 void fn_7100e2f994(void* owner);
 void fn_7100e2f99c(void* owner);
+// The billboard tunable's vtable (game/UnkDropTunable_ovb0208.h) and its destructor without the delete.
+extern void* g_unk_7101aa9cc8[];
+void fn_7100e20ba0(UnkDropTunable_ovb0208* self);

@@ -4,14 +4,10 @@
 // value is non-zero; returns an empty value. Names and layouts are placeholders.
 #include "base/reflection/UnkReflValue.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/CShelmitAIComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-// As src/game/CGooplotAIComponent/CGooplotAIComponent_Reset_b49.cpp declares them.
-struct UnkFlagTarget;
-extern char g_unk_710164a738[];
-extern char g_unk_710164a730[];
 
 struct UnkShelmitOwner_b66a4 {
     u8 pad_0x0[0x228];
