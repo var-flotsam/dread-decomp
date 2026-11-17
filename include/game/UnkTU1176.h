@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkPair_7100778228;
 struct UnkEntry_cu;
 struct UnkNamedEntry_7100772cb0;
 struct UnkNamedList_7100772cb0;
@@ -31,3 +32,4 @@ UnkNamedEntry_7100772cb0* fn_7100772cb0(UnkNamedList_7100772cb0* self, const bas
 void fn_7100775610(UnkCentralUnit* unit, bool on, const base::global::CStrId* id);
 void fn_710077a700(base::global::CRntVector<UnkEntry_cu>* self, const UnkEntry_cu* value);
 extern const u64 g_unk_710164aa90;
+void fn_7100778228(UnkPair_7100778228* self);

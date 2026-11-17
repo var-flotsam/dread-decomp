@@ -15,6 +15,7 @@
 #include "game/UnkTU129.h"
 #include "game/UnkTU130.h"
 #include "game/UnkTU131.h"
+#include "game/UnkTU132.h"
 #include "game/UnkTU133.h"
 #include "game/UnkTU140.h"
 #include "game/UnkTU32.h"
@@ -77,7 +78,6 @@ void fn_7100144c9c(UnkTaggedHeader* self) {
 // ---- one base and a member destroyed before the sub-object (units 132, 140) ----
 
 // Unit 132: the object the pointer at +0x128 holds.
-extern char g_unk_7101a1c630[];
 void fn_71001bbc88(void* object);
 void fn_7100206a44(void* sub);
 

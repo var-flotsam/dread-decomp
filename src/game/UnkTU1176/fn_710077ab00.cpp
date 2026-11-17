@@ -4,12 +4,12 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 // The entry's destructor (src/game_lo/fn_7100778228.cpp).
 struct UnkPair_7100778228;
-void fn_7100778228(UnkPair_7100778228*);
 
 struct UnkEntry_l77ab00 {
     UnkHalf_cu first;

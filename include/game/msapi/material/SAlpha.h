@@ -8,6 +8,7 @@
 #include "base/global/CRntFile.h"
 #include "types.h"
 
+struct UnkMaterialReset_ovb0098;
 struct UnkRenderItem_b0247;
 struct UnkMaterial;
 struct UnkMaterialValuesVector;
@@ -17,3 +18,4 @@ void fn_71001a836c(UnkMaterial* self, base::global::CRntVector<u64>* list);
 extern void* g_unk_7101a1e388[];
 void fn_71001a69a0(UnkNoArg, base::global::CRntFile* file, void* dst);
 void fn_71001a7bfc(UnkRenderItem_b0247* item, u32 mode);
+void fn_71001a6418(UnkMaterialReset_ovb0098* self);

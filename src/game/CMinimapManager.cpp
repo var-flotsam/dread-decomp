@@ -783,7 +783,6 @@ void fn_7100e9d1f8(UnkMinimapOwner* self, s32 kind) {
 void fn_7100eb2cc0(void* self, u32 a, u32 b);         // sets up the pooled set at 0xd64210
 
 // The vtables (GOT 0x7101cd03a8, 0x7101d298c8, 0x7101cd05f8, 0x7101cd05f0).
-extern void* g_unk_7101ca9e38[];
 
 // The owner's callbacks (reached through the GOT).
 void fn_7100eb30b0(void* self);
