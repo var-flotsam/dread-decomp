@@ -98,7 +98,7 @@ in the journal's index, then refreshes `docs/HANDOFF.md`
 `data/tu_status.csv` (`tools/tu_status.py --write`; `--check` says whether it is behind). Each pull request's
 `policy` job writes the same card to its job summary, with what the change does to the whole binary, and
 under it the translation units by state with the units the change moves.
-To refresh the private dashboard as well: `tools/dashboard_export.py`, then upload `build/dashboard/`.
+To refresh the private dashboard as well: `tools/dashboard_export.py --now`, then upload `build/dashboard/` (three CSVs).
 
 **Size of a pull request.** One coherent piece of work per PR (a class, a hub cluster, a tool change), with
 no minimum size: the checks and the merge take minutes (2026-11-14 audit; the old "about 30 functions" floor
