@@ -28,7 +28,6 @@ struct UnkInfesterAI_b46a2 {
 extern u8 g_unk_71726ec411 __attribute__((visibility("hidden")));
 
 // Signatures as the other AI units declare them.
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 
 void fn_71005cafa4(UnkInfesterAI_b46a2* self) {
     if (g_unk_71726ec411 & 1) return;

@@ -2,7 +2,9 @@
 // state, drops the weak handle it listens on and the object at +0x7a8, tells the game, the scenario script
 // (CurrentScenario.OnEmmyGrabEnd) and the central-unit registry. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "base/global/CStrId.h"
 #include "game/CAutsharpAIComponent.h"
+#include "game/CCameraComponent.h"
 #include "game/UnkAttack.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkStateMachineFind.h"
@@ -13,9 +15,7 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkGrabEndInfo_l50a30c;
-extern UnkGrabEndInfo_l50a30c g_unk_71726de5c0 __attribute__((visibility("hidden")));
-void fn_71010e4a80(void* self, UnkGrabEndInfo_l50a30c* info);
+extern base::global::CStrId g_unk_71726de5c0 __attribute__((visibility("hidden")));
 
 struct UnkGrabState_l50a30c {
     virtual void vf_0x0();

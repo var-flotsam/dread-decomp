@@ -155,7 +155,6 @@ bool fn_71006dcdec(UnkVulkranAIBury_ovb0121* self) {
 }
 
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 
 struct UnkVulkranOwner_ovb0121 {
     u8 pad_0x0[0x218];

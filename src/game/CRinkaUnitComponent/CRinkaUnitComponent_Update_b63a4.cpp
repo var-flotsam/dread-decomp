@@ -3,6 +3,7 @@
 // applies the pending state, then updates the current state and applies what it asked for, at most ten
 // times, while marked busy. Each one's own unit. Names are placeholders.
 #include "game/CComponent.h"
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkSmState_B63a4 {
@@ -40,24 +41,14 @@ struct UnkSmOwner_B63a4 {
     UnkSmMachine_B63a4 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_B63a4(UnkSmMachine_B63a4* self, u32 id,
-                                                               UnkSmState_B63a4*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_B63a4);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_B63a4* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_B63a4)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_B63a4(UnkSmMachine_B63a4* self, u32 id, UnkSmState_B63a4*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_B63a4(UnkSmMachine_B63a4* self, u32 id,
-                                                                 UnkSmState_B63a4* current) {
+static inline void SwitchState_B63a4(UnkSmMachine_B63a4* self, u32 id, UnkSmState_B63a4* current) {
     if (!current || current->id != id) {
         UnkSmState_B63a4* found;
         UnkSmState_B63a4* next;
@@ -90,7 +81,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Apply_B63a4(UnkSmMachine_B63a4* self) {
+static inline void Apply_B63a4(UnkSmMachine_B63a4* self) {
     u32 id = self->pending;
     if (id > Last)
         return;
@@ -98,7 +89,7 @@ __attribute__((always_inline)) static inline void Apply_B63a4(UnkSmMachine_B63a4
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Update_B63a4(UnkSmMachine_B63a4* self, f32 dt) {
+static inline void Update_B63a4(UnkSmMachine_B63a4* self, f32 dt) {
     self->busy = true;
     if (self->pending != None)
         Apply_B63a4<Last, None>(self);

@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/CGrappleBeamComponent.h"
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 using base::reflection::UnkTunable;
@@ -62,23 +63,13 @@ struct UnkGrappleSmOwner_ovb0047 {
 };
 static_assert(__builtin_offsetof(UnkGrappleSmOwner_ovb0047, field_0x714) == 0x714, "layout");
 
-__attribute__((always_inline)) static inline bool FindState_ovb0047(UnkGrappleSm_ovb0047* self, u32 id,
-                                                                   UnkGrappleSmState_ovb0047*& out) {
-    u64 n = (u64)self->count * sizeof(UnkGrappleSmStatePtr_ovb0047);
-    asm("" : "+r"(n));
-    for (UnkGrappleSmStatePtr_ovb0047* p = self->states; n != 0; ++p, n -= sizeof(UnkGrappleSmStatePtr_ovb0047)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_ovb0047(UnkGrappleSm_ovb0047* self, u32 id, UnkGrappleSmState_ovb0047*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` and clears the pending id (5).
-__attribute__((always_inline)) static inline void SwitchState_ovb0047(UnkGrappleSm_ovb0047* self, u32 id,
-                                                                     UnkGrappleSmState_ovb0047* current) {
+static inline void SwitchState_ovb0047(UnkGrappleSm_ovb0047* self, u32 id, UnkGrappleSmState_ovb0047* current) {
     if (!current || current->id != id) {
         UnkGrappleSmState_ovb0047* found;
         UnkGrappleSmState_ovb0047* next;
@@ -110,8 +101,7 @@ done:
     self->pending = 5;
 }
 
-__attribute__((always_inline)) static inline void RequestState_ovb0047(UnkGrappleSm_ovb0047* self, u32 id,
-                                                                      UnkGrappleSmState_ovb0047* current) {
+static inline void RequestState_ovb0047(UnkGrappleSm_ovb0047* self, u32 id, UnkGrappleSmState_ovb0047* current) {
     // Stored through a plain u32 pointer: the original rereads the state id after this.
     u32* pending = &self->pending;
     *pending = id;
@@ -122,7 +112,7 @@ __attribute__((always_inline)) static inline void RequestState_ovb0047(UnkGrappl
     SwitchState_ovb0047(self, id, current);
 }
 
-__attribute__((always_inline)) static inline void Request_ovb0047(UnkGrappleSm_ovb0047* self, u32 id) {
+static inline void Request_ovb0047(UnkGrappleSm_ovb0047* self, u32 id) {
     u32* pending = &self->pending;
     *pending = id;
     if (id > 4)

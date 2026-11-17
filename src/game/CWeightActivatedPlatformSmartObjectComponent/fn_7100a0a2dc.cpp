@@ -16,6 +16,9 @@
 
 using base::global::CStrId;
 
+// File-local types: Request, used once, then inlines as in the original (no always_inline needed).
+namespace {
+
 struct UnkWapState_la0a2dc {
     virtual void vf_0x0();
     virtual void vf_0x8();
@@ -51,8 +54,7 @@ struct UnkWapMachine_la0a2dc {
         return FindStateById(states, count, id);
     }
 
-    // Inlined in the original; the barrier in Find makes it too large for the inliner otherwise.
-    __attribute__((always_inline)) void Request(u32 id) {
+    void Request(u32 id) {
         pending = id;
         if (id > kLast || busy)
             return;
@@ -77,6 +79,8 @@ struct UnkWapMachine_la0a2dc {
         pending = kNone;
     }
 };
+
+}  // namespace
 
 struct UnkWapUsableLink_la0a2dc {
     u8 pad_0x0[0x10];

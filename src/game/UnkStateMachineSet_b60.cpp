@@ -14,6 +14,7 @@
 #include "game/CComponent.h"
 #include "game/CGunComponent.h"
 #include "game/CHydrogigaPolypsAttack.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/navmesh/SNavMeshPath.h"
@@ -53,24 +54,14 @@ struct UnkSmOwner_b60 {
     UnkSmMachine_b60 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_b60(UnkSmMachine_b60* self, u32 id,
-                                                               UnkSmState_b60*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b60);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_b60* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b60)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_b60(UnkSmMachine_b60* self, u32 id, UnkSmState_b60*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_b60(UnkSmMachine_b60* self, u32 id,
-                                                                 UnkSmState_b60* current) {
+static inline void SwitchState_b60(UnkSmMachine_b60* self, u32 id, UnkSmState_b60* current) {
     if (!current || current->id != id) {
         UnkSmState_b60* found;
         UnkSmState_b60* next;
@@ -103,7 +94,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_b60(UnkSmMachine_b60* self, u32 id) {
+static inline void RequestState_b60(UnkSmMachine_b60* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;
@@ -295,7 +286,7 @@ void fn_710081b510(UnkGrappleSm_b60* self) {
 // only records the id and the apply switches; otherwise the request switches and the apply finds
 // nothing pending (two inlined copies of the switch in the original).
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void ApplyPending_b60(UnkSmMachine_b60* self) {
+static inline void ApplyPending_b60(UnkSmMachine_b60* self) {
     u32 id = self->pending;
     if (id > Last)
         return;

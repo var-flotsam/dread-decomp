@@ -86,12 +86,12 @@ inline UnkNodeList_0x38& UnkListArray::operator[](u32 index) {
     return data[index];
 }
 
-struct UnkStruct_0xf8 {
+struct UnkMusicSlotOwner_fd8720 {
     u8 pad_0x0[0xe0];
     UnkListArray field_0xe0;
 };
 
-void fn_7100fd8720(UnkStruct_0xf8* self, u32 index) {
+void fn_7100fd8720(UnkMusicSlotOwner_fd8720* self, u32 index) {
     for (UnkNode_0x68* n = self->field_0xe0[index].Begin(); n != self->field_0xe0[index].End(); n = n->next) {
         if (n->field_0x30)
             fn_7100108a84(reinterpret_cast<UnkMgr*>(g_unk_7101d4d820), n->field_0x28, 0.0f);

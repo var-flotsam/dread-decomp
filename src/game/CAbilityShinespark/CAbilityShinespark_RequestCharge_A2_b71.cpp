@@ -1,6 +1,7 @@
 // CAbilityShinespark's unit (tools/tu_map.py unit 433): asks the ability's state machine (+0x6a0) for
 // state 2, unless it is already there, in which case fn_710032dfdc runs instead. The request is the
 // template of src/game/UnkStateMachineSet_b60.cpp (copied here; "none" is 6). Names are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkSmState_A2_b71 {
@@ -37,24 +38,14 @@ struct UnkSmOwner_A2_b71 {
     UnkSmMachine_A2_b71 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_A2_b71(UnkSmMachine_A2_b71* self, u32 id,
-                                                               UnkSmState_A2_b71*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_A2_b71);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_A2_b71* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_A2_b71)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_A2_b71(UnkSmMachine_A2_b71* self, u32 id, UnkSmState_A2_b71*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_A2_b71(UnkSmMachine_A2_b71* self, u32 id,
-                                                                 UnkSmState_A2_b71* current) {
+static inline void SwitchState_A2_b71(UnkSmMachine_A2_b71* self, u32 id, UnkSmState_A2_b71* current) {
     if (!current || current->id != id) {
         UnkSmState_A2_b71* found;
         UnkSmState_A2_b71* next;
@@ -87,7 +78,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_A2_b71(UnkSmMachine_A2_b71* self, u32 id) {
+static inline void RequestState_A2_b71(UnkSmMachine_A2_b71* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;

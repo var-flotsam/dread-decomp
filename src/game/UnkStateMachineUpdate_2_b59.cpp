@@ -1,6 +1,7 @@
 // More instances of the state machine's "apply the pending state" step of
 // src/game/UnkStateMachineUpdate_b59.cpp (the same template), one per owner
 // unit, among them CSamusGrappleMovementState's (fn_710099c93c). Names are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkSmState_b59b {
@@ -30,22 +31,13 @@ struct UnkSmMachine_b59b {
     u32 pending;
 };
 
-__attribute__((always_inline)) static inline bool FindState_b59b(UnkSmMachine_b59b* self, u32 id,
-                                                               UnkSmState_b59b*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b59b);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_b59b* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b59b)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_b59b(UnkSmMachine_b59b* self, u32 id, UnkSmState_b59b*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void ApplyPending_b59b(UnkSmMachine_b59b* self) {
+static inline void ApplyPending_b59b(UnkSmMachine_b59b* self) {
     u32 id = self->pending;
     if (id > Last)
         return;

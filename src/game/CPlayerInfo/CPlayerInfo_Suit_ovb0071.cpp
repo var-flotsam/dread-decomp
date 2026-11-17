@@ -9,7 +9,6 @@
 struct UnkOwner;
 struct UnkActorTarget;
 struct UnkPlayerInfo_ovb0071;
-void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 
 static inline void Apply_ovb0071(UnkActorTarget* target, bool flag) {
     if (flag)

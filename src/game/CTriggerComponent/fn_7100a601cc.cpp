@@ -5,6 +5,7 @@
 
 #include "base/UnkSList.h"
 #include "base/global/CStrId.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"

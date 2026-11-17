@@ -8,6 +8,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CCharacterMovement.h"
 #include "game/CMovementComponent.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
@@ -133,7 +134,7 @@ static_assert(__builtin_offsetof(UnkRelocateMovement, field_0x2530) == 0x2530, "
 
 struct UnkRelocateChild {
     u8 pad_0x0[0x1e8];
-    void* field_0x1e8;
+    UnkTriggerComponent_la601cc* field_0x1e8;
 };
 
 struct UnkRelocateActor {
@@ -182,7 +183,6 @@ void fn_7101167da0(char* p0);
 char* fn_71008721dc(char* p0);
 bool fn_7100977e50(UnkCharacterMovement* self, f32 max_dot, f32 extra, f32 step, f32 back, u32 mask,
                    const CVector3D* pos, CVector3D* out_point, UnkCollisionHit* out_hit, const CVector3D* dir);
-void fn_7100a601cc(void* child, UnkRelocateActor* to, UnkRelocateActor* from);
 void fn_7100a5fccc(UnkRelocateActor* actor);
 
 static inline UnkRelocateActor* TargetOf(UnkRelocateHandle* handle) {
@@ -268,7 +268,8 @@ void fn_7100df4610(UnkGameManager* manager) {
             from->field_0x6f4 = 0;
 
             while (source->field_0x320 != 0)
-                fn_7100a601cc(source->field_0x328[0]->field_0x1e8, actor, source);
+                fn_7100a601cc(source->field_0x328[0]->field_0x1e8, reinterpret_cast<UnkTriggerTarget_la601cc*>(actor),
+                              reinterpret_cast<UnkTriggerTarget_la601cc*>(source));
             fn_7100a5fccc(actor);
         }
     }

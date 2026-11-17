@@ -451,7 +451,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100438a44,208,drafts/game/CChozoCommanderPowerPulseAttack/fn_7100438a44.cpp,conditions,23.1,40,lean,
 0x710043c21c,940,drafts/game/CChozoCommanderTriComboAttack/fn_710043c21c.cpp,build fails,,,lean-r2kg,weak handle at +0x78 loaded after the link stores (orig before) and addressed pre-indexed; hoisting the load s
 0x710043de14,976,drafts/game/CChozoCommanderUltimateGrabAttack/fn_710043de14.cpp,operations,7.8,206,lean-r2ke,property list at +0x88: original stores count and INT_MAX capacity separately (capacity via list pointer); sto
-0x710043e248,1556,drafts/game/CChozoCommanderUltimateGrabAttack/fn_710043e248.cpp,match,100.0,0,lean-r2ke,matches; held: 1 declaration problem: src/game/CChozoCommanderUltimateGrabAttack/fn_710043e248.cpp:133 fn_7100443508: void fn_7100443508() -> src/game/CChozoCommanderUltimateGrabAttack/CChozoCommanderUltimateGrab...
 0x71004563f8,448,drafts/game/CChozoCommanderAIComponent/fn_71004563f8.cpp,operations,47.8,58,lean-o2,velocity stores addressed through step+0x60 (pre-index x20) and z store not delayed; load scheduling
 0x7100457274,796,drafts/game/CChozoCommanderAIComponent/fn_7100457274.cpp,operations,88.9,22,lean-ob2,only w27/w28 swapped (count vs grown capacity in the inlined copy loop); KIND says operations because cmp oper
 0x7100464be8,904,drafts/game/CChozoRobotSoldierCannonShotAttack/fn_7100464be8.cpp,control flow,51.3,104,lean-oc2,branch layout of the query cleanup tail (18 vs 16 branches) and float scheduling around the sweep offset; fn_7
@@ -469,7 +468,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71004d4ec4,1216,drafts/game/CCooldownXBossAIComponent/fn_71004d4ec4.cpp,control flow,10.5,257,lean-r2kb,block layout: state-2 reorder placed out of line in the original; the original unswitches the counted search o
 0x7100505190,1460,drafts/game/CEmmyGrabSamusAttack/fn_7100505190.cpp,operations,60.8,140,lean-r2k,written as the class constructor (label comment fn_7100505190); store scheduling of the inlined member inits d
 0x7100505b60,1652,drafts/game/CEmmyGrabSamusAttack/fn_7100505b60.cpp,operations,89.8,41,lean-r2k,only the Find(id) loop in ChangeState differs: ours folds the pointer increment into a post-index load (origin
-0x7100507d24,776,drafts/game/CEmmyGrabSamusAttack/fn_7100507d24.cpp,match,100.0,0,lean-r2kd,matches; held: 4 declaration problems: src/game/CEmmyGrabSamusAttack/fn_7100507d24.cpp:24 fn_7100fd8720: void fn_7100fd8720(UnkMgr_0xf18*; s32) -> src/game/sound/CMusicManager/CTunableMusicManager/fn_7100fd8720.c...
 0x710050d150,960,drafts/game/CEmmyGrabSamusAttack/fn_710050d150.cpp,operations,43.3,130,lean-r2k,original addresses the static sound desc relative to the unit-internal path ids 0x71726de580/588 (merged globa
 0x710050e4dc,1032,drafts/game/CEmmyGrabSamusAttack/fn_710050e4dc.cpp,build fails,,,lean-r2k,logic matches; block layout of the slot and name searches and the push-back paths differs (36 vs 31 branches)
 0x710050f04c,544,drafts/game/CEmmyGrabSamusAttack/fn_710050f04c.cpp,operations,39.7,78,lean-r2kd,original addresses the static params and g_unk_71726de578 off one merged base (GlobalMerge of the unit globals
@@ -701,7 +699,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100887074,668,drafts/game/CMorphBallLauncherComponent/fn_7100887074.cpp,build fails,,,lean-r2ke,ours keeps &self->owner in a callee-saved register (extra x23; pre-indexed load); original reloads owner from
 0x710088ab10,736,drafts/game/CCharClassMushroomPlatformComponent/fn_710088ab10.cpp,operations,76.6,42,lean-r2kg,Find loop in the inlined state request: ours folds ++p into a post-index load; byte-count loop form instead te
 0x710088adf0,376,drafts/game/CCharClassMushroomPlatformComponent/fn_710088adf0.cpp,control flow,34.0,54,test40,block layout differs: original puts owner-target tail before state switch; loop shape differs
-0x710088af9c,596,drafts/game/CCharClassMushroomPlatformComponent/fn_710088af9c.cpp,build fails,,,lean-ob2,state search loop: original keeps the byte count (lsl/cbz) the shared A5_b73 header gets only with a barrier;
+0x710088af9c,596,drafts/game/CCharClassMushroomPlatformComponent/fn_710088af9c.cpp,conditions,95.3,7,lean-ob2,state search loop: original keeps the byte count (lsl/cbz) the shared A5_b73 header gets only with a barrier;
 0x710088fce4,812,drafts/game/CCharClassShootActivatorComponent/fn_710088fce4.cpp,operations,11.3,173,lean-r2kb,each array flag at +0x14 is stored from the array base (add+strb) in the original; ours folds it to the object
 0x710089a7c0,384,drafts/game/CCharClassSteamJetComponent/fn_710089a7c0.cpp,operations,89.6,10,lean-b6,listener pointer not hoisted and handle slot address hoisted into a register (register allocation/operations);
 0x71008ace98,532,drafts/game/CBeamDoorLifeComponent/fn_71008ace98.cpp,operations,0.0,133,lean-r2kg,one extra callee-saved register (x23) in the open path; rest lines up shifted by one insn
@@ -775,7 +773,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100994570,448,drafts/game/CSamusFloorSlideMovementState/CParams/fn_7100994570.cpp,operations,25.9,79,lean-r2kf,position copy: original sinks the z store with its address computed in each branch (4 extra insns); rest likel
 0x710099a51c,408,drafts/game/UnkTU1461/fn_710099a51c.cpp,build fails,,,lean-r2ke,original duplicates the switch on busy (+0x230) with identical branches; matches 100% only as if(busy) SwitchS
 0x710099ab10,700,drafts/game/UnkTU1461/fn_710099ab10.cpp,build fails,,,lean-r2ke,zeroing of the 16 bytes at +0xb94 becomes one stp (original: two separate 8-byte str with their own add); the
-0x710099bab0,1136,drafts/game/UnkTU1461/fn_710099bab0.cpp,build fails,,,lean-r2ke,control flow: one branch fewer (29 vs 28; likely the state search loop without the byte-count test or tail dup
+0x710099bab0,1136,drafts/game/UnkTU1461/fn_710099bab0.cpp,control flow,45.8,146,lean-r2ke,control flow: one branch fewer (29 vs 28; likely the state search loop without the byte-count test or tail dup
 0x710099bf20,484,drafts/game/UnkTU1461/fn_710099bf20.cpp,operations,98.3,2,overnight,
 0x710099d420,720,drafts/game/CSamusGroundMovementState/CParams/fn_710099d420.cpp,calls,80.6,35,lean-r2ke,last track test is tail-called in ours (original returns 1 itself); send args share the request's stack slots
 0x710099e714,876,drafts/game/CSamusGroundMovementState/CParams/fn_710099e714.cpp,operations,86.3,30,lean-r2ke,request copy keeps &req.params in x20 and stores 3 early; one jump threaded after the close track
@@ -826,7 +824,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100a064c4,520,drafts/game/CReturnAreaSmartObjectComponent/fn_7100a064c4.cpp,registers or order,96.9,4,lean-r2kg,scheduling of the key and slots loads before fn_71001c3040
 0x7100a08d5c,772,drafts/game/CWeightActivatedPlatformSmartObjectComponent/fn_7100a08d5c.cpp,registers or order,56.5,84,lean-r2kc,store scheduling of the seven state inits and machine stp pairing
 0x7100a09cd4,680,drafts/game/CWeightActivatedPlatformSmartObjectComponent/fn_7100a09cd4.cpp,match,100.0,0,sweep5,matches only with always_inline on its Request (the find loop's barrier blocks inlining); held
-0x7100a0a2dc,680,drafts/game/CWeightActivatedPlatformSmartObjectComponent/fn_7100a0a2dc.cpp,match,100.0,0,sweep5,matches only with always_inline on its Request (the find loop's barrier blocks inlining); held
 0x7100a0ea54,208,drafts/game/UnkTU1518/fn_7100a0ea54.cpp,registers or order,96.2,2,overnight,
 0x7100a0fcc4,128,drafts/game/CDemolitionBlockSonarTargetComponent/fn_7100a0fcc4.cpp,control flow,28.1,19,lean-b6,control flow: original has two separate full-checks and hoisted items base at +4 (list layout unclear)
 0x7100a102e8,368,drafts/game/CDemolitionBlockSonarTargetComponent/fn_7100a102e8.cpp,control flow,1.1,91,lean-b6,element copy loop shape; original uses byte-offset index and keeps 0x18 word copy inside; vtable GOT load
@@ -847,7 +844,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100a5f960,876,drafts/game/CTriggerComponent/fn_7100a5f960.cpp,build fails,,,lean-r2k,find_if empty check on count not on byte size (records base not kept); all/any loop block layout (jumps 8 vs 1
 0x7100a5fccc,256,drafts/game/CTriggerComponent/fn_7100a5fccc.cpp,control flow,27.7,46,lean-b6,loop shape: original peels first iteration with branchy any/all flags; ours branches differently
 0x7100a5fdcc,824,drafts/game/CTriggerComponent/fn_7100a5fdcc.cpp,control flow,53.1,96,lean-r2k,last-record address split differently and *it loaded after count; grow branch memset size folds to a constant;
-0x7100a601cc,536,drafts/game/CTriggerComponent/fn_7100a601cc.cpp,match,100.0,0,lean-ob2,matches; held: 1 declaration problem: src/game/CTriggerComponent/fn_7100a601cc.cpp:79 fn_7100a601cc: defined as void fn_7100a601cc(UnkTriggerComponent_la601cc*; UnkTriggerTarget_la601cc*; UnkTriggerTarget_la601cc...
 0x7100a603e4,748,drafts/game/CTriggerComponent/fn_7100a603e4.cpp,control flow,25.1,138,lean-r2k,record address computed as self+count*0x18 not (self+0x64)+count*0x18; one register fewer; jumps 6 vs 7 (loop
 0x7100a63ae4,200,drafts/game/CTriggerComponent/fn_7100a63ae4.cpp,operations,34.0,31,lean-b6,unrolled loop and merged stp store pair; needs union around ptr to avoid hoisting
 0x7100a63be0,640,drafts/game/CTriggerComponent/fn_7100a63be0.cpp,registers or order,80.0,32,lean-r2ke,count reload in the two reallocation loops sits before the moves in the original (pointer stores alias it ther
