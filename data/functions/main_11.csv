@@ -504,7 +504,7 @@ address,size,name,name_source,subsystem,status
 0x7101125760,380,fn_7101125760,unknown,unknown,O
 0x71011258dc,8,fn_71011258dc,unknown,unknown,O
 0x71011258e4,940,fn_71011258e4,unknown,unknown,U
-0x7101125c90,2084,fn_7101125c90,unknown,unknown,U
+0x7101125c90,2084,fn_7101125c90,unknown,unknown,O
 0x71011264b4,268,fn_71011264b4,unknown,unknown,O
 0x71011265c0,268,fn_71011265c0,unknown,unknown,O
 0x71011266cc,268,fn_71011266cc,unknown,unknown,O
