@@ -47,7 +47,7 @@ struct UnkDroppedItems_e211cc {
     CDrop drops[8];                   // 0x7890
     u64 field_0xa010;
     u64 field_0xa018;
-    UnkDropResource resources[7];  // 0xa020
+    UnkStrIdPathResource resources[7];  // 0xa020
     CRntSmallDictionary<u64, u64> dictionary;  // 0xa0c8
     bool field_0xa0f0;
     u32 field_0xa0f4;
@@ -80,8 +80,8 @@ void fn_7100e211cc(void* instance) {
     InitDrop(&self->drops[7]);
     self->field_0xa010 = 0;
     self->field_0xa018 = 0;
-    for (UnkDropResource& resource : self->resources)
-        new (&resource) UnkDropResource();
+    for (UnkStrIdPathResource& resource : self->resources)
+        new (&resource) UnkStrIdPathResource();
     new (&self->dictionary) CRntSmallDictionary<u64, u64>(14);
     self->field_0xa0f0 = true;
     self->field_0xa0f4 = 0;

@@ -47,9 +47,9 @@ void fn_71007bf3f0(CDrop* self) {
     self->field_0x498 = 0;
     self->mode = 1;
     self->field_0x49c_2 = 0;
-    new (&self->field_0x4a0) UnkDropResource();
-    new (&self->field_0x4b8) UnkDropResource();
-    new (&self->field_0x4d0) UnkDropResource();
+    new (&self->field_0x4a0) UnkStrIdPathResource();
+    new (&self->field_0x4b8) UnkStrIdPathResource();
+    new (&self->field_0x4d0) UnkStrIdPathResource();
     self->field_0x4e8 = false;
 }
 

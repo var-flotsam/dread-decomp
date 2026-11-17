@@ -698,9 +698,7 @@ void fn_7100991b30(UnkFloorSlideStateData_ovb0004* self) {
     self->field_0x1c4 = false;
     self->field_0x1c8 = 0;
     self->field_0x1d0 = 0;
-    new (&self->path.ids.id) CStrId(g_unk_7101d470e0);
-    new (&self->path.ids.path) base::global::CFilePathStrId(g_unk_7101d470e8);
-    self->path.resource = nullptr;
+    new (&self->path) UnkStrIdPathResource();
     self->field_0x1f0 = 0;
     self->field_0x1f4 = false;
     fn_710002f4e4(self->timer);
