@@ -12,6 +12,10 @@ relocations name the original's targets. The changes it tries:
   split     `T x = e;` into `T x;` and `x = e;`, and the reverse (merge)
   commute   the operands of + * & | ^ == !=
   compare   `a < b` as `b > a` (and <=, >, >=)
+  scope     (--scopes) two to eight statements, one a declaration, in a block of their own `{ ... }`, so
+            their locals end there and a later local may reuse their stack slot; unscope removes a bare
+            block's braces; hoist moves a declaration without an initialiser out of its block, so its local
+            outlives the block. For a frame bigger or smaller than the original's (trymatch's SHAPE line)
 
 A change need not keep the behaviour: one that does not cannot match, and a match is its own proof. With one
 exception, found the hard way: a text that reads a variable before it is set (a split declaration and a use
@@ -77,6 +81,7 @@ FLIP = {"<": ">", ">": "<", "<=": ">=", ">=": "<="}
 NOT_MOVED = ("return", "break", "continue", "goto", "case", "default", "else", "delete", "throw", "using", "typedef",
              "for", "if", "while", "do", "switch")
 KINDS = ("swap", "swap", "move", "split", "merge", "commute", "commute", "compare")
+SCOPE_KINDS = KINDS + ("scope", "unscope", "hoist", "hoist")  # --scopes
 
 
 # --- the text side (no compiler: tools/tests/test_permute.py) ----------------------------------------
@@ -144,10 +149,13 @@ def simple(line: str) -> bool:
     return bool(STMT.match(line)) and not line.strip().startswith(NOT_MOVED)
 
 
-def mutate(lines: list[str], lo: int, hi: int, rnd: random.Random, kind: str | None = None) -> list[str] | None:
+def mutate(lines: list[str], lo: int, hi: int, rnd: random.Random, kind: str | None = None,
+           kinds: tuple[str, ...] = KINDS) -> list[str] | None:
     """A copy of `lines` with one change inside lines[lo..hi], or None when the picked change has no place."""
     out = list(lines)
-    kind = kind or rnd.choice(KINDS)
+    kind = kind or rnd.choice(kinds)
+    if kind in ("scope", "unscope", "hoist"):
+        return {"scope": _scope, "unscope": _unscope, "hoist": _hoist}[kind](out, lo, hi, rnd)
     cand = [i for i in range(lo, hi + 1) if simple(out[i])]
     if not cand:
         return None
@@ -189,8 +197,67 @@ def mutate(lines: list[str], lo: int, hi: int, rnd: random.Random, kind: str | N
     return out
 
 
+def _scope(out: list[str], lo: int, hi: int, rnd: random.Random) -> list[str] | None:
+    """Two to eight statements at one indent, at least one a declaration, put in a block of their own: their
+    locals end there, so the compiler may give a later local the same stack slot (or must not, unscoped)."""
+    i = rnd.choice(range(lo, hi + 1))
+    n = rnd.randint(2, 8)
+    j = i + n - 1
+    if j > hi or not all(simple(out[k]) and indent(out[k]) == indent(out[i]) for k in range(i, j + 1)):
+        return None
+    if not any(DECL_INIT.match(out[k]) or DECL_BARE.match(out[k]) for k in range(i, j + 1)):
+        return None
+    # a name declared inside and used after the block would not build; the compiler says so, but skip it here
+    names = [m.group(3) for k in range(i, j + 1) for m in [DECL_INIT.match(out[k]) or DECL_BARE.match(out[k])] if m]
+    if any(re.search(rf"\b{x}\b", out[k]) for x in names for k in range(j + 1, hi + 1)):
+        return None
+    pad = out[i][:indent(out[i])]
+    out[i:j + 1] = [f"{pad}{{", *("    " + out[k] for k in range(i, j + 1)), f"{pad}}}"]
+    return out
+
+
+def _unscope(out: list[str], lo: int, hi: int, rnd: random.Random) -> list[str] | None:
+    """A bare block (`{` alone on its line) opened inside lines[lo..hi], its braces removed and its lines
+    put back one level out. Only when no name it declares is declared again at the outer level."""
+    opens = [i for i in range(lo, hi + 1) if out[i].strip() == "{" and i > 0 and not out[i - 1].rstrip().endswith(")")]
+    if not opens:
+        return None
+    i = rnd.choice(opens)
+    pad = indent(out[i])
+    j = next((k for k in range(i + 1, len(out)) if out[k].strip() == "}" and indent(out[k]) == pad), None)
+    if j is None:
+        return None
+    inner = [ln[4:] if ln.startswith(" " * (pad + 4)) else ln for ln in out[i + 1:j]]
+    names = {m.group(3) for ln in inner for m in [DECL_INIT.match(ln) or DECL_BARE.match(ln)] if m}
+    rest = out[:i] + out[j + 1:]
+    if any(m and m.group(3) in names for ln in rest for m in [DECL_INIT.match(ln) or DECL_BARE.match(ln)]):
+        return None
+    out[i:j + 1] = inner
+    return out
+
+
+def _hoist(out: list[str], lo: int, hi: int, rnd: random.Random) -> list[str] | None:
+    """A declaration without an initialiser in a nested block moved out, to just before the line that opens
+    the block: the local then lives past the block, so it keeps a stack slot of its own (a bigger frame)."""
+    decls = [i for i in range(lo, hi + 1) if DECL_BARE.match(out[i]) and indent(out[i]) > indent(out[lo])]
+    if not decls:
+        return None
+    i = rnd.choice(decls)
+    d = indent(out[i])
+    k = next((k for k in range(i - 1, lo - 1, -1) if out[k].strip() and indent(out[k]) < d), None)
+    if k is None or not out[k].rstrip().endswith("{"):
+        return None
+    if out[k].strip() == "{" or out[k].lstrip().startswith("}"):  # a bare block, or `} else {`: open of the chain
+        while k > lo and (out[k].strip() == "{" or out[k].lstrip().startswith("}")):
+            k = next((j for j in range(k - 1, lo - 1, -1) if out[j].strip() and indent(out[j]) == indent(out[k])
+                      and not out[j].lstrip().startswith("}")), lo)
+    line = out.pop(i)
+    out.insert(k, " " * indent(out[k]) + line.strip())
+    return out
+
+
 def search(lines: list[str], addr: str, cost, iterations: int, rnd: random.Random,
-           name: str | None = None) -> dict:
+           name: str | None = None, kinds: tuple[str, ...] = KINDS) -> dict:
     """Hill climbing over mutate(). `cost(lines)` returns (number, matched) or (None, False) for text that does
     not build. Returns {start, best, matched, tries, built, lines} (lines: the match, else the best seen)."""
     span = body_span(lines, addr, name)
@@ -204,7 +271,7 @@ def search(lines: list[str], addr: str, cost, iterations: int, rnd: random.Rando
     best, best_cost = lines, start
     for n in range(1, iterations + 1):
         row["tries"] = n
-        new = mutate(cur, lo, hi, rnd)
+        new = mutate(cur, lo, hi, rnd, kinds=kinds)
         if new is None:
             continue
         c, ok = cost(new)
@@ -416,7 +483,7 @@ def registers_only(src: Path) -> list[str]:
 
 
 def run(job: tuple) -> dict:
-    version, path, addr, iterations, seed = job
+    version, path, addr, iterations, seed, kinds = job
     if "orig" not in _state:
         _init(version)
     src = ROOT / path
@@ -439,7 +506,7 @@ def run(job: tuple) -> dict:
 
     def matches(lines):
         return cost(lines)[1]
-    row = search(orig, addr, cost, iterations, random.Random(seed), name)
+    row = search(orig, addr, cost, iterations, random.Random(seed), name, kinds)
     lines = row.pop("lines")
     if row["matched"] and not row.get("note"):
         lines = merge_declarations(minimise(orig, lines, matches), addr, matches, name)
@@ -506,6 +573,8 @@ def main() -> int:
     ap.add_argument("--jobs", type=int, default=8, help="functions in parallel (default 8)")
     ap.add_argument("--seed", type=int, default=1112)
     ap.add_argument("--write", action="store_true", help="put each match into its file")
+    ap.add_argument("--scopes", action="store_true",
+                    help="also wrap statements in a block of their own, or unwrap one (stack-slot sharing)")
     args = ap.parse_args()
     picked = targets(args)
     if not picked:
@@ -515,7 +584,8 @@ def main() -> int:
     jobs = []
     for path, addr in picked:
         for a in ([addr] if addr else registers_only(ROOT / path)):
-            jobs.append((args.version, path, a, args.iterations, args.seed + len(jobs)))
+            jobs.append((args.version, path, a, args.iterations, args.seed + len(jobs),
+                         SCOPE_KINDS if args.scopes else KINDS))
     print(f"{len(picked)} files, {len(jobs)} functions to try, {args.iterations} tries each", flush=True)
     t0 = time.time()
     rows = []

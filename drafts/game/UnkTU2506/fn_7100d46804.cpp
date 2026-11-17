@@ -162,5 +162,6 @@ void fn_7100d46804(UnkManager_7100863a8c* manager) {
 
     self->field_0x218.vtable = g_unk_7101aa8740 + 2;
     self->field_0x218.field_0x8 = 0;
+    self->field_0x218.vtable = 2 + g_unk_7101aa8740;
     Clear(&self->field_0x6a4);
 }

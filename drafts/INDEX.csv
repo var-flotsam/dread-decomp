@@ -376,7 +376,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71002165e8,176,drafts/game/UnkTU307/fn_71002165e8.cpp,operations,17.0,36,lean-b3,stores not merged into stp; load order of centre/scale; 3 extra insns
 0x7100216b00,300,drafts/game/UnkTU308/fn_7100216b00.cpp,registers or order,97.3,2,lean-b6,order of mov v2 and str in the first Include branch
 0x710021c4cc,828,drafts/game/UnkTU322/fn_710021c4cc.cpp,operations,26.1,150,lean-r2kg,inline CFilePathStrId ctor: ours jump-threads the found branch past the empty-id select (original merges then
-0x710021e874,492,drafts/game/UnkTU324/fn_710021e874.cpp,registers or order,96.7,4,overnight,not a match: the permuter spike's result read `first` before it was set (put back 2026-11-13; tools/permute.py refuses that now); takes g_unk_7101a203f8 from its header
 0x710021f168,144,drafts/game/UnkTU324/fn_710021f168.cpp,registers or order,86.1,5,lean-b5,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU324/fn_710021f168.cpp:26 fn_710021f168: defined as bool fn_710021f168(UnkMedia324*; s32) -> declared elsewhere with other types; use this parameter list and res...
 0x710021f2a8,1116,drafts/game/UnkTU324/fn_710021f2a8.cpp,control flow,4.7,265,fable1,
 0x710021f704,340,drafts/game/UnkTU324/fn_710021f704.cpp,operations,24.7,63,lean-b5,search loop shape (original keeps a position register and elides the second null path); epilogue order
@@ -1189,7 +1188,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100d371a8,96,drafts/game/logic/collision/CCollider/fn_7100d371a8.cpp,operations,0.0,21,lean-b4,original keeps separate begin and iterator registers (x20;x21) and a count<<3 zero test; mine merges them
 0x7100d431f0,280,drafts/game/logic/collision/CCollider/fn_7100d431f0.cpp,control flow,52.8,32,lean-b4,original merges the two states tails (single ret; shared final store/zero of source); ours duplicates the tail
 0x7100d437dc,280,drafts/game/logic/collision/CCollider/fn_7100d437dc.cpp,operations,52.9,33,lean-b4,index and offset register use in the shifting loop; original addresses next element via offset i*0x28+0x48 and
-0x7100d46804,428,drafts/game/UnkTU2506/fn_7100d46804.cpp,registers or order,97.2,3,lean-retry-a,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2506/fn_7100d46804.cpp:68 fn_7100d4ae50: void fn_7100d4ae50(UnkGroupArray_ovb0244*; u32) -> src/game/UnkTU2506/UnkTU2506_Reserve_ld4ae50.cpp defines it with oth...
+0x7100d46804,428,drafts/game/UnkTU2506/fn_7100d46804.cpp,match,100.0,0,lean-retry-a,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2506/fn_7100d46804.cpp:68 fn_7100d4ae50: void fn_7100d4ae50(UnkGroupArray_ovb0244*; u32) -> src/game/UnkTU2506/UnkTU2506_Reserve_ld4ae50.cpp defines it with oth...
 0x7100d47434,440,drafts/game/UnkTU2506/fn_7100d47434.cpp,operations,25.2,82,lean-p1,one extra instruction: 0x3804 kept in a callee-saved register in the original (8 vs 7 saved regs)
 0x7100d47e48,884,drafts/game/UnkTU2506/fn_7100d47e48.cpp,control flow,33.5,144,lean-p1,block layout of the map lookup (found/end compare duplicated per path in the original); inner find_if not yet
 0x7100d48698,636,drafts/game/UnkTU2506/fn_7100d48698.cpp,operations,40.9,87,fable2b,
@@ -1759,7 +1758,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710122f9e0,192,drafts/game/UnkTU2772/fn_710122f9e0.cpp,operations,33.3,31,lean-b3,block layout (zero path after valid); range compare form; coefficient store order
 0x710122faa0,580,drafts/game/UnkTU2772/fn_710122faa0.cpp,conditions,96.6,5,overnight,
 0x710122fe0c,232,drafts/game/UnkTU2772/fn_710122fe0c.cpp,control flow,3.1,56,lean-b3,pointer layout order (slots address computed from pool fields vs held in registers) and slot loop strength red
-0x710122ff10,288,drafts/game/UnkTU2772/fn_710122ff10.cpp,registers or order,97.2,2,overnight,
 0x7101230264,176,drafts/game/UnkTU2772/fn_7101230264.cpp,operations,59.1,18,lean-r2kh,store pairing of the 0x60-byte param copy: original pairs the 1.0f pair at +8 with the copy (copy likely not a
 0x7101230724,68,drafts/game/UnkTU2772/fn_7101230724.cpp,operations,22.2,13,lean-b3,address calc: original folds +4 into immediate (item stride 8 layout unclear)
 0x7101230780,68,drafts/game/UnkTU2772/fn_7101230780.cpp,operations,22.2,13,lean-b3,address calc: original folds +4 into immediate (item stride 8 layout unclear)

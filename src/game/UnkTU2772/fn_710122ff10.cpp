@@ -40,31 +40,37 @@ static inline nn::audio::VoiceType* Voice(UnkAtkUpdateItem_b0268* item) {
 }
 
 void fn_710122ff10(UnkAtkUpdatePool_b0268* self) {
+    s64 length;
+    UnkAtkUpdateItem_b0268* item;
+    s64 played;
+    s64 base;
     u32 released = 0;
+    UnkAtkWaveNode_b0268* wave;
+    u32 state;
     for (s64 i = 0; i < self->count; i++) {
         UnkAtkUpdateItem_b0268* first = self->slots[i];
         if (nn::audio::IsVoiceValid(Voice(first)) && nn::audio::IsVoiceDroppedFlagOn(Voice(first))) {
-            UnkAtkUpdateItem_b0268* item = self->slots[i];
+            item = self->slots[i];
             if (item->field_0x28) {
                 item->field_0x28 = 0;
                 released++;
                 continue;
             }
         }
-        UnkAtkUpdateItem_b0268* item = self->slots[i];
+        item = self->slots[i];
         if (!nn::audio::IsVoiceValid(Voice(item)))
             continue;
-        u32 state = nn::audio::GetVoicePlayState(Voice(item));
+        state = nn::audio::GetVoicePlayState(Voice(item));
         if (item->field_0xa8 | state)
             continue;
         fn_710122fce4((UnkAtkWaveVoice_b0149*)item);
         if (!item->field_0x29)
             continue;
-        s64 played = nn::audio::GetVoicePlayedSampleCount(Voice(item));
-        UnkAtkWaveNode_b0268* wave = item->waves;
-        s64 base = wave ? wave->start : 0;
+        played = nn::audio::GetVoicePlayedSampleCount(Voice(item));
+        wave = item->waves;
+        base = wave ? wave->start : 0;
         if (wave && wave->loop) {
-            s64 length = wave->end - base;
+            length = wave->end - base;
             if (played > length)
                 played %= length;
         }

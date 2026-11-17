@@ -93,6 +93,28 @@ class Text(unittest.TestCase):
         self.assertEqual(self.change("commute")[8], "        self->c = b + a;")
         self.assertEqual(self.change("compare")[7], "    if (b > a) {")
 
+    def test_scope_and_unscope_are_each_other_s_reverse(self):
+        src = ["void fn_7100000100() {", "    u32 a = f();", "    u32 b = g(a);", "    h(b);", "    u32 c = k();",
+               "    h(c);", "}"]
+        out = next(o for seed in range(50) if (o := permute.mutate(src, 1, 5, random.Random(seed), "scope")))
+        self.assertEqual(len(out), len(src) + 2)
+        i = out.index("    {")
+        self.assertEqual(out[out.index("    }") - 1][:8], "        ")
+        self.assertTrue(i >= 1)
+        lo, hi = permute.body_span(out, "7100000100")
+        self.assertEqual(permute.mutate(out, lo, hi, random.Random(0), "unscope"), src)
+
+    def test_scope_keeps_a_name_used_after_the_block_outside_it(self):
+        src = ["void fn_7100000100() {", "    u32 a = f();", "    h(a);", "    if (a) {", "        h(a);", "    }", "}"]
+        for seed in range(50):  # only lines 1-2 can form a block, and `a` is used after them
+            self.assertIsNone(permute.mutate(src, 1, 5, random.Random(seed), "scope"))
+
+    def test_hoist_moves_a_declaration_before_its_block(self):
+        src = ["void fn_7100000100() {", "    u32 a = f();", "    if (a) {", "        CVector3D v;", "        h(&v);",
+               "    } else {", "        h(0);", "    }", "}"]
+        out = permute.mutate(src, 1, 7, random.Random(0), "hoist")
+        self.assertEqual(out[2:5], ["    CVector3D v;", "    if (a) {", "        h(&v);"])
+
     def test_a_change_with_no_place_is_none(self):
         only = "void fn_7100000100() {\n    return;\n}\n".split("\n")
         for kind in ("swap", "move", "split", "merge", "commute", "compare"):

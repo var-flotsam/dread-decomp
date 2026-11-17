@@ -12,8 +12,6 @@
 #include "game/media/CMediaStream.h"
 #include "types.h"
 
-extern char g_unk_7101a20498[];
-extern char g_unk_7101a204c0[];
 
 struct UnkMediaListener324;
 
@@ -63,7 +61,7 @@ static_assert(__builtin_offsetof(UnkMediaConstruct324, queue_vtable) == 0x9b0, "
 void fn_710021e6e8(UnkMediaConstruct324* self) {
     self->vtable = reinterpret_cast<void**>(g_unk_7101a203f8 + 0x10);
     __atomic_store_n(&self->field_0x8, 0, __ATOMIC_RELEASE);
-    self->vtable = reinterpret_cast<void**>(g_unk_7101a20498 + 0x10);
+    self->vtable = g_unk_7101a20498 + 2;
     self->field_0xc = 0x7fffffff;
     fn_710008d2ec(reinterpret_cast<UnkStrPair_0x10*>(self->field_0x10), &g_unk_7101d470e8);
     new (&self->id) base::global::CStrId(g_unk_7101d470e0);
@@ -83,7 +81,7 @@ void fn_710021e6e8(UnkMediaConstruct324* self) {
     self->field_0x934 = 0;
     self->field_0x938 = 0;
     self->field_0x93c = 0;
-    self->queue_vtable = reinterpret_cast<void**>(g_unk_7101a204c0 + 0x10);
+    self->queue_vtable = g_unk_7101a204c0 + 2;
     self->queue_head = self->queue_storage;
     self->queue_tail = self->queue_storage;
     self->queue_count = 0;

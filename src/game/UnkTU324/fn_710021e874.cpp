@@ -2,16 +2,12 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU324.h"
 #include "game/media/CMediaStream.h"
 #include "types.h"
+#include "base/global/timeline/CEvent.h"
 
-struct UnkRefObj;
-void fn_710021ea60(UnkRefObj* self);
-void fn_71002204d8(void* table, u32 count);
-void fn_710006686c(void* thread);
 
-extern void* g_unk_7101a20498[];
-extern void* g_unk_7101a204c0[];
 
 struct UnkMovieTrack_b0217 {
     virtual void vf_0x0();
@@ -58,10 +54,11 @@ void fn_710021e874(UnkRefObj* obj) {
     fn_7100066918(&self->command_lock);
     fn_7100066918(&self->lock);
     fn_7100066918(&self->listener_lock);
+    u32* first;
     self->commands.vtable = g_unk_7101a204c0 + 2;
     for (u32* it = self->commands.read; it != self->commands.write;) {
-        u32* first = self->commands.entries;
         u32* limit = first + 64;
+        first = self->commands.entries;
         ++it;
         if (it == limit)
             it = first;
