@@ -26,7 +26,7 @@ worker gets.
 | File | What it does |
 |---|---|
 | `prepare.py` | builds the queue and each function's context (`context.py`: annotated disassembly and the headers that already declare its symbols; `similar.py`: the reference matches; game-derived, so under `build/lean/`, never committed) |
-| `similar.py` | the reference matches of a function: the hand-written functions that already match and are closest to it, of two kinds: alike in code (instructions that line up once registers and constants are taken out) and naming the same callees and globals; shown to the worker with their source |
+| `similar.py` | the reference matches of a function: the hand-written functions that already match and are closest to it, of two kinds: alike in code (instructions that line up once registers and constants are taken out) and naming the same callees and globals; and, when `tools/vtables.py` has written its table, a matched function in the same virtual slot (another class's override: the same signature); shown to the worker with their source |
 | `coord.py` | hands out jobs (`wave`), records results, then `land` (grade the matches again, check their declarations, stage them) and `file` (every non-match becomes a graded draft under `drafts/`) |
 | `try.py` | the short-diff grader a worker uses; it counts the graded runs of a running job against the job's attempt budget, shows how many are left and stops grading when they are spent |
 | `declfile.py` | a new file's declarations against the tree (`tools/decl_check.py`'s `file_problems`) |

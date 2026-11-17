@@ -38,6 +38,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import context  # noqa: E402  (this folder)
 import similar  # noqa: E402  (this folder)
 import tu_map  # noqa: E402
+import vtables  # noqa: E402
 
 
 def tier(size):
@@ -124,7 +125,8 @@ def main():
     (OUT / "ctx").mkdir(parents=True, exist_ok=True)
     binary = context.Binary()
     hidx = context.header_index()
-    index = similar.Index(funcs, similar.definitions(), binary.read) if a.refs else None
+    index = (similar.Index(funcs, similar.definitions(), binary.read, siblings=vtables.sibling_map("2.1.0"))
+             if a.refs else None)
 
     def unit_of(address):
         u = tu_map.find_unit(units, address, starts)
