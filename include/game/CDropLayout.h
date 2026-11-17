@@ -10,6 +10,10 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+// The dropped-item manager and the item a drop's callback is handed (unit 2562).
+struct UnkDroppedItemManager;
+struct UnkDroppedItem;
+
 // One entry of a drop's table (0x48 bytes): two ids, two colours and its counts.
 struct UnkDropTableEntry {
     base::global::CStrId id = g_unk_7101d470e0;  // 0x0
@@ -39,7 +43,10 @@ struct UnkDropTable {
 };
 static_assert(sizeof(UnkDropTable) == 0x440, "placeholder layout");
 
-// An id/path resource record (0x18 bytes), released with fn_7100026f70.
+// An id/path resource record (0x18 bytes), released with fn_7100026f70. It is the record
+// base/UnkStrIdPathPair.h calls UnkStrIdPathResource (fn_71000267f8 points one at a path; the manager's
+// records at 0xa020 are built as this type by fn_7100e211cc and loaded as that one by fn_7100e21b8c);
+// the two are not one type yet because UnkStrIdPathResource has no constructor.
 struct UnkDropResource {
     base::global::CStrId id;
     base::global::CFilePathStrId path;
@@ -53,8 +60,10 @@ struct CDrop {
     void** vtable;
     u64 field_0x8;
     // the drop's own members
-    void* owner;              // 0x10
-    void (*callback)(void*);  // 0x18
+    void* owner;  // 0x10
+    // Called with the owner, the item and the manager's two arguments; fn_7100e2f98c, fn_7100e2f994 and
+    // fn_7100e2f99c pass the flag on, fn_7100e2f9a4 and fn_7100e2fa00 ignore it.
+    void (*callback)(UnkDroppedItemManager* owner, UnkDroppedItem* item, void* arg, bool flag);  // 0x18
     UnkDropTable table;       // 0x20
     base::global::CStrId item;  // 0x460
     u32 field_0x468;
@@ -66,7 +75,11 @@ struct CDrop {
     u32 field_0x490;
     u32 field_0x494;
     u32 field_0x498;
-    bool field_0x49c;
+    // 0x49c, one byte: the constructor (fn_71007bf3f0) stores it whole (mode 1, the rest clear),
+    // fn_7100e2a734 and fn_7100e2a034 set only the low two bits (mode 2), and fn_71007c02dc passes
+    // the byte on whole.
+    u8 mode : 2;
+    u8 field_0x49c_2 : 6;
     UnkDropResource field_0x4a0;
     UnkDropResource field_0x4b8;
     UnkDropResource field_0x4d0;

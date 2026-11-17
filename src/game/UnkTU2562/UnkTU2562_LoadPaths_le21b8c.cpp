@@ -7,13 +7,10 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkTU2562.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-// The path prefixes.
-__attribute__((visibility("hidden"))) extern CRntString g_unk_71727c13c8;
-__attribute__((visibility("hidden"))) extern CRntString g_unk_71727c13f8;
 
 struct UnkDroppableTunable_e21b8c {
     u8 pad_0x0[0x98];
@@ -45,19 +42,19 @@ static inline void SetPath(UnkStrIdPathResource* resource, const CRntString& pat
 void fn_7100e21b8c(UnkDropManager_e21b8c* self) {
     UnkDroppableTunable_e21b8c& tunable = Tunable();
     if (!IsEmpty(tunable.names[0]))
-        SetPath(&self->paths[0], g_unk_71727c13c8 + tunable.names[0]);
+        SetPath(&self->paths[0], g_unk_71727c13c8[0] + tunable.names[0]);
     if (!IsEmpty(tunable.names[1]))
-        SetPath(&self->paths[1], g_unk_71727c13c8 + tunable.names[1]);
+        SetPath(&self->paths[1], g_unk_71727c13c8[0] + tunable.names[1]);
     if (!IsEmpty(tunable.names[2]))
-        SetPath(&self->paths[2], g_unk_71727c13c8 + tunable.names[2]);
+        SetPath(&self->paths[2], g_unk_71727c13c8[0] + tunable.names[2]);
     if (!IsEmpty(tunable.names[4]))
-        SetPath(&self->paths[3], g_unk_71727c13f8 + tunable.names[4]);
+        SetPath(&self->paths[3], g_unk_71727c13c8[1] + tunable.names[4]);
     if (!IsEmpty(tunable.names[5]))
-        SetPath(&self->paths[4], g_unk_71727c13f8 + tunable.names[5]);
+        SetPath(&self->paths[4], g_unk_71727c13c8[1] + tunable.names[5]);
     if (!IsEmpty(tunable.names[6]))
-        SetPath(&self->paths[5], g_unk_71727c13f8 + tunable.names[6]);
+        SetPath(&self->paths[5], g_unk_71727c13c8[1] + tunable.names[6]);
     if (!IsEmpty(tunable.names[7]))
-        SetPath(&self->paths[6], g_unk_71727c13f8 + tunable.names[7]);
+        SetPath(&self->paths[6], g_unk_71727c13c8[1] + tunable.names[7]);
     if (!IsEmpty(tunable.names[8]))
-        SetPath(&self->path_0x7830, g_unk_71727c13f8 + tunable.names[8]);
+        SetPath(&self->path_0x7830, g_unk_71727c13c8[1] + tunable.names[8]);
 }

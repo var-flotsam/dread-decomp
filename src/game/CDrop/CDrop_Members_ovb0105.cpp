@@ -42,7 +42,8 @@ void fn_71007bf3f0(CDrop* self) {
     self->field_0x490 = 0;
     self->field_0x494 = 0;
     self->field_0x498 = 0;
-    self->field_0x49c = true;
+    self->mode = 1;
+    self->field_0x49c_2 = 0;
     new (&self->field_0x4a0) UnkDropResource();
     new (&self->field_0x4b8) UnkDropResource();
     new (&self->field_0x4d0) UnkDropResource();
