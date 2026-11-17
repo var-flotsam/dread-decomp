@@ -12,13 +12,11 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-struct UnkEntryVector;
-void fn_7100895498(UnkEntryVector* v, u32 n);
 
 struct UnkGrowSetBase_ovb0126 {
     char* vtable;
@@ -51,7 +49,8 @@ struct UnkGrowVector_ovb0126 {
     bool field_0x14;
 };
 
-UnkGrowEntry_ovb0126* fn_7100892528(void* self, u32 key) {
+// Declared in the unit header as returning the shared entry type.
+UnkEntry* fn_7100892528(void* self, u32 key) {
     auto* v = static_cast<UnkGrowVector_ovb0126*>(self);
     if (v->field_0x14 && v->count <= key) {
         u32 cap = v->capacity;
@@ -64,5 +63,5 @@ UnkGrowEntry_ovb0126* fn_7100892528(void* self, u32 key) {
             new (&v->data[i]) UnkGrowEntry_ovb0126();
         v->count = n;
     }
-    return &v->data[key];
+    return reinterpret_cast<UnkEntry*>(&v->data[key]);
 }

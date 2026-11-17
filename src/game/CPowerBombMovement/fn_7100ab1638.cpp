@@ -2,6 +2,7 @@
 // `source` and `size`, collecting up to 128 hits, and hands each hit to the bomb hit handler (fn_7100aaaaf4).
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CBombMovement.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU437.h"
@@ -20,19 +21,6 @@ struct UnkLavaDropsShape_A2_b71 {
     UnkLavaDropsShape_A2_b71(const void* source, f32 size) { fn_7100d6169c(this, source, size); }
     ~UnkLavaDropsShape_A2_b71() { fn_7100d61750(this); }
 };
-
-struct UnkBombHitObject_ovb0078;
-struct UnkBombHitInfo_ovb0078;
-struct UnkBombHitHandler_ovb0078 {};
-
-using UnkBombOnActor_ovb0078 = void (UnkBombHitHandler_ovb0078::*)(void* actor, void* arg, const u64* key,
-                                                                   UnkBombHitInfo_ovb0078* info);
-using UnkBombOnTiles_ovb0078 = void (UnkBombHitHandler_ovb0078::*)(UnkBombHitObject_ovb0078* tiles, void* arg,
-                                                                   const u64* key, UnkBombHitInfo_ovb0078* info,
-                                                                   f32 value);
-
-void fn_7100aaaaf4(UnkBombHitHandler_ovb0078* self, u32* kinds, void* arg, UnkBombHitInfo_ovb0078* info,
-                   f32 value, UnkBombOnActor_ovb0078 on_actor, UnkBombOnTiles_ovb0078 on_tiles);
 
 static inline void ReleaseRef_lab1638(UnkRefObject* p) {
     if (p && --p->ref_count == 0)

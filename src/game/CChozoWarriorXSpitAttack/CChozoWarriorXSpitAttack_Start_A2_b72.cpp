@@ -5,6 +5,7 @@
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp. Names and layouts are placeholders.
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkAttack.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2772.h"
 #include "game/sound/UnkSoundHandle.h"
@@ -12,7 +13,6 @@
 #include "types.h"
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 void fn_7100485918();
 
 struct UnkSoundRef;

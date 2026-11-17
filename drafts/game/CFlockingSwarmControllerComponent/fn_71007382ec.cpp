@@ -2,7 +2,7 @@
 // "internal_tileblocker_0" to "_15" that the owner's scenario provides, and keeps each one found
 // (after calling its vf_0x60 with false). Names and layouts are placeholders.
 #include <cstdio>
-#include "../../../build/lean/scratch/game/UnkGameManagerIdTable.h"
+#include "game/UnkGameManagerIdTable.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 

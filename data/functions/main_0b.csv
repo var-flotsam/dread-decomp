@@ -5043,7 +5043,7 @@ address,size,name,name_source,subsystem,status
 0x7100bcfbe0,388,CCharClassSetActionToOtherEntityEvent::refl_InitClass,reflection,game/characters,O
 0x7100bcfd64,196,fn_7100bcfd64,unknown,game/characters?,O
 0x7100bcfe28,36,fn_7100bcfe28,unknown,game/characters?,O
-0x7100bcfe4c,516,fn_7100bcfe4c,unknown,game/characters?,U
+0x7100bcfe4c,516,fn_7100bcfe4c,unknown,game/characters?,O
 0x7100bd0050,28,fn_7100bd0050,unknown,game/characters?,O
 0x7100bd006c,12,CCharClassSetActionToOtherEntityEvent::refl_Equals,reflection,game/characters,O
 0x7100bd0078,8,CCharClassSetActionToOtherEntityEvent::refl_Hash,reflection,game/characters,O

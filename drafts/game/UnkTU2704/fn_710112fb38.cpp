@@ -25,19 +25,13 @@ struct UnkValueSlot : UnkReflValue {
     }
 };
 
-struct UnkValueVec_l12fb38 {
-    UnkValueSlot* data;  // 0x0
-    u32 count;           // 0x8
-    u32 capacity;        // 0xc
-    u32 step;            // 0x10
-    u8 growable;         // 0x14
-};
+using UnkValueVec_l12fb38 = base::global::CRntVector<UnkValueSlot>;
 
 void fn_7101130010(UnkValueVec_l12fb38* self, u32 capacity);  // reallocates to `capacity` elements
 
 void fn_710112fb38(UnkValueVec_l12fb38* self, const u32* index, const UnkAssignedRecord_a1ba4* value) {
     u32 i = *index;
-    if (self->growable && self->count <= i) {
+    if (self->field_0x14 && self->count <= i) {
         u32 grown = self->capacity;
         if (grown <= i && self->step != 0)
             grown = (i / self->step + 1) * self->step;

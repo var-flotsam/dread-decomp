@@ -93,11 +93,6 @@ union UnkPathIdSlot_b0185 {
     ~UnkPathIdSlot_b0185() {}
 };
 
-// The hash of a pooled path id's data.
-static inline u64 Hash_b0185(UnkStringData* data) {
-    return *reinterpret_cast<u64*>(reinterpret_cast<char*>(data) + 0x30);
-}
-
 // Releases the id in `slot` (whose data pointer was read once as `data`) like its destructor.
 #define RELEASE_ID_b0185(slot, data)                                      if (base::global::UnkStringPool* pool = g_unk_7101d47200) {              if (data && data != &pool->empty) {                                       if (--data->ref_count == 0) {                                             fn_71000803a4(pool, data);                                            pool = g_unk_7101d47200;                                          }                                                                 }                                                                     slot.id.data = &pool->empty;                                      }
 
@@ -312,7 +307,7 @@ bool fn_7100100170(UnkSndSys_b0185* self, const char* path) {
         UnkPathIdSlot_b0185 slot;
         new (&slot.id) CFilePathStrId(fn_71000f63b0(CFilePathStrId(path, true)));
         UnkStringData* data = slot.id.data;
-        found = FindFile_b0185(self, Hash_b0185(data)) != nullptr;
+        found = FindFile_b0185(self, data->Key()) != nullptr;
         RELEASE_ID_b0185(slot, data)
         fn_7100066920(mutex);
     }

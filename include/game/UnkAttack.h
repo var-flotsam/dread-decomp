@@ -32,3 +32,4 @@ static_assert(sizeof(UnkAttackBase) == __builtin_offsetof(CAttack, field_0x20),
 // manager (g_unk_71726af468) when its AI component asks for it, then updates two other actor
 // components.
 void fn_71003609b8(UnkAttackBase* self);
+void fn_71003608ac(UnkAttackBase* self);

@@ -4,10 +4,9 @@
 // notifies one of two deferred listener sets (g_unk_717272c9c0, the second at +0x80 when the flag is
 // clear) with this component. Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkTU0.h"
 #include "types.h"
-
-extern char g_unk_717272c9c0[];
 
 struct UnkClone_fn_710082d0ac;
 using UnkShootListeners = base::UnkDeferredSet<base::UnkDeferredCallback<u64>>;

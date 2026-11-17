@@ -11,6 +11,7 @@
 #include "base/reflection.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflFunctionVtable.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
@@ -90,8 +91,6 @@ void fn_710009ae5c(base::reflection::UnkReflFunction* function, u32 count) {
     for (s32 i = 0; i < (s32)count; ++i)
         ParamAttrsAt(v, i).field_0x30 = 3;
 }
-
-extern char g_unk_7101a1b460[];  // UnkReflFunction's virtual table (its address point is +0x10)
 
 struct UnkReflFunctionAttrs_ovb0102 {
     u8 unk_0x0[0x38];

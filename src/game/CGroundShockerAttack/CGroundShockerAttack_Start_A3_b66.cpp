@@ -5,11 +5,11 @@
 // -1.0f. Names and layouts are placeholders.
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 void fn_71005a178c();
 
 struct UnkGroundShockerLink_A3_b66 {

@@ -3319,7 +3319,7 @@ address,size,name,name_source,subsystem,status
 0x7100895498,468,fn_7100895498,unknown,unknown,O
 0x710089566c,348,fn_710089566c,unknown,unknown,O
 0x71008957c8,524,fn_71008957c8,unknown,unknown,O
-0x71008959d4,832,fn_71008959d4,unknown,unknown,U
+0x71008959d4,832,fn_71008959d4,unknown,unknown,O
 0x7100895d14,684,fn_7100895d14,unknown,unknown,O
 0x7100895fc0,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<SActivatabledOnEventInfo>>::Begin,reflection,engine/reflection,O
 0x7100895fcc,24,fn_7100895fcc,unknown,unknown,O
@@ -3331,7 +3331,7 @@ address,size,name,name_source,subsystem,status
 0x71008963cc,44,CShootActivatorComponent::refl_Construct,reflection,game/components,O
 0x71008963f8,12,CShootActivatorComponent::refl_Destroy,reflection,game/components,O
 0x7100896404,8,fn_7100896404,unknown,unknown,O
-0x7100896410,1504,fn_7100896410,unknown,unknown,U
+0x7100896410,1504,fn_7100896410,unknown,unknown,O
 0x71008969f0,4,CCharClassShootActivatorHidrogigaComponent::refl_AddAttributes,reflection,game/characters,O
 0x71008969f4,244,CCharClassShootActivatorHidrogigaComponent::refl_GetClass,reflection,game/characters,O
 0x7100896ae8,4,CCharClassShootActivatorHidrogigaComponent::refl_AddFields,reflection,game/characters,O

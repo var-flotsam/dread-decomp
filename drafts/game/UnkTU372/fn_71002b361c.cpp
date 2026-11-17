@@ -7,7 +7,6 @@
 #include "types.h"
 
 void* fn_7100ca719c(void* manager, u32 id);
-UnkQueryObj* fn_7100ca1ea8(void* entry, u8 sub);
 u32 fn_71008d0db4(char* lock);
 
 struct UnkLinkSlot_l2b361c {
@@ -38,7 +37,7 @@ static inline UnkQueryObj* FindEntryInfo(UnkCondOwner_l2b361c* self) {
     void* entry = fn_7100ca719c(g_unk_7101d47310->field_0x1af8, self->field_0x1ec);
     if (!entry)
         return nullptr;
-    return fn_7100ca1ea8(entry, self->field_0x1ee);
+    return reinterpret_cast<UnkQueryObj*>(fn_7100ca1ea8(entry, self->field_0x1ee));
 }
 
 bool fn_71002b361c(UnkCondOwner_l2b361c* self, u32 flags) {

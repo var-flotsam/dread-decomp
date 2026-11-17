@@ -1,25 +1,14 @@
 // CMorphBallMovement's unit: snaps a direction to the nearest of four axes in the xy plane (up, right
 // and the two diagonals) with the direction's sign along it; the up and right components count only
 // beyond 0.995. Names and layouts are placeholders.
+#include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkMorphBall_aab8;
 
-static inline f32 Dot(const UnkVec3f& a, const UnkVec3f& b) {
-    return a.x * b.x + a.y * b.y + a.z * b.z;
-}
-
 static inline f32 Sign(f32 v) {
     return static_cast<f32>((v > 0.0f) - (v < 0.0f));
-}
-
-static inline UnkVec3f Scaled(const UnkVec3f& v, f32 s) {
-    UnkVec3f r;
-    r.x = v.x * s;
-    r.y = v.y * s;
-    r.z = v.z * s;
-    return r;
 }
 
 // Dots within this of zero snap to zero.
@@ -49,12 +38,12 @@ UnkVec3f fn_710094aab8(UnkMorphBall_aab8* self, const UnkVec3f& dir) {
     best = best < abs_antidiagonal ? abs_antidiagonal : best;
 
     if (abs_up == best)
-        return Scaled(up, Sign(dot_up));
+        return up * Sign(dot_up);
     if (abs_right == best)
-        return Scaled(right, Sign(dot_right));
+        return right * Sign(dot_right);
     if (abs_diagonal == best)
-        return Scaled(diagonal, Sign(dot_diagonal));
+        return diagonal * Sign(dot_diagonal);
     if (abs_antidiagonal == best)
-        return Scaled(antidiagonal, Sign(dot_antidiagonal));
+        return antidiagonal * Sign(dot_antidiagonal);
     return up;
 }

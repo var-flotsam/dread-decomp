@@ -8,13 +8,13 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 void fn_710062ae0c();
 void fn_710062cd74(UnkReflObject* ai, f32 value);
 
