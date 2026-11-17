@@ -11,6 +11,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
+#include "game/sound/UnkSoundDesc.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -69,44 +70,6 @@ struct UnkTextStrId_l08b410 {
     }
 };
 
-// What a sound is played with (as fn_7101037bc0's description, src/game/sound/CSoundManager/).
-struct UnkSoundDesc_l08b410 {
-    u32 kind;
-    u32 name_hash;
-    u64 field_0x8;
-    u32 field_0x10;
-    u32 field_0x14;  // unset in the original
-    CStrId name;          // 0x18
-    CFilePathStrId path;  // 0x20
-    f32 offset[3];        // 0x28
-    f32 field_0x34;
-    f32 field_0x38;
-    f32 field_0x3c;
-    f32 field_0x40;
-    f32 field_0x44;
-    f32 field_0x48;
-    f32 field_0x4c;
-    f32 field_0x50;
-    f32 field_0x54;
-    f32 field_0x58;
-    f32 field_0x5c;
-    f32 field_0x60;
-    f32 field_0x64;
-    f32 field_0x68;
-    bool field_0x6c;
-    bool field_0x6d;
-    bool field_0x6e;
-
-    UnkSoundDesc_l08b410()
-        : kind(0), name_hash(0), field_0x8(0), field_0x10(0), name(g_unk_7101d470e0), path(g_unk_7101d470e8),
-          offset{0.0f, 0.0f, 0.0f}, field_0x34(-1.0f), field_0x38(1.0f), field_0x3c(500.0f), field_0x40(2000.0f),
-          field_0x44(1.0f), field_0x48(0.0f), field_0x4c(0.0f), field_0x50(0.0f), field_0x54(-1.0f),
-          field_0x58(-1.0f), field_0x5c(-1.0f), field_0x60(0.5f), field_0x64(5.0f), field_0x68(10.0f),
-          field_0x6c(false), field_0x6d(false), field_0x6e(false) {}
-    ~UnkSoundDesc_l08b410();  // fn_710034e0b8
-};
-static_assert(__builtin_offsetof(UnkSoundDesc_l08b410, field_0x6c) == 0x6c, "layout");
-
 // The id table (its slot at +0xd90 is the default sound name).
 inline const UnkGameManagerIdTable& SoundIds_l08b410() {
     static UnkGameManagerIdTable s_table asm("g_unk_7101d552d0");
@@ -148,12 +111,12 @@ int fn_710108b410(lua_State* L) {
         entity = FindEntity_l08b410(manager, id);
     }
     if (entity) {
-        static UnkSoundDesc_l08b410 s_desc asm("g_unk_7172a01a18");
-        s_desc.kind = 0;
+        static UnkSoundDesc s_desc asm("g_unk_7172a01a18");
+        s_desc.kind.field_0x0 = 0;
         s_desc.path = CFilePathStrId(path, true);
         {
             CStrId name = SoundName_l08b410(sound_name);
-            s_desc.name_hash = fn_7100106820(name.Text());
+            s_desc.kind.field_0x4 = fn_7100106820(name.Text());
         }
         s_desc.field_0x6d = true;
         s_desc.field_0x38 = value_0x38;

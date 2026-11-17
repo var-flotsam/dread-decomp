@@ -9,6 +9,7 @@
 #include "game/UnkTU2604.h"
 #include "game/UnkTU2640.h"
 #include "game/UnkTU2647.h"
+#include "game/sound/UnkMusicMapValue.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -64,7 +65,7 @@ void fn_71010427e0(const UnkMapHead* map, UnkMapIter<0x5d0, fn_7101036e34>* out)
     End(out);
 }
 
-void fn_7100f876c4(const UnkMapHead* map, UnkMapIter<0x68, fn_7100d90304>* out) {
+void fn_7100f876c4(const UnkMapHead* map, UnkMapIter<0x68, DestroyMusicMapValue>* out) {
     End(out);
 }
 

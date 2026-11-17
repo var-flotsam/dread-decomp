@@ -3,9 +3,10 @@
 // The description a sound is played from (0x70 bytes): its kind, its event name and file path, where it
 // plays, and its volume, pitch and distance settings. Entities pass one to fn_7100d7c374; most players
 // keep one in a function-local static, set a few members and play it; fn_7101037bc0 fills one from a
-// sound definition. The constructor is inlined into each player with the defaults below; the destructor,
-// fn_710034e0b8, is out of line (src/game/CAimComponent/UnkSoundDesc.cpp, in unit 437) and releases the
-// path, then the name. Not reflected. Names and layout are placeholders.
+// sound definition. The constructor is inlined into each player with the defaults below. The original
+// destroys it in two forms: out of line through fn_710034e0b8 (UnkSoundDesc,
+// src/game/CAimComponent/UnkSoundDesc.cpp, in unit 437), or inline (UnkInlineSoundDesc); both release
+// the path, then the name. Not reflected. Names and layout are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
@@ -17,7 +18,8 @@ struct UnkSoundKind {
     u32 field_0x4;
 };
 
-struct UnkSoundDesc {
+// The description destroyed inline, where it is (fn_7100552af0, fn_71009dae9c, fn_7101024e28).
+struct UnkInlineSoundDesc {
     UnkSoundKind kind;
     UnkSoundKind field_0x8;  // the kind as the definition gives it, unchecked
     u32 field_0x10;
@@ -43,12 +45,19 @@ struct UnkSoundDesc {
     bool field_0x6d;
     bool field_0x6e;
 
-    UnkSoundDesc()
-        : kind{0, 0}, field_0x8{0, 0}, field_0x10(0), name(g_unk_7101d470e0), path(g_unk_7101d470e8),
+    UnkInlineSoundDesc()
+        : kind{0, 0}, field_0x8{0, 0}, field_0x10(0), name(g_unk_7101d470e0),
+          path(base::global::UnkCopyByPointer(), g_unk_7101d470e8),
           position{0.0f, 0.0f, 0.0f}, field_0x34(-1.0f), field_0x38(1.0f), field_0x3c(500.0f), field_0x40(2000.0f),
           field_0x44(1.0f), field_0x48(0.0f), field_0x4c(0.0f), field_0x50(0.0f), field_0x54(-1.0f),
           field_0x58(-1.0f), field_0x5c(-1.0f), field_0x60(0.5f), field_0x64(5.0f), field_0x68(10.0f),
           field_0x6c(false), field_0x6d(false), field_0x6e(false) {}
+};
+static_assert(sizeof(UnkInlineSoundDesc) == 0x70, "UnkSoundDesc placeholder layout");
+
+// The description destroyed out of line, through fn_710034e0b8 (the players' function-local statics,
+// fn_7100333544).
+struct UnkSoundDesc : UnkInlineSoundDesc {
     ~UnkSoundDesc();  // fn_710034e0b8
 };
 static_assert(sizeof(UnkSoundDesc) == 0x70, "UnkSoundDesc placeholder layout");

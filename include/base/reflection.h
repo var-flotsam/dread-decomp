@@ -36,9 +36,6 @@ void fn_71000a1ba4(UnkAssignedRecord_a1ba4* self, const UnkAssignedRecord_a1ba4*
 bool fn_71000a1ed4(const UnkCompared_0x18* a, const UnkCompared_0x18* b);
 void fn_7100d8e0a0(void* manager);
 
-// Out-of-line destructor of a music preset map's values (src/game/sound/UnkMusicPresets.cpp).
-void fn_7100d90304(void*);
-
 void fn_71000a1784(UnkFormatArgs* args, UnkTextBuffer200* out);
 void* fn_7100202574(UnkItem* item);
 void fn_7100d8ef04(void* self, f32 dt);
