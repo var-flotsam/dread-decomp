@@ -9,8 +9,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
-
 struct UnkAIModePair_b49 {
     u32 first;
     u32 second;

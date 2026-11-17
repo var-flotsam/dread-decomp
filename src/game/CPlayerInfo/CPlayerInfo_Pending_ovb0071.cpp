@@ -31,7 +31,6 @@ struct UnkOwner;
 struct UnkActorTarget;
 struct UnkInventory;
 struct UnkPlayer;
-void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 struct UnkManager;
 
 using base::math::CVector3D;

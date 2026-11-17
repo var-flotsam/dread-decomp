@@ -8,7 +8,6 @@
 
 struct UnkSelf;
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 
 struct UnkAutsniperOwner_A2_b70 {
     u8 pad_0x0[0x218];

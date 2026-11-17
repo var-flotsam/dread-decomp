@@ -174,8 +174,6 @@ struct UnkGrabManager_b61 {
 };
 struct UnkManager;
 struct UnkInputComponent;
-struct UnkGrabInputArg_b61;
-extern UnkGrabInputArg_b61 g_unk_71726de5d0 __attribute__((visibility("hidden")));
 
 void fn_710050be58(UnkGrabSm_b61* self, f32 dt) {
     self->timer += dt;

@@ -11,8 +11,13 @@ struct UnkHandleList;
 struct UnkTriggerEntry_b50a5;
 struct UnkTriggerOwned_b56;
 struct UnkTrigger_b50a5;
+struct UnkTriggerComponent_la601cc;
+struct UnkTriggerTarget_la601cc;
 void fn_7100a632e8(UnkTriggerOwned_b56* self);
 UnkHandleList* fn_7100a5e1dc();
+// Moves the component's key from `previous`'s listener list to `target`'s.
+void fn_7100a601cc(UnkTriggerComponent_la601cc* self, UnkTriggerTarget_la601cc* target,
+                   UnkTriggerTarget_la601cc* previous);
 
 // The original's unit defines it, so the compiler knows it doesn't keep `entry`'s address; noescape says so here,
 // which lets a caller's last call be a tail call.

@@ -19,7 +19,6 @@ using base::reflection::UnkReflObject;
 struct UnkAttackBase;
 void fn_71005c7824();
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 
 // Returned in memory (not trivially copyable).
 struct UnkInfesterVec3_A3_b73 {
