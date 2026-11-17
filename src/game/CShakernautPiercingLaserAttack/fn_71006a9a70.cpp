@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CShakernautPiercingLaserAttack::EState, CShakernautPiercingLaserAttack::ESide enums.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -30,7 +31,8 @@ struct UnkStatics_71006a9a70 {
 };
 extern UnkStatics_71006a9a70 g_unk_7172705c50 __attribute__((visibility("hidden")));
 extern char g_unk_7172705988[];
-extern UnkEnumType g_unk_7172705990;
+namespace CShakernautPiercingLaserAttack { enum class EState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CShakernautPiercingLaserAttack::EState, UnkEnumType>::object asm("g_unk_7172705990");
 void fn_71006a6938(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006a65ac();
 extern char g_unk_7172705aa8[];
@@ -38,7 +40,8 @@ extern UnkConversion g_unk_7172705ab0;
 extern UnkConversion g_unk_7172705ad0;
 void fn_71006a93a0() __attribute__((visibility("hidden")));
 void fn_71006a93ac() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_7172705af0;
+namespace CShakernautPiercingLaserAttack { enum class ESide : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CShakernautPiercingLaserAttack::ESide, UnkEnumType>::object asm("g_unk_7172705af0");
 void fn_71006a6c64(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006a6ab8();
 extern char g_unk_7172705c08[];
@@ -51,9 +54,9 @@ void fn_71006a9a70() {
     InitHeaderIds(&g_unk_7172705c50.ids);
     fn_71006a6330();
     fn_710009ec00(g_unk_7172705988, g_unk_7172705c50.field_0xd0);
-    InitEnum(&g_unk_7172705990, "CShakernautPiercingLaserAttack::EState", fn_71006a6938, fn_71006a65ac,
+    InitEnum(&base::reflection::TypeObject<CShakernautPiercingLaserAttack::EState, UnkEnumType>::object, "CShakernautPiercingLaserAttack::EState", fn_71006a6938, fn_71006a65ac,
              g_unk_7172705aa8, &g_unk_7172705ab0, fn_71006a93a0, &g_unk_7172705ad0, fn_71006a93ac);
-    InitEnum(&g_unk_7172705af0, "CShakernautPiercingLaserAttack::ESide", fn_71006a6c64, fn_71006a6ab8,
+    InitEnum(&base::reflection::TypeObject<CShakernautPiercingLaserAttack::ESide, UnkEnumType>::object, "CShakernautPiercingLaserAttack::ESide", fn_71006a6c64, fn_71006a6ab8,
              g_unk_7172705c08, &g_unk_7172705c10, fn_71006a93b8, &g_unk_7172705c30, fn_71006a93c4);
     InitId(&g_unk_7172705c50.field_0x20, "right_attack_piercinglaser_relaxtoattack");
     InitId(&g_unk_7172705c50.field_0x28, "left_attack_piercinglaser_relaxtoattack");

@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkDoorKeyOwner_dae8a4;
 struct UnkManager_71726af468;
@@ -35,9 +36,11 @@ extern char g_unk_71727bc508;
 extern char g_unk_71727bc550;
 bool fn_7100da9254(UnkManager_71726af468* self);
 void fn_7100da928c(UnkManager_71726af468* manager);
-extern UnkReflType g_unk_71727bc290;  // CAIManager::EAIGroup.
+namespace CAIManager { enum class EAIGroup : u32; }
+template <> UnkReflType base::reflection::TypeObject<CAIManager::EAIGroup, UnkReflType>::object asm("g_unk_71727bc290");
 void fn_7100da929c(UnkManager_71726af468* self, f32 value);
-extern UnkReflType g_unk_71727bc3f0;
+namespace CAIManager { enum class EBumpMode : u32; }
+template <> UnkReflType base::reflection::TypeObject<CAIManager::EBumpMode, UnkReflType>::object asm("g_unk_71727bc3f0");
 extern UnkTUHeader g_unk_71727bc598 __attribute__((visibility("hidden")));
 extern UnkTUData g_unk_71727bc5b0 __attribute__((visibility("hidden")));
 extern UnkTunable g_unk_71727bc558;  // The AI tunables (unit 2539's data).

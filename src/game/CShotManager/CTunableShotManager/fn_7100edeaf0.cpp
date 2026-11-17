@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -79,7 +80,8 @@ extern UnkConversion g_unk_71729ce4a8;
 extern UnkConversion g_unk_71729ce4c8;
 void fn_7100ed7904() __attribute__((visibility("hidden")));
 void fn_7100ed7910() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71729ce388;
+enum class EWeaponType : u32;
+template <> UnkEnumType base::reflection::TypeObject<EWeaponType, UnkEnumType>::object asm("g_unk_71729ce388");
 extern char g_unk_71729ce4a0[];
 void fn_7100ed0188(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100ecfb5c();
@@ -91,7 +93,8 @@ extern UnkConversion g_unk_71729ce648;
 extern UnkConversion g_unk_71729ce668;
 void fn_7100ed7934() __attribute__((visibility("hidden")));
 void fn_7100ed7940() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71729ce528;
+enum class EWeaponState : u32;
+template <> UnkEnumType base::reflection::TypeObject<EWeaponState, UnkEnumType>::object asm("g_unk_71729ce528");
 extern char g_unk_71729ce640[];
 void fn_7100ed0694(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100ed0308();
@@ -191,12 +194,12 @@ void fn_7100edeaf0() {
     g_unk_71729da448.field_0x28 = -1.0f;
     g_unk_71729da448.field_0x2c = -1.0f;
     g_unk_71729da448.field_0x30 = true;
-    InitEnum(&g_unk_71729ce388, "EWeaponType", fn_7100ed0188, fn_7100ecfb5c, g_unk_71729ce4a0, &g_unk_71729ce4a8, fn_7100ed7904, &g_unk_71729ce4c8, fn_7100ed7910);
-    InitConversion(&g_unk_71729ce4e8, &g_unk_71729ce388, TypeOf<fn_7100005178>, fn_7100ed791c);
-    InitConversion(&g_unk_71729ce508, TypeOf<fn_7100005178>, &g_unk_71729ce388, fn_7100ed7928);
-    InitEnum(&g_unk_71729ce528, "EWeaponState", fn_7100ed0694, fn_7100ed0308, g_unk_71729ce640, &g_unk_71729ce648, fn_7100ed7934, &g_unk_71729ce668, fn_7100ed7940);
-    InitConversion(&g_unk_71729ce688, &g_unk_71729ce528, TypeOf<fn_7100005178>, fn_7100ed794c);
-    InitConversion(&g_unk_71729ce6a8, TypeOf<fn_7100005178>, &g_unk_71729ce528, fn_7100ed7958);
+    InitEnum(&base::reflection::TypeObject<EWeaponType, UnkEnumType>::object, "EWeaponType", fn_7100ed0188, fn_7100ecfb5c, g_unk_71729ce4a0, &g_unk_71729ce4a8, fn_7100ed7904, &g_unk_71729ce4c8, fn_7100ed7910);
+    InitConversion(&g_unk_71729ce4e8, &base::reflection::TypeObject<EWeaponType, UnkEnumType>::object, TypeOf<fn_7100005178>, fn_7100ed791c);
+    InitConversion(&g_unk_71729ce508, TypeOf<fn_7100005178>, &base::reflection::TypeObject<EWeaponType, UnkEnumType>::object, fn_7100ed7928);
+    InitEnum(&base::reflection::TypeObject<EWeaponState, UnkEnumType>::object, "EWeaponState", fn_7100ed0694, fn_7100ed0308, g_unk_71729ce640, &g_unk_71729ce648, fn_7100ed7934, &g_unk_71729ce668, fn_7100ed7940);
+    InitConversion(&g_unk_71729ce688, &base::reflection::TypeObject<EWeaponState, UnkEnumType>::object, TypeOf<fn_7100005178>, fn_7100ed794c);
+    InitConversion(&g_unk_71729ce6a8, TypeOf<fn_7100005178>, &base::reflection::TypeObject<EWeaponState, UnkEnumType>::object, fn_7100ed7958);
     fn_710009ec00(g_unk_71729ce6c8, fn_7100ed0814());
     fn_710009ec00(g_unk_71729ce6c9, fn_7100ed08f0());
     {

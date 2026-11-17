@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/GUI/CGlobalMapComposition.h"
 #include "game/UnkBufferStringPool.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -45,7 +46,8 @@ extern UnkStatics_7100b2bc80 g_unk_7172762d04 __attribute__((visibility("hidden"
 extern UnkBufferParam g_unk_7172762b18;
 void fn_71001d81bc(UnkMapFadeTimes* self);
 extern char g_unk_7172762b98[];
-extern UnkEnumType g_unk_7172762ba0;
+namespace GUI::CGlobalMapComposition { enum class SState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<GUI::CGlobalMapComposition::SState, UnkEnumType>::object asm("g_unk_7172762ba0");
 void fn_7100b2390c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100b235e0();
 extern char g_unk_7172762cb8[];
@@ -94,6 +96,6 @@ void fn_7100b2bc80() {
 
     fn_7100b23388();
     fn_710009ec00(g_unk_7172762b98, g_unk_7172762d04.field_0x174);
-    InitEnum(&g_unk_7172762ba0, "GUI::CGlobalMapComposition::SState", fn_7100b2390c, fn_7100b235e0,
+    InitEnum(&base::reflection::TypeObject<GUI::CGlobalMapComposition::SState, UnkEnumType>::object, "GUI::CGlobalMapComposition::SState", fn_7100b2390c, fn_7100b235e0,
              g_unk_7172762cb8, &g_unk_7172762cc0, fn_7100b2b1c8, &g_unk_7172762ce0, fn_7100b2b1d4);
 }

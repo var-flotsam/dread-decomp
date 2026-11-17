@@ -33,11 +33,11 @@ void fn_71000ef204(UnkEnumInfo* obj, CStrId* name, void (*fn)(), void* a);
 void fn_71000ef410() {
     {
         CStrId name("base::serialization::EDeserializeCollectionElementMode", true);
-        fn_71000ef204(&g_unk_7101d67c10, &name, fn_71000ef058, nullptr);
+        fn_71000ef204(&base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object, &name, fn_71000ef058, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d67c10, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d67d28, &g_unk_7101d67c10);
-    void* a = g_unk_7101d67c10.desc_0x8->field_0x30;
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d67d28, &base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object);
+    void* a = base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object.desc_0x8->field_0x30;
     void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
     g_unk_7101d67d30.from = a;
     g_unk_7101d67d30.to = b;
@@ -45,7 +45,7 @@ void fn_71000ef410() {
     g_unk_7101d67d30.next = nullptr;
     fn_71000a16c4(&g_unk_7101d67d30);
     void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-    void* d = g_unk_7101d67c10.desc_0x8->field_0x30;
+    void* d = base::reflection::TypeObject<base::serialization::EDeserializeCollectionElementMode, UnkEnumInfo>::object.desc_0x8->field_0x30;
     g_unk_7101d67d50.from = c;
     g_unk_7101d67d50.to = d;
     g_unk_7101d67d50.convert = fn_71000ef390;

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
@@ -15,7 +16,8 @@ void fn_7100c1140c() __attribute__((visibility("hidden")));
 void fn_7100c11418() __attribute__((visibility("hidden")));
 extern char g_unk_717277e0a8;
 extern char g_unk_717277e0f0;
-extern UnkReflType g_unk_717277df90;
+enum class EWings : u32;
+template <> UnkReflType base::reflection::TypeObject<EWings, UnkReflType>::object asm("g_unk_717277df90");
 extern UnkTUHeader g_unk_717277e0f8 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_717277e118 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_717277e0b0;

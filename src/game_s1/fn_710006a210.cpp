@@ -8,6 +8,7 @@
 #include "game/UnkTU22.h"
 #include "game/UnkTUInit.h"
 #include "base/UnkEnumInfo.h"
+#include "base/reflection/TypeObject.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
@@ -20,8 +21,10 @@ static inline UnkEnumInfo* TypeOf() {
     return reinterpret_cast<UnkEnumInfo*>(const_cast<base::reflection::CType*>(Getter()));
 }
 
-extern UnkEnumInfo g_unk_7101d57cf8;
-extern UnkEnumInfo g_unk_7101d57e58;
+enum class EEventProps : u32;
+template <> UnkEnumInfo base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object asm("g_unk_7101d57cf8");
+struct TEventPropsFlags;
+template <> UnkEnumInfo base::reflection::TypeObject<TEventPropsFlags, UnkEnumInfo>::object asm("g_unk_7101d57e58");
 extern UnkConverter g_unk_7101d57e18;
 extern UnkConverter g_unk_7101d57e38;
 extern UnkConverter g_unk_7101d57f50;
@@ -38,12 +41,12 @@ void fn_710006a114() HIDDEN;
 void fn_710006a210() {
     {
         CStrId name("EEventProps", true);
-        fn_7100069e20(&g_unk_7101d57cf8, &name, fn_7100069a34, nullptr);
+        fn_7100069e20(&base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object, &name, fn_7100069a34, nullptr);
     }
-    fn_7100000250(fn_7100099468, &g_unk_7101d57cf8, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d57e10, &g_unk_7101d57cf8);
+    fn_7100000250(fn_7100099468, &base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d57e10, &base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d57cf8.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
         g_unk_7101d57e18.from = a;
         g_unk_7101d57e18.to = b;
@@ -51,7 +54,7 @@ void fn_710006a210() {
         g_unk_7101d57e18.next = nullptr;
         fn_71000a16c4(&g_unk_7101d57e18);
         void* c = TypeOf<fn_7100014768>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d57cf8.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<EEventProps, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d57e38.from = c;
         g_unk_7101d57e38.to = d;
         g_unk_7101d57e38.convert = fn_710006a0fc;
@@ -60,12 +63,12 @@ void fn_710006a210() {
     }
     {
         CStrId name("TEventPropsFlags", true);
-        fn_7100069fa0(&g_unk_7101d57e58, &name, nullptr);
+        fn_7100069fa0(&base::reflection::TypeObject<TEventPropsFlags, UnkEnumInfo>::object, &name, nullptr);
     }
-    fn_7100000250(fn_710009a368, &g_unk_7101d57e58, &g_unk_7101a19000);
-    fn_710009ec00(g_unk_7101d57f48, &g_unk_7101d57e58);
+    fn_7100000250(fn_710009a368, &base::reflection::TypeObject<TEventPropsFlags, UnkEnumInfo>::object, &g_unk_7101a19000);
+    fn_710009ec00(g_unk_7101d57f48, &base::reflection::TypeObject<TEventPropsFlags, UnkEnumInfo>::object);
     {
-        void* a = g_unk_7101d57e58.desc_0x8->field_0x30;
+        void* a = base::reflection::TypeObject<TEventPropsFlags, UnkEnumInfo>::object.desc_0x8->field_0x30;
         void* b = TypeOf<fn_7100005178>()->desc_0x8->field_0x30;
         g_unk_7101d57f50.from = a;
         g_unk_7101d57f50.to = b;
@@ -73,7 +76,7 @@ void fn_710006a210() {
         g_unk_7101d57f50.next = nullptr;
         fn_71000a16c4(&g_unk_7101d57f50);
         void* c = TypeOf<fn_7100005178>()->desc_0x8->field_0x30;
-        void* d = g_unk_7101d57e58.desc_0x8->field_0x30;
+        void* d = base::reflection::TypeObject<TEventPropsFlags, UnkEnumInfo>::object.desc_0x8->field_0x30;
         g_unk_7101d57f70.from = c;
         g_unk_7101d57f70.to = d;
         g_unk_7101d57f70.convert = fn_710006a114;

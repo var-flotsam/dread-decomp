@@ -27,6 +27,7 @@
 #include "game/UnkTUInit.h"
 #include "game/msapi/material/SAlpha.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 using base::global::CRntFile;
 using base::reflection::CClass;
@@ -586,7 +587,8 @@ void fn_71001a69a0(UnkNoArg, CRntFile* file, void* dst) {
 // ---- fn_71001a9d30: the unit's static initialiser ----
 
 extern UnkTUHeader g_unk_716e3528b0 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_716e352788;  // msapi::material::ETranslucencyType
+namespace msapi::material { enum class ETranslucencyType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<msapi::material::ETranslucencyType>::object asm("g_unk_716e352788");
 extern char g_unk_716e3528a0;
 extern char g_unk_716e3528a1;
 extern char g_unk_716e3528a2;
@@ -619,9 +621,9 @@ __attribute__((always_inline)) static inline void AddClass(char* list) {
 
 void fn_71001a9d30() {
     InitHeader(g_unk_716e3528b0);
-    InitEnum(reinterpret_cast<UnkReflType*>(&g_unk_716e352788), "msapi::material::ETranslucencyType", fn_71001a1680,
+    InitEnum(reinterpret_cast<UnkReflType*>(&base::reflection::TypeObject<msapi::material::ETranslucencyType>::object), "msapi::material::ETranslucencyType", fn_71001a1680,
              reinterpret_cast<void (*)()>(fn_71001a12f4));
-    fn_710009ec00(&g_unk_716e3528a0, &g_unk_716e352788);
+    fn_710009ec00(&g_unk_716e3528a0, &base::reflection::TypeObject<msapi::material::ETranslucencyType>::object);
     AddClass<fn_71001a1858, 0>(&g_unk_716e3528a1);  // msapi::material::SAlpha
     AddClass<fn_71001a1db0, 1>(&g_unk_716e3528a2);  // SBlend
     AddClass<fn_71001a23ac, 2>(&g_unk_716e3528a3);  // SCull

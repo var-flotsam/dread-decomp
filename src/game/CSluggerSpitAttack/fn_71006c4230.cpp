@@ -2,6 +2,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/math/UnkZeroVector3.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -19,7 +20,8 @@ struct UnkStatics_71006c4230 {
 };
 extern UnkStatics_71006c4230 g_unk_7172707ba0 __attribute__((visibility("hidden")));
 extern char g_unk_7172707a28[];
-extern UnkEnumType g_unk_7172707a30;
+namespace CSluggerSpitAttack { enum class EState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CSluggerSpitAttack::EState, UnkEnumType>::object asm("g_unk_7172707a30");
 void fn_71006c06bc(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006c0450();
 extern char g_unk_7172707b48[];
@@ -34,7 +36,7 @@ void fn_71006c4230() {
     InitHeaderIds(&g_unk_7172707ba0.ids);
     fn_71006c01d4();
     fn_710009ec00(g_unk_7172707a28, g_unk_7172707ba0.field_0x58);
-    InitEnum(&g_unk_7172707a30, "CSluggerSpitAttack::EState", fn_71006c06bc, fn_71006c0450,
+    InitEnum(&base::reflection::TypeObject<CSluggerSpitAttack::EState, UnkEnumType>::object, "CSluggerSpitAttack::EState", fn_71006c06bc, fn_71006c0450,
              g_unk_7172707b48, &g_unk_7172707b50, fn_71006c3b84, &g_unk_7172707b70, fn_71006c3b90);
     InitId(&g_unk_7172707ba0.field_0x20, "fAngle");
     InitId(&g_unk_7172707ba0.field_0x28, "relax");

@@ -10,6 +10,7 @@
 // (src/reflection_types/, tools/gen_types.py).
 
 #include "base/reflection/CClass.h"
+#include "base/reflection/TypeObject.h"
 
 namespace base::reflection {
 
@@ -53,4 +54,5 @@ CEnumType::CEnumType(const base::global::CStrId& name, const void* arg, T*)
 
 // The enum type of EInFrustumMode (built in src/base/reflection/fn_7100b04900.cpp), declared as its
 // base CType because the generated reflection sources declare it so.
-extern base::reflection::CType g_unk_71727952a8;
+enum class EInFrustumMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EInFrustumMode>::object asm("g_unk_71727952a8");

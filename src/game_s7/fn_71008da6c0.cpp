@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -40,7 +41,8 @@ extern UnkStrIdBase g_unk_71727310b8;
 extern void* g_unk_7101a7ea58[];
 void fn_71008dbddc(void* p);
 void fn_71008cac70(void* p);
-extern UnkEnumType g_unk_7172731200;
+namespace CDoorLifeComponent { enum class SState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object asm("g_unk_7172731200");
 extern UnkProperty g_unk_71727311b0;
 extern UnkProperty g_unk_71727311d8;
 inline const CStrId& StaticName_71726a47a8() {
@@ -113,7 +115,7 @@ void fn_71008da6c0() {
     InitProperty(&g_unk_71727310e8, g_unk_7101a7ea58, g_unk_71726db788, "Disabled", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
     InitProperty(&g_unk_7172731110, g_unk_7101a7ea58, g_unk_71726db788, "StayOpened", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
     InitProperty(&g_unk_7172731138, g_unk_7101a7ea58, g_unk_71726db788, "ChangeWhenVisible", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
-    InitProperty(&g_unk_7172731160, g_unk_7101a7ea58, g_unk_71726db788, "NextState", &g_unk_7172731200, fn_71008dbddc, fn_71008cac70);
+    InitProperty(&g_unk_7172731160, g_unk_7101a7ea58, g_unk_71726db788, "NextState", &base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object, fn_71008dbddc, fn_71008cac70);
     InitProperty(&g_unk_7172731188, g_unk_7101a7ea58, g_unk_71726db788, "ControlledByUsable", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
     InitProperty(&g_unk_71727311b0, g_unk_7101a7ea58, g_unk_71726db788, "IsWet", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
     InitProperty(&g_unk_71727311d8, g_unk_7101a7ea58, g_unk_71726db788, "FrozenDuringCooldown", TypeOf<fn_710000d228>(), fn_71008dbddc, fn_71008cac70);
@@ -136,7 +138,7 @@ void fn_71008da6c0() {
     InitId(&g_unk_7172731708.field_0x98, "sabotoru_nest_eggs_R");
     InitId(&g_unk_7172731708.field_0xa0, "sabotoru_nest_eggs_L");
     InitId(&g_unk_7172731708.field_0xa8, "eggs");
-    InitEnum(&g_unk_7172731200, "CDoorLifeComponent::SState", fn_71008caef4, fn_71008cace8, g_unk_7172731318, &g_unk_7172731320, fn_71008dbb84, &g_unk_7172731340, fn_71008dbb90);
+    InitEnum(&base::reflection::TypeObject<CDoorLifeComponent::SState, UnkEnumType>::object, "CDoorLifeComponent::SState", fn_71008caef4, fn_71008cace8, g_unk_7172731318, &g_unk_7172731320, fn_71008dbb84, &g_unk_7172731340, fn_71008dbb90);
     fn_71008cb078();
     fn_710009ec00(g_unk_7172731360, g_unk_7172731708.field_0x3f0);
     fn_71008cd2c8();

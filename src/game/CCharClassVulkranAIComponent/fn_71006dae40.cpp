@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CCharClassVulkranAIComponent::EDir, CCharClassVulkranAIComponent::ESubspecies enums.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -22,7 +23,8 @@ struct UnkStatics_71006dae40 {
 };
 extern UnkStatics_71006dae40 g_unk_717270a458 __attribute__((visibility("hidden")));
 extern char g_unk_717270a190[];
-extern UnkEnumType g_unk_717270a198;
+namespace CCharClassVulkranAIComponent { enum class EDir : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CCharClassVulkranAIComponent::EDir, UnkEnumType>::object asm("g_unk_717270a198");
 void fn_71006da1f8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006d9fec();
 extern char g_unk_717270a2b0[];
@@ -30,7 +32,8 @@ extern UnkConversion g_unk_717270a2b8;
 extern UnkConversion g_unk_717270a2d8;
 void fn_71006daccc() __attribute__((visibility("hidden")));
 void fn_71006dacd8() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_717270a2f8;
+namespace CCharClassVulkranAIComponent { enum class ESubspecies : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CCharClassVulkranAIComponent::ESubspecies, UnkEnumType>::object asm("g_unk_717270a2f8");
 void fn_71006da4c4(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71006da378();
 extern char g_unk_717270a410[];
@@ -43,9 +46,9 @@ void fn_71006dae40() {
     InitHeaderIds(&g_unk_717270a458.ids);
     fn_71006d85b4();
     fn_710009ec00(g_unk_717270a190, g_unk_717270a458.field_0x78);
-    InitEnum(&g_unk_717270a198, "CCharClassVulkranAIComponent::EDir", fn_71006da1f8, fn_71006d9fec,
+    InitEnum(&base::reflection::TypeObject<CCharClassVulkranAIComponent::EDir, UnkEnumType>::object, "CCharClassVulkranAIComponent::EDir", fn_71006da1f8, fn_71006d9fec,
              g_unk_717270a2b0, &g_unk_717270a2b8, fn_71006daccc, &g_unk_717270a2d8, fn_71006dacd8);
-    InitEnum(&g_unk_717270a2f8, "CCharClassVulkranAIComponent::ESubspecies", fn_71006da4c4, fn_71006da378,
+    InitEnum(&base::reflection::TypeObject<CCharClassVulkranAIComponent::ESubspecies, UnkEnumType>::object, "CCharClassVulkranAIComponent::ESubspecies", fn_71006da4c4, fn_71006da378,
              g_unk_717270a410, &g_unk_717270a418, fn_71006dace4, &g_unk_717270a438, fn_71006dacf0);
     InitId(&g_unk_717270a458.field_0x20, "turn2walk");
     InitId(&g_unk_717270a458.field_0x28, "burrowloop");

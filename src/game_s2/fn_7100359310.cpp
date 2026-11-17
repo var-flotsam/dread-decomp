@@ -3,6 +3,7 @@
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTU437.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -44,7 +45,8 @@ struct __attribute__((packed)) UnkAimTunable {
 };
 // UnkAimTunable is the full (packed) view of a tunable; fn_7100136ecc (game/UnkTUProperty.h) builds its base.
 extern void* g_unk_7101a23c28[];
-extern UnkEnumType g_unk_71726b1508;
+enum class EInputAimDir : u32;
+template <> UnkEnumType base::reflection::TypeObject<EInputAimDir, UnkEnumType>::object asm("g_unk_71726b1508");
 void fn_7100342d64(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_7100342a38();
 extern char g_unk_71726b1620[];
@@ -84,6 +86,6 @@ void fn_7100359310() {
         t->field_0x8c = 0;
         __cxa_atexit(fn_7100075104, t, g_unk_7101a19000);
     }
-    InitEnum(&g_unk_71726b1508, "EInputAimDir", fn_7100342d64, fn_7100342a38,
+    InitEnum(&base::reflection::TypeObject<EInputAimDir, UnkEnumType>::object, "EInputAimDir", fn_7100342d64, fn_7100342a38,
              g_unk_71726b1620, &g_unk_71726b1628, fn_7100353968, &g_unk_71726b1648, fn_7100353974);
 }

@@ -3,6 +3,7 @@
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -14,7 +15,8 @@ struct UnkStatics_71005a7870 {
     u8 field_0x160[8];
 };
 extern UnkStatics_71005a7870 g_unk_71726e8d70 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726e8b98;
+namespace CCharClassHecathonAIComponent { enum class ESubspecies : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CCharClassHecathonAIComponent::ESubspecies, UnkEnumType>::object asm("g_unk_71726e8b98");
 void fn_71005a610c(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005a5fc0();
 extern char g_unk_71726e8cb0[];
@@ -29,7 +31,7 @@ extern void* g_unk_7101a4f768[];
 
 void fn_71005a7870() {
     InitHeaderIds(&g_unk_71726e8d70.ids);
-    InitEnum(&g_unk_71726e8b98, "CCharClassHecathonAIComponent::ESubspecies", fn_71005a610c, fn_71005a5fc0,
+    InitEnum(&base::reflection::TypeObject<CCharClassHecathonAIComponent::ESubspecies, UnkEnumType>::object, "CCharClassHecathonAIComponent::ESubspecies", fn_71005a610c, fn_71005a5fc0,
              g_unk_71726e8cb0, &g_unk_71726e8cb8, fn_71005a7694, &g_unk_71726e8cd8, fn_71005a76a0);
     fn_71005a6290();
     fn_710009ec00(g_unk_71726e8cf8, g_unk_71726e8d70.field_0x28);

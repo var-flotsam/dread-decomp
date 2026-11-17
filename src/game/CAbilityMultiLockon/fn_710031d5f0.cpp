@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbilityMultiLockon.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -19,7 +20,8 @@ struct UnkStatics_710031d5f0 {
     u8 field_0x270[8];
 };
 extern UnkStatics_710031d5f0 g_unk_71726af948 __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726af748;
+namespace CAbilityMultiLockon { enum class SSubState : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CAbilityMultiLockon::SSubState, UnkEnumType>::object asm("g_unk_71726af748");
 void fn_71003164b4(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71003162a8();
 extern char g_unk_71726af860[];
@@ -33,7 +35,7 @@ extern void* g_unk_7101a22f60[];
 
 void fn_710031d5f0() {
     InitHeaderIds(&g_unk_71726af948.ids);
-    InitEnum(&g_unk_71726af748, "CAbilityMultiLockon::SSubState", fn_71003164b4, fn_71003162a8,
+    InitEnum(&base::reflection::TypeObject<CAbilityMultiLockon::SSubState, UnkEnumType>::object, "CAbilityMultiLockon::SSubState", fn_71003164b4, fn_71003162a8,
              g_unk_71726af860, &g_unk_71726af868, fn_710031d8ac, &g_unk_71726af888, fn_710031d8b8);
     fn_7100316638();
     fn_710009ec00(g_unk_71726af8a8, g_unk_71726af948.field_0x138);

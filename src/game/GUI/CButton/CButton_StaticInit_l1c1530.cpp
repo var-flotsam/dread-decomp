@@ -4,6 +4,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkButtonTUData_l1c1530 {
     UnkTUHeader header;
@@ -22,7 +23,8 @@ struct UnkButtonClassData_l1c1530 {
 
 extern UnkButtonTUData_l1c1530 g_unk_7172a0d320 __attribute__((visibility("hidden")));
 extern UnkButtonClassData_l1c1530 g_unk_7172a0d340 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_7172a0d1b8;  // GUI::CButton::TextAlign
+namespace GUI::CButton { enum class TextAlign : u32; }
+template <> UnkReflType base::reflection::TypeObject<GUI::CButton::TextAlign, UnkReflType>::object asm("g_unk_7172a0d1b8");
 extern char g_unk_7172a0d2d0;
 extern UnkConverter g_unk_7172a0d2d8;
 extern UnkConverter g_unk_7172a0d2f8;
@@ -37,9 +39,9 @@ void fn_71011c1530() {
     g_unk_7172a0d320.scale_a = -1.0f;
     g_unk_7172a0d320.scale_b = -1.0f;
     g_unk_7172a0d320.flag = true;
-    InitEnum(&g_unk_7172a0d1b8, "GUI::CButton::TextAlign", fn_71011be27c, reinterpret_cast<void (*)()>(fn_71011be0d0));
-    fn_710009ec00(&g_unk_7172a0d2d0, &g_unk_7172a0d1b8);
-    InitEnumConverters(&g_unk_7172a0d1b8, g_unk_7172a0d2d8, fn_71011c1358, g_unk_7172a0d2f8, fn_71011c1364);
+    InitEnum(&base::reflection::TypeObject<GUI::CButton::TextAlign, UnkReflType>::object, "GUI::CButton::TextAlign", fn_71011be27c, reinterpret_cast<void (*)()>(fn_71011be0d0));
+    fn_710009ec00(&g_unk_7172a0d2d0, &base::reflection::TypeObject<GUI::CButton::TextAlign, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<GUI::CButton::TextAlign, UnkReflType>::object, g_unk_7172a0d2d8, fn_71011c1358, g_unk_7172a0d2f8, fn_71011c1364);
     fn_71011be400();
     fn_710009ec00(&g_unk_7172a0d318, &g_unk_7172a0d340.type);
     new (&g_unk_7172a0d340.name) CStrId("Button", true);

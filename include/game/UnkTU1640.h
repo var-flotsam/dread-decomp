@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
@@ -17,8 +18,10 @@ void fn_7100adf670() __attribute__((visibility("hidden")));
 void fn_7100adf67c() __attribute__((visibility("hidden")));
 extern char g_unk_7172758950;
 extern char g_unk_7172758a88;
-extern UnkReflType g_unk_7172758838;
-extern UnkReflType g_unk_7172758998;
+enum class EPickingMode : u32;
+template <> UnkReflType base::reflection::TypeObject<EPickingMode, UnkReflType>::object asm("g_unk_7172758838");
+struct TPickingModeFlagSet;
+template <> UnkReflType base::reflection::TypeObject<TPickingModeFlagSet, UnkReflType>::object asm("g_unk_7172758998");
 extern UnkTUHeader g_unk_7172758ad0 __attribute__((visibility("hidden")));
 void fn_7100adf508(UnkReflType* self, const base::global::CStrId& name, void* extra);
 extern UnkConverter g_unk_7172758958;

@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using base::global::CFilePathStrId;
 
@@ -26,7 +27,8 @@ struct UnkSamusMagnetGloveTU {
 
 extern UnkSamusMagnetGloveTU g_unk_717273c6b8 __attribute__((visibility("hidden")));
 extern char g_unk_717273c4e0;
-extern base::reflection::CType g_unk_717273c4e8;  // also named in src/reflection/
+namespace CSamusMagnetGloveMovementState { enum class ESurfaceType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CSamusMagnetGloveMovementState::ESurfaceType>::object asm("g_unk_717273c4e8");
 void fn_71009a4b9c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71009a49f0(void* e);  // src/clones/clones_03.cpp
 extern char g_unk_717273c600;
@@ -48,10 +50,10 @@ void fn_71009afa90() {
     InitHeader(tu.header);
     fn_71009a4774();
     fn_710009ec00(&g_unk_717273c4e0, &tu.params_type);
-    InitEnum(AsUnk(&g_unk_717273c4e8), "CSamusMagnetGloveMovementState::ESurfaceType", fn_71009a4b9c,
+    InitEnum(AsUnk(&base::reflection::TypeObject<CSamusMagnetGloveMovementState::ESurfaceType>::object), "CSamusMagnetGloveMovementState::ESurfaceType", fn_71009a4b9c,
              reinterpret_cast<void (*)()>(fn_71009a49f0));
-    fn_710009ec00(&g_unk_717273c600, AsUnk(&g_unk_717273c4e8));
-    InitEnumConverters(AsUnk(&g_unk_717273c4e8), g_unk_717273c608, fn_71009af32c, g_unk_717273c628, fn_71009af338);
+    fn_710009ec00(&g_unk_717273c600, AsUnk(&base::reflection::TypeObject<CSamusMagnetGloveMovementState::ESurfaceType>::object));
+    InitEnumConverters(AsUnk(&base::reflection::TypeObject<CSamusMagnetGloveMovementState::ESurfaceType>::object), g_unk_717273c608, fn_71009af32c, g_unk_717273c628, fn_71009af338);
     fn_71009a4d20();
     fn_710009ec00(&g_unk_717273c648, &tu.tunable_type);
     InitTunable(&g_unk_717273c650, fn_7100136ecc, reinterpret_cast<void**>(g_unk_7101a87688), fn_7100075104);

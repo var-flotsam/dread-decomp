@@ -1,6 +1,7 @@
 // Static initialiser of the unit of the CNailongAIComponent::EType enum.
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -12,7 +13,8 @@ struct UnkStatics_71006225e0 {
 };
 extern UnkStatics_71006225e0 g_unk_71726f7e40 __attribute__((visibility("hidden")));
 extern char g_unk_71726f7cd8[];
-extern UnkEnumType g_unk_71726f7ce0;
+namespace CNailongAIComponent { enum class EType : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CNailongAIComponent::EType, UnkEnumType>::object asm("g_unk_71726f7ce0");
 void fn_710061f9e8(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710061f83c();
 extern char g_unk_71726f7df8[];
@@ -26,6 +28,6 @@ void fn_71006225e0() {
     InitId(&g_unk_71726f7e40.field_0x18, "CNailongAIComponent Custom wings layer freeze");
     fn_710061f464();
     fn_710009ec00(g_unk_71726f7cd8, g_unk_71726f7e40.field_0x28);
-    InitEnum(&g_unk_71726f7ce0, "CNailongAIComponent::EType", fn_710061f9e8, fn_710061f83c,
+    InitEnum(&base::reflection::TypeObject<CNailongAIComponent::EType, UnkEnumType>::object, "CNailongAIComponent::EType", fn_710061f9e8, fn_710061f83c,
              g_unk_71726f7df8, &g_unk_71726f7e00, fn_710062228c, &g_unk_71726f7e20, fn_7100622298);
 }

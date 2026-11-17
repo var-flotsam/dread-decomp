@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "game/CKraidSpinningNailsDef.h"
 #include "game/UnkTUProperty.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -21,7 +22,8 @@ struct UnkStatics_71005ef820 {
 extern UnkStatics_71005ef820 g_unk_71726f20c0 __attribute__((visibility("hidden")));
 extern char g_unk_71726f0b08[];
 extern void* g_unk_7101a53958[];
-extern UnkEnumType g_unk_71726f0b40;
+enum class ESpinningNailsState : u32;
+template <> UnkEnumType base::reflection::TypeObject<ESpinningNailsState, UnkEnumType>::object asm("g_unk_71726f0b40");
 void fn_71005e7e04(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005e7b38();
 extern char g_unk_71726f0c58[];
@@ -29,7 +31,8 @@ extern UnkConversion g_unk_71726f0c60;
 extern UnkConversion g_unk_71726f0c80;
 void fn_71005eae18() __attribute__((visibility("hidden")));
 void fn_71005eae24() __attribute__((visibility("hidden")));
-extern UnkEnumType g_unk_71726f0ca0;
+enum class ESpinningNailsSpeed : u32;
+template <> UnkEnumType base::reflection::TypeObject<ESpinningNailsSpeed, UnkEnumType>::object asm("g_unk_71726f0ca0");
 void fn_71005e8130(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_71005e7f84();
 extern char g_unk_71726f0db8[];
@@ -89,9 +92,9 @@ void fn_71005ef820() {
     fn_71005e742c();
     fn_710009ec00(g_unk_71726f0b08, g_unk_71726f20c0.field_0x30);
     InitTunable(&g_unk_71726f0b10, fn_7100136ecc, g_unk_7101a53958, fn_7100075104);
-    InitEnum(&g_unk_71726f0b40, "ESpinningNailsState", fn_71005e7e04, fn_71005e7b38,
+    InitEnum(&base::reflection::TypeObject<ESpinningNailsState, UnkEnumType>::object, "ESpinningNailsState", fn_71005e7e04, fn_71005e7b38,
              g_unk_71726f0c58, &g_unk_71726f0c60, fn_71005eae18, &g_unk_71726f0c80, fn_71005eae24);
-    InitEnum(&g_unk_71726f0ca0, "ESpinningNailsSpeed", fn_71005e8130, fn_71005e7f84,
+    InitEnum(&base::reflection::TypeObject<ESpinningNailsSpeed, UnkEnumType>::object, "ESpinningNailsSpeed", fn_71005e8130, fn_71005e7f84,
              g_unk_71726f0db8, &g_unk_71726f0dc0, fn_71005eae30, &g_unk_71726f0de0, fn_71005eae3c);
     fn_71005e82b4();
     fn_710009ec00(g_unk_71726f0e00, g_unk_71726f20c0.field_0x168);

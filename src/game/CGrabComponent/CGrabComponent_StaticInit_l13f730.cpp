@@ -5,6 +5,7 @@
 #include "base/UnkSList.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CGrabComponent.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -16,7 +17,8 @@ struct UnkStatics_710113f730 {
     u8 field_0x40[8];
 };
 extern char g_unk_7172a08f50[];
-extern UnkEnumType g_unk_7172a08f58;
+namespace CGrabComponent { enum class ELinkMode : u32; }
+template <> UnkEnumType base::reflection::TypeObject<CGrabComponent::ELinkMode, UnkEnumType>::object asm("g_unk_7172a08f58");
 void fn_710113a9ec(UnkEnumType* type, const CStrId& name, void (*factory)(), void* arg);
 void fn_710113a840();
 extern char g_unk_7172a09070[];
@@ -34,7 +36,7 @@ void fn_710113f730() {
     InitId(&g_unk_7172a090e8.field_0x20, "Grab");
     fn_710113a334();
     fn_710009ec00(g_unk_7172a08f50, g_unk_7172a090e8.field_0x40);
-    InitEnum(&g_unk_7172a08f58, "CGrabComponent::ELinkMode", fn_710113a9ec, fn_710113a840,
+    InitEnum(&base::reflection::TypeObject<CGrabComponent::ELinkMode, UnkEnumType>::object, "CGrabComponent::ELinkMode", fn_710113a9ec, fn_710113a840,
              g_unk_7172a09070, &g_unk_7172a09078, fn_710113f520, &g_unk_7172a09098, fn_710113f52c);
 
     UnkGrabList_ovb0057& list = g_unk_7172a090b8;

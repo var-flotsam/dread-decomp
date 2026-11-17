@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeaderAndClass;
@@ -15,7 +16,8 @@ void fn_7100cd1c90() __attribute__((visibility("hidden")));
 void fn_7100cd1c9c() __attribute__((visibility("hidden")));
 extern char g_unk_717279caf8;
 extern char g_unk_717279cc18;
-extern UnkReflType g_unk_717279cb00;
+namespace CCharClassSetCameraNearEvent { enum class EDir : u32; }
+template <> UnkReflType base::reflection::TypeObject<CCharClassSetCameraNearEvent::EDir, UnkReflType>::object asm("g_unk_717279cb00");
 extern UnkTUHeaderAndClass g_unk_717279cc60 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_717279cc20;
 extern UnkConverter g_unk_717279cc40;

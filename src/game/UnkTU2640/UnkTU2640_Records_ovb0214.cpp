@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -138,7 +139,8 @@ UnkEntryHolder_ovb0214* fn_7100ffcaf8(UnkEntryHolder_ovb0214* self, UnkEntryHold
 using base::global::CStrId;
 
 struct UnkMapNode_ovb0214 {
-    u8 unk_0x0[0x38];
+    CStrId key;
+    u8 value[0x30];  // an UnkMapValue_b0213
     UnkMapNode_ovb0214* next;
 };
 
@@ -163,12 +165,12 @@ struct UnkNamedMap_ovb0214 {
     }
 };
 
-void fn_7101005fcc(void* map, const void* key, const void* value);
-
 void fn_7100fed9dc(void* dst, const void* src) {
     auto* self = new (dst) UnkNamedMap_ovb0214();
     auto* other = static_cast<const UnkNamedMap_ovb0214*>(src);
     *reinterpret_cast<CStrId*>(&self->name) = *reinterpret_cast<const CStrId*>(&other->name);
     for (UnkMapNode_ovb0214* n = other->head; n; n = n->next)
-        fn_7101005fcc(&self->allocator, n, n->unk_0x0 + 8);
+        // The map proper (fn_7101005fcc's UnkMap_b0213) starts at the allocator.
+        fn_7101005fcc(reinterpret_cast<UnkMap_b0213*>(&self->allocator), &n->key,
+                      reinterpret_cast<UnkMapValue_b0213*>(n->value));
 }

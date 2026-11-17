@@ -2,10 +2,13 @@
 // unit header, both enum types, and EWalkInputMode's converters to and from int.
 #include "base/reflection/CClass.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 extern UnkTUHeader g_unk_7172729e40 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_7172729bc0;  // also named in src/reflection/
-extern UnkReflType g_unk_7172729ce0;
+enum class EInputAction : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EInputAction>::object asm("g_unk_7172729bc0");
+enum class EWalkInputMode : u32;
+template <> UnkReflType base::reflection::TypeObject<EWalkInputMode, UnkReflType>::object asm("g_unk_7172729ce0");
 void fn_71008751e4(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_7100875570(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71008748b8(void* e);  // src/clones/clones_02.cpp
@@ -24,9 +27,9 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
 
 void fn_71008757f0() {
     InitHeader(g_unk_7172729e40);
-    InitEnum(AsUnk(&g_unk_7172729bc0), "EInputAction", fn_71008751e4, reinterpret_cast<void (*)()>(fn_71008748b8));
-    fn_710009ec00(&g_unk_7172729cd8, AsUnk(&g_unk_7172729bc0));
-    InitEnum(&g_unk_7172729ce0, "EWalkInputMode", fn_7100875570, reinterpret_cast<void (*)()>(fn_7100875364));
-    fn_710009ec00(&g_unk_7172729df8, &g_unk_7172729ce0);
-    InitEnumConverters(&g_unk_7172729ce0, g_unk_7172729e00, fn_71008756f0, g_unk_7172729e20, fn_71008756fc);
+    InitEnum(AsUnk(&base::reflection::TypeObject<EInputAction>::object), "EInputAction", fn_71008751e4, reinterpret_cast<void (*)()>(fn_71008748b8));
+    fn_710009ec00(&g_unk_7172729cd8, AsUnk(&base::reflection::TypeObject<EInputAction>::object));
+    InitEnum(&base::reflection::TypeObject<EWalkInputMode, UnkReflType>::object, "EWalkInputMode", fn_7100875570, reinterpret_cast<void (*)()>(fn_7100875364));
+    fn_710009ec00(&g_unk_7172729df8, &base::reflection::TypeObject<EWalkInputMode, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<EWalkInputMode, UnkReflType>::object, g_unk_7172729e00, fn_71008756f0, g_unk_7172729e20, fn_71008756fc);
 }

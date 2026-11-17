@@ -4,9 +4,11 @@
 
 #include "base/global/CStrId.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 extern UnkTUHeader g_unk_716e597e78 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_716e597878;
+namespace engine::scene::sceneItems { enum class EItemType : u32; }
+template <> UnkReflType base::reflection::TypeObject<engine::scene::sceneItems::EItemType, UnkReflType>::object asm("g_unk_716e597878");
 extern char g_unk_716e597990;
 extern UnkConverter g_unk_716e597998;
 extern UnkConverter g_unk_716e5979b8;
@@ -31,9 +33,9 @@ UnkReflType* fn_71001f9ae4();
 
 void fn_71001fa720() {
     InitHeader(g_unk_716e597e78);
-    InitEnum(&g_unk_716e597878, "engine::scene::sceneItems::EItemType", fn_71001f92a8, fn_71001f903c);
-    fn_710009ec00(&g_unk_716e597990, &g_unk_716e597878);
-    InitEnumConverters(&g_unk_716e597878, g_unk_716e597998, fn_71001f9f48, g_unk_716e5979b8, fn_71001f9f54);
+    InitEnum(&base::reflection::TypeObject<engine::scene::sceneItems::EItemType, UnkReflType>::object, "engine::scene::sceneItems::EItemType", fn_71001f92a8, fn_71001f903c);
+    fn_710009ec00(&g_unk_716e597990, &base::reflection::TypeObject<engine::scene::sceneItems::EItemType, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<engine::scene::sceneItems::EItemType, UnkReflType>::object, g_unk_716e597998, fn_71001f9f48, g_unk_716e5979b8, fn_71001f9f54);
     InitClass(&g_unk_716e5979d8, "engine::scene::sceneItems::CSceneGroup::CItem", fn_71001f942c, fn_71001f9428);
     fn_710009ec00(&g_unk_716e597b10, &g_unk_716e5979d8);
     InitClass(&g_unk_716e597b18, "engine::scene::sceneItems::CSceneGroup", fn_71001f9778, fn_71001f95b0);

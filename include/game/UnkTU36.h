@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkUnit36Static;
 struct UnkStateMachine_710002c1b0;
@@ -12,4 +13,5 @@ extern UnkStateMachine_710002c1b0 g_unk_7101a19948;
 UnkUnit36Static* fn_710002cc34();
 u32 fn_710002d320(UnkUnit36Static* self);
 void fn_710002ccfc(UnkUnit36Static* self, void* slot);
-extern base::reflection::CType g_unk_7101d55008;
+namespace gameeditor { enum class EEditorModeDataFlow : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");

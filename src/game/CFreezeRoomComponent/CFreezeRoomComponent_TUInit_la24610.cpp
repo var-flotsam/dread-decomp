@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 // The unit's data that follows its header (its statics, merged into one block).
 struct UnkFreezeRoomTU_la24610 {
@@ -29,7 +30,8 @@ struct UnkFreezeRoomClassTU_la24610 {
 extern UnkFreezeRoomTU_la24610 g_unk_7172745fe0 __attribute__((visibility("hidden")));
 extern UnkFreezeRoomClassTU_la24610 g_unk_7172746000 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<> g_unk_7172745bc0;
-extern UnkReflType g_unk_7172745c00;  // EThermalFreezeRoomType
+enum class EThermalFreezeRoomType : u32;
+template <> UnkReflType base::reflection::TypeObject<EThermalFreezeRoomType, UnkReflType>::object asm("g_unk_7172745c00");
 extern char g_unk_7172745d18;
 extern UnkConverter g_unk_7172745d20;
 extern UnkConverter g_unk_7172745d40;
@@ -56,9 +58,9 @@ void fn_7100a24610() {
     tu.field_0x38 = true;
     InitPropertyEx(&g_unk_7172745bc0, g_unk_7101a45fe8, g_unk_71726db788, g_unk_7101a45f90, fn_71002ef5bc,
                    "FREEZE_ROOMS", &g_unk_7101d5c998, fn_71004fd2cc, fn_71004fa3b8);
-    InitEnum(&g_unk_7172745c00, "EThermalFreezeRoomType", fn_7100a21a4c, fn_7100a21900);
-    fn_710009ec00(&g_unk_7172745d18, &g_unk_7172745c00);
-    InitEnumConverters(&g_unk_7172745c00, g_unk_7172745d20, fn_7100a2439c, g_unk_7172745d40, fn_7100a243a8);
+    InitEnum(&base::reflection::TypeObject<EThermalFreezeRoomType, UnkReflType>::object, "EThermalFreezeRoomType", fn_7100a21a4c, fn_7100a21900);
+    fn_710009ec00(&g_unk_7172745d18, &base::reflection::TypeObject<EThermalFreezeRoomType, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<EThermalFreezeRoomType, UnkReflType>::object, g_unk_7172745d20, fn_7100a2439c, g_unk_7172745d40, fn_7100a243a8);
     InitClass(&g_unk_7172745d60, "CFreezeRoomConfig", fn_7100a21fc8, fn_7100a21bcc);
     fn_710009ec00(&g_unk_7172745e98, &g_unk_7172745d60);
     InitClass(&g_unk_7172745ea0, "CFreezeRoomCoolConfig", fn_7100a2253c, fn_7100a2214c);
