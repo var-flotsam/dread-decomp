@@ -11,6 +11,7 @@
 #include "game/CFootstepPlatformComponent.h"
 #include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -20,8 +21,6 @@ struct UnkPlayer;
 struct UnkAbility;
 struct UnkAbilitySet;
 struct UnkFootstepMode;
-u32 fn_71009a60fc();
-bool fn_71009e12d0(void* obj);
 
 struct UnkFootstepStatic_b45a2 {
     u8 pad_0x0[0x30];

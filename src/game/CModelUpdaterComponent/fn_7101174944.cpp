@@ -4,12 +4,11 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkTU253.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
-
-bool fn_71001c1694(char* self, const void* name, f32* transform);
 
 UnkReflValue fn_7101174944(void*, char* obj, UnkReflValue* const* args) {
     char* target = *reinterpret_cast<char**>(obj + 8);

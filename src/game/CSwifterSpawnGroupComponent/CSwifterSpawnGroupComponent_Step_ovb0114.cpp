@@ -4,6 +4,7 @@
 // layouts are placeholders.
 #include "base/global/CRntString.h"
 #include "game/CActorComponent.h"
+#include "game/CBatalloonAIComponent.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -44,7 +45,6 @@ struct UnkSwifterActor_ovb0114 {
 struct UnkSwifterMember_ovb0114 {
     u8 pad_0x0[0x40];
 };
-UnkSwifterActor_ovb0114** fn_71003df2d0(UnkSwifterMember_ovb0114* member);
 
 struct UnkSwifterSpawnGroup_ovb0114 {
     u8 pad_0x0[0x68];

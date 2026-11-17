@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkRegistry_710014c790;
+
 // The registry of src/base/spatial/UnkFrustumCull.cpp (UnkCullRegistry there): a chained hash set of pointers,
 // buckets indexed by the key's low 32 bits modulo the capacity, and a list of all nodes.
 extern void* g_unk_716e34c2e0;
+void* fn_7100169be4(UnkRegistry_710014c790* registry, const void* key);

@@ -5,3 +5,5 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkStandState_A6_b70;
+void fn_710099d6f0(UnkStandState_A6_b70* self);

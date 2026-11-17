@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "base/reflection.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -42,8 +43,6 @@ struct UnkResizedVector_710025f17c : CRntVector<T> {
         this->count = n;
     }
 };
-
-extern void* g_unk_7101a20c98[];
 
 struct UnkObject_710025f17c {
     void** vtable;

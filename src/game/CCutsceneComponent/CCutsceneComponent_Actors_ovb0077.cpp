@@ -20,6 +20,7 @@
 #include "base/reflection/UnkReflValue.h"
 #include "game/CCutsceneComponent.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU83.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -256,10 +257,6 @@ using base::reflection::UnkReflObject;
 struct UnkElem_0x88;
 
 struct UnkStruct_71002334fc;
-void fn_71011991c4(void* gui, UnkReflObject* entity);
-void fn_7101198450(void* gui, UnkReflObject* entity);
-u32 fn_71011986e0(void* manager, const CFilePathStrId* path);
-u32 fn_710119882c(void* manager, const CFilePathStrId* path);
 
 struct UnkCutsceneActorObject_ovb0077 : UnkReflObject {
     u8 pad_0x8[0x28];

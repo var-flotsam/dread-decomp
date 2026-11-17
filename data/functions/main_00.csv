@@ -41,7 +41,7 @@ address,size,name,name_source,subsystem,status
 0x7100001ee0,216,fn_7100001ee0,unknown,unknown,O
 0x7100001fb8,1232,fn_7100001fb8,unknown,unknown,U
 0x7100002488,580,fn_7100002488,unknown,unknown,O
-0x71000026cc,1092,fn_71000026cc,unknown,unknown,U
+0x71000026cc,1092,fn_71000026cc,unknown,unknown,O
 0x7100002b10,20,fn_7100002b10,unknown,unknown,O
 0x7100002b30,148,fn_7100002b30,unknown,unknown,O
 0x7100002bd0,4,fn_7100002bd0,unknown,unknown,O
@@ -51,7 +51,7 @@ address,size,name,name_source,subsystem,status
 0x7100002cd0,36,fn_7100002cd0,unknown,unknown,O
 0x7100002cf4,272,fn_7100002cf4,unknown,unknown,O
 0x7100002e10,100,fn_7100002e10,unknown,unknown,O
-0x7100002e74,632,fn_7100002e74,unknown,unknown,U
+0x7100002e74,632,fn_7100002e74,unknown,unknown,O
 0x71000030ec,356,fn_71000030ec,unknown,unknown,U
 0x7100003250,28,fn_7100003250,unknown,unknown,O
 0x710000326c,64,fn_710000326c,unknown,unknown,O
@@ -745,7 +745,7 @@ address,size,name,name_source,subsystem,status
 0x710001c720,204,fn_710001c720,unknown,unknown,O
 0x710001c7ec,64,fn_710001c7ec,unknown,unknown,O
 0x710001c82c,64,fn_710001c82c,unknown,unknown,O
-0x710001c86c,424,fn_710001c86c,unknown,unknown,U
+0x710001c86c,424,fn_710001c86c,unknown,unknown,O
 0x710001ca14,128,fn_710001ca14,unknown,unknown,O
 0x710001ca94,44,base::core::AssetName::refl_Equals,reflection,engine/base,O
 0x710001cac0,8,base::core::AssetName::refl_Hash,reflection,engine/base,O
@@ -1543,7 +1543,7 @@ address,size,name,name_source,subsystem,status
 0x710006c000,128,fn_710006c000,unknown,unknown,O
 0x710006c080,128,fn_710006c080,unknown,unknown,O
 0x710006c100,164,fn_710006c100,unknown,unknown,O
-0x710006c1a4,448,fn_710006c1a4,unknown,unknown,U
+0x710006c1a4,448,fn_710006c1a4,unknown,unknown,O
 0x710006c364,208,fn_710006c364,unknown,unknown,O
 0x710006c434,324,fn_710006c434,unknown,unknown,U
 0x710006c578,32,fn_710006c578,unknown,unknown,O
@@ -1687,7 +1687,7 @@ address,size,name,name_source,subsystem,status
 0x710007453c,16,fn_710007453c,unknown,engine/base?,O
 0x710007454c,1516,fn_710007454c,unknown,engine/base?,O
 0x7100074b38,296,fn_7100074b38,unknown,engine/base?,O
-0x7100074c60,476,fn_7100074c60,unknown,engine/base?,U
+0x7100074c60,476,fn_7100074c60,unknown,engine/base?,O
 0x7100074e3c,344,fn_7100074e3c,unknown,engine/base?,O
 0x7100074f94,140,fn_7100074f94,unknown,engine/base?,O
 0x7100075020,160,fn_7100075020,unknown,engine/base?,O
@@ -5521,7 +5521,7 @@ address,size,name,name_source,subsystem,status
 0x71000e8d30,160,fn_71000e8d30,unknown,engine/base?,O
 0x71000e8dd0,472,fn_71000e8dd0,unknown,engine/base?,O
 0x71000e8fa8,496,fn_71000e8fa8,unknown,engine/base?,U
-0x71000e9198,1240,fn_71000e9198,unknown,engine/base?,U
+0x71000e9198,1240,fn_71000e9198,unknown,engine/base?,O
 0x71000e9670,52,fn_71000e9670,unknown,engine/base?,O
 0x71000e96a4,28,fn_71000e96a4,unknown,engine/base?,O
 0x71000e96c0,8,base::res::CRes::refl_Equals,reflection,engine/base,O
@@ -5597,7 +5597,7 @@ address,size,name,name_source,subsystem,status
 0x71000eda3c,216,fn_71000eda3c,unknown,unknown,O
 0x71000edb14,48,fn_71000edb14,unknown,unknown,O
 0x71000edb44,8,fn_71000edb44,unknown,unknown,O
-0x71000edb4c,416,fn_71000edb4c,unknown,unknown,U
+0x71000edb4c,416,fn_71000edb4c,unknown,unknown,O
 0x71000edcec,8,fn_71000edcec,unknown,unknown,O
 0x71000edcf4,24,fn_71000edcf4,unknown,unknown,O
 0x71000edd0c,20,fn_71000edd0c,unknown,unknown,O

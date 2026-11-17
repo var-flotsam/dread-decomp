@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -23,8 +24,6 @@ struct UnkUnlockAreaTunable_b57 {
 // As src/reflection/CUnlockAreaSmartObjectComponent.cpp declares it (the unit's tunable).
 extern base::reflection::UnkTunable g_unk_7172743078;
 extern __attribute__((visibility("hidden"))) char g_unk_71727430f0[];
-
-void fn_71008724b4(f32 time, UnkInputComponent* self, void* arg, bool reset);
 
 struct UnkUnlockAreaComp_b57 {
     void** vtable;

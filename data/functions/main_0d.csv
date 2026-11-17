@@ -2514,7 +2514,7 @@ address,size,name,name_source,subsystem,status
 0x7100d43498,84,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>>::refl_Destroy,reflection,engine/reflection,O
 0x7100d434ec,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>>::refl_CopyAssign,reflection,engine/reflection,O
 0x7100d434f4,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>>::refl_MoveAssign,reflection,engine/reflection,O
-0x7100d434fc,416,fn_7100d434fc,unknown,unknown,U
+0x7100d434fc,416,fn_7100d434fc,unknown,unknown,O
 0x7100d4369c,80,fn_7100d4369c,unknown,unknown,O
 0x7100d436ec,56,fn_7100d436ec,unknown,unknown,O
 0x7100d43724,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CRntVector<game::logic::collision::CCollider*>>>::Count,reflection,engine/reflection,O
@@ -4497,7 +4497,7 @@ address,size,name,name_source,subsystem,status
 0x7100d9ec5c,24,fn_7100d9ec5c,unknown,unknown,O
 0x7100d9ec74,20,fn_7100d9ec74,unknown,unknown,O
 0x7100d9ec88,4,fn_7100d9ec88,unknown,unknown,O
-0x7100d9ec8c,456,fn_7100d9ec8c,unknown,unknown,U
+0x7100d9ec8c,456,fn_7100d9ec8c,unknown,unknown,O
 0x7100d9ee54,28,fn_7100d9ee54,unknown,unknown,O
 0x7100d9ee70,164,fn_7100d9ee70,unknown,unknown,O
 0x7100d9ef14,172,fn_7100d9ef14,unknown,unknown,O
@@ -4663,7 +4663,7 @@ address,size,name,name_source,subsystem,status
 0x7100da1438,208,fn_7100da1438,unknown,unknown,O
 0x7100da1508,352,fn_7100da1508,unknown,unknown,O
 0x7100da1668,200,fn_7100da1668,unknown,unknown,O
-0x7100da1730,436,fn_7100da1730,unknown,unknown,U
+0x7100da1730,436,fn_7100da1730,unknown,unknown,O
 0x7100da18e4,424,fn_7100da18e4,unknown,unknown,O
 0x7100da1a8c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CLightInfo>>::Begin,reflection,engine/reflection,O
 0x7100da1a98,24,fn_7100da1a98,unknown,unknown,O
@@ -4917,7 +4917,7 @@ address,size,name,name_source,subsystem,status
 0x7100daf6d8,4,fn_7100daf6d8,unknown,unknown,O
 0x7100daf6dc,8712,fn_7100daf6dc,unknown,unknown,U
 0x7100db18e4,252,fn_7100db18e4,unknown,unknown,U
-0x7100db19e0,1624,fn_7100db19e0,unknown,unknown,U
+0x7100db19e0,1624,fn_7100db19e0,unknown,unknown,O
 0x7100db2038,12,fn_7100db2038,unknown,unknown,O
 0x7100db2044,12,fn_7100db2044,unknown,unknown,O
 0x7100db2050,20,base::reflection::ValueOps<EAmiibo>::Equals,reflection,engine/reflection,O
@@ -5286,7 +5286,7 @@ address,size,name,name_source,subsystem,status
 0x7100dd14a0,2452,fn_7100dd14a0,unknown,unknown,O
 0x7100dd1e34,2156,fn_7100dd1e34,unknown,unknown,U
 0x7100dd26a0,332,fn_7100dd26a0,unknown,unknown,O
-0x7100dd27ec,1140,fn_7100dd27ec,unknown,unknown,U
+0x7100dd27ec,1140,fn_7100dd27ec,unknown,unknown,O
 0x7100dd2c60,44,fn_7100dd2c60,unknown,unknown,O
 0x7100dd2c8c,28,fn_7100dd2c8c,unknown,unknown,O
 0x7100dd2ca8,1260,fn_7100dd2ca8,unknown,unknown,U
