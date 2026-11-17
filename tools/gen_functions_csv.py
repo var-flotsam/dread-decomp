@@ -248,6 +248,13 @@ def main() -> int:
             for a, n in sorted(gen_reflection.reflection_names(g).items()):
                 put(a, n, "reflection")
 
+    # 3b'. Descriptor constructors no class getter calls, named by the static initialiser that builds their
+    # descriptor, and the functions they store: T::refl_InitClass and T::refl_<role>, the names
+    # tools/gen_reflection.py writes them under.
+    attached = {t.init_helper for t in types.values() if t.kind == "class" and t.init_helper is not None}
+    for a, n in sorted(gen_reflection.loose_names(orig, args.version, attached, {t.name for t in types.values()}).items()):
+        put(a, n, "reflection")
+
     # 3c. Enums whose value operations src/reflection_types/ writes with base/reflection/ValueOps.h: those
     # functions and the descriptor constructor, by enum (ValueOps<E>::Construct, refl_InitType<E>), the
     # names tools/gen_types.py writes them under.
