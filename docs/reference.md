@@ -35,6 +35,7 @@ tools/baseline.py                trymatch output snapshot, compare and restore f
 tools/hub_migrate.py             mechanical canonical-header migration on top of baseline.py; LEFT lines are the hand work
 tools/rename.py                  give a function a readable name: data/names.csv, data/functions/, every hand-written use; --check (CI)
 tools/tu_map.py                  translation-unit map from .init_array + reflection groups -> data/tu_map.csv; --function
+tools/vtables.py                 function-pointer tables and their slot families -> build/vtables/<ver>/slots.csv; --function (siblings), --family
 tools/tu_status.py               status per translation unit (matched, done, partial, untouched) -> data/tu_status.csv; --list, --unit, --summary (PR job summary)
 tools/objdiff_gen.py             objdiff targets + objdiff.json (gitignored) for every src/ unit
 tools/shape_census.py            same-shape U families (maintenance)

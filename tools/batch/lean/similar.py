@@ -11,8 +11,12 @@ tools/nearcopy.py finds copies (the same instructions at the same places); this 
           rare one weighing more than one everything calls). It shows their declarations and the types
           passed to them, however different its code.
 
-The first reference is the most alike, the second the one that names the most, the rest the next most alike;
-where one kind has none the other fills in. Candidates for `alike` are shortlisted by the features two
+  slot    it sits in the same slot of a virtual table of the same family (tools/vtables.py): another class's
+          override of the function this one overrides, so it has this function's signature and often its
+          outline. Given when build/vtables/<version>/slots.csv exists; the sibling whose code lines up best.
+
+The first reference is the most alike, the second the same-slot sibling, the third the one that names the
+most, the rest the next most alike; where one kind has none the others fill in. Candidates for `alike` are shortlisted by the features two
 functions share (single instructions, runs of three, callees and globals; a feature weighs more the fewer
 functions have it) and then lined up one by one.
 
@@ -32,6 +36,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "tools"))
 import fakematch  # noqa: E402
 import nearcopy  # noqa: E402
+import vtables  # noqa: E402
 from progress import GENERATED_DIRS  # noqa: E402
 
 MIN_LINED = 0.45      # an `alike` reference lines up with at least this share
@@ -43,6 +48,8 @@ COMMON = 0.2          # a feature more than this share of the references have do
 WHOLE_FILE = 120      # a reference file up to this many lines is shown whole, a longer one as the function alone
 PAIR_BYTES = 800      # the first reference comes with its own disassembly up to this size
 MIN_BYTES = 24
+KINDS = {"alike": "alike in code", "names": "names what you name",
+         "slot": "another class's override of the virtual function yours overrides: the same signature"}
 
 _REGS = [(re.compile(r"\b[xw]29\b"), "fp"), (re.compile(r"\bx30\b"), "lr"), (re.compile(r"\bx\d+\b"), "x"),
          (re.compile(r"\bw\d+\b"), "w"), (re.compile(r"\b([bhsdqv])\d+\b"), r"\1")]
@@ -105,8 +112,10 @@ def readable(rel, text):
 class Index:
     """The references and their features. `code(address, size)` gives a function's bytes."""
 
-    def __init__(self, funcs, defs, code, root=ROOT):
+    def __init__(self, funcs, defs, code, root=ROOT, siblings=None):
+        """`siblings`: function -> the functions in its virtual slots (vtables.sibling_map), or None."""
         self.funcs, self.defs, self.code, self.root = funcs, defs, code, root
+        self.siblings = siblings or {}
         self.toks, self.refs, self.feats, self.posting = {}, {}, {}, defaultdict(list)
         for a in sorted(defs):
             size, _, status = funcs.get(a, (0, "", ""))
@@ -191,10 +200,23 @@ class Index:
             if share >= MIN_NAMED and len(both) >= min(2, len(refs)):
                 names.append((share, len(both), a))
         names = [a for _, _, a in sorted(names, key=lambda t: (-t[0], -t[1], abs(self.funcs[t[2]][0] - size), t[2]))]
-        names = next(([a] for a in names if a not in alike[:1] and self._clean(a)), [])
+        # slot: a matched override of the same virtual function, the one that lines up best of the nearest in size
+        near = sorted((a for a in self.siblings.get(addr, ()) if a != addr and a in self.toks
+                       and a not in alike[:1] and self.funcs[a][0] <= size * NAMES_RATIO),
+                      key=lambda a: (abs(self.funcs[a][0] - size), a))
+        slot, seen = [], [self.toks[a] for a in alike[:1]]
+        for a in near:
+            if len(slot) >= SHORTLIST:
+                break
+            if self.toks[a] in seen or not self._clean(a):
+                continue
+            seen.append(self.toks[a])
+            slot.append((lined(a), a))
+        slot = [a for _, a in sorted(slot, key=lambda t: (-t[0], t[1]))[:1]]
+        names = next(([a] for a in names if a not in alike[:1] and a not in slot and self._clean(a)), [])
 
-        picked = [(a, "alike") for a in alike[:1]] + [(a, "names") for a in names]
-        picked += [(a, "alike") for a in alike[1:] if a not in names]
+        picked = [(a, "alike") for a in alike[:1]] + [(a, "slot") for a in slot] + [(a, "names") for a in names]
+        picked += [(a, "alike") for a in alike[1:] if a not in names and a not in slot]
         return [entry(a, how) for a, how in picked[:k]]
 
 
@@ -224,7 +246,7 @@ def render(refs, name=lambda a: f"fn_{a:x}", unit_of=lambda a: None, unit=None, 
             what.append(f"names {len(r['shared'])} of your {r['of']} callees and globals")
         if unit is not None and unit_of(r["addr"]) == unit:
             what.append("same unit")
-        out += ["", f"[{n}] fn_{r['addr']:x}, {'alike in code' if r['kind'] == 'alike' else 'names what you name'} "
+        out += ["", f"[{n}] fn_{r['addr']:x}, {KINDS[r['kind']]} "
                     f"({', '.join(what)}): {r['file']} line {r['line']}"]
         if r["shared"]:
             out.append("    both name: " + ", ".join(name(a) for a in r["shared"][:8])
@@ -250,7 +272,7 @@ def main():
     args = ap.parse_args()
     funcs = context.load_functions()
     binary = context.Binary()
-    index = Index(funcs, definitions(), binary.read)
+    index = Index(funcs, definitions(), binary.read, siblings=vtables.sibling_map("2.1.0"))
     units = tu_map.load_map()
     starts = tu_map.unit_starts(units)
 

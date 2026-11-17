@@ -51,8 +51,9 @@ class Tree:
             p.write_text(text or f"// A unit.\n#include \"types.h\"\n\nvoid fn_{addr:x}(void* self) {{\n}}\n",
                          encoding="utf-8")
 
-    def index(self):
-        return similar.Index(self.funcs, similar.definitions(self.root), lambda a, n: self.code[a][:n], self.root)
+    def index(self, siblings=None):
+        return similar.Index(self.funcs, similar.definitions(self.root), lambda a, n: self.code[a][:n], self.root,
+                             siblings=siblings)
 
 
 class Tokens(unittest.TestCase):
@@ -164,6 +165,57 @@ class Nearest(unittest.TestCase):
             huge = big[:-4] + words(*[movz(2, k) for k in range(12)], RET)   # 132 bytes: over three times
             t.add(BASE + 0x100, huge, "src/game/CFoo/CFoo_Get_l000100.cpp")
             self.assertEqual(t.index().nearest(BASE + 0x800, 36), [])
+
+
+class SlotSiblings(unittest.TestCase):
+    """A matched function in the same virtual slot (tools/vtables.py) is shown second, however unlike its code."""
+
+    def tree(self, tmp):
+        t = Nearest().tree(tmp)
+        self.target = BASE + 0x800
+        self.sibling = BASE + 0x200          # counter: nothing like the target, names nothing it names
+        return t
+
+    def test_the_matched_sibling_comes_after_the_most_alike(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            t = self.tree(tmp)
+            sib = {self.target: {self.target, self.sibling}}
+            refs = t.index(sib).nearest(self.target, 36)
+            self.assertEqual([(r["addr"], r["kind"]) for r in refs], [(BASE + 0x100, "alike"), (self.sibling, "slot")])
+
+    def test_without_a_table_file_nothing_changes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            t = self.tree(tmp)
+            self.assertEqual([r["addr"] for r in t.index().nearest(self.target, 36)], [BASE + 0x100])
+            self.assertEqual([r["addr"] for r in t.index({}).nearest(self.target, 36)], [BASE + 0x100])
+
+    def test_the_sibling_that_lines_up_best_is_the_one_shown(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            t = self.tree(tmp)
+            close = BASE + 0x300             # the target's shape with one more instruction and another callee
+            t.add(close, getter(close, 8, 0x10, OTHER)[:-4] + words(movz(3, 1), RET), "src/game/CBaz/CBaz_l300.cpp")
+            sib = {self.target: {self.target, self.sibling, close, BASE + 0x1000}}
+            refs = t.index(sib).nearest(self.target, 36)
+            self.assertEqual([r["addr"] for r in refs if r["kind"] == "slot"], [close])
+
+    def test_an_unmatched_or_oversized_sibling_or_the_one_already_first_is_not_shown_as_a_sibling(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            t = self.tree(tmp)
+            unmatched = BASE + 0x300
+            t.add(unmatched, counter(unmatched), "src/game/CBaz/CBaz_l300.cpp", status="U")
+            huge = BASE + 0x400              # 132 bytes against 36: over three times the size
+            t.add(huge, words(*[movz(k % 7, k) for k in range(32)], RET), "src/game/CBaz/CBaz_l400.cpp")
+            sib = {self.target: {self.target, unmatched, huge, BASE + 0x100}}
+            refs = t.index(sib).nearest(self.target, 36)
+            self.assertEqual([(r["addr"], r["kind"]) for r in refs], [(BASE + 0x100, "alike")])
+
+    def test_the_section_says_what_a_sibling_is(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            t = self.tree(tmp)
+            refs = t.index({self.target: {self.target, self.sibling}}).nearest(self.target, 36)
+            text = "\n".join(similar.render(refs, root=t.root))
+            self.assertIn(f"[2] fn_{self.sibling:x}, another class's override of the virtual function yours "
+                          "overrides: the same signature", text)
 
 
 class Render(unittest.TestCase):
