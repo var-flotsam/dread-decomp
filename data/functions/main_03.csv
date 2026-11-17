@@ -895,7 +895,7 @@ address,size,name,name_source,subsystem,status
 0x7100342d64,384,base::reflection::refl_InitType<EInputAimDir>,reflection,engine/reflection,O
 0x7100342ee4,368,fn_7100342ee4,unknown,unknown,O
 0x7100343054,1872,fn_7100343054,unknown,unknown,U
-0x71003437a4,1032,fn_71003437a4,unknown,unknown,U
+0x71003437a4,1032,fn_71003437a4,unknown,unknown,O
 0x7100343bac,44,fn_7100343bac,unknown,unknown,O
 0x7100343bd8,28,fn_7100343bd8,unknown,unknown,O
 0x7100343bf4,36,fn_7100343bf4,unknown,unknown,O
@@ -3605,7 +3605,7 @@ address,size,name,name_source,subsystem,status
 0x71003a8044,276,fn_71003a8044,unknown,ai/behaviortree?,O
 0x71003a8158,284,fn_71003a8158,unknown,ai/behaviortree?,U
 0x71003a8274,760,fn_71003a8274,unknown,ai/behaviortree?,O
-0x71003a856c,516,fn_71003a856c,unknown,ai/behaviortree?,U
+0x71003a856c,516,fn_71003a856c,unknown,ai/behaviortree?,O
 0x71003a8770,16,fn_71003a8770,unknown,ai/behaviortree?,O
 0x71003a8780,28,fn_71003a8780,unknown,ai/behaviortree?,O
 0x71003a879c,12,fn_71003a879c,unknown,ai/behaviortree?,O
@@ -5273,7 +5273,7 @@ address,size,name,name_source,subsystem,status
 0x71003f3c0c,48,CBigkranXSpitAttack::refl_CopyAssign,reflection,game/ai,O
 0x71003f3c3c,48,CBigkranXSpitAttack::refl_MoveAssign,reflection,game/ai,O
 0x71003f3c6c,408,fn_71003f3c6c,unknown,game/ai?,O
-0x71003f3e04,904,fn_71003f3e04,unknown,game/ai?,U
+0x71003f3e04,904,fn_71003f3e04,unknown,game/ai?,O
 0x71003f418c,20,base::reflection::ValueOps<CBigkranXSpitAttack::EState>::Equals,reflection,engine/reflection,O
 0x71003f41a0,8,base::reflection::ValueOps<CBigkranXSpitAttack::EState>::Hash,reflection,engine/reflection,O
 0x71003f41a8,12,base::reflection::ValueOps<CBigkranXSpitAttack::EState>::TypeOf,reflection,engine/reflection,O

@@ -177,7 +177,8 @@ struct UnkGunReleaseArgs_ovb0091 {
     bool field_0x5;
 };
 void fn_7100831dcc(void* object, UnkGunWeapon_ovb0091* weapon, bool flag, const UnkGunReleaseArgs_ovb0091* args);
-void fn_710083b83c(char* self, const char* a, const char* b, const char* c, f32 value, const char* d,
+struct UnkSecondaryGun_l83b83c;  // the gun it adds (CGunComponent_AddSecondary_l83b83c.cpp)
+UnkSecondaryGun_l83b83c* fn_710083b83c(char* self, const char* a, const char* b, const char* c, f32 value, const char* d,
                    const char* e, const char* f, const char* g, const char* h, s32 i, s32 j);
 
 struct UnkGunTunable_ovb0091 {

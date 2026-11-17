@@ -12,7 +12,7 @@
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
-void fn_71010fc554(base::reflection::UnkReflObject* component, f32* out);
+bool fn_71010fc554(base::reflection::UnkReflObject* component, f32* out);
 bool fn_71010fc5fc(base::reflection::UnkReflObject* component, f32* out);
 
 struct UnkDeflectorOwner_b58 {
