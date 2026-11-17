@@ -2607,7 +2607,7 @@ address,size,name,name_source,subsystem,status
 0x7100a63bac,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CTriggerComponent::SActivationCondition, std::__1::default_delete<CTriggerComponent::SActivationCondition>>>>::At",reflection,engine/reflection,O
 0x7100a63bb8,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CTriggerComponent::SActivationCondition, std::__1::default_delete<CTriggerComponent::SActivationCondition>>>>::Find",reflection,engine/reflection,O
 0x7100a63bdc,4,fn_7100a63bdc,unknown,unknown,O
-0x7100a63be0,640,fn_7100a63be0,unknown,unknown,U
+0x7100a63be0,640,fn_7100a63be0,unknown,unknown,O
 0x7100a63e60,76,fn_7100a63e60,unknown,unknown,O
 0x7100a63eac,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CTriggerComponent::SActivationCondition, std::__1::default_delete<CTriggerComponent::SActivationCondition>>>>::Hash",reflection,engine/reflection,O
 0x7100a63eb4,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CTriggerComponent::SActivationCondition, std::__1::default_delete<CTriggerComponent::SActivationCondition>>>>::TypeOf",reflection,engine/reflection,O
@@ -2615,7 +2615,7 @@ address,size,name,name_source,subsystem,status
 0x7100a63f00,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CTriggerComponent::SActivationCondition, std::__1::default_delete<CTriggerComponent::SActivationCondition>>>>::MoveConstruct",reflection,engine/reflection,O
 0x7100a63f40,156,fn_7100a63f40,unknown,unknown,O
 0x7100a63fdc,188,fn_7100a63fdc,unknown,unknown,O
-0x7100a64098,624,fn_7100a64098,unknown,unknown,U
+0x7100a64098,624,fn_7100a64098,unknown,unknown,O
 0x7100a64308,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CTriggerComponent::SActivationCondition, std::__1::default_delete<CTriggerComponent::SActivationCondition>>>>::Begin",reflection,engine/reflection,O
 0x7100a64314,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CTriggerComponent::SActivationCondition, std::__1::default_delete<CTriggerComponent::SActivationCondition>>>>::End",reflection,engine/reflection,O
 0x7100a64328,168,fn_7100a64328,unknown,unknown,O

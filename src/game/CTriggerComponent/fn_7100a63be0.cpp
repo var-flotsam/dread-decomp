@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // CTriggerComponent unit (tools/tu_map.py): the set_move slot of the reflected array of owned activation
 // conditions (destroyed by fn_7100a632e8): grows the array up to the index with empty slots, then moves
 // the given pointer into that slot, destroying what it held. Names and layouts are placeholders.

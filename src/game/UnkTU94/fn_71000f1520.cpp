@@ -1,9 +1,11 @@
+// build-flags: no-strict-aliasing
 // Unit 94 (base::serialization::CTypedRefWriter's unit): ends the innermost context of the writer's
 // stack, first writing its value into the enclosing object's field. Names and layouts are
 // placeholders.
 #include "base/reflection.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU85.h"
+#include "game/UnkTU94.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -29,8 +31,6 @@ struct UnkTypedRefWriter {
 
     UnkTypedRefEntry_f29a0* entries() { return reinterpret_cast<UnkTypedRefEntry_f29a0*>(storage); }
 };
-
-void fn_71000f0648(UnkTypedRefWriter* self);
 
 // An object and its type, as the walk passes it on.
 struct UnkReflFieldObject {

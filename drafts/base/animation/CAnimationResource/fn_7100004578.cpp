@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // Unit 11 (base::animation::CAnimationResource hint): builds a record of two string ids and a
 // vector of string ids filled from a list of names. Names and layouts are placeholders.
 #include <new>

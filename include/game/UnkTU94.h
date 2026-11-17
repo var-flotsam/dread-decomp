@@ -5,5 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkTypedRefWriter;
 struct UnkReflType;
 extern UnkReflType g_unk_7101d67d80;  // SBaseContext's class descriptor.
+void fn_71000f0648(UnkTypedRefWriter* writer);

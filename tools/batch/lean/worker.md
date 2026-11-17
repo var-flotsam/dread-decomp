@@ -35,6 +35,11 @@ Keep your context small. It is the main cost of this run.
    an attempt (a few are free). Use the whole budget: don't stop early on a low score, since one extra or
    missing instruction near the top shifts everything after it and can make a near-match score under 50%.
    When the budget is spent, go to step 5 with what you have: no other way of grading, and no further edits.
+   An `ALIAS` line means the function gets closer (or matches) when built without strict aliasing: the
+   original reloads after stores our types say cannot alias. Write the plain stores (no unions, `memcpy` or
+   `may_alias` to force the reload) and add `// build-flags: no-strict-aliasing` near the top of the file if
+   its unit is listed in `data/unit_flags.csv`; if it is not, report the ALIAS line in your result and keep
+   the plain form.
 4. Declarations: before declaring a callee or global, `git grep -n "fn_XXXX\|g_unk_XXXX" -- include src | head -3`.
    Include the header if include/ declares it; otherwise copy an existing signature exactly (forward-declare
    its struct names, cast at the call site). If a file under src/ DEFINES the callee (a line `... fn_XXXX(...) {`),

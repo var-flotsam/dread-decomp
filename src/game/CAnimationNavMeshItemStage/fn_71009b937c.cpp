@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // CAnimationNavMeshItemStage unit: fn_71009b937c copies one fixed-capacity list of (string id, flag)
 // entries over another: the entries both hold are assigned, the other's extra ones appended, and the
 // count taken. Names and layouts are placeholders.

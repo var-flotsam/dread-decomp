@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // Unit 392 (tools/tu_map.py): grows an array of 0x40-byte records (a counted reference, a word,
 // an array of words and a count) to `n` elements, moving them over. Names and layouts are
 // placeholders.
