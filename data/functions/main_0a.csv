@@ -3452,7 +3452,7 @@ address,size,name,name_source,subsystem,status
 0x7100a89ab0,320,fn_7100a89ab0,unknown,game/components?,O
 0x7100a89bf0,8,fn_7100a89bf0,unknown,game/components?,O
 0x7100a89bf8,456,fn_7100a89bf8,unknown,game/components?,O
-0x7100a89dc0,680,fn_7100a89dc0,unknown,game/components?,U
+0x7100a89dc0,680,fn_7100a89dc0,unknown,game/components?,O
 0x7100a8a068,268,fn_7100a8a068,unknown,game/components?,O
 0x7100a8a174,104,fn_7100a8a174,unknown,game/components?,O
 0x7100a8a1dc,4,fn_7100a8a1dc,unknown,game/components?,O
