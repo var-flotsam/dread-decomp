@@ -296,7 +296,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710018ec78,1232,drafts/game/UnkTU210/fn_710018ec78.cpp,operations,23.4,225,lean-r2kh,297/308 insns: preheader spill choices and per-particle pointer reloads differ (loop aliasing)
 0x710018f148,1292,drafts/game/UnkTU210/fn_710018f148.cpp,operations,23.1,248,lean-r2kh,loop IV form (orig keeps i and a vertex pointer biased +0x48); size-factor spills; uv and colour forms now rig
 0x710018f654,1180,drafts/game/UnkTU210/fn_710018f654.cpp,operations,20.0,229,lean-r2kh,loop: original reloads emitter pointers/corner floats after every vertex store (stores alias everything); may_
-0x710018faf0,1200,drafts/game/UnkTU210/fn_710018faf0.cpp,operations,18.7,236,lean-r2kh,vertex stores must alias the emitter's pointer fields (original reloads indices/positions per particle); may_a
+0x710018faf0,1200,drafts/game/UnkTU210/fn_710018faf0.cpp,operations,21.8,234,large-plan,plain stores with the unit's no-strict-aliasing flag; body lines up; but the loop counter becomes a byte offset with a 64-bit exit compare (original: 64-bit index; 32-bit compare) and setup spills differ
 0x7100192f6c,624,drafts/game/UnkTU211/fn_7100192f6c.cpp,control flow,56.0,67,lean-oc2,block layout: original keeps the any-alive results as materialized bools (not jump-threaded) and places the ho
 0x71001932dc,116,drafts/game/UnkTU211/fn_71001932dc.cpp,control flow,16.1,24,lean-b1,loop shape: original uses ccmp-combined loop conditions; ours branches separately
 0x71001934e0,188,drafts/game/UnkTU211/fn_71001934e0.cpp,operations,29.8,33,lean-b1,stack slot order of the by-value temporaries (ours uses two slots; original one) and branch merge shape
