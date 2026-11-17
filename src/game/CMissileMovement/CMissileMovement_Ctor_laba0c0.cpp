@@ -72,6 +72,6 @@ void fn_7100aba0c0(UnkMissileMovement* movement) {
     self->field_0x618 = 0;
     self->field_0x448 = 8;
     CColor4F color(1.0f, 0.1f, 0.0f, 1.0f);
-    fn_7100030728(&self->color, &color);
+    self->color = color;
     self->field_0x4e8 = true;
 }

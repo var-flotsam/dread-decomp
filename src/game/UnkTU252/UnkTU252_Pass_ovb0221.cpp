@@ -43,7 +43,7 @@ void fn_71001bff28(UnkLockonModel_ovb0092* model, u32 index, UnkColor_ovb0092* c
     v.y = NonNegative(out.y);
     v.z = NonNegative(out.z);
     v.w = NonNegative(out.w);
-    fn_7100030728(reinterpret_cast<CColor4F*>(color), reinterpret_cast<CColor4F*>(&v));
+    reinterpret_cast<CColor4F&>(*color) = reinterpret_cast<CColor4F&>(v);
 }
 
 struct UnkGfxBuffer252;

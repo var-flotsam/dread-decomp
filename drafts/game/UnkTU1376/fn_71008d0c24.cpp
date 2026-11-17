@@ -74,13 +74,13 @@ void fn_71008d0c24(UnkDoorLifeA5_b61* door, f32 target, f32 speed) {
     fn_71001c287c(gfx->slots, self->slot, 0, reinterpret_cast<CVector4D*>(&colour), 1);
     f32 span = fabsf(target - colour.a) * speed;
     f32 time = span * span;
-    fn_7100030728(&colour, &self->colour);
+    colour = self->colour;
 
     f32 capped = !(target >= 1.0f) ? target : 1.0f;
     f32 above = (capped - 0.5f) * 2.0f;
     f32 bright = !(target <= 0.5f) ? above : 0.0f;
     UnkV4_b47 scaled = fn_7100030830(reinterpret_cast<const UnkV4_b47*>(&colour), Brighten(0.75f, bright));
-    fn_7100030728(&colour, reinterpret_cast<const CColor4F*>(&scaled));
+    colour = reinterpret_cast<const CColor4F&>(scaled);
     colour.a = target <= 0.0f ? 0.0f : target;
 
     if (time > 0.0f) {

@@ -21,19 +21,21 @@ struct UnkDropTableEntry {
     s32 field_0x38 = -1;
     s32 field_0x3c = -1;
     bool field_0x40 = false;
+
+    // Defaulted, out of line (src/game/UnkTU2562/UnkTU2562_Billboard_ovb0208.cpp).
+    UnkDropTableEntry& operator=(const UnkDropTableEntry& other) asm("fn_7100e2f28c");
 };
 static_assert(sizeof(UnkDropTableEntry) == 0x48, "placeholder layout");
 
 // A drop's table: how many entries are in use and 15 entries. Its constructor is out of line
-// (src/game/CDrop/fn_71007bf550.cpp). Its assignment, fn_7100e2c3f4, and the entry's, fn_7100e2f28c, are
-// still written over a view of their own (src/game/UnkTU2562/UnkTU2562_Billboard_ovb0208.cpp): as defaulted
-// assignments of these types they match only once base::color::CColor4F declares its assignment as
-// fn_7100030728.
+// (src/game/CDrop/fn_71007bf550.cpp); its assignment is defaulted, out of line
+// (src/game/UnkTU2562/UnkTU2562_Billboard_ovb0208.cpp).
 struct UnkDropTable {
     u32 count;
     UnkDropTableEntry entries[15];  // 0x8
 
     UnkDropTable() asm("fn_71007bf550");
+    UnkDropTable& operator=(const UnkDropTable& other) asm("fn_7100e2c3f4");
 };
 static_assert(sizeof(UnkDropTable) == 0x440, "placeholder layout");
 

@@ -19,8 +19,8 @@ void fn_71007453a8(UnkColorFade1159* self, const base::color::CColor4F* from, co
                    bool mark_dirty, bool flag, f32 time) {
     self->field_0x12c = time;
     self->field_0x128 = time;
-    fn_7100030728(&self->field_0x140, from);
-    fn_7100030728(&self->field_0x130, to);
+    self->field_0x140 = *from;
+    self->field_0x130 = *to;
     self->field_0x150 = flag;
     if (mark_dirty)
         self->field_0x24 = true;

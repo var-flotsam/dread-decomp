@@ -8,6 +8,7 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
@@ -22,12 +23,10 @@ using base::global::CStrId;
 struct UnkDroppedItemManager;
 struct UnkDroppedItem;
 struct UnkDropTarget_ovb0208;
-struct UnkDropEntrySet_ovb0208;
 
 // The billboards' path prefix and suffixes.
 __attribute__((visibility("hidden"))) extern CRntString g_unk_71727c13c8[];
 
-UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other);
 void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg);
 
 struct UnkDroppableTunable_e2a034 {
@@ -63,8 +62,7 @@ struct UnkDropEntrySet_e2a034 {
     UnkDropEntrySet_e2a034();  // fn_71007bf550
     inline UnkDropEntrySet_e2a034(const UnkDropEntrySet_e2a034& other) = default;
     UnkDropEntrySet_e2a034& operator=(const UnkDropEntrySet_e2a034& other) {
-        fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(this),
-                      reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&other));
+        reinterpret_cast<UnkDropTable&>(*this) = reinterpret_cast<const UnkDropTable&>(other);  // fn_7100e2c3f4
         return *this;
     }
 };
@@ -111,7 +109,7 @@ static inline void SetPath(UnkStrIdPathResource* resource, const CRntString& pat
     fn_71000267f8(resource, UnkPathIdsFromText(path).ids);
 }
 
-static inline void SetColor(CColor4F& color, const CColor4F& value) { fn_7100030728(&color, &value); }
+static inline void SetColor(CColor4F& color, const CColor4F& value) { color = value; }
 
 static inline void Configure(UnkDropBillboard_e2a034* billboard, UnkDropManager_e2a034* owner,
                              const UnkDropEntrySet_e2a034& entries, u32 value) {
