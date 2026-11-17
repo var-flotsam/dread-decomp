@@ -910,7 +910,7 @@ address,size,name,name_source,subsystem,status
 0x710021e5d8,76,fn_710021e5d8,unknown,media?,O
 0x710021e630,184,fn_710021e630,unknown,media?,O
 0x710021e6e8,396,fn_710021e6e8,unknown,media?,O
-0x710021e874,492,fn_710021e874,unknown,media?,U
+0x710021e874,492,fn_710021e874,unknown,media?,O
 0x710021ea60,488,fn_710021ea60,unknown,media?,O
 0x710021ec48,72,fn_710021ec48,unknown,media?,O
 0x710021ec90,36,fn_710021ec90,unknown,media?,O
