@@ -16,3 +16,5 @@ extern UnkPropertyName g_unk_71727bd270;
 extern UnkPropertyName g_unk_71727bd288;
 extern UnkPropertyName g_unk_71727bd2a0;
 extern const base::global::CStrId g_unk_71727bdb80 __attribute__((visibility("hidden")));
+extern base::global::UnkStrIdBase g_unk_71727bd278;
+extern base::global::UnkStrIdBase g_unk_71727bd290;

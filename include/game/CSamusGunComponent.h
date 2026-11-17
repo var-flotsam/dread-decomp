@@ -9,3 +9,8 @@
 struct UnkSamusGun_b58;
 void fn_7100859938(UnkSamusGun_b58* self);
 void fn_710085b76c(base::reflection::UnkReflObject* gun, bool value);
+extern u64 g_unk_710164ad48;
+extern u64 g_unk_710164ad50;
+extern u64 g_unk_710164ad58;
+extern u64 g_unk_710164ad60;
+extern u64 g_unk_710164ad68;

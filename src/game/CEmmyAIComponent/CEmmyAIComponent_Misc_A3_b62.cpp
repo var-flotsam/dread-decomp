@@ -21,7 +21,6 @@ struct UnkPlayer_b62a3 {
 };
 
 bool fn_710083eb28(UnkPlayerPart_b62a3*);
-bool fn_7100df59a8(UnkGameManager*);
 bool fn_7100300cf4(UnkPlayerPart2_b62a3*);
 
 bool fn_710054abf4(void*) {

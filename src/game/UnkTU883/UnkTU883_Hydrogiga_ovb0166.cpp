@@ -14,6 +14,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU2702.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -146,7 +147,6 @@ s32 fn_71005c0f2c(UnkHydrogigaAI_b0166* self) {
 struct UnkTable;
 struct UnkKey;
 struct UnkPolygon2D;
-char* fn_71005c1008(u64 id);
 void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const base::math::CVector4D& a, const base::math::CVector4D& b,
                    u32 kind, u32 value, f32 weight);
 
