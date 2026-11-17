@@ -154,7 +154,7 @@ void fn_71003dace0(UnkAutsniperAI_ovb0003* self) {
         if (Dot(Column(m2, 0), {0.0f, 0.0f, 1.0f}) >= 0.0f)
             velocity.x = -velocity.x;
     }
-    fn_710007b518(&mover->velocity, &velocity);
+    Assign(mover->velocity, velocity);
     if (mover->mirror)
         *mover->mirror->velocity = velocity;
 }

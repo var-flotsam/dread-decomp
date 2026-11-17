@@ -7,7 +7,7 @@
 struct UnkCameraCtrlMap {
     u8 pad_0x0[0x80];
     UnkCameraCtrl** values;      // 0x80
-    base::global::CStrId* ids;   // 0x88
+    base::global::CStrId* keys;  // 0x88
     u32 count;                   // 0x90
 };
 

@@ -4,6 +4,7 @@
 // return a status record {0, 0, 2, 1}.
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -67,7 +68,7 @@ __attribute__((always_inline)) static inline UnkSetStatus SetVector(UnkValueHold
     char* owner = holder->owner;
     const CVector4D* value = (*arg)->Get<CVector4D>();
     owner[0x5f] = true;
-    fn_710007b518(reinterpret_cast<CVector4D*>(owner + Offset), value);
+    Assign(*reinterpret_cast<CVector4D*>(owner + Offset), *value);
     return Done();
 }
 

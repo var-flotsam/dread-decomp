@@ -5,6 +5,7 @@
 // (+0x160..+0x168, alpha 0) into its +0x15c and its renderer's +0x30 (the parts of +0x78 of +0x138 of
 // the component's +0x50). Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/CCharClassGooplotAIComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkBehaviorTree.h"
@@ -119,7 +120,7 @@ void fn_710059a0a8(UnkGooplotAI_b49* self) {
         dst[2] = src[2];
         dst[3] = src[3];
         part = scene->model->parts->data[i];
-        fn_710007b518(&part->color, &color);
+        Assign(part->color, color);
         if (part->renderer)
             *part->renderer->color = color;
     }

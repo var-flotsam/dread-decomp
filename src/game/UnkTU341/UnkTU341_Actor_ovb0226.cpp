@@ -52,7 +52,7 @@ public:
 struct UnkActor_71002324f0 {
     u8 pad_0x0[0xa0];
     UnkActorPart_71002324f0** parts;  // 0xa0
-    void* ids;                   // 0xa8
+    void* keys;                  // 0xa8
     u32 part_count;              // 0xb0
 };
 
@@ -103,7 +103,7 @@ public:
     virtual void vf_0x40();
     u8 pad_0x8[0x98];
     UnkActorPart_710023272c** parts;  // 0xa0
-    void* ids;                   // 0xa8
+    void* keys;                  // 0xa8
     u32 part_count;              // 0xb0
 };
 
@@ -150,7 +150,7 @@ public:
 struct UnkActor_7100232c90 {
     u8 pad_0x0[0xa0];
     UnkPart_7100232c90** parts;  // 0xa0
-    void* ids;              // 0xa8
+    void* keys;             // 0xa8
     u32 part_count;         // 0xb0
     u8 pad_0xb4[0x101];
     bool frozen;  // 0x1b5
@@ -214,7 +214,7 @@ public:
 struct UnkActor_7100232d4c {
     u8 pad_0x0[0xa0];
     UnkPart_7100232d4c** parts;  // 0xa0
-    void* ids;              // 0xa8
+    void* keys;             // 0xa8
     u32 part_count;         // 0xb0
     u8 pad_0xb4[0x1c];
     char field_0xd0[0xe5];
@@ -344,7 +344,7 @@ struct UnkComponent_7100233230 {
 
 struct UnkSwapMap_7100233230 {
     UnkComponent_7100233230** values;
-    void* ids;
+    void* keys;
     u32 count;
 };
 
@@ -460,7 +460,7 @@ struct UnkComponent_71002335d4 {
 struct UnkActor_71002335d4 {
     u8 pad_0x0[0xa0];
     UnkComponent_71002335d4** components;  // 0xa0
-    void* ids;                             // 0xa8
+    void* keys;                            // 0xa8
     u32 component_count;                   // 0xb0
     u8 pad_0xb4[0x1c];
     char field_0xd0[1];
@@ -523,7 +523,7 @@ struct UnkComponent_71002337f4 {
 struct UnkActor_71002337f4 {
     u8 pad_0x0[0xa0];
     UnkComponent_71002337f4** components;  // 0xa0
-    void* ids;                             // 0xa8
+    void* keys;                            // 0xa8
     u32 component_count;                   // 0xb0
     u8 pad_0xb4[0xf4];
     void* field_0x1a8;
@@ -627,7 +627,7 @@ using base::reflection::UnkReflObject;
 struct UnkActor_7100233e4c {
     u8 pad_0x0[0xa0];
     UnkReflObject** values;         // 0xa0
-    base::global::CStrId* ids;      // 0xa8
+    base::global::CStrId* keys;     // 0xa8
     u32 count;                      // 0xb0
 };
 

@@ -1,6 +1,7 @@
 // CSpotLightComponent unit: sets one colour of the light's render data from a vector, clamping each
 // component to be non-negative. Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -39,5 +40,5 @@ static inline CVector4D UnkClampColor(const CVector4D* v) {
 void fn_71008f95d4(UnkSpotLightD* self, const CVector4D* value) {
     CVector4D* dst = &self->owner->render->data->color;
     CVector4D c = UnkClampColor(value);
-    fn_710007b518(dst, &c);
+    Assign(*dst, c);
 }

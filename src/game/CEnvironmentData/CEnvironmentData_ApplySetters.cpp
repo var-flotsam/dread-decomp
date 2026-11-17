@@ -9,6 +9,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection.h"
 #include "game/UnkTU0.h"
 #include "types.h"
@@ -95,7 +96,7 @@ static inline __attribute__((always_inline)) UnkResult_0x18_eas SetVector4D_eas(
                                                                                 UnkValueSource_eas** source) {
     char* target = owner->target;
     const CVector4D* value = PickArg_eas<CVector4D>(*source);
-    fn_710007b518(reinterpret_cast<CVector4D*>(target + Offset), value);
+    Assign(*reinterpret_cast<CVector4D*>(target + Offset), *value);
     return ApplyAndReturn_eas();
 }
 

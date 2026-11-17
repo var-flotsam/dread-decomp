@@ -1,5 +1,6 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "types.h"
 
@@ -187,7 +188,7 @@ void fn_71001c5b74(UnkGfx258_b0247* self, UnkRenderEntry_b0247* entry) {
         tmp.y = item->field_0x14c[1];
         tmp.z = item->field_0x14c[2];
         tmp.w = item->field_0x14c[3];
-        fn_710007b518(&a, &tmp);
+        Assign(a, tmp);
         if (fn_71001aa0b4(self->field_0x317af70, 1, fn_7100167cc0(0), &location)) {
             tmp.x = a.x;
             tmp.y = a.y;

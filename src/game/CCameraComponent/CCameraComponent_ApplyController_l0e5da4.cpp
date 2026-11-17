@@ -80,7 +80,7 @@ struct UnkCamComp6_ovb5 {
     UnkCamRef_l0e5da4 current;  // 0x60
     u8 pad_0x68[0x18];
     UnkCamObject_l0e5da4** values;  // 0x80
-    CStrId* ids;                    // 0x88
+    CStrId* keys;                   // 0x88
     u32 count;                      // 0x90
     u8 pad_0x94[0x50];
     u32 field_0xe4;

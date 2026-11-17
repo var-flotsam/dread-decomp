@@ -1,4 +1,5 @@
 // CAnimationComponent unit (tools/tu_map.py, the name from reflection). Names and layouts are placeholders.
+#include "base/UnkCountedDeferredSet.h"
 #include "base/UnkCountedResource.h"
 #include "base/global/CRntVector.h"
 #include "types.h"
@@ -64,13 +65,6 @@ void fn_710117c2e4(base::global::CRntVector<UnkAnimResRef_b52>* self, u32 capaci
     }
 }
 
-// Three pointer lists and a lock count (+0x78).
-struct UnkAnimListeners_b52 {
-    base::global::CRntVector<void*> active;   // 0x0
-    base::global::CRntVector<void*> pending;  // 0x28
-    base::global::CRntVector<void*> queued;   // 0x50
-    s32 lock;                        // 0x78
-};
 
 // Removes the first `value` from the array (data, count), shifting the rest down.
 static inline __attribute__((always_inline)) void RemoveFirst(base::global::CRntVector<void*>& v, void* value) {
@@ -87,13 +81,13 @@ static inline __attribute__((always_inline)) void RemoveFirst(base::global::CRnt
     }
 }
 
-// While locked, appends `value` to the pending list and takes it out of the active one; otherwise
-// takes it out of the queued list.
-void fn_710117eb1c(UnkAnimListeners_b52* self, void* value) {
+// Removes `value` from the component's listeners (+0x438): during a walk it is recorded as removed
+// and taken out of the added ones; otherwise it is taken out of the set.
+void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value) {
     if (self->lock <= 0) {
-        RemoveFirst(self->queued, value);
+        RemoveFirst(self->items, value);
     } else {
-        self->pending.PushBack(value);
-        RemoveFirst(self->active, value);
+        self->pending_remove.PushBack(value);
+        RemoveFirst(self->pending_add, value);
     }
 }

@@ -9,7 +9,7 @@ struct UnkObserverSlot {
 struct UnkObserverSlotMap {
     u8 pad_0x0[0x128];
     UnkObserverSlot* values;  // 0x128
-    u32* ids;                 // 0x130
+    u32* keys;                // 0x130
     u32 count;                // 0x138
 };
 
