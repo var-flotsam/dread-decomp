@@ -20,6 +20,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflObjectRead.h"
@@ -174,20 +175,9 @@ s32 fn_7100e68e38(const CStrId* id) {
 
 // ---- A string id built empty, and a constructor from it ----
 
-// The pointer is cleared before the pool is made sure of.
-struct UnkEmptyId_b0234 {
-    UnkStringData* data;
-
-    UnkEmptyId_b0234() : data(nullptr) {
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 // An id and two words, value-initialised (zeroed, then the empty id and the words set).
 struct UnkIdTail_b0234 {
-    UnkEmptyId_b0234 id;
+    UnkEmptyStrId id;
     u64 field_0x8 = 0;
     u64 field_0x10 = 0;
 };
@@ -205,13 +195,7 @@ __attribute__((always_inline)) static inline void CopyId(CStrId* dst, const CStr
 }
 
 // A string id taken over, the moved-from one left empty.
-struct UnkMovedStrId_b0234 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) UnkMovedStrId_b0234(UnkMovedStrId_b0234&& other) : data(other.data) {
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
+using UnkMovedStrId_b0234 = UnkMovedStrId;
 
 using UnkString40_b0234 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
@@ -558,24 +542,6 @@ __attribute__((flatten)) void fn_7100e6ba6c(UnkMinimapDef_b0234* self) {
     new (self) UnkMinimapDef_b0234();
 }
 
-// A string id released in two steps (the original reloads the id after the decrement).
-struct UnkReleasedStrId_b0234 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId_b0234() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkIdPair;
 void fn_7100e71cc4(UnkKeyedArrayRaw_b0234* array);  // destroys the 0x18-byte records and their keys
 
@@ -590,7 +556,7 @@ __attribute__((flatten)) void fn_7100e6bb90(UnkMinimapDef_b0234* self) {
     UnkKeyedArrayRaw_b0234* a = &self->field_0xa8;
     if (a->keys && a->count) {
         for (u32 i = 0; i < a->count; ++i)
-            reinterpret_cast<UnkReleasedStrId_b0234*>(a->keys)[i].~UnkReleasedStrId_b0234();
+            reinterpret_cast<UnkStrIdTwoStep*>(a->keys)[i].~UnkStrIdTwoStep();
     }
     if (a->values && a->count) {
         for (u32 i = 0; i < a->count; ++i)

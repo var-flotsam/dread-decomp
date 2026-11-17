@@ -7,6 +7,7 @@
 #include "game/CGameManager/CTunableGameManager.h"
 #include "game/UnkTU57.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CRntString;
 
@@ -18,28 +19,7 @@ struct UnkRequestListNode_b0246 {
     UnkRequestListNode_b0246* next;
 };
 
-struct UnkRequestList_b0246 {
-    void** vtable;
-    // A union member: the original reloads the count after storing a new node's links.
-    union {
-        u32 count;
-    };
-    UnkRequestListNode_b0246* head;
-    UnkRequestListNode_b0246* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    // Frees every node.
-    void Clear() {
-        for (UnkRequestListNode_b0246* n = head; n;) {
-            UnkRequestListNode_b0246* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
+struct UnkRequestList_b0246 : base::UnkVtableList<UnkRequestListNode_b0246> {
     __attribute__((always_inline)) ~UnkRequestList_b0246() {
         vtable = reinterpret_cast<void**>(g_unk_7101aa9ac0 + 0x10);
         Clear();
@@ -70,7 +50,6 @@ struct UnkLoadRequest_b0246 {
     bool pending;  // 0x38
 };
 static_assert(__builtin_offsetof(UnkLoadRequest_b0246, pending) == 0x38, "UnkLoadRequest_b0246 layout");
-
 
 // The element as raw storage: copied out of line, destroyed in place.
 struct alignas(8) UnkEntryRaw_b0246 {

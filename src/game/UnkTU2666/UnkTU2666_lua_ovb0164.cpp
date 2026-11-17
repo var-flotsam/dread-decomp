@@ -28,6 +28,7 @@
 #include "game/UnkTU604.h"
 #include "game/nn/time.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CStrId;
 using unk_prop_bag::UnkPropBag;
@@ -60,17 +61,13 @@ struct UnkStrIdHandle_b0164 {
 
 // A temporary list of objects (vtable g_unk_7101a32680, nodes from the default allocator with flags 0x13).
 
-struct UnkList_b0164 {
-    struct Node {
-        void* value;
-        Node* next;
-    };
-    char* vtable;
-    u32 count;
-    Node* head;
-    Node* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
+struct UnkList_b0164Node {
+    void* value;
+    UnkList_b0164Node* next;
+};
+
+struct UnkList_b0164 : base::UnkVtableList<UnkList_b0164Node> {
+    using Node = UnkList_b0164Node;
 
     UnkList_b0164() {
         vtable = reinterpret_cast<char*>(g_unk_7101a32680) + 0x10;
@@ -337,29 +334,9 @@ s32 fn_710107d820(lua_State* L) {
     return 0;
 }
 
-// A message string id (copied from another, released in two steps).
-struct UnkMlogText_b0164 : base::global::UnkStrIdBase {
-    __attribute__((always_inline)) UnkMlogText_b0164(const CStrId& other) : UnkStrIdBase(other) {
-        if (&g_unk_7101d47108->empty != data)
-            ++data->ref_count;
-    }
-    __attribute__((always_inline)) ~UnkMlogText_b0164() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkMlogMessage_b0164 {
     u32 kind;
-    UnkMlogText_b0164 text;
+    base::global::CStrId text;
     base::global::CRntVector<base::UnkStrIdMember> args;
 
     __attribute__((always_inline)) UnkMlogMessage_b0164(const CStrId& t) : kind(0), text(t), args(0xc) {}

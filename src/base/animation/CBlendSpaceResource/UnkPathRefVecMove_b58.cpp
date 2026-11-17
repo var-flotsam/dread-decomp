@@ -6,28 +6,11 @@
 #include "base/UnkCountedResource.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-// A file-path id released in two steps (decrement, then reload and test), as CStrId::Reset.
-struct UnkPathId_b58 {
-    UnkStringData* data;
-
-    ~UnkPathId_b58() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 struct UnkCountedRef_b58m {
     UnkCountedResource* ptr;
@@ -41,13 +24,13 @@ struct UnkCountedRef_b58m {
 
 struct UnkPathRefRecord_b58 {
     u64 field_0x0;
-    UnkPathId_b58 path;
+    UnkPathIdTwoStep path;
     UnkCountedRef_b58m ref;
 };
 
 // navmesh's record has no leading word.
 struct UnkPathRefPair_b58 {
-    UnkPathId_b58 path;
+    UnkPathIdTwoStep path;
     UnkCountedRef_b58m ref;
 };
 

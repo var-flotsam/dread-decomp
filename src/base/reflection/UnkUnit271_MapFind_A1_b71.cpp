@@ -2,6 +2,7 @@
 // 64-bit id (bucket = (high ^ low) % capacity over a base::global::CRntVector of buckets, next node at
 // +0x20): one hands the value found to fn_71001f9e8c with the owner, the other clears the value's
 // word at +0xc0. Names and layouts are placeholders.
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU253.h"
@@ -112,30 +113,18 @@ void fn_71001f0180(UnkMapOwnerB_A1b71* self, UnkMapKey_A1b71* const* key, UnkMap
     }
 }
 
-// The node of the map at +0x108 of the first owner, with its list links (the layout of
-// src/base/reflection/UnkUnit271_PairMapInsert_b61.cpp).
-struct UnkListNode_A1b71 {
-    u64 key;
-    void* value;
-    UnkListNode_A1b71* next;   // 0x10: the list of all nodes
-    UnkListNode_A1b71* prev;   // 0x18
-    UnkListNode_A1b71* chain;  // 0x20: the next node in the bucket
-
-    UnkListNode_A1b71*& Next() { return next; }
-    UnkListNode_A1b71*& Prev() { return prev; }
+// The key of the map at +0x108 of the first owner: a string's 64-bit hash, folded to its bucket as
+// a string id's is.
+struct UnkHashKey_A1b71 {
+    u64 hash;
 };
 
-struct UnkListMap_A1b71 {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    UnkListNode_A1b71** buckets;  // 0x10 (base::global::CRntVector)
-    u32 bucket_count;             // 0x18
-    u32 bucket_capacity;          // 0x1c
-    u8 pad_0x20[0x18];
-    UnkListNode_A1b71* tail;  // 0x38
-    UnkListNode_A1b71* head;  // 0x40
+template <>
+struct base::global::CRntDictionaryHash<UnkHashKey_A1b71> {
+    static u32 Of(const UnkHashKey_A1b71& key) { return (u32)(key.hash >> 32) ^ (u32)key.hash; }
 };
+
+using UnkListMap_A1b71 = base::global::CRntDictionary<UnkHashKey_A1b71, void*>;
 
 struct UnkMapOwnerC_A1b71 {
     u8 pad_0x0[0x108];
@@ -149,34 +138,7 @@ struct UnkMapEntry_A1b71 {
 
 // Adds `entry` under its key's id: at the head of its bucket chain and the tail of the list.
 void fn_71001ef038(UnkMapOwnerC_A1b71* self, UnkMapEntry_A1b71* entry) {
-    u64 key = entry->key->id;
-    UnkListMap_A1b71* m = &self->map;
-    UnkListNode_A1b71** slot = nullptr;
-    if (m->bucket_count) {
-        u32 i = ((u32)(key >> 32) ^ (u32)key) % m->bucket_capacity;
-        if (m->bucket_count <= i)
-            __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-        slot = &m->buckets[i];
-    }
-    UnkListNode_A1b71* chain = *slot;
-    auto* n = static_cast<UnkListNode_A1b71*>(m->allocator->vf_0x40(0x28, 8, m->flags));
-    if (n) {
-        n->key = key;
-        n->value = entry;
-        n->chain = nullptr;
-        n->next = nullptr;
-        n->prev = nullptr;
-    }
-    n->chain = chain;
-    *slot = n;
-    if (!m->head) {
-        m->head = n;
-    } else if (m->tail) {
-        n->Prev() = m->tail;
-        m->tail->Next() = n;
-    }
-    m->tail = n;
-    ++m->count;
+    self->map.InsertChecked({entry->key->id}, entry);
 }
 
 struct UnkResetOwner;  // src/base/UnkUnit247/UnkUnit247_ResetEntries_b40.cpp

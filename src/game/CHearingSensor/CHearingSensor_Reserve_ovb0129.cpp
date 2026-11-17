@@ -43,18 +43,8 @@ struct UnkHearingHolder_b0129 {
     void Destroy() { reinterpret_cast<void (*)(UnkHearingHolder_b0129*)>(*reinterpret_cast<void**>(vtable))(this); }
 };
 
-struct UnkHearingHolderArray_b0129 {
-    UnkHearingHolder_b0129* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool growable;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 // Grows the array to `n` holders, copying each over and destroying the old one.
-void fn_7100f038f8(UnkHearingHolderArray_b0129* self, u32 n) {
+void fn_7100f038f8(base::global::CRntVector<UnkHearingHolder_b0129>* self, u32 n) {
     if (self->capacity < n) {
         auto* p = static_cast<UnkHearingHolder_b0129*>(
             self->allocator->vf_0x40((u64)n * sizeof(UnkHearingHolder_b0129), 8, self->flags));

@@ -7,6 +7,7 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CCameraBoundaryCtrl.h"
 #include "game/CCameraCtrl.h"
 #include "game/UnkGameManager.h"
@@ -21,18 +22,6 @@ struct UnkPlayer;
 struct UnkStruct_7100763ed4;
 
 extern void* g_unk_7101a8d240[];  // vtable
-
-// A string id that starts null and takes the pool's empty string (the pool created first when missing).
-struct UnkSyncEmptyId_b0129 {
-    base::global::UnkStringData* data;
-
-    UnkSyncEmptyId_b0129() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
 
 struct UnkSyncSpan_b0129 {
     f32 values[7];
@@ -60,7 +49,7 @@ struct UnkSyncBlockCameraCtrlCtor_b0129 {
     u64 field_0x2c8;
     u32 field_0x2d0;
     u8 unk_0x2d4[0xc];
-    UnkSyncEmptyId_b0129 field_0x2e0;
+    UnkEmptyStrId field_0x2e0;
     bool field_0x2e8;
     u8 unk_0x2e9[3];
     UnkSyncSpan_b0129 field_0x2ec;
@@ -81,7 +70,7 @@ void fn_7100a20b10(UnkSyncBlockCameraCtrlCtor_b0129* self) {
     new (&self->field_0x2c0) CStrId(g_unk_710162e2ed, true);
     self->field_0x2c8 = 0;
     self->field_0x2d0 = 0;
-    new (&self->field_0x2e0) UnkSyncEmptyId_b0129;
+    new (&self->field_0x2e0) UnkEmptyStrId;
     self->field_0x2e8 = false;
     __builtin_memset(&self->field_0x2ec, 0, sizeof(UnkSyncSpan_b0129));
     self->field_0x308 = -1.0f;

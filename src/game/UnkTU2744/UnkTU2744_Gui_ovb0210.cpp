@@ -5,6 +5,8 @@
 // of the record a name has, or creates it; fn_71011b6030 loads a composition from a script and hands
 // out its weak handle; fn_71011b63c4 builds a display object by copying a reflected definition.
 // Names and layouts are placeholders.
+#include "base/global/CRntDictionary.h"  // first: its __assert_fail is [[noreturn]]
+
 #include <new>
 
 #include "../../game_aca57c/UnkBufferString.h"
@@ -129,17 +131,6 @@ void fn_71011bbf08(UnkGuiRootQueue_b0210* root, UnkQueuedObject_b0210* item, con
 
 // ---- fn_71011b94ac and fn_71011b97bc: the map of counted records ----
 
-// The string data's hash, as the first function reads it whole and the second as two words.
-struct UnkStringHash64_b0210 {
-    u8 pad_0x0[0x30];
-    u64 hash;
-};
-struct UnkStringHashView_b0210 {
-    u8 pad_0x0[0x30];
-    u32 hash_lo;
-    u32 hash_hi;
-};
-
 // A counted record: a reference count (a union member, so the callers' string ids are reloaded after it
 // is bumped), an empty path and a list of 8-byte entries.
 struct UnkRecord_b0210 {
@@ -151,44 +142,9 @@ struct UnkRecord_b0210 {
     base::global::CRntVector<void*> items;  // 0x18
 };
 
-struct UnkRecordNode_b0210 {
-    CStrId key;
-    UnkRecord_b0210* value;
-    UnkRecordNode_b0210* next;   // 0x10: the list of all nodes
-    UnkRecordNode_b0210* prev;   // 0x18
-    UnkRecordNode_b0210* chain;  // 0x20: the next node in the bucket
-};
-
-struct UnkRecordMap_b0210 {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    UnkRecordNode_b0210** buckets;  // 0x10
-    u32 bucket_count;               // 0x18
-    u32 bucket_capacity;            // 0x1c
-    u8 pad_0x20[0x18];
-    UnkRecordNode_b0210* tail;  // 0x38
-    UnkRecordNode_b0210* head;  // 0x40
-
-    UnkRecordNode_b0210** Bucket(const CStrId& id) {
-        const auto* d = reinterpret_cast<const UnkStringHashView_b0210*>(id.data);
-        u32 h = d->hash_lo ^ d->hash_hi;
-        u32 index = h % bucket_capacity;
-        return &buckets[index];
-    }
-    UnkRecordNode_b0210* Find(const CStrId& id) {
-        if (bucket_count) {
-            UnkRecordNode_b0210** slot = Bucket(id);
-            if (slot) {
-                for (UnkRecordNode_b0210* n = *slot; n; n = n->chain) {
-                    if (n->key.data == id.data)
-                        return n;
-                }
-            }
-        }
-        return nullptr;
-    }
-};
+// The records by name.
+using UnkRecordMap_b0210 = base::global::CRntDictionary<CStrId, UnkRecord_b0210*>;
+using UnkRecordNode_b0210 = UnkRecordMap_b0210::TNode;
 
 UnkRecord_b0210* fn_71011b94ac(UnkRecordMap_b0210* self, const CStrId* key) {
     auto* record = static_cast<UnkRecord_b0210*>(fn_71000839a0(0x40, 0xc));
@@ -199,32 +155,7 @@ UnkRecord_b0210* fn_71011b94ac(UnkRecordMap_b0210* self, const CStrId* key) {
     record->items.Reserve(0x28);
     ++record->ref_count;
 
-    UnkRecordNode_b0210** slot = nullptr;
-    if (self->bucket_count) {
-        u64 h = reinterpret_cast<const UnkStringHash64_b0210*>(key->data)->hash;
-        u32 index = ((u32)(h >> 32) ^ (u32)h) % self->bucket_capacity;
-        slot = &self->buckets[index];
-    }
-    UnkRecordNode_b0210* chain = *slot;
-    auto* n = static_cast<UnkRecordNode_b0210*>(self->allocator->vf_0x40(0x28, 8, self->flags));
-    if (n) {
-        new (&n->key) CStrId(*key);
-        n->value = record;
-        n->next = nullptr;
-        n->prev = nullptr;
-        n->chain = nullptr;
-    }
-    n->chain = chain;
-    *slot = n;
-    if (!self->head) {
-        self->head = n;
-    } else if (self->tail) {
-        // A raw store: the tail is reloaded after it, as in the original.
-        *reinterpret_cast<UnkRecordNode_b0210**>(reinterpret_cast<char*>(n) + __builtin_offsetof(UnkRecordNode_b0210, prev)) = self->tail;
-        self->tail->next = n;
-    }
-    self->tail = n;
-    ++self->count;
+    self->Insert(*key, record);
     return record;
 }
 
@@ -247,15 +178,16 @@ void fn_71011b97bc(UnkRecordOwner_b0210* self, const CRntString* name) {
         UnkRecordNode_b0210* found;
         {
             CStrId id(name->data ? name->data : g_unk_710162e2ed, true);
-            found = map->Find(id);
+            found = map->FindNode(id);
         }
         if (found) {
             UnkRecordMap_b0210* m = self->map;
             UnkIdSlot_b0210 slot;
             fn_7100000850(&slot.id, *name, true);
-            UnkRecordNode_b0210* n = *m->Bucket(slot.id);
+            u32 index = slot.id.Hash() % m->buckets.capacity;
+            UnkRecordNode_b0210* n = m->buckets.data[index];
             while (n->key.data != slot.id.data)
-                n = n->chain;
+                n = n->bucket_next;
             ++n->value->ref_count;
             return;
         }

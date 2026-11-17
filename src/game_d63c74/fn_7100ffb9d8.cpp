@@ -2,34 +2,15 @@
 // (src/game/CFXPool/CDefinition/fn_710104ee34.cpp): fn_7100ffb9d8.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using namespace base::global;
 
-// A string id whose destructor decrements and tests in two steps (the original reloads the id
-// after the decrement).
-template <UnkStringPool** Pool>
-struct UnkReleasedStrIdT {
-    UnkStringData* data;
-
-    ~UnkReleasedStrIdT() {
-        if (UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 // The id in CFilePathStrId's pool.
-using UnkFilePathReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47200>;
 
 struct UnkIdValues {
-    UnkFilePathReleasedStrId id;
+    UnkPathIdTwoStep id;
     u32 field_0x8;
     u32 field_0xc;
     u64 field_0x10;

@@ -12,6 +12,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2677.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CStrId;
 
@@ -94,17 +95,14 @@ int fn_71010750e0(lua_State* L) {
 }
 
 // A list of strings (nodes linked through +0x30) filled by the argument reader's "S".
-struct UnkLuaNameList_ovb0073 {
-    void** vtable;
-    u32 count;  // 0x8
-    u8* head;  // 0x10
-    u8* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 field_0x28;
-
-    UnkLuaNameList_ovb0073() : vtable(g_unk_7101a1a070 + 2), count(0), head(nullptr), tail(nullptr) {
+struct UnkLuaNameList_ovb0073 : base::UnkVtableList<u8> {
+    UnkLuaNameList_ovb0073() {
+        vtable = g_unk_7101a1a070 + 2;
+        count = 0;
+        head = nullptr;
+        tail = nullptr;
         allocator = fn_7100083990();
-        field_0x28 = 0x13;
+        flags = 0x13;
     }
     ~UnkLuaNameList_ovb0073() {
         vtable = g_unk_7101a1a070 + 2;

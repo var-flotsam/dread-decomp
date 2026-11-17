@@ -17,6 +17,7 @@
 #include "base/file/CThreadSafeDevice.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntString.h"
 #include "base/reflection.h"
@@ -777,10 +778,8 @@ struct UnkSubAreaCollision : UnkWeakTarget {
 };
 
 // The colliders' map insert (src/game/logic/collision/CCollider/fn_7100d419c0.cpp).
-template <class Node>
-struct UnkKeyedMap;
-struct UnkKeyedNode;
-UnkKeyedNode* fn_7100d41b00(UnkKeyedMap<UnkKeyedNode>* self, const CStrId& key, const UnkRefPtr& value);
+using UnkRefPtrMap = base::global::CRntDictionary<CStrId, UnkRefPtr>;
+UnkRefPtrMap::TNode* fn_7100d41b00(UnkRefPtrMap* self, const CStrId& key, const UnkRefPtr& value);
 
 // Reads the collision objects of the file at `path` and adds each one, weakly referenced, to the
 // colliders under its name.
@@ -800,7 +799,7 @@ void fn_7100ee2ebc(CSubAreaManager* self, const char* path) {
         if (handle)
             ++handle->ref_count;
         ref.field_0x0 = handle;
-        fn_7100d41b00(reinterpret_cast<UnkKeyedMap<UnkKeyedNode>*>(&self->field_0x8d8), name, ref);
+        fn_7100d41b00(reinterpret_cast<UnkRefPtrMap*>(&self->field_0x8d8), name, ref);
     }
     records.Free();
     fn_7100d45fd4(&reader);

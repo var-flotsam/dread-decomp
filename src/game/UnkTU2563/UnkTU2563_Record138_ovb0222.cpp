@@ -24,7 +24,7 @@ void fn_7100e62084(base::global::CRntVector<UnkRecord138_ovb0222>* self, const u
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0) {
-            u32 grown = (index / self->step + 1) * self->step;
+            u32 grown = self->GrownCapacity(index);
             if (cap < grown) {
                 UnkRecord138_ovb0222* p = static_cast<UnkRecord138_ovb0222*>(
                     self->allocator->vf_0x40((u64)grown * sizeof(UnkRecord138_ovb0222), 8, self->flags));

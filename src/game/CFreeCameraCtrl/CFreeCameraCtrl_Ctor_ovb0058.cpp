@@ -23,6 +23,7 @@
 #include "game/UnkTU2732.h"
 #include "game/UnkTU315.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CStrId;
 
@@ -56,14 +57,7 @@ struct UnkFreeCameraEntry_b0058 {
     UnkFreeCameraEntry_b0058* next;  // 0x10
 };
 
-struct UnkFreeCameraList_b0058 {
-    void** vtable;
-    u32 count;
-    UnkFreeCameraEntry_b0058* head;
-    UnkFreeCameraEntry_b0058* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-};
+using UnkFreeCameraList_b0058 = base::UnkVtableList<UnkFreeCameraEntry_b0058>;
 
 // The input state the frame's inputs are folded into (+0xbf0), cleared by the constructor as one block.
 struct UnkFreeCameraState_b0058 {

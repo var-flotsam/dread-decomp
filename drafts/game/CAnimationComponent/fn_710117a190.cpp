@@ -58,31 +58,11 @@ struct UnkPairOwner;
 struct UnkValueSource;
 UnkValueSource** fn_71002dba48(UnkPairOwner* self);
 
-// A copied string id released in two steps, as CStrId::Reset does.
-struct UnkMsgName_a190 : base::global::UnkStrIdBase {
-    UnkMsgName_a190(const CStrId& other) : UnkStrIdBase(other) {
-        if (&g_unk_7101d47108->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkMsgName_a190() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 // What the listeners are told: kind 3, the event's data and the source's name.
 struct UnkAnimEventMsg_a190 {
     u32 kind;
     UnkAnimEventData_a190* info;
-    UnkMsgName_a190 name;
+    base::global::CStrId name;
 
     UnkAnimEventMsg_a190(UnkAnimEventData_a190* info_, const CStrId& name_)
         : kind(3), info(info_), name(name_) {}

@@ -29,29 +29,13 @@ bool fn_7100ad1af4(const UnkRecord80IterValue* a, const UnkRecord80IterValue* b)
 // released (and left as the empty id) before the array is freed.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkEmptiedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkEmptiedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkIdWordPair {
-    UnkEmptiedStrId id;
+    UnkStrIdTwoStep id;
     u64 field_0x8;
 };
 

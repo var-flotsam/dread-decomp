@@ -2,6 +2,7 @@
 // Erase by key from five hash maps keyed by object pointers (hashed by the two words at +0x30 of
 // the object): find the node and its predecessor, then hand the iterator to the map's erase.
 // Each map type has its own bucket getter and erase.
+#include "base/global/UnkBucketSet.h"
 #include "types.h"
 
 struct UnkHashKeyObj {
@@ -16,7 +17,7 @@ struct UnkHashNode {
     UnkHashNode* next;
 };
 
-struct UnkHashMap;
+using UnkHashMap = base::global::UnkBucketSet<UnkHashNode>;
 
 struct UnkHashIter {
     UnkHashNode* node;
@@ -26,29 +27,21 @@ struct UnkHashIter {
     u32 stamp;
 };
 
-struct UnkHashMap {
-    u8 unk_0x0[0x8];
-    u32 bucket_count;
-    u32 modulus;
-    u8 unk_0x10[0x38];
-    u32 stamp;  // +0x48
-};
-
 static inline UnkHashIter MakeIter(UnkHashNode* node, UnkHashNode* prev, UnkHashMap* map, s32 bucket) {
     UnkHashIter it;
     it.node = node;
     it.prev = prev;
     it.map = map;
     it.bucket = bucket;
-    it.stamp = map ? map->stamp : 0;
+    it.stamp = map ? map->version : 0;
     return it;
 }
 
 template <UnkHashNode** (*Bucket)(UnkHashMap*, u32)>
 __attribute__((always_inline)) static inline UnkHashIter Find(UnkHashMap* map, UnkHashKeyObj* const* key) {
     u32 b;
-    if (map->bucket_count == 0 ||
-        (b = ((*key)->field_0x30 ^ (*key)->field_0x34) % map->modulus) >= map->bucket_count)
+    if (map->buckets.count == 0 ||
+        (b = ((*key)->field_0x30 ^ (*key)->field_0x34) % map->buckets.capacity) >= map->buckets.count)
         return MakeIter(nullptr, nullptr, map, -1);
     UnkHashNode* prev = nullptr;
     for (UnkHashNode* n = *Bucket(map, b); n; prev = n, n = n->next) {

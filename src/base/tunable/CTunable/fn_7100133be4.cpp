@@ -3,6 +3,7 @@
 // the members are destroyed: fn_7100133be4.
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using namespace base::global;
@@ -13,29 +14,10 @@ struct UnkString30 {
     __attribute__((always_inline)) ~UnkString30() { fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this)); }
 };
 
-// A string id whose destructor decrements and tests in two steps (the original reloads the id
-// after the decrement).
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkIdsString {
-    UnkReleasedStrId field_0x0;
-    UnkReleasedStrId field_0x8;
-    UnkReleasedStrId field_0x10;
+    UnkStrIdTwoStep field_0x0;
+    UnkStrIdTwoStep field_0x8;
+    UnkStrIdTwoStep field_0x10;
     UnkString30 field_0x18;
 
     __attribute__((always_inline)) ~UnkIdsString() { fn_710007ed40(reinterpret_cast<CRntString*>(&field_0x18)); }

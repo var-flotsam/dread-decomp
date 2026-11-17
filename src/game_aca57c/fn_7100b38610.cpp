@@ -8,6 +8,7 @@
 #include "UnkBufferString.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU1689.h"
 #include "types.h"
@@ -42,21 +43,9 @@ struct UnkNamedBase {
 };
 static_assert(offsetof(UnkNamedBase, field_0xd8) == 0xd8, "UnkNamedBase layout");
 
-// The empty string id, set directly (the pool is created first if there is none yet).
-struct UnkDirectEmptyId {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkDirectEmptyId() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkNamedWithEmptyId : UnkNamedBase {
     u64 field_0xf0;
-    UnkDirectEmptyId id;
+    UnkEmptyStrId id;
     u64 field_0x100;
 
     __attribute__((always_inline)) UnkNamedWithEmptyId()
@@ -70,7 +59,7 @@ void fn_7100b38610(UnkNamedWithEmptyId* self) { new (self) UnkNamedWithEmptyId()
 
 struct UnkNamedWithIdFlag : UnkNamedBase {
     u32 field_0xf0;
-    UnkDirectEmptyId id;
+    UnkEmptyStrId id;
     u32 field_0x100;
     bool field_0x104;
 

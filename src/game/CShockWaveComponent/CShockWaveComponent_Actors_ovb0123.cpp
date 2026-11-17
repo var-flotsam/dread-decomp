@@ -10,6 +10,7 @@
 // within the half angle (+0x28c) around the given direction; then when its box (fn_7100d7bc70) touches
 // the sphere of radius +0x284 around the owner (fn_7100126af0). Names and layouts are placeholders.
 #include <math.h>
+#include "base/UnkVtableList.h"
 
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
@@ -34,14 +35,7 @@ struct UnkShockWavePlayerRef_ovb0123 {
     UnkOwner* actor;  // 0x10
 };
 
-struct UnkShockWaveList_ovb0123 {
-    void** vtable;
-    u32 count;
-    UnkShockWaveNode_ovb0123* head;
-    UnkShockWaveNode_ovb0123* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkShockWaveList_ovb0123 : base::UnkVtableList<UnkShockWaveNode_ovb0123> {
     s32 IndexOf(UnkOwner* value) const {
         u32 i = 0;
         for (UnkShockWaveNode_ovb0123* n = head; n; n = n->next, ++i)

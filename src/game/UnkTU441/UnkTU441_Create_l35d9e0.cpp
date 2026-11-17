@@ -5,7 +5,7 @@
 #include <new>
 
 #include "base/global/CFilePathStrId.h"
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "game/UnkTU137.h"
 #include "game/UnkTU287.h"
@@ -31,53 +31,7 @@ struct UnkQuadNode_ovb0259 {
 struct UnkResHolder2;
 bool fn_710035db30(UnkResHolder2* self, const base::global::CFilePathStrId& path);
 
-struct UnkQuadSetNode_l35d9e0 {
-    u64 key;
-    u64 value;
-    UnkQuadSetNode_l35d9e0* next;   // the list of all nodes
-    UnkQuadSetNode_l35d9e0* prev;
-    UnkQuadSetNode_l35d9e0* chain;  // the next node in the bucket
-
-    explicit UnkQuadSetNode_l35d9e0(u64 k) : key(k), value(k), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    UnkQuadSetNode_l35d9e0*& Next() { return next; }
-    UnkQuadSetNode_l35d9e0*& Prev() { return prev; }
-};
-
-struct UnkQuadSet_l35d9e0 {
-    base::UnkAllocator* allocator;
-    u32 flags;                            // 0x8
-    u32 count;                            // 0xc
-    UnkQuadSetNode_l35d9e0** buckets;     // 0x10
-    u32 bucket_count;                     // 0x18
-    u32 bucket_capacity;                  // 0x1c
-    u8 pad_0x20[0x18];
-    UnkQuadSetNode_l35d9e0* tail;  // 0x38
-    UnkQuadSetNode_l35d9e0* head;  // 0x40
-
-    void Insert(u64 key) {
-        UnkQuadSetNode_l35d9e0** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)key % bucket_capacity;
-            bucket = &buckets[i];
-        }
-        UnkQuadSetNode_l35d9e0* old = *bucket;
-        auto* node = static_cast<UnkQuadSetNode_l35d9e0*>(
-            allocator->vf_0x40(sizeof(UnkQuadSetNode_l35d9e0), 8, flags));
-        if (node)
-            new (node) UnkQuadSetNode_l35d9e0(key);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
-};
+using UnkQuadSet_l35d9e0 = base::global::CRntDictionary<u64, u64>;
 
 UnkQuadNode_ovb0259* fn_710035d9e0(void* pool, const base::global::CFilePathStrId* path, UnkQuadNode_ovb0259** out,
                                    const base::global::CStrId* name) {
@@ -92,7 +46,7 @@ UnkQuadNode_ovb0259* fn_710035d9e0(void* pool, const base::global::CFilePathStrI
             operator delete(quad);
             return nullptr;
         }
-        set->Insert((u64)quad);
+        set->Insert((u64)quad, (u64)quad);
         result = quad;
     }
     if (out)

@@ -26,7 +26,7 @@ void fn_7100f64a40(base::global::CRntVector<UnkIdValue_f64a40>* self, const UnkI
         return;
     }
     if (self->capacity <= n && self->step != 0) {
-        u32 capacity = (n / self->step + 1) * self->step;
+        u32 capacity = self->GrownCapacity(n);
         if (self->capacity < capacity) {
             base::refl_IdValueMoveTo(self, capacity);
             n = self->count;
