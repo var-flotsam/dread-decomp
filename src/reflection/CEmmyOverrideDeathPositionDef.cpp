@@ -20,17 +20,19 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CEmmyOverrideDeathPositionDef
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
 namespace CEmmyOverrideDeathPositionDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpLandmark", true), &g_unk_717269bb48, 0x8, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x48, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
@@ -63,11 +65,11 @@ namespace CEmmyAutoForbiddenEdgesDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpCheckSamusLogicShape", true), &g_unk_717269bb48, 0x8, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpCheckEmmyLogicShape", true), &g_unk_717269bb48, 0x48, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("tForbiddenLogicShapes", true), &g_unk_717269bf08, 0x88, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("tWeightedLogicShapeIDs", true), &g_unk_7101d5c998, 0xb0, -1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -99,11 +101,11 @@ namespace CEmmyAutoGlobalSmartLinkDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpStartLandmark", true), &g_unk_717269bb48, 0x8, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("tEndLandmarks", true), &g_unk_717269bf08, 0x48, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("wpActivateLogicShape", true), &g_unk_717269bb48, 0x70, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

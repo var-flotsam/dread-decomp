@@ -18,30 +18,32 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CKraidAIComponent
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
 void fn_71005fb320(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71727b6270;
 namespace CKraidAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpStage1ArenaShape", true), &g_unk_717269bb48, 0x14ca0, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpStage2ArenaShape", true), &g_unk_717269bb48, 0x14cf0, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FUNCTION("ChangeKraidAnimToStage2") {
         fn_71005fb320(fn, "ChangeKraidAnimToStage2");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Change Anim Kraid to Stage2"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     UnkReflField* field2 = AddReflectedField(cls, CStrId("wpPhase2CutScenePlayer", true), &g_unk_71727b6270, 0x14d40, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("wpDeadCutScenePlayer", true), &g_unk_71727b6270, 0x14d80, -1, -1);
-    field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field4 = AddReflectedField(cls, CStrId("wpDeadFromZiplineOrMBCutscenePlayer", true), &g_unk_71727b6270, 0x14dc0, -1, -1);
-    field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

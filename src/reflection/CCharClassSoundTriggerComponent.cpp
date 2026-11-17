@@ -18,6 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::snd { enum class EReverbIntensity : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
+namespace base::snd { enum class ELowPassFilter : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ELowPassFilter>::object asm("g_unk_7108b6cde8");
 
 // CCharClassSoundTriggerComponent
 namespace CCharClassSoundTriggerComponent {
@@ -48,10 +53,8 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassSoundTriggerComponent, CCharClassBaseTriggerComponent);
 
 // CSoundTrigger
-extern base::reflection::CType g_unk_7108b6cc88;
 void fn_7100718544();
 void fn_7100717e9c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7108b6cde8;
 void fn_71007185d0();
 void fn_7100718010(UnkReflFunction* fn, const char* name);
 namespace CSoundTrigger {
@@ -59,26 +62,26 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_eReverb_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_eReverb_GetterFunction", true);
-        fn->return_type = &g_unk_7108b6cc88;
+        fn->return_type = &base::reflection::TypeObject<base::snd::EReverbIntensity>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100718544);
     }
     DREAD_REFLECTED_FUNCTION("_m_eReverb_SetterFunction")
         fn_7100717e9c(fn, "_m_eReverb_SetterFunction");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7108b6cc88, 0);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eReverb", true), &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0);
     DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
-        fn->return_type = &g_unk_7108b6cde8;
+        fn->return_type = &base::reflection::TypeObject<base::snd::ELowPassFilter>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007185d0);
     }
     DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_SetterFunction")
         fn_7100718010(fn, "_m_iLowPassFilter_SetterFunction");
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("iLowPassFilter", true), &g_unk_7108b6cde8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7108b6cde8, 0);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("iLowPassFilter", true), &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

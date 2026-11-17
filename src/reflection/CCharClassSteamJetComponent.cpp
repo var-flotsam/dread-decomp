@@ -19,6 +19,9 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 namespace base::math { class CVector2D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector2D>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -78,7 +81,6 @@ void fn_710089d8e8(UnkReflFunction* fn, const char* name);
 void fn_71008a00d4();
 void fn_710089da64(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
 namespace CSteamJetComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -157,7 +159,7 @@ void refl_AddFields(CClass* cls) {
         fn_710089da64(fn, "_m_vReactionDirection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "vReactionDirection", (DefaultValue, base::math::CVector2D{1.0f, 0.0f}));
     UnkReflField* field11 = AddReflectedField(cls, CStrId("wpNextSteamJet", true), &g_unk_717269bb48, 0xc10, -1, -1);
-    field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 10);
+    field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

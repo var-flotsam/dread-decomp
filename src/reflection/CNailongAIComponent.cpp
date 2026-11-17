@@ -18,18 +18,21 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace IPath { enum class EType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CNailongAIComponent
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_71727bb8e8;
 namespace CNailongAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x147e8, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("ePatrolPathType", true), &g_unk_71727bb8e8, 0x14828, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("ePatrolPathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x14828, -1, -1);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<IPath::EType>::object, 3);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

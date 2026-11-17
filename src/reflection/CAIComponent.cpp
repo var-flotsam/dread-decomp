@@ -20,6 +20,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace IPath { enum class EType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CAIComponent
@@ -29,8 +34,6 @@ void fn_71011155bc(UnkReflFunction* fn);
 void fn_71010f7d90(UnkReflFunction* fn, const char* name);
 void fn_71010f7f0c(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_71727bb8e8;
 void fn_7101115c1c();
 void fn_71010f7fc0(UnkReflFunction* fn, const char* name);
 namespace CAIComponent {
@@ -63,10 +66,10 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceClockwise", 0x13c8, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only clockwise limit"));
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceCounterClockwise", 0x13cc, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only counter clockwise limit"));
     UnkReflField* field9 = AddReflectedField(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
-    field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SFallBackPath>", "tFallbackPaths", 0x1390);
-    UnkReflField* field11 = AddReflectedField(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x13b8, -1, -1);
-    field11->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 2);
+    UnkReflField* field11 = AddReflectedField(cls, CStrId("ePathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x13b8, -1, -1);
+    field11->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<IPath::EType>::object, 2);
     DREAD_REFLECTED_FIELD(bool, "bIndividualRequiresActivationPerception", 0x121c, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION("_m_bIgnoreAttack_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bIgnoreAttack_GetterFunction", true);

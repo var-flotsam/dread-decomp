@@ -19,11 +19,13 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace gameeditor { enum class EPersistenceTarget : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
 
 // CScenario
 extern base::reflection::CType g_unk_71726a07a0;
 void fn_71011a4a54();
-extern base::reflection::CType g_unk_7172756f90;
 void fn_71011a4a7c();
 void fn_71011a4aa4();
 extern base::reflection::CType g_unk_7101d5c998;
@@ -44,8 +46,8 @@ void refl_AddFields(CClass* cls) {
     }
     UnkReflField* field3 = AddReflectedField(cls, CStrId("rEntitiesLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field3->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Entities"));
-    field3->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 1);
-    field3->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &g_unk_7172756f90, 0);
+    field3->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 1);
+    field3->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 0);
     DREAD_REFLECTED_FUNCTION("_rSoundsLayer_GetterFunction") {
         fn->name = base::global::UnkStrId("_rSoundsLayer_GetterFunction", true);
         fn->return_type = &g_unk_71726a07a0;
@@ -55,8 +57,8 @@ void refl_AddFields(CClass* cls) {
     }
     UnkReflField* field4 = AddReflectedField(cls, CStrId("rSoundsLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field4->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Sounds"));
-    field4->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 1);
-    field4->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &g_unk_7172756f90, 0);
+    field4->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 1);
+    field4->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 0);
     DREAD_REFLECTED_FUNCTION("_rLightsLayer_GetterFunction") {
         fn->name = base::global::UnkStrId("_rLightsLayer_GetterFunction", true);
         fn->return_type = &g_unk_71726a07a0;
@@ -66,10 +68,10 @@ void refl_AddFields(CClass* cls) {
     }
     UnkReflField* field5 = AddReflectedField(cls, CStrId("rLightsLayer", true), &g_unk_71726a07a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field5->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Lights"));
-    field5->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 1);
-    field5->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &g_unk_7172756f90, 0);
+    field5->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 1);
+    field5->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 0);
     UnkReflField* field6 = AddReflectedField(cls, CStrId("vLayerFiles", true), &g_unk_7101d5c998, 0x278, -1, -1);
-    field6->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 0);
+    field6->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

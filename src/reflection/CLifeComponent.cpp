@@ -19,11 +19,13 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CLifeComponent
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_710115f078(UnkReflFunction* fn, const char* name);
 void fn_710116132c();
 void fn_710115f12c(UnkReflFunction* fn, const char* name);
@@ -59,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_fMaxLife_SetterFunction")
         fn_710115f12c(fn, "_m_fMaxLife_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("fMaxLife", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     field1->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("max life"));
     field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));

@@ -12,6 +12,21 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/ReflectedFields.h"
+#include "base/reflection/TypeObject.h"
+namespace gameeditor { enum class EEditorModeDataFlow : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+namespace base::snd { enum class EReverbIntensity : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
+namespace IPath { enum class EType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
+enum class SMusicPlayFlag : u32;
+template <> base::reflection::CType base::reflection::TypeObject<SMusicPlayFlag>::object asm("g_unk_71729f0a98");
+enum class EMusicFadeType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EMusicFadeType>::object asm("g_unk_71729f1018");
+enum class EMusicManagerInGameState : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EMusicManagerInGameState>::object asm("g_unk_71729f1178");
 namespace CBlackboard { class CSection; }
 extern template const base::reflection::CType* base::reflection::PointerType<CBlackboard::CSection*>::Get();
 class CCutscene;
@@ -77,9 +92,7 @@ void fn_7100f33ed0(UnkReflFunction* fn, const char* name);
 void fn_7100f6f874();
 void fn_7100f3404c(UnkReflFunction* fn, const char* name);
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 const base::reflection::UnkReflAttrKey& fn_71000923a0();
-extern base::reflection::CType g_unk_7101d55008;
 void fn_7100f718d8();
 void fn_7100f36a00(UnkReflFunction* fn, const char* name);
 void fn_7100f719b8();
@@ -169,8 +182,6 @@ void fn_7100f7904c();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100f791b8();
 void fn_7100f79208();
-extern base::reflection::CType g_unk_71729f1018;
-extern base::reflection::CType g_unk_71729f0a98;
 void fn_7100f84098();
 extern base::reflection::CType g_unk_71729e8888;
 void fn_7100f840e8();
@@ -201,7 +212,6 @@ void fn_7100f8907c(UnkReflFunction* fn, const char* name);
 void fn_7100f891fc(UnkReflFunction* fn, const char* name);
 void fn_7100f8abd8();
 void fn_7100f8aa3c(UnkReflFunction* fn);
-extern base::reflection::CType g_unk_7108b6cc88;
 void fn_7100f91014();
 void fn_7100f8c274(UnkReflFunction* fn, const char* name);
 void fn_7100f91154();
@@ -302,7 +312,6 @@ extern base::reflection::CType g_unk_71729f1850;
 void fn_7100ffcd90();
 void fn_7100ffcf9c();
 void fn_7100ffcfec();
-extern base::reflection::CType g_unk_71729f1178;
 void fn_7100ffe1f0();
 extern base::reflection::CType g_unk_71729f1d88;
 void fn_7100ffe240();
@@ -424,7 +433,6 @@ void fn_7101113948();
 void fn_7101113ce4();
 void fn_7101113d34();
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bb8e8;
 const base::reflection::CType* fn_710009d884();
 void fn_710112f650();
 extern base::reflection::CType g_unk_7172a06930;
@@ -698,33 +706,33 @@ void fn_7100f33484(CClass* cls) {
 void fn_7100f35b38(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("fFallOff", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("fIntensity", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, -1, -1);
     field1->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field1->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("fBias", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, -1, -1);
     field2->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
-    field2->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field2->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field2->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field2->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field2->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("fRadius", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, -1, -1);
     field3->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
-    field3->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field3->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field3->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field3->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field3->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field4 = AddReflectedField(cls, CStrId("fDepthFct", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, -1, -1);
     field4->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field4->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field4->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field4->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field4->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field5 = AddReflectedField(cls, CStrId("bEnabled", true), &base::reflection::PrimitiveType<bool>::Get(), 0xffffffff, -1, -1);
     field5->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
-    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field5->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field5->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field5->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field5->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     DREAD_REFLECTED_FUNCTION("_fInterp_GetterFunction") {
         fn->name = base::global::UnkStrId("_fInterp_GetterFunction", true);
@@ -1153,7 +1161,7 @@ void fn_7100f4192c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f78ffc);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729e0568;
@@ -1162,7 +1170,7 @@ void fn_7100f4192c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f7904c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729e0568, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f41f10(CClass* cls) {
@@ -1174,7 +1182,7 @@ void fn_7100f41f10(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f791b8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729e0568;
@@ -1183,15 +1191,15 @@ void fn_7100f41f10(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f79208);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729e0568, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f7deac(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("sPreset", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x8, -1, -1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("fFadeIn", true), &base::reflection::PrimitiveType<float>::Get(), 0x10, -1, -1);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("fFadeOut", true), &base::reflection::PrimitiveType<float>::Get(), 0x14, -1, -1);
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("eFadeType", true), &g_unk_71729f1018, 0x18, -1, -1);
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("ePlayFlag", true), &g_unk_71729f0a98, 0x1c, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("eFadeType", true), &base::reflection::TypeObject<EMusicFadeType>::object, 0x18, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("ePlayFlag", true), &base::reflection::TypeObject<SMusicPlayFlag>::object, 0x1c, -1, -1);
 }
 
 void fn_7100f7e5fc(CClass* cls) {
@@ -1203,7 +1211,7 @@ void fn_7100f7e5fc(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f84098);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729e8888;
@@ -1212,7 +1220,7 @@ void fn_7100f7e5fc(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f840e8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729e8888, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f7ebe0(CClass* cls) {
@@ -1224,7 +1232,7 @@ void fn_7100f7ebe0(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f842d8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729e8888;
@@ -1233,7 +1241,7 @@ void fn_7100f7ebe0(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f84328);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729e8888, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f7f570(CClass* cls) {
@@ -1257,12 +1265,12 @@ void fn_7100f7f570(CClass* cls) {
     UnkReflField* field1 = AddReflectedField(cls, CStrId("tPreset", true), &g_unk_71729f22c0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION("_ePlayFlag_GetterFunction") {
         fn->name = base::global::UnkStrId("_ePlayFlag_GetterFunction", true);
-        fn->return_type = &g_unk_71729f0a98;
+        fn->return_type = &base::reflection::TypeObject<SMusicPlayFlag>::object;
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100f86678);
     }
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("ePlayFlag", true), &g_unk_71729f0a98, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("ePlayFlag", true), &base::reflection::TypeObject<SMusicPlayFlag>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION("_m_tMusicTransitions_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_tMusicTransitions_GetterFunction", true);
         fn->return_type = &g_unk_71729e8c48;
@@ -1282,7 +1290,7 @@ void fn_7100f80224(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f86bcc);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729e8dc0;
@@ -1291,7 +1299,7 @@ void fn_7100f80224(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f86c1c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729e8dc0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f80808(CClass* cls) {
@@ -1303,7 +1311,7 @@ void fn_7100f80808(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f86e90);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729e8dc0;
@@ -1312,7 +1320,7 @@ void fn_7100f80808(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f86ee0);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729e8dc0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f87e50(CClass* cls) {
@@ -1391,7 +1399,7 @@ void fn_7100f8af0c(CClass* cls) {
     UnkReflField* field2 = AddReflectedField(cls, CStrId("fFadeIn", true), &base::reflection::PrimitiveType<float>::Get(), 0x8, -1, -1);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("fFadeOut", true), &base::reflection::PrimitiveType<float>::Get(), 0xc, -1, -1);
     UnkReflField* field4 = AddReflectedField(cls, CStrId("fFadeInDelay", true), &base::reflection::PrimitiveType<float>::Get(), 0x10, -1, -1);
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("eReverb", true), &g_unk_7108b6cc88, 0x18, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("eReverb", true), &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0x18, -1, -1);
 }
 
 void fn_7100f8b514(CClass* cls) {
@@ -1466,7 +1474,7 @@ void fn_7100f8caf8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f91bcc);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729ea500;
@@ -1475,7 +1483,7 @@ void fn_7100f8caf8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f91c1c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f8d0dc(CClass* cls) {
@@ -1487,7 +1495,7 @@ void fn_7100f8d0dc(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f91e2c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729ea500;
@@ -1496,7 +1504,7 @@ void fn_7100f8d0dc(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f91e7c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f92a44(CClass* cls) {
@@ -1545,7 +1553,7 @@ void fn_7100f9385c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f96ba8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729ea640;
@@ -1554,7 +1562,7 @@ void fn_7100f9385c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f96bf8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729ea640, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f93e40(CClass* cls) {
@@ -1566,7 +1574,7 @@ void fn_7100f93e40(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f96d64);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729ea640;
@@ -1575,7 +1583,7 @@ void fn_7100f93e40(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100f96db4);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729ea640, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f9b32c(CClass* cls) {
@@ -1645,7 +1653,7 @@ void fn_7100f9d978(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fa040c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_7100f9d5bc();
@@ -1654,7 +1662,7 @@ void fn_7100f9d978(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fa045c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_7100f9d5bc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100f9df5c(CClass* cls) {
@@ -1666,7 +1674,7 @@ void fn_7100f9df5c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fa05c4);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_7100f9d5bc();
@@ -1675,7 +1683,7 @@ void fn_7100f9df5c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fa0614);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_7100f9d5bc(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fa1254(CClass* cls) {
@@ -1793,7 +1801,7 @@ void fn_7100fa3720(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fa88c4);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_7100fa3364();
@@ -1802,7 +1810,7 @@ void fn_7100fa3720(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fa8914);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_7100fa3364(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fa3d04(CClass* cls) {
@@ -1814,7 +1822,7 @@ void fn_7100fa3d04(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fa8a78);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_7100fa3364();
@@ -1823,7 +1831,7 @@ void fn_7100fa3d04(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fa8ac8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_7100fa3364(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fae85c(CClass* cls) {
@@ -1835,7 +1843,7 @@ void fn_7100fae85c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fb0e78);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
@@ -1844,7 +1852,7 @@ void fn_7100fae85c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fb0ec8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100faee40(CClass* cls) {
@@ -1856,7 +1864,7 @@ void fn_7100faee40(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fb10d0);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
@@ -1865,7 +1873,7 @@ void fn_7100faee40(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fb1120);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fb2988(CClass* cls) {
@@ -1918,7 +1926,7 @@ void fn_7100fb3cc8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fb69a8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_7100fb390c();
@@ -1927,7 +1935,7 @@ void fn_7100fb3cc8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fb69f8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_7100fb390c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fb42ac(CClass* cls) {
@@ -1939,7 +1947,7 @@ void fn_7100fb42ac(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fb6b5c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_7100fb390c();
@@ -1948,7 +1956,7 @@ void fn_7100fb42ac(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fb6bac);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_7100fb390c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fd1c7c(CClass* cls) {
@@ -2037,7 +2045,7 @@ void fn_7100fe187c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffb338);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f1318;
@@ -2046,7 +2054,7 @@ void fn_7100fe187c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffb388);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f1318, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe1e60(CClass* cls) {
@@ -2058,7 +2066,7 @@ void fn_7100fe1e60(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffb538);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f1318;
@@ -2067,7 +2075,7 @@ void fn_7100fe1e60(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffb588);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f1318, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe27f0(CClass* cls) {
@@ -2078,7 +2086,7 @@ void fn_7100fe27f0(CClass* cls) {
     UnkReflField* field4 = AddReflectedField(cls, CStrId("fDelay", true), &base::reflection::PrimitiveType<float>::Get(), 0x40, -1, -1);
     UnkReflField* field5 = AddReflectedField(cls, CStrId("fVol", true), &base::reflection::PrimitiveType<float>::Get(), 0x38, -1, -1);
     UnkReflField* field6 = AddReflectedField(cls, CStrId("iStartPos", true), &base::reflection::PrimitiveType<int>::Get(), 0x44, -1, -1);
-    UnkReflField* field7 = AddReflectedField(cls, CStrId("eCrossFade", true), &g_unk_71729f1018, 0x48, -1, -1);
+    UnkReflField* field7 = AddReflectedField(cls, CStrId("eCrossFade", true), &base::reflection::TypeObject<EMusicFadeType>::object, 0x48, -1, -1);
     UnkReflField* field8 = AddReflectedField(cls, CStrId("bPauseOnPop", true), &base::reflection::PrimitiveType<bool>::Get(), 0x4c, -1, -1);
     UnkReflField* field9 = AddReflectedField(cls, CStrId("fEnvFactor", true), &base::reflection::PrimitiveType<float>::Get(), 0x3c, -1, -1);
 }
@@ -2092,7 +2100,7 @@ void fn_7100fe3170(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffcd40);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f1850;
@@ -2101,7 +2109,7 @@ void fn_7100fe3170(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffcd90);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f1850, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe3754(CClass* cls) {
@@ -2113,7 +2121,7 @@ void fn_7100fe3754(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffcf9c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f1850;
@@ -2122,11 +2130,11 @@ void fn_7100fe3754(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffcfec);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f1850, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe40e4(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eState", true), &g_unk_71729f1178, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eState", true), &base::reflection::TypeObject<EMusicManagerInGameState>::object, 0x0, -1, -1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("fFadeOut", true), &base::reflection::PrimitiveType<float>::Get(), 0x4, -1, -1);
 }
 
@@ -2139,7 +2147,7 @@ void fn_7100fe46e4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffe1f0);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f1d88;
@@ -2148,7 +2156,7 @@ void fn_7100fe46e4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffe240);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f1d88, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe4cc8(CClass* cls) {
@@ -2160,7 +2168,7 @@ void fn_7100fe4cc8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffe324);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f1d88;
@@ -2169,7 +2177,7 @@ void fn_7100fe4cc8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100ffe374);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f1d88, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe5658(CClass* cls) {
@@ -2195,7 +2203,7 @@ void fn_7100fe5f44(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fff758);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f22c0;
@@ -2204,7 +2212,7 @@ void fn_7100fe5f44(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fff7a8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f22c0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe6528(CClass* cls) {
@@ -2216,7 +2224,7 @@ void fn_7100fe6528(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fff928);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f22c0;
@@ -2225,7 +2233,7 @@ void fn_7100fe6528(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100fff978);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f22c0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe6e98(CClass* cls) {
@@ -2242,7 +2250,7 @@ void fn_7100fe7498(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101000c7c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f27f8;
@@ -2251,7 +2259,7 @@ void fn_7100fe7498(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101000ccc);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f27f8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe7a7c(CClass* cls) {
@@ -2263,7 +2271,7 @@ void fn_7100fe7a7c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101000f78);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f27f8;
@@ -2272,7 +2280,7 @@ void fn_7100fe7a7c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101000fc8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f27f8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe840c(CClass* cls) {
@@ -2289,7 +2297,7 @@ void fn_7100fe8a0c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101003204);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f2d30;
@@ -2298,7 +2306,7 @@ void fn_7100fe8a0c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101003254);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f2d30, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe8ff0(CClass* cls) {
@@ -2310,7 +2318,7 @@ void fn_7100fe8ff0(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010034a0);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f2d30;
@@ -2319,7 +2327,7 @@ void fn_7100fe8ff0(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010034f0);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f2d30, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100fe9960(CClass* cls) {
@@ -2367,7 +2375,7 @@ void fn_7100fea880(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101004388);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f3268;
@@ -2376,7 +2384,7 @@ void fn_7100fea880(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010043d8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f3268, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100feae64(CClass* cls) {
@@ -2388,7 +2396,7 @@ void fn_7100feae64(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101004544);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f3268;
@@ -2397,7 +2405,7 @@ void fn_7100feae64(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101004594);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f3268, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100feb7d4(CClass* cls) {
@@ -2445,7 +2453,7 @@ void fn_7100fec6f4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101005558);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f37a0;
@@ -2454,7 +2462,7 @@ void fn_7100fec6f4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010055a8);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f37a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7100feccd8(CClass* cls) {
@@ -2466,7 +2474,7 @@ void fn_7100feccd8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101005714);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f37a0;
@@ -2475,7 +2483,7 @@ void fn_7100feccd8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101005764);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f37a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101020360(CClass* cls) {
@@ -2492,7 +2500,7 @@ void fn_7101020d54(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710102949c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7101d4ec50;
@@ -2501,7 +2509,7 @@ void fn_7101020d54(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010294ec);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7101d4ec50, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101021338(CClass* cls) {
@@ -2513,7 +2521,7 @@ void fn_7101021338(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710102976c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7101d4ec50;
@@ -2522,7 +2530,7 @@ void fn_7101021338(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010297bc);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7101d4ec50, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101021ccc(CClass* cls) {
@@ -2534,7 +2542,7 @@ void fn_7101021ccc(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710102aec4);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_71010221d4();
@@ -2543,7 +2551,7 @@ void fn_7101021ccc(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710102af14);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_71010221d4(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71010224b4(CClass* cls) {
@@ -2555,7 +2563,7 @@ void fn_71010224b4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710102b07c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_71010221d4();
@@ -2564,7 +2572,7 @@ void fn_71010224b4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710102b0cc);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_71010221d4(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_710102cba4(CClass* cls) {
@@ -2629,7 +2637,7 @@ void fn_710103572c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710103c01c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f9fe8;
@@ -2638,7 +2646,7 @@ void fn_710103572c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710103c06c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f9fe8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101035d10(CClass* cls) {
@@ -2650,7 +2658,7 @@ void fn_7101035d10(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710103c164);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729f9fe8;
@@ -2659,7 +2667,7 @@ void fn_7101035d10(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710103c1b4);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729f9fe8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_710103d05c(CClass* cls) {
@@ -2708,7 +2716,7 @@ void fn_710103de70(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101042028);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_710102df18();
@@ -2717,7 +2725,7 @@ void fn_710103de70(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101042078);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_710102df18(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_710103e454(CClass* cls) {
@@ -2729,7 +2737,7 @@ void fn_710103e454(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710104220c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_710102df18();
@@ -2738,7 +2746,7 @@ void fn_710103e454(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710104225c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_710102df18(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101044aac(CClass* cls) {
@@ -2750,7 +2758,7 @@ void fn_7101044aac(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101049f40);
     }
     UnkReflField* field0 = AddReflectedField(cls, CStrId("dctProps", true), &g_unk_7101d5eeb8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 1);
 }
 
 void fn_7101045874(CClass* cls) {
@@ -2762,7 +2770,7 @@ void fn_7101045874(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710104a5d8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<CBlackboard::CSection*>::Get();
@@ -2771,7 +2779,7 @@ void fn_7101045874(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710104a628);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::reflection::PointerType<CBlackboard::CSection*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101045f34(CClass* cls) {
@@ -2783,7 +2791,7 @@ void fn_7101045f34(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710104a850);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<CBlackboard::CSection*>::Get();
@@ -2792,7 +2800,7 @@ void fn_7101045f34(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710104a8a0);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::reflection::PointerType<CBlackboard::CSection*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101051190(CClass* cls) {
@@ -2822,7 +2830,7 @@ void fn_71010582d4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710106002c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729fe178;
@@ -2831,7 +2839,7 @@ void fn_71010582d4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710106007c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729fe178, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71010588b8(CClass* cls) {
@@ -2843,7 +2851,7 @@ void fn_71010588b8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101060244);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_71729fe178;
@@ -2852,7 +2860,7 @@ void fn_71010588b8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101060294);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_71729fe178, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71010621bc(CClass* cls) {
@@ -2868,7 +2876,7 @@ void fn_71010628a8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710106ecb0);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7172a00990;
@@ -2877,7 +2885,7 @@ void fn_71010628a8(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710106ed00);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7172a00990, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101062e8c(CClass* cls) {
@@ -2889,7 +2897,7 @@ void fn_7101062e8c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710106ee7c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7172a00990;
@@ -2898,7 +2906,7 @@ void fn_7101062e8c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710106eecc);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7172a00990, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_710106381c(CClass* cls) {
@@ -2910,7 +2918,7 @@ void fn_710106381c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101070374);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<CCutscene*>::Get();
@@ -2919,7 +2927,7 @@ void fn_710106381c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010703c4);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::reflection::PointerType<CCutscene*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101063e00(CClass* cls) {
@@ -2931,7 +2939,7 @@ void fn_7101063e00(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710107055c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<CCutscene*>::Get();
@@ -2940,7 +2948,7 @@ void fn_7101063e00(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010705ac);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::reflection::PointerType<CCutscene*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101064df0(CClass* cls) {
@@ -2977,7 +2985,7 @@ void fn_71010c32b0(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010c5dd8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_71010c301c();
@@ -2986,7 +2994,7 @@ void fn_71010c32b0(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010c5e28);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_71010c301c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71010c3894(CClass* cls) {
@@ -2998,7 +3006,7 @@ void fn_71010c3894(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010c6050);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_71010c301c();
@@ -3007,7 +3015,7 @@ void fn_71010c3894(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71010c60a0);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_71010c301c(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71010f5b00(CClass* cls) {
@@ -3019,7 +3027,7 @@ void fn_71010f5b00(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011138f8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7172a05d40;
@@ -3028,7 +3036,7 @@ void fn_71010f5b00(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101113948);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7172a05d40, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71010f60e4(CClass* cls) {
@@ -3040,7 +3048,7 @@ void fn_71010f60e4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101113ce4);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7172a05d40;
@@ -3049,12 +3057,12 @@ void fn_71010f60e4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101113d34);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7172a05d40, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71010f68bc(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPath", true), &g_unk_717269bb48, 0x0, -1, -1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("ePathType", true), &g_unk_71727bb8e8, 0x40, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("ePathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x40, -1, -1);
 }
 
 void fn_7101120b74(CClass* cls) {
@@ -3071,7 +3079,7 @@ void fn_7101121054(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710112f650);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7172a06930;
@@ -3080,7 +3088,7 @@ void fn_7101121054(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710112f6a0);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7172a06930, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101121638(CClass* cls) {
@@ -3092,7 +3100,7 @@ void fn_7101121638(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710112f7cc);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7172a06930;
@@ -3101,7 +3109,7 @@ void fn_7101121638(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710112f81c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7172a06930, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101121fb8(CClass* cls) {
@@ -3118,7 +3126,7 @@ void fn_7101122510(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101130f60);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7172a06e68;
@@ -3127,7 +3135,7 @@ void fn_7101122510(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101130fb0);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7172a06e68, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_7101122af4(CClass* cls) {
@@ -3139,7 +3147,7 @@ void fn_7101122af4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710113145c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = &g_unk_7172a06e68;
@@ -3148,7 +3156,7 @@ void fn_7101122af4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011314ac);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, &g_unk_7172a06e68, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_710116b770(CClass* cls) {
@@ -3223,7 +3231,7 @@ void fn_71011c1b44(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011d1a34);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<GUI::CDisplayObject*>::Get();
@@ -3232,7 +3240,7 @@ void fn_71011c1b44(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011d1a84);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::reflection::PointerType<GUI::CDisplayObject*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71011c2128(CClass* cls) {
@@ -3244,7 +3252,7 @@ void fn_71011c2128(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011d1c1c);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<GUI::CDisplayObject*>::Get();
@@ -3253,7 +3261,7 @@ void fn_71011c2128(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011d1c6c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::reflection::PointerType<GUI::CDisplayObject*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71011c2ab4(CClass* cls) {
@@ -3265,7 +3273,7 @@ void fn_71011c2ab4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011d27e0);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<GUI::CDisplayObject*>::Get();
@@ -3274,7 +3282,7 @@ void fn_71011c2ab4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011d2830);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::reflection::PointerType<GUI::CDisplayObject*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71011c3098(CClass* cls) {
@@ -3286,7 +3294,7 @@ void fn_71011c3098(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011d29c8);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = base::reflection::PointerType<GUI::CDisplayObject*>::Get();
@@ -3295,7 +3303,7 @@ void fn_71011c3098(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011d2a18);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::reflection::PointerType<GUI::CDisplayObject*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71011d6d74(CClass* cls) {
@@ -3307,7 +3315,7 @@ void fn_71011d6d74(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011db6d4);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_71011d6a04();
@@ -3316,7 +3324,7 @@ void fn_71011d6d74(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011db724);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_71011d6a04(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71011d7358(CClass* cls) {
@@ -3328,7 +3336,7 @@ void fn_71011d7358(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011db8bc);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_71011d6a04();
@@ -3337,7 +3345,7 @@ void fn_71011d7358(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011db90c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_71011d6a04(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71011de03c(CClass* cls) {
@@ -3349,7 +3357,7 @@ void fn_71011de03c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011e6f18);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_71011ddda8();
@@ -3358,7 +3366,7 @@ void fn_71011de03c(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011e6f68);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_71011ddda8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 
 void fn_71011de620(CClass* cls) {
@@ -3370,7 +3378,7 @@ void fn_71011de620(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011e70cc);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = fn_71011ddda8();
@@ -3379,5 +3387,5 @@ void fn_71011de620(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71011e711c);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, fn_71011ddda8(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }

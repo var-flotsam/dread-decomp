@@ -19,18 +19,21 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace gameeditor { enum class EEditorModeDataFlow : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 
 // CCharClassBreakableScenarioComponent
 extern base::reflection::CType g_unk_7101d5c998;
-extern base::reflection::CType g_unk_7101d679f0;
-extern base::reflection::CType g_unk_7101d55008;
 namespace CCharClassBreakableScenarioComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("vColliderIds", true), &g_unk_7101d5c998, 0xffffffff, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &g_unk_7101d55008, 1);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field0->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -19,15 +19,17 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+enum class ELoadingScreen : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ELoadingScreen>::object asm("g_unk_71727c0710");
 
 // CElevatorUsableComponent
-extern base::reflection::CType g_unk_71727c0710;
 namespace CElevatorUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EElevatorDirection", "eDirection", 0x54c, (DefaultValue, 0));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("eLoadingScreen", true), &g_unk_71727c0710, 0x550, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727c0710, 0);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("eLoadingScreen", true), &base::reflection::TypeObject<ELoadingScreen>::object, 0x550, -1, -1);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<ELoadingScreen>::object, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sLevelName", 0x558, (DefaultValue, CStrId("c10_samus", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioName", 0x560, (DefaultValue, CStrId("", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sTargetSpawnPoint", 0x568, (DefaultValue, CStrId("", true)));

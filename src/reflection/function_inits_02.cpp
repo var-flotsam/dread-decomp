@@ -11,6 +11,19 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/CPointerType.h"
+#include "base/reflection/TypeObject.h"
+enum class ESwifterSpawnGroupDirection : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object asm("g_unk_7172743e90");
+namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");
+enum class ELightType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ELightType>::object asm("g_unk_71727ba2e0");
+enum class ELightAttachment : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ELightAttachment>::object asm("g_unk_71727ba480");
+enum class EMinimapFowType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EMinimapFowType>::object asm("g_unk_71727ca958");
+enum class EMarkerType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EMarkerType>::object asm("g_unk_71727caab8");
 class CEntity;
 extern template const base::reflection::CType* base::reflection::PointerType<CEntity*>::Get();
 class CSubareaCharclassGroup;
@@ -76,7 +89,6 @@ void fn_7100a05720();
 void fn_7100a05778();
 void fn_7100a057d0();
 void fn_7100a05828();
-extern base::reflection::CType g_unk_7172743e90;
 void fn_7100a13578();
 extern base::reflection::CType g_unk_71727b6270;
 void fn_7100a1abc8();
@@ -97,7 +109,6 @@ void fn_7100a64738();
 void fn_7100a647d4();
 void fn_7100a6491c();
 void fn_7100a73b5c();
-extern base::reflection::CType g_unk_7172752160;
 void fn_7100a9484c();
 void fn_7100a948d8();
 void fn_7100aa4040();
@@ -188,9 +199,7 @@ void fn_7100d825f8();
 void fn_7100d82678();
 void fn_7100d82918();
 void fn_7100d87454();
-extern base::reflection::CType g_unk_71727ba2e0;
 void fn_7100d9c194();
-extern base::reflection::CType g_unk_71727ba480;
 void fn_7100d9c228();
 void fn_7100d9c2b8();
 void fn_7100d9c3cc();
@@ -215,7 +224,6 @@ void fn_7100e2f7e8();
 void fn_7100e2f8e0();
 extern base::reflection::CType g_unk_7101d5d978;
 void fn_7100e7c8cc();
-extern base::reflection::CType g_unk_71727ca958;
 void fn_7100eaa060();
 void fn_7100eaa0f0();
 void fn_7100eaa180();
@@ -246,7 +254,6 @@ void fn_7100eabfe0();
 void fn_7100eac168();
 void fn_7100eac2f0();
 void fn_7100eaca3c();
-extern base::reflection::CType g_unk_71727caab8;
 void fn_7100eacae0();
 void fn_7100eacb68();
 void fn_7100eacc30();
@@ -530,7 +537,7 @@ void fn_7100a12648(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100a13578);
-    fn->params.PushBack(&g_unk_7172743e90);
+    fn->params.PushBack(&base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object);
 }
 
 void fn_7100a1a1e8(UnkReflFunction* fn, const char* name) {
@@ -692,7 +699,7 @@ void fn_7100a90798(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100a9484c);
-    fn->params.PushBack(&g_unk_7172752160);
+    fn->params.PushBack(&base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object);
 }
 
 void fn_7100a9090c(UnkReflFunction* fn, const char* name) {
@@ -701,7 +708,7 @@ void fn_7100a9090c(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100a948d8);
-    fn->params.PushBack(&g_unk_7172752160);
+    fn->params.PushBack(&base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object);
 }
 
 void fn_7100a9c458(UnkReflFunction* fn, const char* name) {
@@ -1484,7 +1491,7 @@ void fn_7100d99ab8(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100d9c194);
-    fn->params.PushBack(&g_unk_71727ba2e0);
+    fn->params.PushBack(&base::reflection::TypeObject<ELightType>::object);
 }
 
 void fn_7100d99c2c(UnkReflFunction* fn, const char* name) {
@@ -1493,7 +1500,7 @@ void fn_7100d99c2c(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100d9c228);
-    fn->params.PushBack(&g_unk_71727ba480);
+    fn->params.PushBack(&base::reflection::TypeObject<ELightAttachment>::object);
 }
 
 void fn_7100d99da0(UnkReflFunction* fn, const char* name) {
@@ -1682,7 +1689,7 @@ void fn_7100e7e58c(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100eaa060);
-    fn->params.PushBack(&g_unk_71727ca958);
+    fn->params.PushBack(&base::reflection::TypeObject<EMinimapFowType>::object);
 }
 
 void fn_7100e7e700(UnkReflFunction* fn, const char* name) {
@@ -1952,7 +1959,7 @@ void fn_7100e86644(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100eacae0);
-    fn->params.PushBack(&g_unk_71727caab8);
+    fn->params.PushBack(&base::reflection::TypeObject<EMarkerType>::object);
 }
 
 void fn_7100e867b8(UnkReflFunction* fn, const char* name) {

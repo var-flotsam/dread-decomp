@@ -21,6 +21,15 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace base::snd { enum class EAttenuationCurve : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EAttenuationCurve>::object asm("g_unk_7108b6cb28");
+namespace base::snd { enum class EPositionalType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EPositionalType>::object asm("g_unk_7108b6cf48");
+namespace base::snd { enum class ESndPlayerId : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ESndPlayerId>::object asm("g_unk_7108b6d110");
+namespace base::snd { enum class ESndLogicId : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ESndLogicId>::object asm("g_unk_7108b6d270");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -35,16 +44,12 @@ void fn_71010325e0(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71729fa4e8;
 void fn_710103ac44();
 void fn_710103275c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7108b6d110;
 void fn_710103acd4();
 void fn_71010328d0(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7108b6d270;
 void fn_710103ad60();
 void fn_7101032a44(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7108b6cb28;
 void fn_710103adec();
 void fn_7101032bb8(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7108b6cf48;
 void fn_710103ae78();
 void fn_7101032d2c(UnkReflFunction* fn, const char* name);
 void fn_710103af04();
@@ -132,44 +137,44 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field2 = AddReflectedField(cls, CStrId("arrMatFiles", true), &g_unk_71729fa4e8, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_ePlayerId_GetterFunction") {
         fn->name = base::global::UnkStrId("_ePlayerId_GetterFunction", true);
-        fn->return_type = &g_unk_7108b6d110;
+        fn->return_type = &base::reflection::TypeObject<base::snd::ESndPlayerId>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103acd4);
     }
     DREAD_REFLECTED_FUNCTION("_ePlayerId_SetterFunction")
         fn_71010328d0(fn, "_ePlayerId_SetterFunction");
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("ePlayerId", true), &g_unk_7108b6d110, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("ePlayerId", true), &base::reflection::TypeObject<base::snd::ESndPlayerId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_eLogicId_GetterFunction") {
         fn->name = base::global::UnkStrId("_eLogicId_GetterFunction", true);
-        fn->return_type = &g_unk_7108b6d270;
+        fn->return_type = &base::reflection::TypeObject<base::snd::ESndLogicId>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ad60);
     }
     DREAD_REFLECTED_FUNCTION("_eLogicId_SetterFunction")
         fn_7101032a44(fn, "_eLogicId_SetterFunction");
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLogicId", true), &g_unk_7108b6d270, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLogicId", true), &base::reflection::TypeObject<base::snd::ESndLogicId>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_eAttCurve_GetterFunction") {
         fn->name = base::global::UnkStrId("_eAttCurve_GetterFunction", true);
-        fn->return_type = &g_unk_7108b6cb28;
+        fn->return_type = &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103adec);
     }
     DREAD_REFLECTED_FUNCTION("_eAttCurve_SetterFunction")
         fn_7101032bb8(fn, "_eAttCurve_SetterFunction");
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("eAttCurve", true), &g_unk_7108b6cb28, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("eAttCurve", true), &base::reflection::TypeObject<base::snd::EAttenuationCurve>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_ePositional_GetterFunction") {
         fn->name = base::global::UnkStrId("_ePositional_GetterFunction", true);
-        fn->return_type = &g_unk_7108b6cf48;
+        fn->return_type = &base::reflection::TypeObject<base::snd::EPositionalType>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710103ae78);
     }
     DREAD_REFLECTED_FUNCTION("_ePositional_SetterFunction")
         fn_7101032d2c(fn, "_ePositional_SetterFunction");
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePositional", true), &g_unk_7108b6cf48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("ePositional", true), &base::reflection::TypeObject<base::snd::EPositionalType>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_iInstanceLimit_GetterFunction") {
         fn->name = base::global::UnkStrId("_iInstanceLimit_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
