@@ -101,7 +101,7 @@ struct UnkPropertyValue_0x18 {
 // The same arrays with the value type spelled out, for base/UnkParallelFind.h.
 struct UnkPropertyMap {
     UnkPropertyValue_0x18* values;
-    CStrId* ids;
+    CStrId* keys;
     u32 count;
 };
 

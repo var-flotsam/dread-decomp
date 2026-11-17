@@ -1,14 +1,7 @@
 // CGunComponent unit (tools/tu_map.py, the name from reflection). Names and layouts are placeholders.
+#include "base/UnkCountedDeferredSet.h"
 #include "base/global/CRntVector.h"
 #include "types.h"
-
-// Three pointer lists and a lock count (+0x78); copy of fn_710117eb1c's listener set.
-struct UnkGunListeners_b53 {
-    base::global::CRntVector<void*> active;   // 0x0
-    base::global::CRntVector<void*> pending;  // 0x28
-    base::global::CRntVector<void*> queued;   // 0x50
-    s32 lock;                        // 0x78
-};
 
 // Removes the first `value` from the array (data, count), shifting the rest down.
 static inline __attribute__((always_inline)) void RemoveFirst_b53(base::global::CRntVector<void*>& v, void* value) {
@@ -25,13 +18,13 @@ static inline __attribute__((always_inline)) void RemoveFirst_b53(base::global::
     }
 }
 
-// While locked, appends `value` to the pending list and takes it out of the active one; otherwise
-// takes it out of the queued list (copy of fn_710117eb1c).
-void fn_7100841838(UnkGunListeners_b53* self, void* value) {
+// Removes `value` from the component's listeners: during a walk it is recorded as removed and taken
+// out of the added ones; otherwise it is taken out of the set (copy of fn_710117eb1c).
+void fn_7100841838(base::UnkCountedDeferredSet<void>* self, void* value) {
     if (self->lock <= 0) {
-        RemoveFirst_b53(self->queued, value);
+        RemoveFirst_b53(self->items, value);
     } else {
-        self->pending.PushBack(value);
-        RemoveFirst_b53(self->active, value);
+        self->pending_remove.PushBack(value);
+        RemoveFirst_b53(self->pending_add, value);
     }
 }

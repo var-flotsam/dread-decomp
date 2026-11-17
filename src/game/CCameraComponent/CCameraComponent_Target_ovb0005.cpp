@@ -118,7 +118,7 @@ struct UnkCamListTag_ovb5;
 struct UnkCamComp2_ovb5 {
     u8 pad_0x0[0x80];
     UnkCamEntry_ovb5** values;  // 0x80
-    CStrId* ids;               // 0x88
+    CStrId* keys;              // 0x88
     u32 count;                 // 0x90
     u8 pad_0x94[0x14];
     base::UnkSList<UnkCamListTag_ovb5> listeners;  // 0xa8
@@ -192,7 +192,7 @@ f32 fn_71010e49c8(UnkCamComp3_ovb5* self, UnkPlayer* target, const CVector3D* po
 struct UnkCamComp7_ovb5 {
     u8 pad_0x0[0x80];
     UnkCameraCtrl** values;  // 0x80
-    CStrId* ids;             // 0x88
+    CStrId* keys;            // 0x88
     u32 count;               // 0x90
 };
 
@@ -289,7 +289,7 @@ struct UnkCamComp9_ovb5 {
     UnkCamObj_ovb5** field_0x60;  // the first controller's slot
     u8 pad_0x68[0x18];
     UnkCamObj_ovb5** values;  // 0x80
-    CStrId* ids;              // 0x88
+    CStrId* keys;             // 0x88
     u32 count;                // 0x90
     u8 pad_0x94[0x5c];
     u8 field_0xf0[0xb8];
@@ -317,9 +317,9 @@ void fn_71010e1ef4(UnkCamComp9_ovb5* self) {
         if (*it)
             (*it)->vf_0x10();
     }
-    if (self->count && self->ids) {
+    if (self->count && self->keys) {
         for (u64 i = 0; i < self->count; ++i)
-            self->ids[i].Reset();
+            self->keys[i].Reset();
     }
     self->count = 0;
     fn_7100030ce0(self->field_0xf0);

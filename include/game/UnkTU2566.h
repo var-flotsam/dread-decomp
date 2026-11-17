@@ -28,6 +28,8 @@ void fn_7100e95038(void* world, void* object);
 void fn_7100e950b4(void* world, void* object);
 void fn_7100e951d4(UnkMinimapOwner* self, u32 count, void* items, u32 field_0x3);
 void fn_7100e957a8(UnkMinimapOwner* self);
+// Grows the cell list (the 0x90-byte cells and their ids) to `capacity`.
+void fn_7100e97c60(void* self, u32 capacity);
 void fn_7100ea585c(UnkMmOwner_b0199* self);
 void fn_7100ea5d7c(char*, void*);
 void fn_7100ea7c6c(void*);

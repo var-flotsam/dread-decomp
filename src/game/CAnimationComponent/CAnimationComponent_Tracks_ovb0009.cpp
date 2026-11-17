@@ -5,6 +5,7 @@
 // src/game_s2/UnkSpitSend.h). The listener lists at +0x438 are CAnimationComponent_b52.cpp's.
 // Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "base/UnkCountedDeferredSet.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CStrId.h"
@@ -797,36 +798,15 @@ f32 fn_710117a994(UnkAnimComponent_a994* self, const UnkAnimTiming* timing, f32 
 
 // ---- Events -----------------------------------------------------------------------------------
 
-// The component's listener lists (+0x438), as UnkAnimListeners_b52 (CAnimationComponent_b52.cpp).
-struct UnkAnimListeners {
-    base::global::CRntVector<void*> active;   // 0x0
-    base::global::CRntVector<void*> pending;  // 0x28
-    base::global::CRntVector<void*> queued;   // 0x50
-    union {
-        s32 lock;  // 0x78
-    };
+void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);
+void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
+
+// A walk over the component's listeners (+0x438); ending the last one applies the changes made
+// meanwhile (fn_710117ecb0).
+struct UnkAnimListenersWalk : base::UnkCountedDeferredWalk<void> {
+    using UnkCountedDeferredWalk::UnkCountedDeferredWalk;
+    ~UnkAnimListenersWalk() { fn_710117ecb0(this); }
 };
-
-// The lock a listener pass holds; releasing the last one applies the pending changes
-// (fn_710117ecb0).
-struct UnkAnimListenersLock {
-    UnkAnimListeners* listeners;
-
-    explicit UnkAnimListenersLock(UnkAnimListeners* l);
-    ~UnkAnimListenersLock();
-};
-
-void fn_710117ecb0(UnkAnimListenersLock* self);
-
-inline UnkAnimListenersLock::UnkAnimListenersLock(UnkAnimListeners* l) {
-    listeners = l;
-    ++l->lock;
-}
-
-inline UnkAnimListenersLock::~UnkAnimListenersLock() { fn_710117ecb0(this); }
-
-struct UnkAnimListeners_b52;
-void fn_710117eb1c(UnkAnimListeners_b52* self, void* value);
 struct UnkPairOwner;
 struct UnkValueSource;
 
@@ -873,7 +853,7 @@ struct UnkAnimComponent_a4a4 {
     u8 pad_0x300[0x80];
     UnkGuiKeyList keys_0x380;
     u8 pad_0x3b0[0x88];
-    UnkAnimListeners listeners;  // 0x438
+    base::UnkCountedDeferredSet<void> listeners;  // 0x438
 };
 static_assert(__builtin_offsetof(UnkAnimComponent_a4a4, listeners) == 0x438, "UnkAnimComponent_a4a4 layout");
 
@@ -890,11 +870,11 @@ void fn_710117a4a4(UnkAnimComponent_a4a4* self, UnkAnimSource* source, UnkAnimEv
         return;
     UnkAnimEventMsg msg(event->data,
                         *reinterpret_cast<CStrId*>(fn_71002dba48(reinterpret_cast<UnkPairOwner*>(source))));
-    UnkAnimListenersLock lock(&self->listeners);
-    void** end = self->listeners.queued.data + self->listeners.queued.count;
-    for (void** it = self->listeners.queued.data; it != end; ++it) {
+    UnkAnimListenersWalk walk(&self->listeners);
+    void** end = self->listeners.items.data + self->listeners.items.count;
+    for (void** it = self->listeners.items.data; it != end; ++it) {
         UnkAnimListener* listener = static_cast<UnkAnimListener*>(*it);
         if (!listener || !listener->callback || !listener->callback(listener->context, &msg))
-            fn_710117eb1c(reinterpret_cast<UnkAnimListeners_b52*>(&self->listeners), listener);
+            fn_710117eb1c(&self->listeners, listener);
     }
 }

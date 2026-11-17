@@ -3,6 +3,7 @@
 // +0x14c of the model's instance (fn_71001be428 of its +0x130; fn_710007b518) and to its material
 // block (+0x1f0, its +0x30) when there is one. Names and layout are placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -39,7 +40,7 @@ void fn_710080c9bc(UnkPlanktonFX_b44a2* self) {
         return;
     UnkPlanktonInstance_b44a2* instance = fn_71001be428(self->model->field_0x130);
     CVector4D value = {self->intensity, 0.0f, 0.0f, 1.0f};
-    fn_710007b518(&instance->param, &value);
+    Assign(instance->param, value);
     if (instance->material)
         *instance->material->params = value;
 }

@@ -5,6 +5,7 @@
 // placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/CMaterialFXComponent.h"
 #include "game/UnkTU1273.h"
 #include "types.h"
@@ -15,7 +16,7 @@ using base::math::CVector4D;
 // A colour whose assignment is the out-of-line one (fn_710007b518).
 struct UnkMaterialFXColor_l926aa0 : CVector4D {
     UnkMaterialFXColor_l926aa0& operator=(const UnkMaterialFXColor_l926aa0& other) {
-        fn_710007b518(this, &other);
+        Assign(*this, other);
         return *this;
     }
 };
@@ -95,7 +96,7 @@ void fn_7100926aa0(UnkMagnetFx_b0086* fx, UnkMagnetColorChange_b0086* change_) {
         case 0: {
             UnkMaterialFXSlots_l926aa0* s = Slots(key);
             u32 n = r->slot;
-            fn_710007b518(&s->field_0x240[n], &r->color);
+            Assign(s->field_0x240[n], r->color);
             if (UnkMaterialFXTarget_l926aa0* t = s->field_0x2e0[n])
                 *t->value = r->color;
             break;
@@ -103,7 +104,7 @@ void fn_7100926aa0(UnkMagnetFx_b0086* fx, UnkMagnetColorChange_b0086* change_) {
         case 1: {
             UnkMaterialFXSlots_l926aa0* s = Slots(key);
             u32 n = r->slot;
-            fn_710007b518(&s->field_0x14c[n], &r->color);
+            Assign(s->field_0x14c[n], r->color);
             if (UnkMaterialFXTarget_l926aa0* t = s->field_0x1f0[n])
                 *t->value = r->color;
             break;
