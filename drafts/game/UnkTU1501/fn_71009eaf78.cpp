@@ -44,7 +44,6 @@ struct UnkTimeline {
 };
 
 void fn_7101179d08(UnkAnimationComponent* self, UnkStruct_71007142e8* motion, const void* key);
-extern u8 g_unk_717270ec68;
 
 // A sampled motion: a transform first, then whether it holds anything (+0x5c).
 struct UnkSampledMotion_l9eaf78 {

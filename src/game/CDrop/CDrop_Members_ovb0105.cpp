@@ -12,7 +12,9 @@
 #include "game/CGameObject.h"
 #include "game/CLifeComponent.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/CPlayerLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkPlayerLifeTunable.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2561.h"
@@ -63,20 +65,6 @@ void fn_71007bfa70(CDrop* self) {
 
 struct UnkDroppableTunable;
 
-// The drop amount multipliers of the tunable g_unk_7172a0a0a8, by item id.
-struct UnkDropScaleTunable_b0105 {
-    u8 pad_0x0[0x90];
-    f32 field_0x90;
-    f32 field_0x94;
-    f32 field_0x98;
-    f32 field_0x9c;
-    f32 field_0xa0;
-    f32 field_0xa4;
-    f32 field_0xa8;
-    f32 field_0xac;
-};
-extern UnkDropScaleTunable_b0105 g_unk_7172a0a0a8;
-
 static inline f32 ScaledAmount(f32 amount, f32 scale) {
     f32 v = amount * scale;
     return v > 0.0f ? __builtin_ceilf(v) : __builtin_floorf(v);
@@ -87,23 +75,23 @@ f32 fn_71007bffe4(CDrop* self) {
     if (fn_7100dffc58(g_unk_7101d47310) == 3) {
         base::global::UnkStringData* item = self->item.data;
         if (item == g_unk_71727c1048.data)
-            return ScaledAmount(self->amount, g_unk_7172a0a0a8.field_0x90);
+            return ScaledAmount(self->amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_Life);
         if (item == g_unk_71727c1050.data)
-            return ScaledAmount(self->amount, g_unk_7172a0a0a8.field_0x94);
+            return ScaledAmount(self->amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_LifeBig);
         if (item == g_unk_71727c1058.data)
-            return ScaledAmount(self->amount, g_unk_7172a0a0a8.field_0x98);
+            return ScaledAmount(self->amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_Missile);
         if (item == g_unk_71727c1060.data)
-            return ScaledAmount(self->amount, g_unk_7172a0a0a8.field_0x9c);
+            return ScaledAmount(self->amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_MissileBig);
         if (item == g_unk_71727c1068.data)
-            return ScaledAmount(self->amount, g_unk_7172a0a0a8.field_0xa0);
+            return ScaledAmount(self->amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_PowerBomb);
         if (item == g_unk_71727c1070.data)
-            return ScaledAmount(self->amount, g_unk_7172a0a0a8.field_0xa4);
+            return ScaledAmount(self->amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_PowerBombBig);
         if (item == g_unk_71727c1078.data) {
             f32 amount = self->amount;
             f32 limit = *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_71727c10c8) + 0x60);
             if (amount + 0.001f >= limit && amount - 0.001f <= limit)
-                return ScaledAmount(amount, g_unk_7172a0a0a8.field_0xac);
-            return ScaledAmount(amount, g_unk_7172a0a0a8.field_0xa8);
+                return ScaledAmount(amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_MiniXMissile);
+            return ScaledAmount(amount, g_unk_7172a0a0a8.fEasyModeDropAmountFactor_MiniXLife);
         }
     }
     return self->amount;

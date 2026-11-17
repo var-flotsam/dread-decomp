@@ -2,7 +2,7 @@
 // two model flags, resets the mode's timers from the target at +0x146c8, and in mode 1 sends the
 // owner's sub-object a request and gives the owner's object at +0x1b8 the global tunable's +0x1ec;
 // in mode 0, unless the flag at +0x15d0 is set, calls fn_71006ba4fc. Names and layouts are placeholders.
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "game/CCharClassLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/CShelmitAIComponent.h"
@@ -11,11 +11,6 @@
 
 // Declared with this type in src/game/CCharClassCentralUnitAIComponent/fn_7100408770.cpp.
 struct UnkGroupIds;
-
-// As src/game/CGooplotAIComponent/CGooplotAIComponent_Reset_b49.cpp declares them.
-struct UnkFlagTarget;
-extern char g_unk_710164a738[];
-extern char g_unk_710164a730[];
 
 struct UnkShelmitObject_b56a3 {
     virtual void vf_0x0();

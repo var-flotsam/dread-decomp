@@ -1,10 +1,13 @@
 // CCharClassLifeComponent (unit 1368): a float tunable read through reflection by the name in an id, then
-// adjusted for one game mode: some names read 1, one is scaled. Names and layouts are placeholders.
+// adjusted for one game mode (the player life tunable's easy-mode members): with one-hit enemy projectiles
+// some names read 1; one is scaled by the Kraid bouncing creature life factor. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassLifeComponent.h"
+#include "game/CPlayerLifeComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkPlayerLifeTunable.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU85.h"
 #include "types.h"
@@ -55,14 +58,6 @@ struct UnkLifeValue_l8bbc24 {
     void* value;
 };
 
-// The tunable holding the mode's override flag and scale.
-struct UnkLifeModeTunable_l8bbc24 {
-    u8 pad_0x0[0xc8];
-    bool field_0xc8;
-    f32 field_0xcc;
-};
-extern UnkLifeModeTunable_l8bbc24 g_unk_7172a0a0a8;
-
 static inline bool Get(UnkLifeObject_l8bbc24* obj, u64 key, f32* out) {
     UnkLifeClass_l8bbc24* cls = obj->GetClass();
     UnkReflTypedPtr typed;
@@ -85,7 +80,7 @@ f32 fn_71008bbc24(const base::global::CStrId* id) {
     f32 v = 0.0f;
     Get(reinterpret_cast<UnkLifeObject_l8bbc24*>(&g_unk_717272fd38), Key(id), &v);
     if (fn_7100dffc58(g_unk_7101d47310) == 3) {
-        if (g_unk_7172a0a0a8.field_0xc8) {
+        if (g_unk_7172a0a0a8.bEasyModeEnemyProjectileOneHit) {
             switch (Key(id)) {
             case 0x1e3aac87b61753fbull:
             case 0x23984f5a2f80d606ull:
@@ -105,7 +100,7 @@ f32 fn_71008bbc24(const base::global::CStrId* id) {
             }
         }
         if (Key(id) == 0x87463de79a0a9546ull) {
-            f32 scaled = g_unk_7172a0a0a8.field_0xcc * v;
+            f32 scaled = g_unk_7172a0a0a8.fEasyModeKraidBouncingCreatureLifeFactor * v;
             v = scaled > 1.0f ? scaled : 1.0f;
         }
     }

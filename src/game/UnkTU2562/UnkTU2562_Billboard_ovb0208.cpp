@@ -15,6 +15,7 @@
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/CDropLayout.h"
 #include "game/CInventoryComponent.h"
+#include "game/UnkDropTunable_ovb0208.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
@@ -37,15 +38,6 @@
 using base::global::CStrId;
 
 // ---- The tunable ----
-
-extern void* g_unk_7101aa9cc8[];
-
-struct UnkDropTunable_ovb0208 : UnkTunable {
-    u8 pad_0x8[0x90];
-    base::global::CRntString n0, n1, n2, n3, n4, n5, n6, n7, n8;  // 0x98
-    u8 pad_0x248[0x10];
-};
-static_assert(sizeof(UnkDropTunable_ovb0208) == 0x258, "size");
 
 static inline void Destroy(UnkDropTunable_ovb0208* self) {
     self->vtable = g_unk_7101aa9cc8 + 2;
