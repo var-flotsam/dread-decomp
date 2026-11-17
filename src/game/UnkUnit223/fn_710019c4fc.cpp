@@ -15,7 +15,7 @@ static_assert(__builtin_offsetof(UnkFadeLayerColor, bytes) == 0x17c, "UnkFadeLay
 
 void fn_710019c4fc(UnkFadeLayer* layer, const base::color::CColor4F* color) {
     auto* self = reinterpret_cast<UnkFadeLayerColor*>(layer);
-    fn_7100030728(&self->color, color);
+    self->color = *color;
     self->bytes[0] = (u8)(s32)(self->color.r * 255.0f);
     self->bytes[1] = (u8)(s32)(self->color.g * 255.0f);
     self->bytes[2] = (u8)(s32)(self->color.b * 255.0f);

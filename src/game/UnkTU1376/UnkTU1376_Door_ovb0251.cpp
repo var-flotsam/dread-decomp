@@ -500,9 +500,9 @@ bool fn_71008d564c(UnkDoorLock* door, u32 value, const CStrId* id) {
         CColor4F colour(1.0f, 1.0f, 1.0f, 1.0f);
         if (self->field_0xa10 != 0xffffffff)
             fn_71001c2ec0(holder->gfx->slots, self->field_0xa10, 0, reinterpret_cast<CVector4D*>(&colour), 1, 0.21000001f);
-        fn_7100030728(&self->field_0x6e8, &g_unk_71727313a4.colours[0]);
-        fn_7100030728(&self->field_0x6f8, &g_unk_71727313a4.colours[1]);
-        fn_7100030728(&self->field_0x708, &g_unk_71727313a4.colours[2]);
+        self->field_0x6e8 = g_unk_71727313a4.colours[0];
+        self->field_0x6f8 = g_unk_71727313a4.colours[1];
+        self->field_0x708 = g_unk_71727313a4.colours[2];
         if (UnkLightingComponent2* light = reinterpret_cast<UnkLightingComponent2*>(fn_71008d5d2c(self->owner))) {
             base::math::UnkVector4D v = fn_7100030878(&colour);
             fn_71008e7e98(light, &g_unk_710164b098, &v, 0.0f);
