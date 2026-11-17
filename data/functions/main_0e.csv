@@ -510,7 +510,7 @@ address,size,name,name_source,subsystem,status
 0x7100e1d8d8,596,fn_7100e1d8d8,unknown,unknown,O
 0x7100e1db30,140,fn_7100e1db30,unknown,unknown,O
 0x7100e1dbc0,532,fn_7100e1dbc0,unknown,unknown,O
-0x7100e1dde0,1404,fn_7100e1dde0,unknown,unknown,U
+0x7100e1dde0,1404,fn_7100e1dde0,unknown,unknown,O
 0x7100e1e35c,4,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_AddAttributes,reflection,game,O
 0x7100e1e360,244,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_GetClass,reflection,game,O
 0x7100e1e454,9672,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_AddFields,reflection,game,O

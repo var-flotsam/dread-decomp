@@ -4053,7 +4053,7 @@ address,size,name,name_source,subsystem,status
 0x71008b4f88,26720,CCharClassLifeComponent::CTunableCharClassLifeComponent::refl_AddFields,reflection,game/characters,O
 0x71008bb7e8,388,CCharClassLifeComponent::CTunableCharClassLifeComponent::refl_InitClass,reflection,game/characters,O
 0x71008bb96c,696,fn_71008bb96c,unknown,game/characters?,O
-0x71008bbc24,868,fn_71008bbc24,unknown,game/characters?,U
+0x71008bbc24,868,fn_71008bbc24,unknown,game/characters?,O
 0x71008bbf88,4,CCharClassLifeComponent::refl_AddAttributes,reflection,game/characters,O
 0x71008bbf8c,244,CCharClassLifeComponent::refl_GetClass,reflection,game/characters,O
 0x71008bc080,2092,CCharClassLifeComponent::refl_AddFields,reflection,game/characters,O
