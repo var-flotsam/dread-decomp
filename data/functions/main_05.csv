@@ -176,10 +176,10 @@ address,size,name,name_source,subsystem,status
 0x7100509fac,512,fn_7100509fac,unknown,unknown,O
 0x710050a1ac,4,fn_710050a1ac,unknown,unknown,O
 0x710050a1b0,348,fn_710050a1b0,unknown,unknown,O
-0x710050a30c,500,fn_710050a30c,unknown,unknown,U
+0x710050a30c,500,fn_710050a30c,unknown,unknown,O
 0x710050a500,1016,fn_710050a500,unknown,unknown,O
 0x710050a8f8,492,fn_710050a8f8,unknown,unknown,O
-0x710050aae4,752,fn_710050aae4,unknown,unknown,U
+0x710050aae4,752,fn_710050aae4,unknown,unknown,O
 0x710050add4,432,fn_710050add4,unknown,unknown,O
 0x710050af84,76,fn_710050af84,unknown,unknown,O
 0x710050afd0,460,fn_710050afd0,unknown,unknown,U

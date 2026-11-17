@@ -1044,7 +1044,7 @@ address,size,name,name_source,subsystem,status
 0x710042ffa0,388,CChozoCommanderKiGrabAttack::refl_InitClass,reflection,game/ai,O
 0x7100430124,676,fn_7100430124,unknown,game/ai?,U
 0x71004303c8,100,fn_71004303c8,unknown,game/ai?,O
-0x710043042c,992,fn_710043042c,unknown,game/ai?,U
+0x710043042c,992,fn_710043042c,unknown,game/ai?,O
 0x710043080c,4,fn_710043080c,unknown,game/ai?,O
 0x7100430810,32,fn_7100430810,unknown,game/ai?,O
 0x7100430830,300,fn_7100430830,unknown,game/ai?,m
@@ -2964,7 +2964,7 @@ address,size,name,name_source,subsystem,status
 0x71004866fc,696,fn_71004866fc,unknown,unknown,O
 0x71004869b4,976,fn_71004869b4,unknown,unknown,U
 0x7100486d84,100,fn_7100486d84,unknown,unknown,O
-0x7100486de8,1568,fn_7100486de8,unknown,unknown,U
+0x7100486de8,1568,fn_7100486de8,unknown,unknown,O
 0x7100487408,92,fn_7100487408,unknown,unknown,O
 0x7100487464,32,fn_7100487464,unknown,unknown,O
 0x7100487484,264,fn_7100487484,unknown,unknown,O
