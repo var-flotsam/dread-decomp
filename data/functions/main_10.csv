@@ -932,10 +932,10 @@ address,size,name,name_source,subsystem,status
 0x7101035574,220,fn_7101035574,unknown,unknown,O
 0x7101035650,220,fn_7101035650,unknown,unknown,O
 0x710103572c,900,fn_710103572c,unknown,unknown,O
-0x7101035ab0,388,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_InitClass",reflection,engine/reflection,O
-0x7101035c34,220,fn_7101035c34,unknown,engine/reflection?,O
-0x7101035d10,900,fn_7101035d10,unknown,engine/reflection?,O
-0x7101036094,388,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_InitClass",reflection,engine/reflection,O
+0x7101035ab0,388,fn_7101035ab0,unknown,unknown,O
+0x7101035c34,220,fn_7101035c34,unknown,unknown,O
+0x7101035d10,900,fn_7101035d10,unknown,unknown,O
+0x7101036094,388,fn_7101036094,unknown,unknown,O
 0x7101036218,220,fn_7101036218,unknown,unknown,O
 0x71010362f4,504,fn_71010362f4,unknown,unknown,O
 0x71010364ec,220,fn_71010364ec,unknown,unknown,O
@@ -1215,27 +1215,27 @@ address,size,name,name_source,subsystem,status
 0x710103bc40,68,fn_710103bc40,unknown,unknown,O
 0x710103bc84,76,fn_710103bc84,unknown,unknown,O
 0x710103bcd0,68,fn_710103bcd0,unknown,unknown,O
-0x710103bd14,12,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Equals",reflection,engine/reflection,O
-0x710103bd20,8,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Hash",reflection,engine/reflection,O
-0x710103bd28,12,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_TypeOf",reflection,engine/reflection,O
-0x710103bd34,8,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Construct",reflection,engine/reflection,O
-0x710103bd3c,8,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_CopyConstruct",reflection,engine/reflection,O
-0x710103bd44,4,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_MoveConstruct",reflection,engine/reflection,O
-0x710103bd48,60,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Destroy",reflection,engine/reflection,O
-0x710103bd84,180,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_CopyAssign",reflection,engine/reflection,U
-0x710103be38,180,"base::reflection::KeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_MoveAssign",reflection,engine/reflection,O
-0x710103beec,304,fn_710103beec,unknown,engine/reflection?,O
-0x710103c01c,80,fn_710103c01c,unknown,engine/reflection?,O
-0x710103c06c,56,fn_710103c06c,unknown,engine/reflection?,O
-0x710103c0a4,12,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Equals",reflection,engine/reflection,O
-0x710103c0b0,8,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Hash",reflection,engine/reflection,O
-0x710103c0b8,12,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_TypeOf",reflection,engine/reflection,O
-0x710103c0c4,8,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Construct",reflection,engine/reflection,O
-0x710103c0cc,8,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_CopyConstruct",reflection,engine/reflection,O
-0x710103c0d4,68,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_MoveConstruct",reflection,engine/reflection,O
-0x710103c118,60,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_Destroy",reflection,engine/reflection,O
-0x710103c154,8,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_CopyAssign",reflection,engine/reflection,O
-0x710103c15c,8,"base::reflection::ConstKeyElementValue<base::global::CArray<sound::CAudioMaterial, EnumClass<base::snd::EMaterial>::Count, base::snd::EMaterial>>::refl_MoveAssign",reflection,engine/reflection,O
+0x710103bd14,12,fn_710103bd14,unknown,unknown,O
+0x710103bd20,8,fn_710103bd20,unknown,unknown,O
+0x710103bd28,12,fn_710103bd28,unknown,unknown,O
+0x710103bd34,8,fn_710103bd34,unknown,unknown,O
+0x710103bd3c,8,fn_710103bd3c,unknown,unknown,O
+0x710103bd44,4,fn_710103bd44,unknown,unknown,O
+0x710103bd48,60,fn_710103bd48,unknown,unknown,O
+0x710103bd84,180,fn_710103bd84,unknown,unknown,U
+0x710103be38,180,fn_710103be38,unknown,unknown,O
+0x710103beec,304,fn_710103beec,unknown,unknown,O
+0x710103c01c,80,fn_710103c01c,unknown,unknown,O
+0x710103c06c,56,fn_710103c06c,unknown,unknown,O
+0x710103c0a4,12,fn_710103c0a4,unknown,unknown,O
+0x710103c0b0,8,fn_710103c0b0,unknown,unknown,O
+0x710103c0b8,12,fn_710103c0b8,unknown,unknown,O
+0x710103c0c4,8,fn_710103c0c4,unknown,unknown,O
+0x710103c0cc,8,fn_710103c0cc,unknown,unknown,O
+0x710103c0d4,68,fn_710103c0d4,unknown,unknown,O
+0x710103c118,60,fn_710103c118,unknown,unknown,O
+0x710103c154,8,fn_710103c154,unknown,unknown,O
+0x710103c15c,8,fn_710103c15c,unknown,unknown,O
 0x710103c164,80,fn_710103c164,unknown,unknown,O
 0x710103c1b4,56,fn_710103c1b4,unknown,unknown,O
 0x710103c1ec,8,fn_710103c1ec,unknown,unknown,O

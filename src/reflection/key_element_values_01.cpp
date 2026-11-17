@@ -18,10 +18,7 @@ class CEditorRailSegment;
 class CEntity;
 class CLightInfo;
 class CLightsDef;
-class CShotAudioWeaponStates;
 class EMapTutoType;
-class EWeaponState;
-class EWeaponType;
 class SCameraRailNode;
 class SCameraSubRail;
 class SDoorInfo;
@@ -68,7 +65,6 @@ namespace GUI::CMissionLog { class TMissionLogEntries; }
 namespace base::global { class CFilePathStrId; }
 namespace base::global { class CRntString; }
 namespace base::global { class CStrId; }
-namespace base::global { template <class, class, class> class CArray; }
 namespace base::global { template <class, class> class CRntDictionary; }
 namespace base::global { template <class, class> class CRntPooledDictionary; }
 namespace base::global { template <class, class> class CRntSmallDictionary; }
@@ -80,47 +76,6 @@ namespace game::logic::collision { class CShape; }
 namespace gameeditor { class EPersistenceTarget; }
 namespace minimapGrid { class TMinimapVisMap; }
 template <class> class CGameLink;
-template <class> class EnumClass { public: struct Count; };
-
-// The pair base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>'s key-element iterator yields.
-template <>
-s32 KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>::refl_Hash() { return -1; }
-template <>
-struct KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>::refl_Description : ClassDescription {
-    static constexpr u64 size = 0x38;
-    static constexpr auto equals = &refl_Equals;
-    static constexpr auto hash = &refl_Hash;
-    static constexpr auto type_of = &refl_TypeOf;
-    static constexpr auto construct = &refl_Construct;
-    static constexpr auto copy_construct = &refl_CopyConstruct;
-    static constexpr auto move_construct = &refl_MoveConstruct;
-    static constexpr auto destroy = &refl_Destroy;
-    static constexpr auto copy_assign = &refl_CopyAssign;
-    static constexpr auto move_assign = &refl_MoveAssign;
-};
-DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>);
-
-// The pair base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>'s const key-element iterator yields.
-template <>
-s32 ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>::refl_Hash() { return -1; }
-template <>
-void* ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>::refl_CopyAssign(void*, const void*) { return nullptr; }
-template <>
-void* ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>::refl_MoveAssign(void*, const void*) { return nullptr; }
-template <>
-struct ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>::refl_Description : ClassDescription {
-    static constexpr u64 size = 0x38;
-    static constexpr auto equals = &refl_Equals;
-    static constexpr auto hash = &refl_Hash;
-    static constexpr auto type_of = &refl_TypeOf;
-    static constexpr auto construct = &refl_Construct;
-    static constexpr auto copy_construct = &refl_CopyConstruct;
-    static constexpr auto move_construct = &refl_MoveConstruct;
-    static constexpr auto destroy = &refl_Destroy;
-    static constexpr auto copy_assign = &refl_CopyAssign;
-    static constexpr auto move_assign = &refl_MoveAssign;
-};
-DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>>);
 
 // The pair base::global::CRntVector<SDoorInfo>'s key-element iterator yields.
 template <>
@@ -2349,90 +2304,6 @@ struct ConstKeyElementValue<base::global::CRntVector<EMapTutoType>>::refl_Descri
     static constexpr auto move_assign = &refl_MoveAssign;
 };
 DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CRntVector<EMapTutoType>>);
-
-// The pair base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>'s key-element iterator yields.
-template <>
-s32 KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Hash() { return -1; }
-template <>
-struct KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
-    static constexpr auto equals = &refl_Equals;
-    static constexpr auto hash = &refl_Hash;
-    static constexpr auto type_of = &refl_TypeOf;
-    static constexpr auto construct = &refl_Construct;
-    static constexpr auto copy_construct = &refl_CopyConstruct;
-    static constexpr auto move_construct = &refl_MoveConstruct;
-    static constexpr auto destroy = &refl_Destroy;
-    static constexpr auto copy_assign = &refl_CopyAssign;
-    static constexpr auto move_assign = &refl_MoveAssign;
-};
-DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>);
-
-// The pair base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>'s const key-element iterator yields.
-template <>
-s32 ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Hash() { return -1; }
-template <>
-void* ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_CopyAssign(void*, const void*) { return nullptr; }
-template <>
-void* ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_MoveAssign(void*, const void*) { return nullptr; }
-template <>
-struct ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Description : ClassDescription {
-    static constexpr u64 size = 0x18;
-    static constexpr auto equals = &refl_Equals;
-    static constexpr auto hash = &refl_Hash;
-    static constexpr auto type_of = &refl_TypeOf;
-    static constexpr auto construct = &refl_Construct;
-    static constexpr auto copy_construct = &refl_CopyConstruct;
-    static constexpr auto move_construct = &refl_MoveConstruct;
-    static constexpr auto destroy = &refl_Destroy;
-    static constexpr auto copy_assign = &refl_CopyAssign;
-    static constexpr auto move_assign = &refl_MoveAssign;
-};
-DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>);
-
-// The pair base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>'s key-element iterator yields.
-template <>
-bool KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Equals(const void* a, const void* b) { return a == b; }
-template <>
-s32 KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Hash() { return -1; }
-template <>
-struct KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Description : ClassDescription {
-    static constexpr u64 size = 0x50;
-    static constexpr auto equals = &refl_Equals;
-    static constexpr auto hash = &refl_Hash;
-    static constexpr auto type_of = &refl_TypeOf;
-    static constexpr auto construct = &refl_Construct;
-    static constexpr auto copy_construct = &refl_CopyConstruct;
-    static constexpr auto move_construct = &refl_MoveConstruct;
-    static constexpr auto destroy = &refl_Destroy;
-    static constexpr auto copy_assign = &refl_CopyAssign;
-    static constexpr auto move_assign = &refl_MoveAssign;
-};
-DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>);
-
-// The pair base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>'s const key-element iterator yields.
-template <>
-bool ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Equals(const void* a, const void* b) { return a == b; }
-template <>
-s32 ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Hash() { return -1; }
-template <>
-void* ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_CopyAssign(void*, const void*) { return nullptr; }
-template <>
-void* ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_MoveAssign(void*, const void*) { return nullptr; }
-template <>
-struct ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Description : ClassDescription {
-    static constexpr u64 size = 0x50;
-    static constexpr auto equals = &refl_Equals;
-    static constexpr auto hash = &refl_Hash;
-    static constexpr auto type_of = &refl_TypeOf;
-    static constexpr auto construct = &refl_Construct;
-    static constexpr auto copy_construct = &refl_CopyConstruct;
-    static constexpr auto move_construct = &refl_MoveConstruct;
-    static constexpr auto destroy = &refl_Destroy;
-    static constexpr auto copy_assign = &refl_CopyAssign;
-    static constexpr auto move_assign = &refl_MoveAssign;
-};
-DREAD_REFLECTED_DESCRIPTOR(ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>);
 
 // The pair base::global::CRntVector<CEnvironmentData::SFogTransition>'s key-element iterator yields.
 template <>

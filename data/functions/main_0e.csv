@@ -3384,10 +3384,10 @@ address,size,name,name_source,subsystem,status
 0x7100ed0814,220,fn_7100ed0814,unknown,unknown,O
 0x7100ed08f0,220,fn_7100ed08f0,unknown,unknown,O
 0x7100ed09cc,900,fn_7100ed09cc,unknown,unknown,O
-0x7100ed0d50,388,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_InitClass",reflection,engine/reflection,O
-0x7100ed0ed4,220,fn_7100ed0ed4,unknown,engine/reflection?,O
-0x7100ed0fb0,900,fn_7100ed0fb0,unknown,engine/reflection?,O
-0x7100ed1334,388,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_InitClass",reflection,engine/reflection,O
+0x7100ed0d50,388,fn_7100ed0d50,unknown,unknown,O
+0x7100ed0ed4,220,fn_7100ed0ed4,unknown,unknown,O
+0x7100ed0fb0,900,fn_7100ed0fb0,unknown,unknown,O
+0x7100ed1334,388,fn_7100ed1334,unknown,unknown,O
 0x7100ed14b8,220,fn_7100ed14b8,unknown,unknown,O
 0x7100ed1594,500,fn_7100ed1594,unknown,unknown,O
 0x7100ed1788,220,fn_7100ed1788,unknown,unknown,O
@@ -3395,18 +3395,18 @@ address,size,name,name_source,subsystem,status
 0x7100ed1940,264,fn_7100ed1940,unknown,unknown,O
 0x7100ed1a48,388,CShotAudioWeaponStates::refl_InitClass,reflection,game,O
 0x7100ed1bcc,220,base::reflection::refl_GetType<CShotAudioWeaponStates*>,reflection,engine/reflection,O
-0x7100ed1ca8,220,fn_7100ed1ca8,unknown,unknown,O
-0x7100ed1d84,220,fn_7100ed1d84,unknown,unknown,O
-0x7100ed1e60,900,fn_7100ed1e60,unknown,unknown,O
-0x7100ed21e4,388,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_InitClass",reflection,engine/reflection,O
-0x7100ed2368,220,fn_7100ed2368,unknown,engine/reflection?,O
-0x7100ed2444,900,fn_7100ed2444,unknown,engine/reflection?,O
-0x7100ed27c8,388,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_InitClass",reflection,engine/reflection,O
-0x7100ed294c,220,fn_7100ed294c,unknown,unknown,O
-0x7100ed2a28,504,fn_7100ed2a28,unknown,unknown,O
-0x7100ed2c20,220,fn_7100ed2c20,unknown,unknown,O
-0x7100ed2cfc,220,fn_7100ed2cfc,unknown,unknown,O
-0x7100ed2dd8,268,fn_7100ed2dd8,unknown,unknown,O
+0x7100ed1ca8,220,fn_7100ed1ca8,unknown,game?,O
+0x7100ed1d84,220,fn_7100ed1d84,unknown,game?,O
+0x7100ed1e60,900,fn_7100ed1e60,unknown,game?,O
+0x7100ed21e4,388,fn_7100ed21e4,unknown,game?,O
+0x7100ed2368,220,fn_7100ed2368,unknown,game?,O
+0x7100ed2444,900,fn_7100ed2444,unknown,game?,O
+0x7100ed27c8,388,fn_7100ed27c8,unknown,game?,O
+0x7100ed294c,220,fn_7100ed294c,unknown,game?,O
+0x7100ed2a28,504,fn_7100ed2a28,unknown,game?,O
+0x7100ed2c20,220,fn_7100ed2c20,unknown,game?,O
+0x7100ed2cfc,220,fn_7100ed2cfc,unknown,game?,O
+0x7100ed2dd8,268,fn_7100ed2dd8,unknown,game?,O
 0x7100ed2ee4,388,CShotAudioWeaponPresets::refl_InitClass,reflection,game,O
 0x7100ed3068,220,base::reflection::refl_GetType<CShotAudioWeaponPresets*>,reflection,engine/reflection,O
 0x7100ed3144,580,fn_7100ed3144,unknown,game?,O
@@ -3664,27 +3664,27 @@ address,size,name,name_source,subsystem,status
 0x7100edabb4,4,base::reflection::ValueOps<EWeaponState>::Destroy,reflection,engine/reflection,O
 0x7100edabb8,20,base::reflection::ValueOps<EWeaponState>::CopyAssign,reflection,engine/reflection,O
 0x7100edabcc,20,base::reflection::ValueOps<EWeaponState>::MoveAssign,reflection,engine/reflection,O
-0x7100edabe0,144,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Equals",reflection,engine/reflection,O
-0x7100edac70,8,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Hash",reflection,engine/reflection,O
-0x7100edac78,12,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_TypeOf",reflection,engine/reflection,O
-0x7100edac84,8,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Construct",reflection,engine/reflection,O
-0x7100edac8c,8,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_CopyConstruct",reflection,engine/reflection,O
-0x7100edac94,88,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_MoveConstruct",reflection,engine/reflection,O
-0x7100edacec,128,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Destroy",reflection,engine/reflection,O
-0x7100edad6c,288,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_CopyAssign",reflection,engine/reflection,O
-0x7100edae8c,48,"base::reflection::KeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_MoveAssign",reflection,engine/reflection,O
-0x7100edaebc,272,fn_7100edaebc,unknown,engine/reflection?,O
-0x7100edafcc,80,fn_7100edafcc,unknown,engine/reflection?,O
-0x7100edb01c,84,fn_7100edb01c,unknown,engine/reflection?,O
-0x7100edb070,144,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Equals",reflection,engine/reflection,O
-0x7100edb100,8,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Hash",reflection,engine/reflection,O
-0x7100edb108,12,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_TypeOf",reflection,engine/reflection,O
-0x7100edb114,8,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Construct",reflection,engine/reflection,O
-0x7100edb11c,8,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_CopyConstruct",reflection,engine/reflection,O
-0x7100edb124,112,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_MoveConstruct",reflection,engine/reflection,O
-0x7100edb194,128,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_Destroy",reflection,engine/reflection,O
-0x7100edb214,8,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_CopyAssign",reflection,engine/reflection,O
-0x7100edb21c,8,"base::reflection::ConstKeyElementValue<base::global::CArray<base::global::CFilePathStrId, EnumClass<EWeaponState>::Count, EWeaponState>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100edabe0,144,fn_7100edabe0,unknown,unknown,O
+0x7100edac70,8,fn_7100edac70,unknown,unknown,O
+0x7100edac78,12,fn_7100edac78,unknown,unknown,O
+0x7100edac84,8,fn_7100edac84,unknown,unknown,O
+0x7100edac8c,8,fn_7100edac8c,unknown,unknown,O
+0x7100edac94,88,fn_7100edac94,unknown,unknown,O
+0x7100edacec,128,fn_7100edacec,unknown,unknown,O
+0x7100edad6c,288,fn_7100edad6c,unknown,unknown,O
+0x7100edae8c,48,fn_7100edae8c,unknown,unknown,O
+0x7100edaebc,272,fn_7100edaebc,unknown,unknown,O
+0x7100edafcc,80,fn_7100edafcc,unknown,unknown,O
+0x7100edb01c,84,fn_7100edb01c,unknown,unknown,O
+0x7100edb070,144,fn_7100edb070,unknown,unknown,O
+0x7100edb100,8,fn_7100edb100,unknown,unknown,O
+0x7100edb108,12,fn_7100edb108,unknown,unknown,O
+0x7100edb114,8,fn_7100edb114,unknown,unknown,O
+0x7100edb11c,8,fn_7100edb11c,unknown,unknown,O
+0x7100edb124,112,fn_7100edb124,unknown,unknown,O
+0x7100edb194,128,fn_7100edb194,unknown,unknown,O
+0x7100edb214,8,fn_7100edb214,unknown,unknown,O
+0x7100edb21c,8,fn_7100edb21c,unknown,unknown,O
 0x7100edb224,80,fn_7100edb224,unknown,unknown,O
 0x7100edb274,84,fn_7100edb274,unknown,unknown,O
 0x7100edb2c8,8,fn_7100edb2c8,unknown,unknown,O
@@ -3722,53 +3722,53 @@ address,size,name,name_source,subsystem,status
 0x7100edc618,4,CShotAudioWeaponStates::refl_Destroy,reflection,game,O
 0x7100edc61c,48,CShotAudioWeaponStates::refl_CopyAssign,reflection,game,O
 0x7100edc64c,48,CShotAudioWeaponStates::refl_MoveAssign,reflection,game,O
-0x7100edc67c,12,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Equals",reflection,engine/reflection,O
-0x7100edc688,8,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Hash",reflection,engine/reflection,O
-0x7100edc690,12,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_TypeOf",reflection,engine/reflection,O
-0x7100edc69c,8,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Construct",reflection,engine/reflection,O
-0x7100edc6a4,8,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_CopyConstruct",reflection,engine/reflection,O
-0x7100edc6ac,76,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_MoveConstruct",reflection,engine/reflection,U
-0x7100edc6f8,60,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Destroy",reflection,engine/reflection,O
-0x7100edc734,152,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_CopyAssign",reflection,engine/reflection,O
-0x7100edc7cc,184,"base::reflection::KeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_MoveAssign",reflection,engine/reflection,O
-0x7100edc884,80,fn_7100edc884,unknown,engine/reflection?,O
-0x7100edc8d4,56,fn_7100edc8d4,unknown,engine/reflection?,O
-0x7100edc90c,12,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Equals",reflection,engine/reflection,O
-0x7100edc918,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Hash",reflection,engine/reflection,O
-0x7100edc920,12,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_TypeOf",reflection,engine/reflection,O
-0x7100edc92c,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Construct",reflection,engine/reflection,O
-0x7100edc934,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_CopyConstruct",reflection,engine/reflection,O
-0x7100edc93c,76,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_MoveConstruct",reflection,engine/reflection,U
-0x7100edc988,60,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_Destroy",reflection,engine/reflection,O
-0x7100edc9c4,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_CopyAssign",reflection,engine/reflection,O
-0x7100edc9cc,8,"base::reflection::ConstKeyElementValue<base::global::CArray<CShotAudioWeaponStates, EnumClass<EWeaponType>::Count, EWeaponType>>::refl_MoveAssign",reflection,engine/reflection,O
-0x7100edc9d4,80,fn_7100edc9d4,unknown,unknown,O
-0x7100edca24,56,fn_7100edca24,unknown,unknown,O
-0x7100edca5c,8,fn_7100edca5c,unknown,unknown,O
-0x7100edca64,4,fn_7100edca64,unknown,unknown,O
-0x7100edca68,16,fn_7100edca68,unknown,unknown,O
-0x7100edca78,16,fn_7100edca78,unknown,unknown,O
-0x7100edca88,84,fn_7100edca88,unknown,unknown,O
-0x7100edcadc,12,fn_7100edcadc,unknown,unknown,O
-0x7100edcae8,20,fn_7100edcae8,unknown,unknown,O
-0x7100edcafc,16,fn_7100edcafc,unknown,unknown,O
-0x7100edcb0c,16,fn_7100edcb0c,unknown,unknown,O
-0x7100edcb1c,12,fn_7100edcb1c,unknown,unknown,O
-0x7100edcb28,8,fn_7100edcb28,unknown,unknown,O
-0x7100edcb30,12,fn_7100edcb30,unknown,unknown,O
-0x7100edcb3c,4,fn_7100edcb3c,unknown,unknown,O
-0x7100edcb40,4,fn_7100edcb40,unknown,unknown,O
-0x7100edcb44,4,fn_7100edcb44,unknown,unknown,O
-0x7100edcb48,4,fn_7100edcb48,unknown,unknown,O
-0x7100edcb4c,48,fn_7100edcb4c,unknown,unknown,O
-0x7100edcb7c,48,fn_7100edcb7c,unknown,unknown,O
-0x7100edcbac,420,fn_7100edcbac,unknown,unknown,O
-0x7100edcd50,220,fn_7100edcd50,unknown,unknown,O
-0x7100edce2c,696,fn_7100edce2c,unknown,unknown,O
-0x7100edd0e4,8,fn_7100edd0e4,unknown,unknown,O
-0x7100edd0ec,12,fn_7100edd0ec,unknown,unknown,O
-0x7100edd0f8,196,fn_7100edd0f8,unknown,unknown,U
-0x7100edd1bc,176,fn_7100edd1bc,unknown,unknown,O
+0x7100edc67c,12,fn_7100edc67c,unknown,game?,O
+0x7100edc688,8,fn_7100edc688,unknown,game?,O
+0x7100edc690,12,fn_7100edc690,unknown,game?,O
+0x7100edc69c,8,fn_7100edc69c,unknown,game?,O
+0x7100edc6a4,8,fn_7100edc6a4,unknown,game?,O
+0x7100edc6ac,76,fn_7100edc6ac,unknown,game?,U
+0x7100edc6f8,60,fn_7100edc6f8,unknown,game?,O
+0x7100edc734,152,fn_7100edc734,unknown,game?,O
+0x7100edc7cc,184,fn_7100edc7cc,unknown,game?,O
+0x7100edc884,80,fn_7100edc884,unknown,game?,O
+0x7100edc8d4,56,fn_7100edc8d4,unknown,game?,O
+0x7100edc90c,12,fn_7100edc90c,unknown,game?,O
+0x7100edc918,8,fn_7100edc918,unknown,game?,O
+0x7100edc920,12,fn_7100edc920,unknown,game?,O
+0x7100edc92c,8,fn_7100edc92c,unknown,game?,O
+0x7100edc934,8,fn_7100edc934,unknown,game?,O
+0x7100edc93c,76,fn_7100edc93c,unknown,game?,U
+0x7100edc988,60,fn_7100edc988,unknown,game?,O
+0x7100edc9c4,8,fn_7100edc9c4,unknown,game?,O
+0x7100edc9cc,8,fn_7100edc9cc,unknown,game?,O
+0x7100edc9d4,80,fn_7100edc9d4,unknown,game?,O
+0x7100edca24,56,fn_7100edca24,unknown,game?,O
+0x7100edca5c,8,fn_7100edca5c,unknown,game?,O
+0x7100edca64,4,fn_7100edca64,unknown,game?,O
+0x7100edca68,16,fn_7100edca68,unknown,game?,O
+0x7100edca78,16,fn_7100edca78,unknown,game?,O
+0x7100edca88,84,fn_7100edca88,unknown,game?,O
+0x7100edcadc,12,fn_7100edcadc,unknown,game?,O
+0x7100edcae8,20,fn_7100edcae8,unknown,game?,O
+0x7100edcafc,16,fn_7100edcafc,unknown,game?,O
+0x7100edcb0c,16,fn_7100edcb0c,unknown,game?,O
+0x7100edcb1c,12,fn_7100edcb1c,unknown,game?,O
+0x7100edcb28,8,fn_7100edcb28,unknown,game?,O
+0x7100edcb30,12,fn_7100edcb30,unknown,game?,O
+0x7100edcb3c,4,fn_7100edcb3c,unknown,game?,O
+0x7100edcb40,4,fn_7100edcb40,unknown,game?,O
+0x7100edcb44,4,fn_7100edcb44,unknown,game?,O
+0x7100edcb48,4,fn_7100edcb48,unknown,game?,O
+0x7100edcb4c,48,fn_7100edcb4c,unknown,game?,O
+0x7100edcb7c,48,fn_7100edcb7c,unknown,game?,O
+0x7100edcbac,420,fn_7100edcbac,unknown,game?,O
+0x7100edcd50,220,fn_7100edcd50,unknown,game?,O
+0x7100edce2c,696,fn_7100edce2c,unknown,game?,O
+0x7100edd0e4,8,fn_7100edd0e4,unknown,game?,O
+0x7100edd0ec,12,fn_7100edd0ec,unknown,game?,O
+0x7100edd0f8,196,fn_7100edd0f8,unknown,game?,U
+0x7100edd1bc,176,fn_7100edd1bc,unknown,game?,O
 0x7100edd26c,12,CShotAudioWeaponPresets::refl_Equals,reflection,game,O
 0x7100edd278,8,CShotAudioWeaponPresets::refl_Hash,reflection,game,O
 0x7100edd280,12,CShotAudioWeaponPresets::refl_TypeOf,reflection,game,O
