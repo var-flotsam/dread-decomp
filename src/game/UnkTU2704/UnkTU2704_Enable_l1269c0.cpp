@@ -20,9 +20,9 @@ struct UnkPropertyName;
 
 // The slot of the "Enabled" property among the component's keys; the key count when it is not there.
 static inline u64 IndexOfKey(CSpawnPointComponent* self) {
-    u64 count = self->field_0x2a0;
+    u64 count = self->field_0x290.count;
     for (u64 i = 0; i != count; i++) {
-        if (self->field_0x298[i] == g_unk_7172a06908.name.data)
+        if (self->field_0x290.keys[i].data == g_unk_7172a06908.name.data)
             return i;
     }
     return count;
@@ -43,8 +43,7 @@ bool fn_71011269c0(CSpawnPointComponent* self) {
         }
         if (section) {
             u64 index = IndexOfKey(self);
-            u8* entries = static_cast<u8*>(self->field_0x290);
-            UnkPropertyName* name = reinterpret_cast<UnkPropertyName*>(entries + index * 16);
+            UnkPropertyName* name = reinterpret_cast<UnkPropertyName*>(&self->field_0x290.values[index].id);
             value = true;
             if (!blackboard->field_0xe8) {
                 typed.type = fn_710000d228();

@@ -30,7 +30,7 @@ struct UnkRef_c3 {
 static CActor* Get(CGameLink<CActor>& link) {
     if (link.state == 1) {
         {
-            UnkRef_c3 ref = fn_71003df480(link.key);
+            UnkRef_c3 ref = fn_71003df480(&link.callbacks);
             fn_71006eb8cc(&link.handle, reinterpret_cast<const base::UnkRefHandle*>(&ref));
         }
         link.state = 2;
