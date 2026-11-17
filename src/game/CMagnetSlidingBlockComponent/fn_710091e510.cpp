@@ -149,18 +149,14 @@ struct UnkObj_710091e510 : UnkBaseComponent {
     UnkCallbackList field_0x428;
     u8 pad_0x468[0x8];
     UnkStrIdField field_0x470;
-    UnkStrIdTable field_0x478;
+    UnkOwnedStrIdTable field_0x478;
     UnkCallbackList field_0x4a0;
 };
 
 void fn_710091e510(UnkObj_710091e510* self) {
     self->vtable = g_unk_7101a82960 + 2;
     self->field_0x4a0.Destroy();
-    fn_71004f11f8(&self->field_0x478);
-    if (self->field_0x478.keys)
-        self->field_0x478.allocator->vf_0x48(self->field_0x478.keys);
-    if (self->field_0x478.values)
-        self->field_0x478.allocator->vf_0x48(self->field_0x478.values);
+    self->field_0x478.~UnkOwnedStrIdTable();
     self->field_0x470.Release();
     self->field_0x428.Destroy();
     self->field_0x418.Release();

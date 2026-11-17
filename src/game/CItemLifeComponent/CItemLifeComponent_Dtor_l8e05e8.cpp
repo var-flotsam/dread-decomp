@@ -39,21 +39,11 @@ struct UnkItemLifeListener_l8e05e8 {
     }
 };
 
-struct UnkItemLifeTable_l8e05e8 : UnkStrIdTable {
-    ~UnkItemLifeTable_l8e05e8() {
-        fn_71004f11f8(this);
-        if (keys)
-            allocator->vf_0x48(keys);
-        if (values)
-            allocator->vf_0x48(values);
-    }
-};
-
 struct UnkItemLifeComponent_l8e05e8 {
     void** vtable;
     u8 pad_0x8[0x258];
     base::UnkStrIdMember name;                   // 0x260
-    UnkItemLifeTable_l8e05e8 table;              // 0x268
+    UnkOwnedStrIdTable table;                    // 0x268
     base::global::CRntVector<void**> lists[3];   // 0x290
     u8 pad_0x308[0x10];
     UnkItemLifeListener_l8e05e8 listener;        // 0x318
@@ -72,7 +62,7 @@ void fn_71008e05e8(void* p) {
     self->lists[2].Free();
     self->lists[1].Free();
     self->lists[0].Free();
-    self->table.~UnkItemLifeTable_l8e05e8();
+    self->table.~UnkOwnedStrIdTable();
     using base::UnkStrIdMember;
     self->name.~UnkStrIdMember();
     fn_710115f91c(self);

@@ -25,8 +25,8 @@ struct UnkStrIdTable {
 static_assert(sizeof(UnkStrIdTable) == 0x28, "UnkStrIdTable placeholder layout");
 
 // The table as a member owns it: destroyed by resetting its ids (fn_71004f11f8), then freeing the keys and
-// the values (CSpawnPointComponent's destructor fn_7101125c90; the destructors of other classes still
-// write the same sequence with a table type of their own).
+// the values (CSpawnPointComponent's destructor fn_7101125c90, and every other destructor that destroys
+// such a member).
 struct UnkOwnedStrIdTable;
 
 // Resets every id in both arrays to the empty id and clears the count. Not decompiled yet.

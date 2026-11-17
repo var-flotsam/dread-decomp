@@ -50,23 +50,13 @@ struct UnkCommanderXListener_l8bd4c0 {
     }
 };
 
-struct UnkCommanderXTable_l8bd4c0 : UnkStrIdTable {
-    ~UnkCommanderXTable_l8bd4c0() {
-        fn_71004f11f8(this);
-        if (keys)
-            allocator->vf_0x48(keys);
-        if (values)
-            allocator->vf_0x48(values);
-    }
-};
-
 struct UnkCommanderXLife_l8bd4c0 {
     void** vtable;
     u8 pad_0x8[0x240];
     UnkCommanderXListener_l8bd4c0 listener;        // 0x248
     u8 pad_0x268[0x18];
     base::UnkStrIdMember name;                     // 0x280
-    UnkCommanderXTable_l8bd4c0 table;              // 0x288
+    UnkOwnedStrIdTable table;                      // 0x288
     UnkCommanderXCallbackList_l8bd4c0 callbacks_a;  // 0x2b0
     UnkCommanderXCallbackList_l8bd4c0 callbacks_b;  // 0x2f0
 };
@@ -77,7 +67,7 @@ void fn_71008bd4c0(UnkCommanderXLife_l8bd4c0* self) {
     self->vtable = &g_unk_7101a7df38[2];
     self->callbacks_b.~UnkCommanderXCallbackList_l8bd4c0();
     self->callbacks_a.~UnkCommanderXCallbackList_l8bd4c0();
-    self->table.~UnkCommanderXTable_l8bd4c0();
+    self->table.~UnkOwnedStrIdTable();
     using base::UnkStrIdMember;
     self->name.~UnkStrIdMember();
     self->listener.~UnkCommanderXListener_l8bd4c0();
