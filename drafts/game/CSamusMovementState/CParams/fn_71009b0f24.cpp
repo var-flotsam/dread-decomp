@@ -8,6 +8,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1730.h"
+#include "game/sound/UnkSoundDesc.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
@@ -21,44 +22,6 @@ void fn_7100df3418(UnkGameManager* manager, bool a, bool b, void* x3);
 
 struct UnkEntityWithSound;
 UnkSoundHandle fn_7100d7c374(UnkEntityWithSound* self, void* a, void* b, bool c, bool d, bool e);
-
-// The sound description played, with its defaults.
-struct UnkMorphSoundDesc_l9b0f24 {
-    u32 kind;
-    u32 field_0x4;
-    u64 field_0x8;
-    u32 field_0x10;
-    u32 field_0x14;  // unset in the original
-    CStrId name;          // 0x18
-    CFilePathStrId path;  // 0x20
-    f32 position[3];      // 0x28
-    f32 field_0x34;
-    f32 field_0x38;
-    f32 field_0x3c;
-    f32 field_0x40;
-    f32 field_0x44;
-    f32 field_0x48;
-    f32 field_0x4c;
-    f32 field_0x50;
-    f32 field_0x54;
-    f32 field_0x58;
-    f32 field_0x5c;
-    f32 field_0x60;
-    f32 field_0x64;
-    f32 field_0x68;
-    bool field_0x6c;
-    bool field_0x6d;
-    bool field_0x6e;
-
-    UnkMorphSoundDesc_l9b0f24()
-        : kind(0), field_0x4(0), field_0x8(0), field_0x10(0), name(g_unk_7101d470e0), path(g_unk_7101d470e8),
-          position{0.0f, 0.0f, 0.0f}, field_0x34(-1.0f), field_0x38(1.0f), field_0x3c(500.0f), field_0x40(2000.0f),
-          field_0x44(1.0f), field_0x48(0.0f), field_0x4c(0.0f), field_0x50(0.0f), field_0x54(-1.0f),
-          field_0x58(-1.0f), field_0x5c(-1.0f), field_0x60(0.5f), field_0x64(5.0f), field_0x68(10.0f),
-          field_0x6c(false), field_0x6d(false), field_0x6e(false) {}
-    ~UnkMorphSoundDesc_l9b0f24();  // fn_710034e0b8
-};
-static_assert(__builtin_offsetof(UnkMorphSoundDesc_l9b0f24, field_0x6c) == 0x6c, "layout");
 
 struct UnkMorphDesc_l9b0f24 {
     u64 words[2];
@@ -125,8 +88,8 @@ void fn_71009b0f24(UnkMorphState_l9b0f24* self) {
             if (request.announce) {
                 fn_7100df3418(g_unk_7101d47310, true, false, nullptr);
                 static CFilePathStrId s_sound("actors/samus/samus_to_mb_03.wav", true);
-                static UnkMorphSoundDesc_l9b0f24 s_desc;
-                s_desc.kind = 0;
+                static UnkSoundDesc s_desc;
+                s_desc.kind.field_0x0 = 0;
                 s_desc.path = s_sound;
                 s_desc.field_0x6d = true;
                 s_desc.field_0x38 = 0.4f;

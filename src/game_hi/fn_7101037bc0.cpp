@@ -51,7 +51,7 @@ static inline f32 RandVary(const f32& base, const f32& range) {
 }
 static inline f32 Clamp(f32 v, f32 lo, f32 hi) { return v <= lo ? lo : Min(v, hi); }
 
-void fn_7101037bc0(UnkSoundDef* self, UnkSoundDesc* out, f32* scales, u32 index) {
+void fn_7101037bc0(UnkSoundDef* self, UnkInlineSoundDesc* out, f32* scales, u32 index) {
     const UnkSoundKind& kind = self->field_0x568;
     out->kind.field_0x0 = kind.field_0x0 < 7 ? kind.field_0x0 : 0x7fffffff;
     out->kind.field_0x4 = kind.field_0x4 < 10 ? kind.field_0x4 : 0x7fffffff;
