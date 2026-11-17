@@ -10,6 +10,7 @@
 #include "game/CActorComponent.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU39.h"
 #include "game/navmesh/SNavMeshPath.h"
@@ -24,7 +25,6 @@ extern void* g_unk_7101a6ec78[];
 extern char g_unk_7101a6eed8[];
 extern char g_unk_7101a6ee80[];
 struct UnkPair_7100778228;
-void fn_7100778228(UnkPair_7100778228*);
 
 // A reference-counted object: its third virtual releases it.
 struct UnkCounted_l76f344 {

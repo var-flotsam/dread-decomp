@@ -17,7 +17,6 @@
 #include "types.h"
 
 struct UnkPair_7100778228;
-void fn_7100778228(UnkPair_7100778228*);
 
 struct UnkEntry_cu {
     UnkHalf_cu first;

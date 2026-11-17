@@ -60,7 +60,7 @@ using UnkPairVec_b0230 = base::global::CRntVector<UnkSetPair_b0230>;
 // An entry of the array, destroyed out of line (as src/game/CCentralUnitComponent/CCentralUnitComponent_b40.cpp).
 struct UnkEntry_cu {
     u8 data[0x80];
-    ~UnkEntry_cu() asm("fn_7100778228");
+    ~UnkEntry_cu() { fn_7100778228(reinterpret_cast<UnkPair_7100778228*>(this)); }
 };
 void fn_710077a630(base::global::CRntVector<UnkEntry_cu>* self, u32 n);
 

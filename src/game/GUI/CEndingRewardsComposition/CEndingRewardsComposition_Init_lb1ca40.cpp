@@ -28,8 +28,6 @@ using base::global::CStrId;
 using unk_static_init::UnkEnumType;
 
 extern UnkEnumType g_unk_7101d60e78;      // the flags' type
-extern UnkPropertyEx<> g_unk_717275aeb8;  // the memories' hidden flags
-extern UnkPropertyEx<> g_unk_717275ae78;  // the rewards earned
 
 // The hidden flags read from the profile are converted to the flags' type.
 struct UnkRewardFlagsTag_lb1ca40;

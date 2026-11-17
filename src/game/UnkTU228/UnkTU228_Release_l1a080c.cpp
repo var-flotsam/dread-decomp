@@ -2,12 +2,11 @@
 // bindings hold, drops the in-use count, empties and destroys it and returns it to the pool.
 // Names and layouts are placeholders.
 #include "game/UnkTU228.h"
+#include "game/msapi/material/SAlpha.h"
 #include "game/operator_new.h"
 #include "types.h"
 
 struct UnkMaterialReset_ovb0098;
-void fn_71001a6418(UnkMaterialReset_ovb0098* self);
-void fn_7100083834(UnkVoicePool_b56* self, UnkSoundVoice2_b56* voice);
 
 struct UnkDecalStat_l1a080c {
     u64 field_0x0;

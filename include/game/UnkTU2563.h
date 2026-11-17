@@ -26,3 +26,15 @@ void fn_7100e5ba88(void*, u32);
 // Brings the mesh's bounds up to date with its vertices (their x and y).
 void fn_7100e3e1c0(UnkDashMesh* mesh);
 void fn_7100e4efa0(UnkRec60IdArray_b0223* table);
+
+// CMinimapData's out-of-line table clears (fn_7100e4ee60, fn_7100e4ed10, fn_7100e4eb8c).
+template <class Value>
+struct UnkIdRecordTable;
+struct UnkIdRecord28;
+template <class Record>
+struct UnkRecordIdArray;
+struct UnkRecordA8;
+struct UnkRecord80;
+void fn_7100e4ee60(UnkIdRecordTable<UnkIdRecord28>* self);
+void fn_7100e4ed10(UnkRecordIdArray<UnkRecordA8>* self);
+void fn_7100e4eb8c(UnkRecordIdArray<UnkRecord80>* self);

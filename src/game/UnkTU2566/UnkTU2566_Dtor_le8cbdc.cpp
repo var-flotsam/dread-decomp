@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityLayout.h"
+#include "game/CBreakableHintComponent.h"
 #include "game/CGunComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkComponent.h"
@@ -20,8 +21,6 @@
 using base::global::CRntString;
 using base::global::CRntVector;
 using base::global::CStrId;
-
-extern void* g_unk_7101ca9e38[];
 
 // The clears of the owner's paired arrays, each defined with its own view of them.
 struct UnkGroupTable_b0200;
@@ -36,7 +35,6 @@ void fn_7100e8d784(void* set);  // the pooled set's destructor
 
 // The removals from the sets the owner's callbacks were added to.
 struct UnkHintRef_ovb0093;
-void fn_7100752ba8(base::UnkDeferredSet<UnkHintRef_ovb0093>* set, UnkHintRef_ovb0093* item);
 void fn_7100a73fd0(base::UnkDeferredSet<void>* set, void* item);
 void fn_7100eb437c(base::UnkDeferredSet<void>* set, void* item);
 
