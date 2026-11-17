@@ -816,7 +816,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e94a6c,932,drafts/game/UnkTU2566/fn_7100e94a6c.cpp,control flow,29.9,161,lean-ob3,two extra branches (likely the area-points find) and max compare forms in the map/marker blocks
 0x7100e951d4,684,drafts/game/UnkTU2566/fn_7100e951d4.cpp,operations,31.6,114,lean-ob3,block layout of the by-kind/visited branch inverted (tbnz vs tbz); 3 instructions short
 0x7100e9565c,332,drafts/game/UnkTU2566/fn_7100e9565c.cpp,operations,15.7,65,lean-b1,pool global loaded PC-relative not via GOT; first-element release and shift loop differ; erase-by-value on id
-0x7100e97c60,812,drafts/game/UnkTU2566/fn_7100e97c60.cpp,match,100.0,0,lean-r2,"passes tools/equiv_test.py; held: 2 declaration problems: src/game/UnkTU2566/fn_7100e97c60.cpp:89 fn_7100ea9eb8: ~UnkRecord() asm(""fn_7100ea9eb8"") -> src/game/UnkTU2566/UnkTU2566_Minimap_ovb0199.cpp defines it with other types; cop..."
 0x7100e98090,408,drafts/game/UnkTU2566/fn_7100e98090.cpp,registers or order,43.1,58,pilot50,register assignment only; holds an empty barrier (without it: operations 41.2%)
 0x7100e9af80,632,drafts/game/UnkTU2566/fn_7100e9af80.cpp,operations,50.0,70,lean-o2,first 80 insns match; ours sinks the last point's bounds update into a shared tail where the original keeps it
 0x7100e9b7d4,320,drafts/game/UnkTU2566/fn_7100e9b7d4.cpp,operations,59.0,31,lean-b1,combining found and value: original ANDs the raw call result with the flag; ours masks it and uses tst/cset
