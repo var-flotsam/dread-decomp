@@ -37,7 +37,6 @@ char* fn_71003440dc(char* p0, u32 p1, char* p2, char* p3, char* p4, char* p5);
 
 struct UnkDoorRegistry_b61;
 struct UnkUnit2547;
-void fn_7100ddbb7c(UnkUnit2547* self, u32 expected);
 void fn_7100ddbabc(UnkUnit2547* self, u32 state, f32 value);
 struct UnkFixedCamera_fc;
 struct UnkArg_fc;

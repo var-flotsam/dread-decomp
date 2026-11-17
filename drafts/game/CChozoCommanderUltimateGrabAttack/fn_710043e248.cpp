@@ -2,6 +2,7 @@
 // twelve states (each once, by id), binds their callbacks to the attack, then requests state 1 and
 // enters it unless the machine is locked. Names and layouts are placeholders.
 #include "game/CChozoCommanderUltimateGrabAttack.h"
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkUltimateGrabMachine_43e248;
@@ -57,13 +58,7 @@ struct UnkUltimateGrabMachine_43e248 {
     }
 
     UnkUltimateGrabState_43e248* Find(s32 id) {
-        UnkUltimateGrabState_43e248** begin = States();
-        UnkUltimateGrabState_43e248** end = begin + count;
-        UnkUltimateGrabState_43e248** p = begin;
-        for (; p != end; ++p)
-            if ((*p)->id == id)
-                break;
-        return p != end ? *p : nullptr;
+        return FindStateById(States(), count, id);
     }
 
     void Change(s32 id) {

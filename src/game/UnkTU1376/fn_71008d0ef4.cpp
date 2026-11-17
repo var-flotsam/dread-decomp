@@ -1,5 +1,6 @@
 // CDoorLifeComponent's unit (tools/tu_map.py unit 1376): unless the door's state machine is already in
 // state 1, requests state 1 from it, then starts a blend to 1.0 when enabled. Names and layouts are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1376.h"
 #include "types.h"
 
@@ -44,12 +45,7 @@ static_assert(__builtin_offsetof(UnkDoorStateMachine_l8d0ef4, pending) == 0xa4, 
 static_assert(__builtin_offsetof(UnkDoorLife_l8d0ef4, field_0x638) == 0x638, "layout");
 
 static inline UnkDoorState_l8d0ef4* FindState(UnkDoorStateMachine_l8d0ef4* self, s32 id) {
-    UnkDoorStatePtr_l8d0ef4* p = self->states;
-    for (u64 size = self->count * sizeof(*p); size != 0; size -= sizeof(*p), ++p) {
-        if ((*p)->id == id)
-            return *p;
-    }
-    return nullptr;
+    return FindStateById(self->states, self->count, id);
 }
 
 static inline void RequestState(UnkDoorStateMachine_l8d0ef4* self, s32 id) {

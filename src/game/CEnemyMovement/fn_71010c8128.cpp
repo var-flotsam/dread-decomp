@@ -3,6 +3,7 @@
 // placeholders.
 #include "base/UnkSList.h"
 #include "game/CComponent.h"
+#include "game/UnkStateMachineFind.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -91,12 +92,7 @@ struct UnkMoveStateMachine_l0c8128 {
     UnkMoveState_l0c8128** states() { return reinterpret_cast<UnkMoveState_l0c8128**>(storage); }
 
     UnkMoveState_l0c8128* FindState(s32 state_id) {
-        UnkMoveState_l0c8128** p = states();
-        for (u64 size = (u64)count * sizeof(*p); size != 0; ++p, size -= sizeof(*p)) {
-            if ((*p)->id == state_id)
-                return *p;
-        }
-        return nullptr;
+        return FindStateById(states(), count, state_id);
     }
 
     void RequestState(s32 state_id) {

@@ -1,6 +1,7 @@
 // CGrappleBeamComponent unit (tools/tu_map.py, unit 1277): sets up the beam's state machine (registers its four
 // states once by id and binds their callbacks to the component), then enters state 1 unless entry is held off.
 // Names and layouts are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 void fn_7100821ce8();
@@ -68,12 +69,7 @@ struct UnkGrappleMachine_l818420 {
 
     // The state with id `state_id`, or null.
     UnkGrappleState_l818420* Find(u32 state_id) {
-        for (u32 i = 0; i < count; ++i) {
-            UnkGrappleState_l818420* state = States()[i];
-            if (state->id == state_id)
-                return state;
-        }
-        return nullptr;
+        return FindStateById(States(), count, state_id);
     }
 
     void ChangeState(u32 state_id) {
