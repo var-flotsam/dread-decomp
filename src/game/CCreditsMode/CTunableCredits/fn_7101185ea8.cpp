@@ -17,8 +17,8 @@ struct UnkRefObj {
 struct UnkRef {
     UnkRefObj* ptr;
     ~UnkRef() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->vf_0x10();
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            held->vf_0x10();
     }
 };
 

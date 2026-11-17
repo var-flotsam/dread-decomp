@@ -16,8 +16,8 @@ struct UnkHearingRefPtr_b44a3 {
     UnkHearingRefCounted_b44a3* ptr;
 
     ~UnkHearingRefPtr_b44a3() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            delete held;
     }
 };
 

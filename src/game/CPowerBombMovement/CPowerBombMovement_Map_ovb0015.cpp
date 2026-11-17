@@ -40,8 +40,8 @@ struct UnkPbCounted_ovb0015 {
 struct UnkPbCountedRef_ovb0015 {
     UnkPbCounted_ovb0015* ptr;
     ~UnkPbCountedRef_ovb0015() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->Release();
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            held->Release();
     }
 };
 

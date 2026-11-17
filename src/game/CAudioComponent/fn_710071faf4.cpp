@@ -40,8 +40,8 @@ struct UnkRef_710071faf4 {
     UnkRef_710071faf4(const UnkRef_710071faf4& other) : ptr(nullptr) {
         if (UnkShared_710071faf4* p = other.ptr) {
             ++*reinterpret_cast<UnkAliasS32_710071faf4*>(&p->ref_count);
-            if (ptr && --ptr->ref_count == 0)
-                fn_710001737c(reinterpret_cast<UnkCountedResource*>(ptr));
+            if (auto* held = ptr; held && --held->ref_count == 0)
+                fn_710001737c(reinterpret_cast<UnkCountedResource*>(held));
             ptr = p;
         }
     }

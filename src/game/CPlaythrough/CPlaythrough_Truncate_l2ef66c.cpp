@@ -39,8 +39,8 @@ struct UnkCountedRef_l2ef66c {
     UnkCounted_l2ef66c* ptr;
 
     ~UnkCountedRef_l2ef66c() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->vf_0x10();
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            held->vf_0x10();
     }
 };
 

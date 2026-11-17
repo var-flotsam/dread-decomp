@@ -85,8 +85,8 @@ struct UnkRestartList {
         while (node) {
             UnkRestartNode* current = node;
             node = node->next;
-            if (current->object && --current->object->ref_count == 0)
-                current->object->vf_0x10();
+            if (auto* held = current->object; held && --held->ref_count == 0)
+                held->vf_0x10();
             allocator->vf_0x48(current);
         }
         count = 0;

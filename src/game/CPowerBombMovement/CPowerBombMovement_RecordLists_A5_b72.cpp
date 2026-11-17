@@ -16,8 +16,8 @@ struct UnkPbRefObj_A5_b72 {
 struct UnkPbRef_A5_b72 {
     UnkPbRefObj_A5_b72* p;
     ~UnkPbRef_A5_b72() {
-        if (p && --p->ref_count == 0)
-            reinterpret_cast<void (*)(UnkPbRefObj_A5_b72*)>(p->vtable[0x10 / 8])(p);
+        if (auto* held = p; held && --held->ref_count == 0)
+            reinterpret_cast<void (*)(UnkPbRefObj_A5_b72*)>(held->vtable[0x10 / 8])(held);
     }
 };
 
