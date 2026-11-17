@@ -8,6 +8,7 @@
 // the object's flag at +0xf9 is cleared through its slot 0x260. The state ends at 0x7fffffff. Names and
 // layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/CAnimationComponent.h"
 #include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
@@ -20,7 +21,6 @@
 #include "types.h"
 
 struct UnkActorTarget;
-void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 struct UnkEffectSink;
 
 struct CShelmitPlasmaRayAttack;

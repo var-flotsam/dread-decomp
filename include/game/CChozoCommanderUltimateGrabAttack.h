@@ -6,4 +6,7 @@
 #include "types.h"
 
 struct UnkEffect;
+template <u32 Shift>
+struct UnkGrabAttack_b64a2;
 void fn_710043fd04(UnkEffect* self, u32 id, f32 time);
+void fn_7100443508(UnkGrabAttack_b64a2<0>* self);

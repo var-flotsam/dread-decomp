@@ -11,6 +11,7 @@
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CEmmyGrabSamusAttack.h"
+#include "game/UnkEmmyGrabSamusAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "../UnkNamedSend_b54.h"
@@ -48,13 +49,6 @@ struct UnkGrabAI_b58a3 {
     const base::reflection::CType* vf_0x0() {
         return reinterpret_cast<const base::reflection::CType* (*)(UnkGrabAI_b58a3*)>(vtable[0])(this);
     }
-};
-
-struct UnkGrabAttack_b58a3 {
-    u8 pad_0x0[0x8];
-    UnkActor* owner;
-    u8 pad_0x10[0x6a0];
-    bool field_0x6b0;
 };
 
 void fn_710050802c(UnkGrabAttack_b58a3* self);
