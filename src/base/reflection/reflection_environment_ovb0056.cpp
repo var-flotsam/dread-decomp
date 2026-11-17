@@ -21,6 +21,7 @@
 #include "game/UnkTU2607.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
+#include "game/sound/UnkMusicMapValue.h"
 #include "types.h"
 // The 0x50-byte record array fn_7100d90460 is declared with (unit 2601).
 #include "../../game/UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
@@ -231,62 +232,25 @@ __attribute__((noinline)) void fn_7100d90460(UnkRecord50Vec_b56* vec, u32 n) {
     self->count = n;
 }
 
-// A polymorphic 0x20-byte element, destroyed through its vf_0x8.
-struct UnkPolyElem_ovb56 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    u8 unk_0x8[0x18];
-};
-
-// The path groups as a member, emptied by its destructor.
-struct UnkPathGroups_ovb56 : UnkPathGroupVec_ovb56 {
-    ~UnkPathGroups_ovb56() {
-        if (data) {
-            fn_7100d90460(reinterpret_cast<UnkRecord50Vec_b56*>(this), 0);
-            allocator->vf_0x48(data);
-            capacity = 0;
-        }
+inline UnkMusicLayers::~UnkMusicLayers() {
+    if (data) {
+        fn_7100d90460(reinterpret_cast<UnkRecord50Vec_b56*>(this), 0);
+        allocator->vf_0x48(data);
+        capacity = 0;
     }
-};
-
-// The polymorphic elements as a member, destroyed in order by its destructor.
-struct UnkPolyElems_ovb56 {
-    UnkPolyElem_ovb56* data;
-    u32 count;
-    u32 capacity;
-    u8 unk_0x10[0x10];
-    UnkAllocator* allocator;  // 0x20
-
-    ~UnkPolyElems_ovb56() {
-        if (data) {
-            for (u64 i = 0; i < count; ++i)
-                data[i].vf_0x8();
-            count = 0;
-            allocator->vf_0x48(data);
-            capacity = 0;
-        }
-    }
-};
-
-// The value's named path groups.
-struct UnkNamedPathGroups_ovb56 {
-    UnkPathGroups_ovb56 groups;  // 0x0
-    base::UnkStrIdMember name;   // 0x28
-};
-
-// The 0x70-byte value of a string-id keyed map (destroyed through fn_7100d90304).
-struct UnkMapValue_ovb56 {
-    base::UnkStrIdMember key;     // 0x0
-    UnkNamedPathGroups_ovb56 groups;  // 0x8
-    u8 unk_0x38[8];
-    UnkPolyElems_ovb56 elems;  // 0x40
-    u8 unk_0x68[8];
-};
-static_assert(sizeof(UnkMapValue_ovb56) == 0x70, "layout");
-
-__attribute__((flatten)) void fn_7100d90304(char* p) {
-    reinterpret_cast<UnkMapValue_ovb56*>(p)->~UnkMapValue_ovb56();
 }
+
+inline UnkMusicItems::~UnkMusicItems() {
+    if (data) {
+        for (u64 i = 0; i < count; ++i)
+            data[i].vf_0x8();
+        count = 0;
+        allocator->vf_0x48(data);
+        capacity = 0;
+    }
+}
+
+UnkMusicMapValue::~UnkMusicMapValue() {}
 
 // The environment state at +0x28 (0x450 bytes), copied by fn_7100d907cc.
 struct UnkEnvironmentState_ovb56 {

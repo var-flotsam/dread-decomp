@@ -23,6 +23,7 @@
 #include "game/UnkTU2640.h"
 #include "game/UnkTU56.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/UnkMusicMapValue.h"
 #include "types.h"
 #include "base/UnkStrPair.h"
 #include "base/UnkFileReader.h"
@@ -154,7 +155,7 @@ struct UnkPresetMap {
 };
 
 struct UnkMusicPresets {
-    UnkPresetMap<0x70, fn_7100d90304> field_0x0;
+    UnkPresetMap<0x70, DestroyMusicMapValue> field_0x0;
     UnkPresetMap<0x58, fn_7100fee034> field_0x48;
 };
 static_assert(sizeof(UnkMusicPresets) == 0x90, "UnkMusicPresets placeholder layout");

@@ -13,6 +13,7 @@
 #include "base/reflection.h"
 #include "game/UnkTU2604.h"
 #include "game/UnkTU2640.h"
+#include "game/sound/UnkMusicMapValue.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -99,7 +100,7 @@ void* fn_7100f796b8(UnkStrIdMap_b41a3<0x3c0>* map, const CStrId* key) {
 }
 
 void* fn_7100f87480(UnkMusicMap_b41a3<0x80>* map, const CStrId* key) {
-    return Erase<0x80, true>(map, key, [](char* p) { fn_7100d90304(p); });
+    return Erase<0x80, true>(map, key, [](char* p) { DestroyMusicMapValue(p); });
 }
 
 void* fn_7100f89fd8(UnkMusicMap_b41a3<0x68>* map, const CStrId* key) {
