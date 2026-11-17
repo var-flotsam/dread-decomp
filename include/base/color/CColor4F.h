@@ -23,6 +23,14 @@ struct CColor4F {
     CColor4F(const CColor4F& other) : r(other.r), g(other.g), b(other.b), a(other.a) {}
     // The assignment (out of line): each component of `other` clamped to be non-negative.
     CColor4F& operator=(const CColor4F& other) asm("fn_7100030728");
+    // Stores the four components as given, with no clamping (unlike the assignment); fn_71000026cc
+    // sets its colours this way.
+    void Set(f32 r_, f32 g_, f32 b_, f32 a_) {
+        r = r_;
+        g = g_;
+        b = b_;
+        a = a_;
+    }
 };
 static_assert(sizeof(CColor4F) == 0x10, "CColor4F layout");
 
