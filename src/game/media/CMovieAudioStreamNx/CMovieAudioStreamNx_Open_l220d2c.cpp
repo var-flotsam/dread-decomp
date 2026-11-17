@@ -2,7 +2,14 @@
 // output's rate differs from the movie's, and queues four zeroed buffers. Names and layouts are placeholders.
 #include <stddef.h>
 
+#ifdef NNSDK
 #include <nn/audio/audio_SampleFormat.h>
+#else
+// The port's runtime has no audio_SampleFormat.h; only the type is used here.
+namespace nn::audio {
+enum SampleFormat : int;
+}  // namespace nn::audio
+#endif
 
 #include "types.h"
 
