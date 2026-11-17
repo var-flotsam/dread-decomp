@@ -15,6 +15,7 @@ enum UnkSwizzle_l1604e0 {
 
 extern void (*g_unk_716e29b128)(void* builder, s32 r, s32 g, s32 b, s32 a);
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71001604e0(void* builder, s32 format) {
     switch (format) {
     case 1:

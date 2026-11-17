@@ -67,6 +67,7 @@ static inline UnkVec3f Direction(f32 x, f32 y, f32 z) {
     return UnkVec3f(v.x * inv, inv * v.y, inv * v.z);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkVec3f fn_7100949b7c(UnkMorphBallMovement_l949b7c* self) {
     UnkVec3f dir(0.0f, 1.0f, 0.0f);
     CVector2D pos = {self->owner->field_0x44, self->owner->field_0x54};

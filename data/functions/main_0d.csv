@@ -2653,7 +2653,7 @@ address,size,name,name_source,subsystem,status
 0x7100d4d054,2256,fn_7100d4d054,unknown,unknown,U
 0x7100d4d924,476,fn_7100d4d924,unknown,unknown,U
 0x7100d4db00,484,fn_7100d4db00,unknown,unknown,U
-0x7100d4dce4,204,fn_7100d4dce4,unknown,unknown,U
+0x7100d4dce4,204,fn_7100d4dce4,unknown,unknown,m
 0x7100d4ddb0,76,fn_7100d4ddb0,unknown,unknown,U
 0x7100d4de00,4900,fn_7100d4de00,unknown,unknown,m
 0x7100d4f130,2892,fn_7100d4f130,unknown,unknown,m

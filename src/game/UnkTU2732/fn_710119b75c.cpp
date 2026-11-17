@@ -72,6 +72,7 @@ static inline T* Singleton(T*& instance) {
     return instance;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710119b75c(UnkPadRecorder_l19b75c* self) {
     if (!self->enabled || self->count >= 60)
         return;

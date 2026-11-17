@@ -33,6 +33,7 @@ static_assert(__builtin_offsetof(UnkViewAxes_l1b7eb4, given_up) == 0x11c, "");
 static_assert(__builtin_offsetof(UnkViewAxes_l1b7eb4, field_0x27e) == 0x27e, "");
 static_assert(__builtin_offsetof(UnkViewAxes_l1b7eb4, has_given_up) == 0x2e0, "");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71001b7eb4(UnkLookAtView* view) {
     auto* self = reinterpret_cast<UnkViewAxes_l1b7eb4*>(view);
     f32 ux, uy, uz;

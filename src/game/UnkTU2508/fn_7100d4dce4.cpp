@@ -8,6 +8,7 @@ static inline bool IsNearZero(f32 value) {
     return value - 0.001f <= 0.0f && value + 0.001f >= 0.0f;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkVec3f fn_7100d4dce4(const UnkVec3f& v, const UnkVec3f& axis, f32 limit) {
     UnkVec3f result = v;
     UnkVec3f dir = axis;

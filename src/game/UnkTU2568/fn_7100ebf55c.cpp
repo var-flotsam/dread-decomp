@@ -27,6 +27,7 @@ struct UnkTU2568_lebf55c {
     UnkOwnerTable_lebf55c table;
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100ebf55c(UnkTU2568_lebf55c* self) {
     UnkOwnerTable_lebf55c* table = &self->table;
     UnkOwnerPair_lebf55c* end = table->pairs + table->count;

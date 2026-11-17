@@ -6,6 +6,7 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkMatrix44 fn_71000793c0(const UnkVec3f& translation, const UnkVec3f& angle) {
     UnkVec3f t = translation;
     UnkMatrix44 move;

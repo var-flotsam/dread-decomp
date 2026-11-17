@@ -82,6 +82,7 @@ struct UnkAutoolNode_l3c269c {
     virtual void vf_0x18();
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71003c269c(UnkAutoolGoToRepairPoint_l3c269c* self) {
     fn_7100393e68(self);
     self->vtable = &g_unk_7101a2cf58[2];
