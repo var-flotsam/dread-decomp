@@ -5,5 +5,8 @@
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "types.h"
-extern base::reflection::CType g_unk_71726b1db0;
-extern base::reflection::CType g_unk_71726b1f10;
+#include "base/reflection/TypeObject.h"
+enum class ECutPathMode : u32;
+template <> base::reflection::CType base::reflection::TypeObject<ECutPathMode>::object asm("g_unk_71726b1db0");
+enum class EXpawnAngPolicy : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EXpawnAngPolicy>::object asm("g_unk_71726b1f10");

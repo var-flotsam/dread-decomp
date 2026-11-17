@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
@@ -15,7 +16,8 @@ void fn_7100bce500() __attribute__((visibility("hidden")));
 void fn_7100bce50c() __attribute__((visibility("hidden")));
 extern char g_unk_7172772cc8;
 extern char g_unk_7172772d10;
-extern UnkReflType g_unk_7172772bb0;
+enum class EShieldAction : u32;
+template <> UnkReflType base::reflection::TypeObject<EShieldAction, UnkReflType>::object asm("g_unk_7172772bb0");
 extern UnkTUHeader g_unk_7172772d18 __attribute__((visibility("hidden")));
 extern UnkReflType g_unk_7172772d38 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_7172772cd0;

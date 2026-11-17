@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+#include "base/reflection/TypeObject.h"
 
 struct UnkReflType;
 struct UnkTUHeader;
@@ -16,7 +17,8 @@ void fn_7100c66814() __attribute__((visibility("hidden")));
 void fn_7100c66820() __attribute__((visibility("hidden")));
 void fn_7100c6682c() __attribute__((visibility("hidden")));
 extern char g_unk_7172791da8;
-extern UnkReflType g_unk_7172791c90;
+namespace game::logic::collision { enum class EColMat : u32; }
+template <> UnkReflType base::reflection::TypeObject<game::logic::collision::EColMat, UnkReflType>::object asm("g_unk_7172791c90");
 extern UnkTUHeader g_unk_7172791e30 __attribute__((visibility("hidden")));
 extern UnkConverter g_unk_7172791db0;
 extern UnkConverter g_unk_7172791dd0;

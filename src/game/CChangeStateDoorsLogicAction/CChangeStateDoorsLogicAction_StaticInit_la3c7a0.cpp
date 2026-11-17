@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 using namespace unk_static_init;
 
@@ -18,7 +19,8 @@ struct UnkStatics_7100a3c7a0 {
 };
 extern UnkStatics_7100a3c7a0 g_unk_71727492d8 __attribute__((visibility("hidden")));
 
-extern UnkEnumType g_unk_7172748800;
+enum class eDoorStateLogicAction : u32;
+template <> UnkEnumType base::reflection::TypeObject<eDoorStateLogicAction, UnkEnumType>::object asm("g_unk_7172748800");
 void fn_7100a37aac(UnkEnumType* type, const CStrId& name, void (*factory)(void*), void* arg);
 void fn_7100a378a0(void* e);
 extern char g_unk_7172748918[];
@@ -55,7 +57,7 @@ extern char g_unk_7172748e91[];
 
 void fn_7100a3c7a0() {
     InitHeaderIds(&g_unk_71727492d8.ids);
-    InitEnum(&g_unk_7172748800, "eDoorStateLogicAction", fn_7100a37aac, fn_7100a378a0, g_unk_7172748918,
+    InitEnum(&base::reflection::TypeObject<eDoorStateLogicAction, UnkEnumType>::object, "eDoorStateLogicAction", fn_7100a37aac, fn_7100a378a0, g_unk_7172748918,
              &g_unk_7172748920, fn_7100a3975c, &g_unk_7172748940, fn_7100a39768);
     {
         CStrId n("DoorStateInfo", true);

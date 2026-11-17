@@ -9,6 +9,7 @@
 #include "game/CHeatRoomComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 // The unit's data (its statics, merged into one block).
 struct UnkHeatRoomTU {
@@ -25,7 +26,8 @@ static_assert(__builtin_offsetof(UnkHeatRoomTU, component_type) == 0xb0, "layout
 
 extern UnkHeatRoomTU g_unk_7172746770 __attribute__((visibility("hidden")));
 extern UnkPropertyEx<> g_unk_71727461c8;
-extern UnkReflType g_unk_7172746390;
+enum class EThermalHeatRoomType : u32;
+template <> UnkReflType base::reflection::TypeObject<EThermalHeatRoomType, UnkReflType>::object asm("g_unk_7172746390");
 void fn_7100a24c3c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_7100a24af0();
 extern char g_unk_71727464a8;
@@ -53,9 +55,9 @@ void fn_7100a28310() {
                               "HEAT_ROOMS", static_cast<void*>(&g_unk_7101d5c998), fn_71004fd2cc, fn_71004fa3b8);
     InitPropertyExVtableFirst(&g_unk_7172746208, g_unk_7101a889c8, g_unk_71726db788, g_unk_7101a8d830, fn_7100ae9cc8,
                               "HeatRoomEnabled", refl_TypeOf<fn_710000d228>(), fn_71004fd2cc, fn_7100a24a50);
-    InitEnum(&g_unk_7172746390, "EThermalHeatRoomType", fn_7100a24c3c, fn_7100a24af0);
-    fn_710009ec00(&g_unk_71727464a8, &g_unk_7172746390);
-    InitEnumConverters(&g_unk_7172746390, g_unk_71727464b0, fn_7100a280ec, g_unk_71727464d0, fn_7100a280f8);
+    InitEnum(&base::reflection::TypeObject<EThermalHeatRoomType, UnkReflType>::object, "EThermalHeatRoomType", fn_7100a24c3c, fn_7100a24af0);
+    fn_710009ec00(&g_unk_71727464a8, &base::reflection::TypeObject<EThermalHeatRoomType, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<EThermalHeatRoomType, UnkReflType>::object, g_unk_71727464b0, fn_7100a280ec, g_unk_71727464d0, fn_7100a280f8);
     InitClass(&g_unk_71727464f0, "CHeatRoomConfig", fn_7100a25258, fn_7100a24dbc);
     fn_710009ec00(&g_unk_7172746628, &g_unk_71727464f0);
     InitClass(&g_unk_7172746630, "CHeatRoomCoolConfig", fn_7100a2586c, fn_7100a253dc);

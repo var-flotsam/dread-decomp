@@ -3,6 +3,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 // The unit's data (its statics, merged into one block).
 struct UnkDoorShieldLifeTU {
@@ -15,7 +16,8 @@ struct UnkDoorShieldLifeTU {
 };
 
 extern UnkDoorShieldLifeTU g_unk_7172732030 __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_7172731d68;  // also named in src/reflection/
+namespace CDoorShieldLifeComponent { enum class EColor : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CDoorShieldLifeComponent::EColor>::object asm("g_unk_7172731d68");
 void fn_71008dd720(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71008dd514(void* e);  // src/clones/clones_03.cpp
 extern char g_unk_7172731e80;
@@ -23,7 +25,8 @@ extern UnkConverter g_unk_7172731e88;
 extern UnkConverter g_unk_7172731ea8;
 void fn_71008df380() __attribute__((visibility("hidden")));
 void fn_71008df38c() __attribute__((visibility("hidden")));
-extern base::reflection::CType g_unk_7172731ec8;  // also named in src/reflection/
+namespace CDoorShieldLifeComponent { enum class EDoorsShieldType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<CDoorShieldLifeComponent::EDoorsShieldType>::object asm("g_unk_7172731ec8");
 void fn_71008ddb6c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71008dd8a0(void* e);  // src/clones/clones_03.cpp
 extern char g_unk_7172731fe0;
@@ -41,14 +44,14 @@ static inline UnkReflType* AsUnk(base::reflection::CType* t) {
 void fn_71008dee60() {
     UnkDoorShieldLifeTU& tu = g_unk_7172732030;
     InitHeader(tu.header);
-    InitEnum(AsUnk(&g_unk_7172731d68), "CDoorShieldLifeComponent::EColor", fn_71008dd720,
+    InitEnum(AsUnk(&base::reflection::TypeObject<CDoorShieldLifeComponent::EColor>::object), "CDoorShieldLifeComponent::EColor", fn_71008dd720,
              reinterpret_cast<void (*)()>(fn_71008dd514));
-    fn_710009ec00(&g_unk_7172731e80, AsUnk(&g_unk_7172731d68));
-    InitEnumConverters(AsUnk(&g_unk_7172731d68), g_unk_7172731e88, fn_71008df380, g_unk_7172731ea8, fn_71008df38c);
-    InitEnum(AsUnk(&g_unk_7172731ec8), "CDoorShieldLifeComponent::EDoorsShieldType", fn_71008ddb6c,
+    fn_710009ec00(&g_unk_7172731e80, AsUnk(&base::reflection::TypeObject<CDoorShieldLifeComponent::EColor>::object));
+    InitEnumConverters(AsUnk(&base::reflection::TypeObject<CDoorShieldLifeComponent::EColor>::object), g_unk_7172731e88, fn_71008df380, g_unk_7172731ea8, fn_71008df38c);
+    InitEnum(AsUnk(&base::reflection::TypeObject<CDoorShieldLifeComponent::EDoorsShieldType>::object), "CDoorShieldLifeComponent::EDoorsShieldType", fn_71008ddb6c,
              reinterpret_cast<void (*)()>(fn_71008dd8a0));
-    fn_710009ec00(&g_unk_7172731fe0, AsUnk(&g_unk_7172731ec8));
-    InitEnumConverters(AsUnk(&g_unk_7172731ec8), g_unk_7172731fe8, fn_71008df398, g_unk_7172732008, fn_71008df3a4);
+    fn_710009ec00(&g_unk_7172731fe0, AsUnk(&base::reflection::TypeObject<CDoorShieldLifeComponent::EDoorsShieldType>::object));
+    InitEnumConverters(AsUnk(&base::reflection::TypeObject<CDoorShieldLifeComponent::EDoorsShieldType>::object), g_unk_7172731fe8, fn_71008df398, g_unk_7172732008, fn_71008df3a4);
     fn_71008ddcf0();
     fn_710009ec00(&g_unk_7172732028, &tu.type);
     new (&tu.collision_l) CStrId("collision_L", true);

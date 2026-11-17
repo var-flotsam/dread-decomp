@@ -187,7 +187,7 @@ int fn_7100fbb850(lua_State* L) {
     const char* group;
     if (fn_71010c0270(L, "ss", &name, &group) && *name && *group) {
         CStrId id(name, true);
-        u32 value = fn_71000997b4(&g_unk_71727bc290, group);
+        u32 value = fn_71000997b4(&base::reflection::TypeObject<CAIManager::EAIGroup, UnkReflType>::object, group);
         fn_7100daa92c(AIManager(), id, value);
     }
     return 0;
@@ -202,7 +202,7 @@ int fn_7100fbb6e0(lua_State* L) {
     pos.z = 0.0f;
     if (fn_71010c0270(L, "ssv", &name, &group, &pos) && *name && *group) {
         CStrId id(name, true);
-        u32 value = fn_71000997b4(&g_unk_71727bc290, group);
+        u32 value = fn_71000997b4(&base::reflection::TypeObject<CAIManager::EAIGroup, UnkReflType>::object, group);
         fn_7100daa638(AIManager(), id, value, pos);
     }
     return 0;

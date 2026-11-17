@@ -419,6 +419,12 @@ class TypeObjectsByType(unittest.TestCase):
         once = gr.type_objects_by_type(text, objects, layouts=True)
         self.assertEqual(gr.type_objects_by_type(once, objects, layouts=True), once)
 
+    def test_layouts_drop_a_trailing_comment(self):
+        text = "extern UnkReflType g_unk_7101d4d5d0;  // a::E\nvoid f() { use(&g_unk_7101d4d5d0); }"
+        out = gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "a::E")}, layouts=True)
+        self.assertIn('template <> UnkReflType base::reflection::TypeObject<a::E, UnkReflType>::object asm("g_unk_7101d4d5d0");', out)
+        self.assertNotIn("// a::E", out)
+
     def test_layouts_off_leaves_them(self):
         text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
         self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)

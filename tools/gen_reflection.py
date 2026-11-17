@@ -874,7 +874,7 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
         scope, _, leaf = t.rpartition("::")
         declared = gen_types.enum_declaration(t) if kind == "enum" else gen_types.declare_in(scope, f"struct {leaf};")
         if others:
-            layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};")
+            layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};(?:\s*//.*)?")
             match = [layout.fullmatch(line) for line in others]
             if not layouts or len(others) != 1 or not match[0]:
                 continue
