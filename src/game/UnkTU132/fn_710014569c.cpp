@@ -2,13 +2,12 @@
 // flags word and live tag, no counted resource, the widget sub-object at +0x20, the self pointer, kind 4,
 // then +0x150 copied from +0x128. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/UnkTU132.h"
 #include "types.h"
 
 struct UnkWidget;
 struct UnkWidgetArg;
 void fn_710020694c(UnkWidget* self, UnkWidgetArg* a);
-
-extern char g_unk_7101a1c630[];
 
 struct UnkTaggedModel_l14569c {
     void* vtable;

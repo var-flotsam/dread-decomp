@@ -32,7 +32,6 @@
 // The out-of-line Remove and Add of the deferred set a hint reference registers in (copies of
 // base::UnkDeferredSet's members; the item is the reference's address).
 struct UnkHintRef_ovb0093;
-void fn_7100752ba8(base::UnkDeferredSet<UnkHintRef_ovb0093>* set, UnkHintRef_ovb0093* item);
 void fn_7100752d38(base::UnkDeferredSet<UnkHintRef_ovb0093>* set, UnkHintRef_ovb0093* item);
 
 // A reference that keeps itself registered in a deferred set: moving it re-registers the new

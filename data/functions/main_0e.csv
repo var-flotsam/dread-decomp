@@ -187,7 +187,7 @@ address,size,name,name_source,subsystem,status
 0x7100e09500,220,fn_7100e09500,unknown,unknown,O
 0x7100e095dc,220,"base::reflection::refl_GetType<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>*>",reflection,engine/reflection,O
 0x7100e096b8,220,"base::reflection::refl_GetType<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef> const*>",reflection,engine/reflection,O
-0x7100e09794,2564,fn_7100e09794,unknown,unknown,U
+0x7100e09794,2564,fn_7100e09794,unknown,unknown,O
 0x7100e0a198,772,fn_7100e0a198,unknown,unknown,O
 0x7100e0a49c,336,fn_7100e0a49c,unknown,unknown,O
 0x7100e0a5ec,336,fn_7100e0a5ec,unknown,unknown,O
@@ -736,7 +736,7 @@ address,size,name,name_source,subsystem,status
 0x7100e45938,220,fn_7100e45938,unknown,unknown,O
 0x7100e45a14,232,fn_7100e45a14,unknown,unknown,O
 0x7100e45afc,28,fn_7100e45afc,unknown,unknown,O
-0x7100e45b18,2088,fn_7100e45b18,unknown,unknown,U
+0x7100e45b18,2088,fn_7100e45b18,unknown,unknown,O
 0x7100e46340,36,fn_7100e46340,unknown,unknown,O
 0x7100e46364,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SGeoData>>::TElementIterator>,reflection,engine/reflection,O
 0x7100e464d0,96,fn_7100e464d0,unknown,unknown,O
@@ -2428,7 +2428,7 @@ address,size,name,name_source,subsystem,status
 0x7100e8bd74,824,fn_7100e8bd74,unknown,unknown,U
 0x7100e8c0ac,104,fn_7100e8c0ac,unknown,unknown,O
 0x7100e8c114,2760,fn_7100e8c114,unknown,unknown,m
-0x7100e8cbdc,2984,fn_7100e8cbdc,unknown,unknown,U
+0x7100e8cbdc,2984,fn_7100e8cbdc,unknown,unknown,O
 0x7100e8d784,264,fn_7100e8d784,unknown,unknown,O
 0x7100e8d88c,36,fn_7100e8d88c,unknown,unknown,O
 0x7100e8d8b0,20,fn_7100e8d8b0,unknown,unknown,O

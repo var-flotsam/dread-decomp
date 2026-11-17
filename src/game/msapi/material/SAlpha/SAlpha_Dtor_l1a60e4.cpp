@@ -12,7 +12,6 @@ using base::global::CRntVector;
 using base::global::CStrId;
 
 struct UnkMaterialReset_ovb0098;
-void fn_71001a6418(UnkMaterialReset_ovb0098* self);
 
 // An element destroyed through its vtable's slot 1 (the complete destructor).
 struct UnkMaterialElem_l1a60e4 {
