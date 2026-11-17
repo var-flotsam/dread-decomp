@@ -3559,7 +3559,7 @@ address,size,name,name_source,subsystem,status
 0x71001aad0c,348,msapi::res::CFontResource::refl_InitClass,reflection,msapi,O
 0x71001aae68,20,fn_71001aae68,unknown,msapi?,O
 0x71001aae7c,260,fn_71001aae7c,unknown,msapi?,O
-0x71001aaf80,988,fn_71001aaf80,unknown,msapi?,U
+0x71001aaf80,988,fn_71001aaf80,unknown,msapi?,O
 0x71001ab35c,32,fn_71001ab35c,unknown,msapi?,O
 0x71001ab37c,32,fn_71001ab37c,unknown,msapi?,O
 0x71001ab39c,32,fn_71001ab39c,unknown,msapi?,O

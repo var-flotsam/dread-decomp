@@ -5040,7 +5040,7 @@ address,size,name,name_source,subsystem,status
 0x7100fc7210,88,fn_7100fc7210,unknown,unknown,O
 0x7100fc7268,396,fn_7100fc7268,unknown,unknown,U
 0x7100fc73f4,268,fn_7100fc73f4,unknown,unknown,O
-0x7100fc7500,688,fn_7100fc7500,unknown,unknown,U
+0x7100fc7500,688,fn_7100fc7500,unknown,unknown,O
 0x7100fc77b0,368,fn_7100fc77b0,unknown,unknown,O
 0x7100fc7920,540,fn_7100fc7920,unknown,unknown,O
 0x7100fc7b3c,52,fn_7100fc7b3c,unknown,unknown,O
