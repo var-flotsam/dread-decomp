@@ -1,6 +1,7 @@
 // CSamusStandMovementState unit (tools/tu_map.py, unit 1470): entering the state. For kind 8 it takes
 // +0x148 from the movement's first state of kind 8; then it arms the +0x18c/+0x190 pair and fires the
 // movement's pending +0xf9 notification (slot 0x260). Names and layouts are placeholders.
+#include "game/CSamusGroundMovementState/CParams.h"
 #include "types.h"
 
 struct UnkStandMoveState_A6_b70 {
@@ -31,8 +32,6 @@ struct UnkStandState_A6_b70 {
     bool armed;
     f32 timer;
 };
-
-void fn_710099d6f0(UnkStandState_A6_b70* self);
 
 static inline UnkStandMoveState_A6_b70* FindState(UnkStandMove_A6_b70* self, s32 kind) {
     u64 size = (u64)self->state_count * sizeof(UnkStandMoveState_A6_b70*);

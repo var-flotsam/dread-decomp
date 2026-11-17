@@ -17,9 +17,8 @@
 #include "base/UnkMatrix44.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU54.h"
+#include "game/UnkTU9.h"
 #include "types.h"
-
-void fn_7100002cd0(void* p);
 
 struct UnkBlendArray_ovb0003 {
     u32 count;

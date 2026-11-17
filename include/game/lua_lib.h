@@ -15,3 +15,4 @@ extern void* g_unk_7101cab638[] __attribute__((visibility("hidden")));
 int fn_7100fbc4e0(lua_State* L, void* arg);
 int fn_7100fbe7b0(lua_State* L, UnkGameObjectTyped_ovb0115* value, base::global::CStrId* name);
 const base::reflection::CType* fn_7100fc036c();
+char* fn_71010c1050(char* p0, u32 p1);

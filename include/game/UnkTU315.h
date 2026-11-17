@@ -40,3 +40,4 @@ void fn_710021a0b4(UnkRenderManager* self, const u64* hash, const base::math::CV
 void fn_7100219558(UnkRenderManager* self, const base::global::CStrId* light, bool flag);
 void fn_710021a0bc(UnkRenderManager* self, const u64* hash, base::math::CVector4D* value);
 void fn_7100219e18(UnkRenderManager*, UnkModel*, bool);
+void fn_710021949c(UnkRenderManager* self, u64 object, u32 arg2, u32 arg3);

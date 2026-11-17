@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkLifeChange_ovb0000;
 struct UnkCharacterLife_b0050;
 struct UnkCommanderLife_A5_b63;
 struct UnkHolder;
@@ -17,3 +18,4 @@ void fn_710115f91c(void* self);
 void fn_710115fe1c(char*);
 bool fn_7101160408(UnkCharacterLife_b0050* self);
 bool fn_7101161088(void* object);
+void fn_710116179c(void* signal, UnkLifeChange_ovb0000* change);

@@ -5,5 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSwifterActor_ovb0114;
+struct UnkSwifterMember_ovb0114;
 struct UnkRef_c3;
 UnkRef_c3 fn_71003df480(void* key);
+UnkSwifterActor_ovb0114** fn_71003df2d0(UnkSwifterMember_ovb0114* member);

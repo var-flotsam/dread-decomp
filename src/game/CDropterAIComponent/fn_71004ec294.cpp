@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CDropterAIComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
 #include "game/UnkTU140.h"
@@ -41,8 +42,6 @@ struct UnkActorBlock {
     UnkSceneObject* effect_b;
 };
 
-extern const u64 g_unk_71726db100[] __attribute__((visibility("hidden")));
-extern const u64 g_unk_71726db108[] __attribute__((visibility("hidden")));
 void fn_71004e8ea0(void* state, char* data);
 
 __attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& slot, const u64* key) {

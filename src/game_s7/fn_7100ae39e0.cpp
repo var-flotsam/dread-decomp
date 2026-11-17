@@ -48,7 +48,6 @@ extern void* g_unk_7101a97688[];
 void fn_7100ae272c(void* p);
 void fn_7100ae05a8(void* p);
 extern UnkStrIdBase g_unk_717275ada8;
-extern UnkPropertyEx<> g_unk_717275adb0;
 extern void* g_unk_7101a976e0[];
 void fn_7100ae2888(void* p);
 void fn_7100ae0674(void* p);
@@ -62,18 +61,9 @@ extern void* g_unk_7101a97790[];
 void fn_7100ae2b40(void* p);
 void fn_7100ae080c(void* p);
 extern UnkStrIdBase g_unk_717275b0c0;
-extern UnkPropertyEx<> g_unk_717275b0c8;
 extern void* g_unk_7101a977e8[];
 void fn_7100ae2c9c(void* p);
 void fn_7100ae08d8(void* p);
-extern UnkPropertyEx<> g_unk_717275b188;
-extern UnkPropertyEx<> g_unk_717275b1c8;
-extern UnkPropertyEx<> g_unk_717275b208;
-extern UnkPropertyEx<> g_unk_717275b248;
-extern UnkPropertyEx<> g_unk_717275b288;
-extern UnkPropertyEx<> g_unk_717275b2c8;
-extern UnkPropertyEx<> g_unk_717275b308;
-extern UnkPropertyEx<> g_unk_717275b348;
 extern UnkStrIdBase g_unk_717275b388;
 
 // NON_MATCHING(minor): register allocation only: from the first property on, the original keeps the id

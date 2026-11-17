@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBlackboard.h"
@@ -528,7 +529,6 @@ struct UnkSubAreaDropTargetView {
     virtual void vf_0x38(u32 a, u32 b);
 };
 
-void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 void fn_7100d7ae80(UnkComponentOwner* self);
 void fn_7101192a4c(void* self);
 void fn_7100219c44(UnkRenderManager* self, u32 value);

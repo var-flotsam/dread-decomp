@@ -6,12 +6,12 @@
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU108.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 // As src/game/CBreakableTileGroup.cpp declares them.
 struct UnkHelper;
-bool fn_71009e12d0(void*);
 UnkVec3f fn_71009ebe68(UnkHelper* helper);
 
 struct UnkShakernautArea_b65a4;

@@ -26,6 +26,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkSlots.h"
+#include "game/UnkTU1428.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTimelineComponent.h"
@@ -44,7 +45,6 @@ void fn_7100a09bf8(UnkPlatformUpdate_A5_b76* self, bool a, f32 progress);
 
 bool fn_7100a0ad9c(UnkPlatformUpdate_A5_b76* self);
 struct UnkInputComponent;
-void fn_710094b508(void* object);
 
 struct UnkPlatformSubState_A5_b76 {
     u8 pad_0x0[0x10];

@@ -21,6 +21,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "base/reflection.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -79,8 +80,6 @@ struct UnkResizedVector_ovb0036 : CRntVector<T> {
         this->count = n;
     }
 };
-
-extern void* g_unk_7101a20c98[];
 
 // A string id made from a C string (fn_71000003d4).
 struct UnkNameId_ovb0036 {

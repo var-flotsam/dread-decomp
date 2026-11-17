@@ -14,3 +14,4 @@ void fn_710008987c(base::file::UnkFileDevice* self, const base::global::CFilePat
 void fn_7100089754(base::file::UnkFileDevice* self, const base::global::CFilePathStrId* path, u32 a, u32 b, const UnkFileRequestArgs* args);
 void fn_71000898c4(base::file::UnkFileDevice* self);
 bool fn_710008aa90(base::file::UnkDevice* packs, const base::global::CFilePathStrId& path);
+void fn_7100089894(base::file::UnkFileDevice* self);

@@ -4,6 +4,7 @@
 // the object's vf_0x168. Names and layouts are placeholders.
 #include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
 
@@ -27,9 +28,6 @@ struct UnkFootstepPlayer {
     u8 pad_0x0[0x208];
     UnkFootstepMovement* movement;
 };
-
-u32 fn_71009a60fc();
-bool fn_71009e12d0(void* obj);
 
 struct UnkFootstepPlatform {
     virtual void vf_0x0();

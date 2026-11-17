@@ -4,6 +4,7 @@
 // (fn_7100226068: the ring of words at +0x2c0, under the mutex at +0x2a0). Names and layouts are
 // placeholders.
 #include "base/UnkDefaultAllocator.h"
+#include "game/media/CMediaStream.h"
 #include "types.h"
 
 namespace movie {
@@ -117,8 +118,6 @@ struct UnkMovieStreamNx_ovb0003 {
     nn::os::MutexType mutex_0x3e0;
 };
 static_assert(__builtin_offsetof(UnkMovieStreamNx_ovb0003, mutex_0x3e0) == 0x3e0, "UnkMovieStreamNx_ovb0003 layout");
-
-void fn_710021b7c4(UnkMovieStreamNx_ovb0003* self);
 
 // Initialises the stream: the base part, the two mutexes, the four decoder events, then registers
 // the events with the decoder and configures it with the source track's format.
