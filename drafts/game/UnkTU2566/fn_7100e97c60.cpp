@@ -4,6 +4,7 @@
 
 #include <new>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -19,19 +20,6 @@ struct UnkMovableId {
     ~UnkMovableId() { reinterpret_cast<CStrId*>(this)->Reset(); }
 };
 
-struct UnkAllocator {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-    virtual void* Alloc(u64 size, u32 align, u32 flags);
-    virtual void Free(void* ptr);
-};
-
 // An inner array: storage, a second block, count and capacity, and its allocator.
 template <typename T>
 struct UnkArray {
@@ -41,7 +29,7 @@ struct UnkArray {
     u32 capacity;
     u32 field_0x18;
     u32 field_0x1c;
-    UnkAllocator* allocator;
+    base::UnkAllocator* allocator;
 
     UnkArray(UnkArray&& other)
         : data(other.data), field_0x8(other.field_0x8), count(other.count),
@@ -58,9 +46,9 @@ struct UnkArray {
         }
         count = 0;
         if (field_0x8)
-            allocator->Free(field_0x8);
+            allocator->vf_0x48(field_0x8);
         if (data)
-            allocator->Free(data);
+            allocator->vf_0x48(data);
     }
 };
 
@@ -105,42 +93,34 @@ struct UnkEntry {
 };
 static_assert(sizeof(UnkEntry) == 0x90, "");
 
-struct UnkEntryTable {
-    UnkEntry* entries;
-    UnkMovableId* ids;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 field_0x1c;
-    UnkAllocator* allocator;
-};
+using UnkEntryTable = base::global::CRntSmallDictionary<UnkMovableId, UnkEntry>;
 
 void fn_7100e97c60(UnkEntryTable* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;
     UnkEntry* entries = static_cast<UnkEntry*>(
-        self->allocator->Alloc(static_cast<u64>(capacity) * sizeof(UnkEntry), 8, self->field_0x1c));
+        self->allocator->vf_0x40(static_cast<u64>(capacity) * sizeof(UnkEntry), 8, self->flags));
     UnkMovableId* ids = static_cast<UnkMovableId*>(
-        self->allocator->Alloc(static_cast<u64>(capacity) * sizeof(UnkMovableId), 8, self->field_0x1c));
-    if (self->entries) {
-        UnkEntry* src = self->entries;
+        self->allocator->vf_0x40(static_cast<u64>(capacity) * sizeof(UnkMovableId), 8, self->flags));
+    if (self->values) {
+        UnkEntry* src = self->values;
         UnkEntry* dst = entries;
         for (u32 i = 0; i < self->count; ++i, ++dst, ++src) {
             new (dst) UnkEntry(static_cast<UnkEntry&&>(*src));
             src->~UnkEntry();
         }
-        self->allocator->Free(self->entries);
+        self->allocator->vf_0x48(self->values);
     }
-    if (self->ids) {
-        UnkMovableId* src = self->ids;
+    if (self->keys) {
+        UnkMovableId* src = self->keys;
         UnkMovableId* dst = ids;
         for (u32 i = 0; i < self->count; ++i, ++src, ++dst) {
             new (dst) UnkMovableId(static_cast<UnkMovableId&&>(*src));
             src->~UnkMovableId();
         }
-        self->allocator->Free(self->ids);
+        self->allocator->vf_0x48(self->keys);
     }
-    self->entries = entries;
-    self->ids = ids;
+    self->values = entries;
+    self->keys = ids;
     self->capacity = capacity;
 }

@@ -167,7 +167,6 @@ struct UnkMovedEntry {
 
 struct UnkEntryVector;
 // Reserve and PushBack of a copy (one copy each per array type)
-void fn_7100895498(UnkEntryVector* v, u32 n);
 
 struct UnkEntryVector {
     UnkEntry* data;

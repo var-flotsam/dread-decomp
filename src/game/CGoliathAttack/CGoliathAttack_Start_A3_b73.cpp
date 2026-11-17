@@ -9,6 +9,7 @@
 #include "base/reflection/CClass.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkAttack.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2702.h"
@@ -19,7 +20,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 void fn_710058f630();
 
 struct UnkManager;

@@ -51,6 +51,7 @@ static inline const CType* FindType(UnkVersionRegistry* registry, u64 hash) {
     return reinterpret_cast<const CType*>(fn_71000a5118(registry, &hash));
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkRegClass_b0129* fn_7100253834(const UnkKeyId_b0129* id) {
     const CType* type = FindType(g_unk_7101d4c8d0, id->data->hash);
     UnkVersionEntry* found = nullptr;

@@ -2,9 +2,8 @@
 // ids (+0x8/+0x88 cleared in the source) and a CStrId at +0x30 that is reset to the pool's empty
 // string. The vtable at 0x7101a1b460 is a placeholder. Layout is offset-based.
 #include "base/global/CStrId.h"
+#include "base/reflection/UnkReflFunctionVtable.h"
 #include "types.h"
-
-extern char g_unk_7101a1b460[];
 
 char* fn_710009bb18(char* p0, char* p1) {
     char* r0_8 = (char*)g_unk_7101a1b460;

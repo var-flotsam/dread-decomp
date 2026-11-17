@@ -114,7 +114,6 @@ struct UnkPushEntry_A4_b73 {
 };
 
 struct UnkEntryVector;
-void fn_7100895498(UnkEntryVector* v, u32 n);
 
 struct UnkPushVector_A4_b73 {
     UnkPushEntry_A4_b73* data;

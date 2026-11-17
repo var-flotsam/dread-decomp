@@ -13,6 +13,9 @@
 #include "base/input/UnkHidVibration.h"
 #include "types.h"
 
+struct UnkHandle;
+struct UnkRumbleParams;
+
 namespace base::input {
 
 // A chained hash map's head (base/UnkHashMap.h layout; fn_7100075958 sets up its storage): an
@@ -98,3 +101,6 @@ void fn_71000733e4(base::input::UnkRumbleManager* self);
 // The rumble manager singleton, created and constructed (fn_71000733e4) on first use by its
 // users. It lives in .bss (tools/data_map.py gives no unit).
 extern base::input::UnkRumbleManager* g_unk_7101d47348;
+// Starts a rumble from its parameters; the handle names the playing effect (its users' own views of
+// the handle and the parameters; src/base/input/CRumbleManager/CTunableRumbleManager/fn_7100074354.cpp).
+UnkHandle fn_7100074354(base::input::UnkRumbleManager* self, const UnkRumbleParams* params);

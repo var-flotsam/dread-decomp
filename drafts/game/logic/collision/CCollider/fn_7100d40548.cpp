@@ -41,15 +41,7 @@ struct UnkRefPtr {
 };
 
 template <class Tag>
-struct UnkSlotArray {
-    UnkRefPtr* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkSlotArray = base::global::CRntVector<UnkRefPtr>;
 
 struct UnkTag_71007ed25c;
 void fn_71007ed25c(UnkSlotArray<UnkTag_71007ed25c>* self, u32 capacity);

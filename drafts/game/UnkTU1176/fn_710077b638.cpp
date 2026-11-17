@@ -336,7 +336,7 @@ void fn_7100772cf8(UnkCentral_b0230* self, const CStrId* name) {
     UnkGameManager* manager = g_unk_7101d47310;
     u32 kind_value = g_unk_71727bebb8;
     {
-        u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(name->data) + 0x30);
+        u64 key = name->data->Key();
         kind = kind_value;
         found = fn_7100debbc8(manager, &key, &kind);
     }
@@ -595,7 +595,7 @@ void fn_7100775358(UnkCentralUnit_b49* unit) {
         {
             base::global::CStrId id("Door015 (CG-CG)", true);
             u32 kind_value = g_unk_71727bebb8;
-            key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);
+            key = id.data->Key();
             kind = kind_value;
             found = static_cast<UnkWeakTarget*>(fn_7100deba8c(manager, &key, &kind));
         }
@@ -730,7 +730,7 @@ struct UnkEnergyPlayer_b0230 {
 // An item's qualified id, built on first use.
 static inline const UnkQualifiedId& ItemId_b0230(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
-    if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
+    if (qid.id.data == &g_unk_7101d47108->empty)
         fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
     return qid;
 }

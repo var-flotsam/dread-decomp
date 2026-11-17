@@ -6,20 +6,19 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "game/CAttackComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 extern "C" int rand();
 
-struct UnkActionTimeline_ovb0138;
-void fn_7101137a38(UnkActionTimeline_ovb0138* timeline, const CStrId* action, bool flag, u32 value, f32 time);
 
 struct UnkActionActor_ovb0138 {
     u8 pad_0x0[0x220];
     void* animation;  // 0x220
     u8 pad_0x228[0x30];
-    UnkActionTimeline_ovb0138* timeline;  // 0x258
+    UnkActionTimeline* timeline;  // 0x258
 };
 
 // The second descriptor of the request: a word and a value.

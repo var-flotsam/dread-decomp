@@ -13,6 +13,7 @@
 #include "game/CAutsharpAIComponent.h"
 #include "game/CChozoWarriorAIComponent.h"
 #include "game/CEnemyMovement.h"
+#include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -20,7 +21,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkAttackBase;
 struct UnkEffectSink;
-void fn_71003608ac(UnkAttackBase* self);
 void fn_7100496570();
 
 struct UnkWalljumpParams_A2_b73 {

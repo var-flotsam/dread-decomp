@@ -6,6 +6,7 @@
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAIComponent.h"
+#include "game/UnkAttack.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU2702.h"
@@ -115,7 +116,6 @@ void fn_71004684d0(UnkDashSlashAttack2_b0237* self) {
 }
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 
 extern u8 g_unk_7101649788[12] __attribute__((visibility("hidden")));
 extern u8 g_unk_7101649794[12] __attribute__((visibility("hidden")));

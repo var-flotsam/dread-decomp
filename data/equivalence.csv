@@ -58,6 +58,7 @@ address,digest,verdict,rules,detail
 0x710021688c,cbd0ad11d3e1511ce8aab8f793590b5b,pass,2,
 0x710023b424,969cca954272de5fa2098bfd510be899,pass,2,
 0x710024657c,f867b4a21c73dac11accd22bf2bd1caf,pass,2,
+0x7100253834,4df34d89cc106b7087f71ab4b237e143,pass,2,
 0x710025fdf4,d273febb0112307f30a0f741971c9183,inconclusive,2,unresolved UnkEntry_710025fdf4::UnkEntry_710025fdf4(UnkEntry_710025fdf4 const&)
 0x710027c134,c50ebccf88a437c8062838debe803df9,inconclusive,2,only 91% of the original's instructions ran
 0x7100289ec0,403d76c2b038cd33fbe16f5fc5ddb3ff,pass,2,
@@ -70,6 +71,7 @@ address,digest,verdict,rules,detail
 0x71002d58e4,f950997817fa89d139c87fbc170f171f,pass,2,
 0x71002e5db0,41ab470806377e4da6b4a051a28d550b,pass,2,
 0x71002e5e80,b5c0b3643a0eb62623c0f3a06b6c8aa0,pass,2,
+0x71002ef2d0,17c9190e88bdf9bd74fbe62bdec8c53b,pass,2,both runs were cut off
 0x7100314fb4,7b991dcfbc6a092321535ae9ed0b91c0,pass,2,both runs faulted; on different accesses
 0x7100315190,d52d346b3ea8c506ddc028145e9a8ebd,pass,2,both runs faulted; on different accesses
 0x7100336ca0,940181a911ee0c41b9bc72f35f0177f4,inconclusive,2,no definition of the function found in the source: its result type is not known
@@ -192,7 +194,9 @@ address,digest,verdict,rules,detail
 0x71010d313c,806cc531aa8a60af9d193f16a8eae397,pass,2,
 0x7101110e18,4b2fe63a056e9abba149030bf2075366,pass,2,
 0x710111c0fc,97c43128e4cb8d48d04eda9473f44f4f,inconclusive,2,only 79% of the original's instructions ran
+0x710114bfac,6f8c1ec6072f70d0becb6a20f0a56595,pass,2,
 0x71011579c8,888c28114180fb4d4219e746f3c0f42d,pass,2,both runs were cut off
+0x71011785a8,1907803216920bcc6b39ec0ba5b191c0,pass,2,
 0x710117e5b0,015028da5a71252479c1fe1d0ac23362,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x71011b7e7c,274dcd780552faf03754d378cf2de86b,pass,2,both runs were cut off
 0x71011b7fc8,870cfedad1877e58e1d6de99ffb4fd06,pass,2,both runs were cut off

@@ -3,19 +3,19 @@
 // id the AI reports (fn_710049c59c) and 0xf4061ff25a2163d6; then hooks the callback fn_7100481424 up to
 // the tracked object as src/game/CBigFistAttack/CBigFistAttack_Start_A2_b72.cpp does. Names and layouts
 // are placeholders.
-#include "../../../src/game_5821e4/CAttackDtor.h"
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_5821e4/CAttackDtor.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "game/CAbilityGhostAura.h"
+#include "game/CAnimationComponent.h"
 
 using base::reflection::UnkReflObject;
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
-void fn_7100316018(UnkWeakTarget* self, UnkWeakHandle** out);
-void fn_710117b3e8(UnkWeakTarget* target, void* link);
 void fn_7100481424();
 // Returned in memory (it has a copy constructor).
 struct UnkStrIdOut_b0266 {
@@ -61,7 +61,7 @@ void fn_71004806fc(UnkChangeWallStart_b0266* self) {
     if (is_wx) {
         if (void* target = *reinterpret_cast<void**>(owner + 0x220)) {
             UnkStrIdOut_b0266 id = fn_710049c59c(ai);
-            u64 hash = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id.raw.data) + 0x30);
+            u64 hash = id.raw.data->Key();
             id.Release();
             base::reflection::UnkReflTypeIdArg mode;
             mode.id = 2;

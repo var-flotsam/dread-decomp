@@ -42,7 +42,7 @@ bool fn_71000fe2f8(UnkSoundSystemATK* self, const CFilePathStrId& path, f32 valu
         u64 key;
         {
             CFilePathStrId sanitized = fn_71000f63b0(path);
-            key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(sanitized.data) + 0x30);
+            key = sanitized.data->Key();
         }
         for (UnkPathVoice **it = system->list_0x418, **end = it + system->count_0x420; it != end; ++it) {
             if ((*it)->path->key == key) {

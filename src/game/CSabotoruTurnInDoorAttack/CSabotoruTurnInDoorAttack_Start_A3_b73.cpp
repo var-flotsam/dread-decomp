@@ -7,12 +7,12 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/CSabotoruTurnInDoorAttack.h"
+#include "game/UnkAttack.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 void fn_71006741bc();
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);

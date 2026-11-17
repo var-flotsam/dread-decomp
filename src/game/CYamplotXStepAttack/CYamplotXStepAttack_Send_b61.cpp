@@ -13,8 +13,6 @@
 
 using base::reflection::UnkReflObject;
 
-void fn_71003608ac(UnkAttackBase* self);
-
 void fn_71006ed934(UnkAttackBase* self) {
     // Declared past a goto (no lifetime markers), so each keeps its own slot.
     goto start;

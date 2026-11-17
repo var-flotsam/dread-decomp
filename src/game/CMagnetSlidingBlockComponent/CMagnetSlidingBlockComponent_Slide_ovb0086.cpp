@@ -112,7 +112,6 @@ struct UnkMagnetRumbleParams_b0086 {
 static_assert(sizeof(UnkMagnetRumbleParams_b0086) == 0x48, "");
 
 struct UnkRumbleParams;
-UnkHandle fn_7100074354(UnkRumbleManager* self, const UnkRumbleParams* params);
 
 // The block's sliding rumble file.
 extern base::global::CFilePathStrId g_unk_71727375f0 __attribute__((visibility("hidden")));

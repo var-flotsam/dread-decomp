@@ -10,6 +10,7 @@
 #include "game/CAbility.h"
 #include "game/CAnimationComponent.h"
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
+#include "game/UnkAttack.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
@@ -132,7 +133,6 @@ UNK_SM_SET_CONST_A2_B65(71004c7aa0, 0x68, 4, 4, 5)
 // The same request after a base call (signatures copied from their existing declarations).
 struct UnkAttackBase;
 struct UnkSmLockon_A1_b64;
-void fn_71003608ac(UnkAttackBase* self);
 
 void fn_7100487484(UnkSmOwner_A2_b65<0x80>* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
