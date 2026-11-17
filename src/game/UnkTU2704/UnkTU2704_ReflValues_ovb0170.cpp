@@ -17,6 +17,7 @@
 #include "game/CActorComponentDef.h"
 #include "game/CComponent.h"
 #include "game/CSpawnPointComponent.h"
+#include "game/CSpawnerActorBlueprint.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2704.h"
@@ -126,38 +127,6 @@ void fn_710112f708(void* obj) {
 
 // ---- Arrays and iterators of values
 
-// The element of the component's voActorBlueprint (reflection: CRntVector<CSpawnerActorBlueprint>; the
-// destructor fn_7101125c90 frees that vector with fn_71011266cc): a value, destroyed through the inline
-// sequence below.
-struct CSpawnerActorBlueprint {
-    UnkReflValue value;
-    CSpawnerActorBlueprint() {
-        value.field_0x0 = nullptr;
-        value.type = nullptr;
-        value.kind = 2;
-        value.field_0x14 = 1;
-    }
-    CSpawnerActorBlueprint(CSpawnerActorBlueprint&& other) { fn_71000a179c(&value, &other.value); }
-    ~CSpawnerActorBlueprint() {
-        if (value.type) {
-            bool released = fn_7100deabe4(g_unk_7101d47310);
-            void* payload = nullptr;
-            if (value.type)
-                payload = (value.field_0x14 == 1 || *reinterpret_cast<const u64*>(value.type + 0x18) > 8)
-                              ? value.field_0x0
-                              : &value;
-            if (released) {
-                fn_7100232124(static_cast<UnkBoundObj*>(payload));
-            } else if (payload) {
-                fn_710007c0e4(static_cast<UnkHashStream_0x38*>(payload));
-                fn_7100083c00(payload);
-            }
-        }
-        fn_71000a1c60(&value);
-    }
-};
-static_assert(sizeof(CSpawnerActorBlueprint) == 0x18, "element size");
-
 struct UnkValueArray_b0170 {
     CSpawnerActorBlueprint* data;  // 0x0
     u32 count;                // 0x8
@@ -202,39 +171,17 @@ base::global::CRntVector<CSpawnerActorBlueprint>* fn_710112fd34(base::global::CR
     return self;
 }
 
-struct UnkValueHolder_c3dc {
-    u8 pad_0x0[0x10];
-    void* field_0x10;
-    u8 pad_0x18[0x390 - 0x18];
-    UnkReflValue* values;  // 0x390
-    u32 count;             // 0x398
-};
+void fn_710024fb64(CSpawnPointComponent* self);
 
-void fn_710024fb64(UnkValueHolder_c3dc* self);
-
-bool fn_710112c3dc(void* obj) {
-    UnkValueHolder_c3dc* self = static_cast<UnkValueHolder_c3dc*>(obj);
-    if (self->count == 0)
+// Destroys the last of the component's actor blueprints; while the game manager is up, the component is
+// then told of the change.
+bool fn_710112c3dc(CSpawnPointComponent* self) {
+    base::global::CRntVector<CSpawnerActorBlueprint>& blueprints = self->voActorBlueprint;
+    if (blueprints.count == 0)
         return false;
-    s32 last = self->count - 1;
-    UnkReflValue* values = self->values;
-    UnkReflValue* v = &values[last];
-    if (v->type) {
-        bool released = fn_7100deabe4(g_unk_7101d47310);
-        void* payload = nullptr;
-        if (v->type)
-            payload = (values[last].field_0x14 == 1 || *reinterpret_cast<const u64*>(v->type + 0x18) > 8)
-                          ? v->field_0x0
-                          : v;
-        if (released) {
-            fn_7100232124(static_cast<UnkBoundObj*>(payload));
-        } else if (payload) {
-            fn_710007c0e4(static_cast<UnkHashStream_0x38*>(payload));
-            fn_7100083c00(payload);
-        }
-    }
-    fn_71000a1c60(v);
-    self->count = last;
+    s32 last = blueprints.count - 1;
+    blueprints.data[last].~CSpawnerActorBlueprint();
+    blueprints.count = last;
     if (fn_7100deabe4(g_unk_7101d47310)) {
         fn_7100253ad4(self->field_0x10);
         fn_710024fb64(self);
@@ -268,21 +215,14 @@ struct UnkSpawnOwner_7e78 {
     CStrId name;  // 0x30
 };
 
-struct UnkSpawnPoint_7e78 {
-    u8 pad_0x0[0x18];
-    UnkSpawnOwner_7e78* owner;  // 0x18
-    u8 pad_0x20[0x280 - 0x20];
-    u8 sub[1];  // 0x280
-};
-
 struct UnkParent;
 void fn_7101127f2c(void* sub, const CStrId* name);
 
-void fn_7101127e78(UnkSpawnPoint_7e78* self) {
+void fn_7101127e78(CSpawnPointComponent* self) {
     fn_71010c4228(reinterpret_cast<UnkParent*>(self));
     fn_7100de9540(g_unk_7101d47310, &g_unk_7172a086a0, reinterpret_cast<UnkWeakTarget*>(self));
-    void* sub = self->sub;
-    CStrId name(self->owner->name);
+    void* sub = &self->field_0x280;
+    CStrId name(static_cast<UnkSpawnOwner_7e78*>(self->field_0x18)->name);
     fn_7101127f2c(sub, &name);
 }
 
