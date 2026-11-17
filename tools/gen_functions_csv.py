@@ -251,7 +251,7 @@ def main() -> int:
     # 3b'. Descriptor constructors no class getter calls, named by the static initialiser that builds their
     # descriptor, and the functions they store: T::refl_InitClass and T::refl_<role>, the names
     # tools/gen_reflection.py writes them under.
-    attached = {t.init_helper for t in types.values() if t.kind == "class" and t.init_helper is not None}
+    attached = {t.init_helper: t.name for t in types.values() if t.kind == "class" and t.init_helper is not None}
     for a, n in sorted(gen_reflection.loose_names(orig, args.version, attached, {t.name for t in types.values()}).items()):
         put(a, n, "reflection")
 

@@ -8,6 +8,7 @@
 // unit with fn_710023b580 and fn_7100234f78). The member names and the layout are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
+#include "base/reflection/ReflectedValue.h"
 #include "types.h"
 
 // The weak handle a resolved link holds (base::UnkRefCounted's layout): its target at +0x10.
@@ -23,6 +24,10 @@ struct CGameLink {
     u32 state;     // 0x30: 1 until resolved, then 2
     u8 pad_0x34[0x4];
     base::UnkRefHandle handle;  // 0x38
+
+    // Reflection's value operations of each instance it describes (CGameLink<CActor> and others),
+    // src/reflection/class_values_*.cpp.
+    DREAD_REFLECTED_VALUE_MEMBERS;
 
     // The resolved target, or null; the link must have been resolved.
     T* Target() const {
