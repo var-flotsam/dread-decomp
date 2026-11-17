@@ -291,35 +291,19 @@ __attribute__((flatten)) void fn_710112d91c(UnkHeldIterCopy_ovb0171* it) {
         it->current.Reset();
 }
 
-struct UnkSpawnWatcher_ovb0171 {
-    u8 pad_0x0[0x2b8];
-    bool field_0x2b8;
-    u8 pad_0x2b9[0x330 - 0x2b9];
-    bool active;                  // 0x330
-    bool flag_a;                  // 0x331
-    bool flag_b;                  // 0x332
-    u8 pad_0x333;
-    u32 value;                    // 0x334
-    bool flag_c;                  // 0x338
-    u8 pad_0x339[0x340 - 0x339];
-    UnkWeakHandle* second;        // 0x340
-    UnkWeakHandle* first;         // 0x348
-};
-static_assert(__builtin_offsetof(UnkSpawnWatcher_ovb0171, first) == 0x348, "layout");
-
-void fn_7101127c24(UnkSpawnWatcher_ovb0171* self, UnkWeakTarget* first, bool a, bool b, u32 value, bool c,
+void fn_7101127c24(CSpawnPointComponent* self, UnkWeakTarget* first, bool a, bool b, u32 value, bool c,
                    UnkWeakTarget* second) {
     UnkWeakHandle* handle = first ? GetWeakHandle(first) : nullptr;
-    AssignRef(&self->first, handle);
-    self->active = true;
-    self->flag_a = a;
+    AssignRef(&self->field_0x348, handle);
+    self->field_0x330 = true;
+    self->field_0x331 = a;
     if (a)
         self->field_0x2b8 = false;
-    self->flag_b = b;
-    self->value = value;
-    self->flag_c = c;
+    self->field_0x332 = b;
+    self->field_0x334 = value;
+    self->field_0x338 = c;
     UnkWeakHandle* other = second ? GetWeakHandle(second) : nullptr;
-    AssignRef(&self->second, other);
+    AssignRef(&self->field_0x340, other);
 }
 
 struct UnkTracker;
@@ -329,56 +313,31 @@ struct UnkTrackerBody_ovb0171 {
     void* shape;  // 0x30
 };
 
-struct UnkLinkTarget_ovb0171 {
-    u8 pad_0x0[0x10];
-    void* field_0x10;
-};
+// Whether the link names a target: it has a key, and when already resolved it resolved to one.
+static bool IsSet(const CGameLink<CActor>& link) {
+    if (link.state == 0)
+        return false;
+    if (link.state == 2 && !link.Target())
+        return false;
+    return true;
+}
 
-struct UnkLinkHolder_ovb0171 {
-    u8 pad_0x0[0x8];
-    u8 source[0x28];
-    u32 state;
-    u32 pad_0x34;
-    union {
-        UnkLinkTarget_ovb0171* target;
-        base::UnkRefHandle handle;
-    };
-    bool IsSet() const {
-        if (state == 0)
-            return false;
-        if (state == 2 && !(target && target->field_0x10))
-            return false;
-        return true;
-    }
-    void* Get() {
-        if (state == 1) {
-            {
-                UnkRefPtr fresh = fn_710023b580(source);
-                fn_7100234f78(&handle, reinterpret_cast<const base::UnkRefHandle*>(&fresh));
-            }
-            state = 2;
-        }
-        return target ? target->field_0x10 : nullptr;
-    }
-};
+// The link's target, resolved first.
+static CActor* Resolved(CSpawnPointComponent* self, CGameLink<CActor>& link) {
+    self->ResolveLink(link);
+    return link.Target();
+}
 
-struct UnkSpawnTwoLinks_ovb0171 {
-    u8 pad_0x0[0x120];
-    UnkLinkHolder_ovb0171 first;  // 0x120
-    u8 pad_0x160[0x170 - 0x160];
-    UnkLinkHolder_ovb0171 second;  // 0x170
-};
-static_assert(__builtin_offsetof(UnkSpawnTwoLinks_ovb0171, second) == 0x170, "layout");
-
-void fn_710112b7c4(UnkSpawnTwoLinks_ovb0171* self) {
-    if (self->first.IsSet()) {
-        auto* tracker = reinterpret_cast<UnkTrackerBody_ovb0171*>(fn_710028aca8(self->first.Get()));
+void fn_710112b7c4(CSpawnPointComponent* self) {
+    if (IsSet(self->wpSceneShapeId)) {
+        auto* tracker = reinterpret_cast<UnkTrackerBody_ovb0171*>(fn_710028aca8(Resolved(self, self->wpSceneShapeId)));
         if (tracker && tracker->shape)
-            fn_7101128e88(reinterpret_cast<CSpawnPointComponent*>(self), tracker->shape);
+            fn_7101128e88(self, tracker->shape);
     }
-    if (self->second.IsSet()) {
-        auto* tracker = reinterpret_cast<UnkTrackerBody_ovb0171*>(fn_710028aca8(self->second.Get()));
+    if (IsSet(self->wpCollisionSceneShapeId)) {
+        auto* tracker =
+            reinterpret_cast<UnkTrackerBody_ovb0171*>(fn_710028aca8(Resolved(self, self->wpCollisionSceneShapeId)));
         if (tracker && tracker->shape)
-            fn_7101129064(reinterpret_cast<CSpawnPointComponent*>(self), tracker->shape);
+            fn_7101129064(self, tracker->shape);
     }
 }
