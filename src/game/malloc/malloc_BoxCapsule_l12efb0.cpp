@@ -63,8 +63,6 @@ struct UnkCapsuleContact {
     }
 };
 
-bool fn_710012dbd0(const UnkBox2D* a, void* x5, const void* b, UnkContactPoint* out);
-
 // Whether `x` lies in [low, high].
 inline bool InRange(f32 x, f32 low, f32 high) {
     return high >= x && low <= x;

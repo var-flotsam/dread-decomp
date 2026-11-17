@@ -28,8 +28,6 @@ struct UnkIdTable;
 using UnkReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47108, true>;
 void fn_71000d99d0(UnkIdTable<UnkReleasedStrId>* self);
 
-extern void* g_unk_7101aa9cf8[];  // CMinimapData's vtable
-
 // The clears of the tables below, out of line.
 struct UnkRec60Clear_le45b18 {
     static void Clear(void* table) { fn_7100e4efa0(reinterpret_cast<UnkRec60IdArray_b0223*>(table)); }

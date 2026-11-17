@@ -9,6 +9,7 @@
 #include "game/CBlackboard.h"
 #include "game/CEnemyMovement.h"
 #include "game/CFrozenComponent.h"
+#include "game/CInfesterAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
@@ -17,8 +18,6 @@
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
-
-extern CType g_unk_71726ec448 __attribute__((visibility("hidden")));  // CInfesterAIComponent's type
 
 struct UnkInfesterOwner_ovb0130 {
     u8 pad_0x0[0x44];

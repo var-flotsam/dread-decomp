@@ -9,11 +9,10 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CAbilityLayout.h"
 #include "game/CComponent.h"
+#include "game/CMeleeComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a83750[];
 
 struct UnkMeleeListener_l928c0c {
     void** vtable;

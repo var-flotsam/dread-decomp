@@ -3,8 +3,10 @@
 // UnkTU2640: functions of this translation unit that other files call (tools/tu_map.py unit 2640,
 // 0x7100fe119c-0x7101007b10). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkIdObject_lfd9aa0;
 struct UnkPartFfca00;
 
 // Out-of-line destructor of a music preset map's values (src/game/sound/UnkMusicPresets.cpp).
@@ -28,3 +30,4 @@ struct UnkMap_b0213;
 struct UnkMapValue_b0213;
 // Inserts a node holding a copy of `key` and the value moved out of `value` (src/game/UnkTU2640/fn_7101005fcc.cpp).
 void fn_7101005fcc(UnkMap_b0213* self, const base::global::CStrId* key, UnkMapValue_b0213* value);
+const base::global::CStrId* fn_7100fed648(UnkIdObject_lfd9aa0* object);

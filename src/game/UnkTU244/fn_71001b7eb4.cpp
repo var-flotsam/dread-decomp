@@ -11,7 +11,6 @@
 struct UnkLookAtView;
 
 // The matrix rotating about `axis` by `angle`.
-UnkMatrix44 fn_710007966c(const void* value, f32 angle);
 
 struct UnkViewAxes_l1b7eb4 {
     u8 pad_0x0[0x90];

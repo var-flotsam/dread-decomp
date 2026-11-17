@@ -12,8 +12,6 @@
 
 using base::global::CStrId;
 
-extern void* g_unk_7101aa9cf8[];  // the object's vtable
-
 // A fixed table of slot indices, all unused (-1) at first.
 struct UnkSlotPool_e3e25c {
     static constexpr u32 kSlots = 6094;

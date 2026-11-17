@@ -3,12 +3,11 @@
 // segment's start) and the two segments' normals.
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/malloc.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-bool fn_7100126018(const UnkSegment2D* seg, const CVector2D* point, CVector2D* out, f32 tolerance);
 
 struct UnkContact_710012be70 {
     CVector3D point;

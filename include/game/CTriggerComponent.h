@@ -19,3 +19,4 @@ UnkHandleList* fn_7100a5e1dc();
 void fn_7100a5fdcc(UnkTrigger_b50a5* self, UnkTriggerEntry_b50a5** __attribute__((noescape)) entry);
 extern UnkProperty g_unk_717274d6c8;
 extern UnkTunable g_unk_717274ddd8;
+extern UnkProperty g_unk_717274d6f0;

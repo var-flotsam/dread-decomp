@@ -8,13 +8,12 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CAbilityLayout.h"
 #include "game/CInputComponent.h"
+#include "game/CMeleeComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a83750[];
 
 struct UnkMeleeLink_l928e9c {
     virtual void vf_0x0();

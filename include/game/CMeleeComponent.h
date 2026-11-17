@@ -9,3 +9,4 @@ struct UnkMeleeComponent;
 bool fn_710092b6f8(void* component);
 bool fn_710092b604(UnkMeleeComponent* self);
 extern char g_unk_7101a838c8[];  // Derived part's vtable.
+extern void* g_unk_7101a83750[];

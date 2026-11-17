@@ -4,6 +4,7 @@
 // 0x71001259f4-0x7100132c04). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/math/CVector.h"
 #include "types.h"
 
 struct UnkSweep2D;
@@ -33,3 +34,5 @@ bool fn_710012e5c0(const UnkBox2D* box, const UnkVec2Result* delta, const UnkCir
 void fn_7100132248(UnkStatsObject* self, const base::global::CStrId& name, f32 value);
 extern void* g_unk_7101a1bdf8[];
 bool fn_710012b7f0(const UnkSweep2D* seg, const UnkBox2D* box, UnkContact2D* out, s32 mode);
+bool fn_7100126018(const UnkSegment2D* seg, const base::math::CVector2D* point, base::math::CVector2D* out, f32 tolerance);
+bool fn_710012dbd0(const UnkBox2D* a, void* x5, const void* b, UnkContactPoint* out);

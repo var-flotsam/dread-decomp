@@ -8,6 +8,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CEnemyMovement.h"
+#include "game/CInfesterAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -15,8 +16,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
-
-extern CType g_unk_71726ec448 __attribute__((visibility("hidden")));  // CInfesterAIComponent's type
 
 struct UnkAIPathFollower;
 

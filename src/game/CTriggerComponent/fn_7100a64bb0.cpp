@@ -28,7 +28,6 @@ extern UnkStrIdBase g_unk_717274d6c0;
 extern void* g_unk_7101a8f780[];
 void fn_7100a63000(UnkProperty* p);
 void fn_7100a59a00(void* p);
-extern UnkProperty g_unk_717274d6f0;
 extern void* g_unk_7101a8f7d8[];
 void fn_7100a59a78(void* p);
 extern UnkEnumType g_unk_717274d718;

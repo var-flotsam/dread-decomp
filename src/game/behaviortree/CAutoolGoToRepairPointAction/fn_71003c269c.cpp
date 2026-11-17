@@ -3,14 +3,12 @@
 // listener at +0x380, then calls the node's slot 0x18. Names and layouts are placeholders.
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkBehaviorTree.h"
+#include "game/behaviortree/CAutoolGoToRepairPointAction.h"
 #include "types.h"
 
 #include <new>
 
-extern void* g_unk_7101a2cf58[];
-extern void* g_unk_7101a2d008[];
 extern void* g_unk_7101a2d048[];
-extern char g_unk_7101a2d0a0[];
 
 struct UnkAutoolPair_l3c269c {
     u64 a;

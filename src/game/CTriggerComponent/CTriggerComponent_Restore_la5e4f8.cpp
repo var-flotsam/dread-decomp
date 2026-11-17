@@ -15,8 +15,6 @@
 
 using base::global::CStrId;
 
-extern UnkProperty g_unk_717274d6f0;
-
 struct UnkTriggerCondition_a5e4f8 {
     CStrId name;
     u8 pad_0x8[0x50];

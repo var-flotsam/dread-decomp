@@ -7,12 +7,12 @@
 #include "game/UnkActor.h"
 #include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
+#include "game/malloc.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-bool fn_7100126018(const UnkSegment2D* seg, const CVector2D* point, CVector2D* out, f32 tolerance);
 extern const f32 g_unk_7101647774;
 
 struct UnkMorphBallSegment_l949b7c {

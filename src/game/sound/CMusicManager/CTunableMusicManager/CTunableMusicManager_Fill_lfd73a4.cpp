@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkPooledId.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/UnkTU2640.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/UnkMusicPathVec.h"
 #include "types.h"
@@ -40,7 +41,6 @@ struct UnkMusicDef_fd73a4 {
 
 // The definition's name (out of line).
 struct UnkIdObject_lfd9aa0;
-const CStrId* fn_7100fed648(UnkIdObject_lfd9aa0* object);
 
 // The first map's nodes hold a definition by pointer, the third map's in place.
 struct UnkMusicDefRefNode_fd73a4 {
