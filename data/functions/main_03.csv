@@ -668,7 +668,7 @@ address,size,name,name_source,subsystem,status
 0x7100332978,476,fn_7100332978,unknown,unknown,O
 0x7100332b54,300,fn_7100332b54,unknown,unknown,O
 0x7100332c80,324,fn_7100332c80,unknown,unknown,O
-0x7100332dc4,376,fn_7100332dc4,unknown,unknown,U
+0x7100332dc4,376,fn_7100332dc4,unknown,unknown,O
 0x7100332f40,1540,fn_7100332f40,unknown,unknown,O
 0x7100333544,180,fn_7100333544,unknown,unknown,O
 0x71003335f8,4,CAbilitySonar::refl_AddAttributes,reflection,game,O
@@ -4223,7 +4223,7 @@ address,size,name,name_source,subsystem,status
 0x71003c0068,8,fn_71003c0068,unknown,ai/behaviortree?,O
 0x71003c0070,28,fn_71003c0070,unknown,ai/behaviortree?,O
 0x71003c008c,36,fn_71003c008c,unknown,ai/behaviortree?,O
-0x71003c00b0,660,fn_71003c00b0,unknown,ai/behaviortree?,U
+0x71003c00b0,660,fn_71003c00b0,unknown,ai/behaviortree?,O
 0x71003c0344,8,behaviortree::CAutoolFollowPathAction::refl_Equals,reflection,ai/behaviortree,O
 0x71003c034c,8,behaviortree::CAutoolFollowPathAction::refl_Hash,reflection,ai/behaviortree,O
 0x71003c0354,28,behaviortree::CAutoolFollowPathAction::refl_TypeOf,reflection,ai/behaviortree,O

@@ -5661,7 +5661,7 @@ address,size,name,name_source,subsystem,status
 0x71000f07fc,732,fn_71000f07fc,unknown,engine/base?,U
 0x71000f0ad8,1120,fn_71000f0ad8,unknown,engine/base?,U
 0x71000f0f38,1512,fn_71000f0f38,unknown,engine/base?,U
-0x71000f1520,680,fn_71000f1520,unknown,engine/base?,U
+0x71000f1520,680,fn_71000f1520,unknown,engine/base?,O
 0x71000f17c8,1204,fn_71000f17c8,unknown,engine/base?,U
 0x71000f1c7c,24,fn_71000f1c7c,unknown,engine/base?,O
 0x71000f1c94,1320,fn_71000f1c94,unknown,engine/base?,U

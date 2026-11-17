@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // CInputComponent (tools/tu_map.py unit 1326): feeds a list of input values to the block at +0xad0 for a
 // positive time step, first resetting the component and clearing its held state when asked.
 // Names and layouts are placeholders.

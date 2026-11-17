@@ -4,10 +4,10 @@
 // overrides, one per context kind) that resolve the innermost context's value (fn_71000f0648) when
 // it has none yet and its reader is at the context's position; both report success. Names are
 // placeholders.
+#include "game/UnkTU94.h"
 #include "types.h"
 
 struct UnkTypedRefWriter;
-void fn_71000f0648(UnkTypedRefWriter* self);
 
 struct UnkTypedRefReaderPosView {
     u8 pad_0x0[0x10];

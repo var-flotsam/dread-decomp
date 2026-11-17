@@ -4452,7 +4452,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8ae9c,48,CCutSceneDef::refl_CopyAssign,reflection,game/cutscene,O
 0x7100c8aecc,48,CCutSceneDef::refl_MoveAssign,reflection,game/cutscene,O
 0x7100c8aefc,1240,fn_7100c8aefc,unknown,game/cutscene?,O
-0x7100c8b3d4,692,fn_7100c8b3d4,unknown,game/cutscene?,U
+0x7100c8b3d4,692,fn_7100c8b3d4,unknown,game/cutscene?,O
 0x7100c8b688,208,fn_7100c8b688,unknown,game/cutscene?,O
 0x7100c8b758,316,fn_7100c8b758,unknown,game/cutscene?,O
 0x7100c8b894,308,fn_7100c8b894,unknown,game/cutscene?,O
@@ -5983,7 +5983,7 @@ address,size,name,name_source,subsystem,status
 0x7100cc6594,12,CCharClassLogicSoundEvent::refl_Destroy,reflection,game/characters,O
 0x7100cc65a0,244,CCharClassLogicSoundEvent::refl_CopyAssign,reflection,game/characters,O
 0x7100cc6694,244,CCharClassLogicSoundEvent::refl_MoveAssign,reflection,game/characters,O
-0x7100cc6788,404,fn_7100cc6788,unknown,game/characters?,U
+0x7100cc6788,404,fn_7100cc6788,unknown,game/characters?,O
 0x7100cc6920,160,fn_7100cc6920,unknown,game/characters?,O
 0x7100cc69c0,232,CCharClassLoopSoundEvent::refl_AddAttributes,reflection,game/characters,O
 0x7100cc6aa8,244,CCharClassLoopSoundEvent::refl_GetClass,reflection,game/characters,O

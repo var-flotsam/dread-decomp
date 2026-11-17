@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // base::tunable::CTunable's unit: the entry of a map from string ids to owned lists (two parallel
 // arrays, as in fn_71001358e0), added empty when the id is not in it; returns the entry.
 // Names and layouts are placeholders.

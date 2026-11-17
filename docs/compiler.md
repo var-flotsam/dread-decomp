@@ -36,7 +36,7 @@ section layout is not observable after linking.
 | `-fno-rtti`, `-fno-exceptions` | No `type_info` for game classes; no exception-runtime imports |
 | Frame pointer kept | 39,285 of 42,106 non-leaf functions set `x29`; `-fomit-frame-pointer` drops the non-leaf set to 2/20 |
 | No `-fdata-sections` | Statics are addressed relative to each other (reflection getter: descriptor at guard + 0x18) |
-| Strict aliasing (default) | With `-fno-strict-aliasing` all of `src/` still builds, but `fn_71005a998c` (flag_id) stops matching. Keep the default |
+| Strict aliasing (default) | With `-fno-strict-aliasing` all of `src/` still builds, but `fn_71005a998c` (flag_id) stops matching, and 175 hand-written `O` functions change. Keep the default. Some units were built without it (Lua, dlmalloc, and the units in `data/unit_flags.csv`): a source of such a unit opens with `// build-flags: no-strict-aliasing` (`buildcfg.source_flags`), and `tools/trymatch.py` prints an `ALIAS` line when a function gets closer without it (owner, 2026-11-17) |
 | `-fmath-errno` (default) | `sqrtf` is inlined as `fsqrt` with a fallback call when the result is NaN |
 | C++ for Lua | Lua compiled as C++ matches 81/82; as C 63/82 (the `float` overloads of `<cmath>` matter) |
 

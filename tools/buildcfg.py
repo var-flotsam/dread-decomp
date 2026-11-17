@@ -41,8 +41,33 @@ def project_includes() -> list[str]:
 LUA_FLAGS = ["-fno-strict-aliasing"]
 
 
+# Some of the game's units were built without type-based alias analysis too: their code reloads a field
+# after a store of another type. A source of such a unit says so in its first lines with
+# `// build-flags: no-strict-aliasing`; data/unit_flags.csv lists the units and the evidence for each.
+SOURCE_FLAGS = {"no-strict-aliasing": ["-fno-strict-aliasing"]}
+SOURCE_FLAGS_LINES = 40
+
+
+def source_flags(src: Path) -> list[str]:
+    """The flags a source's `// build-flags:` line asks for (unknown names are an error)."""
+    try:
+        with open(src, encoding="utf-8", errors="replace") as f:
+            head = [next(f, "") for _ in range(SOURCE_FLAGS_LINES)]
+    except OSError:
+        return []
+    out: list[str] = []
+    for line in head:
+        line = line.strip()
+        if line.startswith("// build-flags:"):
+            for name in line.split(":", 1)[1].split():
+                if name not in SOURCE_FLAGS:
+                    raise ValueError(f"{src}: unknown build flag {name!r} (known: {', '.join(SOURCE_FLAGS)})")
+                out += SOURCE_FLAGS[name]
+    return out
+
+
 def cxx_command(src: Path, obj: Path, extra: list[str] | None = None) -> list[str]:
-    """Compile a C++ source (or a C source as C++, as the game builds Lua)."""
+    """Compile a C++ source (or a C source as C++, as the game builds Lua), with its `// build-flags:`."""
     lang = ["-x", "c++"] if src.suffix == ".c" else []
     return [str(fetch_toolchains.clang_path(COMPILER)), *CODEGEN, *CXX, *system_includes(),
-            *project_includes(), *(extra or []), *lang, "-c", str(src), "-o", str(obj)]
+            *project_includes(), *source_flags(src), *(extra or []), *lang, "-c", str(src), "-o", str(obj)]

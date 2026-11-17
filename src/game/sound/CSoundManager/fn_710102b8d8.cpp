@@ -1,12 +1,13 @@
+// build-flags: no-strict-aliasing
 // sound::CSoundManager unit (tools/tu_map.py, unit 2646): moves an owning pointer into an array of them
 // at the given index, shifting the later ones up. Names and layouts are placeholders.
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/sound/CSoundManager.h"
 #include "types.h"
 
 struct UnkSoundOwned_b0038;
-void fn_710102796c(UnkSoundOwned_b0038* self);
 
 // An owning pointer: moved by taking the other's object; cleared, then its object destroyed
 // (fn_710102796c) and freed.

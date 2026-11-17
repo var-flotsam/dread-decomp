@@ -1,10 +1,10 @@
+// build-flags: no-strict-aliasing
 // SLogicPathNode unit: inserts a copy of a point at an index of an array of 0x20-byte polymorphic
 // points, moving the later ones up one place (growing the array first when it is full):
 // CRntVector::Insert written out. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/SLogicPathNode.h"
 #include "types.h"
-extern char g_unk_7101cac8f0[];
 
 // Two words of a point, copied as one.
 struct UnkPathPointTail {
