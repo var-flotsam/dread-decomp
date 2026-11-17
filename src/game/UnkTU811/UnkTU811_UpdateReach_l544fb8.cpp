@@ -8,13 +8,9 @@
 #include "game/UnkActor.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU811.h"
+#include "game/UnkVec3Bits.h"
 #include "types.h"
 
-// A position as three words (as src/game_s2/fn_71005416bc.cpp has it).
-struct UnkVec3Bits {
-    u32 x, y, z;
-    UnkVec3Bits(const UnkVec3Bits& other) : x(other.x), y(other.y), z(other.z) {}
-};
 struct UnkPlace;
 
 struct UnkReachContext_l544fb8 {
