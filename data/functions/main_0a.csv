@@ -1065,7 +1065,7 @@ address,size,name,name_source,subsystem,status
 0x7100a2c650,8,fn_7100a2c650,unknown,game/components?,O
 0x7100a2c658,312,fn_7100a2c658,unknown,game/components?,O
 0x7100a2c790,8,fn_7100a2c790,unknown,game/components?,O
-0x7100a2c798,780,fn_7100a2c798,unknown,game/components?,U
+0x7100a2c798,780,fn_7100a2c798,unknown,game/components?,O
 0x7100a2caa4,8,fn_7100a2caa4,unknown,game/components?,O
 0x7100a2caac,208,fn_7100a2caac,unknown,game/components?,O
 0x7100a2cb7c,608,fn_7100a2cb7c,unknown,game/components?,m
@@ -3974,7 +3974,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa01a4,312,fn_7100aa01a4,unknown,unknown,O
 0x7100aa02dc,48,fn_7100aa02dc,unknown,unknown,O
 0x7100aa030c,1284,fn_7100aa030c,unknown,unknown,U
-0x7100aa0810,756,fn_7100aa0810,unknown,unknown,U
+0x7100aa0810,756,fn_7100aa0810,unknown,unknown,O
 0x7100aa0b04,1084,fn_7100aa0b04,unknown,unknown,U
 0x7100aa0f40,340,fn_7100aa0f40,unknown,unknown,O
 0x7100aa1094,4,fn_7100aa1094,unknown,unknown,O
@@ -4094,7 +4094,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa466c,12,fn_7100aa466c,unknown,game/components?,O
 0x7100aa4678,264,fn_7100aa4678,unknown,game/components?,O
 0x7100aa4780,124,fn_7100aa4780,unknown,game/components?,O
-0x7100aa4800,884,fn_7100aa4800,unknown,game/components?,U
+0x7100aa4800,884,fn_7100aa4800,unknown,game/components?,O
 0x7100aa4b74,4,CWaterPlatformUsableComponent::refl_AddAttributes,reflection,game/components,O
 0x7100aa4b78,244,CWaterPlatformUsableComponent::refl_GetClass,reflection,game/components,O
 0x7100aa4c6c,1372,CWaterPlatformUsableComponent::refl_AddFields,reflection,game/components,O

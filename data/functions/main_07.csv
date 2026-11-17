@@ -812,7 +812,7 @@ address,size,name,name_source,subsystem,status
 0x7100724408,608,fn_7100724408,unknown,game/components?,U
 0x7100724668,1088,fn_7100724668,unknown,game/components?,U
 0x7100724aa8,1060,fn_7100724aa8,unknown,game/components?,U
-0x7100724ecc,744,fn_7100724ecc,unknown,game/components?,U
+0x7100724ecc,744,fn_7100724ecc,unknown,game/components?,O
 0x71007251b4,44,fn_71007251b4,unknown,game/components?,O
 0x71007251e0,472,fn_71007251e0,unknown,game/components?,O
 0x71007253b8,600,fn_71007253b8,unknown,game/components?,O
@@ -1945,7 +1945,7 @@ address,size,name,name_source,subsystem,status
 0x7100769214,388,CCameraFX_SteadyCamera::refl_InitClass,reflection,game,O
 0x7100769398,52,fn_7100769398,unknown,game?,O
 0x71007693cc,60,fn_71007693cc,unknown,game?,O
-0x7100769408,720,fn_7100769408,unknown,game?,U
+0x7100769408,720,fn_7100769408,unknown,game?,O
 0x71007696d8,28,fn_71007696d8,unknown,game?,O
 0x71007696f4,8,fn_71007696f4,unknown,game?,O
 0x71007696fc,4,fn_71007696fc,unknown,game?,O

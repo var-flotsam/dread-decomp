@@ -1024,7 +1024,7 @@ address,size,name,name_source,subsystem,status
 0x710042eea8,412,fn_710042eea8,unknown,game/ai?,O
 0x710042f044,112,fn_710042f044,unknown,game/ai?,O
 0x710042f0b4,136,fn_710042f0b4,unknown,game/ai?,O
-0x710042f13c,1076,fn_710042f13c,unknown,game/ai?,U
+0x710042f13c,1076,fn_710042f13c,unknown,game/ai?,O
 0x710042f570,520,fn_710042f570,unknown,game/ai?,O
 0x710042f778,28,fn_710042f778,unknown,game/ai?,O
 0x710042f794,76,fn_710042f794,unknown,game/ai?,O
