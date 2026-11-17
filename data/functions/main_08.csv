@@ -202,7 +202,7 @@ address,size,name,name_source,subsystem,status
 0x710080ca2c,1444,fn_710080ca2c,unknown,game/components?,U
 0x710080cfd0,84,fn_710080cfd0,unknown,game/components?,O
 0x710080d024,900,fn_710080d024,unknown,game/components?,U
-0x710080d3a8,248,fn_710080d3a8,unknown,game/components?,U
+0x710080d3a8,248,fn_710080d3a8,unknown,game/components?,O
 0x710080d4a0,6092,fn_710080d4a0,unknown,game/components?,U
 0x710080ec6c,28,fn_710080ec6c,unknown,game/components?,O
 0x710080ec88,132,fn_710080ec88,unknown,game/components?,O
@@ -1461,7 +1461,7 @@ address,size,name,name_source,subsystem,status
 0x7100843450,36,fn_7100843450,unknown,game?,O
 0x7100843474,68,fn_7100843474,unknown,game?,O
 0x71008434b8,312,fn_71008434b8,unknown,game?,O
-0x71008435f0,1028,fn_71008435f0,unknown,game?,U
+0x71008435f0,1028,fn_71008435f0,unknown,game?,O
 0x71008439f4,92,fn_71008439f4,unknown,game?,O
 0x7100843a50,2488,fn_7100843a50,unknown,game?,U
 0x7100844408,1508,fn_7100844408,unknown,game?,U
@@ -1995,7 +1995,7 @@ address,size,name,name_source,subsystem,status
 0x710085da6c,160,fn_710085da6c,unknown,game?,O
 0x710085db0c,8,fn_710085db0c,unknown,game?,O
 0x710085db14,8,fn_710085db14,unknown,game?,O
-0x710085db1c,664,fn_710085db1c,unknown,game?,U
+0x710085db1c,664,fn_710085db1c,unknown,game?,O
 0x710085ddb4,752,fn_710085ddb4,unknown,game?,U
 0x710085e0a4,12,fn_710085e0a4,unknown,game?,O
 0x710085e0b0,56,fn_710085e0b0,unknown,game?,O
@@ -2016,7 +2016,7 @@ address,size,name,name_source,subsystem,status
 0x710085e7e8,304,fn_710085e7e8,unknown,game?,O
 0x710085e918,568,fn_710085e918,unknown,game?,O
 0x710085eb50,24,fn_710085eb50,unknown,game?,O
-0x710085eb68,140,fn_710085eb68,unknown,game?,U
+0x710085eb68,140,fn_710085eb68,unknown,game?,O
 0x710085ebf4,24,fn_710085ebf4,unknown,game?,O
 0x710085ec0c,28,fn_710085ec0c,unknown,game?,O
 0x710085ec28,68,fn_710085ec28,unknown,game?,O
@@ -2369,7 +2369,7 @@ address,size,name,name_source,subsystem,status
 0x71008715e8,492,fn_71008715e8,unknown,game/components?,U
 0x71008717d4,1448,fn_71008717d4,unknown,game/components?,U
 0x7100871d7c,88,fn_7100871d7c,unknown,game/components?,O
-0x7100871dd4,536,fn_7100871dd4,unknown,game/components?,U
+0x7100871dd4,536,fn_7100871dd4,unknown,game/components?,O
 0x7100871fec,100,fn_7100871fec,unknown,game/components?,O
 0x7100872050,64,fn_7100872050,unknown,game/components?,O
 0x7100872090,36,fn_7100872090,unknown,game/components?,O
@@ -5141,8 +5141,8 @@ address,size,name,name_source,subsystem,status
 0x71008f8d2c,380,fn_71008f8d2c,unknown,game/components?,O
 0x71008f8ea8,124,fn_71008f8ea8,unknown,game/components?,O
 0x71008f8f24,116,fn_71008f8f24,unknown,game/components?,O
-0x71008f8f98,628,fn_71008f8f98,unknown,game/components?,U
-0x71008f920c,432,fn_71008f920c,unknown,game/components?,U
+0x71008f8f98,628,fn_71008f8f98,unknown,game/components?,O
+0x71008f920c,432,fn_71008f920c,unknown,game/components?,O
 0x71008f93bc,16,fn_71008f93bc,unknown,game/components?,O
 0x71008f93cc,12,fn_71008f93cc,unknown,game/components?,O
 0x71008f93d8,28,fn_71008f93d8,unknown,game/components?,O
@@ -5237,7 +5237,7 @@ address,size,name,name_source,subsystem,status
 0x71008fbd78,60,fn_71008fbd78,unknown,unknown,O
 0x71008fbdb4,24,fn_71008fbdb4,unknown,unknown,O
 0x71008fbdcc,176,fn_71008fbdcc,unknown,unknown,O
-0x71008fbe7c,324,fn_71008fbe7c,unknown,unknown,U
+0x71008fbe7c,324,fn_71008fbe7c,unknown,unknown,O
 0x71008fbfc0,220,fn_71008fbfc0,unknown,unknown,O
 0x71008fc09c,152,fn_71008fc09c,unknown,unknown,O
 0x71008fc134,456,fn_71008fc134,unknown,unknown,O

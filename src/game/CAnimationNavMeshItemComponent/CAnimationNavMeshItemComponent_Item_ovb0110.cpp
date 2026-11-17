@@ -1,9 +1,13 @@
 // CAnimationNavMeshItemComponent's unit (tools/tu_map.py unit 1473): the id of the animation the item
 // plays, and the navigation-mesh item's destructor (its layout as
 // src/game/CNavMeshItemComponent/CNavMeshItemComponent_Containers_ovb0100.cpp constructs it). Names and layouts are placeholders.
+
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
+#include "game/CComponent.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/UnkAnimationComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
@@ -110,4 +114,43 @@ void fn_71009b8014(UnkNavMeshItemDtor_ov110* self) {
     self->sources.~UnkOwnedList();
     fn_71009b81f0(reinterpret_cast<UnkNavMeshFields_ov110*>(self->fields));
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
+}
+
+// CAnimationNavMeshItemComponent's unit (tools/tu_map.py unit 1473): the update. After the base step, while
+// the owner's animation component plays the item's animation (fn_71009b7c9c), refreshes the navigation-mesh
+// item (fn_71009bffdc) whenever the animation's state flips, keeping that state at +0x1c8. Names and
+// layouts are placeholders.
+struct UnkAnimationNavMeshOwner_l9b7ba8 {
+    u8 pad_0x0[0x220];
+    UnkAnimationComponent* animation;  // 0x220
+};
+
+struct UnkAnimationNavMeshItem_l9b7ba8 {
+    u8 pad_0x0[0x30];
+    UnkAnimationNavMeshOwner_l9b7ba8* owner;  // 0x30
+    u8 pad_0x38[0x1c8 - 0x38];
+    bool done;  // 0x1c8: whether the animation had reached the state that refreshed the item last
+};
+
+void fn_71009b7ba8(UnkAnimationNavMeshItem_l9b7ba8* self) {
+    fn_71010c424c(reinterpret_cast<UnkParent*>(self));
+    UnkAnimationComponent* animation = self->owner->animation;
+    if (!animation)
+        return;
+    bool playing;
+    {
+        UnkAnimId_ov110 id = fn_71009b7c9c(reinterpret_cast<UnkAnimationNavMeshItem_ov110*>(self));
+        playing = fn_710117ae38(animation, id.data->Key(), false);
+    }
+    if (!playing)
+        return;
+    if (fn_71011782ec(animation, 0xf4061ff25a2163d6ull)) {
+        if (self->done) {
+            fn_71009bffdc(reinterpret_cast<UnkOwner*>(self), false);
+            self->done = false;
+        }
+    } else {
+        fn_71009bffdc(reinterpret_cast<UnkOwner*>(self), false);
+        self->done = true;
+    }
 }

@@ -216,7 +216,7 @@ address,size,name,name_source,subsystem,status
 0x7100607260,8,fn_7100607260,unknown,game/components?,O
 0x7100607268,4,fn_7100607268,unknown,game/components?,O
 0x710060726c,4,fn_710060726c,unknown,game/components?,O
-0x7100607270,1024,fn_7100607270,unknown,game/components?,U
+0x7100607270,1024,fn_7100607270,unknown,game/components?,O
 0x7100607670,28,fn_7100607670,unknown,game/components?,O
 0x710060768c,276,fn_710060768c,unknown,game/components?,O
 0x71006077a0,52,fn_71006077a0,unknown,game/components?,O
@@ -1964,9 +1964,9 @@ address,size,name,name_source,subsystem,status
 0x7100649ca8,700,fn_7100649ca8,unknown,game/ai?,O
 0x7100649f64,36,fn_7100649f64,unknown,game/ai?,O
 0x7100649f88,208,fn_7100649f88,unknown,game/ai?,O
-0x710064a058,528,fn_710064a058,unknown,game/ai?,U
+0x710064a058,528,fn_710064a058,unknown,game/ai?,O
 0x710064a268,252,fn_710064a268,unknown,game/ai?,O
-0x710064a364,1172,fn_710064a364,unknown,game/ai?,U
+0x710064a364,1172,fn_710064a364,unknown,game/ai?,O
 0x710064a7f8,64,fn_710064a7f8,unknown,game/ai?,O
 0x710064a838,148,fn_710064a838,unknown,game/ai?,O
 0x710064a8cc,664,fn_710064a8cc,unknown,game/ai?,U
@@ -4046,7 +4046,7 @@ address,size,name,name_source,subsystem,status
 0x71006a052c,236,fn_71006a052c,unknown,game/ai?,O
 0x71006a0618,4,fn_71006a0618,unknown,game/ai?,O
 0x71006a061c,4,fn_71006a061c,unknown,game/ai?,O
-0x71006a0620,448,fn_71006a0620,unknown,game/ai?,U
+0x71006a0620,448,fn_71006a0620,unknown,game/ai?,O
 0x71006a07e0,164,fn_71006a07e0,unknown,game/ai?,O
 0x71006a0884,68,fn_71006a0884,unknown,game/ai?,O
 0x71006a08c8,28,fn_71006a08c8,unknown,game/ai?,O
@@ -4353,7 +4353,7 @@ address,size,name,name_source,subsystem,status
 0x71006b14ec,452,fn_71006b14ec,unknown,game/ai?,O
 0x71006b16b0,288,fn_71006b16b0,unknown,game/ai?,O
 0x71006b17d0,888,fn_71006b17d0,unknown,game/ai?,U
-0x71006b1b48,540,fn_71006b1b48,unknown,game/ai?,U
+0x71006b1b48,540,fn_71006b1b48,unknown,game/ai?,O
 0x71006b1d64,120,fn_71006b1d64,unknown,game/ai?,O
 0x71006b1ddc,296,fn_71006b1ddc,unknown,game/ai?,O
 0x71006b1f04,176,fn_71006b1f04,unknown,game/ai?,O
@@ -4534,7 +4534,7 @@ address,size,name,name_source,subsystem,status
 0x71006baa5c,920,fn_71006baa5c,unknown,game/ai?,U
 0x71006badf4,412,fn_71006badf4,unknown,game/ai?,O
 0x71006baf90,384,fn_71006baf90,unknown,game/ai?,O
-0x71006bb110,376,fn_71006bb110,unknown,game/ai?,U
+0x71006bb110,376,fn_71006bb110,unknown,game/ai?,O
 0x71006bb288,60,fn_71006bb288,unknown,game/ai?,O
 0x71006bb2c4,804,fn_71006bb2c4,unknown,game/ai?,U
 0x71006bb5e8,128,fn_71006bb5e8,unknown,game/ai?,O
@@ -4903,7 +4903,7 @@ address,size,name,name_source,subsystem,status
 0x71006ca56c,28,fn_71006ca56c,unknown,game/components?,O
 0x71006ca588,76,fn_71006ca588,unknown,game/components?,O
 0x71006ca5d4,1316,fn_71006ca5d4,unknown,game/components?,U
-0x71006caaf8,548,fn_71006caaf8,unknown,game/components?,U
+0x71006caaf8,548,fn_71006caaf8,unknown,game/components?,O
 0x71006cad1c,28,fn_71006cad1c,unknown,game/components?,O
 0x71006cad38,132,fn_71006cad38,unknown,game/components?,O
 0x71006cadbc,8,CSpittailMagmaBallMovementComponent::refl_Equals,reflection,game/components,O
@@ -5835,7 +5835,7 @@ address,size,name,name_source,subsystem,status
 0x71006f0ab4,188,fn_71006f0ab4,unknown,game/ai?,U
 0x71006f0b70,80,fn_71006f0b70,unknown,game/ai?,O
 0x71006f0bc0,260,fn_71006f0bc0,unknown,game/ai?,O
-0x71006f0cc4,572,fn_71006f0cc4,unknown,game/ai?,U
+0x71006f0cc4,572,fn_71006f0cc4,unknown,game/ai?,O
 0x71006f0f00,604,fn_71006f0f00,unknown,game/ai?,U
 0x71006f115c,224,fn_71006f115c,unknown,game/ai?,O
 0x71006f123c,1984,fn_71006f123c,unknown,game/ai?,U
