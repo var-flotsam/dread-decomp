@@ -7,20 +7,11 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkTU2562.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-struct UnkDroppableTunable_e21b8c {
-    u8 pad_0x0[0x98];
-    CRntString names[10];  // 0x98
-};
-static_assert(__builtin_offsetof(UnkDroppableTunable_e21b8c, names) + 8 * sizeof(CRntString) == 0x218, "names");
-
-static inline UnkDroppableTunable_e21b8c& Tunable() {
-    return reinterpret_cast<UnkDroppableTunable_e21b8c&>(g_unk_71727c10c8);
-}
 
 struct UnkDropManager_e21b8c {
     u8 pad_0x0[0x7830];
@@ -40,21 +31,21 @@ static inline void SetPath(UnkStrIdPathResource* resource, const CRntString& pat
 }
 
 void fn_7100e21b8c(UnkDropManager_e21b8c* self) {
-    UnkDroppableTunable_e21b8c& tunable = Tunable();
-    if (!IsEmpty(tunable.names[0]))
-        SetPath(&self->paths[0], g_unk_71727c13c8[0] + tunable.names[0]);
-    if (!IsEmpty(tunable.names[1]))
-        SetPath(&self->paths[1], g_unk_71727c13c8[0] + tunable.names[1]);
-    if (!IsEmpty(tunable.names[2]))
-        SetPath(&self->paths[2], g_unk_71727c13c8[0] + tunable.names[2]);
-    if (!IsEmpty(tunable.names[4]))
-        SetPath(&self->paths[3], g_unk_71727c13c8[1] + tunable.names[4]);
-    if (!IsEmpty(tunable.names[5]))
-        SetPath(&self->paths[4], g_unk_71727c13c8[1] + tunable.names[5]);
-    if (!IsEmpty(tunable.names[6]))
-        SetPath(&self->paths[5], g_unk_71727c13c8[1] + tunable.names[6]);
-    if (!IsEmpty(tunable.names[7]))
-        SetPath(&self->paths[6], g_unk_71727c13c8[1] + tunable.names[7]);
-    if (!IsEmpty(tunable.names[8]))
-        SetPath(&self->path_0x7830, g_unk_71727c13c8[1] + tunable.names[8]);
+    UnkDroppableTunable& tunable = g_unk_71727c10c8;
+    if (!IsEmpty(tunable.sMiniXAbsorbSmallGroupPresetName))
+        SetPath(&self->paths[0], g_unk_71727c13c8[0] + tunable.sMiniXAbsorbSmallGroupPresetName);
+    if (!IsEmpty(tunable.sMiniXAbsorbMediumGroupPresetName))
+        SetPath(&self->paths[1], g_unk_71727c13c8[0] + tunable.sMiniXAbsorbMediumGroupPresetName);
+    if (!IsEmpty(tunable.sMiniXAbsorbLargeGroupPresetName))
+        SetPath(&self->paths[2], g_unk_71727c13c8[0] + tunable.sMiniXAbsorbLargeGroupPresetName);
+    if (!IsEmpty(tunable.sDropAbsorbLifePresetName))
+        SetPath(&self->paths[3], g_unk_71727c13c8[1] + tunable.sDropAbsorbLifePresetName);
+    if (!IsEmpty(tunable.sDropAbsorbLifeBigPresetName))
+        SetPath(&self->paths[4], g_unk_71727c13c8[1] + tunable.sDropAbsorbLifeBigPresetName);
+    if (!IsEmpty(tunable.sDropAbsorbMissilePresetName))
+        SetPath(&self->paths[5], g_unk_71727c13c8[1] + tunable.sDropAbsorbMissilePresetName);
+    if (!IsEmpty(tunable.sDropAbsorbPowerBombPresetName))
+        SetPath(&self->paths[6], g_unk_71727c13c8[1] + tunable.sDropAbsorbPowerBombPresetName);
+    if (!IsEmpty(tunable.sAbsorbingSoundPresetName))
+        SetPath(&self->path_0x7830, g_unk_71727c13c8[1] + tunable.sAbsorbingSoundPresetName);
 }

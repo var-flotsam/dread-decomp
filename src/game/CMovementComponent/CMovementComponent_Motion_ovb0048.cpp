@@ -15,6 +15,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2553.h"
@@ -357,23 +358,6 @@ f32 fn_71010d0e88(UnkProbeMovement_ovb0048* self, const UnkVec3f* pos, f32 depth
     else
         distance = 1.7446744e19f;
     return distance;
-}
-
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_71007142e8() {
-    static UnkFlags_71007142e8 s_none;
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_71007142e8() {
-    static UnkFlags_71007142e8 s_all(~UnkFlagsNone_71007142e8().bits & 7);
-    return s_all;
 }
 
 struct UnkStruct_71007142e8;

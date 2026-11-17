@@ -5,6 +5,7 @@
 // cleared and the default masks (guarded statics) at +0x16c and +0x170. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CActionInstance.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
@@ -50,23 +51,6 @@ struct UnkArgs_b257a {
             obj->Release();
     }
 };
-
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_b257a() {
-    static UnkFlags_71007142e8 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_b257a() {
-    static UnkFlags_71007142e8 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_b257a().bits & 7);
-    return s_all;
-}
 
 struct UnkStruct_71007142e8 {
     f32 m[12];
