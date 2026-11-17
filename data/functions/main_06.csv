@@ -4523,7 +4523,7 @@ address,size,name,name_source,subsystem,status
 0x71006ba06c,172,fn_71006ba06c,unknown,game/ai?,O
 0x71006ba118,124,fn_71006ba118,unknown,game/ai?,O
 0x71006ba194,260,fn_71006ba194,unknown,game/ai?,O
-0x71006ba298,528,fn_71006ba298,unknown,game/ai?,O
+0x71006ba298,528,fn_71006ba298,unknown,game/ai?,U
 0x71006ba4a8,84,fn_71006ba4a8,unknown,game/ai?,O
 0x71006ba4fc,252,fn_71006ba4fc,unknown,game/ai?,O
 0x71006ba5f8,36,fn_71006ba5f8,unknown,game/ai?,O

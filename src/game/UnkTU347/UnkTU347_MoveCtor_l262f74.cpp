@@ -5,11 +5,10 @@
 
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a20c98[];  // vtable
 
 struct UnkBoundObject_b260;
 

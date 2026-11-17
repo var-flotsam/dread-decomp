@@ -122,7 +122,6 @@ UnkHintRef_ovb0093* fn_7100752a78(UnkHintMap_ovb0093* self, UnkHintRef_ovb0093* 
 
 struct UnkLinkList;
 extern void* g_unk_7101a6e2a0[];
-extern void* g_unk_7101a81968[];
 
 // As src/game/CBreakableHintComponent/CBreakableHintComponent_Remove_A3_b72.cpp declares them.
 struct UnkBreakableHint_A3_b72;

@@ -3,6 +3,7 @@
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDeferredSet.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU25.h"
@@ -63,7 +64,7 @@ void fn_7100c9da0c(UnkTileLists*);
 static void InitPath(PathId* id, const char* path) { new (id) CFilePathStrId(path, true); }
 
 static void InitPresetPaths(UnkPresetPaths* paths, const CRntString& preset) {
-    fn_710001f074(reinterpret_cast<UnkPathIds*>(paths), reinterpret_cast<const UnkInlineString*>(&preset));
+    new (static_cast<void*>(paths)) UnkPathIdsFromText(preset);
 }
 
 void fn_7100c9d380() {

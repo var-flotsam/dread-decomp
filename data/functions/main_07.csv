@@ -515,7 +515,7 @@ address,size,name,name_source,subsystem,status
 0x7100714dac,36,fn_7100714dac,unknown,unknown,O
 0x7100714dd0,228,fn_7100714dd0,unknown,unknown,O
 0x7100714eb4,4,fn_7100714eb4,unknown,unknown,O
-0x7100714ec0,1300,fn_7100714ec0,unknown,unknown,O
+0x7100714ec0,1300,fn_7100714ec0,unknown,unknown,U
 0x71007153d4,4,CAreaMusicComponent::refl_AddAttributes,reflection,game/components,O
 0x71007153d8,244,CAreaMusicComponent::refl_GetClass,reflection,game/components,O
 0x71007154cc,1596,CAreaMusicComponent::refl_AddFields,reflection,game/components,O

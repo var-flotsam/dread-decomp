@@ -1,7 +1,7 @@
 // Static initialiser of CLogicDroppedItemManager::CTunableDroppableBillboard's unit: the header ids, the pickup
 // effect and its sound presets, the drops' ids, the billboard animations' ids, the billboard tunable, the
 // drops' textures and materials, and three empty sound handles. Names and layouts are placeholders.
-#include "../../../game_5821e4/UnkStaticInit.h"
+#include "../../../../src/game_5821e4/UnkStaticInit.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"

@@ -2,7 +2,7 @@
 // two model flags, resets the mode's timers from the target at +0x146c8, and in mode 1 sends the
 // owner's sub-object a request and gives the owner's object at +0x1b8 the global tunable's +0x1ec;
 // in mode 0, unless the flag at +0x15d0 is set, calls fn_71006ba4fc. Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
 #include "game/CCharClassLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/CShelmitAIComponent.h"

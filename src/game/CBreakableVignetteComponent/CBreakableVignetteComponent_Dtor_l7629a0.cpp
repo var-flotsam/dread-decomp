@@ -3,11 +3,11 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "game/CActorComponent.h"
+#include "game/CBreakableHintComponent.h"
 #include "game/UnkTU883.h"
 #include "types.h"
 
 extern void* g_unk_7101a6e5b0[];
-extern void* g_unk_7101a81968[];
 
 // A callback link registered with a manager; unregistered when destroyed.
 struct UnkVignetteLink_l7629a0 {
