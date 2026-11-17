@@ -488,6 +488,104 @@ def class_constructors(orig: asmdiff.Original) -> dict[int, tuple[int, bool, dic
     return out
 
 
+def constructor_objects(orig: asmdiff.Original, inits: set[int]) -> dict[int, int]:
+    """{constructor: descriptor} for the descriptor constructors a function calls with a global's address in
+    x0 (adrp + add, a GOT slot, or a register holding one): the descriptor the static initialiser builds.
+    The first call, by address, decides."""
+    candidates = []
+    for a, size in sorted(orig.sizes.items()):
+        code = orig.function(a)
+        for i in range(0, len(code) - 3, 4):
+            w = struct.unpack_from("<I", code, i)[0]
+            if w >> 26 == 0x25 and asmdiff.branch_target(w, a + i) in inits:
+                candidates.append(a)
+                break
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    cs.detail = True
+    out: dict[int, int] = {}
+    for a in candidates:
+        regs: dict[str, int] = {}
+        for x in cs.disasm(orig.function(a), a):
+            o, m = x.operands, x.mnemonic
+            dst = cs.reg_name(o[0].reg).replace("w", "x", 1) if o and o[0].type == capstone.arm64.ARM64_OP_REG else None
+            if m == "bl":
+                if o[0].imm in inits and "x0" in regs:
+                    out.setdefault(o[0].imm, regs["x0"])
+                regs = {r: v for r, v in regs.items() if r[1:].isdigit() and 19 <= int(r[1:]) <= 28}
+                continue
+            value = None
+            if m == "adrp":
+                value = o[1].imm
+            elif m == "add" and len(o) == 3 and o[2].type == capstone.arm64.ARM64_OP_IMM \
+                    and cs.reg_name(o[1].reg) in regs:
+                value = regs[cs.reg_name(o[1].reg)] + o[2].imm
+            elif m == "ldr" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_MEM \
+                    and cs.reg_name(o[1].mem.base) in regs and dst and dst.startswith("x"):
+                value = orig.got_slot(regs[cs.reg_name(o[1].mem.base)] + o[1].mem.disp)[0]
+            elif m == "mov" and len(o) == 2 and o[1].type == capstone.arm64.ARM64_OP_REG:
+                value = regs.get(cs.reg_name(o[1].reg))
+            for r in x.regs_access()[1]:
+                regs.pop(cs.reg_name(r).replace("w", "x", 1), None)
+            if dst and value is not None:
+                regs[dst] = value
+    return out
+
+
+def loose_class_names(orig: asmdiff.Original, version: str, attached: set[int], taken: set[str]) -> dict[int, str]:
+    """{constructor: class} for the descriptor constructors no class getter calls: the name the static
+    initialiser gives the descriptor (tools/gen_fields.py's built_objects), found through the descriptor its
+    TypeOf returns or the one it is called on. Only names the namespace form can spell (readable_type),
+    that no other constructor and no class in data/reflection_types.csv has, of constructors whose
+    functions no other constructor shares."""
+    import gen_fields
+    ctors = class_constructors(orig)
+    users: dict[int, int] = {}
+    for _, _, traits in ctors.values():
+        for h in set(traits.values()):
+            users[h] = users.get(h, 0) + 1
+    loose = {a: traits for a, (_, _, traits) in ctors.items()
+             if a not in attached and all(users[h] == 1 for h in traits.values())}
+    called = constructor_objects(orig, set(loose))
+    objects = {}
+    for a, traits in loose.items():
+        found = {o for o in (gen_types.returned_object(orig, traits[0x68]), called.get(a)) if o is not None}
+        if len(found) == 1:
+            objects[a] = found.pop()
+    names = gen_fields.built_objects(version, set(objects.values()))
+    named = {a: names[o] for a, o in objects.items() if o in names and readable_type(names[o])}
+    count: dict[str, int] = {}
+    for n in named.values():
+        count[n] = count.get(n, 0) + 1
+    return {a: n for a, n in named.items() if count[n] == 1 and n not in taken}
+
+
+def loose_names(orig: asmdiff.Original, version: str, attached: set[int], taken: set[str]) -> dict[int, str]:
+    """Address -> data/functions/ name of each named loose constructor (loose_class_names) and the functions
+    it stores: T::refl_InitClass and T::refl_<role>, the names the namespace form writes them under."""
+    ctors = class_constructors(orig)
+    out = {}
+    for a, name in loose_class_names(orig, version, attached, taken).items():
+        out[a] = f"{name}::refl_InitClass"
+        for slot, h in ctors[a][2].items():
+            out[h] = f"{name}::{role_name(slot)}"
+    return out
+
+
+def loose_class_lines(orig: asmdiff.Original, name: str, size: int, abstract: bool,
+                      traits: dict[int, int]) -> list[str]:
+    """A loose constructor's class in the namespace form: its functions under their roles, its description
+    and DREAD_REFLECTED_DESCRIPTOR."""
+    inside = []
+    for h, slot in sorted((h, slot) for slot, h in traits.items()):
+        inside.append(role_helper(orig, slot, h) or ROLE_DECLS[slot].format(name=role_name(slot)))
+    desc = ["struct refl_Description : ClassDescription {", f"    static constexpr u64 size = {size:#x};"]
+    if abstract:
+        desc.append("    static constexpr bool abstract = true;")
+    desc += [f"    static constexpr auto {ROLES[slot][1]} = &{role_name(slot)};" for slot in TRAIT_SLOTS if slot in traits]
+    return [f"// {name}", f"namespace {name} {{", *inside, *desc, "};", f"}}  // namespace {name}",
+            f"DREAD_REFLECTED_DESCRIPTOR({name});"]
+
+
 def constructor_lines(init: int, size: int, abstract: bool, traits: dict[int, int]) -> list[str]:
     """Traits and the explicit instantiation of one descriptor constructor (helpers declared
     separately)."""
@@ -1023,15 +1121,56 @@ def main() -> int:
         (OUT / f"{name}.cpp").write_text(text(lines, ptrs, file_getters.get(name)), encoding="utf-8", newline=chr(10))
 
     loose = sorted(a for a in ctor_ok if a not in attached_inits)
+    # Loose constructors whose class has a name (loose_class_names), in the namespace form, where
+    # data/functions/ gives the constructor and its functions that class's names and the form compiles
+    # to the same bytes; the others keep the tag form.
+    fn_names: dict[int, str] = {}
+    for f in (ROOT / "data" / "functions").glob("main_*.csv"):
+        with f.open(newline="", encoding="utf-8") as fh:
+            fn_names.update((int(r["address"], 16), r["name"]) for r in csv.DictReader(fh))
+    class_of_init: dict[int, str] = {}
+    for a in loose:
+        n = fn_names.get(a, "")
+        if n.endswith("::refl_InitClass"):
+            t = n[:-len("::refl_InitClass")]
+            if readable_type(t) and all(fn_names.get(h) == f"{t}::{role_name(slot)}" for slot, h in ctors[a][2].items()):
+                class_of_init[a] = t
+    named_head = ['#include "base/reflection/CClass.h"', '#include "base/reflection/ReflectedClass.h"', "",
+                  *READABLE_PRELUDE, ""]
+    work = ROOT / "build" / "reflection_loose"
+    work.mkdir(parents=True, exist_ok=True)
+
+    def check_loose(a: int) -> bool:
+        t = class_of_init[a]
+        src, obj = work / f"{a:x}.cpp", work / f"{a:x}.o"
+        src.write_text(chr(10).join([*named_head, *loose_class_lines(orig, t, *ctors[a])]) + chr(10), encoding="utf-8")
+        if subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True).returncode != 0:
+            return False
+        names = {f"{t}::{role_name(slot)}": h for slot, h in ctors[a][2].items()}
+        names.update((k, a) for k in [f"{t}::refl_InitClass", *asmdiff.name_aliases(f"{t}::refl_InitClass")])
+        functions = asmdiff.read_object(obj)
+        demangled = asmdiff.demangle([f.symbol for f in functions], strip=False)
+        results = asmdiff.diff_functions(functions, orig, lambda sym: names.get(asmdiff.strip_params(demangled.get(sym, sym))),
+                                         strict=True)
+        return any(r.address == a for r in results) and all(r.matching for r in results)
+
+    with ThreadPoolExecutor() as pool:
+        named_ok = {a for a, ok in zip(list(class_of_init), pool.map(check_loose, list(class_of_init))) if ok}
     for k in range(0, len(loose), REGISTRATION_CHUNK):
+        chunk = loose[k:k + REGISTRATION_CHUNK]
         lines = ["// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
                  "// Descriptor constructors (CClass) of types without a located class getter (most are",
                  "// built by static initialisers), with the per-type helpers of a known uniform shape;",
-                 "// byte-identical to the original.",
-                 '#include "base/reflection/CClass.h"', ""]
+                 "// byte-identical to the original. A class whose static initialiser names it is in the",
+                 "// namespace form (base/reflection/ReflectedClass.h), the others are keyed by constructor.",
+                 *(named_head if any(a in named_ok for a in chunk) else ['#include "base/reflection/CClass.h"', ""])]
         declared: set[int] = set()
-        for a in loose[k:k + REGISTRATION_CHUNK]:
+        for a in chunk:
             size, abstract, traits = ctors[a]
+            if a in named_ok:
+                lines += loose_class_lines(orig, class_of_init[a], size, abstract, traits) + [""]
+                ctors_generated += 1
+                continue
             lines.append(f"DREAD_REFL_TAG({a:x});")
             for slot, h in sorted(traits.items(), key=lambda t: t[1]):
                 if h not in declared:
@@ -1041,6 +1180,8 @@ def main() -> int:
             ctors_generated += 1
         (OUT / f"class_descriptors_{k // REGISTRATION_CHUNK:02d}.cpp").write_text(chr(10).join(lines), encoding="utf-8",
                                                                                 newline=chr(10))
+    print(f"loose descriptor constructors: {len(named_ok)} of {len(loose)} in the namespace form "
+          f"({len(class_of_init)} named by data/functions/)")
     write_chunks("registration", ["// Attribute/member-field registration functions not reached from a class getter",
                                   "// (tools/refl_attrs.py), byte-identical to the original."],
                  {a: others[a] for a in others_ok})
