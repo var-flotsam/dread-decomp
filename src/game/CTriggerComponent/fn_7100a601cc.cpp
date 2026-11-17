@@ -39,7 +39,9 @@ struct UnkTriggerComponent_la601cc {
     u8 pad_0x1e4[4];
 
     UnkTriggerSlot_la601cc* begin() { return reinterpret_cast<UnkTriggerSlot_la601cc*>(slots); }
-    UnkTriggerSlot_la601cc* end() { return begin() + slot_count; }
+    UnkTriggerSlot_la601cc* end() {
+        return reinterpret_cast<UnkTriggerSlot_la601cc*>(slots + slot_count * sizeof(UnkTriggerSlot_la601cc));
+    }
     CStrId name;  // 0x1e8
 };
 static_assert(__builtin_offsetof(UnkTriggerComponent_la601cc, name) == 0x1e8, "layout");
@@ -75,13 +77,12 @@ static inline void Erase(UnkTriggerList_la601cc* list, UnkTriggerList_la601cc::N
     }
 }
 
-struct UnkRelocateActor;
-
-void fn_7100a601cc(void* self_, UnkRelocateActor* target_, UnkRelocateActor* previous_) {
-    auto* self = static_cast<UnkTriggerComponent_la601cc*>(self_);
-    auto* target = reinterpret_cast<UnkTriggerTarget_la601cc*>(target_);
-    auto* previous = reinterpret_cast<UnkTriggerTarget_la601cc*>(previous_);
-    UnkTriggerSlot_la601cc* slot = std::find_if(self->begin(), self->end(), [previous](const UnkTriggerSlot_la601cc& s) {
+void fn_7100a601cc(UnkTriggerComponent_la601cc* self, UnkTriggerTarget_la601cc* target,
+                   UnkTriggerTarget_la601cc* previous) {
+    u64 size = self->slot_count * sizeof(UnkTriggerSlot_la601cc);
+    // The original tests the byte size, not the count, for zero (the barrier keeps the multiply).
+    asm("" : "+r"(size));
+    UnkTriggerSlot_la601cc* slot = std::find_if(self->begin(), reinterpret_cast<UnkTriggerSlot_la601cc*>(self->slots + size), [previous](const UnkTriggerSlot_la601cc& s) {
         return s.handle && s.handle->target == previous;
     });
     if (UnkTriggerList_la601cc::Node* node = Find(&previous->listeners, self->key))
