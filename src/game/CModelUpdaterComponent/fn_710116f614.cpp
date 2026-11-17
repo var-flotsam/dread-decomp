@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // CModelUpdaterComponent's unit (tools/tu_map.py unit 2719): copies a description's three named ranges into
 // the updater: each range's id, and its four values clamped at zero when the id is set; then two words.
 // Names and layouts are placeholders.

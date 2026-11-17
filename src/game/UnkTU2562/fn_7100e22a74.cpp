@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // Dropped-item manager (unit 2562, CLogicDroppedItemManager::CTunableDroppableBillboard): builds a
 // record of 20 zeroed entries, each with its byte offset and a scale of 1, and registers it under the third
 // billboard id. Names and layouts are placeholders.
@@ -7,17 +8,15 @@
 #include "game/UnkTU2560.h"
 #include "game/UnkTU83.h"
 #include "types.h"
+#include "game/UnkTU2561.h"
 
 using base::global::CRntVector;
 using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-extern CStrId g_unk_71727c1080;
-extern CStrId g_unk_71727c1088[];
 
 struct UnkRecord_b218;
-void fn_7100e1cfec(void* self_, CStrId* key, UnkRecord_b218* record);
 
 // The record's id: assigned and released with the count decremented and tested in one step.
 struct UnkRecordId : base::global::UnkStrIdBase {

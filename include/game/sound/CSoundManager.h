@@ -7,6 +7,7 @@
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
+struct UnkSoundOwned_b0038;
 struct UnkAudioPreset_b0038;
 struct UnkSoundHandle;
 struct UnkStrIdPathPair;
@@ -21,3 +22,4 @@ UnkSoundHandle fn_7101024e28(UnkDropTarget* self, const UnkStrIdPathPair* ids, v
 void fn_710102be04(base::global::CRntVector<u64>* array);
 bool fn_710102423c(UnkDropTarget* self, UnkAudioPreset_b0038* preset);
 void fn_71010244a8(UnkDropTarget* self, UnkSoundHandle handle);
+void fn_710102796c(UnkSoundOwned_b0038* owned);

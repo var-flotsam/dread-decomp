@@ -5394,7 +5394,7 @@ address,size,name,name_source,subsystem,status
 0x7100ddbf58,108,fn_7100ddbf58,unknown,unknown,O
 0x7100ddbfc4,6864,fn_7100ddbfc4,unknown,unknown,U
 0x7100dddaa0,392,fn_7100dddaa0,unknown,unknown,U
-0x7100dddc28,632,fn_7100dddc28,unknown,unknown,U
+0x7100dddc28,632,fn_7100dddc28,unknown,unknown,O
 0x7100dddea0,172,fn_7100dddea0,unknown,unknown,O
 0x7100dddf50,172,fn_7100dddf50,unknown,unknown,O
 0x7100dddffc,4,fn_7100dddffc,unknown,linker,L

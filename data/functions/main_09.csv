@@ -3393,7 +3393,7 @@ address,size,name,name_source,subsystem,status
 0x71009b9080,48,CAnimationNavMeshItemStage::refl_MoveAssign,reflection,game,O
 0x71009b90b0,392,fn_71009b90b0,unknown,unknown,O
 0x71009b9238,324,fn_71009b9238,unknown,unknown,O
-0x71009b937c,552,fn_71009b937c,unknown,unknown,U
+0x71009b937c,552,fn_71009b937c,unknown,unknown,O
 0x71009b95b0,160,fn_71009b95b0,unknown,unknown,O
 0x71009b9650,4,CChangeStageNavMeshItemComponent::refl_AddAttributes,reflection,game/components,O
 0x71009b9654,244,CChangeStageNavMeshItemComponent::refl_GetClass,reflection,game/components,O

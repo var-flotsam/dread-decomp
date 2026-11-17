@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // Unit 259 (the graphics system): the graphics system's destructor body, its members destroyed
 // last to first. Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"

@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // sound::SGUISoundEventsSelector's unit (tools/tu_map.py unit 2625): the copy constructor of an array of
 // (key, string id) events. Names and layouts are placeholders.
 #include <new>
@@ -10,15 +11,15 @@ using base::global::UnkStringData;
 
 // A string id held by an event: copies take a reference, moves take the pointer and leave the
 // pool's empty string (CStrId has no move constructor).
-struct UnkSoundEventId {
+struct UnkSoundEventId_fcb618 {
     UnkStringData* data;
 
-    UnkSoundEventId(const UnkSoundEventId& other) : data(other.data) {
+    UnkSoundEventId_fcb618(const UnkSoundEventId_fcb618& other) : data(other.data) {
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
     }
-    UnkSoundEventId(UnkSoundEventId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-    ~UnkSoundEventId() {
+    UnkSoundEventId_fcb618(UnkSoundEventId_fcb618&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
+    ~UnkSoundEventId_fcb618() {
         if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
             if (data && data != &pool->empty) {
                 --data->ref_count;
@@ -32,13 +33,13 @@ struct UnkSoundEventId {
     }
 };
 
-struct UnkSoundEvent {
+struct UnkSoundEvent_fcb618 {
     u32 key;
-    UnkSoundEventId id;
+    UnkSoundEventId_fcb618 id;
 };
-static_assert(sizeof(UnkSoundEvent) == 0x10, "UnkSoundEvent layout");
+static_assert(sizeof(UnkSoundEvent_fcb618) == 0x10, "UnkSoundEvent_fcb618 layout");
 
-using UnkSoundEventVector = base::global::CRntVector<UnkSoundEvent>;
+using UnkSoundEventVector = base::global::CRntVector<UnkSoundEvent_fcb618>;
 
 // The array's copy constructor: the source's settings and allocator, its capacity, then a copy of each
 // event appended.
@@ -52,8 +53,8 @@ void fn_7100fcb618(UnkSoundEventVector* self, const UnkSoundEventVector* other) 
     self->allocator = other->allocator;
     self->Reserve(other->capacity);
     if (other->count != 0) {
-        const UnkSoundEvent* end = other->data + other->count;
-        for (const UnkSoundEvent* p = other->data; p != end; ++p)
+        const UnkSoundEvent_fcb618* end = other->data + other->count;
+        for (const UnkSoundEvent_fcb618* p = other->data; p != end; ++p)
             self->PushBackCopy(*p);
     }
 }

@@ -525,7 +525,7 @@ address,size,name,name_source,subsystem,status
 0x7100e222a0,836,fn_7100e222a0,unknown,game?,U
 0x7100e225e4,352,fn_7100e225e4,unknown,game?,O
 0x7100e22744,816,fn_7100e22744,unknown,game?,U
-0x7100e22a74,1560,fn_7100e22a74,unknown,game?,U
+0x7100e22a74,1560,fn_7100e22a74,unknown,game?,O
 0x7100e2308c,1896,fn_7100e2308c,unknown,game?,O
 0x7100e237f4,1972,fn_7100e237f4,unknown,game?,O
 0x7100e23fa8,2008,fn_7100e23fa8,unknown,game?,O
@@ -1572,7 +1572,7 @@ address,size,name,name_source,subsystem,status
 0x7100e5870c,452,fn_7100e5870c,unknown,engine/reflection?,O
 0x7100e588d0,456,fn_7100e588d0,unknown,engine/reflection?,m
 0x7100e58a98,324,fn_7100e58a98,unknown,engine/reflection?,O
-0x7100e58bdc,416,fn_7100e58bdc,unknown,engine/reflection?,U
+0x7100e58bdc,416,fn_7100e58bdc,unknown,engine/reflection?,O
 0x7100e58d7c,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>>::Begin",reflection,engine/reflection,O
 0x7100e58d88,24,fn_7100e58d88,unknown,engine/reflection?,O
 0x7100e58da0,160,fn_7100e58da0,unknown,engine/reflection?,O
@@ -1827,9 +1827,9 @@ address,size,name,name_source,subsystem,status
 0x7100e60cf8,88,fn_7100e60cf8,unknown,engine/reflection?,O
 0x7100e60d50,48,fn_7100e60d50,unknown,engine/reflection?,O
 0x7100e60d80,116,fn_7100e60d80,unknown,engine/reflection?,O
-0x7100e60df4,748,fn_7100e60df4,unknown,engine/reflection?,U
+0x7100e60df4,748,fn_7100e60df4,unknown,engine/reflection?,O
 0x7100e610e0,252,fn_7100e610e0,unknown,engine/reflection?,O
-0x7100e611dc,756,fn_7100e611dc,unknown,engine/reflection?,U
+0x7100e611dc,756,fn_7100e611dc,unknown,engine/reflection?,O
 0x7100e614d0,380,fn_7100e614d0,unknown,engine/reflection?,O
 0x7100e6164c,796,fn_7100e6164c,unknown,engine/reflection?,O
 0x7100e61968,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::STransportSignData>>::Begin",reflection,engine/reflection,O

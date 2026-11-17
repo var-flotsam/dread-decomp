@@ -1,8 +1,10 @@
+// build-flags: no-strict-aliasing
 // CCharClass's unit (tools/tu_map.py unit 2740): reads the class's action sets from a file: a count, then
 // one path per set. The set named "timeline" is kept apart; the others go in the table at +0xd0 under
 // their names. Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkAssetResRef.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/animation/CBlendSpace1D.h"
@@ -45,30 +47,6 @@ struct UnkCountedRef_l2a6d38 {
 
 using UnkCountedRefArrays_l2a6d38 = base::global::CRntSmallDictionary<CStrId, UnkCountedRef_l2a6d38>;
 void fn_71002a6d38(UnkCountedRefArrays_l2a6d38* self, u32 new_capacity);
-
-// A counted reference to a resource, as the registry returns it (in memory); as in
-// src/base/core/CAssetLink.cpp.
-struct UnkAssetResRef {
-    UnkCountedResource* ptr;
-
-    UnkAssetResRef() : ptr(nullptr) {}
-    UnkAssetResRef& operator=(const UnkAssetResRef& other) {
-        if (ptr != other.ptr) {
-            UnkCountedResource* p = other.ptr;
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-        return *this;
-    }
-    ~UnkAssetResRef() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
 
 // An action set: a counted resource with its name at +0x58.
 struct UnkActionSet_l1ac144 : UnkCountedResource {

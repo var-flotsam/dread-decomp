@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // CCharClassLogicSoundEvent's unit (tools/tu_map.py): creates the event a name (a string id) stands for
 // in a chained hash map (+0x68): a new 0x48-byte object built from the map's entry (fn_7100f0475c), kept
 // in the list at +0x30 and returned as a counted reference (empty when the name is unknown).

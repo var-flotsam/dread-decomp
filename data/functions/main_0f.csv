@@ -4298,7 +4298,7 @@ address,size,name,name_source,subsystem,status
 0x7100fa07bc,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::At",reflection,engine/reflection,O
 0x7100fa07c8,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::Find",reflection,engine/reflection,O
 0x7100fa07ec,4,fn_7100fa07ec,unknown,unknown,O
-0x7100fa07f0,640,fn_7100fa07f0,unknown,unknown,U
+0x7100fa07f0,640,fn_7100fa07f0,unknown,unknown,O
 0x7100fa0a70,76,fn_7100fa0a70,unknown,unknown,O
 0x7100fa0abc,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::Hash",reflection,engine/reflection,O
 0x7100fa0ac4,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::TypeOf",reflection,engine/reflection,O
@@ -5114,8 +5114,8 @@ address,size,name,name_source,subsystem,status
 0x7100fcb4b0,12,sound::SGUISoundEventsSelector::refl_Destroy,reflection,audio,O
 0x7100fcb4bc,68,sound::SGUISoundEventsSelector::refl_CopyAssign,reflection,audio,O
 0x7100fcb500,280,sound::SGUISoundEventsSelector::refl_MoveAssign,reflection,audio,O
-0x7100fcb618,604,fn_7100fcb618,unknown,unknown,U
-0x7100fcb874,712,fn_7100fcb874,unknown,unknown,U
+0x7100fcb618,604,fn_7100fcb618,unknown,unknown,O
+0x7100fcb874,712,fn_7100fcb874,unknown,unknown,O
 0x7100fcbb3c,316,fn_7100fcbb3c,unknown,unknown,O
 0x7100fcbc78,12,fn_7100fcbc78,unknown,unknown,O
 0x7100fcbc84,100,fn_7100fcbc84,unknown,unknown,O

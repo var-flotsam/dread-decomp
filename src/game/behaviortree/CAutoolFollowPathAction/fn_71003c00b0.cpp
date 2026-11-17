@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // CAutoolFollowPathAction unit: copy constructor of a growable array (base::global::CRntVector) of
 // 0x20-byte polymorphic path points (vtable g_unk_7101cac8f0, five words, destroyed through slot 1).
 // Names and layouts are placeholders.
@@ -6,8 +7,8 @@
 #include "base/global/CRntVector.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
+#include "game/SLogicPathNode.h"
 
-extern char g_unk_7101cac8f0[];
 
 struct UnkFollowPathPoint;
 

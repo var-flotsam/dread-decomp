@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // CTriggerComponent unit (tools/tu_map.py): moves an owned object (destroyed by fn_7100a632e8) into an
 // array of owning pointers at the given index, shifting the later ones up; the array grows first when it
 // is full. Names and layouts are placeholders.

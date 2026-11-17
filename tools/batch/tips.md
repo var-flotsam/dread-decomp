@@ -34,6 +34,9 @@ registers-only or other non-match and goes by `CLAUDE.md`, "Matching standard".
 - Reloads after a store come from type-based alias analysis: the field's real type decides them. Byte arrays
   whose count is reloaded after an element store have `u8` elements, not `bool`; out-flags written as `u8*`
   rather than `bool*` reload after the store. Look for the field's real type before anything else.
+- Some units were built without strict aliasing (`data/unit_flags.csv`): there every store may alias a later
+  load. `tools/trymatch.py` prints an `ALIAS` line when a function gets closer that way; in a listed unit,
+  mark the file `// build-flags: no-strict-aliasing` and write the stores plainly.
 - One 64-bit load of two u32 fields: the two fields are one `u64` member with accessors.
 - Static helpers get argument promotion (loads move above stores); a non-static inline helper keeps the
   original order.

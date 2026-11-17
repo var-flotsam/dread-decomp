@@ -47,6 +47,8 @@ def main() -> int:
     ap.add_argument("-v", "--verbose", action="store_true", help="print side-by-side disassembly of mismatches")
     ap.add_argument("--no-reloc", action="store_true", help="skip the relocation target check")
     ap.add_argument("--obj-dir", type=Path, help="where the object goes (default build/trymatch/<version>/)")
+    ap.add_argument("--no-alias-probe", action="store_true",
+                    help="skip the second build without strict aliasing for functions that do not match")
     ap.add_argument("flags", nargs="*", help="extra compiler flags (after --)")
     args = ap.parse_args()
 
@@ -86,11 +88,40 @@ def main() -> int:
                 for m in rep.mismatches:
                     sym = check.strip_params(full_names.get(m.symbol, m.symbol))
                     print(f"  RELOC  {asmdiff.format_mismatch(m, sym)}")
+    if not args.no_alias_probe:
+        alias_probe(src, obj, args.flags, results, original, by_name, source, names)
     unmapped = len(funcs) - len(results)
     matched = sum(r.matching for r in results) - mismatched
     print(f"{matched}/{len(results)} functions match" + (f" ({unmapped} not mapped to an address)" if unmapped else "")
           + (f"; {mismatched} with a wrong relocation target" if mismatched else ""))
     return 0 if results and matched == len(results) else 1
+
+
+def alias_probe(src: Path, obj: Path, flags: list[str], results, original, by_name, source, names) -> None:
+    """Build again with -fno-strict-aliasing and say which non-matching functions get closer.
+
+    A large gain means the original reloads after stores that our types let Clang assume do not alias: look
+    for the original's untyped store, or mark the file `// build-flags: no-strict-aliasing` when its unit is
+    in data/unit_flags.csv (buildcfg.source_flags).
+    """
+    misses = {r.symbol: r for r in results if not r.matching}
+    cmd = buildcfg.cxx_command(src, obj, flags)
+    if not misses or "-fno-strict-aliasing" in cmd:
+        return
+    probe = obj.with_name(obj.stem + ".alias.o")
+    if subprocess.run(buildcfg.cxx_command(src, probe, [*flags, "-fno-strict-aliasing"]),
+                      capture_output=True, text=True).returncode != 0:
+        return
+    again, _, _, _ = check.diff_with_targets(asmdiff.read_object(probe), original, by_name, source=source)
+    for res in again:
+        before = misses.get(res.symbol)
+        if before is None:
+            continue
+        if res.bytes_match:
+            print(f"  ALIAS  {names.get(res.symbol, res.symbol)} matches without strict aliasing")
+        elif res.score >= before.score + 0.05:
+            print(f"  ALIAS  {names.get(res.symbol, res.symbol)}: {before.score:.1%} -> {res.score:.1%} "
+                  "without strict aliasing")
 
 
 if __name__ == "__main__":
