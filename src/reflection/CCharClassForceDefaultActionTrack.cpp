@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassForceDefaultActionTrack
 namespace CCharClassForceDefaultActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Force Default Action");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Movement", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Force Default Action");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Movement", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "brelax", 0x18, (DefaultValue, true));

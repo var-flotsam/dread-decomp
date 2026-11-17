@@ -29,17 +29,17 @@ void fn_7100937f48(UnkReflFunction* fn, const char* name);
 namespace CMultiModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sModelAlias_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sModelAlias_GetterFunction") {
         fn->name = base::global::UnkStrId("_sModelAlias_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71009393fc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sModelAlias_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sModelAlias_SetterFunction")
         fn_7100937dd0(fn, "_sModelAlias_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sModelAlias", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, base::global::CRntString("Current model alias")));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetVertexLightsEnabled", true))) {
+    DREAD_REFLECTED_FUNCTION("SetVertexLightsEnabled") {
         fn_7100937f48(fn, "SetVertexLightsEnabled");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Vertex Lights Enabled"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassEmmyFloorSlideAllowedTrack
 namespace CCharClassEmmyFloorSlideAllowedTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Emmy Floor Slide Allowed"));
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
+    TypeAttributes(cls)->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Emmy Floor Slide Allowed"));
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

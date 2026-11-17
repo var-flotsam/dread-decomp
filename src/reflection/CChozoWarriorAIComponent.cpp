@@ -26,7 +26,7 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CChozoWarriorAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpChozoWarrioXSpawnPoint", true), &g_unk_717269bb48, 0x149d8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpChozoWarrioXSpawnPoint", true), &g_unk_717269bb48, 0x149d8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);
     DREAD_REFLECTED_FIELD_OF("CChozoWarriorAIComponent::ETransformationType", "eTransformationType", 0x149cc, (DefaultValue, 1));
 }

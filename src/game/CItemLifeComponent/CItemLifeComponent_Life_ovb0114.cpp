@@ -3,6 +3,7 @@
 // and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CLifeComponent.h"
@@ -122,7 +123,7 @@ void fn_71008e1174(UnkItemLifeUpdate_ovb0114* self, f32 dt) {
     fn_71008c6b0c(reinterpret_cast<UnkColorLerp_A4_b75*>(&self->current), dt);
     UnkItemLifeTarget_ovb0114* target = self->target;
     UnkVector4D colour(*static_cast<UnkVector4D*>(&self->current));
-    fn_710007b518(&target->colour, &colour);
+    Assign(target->colour, colour);
     if (target->field_0x2e0)
         *target->field_0x2e0->colour = colour;
 }

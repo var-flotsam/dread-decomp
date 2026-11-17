@@ -23,11 +23,11 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_71727a0738;
 namespace CCharClassAnalogAimTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Analog Aim");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Analog Aim");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eAbortAnalogAimInput", true), &g_unk_71727a0738, 0x18, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eAbortAnalogAimInput", true), &g_unk_71727a0738, 0x18, -1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Abort Analog Aim Input");
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727a0738, 2);
 }

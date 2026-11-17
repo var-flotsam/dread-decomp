@@ -33,14 +33,14 @@ extern base::reflection::CType g_unk_7172a07250;
 namespace CSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("EnableSpawnGroup", true))) {
+    DREAD_REFLECTED_FUNCTION("EnableSpawnGroup") {
         fn->name = base::global::UnkStrId("EnableSpawnGroup", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710111fc58);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DisableSpawnGroup", true))) {
+    DREAD_REFLECTED_FUNCTION("DisableSpawnGroup") {
         fn->name = base::global::UnkStrId("DisableSpawnGroup", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -67,15 +67,15 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSpawnPointsNotInFrustrum", 0x141, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bGenerateEntitiesByOrder", 0x142, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(CStrId, "sLogicCollisionShapeID", 0x418, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field20 = fn_7100096524(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0xb8, -1, -1);
+    UnkReflField* field20 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0xb8, -1, -1);
     field20->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
-    UnkReflField* field21 = fn_7100096524(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0xf8, -1, -1);
+    UnkReflField* field21 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0xf8, -1, -1);
     field21->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     DREAD_REFLECTED_FIELD(f32, "fDropAmmoProb", 0x3d8, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(s32, "iInitToGenerate", 0x188, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(CStrId, "sArenaId", 0x1c0, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bCheckActiveDrops", 0x1a0, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_iNumDeaths_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_iNumDeaths_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_iNumDeaths_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
@@ -83,7 +83,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710111fd34);
     }
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iNumDeaths", (DefaultValue, 0), (Persistence, 0));
-    UnkReflField* field27 = fn_7100096524(cls, CStrId("vectSpawnPoints", true), &g_unk_7172a07250, 0x68, -1, -1);
+    UnkReflField* field27 = AddReflectedField(cls, CStrId("vectSpawnPoints", true), &g_unk_7172a07250, 0x68, -1, -1);
     field27->attrs.Add<bool>(base::reflection::attr::DisableListAdd(), true);
     field27->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
     field27->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);

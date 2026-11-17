@@ -28,27 +28,27 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_710104a108();
 namespace CBlackboard {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x30001u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x30001u);
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_hashSections_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_hashSections_GetterFunction") {
         fn->name = base::global::UnkStrId("_hashSections_GetterFunction", true);
         fn->return_type = &g_unk_71729fc870;
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7101049fa8);
     }
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("hashSections", true), &g_unk_71729fc870, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("hashSections", true), &g_unk_71729fc870, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 1);
     field0->attrs.Add<const char*>(base::reflection::attr::CreateElement(), "CreateSection");
     field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterSectionsDeserialization", true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateSection", true))) {
+    DREAD_REFLECTED_FUNCTION("CreateSection") {
         fn_7101045544(fn, "CreateSection");
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sKey", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterSectionsDeserialization", true))) {
+    DREAD_REFLECTED_FUNCTION("AfterSectionsDeserialization") {
         fn->name = base::global::UnkStrId("AfterSectionsDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

@@ -31,33 +31,33 @@ void fn_7101175740(UnkReflFunction* fn, const char* name);
 namespace CAnimationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetAction", true))) {
+    DREAD_REFLECTED_FUNCTION("SetAction") {
         fn_71011753bc(fn, "SetAction");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetDefaultLoop", true))) {
+    DREAD_REFLECTED_FUNCTION("SetDefaultLoop") {
         fn_7101175470(fn, "SetDefaultLoop");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("HasTrack", true))) {
+    DREAD_REFLECTED_FUNCTION("HasTrack") {
         fn_7101175524(fn, "HasTrack");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayingAnim", true)))
+    DREAD_REFLECTED_FUNCTION("IsPlayingAnim")
         fn_71011755d8(fn, "IsPlayingAnim");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayingAnimLike", true)))
+    DREAD_REFLECTED_FUNCTION("IsPlayingAnimLike")
         fn_710117568c(fn, "IsPlayingAnimLike");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ClearActions", true))) {
+    DREAD_REFLECTED_FUNCTION("ClearActions") {
         fn->name = base::global::UnkStrId("ClearActions", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710117c12c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetActionFromEditor", true)))
+    DREAD_REFLECTED_FUNCTION("SetActionFromEditor")
         fn_7101175740(fn, "SetActionFromEditor");
 }
 bool refl_Equals(const void*, const void*) { return false; }

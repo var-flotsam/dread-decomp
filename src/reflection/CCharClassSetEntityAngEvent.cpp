@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetEntityAngEvent
 namespace CCharClassSetEntityAngEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set ang");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("AI", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set ang");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("AI", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vAng", 0xc, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));

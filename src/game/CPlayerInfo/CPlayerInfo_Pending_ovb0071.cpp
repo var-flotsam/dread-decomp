@@ -10,6 +10,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CAnimationComponent.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CGunComponent.h"
 #include "game/CInventoryComponent.h"
@@ -30,7 +31,6 @@ struct UnkOwner;
 struct UnkActorTarget;
 struct UnkInventory;
 struct UnkPlayer;
-void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 struct UnkManager;
 

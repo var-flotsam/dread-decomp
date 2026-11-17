@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPushSetupEvent
 namespace CCharClassPushSetupEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Push Setup");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Subarea", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Push Setup");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Subarea", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

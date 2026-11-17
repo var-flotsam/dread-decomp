@@ -150,7 +150,7 @@ struct UnkNavGroupEntry {
 struct UnkNavGroupRegistry {
     u8 pad_0x0[0x62e30];
     UnkNavGroupEntry* values;
-    base::global::CStrId* ids;
+    base::global::CStrId* keys;
     u32 count;
 };
 static_assert(__builtin_offsetof(UnkNavGroupRegistry, values) == 0x62e30, "UnkNavGroupRegistry layout");

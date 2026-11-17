@@ -17,16 +17,16 @@ base::reflection::UnkReflValue fn_7100adec94(void*, char* obj, base::reflection:
 void fn_7100500260(UnkReflFunction* fn);
 
 void fn_7100add284(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddElement", true))) {
+    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("AddElement", true))) {
         fn->name = base::global::UnkStrId("AddElement", true);
         fn->return_type = (fn_7100add190(), &g_unk_71727586d0);
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100adeaf4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetKey", true)))
+    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SetKey", true)))
         fn_7100add688(fn, "SetKey");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInfo", true))) {
+    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SetInfo", true))) {
         fn->name = base::global::UnkStrId("SetInfo", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

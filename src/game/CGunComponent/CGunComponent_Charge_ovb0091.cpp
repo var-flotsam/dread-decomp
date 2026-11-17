@@ -3,6 +3,7 @@
 // the one at +0x120 otherwise; the weapons of both slots are kept in two grouped lists (+0xc8, +0xf0).
 // A charge (+0x178 on, +0x17c its amount) starts from the times fn_7100837220 gives for the gun mode
 // (+0x134) and is released or dropped by the cancel helper below. Names and layouts are placeholders.
+#include "base/UnkCountedDeferredSet.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
@@ -37,8 +38,7 @@ struct UnkInventory;
 struct UnkFlagged;
 struct UnkParent;
 struct UnkGlobal2;
-struct UnkGunListeners_b53;
-void fn_7100841838(UnkGunListeners_b53* self, void* value);
+void fn_7100841838(base::UnkCountedDeferredSet<void>* self, void* value);
 void fn_710007ca94(CRntFile*, char*);
 
 // A weapon of one of the slots. Its virtual methods are called by slot offset (VCall).
@@ -86,24 +86,6 @@ struct UnkGunListener_ovb0091 {
     bool (*callback)(void* object, bool);  // 0x10
 };
 
-// Three pointer lists and a lock count, as CGunComponent_b53.cpp has them: while locked, additions
-// and removals are recorded in the first two lists and applied to the third on unlock.
-struct UnkGunListeners_ovb0091 {
-    base::global::CRntVector<void*> added;    // 0x0
-    base::global::CRntVector<void*> removed;  // 0x28
-    base::global::CRntVector<void*> items;    // 0x50
-    // A union member: the original reloads the holder's pointer and the counter after the
-    // decrement (no type-based alias info).
-    union {
-        s32 lock;  // 0x78
-    };
-};
-static_assert(__builtin_offsetof(UnkGunListeners_ovb0091, lock) == 0x78, "layout");
-
-struct UnkGunListenersLock_ovb0091 {
-    UnkGunListeners_ovb0091* listeners;
-};
-
 struct UnkGunComponent_ovb0091 {
     void* vtable;
     u8 pad_0x8[0x28];
@@ -149,7 +131,7 @@ struct UnkGunComponent_ovb0091 {
     u8 pad_0x196[0x82];
     u8 field_0x218;      // 0x218
     u8 pad_0x219[0xf];
-    UnkGunListeners_ovb0091 listeners;  // 0x228
+    base::UnkCountedDeferredSet<void> listeners;  // 0x228
     u8 pad_0x2a8[0x11];
     u8 field_0x2b9;      // 0x2b9
     u8 pad_0x2ba[0xe];
@@ -497,21 +479,21 @@ bool fn_710083e250(UnkGun_ovb0091* self, f32 value, bool flag) {
     return true;
 }
 
-// Ends a walk over the listeners: once the lock is back to zero, the removed entries leave the list
+// Ends a walk over the listeners: once the walk count is back to zero, the removed entries leave the list
 // and the added ones join it (as fn_710113831c).
-void fn_7100841c4c(UnkGunListenersLock_ovb0091* self) {
-    --self->listeners->lock;
-    UnkGunListeners_ovb0091* listeners = self->listeners;
+void fn_7100841c4c(base::UnkCountedDeferredWalk<void>* walk) {
+    --walk->set->lock;
+    base::UnkCountedDeferredSet<void>* listeners = walk->set;
     if (listeners->lock > 0)
         return;
-    for (u32 i = 0; i < listeners->removed.count; ++i)
-        listeners->items.Remove(*fn_7100841e10(&listeners->removed, i));
-    // Cleared through an untyped store: the original reloads the holder's pointer after it.
-    __builtin_memset(&listeners->removed.count, 0, sizeof(u32));
-    listeners = self->listeners;
-    for (u32 i = 0; i < listeners->added.count; ++i)
-        listeners->items.PushBack(*fn_7100841e10(&listeners->added, i));
-    listeners->added.count = 0;
+    for (u32 i = 0; i < listeners->pending_remove.count; ++i)
+        listeners->items.Remove(*fn_7100841e10(&listeners->pending_remove, i));
+    // Cleared through an untyped store: the original reloads the walk's pointer after it.
+    __builtin_memset(&listeners->pending_remove.count, 0, sizeof(u32));
+    listeners = walk->set;
+    for (u32 i = 0; i < listeners->pending_add.count; ++i)
+        listeners->items.PushBack(*fn_7100841e10(&listeners->pending_add, i));
+    listeners->pending_add.count = 0;
 }
 
 void fn_710083e33c(UnkChargeComponent_b47a3* charge, bool notify) {
@@ -534,17 +516,15 @@ void fn_710083e33c(UnkChargeComponent_b47a3* charge, bool notify) {
             fn_7100831dcc(self->target->field_0x10, self->alt, false, &args);
         }
         {
-            UnkGunListenersLock_ovb0091 lock;
-            lock.listeners = &self->listeners;
-            ++self->listeners.lock;
+            base::UnkCountedDeferredWalk<void> walk(&self->listeners);
             void** it = self->listeners.items.data;
             u32 count = self->listeners.items.count;
             for (void** end = it + count; it != end; ++it) {
                 auto* listener = static_cast<UnkGunListener_ovb0091*>(*it);
                 if (!listener || !listener->callback || !listener->callback(listener->object, true))
-                    fn_7100841838(reinterpret_cast<UnkGunListeners_b53*>(&self->listeners), listener);
+                    fn_7100841838(&self->listeners, listener);
             }
-            fn_7100841c4c(&lock);
+            fn_7100841c4c(&walk);
         }
     }
     CancelCharge(self);

@@ -27,13 +27,13 @@ void fn_71007e8b58();
 namespace CFootstepPlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpActivableEntity", true), &g_unk_71727b6270, 0x48, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpActivableEntity", true), &g_unk_71727b6270, 0x48, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpPartnerFootStepPlatformEntity", true), &g_unk_71727b6270, 0x88, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpPartnerFootStepPlatformEntity", true), &g_unk_71727b6270, 0x88, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnOpened", 0xe0, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnClosed", 0xe8, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CloseDoor", true))) {
+    DREAD_REFLECTED_FUNCTION("CloseDoor") {
         fn->name = base::global::UnkStrId("CloseDoor", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

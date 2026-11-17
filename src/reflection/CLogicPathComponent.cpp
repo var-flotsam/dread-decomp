@@ -27,7 +27,7 @@ namespace CLogicPathComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(SLogicPath, "logicPath", 0x30, (Description, base::global::CRntString("LogicPath")), (SetRenderItemSelectionIdCall, true), (AfterElementDeserialization, CStrId("AfterPathDeserialization", true)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterPathDeserialization", true))) {
+    DREAD_REFLECTED_FUNCTION("AfterPathDeserialization") {
         fn->name = base::global::UnkStrId("AfterPathDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

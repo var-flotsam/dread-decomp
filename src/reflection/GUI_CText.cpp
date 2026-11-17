@@ -35,44 +35,44 @@ void fn_7100b863ec(UnkReflFunction* fn, const char* name);
 namespace GUI::CText {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_Font_GetterFunction") {
         fn->name = base::global::UnkStrId("_Font_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b8708c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Font_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_Font_SetterFunction")
         fn_7100b85f78(fn, "_Font_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "Font");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextString_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_TextString_GetterFunction") {
         fn->name = base::global::UnkStrId("_TextString_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b8719c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextString_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_TextString_SetterFunction")
         fn_7100b860f4(fn, "_TextString_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "TextString");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_TextAlignment_GetterFunction") {
         fn->name = base::global::UnkStrId("_TextAlignment_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b87318);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_TextAlignment_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_TextAlignment_SetterFunction")
         fn_7100b86270(fn, "_TextAlignment_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "TextAlignment");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_Text_GetterFunction") {
         fn->name = base::global::UnkStrId("_Text_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100b87488);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_Text_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_Text_SetterFunction")
         fn_7100b863ec(fn, "_Text_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "Text");
 }

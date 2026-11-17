@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetMusicInGameStateEvent
 namespace CCharClassSetMusicInGameStateEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Music In Game State");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Music In Game State");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EMusicManagerInGameState", "eState", 0xc, (DefaultValue, 0));

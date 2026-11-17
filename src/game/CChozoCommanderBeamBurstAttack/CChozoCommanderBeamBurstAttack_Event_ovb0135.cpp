@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CAnimationComponent.h"
 #include "game/CFXComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
@@ -23,7 +24,6 @@
 
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkBurstEventId_ovb0135 {
     u8 pad_0x0[0x30];

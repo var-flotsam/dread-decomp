@@ -109,14 +109,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fInitialAccumulatedTime", 0x4b8, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fActivationTime", 0x4b0, (DefaultValue, 2.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimePerShot", 0x4b4, (DefaultValue, 0.3f), (MinValue, 0.0f), (MaxValue, 100.0f));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("vTargetsToActivate", true), &g_unk_717269bf08, 0x388, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("vTargetsToActivate", true), &g_unk_717269bf08, 0x388, -1, -1);
     field3->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field3->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 10);
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("vTargetsToDeactivate", true), &g_unk_717269bf08, 0x3b0, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("vTargetsToDeactivate", true), &g_unk_717269bf08, 0x3b0, -1, -1);
     field4->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field4->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 10);
     DREAD_REFLECTED_FIELD(CStrId, "sOnUseEntityTimeline", 0x4d8, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("wpAtmosphereEntity", true), &g_unk_71727b6270, 0x530, -1, -1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("wpAtmosphereEntity", true), &g_unk_71727b6270, 0x530, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesActivatabledOnEvent", 0x4e0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesDeactivatabledOnEvent", 0x508);

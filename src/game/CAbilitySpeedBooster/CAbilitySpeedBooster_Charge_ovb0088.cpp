@@ -21,6 +21,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbility.h"
 #include "game/CAbilitySpeedBooster.h"
+#include "game/CAnimationComponent.h"
 #include "game/CGameObject.h"
 #include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkActor.h"
@@ -208,12 +209,9 @@ using base::reflection::UnkReflObject;
 struct UnkOwner;
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 extern const u64 g_unk_7101648ff8;
 extern const u64 g_unk_7101649000;
 struct UnkV4_b47;
-extern const UnkV4_b47 g_unk_7101649044 __attribute__((visibility("hidden")));  // the model colour reset
-extern const u8 g_unk_7101649054[] __attribute__((visibility("hidden")));
 
 struct UnkSpeedBoosterEndActor_ovb0088 {
     u8 pad_0x0[0x228];

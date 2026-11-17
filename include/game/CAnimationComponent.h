@@ -61,3 +61,4 @@ extern void* g_unk_7101cb46c0[];
 extern char g_unk_7101cb4840[];
 extern char g_unk_7101cb4860[];
 extern void* g_unk_7101cb4880[];
+void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, bool c, bool d, f32 e);

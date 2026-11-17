@@ -175,7 +175,6 @@ extern base::reflection::CType g_unk_7172750038;
 extern base::reflection::CType g_unk_7172750790;
 extern base::reflection::CType g_unk_7172751840;
 extern base::reflection::CType g_unk_7172751fe8;
-extern base::reflection::CType g_unk_7172752160;
 extern base::reflection::CType g_unk_7172752bb0;
 extern base::reflection::CType g_unk_7172755268;
 extern base::reflection::CType g_unk_71727600a0;
@@ -348,8 +347,6 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_7172a07528;
     if (name == "CSubAreaManager::ETransitionType")
         return &g_unk_71729da710;
-    if (name == "CThermalDeviceComponent::EPipeGroup")
-        return &g_unk_7172752160;
     if (name == "CTimelineComponent::ENextPolicy")
         return &g_unk_7172746d98;
     if (name == "CXParasiteAIComponent::EXParasiteBehaviorType")

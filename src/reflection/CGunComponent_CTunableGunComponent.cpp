@@ -81,27 +81,27 @@ void fn_7100838bc8(UnkReflFunction* fn, const char* name);
 namespace CGunComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddPrimaryGun", true))) {
+    DREAD_REFLECTED_FUNCTION("AddPrimaryGun") {
         fn_71008388f8(fn, "AddPrimaryGun");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Add Primary Gun"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddSecondaryGun", true))) {
+    DREAD_REFLECTED_FUNCTION("AddSecondaryGun") {
         fn_71008389ac(fn, "AddSecondaryGun");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Add Secondary Gun"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SelectGun", true))) {
+    DREAD_REFLECTED_FUNCTION("SelectGun") {
         fn_7100838a60(fn, "SelectGun");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Select Gun"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetGunChargeParams", true))) {
+    DREAD_REFLECTED_FUNCTION("SetGunChargeParams") {
         fn_7100838b14(fn, "SetGunChargeParams");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Gun Charge Params"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetBillBoardGroupParams", true))) {
+    DREAD_REFLECTED_FUNCTION("SetBillBoardGroupParams") {
         fn_7100838bc8(fn, "SetBillBoardGroupParams");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set billboard groups params"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

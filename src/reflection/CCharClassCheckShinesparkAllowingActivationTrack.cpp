@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCheckShinesparkAllowingActivationTrack
 namespace CCharClassCheckShinesparkAllowingActivationTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Check Shinespark Allowing Activation");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("SpeedBooster", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Check Shinespark Allowing Activation");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("SpeedBooster", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

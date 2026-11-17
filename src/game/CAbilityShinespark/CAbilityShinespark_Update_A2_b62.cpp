@@ -4,6 +4,7 @@
 // its +0x220 the id at +0x30 of the id table's entry at +0x1d78 (as fn_710032f9b0,
 // src/game/CAbilityShinespark/CAbilityShinespark_Send_b55.cpp). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CAbilityShinespark.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
@@ -13,7 +14,6 @@ struct UnkAbility2_b62a2;
 void fn_71002f9bb4(UnkAbility2_b62a2* self, s32 kind);  // src/game/CAbility/CAbility_Toggle_A2_b62.cpp
 extern const u64 g_unk_7101648e88;
 extern const u64 g_unk_7101648ea8;  // reached through the GOT
-extern const u64 g_unk_7101648f30;  // reached through the GOT
 
 struct UnkIdHolder_b62a2 {
     u8 pad_0x0[0x30];

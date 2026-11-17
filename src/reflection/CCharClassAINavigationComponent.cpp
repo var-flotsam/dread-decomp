@@ -40,64 +40,64 @@ namespace CCharClassAINavigationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EFollowPathRotationMode", "eFollowPathRotationMode", 0x58, (DefaultValue, 0), (Description, "None, VerticalRotationToMovement, InvertVerticalRotationToMovement, PositiveVerticalRotationToMovement or NegativeVerticalRotationToMovement"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationDist_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fFollowPathVerticalRotationDist_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fFollowPathVerticalRotationDist_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71006f7b0c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationDist_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fFollowPathVerticalRotationDist_SetterFunction")
         fn_71006f7008(fn, "_m_fFollowPathVerticalRotationDist_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fFollowPathVerticalRotationDist", (DefaultValue, 150.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationFactor_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fFollowPathVerticalRotationFactor_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fFollowPathVerticalRotationFactor_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71006f7b9c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathVerticalRotationFactor_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fFollowPathVerticalRotationFactor_SetterFunction")
         fn_71006f7184(fn, "_m_fFollowPathVerticalRotationFactor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fFollowPathVerticalRotationFactor", (DefaultValue, 1.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathTargetReachedDistance_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fFollowPathTargetReachedDistance_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fFollowPathTargetReachedDistance_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71006f7c2c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathTargetReachedDistance_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fFollowPathTargetReachedDistance_SetterFunction")
         fn_71006f7300(fn, "_m_fFollowPathTargetReachedDistance_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fFollowPathTargetReachedDistance", (DefaultValue, 25.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathLookAhead_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fFollowPathLookAhead_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fFollowPathLookAhead_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71006f7cbc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fFollowPathLookAhead_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fFollowPathLookAhead_SetterFunction")
         fn_71006f747c(fn, "_m_fFollowPathLookAhead_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fFollowPathLookAhead", (DefaultValue, 120.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71006f7d4c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_SetterFunction")
         fn_71006f75f8(fn, "_m_bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bFollowPathUpdateDirWhenNotLookingAtDesiredViewDir", (DefaultValue, true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGotoPointReachedDistance_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fGotoPointReachedDistance_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fGotoPointReachedDistance_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71006f7ddc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fGotoPointReachedDistance_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fGotoPointReachedDistance_SetterFunction")
         fn_71006f7774(fn, "_m_fGotoPointReachedDistance_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fGotoPointReachedDistance", (DefaultValue, 10.0f));
     DREAD_REFLECTED_FIELD(f32, "fTurnWeightPenalization", 0x7c, (DefaultValue, 400.0f));

@@ -25,9 +25,9 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CChozoCommanderXLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpIntroductionCutScenePlayer", true), &g_unk_71727b6270, 0x2b0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpIntroductionCutScenePlayer", true), &g_unk_71727b6270, 0x2b0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpDeathCutScenePlayer", true), &g_unk_71727b6270, 0x2f0, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpDeathCutScenePlayer", true), &g_unk_71727b6270, 0x2f0, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

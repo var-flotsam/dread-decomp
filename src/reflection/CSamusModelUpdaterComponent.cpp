@@ -24,7 +24,7 @@ void fn_7100939ea4(UnkReflFunction* fn, const char* name);
 namespace CSamusModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("UpdateCurrentPrimaryWeaponColor", true))) {
+    DREAD_REFLECTED_FUNCTION("UpdateCurrentPrimaryWeaponColor") {
         fn_7100939ea4(fn, "UpdateCurrentPrimaryWeaponColor");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Update Current Primary Weapon Color"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

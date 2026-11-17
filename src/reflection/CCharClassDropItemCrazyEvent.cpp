@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassDropItemCrazyEvent
 namespace CCharClassDropItemCrazyEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Crazy");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Drops");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Drop Item Crazy");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Drops");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bForce", 0xc, (DefaultValue, false));

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassWaterValveAllowWaterLoopEndEvent
 namespace CCharClassWaterValveAllowWaterLoopEndEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "WaterValve allow water loop end");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Props");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "WaterValve allow water loop end");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Props");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

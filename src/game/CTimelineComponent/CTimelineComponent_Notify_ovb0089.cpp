@@ -2,6 +2,7 @@
 // (the lists at +0xf8, walked under their counter; fn_7100a2e4a0 ends the walk) about an event: a kind
 // (3 or 2), a value and a name id copied from the message's timeline. A listener without a callback, or
 // whose callback returns false, is removed (fn_7100a2e30c). Names and layouts are placeholders.
+#include "base/UnkCountedDeferredSet.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CActionInstance.h"
@@ -9,19 +10,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkTimelineListenerLists_ovb0089 {
-    base::global::CRntVector<void*> field_0x0;
-    base::global::CRntVector<void*> field_0x28;
-    base::global::CRntVector<void*> field_0x50;
-    union {
-        s32 lock;  // 0x78
-    };
-};
-
-struct UnkTimelineListenerLock_ovb0089 {
-    UnkTimelineListenerLists_ovb0089* lists;
-};
 
 // A string id whose release decrements and tests in two steps (the original reloads the id and
 // its count after the decrement).
@@ -59,12 +47,11 @@ struct UnkTimelineListener_ovb0089 {
 
 struct UnkTimelineComp_ovb0089 {
     u8 pad_0x0[0xf8];
-    UnkTimelineListenerLists_ovb0089 listeners;
+    base::UnkCountedDeferredSet<void> listeners;  // 0xf8
 };
 
-struct UnkTimelineListeners_b53;
-void fn_7100a2e30c(UnkTimelineListeners_b53* self, void* value);
-void fn_7100a2e4a0(UnkTimelineListenerLock_ovb0089* self);
+void fn_7100a2e30c(base::UnkCountedDeferredSet<void>* self, void* value);
+void fn_7100a2e4a0(base::UnkCountedDeferredWalk<void>* walk);
 
 struct UnkTrack;
 struct UnkCutsceneTimeline;
@@ -87,20 +74,18 @@ struct UnkTimelineMessage_ovb0089 {
 };
 
 static inline void Notify(UnkTimelineComp_ovb0089* self, UnkTimelineEvent_ovb0089* event) {
-    UnkTimelineListenerLock_ovb0089 lock;
-    lock.lists = &self->listeners;
-    ++self->listeners.lock;
-    u32 count = self->listeners.field_0x50.count;
+    base::UnkCountedDeferredWalk<void> walk(&self->listeners);
+    u32 count = self->listeners.items.count;
     if (count) {
-        void** p = self->listeners.field_0x50.data;
+        void** p = self->listeners.items.data;
         void** end = p + count;
         for (; p != end; ++p) {
             UnkTimelineListener_ovb0089* l = static_cast<UnkTimelineListener_ovb0089*>(*p);
             if (!l || !l->callback || !l->callback(l->context, event))
-                fn_7100a2e30c(reinterpret_cast<UnkTimelineListeners_b53*>(&self->listeners), l);
+                fn_7100a2e30c(&self->listeners, l);
         }
     }
-    fn_7100a2e4a0(&lock);
+    fn_7100a2e4a0(&walk);
 }
 
 void fn_7100a2c520(UnkTimelineComp_ovb0089* self, UnkTimelineMessage_ovb0089* msg) {

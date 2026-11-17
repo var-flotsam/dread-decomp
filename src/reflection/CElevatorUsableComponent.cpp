@@ -26,7 +26,7 @@ namespace CElevatorUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EElevatorDirection", "eDirection", 0x54c, (DefaultValue, 0));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("eLoadingScreen", true), &g_unk_71727c0710, 0x550, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("eLoadingScreen", true), &g_unk_71727c0710, 0x550, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727c0710, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sLevelName", 0x558, (DefaultValue, CStrId("c10_samus", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioName", 0x560, (DefaultValue, CStrId("", true)));

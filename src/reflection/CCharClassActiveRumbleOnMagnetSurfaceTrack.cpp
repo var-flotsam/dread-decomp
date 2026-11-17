@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassActiveRumbleOnMagnetSurfaceTrack
 namespace CCharClassActiveRumbleOnMagnetSurfaceTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Active rumble on magnet surface");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Rumble", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Active rumble on magnet surface");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Rumble", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

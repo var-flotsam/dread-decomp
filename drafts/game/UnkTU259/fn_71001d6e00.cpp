@@ -5,6 +5,7 @@
 #include "base/UnkParallelFind.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -36,7 +37,7 @@ struct UnkNamedVector_l1d6e00 {
 // Named vectors in an array parallel to their 64-bit keys.
 struct UnkNamedVectors_l1d6e00 {
     UnkNamedVector_l1d6e00* values;
-    u64* ids;  // 0x8, the keys
+    u64* keys;  // 0x8
     u32 count;  // 0x10
     u32 capacity;
     u32 step;
@@ -55,12 +56,12 @@ bool fn_71001d6e00(UnkGfxSystem_l1d6e00* self, const u64* key, const CStrId* nam
         return false;
     if (t.count == t.capacity)
         fn_71001d6c58(reinterpret_cast<UnkGfxNamedVectors*>(&t), t.count + t.step);
-    t.ids[t.count] = *key;
+    t.keys[t.count] = *key;
     new (&t.values[t.count]) UnkNamedVector_l1d6e00();
     u32 count = ++t.count;
     UnkNamedVector_l1d6e00* end = &t.values[count];
     UnkNamedVector_l1d6e00& entry = count ? end[-1] : *end;
     entry.name.Assign(*name);
-    fn_710007b518(&entry.value, value);
+    Assign(entry.value, *value);
     return true;
 }

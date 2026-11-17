@@ -51,56 +51,56 @@ namespace CDoorLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxDistanceOpened", 0x414, (DefaultValue, 400.0f), (Description, "Max distance to be opened"));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpLeftDoorShieldEntity", true), &g_unk_71727b6270, 0x388, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpLeftDoorShieldEntity", true), &g_unk_71727b6270, 0x388, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpRightDoorShieldEntity", true), &g_unk_71727b6270, 0x3c8, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpRightDoorShieldEntity", true), &g_unk_71727b6270, 0x3c8, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeOpened_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fMinTimeOpened_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fMinTimeOpened_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc010);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fMinTimeOpened_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fMinTimeOpened_SetterFunction")
         fn_71008cca04(fn, "_m_fMinTimeOpened_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMinTimeOpened", (DefaultValue, 3.0f), (Description, "Min time opened"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStayOpen_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_bStayOpen_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bStayOpen_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc0a8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_bStayOpen_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_bStayOpen_SetterFunction")
         fn_71008ccb80(fn, "_m_bStayOpen_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bStayOpen", (DefaultValue, false), (Description, "Stay open"));
     DREAD_REFLECTED_FIELD(bool, "bStartOpened", 0x419, (DefaultValue, false), (Description, "Start opened"));
     DREAD_REFLECTED_FIELD(bool, "bOnBlackOutOpened", 0x41a, (DefaultValue, false), (Description, "On Black Out event opened"));
     DREAD_REFLECTED_FIELD(bool, "bDoorIsWet", 0x41d, (DefaultValue, false), (Description, "Should freeze when cooldown"));
     DREAD_REFLECTED_FIELD(bool, "bFrozenDuringColdown", 0x41e, (DefaultValue, true), (Description, "Should freeze when cooldown"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaLeft_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_iAreaLeft_GetterFunction") {
         fn->name = base::global::UnkStrId("_iAreaLeft_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc150);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaLeft_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_iAreaLeft_SetterFunction")
         fn_71008cccfc(fn, "_iAreaLeft_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iAreaLeft", (DefaultValue, 0), (Description, "Area left type"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaRight_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_iAreaRight_GetterFunction") {
         fn->name = base::global::UnkStrId("_iAreaRight_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc1e0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAreaRight_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_iAreaRight_SetterFunction")
         fn_71008cce78(fn, "_iAreaRight_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iAreaRight", (DefaultValue, 0), (Description, "Area right type"));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aVignettes", 0xbd8);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetInteractionParams", true))) {
+    DREAD_REFLECTED_FUNCTION("SetInteractionParams") {
         fn->name = base::global::UnkStrId("SetInteractionParams", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -109,9 +109,9 @@ void refl_AddFields(CClass* cls) {
         fn_71008dc270(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Set Interaction Params");
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CloseDoor", true)))
+    DREAD_REFLECTED_FUNCTION("CloseDoor")
         fn_71008ccff4(fn, "CloseDoor");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceDoorState", true))) {
+    DREAD_REFLECTED_FUNCTION("ForceDoorState") {
         fn->name = base::global::UnkStrId("ForceDoorState", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -119,7 +119,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71008dc890);
         fn_7100302d14(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceOpenDoor", true))) {
+    DREAD_REFLECTED_FUNCTION("ForceOpenDoor") {
         fn->name = base::global::UnkStrId("ForceOpenDoor", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -127,22 +127,22 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71008dca4c);
         fn_71003540d8(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("LockDoor", true))) {
+    DREAD_REFLECTED_FUNCTION("LockDoor") {
         fn_71008cd0a8(fn, "LockDoor");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Lock door"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CanBeClosedSafely", true))) {
+    DREAD_REFLECTED_FUNCTION("CanBeClosedSafely") {
         fn_71008cd15c(fn, "CanBeClosedSafely");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Can be closed safely?"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("UnLockDoor", true))) {
+    DREAD_REFLECTED_FUNCTION("UnLockDoor") {
         fn_71008cd210(fn, "UnLockDoor");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Unlock the door"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OpenDoor", true))) {
+    DREAD_REFLECTED_FUNCTION("OpenDoor") {
         fn->name = base::global::UnkStrId("OpenDoor", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
@@ -185,14 +185,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fPhaseDisplacementFactorOverride", 0x24, (DefaultValue, 0.4f), (Description, "Phase Displacement Factor Override"));
     DREAD_REFLECTED_FIELD(f32, "fOneWayDoorCloseDistance", 0x28, (DefaultValue, 750.0f), (ShowInConfig, true), (Description, "One way door close distance"));
     DREAD_REFLECTED_FIELD(f32, "fIceBlockOffSet", 0x30, (DefaultValue, 0.0f), (Description, "Ice Block Offset"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bForceAllDoorsOpened_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bForceAllDoorsOpened_GetterFunction") {
         fn->name = base::global::UnkStrId("_bForceAllDoorsOpened_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008dccec);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bForceAllDoorsOpened_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bForceAllDoorsOpened_SetterFunction")
         fn_71008cda44(fn, "_bForceAllDoorsOpened_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bForceAllDoorsOpened");
     UnkTunableRegistry* registry = g_unk_7101d47350;

@@ -30,24 +30,24 @@ void fn_71007bc494(UnkReflFunction* fn, const char* name);
 namespace CDroppableMissileComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sItemMax_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sItemMax_GetterFunction") {
         fn->name = base::global::UnkStrId("_sItemMax_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007bc918);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sItemMax_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sItemMax_SetterFunction")
         fn_71007bc318(fn, "_sItemMax_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sItemMax", (DefaultValue, ""), (Description, "Inventory item max"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sItemCurrent_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sItemCurrent_GetterFunction") {
         fn->name = base::global::UnkStrId("_sItemCurrent_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007bca98);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sItemCurrent_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sItemCurrent_SetterFunction")
         fn_71007bc494(fn, "_sItemCurrent_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sItemCurrent", (DefaultValue, ""), (Description, "Inventory item current"));
 }

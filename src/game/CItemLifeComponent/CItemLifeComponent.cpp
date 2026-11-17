@@ -30,7 +30,6 @@ extern char g_unk_7101a7f228[];
 void fn_71008e2738(UnkProperty* p);
 void fn_71008dff20(void* p);
 extern char g_unk_7172732370;
-extern UnkItemLifeLists g_unk_7172732378;
 void fn_71008e03dc(void* p);
 
 void fn_71008e2ac0() {

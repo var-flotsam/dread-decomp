@@ -5,6 +5,7 @@
 // all slot objects (fn_71001bf068). Names and layouts are placeholders.
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU182.h"
 #include "game/UnkTU204.h"
 #include "game/UnkTU252.h"
@@ -37,7 +38,7 @@ void fn_71001bff28(UnkLockonModel_ovb0092* model, u32 index, UnkColor_ovb0092* c
     dst[1] = src[1];
     dst[2] = src[2];
     dst[3] = src[3];
-    fn_710007b518(&out, &v);
+    Assign(out, v);
     v.x = NonNegative(out.x);
     v.y = NonNegative(out.y);
     v.z = NonNegative(out.z);

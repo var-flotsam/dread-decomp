@@ -62,11 +62,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeBetweenWaves", 0xf0, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(u32, "uMinNumWaves", 0xf4, (DefaultValue, 5));
     DREAD_REFLECTED_FIELD(u32, "uMaxNumWaves", 0xf8, (DefaultValue, 5));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("tUnbreakableFarPatterns", true), &g_unk_71726e9b38, 0x100, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("tUnbreakableFarPatterns", true), &g_unk_71726e9b38, 0x100, -1, -1);
     field4->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
-    UnkReflField* field5 = fn_7100096524(cls, CStrId("tUnbreakableMiddlePatterns", true), &g_unk_71726e9b38, 0x128, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("tUnbreakableMiddlePatterns", true), &g_unk_71726e9b38, 0x128, -1, -1);
     field5->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
-    UnkReflField* field6 = fn_7100096524(cls, CStrId("tUnbreakableClosePatterns", true), &g_unk_71726e9b38, 0x150, -1, -1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("tUnbreakableClosePatterns", true), &g_unk_71726e9b38, 0x150, -1, -1);
     field6->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

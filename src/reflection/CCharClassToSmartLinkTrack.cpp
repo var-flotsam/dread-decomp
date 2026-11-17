@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassToSmartLinkTrack
 namespace CCharClassToSmartLinkTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "To Smart Link");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Movement", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "To Smart Link");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Movement", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));

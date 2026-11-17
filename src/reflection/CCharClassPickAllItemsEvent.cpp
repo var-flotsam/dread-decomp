@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPickAllItemsEvent
 namespace CCharClassPickAllItemsEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Pick all items");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Drops", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Pick all items");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Drops", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bPlaySound", 0xc, (DefaultValue, false));

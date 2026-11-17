@@ -4,6 +4,7 @@
 // is below the owner's (the other way round otherwise), sends the class a request (descriptors as
 // UnkSpitSend) and drops the weak handle at +0x78 after unlinking +0x60 from its target. Returns true.
 // Names are placeholders.
+#include "game/CAnimationComponent.h"
 #include "game/UnkActor.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "../../game_s2/UnkSpitSend.h"
@@ -11,7 +12,6 @@
 
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkSlamEventId_b59 {
     u8 pad_0x0[0x30];

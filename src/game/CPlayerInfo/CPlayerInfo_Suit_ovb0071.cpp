@@ -1,6 +1,7 @@
 // CPlayerInfo unit (tools/tu_map.py unit 2592): fn_7100f0be58 sets (fn_710117662c) or resets
 // (fn_7101178e08) entry 1 on the target at +0x220 of the player (fn_7100defcd4) and of the object at
 // +0x10 of the game manager's +0x29a0 entry. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -8,7 +9,6 @@
 struct UnkOwner;
 struct UnkActorTarget;
 struct UnkPlayerInfo_ovb0071;
-void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 
 static inline void Apply_ovb0071(UnkActorTarget* target, bool flag) {

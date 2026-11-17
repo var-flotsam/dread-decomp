@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/ReflectedFields.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -26,7 +27,7 @@ void fn_7100639bc8();
 namespace CPoisonFlyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddAttackOffset", true))) {
+    DREAD_REFLECTED_FUNCTION("AddAttackOffset") {
         fn->name = base::global::UnkStrId("AddAttackOffset", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -34,7 +35,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100639afc);
         fn_7100639960(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopAddingAttackOffsets", true))) {
+    DREAD_REFLECTED_FUNCTION("StopAddingAttackOffsets") {
         fn->name = base::global::UnkStrId("StopAddingAttackOffsets", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

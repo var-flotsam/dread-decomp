@@ -34,34 +34,34 @@ void fn_7100d5fc48(UnkReflFunction* fn, const char* name);
 namespace game::logic::collision::CCapsuleShape2D {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRadius_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fRadius_GetterFunction") {
         fn->name = base::global::UnkStrId("_fRadius_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d60978);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fRadius_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fRadius_SetterFunction")
         fn_7100d5f950(fn, "_fRadius_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fRadius", (DefaultValue, 50.0f), (Description, base::global::CRntString("Radius")));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fHalfHeight_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fHalfHeight_GetterFunction") {
         fn->name = base::global::UnkStrId("_fHalfHeight_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d60a2c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fHalfHeight_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fHalfHeight_SetterFunction")
         fn_7100d5facc(fn, "_fHalfHeight_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fHalfHeight", (DefaultValue, 200.0f), (Description, base::global::CRntString("HalfHeight")));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bOutwardsNormal_GetterFunction") {
         fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d60ae0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOutwardsNormal_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bOutwardsNormal_SetterFunction")
         fn_7100d5fc48(fn, "_bOutwardsNormal_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOutwardsNormal", (DefaultValue, false));
 }

@@ -111,9 +111,7 @@ extern void* g_unk_7101aa9560[];
 extern void* g_unk_7101aa9588[];
 void fn_7100db78b0(void* self);  // its destructor, as registered
 extern UnkStrIdBase g_unk_71727bd268;
-extern UnkStrIdBase g_unk_71727bd278;
 extern UnkStrIdBase g_unk_71727bd280;
-extern UnkStrIdBase g_unk_71727bd290;
 extern UnkStrIdBase g_unk_71727bd298;
 
 void fn_7100dd14a0() {

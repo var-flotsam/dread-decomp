@@ -210,7 +210,6 @@ s32 fn_71010795b0(lua_State* L) {
     return 0;
 }
 
-void fn_7100108464(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
 void fn_71001082a8(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
 
 s32 fn_710108e620(lua_State* L) {

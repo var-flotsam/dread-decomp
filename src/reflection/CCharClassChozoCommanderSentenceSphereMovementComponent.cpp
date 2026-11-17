@@ -27,14 +27,14 @@ void fn_71004590e4(UnkReflFunction* fn, const char* name);
 namespace CCharClassChozoCommanderSentenceSphereMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fRotationSpeedDeg_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fRotationSpeedDeg_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fRotationSpeedDeg_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100459370);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fRotationSpeedDeg_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fRotationSpeedDeg_SetterFunction")
         fn_71004590e4(fn, "_m_fRotationSpeedDeg_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fRotationSpeedDeg", (DefaultValue, 90.0f));
     DREAD_REFLECTED_FIELD(f32, "fInitialRadius", 0x13c, (DefaultValue, 30.0f));

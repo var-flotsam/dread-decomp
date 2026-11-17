@@ -3,10 +3,10 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/tunable/CTunable.h"
 #include "types.h"
 
 struct UnkIdsString;
-void fn_7100133be4(UnkIdsString* self);
 
 struct UnkRecord_l097ab8 {
     u8 pad_0x0[0x160];

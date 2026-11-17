@@ -66,14 +66,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTunnelWalkTransitionSpeedChasePhase2ProtectorOn", 0x6c, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fTunnelWalkTransitionSpeedChasePhase2ProtectorDestroyed", 0x70, (DefaultValue, 1.3f));
     DREAD_REFLECTED_FIELD(bool, "bDarknessEnabled", 0x74, (DefaultValue, true));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iMinimapMode_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_iMinimapMode_GetterFunction") {
         fn->name = base::global::UnkStrId("_iMinimapMode_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100564f50);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iMinimapMode_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_iMinimapMode_SetterFunction")
         fn_710053b4fc(fn, "_iMinimapMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iMinimapMode", (DefaultValue, 3));
     DREAD_REFLECTED_FIELD(f32, "fMinimapPatrol2SearchTime", 0x78, (DefaultValue, 6.0f), (ShowInConfig, true), (Description, "Patrol 2 search time"), (MinValue, 0.5f), (MaxValue, 100.0f), (ControlFloatStep, 0.5f), (InternalTag, "Minimap"));
@@ -180,107 +180,107 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CEmmyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCurrentPatrol_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sCurrentPatrol_GetterFunction") {
         fn->name = base::global::UnkStrId("_sCurrentPatrol_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565044);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sCurrentPatrol_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sCurrentPatrol_SetterFunction")
         fn_710053d6e8(fn, "_sCurrentPatrol_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sCurrentPatrol", (Description, "Current patrol"), (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPerceptionFeedbackEnabled_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bPerceptionFeedbackEnabled_GetterFunction") {
         fn->name = base::global::UnkStrId("_bPerceptionFeedbackEnabled_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565114);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPerceptionFeedbackEnabled_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bPerceptionFeedbackEnabled_SetterFunction")
         fn_710053d864(fn, "_bPerceptionFeedbackEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bPerceptionFeedbackEnabled", (Description, "Perception feedback enabled"), (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bShowBehaviorDebug_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bShowBehaviorDebug_GetterFunction") {
         fn->name = base::global::UnkStrId("_bShowBehaviorDebug_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005651f8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bShowBehaviorDebug_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bShowBehaviorDebug_SetterFunction")
         fn_710053d9e0(fn, "_bShowBehaviorDebug_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bShowBehaviorDebug", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPhaseDisplacementFactor_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fPhaseDisplacementFactor_GetterFunction") {
         fn->name = base::global::UnkStrId("_fPhaseDisplacementFactor_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005652f8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPhaseDisplacementFactor_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fPhaseDisplacementFactor_SetterFunction")
         fn_710053db5c(fn, "_fPhaseDisplacementFactor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPhaseDisplacementFactor", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabQTEFailTime_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fGrabQTEFailTime_GetterFunction") {
         fn->name = base::global::UnkStrId("_fGrabQTEFailTime_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005653dc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabQTEFailTime_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fGrabQTEFailTime_SetterFunction")
         fn_710053dcd8(fn, "_fGrabQTEFailTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fGrabQTEFailTime", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPlayerNoiseEnabled_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bPlayerNoiseEnabled_GetterFunction") {
         fn->name = base::global::UnkStrId("_bPlayerNoiseEnabled_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005654e4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bPlayerNoiseEnabled_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bPlayerNoiseEnabled_SetterFunction")
         fn_710053de54(fn, "_bPlayerNoiseEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bPlayerNoiseEnabled", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolSearchMaxTime_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fPatrolSearchMaxTime_GetterFunction") {
         fn->name = base::global::UnkStrId("_fPatrolSearchMaxTime_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005655dc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fPatrolSearchMaxTime_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fPatrolSearchMaxTime_SetterFunction")
         fn_710053dfd0(fn, "_fPatrolSearchMaxTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPatrolSearchMaxTime", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomOffset_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fGrabZoomOffset_GetterFunction") {
         fn->name = base::global::UnkStrId("_fGrabZoomOffset_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005656c0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomOffset_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fGrabZoomOffset_SetterFunction")
         fn_710053e14c(fn, "_fGrabZoomOffset_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fGrabZoomOffset", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomTime_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fGrabZoomTime_GetterFunction") {
         fn->name = base::global::UnkStrId("_fGrabZoomTime_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005657a4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fGrabZoomTime_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fGrabZoomTime_SetterFunction")
         fn_710053e2c8(fn, "_fGrabZoomTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fGrabZoomTime", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bTargetDetectionEnabled_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bTargetDetectionEnabled_GetterFunction") {
         fn->name = base::global::UnkStrId("_bTargetDetectionEnabled_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565888);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bTargetDetectionEnabled_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bTargetDetectionEnabled_SetterFunction")
         fn_710053e444(fn, "_bTargetDetectionEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bTargetDetectionEnabled", (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bTargetInsideEmmyZone_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bTargetInsideEmmyZone_GetterFunction") {
         fn->name = base::global::UnkStrId("_bTargetInsideEmmyZone_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
@@ -292,7 +292,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyOverrideDeathPositionDef>>", "tOverrideDeathPosition", 0x2a638);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>", "tAutoForbiddenEdges", 0x2a660);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>", "tAutoGlobalSmartLinks", 0x2a688);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddLastTargetPerception", true))) {
+    DREAD_REFLECTED_FUNCTION("AddLastTargetPerception") {
         fn->name = base::global::UnkStrId("AddLastTargetPerception", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -300,21 +300,21 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7100565b44);
         fn_71005659a8(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceStartChase", true))) {
+    DREAD_REFLECTED_FUNCTION("ForceStartChase") {
         fn->name = base::global::UnkStrId("ForceStartChase", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565c1c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ForceStopStagger", true))) {
+    DREAD_REFLECTED_FUNCTION("ForceStopStagger") {
         fn->name = base::global::UnkStrId("ForceStopStagger", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100565c50);
     }
-    UnkReflField* field15 = fn_7100096524(cls, CStrId("tLogicShapesToAvoidCornerReposition", true), &g_unk_717269bf08, 0x2a6c8, -1, -1);
+    UnkReflField* field15 = AddReflectedField(cls, CStrId("tLogicShapesToAvoidCornerReposition", true), &g_unk_717269bf08, 0x2a6c8, -1, -1);
     field15->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
 }

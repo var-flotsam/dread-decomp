@@ -23,6 +23,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkMapMenuController.h"
+#include "game/UnkMinimapRecord.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1689.h"
@@ -581,13 +582,8 @@ void fn_7100e8f9c0(UnkMinimapSetter_b0200* self, bool flag) {
     }
 }
 
-struct UnkEntry50_b0200b {
-    u8 data[0x50];
-};
-void fn_7100ea9eb8(UnkEntry50_b0200b* entry);
-
 struct UnkGroup90_b0200 {
-    UnkEntry50_b0200b* entries;  // 0x0
+    UnkMinimapRecord* entries;   // 0x0
     void* keys;                  // 0x8
     u32 count;                   // 0x10
     u32 capacity;                // 0x14
@@ -595,7 +591,7 @@ struct UnkGroup90_b0200 {
     u32 flags;                   // 0x1c
     base::UnkAllocator* allocator;  // 0x20
     u8 pad_0x28[0x10];
-    UnkEntry50_b0200b tail;  // 0x38
+    UnkMinimapRecord tail;  // 0x38
 };
 static_assert(sizeof(UnkGroup90_b0200) == 0x88, "layout");
 
@@ -620,11 +616,11 @@ void fn_7100eb3648(UnkGroupTable_b0200* self) {
     if (groups && self->count) {
         for (u64 i = 0; i < self->count; ++i) {
             UnkGroup90_b0200* g = &groups[i].group;
-            fn_7100ea9eb8(&g->tail);
+            g->tail.~UnkMinimapRecord();
             if (g->entries && g->count) {
-                fn_7100ea9eb8(&g->entries[0]);
+                g->entries[0].~UnkMinimapRecord();
                 for (u64 j = 1; j < g->count; ++j)
-                    fn_7100ea9eb8(&g->entries[j]);
+                    g->entries[j].~UnkMinimapRecord();
             }
             g->count = 0;
             if (g->keys)

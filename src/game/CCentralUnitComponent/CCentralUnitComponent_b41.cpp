@@ -5,6 +5,7 @@
 #include "base/math/CVector4D.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU39.h"
@@ -13,7 +14,6 @@
 struct UnkSpawnGroupKey;
 extern UnkSpawnGroupKey g_unk_7172715400 __attribute__((visibility("hidden")));
 extern const base::math::CVector4D g_unk_71016477b4;
-extern const u64 g_unk_710164aa90;
 
 struct UnkSelf_cu41 {
     u8 pad_0x0[0x7f8];

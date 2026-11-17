@@ -26,16 +26,16 @@ void fn_71006b9d50(UnkReflFunction* fn, const char* name);
 namespace CShelmitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eShellState_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_eShellState_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_eShellState_GetterFunction", true);
         fn->return_type = &g_unk_7172707020;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71006bcb7c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_eShellState_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_eShellState_SetterFunction")
         fn_71006b9d50(fn, "_m_eShellState_SetterFunction");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eShellState", true), &g_unk_7172707020, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eShellState", true), &g_unk_7172707020, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172707020, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }

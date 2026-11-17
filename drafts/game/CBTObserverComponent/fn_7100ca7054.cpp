@@ -23,7 +23,7 @@ struct UnkObserverRemoveManager {
     UnkObserverGroup_7054* groups;  // 0x48
     u8 pad_0x50[0x40];
     UnkObserverToRemove** values;  // 0x90
-    u32* ids;                      // 0x98
+    u32* keys;                     // 0x98
     u32 count;                     // 0xa0
 };
 
@@ -39,7 +39,7 @@ bool fn_7100ca7054(UnkObserverRemoveManager* self, u32 id) {
     u64 index = slot - self->values;
     if (self->count - 1 != (u32)index) {
         self->values[(u32)index] = self->values[self->count - 1];
-        self->ids[(u32)index] = self->ids[self->count - 1];
+        self->keys[(u32)index] = self->keys[self->count - 1];
     }
     self->count = self->count - 1;
 

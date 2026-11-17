@@ -3,12 +3,13 @@
 // is from the other (clamped, 1 at the near limit).
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkActor.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 #include "../../game_s7/UnkPropBagS7.h"
 #include "game/UnkBehaviorTree.h"
 
-using UnkActorTarget = UnkAnimationComponent;
+using UnkGobblerAnim = UnkAnimationComponent;
 
 struct UnkRangeSource {
     u8 pad_0x0[0x61c];
@@ -25,21 +26,20 @@ struct UnkGobblerComponent {
     UnkRangeSource* field_0x14700;
 };
 
-void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 extern char g_unk_71726e5148[] __attribute__((visibility("hidden")));
 
 // `dt` (s0) reaches the base update untouched in the original (tools/forwarded_args.py).
 void fn_71005820c4(UnkGobblerComponent* self, f32 dt) {
     fn_7100369c44(reinterpret_cast<UnkSelf_7100369c44*>(self), dt);
-    UnkActorTarget* target = static_cast<UnkActorTarget*>(self->field_0x30->field_0x220);
+    UnkGobblerAnim* target = static_cast<UnkGobblerAnim*>(self->field_0x30->field_0x220);
     UnkActor* actor = self->field_0x30;
     if (target) {
         if (!fn_710117b348(target, fn_7100c20d58())) {
             if (self->field_0x121e)
-                fn_710117662c(target, 0xb, 0, true, true, 0.6f);
+                fn_710117662c(reinterpret_cast<UnkActorTarget*>(target), 0xb, 0, true, true, 0.6f);
             else
-                fn_7101178e08(target, 0xb, 1, 1, 0.6f);
+                fn_7101178e08(reinterpret_cast<UnkActorTarget*>(target), 0xb, 1, 1, 0.6f);
         }
         actor = self->field_0x30;
     }
@@ -47,7 +47,7 @@ void fn_71005820c4(UnkGobblerComponent* self, f32 dt) {
         return;
     UnkActor* pos = fn_7100d7c990(self->field_0x30);
     UnkActor* other = self->field_0x30;
-    UnkActorTarget* target2 = static_cast<UnkActorTarget*>(other->field_0x220);
+    UnkGobblerAnim* target2 = static_cast<UnkGobblerAnim*>(other->field_0x220);
     if (!target2)
         return;
     f32 d = __builtin_fabsf(pos->field_0x44 - other->field_0x44);

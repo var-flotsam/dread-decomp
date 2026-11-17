@@ -81,7 +81,7 @@ void fn_710086d530();
 namespace CHeatableShieldComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateShield", true))) {
+    DREAD_REFLECTED_FUNCTION("CreateShield") {
         fn->name = base::global::UnkStrId("CreateShield", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -89,7 +89,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710086ce20);
         fn_710086cb28(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddShieldCollider", true))) {
+    DREAD_REFLECTED_FUNCTION("AddShieldCollider") {
         fn->name = base::global::UnkStrId("AddShieldCollider", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -97,7 +97,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_710086d4f8);
         fn_7100500260(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetTimeToStartHeatRecover", true))) {
+    DREAD_REFLECTED_FUNCTION("SetTimeToStartHeatRecover") {
         fn->name = base::global::UnkStrId("SetTimeToStartHeatRecover", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

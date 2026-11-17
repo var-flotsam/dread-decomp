@@ -111,14 +111,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToUncoverBelly", 0x544, (DefaultValue, 15.0f));
     DREAD_REFLECTED_FIELD(f32, "fIgnoreOpenMouthTimeAfterCloseMouth", 0x548, (DefaultValue, 0.8f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToBellyDamage", 0x54c, (DefaultValue, 1.0f));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBellyButtonRadius_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_fBellyButtonRadius_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_fBellyButtonRadius_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71005faa98);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_fBellyButtonRadius_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_fBellyButtonRadius_SetterFunction")
         fn_71005fa5e4(fn, "_m_fBellyButtonRadius_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fBellyButtonRadius", (DefaultValue, 150.0f));
     DREAD_REFLECTED_CLASS_FIELD(CDamageSourceFactor, "oGrabDamageSourceFactor", 0x550);

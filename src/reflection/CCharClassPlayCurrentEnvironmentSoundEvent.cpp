@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPlayCurrentEnvironmentSoundEvent
 namespace CCharClassPlayCurrentEnvironmentSoundEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Current Environment Sound");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Current Environment Sound");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

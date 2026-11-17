@@ -25,7 +25,7 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CSaveGameFromEmmyDoorLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("wpEmmyDoorActor", true), &g_unk_717269bb48, 0x10, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpEmmyDoorActor", true), &g_unk_717269bb48, 0x10, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x50, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bRestoreOriginalValue", 0x51, (DefaultValue, true));
