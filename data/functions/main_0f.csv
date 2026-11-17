@@ -4332,10 +4332,10 @@ address,size,name,name_source,subsystem,status
 0x7100fa420c,220,fn_7100fa420c,unknown,unknown,O
 0x7100fa42e8,480,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>",reflection,engine/reflection,O
 0x7100fa44c8,220,"base::reflection::refl_GetType<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>*>",reflection,engine/reflection,O
-0x7100fa45a4,1472,fn_7100fa45a4,unknown,unknown,U
+0x7100fa45a4,1472,fn_7100fa45a4,unknown,unknown,O
 0x7100fa4b64,852,fn_7100fa4b64,unknown,unknown,O
 0x7100fa4eb8,2276,fn_7100fa4eb8,unknown,unknown,U
-0x7100fa579c,480,fn_7100fa579c,unknown,unknown,U
+0x7100fa579c,480,fn_7100fa579c,unknown,unknown,O
 0x7100fa597c,672,fn_7100fa597c,unknown,unknown,U
 0x7100fa5c1c,36,fn_7100fa5c1c,unknown,unknown,O
 0x7100fa5c40,2172,fn_7100fa5c40,unknown,unknown,U
@@ -4501,7 +4501,7 @@ address,size,name,name_source,subsystem,status
 0x7100fa93ac,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaInfo, std::__1::default_delete<CSubareaInfo>>>>::End",reflection,engine/reflection,O
 0x7100fa93c0,260,fn_7100fa93c0,unknown,unknown,O
 0x7100fa94c4,268,fn_7100fa94c4,unknown,unknown,O
-0x7100fa95d0,1004,fn_7100fa95d0,unknown,unknown,U
+0x7100fa95d0,1004,fn_7100fa95d0,unknown,unknown,O
 0x7100fa99bc,2588,fn_7100fa99bc,unknown,unknown,U
 0x7100faa3d8,1556,fn_7100faa3d8,unknown,unknown,U
 0x7100faa9ec,1776,fn_7100faa9ec,unknown,unknown,U
@@ -5285,10 +5285,10 @@ address,size,name,name_source,subsystem,status
 0x7100fd8f98,320,fn_7100fd8f98,unknown,unknown,O
 0x7100fd90d8,1260,fn_7100fd90d8,unknown,unknown,U
 0x7100fd95c4,1244,fn_7100fd95c4,unknown,unknown,U
-0x7100fd9aa0,344,fn_7100fd9aa0,unknown,unknown,U
+0x7100fd9aa0,344,fn_7100fd9aa0,unknown,unknown,O
 0x7100fd9bf8,8,fn_7100fd9bf8,unknown,unknown,O
 0x7100fd9c00,384,fn_7100fd9c00,unknown,unknown,O
-0x7100fd9d80,276,fn_7100fd9d80,unknown,unknown,U
+0x7100fd9d80,276,fn_7100fd9d80,unknown,unknown,O
 0x7100fd9e94,8,fn_7100fd9e94,unknown,unknown,O
 0x7100fd9e9c,384,fn_7100fd9e9c,unknown,unknown,O
 0x7100fda01c,4,fn_7100fda01c,unknown,unknown,O

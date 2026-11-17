@@ -7,6 +7,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/UnkReflValue.h"
 #include "game/UnkTU251.h"
 #include "game/UnkTU290.h"
@@ -32,7 +33,7 @@ static inline __attribute__((always_inline)) void SetLightColor_ovb0036(char* se
     char* light = *reinterpret_cast<char**>(b + 0x78);
     CColor4F c(NonNegative_ovb0036(color->r), NonNegative_ovb0036(color->g), NonNegative_ovb0036(color->b),
                NonNegative_ovb0036(color->a));
-    fn_710007b518(reinterpret_cast<CVector4D*>(light + offset), reinterpret_cast<const CVector4D*>(&c));
+    Assign(*reinterpret_cast<CVector4D*>(light + offset), *reinterpret_cast<const CVector4D*>(&c));
 }
 
 void fn_71008eb574(char* self, const CColor4F* color) {

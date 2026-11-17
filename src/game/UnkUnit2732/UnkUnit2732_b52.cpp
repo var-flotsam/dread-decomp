@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkTU2732.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkListedObject_b52 {
     u8 pad_0x0[0x998];
@@ -15,13 +16,7 @@ struct UnkObjectNode_b52 {
     UnkObjectNode_b52* next;
 };
 
-struct UnkObjectList_b52 {
-    u64 field_0x0;
-    u32 count;
-    UnkObjectNode_b52* head;
-    UnkObjectNode_b52* tail;
-    base::UnkAllocator* allocator;
-};
+struct UnkObjectList_b52 : base::UnkVtableList<UnkObjectNode_b52> {};
 
 // Removes `object` from the list and frees its node; with `clear`, also clears the object's +0x998
 // (even when it was not listed).

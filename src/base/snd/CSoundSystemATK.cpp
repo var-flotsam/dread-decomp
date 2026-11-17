@@ -7,6 +7,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/animation/CBlendSpace1D.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntString.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/snd/UnkSoundSystemATK.h"
@@ -83,36 +84,16 @@ struct UnkInlineString {
 };
 static_assert(sizeof(UnkInlineString) == 0xc8, "UnkInlineString layout");
 
-// A node of the id map's chains (placeholder names; 0x28 bytes).
-struct UnkIdNode {
-    u64 key;
-    CFilePathStrId id;  // the sanitised id
-    UnkIdNode* field_0x10;
-    UnkIdNode* prev;  // the previous node of the node list
-    UnkIdNode* next;  // the next node of the bucket's chain
-};
-static_assert(sizeof(UnkIdNode) == 0x28, "UnkIdNode layout");
-
-// The id map (the layout of base/UnkHashMap.h, placeholder names).
-struct UnkIdMap {
-    base::UnkAllocator* allocator;  // +0x0
-    u32 flags;                      // +0x8
-    u32 count;                      // +0xc
-    UnkIdNode** buckets;            // +0x10
-    u32 used;                       // +0x18
-    u32 bucket_count;               // +0x1c
-    u8 pad_0x20[0x18];
-    UnkIdNode* last;     // +0x38
-    UnkIdNode* head;     // +0x40: the list's first node
-};
-static_assert(__builtin_offsetof(UnkIdMap, head) == 0x40, "UnkIdMap layout");
+// The id map: sanitised ids by the hash of the id they were made from.
+struct UnkIdMap : base::global::CRntDictionary<u64, CFilePathStrId> {};
+using UnkIdNode = UnkIdMap::TNode;
 
 // The scratch buffer the sanitised name is built in.
 extern char g_unk_7108b6b910[] __attribute__((visibility("hidden")));
 
 // NON_MATCHING(minor): same behaviour; the original builds the new id in a stack slot and moves it into the
 // result with a plain store (no count update, no destructor) where ours copy-constructs it and destroys the
-// local, reloads the list's last node after linking, and swaps two registers (key and old head) in the insertion.
+// local, and swaps two registers (key and old head) in the insertion.
 // The local's destructor is one more call than the original has, of the release fn_71000803a4; it cannot run,
 // since the result holds the same id and its count is at least one after the decrement.
 CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
@@ -123,18 +104,18 @@ CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
     if (id.data == &g_unk_7101d47200->empty)
         return id;
     UnkIdMap* map = g_unk_7101d685c8;
-    if (map && map->used) {
+    if (map && map->buckets.count) {
         u32 key32 = *reinterpret_cast<u64*>(name + 0x30);
         u64 key = *reinterpret_cast<u64*>(name + 0x30);
-        UnkIdNode** bucket = key32 % map->bucket_count + map->buckets;
+        UnkIdNode** bucket = key32 % map->buckets.capacity + map->buckets.data;
         if (bucket) {
             UnkIdNode* head = *bucket;
-            for (UnkIdNode* n = head; n; n = n->next) {
+            for (UnkIdNode* n = head; n; n = n->bucket_next) {
                 if (n->key == key) {
                     UnkIdNode* found = head;
                     while (found->key != key)
-                        found = found->next;
-                    return found->id;
+                        found = found->bucket_next;
+                    return found->value;
                 }
             }
         }
@@ -178,28 +159,7 @@ CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
     CFilePathStrId made(g_unk_7108b6b910, true);
     if (UnkIdMap* m = g_unk_7101d685c8) {
         u64 key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(id.data) + 0x30);
-        UnkIdNode** bucket = m->used ? m->buckets + static_cast<u32>(key) % m->bucket_count : nullptr;
-        UnkIdNode* old_head = *bucket;
-        UnkIdNode* n = static_cast<UnkIdNode*>(m->allocator->vf_0x40(sizeof(UnkIdNode), 8, m->flags));
-        if (n) {
-            n->key = key;
-            new (&n->id) CFilePathStrId(made);
-            n->field_0x10 = nullptr;
-            n->prev = nullptr;
-            n->next = nullptr;
-        }
-        n->next = old_head;
-        *bucket = n;
-        UnkIdNode** link = &m->head;
-        if (!*link) {
-            *link = n;
-        } else if (m->last) {
-            n->prev = m->last;
-            link = &m->last->field_0x10;
-            *link = n;
-        }
-        m->last = n;
-        ++m->count;
+        m->Insert(key, made);
     }
     return made;
 }

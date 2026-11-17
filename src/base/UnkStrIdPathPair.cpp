@@ -155,7 +155,7 @@ void fn_710001acf8(UnkPathListTable* self, const CStrId* key,
         u32 n = list.count;
         u32 new_capacity = list.capacity;
         if (new_capacity <= n && list.step != 0)
-            new_capacity = (n / list.step + 1) * list.step;
+            new_capacity = list.GrownCapacity(n);
         if ((s32)n >= (s32)new_capacity)
             for (;;) {
             }

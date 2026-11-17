@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGunComponent.h"
+#include "game/CSamusGunComponent.h"
 #include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -34,18 +35,8 @@ struct UnkGunShot_ovb0070 {
 };
 static_assert(sizeof(UnkGunShot_ovb0070) == 0x18, "UnkGunShot_ovb0070 layout");
 
-struct UnkGunShots_ovb0070 {
-    UnkGunShot_ovb0070* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 // Grows the array to at least n entries, moving them over.
-void fn_710085c338(UnkGunShots_ovb0070* shots, u32 n) {
+void fn_710085c338(base::global::CRntVector<UnkGunShot_ovb0070>* shots, u32 n) {
     if (shots->capacity >= n)
         return;
     auto* p = static_cast<UnkGunShot_ovb0070*>(shots->allocator->vf_0x40((u64)n * sizeof(UnkGunShot_ovb0070), 8, shots->flags));
@@ -63,7 +54,7 @@ void fn_710085c338(UnkGunShots_ovb0070* shots, u32 n) {
 }
 
 // The array as the component owns it: destroyed with its entries.
-struct UnkGunShotArray_ovb0070 : UnkGunShots_ovb0070 {
+struct UnkGunShotArray_ovb0070 : base::global::CRntVector<UnkGunShot_ovb0070> {
     // Drops every entry's reference, keeping the array.
     void Clear() {
         for (u64 i = 0; i < count; ++i)
@@ -109,11 +100,6 @@ struct UnkGunRequest_ovb0070;
 struct UnkSamusGun_ovb0070;
 struct UnkActor;
 // Timeline ids reached through the GOT.
-extern u64 g_unk_710164ad48;
-extern u64 g_unk_710164ad50;
-extern u64 g_unk_710164ad58;
-extern u64 g_unk_710164ad60;
-extern u64 g_unk_710164ad68;
 bool fn_710085befc(UnkSamusGun_ovb0070* self, const UnkGunRequest_ovb0070& request);
 void fn_7100838c7c(UnkSamusGun_ovb0070* self);
 void fn_7100838f20(UnkSamusGun_ovb0070* self);
@@ -190,7 +176,6 @@ struct UnkGunBeam_ovb0070 {
 };
 
 void fn_7100839924(UnkSamusGun_ovb0070* self);
-UnkGunBeam_ovb0070* fn_7100840828(UnkSamusGun_ovb0070* self);
 
 // A pending beam change (+0x330) removes the owner's timeline that goes with the current beam.
 static inline void ApplyBeamChange(UnkSamusGun_ovb0070* self) {

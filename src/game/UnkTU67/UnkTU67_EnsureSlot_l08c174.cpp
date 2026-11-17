@@ -21,7 +21,7 @@ UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>* list, 
     if (list->field_0x14 && list->count <= index) {
         u32 capacity = list->capacity;
         if (capacity <= index && list->step != 0)
-            capacity = (index / list->step + 1) * list->step;
+            capacity = list->GrownCapacity(index);
         fn_7100018450(vec, capacity);
         u32 want = index + 1;
         fn_7100018450(vec, want);

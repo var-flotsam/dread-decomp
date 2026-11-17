@@ -3,6 +3,7 @@
 // uses that preset its fade entry is restarted towards 1. Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkPooledStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
@@ -33,15 +34,10 @@ static inline UnkSoundObject_b50* Resolve(const UnkSoundHandle& handle) {
     return handle.ref->object;
 }
 
-// A string id seen only for its data (a CStrId on g_unk_7101d47108, a file-path id on g_unk_7101d47200).
-struct UnkAudioId_l71da58 {
-    UnkStringData* data;
-};
-
 // A sound slot of the component (0xd0 bytes): copied with fn_710071faf4, released with fn_710071f878.
 struct UnkAudioSound_l71da58 {
     u8 pad_0x0[0x20];
-    UnkAudioId_l71da58 name;  // 0x20
+    base::UnkPooledString name;  // 0x20
     u8 pad_0x28[0x78 - 0x28];
     UnkSoundHandle handle;  // 0x78
     u8 pad_0x88[0xb0 - 0x88];
@@ -61,8 +57,8 @@ static_assert(sizeof(UnkAudioSound_l71da58) == 0xd0, "UnkAudioSound_l71da58 layo
 // A sound link of the component (0xb0 bytes).
 struct UnkAudioLink_l71da58 {
     u8 pad_0x0[0x90];
-    UnkAudioId_l71da58 name;  // 0x90
-    UnkAudioId_l71da58 path;  // 0x98
+    base::UnkPooledString name;  // 0x90
+    base::UnkPooledString path;  // 0x98
     UnkReflObject* resource;  // 0xa0
     u8 pad_0xa8;
     bool released;  // 0xa9
@@ -73,7 +69,7 @@ static_assert(sizeof(UnkAudioLink_l71da58) == 0xb0, "UnkAudioLink_l71da58 layout
 // A sound::CAudioPreset.
 struct UnkAudioPreset_l71da58 : UnkReflObject {
     u8 pad_0x8[0x58 - 0x8];
-    UnkAudioId_l71da58 name;  // 0x58
+    base::UnkPooledString name;  // 0x58
     u8 pad_0x60[0x5b4 - 0x60];
     f32 field_0x5b4;
     u8 pad_0x5b8[0x5c0 - 0x5b8];

@@ -16,7 +16,7 @@ static inline void AppendCopy(base::global::CRntVector<UnkPendingAdd>& a, const 
     u32 old_capacity = a.capacity;
     u32 new_capacity = old_capacity;
     if (old_capacity <= n && a.step != 0)
-        new_capacity = (n / a.step + 1) * a.step;
+        new_capacity = a.GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }

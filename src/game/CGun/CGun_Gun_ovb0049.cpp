@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
+#include "game/CGun.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU272.h"
 #include "game/UnkTUProperty.h"
@@ -12,8 +13,6 @@
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-extern char g_unk_7101a77980[];
 
 // One of the gun's 150 colour slots.
 struct UnkGunSlot_ovb0049 {

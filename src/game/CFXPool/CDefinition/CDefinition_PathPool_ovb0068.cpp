@@ -76,7 +76,7 @@ UnkFXPathEntry_b0068* fn_710104ff64(base::global::CRntVector<UnkFXPathEntry_b006
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0)
-            cap = (index / self->step + 1) * self->step;
+            cap = self->GrownCapacity(index);
         fn_7100c8c210(self, cap);
         u32 n = index + 1;
         fn_7100c8c210(self, n);

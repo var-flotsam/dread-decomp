@@ -3,6 +3,7 @@
 // then a word and a byte (the byte read first). The shape of fn_71005b7568 (src/flag_id/fn_71005b7568.cpp). Names and
 // layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 struct UnkTransitionBlock_0x18 {
@@ -20,7 +21,7 @@ __attribute__((always_inline)) static inline UnkFogTransition* Assign(UnkFogTran
                                                                       const UnkFogTransition* other) {
     if (self != other) {
         self->field_0x0 = other->field_0x0;
-        fn_710007b518(&self->field_0x18, &other->field_0x18);
+        Assign(self->field_0x18, other->field_0x18);
         u8 b = other->field_0x2c;
         self->field_0x28 = other->field_0x28;
         self->field_0x2c = b;

@@ -9,7 +9,7 @@ using base::reflection::UnkReflObject;
 struct UnkActorObjectMap {
     u8 pad_0x0[0xa0];
     UnkReflObject** values;      // 0xa0
-    base::global::CStrId* ids;   // 0xa8
+    base::global::CStrId* keys;  // 0xa8
     u32 count;                   // 0xb0
 };
 

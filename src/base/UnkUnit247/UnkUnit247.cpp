@@ -2,6 +2,7 @@
 // its own (+0xb8) in mode 1, the identity otherwise; always answers true. Names and layouts are
 // placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 struct UnkRotated247 {
@@ -16,7 +17,7 @@ bool fn_71001bc1e8(const UnkRotated247* self, base::math::CVector4D* out, u32 mo
     q.z = 0.0f;
     q.w = 1.0f;
     if (mode == 1)
-        fn_710007b518(&q, &self->rotation);
+        Assign(q, self->rotation);
     out->x = q.x;
     out->y = q.y;
     out->z = q.z;

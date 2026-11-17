@@ -1,4 +1,5 @@
 #include "base/global/CRntVector.h"
+#include "base/global/UnkBucketSet.h"
 #include "types.h"
 
 // src/base/global/timeline/CEvent/UnkPrime.cpp.
@@ -7,36 +8,22 @@ u32 fn_7100066930(u32 n);
 
 struct UnkResBucket_b257j;
 
-// The resource registry's chained set (the path map at +0x10 of the registry, src/base/UnkResRegistry.cpp):
-// buckets as an CRntVector, then the first bucket and node in use, a node allocator and counts.
-struct UnkResSetInit_b257j {
-    UnkResBucket_b257j** data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-    u32 first_bucket;  // 0x28
-    void* first_node;  // 0x30
-    base::UnkAllocator* node_allocator;  // 0x38
-    u32 node_flags;  // 0x40
-    u32 node_count;  // 0x44
-    u32 version;  // 0x48
-};
+// The resource registry's chained set (base/global/UnkBucketSet.h), the path map at +0x10 of the
+// registry (src/base/UnkResRegistry.cpp).
+using UnkResSetInit_b257j = base::global::UnkBucketSet<UnkResBucket_b257j>;
 
 void fn_71000e9d60(void* set, u32 buckets, u32 flags) {
     UnkResSetInit_b257j* self = static_cast<UnkResSetInit_b257j*>(set);
     base::UnkAllocator* allocator = fn_7100083990();
-    self->step = 10;
-    self->data = nullptr;
-    self->count = 0;
-    self->capacity = 0;
-    self->field_0x14 = true;
-    self->flags = flags;
+    self->buckets.step = 10;
+    self->buckets.data = nullptr;
+    self->buckets.count = 0;
+    self->buckets.capacity = 0;
+    self->buckets.field_0x14 = true;
+    self->buckets.flags = flags;
     if (!allocator)
         allocator = fn_7100083990();
-    self->allocator = allocator;
+    self->buckets.allocator = allocator;
     self->first_node = nullptr;
     self->first_bucket = -1;
     self->node_allocator = fn_7100083990();
@@ -46,29 +33,29 @@ void fn_71000e9d60(void* set, u32 buckets, u32 flags) {
     u32 n = buckets;
     if (!fn_71000669a0(n))
         n = fn_7100066930(n);
-    u32 c = self->count;
+    u32 c = self->buckets.count;
     if (c < n) {
         UnkResBucket_b257j** p;
-        if (self->capacity < n) {
-            p = static_cast<UnkResBucket_b257j**>(self->allocator->vf_0x40((u64)n * 8, 8, self->flags));
-            if (UnkResBucket_b257j** old = self->data) {
-                if (self->count) {
+        if (self->buckets.capacity < n) {
+            p = static_cast<UnkResBucket_b257j**>(self->buckets.allocator->vf_0x40((u64)n * 8, 8, self->buckets.flags));
+            if (UnkResBucket_b257j** old = self->buckets.data) {
+                if (self->buckets.count) {
                     u32 i = 0;
                     do {
                         __builtin_memcpy(&p[i], &old[i], 8);
                         ++i;
-                    } while (i < self->count);
+                    } while (i < self->buckets.count);
                 }
-                self->allocator->vf_0x48(self->data);
+                self->buckets.allocator->vf_0x48(self->buckets.data);
             }
-            c = self->count;
-            self->data = p;
-            self->capacity = n;
+            c = self->buckets.count;
+            self->buckets.data = p;
+            self->buckets.capacity = n;
         }
         for (u32 i = c; i < n; ++i)
-            __builtin_memset(&self->data[i], 0, 8);
-        self->count = n;
+            __builtin_memset(&self->buckets.data[i], 0, 8);
+        self->buckets.count = n;
     } else if (c > n) {
-        self->count = n;
+        self->buckets.count = n;
     }
 }

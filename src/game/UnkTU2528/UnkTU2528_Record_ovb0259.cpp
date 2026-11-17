@@ -3,6 +3,7 @@
 // vectors cleared) and its move assignment. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -49,9 +50,9 @@ UnkRecord_ovb0259* fn_7100d9b27c(UnkRecord_ovb0259* self, UnkRecord_ovb0259* oth
     self->field_0x18[3] = other->field_0x18[3];
     self->field_0x18[4] = other->field_0x18[4];
     self->field_0x18[5] = other->field_0x18[5];
-    fn_710007b518(&self->vec_0x30, &other->vec_0x30);
+    Assign(self->vec_0x30, other->vec_0x30);
     const base::math::CVector4D* from = &other->vec_0x40;
-    fn_710007b518(&self->vec_0x40, from);
+    Assign(self->vec_0x40, *from);
     self->field_0x50 = other->field_0x50;
     self->field_0x54 = other->field_0x54;
     self->field_0x58 = other->field_0x58;

@@ -5,6 +5,7 @@
 #include "game/UnkTU852.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 // The object a counted weak-handle reference points at, or null.
 static inline UnkWeakTarget* RefTarget(const UnkRefPtr& ref) {
@@ -17,13 +18,7 @@ struct UnkRefNode_l59cecc {
     UnkRefNode_l59cecc* next;
 };
 
-struct UnkRefList_l59cecc {
-    void** vtable;
-    u32 count;
-    UnkRefNode_l59cecc* head;
-    UnkRefNode_l59cecc* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkRefList_l59cecc : base::UnkVtableList<UnkRefNode_l59cecc> {
     UnkRefNode_l59cecc* Find(const UnkRefPtr& key) {
         for (UnkRefNode_l59cecc* n = head; n; n = n->next) {
             if (RefTarget(n->ref) == RefTarget(key))

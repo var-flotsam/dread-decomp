@@ -3,6 +3,7 @@
 // one) and the words at 0x18..0x37 and 0x38 are copied plainly.
 #include <new>
 
+#include "base/UnkPooledStrId.h"
 #include "base/global/CStrId.h"
 #include "game/animtree/CAnimatedNodeDef.h"
 #include "game/animtree/CLookAtEntityControlDef.h"
@@ -15,14 +16,8 @@ struct UnkPair {
     u64 field_0x8;
 };
 
-// A string id held as a bare pointer: the level constructors build it in the body (after the
-// vtable store), so it needs no constructor of its own.
-struct UnkId {
-    UnkStringData* data;
-};
-
 // What CStrId's copy constructor does.
-__attribute__((always_inline)) static inline void CopyId(UnkId& dst, const UnkId& src) {
+__attribute__((always_inline)) static inline void CopyId(base::UnkPooledString& dst, const base::UnkPooledString& src) {
     dst.data = src.data;
     if (&g_unk_7101d47108->empty != dst.data)
         ++dst.data->ref_count;
@@ -33,7 +28,7 @@ extern void* g_unk_7101a21fc8[];
 
 struct UnkLevelA {
     void** vtable;
-    UnkId field_0x8;
+    base::UnkPooledString field_0x8;
 
     UnkLevelA(const UnkLevelA& other) {
         vtable = g_unk_7101a21718 + 2;
@@ -42,7 +37,7 @@ struct UnkLevelA {
 };
 
 struct UnkLevelB : UnkLevelA {
-    UnkId field_0x10;
+    base::UnkPooledString field_0x10;
     UnkPair field_0x18;
 
     UnkLevelB(const UnkLevelB& other) : UnkLevelA(other) {
@@ -65,7 +60,7 @@ struct UnkLevelC : UnkLevelB {
 };
 
 struct UnkLevelD : UnkLevelC {
-    UnkId field_0x40;
+    base::UnkPooledString field_0x40;
 
     UnkLevelD(const UnkLevelD& other) : UnkLevelC(other) {
         vtable = g_unk_7101a21ef0 + 2;

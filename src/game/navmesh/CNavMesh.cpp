@@ -839,7 +839,7 @@ __attribute__((always_inline)) static inline u32 GrownCapacity(const base::globa
     u32 n = v->count;
     u32 grown = v->capacity;
     if (grown <= n && v->step != 0)
-        grown = (n / v->step + 1) * v->step;
+        grown = v->GrownCapacity(n);
     if ((s32)n >= (s32)grown)
         for (;;) {
         }
@@ -853,7 +853,7 @@ __attribute__((always_inline)) static inline T* GrowAt(base::global::CRntVector<
     if (v->field_0x14 && v->count <= index) {
         u32 cap = v->capacity;
         if (cap <= index && v->step != 0)
-            cap = (index / v->step + 1) * v->step;
+            cap = v->GrownCapacity(index);
         reserve(v, cap);
         reserve(v, index + 1);
         for (u32 i = v->count; i < index + 1; ++i)

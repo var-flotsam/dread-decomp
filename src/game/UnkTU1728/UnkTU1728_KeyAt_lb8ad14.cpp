@@ -22,7 +22,7 @@ UnkTimeKey* fn_7100b8ad14(UnkTimeKeys* self, u32 index) {
         // First to the next multiple of the step, then to exactly index + 1 keys.
         u32 cap = keys->capacity;
         if (cap <= index && keys->step != 0) {
-            u32 grown = (index / keys->step + 1) * keys->step;
+            u32 grown = keys->GrownCapacity(index);
             if (cap < grown) {
                 keys->Reserve(grown);
                 cap = grown;

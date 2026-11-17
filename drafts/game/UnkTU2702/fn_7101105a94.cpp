@@ -5,17 +5,12 @@
 #include "game/UnkTU394.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 extern char g_unk_7101a21540[];  // the node list's vtable
 
 // A list of nodes (link at +8) freed through the allocator.
-struct UnkCheckNodeList_l105a94 {
-    void* vtable;
-    u32 count;
-    void* head;
-    void* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkCheckNodeList_l105a94 : base::UnkVtableList<void> {
     ~UnkCheckNodeList_l105a94() {
         vtable = g_unk_7101a21540 + 0x10;
         void* n = head;
@@ -45,7 +40,6 @@ struct UnkCheckQuery_l105a94 {
     UnkCheckRef_l105a94 ref;
     u8 pad_0x8[0x20];
     UnkCheckNodeList_l105a94 nodes;  // 0x28
-    u8 pad_0x50[0x8];
 
     UnkCheckQuery_l105a94(UnkActor* actor, void* params) {
         fn_71002c6f80(reinterpret_cast<UnkAttackQuery_ovb0115*>(this), actor, params);

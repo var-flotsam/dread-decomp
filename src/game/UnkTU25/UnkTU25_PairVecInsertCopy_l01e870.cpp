@@ -15,26 +15,16 @@ struct UnkCopyPair_l01e870 {
     base::UnkPooledStrId<g_unk_7101d47200> path;
 };
 
-struct UnkCopyPairVec_l01e870 {
-    UnkCopyPair_l01e870* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-static inline void Reserve_l01e870(UnkCopyPairVec_l01e870* self, u32 n) {
+static inline void Reserve_l01e870(base::global::CRntVector<UnkCopyPair_l01e870>* self, u32 n) {
     fn_710001e4e8(reinterpret_cast<UnkStrIdPathPairVec_b45a1*>(self), n);
 }
 
-void fn_710001e870(UnkCopyPairVec_l01e870* self, const UnkCopyPair_l01e870* value, u32 index) {
+void fn_710001e870(base::global::CRntVector<UnkCopyPair_l01e870>* self, const UnkCopyPair_l01e870* value, u32 index) {
     if (index == self->count) {
         u32 n = self->count;
         u32 new_capacity = self->capacity;
         if (new_capacity <= n && self->step != 0)
-            new_capacity = (n / self->step + 1) * self->step;
+            new_capacity = self->GrownCapacity(n);
         if ((s32)n >= (s32)new_capacity)  // hangs, as CRntVector::PushBack does
             for (;;) {
             }
@@ -44,7 +34,7 @@ void fn_710001e870(UnkCopyPairVec_l01e870* self, const UnkCopyPair_l01e870* valu
         u32 n = self->count;
         u32 new_capacity = self->capacity;
         if (new_capacity <= n && self->step != 0)
-            new_capacity = (n / self->step + 1) * self->step;
+            new_capacity = self->GrownCapacity(n);
         Reserve_l01e870(self, new_capacity);
         for (u32 i = self->count - 1; i >= index;) {
             UnkCopyPair_l01e870* e = &self->data[i];

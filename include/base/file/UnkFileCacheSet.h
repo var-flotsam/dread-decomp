@@ -8,44 +8,33 @@
 #include "base/UnkBlockFreeList.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/global/CRntVector.h"
+#include "base/global/UnkBucketSet.h"
 #include "types.h"
 
 struct UnkFileCacheSetNode;
 
-// The bucket array at +0, the first non-empty bucket (+0x28) and first node (+0x30), the nodes'
-// allocator (+0x38: the pool at +0x50 once set up) with its flags (+0x40), the node count
-// (+0x44) and the count of freed nodes (+0x48).
-struct UnkFileCacheSet {
-    base::global::CRntVector<UnkFileCacheSetNode*> buckets;
-    s32 field_0x28;
-    UnkFileCacheSetNode* field_0x30;
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    u32 field_0x48;
-    base::UnkBlockPool pool;
-};
-static_assert(__builtin_offsetof(UnkFileCacheSet, pool) == 0x50, "UnkFileCacheSet layout");
+// The set (base/global/UnkBucketSet.h) with its node pool at +0x50.
+using UnkFileCacheSet = base::global::UnkPooledBucketSet<UnkFileCacheSetNode>;
 
 // Releases the node pool's old block, carves a block of `nodes` nodes of `NodeSize` bytes (from the
 // set's allocator, or the default one) into the pool, makes the pool the set's allocator, then
 // resizes the bucket array to `buckets`, clearing the new buckets.
 template <u64 NodeSize>
 __attribute__((always_inline)) inline void UnkFileCacheSetSetUp(UnkFileCacheSet* self, u32 buckets, u32 nodes) {
-    u32 flags = self->flags;
-    base::UnkAllocator* a = self->allocator;
-    self->pool.Release();
+    u32 flags = self->node_flags;
+    base::UnkAllocator* a = self->node_allocator;
+    self->nodes.Release();
     if (nodes) {
         if (!a)
             a = fn_7100083990();
-        self->pool.parent = a;
+        self->nodes.parent = a;
         u64 size = (u64)nodes * NodeSize;
         void* block = a->vf_0x40(size, 8, flags);
-        fn_710008378c(&self->pool.blocks, block, size, NodeSize);
+        fn_710008378c(&self->nodes.blocks, block, size, NodeSize);
     }
     // The pool's address, formed as an integer: the original recomputes it here rather than
     // keeping it live across the calls (as base::UnkPoolList::Init).
-    self->allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x50);
+    self->node_allocator = reinterpret_cast<base::UnkAllocator*>(reinterpret_cast<u64>(self) + 0x50);
     base::global::CRntVector<UnkFileCacheSetNode*>& v = self->buckets;
     u32 count = v.count;
     if (count < buckets) {

@@ -4,6 +4,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/CFXComponent.h"
 #include "game/CGameManager/CTunableGameManager.h"
 #include "game/CModelUpdaterComponent.h"
@@ -12,38 +13,20 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id whose release decrements and tests the count in two steps.
-struct UnkNodeId {
-    UnkStringData* data;
-
-    ~UnkNodeId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkIdNode_0x18 {
-    UnkNodeId id;
+    UnkStrIdTwoStep id;
     u64 field_0x8;
     UnkIdNode_0x18* next;
 };
 
 struct UnkIdNode_0x10 {
-    UnkNodeId id;
+    UnkStrIdTwoStep id;
     UnkIdNode_0x10* next;
 };
 
 struct UnkIdNode_0x30 {
     u8 unk_0x0[0x18];
-    UnkNodeId id;
+    UnkStrIdTwoStep id;
     u64 field_0x20;
     UnkIdNode_0x30* next;
 };
@@ -60,7 +43,7 @@ struct UnkIdList {
     ~UnkIdList() {
         for (Node* n = head; n;) {
             Node* next = n->next;
-            n->id.~UnkNodeId();
+            n->id.~UnkStrIdTwoStep();
             allocator->vf_0x48(n);
             n = next;
         }

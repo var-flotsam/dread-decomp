@@ -6,7 +6,7 @@
 #include <new>
 #include <utility>
 
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkSphere.h"
 #include "game/UnkTU204.h"
@@ -17,58 +17,11 @@
 
 using base::global::CFilePathStrId;
 
-extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
-
-struct UnkProjectorNode {
-    u64 key;
-    u64 value;
-    UnkProjectorNode* next;   // the list of all nodes
-    UnkProjectorNode* prev;
-    UnkProjectorNode* chain;  // the next node in the bucket
-
-    explicit UnkProjectorNode(u64 k) : key(k), value(k), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    // The list links, through accessors (their stores may alias the registry's list ends).
-    UnkProjectorNode*& Next() { return next; }
-    UnkProjectorNode*& Prev() { return prev; }
-};
-
+// The registry the projectors' objects are entered in: a word, then a set of the objects (each its own
+// value) at +0x8.
 struct UnkProjectorRegistry {
     u8 pad_0x0[0x8];
-    base::UnkAllocator* allocator;  // +0x8
-    u32 flags;                      // +0x10
-    u32 count;                      // +0x14
-    UnkProjectorNode** buckets;     // +0x18 (base::global::CRntVector)
-    u32 bucket_count;               // +0x20
-    u32 bucket_capacity;            // +0x24
-    u8 pad_0x28[0x18];
-    UnkProjectorNode* tail;  // +0x40
-    UnkProjectorNode* head;  // +0x48
-
-    // Adds a node for `key` at the front of its bucket and at the end of the list.
-    void Insert(u64 key) {
-        UnkProjectorNode** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)key % bucket_capacity;
-            if (bucket_count <= i)
-                __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-            bucket = &buckets[i];
-        }
-        UnkProjectorNode* old = *bucket;
-        auto* node = static_cast<UnkProjectorNode*>(allocator->vf_0x40(sizeof(UnkProjectorNode), 8, flags));
-        if (node)
-            new (node) UnkProjectorNode(key);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
+    base::global::CRntDictionary<u64, u64> objects;  // +0x8
 };
 
 // The resource the decal draws with: loaded by path from the manager g_unk_716e352450 and released
@@ -123,7 +76,7 @@ void fn_71001bb7cc(UnkDecalProjector* self) {
     auto* decal = static_cast<UnkDecal*>(fn_71000839a0(sizeof(UnkDecal), 0x32));
     fn_710019a2b8(decal);
     if (decal)
-        registry->Insert((u64)decal);
+        registry->objects.InsertChecked((u64)decal, (u64)decal);
     self->decal = decal;
     static CFilePathStrId s_path("mp_prj_blend_decal000", true);
     if (UnkDecalResource* resource = fn_710019ffe8(g_unk_716e352450, &s_path, true)) {

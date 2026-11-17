@@ -27,7 +27,6 @@ struct UnkEmmyActor_b55;
 extern UnkPropertyName g_unk_71726debd8;
 
 struct UnkActorTarget;
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 extern u32 g_unk_7101649db8;
 
 struct UnkEmmyRelaxOwner_b59 {

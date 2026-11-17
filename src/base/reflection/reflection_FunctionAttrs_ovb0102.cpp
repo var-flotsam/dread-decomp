@@ -67,7 +67,7 @@ __attribute__((flatten)) static inline UnkReflParamAttrs_ovb0102& ParamAttrsAt(
     if (v->field_0x14 && v->count <= index) {
         u32 cap = v->capacity;
         if (cap <= index && v->step != 0) {
-            u32 grown = (index / v->step + 1) * v->step;
+            u32 grown = v->GrownCapacity(index);
             if (cap < grown)
                 v->Reserve(grown);
         }

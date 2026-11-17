@@ -214,7 +214,7 @@ void fn_710031d904(base::global::CRntVector<UnkOpticHandlePtr_ovb0059>* self,
         u32 n = self->count;
         u32 capacity = self->capacity;
         if (capacity <= n && self->step != 0)
-            capacity = (n / self->step + 1) * self->step;
+            capacity = self->GrownCapacity(n);
         if ((s32)n >= (s32)capacity)
             for (;;) {
             }

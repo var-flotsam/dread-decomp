@@ -1191,7 +1191,7 @@ address,size,name,name_source,subsystem,status
 0x7100d1eb9c,380,fn_7100d1eb9c,unknown,game/characters?,O
 0x7100d1ed18,380,fn_7100d1ed18,unknown,game/characters?,O
 0x7100d1ee94,456,fn_7100d1ee94,unknown,game/characters?,m
-0x7100d1f05c,1764,fn_7100d1f05c,unknown,game/characters?,U
+0x7100d1f05c,1764,fn_7100d1f05c,unknown,game/characters?,O
 0x7100d1f740,36,fn_7100d1f740,unknown,game/characters?,O
 0x7100d1f764,784,fn_7100d1f764,unknown,game/characters?,m
 0x7100d1fa74,212,fn_7100d1fa74,unknown,game/characters?,O
@@ -1207,7 +1207,7 @@ address,size,name,name_source,subsystem,status
 0x7100d1ffb8,4,CCharClassModifyColliderStateBaseTrack::refl_CopyConstruct,reflection,game/characters,O
 0x7100d1ffbc,4,CCharClassModifyColliderStateBaseTrack::refl_MoveConstruct,reflection,game/characters,O
 0x7100d1ffc0,12,CCharClassModifyColliderStateBaseTrack::refl_Destroy,reflection,game/characters,O
-0x7100d1ffcc,1816,fn_7100d1ffcc,unknown,game/characters?,U
+0x7100d1ffcc,1816,fn_7100d1ffcc,unknown,game/characters?,O
 0x7100d206e4,68,fn_7100d206e4,unknown,game/characters?,O
 0x7100d20728,204,fn_7100d20728,unknown,game/characters?,O
 0x7100d207f4,68,fn_7100d207f4,unknown,game/characters?,O
@@ -5008,7 +5008,7 @@ address,size,name,name_source,subsystem,status
 0x7100db8468,600,fn_7100db8468,unknown,unknown,O
 0x7100db86c0,28,fn_7100db86c0,unknown,unknown,O
 0x7100db86dc,36,fn_7100db86dc,unknown,unknown,O
-0x7100db8700,1772,fn_7100db8700,unknown,unknown,U
+0x7100db8700,1772,fn_7100db8700,unknown,unknown,O
 0x7100db8dec,62664,fn_7100db8dec,unknown,unknown,m
 0x7100dc82b4,812,fn_7100dc82b4,unknown,unknown,O
 0x7100dc85e0,584,fn_7100dc85e0,unknown,unknown,O
@@ -5038,7 +5038,7 @@ address,size,name,name_source,subsystem,status
 0x7100dcca90,768,fn_7100dcca90,unknown,unknown,U
 0x7100dccd90,736,fn_7100dccd90,unknown,unknown,U
 0x7100dcd070,520,fn_7100dcd070,unknown,unknown,O
-0x7100dcd278,1300,fn_7100dcd278,unknown,unknown,U
+0x7100dcd278,1300,fn_7100dcd278,unknown,unknown,O
 0x7100dcd78c,1164,fn_7100dcd78c,unknown,unknown,U
 0x7100dcdc18,20,fn_7100dcdc18,unknown,unknown,O
 0x7100dcdc2c,184,fn_7100dcdc2c,unknown,unknown,O

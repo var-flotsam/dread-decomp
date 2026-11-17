@@ -40,7 +40,7 @@ UnkElem_0x88& fn_71007a6b58(base::global::CRntVector<UnkElem_0x88>* v, u32 index
     if (v->field_0x14 && v->count <= index) {
         u32 cap = v->capacity;
         if (cap <= index && v->step != 0) {
-            u32 grown = (index / v->step + 1) * v->step;
+            u32 grown = v->GrownCapacity(index);
             if (cap < grown) {
                 Reallocate(v, grown);
                 cap = grown;

@@ -5,32 +5,14 @@
 // fn_7100a74794 is an identical copy.
 #include <new>
 
+#include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-struct UnkMovedId {
-    UnkStringData* data;
-
-    UnkMovedId(UnkMovedId&& other) {
-        data = other.data;
-        other.data = &g_unk_7101d47108->empty;
-    }
-    ~UnkMovedId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
+using UnkMovedId = base::UnkStrIdMember;
 
 struct UnkArray {
     void* data;

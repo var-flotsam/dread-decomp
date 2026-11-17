@@ -1,6 +1,7 @@
 // Shrink-to-fit of a container of two parallel arrays (0x118-byte records and u32 values)
 // sharing a count and capacity: both are reallocated to exactly `count`, the records moved over
 // (each source destroyed by fn_7100ea7034, also here), the values copied and the old arrays freed.
+#include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
@@ -11,26 +12,6 @@
 using base::UnkAllocator;
 using base::global::CRntString;
 using base::global::UnkStringData;
-
-// A string id whose move leaves the pool's empty string behind.
-struct UnkMovedStrId {
-    UnkStringData* data;
-
-    UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-    // Decrements and tests in two steps (the original reloads the id after the decrement).
-    __attribute__((always_inline)) ~UnkMovedStrId() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 // A 0x30-byte string moved by fn_710007eab4.
 struct UnkMovedString {
@@ -83,9 +64,9 @@ struct UnkPod110 {
 
 struct UnkRecord118 {
     u64 field_0x0;
-    UnkMovedStrId field_0x8;
-    UnkMovedStrId field_0x10;
-    UnkMovedStrId field_0x18;
+    base::UnkStrIdMember field_0x8;
+    base::UnkStrIdMember field_0x10;
+    base::UnkStrIdMember field_0x18;
     u32 field_0x20;
     u32 field_0x24;
     u32 field_0x28;
@@ -105,9 +86,9 @@ struct UnkRecord118 {
     UnkPod110 field_0x110;
 
     __attribute__((always_inline)) UnkRecord118(UnkRecord118&& other)
-        : field_0x0(other.field_0x0), field_0x8(static_cast<UnkMovedStrId&&>(other.field_0x8)),
-          field_0x10(static_cast<UnkMovedStrId&&>(other.field_0x10)),
-          field_0x18(static_cast<UnkMovedStrId&&>(other.field_0x18)), field_0x20(other.field_0x20),
+        : field_0x0(other.field_0x0), field_0x8(static_cast<base::UnkStrIdMember&&>(other.field_0x8)),
+          field_0x10(static_cast<base::UnkStrIdMember&&>(other.field_0x10)),
+          field_0x18(static_cast<base::UnkStrIdMember&&>(other.field_0x18)), field_0x20(other.field_0x20),
           field_0x24(other.field_0x24), field_0x28(other.field_0x28), field_0x2c(other.field_0x2c),
           field_0x30(other.field_0x30), field_0x34(other.field_0x34), field_0x38(other.field_0x38),
           field_0x40(other.field_0x40), field_0x58(static_cast<UnkMovedString&&>(other.field_0x58)),

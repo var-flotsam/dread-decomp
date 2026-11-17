@@ -9,6 +9,8 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/UnkParallelFind.h"
+#include "base/global/CRntSmallDictionary.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
@@ -43,49 +45,19 @@ using base::reflection::UnkReflValue;
 
 void fn_7100af0030(UnkSectionData* self, const UnkSectionData* other);
 
-struct UnkStrIdData_b0026 {
-    u8 pad_0x0[0x30];
-    u32 hash_lo;
-    u32 hash_hi;
-};
-
-struct UnkNameSet_b0026 {
-    CStrId* values;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkNameSet_b0026 = base::global::CRntSmallDictionary<CStrId, CStrId>;
 
 // The sections as parallel arrays (the blackboard's at +0x8, a group's at +0x38).
-struct UnkSectionArray_b0026 {
-    CBlackboard::CSection** values;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
+using UnkSectionArray_b0026 = base::global::CRntSmallDictionary<CStrId, CBlackboard::CSection*>;
 
-    // Releases the ids and empties the arrays (the storage is kept).
-    void Clear() {
-        if (ids) {
-            for (u64 i = 0; i < count; ++i)
-                ids[i].Reset();
-        }
-        count = 0;
+// Releases the ids and empties the arrays (the storage is kept), testing the count first.
+static void ClearIfAny(UnkSectionArray_b0026* self) {
+    if (self->count && self->keys) {
+        for (u64 i = 0; i < self->count; ++i)
+            self->keys[i].Reset();
     }
-    // The same, testing the count first.
-    void ClearIfAny() {
-        if (count && ids) {
-            for (u64 i = 0; i < count; ++i)
-                ids[i].Reset();
-        }
-        count = 0;
-    }
-};
+    self->count = 0;
+}
 
 // A named group of sections (created by fn_71010486bc): the names it takes sections under and
 // the sections it holds; a section's field_0x10 points at its group.
@@ -96,51 +68,16 @@ struct UnkSectionGroup_b0026 {
     UnkSectionArray_b0026 sections;  // 0x38
     bool field_0x60;
 
-    UnkSectionGroup_b0026(CBlackboard* owner_, const CStrId& name_) : owner(owner_), name(name_) {
-        names.values = nullptr;
-        names.ids = nullptr;
-        names.count = 0;
-        names.capacity = 0;
-        names.step = 10;
-        names.flags = 0xe;
-        names.allocator = fn_7100083990();
-        sections.values = nullptr;
-        sections.ids = nullptr;
-        sections.count = 0;
-        sections.capacity = 0;
-        sections.step = 10;
-        sections.flags = 0x15;
-        sections.allocator = fn_7100083990();
+    UnkSectionGroup_b0026(CBlackboard* owner_, const CStrId& name_)
+        : owner(owner_), name(name_), names(0xe), sections(0x15) {
         field_0x60 = false;
     }
 };
 static_assert(sizeof(UnkSectionGroup_b0026) == 0x68, "layout");
 
-// The groups by name: a chained hash map whose nodes are also listed in creation order.
-struct UnkGroupNode_b0026 {
-    CStrId key;
-    UnkSectionGroup_b0026* value;
-    // Union members: the original reloads the list ends after each link store.
-    union {
-        UnkGroupNode_b0026* next;
-    };
-    union {
-        UnkGroupNode_b0026* prev;
-    };
-    UnkGroupNode_b0026* chain;
-};
-
-struct UnkGroupMap_b0026 {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    UnkGroupNode_b0026** buckets;
-    u32 bucket_count;
-    u32 modulus;
-    u8 pad_0x20[0x18];
-    UnkGroupNode_b0026* last;   // 0x38
-    UnkGroupNode_b0026* first;  // 0x40
-};
+// The groups by name.
+using UnkGroupMap_b0026 = base::global::CRntDictionary<CStrId, UnkSectionGroup_b0026*>;
+using UnkGroupNode_b0026 = UnkGroupMap_b0026::TNode;
 
 struct UnkBlackboardGroups_b0026 {
     u8 pad_0x0[0x30];
@@ -179,16 +116,16 @@ void fn_7101048420(CBlackboard::CSection* self) {
 // Returns the slot. The moves are untyped (the original reloads the arrays after each).
 CBlackboard::CSection** fn_7101048588(UnkSectionArray_b0026* self, CBlackboard::CSection** slot) {
     u32 i = slot - self->values;
-    self->ids[i].Reset();
+    self->keys[i].Reset();
     u32 last = self->count - 1;
     if (last != i) {
         __builtin_memcpy(&self->values[i], &self->values[last], sizeof(*slot));
-        CStrId* ids = self->ids;
+        CStrId* keys = self->keys;
         last = self->count - 1;
-        __builtin_memcpy(&ids[i], &ids[last], sizeof(CStrId));
+        __builtin_memcpy(&keys[i], &keys[last], sizeof(CStrId));
         base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&ids[last], &empty, sizeof(empty));
-        self->ids[self->count - 1].Reset();
+        __builtin_memcpy(&keys[last], &empty, sizeof(empty));
+        self->keys[self->count - 1].Reset();
     }
     --self->count;
     return &self->values[i];
@@ -197,7 +134,7 @@ CBlackboard::CSection** fn_7101048588(UnkSectionArray_b0026* self, CBlackboard::
 // A section's properties with the value type spelled out, for base/UnkParallelFind.h.
 struct UnkPropertyValues_b0026 {
     UnkReflValue* values;
-    CStrId* ids;
+    CStrId* keys;
     u32 count;
 };
 
@@ -216,32 +153,7 @@ s32 fn_71010475d0(CBlackboard* self, const CStrId& key, const CStrId& name) {
 UnkSectionGroup_b0026* fn_71010486bc(UnkBlackboardGroups_b0026* self, const CStrId& key) {
     auto* group = new (fn_71000839a0(sizeof(UnkSectionGroup_b0026), 0x15))
         UnkSectionGroup_b0026(reinterpret_cast<CBlackboard*>(self), key);
-    UnkGroupMap_b0026& map = self->groups;
-    UnkGroupNode_b0026** bucket = nullptr;
-    if (map.bucket_count) {
-        const UnkStrIdData_b0026* data = reinterpret_cast<const UnkStrIdData_b0026*>(key.data);
-        u32 i = (data->hash_lo ^ data->hash_hi) % map.modulus;
-        bucket = map.buckets + i;
-    }
-    UnkGroupNode_b0026* old = *bucket;
-    auto* node = static_cast<UnkGroupNode_b0026*>(map.allocator->vf_0x40(sizeof(UnkGroupNode_b0026), 8, map.flags));
-    if (node) {
-        new (&node->key) CStrId(key);
-        node->value = group;
-        node->next = nullptr;
-        node->prev = nullptr;
-        node->chain = nullptr;
-    }
-    node->chain = old;
-    *bucket = node;
-    if (!map.first) {
-        map.first = node;
-    } else if (map.last) {
-        node->prev = map.last;
-        map.last->next = node;
-    }
-    map.last = node;
-    ++map.count;
+    self->groups.Insert(key, group);
     return group;
 }
 
@@ -283,7 +195,7 @@ UnkSectionGroup_b0026* fn_7101048820(UnkBlackboardGroups_b0026* self, const CStr
         if (group->names.count == group->names.capacity)
             fn_71000d97fc(reinterpret_cast<UnkKeyedArray_b62a1<UnkMovedStrId_b62a1>*>(&group->names),
                           group->names.count + group->names.step);
-        CopyId(&group->names.ids[group->names.count], name);
+        CopyId(&group->names.keys[group->names.count], name);
         CopyId(&group->names.values[group->names.count], name);
         ++group->names.count;
     }
@@ -320,7 +232,7 @@ void fn_71010489c4(UnkBlackboardView_b0026* self, const CStrId& key, CBlackboard
     if (self->sections.count == self->sections.capacity)
         reinterpret_cast<base::UnkCloneKeyedArray<UnkClone_fn_710104afb4>*>(&self->sections)
             ->Reserve(self->sections.count + self->sections.step);
-    CopyId(&self->sections.ids[self->sections.count], key);
+    CopyId(&self->sections.keys[self->sections.count], key);
     __builtin_memcpy(&self->sections.values[self->sections.count], &section, sizeof(section));
     ++self->sections.count;
     for (UnkGroupNode_b0026* node = self->groups.first; node; node = node->next) {
@@ -338,7 +250,7 @@ void fn_71010489c4(UnkBlackboardView_b0026* self, const CStrId& key, CBlackboard
 void fn_7101047ea8(UnkBlackboardView_b0026* self) {
     for (CBlackboard::CSection** it = self->sections.values; &self->sections.values[self->sections.count] != it;)
         it = self->vf_0x30(it);
-    self->sections.ClearIfAny();
+    ClearIfAny(&self->sections);
     for (UnkGroupNode_b0026* node = self->groups.first; node; node = node->next)
         node->value->sections.Clear();
 }
@@ -451,7 +363,7 @@ UnkSectionArray_b0026* fn_710104b114(UnkSectionArray_b0026* self, const UnkSecti
         self->count = other->count;
         self->count = other->count;
         for (u64 i = 0; i < self->count; ++i)
-            CopyId(&self->ids[i], other->ids[i]);
+            CopyId(&self->keys[i], other->keys[i]);
     }
     return self;
 }

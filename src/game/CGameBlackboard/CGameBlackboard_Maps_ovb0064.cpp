@@ -14,6 +14,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection.h"
 #include "game/CBlackboard.h"
 #include "game/CGameBlackboard.h"
@@ -138,15 +139,7 @@ struct UnkIdSet_ovb0064 {
 };
 
 // The sets by section id, as base/UnkParallelFind.h sees them.
-struct UnkIdSetMap_ovb0064 {
-    UnkIdSet_ovb0064** values;
-    CStrId* ids;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkIdSetMap_ovb0064 = base::global::CRntSmallDictionary<CStrId, UnkIdSet_ovb0064*>;
 
 // An owning pointer to a set; the move stores bytewise (the original reloads the moved-from slot).
 struct UnkOwnedSet_ovb0064 {
@@ -229,8 +222,8 @@ void fn_7100aebde8(UnkGameBlackboard_ovb0064* self) {
         t.allocator->vf_0x48(t.values);
     UnkIdSetMap_ovb0064& s = self->sets;
     fn_7100aecdc4(reinterpret_cast<UnkIdRecordTable<UnkOwned<void, fn_7100aef674>>*>(&s));
-    if (s.ids)
-        s.allocator->vf_0x48(s.ids);
+    if (s.keys)
+        s.allocator->vf_0x48(s.keys);
     if (s.values)
         s.allocator->vf_0x48(s.values);
     fn_7101046ac0(self);
@@ -357,14 +350,7 @@ void fn_7100aee2c0(UnkFloatsByIdOwnedMap_ovb0064* self, const u64* key, UnkFloat
     }
 }
 
-// A string id whose move leaves the pool's empty string behind.
-struct UnkMovedId_ovb0064 {
-    UnkStringData* data;
-
-    UnkMovedId_ovb0064(UnkMovedId_ovb0064&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-};
-
-using UnkFloatsByIdValue_ovb0064 = base::UnkIterValue<UnkFloatsById_ovb0064, UnkMovedId_ovb0064>;
+using UnkFloatsByIdValue_ovb0064 = base::UnkIterValue<UnkFloatsById_ovb0064, UnkMovedStrId>;
 
 // The move constructor of the map's cached iterator value: the id is moved, the table copied.
 void fn_7100aedd04(UnkFloatsByIdValue_ovb0064* self, UnkFloatsByIdValue_ovb0064* other) {
@@ -372,12 +358,12 @@ void fn_7100aedd04(UnkFloatsByIdValue_ovb0064* self, UnkFloatsByIdValue_ovb0064*
     self->state = 0;
     if (other->state == 1) {
         self->state = 1;
-        new (&self->value) Pair{static_cast<UnkMovedId_ovb0064&&>(other->value.index), other->value.element};
+        new (&self->value) Pair{static_cast<UnkMovedStrId&&>(other->value.index), other->value.element};
     } else if (other->state == 2) {
         self->state = 1;
         UnkFloatsByIdValue_ovb0064::Ref r = other->ref;
         new (&self->value)
-            Pair{static_cast<UnkMovedId_ovb0064&&>(*const_cast<UnkMovedId_ovb0064*>(r.index)), *r.element};
+            Pair{static_cast<UnkMovedStrId&&>(*const_cast<UnkMovedStrId*>(r.index)), *r.element};
     }
 }
 

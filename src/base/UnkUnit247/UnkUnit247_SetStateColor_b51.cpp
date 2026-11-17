@@ -4,6 +4,7 @@
 // placeholders.
 #include "base/color/CColor4F.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -23,7 +24,7 @@ __attribute__((always_inline)) inline void SetStateColor(UnkColorOwner247* self,
                                                          const base::color::CColor4F* color) {
     char* state = self->state;
     base::math::UnkVector4D v = fn_7100030878(color);
-    fn_710007b518(reinterpret_cast<CVector4D*>(state + Colors) + index, &v);
+    Assign(reinterpret_cast<CVector4D*>(state + Colors)[index], v);
     UnkColorTarget247* target = reinterpret_cast<UnkColorTarget247**>(state + Targets)[index];
     if (target)
         *target->color = v;

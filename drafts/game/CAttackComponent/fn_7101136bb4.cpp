@@ -1,6 +1,7 @@
 // CAttackComponent unit (tools/tu_map.py unit 2706): handles a hit on an actor. Copies the hit's
 // data, lets a speed booster or shinespark (or the Samus gun) absorb it, asks the actor's life
 // component, then walks the listeners and runs the hit callback. Names and layouts are placeholders.
+#include "base/UnkCountedDeferredSet.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "types.h"
@@ -14,10 +15,8 @@ UnkAbility* fn_71003012f8(UnkAbilitySet* set, u64 id);
 u64 fn_7100327d14();
 u64 fn_710033b6a4();
 
-struct UnkAttackTargets_ovb0050;
-struct UnkAttackTargetsLock_ovb0050;
-void fn_7101138188(UnkAttackTargets_ovb0050* self, void* target);
-void fn_710113831c(UnkAttackTargetsLock_ovb0050* self);
+void fn_7101138188(base::UnkCountedDeferredSet<void>* self, void* target);
+void fn_710113831c(base::UnkCountedDeferredWalk<void>* walk);
 
 struct UnkHitVec_l136bb4 {
     f32 x, y, z;
@@ -136,17 +135,6 @@ struct UnkHitListener_l136bb4 {
     bool (*fn)(void* ctx, bool arg);
 };
 
-struct UnkHitTargets_l136bb4 {
-    u8 pad_0x0[0x50];
-    UnkHitListener_l136bb4** data;  // 0x50
-    u32 count;                      // 0x58
-    u8 pad_0x5c[0x1c];
-    // A union member: the original reloads the count after the increment.
-    union {
-        s32 lock;  // 0x78
-    };
-};
-
 struct UnkAttackComponent_l136bb4;
 struct UnkAttackComponentVtable_l136bb4 {
     void* slots[0x34];
@@ -157,15 +145,11 @@ struct UnkAttackComponent_l136bb4 {
     u8 pad_0x8[0x48];
     UnkHitData_l136bb4 hit;  // 0x50
     u8 pad_0x80[0x20];
-    UnkHitTargets_l136bb4 targets;  // 0xa0
+    base::UnkCountedDeferredSet<void> targets;  // 0xa0
     void* callback_ctx;  // 0x120
     void (*callback)(void* ctx, UnkHitActor_l136bb4* actor, UnkHitInfo_l136bb4* info, f32 delta);  // 0x128
 };
 static_assert(__builtin_offsetof(UnkAttackComponent_l136bb4, callback) == 0x128, "layout");
-
-struct UnkHitLock_l136bb4 {
-    UnkHitTargets_l136bb4* targets;
-};
 
 template <const CClass* (*Getter)()>
 static inline UnkHitAbility_l136bb4* CastAbility(UnkAbility* a) {
@@ -223,14 +207,13 @@ s32 fn_7101136bb4(UnkAttackComponent_l136bb4* self, UnkHitActor_l136bb4* actor, 
     if (r != 1)
         return r;
     self->vtable->vf_0x1a0(self);
-    UnkHitLock_l136bb4 lock{&self->targets};
-    ++self->targets.lock;
-    for (UnkHitListener_l136bb4** it = self->targets.data, **end = it + self->targets.count; it != end; ++it) {
-        UnkHitListener_l136bb4* l = *it;
+    base::UnkCountedDeferredWalk<void> walk(&self->targets);
+    for (void** it = self->targets.items.data, **end = it + self->targets.items.count; it != end; ++it) {
+        UnkHitListener_l136bb4* l = static_cast<UnkHitListener_l136bb4*>(*it);
         if (!l || !l->fn || !l->fn(l->ctx, true))
-            fn_7101138188(reinterpret_cast<UnkAttackTargets_ovb0050*>(&self->targets), l);
+            fn_7101138188(&self->targets, l);
     }
-    fn_710113831c(reinterpret_cast<UnkAttackTargetsLock_ovb0050*>(&lock));
+    fn_710113831c(&walk);
     if (self->callback)
         self->callback(self->callback_ctx, actor, info, before - life->field_0x54);
     return 1;

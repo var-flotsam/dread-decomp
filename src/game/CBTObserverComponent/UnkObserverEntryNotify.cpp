@@ -6,7 +6,7 @@
 struct UnkObserverEntryMap_7100ca79f0 {
     u8 pad_0x0[0x90];
     void** values;  // 0x90
-    u32* ids;       // 0x98
+    u32* keys;      // 0x98
     u32 count;      // 0xa0
 };
 

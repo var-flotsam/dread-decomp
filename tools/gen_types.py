@@ -1668,6 +1668,10 @@ def main() -> int:
                 + [line for g, b in prims for line in primitive_block(g, b)]
                 + [line for p in inline_ptrs for line in emit_inline_pointer(*p)]
                 + [line for i, b in flagsets for line in flagset_block(i, b)])
+        # every include first, the project's headers before the library's, as the generated files have them: a
+        # header's own [[noreturn]] __assert_fail (CRntDictionary.h) must come before <memory> brings musl's
+        includes = sorted(dict.fromkeys(line for line in text if line.startswith("#include")))
+        text = includes + [line for line in text if not line.startswith("#include")]
         src.write_text("\n".join(text) + "\n", encoding="utf-8")
         r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0:

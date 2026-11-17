@@ -42,7 +42,7 @@ struct UnkNavGroupRegistry_a1278 {
     UnkNavMesh* navmesh;
     u8 pad_0x8[0x62e28];
     UnkNavGroupEntry_a1278* values;
-    CStrId* ids;
+    CStrId* keys;
     u32 count;
 };
 

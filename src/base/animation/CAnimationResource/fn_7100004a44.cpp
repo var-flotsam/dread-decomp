@@ -6,32 +6,14 @@
 #include "base/UnkResType.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id whose destructor decrements and tests in two steps (the original reloads the id
-// after the decrement).
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkReleasedStrIdArray {
-    UnkReleasedStrId* data;
+    UnkStrIdTwoStep* data;
     u32 count;
     u32 capacity;
     u32 step;
@@ -42,7 +24,7 @@ struct UnkReleasedStrIdArray {
     __attribute__((always_inline)) ~UnkReleasedStrIdArray() {
         if (data) {
             for (u64 i = 0; i < count; ++i)
-                data[i].~UnkReleasedStrId();
+                data[i].~UnkStrIdTwoStep();
             count = 0;
             allocator->vf_0x48(data);
             capacity = 0;
@@ -51,8 +33,8 @@ struct UnkReleasedStrIdArray {
 };
 
 struct UnkIdsRecord38 {
-    UnkReleasedStrId id_0x0;
-    UnkReleasedStrId id_0x8;
+    UnkStrIdTwoStep id_0x0;
+    UnkStrIdTwoStep id_0x8;
     UnkReleasedStrIdArray ids;
 
     __attribute__((always_inline)) ~UnkIdsRecord38() {}

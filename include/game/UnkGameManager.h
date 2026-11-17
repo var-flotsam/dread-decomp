@@ -112,7 +112,9 @@ struct UnkGameManager {
     CBlackboard field_0x820;  // a second blackboard (the archive flags, fn_71009d2dc0)
     u8 pad_0x910[0x968 - 0x910];
     CBlackboard field_0x968;  // the embedded blackboard (fn_7101047208, fn_71010472e0, fn_7101047270)
-    u8 pad_0xa58[0x5a8];
+    u8 pad_0xa58[0xd40 - 0xa58];
+    CBlackboard field_0xd40;  // the checkpoint blackboard (fn_710116c388)
+    u8 pad_0xe30[0x1000 - 0xe30];
     UnkGameManagerIdMap field_0x1000;  // string ids replaced by others (fn_7100dfbda4)
     u8 pad_0x1018[0x28];
     u8 field_0x1040[1];  // an embedded effect player (fn_7101053a98, fn_7101053a7c, fn_7101053a0c, fn_7101053850)

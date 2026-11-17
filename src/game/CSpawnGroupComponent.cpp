@@ -6,6 +6,7 @@
 #include "../game_aca57c/UnkBufferString.h"
 #include "../game_s7/UnkPropBagS7.h"
 #include "base/global/CRntVector.h"
+#include "base/global/CRntVectorReloading.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "game/UnkBufferStringPool.h"
@@ -23,19 +24,8 @@ s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* resu
 
 typedef s64 __attribute__((may_alias)) a_s64;
 
-// base::global::CRntVector's layout with the count in a union (no type-based alias info: the original
-// reloads it after every key it stores).
-struct UnkKeyVector {
-    s64* data;
-    union {
-        u32 count;
-    };
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
+// The original reloads the count after every key it stores (base/global/CRntVectorReloading.h).
+struct UnkKeyVector : base::global::CRntVectorReloading<s64> {
     // Appends a key, growing like base::global::CRntVector::PushBack but copying the old keys one at a time
     // (stores that may alias anything: the original reloads the count and the array after them).
     void PushBack(s64 key) {

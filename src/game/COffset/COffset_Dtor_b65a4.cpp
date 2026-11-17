@@ -10,28 +10,11 @@ using base::global::UnkStringPool;
 extern void* g_unk_7101a56150[];  // COffset's vtable
 extern void* g_unk_7101a6c020[];  // CTentacle's vtable
 
-// A string id released in two steps (the original reloads `data` and the count after the decrement,
-// as CStrId::Reset does), then left empty.
-struct UnkReleasedId_b65a4 : base::global::UnkStrIdBase {
-    ~UnkReleasedId_b65a4() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 template <int Which>
 struct UnkNamedIdList_b65a4 {
     void** vtable;
-    UnkReleasedId_b65a4 name;                    // 0x8
-    base::global::CRntVector<UnkReleasedId_b65a4> ids;    // 0x10
+    base::global::CStrId name;                    // 0x8
+    base::global::CRntVector<base::global::CStrId> ids;    // 0x10
 
     __attribute__((always_inline)) ~UnkNamedIdList_b65a4() {
         vtable = reinterpret_cast<void**>(

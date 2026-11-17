@@ -54,7 +54,7 @@ __attribute__((always_inline)) inline void Push(CRntVector<T>& v, T value) {
     u32 old_capacity = v.capacity;
     u32 new_capacity = old_capacity;
     if (__builtin_expect(old_capacity <= n, 0) && v.step != 0)
-        new_capacity = (n / v.step + 1) * v.step;
+        new_capacity = v.GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }

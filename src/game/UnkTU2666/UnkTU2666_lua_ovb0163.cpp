@@ -2,6 +2,7 @@
 // (fn_71008c0c74) with an effect id, a static id and a direction pair is sent to the player's
 // component at +0x1b8 (virtual 0x188). Names and layouts are placeholders.
 #include <string.h>
+#include "base/UnkVtableList.h"
 
 #include "base/UnkRegistry.h"
 #include "base/UnkStrIdPathPair.h"
@@ -438,7 +439,6 @@ s32 fn_7101082100(lua_State* L) {
     return 0;
 }
 
-
 struct UnkGun_ovb0091;
 struct UnkPlayer;
 struct UnkVec {
@@ -570,7 +570,6 @@ s32 fn_7101083c30(lua_State* L) {
     }
     return 0;
 }
-
 
 struct UnkRcTarget_b0163 {
     void** vtable;
@@ -724,7 +723,6 @@ s32 fn_7101088bc0(lua_State* L) {
     return 0;
 }
 
-
 struct UnkResourceManager;
 bool fn_71002f70b0(UnkResourceManager* self, const CStrId* first, const CStrId* second);
 void fn_7101097030();
@@ -770,17 +768,15 @@ struct UnkPairNode_b0163 {
     UnkPairNode_b0163* next;  // 0x10
 };
 
-struct UnkPairList_b0163 {
-    char* vtable;
-    u32 count;
-    UnkPairNode_b0163* head;
-    UnkPairNode_b0163* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
-    UnkPairList_b0163()
-        : vtable(reinterpret_cast<char*>(g_unk_7101a202e0) + 0x10), count(0), head(nullptr), tail(nullptr), allocator(fn_7100083990()),
-          flags(0x13) {}
+struct UnkPairList_b0163 : base::UnkVtableList<UnkPairNode_b0163> {
+    UnkPairList_b0163() {
+        vtable = reinterpret_cast<char*>(g_unk_7101a202e0) + 0x10;
+        count = 0;
+        head = nullptr;
+        tail = nullptr;
+        allocator = fn_7100083990();
+        flags = 0x13;
+    }
     ~UnkPairList_b0163() {
         vtable = reinterpret_cast<char*>(g_unk_7101a202e0) + 0x10;
         for (UnkPairNode_b0163* node = head; node;) {

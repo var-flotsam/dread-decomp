@@ -16,7 +16,7 @@ struct UnkAnimEntry {
 struct UnkAnimEntryMap {
     u8 pad_0x0[0xc8];
     UnkAnimEntry** values;  // 0xc8
-    u64* ids;               // 0xd0
+    u64* keys;              // 0xd0
     u32 count;              // 0xd8
 };
 

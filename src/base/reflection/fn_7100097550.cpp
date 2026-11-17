@@ -8,6 +8,7 @@
 #include <new>
 
 #include "base/animation/CBlendSpaceResource.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
@@ -74,11 +75,6 @@ static_assert(sizeof(UnkVectorView<void*>) == sizeof(base::global::CRntVector<vo
 
 // A reflected function (UnkReflFunction) with its whole layout.
 struct UnkReflFunctionData {
-    // The name: moved, the source gets the pool's empty id.
-    struct Name {
-        UnkStringData* data;
-        Name(Name&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-    };
     // The two fields after the keyed array. Their copy is read before the array's source is
     // cleared and written after it (the order the original's move constructor has).
     struct Pair {
@@ -98,7 +94,7 @@ struct UnkReflFunctionData {
 
     void* vtbl;
     UnkVectorView<const CType*> params;
-    Name name;
+    UnkMovedStrId name;
     const CType* return_type;
     void* field_0x40;
     void* invoker;
@@ -117,7 +113,7 @@ struct UnkReflFunctionData {
     ~UnkReflFunctionData();  // fn_710009aae8
     UnkReflFunctionData(UnkReflFunctionData&& other)
         : vtbl(g_unk_7101a1b460 + 0x10), params(static_cast<UnkVectorView<const CType*>&&>(other.params)),
-          name(static_cast<Name&&>(other.name)), return_type(other.return_type), field_0x40(other.field_0x40),
+          name(static_cast<UnkMovedStrId&&>(other.name)), return_type(other.return_type), field_0x40(other.field_0x40),
           invoker(other.invoker), field_0x50(other.field_0x50), field_0x78(other.field_0x78, other.field_0x50),
           param_attrs(static_cast<UnkVectorView<void*>&&>(other.param_attrs)), field_0xb0_w(other.field_0xb0_w) {}
 

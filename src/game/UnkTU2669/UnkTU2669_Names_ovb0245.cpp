@@ -12,6 +12,7 @@
 #include "game/UnkTU2669.h"
 #include "game/UnkTU57.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CRntString;
 
@@ -77,18 +78,9 @@ struct UnkScriptManagerView_ovb0245 {
     UnkScriptEntry_ovb0245* first;  // 0x40
 };
 
-struct UnkNameListView_ovb0245 {
-    void* vtable;
-    u32 count;  // 0x8
-    UnkScriptNode_ovb0245* head;  // 0x10
-    UnkScriptNode_ovb0245* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
-};
-
 void fn_710109dc90(UnkScriptManager_ovb0085* self_, UnkLuaNameList_b0160* out_) {
     auto* self = reinterpret_cast<UnkScriptManagerView_ovb0245*>(self_);
-    auto* out = reinterpret_cast<UnkNameListView_ovb0245*>(out_);
+    auto* out = reinterpret_cast<base::UnkVtableList<UnkScriptNode_ovb0245>*>(out_);
     for (UnkScriptEntry_ovb0245* e = self->first; e; e = e->next) {
         u32 r = fn_710109dd6c(self, e->source, reinterpret_cast<UnkUnit2669Str*>(e), true, true);
         if (out && r == 3) {

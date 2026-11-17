@@ -5037,8 +5037,8 @@ address,size,name,name_source,subsystem,status
 0x71002da558,284,fn_71002da558,unknown,unknown,O
 0x71002da674,304,fn_71002da674,unknown,unknown,O
 0x71002da7a4,276,fn_71002da7a4,unknown,unknown,O
-0x71002da8b8,548,fn_71002da8b8,unknown,unknown,U
-0x71002daadc,484,fn_71002daadc,unknown,unknown,U
+0x71002da8b8,548,fn_71002da8b8,unknown,unknown,O
+0x71002daadc,484,fn_71002daadc,unknown,unknown,O
 0x71002dacc0,332,fn_71002dacc0,unknown,unknown,O
 0x71002dae0c,12,fn_71002dae0c,unknown,unknown,O
 0x71002dae18,20,fn_71002dae18,unknown,unknown,O
@@ -6006,7 +6006,7 @@ address,size,name,name_source,subsystem,status
 0x71002f8290,388,CAbility::refl_InitClass,reflection,game,O
 0x71002f8414,432,fn_71002f8414,unknown,unknown,U
 0x71002f85c4,68,fn_71002f85c4,unknown,unknown,O
-0x71002f8608,576,fn_71002f8608,unknown,unknown,U
+0x71002f8608,576,fn_71002f8608,unknown,unknown,O
 0x71002f8848,464,fn_71002f8848,unknown,unknown,O
 0x71002f8a18,456,fn_71002f8a18,unknown,unknown,O
 0x71002f8be0,456,fn_71002f8be0,unknown,unknown,O

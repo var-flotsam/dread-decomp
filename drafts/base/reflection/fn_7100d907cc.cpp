@@ -3,6 +3,7 @@
 #include "base/UnkResKey.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -108,9 +109,9 @@ static_assert(__builtin_offsetof(UnkEnvState_d907cc, field_0x310) == 0x310, "lay
 static_assert(sizeof(UnkEnvState_d907cc) == 0x450, "layout");
 
 UnkEnvState_d907cc* fn_7100d907cc(UnkEnvState_d907cc* self, const UnkEnvState_d907cc* other) {
-    fn_710007b518(&self->field_0x0, &other->field_0x0);
-    fn_710007b518(&self->field_0x10, &other->field_0x10);
-    fn_710007b518(&self->field_0x20, &other->field_0x20);
+    Assign(self->field_0x0, other->field_0x0);
+    Assign(self->field_0x10, other->field_0x10);
+    Assign(self->field_0x20, other->field_0x20);
     self->field_0x30 = other->field_0x30;
     self->field_0x3c = other->field_0x3c;
     self->field_0x40 = other->field_0x40;
@@ -118,22 +119,22 @@ UnkEnvState_d907cc* fn_7100d907cc(UnkEnvState_d907cc* self, const UnkEnvState_d9
     self->field_0x48 = other->field_0x48;
     self->field_0x4c = other->field_0x4c;
     self->field_0x50 = other->field_0x50;
-    fn_710007b518(&self->field_0x54, &other->field_0x54);
-    fn_710007b518(&self->field_0x64, &other->field_0x64);
-    fn_710007b518(&self->field_0x74, &other->field_0x74);
-    fn_710007b518(&self->field_0x84, &other->field_0x84);
-    fn_710007b518(&self->field_0x94, &other->field_0x94);
+    Assign(self->field_0x54, other->field_0x54);
+    Assign(self->field_0x64, other->field_0x64);
+    Assign(self->field_0x74, other->field_0x74);
+    Assign(self->field_0x84, other->field_0x84);
+    Assign(self->field_0x94, other->field_0x94);
     self->field_0xa4 = other->field_0xa4;
     self->field_0xc4 = other->field_0xc4;
-    fn_710007b518(&self->field_0xe4, &other->field_0xe4);
-    fn_710007b518(&self->field_0xf4, &other->field_0xf4);
+    Assign(self->field_0xe4, other->field_0xe4);
+    Assign(self->field_0xf4, other->field_0xf4);
     self->field_0x104 = other->field_0x104;
-    fn_710007b518(&self->field_0x10c, &other->field_0x10c);
-    fn_710007b518(&self->field_0x11c, &other->field_0x11c);
-    fn_710007b518(&self->field_0x12c, &other->field_0x12c);
-    fn_710007b518(&self->field_0x13c, &other->field_0x13c);
-    fn_710007b518(&self->field_0x14c, &other->field_0x14c);
-    fn_710007b518(&self->field_0x15c, &other->field_0x15c);
+    Assign(self->field_0x10c, other->field_0x10c);
+    Assign(self->field_0x11c, other->field_0x11c);
+    Assign(self->field_0x12c, other->field_0x12c);
+    Assign(self->field_0x13c, other->field_0x13c);
+    Assign(self->field_0x14c, other->field_0x14c);
+    Assign(self->field_0x15c, other->field_0x15c);
     self->field_0x16c = other->field_0x16c;
     self->field_0x170 = other->field_0x170;
     self->field_0x174 = other->field_0x174;
@@ -160,9 +161,9 @@ UnkEnvState_d907cc* fn_7100d907cc(UnkEnvState_d907cc* self, const UnkEnvState_d9
     self->field_0x1c8 = other->field_0x1c8;
     self->field_0x1cc = other->field_0x1cc;
     self->field_0x1d0 = other->field_0x1d0;
-    fn_710007b518(&self->field_0x1d4, &other->field_0x1d4);
-    fn_710007b518(&self->field_0x1e4, &other->field_0x1e4);
-    fn_710007b518(&self->field_0x1f4, &other->field_0x1f4);
+    Assign(self->field_0x1d4, other->field_0x1d4);
+    Assign(self->field_0x1e4, other->field_0x1e4);
+    Assign(self->field_0x1f4, other->field_0x1f4);
     self->field_0x204 = other->field_0x204;
     self->field_0x228 = other->field_0x228;
     self->field_0x22c = other->field_0x22c;
@@ -170,16 +171,16 @@ UnkEnvState_d907cc* fn_7100d907cc(UnkEnvState_d907cc* self, const UnkEnvState_d9
     self->field_0x234 = other->field_0x234;
     self->field_0x238 = other->field_0x238;
     self->field_0x23c = other->field_0x23c;
-    fn_710007b518(&self->field_0x240, &other->field_0x240);
-    fn_710007b518(&self->field_0x250, &other->field_0x250);
-    fn_710007b518(&self->field_0x260, &other->field_0x260);
+    Assign(self->field_0x240, other->field_0x240);
+    Assign(self->field_0x250, other->field_0x250);
+    Assign(self->field_0x260, other->field_0x260);
     self->field_0x270 = other->field_0x270;
     self->path = other->path;
     self->resource = other->resource;
     self->field_0x288 = other->field_0x288;
-    fn_710007b518(&self->field_0x2e0, &other->field_0x2e0);
-    fn_710007b518(&self->field_0x2f0, &other->field_0x2f0);
-    fn_710007b518(&self->field_0x300, &other->field_0x300);
+    Assign(self->field_0x2e0, other->field_0x2e0);
+    Assign(self->field_0x2f0, other->field_0x2f0);
+    Assign(self->field_0x300, other->field_0x300);
     self->field_0x310 = other->field_0x310;
     return self;
 }

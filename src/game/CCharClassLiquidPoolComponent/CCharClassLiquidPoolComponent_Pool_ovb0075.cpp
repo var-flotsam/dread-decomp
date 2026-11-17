@@ -305,8 +305,6 @@ struct UnkLiquidPath_ovb0075 {
     }
 };
 
-extern void* g_unk_7101a80ae8[];
-
 struct UnkLiquidOwned_ovb0075 {
     virtual void vf_0x0();
     virtual void vf_0x8();
