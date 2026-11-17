@@ -3,14 +3,14 @@
 // track (+0x220) its hash with mode 1 when the life changed and `flag` is set, then, when the handle at
 // +0x240 still has a target, places the owner at the target's position and drops the handle. Returns
 // whether the life changed. Names and layouts are placeholders.
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
+#include "game/CCharacterLifeComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkLifeValues_b49;
-bool fn_71011603a4(UnkLifeValues_b49* self, f32 fraction);
 struct UnkInputComponentState;
 void fn_7100871d7c(UnkInputComponentState* self);
 
@@ -39,14 +39,14 @@ struct UnkLifeOwner_l158d78 {
     }
 };
 
-struct UnkCharacterLife_l158d78 {
+struct UnkCharacterLifeComponent {
     u8 pad_0x0[0x30];
     UnkLifeOwner_l158d78* owner;  // 0x30
     u8 pad_0x38[0x208];
     UnkWeakHandle* handle;  // 0x240
 };
 
-bool fn_7101158d78(UnkCharacterLife_l158d78* self, f32 fraction, bool flag) {
+bool fn_7101158d78(UnkCharacterLifeComponent* self, f32 fraction, bool flag) {
     base::reflection::UnkReflTypeIdArg mode;
     base::reflection::UnkReflTypeIdArg mask;
     bool changed = fn_71011603a4(reinterpret_cast<UnkLifeValues_b49*>(self), fraction);

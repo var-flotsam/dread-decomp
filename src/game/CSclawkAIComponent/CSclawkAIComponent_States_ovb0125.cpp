@@ -5,8 +5,10 @@
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CFXComponent.h"
+#include "game/CSclawkAIComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkSwitchObject.h"
+#include "game/UnkSclawkAIComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
@@ -33,24 +35,14 @@ struct UnkSclawkId_ovb0125 {
     u64 Hash() const { return *reinterpret_cast<const u64*>(reinterpret_cast<const char*>(data) + 0x30); }
 };
 
-struct UnkSclawkOwner_ovb0125 {
-    u8 pad_0x0[0x220];
-    UnkAnimationComponent* field_0x220;
-};
-
-struct UnkSclawkAI_ovb0125 {
-    u8 pad_0x0[0x30];
-    UnkSclawkOwner_ovb0125* owner;
-};
-
 struct UnkSclawkHitInfo_ovb0125 {
     u8 pad_0x0[0xb4];
     u32 flags;
 };
 
-u32 fn_710067d4a4(UnkSclawkAI_ovb0125* self, u32* out, void* arg2, UnkSclawkHitInfo_ovb0125* info,
+u32 fn_710067d4a4(UnkSclawkAIComponent* self, u32* out, void* arg2, UnkSclawkHitInfo_ovb0125* info,
                   UnkGoliathHitTarget_b55** hit) {
-    if (UnkAnimationComponent* anim = self->owner->field_0x220) {
+    if (auto* anim = static_cast<UnkAnimationComponent*>(self->owner->field_0x220)) {
         bool handled = false;
         {
             UnkSclawkId_ovb0125 id(fn_7101177ae8(anim, 0xf4061ff25a2163d6)->data);
@@ -68,45 +60,13 @@ u32 fn_710067d4a4(UnkSclawkAI_ovb0125* self, u32* out, void* arg2, UnkSclawkHitI
                          reinterpret_cast<UnkGoliathHitInfo_b55*>(info), hit);
 }
 
-struct UnkObject;
-struct UnkComponent;
-struct UnkPart;
-struct UnkWorld;
+u32 fn_710067ca84(UnkSclawkAIComponent* self);
 
-struct UnkSclawkPart_ovb0125 {
-    u8 pad_0x0[0xb];
-    u8 kind;  // 0xb
-};
-
-struct UnkSclawkOwner2_ovb0125 {
-    u8 pad_0x0[0x220];
-    UnkAnimationComponent* field_0x220;
-    u8 pad_0x228[0x58];
-    UnkObject* field_0x280;
-};
-
-struct UnkSclawkAI2_ovb0125 {
-    u8 pad_0x0[0x30];
-    UnkSclawkOwner2_ovb0125* owner;
-    u8 pad_0x38[0x14698];
-    f32 field_0x146d0;
-    f32 field_0x146d4;
-    f32 field_0x146d8;
-    u32 field_0x146dc;
-    u32 state;  // 0x146e0
-    u8 pad_0x146e4[0xb];
-    bool field_0x146ef;
-};
-static_assert(__builtin_offsetof(UnkSclawkAI2_ovb0125, field_0x146ef) == 0x146ef, "layout");
-
-u32 fn_710067ca84(UnkSclawkAI2_ovb0125* self);
-void fn_710067c478(UnkSclawkAI2_ovb0125* self, u32 state);
-
-void fn_710067c8e0(UnkSclawkAI2_ovb0125* self, f32 dt) {
+void fn_710067c8e0(UnkSclawkAIComponent* self, f32 dt) {
     switch (self->state) {
     case 0:
-        self->field_0x146d0 -= dt;
-        if (self->field_0x146d0 <= 0.0f)
+        self->wait -= dt;
+        if (self->wait <= 0.0f)
             self->state = 1;
         break;
     case 1: {
@@ -128,15 +88,12 @@ void fn_710067c8e0(UnkSclawkAI2_ovb0125* self, f32 dt) {
         }
         break;
     case 3:
-        if (fn_710117ae38(self->owner->field_0x220, 0x6596032ae6e891b5, false)) {
+        if (fn_710117ae38(static_cast<UnkAnimationComponent*>(self->owner->field_0x220), 0x6596032ae6e891b5, false)) {
             if (__builtin_expect(!fn_710067ca84(self), 1)) {
-                UnkObject* parts = self->owner->field_0x280;
-                if (parts && !self->field_0x146ef) {
-                    auto* part = reinterpret_cast<UnkSclawkPart_ovb0125*>(fn_7101152b90(reinterpret_cast<UnkWorld*>(parts), 0xe6de93263e1369e9));
-                    if (part && !fn_710114e668(parts, part->kind))
-                        part = nullptr;
-                    fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(part), true);
-                    self->field_0x146ef = true;
+                void* parts = self->owner->field_0x280;
+                if (parts && !self->part_shown) {
+                    ShowSclawkPart(parts, true);
+                    self->part_shown = true;
                 }
             }
             fn_710067c478(self, 0);

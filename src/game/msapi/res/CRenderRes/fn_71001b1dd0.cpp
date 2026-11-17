@@ -83,8 +83,7 @@ extern UnkResStatics g_unk_716e5543a0 __attribute__((visibility("hidden")));
 #define FACTORY reinterpret_cast<UnkResFactory*>(&g_unk_716e5543a0.factory)
 
 // The other registered types (models, textures and the sonar's in base/UnkResKey.h).
-extern const UnkResType g_unk_716e453ef8, g_unk_716e454178, g_unk_716e4542f8, g_unk_716e4541f8,
-    g_unk_716e454278;
+extern const UnkResType g_unk_716e453ef8, g_unk_716e454178, g_unk_716e4542f8, g_unk_716e4541f8;
 
 // NON_MATCHING(minor): in the last type's copy loop the original keeps the vector's count in a
 // register across iterations (one load before the loop); ours reloads it with the capacity at the
