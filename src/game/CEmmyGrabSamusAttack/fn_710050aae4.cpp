@@ -1,5 +1,6 @@
 // CEmmyGrabSamusAttack's unit: the attack's message handler. On message 0xf4061ff25a2163d6 of kind 1 it
 // moves the grab's state machine on from the state it is in. Names and layouts are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkGrabState_l50aae4 {
@@ -36,11 +37,7 @@ struct UnkGrabStateMachine_l50aae4 {
     UnkGrabStatePtr_l50aae4* items() { return reinterpret_cast<UnkGrabStatePtr_l50aae4*>(storage); }
 
     UnkGrabState_l50aae4* Find(s32 id) {
-        for (UnkGrabStatePtr_l50aae4 *p = items(), *end = p + count; p < end; ++p) {
-            if ((*p)->id == id)
-                return *p;
-        }
-        return nullptr;
+        return FindStateById(items(), count, id);
     }
 
     void Request(s32 id) {

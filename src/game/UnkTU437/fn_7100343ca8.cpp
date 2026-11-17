@@ -96,22 +96,13 @@ static inline void DisableLink(UnkAimLink_7100343ca8* link) {
     }
 }
 
-static inline UnkDoorState_b58* FindState(UnkDoorStateMachine_b58* self, s32 id) {
-    u64 bytes = (u64)self->count * sizeof(UnkDoorStatePtr_b58);
-    for (UnkDoorStatePtr_b58* p = self->states; bytes != 0; ++p, bytes -= sizeof(UnkDoorStatePtr_b58)) {
-        if ((*p)->id == id)
-            return *p;
-    }
-    return nullptr;
-}
-
 static inline void RequestState(UnkDoorStateMachine_b58* self, s32 id) {
     self->pending = id;
     if (self->field_0xa8)
         return;
     UnkDoorState_b58* current = self->current;
     if (!current || current->id != id) {
-        if (UnkDoorState_b58* next = FindState(self, id)) {
+        if (UnkDoorState_b58* next = FindState_b58(self, id)) {
             if (current) {
                 current->vf_0x18(id);
                 self->vf_0x28(self->current, next);

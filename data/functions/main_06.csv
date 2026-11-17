@@ -2252,7 +2252,7 @@ address,size,name,name_source,subsystem,status
 0x710065f438,112,fn_710065f438,unknown,game/components?,O
 0x710065f4a8,488,fn_710065f4a8,unknown,game/components?,O
 0x710065f690,488,fn_710065f690,unknown,game/components?,O
-0x710065f878,592,fn_710065f878,unknown,game/components?,U
+0x710065f878,592,fn_710065f878,unknown,game/components?,O
 0x710065fac8,88,fn_710065fac8,unknown,game/components?,O
 0x710065fb20,604,fn_710065fb20,unknown,game/components?,O
 0x710065fd7c,512,fn_710065fd7c,unknown,game/components?,O

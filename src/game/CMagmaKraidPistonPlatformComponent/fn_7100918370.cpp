@@ -1,6 +1,7 @@
 // CMagmaKraidPistonPlatformComponent's unit (tools/tu_map.py 1404): sets up the piston's state machine at +0x40,
 // registering its four states once by id and binding their callbacks to the component, then asks for state 1
 // and enters it unless the machine is locked. Names and layouts are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 void fn_71009198e8();
@@ -71,12 +72,7 @@ struct UnkPistonMachine_l918370 {
     }
 
     UnkPistonState_l918370* Find(u32 id) {
-        UnkPistonState_l918370** begin = States();
-        UnkPistonState_l918370** end = begin + count;
-        for (UnkPistonState_l918370** p = begin; p != end; ++p)
-            if ((*p)->id == id)
-                return *p;
-        return nullptr;
+        return FindStateById(States(), count, id);
     }
 
     // Leaves the current state for the one with `id`, unless it is current already.

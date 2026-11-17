@@ -4114,7 +4114,7 @@ address,size,name,name_source,subsystem,status
 0x71010c7e6c,516,fn_71010c7e6c,unknown,unknown,U
 0x71010c8070,112,fn_71010c8070,unknown,unknown,O
 0x71010c80e0,72,fn_71010c80e0,unknown,unknown,O
-0x71010c8128,492,fn_71010c8128,unknown,unknown,U
+0x71010c8128,492,fn_71010c8128,unknown,unknown,O
 0x71010c8314,896,fn_71010c8314,unknown,unknown,U
 0x71010c8694,2232,fn_71010c8694,unknown,unknown,U
 0x71010c8f4c,76,fn_71010c8f4c,unknown,unknown,O

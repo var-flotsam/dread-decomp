@@ -5,15 +5,13 @@
 #include "game/CAutsharpAIComponent.h"
 #include "game/UnkAttack.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU2547.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2677.h"
 #include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-struct UnkUnit2547;
-void fn_7100ddbb7c(UnkUnit2547* self, u32 expected);
 
 struct UnkGrabEndInfo_l50a30c;
 extern UnkGrabEndInfo_l50a30c g_unk_71726de5c0 __attribute__((visibility("hidden")));
@@ -50,12 +48,7 @@ struct UnkGrabStateMachine_l50a30c {
     UnkGrabState_l50a30c** items() { return reinterpret_cast<UnkGrabState_l50a30c**>(storage); }
 
     UnkGrabState_l50a30c* Find(s32 id) {
-        u64 size = count * sizeof(UnkGrabState_l50a30c*);
-        for (UnkGrabState_l50a30c** p = items(); size != 0; ++p, size -= sizeof(UnkGrabState_l50a30c*)) {
-            if ((*p)->id == id)
-                return *p;
-        }
-        return nullptr;
+        return FindStateById(items(), count, id);
     }
 
     void Request(s32 id) {

@@ -1,6 +1,7 @@
 // CChozoCommanderKiGrabAttack's unit (652): registers the attack's seven states (+0x150) on its state
 // machine (+0x88), each once by id, binds their callbacks to the attack, then requests state 1 unless
 // the machine is busy. Names and layouts are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkKiGrabMachine_l43042c;
@@ -58,11 +59,7 @@ struct UnkKiGrabMachine_l43042c {
 
     // The state `id`, or null.
     UnkKiGrabState_l43042c* Find(s32 id) {
-        UnkKiGrabState_l43042c** end = End();
-        for (UnkKiGrabState_l43042c** p = States(); p != end; ++p)
-            if ((*p)->id == id)
-                return *p;
-        return nullptr;
+        return FindStateById(States(), count, id);
     }
 
     // Switches to the state `id` now unless the machine is busy (then it stays pending).

@@ -3,6 +3,7 @@
 // states, registers them on its state machine (+0x1a8) and asks the machine for state 1.
 // Names and layouts are placeholders.
 #include "game/CComponent.h"
+#include "game/UnkStateMachineFind.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -66,12 +67,7 @@ struct UnkRinkaMachine_l65f878 {
     }
 
     UnkRinkaState_l65f878* Find(u32 id) {
-        UnkRinkaState_l65f878** begin = States();
-        UnkRinkaState_l65f878** end = begin + count;
-        for (UnkRinkaState_l65f878** p = begin; p != end; ++p)
-            if ((*p)->id == id)
-                return *p;
-        return nullptr;
+        return FindStateById(States(), count, id);
     }
 
     // Switches to state `id` now unless the machine is busy; `none` is the id of no state.

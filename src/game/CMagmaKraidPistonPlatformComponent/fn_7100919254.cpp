@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -56,11 +57,7 @@ struct UnkPistonMachine_l919254 {
     }
 
     UnkPistonState_l919254* Find(u32 id) {
-        UnkPistonState_l919254** p = States();
-        for (u64 left = u64(count) * sizeof(*p); left != 0; left -= sizeof(*p), ++p)
-            if ((*p)->id == id)
-                return *p;
-        return nullptr;
+        return FindStateById(States(), count, id);
     }
 
     // Leaves the current state for the one with `id`, unless it is current already.

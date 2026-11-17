@@ -78,7 +78,10 @@ static inline void Erase(UnkTriggerList_la601cc* list, UnkTriggerList_la601cc::N
 
 void fn_7100a601cc(UnkTriggerComponent_la601cc* self, UnkTriggerTarget_la601cc* target,
                    UnkTriggerTarget_la601cc* previous) {
-    UnkTriggerSlot_la601cc* slot = std::find_if(self->begin(), self->end(), [previous](const UnkTriggerSlot_la601cc& s) {
+    u64 size = self->slot_count * sizeof(UnkTriggerSlot_la601cc);
+    // The original tests the byte size, not the count, for zero (the barrier keeps the multiply).
+    asm("" : "+r"(size));
+    UnkTriggerSlot_la601cc* slot = std::find_if(self->begin(), reinterpret_cast<UnkTriggerSlot_la601cc*>(self->slots + size), [previous](const UnkTriggerSlot_la601cc& s) {
         return s.handle && s.handle->target == previous;
     });
     if (UnkTriggerList_la601cc::Node* node = Find(&previous->listeners, self->key))

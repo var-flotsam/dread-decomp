@@ -1,6 +1,7 @@
 // CChozoWarriorXUltimateGrabAttack's unit (tools/tu_map.py): sets up the attack's state machine
 // (+0x80): registers its twelve states (each once, by id), binds each state's callbacks to the
 // attack, then switches to state 1 unless the machine is locked. Names and layouts are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkEffect;
@@ -95,12 +96,7 @@ struct UnkUltGrabMachine_486de8 {
     }
 
     UnkUltGrabState_486de8* Find(u32 id) {
-        UnkUltGrabState_486de8** begin = States();
-        UnkUltGrabState_486de8** end = begin + count;
-        UnkUltGrabState_486de8** p = begin;
-        while (p != end && (*p)->id != id)
-            ++p;
-        return p != end ? *p : nullptr;
+        return FindStateById(States(), count, id);
     }
 
     void ChangeState(u32 id) {
