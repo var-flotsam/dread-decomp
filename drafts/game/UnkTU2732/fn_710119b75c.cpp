@@ -30,8 +30,6 @@ struct UnkPadSource_l19b75c {
 };
 
 struct UnkPadCapture_l19b75c {
-    explicit UnkPadCapture_l19b75c(u32 pad) : held(0), released(0), pressed(0), values(), pad(pad) {}
-
     u32 held;
     u32 released;
     u32 pressed;
@@ -48,7 +46,7 @@ struct UnkPadRecorder_l19b75c {
 
     void Capture(UnkPadSource_l19b75c* source, u32 pad) {
         UnkPadCapture_l19b75c& capture = captures[count];
-        capture = UnkPadCapture_l19b75c(pad);
+        capture = UnkPadCapture_l19b75c{0, 0, 0, {}, pad};
         for (s32 i = 0; i < 32; i++) {
             u32 button = 1u << i;
             if (source->IsHeld(button, pad))

@@ -1,36 +1,27 @@
-// Unit 23: appends a (key, 0x40-byte value) pair to a keyed vector, growing it when full, and returns
-// the last value. Names and layouts are placeholders.
+// Unit 23: appends a (key, 0x40-byte record) pair to a keyed array, growing it by its step when full,
+// and returns the last record. Names and layouts are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32_l015b6c;
-typedef u64 __attribute__((may_alias)) UnkAliasU64_l015b6c;
+// Words that may alias anything: the array's fields are reread after the copies.
+typedef u32 __attribute__((may_alias)) UnkAliasWord;
 
-struct UnkKeyedValue_l015b6c {
-    UnkAliasU32_l015b6c w[16];
-    UnkKeyedValue_l015b6c& operator=(const UnkKeyedValue_l015b6c& o) {
-        for (int i = 0; i < 16; ++i)
-            w[i] = o.w[i];
-        return *this;
-    }
+struct UnkWordRecord_0x40 {
+    UnkAliasWord words[16];
 };
 
-struct UnkKeyedVector_l015b6c {
-    UnkKeyedValue_l015b6c* values;  // 0x0
-    UnkAliasU64_l015b6c* keys;      // 0x8
-    u32 count;                      // 0x10
-    u32 capacity;                   // 0x14
-    u32 step;                       // 0x18
-};
+using UnkRecordsByKeyStore = base::global::CRntSmallDictionary<u64, UnkWordRecord_0x40>;
 
-void fn_7100015378(UnkKeyedVector_l015b6c* self, u32 capacity);
+void fn_7100015378(UnkRecordsByKeyStore* self, u32 capacity);
 
-UnkKeyedValue_l015b6c* fn_7100015b6c(UnkKeyedVector_l015b6c* self, const UnkAliasU64_l015b6c* key,
-                                     const UnkKeyedValue_l015b6c* value) {
+UnkWordRecord_0x40& fn_7100015b6c(UnkRecordsByKeyStore* self, const u64* key, const UnkWordRecord_0x40* record) {
     if (self->count == self->capacity)
-        fn_7100015378(self, self->step + self->count);
-    self->keys[self->count] = *key;
-    self->values[self->count] = *value;
-    self->count += 1;
-    UnkKeyedValue_l015b6c* end = &self->values[self->count];
-    return self->count ? end - 1 : end;
+        fn_7100015378(self, self->count + self->step);
+    __builtin_memcpy(&self->keys[self->count], key, sizeof(u64));
+    UnkWordRecord_0x40* dst = &self->values[self->count];
+    for (u32 w = 0; w < 16; ++w)
+        dst->words[w] = record->words[w];
+    u32 n = ++self->count;
+    UnkWordRecord_0x40* end = &self->values[n];
+    return n == 0 ? *end : end[-1];
 }

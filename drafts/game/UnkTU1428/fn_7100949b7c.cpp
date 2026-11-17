@@ -54,14 +54,17 @@ static_assert(__builtin_offsetof(UnkMorphBallMovement_l949b7c, field_0x148) == 0
 static_assert(__builtin_offsetof(UnkMorphBallMovement_l949b7c, field_0x2430) == 0x2430, "layout");
 static_assert(__builtin_offsetof(UnkMorphBallMovement_l949b7c, field_0x2474) == 0x2474, "layout");
 
-static inline bool IsNear(f32 a, f32 b) {
-    f32 eps = g_unk_7101647774;
-    return a + eps >= b && a - eps <= b;
+inline bool IsNear_l949b7c(const f32& a, const f32& b) {
+    f32 low = a - g_unk_7101647774;
+    f32 high = a + g_unk_7101647774;
+    return high >= b && low <= b;
 }
 
 // (x, y, z) scaled to about unit length (kept finite at zero).
 static inline UnkVec3f Direction(f32 x, f32 y, f32 z) {
-    return Normalized(UnkVec3f(x, y, z));
+    UnkVec3f v(x, y, z);
+    f32 inv = InvLengthEps(v);
+    return UnkVec3f(v.x * inv, inv * v.y, inv * v.z);
 }
 
 UnkVec3f fn_7100949b7c(UnkMorphBallMovement_l949b7c* self) {
@@ -77,11 +80,13 @@ UnkVec3f fn_7100949b7c(UnkMorphBallMovement_l949b7c* self) {
             return dir;
         }
         const CVector2D* from = &self->field_0x2440.start;
-        if (!IsNear(self->field_0x2440.start.x, self->field_0x2454.end.x) ||
-            !IsNear(self->field_0x2440.start.y, self->field_0x2454.end.y))
+        if (!IsNear_l949b7c(self->field_0x2440.start.x, self->field_0x2454.end.x) ||
+            !IsNear_l949b7c(self->field_0x2440.start.y, self->field_0x2454.end.y))
             from = &self->field_0x2440.end;
         CVector2D origin = *from;
-        dir = Direction(self->owner->field_0x44 - origin.x, self->owner->field_0x54 - origin.y, 0.0f);
+        f32 x = self->owner->field_0x44;
+        f32 y = self->owner->field_0x54;
+        dir = Direction(x - origin.x, y - origin.y, 0.0f);
     } else if (self->field_0x128 && self->field_0x128->field_0x10) {
         if (self->field_0xf9)
             dir = Direction(pos.x - self->field_0x13c, pos.y - self->field_0x140, 0.0f);

@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/UnkLinkedList.h"
+#include "base/UnkSList.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
@@ -29,9 +30,10 @@ struct UnkStrIdList_l048034 {
     }
 };
 
-// A local list of string ids (nodes from the default allocator, flags 0x13); destroying it
+// A local list of string ids, with the word the static lists have before the body (UnkSList)
+// (nodes from the default allocator, flags 0x13); destroying it
 // releases the ids and frees the nodes.
-struct UnkStrIdLocalList_l048034 : base::UnkLinkedList<UnkStrIdNode_l048034> {
+struct UnkStrIdLocalList_l048034 : base::UnkSListWord, base::UnkLinkedList<UnkStrIdNode_l048034> {
     UnkStrIdLocalList_l048034() {
         allocator = fn_7100083990();
         flags = 0x13;

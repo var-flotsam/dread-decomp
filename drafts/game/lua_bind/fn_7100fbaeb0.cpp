@@ -77,6 +77,26 @@ struct UnkLuaNameList_lfbaeb0 : base::UnkVtableList<UnkLuaNameNode_lfbaeb0> {
     }
 };
 
+// A name read from the list as a string id (fn_7100000850); released in one step.
+struct UnkNameId_lfbaeb0 {
+    UnkStringData* data;
+
+    explicit UnkNameId_lfbaeb0(const CRntString& str) {
+        fn_7100000850(reinterpret_cast<base::global::UnkStrIdBase*>(this), str, true);
+    }
+    ~UnkNameId_lfbaeb0() {
+        if (UnkStringPool* pool = g_unk_7101d47108) {
+            if (data && data != &pool->empty) {
+                if (--data->ref_count == 0) {
+                    fn_71000803a4(pool, data);
+                    pool = g_unk_7101d47108;
+                }
+            }
+            data = &pool->empty;
+        }
+    }
+};
+
 // A string id as the pairs hold it: built from a list node's string (fn_7100000850), copied with a
 // reference, moved by taking the string and released as CStrId is.
 struct UnkPairId_lfbaeb0 {
@@ -89,10 +109,14 @@ struct UnkPairId_lfbaeb0 {
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
     }
+    explicit UnkPairId_lfbaeb0(const UnkNameId_lfbaeb0& name) : data(name.data) {
+        if (&g_unk_7101d47108->empty != data)
+            ++data->ref_count;
+    }
     UnkPairId_lfbaeb0(UnkPairId_lfbaeb0&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
     ~UnkPairId_lfbaeb0() {
         if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
+            if (data && &pool->empty != data) {
                 --data->ref_count;
                 if (data->ref_count == 0) {
                     fn_71000803a4(pool, data);
@@ -108,7 +132,7 @@ struct UnkIdPair_lfbaeb0 {
     UnkPairId_lfbaeb0 first;
     UnkPairId_lfbaeb0 second;
 
-    UnkIdPair_lfbaeb0(const UnkPairId_lfbaeb0& first, const UnkPairId_lfbaeb0& second)
+    UnkIdPair_lfbaeb0(const UnkNameId_lfbaeb0& first, const UnkNameId_lfbaeb0& second)
         : first(first), second(second) {}
     UnkIdPair_lfbaeb0(const UnkIdPair_lfbaeb0& other) = default;
     UnkIdPair_lfbaeb0(UnkIdPair_lfbaeb0&& other) = default;
@@ -133,9 +157,9 @@ int fn_7100fbaeb0(lua_State* L) {
         return 0;
     CRntVector<UnkIdPair_lfbaeb0> pairs(0xf);
     for (UnkLuaNameNode_lfbaeb0* node = names.head; node;) {
-        UnkPairId_lfbaeb0 first(node->text);
+        UnkNameId_lfbaeb0 first(node->text);
         node = node->next;
-        UnkPairId_lfbaeb0 second(node->text);
+        UnkNameId_lfbaeb0 second(node->text);
         node = node->next;
         pairs.PushBackCopy(UnkIdPair_lfbaeb0(first, second));
     }
