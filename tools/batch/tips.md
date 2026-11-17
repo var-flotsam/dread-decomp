@@ -31,12 +31,12 @@ registers-only or other non-match and goes by `CLAUDE.md`, "Matching standard".
 - Load order around a temporary string id: compare through an inline helper taking both ids by `const&`.
 - fadd operand order: `x = a; x += b;`.
 - Identity matrix: zero it, then set the diagonal in reverse (`m[15]`, `m[10]`, `m[5]`, `m[0]`).
-- Reloads after a store come from type-based alias analysis: the field's real type decides them. Byte arrays
-  whose count is reloaded after an element store have `u8` elements, not `bool`; out-flags written as `u8*`
-  rather than `bool*` reload after the store. Look for the field's real type before anything else.
-- Some units were built without strict aliasing (`data/unit_flags.csv`): there every store may alias a later
-  load. `tools/trymatch.py` prints an `ALIAS` line when a function gets closer that way; in a listed unit,
-  mark the file `// build-flags: no-strict-aliasing` and write the stores plainly.
+- The game was built without type-based alias analysis (`tools/buildcfg.py`, docs/compiler.md), and so is
+  our build: any store may alias a later load. Where the original reloads, write the access plainly; where
+  it keeps a value across a store, read the value once (a local, a member function on the object, a
+  refcounted pointer held in a local before its decrement, `a = b = value`). `tools/trymatch.py` prints an
+  `ALIAS` line when a function gets closer with strict aliasing; only the units in `data/unit_flags.csv`
+  are built that way (`// build-flags: strict-aliasing`).
 - One 64-bit load of two u32 fields: the two fields are one `u64` member with accessors.
 - Static helpers get argument promotion (loads move above stores); a non-static inline helper keeps the
   original order.

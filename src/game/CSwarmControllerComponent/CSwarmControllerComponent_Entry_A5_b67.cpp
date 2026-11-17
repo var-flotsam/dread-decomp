@@ -16,9 +16,9 @@ struct UnkCounted_A5_b67 {
 struct UnkCountedRef_A5_b67 {
     UnkCounted_A5_b67* p;
     UnkCountedRef_A5_b67(const UnkCountedRef_A5_b67& other) : p(nullptr) {
-        if (other.p) {
-            ++other.p->count;
-            p = other.p;
+        if (UnkCounted_A5_b67* q = other.p) {
+            ++q->count;
+            p = q;
         }
     }
 };

@@ -120,9 +120,13 @@ struct UnkMissionLog : UnkObject {
     UnkLogFlagsB* field_0x238;
     UnkLogFlagsA* field_0x240;
 
-    // Read by address arithmetic: the original keeps the paths where the log is null.
-    UnkLogFlagsB* B() { return *reinterpret_cast<UnkLogFlagsB**>(reinterpret_cast<u64>(this) + 0x238); }
-    UnkLogFlagsA* A() { return *reinterpret_cast<UnkLogFlagsA**>(reinterpret_cast<u64>(this) + 0x240); }
+
+    void SetFlags(bool value) {
+        field_0x240->field_0x320 = value;
+        UnkLogFlagsB* b = field_0x238;
+        b->field_0x262 = value;
+        b->field_0x263 = true;
+    }
 };
 struct UnkSoundGroup;
 struct UnkSoundHolder {
@@ -319,11 +323,8 @@ void fn_7100b2d3e8(UnkStateOwner* self) {
 void fn_7100b2dcac(UnkStateOwner* self) {
     fn_7100e9b464(g_unk_7101d47310->field_0x2228, self->field_0x279);
     UnkMissionLog* log = GetMissionLog(self->field_0x490);
-    if (log->A()->field_0x320 || log->B()->field_0x262) {
-        bool value = self->field_0x2e8 != 1;
-        log->A()->field_0x320 = value;
-        log->B()->field_0x262 = value;
-        log->B()->field_0x263 = true;
+    if (log->field_0x240->field_0x320 || log->field_0x238->field_0x262) {
+        log->SetFlags(self->field_0x2e8 != 1);
     }
     if (self->field_0x279) {
         fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0180, self);
@@ -482,11 +483,8 @@ void fn_7100b2dfc4(UnkStateOwner* self) {
     samus->field_0x230 = g_unk_7101d470e0;
     self->field_0x288 = self->field_0x2c0;
     UnkMissionLog* log = GetMissionLog(self->field_0x490);
-    if (log->A()->field_0x320 || log->B()->field_0x262) {
-        bool value = self->field_0x2e8 != 1;
-        log->A()->field_0x320 = value;
-        log->B()->field_0x262 = value;
-        log->B()->field_0x263 = true;
+    if (log->field_0x240->field_0x320 || log->field_0x238->field_0x262) {
+        log->SetFlags(self->field_0x2e8 != 1);
     }
     fn_7100b2d0a4(self);
     fn_7100219d4c(g_unk_7101d47300, true, false);
@@ -605,10 +603,7 @@ void fn_7100b2e3b8(UnkStateOwner* self) {
     // Stored as a plain pointer: the original reloads the menu afterwards.
     *reinterpret_cast<UnkObject**>(&self->field_0x288) = self->MissionMenu();
     UnkMissionLog* log = GetMissionLog(self->field_0x490);
-    bool value = self->field_0x2e8 != 1;
-    log->A()->field_0x320 = value;
-    log->B()->field_0x262 = value;
-    log->B()->field_0x263 = true;
+    log->SetFlags(self->field_0x2e8 != 1);
     fn_7100b2d0a4(self);
     fn_7100219d4c(g_unk_7101d47300, true, false);
     fn_7100219cb0(g_unk_7101d47300, true, false);

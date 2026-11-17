@@ -103,8 +103,7 @@ bool fn_7100ab6828(UnkLockOnInit_ovb0121* self) {
         self->field_0x620 = cls;
         self->field_0x664 = cls->field_0x138;
         self->field_0x668 = cls->field_0x13c;
-        self->field_0x66c = cls->field_0x134;
-        self->field_0x674 = cls->field_0x134;
+        self->field_0x674 = self->field_0x66c = cls->field_0x134;
         self->field_0x670 = cls->field_0xd4;
     } else {
         self->field_0x620 = nullptr;

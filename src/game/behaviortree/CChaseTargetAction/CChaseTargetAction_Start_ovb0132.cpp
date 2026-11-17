@@ -73,9 +73,9 @@ struct UnkChaseRef_ovb0132 {
 struct UnkChaseRefSlot_ovb0132 {
     UnkChaseRef_ovb0132* ptr;
     void Reset() {
-        if (ptr) {
-            if (--ptr->ref_count == 0)
-                ptr->vf_0x10();
+        if (UnkChaseRef_ovb0132* held = ptr) {
+            if (--held->ref_count == 0)
+                held->vf_0x10();
             ptr = nullptr;
         }
     }

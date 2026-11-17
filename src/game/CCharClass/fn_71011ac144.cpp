@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CCharClass's unit (tools/tu_map.py unit 2740): reads the class's action sets from a file: a count, then
 // one path per set. The set named "timeline" is kept apart; the others go in the table at +0xd0 under
 // their names. Names and layouts are placeholders.

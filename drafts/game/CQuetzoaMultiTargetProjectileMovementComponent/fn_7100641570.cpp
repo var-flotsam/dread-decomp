@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CQuetzoaMultiTargetProjectileMovementComponent unit (tools/tu_map.py unit 964): the projectile's
 // launch. After the base's (fn_7100ac3880) it builds its path: the owner's position, a point along
 // the launch direction, a detour of 100 up or down when the target faces away from the projectile,

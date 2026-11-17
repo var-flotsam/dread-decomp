@@ -27,11 +27,8 @@ struct UnkRefObj_ovb0081 {
 struct UnkRefPtr_ovb0081 {
     UnkRefObj_ovb0081* ptr;
     ~UnkRefPtr_ovb0081() {
-        if (ptr) {
-            u32* count = &ptr->ref_count;
-            if (--*count == 0)
-                ptr->vf_0x10();
-        }
+        if (UnkRefObj_ovb0081* held = ptr; held && --held->ref_count == 0)
+            held->vf_0x10();
     }
 };
 
@@ -50,14 +47,7 @@ void fn_71007f8d80(UnkAreaFXBase_ovb0081* self);
 
 void fn_710080260c(UnkAreaFXBase_ovb0081* self) {
     self->vtable = g_unk_7101a74498 + 2;
-    base::global::CRntVector<UnkRefPtr_ovb0081>& refs = self->refs;
-    if (refs.data) {
-        for (u64 i = 0; i < refs.count; ++i)
-            refs.data[i].~UnkRefPtr_ovb0081();
-        refs.count = 0;
-        refs.allocator->vf_0x48(refs.data);
-        refs.capacity = 0;
-    }
+    self->refs.Free();
     reinterpret_cast<CStrId*>(self->field_0x408)->Reset();
     if (UnkRefObj_ovb0081* ref = self->field_0x3b0) {
         if (--ref->ref_count == 0)

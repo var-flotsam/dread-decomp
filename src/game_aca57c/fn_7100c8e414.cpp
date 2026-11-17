@@ -83,8 +83,6 @@ struct UnkHolder_7100c8e414 {
     s32 state;
 };
 
-// NON_MATCHING(minor): in state 2 the original reloads the first pool once more, after moving
-// the file path id; the code is otherwise identical.
 void fn_7100c8e414(UnkHolder_7100c8e414* self, UnkHolder_7100c8e414* other) {
     self->state = 0;
     switch (other->state) {

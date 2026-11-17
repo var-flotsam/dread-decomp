@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // A unit with no known name (unit 210): builds the camera-facing quads of a GPU particle emitter. One
 // variant per combination of the emitter's per-particle attribute buffers (fn_7100170268 picks it); this
 // is the one with none of them. Names and layouts are placeholders.

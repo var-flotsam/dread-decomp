@@ -16,13 +16,12 @@ struct UnkMember_b40 {
     __attribute__((always_inline)) ~UnkMember_b40() { fn_7100216934(storage); }
 };
 
-// The count is read with s32 alias information (see fn_71001bd92c), so the pointer is cast for the free.
 struct UnkCountedRef_b40 {
-    char* counted;
+    UnkCountedResource* counted;
 
     __attribute__((always_inline)) ~UnkCountedRef_b40() {
-        if (counted && --*reinterpret_cast<s32*>(counted + 0x54) == 0)
-            fn_710001737c(reinterpret_cast<UnkCountedResource*>(counted));
+        if (UnkCountedResource* held = counted; held && --held->ref_count == 0)
+            fn_710001737c(held);
     }
 };
 

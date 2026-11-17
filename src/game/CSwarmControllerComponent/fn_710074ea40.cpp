@@ -63,7 +63,6 @@ static_assert(sizeof(UnkSwarmEntry_l74ea40) == 0x40, "layout");
 using UnkSwarmEntryArray_l74ea40 = base::global::CRntSmallDictionary<void*, UnkSwarmEntry_l74ea40>;
 
 // Reserves room for n entries in both arrays.
-// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710074ea40(UnkSwarmEntryArray_l74ea40* self, u32 n) {
     if (self->capacity >= n)
         return;

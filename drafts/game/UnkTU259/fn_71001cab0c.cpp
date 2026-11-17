@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 259 (the graphics system): loads the render resources of the shaders in a fixed list of 24
 // names and hands each to the program registry, keeping a reference; then looks up three
 // programs. Names and layouts are placeholders.

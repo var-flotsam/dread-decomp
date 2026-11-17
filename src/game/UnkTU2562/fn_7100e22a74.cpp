@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Dropped-item manager (unit 2562, CLogicDroppedItemManager::CTunableDroppableBillboard): builds a
 // record of 20 zeroed entries, each with its byte offset and a scale of 1, and registers it under the third
 // billboard id. Names and layouts are placeholders.

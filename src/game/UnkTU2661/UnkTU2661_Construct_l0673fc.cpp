@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 2661 (tools/tu_map.py, hint CCutscene::CTunableCutscene): a constructor: the counted media base, a
 // record, two arrays, a bone filter, an empty sound handle, two empty file paths, two inline strings and its
 // settings. Names and layouts are placeholders.

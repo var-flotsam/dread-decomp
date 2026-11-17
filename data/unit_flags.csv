@@ -1,37 +1,3 @@
 unit,start,end,flags,evidence
-11,0x71000042b4,0x7100005808,no-strict-aliasing,fn_7100004578 matches only with it; none of the unit's 6 hand-written O functions change with it
-94,0x71000efdb0,0x71000f3410,no-strict-aliasing,fn_71000f1520 matches only with it; none of the unit's 14 hand-written O functions change with it
-111,0x7100132c10,0x71001395b8,no-strict-aliasing,fn_7100133a94 matches only with it; none of the unit's 25 hand-written O functions change with it
-210,0x710016e75c,0x7100190154,no-strict-aliasing,fn_7100170184's age loop matches with plain stores only with it; none of the unit's 7 hand-written O functions change with it
-218,0x710019706c,0x7100199fcc,no-strict-aliasing,fn_7100198e00 is registers-only (98.2%) only with it; none of the unit's 4 hand-written O source files change with it
-221,0x710019a4e8,0x710019b5ec,no-strict-aliasing,fn_710019a684 is registers-only (94.5%) only with it; none of the unit's 2 hand-written O source files change with it
-259,0x71001c6960,0x71001d948c,no-strict-aliasing,fn_71001cab0c fn_71001c9070 match only with it; none of the unit's 46 hand-written O functions change with it
-392,0x71002c5320,0x71002c690c,no-strict-aliasing,fn_71002c6684 matches only with it; none of the unit's 8 hand-written O functions change with it
-433,0x71003255a0,0x7100333544,no-strict-aliasing,fn_7100332dc4 matches only with it; none of the unit's 28 hand-written O functions change with it
-568,0x71003bf4a0,0x71003c04e0,no-strict-aliasing,fn_71003c00b0 matches only with it; none of the unit's 0 hand-written O functions change with it
-600,0x71003f4450,0x71003f5600,no-strict-aliasing,fn_71003f50d0 is registers-only (96.4%) only with it; none of the unit's 7 hand-written O source files change with it
-964,0x71006411c0,0x7100642410,no-strict-aliasing,fn_7100641570 is registers-only (95.2%) only with it; none of the unit's hand-written O source files change with it
-1167,0x71007534a8,0x7100762388,no-strict-aliasing,fn_71007613d8 matches only with it; none of the unit's 44 hand-written O functions change with it
-1304,0x710083751c,0x71008424e4,no-strict-aliasing,fn_7100838f20 matches only with it; none of the unit's 29 hand-written O functions change with it
-1315,0x7100857560,0x710085c568,no-strict-aliasing,fn_710085b3d0 is registers-only (86.8%) only with it; none of the unit's 13 hand-written O source files change with it
-1326,0x710087043c,0x71008748b8,no-strict-aliasing,fn_7100872690 matches only with it; none of the unit's 10 hand-written O functions change with it
-1394,0x71008fdfb8,0x71009058b0,no-strict-aliasing,fn_7100900cf4 matches only with it; none of the unit's 35 hand-written O functions change with it
-1426,0x710093776c,0x7100939af0,no-strict-aliasing,fn_710093852c matches only with it; none of the unit's 5 hand-written O source files change with it
-1474,0x71009b8660,0x71009b9650,no-strict-aliasing,fn_71009b937c matches only with it; none of the unit's 1 hand-written O functions change with it
-1578,0x7100a59a00,0x7100a653b8,no-strict-aliasing,fn_7100a63be0 fn_7100a64098 match only with it; none of the unit's 30 hand-written O functions change with it
-2200,0x7100c8137c,0x7100c932c4,no-strict-aliasing,fn_7100c8b3d4 matches only with it; none of the unit's 55 hand-written O functions change with it
-2261,0x7100cc5b40,0x7100cc69c0,no-strict-aliasing,fn_7100cc6788 matches only with it; none of the unit's 3 hand-written O functions change with it
-2548,0x7100ddbcec,0x7100dddf4c,no-strict-aliasing,fn_7100dddc28 matches only with it; none of the unit's 1 hand-written O functions change with it
-2562,0x7100e1e35c,0x7100e31c18,no-strict-aliasing,fn_7100e22a74 matches only with it; none of the unit's 38 hand-written O functions change with it
-2563,0x7100e31c18,0x7100e65204,no-strict-aliasing,fn_7100e58bdc fn_7100e611dc fn_7100e60df4 match only with it; none of the unit's 158 hand-written O functions change with it
-2566,0x7100e7cdfc,0x7100eb695c,no-strict-aliasing,fn_7100e8eaac matches only with it; none of the unit's 132 hand-written O functions change with it
-2609,0x7100f9cde8,0x7100fa1254,no-strict-aliasing,fn_7100fa07f0 matches only with it; none of the unit's 10 hand-written O functions change with it
-2625,0x7100fc87ec,0x7100fcd378,no-strict-aliasing,fn_7100fcb618 fn_7100fcb874 match only with it; none of the unit's 12 hand-written O functions change with it
-2646,0x710101facc,0x710102cba4,no-strict-aliasing,fn_710102b8d8 fn_710102b2a8 match only with it; none of the unit's 44 hand-written O functions change with it
-2647,0x710102cba4,0x710103d05c,no-strict-aliasing,fn_710103bd84 matches only with it; none of the unit's 21 hand-written O functions change with it
-2654,0x710104c238,0x7101050874,no-strict-aliasing,fn_710104fc9c matches only with it; none of the unit's 19 hand-written O functions change with it
-2657,0x7101053e24,0x7101061fa0,no-strict-aliasing,fn_710106146c matches only with it; none of the unit's 58 hand-written O functions change with it
-2661,0x71010626f0,0x7101073b80,no-strict-aliasing,fn_710106fe80 matches only with it; none of the unit's 39 hand-written O functions change with it
-2719,0x710116ed2c,0x7101174bd0,no-strict-aliasing,fn_710116f614 matches only with it; none of the unit's 21 hand-written O functions change with it
-2730,0x7101196284,0x710119acb0,no-strict-aliasing,fn_7101198978 is registers-only (97.6%) only with it; none of the unit's 6 hand-written O source files change with it
-2740,0x71011abbd0,0x71011aca90,no-strict-aliasing,fn_71011ac144 matches only with it; none of the unit's 5 hand-written O functions change with it
+395,0x71002c717c,0x71002ceb78,strict-aliasing,"fn_71002cdb84, fn_71002cddd0 and fn_71002ce01c keep the string pool pointer in a register across an int store of the reference count, which only type-based alias analysis allows"
+1449,0x710097bb7c,0x710097f134,strict-aliasing,"fn_710097bcb8 compares the third state's id as the constant it stored, across the record's stores, only with strict aliasing; no rewrite found"

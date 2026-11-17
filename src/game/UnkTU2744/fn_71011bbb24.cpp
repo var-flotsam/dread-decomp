@@ -26,7 +26,6 @@ static_assert(sizeof(UnkGuiLayerSlot) == 0x48, "UnkGuiLayerSlot layout");
 
 using UnkGuiLayerSlotArrays = base::global::CRntSmallDictionary<CStrId, UnkGuiLayerSlot>;
 
-// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71011bbb24(UnkGuiLayerSlotArrays* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;

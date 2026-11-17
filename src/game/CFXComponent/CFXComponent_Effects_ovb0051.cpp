@@ -289,9 +289,9 @@ using base::math::CVector3D;
 void fn_71011576dc(UnkFXComponent_ovb51* self, f32 scale) {
     self->scale = scale;
     for (UnkFXEntry_ovb51* e = self->effects.values; e != self->effects.End(); ++e) {
-        if (e->effect) {
+        if (UnkFXEffect_ovb51* effect = e->effect) {
             CVector3D v = {scale, scale, scale};
-            VCall<0x20>(e->effect, &v);
+            VCall<0x20>(effect, &v);
         }
     }
 }

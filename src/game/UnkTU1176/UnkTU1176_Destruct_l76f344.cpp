@@ -153,21 +153,14 @@ struct UnkListener_l76f344 {
     void** vtable;
     void* field_0x8;
     void* field_0x10;
-    UnkCounted_l76f344* link;
+    UnkCountedRef_l76f344 link;
     u32 field_0x20;
     u8 field_0x24;
 
     ~UnkListener_l76f344() {
         vtable = g_unk_7101a22d48 + 2;
-        if (!link)
-            return;
-        if (UnkWeakTarget* target = link->owner) {
-            fn_710117b3f0(target, this);
-            if (!link)
-                return;
-        }
-        if (--link->ref_count == 0)
-            link->Release();
+        if (link.ptr && link.ptr->owner)
+            fn_710117b3f0(link.ptr->owner, this);
     }
 };
 

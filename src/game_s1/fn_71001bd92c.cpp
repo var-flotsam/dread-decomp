@@ -15,15 +15,12 @@ struct UnkMember_71001bd92c {
     __attribute__((always_inline)) ~UnkMember_71001bd92c() { fn_7100216934(storage); }
 };
 
-// The resource of base/UnkCountedResource.h, whose count is read here with s32 alias
-// information (through the header's union member the stores are scheduled differently and
-// neither function matches), so the pointer is cast for the free.
 struct UnkCountedRef_71001bd92c {
-    char* counted;
+    UnkCountedResource* counted;
 
     __attribute__((always_inline)) ~UnkCountedRef_71001bd92c() {
-        if (counted && --*reinterpret_cast<s32*>(counted + 0x54) == 0)
-            fn_710001737c(reinterpret_cast<UnkCountedResource*>(counted));
+        if (UnkCountedResource* held = counted; held && --held->ref_count == 0)
+            fn_710001737c(held);
     }
 };
 

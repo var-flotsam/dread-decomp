@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 2730 of tools/tu_map.py (the cutscene manager): walks the cutscene section of the game blackboard
 // from its newest property back, and lists the cutscenes not played yet (a "CutScenePlayed[<name>]" flag
 // of 0) by name, up to the first played one after them. Names and layouts are placeholders.

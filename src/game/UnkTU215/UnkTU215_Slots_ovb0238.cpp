@@ -25,12 +25,13 @@ struct UnkSlotTable_b0238 {
 };
 
 void fn_710019684c(UnkSlotTable_b0238* self, u32 index, const UnkSlot_b0238* params) {
-    UnkSlot_b0238* slot = &self->slots[index];
+    UnkSlot_b0238* slots = self->slots;
+    UnkSlot_b0238* slot = &slots[index];
     if (slot != params) {
         slot->words[0] = params->words[0];
         for (u32 i = 1; i < 23; ++i)
-            self->slots[index].words[i] = params->words[i];
+            slots[index].words[i] = params->words[i];
     }
-    self->slots[index].active = 1;
+    slots[index].active = 1;
     self->dirty_a = 1;
 }

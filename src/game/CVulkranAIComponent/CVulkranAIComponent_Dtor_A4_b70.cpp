@@ -21,29 +21,8 @@ struct UnkVulkranVec_A4_b70 {
     static void Release(char* self) { reinterpret_cast<base::global::CRntVector<T>*>(self + Offset)->Free(); }
 };
 
-// The arrays of refcounted pointers.
-template <u32 Offset>
-struct UnkVulkranRefs_A4_b70 {
-    static void Release(char* self) {
-        auto* v = reinterpret_cast<base::global::CRntVector<base::UnkRefPtrMember>*>(self + Offset);
-        if (v->data) {
-            for (u64 i = 0; i < v->count; ++i) {
-                // The count is a plain int access, so the decrement may alias the array's count.
-                if (char* p = reinterpret_cast<char*>(v->data[i].ptr)) {
-                    s32* rc = reinterpret_cast<s32*>(p + 8);
-                    if (--*rc == 0)
-                        delete v->data[i].ptr;
-                }
-            }
-            v->count = 0;
-            v->allocator->vf_0x48(v->data);
-            v->capacity = 0;
-        }
-    }
-};
-
 __attribute__((flatten)) void fn_71006db650(char* self) {
-    base::refl_Dtor<UnkVulkranDtor_A4_b70, UnkVulkranRefs_A4_b70<0x14760>,
-                    UnkVulkranRefs_A4_b70<0x14738>, base::UnkStrIdAt<0x14710>,
+    base::refl_Dtor<UnkVulkranDtor_A4_b70, UnkVulkranVec_A4_b70<base::UnkRefPtrMember, 0x14760>,
+                    UnkVulkranVec_A4_b70<base::UnkRefPtrMember, 0x14738>, base::UnkStrIdAt<0x14710>,
                     UnkVulkranVec_A4_b70<u32, 0x146e8>>(self);
 }

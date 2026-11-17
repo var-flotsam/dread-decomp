@@ -14,9 +14,9 @@ struct UnkRefPtr {
     T* ptr;
 
     void Reset() {
-        if (ptr) {
-            if (--ptr->ref_count == 0)
-                ptr->Destroy();
+        if (T* held = ptr) {
+            if (--held->ref_count == 0)
+                held->Destroy();
             ptr = nullptr;
         }
     }

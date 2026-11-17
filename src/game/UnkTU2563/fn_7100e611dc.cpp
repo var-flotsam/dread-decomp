@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CMinimapData's unit (2563): shrinks an array of 0x80-byte records (an id and an array pair each) with a
 // string id per record alongside to its count: the records are moved and destroyed, the ids copied and
 // released. Names and layouts are placeholders.

@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CCharClassLiquidPoolComponent (tools/tu_map.py unit 1394): fn_7100900cf4 keeps the pool's bounds in the
 // current scenario's blackboard section: reads the dictionary of bounds by owner name stored under the
 // component's property, sets (or, when inactive, removes) the owner's entry and stores it back. Nothing

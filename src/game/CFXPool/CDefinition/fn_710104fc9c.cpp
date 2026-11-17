@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // The CFXPool::CDefinition unit: moves a file-path entry (a file-path id and a word) in at an index
 // of the unit's engine array, moving the later entries up. Names and layouts are placeholders.
 #include <new>

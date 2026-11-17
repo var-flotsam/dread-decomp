@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CBigkranXAIComponent's unit: spawns a magma ball. Loads the ball's actor definition through the actordef
 // factory, checks that it is an entity whose movement is a CVulkranMagmaBallMovementComponent with its char
 // class, places it above the owner, aims it along `angle` and starts it. Names and layouts are placeholders.
