@@ -9,6 +9,7 @@
 #include "game/UnkTU32.h"
 #include "game/sound/CSoundManager.h"
 #include "game/sound/UnkSoundHandle.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 struct UnkStrIdPathRecord_b48 {
@@ -22,7 +23,6 @@ struct UnkSoundRef;
 extern UnkStrIdPathRecord_b48 g_unk_71727bdfb0 __attribute__((visibility("hidden")));
 struct UnkWideStr_0x20;
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 
 struct UnkCountText_b0232 {
     UnkGuiText text;

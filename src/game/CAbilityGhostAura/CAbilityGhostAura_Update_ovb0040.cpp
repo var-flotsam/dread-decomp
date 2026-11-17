@@ -267,11 +267,6 @@ bool fn_7100314508(UnkGhostAura_b0040* self, const UnkGhostAuraEvent_b0040* even
     return true;
 }
 
-extern f32 g_unk_7101a22a70;
-extern f32 g_unk_7101a22a74;
-extern f32 g_unk_7101a22a78;
-extern f32 g_unk_7101a22a7c;
-
 static inline bool KeepsDash_b0040(UnkGhostAura_b0040* self) {
     return self->state == 2 && !(self->field_0x478 <= 0.0f);
 }

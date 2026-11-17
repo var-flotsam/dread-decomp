@@ -110,7 +110,6 @@ struct UnkAtkObj_b0149 {
 };
 void* fn_710122ade8(void* pool);
 void fn_710122b710(void* item);
-void fn_710120f188(void* a, void* b, void* c, void* d);
 
 UnkAtkObj_b0149* fn_710122ca14(UnkAtkChain_b0149* self) {
     UnkAtkObj_b0149* obj = (UnkAtkObj_b0149*)fn_710122ade8(self);

@@ -5,6 +5,7 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkTU1449.h"
 #include "game/UnkTU1452.h"
+#include "game/UnkTU1454.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -78,11 +79,6 @@ struct UnkListener {
 };
 
 extern void* g_unk_7101a86c60[];
-extern void* g_unk_7101a86030[];
-extern void* g_unk_7101a86130[];
-extern void* g_unk_7101a861e0[];
-extern void* g_unk_7101a86238[];
-extern void* g_unk_7101a86278[];
 extern void* g_unk_7101a86e28[];
 
 struct UnkObj_710099a084 {

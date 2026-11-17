@@ -21,6 +21,7 @@
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU32.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -31,7 +32,6 @@ using base::global::UnkStringPool;
 
 // As src/game_s7/UnkGuiS7.h declares them.
 using UnkGuiObj = UnkGuiDisplayObject;
-void fn_71011cfba8(UnkGuiObj* object, f32 alpha);
 
 // As src/game/GUI/CPopUpGeneric/GUI_CPopUpGeneric_Dtor.cpp declares it: an id pair's destructor.
 struct UnkIdPair;
