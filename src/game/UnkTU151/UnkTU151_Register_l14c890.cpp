@@ -1,8 +1,6 @@
 // Unit 151 (tools/tu_map.py): registers the object under the shader path its name gives, once (the handle
 // at +0x38 is still unset): the id at +0x30 is set from that path, the resource the path names is loaded
 // and handed to the registry, and the registry's handle is kept. Names and layouts are placeholders.
-#include <new>
-
 #include "base/UnkCountedResource.h"
 #include "base/UnkResKey.h"
 #include "base/global/CFilePathStrId.h"
@@ -15,63 +13,10 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 using base::global::UnkStrIdBase;
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
 
 struct UnkRegistry_710014c790;
 extern UnkRegistry_710014c790* unk_710b372d68;  // the registry (reached through the GOT)
 void fn_7100169d28(UnkRegistry_710014c790* registry, const void* key, UnkCountedResource* resource);
-
-// A file-path id held raw, as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp defines it.
-struct UnkPathId {
-    UnkStringData* data;
-
-    struct NoInit {};
-    UnkPathId(NoInit) {}
-    UnkPathId(UnkPathId&& other) {
-        data = other.data;
-        other.data = &g_unk_7101d47200->empty;
-    }
-    UnkPathId(const UnkPathId& other) : data(other.data) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-    UnkPathId& operator=(UnkPathId&& other) {
-        this->~UnkPathId();
-        new (this) UnkPathId(static_cast<UnkPathId&&>(other));
-        return *this;
-    }
-    UnkPathId& operator=(const UnkPathId& other) {
-        if (data != other.data) {
-            UnkStringData* d = other.data;
-            UnkStringPool* pool = g_unk_7101d47200;
-            if (d != &pool->empty)
-                ++d->ref_count;
-            if (data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
-            }
-            data = d;
-        }
-        return *this;
-    }
-};
-
-// The shader binary's path for a name (src/game/UnkShaderPath.cpp).
-UnkPathId fn_7100169c74(const CStrId& name);
 
 extern const UnkResType g_unk_716e453ef8;
 
@@ -95,7 +40,7 @@ static inline const CRntString& RntText(const UnkStrIdBase& id) {
     ++id.data->reads;
     return *reinterpret_cast<const CRntString*>(&id.data->text);
 }
-static inline const CRntString& RntText(const UnkPathId& id) {
+static inline const CRntString& RntText(const CFilePathStrId& id) {
     ++id.data->reads;
     return *reinterpret_cast<const CRntString*>(&id.data->text);
 }

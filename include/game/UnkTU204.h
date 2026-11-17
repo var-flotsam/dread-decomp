@@ -6,6 +6,13 @@
 #include "types.h"
 
 struct UnkRegistry_710014c790;
+namespace base::global {
+class CFilePathStrId;
+class CStrId;
+}  // namespace base::global
+
+// The shader binary's path for a name, "system/shd/<name>_nx.bshdat" (src/game/UnkShaderPath.cpp).
+base::global::CFilePathStrId fn_7100169c74(const base::global::CStrId& name);
 
 // The registry of src/base/spatial/UnkFrustumCull.cpp (UnkCullRegistry there): a chained hash set of pointers,
 // buckets indexed by the key's low 32 bits modulo the capacity, and a list of all nodes.
