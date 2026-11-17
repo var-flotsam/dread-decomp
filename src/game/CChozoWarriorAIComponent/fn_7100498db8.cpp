@@ -2,6 +2,7 @@
 // third column of its transform's matrix, fn_710002614c): calls fn_7101178e08 with mode 5 for a
 // negative value (4 otherwise) and fn_710117662c with the opposite mode.
 #include "base/UnkMatrix44.h"
+#include "game/CAnimationComponent.h"
 #include "game/CChozoWarriorAIComponent.h"
 #include "types.h"
 
@@ -22,7 +23,6 @@ struct UnkSelf {
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
 struct UnkActorTarget;
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 void fn_7100498db8(UnkSelf* self) {
     UnkOwner* owner = self->field_0x30;

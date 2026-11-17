@@ -3,13 +3,12 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CGameObject.h"
+#include "game/CGun.h"
 #include "game/UnkRenderManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
-
-extern char g_unk_7101a77980[];
 
 struct UnkGun_l8355bc {
     void** vtable;

@@ -3,6 +3,7 @@
 // removes the unit's key from g_unk_71726af0a8. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CInputComponent.h"
 #include "game/UnkTimelineCalls.h"
@@ -13,7 +14,6 @@ using base::global::CStrId;
 
 struct UnkPlayerMovementD_b0204;
 struct UnkDoorKeyOwner_dae8a4;
-void fn_7100dae8a4(UnkDoorKeyOwner_dae8a4* self, bool add, CStrId* key);
 extern const u64 g_unk_710164cef8;  // reached through the GOT
 extern const u64 g_unk_710164cf00;  // reached through the GOT
 extern const u64 g_unk_710164cf10;  // reached through the GOT

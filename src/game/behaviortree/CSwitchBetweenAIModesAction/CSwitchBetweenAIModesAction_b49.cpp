@@ -3,13 +3,12 @@
 // animation component at +0x88; marks +0x7a) and hands the pair at +0x48 to the AI (+0x80, slot
 // 0x618); then it unregisters its listener (+0x98) from the watched object behind the weak handle at
 // +0xb0 and drops the handle. Names and layouts are placeholders.
+#include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBehaviorTree.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-using UnkActorTarget = UnkAnimationComponent;
-void fn_710117662c(UnkActorTarget* target, u32 value, u32 extra, bool apply, bool flag, f32 time);
 void fn_7101178e08(UnkActorTarget* target, u32 a, bool, bool, f32 value);
 
 struct UnkAIModePair_b49 {

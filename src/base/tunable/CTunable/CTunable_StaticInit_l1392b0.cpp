@@ -7,6 +7,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "base/tunable/CTunable.h"
 #include "game/UnkTUInit.h"
 
 // The unit's data: the two ids (sources first), then the class type its getter builds.
@@ -37,7 +38,6 @@ const base::reflection::CType* fn_7100135e7c();
 const base::reflection::CType* fn_7100135f58();
 const base::reflection::CType* fn_710013653c();
 const base::reflection::CType* fn_7100136b20();
-void* fn_7100136df0();
 void fn_7100136034(base::reflection::CClass* cls);
 void fn_7100136618(base::reflection::CClass* cls);
 void fn_71001363b8(UnkReflType* self, const CStrId& name, const base::reflection::CType* base, void* a,

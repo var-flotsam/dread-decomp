@@ -3,6 +3,7 @@
 // 2D bounding box and a flag in the base. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "game/CCharClassBaseDamageTriggerComponent.h"
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "types.h"
 
 #include <new>
@@ -12,7 +13,6 @@ using base::global::CFilePathStrId;
 struct UnkBaseDamageTrigger3;
 struct UnkWaterPoolComponent_b53;
 
-extern void* g_unk_7101a80ae8[];  // vtable
 void fn_71009052e8(void* self);
 
 struct UnkLiquidPool_l9000bc {

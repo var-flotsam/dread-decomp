@@ -15,8 +15,6 @@
 using base::global::CRntVector;
 using base::global::UnkStringData;
 
-extern void* g_unk_7101a92b00[];
-
 struct UnkIdPair_7100a8e07c {
     UnkStringData* field_0x0;
     UnkStringData* field_0x8;

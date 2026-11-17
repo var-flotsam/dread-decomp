@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CGunComponent.h"
+#include "game/CSamusGunComponent.h"
 #include "game/UnkTU2523.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -109,11 +110,6 @@ struct UnkGunRequest_ovb0070;
 struct UnkSamusGun_ovb0070;
 struct UnkActor;
 // Timeline ids reached through the GOT.
-extern u64 g_unk_710164ad48;
-extern u64 g_unk_710164ad50;
-extern u64 g_unk_710164ad58;
-extern u64 g_unk_710164ad60;
-extern u64 g_unk_710164ad68;
 bool fn_710085befc(UnkSamusGun_ovb0070* self, const UnkGunRequest_ovb0070& request);
 void fn_7100838c7c(UnkSamusGun_ovb0070* self);
 void fn_7100838f20(UnkSamusGun_ovb0070* self);
@@ -190,7 +186,6 @@ struct UnkGunBeam_ovb0070 {
 };
 
 void fn_7100839924(UnkSamusGun_ovb0070* self);
-UnkGunBeam_ovb0070* fn_7100840828(UnkSamusGun_ovb0070* self);
 
 // A pending beam change (+0x330) removes the owner's timeline that goes with the current beam.
 static inline void ApplyBeamChange(UnkSamusGun_ovb0070* self) {

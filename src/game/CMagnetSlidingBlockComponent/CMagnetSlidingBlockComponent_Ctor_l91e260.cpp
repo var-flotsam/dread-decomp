@@ -5,15 +5,14 @@
 #include "base/global/CStrId.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
+#include "game/CMagnetSlidingBlockComponent.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-extern void* g_unk_7101a82960[];
 extern void* g_unk_7101a82ba8[];  // the states' vtable
-extern void* g_unk_7101a82c58[];
 void fn_71009216d8(char* self);  // base::refl_StrIdListCtor<..>, instantiated in src/clones
 
 struct UnkMagnetDelegate_l91e260 {

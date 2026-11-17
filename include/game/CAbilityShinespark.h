@@ -18,3 +18,4 @@ extern UnkTunable g_unk_71726b0378;
 extern void* g_unk_7101a23478[];
 extern char g_unk_7101a234f8[];
 void fn_7100332c80(CBlackboard::CSection* section, UnkPropertyName* name, const UnkTypedValue* value);
+extern const u64 g_unk_7101648f30;

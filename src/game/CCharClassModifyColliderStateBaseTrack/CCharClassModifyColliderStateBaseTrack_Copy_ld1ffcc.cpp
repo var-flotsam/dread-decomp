@@ -4,6 +4,7 @@
 
 #include "base/UnkCloneRecords.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassModifyColliderStateBaseTrack.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -46,7 +47,6 @@ struct UnkModifyColliderStateBaseTrackCopy {
 static_assert(sizeof(UnkModifyColliderStateBaseTrackCopy) == 0x198, "UnkModifyColliderStateBaseTrackCopy layout");
 
 extern void* g_unk_7101a1a138[];  // the base track's vtable
-extern void* g_unk_7101aa7cb0[];
 
 void fn_7100d1ffcc(UnkModifyColliderStateBaseTrackCopy* self, const UnkModifyColliderStateBaseTrackCopy* other) {
     self->vtable = g_unk_7101a1a138 + 2;

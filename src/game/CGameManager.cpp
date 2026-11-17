@@ -1370,7 +1370,6 @@ UnkWeakTarget* fn_7100debbc8(UnkGameManager* self, const u64* id, const u32* fla
 }
 
 // The empty list returned for an id no object is registered under.
-extern UnkGameManagerIdList g_unk_71727bebc0;
 
 UnkGameManagerIdList* fn_7100de94cc(UnkGameManager* self, const u64* id) {
     UnkGameManagerIdLists& lists = self->field_0x2450;

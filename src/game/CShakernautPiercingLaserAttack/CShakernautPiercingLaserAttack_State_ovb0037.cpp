@@ -12,10 +12,9 @@
 #include "game/CAIAttackComponent.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAttack.h"
+#include "game/CShakernautAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
-
-extern void* g_unk_7101a62b48[];
 
 using base::math::CVector3D;
 

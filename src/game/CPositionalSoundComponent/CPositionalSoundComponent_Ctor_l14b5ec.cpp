@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CComponent.h"
+#include "game/CPositionalSoundComponent.h"
 #include "game/UnkTU101.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
@@ -14,7 +15,6 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 struct UnkStateObject;
-extern void* g_unk_7101cb3570[];
 
 struct UnkPositionalSound_l14b5ec {
     void** vtable;

@@ -28,8 +28,6 @@ u32* fn_7100dd0b9c(UnkKeyedWords* self, const u32* key, const u32* value);
 extern UnkPropertyEx<> g_unk_71727bca40;
 extern UnkPropertyEx<> g_unk_71727bca80;
 extern UnkEnumType g_unk_71727bcb40;
-extern UnkStrIdBase g_unk_71727bd278;
-extern UnkStrIdBase g_unk_71727bd290;
 
 // The user data's owner, created on first use.
 struct UnkUserDataOwner;

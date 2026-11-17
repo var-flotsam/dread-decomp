@@ -8,6 +8,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbility.h"
+#include "game/CAbilitySpeedBooster.h"
+#include "game/CAnimationComponent.h"
 #include "game/CSamusModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
@@ -19,10 +21,7 @@
 using base::reflection::UnkReflObject;
 
 struct UnkActorTarget;
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 struct UnkV4_b47;
-extern const UnkV4_b47 g_unk_7101649044 __attribute__((visibility("hidden")));  // the model colour reset
-extern const u8 g_unk_7101649054[] __attribute__((visibility("hidden")));
 extern UnkDesc_SpitSend g_unk_710164b958;
 extern const u64 g_unk_7101649028;
 extern const u64 g_unk_7101649030;

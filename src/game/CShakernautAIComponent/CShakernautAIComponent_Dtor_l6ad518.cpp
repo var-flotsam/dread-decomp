@@ -4,12 +4,11 @@
 #include "base/global/CRntVector.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CRobotAIComponent.h"
+#include "game/CShakernautAIComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern char g_unk_7101a62f60[];  // CShakernautAIComponent's vtable
 extern void* g_unk_7101a62a50[];  // the first attack's vtable
-extern void* g_unk_7101a62b48[];  // the second attack's vtable
 
 void fn_71003606c0(void*);
 

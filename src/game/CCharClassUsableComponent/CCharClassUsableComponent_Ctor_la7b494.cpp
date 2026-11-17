@@ -16,8 +16,6 @@ using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern void* g_unk_7101a90b80[];  // vtable
-
 struct UnkUsable_la7b494 {
     void** vtable;
     u8 pad_0x8[0x58 - 0x8];

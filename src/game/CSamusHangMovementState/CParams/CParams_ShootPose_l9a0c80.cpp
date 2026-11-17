@@ -6,18 +6,18 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
+#include "game/CGunComponent.h"
+#include "game/CHyperBeamGun.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkTU1730.h"
+#include "game/UnkTU2553.h"
 #include "types.h"
 
 struct UnkGunComponent;
 using base::global::CStrId;
-const CStrId* fn_71008407fc(UnkGunComponent* self);
 base::reflection::UnkReflObject* fn_71008407d8(UnkGunComponent* self);
-bool fn_7100845fac(void* beam);
-bool fn_7100df59a8(UnkGameManager*);
 
 struct UnkHangGun_l9a0c80 {
     u8 pad_0x0[0x178];

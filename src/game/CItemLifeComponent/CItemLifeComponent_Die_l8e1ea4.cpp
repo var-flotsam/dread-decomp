@@ -12,6 +12,7 @@
 #include "game/CBlackboard.h"
 #include "game/CCollisionComponent.h"
 #include "game/CCoreXAIComponent.h"
+#include "game/CDropComponent.h"
 #include "game/CInputComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CModelUpdaterComponent.h"
@@ -21,6 +22,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU253.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU883.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTypedValue.h"
 #include "types.h"
@@ -47,14 +49,11 @@ struct UnkItemLifeLists {
         field_0x78 = false;
     }
 };
-extern UnkItemLifeLists g_unk_7172732378;
 
 struct UnkClone_fn_710082d0ac;
 using UnkItemLifeListeners = base::UnkDeferredSet<base::UnkDeferredCallback<u64>>;
 extern template void base::refl_DeferredInvoke<UnkClone_fn_710082d0ac, u64>(UnkItemLifeListeners*, const u64*);
 
-char* fn_71005c1008(u64 id);
-void fn_71007c1ce0(char* p, UnkHitInfo_A5_b63* info);
 UnkStruct_710024fa0c* fn_71008e0e54(UnkStruct_7100233684* entity);
 struct UnkItemLifeComponent_b43a2;
 void fn_71008e21fc(UnkItemLifeComponent_b43a2* self);

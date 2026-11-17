@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassSteamJetComponent.h"
 #include "game/CPullOffGrapplePointComponent.h"
 #include "game/CTimelineComponent.h"
 #include "game/UnkTU341.h"
@@ -15,7 +16,6 @@
 #include "types.h"
 
 void fn_7100877990(char*);
-extern void* g_unk_7101a7cad8[];
 
 struct UnkSteamJetCallbacks_l899154;
 template <>

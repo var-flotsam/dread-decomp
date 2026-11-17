@@ -3,6 +3,7 @@
 // menu's string id (which is cleared first) is run. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CBossAIComponent.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/UnkGameManager.h"
@@ -16,7 +17,6 @@
 using base::global::CStrId;
 
 struct UnkSoundSystemMasks_ovb0074;
-void fn_7100108464(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
 void fn_7100108b34(UnkSoundMgr* self, u32 group, bool on, f32 fade);
 bool fn_7100fd63b0(UnkMusicManager* self, u32 index, bool flag);
 

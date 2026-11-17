@@ -5,6 +5,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CGunComponent.h"
+#include "game/CSamusGunComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
@@ -15,11 +17,6 @@ struct UnkDesc_SpitSend;
 extern UnkDesc_SpitSend g_unk_710164b958;  // reached through the GOT
 
 // Timeline ids reached through the GOT.
-extern u64 g_unk_710164ad48;
-extern u64 g_unk_710164ad50;
-extern u64 g_unk_710164ad58;
-extern u64 g_unk_710164ad60;
-extern u64 g_unk_710164ad68;
 
 struct UnkGunBeamInfo_ovb0070 {
     u8 pad_0x0[0x30];
@@ -32,7 +29,6 @@ struct UnkGunBeam_ovb0070 {
 
 struct UnkSamusGun_ovb0070;
 struct UnkGun_ovb0091;
-UnkGunBeam_ovb0070* fn_7100840828(UnkSamusGun_ovb0070* self);
 void fn_7100839d70(UnkGun_ovb0091* self);
 
 // An entry of the array at +0x348: a counted reference and two words.

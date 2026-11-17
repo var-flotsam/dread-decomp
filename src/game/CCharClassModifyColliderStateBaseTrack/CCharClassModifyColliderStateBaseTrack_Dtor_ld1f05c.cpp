@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CTrack.h"
+#include "game/CCharClassModifyColliderStateBaseTrack.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -43,8 +44,6 @@ struct UnkModifyColliderStateBaseTrack {
     u32 field_0x190;
 };
 static_assert(sizeof(UnkModifyColliderStateBaseTrack) == 0x198, "UnkModifyColliderStateBaseTrack layout");
-
-extern void* g_unk_7101aa7cb0[];
 
 void fn_7100d1f05c(UnkModifyColliderStateBaseTrack* self) {
     self->vtable = g_unk_7101aa7cb0 + 2;

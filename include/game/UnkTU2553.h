@@ -7,6 +7,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/UnkNamedRegistry.h"
+#include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkSaveGamePair_b54;
@@ -84,3 +85,6 @@ void fn_7100dfc638(UnkGameManager* self, CBlackboard* blackboard, const base::gl
 s32 fn_7100dff1a8(UnkGameManager* self, const base::UnkNamedEntry* key, bool a, bool b);
 UnkAbility* fn_7100df5928(UnkPlayer* self);
 extern const u32 g_unk_7101648434[] __attribute__((visibility("hidden")));
+bool fn_7100df59a8(UnkGameManager*);
+extern u8 g_unk_71727be8a8[];
+extern UnkGameManagerIdList g_unk_71727bebc0;

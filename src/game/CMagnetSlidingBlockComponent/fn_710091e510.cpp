@@ -2,6 +2,7 @@
 // arrays and string ids, resets the five embedded sub-objects, then runs the base destructor.
 #include "base/UnkStrIdTable.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CMagnetSlidingBlockComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU39.h"
@@ -62,8 +63,6 @@ struct UnkRefCounted {
     s32 ref_count;
 };
 
-extern void* g_unk_7101a82960[];
-extern void* g_unk_7101a82c58[];
 extern void* g_unk_7101a82c00[];
 
 // A list of callbacks (0x40 bytes) whose derived type also holds a ref-counted owner.

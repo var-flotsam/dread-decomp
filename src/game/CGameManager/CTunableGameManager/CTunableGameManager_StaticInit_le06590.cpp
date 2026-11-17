@@ -85,7 +85,6 @@ extern char g_unk_71727be868[];
 extern UnkTunable g_unk_71727be870;
 extern void* g_unk_7101aa99e0[];
 extern char g_unk_71727be8a1[];
-extern u8 g_unk_71727be8a8[];  // UnkGraphicSettingsTunable_le06590
 extern void* g_unk_7101aa9a10[];
 extern char g_unk_71727be8d1[];
 extern UnkTunable g_unk_71727be8d8;
@@ -106,7 +105,6 @@ extern UnkConversion g_unk_71727beb78;
 extern UnkConversion g_unk_71727beb98;
 void fn_7100e04e68() __attribute__((visibility("hidden")));
 void fn_7100e04e74() __attribute__((visibility("hidden")));
-extern UnkGameManagerIdList g_unk_71727bebc0;  // built as an UnkRefPtrArray
 
 void fn_7100e06590() {
     UnkStatics_le06590& s = g_unk_71727bed98;

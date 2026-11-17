@@ -11,8 +11,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101a22a88[];  // CAbilityGhostAura's vtable
-
 struct UnkCameraCtrl_ovb0049;
 
 struct UnkGhostAuraClearedPair_l314668 {

@@ -6,16 +6,16 @@
 #include "base/global/CRntVector.h"
 #include "base/math/UnkZeroVector3.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CActivatableByProjectileComponent.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CCharClassSteamJetComponent.h"
 #include "game/CPullOffGrapplePointComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
-void fn_7100877960(void* self);
 void fn_7100893a1c(char* self);
 void fn_710089b03c(void* self, void* arg);
 void fn_710089b040(void* self, void* arg);
-extern void* g_unk_7101a7cad8[];
 
 // A list with its own vtable, a count and a link.
 struct UnkSteamJetListHolder_l898fbc {

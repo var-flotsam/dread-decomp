@@ -16,6 +16,7 @@
 #include "game/CBreakableTileGroup.h"
 #include "game/CCharacterMovement.h"
 #include "game/CGunComponent.h"
+#include "game/CHyperBeamGun.h"
 #include "game/CInventoryComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/CPlayerInfo.h"
@@ -355,8 +356,6 @@ __attribute__((noinline)) f32 fn_71009e754c(UnkMove_b152* self);
 struct UnkComponent;
 struct UnkGunComponent;
 struct UnkGun_ovb0091;
-const CStrId* fn_71008407fc(UnkGunComponent* self);
-bool fn_7100845fac(void* beam);
 void fn_7100846e64(void* beam, u32 mode);
 void fn_710083ed38(UnkGun_ovb0091* self);
 bool fn_710035343c(void* obj);

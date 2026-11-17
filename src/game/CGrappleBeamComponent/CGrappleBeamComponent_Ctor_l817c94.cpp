@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CWeaponMovement.h"
+#include "game/CGrappleBeamComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -13,7 +14,6 @@ using base::reflection::UnkTunable;
 extern void* g_unk_7101a75230[];  // the class's vtable
 extern void* g_unk_7101a75570[];  // the states' vtable
 extern void* g_unk_7101a75620[];  // the state machine's vtable
-extern UnkTunable g_unk_71727232d8;
 
 struct UnkGrappleBeamLightning_ovb0047;
 void fn_7100817ffc(UnkGrappleBeamLightning_ovb0047* self);

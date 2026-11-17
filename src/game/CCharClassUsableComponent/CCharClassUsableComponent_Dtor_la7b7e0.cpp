@@ -5,13 +5,12 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassUsableComponent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern void* g_unk_7101a90b80[];  // vtable
 
 struct UnkUsable_la7b7e0 {
     void** vtable;

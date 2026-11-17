@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CSamusGunComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkBufferStringPool.h"
@@ -14,9 +15,6 @@
 #include "types.h"
 
 using base::reflection::CClass;
-
-extern u64 g_unk_710164ad60;
-extern u64 g_unk_710164ad68;
 
 struct UnkGunAIComponent_b52 {
     void** vtable;

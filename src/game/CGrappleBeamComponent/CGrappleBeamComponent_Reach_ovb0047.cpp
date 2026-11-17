@@ -5,6 +5,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU315.h"
+#include "game/CGrappleBeamComponent.h"
 #include "types.h"
 
 using base::reflection::UnkTunable;
@@ -21,7 +22,6 @@ struct UnkGrappleAnswer_b50 {
 struct UnkGrappleBeam_b50;
 UnkGrappleAnswer_b50 fn_710081b920(UnkGrappleBeam_b50* self);
 
-extern UnkTunable g_unk_71727232d8;
 
 struct UnkGrappleTunable_ovb0047 {
     u8 pad_0x0[0x2c];

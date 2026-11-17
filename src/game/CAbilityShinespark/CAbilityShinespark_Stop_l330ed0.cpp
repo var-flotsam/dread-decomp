@@ -4,6 +4,7 @@
 // fn_71002f9460(self, 0). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CAbility.h"
+#include "game/CAbilityShinespark.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -16,7 +17,6 @@ struct UnkShinesparkSet_A2_b65;
 void fn_710032e220(UnkShinesparkSet_A2_b65* self);
 
 extern const u64 g_unk_7101648ec8;
-extern const u64 g_unk_7101648f30;
 extern const u64 g_unk_7101648f38;
 extern const u64 g_unk_7101648f40;
 extern const u64 g_unk_7101648f48;

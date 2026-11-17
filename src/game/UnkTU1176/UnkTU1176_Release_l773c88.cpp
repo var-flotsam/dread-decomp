@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CDoorEmmyFXComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTU315.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -16,7 +17,6 @@
 using base::reflection::UnkReflObject;
 
 extern const base::math::CVector4D g_unk_71016477b4;
-extern const u64 g_unk_710164aa90;
 
 struct UnkEmmyCharClass_l773c88 : UnkReflObject {
     u8 pad_0x8[0x610 - 0x8];

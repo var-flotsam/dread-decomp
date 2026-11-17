@@ -5,10 +5,10 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/tunable/CTunable.h"
 #include "types.h"
 
 struct UnkIdsString;
-void fn_7100133be4(UnkIdsString* self);
 
 // Three string ids and a string with inline storage (destroyed by fn_7100133be4).
 struct UnkTunableRecord_l133780 {

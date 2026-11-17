@@ -5,5 +5,9 @@
 // Names and layouts are placeholders.
 #include "game/UnkTUProperty.h"
 #include "types.h"
+
+struct UnkHitInfo_A5_b63;
+
 void fn_71007c21e8(char* self, char* part, void* extra);
 extern UnkTunable g_unk_717271b668;
+void fn_71007c1ce0(char* p, UnkHitInfo_A5_b63* info);

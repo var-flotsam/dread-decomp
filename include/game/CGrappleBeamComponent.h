@@ -5,3 +5,5 @@
 // Names and layouts are placeholders.
 #include "types.h"
 extern void* g_unk_7101a75548[];
+namespace base { namespace reflection { struct UnkTunable; } }
+extern base::reflection::UnkTunable g_unk_71727232d8;

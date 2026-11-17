@@ -6,11 +6,10 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CUsableComponent.h"
+#include "game/UnkTU1600.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-extern void* g_unk_7101a92b00[];
 
 struct UnkUsableCallbacks_la8e1c8;
 template <>

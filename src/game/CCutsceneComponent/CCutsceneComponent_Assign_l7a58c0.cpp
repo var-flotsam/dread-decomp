@@ -5,13 +5,13 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2661.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkCutsceneEntry_A5_b65;
-UnkCutsceneEntry_A5_b65* fn_710106b284(void* object, u32 id);
 
 struct UnkCutsceneActor_l7a58c0 {
     u8 pad_0x0[0x30];

@@ -9,6 +9,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBossAIComponent.h"
@@ -30,7 +31,6 @@ using unk_prop_bag::UnkPropBag;
 bool fn_7100dfb758(UnkPropBag* results, const char* name, const char* fmt, ...);
 void fn_7100108b1c(UnkSoundMgr* manager);
 void fn_710010825c(UnkSoundMgr* manager, const u32* id, f32 time);
-void fn_7100074f94(base::input::UnkRumbleManager* self, const u32* mask);
 
 struct UnkIngameMenu_l18cdfc {
     u8 pad_0x0[0x260];

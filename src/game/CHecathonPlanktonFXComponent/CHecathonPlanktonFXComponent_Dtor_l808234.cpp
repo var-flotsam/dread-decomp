@@ -5,16 +5,15 @@
 
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
+#include "game/CHecathonPlanktonFXComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU315.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 
-extern char g_unk_7101a74d08[];
-
 struct UnkModel;
-void fn_7100219e18(UnkRenderManager*, UnkModel*, bool);
 
 // A vector with a fixed capacity, its elements stored in place after the count.
 template <class T, u32 N>

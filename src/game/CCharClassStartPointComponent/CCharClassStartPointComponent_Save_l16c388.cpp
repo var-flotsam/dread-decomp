@@ -7,6 +7,7 @@
 #include "base/reflection/CClass.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/CCharClassStartPointComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -30,7 +31,6 @@ struct UnkStartPointNameCopy_l16c388 : UnkStartPointName_l16c388 {
 struct UnkEnumType;
 
 // "LastCheckpointOffset" and the reflected type of its value (the unit's static initialiser builds both).
-extern UnkPropertyEx<> g_unk_7172a0a5e8;
 extern UnkEnumType g_unk_7172a0a4a8;
 
 struct UnkStartPointRecord_l16c388 {
