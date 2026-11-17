@@ -1,6 +1,7 @@
 // Unit 2666 (lua_bind): plays the audio preset named by the string argument, resolved under
 // "audiopreset:system/snd/presets/". Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -41,12 +42,6 @@ struct UnkInlineString_l08e6e0 {
         fn_710007ed40(Str());
         fn_710007ecd4(Str());
     }
-};
-
-// The ids the path resolves to (fn_710001f074 builds them).
-struct UnkPathIds_l08e6e0 {
-    CStrId id;
-    CFilePathStrId path;
 };
 
 // The preset: its id and path with the resource they resolve to.
@@ -91,11 +86,8 @@ int fn_710108e6e0(lua_State* L) {
             ReplaceHashes(*text.Str());  // the result is unused in the original
 
             CRntString path = fn_710007f050("audiopreset:system/snd/presets/", text.Str());
-            alignas(8) u8 storage[sizeof(UnkPathIds_l08e6e0)];
-            fn_710001f074(reinterpret_cast<UnkPathIds*>(storage), reinterpret_cast<const UnkInlineString*>(&path));
-            UnkPathIds_l08e6e0* ids = reinterpret_cast<UnkPathIds_l08e6e0*>(storage);
-            fn_71000267f8(preset.Resource(), reinterpret_cast<const UnkStrIdPathPair&>(*ids));
-            ids->~UnkPathIds_l08e6e0();
+            UnkPathIdsFromText ids(path);
+            fn_71000267f8(preset.Resource(), ids.ids);
         }
         if (preset.IsSet())
             fn_7101024e28(g_unk_7101d47318, reinterpret_cast<const UnkStrIdPathPair*>(&preset), nullptr, 0);

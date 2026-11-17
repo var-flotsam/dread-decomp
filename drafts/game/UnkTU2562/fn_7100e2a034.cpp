@@ -1,6 +1,7 @@
 // Dropped-item manager (unit 2562, hint CLogicDroppedItemManager::CTunableDroppableBillboard): sets up
 // the "X-Parasite Green" billboard (slot 6): one drop entry, its pickup callback and its three paths.
 // Names and layouts are placeholders.
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkDestructors.h"
 #include "base/color/CColor4F.h"
@@ -104,27 +105,11 @@ struct UnkDropManager_e2a034 {
     UnkDropBillboard_e2a034 billboard;  // 0x9630
 };
 
-// The string id and file-path id fn_710001f074 builds in place from a path, destroyed in reverse order.
-struct UnkBuiltPathIds_e2a034 {
-    struct Ids {
-        CStrId id;
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-    alignas(Ids) u8 storage[sizeof(Ids)];
-
-    explicit UnkBuiltPathIds_e2a034(const CRntString& text) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(storage), reinterpret_cast<const UnkInlineString*>(&text));
-    }
-    const UnkStrIdPathPair& Pair() const { return *reinterpret_cast<const UnkStrIdPathPair*>(storage); }
-    ~UnkBuiltPathIds_e2a034() { reinterpret_cast<Ids*>(storage)->~Ids(); }
-};
-
 static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
 
 // Points a path resource at the ids parsed from a path.
 static inline void SetPath(UnkStrIdPathResource* resource, const CRntString& path) {
-    UnkBuiltPathIds_e2a034 ids(path);
-    fn_71000267f8(resource, ids.Pair());
+    fn_71000267f8(resource, UnkPathIdsFromText(path).ids);
 }
 
 static inline void SetColor(CColor4F& color, const CColor4F& value) { fn_7100030728(&color, &value); }

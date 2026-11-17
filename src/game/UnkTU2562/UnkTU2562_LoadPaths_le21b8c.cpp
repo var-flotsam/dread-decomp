@@ -2,15 +2,14 @@
 // manager's path resources at the tunable's names, each under its prefix, skipping empty names.
 // Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
-#include "game/UnkTU25.h"
 #include "types.h"
 
 using base::global::CRntString;
-using base::global::CStrId;
 
 // The path prefixes.
 __attribute__((visibility("hidden"))) extern CRntString g_unk_71727c13c8;
@@ -34,29 +33,13 @@ struct UnkDropManager_e21b8c {
 };
 static_assert(__builtin_offsetof(UnkDropManager_e21b8c, paths) == 0xa020, "paths");
 
-// The string id and file-path id fn_710001f074 builds in place from a path, destroyed in reverse order.
-struct UnkBuiltPathIds_e21b8c {
-    struct Ids {
-        CStrId id;
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-    alignas(Ids) u8 storage[sizeof(Ids)];
-
-    explicit UnkBuiltPathIds_e21b8c(const CRntString& text) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(storage), reinterpret_cast<const UnkInlineString*>(&text));
-    }
-    const UnkStrIdPathPair& Pair() const { return *reinterpret_cast<const UnkStrIdPathPair*>(storage); }
-    ~UnkBuiltPathIds_e21b8c() { reinterpret_cast<Ids*>(storage)->~Ids(); }
-};
-
 static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
 
 static inline bool IsEmpty(const CRntString& text) { return !text.data || !text.data[0]; }
 
 // Points a path resource at the ids parsed from a path.
 static inline void SetPath(UnkStrIdPathResource* resource, const CRntString& path) {
-    UnkBuiltPathIds_e21b8c ids(path);
-    fn_71000267f8(resource, ids.Pair());
+    fn_71000267f8(resource, UnkPathIdsFromText(path).ids);
 }
 
 void fn_7100e21b8c(UnkDropManager_e21b8c* self) {

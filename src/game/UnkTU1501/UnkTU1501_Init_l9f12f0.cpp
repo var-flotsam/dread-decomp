@@ -2,14 +2,16 @@
 // string ids, the run sound preset's id and path, the CTunableSamusMovement and CSamusMovement
 // registrations, the tunable and the CSamusMovement::EUpdateCollisionsPhaseOrder enum. Names and
 // layouts are placeholders.
+#include <new>
+
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/UnkNamedRegistry.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/global/CRntString.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAbilitySonar.h"
 #include "game/UnkTU1501.h"
-#include "game/UnkTU25.h"
 #include "game/UnkTUProperty.h"
 #include "base/reflection/TypeObject.h"
 
@@ -69,8 +71,8 @@ void fn_71009f12f0() {
     {
         base::UnkNamedEntry path;
         fn_710007e704(&path, "audiopreset:system/snd/presets/samus/samus_run_r");
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(g_unk_7172740fc8.field_0xa0),
-                      reinterpret_cast<const UnkInlineString*>(&path));
+        new (g_unk_7172740fc8.field_0xa0)
+            UnkPathIdsFromText(*reinterpret_cast<const base::global::CRntString*>(&path));
         fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
     }
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_7100333544), g_unk_7172740fc8.field_0xa0, g_unk_7101a19000);

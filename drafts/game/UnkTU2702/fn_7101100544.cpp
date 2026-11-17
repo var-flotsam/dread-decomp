@@ -2,6 +2,7 @@
 // the owner's CCharClassTryToLaunchBlockableAttackWarningTrack names (or "blockableattackwarning") and the
 // blockable-attack audio preset. Names and layouts are placeholders.
 #include "base/UnkCountedResource.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -39,14 +40,6 @@ struct UnkAI_l100544 {
     UnkAITunables_l100544* tunables;  // 0x1610
     u8 pad_0x1618[0x1451c - 0x1618];
     u32 field_0x1451c;
-};
-
-// The ids a path names (its type and its file path).
-struct UnkPresetIds_l100544 {
-    CStrId type;
-    CFilePathStrId path;
-
-    explicit UnkPresetIds_l100544(const CRntString* source);  // fn_710001f074
 };
 
 // An audio preset: its ids and the resource they resolve to. Unload() drops the resource before the
@@ -94,8 +87,7 @@ void fn_7101100544(UnkAI_l100544* self) {
     UnkPresetSound_l100544 sound;
     if (!sound.IsSet()) {
         static CRntString s_preset asm("g_unk_7172a063d0")("audiopreset:system/snd/presets/gui/blockable");
-        UnkPresetIds_l100544 ids(&s_preset);
-        fn_71000267f8(sound.Resource(), reinterpret_cast<const UnkStrIdPathPair&>(ids));
+        fn_71000267f8(sound.Resource(), UnkPathIdsFromText(s_preset).ids);
     }
     if (sound.IsSet()) {
         UnkSoundParams_l100544 params;

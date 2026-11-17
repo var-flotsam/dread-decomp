@@ -2,6 +2,7 @@
 // CCharClassLightingComponent_b36.cpp), the component's destructor and the setter of its light set's path
 // (fn_71008e756c). Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
@@ -9,7 +10,6 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CCharClassLightingComponent.h"
 #include "game/UnkComponent.h"
-#include "game/UnkTU25.h"
 #include "game/UnkTU2527.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -96,12 +96,9 @@ void fn_71008e8238(UnkLightingComponentDtor_ovb0061* self) {
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
 }
 
-// As src/base/global/CRntString.cpp, src/base/UnkTunableRegistry.cpp and
-// src/game/CDroppableComponent/CDroppableComponent_b50.cpp declare them.
+// As src/base/global/CRntString.cpp and src/base/UnkTunableRegistry.cpp declare it.
 struct UnkPooledStrId;
 using base::global::CRntString;
-struct UnkPathIds;
-struct UnkInlineString;
 
 // The component (as CCharClassLightingComponent_b36.cpp declares the function).
 struct UnkLightingComponent3;
@@ -117,24 +114,6 @@ struct UnkLightIdText_ovb0061 {
     ~UnkLightIdText_ovb0061() { fn_710007ecd4(&str); }
 };
 
-// The ids the builder fills in place, destroyed in reverse order (as in CDroppableComponent_b50.cpp).
-struct UnkLightBuiltIds_ovb0061 {
-    union {
-        base::global::CStrId id;
-    };
-    union {
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-
-    explicit UnkLightBuiltIds_ovb0061(const void* source) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(this), static_cast<const UnkInlineString*>(source));
-    }
-    ~UnkLightBuiltIds_ovb0061() {
-        path.~UnkStrIdMemberOf();
-        id.~CStrId();
-    }
-};
-
 // Takes the light set's path (+0x58 of the CCharClassLightingComponent) and resolves the resource
 // "lightsdef:<path>" into the pair at +0x48.
 void fn_71008e756c(UnkLightingComponent3* component, void* arg) {
@@ -144,6 +123,5 @@ void fn_71008e756c(UnkLightingComponent3* component, void* arg) {
     fn_710007f564(&text.str, ":");
     fn_710007f3b4(&text.str, &base::reflection::refl_RntStringOf(
                                  reinterpret_cast<const base::global::CStrId&>(self->field_0x40)));
-    fn_71000267f8(&self->path.value, reinterpret_cast<const UnkStrIdPathPair&>(static_cast<const UnkLightBuiltIds_ovb0061&>(
-                                         UnkLightBuiltIds_ovb0061(&text))));
+    fn_71000267f8(&self->path.value, UnkPathIdsFromText(text.str).ids);
 }

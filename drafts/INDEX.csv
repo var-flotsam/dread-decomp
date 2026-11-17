@@ -639,7 +639,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71008be4e0,1916,drafts/game/CChozoCommanderXLifeComponent/fn_71008be4e0.cpp,build fails,,,lean-r2kd,same calls and flow; the request-argument slots share stack with the temporary strings (original gives them th
 0x71008bf4fc,1096,drafts/game/CChozoCommanderXLifeComponent/fn_71008bf4fc.cpp,build fails,,,lean-r2kd,same calls and flow; the listener link address (self+0x260) is kept in a callee-saved register (one extra CSR)
 0x71008c0004,612,drafts/game/CChozoCommanderXLifeComponent/fn_71008c0004.cpp,operations,0.7,149,lean-r2kd,same instructions; stack slot order (id above the string; value below) and map pointer kept in x21/pool in x22
-0x71008c5184,656,drafts/game/CDemolitionBlockLifeComponent/fn_71008c5184.cpp,match,100.0,0,lean-r2kd,matches; held: builds the path ids through an asm-labelled constructor for fn_710001f074; which UnkTU25.h declares as a free function
 0x71008c5ad0,2836,drafts/game/CDemolitionBlockLifeComponent/fn_71008c5ad0.cpp,operations,95.5,32,lean-r6k,stack: mode/mask (0x2a0/0x298) share slots in ours (frame 0x3a0 vs 0x3b0); cbnz vs tbnz on has_debris|held; su
 0x71008d07f8,528,drafts/game/UnkTU1376/fn_71008d07f8.cpp,calls,0.0,50,lean-oc2,GlobalMerge: g_unk_7172731730 is an internal static of unit 1376 merged with the guard and the static params (
 0x71008d0a08,540,drafts/game/UnkTU1376/fn_71008d0a08.cpp,control flow,40.7,76,lean-r2k,name key load hoisted above set branch; return value register shared; loop tail block layout differs (16 bytes
