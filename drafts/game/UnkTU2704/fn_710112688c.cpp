@@ -26,15 +26,15 @@ void fn_710112688c(CSpawnPointComponent* self, CBlackboard* blackboard) {
     {
     CStrId section_id = fn_71011a2fbc(g_unk_7101d47310->field_0x608);
     u64 index = 0;
-    u32 count = self->field_0x2a0;
+    u32 count = self->field_0x290.count;
     if (count) {
         u64 key = (u64)g_unk_7172a06908.name.data;
         for (; index != count; ++index) {
-            if (self->field_0x298[index] == key)
+            if ((u64)self->field_0x290.keys[index].data == key)
                 break;
         }
     }
-    UnkSpawnPointEntry_l12688c* entries = static_cast<UnkSpawnPointEntry_l12688c*>(self->field_0x290);
+    UnkSpawnPointEntry_l12688c* entries = reinterpret_cast<UnkSpawnPointEntry_l12688c*>(self->field_0x290.values);
     if (CBlackboard::CSection* section = fn_7101047270(blackboard, section_id))
         found = fn_710006d11c(section, &entries[index].id, &flag);
     else

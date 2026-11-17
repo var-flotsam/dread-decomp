@@ -7,6 +7,7 @@
 // resolved links (fn_710112b7c4). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBatalloonAIComponent.h"
+#include "game/CSpawnPointComponent.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU341.h"
@@ -74,15 +75,10 @@ struct UnkSpawnOwner_ovb0171 {
     base::global::CStrId name;  // 0x30
 };
 
-struct UnkSpawnPoint_ovb0171 {
-    u8 pad_0x0[0x30];
-    UnkSpawnOwner_ovb0171* owner;  // 0x30
-    u8 pad_0x38[0x118 - 0x38];
-    UnkSpawnCollider_ovb0171* collider;  // 0x118
-    u8 pad_0x120[0x160 - 0x120];
-    void* tracked;  // 0x160
-};
-static_assert(__builtin_offsetof(UnkSpawnPoint_ovb0171, tracked) == 0x160, "layout");
+// The collider as this function uses it.
+static UnkSpawnCollider_ovb0171* Collider(CSpawnPointComponent* self) {
+    return static_cast<UnkSpawnCollider_ovb0171*>(self->field_0x118);
+}
 
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
@@ -92,7 +88,6 @@ struct UnkTriggerCollider_b0058;
 using base::reflection::UnkReflObject;
 struct UnkTracker_71008618cc;
 void fn_7100d59994(UnkTracker_71008618cc*, UnkReflObject*);
-void fn_71011264b4(UnkSpawnPoint_ovb0171* self, void* shape);
 
 static inline UnkStruct_71007e44b8* Manager() {
     UnkManager_7100863a8c* m = g_unk_71726a4788;
@@ -104,26 +99,27 @@ static inline UnkStruct_71007e44b8* Manager() {
     return reinterpret_cast<UnkStruct_71007e44b8*>(m);
 }
 
-void fn_7101128e88(UnkSpawnPoint_ovb0171* self, void* shape) {
-    fn_71011264b4(self, shape);
+void fn_7101128e88(CSpawnPointComponent* self, void* shape) {
+    fn_71011264b4(self);
     alignas(8) u8 name_storage[sizeof(base::global::CStrId)];
     {
         UnkStruct_71007e44b8* manager = Manager();
-        base::global::CStrId* name = new (name_storage) base::global::CStrId(self->owner->name);
-        self->collider = reinterpret_cast<UnkSpawnCollider_ovb0171*>(fn_71007e44b8(manager, self, name, 0));
+        base::global::CStrId* name =
+            new (name_storage) base::global::CStrId(self->Owner<UnkSpawnOwner_ovb0171>()->name);
+        self->field_0x118 = fn_71007e44b8(manager, self, name, 0);
         name->~CStrId();
     }
-    self->collider->vf_0x30(true);
-    fn_7100d36d30(reinterpret_cast<UnkTriggerCollider_b0058*>(self->collider), shape);
-    self->collider->vf_0x60(2);
-    fn_7100d35a98(reinterpret_cast<UnkEntry*>(self->collider), true);
+    Collider(self)->vf_0x30(true);
+    fn_7100d36d30(static_cast<UnkTriggerCollider_b0058*>(self->field_0x118), shape);
+    Collider(self)->vf_0x60(2);
+    fn_7100d35a98(static_cast<UnkEntry*>(self->field_0x118), true);
     {
         UnkStruct_71007e44b8* manager = Manager();
-        base::global::CStrId name(self->owner->name);
-        self->tracked = fn_7100d475ec(manager, &name, 1);
+        base::global::CStrId name(self->Owner<UnkSpawnOwner_ovb0171>()->name);
+        self->field_0x160 = fn_7100d475ec(manager, &name, 1);
     }
-    fn_7100d59994(static_cast<UnkTracker_71008618cc*>(self->tracked),
-                  reinterpret_cast<UnkReflObject*>(self->collider));
+    fn_7100d59994(static_cast<UnkTracker_71008618cc*>(self->field_0x160),
+                  static_cast<UnkReflObject*>(self->field_0x118));
 }
 
 struct UnkCountedCamera_ovb0171 : base::UnkRefCounted {
@@ -327,8 +323,6 @@ void fn_7101127c24(UnkSpawnWatcher_ovb0171* self, UnkWeakTarget* first, bool a, 
 }
 
 struct UnkTracker;
-struct UnkSpawnPoint_l129064;
-void fn_7101129064(UnkSpawnPoint_l129064* self, void* shape);
 
 struct UnkTrackerBody_ovb0171 {
     u8 pad_0x0[0x30];
@@ -380,11 +374,11 @@ void fn_710112b7c4(UnkSpawnTwoLinks_ovb0171* self) {
     if (self->first.IsSet()) {
         auto* tracker = reinterpret_cast<UnkTrackerBody_ovb0171*>(fn_710028aca8(self->first.Get()));
         if (tracker && tracker->shape)
-            fn_7101128e88(reinterpret_cast<UnkSpawnPoint_ovb0171*>(self), tracker->shape);
+            fn_7101128e88(reinterpret_cast<CSpawnPointComponent*>(self), tracker->shape);
     }
     if (self->second.IsSet()) {
         auto* tracker = reinterpret_cast<UnkTrackerBody_ovb0171*>(fn_710028aca8(self->second.Get()));
         if (tracker && tracker->shape)
-            fn_7101129064(reinterpret_cast<UnkSpawnPoint_l129064*>(self), tracker->shape);
+            fn_7101129064(reinterpret_cast<CSpawnPointComponent*>(self), tracker->shape);
     }
 }

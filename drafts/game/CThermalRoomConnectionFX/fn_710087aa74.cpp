@@ -55,7 +55,7 @@ static_assert(__builtin_offsetof(UnkThermalRoomConnectionFX_l87aa74, field_0x123
 static inline void Resolve(CGameLink<UnkWeakTarget>& link) {
     if (link.state == 1) {
         {
-            UnkRefPtr ref = fn_710023b580(link.key);
+            UnkRefPtr ref = fn_710023b580(&link.callbacks);
             // The reference's pointer is the handle's.
             fn_7100234f78(&link.handle, reinterpret_cast<const base::UnkRefHandle*>(&ref));
         }

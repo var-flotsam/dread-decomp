@@ -17,7 +17,7 @@ static bool IsGone(const CGameLink<CActor>& link) {
 
 static void Resolve(CGameLink<CActor>& link) {
     {
-        UnkRefPtr ref = fn_710023b580(link.key);
+        UnkRefPtr ref = fn_710023b580(&link.callbacks);
         fn_7100234f78(&link.handle, reinterpret_cast<const base::UnkRefHandle*>(&ref));
     }
     link.state = 2;
@@ -38,5 +38,5 @@ void fn_7101127834(CSpawnPointComponent* self, CGameLink<CActor>* other) {
     }
     fn_7100234f78(&mine.handle, &other->handle);
     mine.state = other->state;
-    fn_710023b29c(reinterpret_cast<UnkErasedVector*>(mine.key), reinterpret_cast<const UnkErasedVector*>(other->key));
+    fn_710023b29c(&mine.callbacks, &other->callbacks);
 }

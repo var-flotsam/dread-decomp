@@ -5,6 +5,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
+#include "game/UnkVec3Bits.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -12,11 +13,11 @@ using base::reflection::CClass;
 
 struct UnkTargetPos {
     u8 pad_0x0[0x44];
-    u32 field_0x44;
+    f32 field_0x44;
     u8 pad_0x48[0xc];
-    u32 field_0x54;
+    f32 field_0x54;
     u8 pad_0x58[0xc];
-    u32 field_0x64;
+    f32 field_0x64;
 };
 
 struct UnkArea {
@@ -52,24 +53,9 @@ struct UnkClamper {
     f32 field_0x5dc;
 };
 
-union UnkBits {
-    u32 u;
-    f32 f;
-};
-
-// Not trivially copyable, so it is returned in memory.
-struct UnkVec3Bits {
-    UnkBits x;
-    UnkBits y;
-    UnkBits z;
-
-    UnkVec3Bits(u32 x, u32 y, u32 z) : x{x}, y{y}, z{z} {}
-    UnkVec3Bits(const UnkVec3Bits& other) : x(other.x), y(other.y), z(other.z) {}
-};
-
 UnkVec3Bits fn_710045bd10(UnkClamper* self) {
     UnkTargetPos* target = reinterpret_cast<UnkTargetPos*>(fn_7100d7c990(self->field_0x30));
-    UnkVec3Bits result(target->field_0x44, target->field_0x54, target->field_0x64);
+    UnkVec3Bits result = UnkVec3Bits::CopyBits(target->field_0x44, target->field_0x54, target->field_0x64);
     if (!self->field_0x230 || !self->field_0x230->field_0x10)
         return result;
     UnkCommander* commander = self->field_0x230->field_0x10->field_0x240;
@@ -77,15 +63,15 @@ UnkVec3Bits fn_710045bd10(UnkClamper* self) {
         return result;
     f32 margin = self->field_0x5dc;
     UnkArea* area = &commander->field_0x15d1c;
-    f32 x = result.x.f;
-    f32 y = result.y.f;
+    f32 x = result.x;
+    f32 y = result.y;
     if (margin + x + 25.0f > area->max_x)
-        result.x.f = area->max_x - margin + -25.0f;
+        result.x = area->max_x - margin + -25.0f;
     else if (x - margin + -25.0f < area->min_x)
-        result.x.f = margin + area->min_x + 25.0f;
+        result.x = margin + area->min_x + 25.0f;
     if (margin + y + 25.0f > area->max_y)
-        result.y.f = area->max_y - margin + -25.0f;
+        result.y = area->max_y - margin + -25.0f;
     else if (y - margin + -25.0f < area->min_y)
-        result.y.f = margin + area->min_y + 25.0f;
+        result.y = margin + area->min_y + 25.0f;
     return result;
 }

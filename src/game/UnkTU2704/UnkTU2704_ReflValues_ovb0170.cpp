@@ -16,6 +16,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CActorComponentDef.h"
 #include "game/CComponent.h"
+#include "game/CSpawnPointComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU2704.h"
@@ -125,17 +126,19 @@ void fn_710112f708(void* obj) {
 
 // ---- Arrays and iterators of values
 
-// A value as an array element: destroyed through the inline sequence below.
-struct UnkReflElem_b0170 {
+// The element of the component's voActorBlueprint (reflection: CRntVector<CSpawnerActorBlueprint>; the
+// destructor fn_7101125c90 frees that vector with fn_71011266cc): a value, destroyed through the inline
+// sequence below.
+struct CSpawnerActorBlueprint {
     UnkReflValue value;
-    UnkReflElem_b0170() {
+    CSpawnerActorBlueprint() {
         value.field_0x0 = nullptr;
         value.type = nullptr;
         value.kind = 2;
         value.field_0x14 = 1;
     }
-    UnkReflElem_b0170(UnkReflElem_b0170&& other) { fn_71000a179c(&value, &other.value); }
-    ~UnkReflElem_b0170() {
+    CSpawnerActorBlueprint(CSpawnerActorBlueprint&& other) { fn_71000a179c(&value, &other.value); }
+    ~CSpawnerActorBlueprint() {
         if (value.type) {
             bool released = fn_7100deabe4(g_unk_7101d47310);
             void* payload = nullptr;
@@ -153,10 +156,10 @@ struct UnkReflElem_b0170 {
         fn_71000a1c60(&value);
     }
 };
-static_assert(sizeof(UnkReflElem_b0170) == 0x18, "element size");
+static_assert(sizeof(CSpawnerActorBlueprint) == 0x18, "element size");
 
 struct UnkValueArray_b0170 {
-    UnkReflElem_b0170* data;  // 0x0
+    CSpawnerActorBlueprint* data;  // 0x0
     u32 count;                // 0x8
 };
 
@@ -165,10 +168,10 @@ void fn_710112d438(UnkValueIter_b0170* it);  // re-points `current` at (index, e
 
 struct UnkValueIter_b0170 {
     u32 index;
-    UnkReflElem_b0170* element;
-    base::UnkIterValue<UnkReflElem_b0170, u32> current;
+    CSpawnerActorBlueprint* element;
+    base::UnkIterValue<CSpawnerActorBlueprint, u32> current;
 
-    UnkValueIter_b0170(u32 index, UnkReflElem_b0170* element) : index(index), element(element) {
+    UnkValueIter_b0170(u32 index, CSpawnerActorBlueprint* element) : index(index), element(element) {
         fn_710112d438(this);
     }
     UnkValueIter_b0170& operator=(const UnkValueIter_b0170& other) {
@@ -189,13 +192,13 @@ void fn_7101130270(UnkValueArray_b0170* self, UnkValueIter_b0170* out) {
     *out = UnkValueIter_b0170(self->count, self->data + self->count);
 }
 
-void fn_71011266cc(base::global::CRntVector<UnkReflElem_b0170>* self) {
+void fn_71011266cc(base::global::CRntVector<CSpawnerActorBlueprint>* self) {
     self->Free();
 }
 
-base::global::CRntVector<UnkReflElem_b0170>* fn_710112fd34(base::global::CRntVector<UnkReflElem_b0170>* self,
-                                                   base::global::CRntVector<UnkReflElem_b0170>* other) {
-    *self = static_cast<base::global::CRntVector<UnkReflElem_b0170>&&>(*other);
+base::global::CRntVector<CSpawnerActorBlueprint>* fn_710112fd34(base::global::CRntVector<CSpawnerActorBlueprint>* self,
+                                                   base::global::CRntVector<CSpawnerActorBlueprint>* other) {
+    *self = static_cast<base::global::CRntVector<CSpawnerActorBlueprint>&&>(*other);
     return self;
 }
 
@@ -307,53 +310,37 @@ struct UnkSpawnOwner_64b4 {
     CStrId name;  // 0x30
 };
 
-struct UnkSpawnA_64b4 {
-    u8 pad_0x0[0x30];
-    UnkSpawnOwner_64b4* owner;  // 0x30
-    u8 pad_0x38[0x118 - 0x38];
-    void* collider;  // 0x118
-    u8 pad_0x120[0x160 - 0x120];
-    void* tracked;  // 0x160
-};
-
-void fn_71011264b4(UnkSpawnA_64b4* self, void*) {
-    if (self->tracked) {
-        if (self->collider) {
-            fn_7100d5abfc(self->tracked, static_cast<UnkStruct_7100861148_Collider*>(self->collider));
-            fn_7100d46c60(Manager(), static_cast<UnkCollisionObject*>(self->collider));
-            self->collider = nullptr;
+// The collider made for each shape and what the shape is tracked as: fn_71011264b4 drops the scene shape's,
+// fn_71011265c0 the collision scene shape's.
+void fn_71011264b4(CSpawnPointComponent* self) {
+    if (self->field_0x160) {
+        if (self->field_0x118) {
+            fn_7100d5abfc(self->field_0x160, static_cast<UnkStruct_7100861148_Collider*>(self->field_0x118));
+            fn_7100d46c60(Manager(), static_cast<UnkCollisionObject*>(self->field_0x118));
+            self->field_0x118 = nullptr;
         }
         {
             UnkManager_7100863a8c* manager = Manager();
-            CStrId name(self->owner->name);
+            CStrId name(self->Owner<UnkSpawnOwner_64b4>()->name);
             fn_7100d476e4(manager, &name);
         }
-        self->tracked = nullptr;
+        self->field_0x160 = nullptr;
     }
 }
 
-struct UnkSpawnPoint_l129064 {
-    u8 pad_0x0[0x30];
-    UnkSpawnOwner_64b4* owner;  // 0x30
-    u8 pad_0x38[0x168 - 0x38];
-    void* collider;  // 0x168
-    u8 pad_0x170[0x1b0 - 0x170];
-    void* tracked;  // 0x1b0
-};
-
-void fn_71011265c0(UnkSpawnPoint_l129064* self, void* shape) {
-    if (self->tracked) {
-        if (self->collider) {
-            fn_7100d5abfc(self->tracked, static_cast<UnkStruct_7100861148_Collider*>(self->collider));
-            fn_7100d46c60(Manager(), static_cast<UnkCollisionObject*>(self->collider));
-            self->collider = nullptr;
+void fn_71011265c0(CSpawnPointComponent* self) {
+    if (self->field_0x1b0) {
+        if (self->field_0x168) {
+            fn_7100d5abfc(self->field_0x1b0, static_cast<UnkStruct_7100861148_Collider*>(self->field_0x168));
+            fn_7100d46c60(Manager(), static_cast<UnkCollisionObject*>(self->field_0x168));
+            self->field_0x168 = nullptr;
         }
         {
             UnkManager_7100863a8c* manager = Manager();
-            CStrId name(self->owner->name);
+            CStrId name(self->Owner<UnkSpawnOwner_64b4>()->name);
             fn_7100d476e4(manager, &name);
         }
-        self->tracked = nullptr;
+        self->field_0x1b0 = nullptr;
     }
 }
 
