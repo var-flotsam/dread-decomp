@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CCollisionComponent.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU56.h"
 #include "types.h"
@@ -40,7 +41,6 @@ static_assert(__builtin_offsetof(UnkColliderNode, parent_count) == 0x164, "UnkCo
 // The collision manager (src/game/CCollisionComponent/fn_7100863a8c.cpp) and the group it creates
 // for an owner under a name.
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 static inline UnkManager_7100863a8c* GetManager() {
     if (!g_unk_71726a4788) {

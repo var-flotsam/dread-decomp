@@ -19,7 +19,6 @@ struct UnkTracker_7100863a8c;
 struct UnkManager_7100863a8c {
     u8 unk_0x0[0x6b0];
 };
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 static inline UnkManager_7100863a8c* GetManager() {
     if (!g_unk_71726a4788) {

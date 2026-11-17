@@ -10,7 +10,9 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAnimationComponent.h"
 #include "game/CFXComponent.h"
+#include "game/CHyperBeamGun.h"
 #include "game/CInputComponent.h"
+#include "game/CPrimaryGun.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
@@ -20,8 +22,6 @@ using base::math::CVector3D;
 extern base::global::CStrId g_unk_7172726598 __attribute__((visibility("hidden")));
 
 struct UnkHyperBeamGun_b56;
-void fn_71008449ec(UnkHyperBeamGun_b56* self, bool a, bool b);
-s32 fn_71008434b8(void* self);
 
 // The glow part: its slot 0x20 sets its scale.
 struct UnkHyperBeamGlow_l8435f0 {
@@ -69,9 +69,7 @@ static_assert(__builtin_offsetof(UnkHyperBeamGun_l8435f0, glow) == 0x1914, "layo
 
 // The beam gun base's update (as src/game/CGrappleBeamGun/CGrappleBeamGun_Update_ovb0132.cpp declares it).
 struct UnkGrappleBeamGun_ovb0132;
-void fn_7100857418(UnkGrappleBeamGun_ovb0132* self);
 void fn_7100844408(UnkHyperBeamGun_l8435f0* self);
-void fn_7100843a50(char* self, bool arg);
 
 static const u64 kGlowPart = 0x805489787ebd4a19;
 

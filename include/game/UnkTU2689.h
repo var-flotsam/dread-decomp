@@ -17,3 +17,4 @@ void fn_71010d7b88(UnkMorphBallMovement_b49a4* self, u32);
 bool fn_71010d9638(UnkMove_b152* self, UnkHitInfo_b152* hit, u64* out);
 void fn_71010db848(UnkForcedMovementTarget_A5_b68* self, const base::global::CStrId* name, const void* params);
 void fn_71010d7874(void* p);
+f32 fn_71010d6858();

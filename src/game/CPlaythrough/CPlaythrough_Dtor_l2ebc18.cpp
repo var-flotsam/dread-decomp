@@ -9,12 +9,11 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CPlaythrough.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-extern void* g_unk_7101a22200[];  // the object's vtable
 
 struct UnkRecords_l2ef66c;
 void fn_71002ef66c(UnkRecords_l2ef66c* self, u32 n);

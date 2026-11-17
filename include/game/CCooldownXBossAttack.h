@@ -18,3 +18,6 @@ void fn_71004c196c(UnkCooldownXBossAttack_b62a2* self);
 void fn_71004c1968(UnkWhipSend_b58* self, f32 dt);
 
 void fn_71004c1e08(UnkLaserBite_b59* self);
+extern void* g_unk_7101a3e4b0[];  // CCooldownXBossLaserBiteAttack's vtable
+extern void* g_unk_7101a3e8b8[];  // CCooldownXBossReaperAttack's vtable
+extern void* g_unk_7101a3e5b8[];  // CCooldownXBossLavaCarpetAttack's vtable

@@ -5,6 +5,7 @@
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassComponent.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2560.h"
@@ -21,9 +22,6 @@ using base::global::UnkStrIdBase;
 struct UnkCollisionClassDef;
 struct UnkDropTarget_ovb0208;
 struct UnkDropRequest_ovb0208;
-
-bool fn_71011aced4(UnkCollisionClassDef* self, CRntFile* file);  // the base read
-void fn_7100e1cd34(void* self, UnkDropTarget_ovb0208* target, UnkDropRequest_ovb0208* request);
 
 // A request: an id and seven values.
 struct UnkBillboardRequest_l73043c {

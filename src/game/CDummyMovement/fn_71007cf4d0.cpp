@@ -3,6 +3,7 @@
 // root motion turned into world space, keeps the result above the floor at +0x254 and moves the owner there.
 // Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/CAnimationComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1141.h"
@@ -16,7 +17,6 @@ struct UnkStruct_71007142e8 {
 };
 
 bool fn_7101179808(UnkAnimationComponent* self);
-void fn_7101179d08(UnkAnimationComponent* self, UnkStruct_71007142e8* motion, const void* key);
 
 struct UnkDummyOwner_l7cf4d0 {
     u8 pad_0x0[0x38];

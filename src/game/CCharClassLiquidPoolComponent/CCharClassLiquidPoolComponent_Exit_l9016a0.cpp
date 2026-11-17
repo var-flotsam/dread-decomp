@@ -3,8 +3,10 @@
 // the surface ripple placed at the position; otherwise a moving actor is told, the ripple placed and the
 // splash played, or an AI is put in mode 1 by the pool's kind. Names and layouts are placeholders, as in
 // CCharClassLiquidPoolComponent_Pool_ovb0075.cpp (fn_7100901dd4, the entering twin).
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CLiquidSimulationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -17,10 +19,7 @@ void fn_7100a45cf0(UnkDamageTrigger_b0119* self, void* arg);
 struct UnkLiquidPoolEnter_ovb0075;
 struct UnkLiquidPoolActor_ovb0075;
 struct UnkLiquidPoolMover_ovb0075;
-void fn_71009014a8(UnkLiquidPoolEnter_ovb0075* self, UnkVec3f pos);
-UnkLiquidPoolMover_ovb0075* fn_71009019bc(UnkLiquidPoolActor_ovb0075* actor);
 struct UnkLiquidPoolActorPart_ovb0075;
-void fn_71010ff50c(UnkLiquidPoolActorPart_ovb0075* part, bool a, u32);
 
 struct UnkLiquidPoolExit_l9016a0;
 s32 fn_7100f0d5c0(void* list, UnkLiquidPoolExit_l9016a0* self, const UnkVec3f* pos, s32 kind, u32 param);

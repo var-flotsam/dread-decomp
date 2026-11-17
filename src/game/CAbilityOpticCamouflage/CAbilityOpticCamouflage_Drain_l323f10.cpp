@@ -3,6 +3,8 @@
 // too (never below 1), and the cloak's timeline event follows the energy running out or coming back.
 // Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilityOpticCamouflage.h"
+#include "game/CSpecialEnergyComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTUProperty.h"
@@ -14,13 +16,9 @@ struct UnkSpecialEnergyComponent;
 struct UnkLifeValues;
 struct UnkTarget429;
 
-bool fn_7100a1f84c(UnkSpecialEnergyComponent* self);
 bool fn_71011601b8(UnkLifeValues* self, f32 amount);
-void fn_7100a1feac(UnkTarget429* self, f32 amount);
 void fn_7100324060(UnkOpticAbility_ovb0059* self, f32 dt);
 
-extern UnkTunable g_unk_71726affc0;  // CTunableAbilityOpticCamouflage
-extern base::reflection::UnkTunable g_unk_7172745770;  // CTunableSpecialEnergyComponent
 extern const u64 g_unk_7101648e28;  // the timeline event played when the energy runs out
 extern const u64 g_unk_7101648e30;  // the one played when it comes back
 

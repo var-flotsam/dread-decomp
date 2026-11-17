@@ -1,10 +1,10 @@
 // Two identical constructors in the CChozoRobotSoldierCannonShotAttack unit (fn_7100464980,
 // fn_7100467890): CAttack's constructor fn_710036069c, two angles at +0x30 (-pi), a scale at +0x38
 // (1.0), the vtable, then cleared fields up to +0x70. Names and layouts are placeholders.
+#include "game/CChozoRobotSoldierCannonShotAttack.h"
 #include "game/CAttack.h"
 #include "types.h"
 
-extern void* g_unk_7101a383a0[];
 
 struct UnkCannonShotAttack {
     void** vtable;

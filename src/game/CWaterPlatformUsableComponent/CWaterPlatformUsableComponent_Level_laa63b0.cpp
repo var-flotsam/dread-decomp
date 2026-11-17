@@ -5,9 +5,11 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CWaterPlatformUsableComponent.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU399.h"
 #include "game/UnkTU53.h"
+#include "game/animtree/CBoneControl.h"
 #include "types.h"
 
 struct UnkEntry;
@@ -26,9 +28,6 @@ struct UnkWaterLevel_b57 {
     u64 field_0x28;
     u8 pad_0x30[0x10];
 };
-UnkWaterLevel_b57 fn_71002e2958(UnkWaterEntry_b57* entry);
-
-extern __attribute__((visibility("hidden"))) char g_unk_71727537e0[];
 
 struct UnkWaterSub_b57 {
     u8 pad_0x0[0x40];
@@ -53,7 +52,6 @@ struct UnkWaterPlatformLevel_laa63b0 {
 static_assert(__builtin_offsetof(UnkWaterPlatformLevel_laa63b0, height) == 0x5b8, "layout");
 
 struct UnkWaterPlatform_A5_b73;
-bool fn_7100aa5980(UnkWaterPlatform_A5_b73* self);
 
 static inline UnkWaterEntry_b57* FindEntry_laa63b0(UnkWaterPlatformLevel_laa63b0* self) {
     UnkWaterEntry_b57* e =

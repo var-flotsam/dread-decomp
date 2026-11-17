@@ -2,6 +2,7 @@
 // pending step (+0xc8) waits 3 seconds, then unlocks the door lock of the object the handle at +0x80 names,
 // sets an id on its timeline and the owner's, and runs the step's script (+0xe0) on the owner; a second
 // timer (+0xd4, limit +0xd8) clears both. Names and layouts are placeholders.
+#include "game/CFootstepPlatformComponent.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkDestructors.h"
 #include "base/UnkRefHandle.h"
@@ -24,7 +25,6 @@ struct UnkEvacTimeline_b61;
 struct UnkTimelineComponent;
 struct UnkParent;
 
-extern u64 g_unk_710164ab58;
 bool fn_71008d5e08(UnkDoorLock* lock);
 
 struct UnkCountedStep_l7e7e2c : base::UnkRefCounted {

@@ -1,6 +1,7 @@
 // CChozoRobotSoldierAIComponent's unit (tools/tu_map.py unit 694): the destructor. The array at +0x27768,
 // the three holders at +0x27628..+0x276f8, the path at +0x14b90, the hit and entry arrays, the callback
 // list at +0x14ad8, four attacks, then the boss AI component's destructor. Names and layouts are placeholders.
+#include "game/CChozoRobotSoldierCannonShotAttack.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
@@ -12,7 +13,6 @@
 #include "types.h"
 
 extern void* g_unk_7101a38c68[];  // CChozoRobotSoldierAIComponent's vtable
-extern void* g_unk_7101a383a0[];  // the cannon shot attack's vtable
 
 struct UnkHolderOwner_b47;
 void fn_71002c5394(UnkHolderOwner_b47* self);

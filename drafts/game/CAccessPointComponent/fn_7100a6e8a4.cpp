@@ -2,12 +2,14 @@
 // Places the user at the owner's anchor (as the teleporter does), keeps a weak handle to it (+0xe8), asks
 // the user's movement for the access-point movement state, starts the use (fn_7100aa0b04) and requests
 // state 6 from the state machine at +0x100 ("none" 8). Names and layouts are placeholders.
-#include "../../game_s2/UnkSpitSend.h"
-#include "../UnkSmRequest_A5_b73.h"
+#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../../src/game/UnkSmRequest_A5_b73.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CGrabComponent.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
+#include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -65,8 +67,6 @@ struct UnkMatrix4_b0233 {
 
 struct UnkTeleporterActor_b0233;
 struct UnkTeleporterObject_b0233;
-void fn_710113cb74(void* component, UnkTeleporterActor_b0233* actor, void* unused, UnkMatrix4_b0233* matrix);
-void fn_7100233f84(UnkTeleporterObject_b0233* object, UnkMatrix4_b0233* matrix, bool);
 
 struct UnkApMovement_la6e8a4;
 void fn_710031433c(UnkApMovement_la6e8a4* movement, UnkLeaveParams_l9968ec* params);

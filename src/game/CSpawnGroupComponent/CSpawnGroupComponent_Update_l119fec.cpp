@@ -6,8 +6,11 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBatalloonAIComponent.h"
+#include "game/CCharClassEventScenarioComponent.h"
+#include "game/CSpawnGroupComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1102.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
@@ -106,13 +109,10 @@ static inline UnkSpawnLink_l119fec LinkTo(UnkWeakTarget* target) {
 bool fn_710119447c(const CStrId& id);
 base::reflection::UnkReflObject* fn_71009143d8(void* key);
 struct UnkSpawnGroupKey;
-extern UnkSpawnGroupKey g_unk_7172a067b8 __attribute__((visibility("hidden")));
 
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
-UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 struct UnkTriggerCollider_b0058;
 
 struct UnkSpawnGroupCollider_l119fec {

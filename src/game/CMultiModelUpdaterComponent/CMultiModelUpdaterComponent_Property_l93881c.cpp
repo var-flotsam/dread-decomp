@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
+#include "game/CMultiModelUpdaterComponent.h"
 #include "types.h"
 
 using namespace unk_prop;
@@ -18,7 +19,6 @@ struct UnkMultiModelUpdater_l93881c;
 u32 fn_7101171fcc(UnkMultiModelUpdater_l93881c* self, UnkProp* p);
 // As src/game/CMultiModelUpdaterComponent/CMultiModelUpdaterComponent_AddModel_l93852c.cpp defines it.
 struct UnkMultiModel_l93852c;
-bool fn_710093852c(UnkMultiModel_l93852c* self, const CStrId* name, const CFilePathStrId* path);
 
 u32 fn_710093881c(UnkMultiModelUpdater_l93881c* self, UnkProp* p) {
     if (Is(p, Key(0x1668)))

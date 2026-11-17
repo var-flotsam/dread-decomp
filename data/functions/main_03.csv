@@ -4990,7 +4990,7 @@ address,size,name,name_source,subsystem,status
 0x71003e8c50,352,CCharClassBaseBigFistAIComponent::refl_InitClass,reflection,game/characters,O
 0x71003e8db0,76,fn_71003e8db0,unknown,game/characters?,O
 0x71003e8dfc,44,fn_71003e8dfc,unknown,game/characters?,O
-0x71003e8e28,292,fn_71003e8e28,unknown,game/characters?,U
+0x71003e8e28,292,fn_71003e8e28,unknown,game/characters?,m
 0x71003e8f4c,76,fn_71003e8f4c,unknown,game/characters?,O
 0x71003e8f98,28,fn_71003e8f98,unknown,game/characters?,O
 0x71003e8fb4,36,fn_71003e8fb4,unknown,game/characters?,O

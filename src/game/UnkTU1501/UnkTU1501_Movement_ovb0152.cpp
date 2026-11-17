@@ -212,7 +212,6 @@ struct UnkSamusSettings {
     f32 field_0x74;
     bool field_0x78;
 };
-extern base::reflection::UnkTunable g_unk_71726b0fc0;
 
 struct UnkLeg_b152 {
     void** vtable;

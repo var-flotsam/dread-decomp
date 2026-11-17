@@ -1,6 +1,6 @@
 #pragma once
 
-// CNavMesh: functions of this translation unit that other files call (tools/tu_map.py unit 355,
+// CNavMesh: functions and globals of this translation unit that other files use (tools/tu_map.py unit 355,
 // 0x7100274548-0x71002810b0). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
@@ -19,3 +19,4 @@ u32 fn_710027a320(UnkNavMesh* mesh);
 // a cell calls it when its flag changes (src/game/UnkNavMeshCell_SetFlag.cpp).
 void fn_710027da54(UnkNavMesh_l27da54* self, const u16* value, bool first);
 void fn_710027e258(void* self, const void* other);
+extern char g_unk_7101a20e58[];

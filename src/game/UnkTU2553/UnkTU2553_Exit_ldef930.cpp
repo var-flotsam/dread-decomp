@@ -13,6 +13,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2562.h"
@@ -44,7 +45,6 @@ void fn_7100ed6bc4(void* self);
 void fn_7100e8efac(void* world);
 void fn_710119d584(UnkSweepList_b49* self, bool flag);
 void fn_710119336c(UnkActorDefFactory* factory);
-void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46c5c(UnkManager_7100863a8c* self);
 void fn_7100defd08(UnkGameManager* self);
 

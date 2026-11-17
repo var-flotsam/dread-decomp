@@ -399,7 +399,6 @@ void fn_7100773ed0(UnkCentralFollow_b0230* self) {
 }
 
 struct UnkCentralUnit_b49;
-void fn_71007717c0(UnkCentralUnit_b49* self);
 void fn_7100541e34(char* self, bool value);
 void fn_7100541690(char* self, bool value);
 struct UnkManager;
@@ -494,7 +493,6 @@ __attribute__((noinline)) void fn_7100772eb0(UnkSource_b0230* self, UnkWeakTarge
 
 struct UnkCentralUnit;
 void fn_71007754b8(UnkCentralUnit_b49* unit);
-void fn_71007717c0(UnkCentralUnit_b49* self);
 void fn_71007727f0(UnkCentralUnit* unit);
 struct UnkMapData;
 

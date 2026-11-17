@@ -7,12 +7,12 @@
 #include "game/CBossAIComponent.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/behaviortree/CGoToWallFronPathAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkActor;
 struct UnkMagnetPathHolder_b52;
-UnkMagnetPathHolder_b52* fn_7100382150(UnkActor* actor);
 
 struct UnkQuetzoaTimelineKey_l64a364;
 extern UnkQuetzoaTimelineKey_l64a364 g_unk_710164a3c8;  // reached through the GOT

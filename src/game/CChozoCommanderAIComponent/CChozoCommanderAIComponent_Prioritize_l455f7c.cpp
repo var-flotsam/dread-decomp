@@ -11,7 +11,6 @@
 
 struct UnkAttack_b0086;
 void fn_71003624f4(UnkAttack_b0086* self, u32 value, f32* first, f32* second);
-void fn_710110bc0c(void* self, void* arg, u32 id, u32 kind, s32 amount);
 
 struct UnkChozoListTag_l455f7c;
 using UnkChozoList_l455f7c = base::UnkSList<UnkChozoListTag_l455f7c>;

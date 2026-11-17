@@ -4289,7 +4289,7 @@ address,size,name,name_source,subsystem,status
 0x71007cf3c4,20,fn_71007cf3c4,unknown,game?,O
 0x71007cf3d8,192,fn_71007cf3d8,unknown,game?,O
 0x71007cf498,56,fn_71007cf498,unknown,game?,O
-0x71007cf4d0,468,fn_71007cf4d0,unknown,game?,U
+0x71007cf4d0,468,fn_71007cf4d0,unknown,game?,m
 0x71007cf6a4,28,fn_71007cf6a4,unknown,game?,O
 0x71007cf6c0,132,fn_71007cf6c0,unknown,game?,O
 0x71007cf744,8,CDummyMovement::refl_Equals,reflection,game,O

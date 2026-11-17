@@ -29,7 +29,6 @@ extern template void base::refl_DeferredInvoke<UnkClone_fn_710082d0ac, u64>(UnkT
 
 // The unit's listeners (built by its static initialiser).
 struct UnkLinkGroups;
-extern UnkLinkGroups g_unk_7172753260;
 
 void fn_7100e10d78(UnkLoadingScreen* self, u32 kind);
 

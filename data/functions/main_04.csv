@@ -271,7 +271,7 @@ address,size,name,name_source,subsystem,status
 0x7100414070,240,fn_7100414070,unknown,game/characters?,O
 0x7100414160,8,fn_7100414160,unknown,game/characters?,O
 0x7100414168,8,fn_7100414168,unknown,game/characters?,O
-0x7100414170,256,fn_7100414170,unknown,game/characters?,U
+0x7100414170,256,fn_7100414170,unknown,game/characters?,m
 0x7100414270,412,fn_7100414270,unknown,game/characters?,O
 0x710041440c,412,fn_710041440c,unknown,game/characters?,O
 0x71004145a8,268,fn_71004145a8,unknown,game/characters?,O
@@ -1773,7 +1773,7 @@ address,size,name,name_source,subsystem,status
 0x710045adf0,352,CChozoCommanderSentenceSphereLifeComponent::refl_InitClass,reflection,game/components,O
 0x710045af50,140,fn_710045af50,unknown,game/components?,O
 0x710045afdc,156,fn_710045afdc,unknown,game/components?,O
-0x710045b078,388,fn_710045b078,unknown,game/components?,U
+0x710045b078,388,fn_710045b078,unknown,game/components?,m
 0x710045b1fc,28,fn_710045b1fc,unknown,game/components?,O
 0x710045b218,36,fn_710045b218,unknown,game/components?,O
 0x710045b23c,132,fn_710045b23c,unknown,game/components?,O
@@ -5434,7 +5434,7 @@ address,size,name,name_source,subsystem,status
 0x71004e1d14,564,fn_71004e1d14,unknown,game/components?,U
 0x71004e1f48,80,fn_71004e1f48,unknown,game/components?,O
 0x71004e1f98,104,fn_71004e1f98,unknown,game/components?,O
-0x71004e2000,260,fn_71004e2000,unknown,game/components?,U
+0x71004e2000,260,fn_71004e2000,unknown,game/components?,m
 0x71004e2104,468,fn_71004e2104,unknown,game/components?,U
 0x71004e22d8,292,fn_71004e22d8,unknown,game/components?,U
 0x71004e23fc,84,fn_71004e23fc,unknown,game/components?,O

@@ -8,6 +8,7 @@
 // 20 plain bytes), and adding the outline from one point to another (each flattened to its x and y, at
 // z 0) to the outline set at +0xa0 (fn_71004c51e4; the outline's layout is CBreakableTileGroup's, in
 // src/game/CBreakableTileGroup.cpp). Names and layouts are placeholders.
+#include "game/CCooldownXBossAttack.h"
 #include <new>
 
 #include "base/global/CRntVector.h"
@@ -18,7 +19,6 @@
 #include "../../game_5821e4/CAttackDtor.h"
 #include "types.h"
 
-extern void* g_unk_7101a3e5b8[];  // the attack's vtable
 
 struct UnkLavaCarpetAttack_ovb0059 {
     void** vtable;
@@ -49,7 +49,6 @@ void fn_71004c5678(UnkLavaCarpetAttack_ovb0059* self) {
 
 extern void* g_unk_7101a24060[];  // the first base's vtable
 extern void* g_unk_7101a3e3a8[];  // the second base's vtable
-extern void* g_unk_7101a3e5b8[];  // the attack's vtable
 
 struct UnkLavaVec3_ovb0059 {
     u32 x, y, z;

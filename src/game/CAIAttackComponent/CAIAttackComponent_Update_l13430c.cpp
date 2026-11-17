@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkAIAttackOwner_l13430c;
@@ -54,7 +55,6 @@ struct UnkAIAttackComponent_l13430c {
 void fn_7101105990(UnkAIAttackAI_l13430c* ai, UnkAIAttack_l13430c* attack, bool flag);
 // Declared as its other caller has it (CQuetzoaAIComponent): the AI component.
 struct UnkQuetzoaDodgeAI_A3_b76;
-void fn_7101105e14(UnkQuetzoaDodgeAI_A3_b76* self, f32 value);
 void fn_7101105e1c(UnkAIAttackAI_l13430c* ai, f32 value);
 void fn_710113789c(UnkAIAttackComponent_l13430c* self);
 

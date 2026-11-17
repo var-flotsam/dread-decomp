@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/CMagnetSlidingBlockComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -27,7 +28,6 @@ void fn_7100922f28(UnkMagnetSlidingBlockRail_ovb0097* self, f32 alpha);
 UnkMagnetSlidingBlockRail_ovb0097* fn_710091f6bc(void* object);
 
 extern CStrId g_unk_71727375e8 __attribute__((visibility("hidden")));  // "finished"
-extern UnkProperty g_unk_7172737530;
 
 // A handle to a playing vibration: current while the target's serial is the handle's.
 struct UnkHandleTarget {

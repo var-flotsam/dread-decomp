@@ -19,8 +19,6 @@ struct UnkTunnelMsg_b49a4 {
     UnkTunnelMsgInfo_b49a4* field_0x18;
 };
 
-extern void* g_unk_717274a6d8 __attribute__((visibility("hidden")));
-
 bool fn_7100a446e4(u8* self, UnkTunnelMsg_b49a4* msg) {
     if (msg->field_0x18->field_0x10->type == g_unk_717274a6d8)
         fn_7100a443c8((UnkTunnelTrapMorphball*)self);

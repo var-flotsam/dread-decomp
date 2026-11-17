@@ -9,3 +9,4 @@ struct UnkFootstepStatic_b45a2;
 __attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fad8;
 __attribute__((visibility("hidden"))) extern UnkFootstepStatic_b45a2* g_unk_717271fae0;
 extern void* g_unk_7101a73a70[];  // The class's vtable (the second one at +0x1a0).
+extern u64 g_unk_710164ab58;  // a key the platform reads

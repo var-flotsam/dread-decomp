@@ -17,8 +17,8 @@ struct UnkShockWaveHitTest_ovb0123;
 bool fn_71009f4d18(UnkShockWaveHitTest_ovb0123* self, UnkOwner* actor, const UnkVec3f* direction, bool force);
 
 struct UnkEntityBox {
-    CVector3D min;
-    CVector3D max;
+    base::math::CVector3D min;
+    base::math::CVector3D max;
 };
 
 // A position returned in memory (x8): 16 bytes, not trivially copyable.

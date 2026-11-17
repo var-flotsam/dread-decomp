@@ -300,7 +300,6 @@ struct UnkV4_b47 {
 static inline UnkV4_b47 operator*(const UnkV4_b47& a, f32 s) { return fn_7100030830(&a, s); }
 static inline UnkV4_b47 operator+(const UnkV4_b47& a, const UnkV4_b47& b) { return fn_7100030770(&a, &b); }
 
-extern base::reflection::UnkTunable g_unk_71726b0fc0;
 extern const UnkV4_b47 g_unk_7101647c3c __attribute__((visibility("hidden")));  // the glow colours
 extern const UnkV4_b47 g_unk_7101647b4c __attribute__((visibility("hidden")));
 extern const UnkV4_b47 g_unk_7101647b7c __attribute__((visibility("hidden")));

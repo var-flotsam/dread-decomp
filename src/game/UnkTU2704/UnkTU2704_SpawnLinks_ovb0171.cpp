@@ -7,6 +7,7 @@
 // resolved links (fn_710112b7c4). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CBatalloonAIComponent.h"
+#include "game/CCharClassEventScenarioComponent.h"
 #include "game/CSpawnPointComponent.h"
 #include "game/UnkTU1102.h"
 #include "game/UnkTU2506.h"
@@ -53,7 +54,6 @@ void fn_7101132a20(UnkSpawnIdList_ovb0171* self, u32 n) {
 }
 
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 struct UnkSpawnCollider_ovb0171 {
     virtual void vf_0x0();
@@ -83,7 +83,6 @@ static UnkSpawnCollider_ovb0171* Collider(CSpawnPointComponent* self) {
 
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
-UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 struct UnkTriggerCollider_b0058;
 using base::reflection::UnkReflObject;
 struct UnkTracker_71008618cc;

@@ -14,8 +14,6 @@
 
 // The team manager singleton, reached through the GOT.
 
-void fn_71011a73bc(char* manager, UnkRemovedValue_b60* entity);
-
 // An actor as this sees it: reflected, with the removed flag at +0x1b5.
 struct UnkRemovedActor_ldebc28 {
     u8 pad_0x0[0x1b5];

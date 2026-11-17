@@ -7,8 +7,10 @@
 #include "base/UnkStrIdTable.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassLavaPoolComponent.h"
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CCharClassWaterPoolComponent.h"
+#include "game/CLiquidSimulationComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
@@ -116,10 +118,6 @@ struct UnkWaterPoolComponent_b0086 {
     UnkWeakHandle* platform;  // 0xc88
 };
 
-void fn_7100900c44(UnkWaterPoolComponent_b0086* self);
-UnkWaterPoolPlatform_b0086* fn_71008fbfc0(void* source);
-void fn_7100905bdc(UnkWaterPoolPlatform_b0086* platform, f32 value, bool flag);
-
 void fn_7100909368(UnkWaterPoolComponent_b0086* self) {
     fn_7100900c44(self);
     UnkWaterPoolPlatform_b0086* platform = fn_71008fbfc0(self->field_0x30);
@@ -136,7 +134,6 @@ struct UnkCallbackSetVector;
 
 // The collision manager, created on first use (as src/game/CSubAreaManager.cpp declares it).
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
 struct UnkCollisionObject;
 
 static inline UnkManager_7100863a8c* CollisionManager() {

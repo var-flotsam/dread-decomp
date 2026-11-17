@@ -13,6 +13,7 @@
 #include "game/UnkTU134.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2739.h"
+#include "game/UnkTU285.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -51,7 +52,6 @@ struct UnkScaledRecord {
 };
 
 void fn_710021688c(f32 scale, UnkScaledRecord* self, const u32* vec);
-void fn_7100208fa4(UnkXformNode* self, const UnkVec3f* v);
 void fn_7100209394(UnkXformNode* self, const UnkScaledRecord* record);
 
 struct UnkBurstFx_lac44a4 {

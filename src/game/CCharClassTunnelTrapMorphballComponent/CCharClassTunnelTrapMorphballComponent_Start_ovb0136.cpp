@@ -46,7 +46,6 @@ using base::global::UnkStringPool;
 void fn_7100a45150();
 
 // The two collider names (hidden statics of the unit).
-extern CStrId g_unk_717274a6e0[2] __attribute__((visibility("hidden")));
 extern const u64 g_unk_710164b520;  // reached through the GOT
 
 struct UnkTunnelTrapLink_ovb0136 {

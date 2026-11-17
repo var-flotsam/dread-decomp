@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CActorComponent.h"
 #include "game/CAnimationComponent.h"
+#include "game/CCharClassTunnelTrapMorphballComponent.h"
 #include "game/CCollisionComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkBroadphaseObject.h"
@@ -19,8 +20,6 @@ using base::global::CStrId;
 struct UnkWeakTarget;
 
 // The unit's collider names: one id (as CTunnelTrapMorphballComponent_Msg_b49a4.cpp declares it), then a pair.
-extern void* g_unk_717274a6d8 __attribute__((visibility("hidden")));
-extern CStrId g_unk_717274a6e0[2] __attribute__((visibility("hidden")));
 
 struct UnkTunnelTrapOwner_la43a34 {
     u8 pad_0x0[0x220];
@@ -44,7 +43,6 @@ struct UnkTunnelTrap_b48;
 struct UnkTunnelTrapMorphball;
 bool fn_7100a43e7c(UnkTunnelTrap_b48*);
 bool fn_7100a43f78(UnkTunnelTrap_b48*);
-void fn_7100a44074(UnkTunnelTrapMorphball*);
 
 static inline void SetCollider(UnkCollisionContainer* collisions, const CStrId* name, bool enabled) {
     fn_7100d35a98(reinterpret_cast<UnkEntry*>(fn_71008640a4(collisions, name)), enabled);

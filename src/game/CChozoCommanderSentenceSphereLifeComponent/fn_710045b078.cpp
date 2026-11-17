@@ -12,7 +12,6 @@
 template <u32 Base, u32 FlagOffset>
 struct UnkRange275;
 
-void fn_7100208fa4(UnkXformNode* self, const UnkVec3f* v);
 void fn_7100208d1c(UnkRange275<0x118, 0x18>* self, f32 value, f32 limit, f32 fallback, bool refresh, bool flag);
 
 struct UnkSphereLife_l45b078;

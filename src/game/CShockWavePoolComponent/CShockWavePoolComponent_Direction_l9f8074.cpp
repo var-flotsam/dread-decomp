@@ -1,6 +1,7 @@
 // CShockWavePoolComponent unit. fn_71009f8074: the pool's spread direction, +x or -x by the sign of the
 // linked object's transform angle y (+1 without one), turned by fn_710007a450 against an offset along z
 // (+0x164, opposite in sign) and normalised in the xy plane. Names and layouts are placeholders.
+#include "game/UnkTU54.h"
 #include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -21,8 +22,6 @@ struct UnkShockWavePool_l9f8074 {
     u8 pad_0x168[0x1c8 - 0x168];
     UnkShockWavePoolLink_l9f8074* link;  // 0x1c8
 };
-
-UnkVec3f fn_710007a450(void* xform, const UnkVec3f* v);
 
 inline UnkVec3f Turned(UnkVec3f* dir, const UnkVec3f& offset) {
     return fn_710007a450(dir, &offset);

@@ -20,7 +20,6 @@
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
-void fn_71011a73bc(char* manager, UnkRemovedValue_b60* entity);
 void fn_7100da9f60(UnkManager_71726af468* self, UnkActor* actor);
 
 static inline char* TeamManager() {

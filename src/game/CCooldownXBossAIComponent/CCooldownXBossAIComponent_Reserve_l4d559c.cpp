@@ -7,6 +7,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCooldownXBossAIComponent.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -14,7 +15,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 
 struct UnkCooldownXRecord_ovb0088;
-void fn_71004d0b00(UnkCooldownXRecord_ovb0088* self);
 
 // A counted reference: copying it takes a reference on the new object and drops the old one.
 struct UnkCountedRef_l4d559c {

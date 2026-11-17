@@ -8,7 +8,6 @@
 #include "types.h"
 
 bool fn_710110583c(UnkRobotSoldierAI_A2_b69* ai);
-void fn_71006baf90(UnkShelmitAI* ai);
 extern u32 g_unk_7101a63bb8;
 
 struct UnkShelmitEventObject_l6bb110 {

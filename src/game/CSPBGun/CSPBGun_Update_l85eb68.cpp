@@ -1,15 +1,14 @@
 // CSPBGun's unit (tools/tu_map.py unit 1317): the gun's update. Not yet started, it tries to start
 // (fn_710085e504) and says whether it did; started, it stops (fn_710085e918) once it may no longer fire
 // (fn_710085e6d4), and otherwise clears +0x18e8 once fn_710085e7e8 holds. Names and layouts are placeholders.
+#include "game/CSPBGun.h"
 #include "types.h"
 
 struct UnkSPBGun_A5_b63;
 struct UnkSPBGun_b57;
 // As src/game/CSPBGun/CSPBGun_CanFire_ovb0058.cpp, CSPBGun_Start_A5_b63.cpp and CSPBGun_Send_b57.cpp
 // declare them.
-bool fn_710085e6d4(UnkSPBGun_A5_b63* gun);
 bool fn_710085e504(UnkSPBGun_A5_b63* self);
-bool fn_710085e7e8(UnkSPBGun_A5_b63* self);
 void fn_710085e918(UnkSPBGun_b57* self);
 
 struct UnkSPBGun_l85eb68 {

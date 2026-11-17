@@ -18,7 +18,6 @@ struct UnkEnergyWaveCompA_b49;
 struct UnkEnergyWaveCompB_b49;
 struct UnkEnergyWaveObject_b49;
 
-void fn_71002fe5f8(CAbilityComponent* self, f32 dt);
 void fn_71002fe9c0(CAbilityComponent* self, f32 dt);
 void fn_71002ffcb0(CAbilityComponent* self);
 

@@ -6,13 +6,13 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
 #include "game/CAttackComponent.h"
+#include "game/CShakernautAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflObject;
 
-extern const CClass g_unk_7172706520 __attribute__((visibility("hidden")));
 extern const CStrId g_unk_7172706458 __attribute__((visibility("hidden")));
 extern const CStrId g_unk_7172706460 __attribute__((visibility("hidden")));
 extern const CStrId g_unk_7172706468 __attribute__((visibility("hidden")));

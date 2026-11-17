@@ -5,3 +5,4 @@
 // Names and layouts are placeholders.
 #include "types.h"
 extern u8 g_unk_71726cbb88[];
+extern void* g_unk_7101a383a0[];  // the cannon shot attack's vtable

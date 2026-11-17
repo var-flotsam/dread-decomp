@@ -9,9 +9,8 @@
 #include "game/UnkTU107.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU372.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
-
-extern char g_unk_7101a20e58[];  // navmesh::CNavMesh's vtable
 
 struct UnkLinkGroups;
 void fn_710027514c(UnkLinkGroups* self);

@@ -11,7 +11,6 @@
 #include "game/UnkTU1501.h"
 #include "types.h"
 
-extern base::reflection::UnkTunable g_unk_7172745770;  // CTunableSpecialEnergyComponent
 
 struct UnkLifeComponent;
 

@@ -11,6 +11,7 @@
 #include "game/UnkTU1728.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU39.h"
+#include "game/animtree/CAnimTreeElement.h"
 #include "types.h"
 
 struct UnkAnimatedNode_ovb0138;
@@ -23,8 +24,6 @@ struct UnkNodeOwner_ovb0138 {
     u8* field_0x220;
 };
 
-UnkNodeOwner_ovb0138* fn_71002dbb7c(UnkAnimatedNode_ovb0138* self);
-bool fn_710070d820(UnkTrackObject_710117adc0* obj);
 f32 fn_710117a994(UnkAnimComponent_a994* self, const UnkAnimTiming* timing, f32 seconds, f32 rate);
 f32 fn_71010d6868();
 bool fn_710070e3b8(UnkTrack* track, const UnkFlags_71007142e8* parts);

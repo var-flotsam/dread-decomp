@@ -35,11 +35,9 @@ struct UnkEventScenario_b49a2;
 // The collision manager (as src/game/CColliderTriggerComponent/CColliderTriggerComponent_Shape_ovb0058.cpp
 // declares it).
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
-UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 struct UnkTriggerCollider_b0058;
 
 // A scenario entry (0x28 bytes): the bound of its random value at +8 (none when zero).

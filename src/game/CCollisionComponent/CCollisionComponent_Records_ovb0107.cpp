@@ -195,7 +195,6 @@ void fn_710086023c(char* self, u32 capacity, u32 step, u32 flags) {
 // Handing every collider group and every record's object back to the collision manager.
 
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 void fn_7100d46e4c(UnkManager_7100863a8c* self, UnkCollisionObject* group);
 UnkCollisionObject*& fn_7100863cb4(base::global::CRntVector<UnkCollisionObject*>* self, u32 index);
 
@@ -299,7 +298,6 @@ UnkCollisionObject* fn_7100863814(UnkCollisionContainer* self, const CStrId* id,
 
 // Passing an object's flags through the manager's mask table to the component's filters.
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 struct UnkCollisionNode_ovb0107;
 void fn_7100d35b14(UnkCollisionNode_ovb0107* node, u32 mask, void* filter);
@@ -369,7 +367,6 @@ done:
 // Creating a collider group under a name and keeping it.
 struct UnkColliderNode;
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 struct UnkCollisionComponent_Groups_ovb0107 {
     u8 unk_0x0[0x30];
@@ -556,7 +553,6 @@ bool fn_7100865010(UnkCollisionOverlapQuery_ovb0107* self, UnkCollisionShapeNode
 struct UnkTracker_7100863a8c;
 
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 void fn_7100863e04(UnkCollisionContainer* self, UnkCollisionObject* obj) {
     if (!self->records.count)

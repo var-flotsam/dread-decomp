@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkAnimatedNode_ovb0138;
+struct UnkNodeOwner_ovb0138;
 struct UnkPairOwner;
 struct UnkValueSource;
 UnkValueSource** fn_71002dba48(UnkPairOwner* self);
+UnkNodeOwner_ovb0138* fn_71002dbb7c(UnkAnimatedNode_ovb0138* self);

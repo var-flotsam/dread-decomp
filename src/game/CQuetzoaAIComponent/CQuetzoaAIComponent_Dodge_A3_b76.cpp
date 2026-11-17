@@ -9,6 +9,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTUProperty.h"
 #include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -61,7 +62,6 @@ struct UnkQuetzoaDodgeAI_A3_b76 {
     UnkQuetzoaDodge_A3_b76 dodge;  // 0x14ae8
 };
 
-void fn_7101105e14(UnkQuetzoaDodgeAI_A3_b76* self, f32 value);
 UnkQuetzoaVec_A3_b76 fn_710064b0b4(UnkQuetzoaDodgeAI_A3_b76* self, const UnkQuetzoaPos_A3_b76& pos);
 
 bool fn_710064ba50(UnkQuetzoaDodgeAI_A3_b76* self, const u32* message) {

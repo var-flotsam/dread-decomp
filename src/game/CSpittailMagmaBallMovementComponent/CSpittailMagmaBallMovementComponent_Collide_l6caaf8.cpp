@@ -4,6 +4,8 @@
 // armed, fires a shot back along the ball's direction (vf_0x338) and hits the player (vf_0x2a8, unless
 // the definition's +0xed says not to); otherwise the base handles it. Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
+#include "game/CSpittailMagmaBallMovementComponent.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -14,9 +16,7 @@ extern "C" f32 atan2f(f32 y, f32 x);
 extern const char g_unk_710164a788[] __attribute__((visibility("hidden")));
 
 struct UnkSpittailMagmaBallMovement;
-void fn_71006ca5d4(UnkSpittailMagmaBallMovement* self, void* c);
 // Whether the hit was already handled (bombs that touch the player or something they ignore).
-bool fn_7100ac79d8(void* self, void* actor, void* info);
 
 struct UnkMagmaBallPlayerPart_l6caaf8 {
     u8 pad_0x0[0x340];

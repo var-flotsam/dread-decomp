@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CMultiModelUpdaterComponent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -43,7 +44,6 @@ struct UnkMultiModelUpdater_l938390 {
 bool fn_71011715d0(UnkMultiModelUpdater_l938390* self);
 // As src/game/CMultiModelUpdaterComponent/CMultiModelUpdaterComponent_AddModel_l93852c.cpp defines it.
 struct UnkMultiModel_l93852c;
-bool fn_710093852c(UnkMultiModel_l93852c* self, const CStrId* name, const CFilePathStrId* path);
 
 bool fn_7100938390(UnkMultiModelUpdater_l938390* self) {
     if (!fn_71011715d0(self))

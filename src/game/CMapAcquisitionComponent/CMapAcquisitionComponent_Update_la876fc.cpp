@@ -12,6 +12,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkTimelineComponent.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -51,8 +52,6 @@ struct UnkMapAcquisition_la876fc {
 
 extern const u64 g_unk_710164b598;
 extern const u64 g_unk_710164b5a0;
-
-bool fn_7100fd6f74(void* music, const char* name, const u32* mask);
 
 inline const u32& AllMusicLayers_la876fc() {
     static u32 s_value = ~base::reflection::refl_GetEnumZero<0x71726c4090>() & 0x1ff;

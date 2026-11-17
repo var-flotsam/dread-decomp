@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/CFXComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU50.h"
@@ -18,7 +19,6 @@ struct UnkRecord;
 struct UnkCentralUnit_b49;
 struct UnkEmmyAI_b60;
 UnkRecord* fn_710054715c(UnkRecord* self, const UnkRecord* other);
-void fn_71007717c0(UnkCentralUnit_b49* self);
 void fn_7100541fd4(UnkEmmyAI_b60* self);
 void fn_7100369710(void* self);
 

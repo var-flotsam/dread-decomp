@@ -11,7 +11,6 @@
 
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
 
 // The global array's elements (as src/game/CChangeStageNavMeshItemComponent/fn_71009ba9f0.cpp).
 struct UnkElem188 {

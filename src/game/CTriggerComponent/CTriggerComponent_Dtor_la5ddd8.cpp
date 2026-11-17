@@ -16,9 +16,7 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern void* g_unk_7101a8f5c8[];
 // The collision manager (as src/game/CBreakableTileGroup_Reset_b49.cpp declares it).
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 // A reference-counted object, deleted through its vtable slot at +0x10 when the last reference goes.
 struct UnkTriggerRefTarget {
@@ -29,7 +27,7 @@ struct UnkTriggerRefTarget {
 };
 
 // A record of the inline array at +0x64: a counted reference and two words.
-struct __attribute__((packed)) UnkTriggerRecord {
+struct __attribute__((packed)) UnkTriggerRecord_la5ddd8 {
     UnkTriggerRefTarget* target;
     u8 pad_0x8[0x10];
 
@@ -40,7 +38,7 @@ struct __attribute__((packed)) UnkTriggerRecord {
         }
     }
 };
-static_assert(sizeof(UnkTriggerRecord) == 0x18, "layout");
+static_assert(sizeof(UnkTriggerRecord_la5ddd8) == 0x18, "layout");
 
 // An owning pointer of the objects in the array at +0x250.
 struct UnkTriggerOwnedPtr {
@@ -66,7 +64,7 @@ struct UnkTriggerNamedTable {
 static_assert(sizeof(UnkTriggerNamedTable) == 0x38, "layout");
 
 // The member at +0x2b8: a string and, at +0xd0, a member destroyed by fn_71009c172c.
-struct UnkTriggerShape {
+struct UnkTriggerShape_la5ddd8 {
     CRntString text;
     u8 pad_0x30[0xa0];
     u8 field_0xd0[0x98];
@@ -77,13 +75,13 @@ struct UnkTriggerShape {
         fn_710007ecd4(&text);
     }
 };
-static_assert(sizeof(UnkTriggerShape) == 0x168, "layout");
+static_assert(sizeof(UnkTriggerShape_la5ddd8) == 0x168, "layout");
 
 struct UnkTriggerComponent_la5ddd8 : UnkBaseComponent {
     u8 pad_0x40[0x18];
     UnkCollisionObject* collision;  // 0x58
     u32 count;  // 0x60
-    UnkTriggerRecord records[16];  // 0x64
+    UnkTriggerRecord_la5ddd8 records[16];  // 0x64
     u8 pad_0x1e4[4];
     CStrId name;  // 0x1e8
     CStrId field_0x1f0;
@@ -95,7 +93,7 @@ struct UnkTriggerComponent_la5ddd8 : UnkBaseComponent {
     base::global::CRntVector<UnkTriggerOwnedPtr> owned;  // 0x250
     u8 pad_0x278[8];
     UnkTriggerNamedTable field_0x280;
-    UnkTriggerShape field_0x2b8;
+    UnkTriggerShape_la5ddd8 field_0x2b8;
     CStrId field_0x420;
 };
 static_assert(__builtin_offsetof(UnkTriggerComponent_la5ddd8, records) == 0x64, "layout");

@@ -7,6 +7,8 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkSpittailMagmaBallMovement;
 struct UnkModel;
 struct UnkRenderPool;
 void fn_71006cae2c(UnkRenderPool*, const base::global::CFilePathStrId&, UnkModel**, base::global::CStrId*);
+void fn_71006ca5d4(UnkSpittailMagmaBallMovement* self, void* c);

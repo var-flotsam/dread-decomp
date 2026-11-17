@@ -24,8 +24,6 @@ class UnkDaivoSwarm_b0012;
 struct UnkSwarmPath_b0012;
 
 // As src/game/CDaivoSwarmControllerComponent/CDaivoSwarmControllerComponent_Swarm_ovb0012.cpp declares it.
-void fn_7100656f3c(UnkDaivoSwarm_b0012* self, UnkSwarmPath_b0012* path, const UnkVec3Result* dir, const f32* speed,
-                   bool* out, const UnkZeroVec_b0012* offset, f32 radius, f32 limit);
 
 // The object the swarm follows: its velocity at +0x70.
 struct UnkSwarmTarget_l4e2000 {

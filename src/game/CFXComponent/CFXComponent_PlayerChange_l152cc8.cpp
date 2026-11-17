@@ -98,8 +98,6 @@ struct UnkFXPlayerState_pc {
 
 void fn_7101152f88(UnkFXComponent_b0052* self, f32 value);
 // Defined in this unit; it reads the offset and keeps no pointer to it.
-void fn_71011531cc(UnkFXComponent_b0052* self, u32 flag, __attribute__((noescape)) void* arg, f32 value);
-void fn_710115351c(UnkFXComponent_b0052* component);
 
 static const u64 kPlayerEffect = 0x444c7220d7fc64c4ULL;
 

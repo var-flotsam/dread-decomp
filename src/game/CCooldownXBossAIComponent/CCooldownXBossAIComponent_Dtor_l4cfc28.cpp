@@ -2,6 +2,7 @@
 // the damage state, the callback lists, the track listener, the navigation link, the records by id, the
 // three parts with their own listeners and the two out-of-line members, then the boss base destructor
 // (fn_71003ac388). Names and layouts are placeholders.
+#include "game/CCooldownXBossAttack.h"
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "base/global/CRntSmallDictionary.h"
@@ -10,6 +11,7 @@
 #include "game/CAttack.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCentralUnitAIComponent.h"
+#include "game/CCooldownXBossAIComponent.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU341.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
@@ -20,12 +22,8 @@
 using base::global::CStrId;
 
 extern void* g_unk_7101a3ed58[];  // the component's vtable
-extern void* g_unk_7101a3e4b0[];
-extern void* g_unk_7101a3e8b8[];
-extern void* g_unk_7101a3e5b8[];
 
 struct UnkCooldownXRecord_ovb0088;
-void fn_71004d0b00(UnkCooldownXRecord_ovb0088* self);
 void fn_71004cb4cc(void* self);
 struct UnkLavaDropsAttack_ovb0111;
 void fn_71004c86cc(UnkLavaDropsAttack_ovb0111*);

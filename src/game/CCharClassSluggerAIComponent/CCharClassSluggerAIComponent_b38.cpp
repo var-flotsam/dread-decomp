@@ -7,6 +7,7 @@
 #include "game/CCharClassAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 // A position returned in memory (not a plain vector: the original builds it through x8).
@@ -19,7 +20,6 @@ struct UnkSluggerPos {
 
 // The base character class's check, called with the same arguments (declared without them in its
 // generated definition).
-UnkSluggerPos fn_71011008a8(void* ai, u32 index);
 
 u32 fn_71006c53a8(void* self, UnkActor* actor, UnkActor* other) {
     if (u32 result = fn_7100414160())

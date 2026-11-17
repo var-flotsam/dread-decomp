@@ -5,6 +5,7 @@
 // "OnProtoEmmyWalkThroughCentralUnitDoor" script function, else sets the entity at +0x6d8 (its +0x10)
 // active. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
+#include "game/CCentralUnitAIComponent.h"
 #include "game/CDoorCentralUnitLifeComponent.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2668.h"
@@ -23,7 +24,6 @@ struct UnkEntityState;
 using UnkRef = base::UnkRefPtrMember;
 
 struct UnkCentralUnitDoor_b46a2;
-UnkCentralUnitDoor_b46a2* fn_71004056fc(void* object);
 
 struct UnkCentralUnitLink_b46a2 {
     u8 pad_0x0[0x10];

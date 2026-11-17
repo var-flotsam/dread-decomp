@@ -5,6 +5,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CInventoryComponent.h"
 #include "game/UnkAnimationComponent.h"
@@ -22,7 +23,6 @@ struct UnkMovement2_ovb0048;
 struct UnkTunable;
 
 // As src/game/UnkStateMachineUpdateA2_b63.cpp declares it.
-void* fn_7100300bd0(void*, u32);
 // As src/game/CMovementComponent/CMovementComponent_Motion_ovb0048.cpp defines it.
 UnkVec3f fn_71010d2b08(UnkMovement2_ovb0048* self);
 

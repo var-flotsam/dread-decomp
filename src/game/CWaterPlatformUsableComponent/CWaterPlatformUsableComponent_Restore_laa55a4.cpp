@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU372.h"
@@ -14,7 +15,6 @@ using base::global::CStrId;
 
 struct UnkTeleporterSelf_b0233;
 struct UnkWeakTarget;
-void fn_7100a9f300(UnkTeleporterSelf_b0233* self);
 
 static inline UnkNavMeshManager* NavMeshManager() {
     UnkNavMeshManager* manager = g_unk_71726a4510;

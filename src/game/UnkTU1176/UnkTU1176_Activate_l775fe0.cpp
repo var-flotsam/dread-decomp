@@ -4,6 +4,8 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
+#include "game/CCentralUnitAIComponent.h"
+#include "game/UnkTU1176.h"
 #include "game/UnkTU1376.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU437.h"
@@ -12,9 +14,7 @@
 using base::global::CStrId;
 
 struct UnkCentralUnit_b49;
-void fn_71007717c0(UnkCentralUnit_b49* self);
 struct UnkCentralUnitDoor_b46a2;
-UnkCentralUnitDoor_b46a2* fn_71004056fc(void* object);
 struct UnkDoorCentral_A4_b76;
 void fn_71008ca2d0(UnkDoorCentral_A4_b76* self);
 

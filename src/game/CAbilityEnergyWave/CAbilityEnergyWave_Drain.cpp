@@ -2,14 +2,13 @@
 // +0x10 object the amount clamped to that object's +0x44 value, when the result is above
 // FLT_EPSILON (fn_7100a1feac). Names are placeholders.
 #include "game/CAbilityLayout.h"
+#include "game/CSpecialEnergyComponent.h"
 #include "types.h"
 
 struct UnkTarget429 {
     u8 pad_0x0[0x44];
     f32 field_0x44;
 };
-
-void fn_7100a1feac(UnkTarget429* self, f32 amount);
 
 void fn_710030171c(CAbilityComponent* self, f32 amount) {
     UnkWeakHandle* life = self->life;

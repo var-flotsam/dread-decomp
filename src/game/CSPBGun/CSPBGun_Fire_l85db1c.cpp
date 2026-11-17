@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CModelUpdaterComponent.h"
+#include "game/UnkTU437.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -33,7 +34,6 @@ struct UnkBeamAnimation_ovb0138 : UnkReflObject {
 };
 
 // As src/game/CPowerBeamGun/CPowerBeamGun_Fire_ovb0138.cpp declares it.
-void fn_710034f54c(void* object, u32 id, UnkBeamVec_ovb0138* dir);
 
 // The shot being fired: copied whole into the gun, which makes it 6 bytes of data.
 struct UnkSPBShot_l85db1c {

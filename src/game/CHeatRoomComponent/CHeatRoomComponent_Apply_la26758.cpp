@@ -30,18 +30,18 @@ struct UnkHeatCurrent_ovb0083 {
     UnkHeatPair_ovb0083 field_0x8;
     f32 field_0x10;
     f32 field_0x14;
-
-    // Takes a parameter set; the first value only when the set was not applied before.
-    void Apply(const UnkHeatParams_ovb0083& params, bool wasSet) {
-        if (!wasSet)
-            field_0x0 = params.field_0x0;
-        field_0x4 = params.field_0x4;
-        field_0x8.x = params.field_0x8.x;
-        field_0x8.y = params.field_0x8.y;
-        field_0x10 = params.field_0x10;
-        field_0x14 = params.field_0x18;
-    }
 };
+
+// Takes a parameter set; the first value only when the set was not applied before.
+inline void ApplyHeat_la26758(UnkHeatCurrent_ovb0083& current, const UnkHeatParams_ovb0083& params, bool wasSet) {
+    if (!wasSet)
+        current.field_0x0 = params.field_0x0;
+    current.field_0x4 = params.field_0x4;
+    current.field_0x8.x = params.field_0x8.x;
+    current.field_0x8.y = params.field_0x8.y;
+    current.field_0x10 = params.field_0x10;
+    current.field_0x14 = params.field_0x18;
+}
 
 struct UnkHeatRoom_la26758 {
     u8 pad_0x0[0xbc0];
@@ -65,9 +65,9 @@ void fn_7100a26758(UnkHeatRoom_la26758* self) {
     u32 useAlt = reinterpret_cast<u8*>(g_unk_7101d47310)[0x2441];
     self->use_alt = useAlt;
     if (useAlt)
-        self->current.Apply(self->alt, self->alt_was_set);
+        ApplyHeat_la26758(self->current, self->alt, self->alt_was_set);
     else
-        self->current.Apply(self->normal, self->normal_was_set);
+        ApplyHeat_la26758(self->current, self->normal, self->normal_was_set);
     fn_710010808c(g_unk_7101d4d820, reinterpret_cast<UnkPathNode*>(self->sound_path));
     self->normal_was_set = self->normal.field_0x1c;
     self->alt_was_set = self->alt.field_0x1c;

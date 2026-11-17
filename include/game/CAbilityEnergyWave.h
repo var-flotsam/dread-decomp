@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct CAbilityComponent;
 struct CAbility;  // game/CAbilityLayout.h
 struct CAbilityComponent;  // game/CAbilityLayout.h
 struct UnkWeakHandle;
@@ -35,3 +36,5 @@ void fn_71002fd814(void* owner, UnkWeakHandle** holder);
 // The ability's tunables (CAbilityEnergyWave::CTunableAbilityEnergyWave).
 struct UnkTunableValue_ovb0262g;
 extern UnkTunableValue_ovb0262g g_unk_71726af060;
+void fn_71002fe5f8(CAbilityComponent* self, f32 dt);
+void* fn_7100300bd0(void*, u32);

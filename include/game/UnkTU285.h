@@ -5,8 +5,11 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkVec3f;
+struct UnkXformNode;
 struct UnkUnit285_b46a1;
 bool fn_71002084b4(UnkUnit285_b46a1* self);
 void fn_7100208a40(void* part);
 void fn_7100208bb4(void* obj, bool flag);
 void fn_71002093c8(void* p, bool value);
+void fn_7100208fa4(UnkXformNode* self, const UnkVec3f* v);

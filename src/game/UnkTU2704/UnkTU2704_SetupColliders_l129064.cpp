@@ -4,6 +4,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
+#include "game/CCharClassEventScenarioComponent.h"
 #include "game/CSpawnPointComponent.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU2704.h"
@@ -14,7 +15,6 @@
 #include "types.h"
 
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 struct UnkSpawnCollider_l129064 {
     virtual void vf_0x0();
@@ -44,7 +44,6 @@ static UnkSpawnCollider_l129064* Collider(CSpawnPointComponent* self) {
 
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
-UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 struct UnkTriggerCollider_b0058;
 using base::reflection::UnkReflObject;
 struct UnkTracker_71008618cc;

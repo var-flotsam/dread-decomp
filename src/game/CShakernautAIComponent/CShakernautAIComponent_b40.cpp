@@ -6,6 +6,7 @@
 // fn_71006ae820. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CShakernautAIComponent.h"
 #include "types.h"
 #include "game/UnkBehaviorTree.h"
 
@@ -15,7 +16,6 @@ using base::reflection::UnkReflObject;
 struct UnkGobblerComponent;
 bool fn_71006ae480(void* self, bool first);
 void fn_71006ae820(void* self, f32 dt);
-extern const CClass g_unk_7172706520 __attribute__((visibility("hidden")));
 
 struct UnkTuning_sh {
     u8 pad_0x0[0xf0];
