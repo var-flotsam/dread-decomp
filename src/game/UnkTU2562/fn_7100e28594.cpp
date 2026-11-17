@@ -4,7 +4,7 @@
 #include "base/UnkNoArg.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
-#include "game/CDrop.h"
+#include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
@@ -16,76 +16,25 @@ using base::global::CStrId;
 
 extern const CColor4F g_unk_710164be10;
 
-// One entry of the drop's table (0x48 bytes).
-struct UnkLifeEntry_e28594 {
-    CStrId id;
-    CStrId field_0x8;
-    CColor4F color;
-    CColor4F field_0x20;
-    u32 field_0x30;
-    f32 field_0x34;
-    s32 field_0x38;
-    s32 field_0x3c;
-    bool field_0x40;
-};
-static_assert(sizeof(UnkLifeEntry_e28594) == 0x48, "layout");
-
-// The table a drop is set up from: a count and 15 entries (built by fn_71007bf550).
-struct UnkLifeTable_e28594 {
-    u32 count;
-    UnkLifeEntry_e28594 entries[15];
-};
-static_assert(sizeof(UnkLifeTable_e28594) == 0x440, "layout");
-
-
-// The drop (0x4f0 bytes), as this function sees it.
-struct UnkDrop_e28594 {
-    virtual void vf_0x0();
-    virtual void vf_0x8();
-    virtual void vf_0x10();
-    virtual void vf_0x18();
-    virtual void vf_0x20();
-    virtual void vf_0x28();
-    virtual void vf_0x30();
-    virtual void vf_0x38();
-
-    u64 field_0x8;
-    void* owner;              // 0x10
-    void (*callback)(void*);  // 0x18
-    u8 entries[0x438];        // 0x20
-    u8 pad_0x458[8];
-    CStrId name;  // 0x460
-    u8 pad_0x468[0x20];
-    u32 amount;  // 0x488
-    u8 pad_0x48c[0x64];
-};
-static_assert(__builtin_offsetof(UnkDrop_e28594, name) == 0x460, "layout");
-static_assert(__builtin_offsetof(UnkDrop_e28594, amount) == 0x488, "layout");
-static_assert(sizeof(UnkDrop_e28594) == 0x4f0, "layout");
-
 struct UnkDroppedItems_e28594 {
     u8 pad_0x0[0x7810];
     u32 field_0x7810;
     u8 pad_0x7814[0x3c];
-    UnkDrop_e28594* current;  // 0x7850
+    CDrop* current;  // 0x7850
     u8 pad_0x7858[0x38];
-    UnkDrop_e28594 drops[2];  // 0x7890
+    CDrop drops[2];  // 0x7890
 };
 static_assert(__builtin_offsetof(UnkDroppedItems_e28594, drops[1]) == 0x7d80, "layout");
 
 struct UnkDroppableTunable_e28594 {
     u8 pad_0x0[0x48];
-    u32 field_0x48;
+    f32 fLifeBigAmount;  // 0x48
 };
 
-void fn_7100e2f98c(void* owner);
-
 void fn_7100e28594(UnkDroppedItems_e28594* self) {
-    alignas(8) u8 storage[sizeof(UnkLifeTable_e28594)];
-    fn_71007bf550(reinterpret_cast<UnkTable_71007bf550*>(storage));
-    UnkLifeTable_e28594& table = *reinterpret_cast<UnkLifeTable_e28594*>(storage);
+    UnkDropTable table;
 
-    UnkLifeEntry_e28594& entry = table.entries[0];
+    UnkDropTableEntry& entry = table.entries[0];
     entry.field_0x30 = 0;
     table.count = 1;
     entry.field_0x38 = self->field_0x7810;
@@ -105,20 +54,19 @@ void fn_7100e28594(UnkDroppedItems_e28594* self) {
                   0x28, 0x40, 0, 0, true);
 
     // The drop is filled in from a copy of the table, then started.
-    UnkDrop_e28594* drop = &self->drops[1];
+    CDrop* drop = &self->drops[1];
     {
-        UnkLifeTable_e28594 copy = table;
-        u32 amount = reinterpret_cast<const UnkDroppableTunable_e28594*>(&g_unk_71727c10c8)->field_0x48;
-        drop->name = g_unk_71727c1050;
+        UnkDropTable copy = table;
+        f32 amount = reinterpret_cast<const UnkDroppableTunable_e28594*>(&g_unk_71727c10c8)->fLifeBigAmount;
+        drop->item = g_unk_71727c1050;
         drop->owner = self;
         drop->callback = fn_7100e2f98c;
         drop->amount = amount;
-        fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(drop->entries),
+        fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(&drop->table),
                       reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&copy));
         g_unk_717269c4d8 = true;
-        drop->vf_0x38();
+        drop->Start();
         g_unk_717269c4d8 = false;
     }
     self->current = drop;
-    table.~UnkLifeTable_e28594();
 }

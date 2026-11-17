@@ -2,12 +2,15 @@
 // yellow X-Parasite billboard, one entry with its id, colours and counts, and points its three models at
 // the tunable's X-Parasite name under each prefix. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
+#include "base/UnkNoArg.h"
 #include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkTU2561.h"
+#include "game/UnkTU2562.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -43,11 +46,7 @@ struct UnkDropEntrySet_ovb0208;
 UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other);
 
 struct UnkDropTarget_ovb0208;
-void fn_7100e2c124(f32 value, void* self, UnkDropTarget_ovb0208* target, const CStrId* id, u32 a, u32 b, u32 c, u32 d, u32 e,
-                   bool flag);
 
-extern CStrId g_unk_71727c1078;
-extern CStrId g_unk_71727c1088[];
 
 struct UnkDroppedItemManager;
 struct UnkDroppedItem;
@@ -148,7 +147,7 @@ void fn_7100e2a734(UnkBillboardManager_e2a734* self) {
     entry.field_0x34 = Tunable().field_0x80;
     CopyColor(CColor4F(1.0f, 1.0f, 0.0f, 1.0f), entry.c0);
     CopyColor(CColor4F(0.0f, 0.0f, 0.0f, 0.0f), entry.c1);
-    fn_7100e2c124(0.5f, nullptr, reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1078), &entry.id0, 0x10, 0x10, 0x10,
+    fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1078), &entry.id0, 0x10, 0x10, 0x10,
                   0, 0, true);
 
     UnkBillboard* billboard = &self->billboard;

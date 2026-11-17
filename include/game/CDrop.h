@@ -2,8 +2,7 @@
 
 // CDrop: functions of this translation unit that other files call (tools/tu_map.py unit 1222,
 // 0x71007bf170-0x71007c0710). One declaration per function: include this instead of declaring one.
-// Names and layouts are placeholders.
+// Names are placeholders; the drop's layout and its table's constructor (fn_71007bf550) are in
+// game/CDropLayout.h.
 #include "types.h"
 void* fn_71007c04f0(void* object);
-struct UnkTable_71007bf550;
-void fn_71007bf550(UnkTable_71007bf550* self);  // Constructs a drop's table of 15 entries.
