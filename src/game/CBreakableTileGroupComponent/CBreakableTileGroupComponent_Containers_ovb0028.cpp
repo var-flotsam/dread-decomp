@@ -19,6 +19,9 @@
 
 using base::global::CStrId;
 using base::global::UnkStringData;
+#include "base/reflection/TypeObject.h"
+enum class EBreakableTileType : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EBreakableTileType>::object asm("g_unk_7172795ca8");
 
 // ---- CRntVector<STileInfo> ----
 
@@ -419,12 +422,11 @@ UnkTileStatesPair_ovb0028* fn_710075faac(UnkTileStatesPair_ovb0028* self, UnkTil
 
 // ---- Reflection ----
 
-extern base::reflection::CType g_unk_7172795ca8;
 void fn_710075d748(base::reflection::UnkReflFunction* fn);
 
 // CreateNewTile's parameter types (uIdx, eTileType, then the rest from fn_710075d748).
 void fn_710075d430(base::reflection::UnkReflFunction* fn) {
     fn->params.PushBack(fn_7100005178());
-    fn->params.PushBack(&g_unk_7172795ca8);
+    fn->params.PushBack(&base::reflection::TypeObject<EBreakableTileType>::object);
     fn_710075d748(fn);
 }
