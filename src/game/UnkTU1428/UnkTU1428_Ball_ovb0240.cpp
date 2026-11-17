@@ -3,6 +3,7 @@
 
 #include <math.h>
 
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
@@ -24,7 +25,6 @@
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU218.h"
-#include "game/UnkTU25.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkTU2739.h"
@@ -368,8 +368,6 @@ void fn_71009475b0(UnkMorphBall_75b0* self) {
 using base::global::CRntString;
 using base::global::CStrId;
 
-struct UnkPathIds;
-struct UnkInlineString;
 struct UnkMove_b152;
 
 struct UnkMorphBall_eb64;
@@ -379,24 +377,6 @@ void fn_710093efdc(UnkMorphBall_eb64* self, u32 a, u32 b, u32 c);
 struct UnkIdHolder_eb64 {
     u8 pad_0x0[0x30];
     u64 id;
-};
-
-// The ids the builder fills in place, destroyed in reverse order.
-struct UnkPresetIds_eb64 {
-    union {
-        CStrId id;
-    };
-    union {
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-
-    explicit UnkPresetIds_eb64(const CRntString& source) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(this), reinterpret_cast<const UnkInlineString*>(&source));
-    }
-    ~UnkPresetIds_eb64() {
-        path.~UnkStrIdMemberOf();
-        id.~CStrId();
-    }
 };
 
 // A pooled string: the text at +0x10 and a use count at +0x44.
@@ -460,9 +440,9 @@ void fn_710093eb64(UnkMorphBall_eb64* self) {
         UnkStrIdPathResource* preset = &self->preset;
         UnkPresetName_eb64* name = reinterpret_cast<UnkPresetName_eb64*>(sub->field_0xc0.data);
         ++name->use_count;
-        fn_71000267f8(preset, reinterpret_cast<const UnkStrIdPathPair&>(static_cast<const UnkPresetIds_eb64&>(
-                                  UnkPresetIds_eb64(fn_710007f050("audiopreset:system/snd/presets/",
-                                                                  &reinterpret_cast<UnkPresetName_eb64*>(
-                                                                       sub->field_0xc0.data)->text)))));
+        fn_71000267f8(preset, UnkPathIdsFromText(fn_710007f050("audiopreset:system/snd/presets/",
+                                                               &reinterpret_cast<UnkPresetName_eb64*>(
+                                                                    sub->field_0xc0.data)->text))
+                                  .ids);
     }
 }

@@ -5,6 +5,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/UnkNamedRegistry.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -22,24 +23,6 @@ extern void* g_unk_7101ca9fe0[];
 struct UnkObj290_b43a3;
 struct UnkGunShot_ovb0070;
 void fn_710085c338(base::global::CRntVector<UnkGunShot_ovb0070>* shots, u32 n);
-
-// The ids the builder fills in place (the members start out unset), destroyed in reverse order.
-struct UnkBuiltPathIds_lecbddc {
-    union {
-        CStrId id;
-    };
-    union {
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-
-    explicit UnkBuiltPathIds_lecbddc(const UnkInlineString* source) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(this), source);
-    }
-    ~UnkBuiltPathIds_lecbddc() {
-        path.~UnkStrIdMemberOf();
-        id.~CStrId();
-    }
-};
 
 struct UnkShotRecord18_lecbddc {
     UnkRefObject* ref;
@@ -157,7 +140,7 @@ void fn_7100ecbddc(UnkObj290_b43a3* shot) {
 
     base::UnkNamedEntry text;
     fn_710007e704(&text, "audiopreset:system/snd/presets/weapons/common/liquidsplash");
-    fn_71000267f8(&self->path, reinterpret_cast<const UnkStrIdPathPair&>(static_cast<const UnkBuiltPathIds_lecbddc&>(
-                                   UnkBuiltPathIds_lecbddc(reinterpret_cast<const UnkInlineString*>(&text)))));
+    fn_71000267f8(&self->path,
+                  UnkPathIdsFromText(*reinterpret_cast<const base::global::CRntString*>(&text)).ids);
     fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&text));
 }

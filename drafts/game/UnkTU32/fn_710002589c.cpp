@@ -1,6 +1,7 @@
 // Unit 32 of tools/tu_map.py (0x71000255c4-0x7100027774, see src/base/UnkUnit32/UnkTransformNode.cpp):
 // the transform record every node embeds at +0x28 (base/UnkInitRecord_0x5c.h) and the node's
 // constructor. Names and layouts are placeholders.
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -83,46 +84,29 @@ UnkStrIdPathResource* fn_7100027118(UnkStrIdPathResource* self, UnkStrIdPathReso
     return self;
 }
 
-// As src/base/UnkStrIdPathResource_Ctor_b45.cpp declares the builder.
-struct UnkPathIds;
 struct UnkInlineString;
 struct UnkIdPair;
-void fn_710001f074(UnkPathIds* out, const UnkInlineString* path);
 void fn_7100026f70(UnkIdPair* pair);
 
-// The ids the builder fills in place (the members start out unset), destroyed in reverse order.
-struct UnkBuiltPathIds_ovb0177 {
-    union {
-        base::global::CStrId id;
-    };
-    union {
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-
-    explicit UnkBuiltPathIds_ovb0177(const UnkInlineString* source) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(this), source);
-    }
-    ~UnkBuiltPathIds_ovb0177() {}
-    void Destroy() {
-        path.~UnkStrIdMemberOf();
-        id.~CStrId();
-    }
-};
+// Builds a resource from the ids a path text names: empty first, then assigned (as
+// fn_7100027464 does from a pooled string).
+static inline void InitFromText(UnkStrIdPathResource* self, const base::global::CRntString& text) {
+    UnkPathIdsFromText ids(text);
+    new (&self->ids.id) base::global::CStrId(g_unk_7101d470e0);
+    new (&self->ids.path) base::global::CFilePathStrId(g_unk_7101d470e8);
+    self->resource = nullptr;
+    fn_71000267f8(self, ids.ids);
+}
 
 UnkStrIdPathResource* fn_71000272cc(UnkStrIdPathResource* self, const UnkInlineString* other) {
     if (reinterpret_cast<const void*>(other) != reinterpret_cast<const void*>(self)) {
-        UnkBuiltPathIds_ovb0177 ids(other);
         union Raw {
             UnkStrIdPathResource r;
             Raw() {}
             ~Raw() {}
         } raw;
         UnkStrIdPathResource& tmp = raw.r;
-        new (&tmp.ids.id) base::global::CStrId(g_unk_7101d470e0);
-        new (&tmp.ids.path) base::global::CFilePathStrId(g_unk_7101d470e8);
-        tmp.resource = nullptr;
-        fn_71000267f8(&tmp, reinterpret_cast<const UnkStrIdPathPair&>(ids));
-        ids.Destroy();
+        InitFromText(&tmp, *reinterpret_cast<const base::global::CRntString*>(other));
         fn_7100027118(self, &tmp);
         fn_7100026f70(reinterpret_cast<UnkIdPair*>(&tmp));
     }

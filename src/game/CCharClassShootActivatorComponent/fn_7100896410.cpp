@@ -2,9 +2,12 @@
 // ids, a default pair of -1.0 values and a flag, the SHOOT_ACTIVATOR id, the "Used" property, the tunable and
 // class registrations, the SActivatabledOnEventInfo types, the piston sound preset's id and path, and the two
 // listener sets. Names and layouts are placeholders.
+#include <new>
+
 #include "../../game_5821e4/UnkStaticInit.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkNamedRegistry.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
@@ -12,7 +15,6 @@
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/CCharClassShootActivatorComponent.h"
-#include "game/UnkTU25.h"
 #include "game/UnkTUProperty.h"
 #include "game/CAbilitySonar.h"
 
@@ -130,7 +132,7 @@ void fn_7100896410() {
     {
         base::UnkNamedEntry path;
         fn_710007e704(&path, "audiopreset:system/snd/presets/pistonmag_machineryloop");
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(tu.field_0x40), reinterpret_cast<const UnkInlineString*>(&path));
+        new (tu.field_0x40) UnkPathIdsFromText(*reinterpret_cast<const base::global::CRntString*>(&path));
         fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(&path));
     }
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_7100333544), tu.field_0x40, g_unk_7101a19000);

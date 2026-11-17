@@ -4222,7 +4222,7 @@ address,size,name,name_source,subsystem,status
 0x71008c4dc4,804,fn_71008c4dc4,unknown,game/components?,O
 0x71008c50e8,36,fn_71008c50e8,unknown,game/components?,O
 0x71008c510c,120,fn_71008c510c,unknown,game/components?,O
-0x71008c5184,656,fn_71008c5184,unknown,game/components?,U
+0x71008c5184,656,fn_71008c5184,unknown,game/components?,O
 0x71008c5414,456,fn_71008c5414,unknown,game/components?,O
 0x71008c55dc,52,fn_71008c55dc,unknown,game/components?,O
 0x71008c5610,648,fn_71008c5610,unknown,game/components?,U

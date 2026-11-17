@@ -17,7 +17,6 @@
 #include "game/CSwarmControllerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
-#include "game/UnkTU25.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU54.h"
@@ -276,6 +275,7 @@ void fn_7100ed5f2c(UnkShotIdRecordSet* self) {
 #include "base/reflection/UnkReflObjectRead.h"
 #include "base/reflection/UnkReflValue.h"
 #include "base/UnkStrPair.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkFileReader.h"
 
 // The file reader (as src/game/sound/UnkMusicPresets.cpp spells it).
@@ -284,18 +284,7 @@ extern UnkParseCallbacks g_unk_71729da548 __attribute__((visibility("hidden")));
 // The shot kinds (15) and the presets of each kind (8), as indices.
 extern const u32 g_unk_710164befc[8];
 
-// A path string's ids (src/game/GUI/CIngameMenu/fn_7100b2de48.cpp declares the builder so).
-struct UnkPathIds;
-struct UnkInlineString;
-
 using UnkPresetText = UnkBufferString<0x100, g_unk_7101a194b8>;
-
-// The ids the builder fills in place (released with the scope).
-union UnkBuiltPathIds {
-    UnkStrIdPathPair ids;
-    UnkBuiltPathIds() {}
-    ~UnkBuiltPathIds() { ids.~UnkStrIdPathPair(); }
-};
 
 // The managers' preset names (string ids at +0x308, by kind and preset) and the resolved presets
 // (+0x6c8, 0x18 bytes each).
@@ -360,8 +349,7 @@ void fn_7100ed5a04(UnkShotPresets* self) {
                 fn_710007e7f8(stem.Str(), base::reflection::refl_RntStringOf(name).data, dot);
                 fn_710007f3b4(text.Str(), stem.Str());
             }
-            UnkBuiltPathIds built;
-            fn_710001f074(reinterpret_cast<UnkPathIds*>(&built.ids), reinterpret_cast<const UnkInlineString*>(&text));
+            UnkPathIdsFromText built(*text.Str());
             fn_71000267f8(&self->presets[kind][preset], built.ids);
         }
     }

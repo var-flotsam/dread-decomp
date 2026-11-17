@@ -7,6 +7,7 @@
 #include "UnkArmMemberFn.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
@@ -512,25 +513,6 @@ struct UnkInlineString {
     u32 field_0xc0;
 };
 
-struct UnkPathIds;
-
-// A string id and a file-path id, filled in from a path string by fn_710001f074 (the members
-// start out unset) and destroyed in reverse order.
-struct UnkPathIds {
-    union {
-        CStrId id;
-    };
-    union {
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-
-    explicit UnkPathIds(const UnkInlineString& source) { fn_710001f074(this, &source); }
-    ~UnkPathIds() {
-        path.~UnkStrIdMemberOf();
-        id.~CStrId();
-    }
-};
-
 // A reference-counted resource (base/UnkCountedResource.h), dropped when the handle dies.
 struct UnkResourceHandle {
     UnkCountedResource* ptr;
@@ -560,7 +542,7 @@ void fn_7100b2cebc(UnkStateOwner* self) {
     path.field_0xb8 = 0;
     path.field_0xc0 = 0;
     fn_710007e77c(str, "playdata:playthroughs/pt_official/pt_official");
-    fn_71002f7048(g_unk_71726ae8a8, UnkPathIds(path));
+    fn_71002f7048(g_unk_71726ae8a8, UnkPathIdsFromText(*str).ids);
     fn_710007ed40(str);
     fn_710007ecd4(str);
 }

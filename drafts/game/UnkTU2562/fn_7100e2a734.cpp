@@ -3,6 +3,7 @@
 // the tunable's X-Parasite name under each prefix. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
 #include "base/UnkNoArg.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CRntString.h"
@@ -103,27 +104,11 @@ struct UnkBillboardManager_e2a734 {
     UnkBillboard billboard;  // 0x9b20
 };
 
-// The string id and file-path id fn_710001f074 builds in place from a path, destroyed in reverse order.
-struct UnkBuiltPathIds_e21b8c {
-    struct Ids {
-        CStrId id;
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-    alignas(Ids) u8 storage[sizeof(Ids)];
-
-    explicit UnkBuiltPathIds_e21b8c(const CRntString& text) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(storage), reinterpret_cast<const UnkInlineString*>(&text));
-    }
-    const UnkStrIdPathPair& Pair() const { return *reinterpret_cast<const UnkStrIdPathPair*>(storage); }
-    ~UnkBuiltPathIds_e21b8c() { reinterpret_cast<Ids*>(storage)->~Ids(); }
-};
-
 static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
 
 // Points a path resource at the ids parsed from a path (the path is built first).
 static inline void LoadPath(const CRntString& path, UnkStrIdPathResource* resource) {
-    UnkBuiltPathIds_e21b8c ids(path);
-    fn_71000267f8(resource, ids.Pair());
+    fn_71000267f8(resource, UnkPathIdsFromText(path).ids);
 }
 
 // The colour assignment, source first (as `dst = src` evaluates it).
