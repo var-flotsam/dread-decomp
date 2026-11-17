@@ -19,10 +19,12 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CCaterzillaSpawnPointComponent
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
 namespace CCaterzillaSpawnPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -31,7 +33,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(u32, "NumCaterzillas", 0x3c8, (DefaultValue, 5));
     DREAD_REFLECTED_FIELD(f32, "fTimeToGenerateNextWave", 0x3d4, (DefaultValue, 10.0f));
     UnkReflField* field4 = AddReflectedField(cls, CStrId("wpSpawnPointLinked", true), &g_unk_717269bb48, 0x3e0, -1, -1);
-    field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);
+    field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
     DREAD_REFLECTED_FIELD(f32, "fTimeToRespawnAllCaterzillas", 0x428, (DefaultValue, 30.0f));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aHomeLandmarks", 0x438);
     DREAD_REFLECTED_FIELD(bool, "bInOutSpawnPoint", 0x3d1, (DefaultValue, false));

@@ -19,6 +19,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CCharClassSoundProofTriggerComponent
 namespace CCharClassSoundProofTriggerComponent {
@@ -50,7 +53,6 @@ DREAD_REFLECTED_CLASS(CCharClassSoundProofTriggerComponent, CCharClassBaseTrigge
 
 // CSoundProofTriggerComponent
 extern base::reflection::CType g_unk_717269bf08;
-extern base::reflection::CType g_unk_71727bc110;
 namespace CSoundProofTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -61,7 +63,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bFilterSpecificActors", 0xaf5, (DefaultValue, false));
     UnkReflField* field5 = AddReflectedField(cls, CStrId("vActorsToIgnore", true), &g_unk_717269bf08, 0xac0, -1, -1);
     field5->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
-    field5->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 13);
+    field5->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 13);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

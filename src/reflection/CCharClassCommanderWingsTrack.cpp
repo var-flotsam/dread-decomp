@@ -18,17 +18,19 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+enum class EWings : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EWings>::object asm("g_unk_717277df90");
 
 // CCharClassCommanderWingsTrack
-extern base::reflection::CType g_unk_717277df90;
 namespace CCharClassCommanderWingsTrack {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Commander Wings");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Commander", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eWings", true), &g_unk_717277df90, 0x18, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_717277df90, 0);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eWings", true), &base::reflection::TypeObject<EWings>::object, 0x18, -1, -1);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EWings>::object, 0);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

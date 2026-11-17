@@ -19,11 +19,14 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CCentralUnitComponent
 extern base::reflection::CType g_unk_71727b6270;
-extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_7101d679f0;
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_71727b6630;
@@ -43,40 +46,40 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CCentralUnitComponent::ECentralUnitMode", "eMode", 0x3f0, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x6d0, (DefaultValue, false));
     UnkReflField* field2 = AddReflectedField(cls, CStrId("wpBossSpawnPoint", true), &g_unk_71727b6270, 0x3f8, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("wpCentralUnitAI", true), &g_unk_71727b6270, 0x438, -1, -1);
-    field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field4 = AddReflectedField(cls, CStrId("wpBossAlive", true), &g_unk_71727b6270, 0x478, -1, -1);
-    field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    field4->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
+    field4->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     field4->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field5 = AddReflectedField(cls, CStrId("wpBossDestroyed", true), &g_unk_71727b6270, 0x4b8, -1, -1);
-    field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    field5->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
+    field5->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     field5->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field6 = AddReflectedField(cls, CStrId("wpBossDoor", true), &g_unk_71727b6270, 0x4f8, -1, -1);
-    field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD(CStrId, "sBossCollisionCameraID", 0x538, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field8 = AddReflectedField(cls, CStrId("wpEmmySpawnPoint", true), &g_unk_71727b6270, 0x540, -1, -1);
-    field8->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field8->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>", "tEmmyStartPointsInfo", 0x580);
     UnkReflField* field10 = AddReflectedField(cls, CStrId("wpEmmyZoneShape", true), &g_unk_717269bb48, 0x5a8, -1, -1);
-    field10->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field10->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     UnkReflField* field11 = AddReflectedField(cls, CStrId("wpDestroySearchLandmark", true), &g_unk_717269bb48, 0x668, -1, -1);
-    field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     UnkReflField* field12 = AddReflectedField(cls, CStrId("tEmmyForbiddenShapes", true), &g_unk_717269bf08, 0x5e8, -1, -1);
-    field12->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field12->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>", "tEmmyWeightedShapes", 0x610);
     DREAD_REFLECTED_FIELD(bool, "bUnlockDoorsOnEmmyDead", 0x638, (DefaultValue, true));
     UnkReflField* field15 = AddReflectedField(cls, CStrId("tEmmyLockedDoors", true), &g_unk_71727b6630, 0x640, -1, -1);
     field15->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Door to lock on emmy spawn"));
-    field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "tEmmyPhase2DeactivatedActors", 0x6a8);
     UnkReflField* field17 = AddReflectedField(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x970, -1, -1);
-    field17->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field17->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x9b0, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field19 = AddReflectedField(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x9b8, -1, -1);
-    field19->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field19->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FUNCTION("AddEmmySpawnPoint")
         fn_710076e66c(fn, "AddEmmySpawnPoint");
     DREAD_REFLECTED_FUNCTION("Activate") {

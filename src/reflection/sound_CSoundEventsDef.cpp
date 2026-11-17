@@ -21,6 +21,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/ReflectedFields.h"
+#include "base/reflection/TypeObject.h"
+namespace gameeditor { enum class EPersistenceTarget : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
 namespace base::global { class TRntString128; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::TRntString128>::Get();
 namespace sound { class CAudioPresets; }
@@ -105,7 +108,6 @@ DREAD_REFLECTED_ROOT_CLASS(sound::CSoundEventsDef::SSoundEventsSelector);
 
 // sound::CSoundManager
 void fn_7101028f4c();
-extern base::reflection::CType g_unk_7172756f90;
 namespace sound::CSoundManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -117,7 +119,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_7101028f4c);
     }
     UnkReflField* field0 = AddReflectedField(cls, CStrId("pAudioPresets", true), base::reflection::PointerType<sound::CAudioPresets*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &g_unk_7172756f90, 8);
+    field0->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 8);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

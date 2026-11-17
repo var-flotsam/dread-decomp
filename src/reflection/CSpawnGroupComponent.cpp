@@ -19,6 +19,9 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CSpawnGroupComponent
@@ -27,7 +30,6 @@ void fn_710111fc58();
 void fn_710111fcf8();
 extern base::global::CRntString g_unk_7101d58d10;
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
 void fn_710111fd34();
 extern base::reflection::CType g_unk_7172a07250;
 namespace CSpawnGroupComponent {
@@ -68,9 +70,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bGenerateEntitiesByOrder", 0x142, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(CStrId, "sLogicCollisionShapeID", 0x418, (DefaultValue, CStrId(g_unk_7101d470e0)));
     UnkReflField* field20 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0xb8, -1, -1);
-    field20->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field20->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     UnkReflField* field21 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0xf8, -1, -1);
-    field21->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
+    field21->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD(f32, "fDropAmmoProb", 0x3d8, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(s32, "iInitToGenerate", 0x188, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(CStrId, "sArenaId", 0x1c0, (DefaultValue, CStrId(g_unk_7101d470e0)));
@@ -86,7 +88,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field27 = AddReflectedField(cls, CStrId("vectSpawnPoints", true), &g_unk_7172a07250, 0x68, -1, -1);
     field27->attrs.Add<bool>(base::reflection::attr::DisableListAdd(), true);
     field27->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
-    field27->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 3);
+    field27->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
     field27->attrs_0x70.Add<const char*>(base::reflection::attr::eActorLinkToComponentLinkTransform(), "SPAWNPOINT");
 }
 bool refl_Equals(const void*, const void*) { return false; }
