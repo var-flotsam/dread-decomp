@@ -16,7 +16,7 @@ worktree. `PY` below is `.venv/Scripts/python`.
    known match as proof). Work only in that worktree from here on.
 2. The queue. Pick the functions, then `PY tools/batch/lean/prepare.py --addrs FILE --model sonnet --budget 3
    --ghidra` (one model; `--per-worker K`, 10 by default, puts up to K functions of one unit in a worker's job), or `--sample N` / `--all` for the tiered recipe in
-   `coord.py`'s docstring. `PY tools/hubs.py --version 2.1.0 --ready --boot` lists functions whose callees are
+   `coord.py`'s docstring. `PY tools/hubs.py --version 2.1.0 --ready` lists functions whose callees are
    done; the pilot's result says to stay at 400 bytes or less. Two things in what prepare.py writes:
    - **Reference matches** (`--refs N`, default 3). Each function's context ends with the hand-written
      functions that already match and are closest to it (alike in code, or naming the same callees and

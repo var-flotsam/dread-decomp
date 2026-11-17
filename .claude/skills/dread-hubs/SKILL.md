@@ -99,7 +99,7 @@ hand-written includers; objects go to `build/baseline/obj/`, so parallel agents 
 
 - `tools/decl_check.py --list`: conflicting signatures first (they can never link), then symbols
   with many identical copies (one header declaration removes them all mechanically).
-- `tools/hubs.py --version 2.1.0 --boot`: unmatched hubs by unmatched callers; a small `U` hub
+- `tools/hubs.py --version 2.1.0`: unmatched hubs by unmatched callers; a small `U` hub
   (under ~150 B) is worth matching first so the canonical signature comes from a definition
   (`.claude/skills/dread-match`).
 - New sources go under `src/<subsystem>/` named by `tools/tu_map.py --function <addr>`; never a new
