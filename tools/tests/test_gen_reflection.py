@@ -356,3 +356,14 @@ class LooseClassLines(unittest.TestCase):
             "}  // namespace CFoo::SBar",
             "DREAD_REFLECTED_DESCRIPTOR(CFoo::SBar);",
         ])
+
+
+class KeyValueClass(unittest.TestCase):
+    def test_names(self):
+        name = "base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId,float>>" \
+               "::TKeyElementConstIterator::value_type"
+        self.assertEqual(gr.key_value_class(name)[0],
+                         "base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, float>>")
+        self.assertIsNone(gr.key_value_class(
+            "base::reflection::CollectionTypeMapper<base::global::CArray<int,4>>::TKeyElementIterator::value_type"))
+        self.assertIsNone(gr.key_value_class("CFoo::SBar"))

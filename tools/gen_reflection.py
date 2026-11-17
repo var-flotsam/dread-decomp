@@ -218,12 +218,12 @@ def role_name(slot: int) -> str:
     return f"refl_{ROLES[slot][0]}"
 
 
-def role_helper(orig: asmdiff.Original, slot: int, addr: int) -> str | None:
-    """A helper with a known shape, in the readable form under its role name, or None."""
+def role_helper(orig: asmdiff.Original, slot: int, addr: int, name: str | None = None) -> str | None:
+    """A helper with a known shape, in the readable form under its role name (or `name`), or None."""
     cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
     text = "; ".join(f"{x.mnemonic} {x.op_str}".strip() for x in cs.disasm(orig.function(addr), addr))
     shape_src = HELPER_SHAPES.get((slot, text))
-    return ROLE_SHAPES[shape_src].format(name=role_name(slot)) if shape_src else None
+    return ROLE_SHAPES[shape_src].format(name=name or role_name(slot)) if shape_src else None
 
 
 def reflection_names(g: "Getter") -> dict[int, str]:
@@ -552,7 +552,12 @@ def loose_class_names(orig: asmdiff.Original, version: str, attached: set[int], 
         if len(found) == 1:
             objects[a] = found.pop()
     names = gen_fields.built_objects(version, set(objects.values()))
-    named = {a: names[o] for a, o in objects.items() if o in names and readable_type(names[o])}
+    named = {}
+    for a, o in objects.items():
+        if o in names and readable_type(names[o]):
+            named[a] = names[o]
+        elif o in names and key_value_class(names[o]):
+            named[a] = key_value_class(names[o])[0]
     count: dict[str, int] = {}
     for n in named.values():
         count[n] = count.get(n, 0) + 1
@@ -569,6 +574,48 @@ def loose_names(orig: asmdiff.Original, version: str, attached: set[int], taken:
         for slot, h in ctors[a][2].items():
             out[h] = f"{name}::{role_name(slot)}"
     return out
+
+
+# The pair a collection's key-element iterator yields, as the static initialiser names its descriptor.
+KEY_VALUE_RE = re.compile(r"base::reflection::CollectionTypeMapper<(.+)>::TKeyElement(Const)?Iterator::value_type")
+# Its class (base/reflection/KeyElementValue.h), as data/functions/ names it.
+KEY_VALUE_CLASS_RE = re.compile(r"base::reflection::(Const)?KeyElementValue<(.+)>")
+
+
+def key_value_class(name: str) -> tuple[str, tuple] | None:
+    """(the class data/functions/ names it under, the parsed collection type) of a key-element iterator's
+    pair (KeyElementValue<C> or ConstKeyElementValue<C>), when C is a type whose names can be declared
+    without colliding with each other; None for any other name."""
+    m = KEY_VALUE_RE.fullmatch(re.sub(r"(?<=\w)\s+(?=\w)", " ", re.sub(r"\s+(?!\w)|(?<!\w)\s+", "", name)))
+    node = gen_types.parse_type(m.group(1)) if m else None
+    if not node or node[2] or gen_types.declaration_clashes([node]):
+        return None
+    cls = f"base::reflection::{'Const' if m.group(2) else ''}KeyElementValue<{gen_types.render_type(node)}>"
+    return gen_types.demangled_spelling(cls), node
+
+
+def key_value_lines(orig: asmdiff.Original, name: str, size: int, abstract: bool,
+                    traits: dict[int, int]) -> tuple[list[str], tuple]:
+    """A key-element pair's class (`name` as data/functions/ gives it) as specialisations of
+    KeyElementValue's members, and the parsed collection type whose names its file declares."""
+    m = KEY_VALUE_CLASS_RE.fullmatch(gen_types.source_spelling(name))
+    cls = f"{m.group(1) or ''}KeyElementValue<{m.group(2)}>"
+    lines = [f"// The pair {m.group(2)}'s {'const ' if m.group(1) else ''}key-element iterator yields."]
+    for h, slot in sorted((h, slot) for slot, h in traits.items()):
+        src = role_helper(orig, slot, h, f"{cls}::{role_name(slot)}")
+        if src:
+            lines += ["template <>", src]
+    lines += ["template <>", f"struct {cls}::refl_Description : ClassDescription {{",
+              f"    static constexpr u64 size = {size:#x};"]
+    if abstract:
+        lines.append("    static constexpr bool abstract = true;")
+    lines += [f"    static constexpr auto {ROLES[slot][1]} = &{role_name(slot)};" for slot in TRAIT_SLOTS if slot in traits]
+    return lines + ["};", f"DREAD_REFLECTED_DESCRIPTOR({cls});"], gen_types.parse_type(m.group(2))
+
+
+KEY_VALUE_HEAD = ['#include "base/reflection/CClass.h"', '#include "base/reflection/KeyElementValue.h"',
+                  '#include "base/reflection/ReflectedClass.h"', "", *READABLE_PRELUDE,
+                  "using base::reflection::ConstKeyElementValue;", "using base::reflection::KeyElementValue;"]
 
 
 def loose_class_lines(orig: asmdiff.Original, name: str, size: int, abstract: bool,
@@ -1133,7 +1180,8 @@ def main() -> int:
         n = fn_names.get(a, "")
         if n.endswith("::refl_InitClass"):
             t = n[:-len("::refl_InitClass")]
-            if readable_type(t) and all(fn_names.get(h) == f"{t}::{role_name(slot)}" for slot, h in ctors[a][2].items()):
+            if (readable_type(t) or KEY_VALUE_CLASS_RE.fullmatch(t)) \
+                    and all(fn_names.get(h) == f"{t}::{role_name(slot)}" for slot, h in ctors[a][2].items()):
                 class_of_init[a] = t
     named_head = ['#include "base/reflection/CClass.h"', '#include "base/reflection/ReflectedClass.h"', "",
                   *READABLE_PRELUDE, ""]
@@ -1143,7 +1191,12 @@ def main() -> int:
     def check_loose(a: int) -> bool:
         t = class_of_init[a]
         src, obj = work / f"{a:x}.cpp", work / f"{a:x}.o"
-        src.write_text(chr(10).join([*named_head, *loose_class_lines(orig, t, *ctors[a])]) + chr(10), encoding="utf-8")
+        if KEY_VALUE_CLASS_RE.fullmatch(t):
+            body, node = key_value_lines(orig, t, *ctors[a])
+            text = [*KEY_VALUE_HEAD, *gen_types.type_declarations(node), "", *body]
+        else:
+            text = [*named_head, *loose_class_lines(orig, t, *ctors[a])]
+        src.write_text(chr(10).join(text) + chr(10), encoding="utf-8")
         if subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True).returncode != 0:
             return False
         names = {f"{t}::{role_name(slot)}": h for slot, h in ctors[a][2].items()}
@@ -1156,6 +1209,28 @@ def main() -> int:
 
     with ThreadPoolExecutor() as pool:
         named_ok = {a for a, ok in zip(list(class_of_init), pool.map(check_loose, list(class_of_init))) if ok}
+    # The key-element pairs go to files of their own, each with the declarations its collections need; a
+    # pair whose declarations would collide with a file's starts the next.
+    pairs = sorted(a for a in named_ok if KEY_VALUE_CLASS_RE.fullmatch(class_of_init[a]))
+    pair_files: list[list[tuple[list[str], tuple]]] = []
+    for a in pairs:
+        body, node = key_value_lines(orig, class_of_init[a], *ctors[a])
+        if not pair_files or len(pair_files[-1]) >= REGISTRATION_CHUNK \
+                or gen_types.declaration_clashes([n for _, n in pair_files[-1]] + [node]):
+            pair_files.append([])
+        pair_files[-1].append((body, node))
+    for f in OUT.glob("key_element_values_*.cpp"):
+        f.unlink()
+    for k, group in enumerate(pair_files):
+        decls = sorted({d for _, n in group for d in gen_types.type_declarations(n)})
+        lines = ["// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
+                 "// The classes of the pairs collections' key-element iterators yield (base/reflection/KeyElementValue.h),",
+                 "// byte-identical to the original.", *KEY_VALUE_HEAD, "", *decls, ""]
+        for body, _ in group:
+            lines += body + [""]
+            ctors_generated += 1
+        (OUT / f"key_element_values_{k:02d}.cpp").write_text(chr(10).join(lines), encoding="utf-8", newline=chr(10))
+    loose = [a for a in loose if a not in pairs]
     for k in range(0, len(loose), REGISTRATION_CHUNK):
         chunk = loose[k:k + REGISTRATION_CHUNK]
         lines = ["// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
@@ -1180,8 +1255,8 @@ def main() -> int:
             ctors_generated += 1
         (OUT / f"class_descriptors_{k // REGISTRATION_CHUNK:02d}.cpp").write_text(chr(10).join(lines), encoding="utf-8",
                                                                                 newline=chr(10))
-    print(f"loose descriptor constructors: {len(named_ok)} of {len(loose)} in the namespace form "
-          f"({len(class_of_init)} named by data/functions/)")
+    print(f"loose descriptor constructors: {len(named_ok) - len(pairs)} of {len(loose)} in the namespace form, "
+          f"{len(pairs)} key-element pairs by collection ({len(class_of_init)} named by data/functions/)")
     write_chunks("registration", ["// Attribute/member-field registration functions not reached from a class getter",
                                   "// (tools/refl_attrs.py), byte-identical to the original."],
                  {a: others[a] for a in others_ok})
