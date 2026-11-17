@@ -7,6 +7,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkAIComponent.h"
 #include "game/UnkAttack.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU2702.h"
@@ -55,23 +56,6 @@ u8* fn_710046840c(UnkDashSlashAttack_b0237* self) {
 }
 
 struct UnkStruct_7101176ea8;
-struct UnkFlags_ovb0237 {
-    u32 bits;
-    UnkFlags_ovb0237() : bits(0) {}
-    UnkFlags_ovb0237(u32 b) : bits(b) {}
-    UnkFlags_ovb0237(const UnkFlags_ovb0237& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_ovb0237& UnkFlagsNone_ovb0237() {
-    static UnkFlags_ovb0237 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_ovb0237& UnkFlagsAll_ovb0237() {
-    static UnkFlags_ovb0237 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_ovb0237().bits & 7);
-    return s_all;
-}
-
 struct UnkStruct_71007142e8 {
     f32 m[12];
     u8 pad_0x30[0x40];
@@ -107,7 +91,7 @@ void fn_71004684d0(UnkDashSlashAttack2_b0237* self) {
     UnkStruct_71007142e8 motion;
     fn_71007142e8(&motion);
     UnkMotionTracks* tracks = timeline->tracks;
-    UnkFlags_ovb0237 flags = UnkFlagsAll_ovb0237();
+    UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     f32 x = motion.m[3];
     f32 y = motion.m[7];

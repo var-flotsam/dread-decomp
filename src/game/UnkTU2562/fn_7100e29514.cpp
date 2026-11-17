@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
 #include "game/UnkTU341.h"
@@ -27,16 +28,9 @@ struct UnkDroppedItems_e29514 {
 };
 static_assert(__builtin_offsetof(UnkDroppedItems_e29514, drops[4]) == 0x8c50, "layout");
 
-struct UnkDroppableTunable_e29514 {
-    u8 pad_0x0[0x54];
-    f32 fPowerBombAmount;  // 0x54
-    u8 pad_0x58[0x20];
-    u8 field_0x78;  // which id of g_unk_71727c1088's table the second entry takes
-};
-
 void fn_7100e29514(UnkDroppedItems_e29514* self) {
     UnkDropTable table;
-    const UnkDroppableTunable_e29514* tunable = reinterpret_cast<const UnkDroppableTunable_e29514*>(&g_unk_71727c10c8);
+    const UnkDroppableTunable* tunable = &g_unk_71727c10c8;
     const CStrId* ids = g_unk_71727c1088;
 
     UnkDropTableEntry& second = table.entries[1];
@@ -47,14 +41,14 @@ void fn_7100e29514(UnkDroppedItems_e29514* self) {
         CStrId name("PowerBomb0", true);
         second.id.ReleaseAndTake(name);
     }
-    second.field_0x8 = ids[tunable->field_0x78];
+    second.field_0x8 = ids[tunable->bDropsDoRelaxMovement];
     {
         CColor4F white(1.0f, 1.0f, 1.0f, 1.0f);
-        fn_7100030728(&second.color, &white);
+        second.color = white;
     }
     {
         CColor4F none(0.0f, 0.0f, 0.0f, 0.0f);
-        fn_7100030728(&second.field_0x20, &none);
+        second.field_0x20 = none;
     }
     second.field_0x34 = 1.0f;
     fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1068), &second.id, 0x23,
@@ -70,11 +64,11 @@ void fn_7100e29514(UnkDroppedItems_e29514* self) {
     first.field_0x8 = ids[3];
     {
         CColor4F white(1.0f, 1.0f, 1.0f, 1.0f);
-        fn_7100030728(&first.color, &white);
+        first.color = white;
     }
     {
         CColor4F red(1.0f, 0.0f, 0.0f, 0.0f);
-        fn_7100030728(&first.field_0x20, &red);
+        first.field_0x20 = red;
     }
     first.color.a = 1.0f;
     fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1068), &first.id, 0x23,
@@ -89,8 +83,7 @@ void fn_7100e29514(UnkDroppedItems_e29514* self) {
         drop->owner = self;
         drop->callback = fn_7100e2f99c;
         drop->amount = amount;
-        fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(&drop->table),
-                      reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&copy));
+        drop->table = copy;
         g_unk_717269c4d8 = true;
         drop->Start();
         g_unk_717269c4d8 = false;

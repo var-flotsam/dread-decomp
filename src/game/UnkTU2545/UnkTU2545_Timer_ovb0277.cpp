@@ -14,7 +14,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 struct UnkHms {
     u32 hours;
@@ -103,20 +103,12 @@ void fn_7100dd7750(UnkTimerPanel_b0277* self) {
     HIDE(field_0x240);
     HIDE(field_0x238);
 }
-inline const UnkLoadingMask& UnkMaskNone4() {
-    static UnkLoadingMask s asm("g_unk_71727bdf70");
+inline const UnkMask& UnkMaskNone4() {
+    static UnkMask s asm("g_unk_71727bdf70");
     return s;
 }
-inline const UnkLoadingMask& UnkMaskAll4() {
-    static UnkLoadingMask s asm("g_unk_71727bdf60")(~UnkMaskNone4().bits & 0xf);
-    return s;
-}
-inline const UnkLoadingMask& UnkMaskNone9() {
-    static UnkLoadingMask s asm("g_unk_71726c4090");
-    return s;
-}
-inline const UnkLoadingMask& UnkMaskAll9() {
-    static UnkLoadingMask s asm("g_unk_71726c4080")(~UnkMaskNone9().bits & 0x1ff);
+inline const UnkMask& UnkMaskAll4() {
+    static UnkMask s asm("g_unk_71727bdf60")(~UnkMaskNone4().bits & 0xf);
     return s;
 }
 
@@ -154,7 +146,7 @@ void fn_7100dd60fc(UnkPanel_b0277* self) {
         fn_7100fd3804(music);
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(music);
     }
-    fn_7100fd7b44(music, UnkMaskAll4(), UnkMaskAll9(), 0.0f);
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), UnkMaskAll4(), UnkMaskOf<UnkMusicMaskTag>::All(), 0.0f);
     if (self->field_0x269)
         return;
     auto* input = *reinterpret_cast<UnkInput_b0277**>(SoundHolder_b0277());

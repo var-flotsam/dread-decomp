@@ -2,27 +2,11 @@
 // whole length, through `m`) to the height `to_y` over the motion's time (at most max_time); the result keeps its
 // default (zero velocity, unit scale, zero time) when the motion has no time. Names and layouts are placeholders.
 #include "base/UnkMatrix44.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_71007142e8() {
-    static UnkFlags_71007142e8 s_none;
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_71007142e8() {
-    static UnkFlags_71007142e8 s_all(~UnkFlagsNone_71007142e8().bits & 7);
-    return s_all;
-}
 
 // The motion fn_71007142e8 initialises: the time it takes at +0x6c.
 struct UnkStruct_71007142e8 {

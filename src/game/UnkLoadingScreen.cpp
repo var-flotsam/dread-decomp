@@ -20,7 +20,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 // A fade colour (the same definition as src/game/UnkScreenFade.cpp's).
 struct UnkFadeColor {
@@ -31,20 +31,6 @@ struct UnkFadeColor {
 
     UnkFadeColor(f32 r_, f32 g_, f32 b_, f32 a_) : r(r_), g(g_), b(b_), a(a_) {}
 };
-
-// A bit mask passed by value (copied into a temporary), and its two guarded constants.
-template <class T>
-struct UnkLoadingMaskOf {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
-        return s;
-    }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkLoadingMaskTag;
 
 // The object behind +0x20 whose node at +0x18 shows the fade.
 struct UnkLoadingFade {
@@ -118,13 +104,14 @@ void fn_7100e10aac(UnkLoadingScreen* self) {
         fn_7100f011c4(SceneState(), self->field_0x28);
         fn_7100f00714(SceneState());
         self->field_0x28 = 0x50;
-        fn_7100fd7b44(MusicManager(), UnkLoadingMask(4), UnkLoadingMaskOf<UnkLoadingMaskTag>::All(), 0.2f);
+        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(4),
+                      UnkMaskOf<UnkMusicMaskTag>::All(), 0.2f);
     }
     if (self->field_0x18) {
         fn_71002199d8(g_unk_7101d47300, static_cast<UnkItemBase_71011a91c4*>(self->field_0x18), 3);
         self->field_0x18 = nullptr;
     }
-    fn_7100fd7b44(MusicManager(), UnkLoadingMask(10), UnkLoadingMask(0x100), 0.2f);
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(10), UnkMask(0x100), 0.2f);
     self->field_0x0 = 0;
     fn_7100fdca28(MusicManager(), 0);
     fn_71011b6b5c(g_unk_717271e8f8, 0);

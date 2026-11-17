@@ -163,6 +163,7 @@ address,digest,verdict,rules,detail
 0x7100df026c,be9be092b5b2db4d3ce49757f92c8f8f,inconclusive,2,unresolved base::global::CFilePathStrId::CFilePathStrId(char const*; bool)
 0x7100df4610,00a9e610abd21e60f3ecbc301efbe5eb,inconclusive,2,only 81% of the original's instructions ran
 0x7100e10aac,7d9e1eb74b5465e4564f6d912e6ae46d,inconclusive,2,unresolved guard variable for UnkLoadingMaskOf<UnkLoadingMaskTag>::All()::s (no address in the original)
+0x7100e211cc,680b06d4d7c641c3c9ff79f4907e086b,pass,2,
 0x7100e3cee0,810985efc3703226b5a16ff25ab540ca,pass,2,both runs faulted; on different accesses
 0x7100e3da0c,62ea570c773ccb8ddfc348ca61468c45,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
 0x7100e51078,780a52cb9799fa0e32c0a5bdaf4410d4,pass,2,

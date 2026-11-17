@@ -11,7 +11,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 struct UnkSingleton2595_b0225 {
     u8 pad_0x0[0x59];
@@ -35,16 +35,6 @@ static inline UnkSingleton2595_b0225* Singleton2595() {
 
 struct UnkVec;
 
-// The channel mask as src/base/reflection/reflection_environment_ovb0056.cpp defines it.
-inline const UnkLoadingMask& UnkLoadingMaskNone() {
-    static UnkLoadingMask s asm("g_unk_71726c4090");
-    return s;
-}
-inline const UnkLoadingMask& UnkLoadingMaskAll() {
-    static UnkLoadingMask s asm("g_unk_71726c4080")(~UnkLoadingMaskNone().bits & 0x1ff);
-    return s;
-}
-
 struct UnkVec3_b0225 {
     u64 xy;
     u32 z;
@@ -65,5 +55,5 @@ void fn_7100f1435c() {
         fn_7100fd3804(instance);
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
-    fn_7100fd7b44(instance, UnkLoadingMask(4), UnkLoadingMaskAll(), 0.3f);
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(instance), UnkMask(4), UnkMaskOf<UnkMusicMaskTag>::All(), 0.3f);
 }

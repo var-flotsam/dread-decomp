@@ -23,7 +23,6 @@ struct UnkStatics_71000113b0 {
     u8 type[8];
 };
 
-using unk_static_init::UnkResType;
 
 extern UnkStatics_71000113b0 g_unk_7101d4cdc8 __attribute__((visibility("hidden")));
 extern char g_unk_7101d4bd38;
@@ -83,7 +82,7 @@ void fn_71000113b0() {
     fn_710000a7cc();
     fn_710009ec00(&g_unk_7101d4c131, const_cast<base::reflection::CType*>(&g_unk_7101d4cfb0));
     {
-        UnkResType types[1];
+        UnkResFormat types[1];
         const char* sources0[2];
         sources0[0] = ".mbls";
         sources0[1] = ".mblst";

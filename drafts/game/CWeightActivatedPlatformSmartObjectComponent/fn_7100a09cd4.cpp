@@ -6,16 +6,15 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CScenario.h"
+#include "game/CUsableComponent.h"
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTypedValue.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-struct UnkUsableComponent_b49a4;
-void fn_7100a9ffcc(UnkUsableComponent_b49a4* self, bool flag);
 
 struct UnkWapState_la09cd4 {
     virtual void vf_0x0();
@@ -49,15 +48,11 @@ struct UnkWapMachine_la09cd4 {
     bool busy;
 
     UnkWapState_la09cd4* Find(u32 id) {
-        UnkWapStatePtr_la09cd4* p = states;
-        for (u64 size = count * sizeof(*p); size != 0; size -= sizeof(*p), ++p) {
-            if ((*p)->id == id)
-                return *p;
-        }
-        return nullptr;
+        return FindStateById(states, count, id);
     }
 
-    void Request(u32 id) {
+    // Inlined in the original; the barrier in Find makes it too large for the inliner otherwise.
+    __attribute__((always_inline)) void Request(u32 id) {
         pending = id;
         if (id > kLast || busy)
             return;

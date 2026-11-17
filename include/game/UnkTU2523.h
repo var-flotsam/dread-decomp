@@ -30,6 +30,8 @@ UnkKraidCreatureVec fn_7100d7be08(void* actor);
 void fn_7100d7c510(UnkShipRechargeEntity_b49a4* entity, UnkSoundHandle* handle, f32 fade, f32 delay);
 const UnkDropCameraVec3* fn_7100d7c9f4(UnkPlayer* player);
 UnkSoundHandle fn_7100d7c45c(UnkEntityWithSound* self, void* a, void* b, void* c);
+// Plays a sound description (game/sound/UnkSoundDesc.h) on the entity, if it has a sound component.
+UnkSoundHandle fn_7100d7c374(UnkEntityWithSound* self, void* desc, void* b, bool c, bool d, bool e);
 void fn_7100d7b054(void* target, f32 delay);
 void fn_7100d7c548(UnkActor* self, const UnkStrIdPathPair* ids, f32 blend, f32 start);
 UnkEntityBox fn_7100d7bc70(const UnkEntityBounds* self);

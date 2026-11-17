@@ -13,7 +13,9 @@
 #include "base/snd/UnkSound.h"
 #include "game/CAutclastChargeAttack.h"
 #include "game/CDizzeanSwarmControllerComponent.h"
+#include "game/CDropLayout.h"
 #include "game/CInventoryComponent.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
@@ -37,95 +39,48 @@ using base::global::CStrId;
 
 // ---- The tunable ----
 
-extern void* g_unk_7101aa9cc8[];
-
-struct UnkDropTunable_ovb0208 : UnkTunable {
-    u8 pad_0x8[0x90];
-    base::global::CRntString n0, n1, n2, n3, n4, n5, n6, n7, n8;  // 0x98
-    u8 pad_0x248[0x10];
-};
-static_assert(sizeof(UnkDropTunable_ovb0208) == 0x258, "size");
-
-static inline void Destroy(UnkDropTunable_ovb0208* self) {
+static inline void Destroy(UnkDroppableTunable* self) {
     self->vtable = g_unk_7101aa9cc8 + 2;
-    fn_710007ecd4(&self->n8);
-    fn_710007ecd4(&self->n7);
-    fn_710007ecd4(&self->n6);
-    fn_710007ecd4(&self->n5);
-    fn_710007ecd4(&self->n4);
-    fn_710007ecd4(&self->n3);
-    fn_710007ecd4(&self->n2);
-    fn_710007ecd4(&self->n1);
-    fn_710007ecd4(&self->n0);
+    fn_710007ecd4(&self->sAbsorbingSoundPresetName);
+    fn_710007ecd4(&self->sDropAbsorbPowerBombPresetName);
+    fn_710007ecd4(&self->sDropAbsorbMissilePresetName);
+    fn_710007ecd4(&self->sDropAbsorbLifeBigPresetName);
+    fn_710007ecd4(&self->sDropAbsorbLifePresetName);
+    fn_710007ecd4(&self->sMiniXFlyPresetName);
+    fn_710007ecd4(&self->sMiniXAbsorbLargeGroupPresetName);
+    fn_710007ecd4(&self->sMiniXAbsorbMediumGroupPresetName);
+    fn_710007ecd4(&self->sMiniXAbsorbSmallGroupPresetName);
     fn_7100075104(self);
 }
 
-void fn_7100e20ba0(UnkDropTunable_ovb0208* self) { Destroy(self); }
+void fn_7100e20ba0(UnkDroppableTunable* self) { Destroy(self); }
 
-void fn_7100e2f208(UnkDropTunable_ovb0208* self) {
+void fn_7100e2f208(UnkDroppableTunable* self) {
     Destroy(self);
     __builtin_operator_delete(self);
 }
 
-void fn_7100e2f6e0(UnkDropTunable_ovb0208* self) {
+void fn_7100e2f6e0(UnkDroppableTunable* self) {
     __builtin_memset(self, 0, sizeof(*self));
     fn_7100136ecc(self);
     self->vtable = g_unk_7101aa9cc8 + 2;
-    fn_710007e6c4(&self->n0);
-    fn_710007e6c4(&self->n1);
-    fn_710007e6c4(&self->n2);
-    fn_710007e6c4(&self->n3);
-    fn_710007e6c4(&self->n4);
-    fn_710007e6c4(&self->n5);
-    fn_710007e6c4(&self->n6);
-    fn_710007e6c4(&self->n7);
-    fn_710007e6c4(&self->n8);
-    reinterpret_cast<void (*)(UnkDropTunable_ovb0208*)>(self->vtable[3])(self);
+    fn_710007e6c4(&self->sMiniXAbsorbSmallGroupPresetName);
+    fn_710007e6c4(&self->sMiniXAbsorbMediumGroupPresetName);
+    fn_710007e6c4(&self->sMiniXAbsorbLargeGroupPresetName);
+    fn_710007e6c4(&self->sMiniXFlyPresetName);
+    fn_710007e6c4(&self->sDropAbsorbLifePresetName);
+    fn_710007e6c4(&self->sDropAbsorbLifeBigPresetName);
+    fn_710007e6c4(&self->sDropAbsorbMissilePresetName);
+    fn_710007e6c4(&self->sDropAbsorbPowerBombPresetName);
+    fn_710007e6c4(&self->sAbsorbingSoundPresetName);
+    reinterpret_cast<void (*)(UnkDroppableTunable*)>(self->vtable[3])(self);
 }
 
-// ---- The entry copy ----
+// ---- The drop table's assignment (include/game/CDropLayout.h) ----
 
-struct UnkDropEntry_ovb0208 {
-    CStrId id0;                  // 0x0
-    CStrId id1;                  // 0x8
-    base::color::CColor4F c0;    // 0x10
-    base::color::CColor4F c1;    // 0x20
-    u64 pair[2];                 // 0x30
-    u8 flag;                     // 0x40
-    u8 pad_0x41[7];
+UnkDropTableEntry& UnkDropTableEntry::operator=(const UnkDropTableEntry& other) = default;
 
-    __attribute__((always_inline)) UnkDropEntry_ovb0208* Assign(const UnkDropEntry_ovb0208& o) {
-        id0 = o.id0;
-        id1 = o.id1;
-        fn_7100030728(&c0, &o.c0);
-        fn_7100030728(&c1, &o.c1);
-        u8 f = o.flag;
-        u64 p0 = o.pair[0], p1 = o.pair[1];
-        flag = f;
-        pair[0] = p0;
-        pair[1] = p1;
-        return this;
-    }
-};
-static_assert(sizeof(UnkDropEntry_ovb0208) == 0x48, "size");
-
-__attribute__((noinline)) UnkDropEntry_ovb0208* fn_7100e2f28c(UnkDropEntry_ovb0208* self, const UnkDropEntry_ovb0208* other) {
-    return self->Assign(*other);
-}
-
-struct UnkDropEntrySet_ovb0208 {
-    u32 field_0x0;
-    u32 pad_0x4;
-    UnkDropEntry_ovb0208 entries[15];  // 0x8
-};
-static_assert(sizeof(UnkDropEntrySet_ovb0208) == 0x440, "size");
-
-UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other) {
-    self->field_0x0 = other->field_0x0;
-    for (int i = 0; i < 15; ++i)
-        fn_7100e2f28c(&self->entries[i], &other->entries[i]);
-    return self;
-}
+UnkDropTable& UnkDropTable::operator=(const UnkDropTable& other) = default;
 
 // ---- The manager ----
 

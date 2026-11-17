@@ -5,7 +5,7 @@
 
 #include "../../game_s7/UnkIter.h"
 #include "../../game_s7/UnkPropBagS7.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
@@ -65,11 +65,6 @@ inline const UnkZero_l18cdfc& MusicChannelsNone_l18cdfc() {
     static UnkZero_l18cdfc s_value;
     return s_value;
 }
-inline const UnkLoadingMask& MusicChannelsAll_l18cdfc() {
-    static UnkLoadingMask s_mask(~MusicChannelsNone_l18cdfc().value & 0x1ff);
-    return s_mask;
-}
-
 // Every rumble channel: the complement of a zero, limited to five bits.
 inline const UnkZero_l18cdfc& RumbleChannelsNone_l18cdfc() {
     static UnkZero_l18cdfc s_value;
@@ -103,7 +98,7 @@ void fn_710118cdfc(UnkIngameMenu_l18cdfc* self) {
         fn_7100fd3804(music);
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(music);
     }
-    fn_7100fd7b44(music, UnkLoadingMask(2), MusicChannelsAll_l18cdfc(), 0.4f);
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All(), 0.4f);
 
     fn_7100108b1c(g_unk_7101d4d820);
     alignas(8) u32 sound = 0xef;

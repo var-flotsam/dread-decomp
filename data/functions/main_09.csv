@@ -745,7 +745,7 @@ address,size,name,name_source,subsystem,status
 0x7100918304,44,fn_7100918304,unknown,game/components?,O
 0x7100918330,28,fn_7100918330,unknown,game/components?,O
 0x710091834c,36,fn_710091834c,unknown,game/components?,O
-0x7100918370,608,fn_7100918370,unknown,game/components?,U
+0x7100918370,608,fn_7100918370,unknown,game/components?,O
 0x71009185d0,32,fn_71009185d0,unknown,game/components?,O
 0x71009185f0,604,fn_71009185f0,unknown,game/components?,O
 0x710091884c,556,fn_710091884c,unknown,game/components?,O
@@ -756,7 +756,7 @@ address,size,name,name_source,subsystem,status
 0x7100918ef4,40,fn_7100918ef4,unknown,game/components?,O
 0x7100918f1c,412,fn_7100918f1c,unknown,game/components?,O
 0x71009190b8,412,fn_71009190b8,unknown,game/components?,O
-0x7100919254,676,fn_7100919254,unknown,game/components?,U
+0x7100919254,676,fn_7100919254,unknown,game/components?,O
 0x71009194f8,28,fn_71009194f8,unknown,game/components?,O
 0x7100919514,132,fn_7100919514,unknown,game/components?,O
 0x7100919598,8,CMagmaKraidPistonPlatformComponent::refl_Equals,reflection,game/components,O
@@ -3940,7 +3940,7 @@ address,size,name,name_source,subsystem,status
 0x71009cd410,92,fn_71009cd410,unknown,game/components?,O
 0x71009cd46c,344,fn_71009cd46c,unknown,game/components?,O
 0x71009cd5c4,144,fn_71009cd5c4,unknown,game/components?,O
-0x71009cd654,652,fn_71009cd654,unknown,game/components?,U
+0x71009cd654,652,fn_71009cd654,unknown,game/components?,O
 0x71009cd8e0,256,fn_71009cd8e0,unknown,game/components?,O
 0x71009cd9e0,604,fn_71009cd9e0,unknown,game/components?,U
 0x71009cdc3c,12,fn_71009cdc3c,unknown,game/components?,O

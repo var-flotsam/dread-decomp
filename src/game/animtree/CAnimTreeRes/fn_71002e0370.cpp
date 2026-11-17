@@ -32,7 +32,7 @@ void fn_71002e0370() {
     fn_71002dfda8();
     fn_710009ec00(g_unk_71726aad40, g_unk_71726aadc8.field_0xb0);
     [] {
-        UnkResType types[1];
+        UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".msat";
         fn_7100004578(&types[0], "animtree::CAnimTreeRes", ".bmsat", sources0, 1);

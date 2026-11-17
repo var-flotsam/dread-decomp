@@ -2,6 +2,7 @@
 // CLifeComponent_HealDamage.cpp's fn_71011601b8 and fn_7101160348 do by an amount. The life at +0x54 moves
 // through vtable slot 0x168 with the new value and the old one (the maximum when healing); the result says whether it did. Names are
 // placeholders.
+#include "game/CLifeComponent.h"
 #include "types.h"
 
 struct UnkLifeValues_b49 {

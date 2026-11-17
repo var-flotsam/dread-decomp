@@ -41,5 +41,5 @@ struct UnkIdsRecord38 {
 };
 static_assert(sizeof(UnkIdsRecord38) == 0x38, "UnkIdsRecord38 layout");
 
-void fn_7100004a44(unk_static_init::UnkResType* self) { reinterpret_cast<UnkIdsRecord38*>(self)->~UnkIdsRecord38(); }
+void fn_7100004a44(UnkResFormat* self) { reinterpret_cast<UnkIdsRecord38*>(self)->~UnkIdsRecord38(); }
 

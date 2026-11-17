@@ -3176,7 +3176,7 @@ address,size,name,name_source,subsystem,status
 0x7101090f50,232,lua_bind::PlayCustomMusic,string,script/bindings,O
 0x7101091040,984,lua_bind::PlayMusicStream,string,script/bindings,U
 0x7101091420,344,lua_bind::StopMusic,string,script/bindings,O
-0x7101091580,444,lua_bind::StopMusicPreset,string,script/bindings,U
+0x7101091580,444,lua_bind::StopMusicPreset,string,script/bindings,O
 0x7101091740,728,lua_bind::StopMusicStream,string,script/bindings,U
 0x7101091a20,180,lua_bind::IsPlayingPreset,string,script/bindings,O
 0x7101091ae0,468,lua_bind::StopMusicWithFade,string,script/bindings,O
@@ -4114,7 +4114,7 @@ address,size,name,name_source,subsystem,status
 0x71010c7e6c,516,fn_71010c7e6c,unknown,unknown,U
 0x71010c8070,112,fn_71010c8070,unknown,unknown,O
 0x71010c80e0,72,fn_71010c80e0,unknown,unknown,O
-0x71010c8128,492,fn_71010c8128,unknown,unknown,U
+0x71010c8128,492,fn_71010c8128,unknown,unknown,O
 0x71010c8314,896,fn_71010c8314,unknown,unknown,U
 0x71010c8694,2232,fn_71010c8694,unknown,unknown,U
 0x71010c8f4c,76,fn_71010c8f4c,unknown,unknown,O

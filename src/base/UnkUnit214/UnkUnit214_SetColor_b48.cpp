@@ -12,7 +12,7 @@ struct UnkUnit214Owner {
 };
 
 void fn_7100196338(UnkUnit214Owner* self, const CColor4F* color) {
-    fn_7100030728(&self->color, color);
+    self->color = *color;
     self->rgba[0] = (s32)(self->color.r * 255.0f);
     self->rgba[1] = (s32)(self->color.g * 255.0f);
     self->rgba[2] = (s32)(self->color.b * 255.0f);

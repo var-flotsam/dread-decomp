@@ -62,8 +62,8 @@ void fn_7100209968(void* node, f32 duration, const UnkFadeColor* from_, const Un
     f32 d = !(duration < 0.0f) ? duration : 0.0f;
     self->elapsed = 0.0f;
     self->duration = d;
-    fn_7100030728(&self->from, from);
-    fn_7100030728(&self->to, to);
+    self->from = *from;
+    self->to = *to;
     self->fading = d > 0.0f;
     if (self->from.a > 0.996f)
         self->from.a = 1.0f;

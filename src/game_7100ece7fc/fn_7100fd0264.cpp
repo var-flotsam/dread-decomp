@@ -4,13 +4,9 @@
 // (fn_7100fe1050).
 #include <new>
 
+#include "game/UnkEntry_0x150.h"
 #include "game/UnkTU2635.h"
 #include "types.h"
-
-struct UnkEntry_0x150 {
-    u64 data[0x150 / 8];
-    ~UnkEntry_0x150() asm("fn_7100fd11e8");  // fn_7100fd11e8
-};
 
 struct UnkBase_0x30_7100fe1050 {
     void** vtable;

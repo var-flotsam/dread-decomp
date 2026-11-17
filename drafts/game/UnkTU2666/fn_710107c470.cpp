@@ -8,6 +8,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -98,13 +99,11 @@ struct UnkMoveStateMachine_l07c470 {
     bool locked;
 
     UnkMoveState_l07c470* Find(s32 id) {
-        for (UnkMoveStatePtr_l07c470* p = states; p != states + count; ++p)
-            if ((*p)->id == id)
-                return *p;
-        return nullptr;
+        return FindStateById(states, count, id);
     }
 
-    void Request(s32 id) {
+    // Inlined in the original; the barrier in Find makes it too large for the inliner otherwise.
+    __attribute__((always_inline)) void Request(s32 id) {
         pending = id;
         if (locked)
             return;

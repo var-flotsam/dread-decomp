@@ -3,6 +3,7 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkAttack.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "game_s2/UnkParams.h"
@@ -83,23 +84,6 @@ void fn_710049e6b8(UnkPoisonClawsStart_ovb0122* self) {
 struct UnkStruct_7101176ea8;
 
 // As src/game/CSamusFloorSlideMovementState/CParams/CParams_Slide_ovb0004.cpp defines them.
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_71007142e8() {
-    static UnkFlags_71007142e8 s_none;
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_71007142e8() {
-    static UnkFlags_71007142e8 s_all(~UnkFlagsNone_71007142e8().bits & 7);
-    return s_all;
-}
-
 struct UnkStruct_71007142e8 {
     u8 pad_0x0[0x2c];
     f32 field_0x2c;

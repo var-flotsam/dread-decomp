@@ -92,9 +92,7 @@ struct UnkIdPair;
 // fn_7100027464 does from a pooled string).
 static inline void InitFromText(UnkStrIdPathResource* self, const base::global::CRntString& text) {
     UnkPathIdsFromText ids(text);
-    new (&self->ids.id) base::global::CStrId(g_unk_7101d470e0);
-    new (&self->ids.path) base::global::CFilePathStrId(g_unk_7101d470e8);
-    self->resource = nullptr;
+    new (self) UnkStrIdPathResource();
     fn_71000267f8(self, ids.ids);
 }
 

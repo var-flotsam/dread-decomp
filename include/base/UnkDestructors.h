@@ -9,11 +9,25 @@
 #include <new>
 
 #include "base/UnkBlockFreeList.h"
+#include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
 namespace base {
+
+// The empty id of a pool, which a default id copies: g_unk_7101d470e0 for the string pool,
+// g_unk_7101d470e8 for the file-path pool.
+template <global::UnkStringPool*& Pool>
+struct UnkEmptyStrIdOf;
+template <>
+struct UnkEmptyStrIdOf<g_unk_7101d47108> {
+    static global::UnkStringData* Data() { return g_unk_7101d470e0.data; }
+};
+template <>
+struct UnkEmptyStrIdOf<g_unk_7101d47200> {
+    static global::UnkStringData* Data() { return g_unk_7101d470e8.data; }
+};
 
 // A string id released in two steps (the original reloads the id and the count after the
 // decrement, and the pool after a release), unlike CStrId. Which engine type it is is unknown.
@@ -23,6 +37,12 @@ template <global::UnkStringPool*& Pool>
 struct UnkStrIdMemberOf {
     global::UnkStringData* data;
 
+    // A copy of the pool's empty id, as CStrId's copy constructor makes one (fn_71007bf3f0 builds
+    // three, fn_7100e211cc seven, in UnkStrIdPathResource).
+    UnkStrIdMemberOf() : data(UnkEmptyStrIdOf<Pool>::Data()) {
+        if (&Pool->empty != data)
+            ++data->ref_count;
+    }
     // Moves take the id and leave the pool's empty string; copy-assignment retains the new id
     // first. Inferred from fn_71000de484/fn_71000de574, which these don't match yet (scheduling).
     UnkStrIdMemberOf(UnkStrIdMemberOf&& other) : data(other.data) { other.data = &Pool->empty; }

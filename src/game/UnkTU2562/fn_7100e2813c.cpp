@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
 #include "game/UnkTU341.h"
@@ -26,11 +27,6 @@ struct UnkDroppedItems_e2813c {
 };
 static_assert(__builtin_offsetof(UnkDroppedItems_e2813c, drops[0]) == 0x7890, "layout");
 
-struct UnkDroppableTunable_e2813c {
-    u8 pad_0x0[0x44];
-    f32 fLifeAmount;  // 0x44
-};
-
 void fn_7100e2813c(UnkDroppedItems_e2813c* self) {
     UnkDropTable table;
 
@@ -43,11 +39,11 @@ void fn_7100e2813c(UnkDroppedItems_e2813c* self) {
         entry.id.ReleaseAndTake(name);
     }
     entry.field_0x8 = g_unk_71727c1088[0];
-    fn_7100030728(&entry.color, &g_unk_710164be00);
+    entry.color = g_unk_710164be00;
     entry.color.a = 1.0f;
     {
         CColor4F red(1.0f, 0.0f, 0.0f, 0.0f);
-        fn_7100030728(&entry.field_0x20, &red);
+        entry.field_0x20 = red;
     }
     entry.field_0x3c = -1;
     fn_7100e2c124(1.0f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1048), &entry.id, 0x19,
@@ -57,13 +53,12 @@ void fn_7100e2813c(UnkDroppedItems_e2813c* self) {
     CDrop* drop = &self->drops[0];
     {
         UnkDropTable copy = table;
-        f32 amount = reinterpret_cast<const UnkDroppableTunable_e2813c*>(&g_unk_71727c10c8)->fLifeAmount;
+        f32 amount = g_unk_71727c10c8.fLifeAmount;
         drop->item = g_unk_71727c1048;
         drop->owner = self;
         drop->callback = fn_7100e2f98c;
         drop->amount = amount;
-        fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(&drop->table),
-                      reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&copy));
+        drop->table = copy;
         g_unk_717269c4d8 = true;
         drop->Start();
         g_unk_717269c4d8 = false;

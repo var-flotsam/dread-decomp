@@ -3,175 +3,87 @@
 // handed to the registry and destroyed. Names and layouts are placeholders.
 #include <new>
 
+#include "base/UnkResDesc.h"
 #include "base/UnkResKey.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/UnkTU204.h"
 #include "types.h"
 
 extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
+using base::global::CFilePathStrId;
 using base::global::CStrId;
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
 
-// A file-path id held raw (the record's constructor and destructor are out of line), with the
-// assignments and the move and copy constructors CFilePathStrId inlines.
-struct UnkPathId {
-    UnkStringData* data;
+// An element of the record's list of path ids, constructed in place: a pushed temporary is moved in
+// bitwise (the original reloads `count` after storing it), a stored id is copied.
+static void Construct(CFilePathStrId* p, CFilePathStrId&& value) {
+    __builtin_memcpy(p, &value, sizeof(CFilePathStrId));
+    value.data = &g_unk_7101d47200->empty;
+}
+static void Construct(CFilePathStrId* p, const CFilePathStrId& value) { new (p) CFilePathStrId(value); }
 
-    struct NoInit {};
-    UnkPathId(NoInit) {}
-    UnkPathId(UnkPathId&& other) {
-        data = other.data;
-        other.data = &g_unk_7101d47200->empty;
-    }
-    UnkPathId(const UnkPathId& other) : data(other.data) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
+// CRntVector's PushBack (base/global/CRntVector.h) on the record's list, inlined: growth moves the
+// elements one by one.
+template <class U>
+__attribute__((always_inline)) static void PushBack(UnkResPathVec* paths, U&& value) {
+    u32 n = paths->count;
+    u32 old_capacity = paths->capacity;
+    u32 new_capacity = old_capacity;
+    if (old_capacity <= n && paths->step != 0)
+        new_capacity = (n / paths->step + 1) * paths->step;
+    if ((s32)n >= (s32)new_capacity)
+        for (;;) {
         }
-    }
-    UnkPathId& operator=(UnkPathId&& other) {
-        this->~UnkPathId();
-        new (this) UnkPathId(static_cast<UnkPathId&&>(other));
-        return *this;
-    }
-    UnkPathId& operator=(const UnkPathId& other) {
-        if (data != other.data) {
-            UnkStringData* d = other.data;
-            UnkStringPool* pool = g_unk_7101d47200;
-            if (d != &pool->empty)
-                ++d->ref_count;
-            if (data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
+    CFilePathStrId* p;
+    if (old_capacity < new_capacity) {
+        p = static_cast<CFilePathStrId*>(
+            paths->allocator->vf_0x40((u64)new_capacity * sizeof(CFilePathStrId), 8, paths->flags));
+        if (paths->data) {
+            CFilePathStrId* src = paths->data;
+            CFilePathStrId* dst = p;
+            for (u32 i = 0; i < paths->count; ++i, ++src, ++dst) {
+                Construct(dst, static_cast<CFilePathStrId&&>(*src));
+                src->~CFilePathStrId();
             }
-            data = d;
+            paths->allocator->vf_0x48(paths->data);
         }
-        return *this;
+        n = paths->count;
+        paths->data = p;
+        paths->capacity = new_capacity;
+    } else {
+        p = paths->data;
     }
-};
+    Construct(&p[n], static_cast<U&&>(value));
+    ++paths->count;
+}
 
-// A path id built from a string: CFilePathStrId's constructor (fn_71000166c8, base/global/CFilePathStrId.h)
-// run on this storage.
-struct UnkNewPathId : UnkPathId {
-    UnkNewPathId(const char* str, bool flag) : UnkPathId(UnkPathId::NoInit()) {
-        new (static_cast<UnkPathId*>(this)) base::global::CFilePathStrId(str, flag);
-    }
-};
-
-// The engine's vector of path ids, whose growth moves the elements one by one.
-struct UnkPathVec {
-    UnkPathId* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-
-    // The pushed element is moved in bitwise (the original reloads `count` after storing it).
-    static void Construct(UnkPathId* p, UnkPathId&& value) {
-        __builtin_memcpy(p, &value, sizeof(UnkPathId));
-        value.data = &g_unk_7101d47200->empty;
-    }
-    static void Construct(UnkPathId* p, const UnkPathId& value) { new (p) UnkPathId(value); }
-
-    template <class U>
-    __attribute__((always_inline)) void PushBack(U&& value) {
-        u32 n = count;
-        u32 old_capacity = capacity;
-        u32 new_capacity = old_capacity;
-        if (old_capacity <= n && step != 0)
-            new_capacity = (n / step + 1) * step;
-        if ((s32)n >= (s32)new_capacity)
-            for (;;) {
-            }
-        UnkPathId* p;
-        if (old_capacity < new_capacity) {
-            p = static_cast<UnkPathId*>(allocator->vf_0x40((u64)new_capacity * sizeof(UnkPathId), 8, flags));
-            if (data) {
-                UnkPathId* src = data;
-                UnkPathId* dst = p;
-                for (u32 i = 0; i < count; ++i, ++src, ++dst) {
-                    Construct(dst, static_cast<UnkPathId&&>(*src));
-                    src->~UnkPathId();
-                }
-                allocator->vf_0x48(data);
-            }
-            n = count;
-            data = p;
-            capacity = new_capacity;
-        } else {
-            p = data;
-        }
-        Construct(&p[n], static_cast<U&&>(value));
-        ++count;
-    }
-
-    // base::global::CRntVector::operator[].
-    const UnkPathId& operator[](s32 i) const {
-        if (!((u32)i < count))
-            __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-        return data[i];
-    }
-};
-
-struct UnkResFactory;
-
-// The record a type is registered with.
-struct UnkResDesc {
-    u8 unk_0x0[0x10];
-    CStrId name;              // 0x10
-    UnkPathId field_0x18;
-    UnkPathId field_0x20;
-    void* field_0x28;
-    void (*field_0x30)();
-    void* field_0x38;
-    void (*field_0x40)();
-    u8 unk_0x48[0x8];
-    u32 type;                 // 0x50
-    u8 unk_0x54[0xc];
-    UnkPathVec paths;         // 0x60
-    UnkPathId field_0x88;
-
-    UnkResDesc(const UnkResType* type, UnkResFactory* factory) asm("fn_71000e9a7c");
-    ~UnkResDesc() asm("fn_71000e8dd0");
-};
-static_assert(sizeof(UnkResDesc) == 0x90, "");
+// base::global::CRntVector::operator[].
+static const CFilePathStrId& At(const UnkResPathVec& paths, s32 i) {
+    if (!((u32)i < paths.count))
+        __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
+    return paths.data[i];
+}
 
 void fn_71000ea29c(UnkResRegistry* registry, UnkResDesc* desc);
-UnkPathId fn_7100169c74(const CStrId& name);
 void fn_71001b2e44();
 void fn_71001b2e4c();
 void fn_71001b2e54();
 
 // This file's statics (laid out together by the compiler).
 struct UnkResStatics {
-    UnkPathId field_0x0;
-    UnkPathId field_0x8;
-    UnkPathVec paths;  // 0x10
+    CFilePathStrId field_0x0;
+    CFilePathStrId field_0x8;
+    UnkResPathVec paths;  // 0x10
     UnkResFactory* factory[1];  // 0x38: used by address only
 };
 extern UnkResStatics g_unk_716e5543a0 __attribute__((visibility("hidden")));
 #define FACTORY reinterpret_cast<UnkResFactory*>(&g_unk_716e5543a0.factory)
 
 // The other registered types (models, textures and the sonar's in base/UnkResKey.h).
-extern const UnkResType g_unk_716e453ef8, g_unk_716e454178, g_unk_716e4542f8, g_unk_716e4541f8,
-    g_unk_716e454278;
+extern const UnkResType g_unk_716e453ef8, g_unk_716e454178, g_unk_716e4542f8, g_unk_716e4541f8;
 
 // NON_MATCHING(minor): in the last type's copy loop the original keeps the vector's count in a
 // register across iterations (one load before the loop); ours reloads it with the capacity at the
@@ -196,19 +108,19 @@ void fn_71001b1dd0() {
         desc.type = 0x2f;
         desc.name = g_unk_716e453ef8.name;
         desc.field_0x18 = fn_7100169c74(CStrId("error", true));
-        desc.field_0x20 = UnkNewPathId("system/shd/", true);
-        desc.field_0x28 = nullptr;
-        desc.field_0x30 = fn_71001b2e44;
-        desc.field_0x38 = nullptr;
-        desc.field_0x40 = fn_71001b2e4c;
+        desc.field_0x20 = CFilePathStrId("system/shd/", true);
+        desc.field_0x28.context = nullptr;
+        desc.field_0x28.function = fn_71001b2e44;
+        desc.field_0x38.context = nullptr;
+        desc.field_0x38.function = fn_71001b2e4c;
         fn_71000ea29c(registry, &desc);
     }
     {
         fn_71001b122c();
         UnkResDesc desc(&g_unk_716e453f78, FACTORY);
-        desc.paths.PushBack(UnkNewPathId("system/engine/surfaces/", true));
-        desc.paths.PushBack(UnkNewPathId("system/engine/surfaces/instances/", true));
-        desc.field_0x88 = UnkNewPathId("imats", true);
+        PushBack(&desc.paths, CFilePathStrId("system/engine/surfaces/", true));
+        PushBack(&desc.paths, CFilePathStrId("system/engine/surfaces/instances/", true));
+        desc.field_0x88 = CFilePathStrId("imats", true);
         desc.type = 0x35;
         fn_71000ea29c(registry, &desc);
     }
@@ -241,13 +153,13 @@ void fn_71001b1dd0() {
         UnkResDesc desc(&g_unk_716e4540f8, FACTORY);
         s32 n = g_unk_716e5543a0.paths.count;
         for (s32 i = 0; i < n; i++)
-            desc.paths.PushBack(g_unk_716e5543a0.paths[i]);
+            PushBack(&desc.paths, At(g_unk_716e5543a0.paths, i));
         desc.field_0x88 = g_unk_716e5543a0.field_0x0;
         desc.type = 0x14;
         desc.name = g_unk_716e4540f8.name;
         desc.field_0x18 = g_unk_716e5543a0.field_0x8;
-        desc.field_0x38 = nullptr;
-        desc.field_0x40 = fn_71001b2e54;
+        desc.field_0x38.context = nullptr;
+        desc.field_0x38.function = fn_71001b2e54;
         fn_71000ea29c(registry, &desc);
     }
 }

@@ -7,22 +7,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-#include "base/UnkLoadingMask.h"
-
-// The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
-// guarded constants.
-template <class T>
-struct UnkLoadingMaskOf {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
-        return s;
-    }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkLoadingMaskTag;
+#include "game/UnkMask.h"
 
 // The music manager, created on first use.
 static inline void* MusicManager() {
@@ -43,5 +28,6 @@ struct UnkFadeOutMusicEvent_fom {
 void fn_7100cbb1a4(UnkFadeOutMusicEvent_fom* self) {
     void* manager = MusicManager();
     f32 time = self->time;
-    fn_7100fd7b44(manager, UnkLoadingMask(2), UnkLoadingMaskOf<UnkLoadingMaskTag>::All(), time);
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(manager), UnkMask(2),
+                  UnkMaskOf<UnkMusicMaskTag>::All(), time);
 }

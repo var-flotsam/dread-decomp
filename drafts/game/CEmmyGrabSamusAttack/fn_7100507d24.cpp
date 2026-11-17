@@ -9,6 +9,7 @@
 #include "game/CInputComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU2553.h"
 #include "game/sound/CMusicManager.h"
 #include "types.h"
@@ -56,12 +57,7 @@ struct UnkGrabStateMachine_l507d24 {
     UnkGrabState_l507d24** items() { return reinterpret_cast<UnkGrabState_l507d24**>(storage); }
 
     UnkGrabState_l507d24* Find(s32 id) {
-        u64 size = count * sizeof(UnkGrabState_l507d24*);
-        for (UnkGrabState_l507d24** p = items(); size != 0; ++p, size -= sizeof(UnkGrabState_l507d24*)) {
-            if ((*p)->id == id)
-                return *p;
-        }
-        return nullptr;
+        return FindStateById(items(), count, id);
     }
 
     void Request(s32 id) {

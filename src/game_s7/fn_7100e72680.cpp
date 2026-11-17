@@ -855,7 +855,7 @@ void fn_7100e72680() {
     __cxa_atexit(fn_7100e68dd0, &g_unk_71727c83d0, g_unk_7101a19000);
     InitPathId(&g_unk_71727c8d08.field_0x28, "system/minimap/icons/icons.bsmat");
     [] {
-        UnkResType types[1];
+        UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mmdef";
         fn_7100004578(&types[0], "CMinimapDef", ".bmmdef", sources0, 1);

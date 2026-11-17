@@ -10,6 +10,7 @@
 #include "base/global/UnkPooledId.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CChozoCommanderAIComponent.h"
+#include "game/UnkMask.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU99.h"
 #include "game/sound/CMusicManager.h"
@@ -25,23 +26,11 @@ struct UnkRequest;
 struct UnkMgr_0xf18;
 struct UnkTunable;
 
-struct UnkMask {
-    u32 bits;
-    UnkMask(u32 b) : bits(b) {}
-    UnkMask(const UnkMask& o) : bits(o.bits) {}
-};
-
-struct UnkKind {
-    u32 value;
-    UnkKind(u32 v) : value(v) {}
-    UnkKind(const UnkKind& o) : value(o.value) {}
-};
-
 // The kind is passed by address and not kept (the unit defines it, so the original can tail-call
 // after passing it).
-void fn_7100fd4544(UnkMgr_0xf18*, u32, UnkRequest*, __attribute__((noescape)) const UnkKind* kind);
+void fn_7100fd4544(UnkMgr_0xf18*, u32, UnkRequest*, __attribute__((noescape)) const UnkMask* kind);
 
-static inline const UnkKind* AddressOf(const UnkKind& kind) { return &kind; }
+static inline const UnkMask* AddressOf(const UnkMask& kind) { return &kind; }
 
 struct UnkTuneRange {
     s32 first;
@@ -231,7 +220,7 @@ static inline UnkRequest* Request(UnkMusicMgr_b0019* self, u64 i) {
     return reinterpret_cast<UnkRequest*>(&self->entries[i]);
 }
 
-void fn_7100fd7b44(UnkMusicMgr_b0019* self, UnkKind kind, UnkMask mask, f32 time) {
+void fn_7100fd7b44(UnkMusicMgr_b0019* self, UnkMask kind, UnkMask mask, f32 time) {
     for (u64 i = 0; i < self->slot_count; ++i)
         fn_7100fd7c3c(reinterpret_cast<UnkMgr_0xf18*>(self), i, Request(self, i), time, kind, mask);
 }
@@ -245,19 +234,15 @@ void fn_7100fd4430(UnkMusicMgr_b0019* self, bool enabled) {
         return;
     }
     for (u64 i = 0; i < self->slot_count; ++i)
-        fn_7100fd4544(reinterpret_cast<UnkMgr_0xf18*>(self), i, Request(self, i), AddressOf(UnkKind(2)));
+        fn_7100fd4544(reinterpret_cast<UnkMgr_0xf18*>(self), i, Request(self, i), AddressOf(UnkMask(2)));
 }
 
-struct UnkTuneKey_b0019 {
-    u8 pad_0x0[0x20];
-    u64 id;  // 0x20
-};
-
-void fn_7100fd82dc(UnkMusicMgr_b0019* self, UnkTuneKey_b0019* key, UnkKind kind, UnkMask mask, f32 time) {
+void fn_7100fd82dc(UnkMusicMgr_b0019* self, const base::global::CRntString* name, UnkMask kind, UnkMask mask,
+                   f32 time) {
     for (u64 i = 0; i < self->slot_count; ++i) {
         UnkMusicEntry_b0019& e = self->entries[i];
         ++e.name->uses;
-        if (e.name->id == key->id)
+        if (e.name->id == static_cast<u64>(name->key))
             fn_7100fd7c3c(reinterpret_cast<UnkMgr_0xf18*>(self), i, reinterpret_cast<UnkRequest*>(&e), time, kind, mask);
     }
 }
@@ -450,7 +435,7 @@ void fn_7100fd613c(UnkMusicSlots_b0019* self, u32 index, bool immediate) {
     UnkNode_0x68* last = reinterpret_cast<UnkNodeList_b0019*>(&self->slots.data[index])->tail;
     if (last) {
         {
-            UnkKind kind(immediate ? 1 : 0x100);
+            UnkMask kind(immediate ? 1 : 0x100);
             fn_7100fd4544(reinterpret_cast<UnkMgr_0xf18*>(self), index, reinterpret_cast<UnkRequest*>(last), &kind);
         }
         fn_7100fd8f98(reinterpret_cast<UnkNodeList_b0019*>(&self->slots[index]), last);

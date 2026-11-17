@@ -2,25 +2,9 @@
 // three-bit flag set to "all bits" (the complement of a shared empty set, both lazily created
 // statics).
 #include "base/UnkInitRecord_0x5c.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "types.h"
-
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_71007142e8() {
-    static UnkFlags_71007142e8 s_none;
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_71007142e8() {
-    static UnkFlags_71007142e8 s_all(~UnkFlagsNone_71007142e8().bits & 7);
-    return s_all;
-}
 
 struct UnkStruct_71007142e8 {
     u8 pad_0x0[0x5c];

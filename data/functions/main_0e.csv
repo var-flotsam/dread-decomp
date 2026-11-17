@@ -510,7 +510,7 @@ address,size,name,name_source,subsystem,status
 0x7100e1d8d8,596,fn_7100e1d8d8,unknown,unknown,O
 0x7100e1db30,140,fn_7100e1db30,unknown,unknown,O
 0x7100e1dbc0,532,fn_7100e1dbc0,unknown,unknown,O
-0x7100e1dde0,1404,fn_7100e1dde0,unknown,unknown,U
+0x7100e1dde0,1404,fn_7100e1dde0,unknown,unknown,O
 0x7100e1e35c,4,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_AddAttributes,reflection,game,O
 0x7100e1e360,244,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_GetClass,reflection,game,O
 0x7100e1e454,9672,CLogicDroppedItemManager::CTunableDroppableBillboard::refl_AddFields,reflection,game,O
@@ -519,7 +519,7 @@ address,size,name,name_source,subsystem,status
 0x7100e20c1c,380,fn_7100e20c1c,unknown,game?,O
 0x7100e20d98,380,fn_7100e20d98,unknown,game?,O
 0x7100e20f14,696,fn_7100e20f14,unknown,game?,O
-0x7100e211cc,1012,fn_7100e211cc,unknown,game?,U
+0x7100e211cc,1012,fn_7100e211cc,unknown,game?,m
 0x7100e215c0,1484,fn_7100e215c0,unknown,game?,O
 0x7100e21b8c,1812,fn_7100e21b8c,unknown,game?,O
 0x7100e222a0,836,fn_7100e222a0,unknown,game?,U
@@ -536,8 +536,8 @@ address,size,name,name_source,subsystem,status
 0x7100e28f80,1428,fn_7100e28f80,unknown,game?,O
 0x7100e29514,1424,fn_7100e29514,unknown,game?,O
 0x7100e29aa4,1424,fn_7100e29aa4,unknown,game?,O
-0x7100e2a034,1792,fn_7100e2a034,unknown,game?,U
-0x7100e2a734,1784,fn_7100e2a734,unknown,game?,U
+0x7100e2a034,1792,fn_7100e2a034,unknown,game?,O
+0x7100e2a734,1784,fn_7100e2a734,unknown,game?,O
 0x7100e2ae2c,444,fn_7100e2ae2c,unknown,game?,U
 0x7100e2afe8,3764,fn_7100e2afe8,unknown,game?,U
 0x7100e2be9c,648,fn_7100e2be9c,unknown,game?,U

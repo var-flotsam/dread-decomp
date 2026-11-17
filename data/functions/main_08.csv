@@ -462,7 +462,7 @@ address,size,name,name_source,subsystem,status
 0x71008183dc,28,fn_71008183dc,unknown,game/components?,O
 0x71008183f8,36,fn_71008183f8,unknown,game/components?,O
 0x710081841c,4,fn_710081841c,unknown,game/components?,O
-0x7100818420,704,fn_7100818420,unknown,game/components?,U
+0x7100818420,704,fn_7100818420,unknown,game/components?,O
 0x71008186e0,8,fn_71008186e0,unknown,game/components?,O
 0x71008186e8,248,fn_71008186e8,unknown,game/components?,O
 0x71008187e0,8,fn_71008187e0,unknown,game/components?,O
@@ -4053,7 +4053,7 @@ address,size,name,name_source,subsystem,status
 0x71008b4f88,26720,CCharClassLifeComponent::CTunableCharClassLifeComponent::refl_AddFields,reflection,game/characters,O
 0x71008bb7e8,388,CCharClassLifeComponent::CTunableCharClassLifeComponent::refl_InitClass,reflection,game/characters,O
 0x71008bb96c,696,fn_71008bb96c,unknown,game/characters?,O
-0x71008bbc24,868,fn_71008bbc24,unknown,game/characters?,U
+0x71008bbc24,868,fn_71008bbc24,unknown,game/characters?,O
 0x71008bbf88,4,CCharClassLifeComponent::refl_AddAttributes,reflection,game/characters,O
 0x71008bbf8c,244,CCharClassLifeComponent::refl_GetClass,reflection,game/characters,O
 0x71008bc080,2092,CCharClassLifeComponent::refl_AddFields,reflection,game/characters,O
@@ -4348,7 +4348,7 @@ address,size,name,name_source,subsystem,status
 0x71008d0a08,540,fn_71008d0a08,unknown,unknown,U
 0x71008d0c24,400,fn_71008d0c24,unknown,unknown,U
 0x71008d0db4,320,fn_71008d0db4,unknown,unknown,O
-0x71008d0ef4,312,fn_71008d0ef4,unknown,unknown,U
+0x71008d0ef4,312,fn_71008d0ef4,unknown,unknown,O
 0x71008d102c,112,fn_71008d102c,unknown,unknown,O
 0x71008d109c,504,fn_71008d109c,unknown,unknown,O
 0x71008d1294,456,fn_71008d1294,unknown,unknown,O
