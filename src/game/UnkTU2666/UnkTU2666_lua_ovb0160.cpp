@@ -22,6 +22,7 @@
 #include "game/CFXComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CLandmarkComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -482,13 +483,10 @@ s32 fn_7101083390(lua_State* L) {
     return 0;
 }
 
-struct UnkLuaPart_b0160;
 struct UnkLuaOwner_b0160 {
     u8 pad_0x0[0x1b8];
-    UnkLuaPart_b0160* field_0x1b8;
+    UnkLifeValues_b49* field_0x1b8;  // the life component
 };
-bool fn_71011603a4(UnkLuaPart_b0160* part, f32 value);
-bool fn_7101160214(UnkLuaPart_b0160* part, f32 value);
 
 static inline UnkLuaOwner_b0160* FindById(UnkGameManager* manager, const CStrId& id, u32 kind) {
     u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);

@@ -19,3 +19,8 @@ void fn_710115fe1c(char*);
 bool fn_7101160408(UnkCharacterLife_b0050* self);
 bool fn_7101161088(void* object);
 void fn_710116179c(void* signal, UnkLifeChange_ovb0000* change);
+
+// Takes (fn_7101160214) or adds (fn_71011603a4) `fraction` of the maximum life; whether the life changed.
+struct UnkLifeValues_b49;
+bool fn_7101160214(UnkLifeValues_b49* self, f32 fraction);
+bool fn_71011603a4(UnkLifeValues_b49* self, f32 fraction);

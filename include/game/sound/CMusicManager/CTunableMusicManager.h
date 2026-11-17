@@ -13,6 +13,7 @@ struct UnkKind;
 struct UnkLoadingMask;
 struct UnkMask;
 struct UnkMgr_0xf18;
+struct UnkMusicMgr_b0019;
 struct UnkNode_0x68;
 struct UnkRequest;
 void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
@@ -27,3 +28,7 @@ void fn_7100fd90d8(f32 a, f32 b, void* music, const base::global::CRntString* na
 bool fn_7100fd76d4(void* manager, const base::global::CRntString* name);
 extern char g_unk_7101cac1e0[];
 f32 fn_7100fdc468(UnkTuneMgrView_b0019* manager, const u64* path);
+
+// Applies `kind` under `mask` over `time` to every slot whose music is `name` (its key compared).
+void fn_7100fd82dc(UnkMusicMgr_b0019* self, const base::global::CRntString* name, UnkKind kind, UnkMask mask,
+                   f32 time);

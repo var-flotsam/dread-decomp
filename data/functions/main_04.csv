@@ -829,7 +829,7 @@ address,size,name,name_source,subsystem,status
 0x710042673c,96,fn_710042673c,unknown,game/ai?,O
 0x710042679c,400,fn_710042679c,unknown,game/ai?,O
 0x710042692c,120,fn_710042692c,unknown,game/ai?,O
-0x71004269a4,432,fn_71004269a4,unknown,game/ai?,U
+0x71004269a4,432,fn_71004269a4,unknown,game/ai?,O
 0x7100426b54,284,fn_7100426b54,unknown,game/ai?,O
 0x7100426c70,4,fn_7100426c70,unknown,game/ai?,O
 0x7100426c74,8,fn_7100426c74,unknown,game/ai?,O

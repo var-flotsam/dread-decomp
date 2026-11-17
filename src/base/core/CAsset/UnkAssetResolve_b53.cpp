@@ -5,6 +5,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/animation/CBlendSpace1D.h"
+#include "base/core/CAsset.h"
 #include "game/UnkTU27.h"
 #include "types.h"
 
@@ -14,8 +15,8 @@ struct UnkRegistry_7100d92158;
 
 void fn_7100020468(UnkRegistry_7100d92158* registry, UnkCountedResource* resource);
 
-// A counted reference to a resource, as the registry returns it (in memory); as in
-// src/base/core/CAssetLink.cpp, with fn_710001737c inlined (same behaviour).
+// A counted reference to a resource, as the registry returns it (in memory); as base/UnkAssetResRef.h,
+// with fn_710001737c inlined (same behaviour): this unit holds it.
 struct UnkAssetResRef {
     UnkCountedResource* ptr;
 

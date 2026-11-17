@@ -3,59 +3,14 @@
 // owner's FX part while in state 2. Names and layouts are placeholders.
 #include <stdlib.h>
 
-#include "../../../src/game_s2/UnkSpitSend.h"
-#include "game/CFXComponent.h"
-#include "game/UnkSwitchObject.h"
+#include "../../game_s2/UnkSpitSend.h"
+#include "game/CSclawkAIComponent.h"
+#include "game/UnkSclawkAIComponent.h"
 #include "types.h"
 
-struct UnkSclawkTunables_l67c478 {
-    u8 pad_0x0[0x50c];
-    f32 wait_min;  // 0x50c
-    f32 wait_max;  // 0x510
-    f32 field_0x514;
-    f32 field_0x518;
-};
-
-struct UnkSclawkPart_l67c478 {
-    u8 pad_0x0[0xb];
-    u8 id;
-};
-
-struct UnkSclawkOwner_l67c478 {
-    u8 pad_0x0[0x220];
-    void* animation;  // 0x220
-    u8 pad_0x228[0x58];
-    UnkWorld* world;  // 0x280
-};
-
-struct UnkSclawkAI_l67c478 {
-    u8 pad_0x0[0x30];
-    UnkSclawkOwner_l67c478* owner;  // 0x30
-    u8 pad_0x38[0x146c8 - 0x38];
-    UnkSclawkTunables_l67c478* tunables;  // 0x146c8
-    f32 wait;                             // 0x146d0
-    f32 field_0x146d4;
-    f32 field_0x146d8;
-    u8 pad_0x146dc[4];
-    u32 state;  // 0x146e0
-    u8 pad_0x146e4[8];
-    bool field_0x146ec;
-    u8 pad_0x146ed[2];
-    bool part_shown;  // 0x146ef
-};
-
-// Shows or hides the owner's FX part (the one whose name hashes to 0xe6de93263e1369e9).
-static inline void ShowPart(UnkWorld* world, bool show) {
-    UnkSclawkPart_l67c478* part =
-        reinterpret_cast<UnkSclawkPart_l67c478*>(fn_7101152b90(world, 0xe6de93263e1369e9));
-    if (part && !fn_710114e668(reinterpret_cast<UnkObject*>(world), part->id))
-        part = nullptr;
-    fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(part), show);
-}
-
-void fn_710067c478(UnkSclawkAI_l67c478* self, u32 state) {
+void fn_710067c478(UnkSclawkAIComponent* self, u32 state) {
     self->state = state;
-    void* animation = self->owner->animation;
+    void* animation = self->owner->field_0x220;
     switch (state) {
         base::reflection::UnkReflTypeIdArg mode0;
         base::reflection::UnkReflTypeIdArg mask0;
@@ -83,17 +38,17 @@ void fn_710067c478(UnkSclawkAI_l67c478* self, u32 state) {
             self->field_0x146d4 = self->tunables->field_0x514;
         else
             self->field_0x146d8 = self->tunables->field_0x518;
-        UnkWorld* world = self->owner->world;
-        if (world && !self->part_shown) {
-            ShowPart(world, true);
+        void* parts = self->owner->field_0x280;
+        if (parts && !self->part_shown) {
+            ShowSclawkPart(parts, true);
             self->part_shown = true;
         }
         break;
     }
     case 3: {
-        UnkWorld* world = self->owner->world;
-        if (world && self->part_shown) {
-            ShowPart(world, false);
+        void* parts = self->owner->field_0x280;
+        if (parts && self->part_shown) {
+            ShowSclawkPart(parts, false);
             self->part_shown = false;
         }
         mode3.id = 0;

@@ -2,6 +2,7 @@
 // static initialiser is src/game_s1/fn_71000275b0.cpp): a string id, a file-path id and the
 // resource the pair resolves to (base/UnkStrIdPathPair.h's UnkStrIdPathResource). Assigning new
 // ids resolves the resource again through the resource registry. Names are placeholders.
+#include "base/UnkAssetResRef.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/animation/CBlendSpace1D.h"
@@ -11,29 +12,6 @@
 // The resource registry (src/game_s7/fn_7100d92158.cpp registers its descriptors; reached through
 // the GOT).
 struct UnkRegistry_7100d92158;
-
-// A counted reference to a resource, as the registry returns it (in memory).
-struct UnkAssetResRef {
-    UnkCountedResource* ptr;
-
-    UnkAssetResRef() : ptr(nullptr) {}
-    UnkAssetResRef& operator=(const UnkAssetResRef& other) {
-        if (ptr != other.ptr) {
-            UnkCountedResource* p = other.ptr;
-            if (p)
-                ++p->ref_count;
-            UnkCountedResource* old = ptr;
-            if (old && --old->ref_count == 0)
-                fn_710001737c(old);
-            ptr = p;
-        }
-        return *this;
-    }
-    ~UnkAssetResRef() {
-        if (ptr && --ptr->ref_count == 0)
-            fn_710001737c(ptr);
-    }
-};
 
 void fn_71000267f8(UnkStrIdPathResource* self, const UnkStrIdPathPair& other) {
     self->ids.id = other.id;
