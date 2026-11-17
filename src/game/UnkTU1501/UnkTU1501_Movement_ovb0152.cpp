@@ -348,7 +348,6 @@ void fn_71010d956c(UnkMove_b152* self);
 bool fn_710085aa5c(void* gun, void* tile, UnkHitInfo_b152* hit);
 struct UnkQueryObj;
 // Out of line: fn_71009e73cc calls it.
-__attribute__((noinline)) f32 fn_71009e754c(UnkMove_b152* self);
 
 struct UnkComponent;
 struct UnkGunComponent;

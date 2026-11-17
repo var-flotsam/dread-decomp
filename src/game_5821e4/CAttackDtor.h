@@ -5,6 +5,7 @@
 
 #include "base/global/CStrId.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -15,8 +16,6 @@ struct UnkAttackOwner {
     s32 ref_count;
     UnkWeakTarget* field_0x10;  // the object the listeners are registered with
 };
-
-void fn_71003606c0(void* attack);                 // CAttack's destructor
 
 // The embedded listener's destructor: unregister from the owner, then release it. Most use
 // vtable 0x7101a22d48 and fn_710117b3f0; a few have their own.

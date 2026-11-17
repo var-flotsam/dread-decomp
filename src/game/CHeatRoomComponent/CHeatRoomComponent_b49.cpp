@@ -25,16 +25,13 @@ using base::global::CStrId;
 struct UnkActivatable_b48;
 void fn_7100878680(UnkActivatable_b48* self, bool enabled);
 
-struct UnkHeatRoomNamedDef_b49 : UnkIdSource {
-    u64 field_0x8;
-    UnkQualifiedName name;
-};
-extern UnkHeatRoomNamedDef_b49 g_unk_7172746208;
-
-static inline UnkSubId_7100fc4b34 SubId(UnkHeatRoomNamedDef_b49& def, const CStrId& name) {
-    if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
-    return fn_71003327a4(&def.name, &name);
+// The id of `name` within the property's qualified name (the name built on first use, as
+// src/game/CAbilityShinespark/CAbilityShinespark_Glow_ovb0045.cpp's SubId).
+static inline UnkSubId_7100fc4b34 SubId(UnkPropertyEx<0x160>& def, const CStrId& name) {
+    UnkQualifiedName* qualified = reinterpret_cast<UnkQualifiedName*>(def.field_0x10);
+    if (!qualified->str || !qualified->str[0])
+        fn_7100ae9d7c(qualified, reinterpret_cast<UnkIdSource*>(&def), g_unk_7101d470e0);
+    return fn_71003327a4(qualified, &name);
 }
 
 struct UnkHeatRoomOwner_b49 {

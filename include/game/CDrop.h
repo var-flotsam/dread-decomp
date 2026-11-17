@@ -5,3 +5,5 @@
 // Names and layouts are placeholders.
 #include "types.h"
 void* fn_71007c04f0(void* object);
+struct UnkTable_71007bf550;
+void fn_71007bf550(UnkTable_71007bf550* self);  // Constructs a drop's table of 15 entries.

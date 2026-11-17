@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkGfxTexture;
+struct UnkObject_0x130;
 struct UnkGfxHeap;
 struct UnkPool;
 struct UnkGfxBuffer252;
@@ -35,3 +37,9 @@ u32 fn_71001622e0(UnkGfxBuffer252* buffer);
 extern UnkPool g_unk_716e2a7580;  // The descriptors' memory.
 extern UnkGfxHeap* g_unk_716e2a76a8;  // The heap for textures.
 extern UnkGfxHeap* g_unk_716e2a76b0;  // The heap for render targets.
+extern u32 g_unk_7101a1d814;
+extern UnkGfxTexture* g_unk_716e2a3568[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
+extern u32 g_unk_716e2a7568;
+extern UnkObject_0x130* g_unk_716e2a76a0;
+extern u8 g_unk_716e2a76e8[];
+extern s32 g_unk_716e2a7708[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];

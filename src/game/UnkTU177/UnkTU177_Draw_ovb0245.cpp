@@ -2,6 +2,7 @@
 // NVN entry points: the draw calls that flush the pending state first (fn_710015ac00, fn_7100159f90), the
 // target clear (fn_7100159660), the mode setter (fn_710015a8c0) and the blend state push
 // (fn_710015b650). Names are placeholders.
+#include "game/UnkBlendStack.h"
 #include "game/UnkGraphicsState.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU174.h"
@@ -153,40 +154,12 @@ void fn_710015a8c0(u32 mode) {
 }
 
 // ---- fn_710015b650 ----
-struct UnkBlendRequest_ovb0245 {
-    s32 field_0x0;
-    s32 field_0x4;
-    s32 field_0x8;
-    s32 mode;      // 0xc
-    s32 field_0x10;
-    s32 field_0x14;
-    u8 enable;  // 0x18
-    u8 pad_0x19[3];
-};
-
-struct UnkBlendStack_ovb0245 {
-    u8 pushed;  // 0x0
-    u8 pad_0x1[7];
-    u32 count;  // 0x8
-    u8 pad_0xc[0x5c];
-    UnkBlendRequest_ovb0245 entries[0x3f];  // 0x68
-};
-
-extern UnkBlendStack_ovb0245 g_unk_716e29c6d0 __attribute__((visibility("hidden")));
-extern s32 g_unk_716e29c694;
-extern void (*g_unk_716e29b6b0)(void* object, s32 which, s32 value);
-extern s32 g_unk_716e29c240;
-extern void (*g_unk_716e29b9b8)(void* context, s32 which, s32 value);
-extern s32 g_unk_716e29c244;
-extern void (*g_unk_716e29b9b0)(void* context, s32 which, s32 value);
-void fn_710015afd0(s32 a, s32 b, s32 c);
-
 // As src/game/UnkTU260/UnkTU260_Render_ovb0237.cpp declares it (the request is its flags block; the original returns
 // whether the request was taken).
 struct UnkFlags_b0237;
 bool fn_710015b650(UnkFlags_b0237* request_) {
-    auto* request = reinterpret_cast<UnkBlendRequest_ovb0245*>(request_);
-    g_unk_716e29c6d0.pushed = 0;
+    auto* request = reinterpret_cast<UnkBlendState*>(request_);
+    g_unk_716e29c6d0.applied = 0;
     u32 count = g_unk_716e29c6d0.count;
     if (count > 0x3e)
         return false;

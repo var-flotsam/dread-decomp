@@ -6,6 +6,7 @@
 // fn_71010df6c0. Names are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CCameraComponent.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -35,8 +36,6 @@ UnkReflValue fn_71010e7860(char* self, void*, UnkReflValue* const* args) {
     fn_71000a18d4(&r, type, &v, false);
     return r;
 }
-
-const base::reflection::CType* fn_71010df6c0();
 
 struct UnkCameraEntries_b40a3 {
     u8 pad_0x0[0x80];

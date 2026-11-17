@@ -2,12 +2,11 @@
 // CCharClassWaterPoolComponent): the qualified id of the unit's blackboard property, built on first
 // use (game/UnkGameBlackboard.h). Names are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CCharClassLavaPoolComponent.h"
+#include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "types.h"
-
-extern UnkPropertyEx<> g_unk_7172733360;  // the lava pool's property
-extern UnkPropertyEx<> g_unk_7172734660;  // the water pool's property
 
 static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);

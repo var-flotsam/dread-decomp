@@ -1,4 +1,5 @@
 // Unit 211 of tools/tu_map.py (no name hint): dispatches a request on its kind (0 to 10) to the player of the matching track at a fixed offset of the track block (fn_710019199c, fn_71001922b0 or fn_7100191d40); kind 4 also records its mode in the block. Names and layouts are placeholders.
+#include "game/UnkTU211.h"
 #include "types.h"
 
 struct UnkKeyPlayer_b0197;
@@ -11,9 +12,7 @@ struct UnkKeyTracks_b0197 {
     u32 state_0x348;
 };
 
-u64 fn_710019199c(UnkKeyPlayer_b0197* self, const UnkKeyRequest_b0197* request, void* track);
 u64 fn_71001922b0(UnkKeyPlayer_b0197* self, const UnkKeyRequest_b0197* request, void* track, void* owner);
-u64 fn_7100191d40(UnkKeyPlayer_b0197* self, const UnkKeyRequest_b0197* request, void* track);
 
 static inline u8* At(UnkKeyTracks_b0197* tracks, u64 offset) { return reinterpret_cast<u8*>(tracks) + offset; }
 

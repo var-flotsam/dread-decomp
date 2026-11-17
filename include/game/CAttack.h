@@ -106,3 +106,6 @@ struct UnkAttackWords {
 void fn_710036069c(void* attack);
 // How many entries the attack has.
 s32 fn_71003623a4(CAttack* attack);
+const u64* fn_7100360890(CAttack*);
+void fn_71003606c0(void*);
+extern char g_unk_7101a21540[];

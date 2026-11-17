@@ -115,8 +115,6 @@ struct UnkListSlot_b256 {
     u8 flag;  // 0xc
 };
 
-char* fn_71003f92ac(void* value);
-
 static inline UnkListGroup_b256* NthGroup(UnkListGroup_b256* n, u32 i) {
     for (u32 k = 0; k < i; ++k)
         n = n->next;

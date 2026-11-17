@@ -3,6 +3,7 @@
 // placeholders.
 #include "../../../game_s7/UnkStaticInitS7.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/sound/SGUISoundEventsSelector.h"
 
 using namespace unk_static_init;
 
@@ -22,7 +23,6 @@ extern UnkStateKey g_unk_71729f0178;
 void fn_7100fc9084(UnkEnumType* type, const CStrId& name);
 void fn_7100fc91a8(void* type);  // the type's destructor, as registered
 extern UnkStateKey g_unk_71729f0180;
-extern UnkEnumType g_unk_71729f0188;
 extern UnkEnumType g_unk_71729f0190;
 extern UnkEnumType g_unk_71729f0198;
 extern UnkEnumType g_unk_71729f01a0;
@@ -80,9 +80,9 @@ void fn_7100fcbf50() {
     __cxa_atexit(fn_7100fc91a8, &reinterpret_cast<UnkEnumType&>(g_unk_71729f0180), g_unk_7101a19000);
     {
         CStrId n("OnSelected", true);
-        fn_7100fc9084(&g_unk_71729f0188, n);
+        fn_7100fc9084(&reinterpret_cast<UnkEnumType&>(g_unk_71729f0188), n);
     }
-    __cxa_atexit(fn_7100fc91a8, &g_unk_71729f0188, g_unk_7101a19000);
+    __cxa_atexit(fn_7100fc91a8, &reinterpret_cast<UnkEnumType&>(g_unk_71729f0188), g_unk_7101a19000);
     {
         CStrId n("OnExpand", true);
         fn_7100fc9084(&g_unk_71729f0190, n);

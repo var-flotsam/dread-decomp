@@ -6,13 +6,12 @@
 
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
-
-extern CType g_unk_7172728bf0 __attribute__((visibility("hidden")));  // CCollisionComponent's type
 
 struct UnkCollider_l865d38 {
     virtual void vf_0x0();

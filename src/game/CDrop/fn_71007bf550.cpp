@@ -1,6 +1,7 @@
 // Constructor of a table of 15 entries: each holds two string ids copied from a global default,
 // four floats set to 1, two cleared words, a count of 1, a float of -1, a -1 sentinel and a flag.
 #include "base/global/CStrId.h"
+#include "game/CDrop.h"
 #include "types.h"
 
 #include <new>

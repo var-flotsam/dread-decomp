@@ -3,6 +3,7 @@
 // registration and six collider and state names.
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CRotationalPlatformComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -19,7 +20,6 @@ struct UnkRotationalPlatformTU {
     UnkReflType type;              // 0x50
 };
 
-extern UnkRotationalPlatformTU g_unk_7172740970 __attribute__((visibility("hidden")));
 extern base::reflection::CType g_unk_7172740788;  // also named in src/reflection/
 void fn_71009d7c0c(UnkReflType* self, const CStrId& name, void (*init)(), void* extra);
 void fn_71009d7ac0(void* e);  // src/clones/clones_03.cpp
@@ -29,7 +29,6 @@ extern UnkConverter g_unk_71727408c8;
 void fn_71009d8fe4() __attribute__((visibility("hidden")));
 void fn_71009d8ff0() __attribute__((visibility("hidden")));
 extern CStrId g_unk_71727408e8;
-extern UnkProperty g_unk_71727408f0;
 extern char g_unk_7101a89e08[];
 void fn_71009d93f4(UnkProperty* p);
 void fn_71009d7d8c(void* p);

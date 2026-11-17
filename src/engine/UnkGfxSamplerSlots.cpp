@@ -47,7 +47,8 @@ struct UnkGfxTexture {
     s32 height = 0;
     s32 kind = -1;     // 0x8
     s32 format;        // 0xc
-    u8 pad_0x10[0x8];
+    s32 field_0x10;
+    u8 pad_0x14[0x4];
     u8 texture[0xc0];  // 0x18: the NVN texture
     s32 id = 0;               // 0xd8: texture descriptor id
     u8 pad_0xdc[0x4];
@@ -69,22 +70,16 @@ struct UnkGfxHeap {
 struct UnkPool;  // the memory pool type of src/game_s7/fn_71001587f0.cpp: its NVN pool at +0x8
 
 // The records and the descriptor pools (all reached through the GOT).
-extern UnkGfxTexture* g_unk_716e2a3568[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
-extern u32 g_unk_716e2a7568;   // live records
-extern u32 g_unk_7101a1d814;   // free texture descriptor ids (2048 at start)
 extern s32 g_unk_716e2a7574;   // reserved texture descriptors (device info 0x11)
 extern s32 g_unk_716e2a7578;   // reserved sampler descriptors (device info 0x12)
-extern s32 g_unk_716e2a7708[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];  // free texture descriptor ids, a stack
 extern s32 g_unk_716e2a756c;   // the next free sampler id
 extern s32 g_unk_716e2a7570;   // the last sampler id
 extern s32 g_unk_716e2a76e0;   // the first sampler id (the reserved ones come before it)
 extern u8 g_unk_716e2a76b8[];  // the sampler pool
-extern u8 g_unk_716e2a76e8[];  // the texture pool
 
 void* fn_7100153de0();
 void fn_71001604e0(void* builder, s32 format);
 // Allocates `size` bytes of a heap at an alignment, copying the old block's bytes when there is one.
-void* fn_7100153a10(UnkGfxHeap* heap, void* old, u64 size, u64 align);
 // Reserves `size` bytes of a pool at the given alignment; returns their offset (declared without
 // its result in src/game_s7/fn_71001587f0.cpp).
 
@@ -92,15 +87,6 @@ void* fn_7100153a10(UnkGfxHeap* heap, void* old, u64 size, u64 align);
 extern void (*g_unk_716e29aff0)(void* pool, void* memory, u64 offset, s32 count);  // sampler pool
 extern void (*g_unk_716e29afb0)(void* pool, void* memory, u64 offset, s32 count);  // texture pool
 extern void (*g_unk_716e29b380)(void* a, void* device);
-extern void (*g_unk_716e29b0d0)(void* builder, s32 value);
-extern void (*g_unk_716e29b0d8)(void* builder, s32 value);
-extern void (*g_unk_716e29b118)(void* builder, s32 format);
-extern void (*g_unk_716e29b100)(void* builder, s32 width, s32 height);
-extern u64 (*g_unk_716e29b140)(void* builder);  // storage alignment
-extern u64 (*g_unk_716e29b138)(void* builder);  // storage size
-extern void (*g_unk_716e29b148)(void* builder, UnkGfxHeap* heap, u64 offset);
-extern u8 (*g_unk_716e29b288)(void* texture, void* builder);  // an NVN boolean
-extern void (*g_unk_716e29afc8)(void* pool, s32 id, void* texture, void* view);
 
 // Through a wrapper: the arguments are evaluated before the entry point is loaded.
 template <class R, class... A, class... B>

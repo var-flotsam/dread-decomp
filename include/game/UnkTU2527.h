@@ -42,3 +42,4 @@ extern UnkDesc_7100d92158 g_unk_71727ba0b0;
 extern UnkDesc_7100d92158 g_unk_71727ba130;
 extern UnkDesc_7100d92158 g_unk_71727ba1b0;
 extern base::global::CStrId g_unk_71727b9d30;
+extern char g_unk_71727b9eb0[];

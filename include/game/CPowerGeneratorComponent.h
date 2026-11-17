@@ -7,3 +7,4 @@
 
 struct UnkProperty;
 extern UnkProperty g_unk_71727502f8;  // "Used".
+extern void* g_unk_7101a90f90[];

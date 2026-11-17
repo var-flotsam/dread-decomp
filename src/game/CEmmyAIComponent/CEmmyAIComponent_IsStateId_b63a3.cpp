@@ -10,8 +10,6 @@
 
 using base::global::CStrId;
 
-bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
-
 struct UnkEmmyAIComponent_b46a1;
 
 struct UnkEmmyStateIdTest_b63a3 {

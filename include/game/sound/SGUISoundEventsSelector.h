@@ -10,6 +10,7 @@ extern void* g_unk_7101caba40[];  // The selector's vtable.
 
 struct UnkStateSink;  // The owner of the GUI's sound selector (g_unk_717275c380).
 struct UnkStateKey;   // What names the event: the callers pass the address of a reflected type object.
+extern UnkStateKey g_unk_71729f0188;  // The focus sound's event.
 // Plays the sound the selector picks for the event `key` names, for the object `state`; the empty handle
 // (no reference, serial -1) when it picks none.
 UnkSoundHandle fn_7100fc9d78(UnkStateSink* sink, UnkStateKey* key, void* state);

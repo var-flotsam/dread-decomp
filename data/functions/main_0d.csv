@@ -5478,8 +5478,8 @@ address,size,name,name_source,subsystem,status
 0x7100de1bd4,12,CExplosionGfx::refl_Destroy,reflection,game,O
 0x7100de1be0,48,CExplosionGfx::refl_CopyAssign,reflection,game,O
 0x7100de1c10,48,CExplosionGfx::refl_MoveAssign,reflection,game,O
-0x7100de1c40,1168,fn_7100de1c40,unknown,unknown,U
-0x7100de20d0,1224,fn_7100de20d0,unknown,unknown,U
+0x7100de1c40,1168,fn_7100de1c40,unknown,unknown,O
+0x7100de20d0,1224,fn_7100de20d0,unknown,unknown,O
 0x7100de25a0,476,fn_7100de25a0,unknown,unknown,O
 0x7100de277c,4,CGameManager::CTunableGameManager::refl_AddAttributes,reflection,game/core,O
 0x7100de2780,244,CGameManager::CTunableGameManager::refl_GetClass,reflection,game/core,O

@@ -11,12 +11,12 @@
 #include "game/CCharClassActivatableComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"
+#include "game/CPowerGeneratorComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 struct UnkStateObject;
 void fn_7100a7f434(char* self);
-extern void* g_unk_7101a90f90[];
 
 struct UnkPowerGeneratorComponent {
     void** vtable;

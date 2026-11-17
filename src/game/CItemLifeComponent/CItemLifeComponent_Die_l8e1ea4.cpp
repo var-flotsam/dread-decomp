@@ -54,7 +54,6 @@ struct UnkClone_fn_710082d0ac;
 using UnkItemLifeListeners = base::UnkDeferredSet<base::UnkDeferredCallback<u64>>;
 extern template void base::refl_DeferredInvoke<UnkClone_fn_710082d0ac, u64>(UnkItemLifeListeners*, const u64*);
 
-UnkStruct_710024fa0c* fn_71008e0e54(UnkStruct_7100233684* entity);
 struct UnkItemLifeComponent_b43a2;
 void fn_71008e21fc(UnkItemLifeComponent_b43a2* self);
 

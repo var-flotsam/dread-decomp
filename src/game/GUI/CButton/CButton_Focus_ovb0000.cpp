@@ -22,8 +22,6 @@
 
 struct UnkStateSink;
 struct UnkStateKey;
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f0188;
 
 struct UnkGuiButtonFocus_ovb0000;
 
@@ -70,7 +68,7 @@ void fn_71011bf558(UnkGuiButtonFocus_ovb0000* self) {
     } else {
         UnkGuiDisplayObject* parent = self->parent;
         if (!parent || !fn_710009d50c(parent->GetClass(), fn_71011fe904()))
-            fn_7100fc9d78(g_unk_717275c380, reinterpret_cast<UnkStateKey*>(&g_unk_71729f0188), self);
+            fn_7100fc9d78(g_unk_717275c380, &g_unk_71729f0188, self);
         self->vf_0x1e8("OnFocusReceived", false);
     }
 }

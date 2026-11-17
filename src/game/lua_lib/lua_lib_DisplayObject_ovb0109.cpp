@@ -10,6 +10,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
@@ -138,7 +139,6 @@ struct UnkLuaArgs_ovb0109 : UnkHashStream_0x38 {
 };
 
 UnkLuaArgs_ovb0109* fn_710109ead0(lua_State* L, int first);
-void* fn_71000978e4(char* cls, const CStrId* name);
 struct UnkGameObjectTyped_ovb0115;  // a typed pointer (src/game/lua_lib/lua_lib_GameObjectCall_ovb0115.cpp)
 
 static inline char* AsClass(char* type) {

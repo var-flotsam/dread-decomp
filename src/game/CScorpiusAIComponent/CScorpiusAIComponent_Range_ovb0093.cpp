@@ -76,7 +76,6 @@ using base::reflection::UnkReflObject;
 struct UnkLayerNode;
 extern CStrId g_unk_71727041b0;  // the collision object's name
 extern __attribute__((visibility("hidden"))) u64 g_unk_7172704218;  // the layer node's key
-void fn_7100ed77b8(void* player, UnkCollisionObject* object);
 
 struct UnkScorpiusNodeMap_ovb0093 {
     u8 pad_0x0[0x78];

@@ -34,3 +34,4 @@ base::reflection::UnkReflObject*& fn_7100862088(base::global::CRntVector<base::r
 void fn_7100861fc8(void* part, bool flag);
 void fn_7100861710(UnkCollisionContainer_b42* self, bool force);
 UnkPowerBombCollider_ovb0127* fn_710086420c(UnkPowerBombColliders_ovb0127*, u32);
+extern base::reflection::CType g_unk_7172728bf0 __attribute__((visibility("hidden")));

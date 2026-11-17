@@ -22,7 +22,6 @@ UnkObject_0x130* fn_7100153a90(s32 index);
 void fn_7100094798(void* vector);
 void fn_710015e9a4(void* arrays);
 
-extern UnkObject_0x130* g_unk_716e2a76a0;
 extern base::UnkPairArrays g_unk_716e2a9708;
 
 struct UnkEntry181_b0246 {

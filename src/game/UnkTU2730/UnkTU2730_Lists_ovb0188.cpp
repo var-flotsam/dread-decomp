@@ -13,6 +13,7 @@
 #include "game/CHeatRoomComponent.h"
 #include "game/CInputComponent.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -276,8 +277,6 @@ u32 fn_710119882c(void* manager, const CFilePathStrId* path) {
 }
 
 struct UnkEventTable_b0188;
-
-u32 fn_7100f0cc48(UnkEventTable_b0188* table, u32 value);
 
 struct UnkEventEntry_b0188 {
     u32 id;
