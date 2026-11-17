@@ -15,7 +15,7 @@
 #include "game/CDizzeanSwarmControllerComponent.h"
 #include "game/CDropLayout.h"
 #include "game/CInventoryComponent.h"
-#include "game/UnkDropTunable_ovb0208.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkItemProperties.h"
@@ -39,41 +39,41 @@ using base::global::CStrId;
 
 // ---- The tunable ----
 
-static inline void Destroy(UnkDropTunable_ovb0208* self) {
+static inline void Destroy(UnkDroppableTunable* self) {
     self->vtable = g_unk_7101aa9cc8 + 2;
-    fn_710007ecd4(&self->n8);
-    fn_710007ecd4(&self->n7);
-    fn_710007ecd4(&self->n6);
-    fn_710007ecd4(&self->n5);
-    fn_710007ecd4(&self->n4);
-    fn_710007ecd4(&self->n3);
-    fn_710007ecd4(&self->n2);
-    fn_710007ecd4(&self->n1);
-    fn_710007ecd4(&self->n0);
+    fn_710007ecd4(&self->sAbsorbingSoundPresetName);
+    fn_710007ecd4(&self->sDropAbsorbPowerBombPresetName);
+    fn_710007ecd4(&self->sDropAbsorbMissilePresetName);
+    fn_710007ecd4(&self->sDropAbsorbLifeBigPresetName);
+    fn_710007ecd4(&self->sDropAbsorbLifePresetName);
+    fn_710007ecd4(&self->sMiniXFlyPresetName);
+    fn_710007ecd4(&self->sMiniXAbsorbLargeGroupPresetName);
+    fn_710007ecd4(&self->sMiniXAbsorbMediumGroupPresetName);
+    fn_710007ecd4(&self->sMiniXAbsorbSmallGroupPresetName);
     fn_7100075104(self);
 }
 
-void fn_7100e20ba0(UnkDropTunable_ovb0208* self) { Destroy(self); }
+void fn_7100e20ba0(UnkDroppableTunable* self) { Destroy(self); }
 
-void fn_7100e2f208(UnkDropTunable_ovb0208* self) {
+void fn_7100e2f208(UnkDroppableTunable* self) {
     Destroy(self);
     __builtin_operator_delete(self);
 }
 
-void fn_7100e2f6e0(UnkDropTunable_ovb0208* self) {
+void fn_7100e2f6e0(UnkDroppableTunable* self) {
     __builtin_memset(self, 0, sizeof(*self));
     fn_7100136ecc(self);
     self->vtable = g_unk_7101aa9cc8 + 2;
-    fn_710007e6c4(&self->n0);
-    fn_710007e6c4(&self->n1);
-    fn_710007e6c4(&self->n2);
-    fn_710007e6c4(&self->n3);
-    fn_710007e6c4(&self->n4);
-    fn_710007e6c4(&self->n5);
-    fn_710007e6c4(&self->n6);
-    fn_710007e6c4(&self->n7);
-    fn_710007e6c4(&self->n8);
-    reinterpret_cast<void (*)(UnkDropTunable_ovb0208*)>(self->vtable[3])(self);
+    fn_710007e6c4(&self->sMiniXAbsorbSmallGroupPresetName);
+    fn_710007e6c4(&self->sMiniXAbsorbMediumGroupPresetName);
+    fn_710007e6c4(&self->sMiniXAbsorbLargeGroupPresetName);
+    fn_710007e6c4(&self->sMiniXFlyPresetName);
+    fn_710007e6c4(&self->sDropAbsorbLifePresetName);
+    fn_710007e6c4(&self->sDropAbsorbLifeBigPresetName);
+    fn_710007e6c4(&self->sDropAbsorbMissilePresetName);
+    fn_710007e6c4(&self->sDropAbsorbPowerBombPresetName);
+    fn_710007e6c4(&self->sAbsorbingSoundPresetName);
+    reinterpret_cast<void (*)(UnkDroppableTunable*)>(self->vtable[3])(self);
 }
 
 // ---- The drop table's assignment (include/game/CDropLayout.h) ----

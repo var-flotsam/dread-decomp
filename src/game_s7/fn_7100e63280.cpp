@@ -589,7 +589,7 @@ void fn_7100e63280() {
     InitId(&g_unk_71727c4660, "SG_Scorpius");
     InitId(&g_unk_71727c4668, "SG_Scorpius_ItemCube");
     [] {
-        UnkResType types[1];
+        UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = ".mmap";
         fn_7100004578(&types[0], "CMinimapData", ".bmmap", sources0, 1);

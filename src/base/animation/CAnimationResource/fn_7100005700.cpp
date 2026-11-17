@@ -26,7 +26,7 @@ __attribute__((always_inline)) inline void InitResource(UnkResourceStatics* s, c
     get_class();
     fn_710009ec00(list, s->type);
     {
-        UnkResType types[1];
+        UnkResFormat types[1];
         const char* sources0[1];
         sources0[0] = source;
         fn_7100004578(&types[0], name, ext, sources0, 1);

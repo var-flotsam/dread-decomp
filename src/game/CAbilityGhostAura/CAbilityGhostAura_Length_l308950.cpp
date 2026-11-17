@@ -2,26 +2,10 @@
 // duration. Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
-
-struct UnkFlags_l308950 {
-    u32 bits;
-    UnkFlags_l308950() : bits(0) {}
-    UnkFlags_l308950(u32 b) : bits(b) {}
-    UnkFlags_l308950(const UnkFlags_l308950& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_l308950& UnkFlagsNone_l308950() {
-    static UnkFlags_l308950 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_l308950& UnkFlagsAll_l308950() {
-    static UnkFlags_l308950 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_l308950().bits & 7);
-    return s_all;
-}
 
 struct UnkStruct_71007142e8 {
     f32 m[12];
@@ -40,7 +24,7 @@ f32 fn_7100308950(UnkTimeline* timeline) {
     UnkStruct_71007142e8 motion;
     fn_71007142e8(&motion);
     UnkMotionTracks* tracks = timeline->tracks;
-    UnkFlags_l308950 flags = UnkFlagsAll_l308950();
+    UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     f32 x = motion.m[3];
     f32 y = motion.m[7];
