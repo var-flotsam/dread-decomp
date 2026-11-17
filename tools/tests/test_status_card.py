@@ -61,25 +61,21 @@ class Handoff(unittest.TestCase):
 
 
 class Export(unittest.TestCase):
-    def test_lifts_by_kind(self):
-        man = {"functions": {"a": {"outcome": "accepted", "size": 8}, "b": {"outcome": "accepted", "size": 4},
-                             "c": {"outcome": "inconclusive", "size": 100},
-                             "d": {"outcome": "rejected by the oracle", "size": 2},
-                             "e": {"outcome": "rejected: size cap", "size": 9000}}}
-        rows = de.lifts({"boot": man})
-        self.assertEqual(rows[0], ["boot", "rejected: size cap", "rejected", 1, 9000])
-        self.assertIn(["boot", "accepted", "accepted", 2, 12], rows)
-        self.assertEqual({r[2] for r in rows}, {"accepted", "inconclusive", "rejected"})
+    def test_subsystems_most_untouched_first(self):
+        rows = [{"subsystem": "gui", "size": "100", "status": "O"}, {"subsystem": "gui?", "size": "100", "status": "U"},
+                {"subsystem": "audio", "size": "300", "status": "U"}, {"subsystem": "lib", "size": "999", "status": "L"}]
+        self.assertEqual(de.subsystems(rows), [["audio", 1, 0.0, 0.0, 0.0], ["gui", 2, 0.0, 50.0, 0.0]])
 
-    def test_boot_run(self):
-        res = {"furthest_label": "nnMain entered",
-               "milestones": [{"key": "a", "label": "A", "reached": True, "seconds": 1.234},
-                              {"key": "b", "label": "B", "reached": False, "seconds": None}],
-               "traps": {"distinct": 3, "functions": 2, "imports": 1, "mismatched": 0},
-               "lifted": {"linked": 10, "ran": 4}, "end": {"signal": "SIGSEGV"}, "fault": None}
-        ms, run = de.boot(res)
-        self.assertEqual(ms, [[1, "a", "A", "yes", 1.2], [2, "b", "B", "no", ""]])
-        self.assertEqual(run, ["nnMain entered", 1, 2, 3, 2, 1, 0, 4, 10, "signal SIGSEGV"])
+    def test_daily_rows_skip_before_and_empty(self):
+        base = {"matched_pct": 50.0, "finished_pct": None, "matched_functions": 5, "untouched_bytes": 2_500_000,
+                "drafts": 3, "total_bytes": 10}
+        rows = [{**base, "day": "before"}, {**base, "day": "2026-11-01", "total_bytes": 0},
+                {**base, "day": "2026-11-02"}, {**base, "day": "2026-11-03", "finished_pct": 12.345}]
+        self.assertEqual(de.daily_rows(rows), [["2026-11-02", 50.0, "", 5, 2.5, 3],
+                                               ["2026-11-03", 50.0, 12.35, 5, 2.5, 3]])
+
+    def test_port_rows(self):
+        self.assertEqual(de.port(MD)[0], [2, "Semantic lifts, boot slice", "9 of 10 accepted"])
 
 
 class Card(unittest.TestCase):

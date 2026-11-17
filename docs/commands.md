@@ -477,10 +477,10 @@ python tools/sample_review.py --since 2026-11-05 --count 20 --seed 2026-W46
 
 ### `tools/dashboard_export.py`
 
-Status tables for the project dashboard, written to build/dashboard/ (counts only, no code).
+Tables for the private progress dashboard, written to build/dashboard/ (counts only, no code).
 
 ```sh
-python tools/dashboard_export.py [--version 2.1.0] [--ref HEAD] [--days 30] [--out build/dashboard]
+python tools/dashboard_export.py [--ref origin/main] [--days 60] [--now] [--version 2.1.0]
 ```
 
 ### `tools/status_card.py`
