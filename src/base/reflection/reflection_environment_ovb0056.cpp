@@ -24,7 +24,7 @@
 #include "types.h"
 // The 0x50-byte record array fn_7100d90460 is declared with (unit 2601).
 #include "../../game/UnkUnit2601/UnkUnit2601_VecCopy_b56.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 using base::global::CFilePathStrId;
 
@@ -114,23 +114,9 @@ void fn_7100d8efd0(UnkEnvironmentManager_ovb56* self, bool a, bool b, bool c) {
     self->deferred_c = c;
 }
 
-// The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).
-template <class T>
-struct UnkLoadingMaskOf_ovb56 {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
-        return s;
-    }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkLoadingMaskTag_ovb56;
-
 // A copy of `mask` with `bit` flipped.
-static inline UnkLoadingMask Flipped_ovb56(const UnkLoadingMask& mask, u32 bit) {
-    return UnkLoadingMask((mask.bits & bit) ? mask.bits & ~bit : mask.bits | bit);
+static inline UnkMask Flipped_ovb56(const UnkMask& mask, u32 bit) {
+    return UnkMask((mask.bits & bit) ? mask.bits & ~bit : mask.bits | bit);
 }
 
 // Replays the environment music (fn_7100d8d854) or, with none, has the music manager switch channel 8
@@ -147,7 +133,8 @@ void fn_7100d8e0a0(void* manager) {
         fn_7100fd3804(instance);
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
-    fn_7100fd7b44(instance, UnkLoadingMask(8), Flipped_ovb56(UnkLoadingMaskOf_ovb56<UnkLoadingMaskTag_ovb56>::All(), 0x100),
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(instance), UnkMask(8),
+                  Flipped_ovb56(UnkMaskOf<UnkMusicMaskTag>::All(), 0x100),
                   0.0f);
 }
 
@@ -250,7 +237,6 @@ struct UnkPolyElem_ovb56 {
     virtual void vf_0x8();
     u8 unk_0x8[0x18];
 };
-
 
 // The path groups as a member, emptied by its destructor.
 struct UnkPathGroups_ovb56 : UnkPathGroupVec_ovb56 {

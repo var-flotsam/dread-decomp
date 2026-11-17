@@ -2,7 +2,6 @@
 // argument naming how it treats the music stack. Names and layouts are placeholders.
 #include <cstring>
 
-#include "base/UnkLoadingMask.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
@@ -10,25 +9,9 @@
 #include "game/UnkTU2677.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
-#include "game/sound/UnkMusicKind.h"
 #include "types.h"
 
 using base::global::CRntString;
-
-// The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
-// guarded constants.
-template <class T>
-struct UnkLoadingMaskOf {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
-        return s;
-    }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkLoadingMaskTag;
 
 // The music manager, created on first use.
 static inline void* MusicManager() {
@@ -62,8 +45,8 @@ s32 fn_7101091580(lua_State* L) {
         u32 bits = 1u << mode;
         void* manager = MusicManager();
         CRntString key(name);
-        fn_7100fd82dc(static_cast<UnkMusicMgr_b0019*>(manager), &key, UnkKind(bits),
-                      UnkMask(UnkLoadingMaskOf<UnkLoadingMaskTag>::All().bits), 0.0f);
+        fn_7100fd82dc(static_cast<UnkMusicMgr_b0019*>(manager), &key, UnkMask(bits),
+                      UnkMaskOf<UnkMusicMaskTag>::All(), 0.0f);
     }
     return 0;
 }

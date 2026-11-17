@@ -6,9 +6,8 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
-// The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).
 void fn_7100718388(void* self, void* arg);
 
 struct UnkAreaMusicOwner {
@@ -32,5 +31,5 @@ void fn_7100715fa8(UnkAreaMusicComponent* self, void* arg) {
         g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(instance);
     }
     f32 time = self->field_0xad8;
-    fn_7100fd7b44(instance, UnkLoadingMask(10), UnkLoadingMask(8), time);
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(instance), UnkMask(10), UnkMask(8), time);
 }
