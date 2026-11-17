@@ -589,12 +589,17 @@ KEY_VALUE_CLASS_RE = re.compile(r"base::reflection::(Const)?KeyElementValue<(.+)
 
 # A member type of a template instance (`GUI::CDisplayObjectTrack<float>::SKey`), whose arguments name no template.
 NESTED_TYPE_RE = re.compile(r"([A-Za-z_][\w:]*<[^<>]*>)::([A-Za-z_]\w*)")
+# Members of template instances that are values, not types: an enum's count (`EnumClass<E>::Count`, a
+# CArray's bound). A name with one isn't spelled: declaring it as a type would misstate it.
+VALUE_MEMBER_RE = re.compile(r"\bEnumClass<")
 
 
 def spell_type(text: str) -> tuple[str, list[str], list] | None:
     """(the type as llvm-cxxfilt prints it, the declarations a file needs to name it, the parsed types whose
     declarations must not collide) for a type tools/gen_types.py's parse_type reads, or one whose arguments
     include member types of template instances (declared as the template with that member); None otherwise."""
+    if VALUE_MEMBER_RE.search(text):
+        return None
     nested: dict[str, tuple[str, str]] = {}
 
     def placeholder(m: re.Match) -> str:

@@ -381,3 +381,8 @@ class TemplateValueNames(unittest.TestCase):
         self.assertEqual(gr.value_template_class("CGameLink<CActor>")[0], "CGameLink<CActor>")
         self.assertIsNone(gr.value_template_class("CActor"))
         self.assertEqual(gr.template_value_kind("CGameLink<CActor>"), "class_values")
+
+    def test_value_members_are_not_types(self):
+        self.assertIsNone(gr.key_value_class(
+            "base::reflection::CollectionTypeMapper<base::global::CArray<CActorLayer, EnumClass<EActorLayer>::Count, EActorLayer>>"
+            "::TKeyElementIterator::value_type"))
