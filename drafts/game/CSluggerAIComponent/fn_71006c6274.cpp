@@ -3,26 +3,10 @@
 // action the owner's (+0x30) animation (+0x220) finds and cached. False when there is no such action.
 // Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
-
-struct UnkFlags_l6c6274 {
-    u32 bits;
-    UnkFlags_l6c6274() : bits(0) {}
-    UnkFlags_l6c6274(u32 b) : bits(b) {}
-    UnkFlags_l6c6274(const UnkFlags_l6c6274& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_l6c6274& UnkFlagsNone_l6c6274() {
-    static UnkFlags_l6c6274 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_l6c6274& UnkFlagsAll_l6c6274() {
-    static UnkFlags_l6c6274 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_l6c6274().bits & 7);
-    return s_all;
-}
 
 struct UnkTimeline {
     u8 pad_0x0[0x24];
@@ -121,7 +105,7 @@ bool fn_71006c6274(UnkSluggerAI_l6c6274* self, const u64* key, UnkSluggerMotion_
     UnkSluggerMotion_l6c6274 motion;
     fn_71007142e8(reinterpret_cast<UnkStruct_71007142e8*>(&motion));
     UnkMotionTracks* tracks = timeline->tracks;
-    UnkFlags_l6c6274 flags = UnkFlagsAll_l6c6274();
+    UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     *out = motion;
     fn_71006c6e74(&g_unk_7172708078, key, &motion);

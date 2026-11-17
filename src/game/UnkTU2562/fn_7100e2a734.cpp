@@ -9,6 +9,7 @@
 #include "base/global/CStrId.h"
 #include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
 #include "game/UnkTU25.h"
@@ -18,17 +19,6 @@
 using base::color::CColor4F;
 using base::global::CRntString;
 using base::global::CStrId;
-
-// The fields of the tunable this billboard reads.
-struct UnkBillboardTunable_e2a734 {
-    u8 pad_0x0[0x5c];
-    f32 fMiniXLifeAmount;  // 0x5c
-    u8 pad_0x60[0x20];
-    f32 fMiniXYellowMotionScale;  // 0x80
-    u8 pad_0x84[0xa4];
-    CRntString sMiniXFlyPresetName;  // 0x128
-};
-static_assert(__builtin_offsetof(UnkBillboardTunable_e2a734, sMiniXFlyPresetName) == 0x128, "layout");
 
 struct UnkBillboardManager_e2a734 {
     u8 pad_0x0[0x780c];
@@ -46,10 +36,6 @@ static inline CRntString operator+(const CRntString& a, const CRntString& b) { r
 // which CDrop's layout still types as UnkDropResource.
 static inline void LoadPath(const CRntString& path, UnkDropResource* model) {
     fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(model), UnkPathIdsFromText(path).ids);
-}
-
-static inline const UnkBillboardTunable_e2a734& Tunable() {
-    return reinterpret_cast<const UnkBillboardTunable_e2a734&>(g_unk_71727c10c8);
 }
 
 static inline void Show(CDrop* billboard, const CStrId& id, void* owner, f32 count, const UnkDropTable& set) {
@@ -76,7 +62,7 @@ void fn_7100e2a734(UnkBillboardManager_e2a734* self) {
     }
     entry.field_0x8 = g_unk_71727c1088[6];
     entry.field_0x3c = -1;
-    entry.field_0x34 = Tunable().fMiniXYellowMotionScale;
+    entry.field_0x34 = g_unk_71727c10c8.fMiniXYellowMotionScale;
     entry.color = CColor4F(1.0f, 1.0f, 0.0f, 1.0f);
     entry.field_0x20 = CColor4F(0.0f, 0.0f, 0.0f, 0.0f);
     fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1078), &entry.id, 0x10, 0x10,
@@ -85,10 +71,10 @@ void fn_7100e2a734(UnkBillboardManager_e2a734* self) {
     CDrop* billboard = &self->billboard;
     {
         UnkDropTable copy = set;
-        Show(billboard, g_unk_71727c1078, self, Tunable().fMiniXLifeAmount, copy);
+        Show(billboard, g_unk_71727c1078, self, g_unk_71727c10c8.fMiniXLifeAmount, copy);
     }
     billboard->mode = 2;
-    const CRntString& name = Tunable().sMiniXFlyPresetName;
+    const CRntString& name = g_unk_71727c10c8.sMiniXFlyPresetName;
     LoadPath(g_unk_71727c13c8[0] + name + g_unk_71727c13c8[2], &billboard->field_0x4a0);
     LoadPath(g_unk_71727c13c8[0] + name + g_unk_71727c13c8[3], &billboard->field_0x4b8);
     LoadPath(g_unk_71727c13c8[0] + name + g_unk_71727c13c8[4], &billboard->field_0x4d0);

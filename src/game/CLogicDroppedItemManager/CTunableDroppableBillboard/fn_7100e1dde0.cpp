@@ -5,7 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
-#include "game/UnkDropTunable_ovb0208.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
@@ -87,18 +87,18 @@ void fn_7100e1dde0() {
     fn_7100e1e360();
     fn_710009ec00(g_unk_71727c10c0, s.billboard_entry);
 
-    UnkDropTunable_ovb0208& tunable = reinterpret_cast<UnkDropTunable_ovb0208&>(g_unk_71727c10c8);
+    UnkDroppableTunable& tunable = g_unk_71727c10c8;
     fn_7100136ecc(&tunable);
     tunable.vtable = g_unk_7101aa9cc8 + 2;
-    fn_710007e6c4(&tunable.n0);
-    fn_710007e6c4(&tunable.n1);
-    fn_710007e6c4(&tunable.n2);
-    fn_710007e6c4(&tunable.n3);
-    fn_710007e6c4(&tunable.n4);
-    fn_710007e6c4(&tunable.n5);
-    fn_710007e6c4(&tunable.n6);
-    fn_710007e6c4(&tunable.n7);
-    fn_710007e6c4(&tunable.n8);
+    fn_710007e6c4(&tunable.sMiniXAbsorbSmallGroupPresetName);
+    fn_710007e6c4(&tunable.sMiniXAbsorbMediumGroupPresetName);
+    fn_710007e6c4(&tunable.sMiniXAbsorbLargeGroupPresetName);
+    fn_710007e6c4(&tunable.sMiniXFlyPresetName);
+    fn_710007e6c4(&tunable.sDropAbsorbLifePresetName);
+    fn_710007e6c4(&tunable.sDropAbsorbLifeBigPresetName);
+    fn_710007e6c4(&tunable.sDropAbsorbMissilePresetName);
+    fn_710007e6c4(&tunable.sDropAbsorbPowerBombPresetName);
+    fn_710007e6c4(&tunable.sAbsorbingSoundPresetName);
     fn_7100000250(reinterpret_cast<void (*)(void*)>(fn_7100e20ba0), &tunable, g_unk_7101a19000);
 
     InitPathId(&s.textures[0], "system/fx/textures/droppables01.bctex");

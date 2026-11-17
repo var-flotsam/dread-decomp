@@ -10,7 +10,7 @@ void fn_7100e211cc(void* self);
 #include "base/global/CStrId.h"
 
 struct UnkDropTarget_ovb0208;
-struct UnkDropTunable_ovb0208;
+struct UnkDroppableTunable;
 // Hands the billboard singleton a drop request for `target`. The second argument register is never read
 // (an UnkNoArg: the callers leave it unloaded).
 void fn_7100e2c124(f32 value, UnkNoArg, UnkDropTarget_ovb0208* target, const base::global::CStrId* id, u32 a, u32 b,
@@ -30,6 +30,6 @@ void fn_7100e2fa00(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg,
 // the first two, fn_7100e2a734 between the first and each of the last three.
 __attribute__((visibility("hidden"))) extern base::global::CRntString g_unk_71727c13c8[5];
 
-// The billboard tunable's vtable (game/UnkDropTunable_ovb0208.h) and its destructor without the delete.
+// The billboard tunable's vtable (game/UnkDroppableTunable.h) and its destructor without the delete.
 extern void* g_unk_7101aa9cc8[];
-void fn_7100e20ba0(UnkDropTunable_ovb0208* self);
+void fn_7100e20ba0(UnkDroppableTunable* self);

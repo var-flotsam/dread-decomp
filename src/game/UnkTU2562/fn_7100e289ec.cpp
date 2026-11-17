@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
 #include "game/UnkTU341.h"
@@ -14,16 +15,6 @@
 using base::color::CColor4F;
 using base::global::CStrId;
 
-
-// The fields of the tunable these billboards read.
-struct UnkBillboardTunable_e289ec {
-    u8 pad_0x0[0x4c];
-    f32 fMissileAmount;  // 0x4c
-    f32 fMissileBigAmount;  // 0x50
-    f32 fPowerBombAmount;  // 0x54
-    u8 pad_0x58[0x20];
-    u8 field_0x78;
-};
 
 struct UnkBillboardManager_e289ec {
     u8 pad_0x0[0x7808];
@@ -35,10 +26,6 @@ struct UnkBillboardManager_e289ec {
     u8 pad_0x7860[0x8270 - 0x7860];
     CDrop billboard;  // 0x8270
 };
-
-static inline const UnkBillboardTunable_e289ec& Tunable() {
-    return reinterpret_cast<const UnkBillboardTunable_e289ec&>(g_unk_71727c10c8);
-}
 
 static inline void Show(CDrop* billboard, const CStrId& id, void* owner, f32 count, const UnkDropTable& set) {
     billboard->item = id;
@@ -62,7 +49,7 @@ void fn_7100e289ec(UnkBillboardManager_e289ec* self) {
         CStrId id("Missile0", true);
         second.id.ReleaseAndTake(id);
     }
-    second.field_0x8 = g_unk_71727c1088[Tunable().field_0x78];
+    second.field_0x8 = g_unk_71727c1088[g_unk_71727c10c8.bDropsDoRelaxMovement];
     second.color = CColor4F(1.0f, 1.0f, 1.0f, 1.0f);
     second.field_0x20 = CColor4F(0.0f, 0.0f, 0.0f, 0.0f);
     second.field_0x34 = 1.0f;
@@ -75,7 +62,7 @@ void fn_7100e289ec(UnkBillboardManager_e289ec* self) {
         CStrId id("Missile1", true);
         first.id.ReleaseAndTake(id);
     }
-    first.field_0x8 = g_unk_71727c1088[Tunable().field_0x78];
+    first.field_0x8 = g_unk_71727c1088[g_unk_71727c10c8.bDropsDoRelaxMovement];
     first.color = CColor4F(1.0f, 1.0f, 1.0f, 1.0f);
     first.field_0x20 = CColor4F(1.0f, 0.0f, 0.0f, 0.0f);
     first.color.a = 1.0f;
@@ -84,7 +71,7 @@ void fn_7100e289ec(UnkBillboardManager_e289ec* self) {
     CDrop* billboard = &self->billboard;
     {
         UnkDropTable copy = set;
-        Show(billboard, g_unk_71727c1058, self, Tunable().fMissileAmount, copy);
+        Show(billboard, g_unk_71727c1058, self, g_unk_71727c10c8.fMissileAmount, copy);
     }
     self->current = billboard;
 }

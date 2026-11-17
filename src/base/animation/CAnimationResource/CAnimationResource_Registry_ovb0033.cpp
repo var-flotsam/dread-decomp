@@ -36,7 +36,7 @@ struct UnkAnimRecord_ovb0033 {
     u8 data[0x38];
 
     __attribute__((always_inline)) ~UnkAnimRecord_ovb0033() {
-        fn_7100004a44(reinterpret_cast<unk_static_init::UnkResType*>(this));
+        fn_7100004a44(reinterpret_cast<UnkResFormat*>(this));
     }
 };
 

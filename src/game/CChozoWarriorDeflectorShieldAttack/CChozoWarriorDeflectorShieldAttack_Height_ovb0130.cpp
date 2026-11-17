@@ -1,6 +1,7 @@
 // CChozoWarriorDeflectorShieldAttack's unit (tools/tu_map.py, unit 729): the shield's height from its
 // animation. Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
@@ -11,23 +12,6 @@
 // timeline (fn_7100b8b3bc), as fn_7100425840
 // (src/game/CChozoCommanderAirChargeAttack/CChozoCommanderAirChargeAttack_Charge_ovb0113.cpp) does.
 struct UnkStruct_7101176ea8;
-
-struct UnkFlags_ovb0130 {
-    u32 bits;
-    UnkFlags_ovb0130() : bits(0) {}
-    UnkFlags_ovb0130(u32 b) : bits(b) {}
-    UnkFlags_ovb0130(const UnkFlags_ovb0130& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_ovb0130& UnkFlagsNone_ovb0130() {
-    static UnkFlags_ovb0130 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_ovb0130& UnkFlagsAll_ovb0130() {
-    static UnkFlags_ovb0130 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_ovb0130().bits & 7);
-    return s_all;
-}
 
 struct UnkStruct_71007142e8 {
     f32 m[12];
@@ -66,7 +50,7 @@ void fn_7100494578(UnkShieldAttack_ovb0130* self) {
     UnkStruct_71007142e8 motion;
     fn_71007142e8(&motion);
     UnkMotionTracks* tracks = timeline->tracks;
-    UnkFlags_ovb0130 flags = UnkFlagsAll_ovb0130();
+    UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     self->height = __builtin_fabsf(motion.m[11]);
 }
