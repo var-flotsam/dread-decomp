@@ -28,7 +28,8 @@ Keep your context small. It is the main cost of this run.
 2. Write the target file (replace `<What>` with one readable word for what the function does, e.g.
    `src/game/CFoo/CFoo_Reset_l3a7f10.cpp`). The function is at global scope, named `fn_<addr>`.
 3. Run try.py. Revise from the diff and its KIND line (fix calls first, then control flow, then
-   operations, then registers). Each run that builds is one attempt, and the budget in your brief is a cap:
+   operations, then registers). The SHAPE line under KIND says how close you are apart from registers: a
+   low score with opcodes 90% or more in the same order is a few instructions off, worth finishing. Each run that builds is one attempt, and the budget in your brief is a cap:
    try.py counts, ends its output with an `ATTEMPT n of N` line that says how many are left, and after the
    last one prints `BUDGET SPENT` and grades nothing more. So make each attempt a considered one: read the
    whole diff and fix everything it shows before you run again, not one line per run. A build failure is not

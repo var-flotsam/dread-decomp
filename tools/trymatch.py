@@ -16,7 +16,10 @@ its MATCH line and counts as not matching (`--no-reloc` skips this).
 
 A function that differs gets a `KIND` line saying what to fix first (asmdiff.classify): calls, control
 flow, operations, or registers only. Work on them in that order; only a registers-only difference is
-worth a permuter or compiler-state experiments.
+worth a permuter or compiler-state experiments. A `SHAPE` line under it says how close the two are apart
+from registers (asmdiff.structure): the share of opcodes in the same order, the frame sizes and the number of
+stack slots each body uses. A low score with a high opcode share is a few extra or missing instructions,
+not a different function; a slot count that differs is a spill or a local held in memory on one side.
 
 Usage:
   python tools/trymatch.py --version 2.1.0 src/flag_id/fn_7100227448.cpp
@@ -78,6 +81,7 @@ def main() -> int:
               f"orig {res.orig_size} B, ours {res.our_size} B, {len(res.diff_insns)} differing insns")
         if not res.bytes_match:
             print(f"  KIND   {asmdiff.classify(original.function(res.address), codes[res.symbol])}")
+            print(f"  SHAPE  {asmdiff.structure(original.function(res.address), codes[res.symbol])}")
         if args.verbose and not res.matching:
             asmdiff.print_side_by_side(res, original, codes[res.symbol])
         if res.matching and not args.no_reloc:
