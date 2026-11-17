@@ -51,8 +51,8 @@ struct UnkEmmyMoveRefObj_A3_b71 {
 struct UnkEmmyMoveRef_A3_b71 {
     UnkEmmyMoveRefObj_A3_b71* ptr = nullptr;
     ~UnkEmmyMoveRef_A3_b71() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->vf_0x10();
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            held->vf_0x10();
     }
 };
 

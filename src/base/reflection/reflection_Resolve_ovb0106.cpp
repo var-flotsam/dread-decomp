@@ -87,8 +87,8 @@ struct UnkReflSharedPtr_ovb0106 {
     UnkReflShared_ovb0106* ptr;
 
     ~UnkReflSharedPtr_ovb0106() {
-        if (ptr && --ptr->ref_count == 0)
-            delete ptr;
+        if (auto* held = ptr; held && --held->ref_count == 0)
+            delete held;
     }
 };
 

@@ -14,8 +14,8 @@ struct UnkGrappleRefObj_A5_b70 {
 struct UnkGrappleRef_A5_b70 {
     UnkGrappleRefObj_A5_b70* p;
     ~UnkGrappleRef_A5_b70() {
-        if (p && --p->ref_count == 0)
-            reinterpret_cast<void (*)(UnkGrappleRefObj_A5_b70*)>(p->vtable[0x10 / 8])(p);
+        if (auto* held = p; held && --held->ref_count == 0)
+            reinterpret_cast<void (*)(UnkGrappleRefObj_A5_b70*)>(held->vtable[0x10 / 8])(held);
     }
 };
 
