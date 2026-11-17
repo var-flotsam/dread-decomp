@@ -1,5 +1,6 @@
 #pragma once
 // State-machine request template (as src/game/UnkStateMachineSetA6_b62.cpp), shared by the _A5_b73 files.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 struct UnkSmState_A5_b73 {
     virtual void vf_0x0();
@@ -36,34 +37,22 @@ struct UnkSmOwner_A5_b73 {
     UnkSmMachine_A5_b73 machine;
 };
 
-// Pin: the states array's address is not derived from another one the caller computed.
-template <bool Pin>
-__attribute__((always_inline)) static inline bool FindState_A5_b73(UnkSmMachine_A5_b73* self, u32 id,
-                                                               UnkSmState_A5_b73*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_A5_b73);
-    asm("" : "+r"(n));
-    UnkSmStatePtr_A5_b73* p = self->states;
-    if (Pin)
-        asm("" : "+r"(p));
-    for (; n != 0; ++p, n -= sizeof(UnkSmStatePtr_A5_b73)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_A5_b73(UnkSmMachine_A5_b73* self, u32 id, UnkSmState_A5_b73*& out) {
+    UnkSmStatePtr_A5_b73* states = self->states;
+    // Keeps the states array's address from being derived from one the caller computed.
+    asm("" : "+r"(states));
+    out = FindStateById(states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
-template <u32 None, bool Pin = true>
-__attribute__((always_inline)) static inline void SwitchState_A5_b73(UnkSmMachine_A5_b73* self, u32 id,
-                                                                 UnkSmState_A5_b73* current) {
+template <u32 None>
+static inline void SwitchState_A5_b73(UnkSmMachine_A5_b73* self, u32 id, UnkSmState_A5_b73* current) {
     if (!current || current->id != id) {
         UnkSmState_A5_b73* found;
         UnkSmState_A5_b73* next;
         u32 enter;
-        if (FindState_A5_b73<Pin>(self, id, found)) {
+        if (FindState_A5_b73(self, id, found)) {
             next = found;
             enter = true;
         } else {
@@ -93,7 +82,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_A5_b73(UnkSmMachine_A5_b73* self, u32 id) {
+static inline void RequestState_A5_b73(UnkSmMachine_A5_b73* self, u32 id) {
     // Stored through a plain u32 pointer, as in the template's original.
     u32* pending = &self->pending;
     *pending = id;

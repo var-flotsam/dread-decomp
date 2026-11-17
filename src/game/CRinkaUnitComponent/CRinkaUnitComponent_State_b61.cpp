@@ -1,6 +1,7 @@
 // CRinkaUnitComponent asks its state machine (the machine of src/game/UnkStateMachineUpdate_b59.cpp at +0x1a8)
 // for a new state after storing its parameters. The request template is a copy of
 // src/game/UnkStateMachineSet_b60.cpp's. Names are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkSmState_b61 {
@@ -37,24 +38,14 @@ struct UnkSmOwner_b61 {
     UnkSmMachine_b61 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_b61(UnkSmMachine_b61* self, u32 id,
-                                                               UnkSmState_b61*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b61);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_b61* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b61)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_b61(UnkSmMachine_b61* self, u32 id, UnkSmState_b61*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_b61(UnkSmMachine_b61* self, u32 id,
-                                                                 UnkSmState_b61* current) {
+static inline void SwitchState_b61(UnkSmMachine_b61* self, u32 id, UnkSmState_b61* current) {
     if (!current || current->id != id) {
         UnkSmState_b61* found;
         UnkSmState_b61* next;
@@ -87,7 +78,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_b61(UnkSmMachine_b61* self, u32 id) {
+static inline void RequestState_b61(UnkSmMachine_b61* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;

@@ -2,6 +2,7 @@
 // src/game/UnkStateMachineUpdateA5_b62.cpp, fn_7100886c10): applies the pending state, then updates the
 // current state and applies what it asked for, at most ten times, while marked busy. Names are placeholders.
 #include "game/CUsableComponent.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1450.h"
 #include "game/UnkTU2538.h"
@@ -53,27 +54,19 @@ struct UnkSmStatesAt_A6_b64 {
     u32 offset = 0;
 };
 
-__attribute__((always_inline)) static inline bool FindState_A6_b64(UnkSmMachine_A6_b64* self, UnkSmStatesAt_A6_b64 states,
-                                                               u32 id, UnkSmState_A6_b64*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_A6_b64);
-    asm("" : "+r"(n));
+static inline bool FindState_A6_b64(UnkSmMachine_A6_b64* self, UnkSmStatesAt_A6_b64 states,
+                                    u32 id, UnkSmState_A6_b64*& out) {
     UnkSmStatePtr_A6_b64* p = states.offset
         ? reinterpret_cast<UnkSmStatePtr_A6_b64*>(states.owner + states.offset) : self->states;
     if (states.offset)
         asm("" : "+r"(p));
-    for (; n != 0; ++p, n -= sizeof(UnkSmStatePtr_A6_b64)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+    out = FindStateById(p, self->count, id);
+    return out != nullptr;
 }
 
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_A6_b64(UnkSmMachine_A6_b64* self, UnkSmStatesAt_A6_b64 states, u32 id,
-                                                                 UnkSmState_A6_b64* current) {
+static inline void SwitchState_A6_b64(UnkSmMachine_A6_b64* self, UnkSmStatesAt_A6_b64 states, u32 id,
+                                      UnkSmState_A6_b64* current) {
     if (!current || current->id != id) {
         UnkSmState_A6_b64* found;
         UnkSmState_A6_b64* next;
@@ -106,8 +99,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Apply_A6_b64(UnkSmMachine_A6_b64* self,
-                                                           UnkSmStatesAt_A6_b64 states = UnkSmStatesAt_A6_b64()) {
+static inline void Apply_A6_b64(UnkSmMachine_A6_b64* self, UnkSmStatesAt_A6_b64 states = UnkSmStatesAt_A6_b64()) {
     u32 id = self->pending;
     if (id > Last)
         return;
@@ -115,7 +107,7 @@ __attribute__((always_inline)) static inline void Apply_A6_b64(UnkSmMachine_A6_b
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Update_A6_b64(UnkSmMachine_A6_b64* self, f32 dt) {
+static inline void Update_A6_b64(UnkSmMachine_A6_b64* self, f32 dt) {
     self->busy = true;
     if (self->pending != None)
         Apply_A6_b64<Last, None>(self);
@@ -132,8 +124,8 @@ __attribute__((always_inline)) static inline void Update_A6_b64(UnkSmMachine_A6_
 }
 
 template <u32 Last, u32 None, class Arg>
-__attribute__((always_inline)) static inline void UpdateWith_A6_b64(UnkSmMachine_A6_b64* self, Arg arg,
-                                                                UnkSmStatesAt_A6_b64 states = UnkSmStatesAt_A6_b64()) {
+static inline void UpdateWith_A6_b64(UnkSmMachine_A6_b64* self, Arg arg,
+                                     UnkSmStatesAt_A6_b64 states = UnkSmStatesAt_A6_b64()) {
     typedef void (*UpdatedFn)(UnkSmState_A6_b64*, Arg);
     self->busy = true;
     if (self->pending != None)

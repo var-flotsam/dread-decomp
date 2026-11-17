@@ -14,6 +14,7 @@
 #include "game/CWeightActivatedPlatformSmartObjectComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2772.h"
 #include "game/UnkTUProperty.h"
@@ -58,24 +59,14 @@ struct UnkSmOwner_b61 {
     UnkSmMachine_b61 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_b61(UnkSmMachine_b61* self, u32 id,
-                                                               UnkSmState_b61*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b61);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_b61* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b61)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_b61(UnkSmMachine_b61* self, u32 id, UnkSmState_b61*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_b61(UnkSmMachine_b61* self, u32 id,
-                                                                 UnkSmState_b61* current) {
+static inline void SwitchState_b61(UnkSmMachine_b61* self, u32 id, UnkSmState_b61* current) {
     if (!current || current->id != id) {
         UnkSmState_b61* found;
         UnkSmState_b61* next;
@@ -108,7 +99,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void RequestState_b61(UnkSmMachine_b61* self, u32 id) {
+static inline void RequestState_b61(UnkSmMachine_b61* self, u32 id) {
     // Stored through a plain u32 pointer: the original rereads a state id the caller tested after this.
     u32* pending = &self->pending;
     *pending = id;
@@ -429,7 +420,7 @@ void fn_7100a0a08c(UnkPlatformSm_b61* self) {
 // The machine's update: applies the pending state, then updates the current state and applies what it
 // asked for, at most ten times, while marked busy (requests meanwhile only record the id).
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Apply_b61(UnkSmMachine_b61* self) {
+static inline void Apply_b61(UnkSmMachine_b61* self) {
     u32 id = self->pending;
     if (id > Last)
         return;
@@ -437,7 +428,7 @@ __attribute__((always_inline)) static inline void Apply_b61(UnkSmMachine_b61* se
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Update_b61(UnkSmMachine_b61* self, f32 dt) {
+static inline void Update_b61(UnkSmMachine_b61* self, f32 dt) {
     self->busy = true;
     if (self->pending != None)
         Apply_b61<Last, None>(self);

@@ -8,6 +8,7 @@
 // with no current state. The find reports success as a bool (a null entry counts as not found), and the
 // "enter" flag and the cleared `next` are kept in registers of their own (the barriers), as the original
 // does. Names are placeholders.
+#include "game/UnkStateMachineFind.h"
 #include "types.h"
 
 struct UnkSmState_b59 {
@@ -37,22 +38,13 @@ struct UnkSmMachine_b59 {
     u32 pending;
 };
 
-__attribute__((always_inline)) static inline bool FindState_b59(UnkSmMachine_b59* self, u32 id,
-                                                               UnkSmState_b59*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_b59);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_b59* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_b59)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_b59(UnkSmMachine_b59* self, u32 id, UnkSmState_b59*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void ApplyPending_b59(UnkSmMachine_b59* self) {
+static inline void ApplyPending_b59(UnkSmMachine_b59* self) {
     u32 id = self->pending;
     if (id > Last)
         return;

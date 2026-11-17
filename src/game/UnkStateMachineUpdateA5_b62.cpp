@@ -4,6 +4,7 @@
 // times, while marked busy. Each one's own unit. Names are placeholders.
 #include "game/CActorComponent.h"
 #include "game/CComponent.h"
+#include "game/UnkStateMachineFind.h"
 #include "game/UnkTU1176.h"
 #include "types.h"
 
@@ -42,24 +43,14 @@ struct UnkSmOwner_A5_b62 {
     UnkSmMachine_A5_b62 machine;
 };
 
-__attribute__((always_inline)) static inline bool FindState_A5_b62(UnkSmMachine_A5_b62* self, u32 id,
-                                                               UnkSmState_A5_b62*& out) {
-    u64 n = (u64)self->count * sizeof(UnkSmStatePtr_A5_b62);
-    asm("" : "+r"(n));
-    for (UnkSmStatePtr_A5_b62* p = self->states; n != 0; ++p, n -= sizeof(UnkSmStatePtr_A5_b62)) {
-        if ((*p)->id == id) {
-            out = *p;
-            return out != nullptr;
-        }
-    }
-    out = nullptr;
-    return false;
+static inline bool FindState_A5_b62(UnkSmMachine_A5_b62* self, u32 id, UnkSmState_A5_b62*& out) {
+    out = FindStateById(self->states, self->count, id);
+    return out != nullptr;
 }
 
 // Switches to state `id` (the b59 "apply pending" body) and clears the pending id.
 template <u32 None>
-__attribute__((always_inline)) static inline void SwitchState_A5_b62(UnkSmMachine_A5_b62* self, u32 id,
-                                                                 UnkSmState_A5_b62* current) {
+static inline void SwitchState_A5_b62(UnkSmMachine_A5_b62* self, u32 id, UnkSmState_A5_b62* current) {
     if (!current || current->id != id) {
         UnkSmState_A5_b62* found;
         UnkSmState_A5_b62* next;
@@ -92,7 +83,7 @@ done:
 }
 
 template <u32 Last, u32 None>
-__attribute__((always_inline)) static inline void Apply_A5_b62(UnkSmMachine_A5_b62* self) {
+static inline void Apply_A5_b62(UnkSmMachine_A5_b62* self) {
     u32 id = self->pending;
     if (id > Last)
         return;
@@ -133,7 +124,7 @@ UNK_SM_UPDATE_AFTER_A5_B62(7100886c10, 0x208, 4, 5)
 
 // The same update with a pointer argument for the states (two more units).
 template <u32 Last, u32 None, class Arg>
-__attribute__((always_inline)) static inline void UpdateWith_A5_b62(UnkSmMachine_A5_b62* self, Arg arg) {
+static inline void UpdateWith_A5_b62(UnkSmMachine_A5_b62* self, Arg arg) {
     typedef void (*UpdatedFn)(UnkSmState_A5_b62*, Arg);
     self->busy = true;
     if (self->pending != None)
