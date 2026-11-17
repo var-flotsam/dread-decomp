@@ -531,7 +531,7 @@ def constructor_objects(orig: asmdiff.Original, inits: set[int]) -> dict[int, in
     return out
 
 
-def loose_class_names(orig: asmdiff.Original, version: str, attached: set[int], taken: set[str]) -> dict[int, str]:
+def loose_class_names(orig: asmdiff.Original, version: str, attached: dict[int, str], taken: set[str]) -> dict[int, str]:
     """{constructor: class} for the descriptor constructors no class getter calls: the name the static
     initialiser gives the descriptor (tools/gen_fields.py's built_objects), found through the descriptor its
     TypeOf returns or the one it is called on. Only names the namespace form can spell (readable_type),
@@ -543,8 +543,7 @@ def loose_class_names(orig: asmdiff.Original, version: str, attached: set[int], 
     for _, _, traits in ctors.values():
         for h in set(traits.values()):
             users[h] = users.get(h, 0) + 1
-    loose = {a: traits for a, (_, _, traits) in ctors.items()
-             if a not in attached and all(users[h] == 1 for h in traits.values())}
+    loose = {a: traits for a, (_, _, traits) in ctors.items() if all(users[h] == 1 for h in traits.values())}
     called = constructor_objects(orig, set(loose))
     objects = {}
     for a, traits in loose.items():
@@ -554,17 +553,23 @@ def loose_class_names(orig: asmdiff.Original, version: str, attached: set[int], 
     names = gen_fields.built_objects(version, set(objects.values()))
     named = {}
     for a, o in objects.items():
-        if o in names and readable_type(names[o]):
+        if o not in names:
+            continue
+        if loose_readable(names[o]):
             named[a] = names[o]
-        elif o in names and key_value_class(names[o]):
+        elif key_value_class(names[o]):
             named[a] = key_value_class(names[o])[0]
+        elif value_template_class(names[o]):
+            named[a] = value_template_class(names[o])[0]
     count: dict[str, int] = {}
     for n in named.values():
         count[n] = count.get(n, 0) + 1
-    return {a: n for a, n in named.items() if count[n] == 1 and n not in taken}
+    # a constructor reflection data already gives a class keeps it: only that class's name is taken here
+    return {a: n for a, n in named.items() if count[n] == 1
+            and (attached.get(a) == n if a in attached else n not in taken)}
 
 
-def loose_names(orig: asmdiff.Original, version: str, attached: set[int], taken: set[str]) -> dict[int, str]:
+def loose_names(orig: asmdiff.Original, version: str, attached: dict[int, str], taken: set[str]) -> dict[int, str]:
     """Address -> data/functions/ name of each named loose constructor (loose_class_names) and the functions
     it stores: T::refl_InitClass and T::refl_<role>, the names the namespace form writes them under."""
     ctors = class_constructors(orig)
@@ -582,25 +587,88 @@ KEY_VALUE_RE = re.compile(r"base::reflection::CollectionTypeMapper<(.+)>::TKeyEl
 KEY_VALUE_CLASS_RE = re.compile(r"base::reflection::(Const)?KeyElementValue<(.+)>")
 
 
-def key_value_class(name: str) -> tuple[str, tuple] | None:
-    """(the class data/functions/ names it under, the parsed collection type) of a key-element iterator's
-    pair (KeyElementValue<C> or ConstKeyElementValue<C>), when C is a type whose names can be declared
-    without colliding with each other; None for any other name."""
-    m = KEY_VALUE_RE.fullmatch(re.sub(r"(?<=\w)\s+(?=\w)", " ", re.sub(r"\s+(?!\w)|(?<!\w)\s+", "", name)))
-    node = gen_types.parse_type(m.group(1)) if m else None
-    if not node or node[2] or gen_types.declaration_clashes([node]):
+# A member type of a template instance (`GUI::CDisplayObjectTrack<float>::SKey`), whose arguments name no template.
+NESTED_TYPE_RE = re.compile(r"([A-Za-z_][\w:]*<[^<>]*>)::([A-Za-z_]\w*)")
+# Members of template instances that are values, not types: an enum's count (`EnumClass<E>::Count`, a
+# CArray's bound). A name with one isn't spelled: declaring it as a type would misstate it.
+VALUE_MEMBER_RE = re.compile(r"\bEnumClass<")
+
+
+def spell_type(text: str) -> tuple[str, list[str], list] | None:
+    """(the type as llvm-cxxfilt prints it, the declarations a file needs to name it, the parsed types whose
+    declarations must not collide) for a type tools/gen_types.py's parse_type reads, or one whose arguments
+    include member types of template instances (declared as the template with that member); None otherwise."""
+    if VALUE_MEMBER_RE.search(text):
         return None
-    cls = f"base::reflection::{'Const' if m.group(2) else ''}KeyElementValue<{gen_types.render_type(node)}>"
-    return gen_types.demangled_spelling(cls), node
+    nested: dict[str, tuple[str, str]] = {}
+
+    def placeholder(m: re.Match) -> str:
+        key = f"UnkNestedType{len(nested)}"
+        nested[key] = (m.group(1), m.group(2))
+        return key
+    node = gen_types.parse_type(NESTED_TYPE_RE.sub(placeholder, text))
+    if not node or node[2]:
+        return None
+    nodes = [node]
+    decls = [d for d in gen_types.type_declarations(node) if not re.fullmatch(r"class UnkNestedType\d+;", d)]
+    rendered = gen_types.render_type(node)
+    for key, (head, leaf) in nested.items():
+        hn = gen_types.parse_type(head)
+        if not hn or hn[2] or hn[1] is None:
+            return None
+        nodes.append(hn)
+        scope, _, name = hn[0].rpartition("::")
+        params = ", ".join(["class"] * len(hn[1]))
+        declared = gen_types.declare_in(scope, f"template <{params}> class {name};")
+        decls += [gen_types.declare_in(scope, f"template <{params}> class {name} {{ public: struct {leaf}; }};")
+                  if d == declared else d for d in gen_types.type_declarations(hn)]
+        rendered = re.sub(rf"\b{key}\b", f"{gen_types.render_type(hn)}::{leaf}", rendered)
+    if gen_types.declaration_clashes(nodes):
+        return None
+    return rendered, decls, nodes
 
 
-def key_value_lines(orig: asmdiff.Original, name: str, size: int, abstract: bool,
-                    traits: dict[int, int]) -> tuple[list[str], tuple]:
-    """A key-element pair's class (`name` as data/functions/ gives it) as specialisations of
-    KeyElementValue's members, and the parsed collection type whose names its file declares."""
-    m = KEY_VALUE_CLASS_RE.fullmatch(gen_types.source_spelling(name))
-    cls = f"{m.group(1) or ''}KeyElementValue<{m.group(2)}>"
-    lines = [f"// The pair {m.group(2)}'s {'const ' if m.group(1) else ''}key-element iterator yields."]
+def key_value_class(name: str) -> tuple[str, tuple] | None:
+    """(the class data/functions/ names it under, spell_type of the collection) of a key-element iterator's
+    pair (KeyElementValue<C> or ConstKeyElementValue<C>), when spell_type spells C; None for any other name."""
+    m = KEY_VALUE_RE.fullmatch(re.sub(r"(?<=\w)\s+(?=\w)", " ", re.sub(r"\s+(?!\w)|(?<!\w)\s+", "", name)))
+    spelled = spell_type(m.group(1)) if m else None
+    if not spelled:
+        return None
+    cls = f"base::reflection::{'Const' if m.group(2) else ''}KeyElementValue<{spelled[0]}>"
+    return gen_types.demangled_spelling(cls), spelled
+
+
+# Game class templates whose instances reflection describes, with the header that declares their value
+# operations (DREAD_REFLECTED_VALUE_MEMBERS, base/reflection/ReflectedValue.h).
+VALUE_TEMPLATES = {"CGameLink": "game/CGameLink.h"}
+
+
+def value_template_class(name: str) -> tuple[str, tuple] | None:
+    """(the class data/functions/ names it under, spell_type of it) of an instance of a VALUE_TEMPLATES
+    template; None for any other name."""
+    spelled = spell_type(re.sub(r"(?<=\w)\s+(?=\w)", " ", re.sub(r"\s+(?!\w)|(?<!\w)\s+", "", name)))
+    if not spelled or spelled[2][0][0] not in VALUE_TEMPLATES or spelled[2][0][1] is None:
+        return None
+    return gen_types.demangled_spelling(spelled[0]), spelled
+
+
+def template_value_lines(orig: asmdiff.Original, name: str, size: int, abstract: bool,
+                         traits: dict[int, int]) -> tuple[list[str], list[str], list]:
+    """A class template instance's description (`name` as data/functions/ gives it: a key-element pair or a
+    VALUE_TEMPLATES instance) as specialisations of its members, with the declarations its file needs and the
+    parsed types whose declarations must not collide."""
+    source = gen_types.source_spelling(name)
+    m = KEY_VALUE_CLASS_RE.fullmatch(source)
+    if m:
+        cls = f"{m.group(1) or ''}KeyElementValue<{m.group(2)}>"
+        _, decls, nodes = spell_type(m.group(2))
+        lines = [f"// The pair {m.group(2)}'s {'const ' if m.group(1) else ''}key-element iterator yields."]
+    else:
+        cls = source
+        _, decls, nodes = spell_type(source)
+        decls = [d for d in decls if not any(re.search(rf"\bclass {t};", d) for t in VALUE_TEMPLATES)]
+        lines = [f"// {cls}"]
     for h, slot in sorted((h, slot) for slot, h in traits.items()):
         src = role_helper(orig, slot, h, f"{cls}::{role_name(slot)}")
         if src:
@@ -610,12 +678,44 @@ def key_value_lines(orig: asmdiff.Original, name: str, size: int, abstract: bool
     if abstract:
         lines.append("    static constexpr bool abstract = true;")
     lines += [f"    static constexpr auto {ROLES[slot][1]} = &{role_name(slot)};" for slot in TRAIT_SLOTS if slot in traits]
-    return lines + ["};", f"DREAD_REFLECTED_DESCRIPTOR({cls});"], gen_types.parse_type(m.group(2))
+    return lines + ["};", f"DREAD_REFLECTED_DESCRIPTOR({cls});"], decls, nodes
+
+
+def template_value_kind(name: str) -> str | None:
+    """The files a data/functions/ class name's description goes to (TEMPLATE_VALUE_FILES), or None."""
+    if KEY_VALUE_CLASS_RE.fullmatch(name):
+        return "key_element_values"
+    return "class_values" if value_template_class(gen_types.source_spelling(name)) else None
+
+
+def reflection_header_classes() -> frozenset[str]:
+    """The base::reflection classes the headers under include/base/reflection/ declare or define."""
+    out = set()
+    for h in (ROOT / "include" / "base" / "reflection").glob("*.h"):
+        out |= set(re.findall(r"\b(?:class|struct)\s+([A-Za-z_]\w*)", h.read_text(encoding="utf-8")))
+    return frozenset(out)
+
+
+def loose_readable(name: str) -> bool:
+    """A loose constructor's class the namespace form can spell: readable_type's, or a base::reflection class
+    the reflection headers neither declare nor define (a namespace of its name then collides with nothing)."""
+    if readable_type(name):
+        return True
+    m = re.fullmatch(r"base::reflection::([A-Za-z_]\w*)", name)
+    return bool(m) and m.group(1) not in reflection_header_classes()
 
 
 KEY_VALUE_HEAD = ['#include "base/reflection/CClass.h"', '#include "base/reflection/KeyElementValue.h"',
                   '#include "base/reflection/ReflectedClass.h"', "", *READABLE_PRELUDE,
                   "using base::reflection::ConstKeyElementValue;", "using base::reflection::KeyElementValue;"]
+# kind -> (the head of its files, their description)
+TEMPLATE_VALUE_FILES = {
+    "key_element_values": (KEY_VALUE_HEAD, "The classes of the pairs collections' key-element iterators yield "
+                                           "(base/reflection/KeyElementValue.h),"),
+    "class_values": (['#include "base/reflection/CClass.h"', '#include "base/reflection/ReflectedClass.h"',
+                      *(f'#include "{h}"' for h in sorted(set(VALUE_TEMPLATES.values()))), "", *READABLE_PRELUDE],
+                     "Reflected instances of game class templates, described as specialisations of their members,"),
+}
 
 
 def loose_class_lines(orig: asmdiff.Original, name: str, size: int, abstract: bool,
@@ -1180,7 +1280,7 @@ def main() -> int:
         n = fn_names.get(a, "")
         if n.endswith("::refl_InitClass"):
             t = n[:-len("::refl_InitClass")]
-            if (readable_type(t) or KEY_VALUE_CLASS_RE.fullmatch(t)) \
+            if (loose_readable(t) or template_value_kind(t)) \
                     and all(fn_names.get(h) == f"{t}::{role_name(slot)}" for slot, h in ctors[a][2].items()):
                 class_of_init[a] = t
     named_head = ['#include "base/reflection/CClass.h"', '#include "base/reflection/ReflectedClass.h"', "",
@@ -1191,9 +1291,9 @@ def main() -> int:
     def check_loose(a: int) -> bool:
         t = class_of_init[a]
         src, obj = work / f"{a:x}.cpp", work / f"{a:x}.o"
-        if KEY_VALUE_CLASS_RE.fullmatch(t):
-            body, node = key_value_lines(orig, t, *ctors[a])
-            text = [*KEY_VALUE_HEAD, *gen_types.type_declarations(node), "", *body]
+        if template_value_kind(t):
+            body, decls, _ = template_value_lines(orig, t, *ctors[a])
+            text = [*TEMPLATE_VALUE_FILES[template_value_kind(t)][0], *decls, "", *body]
         else:
             text = [*named_head, *loose_class_lines(orig, t, *ctors[a])]
         src.write_text(chr(10).join(text) + chr(10), encoding="utf-8")
@@ -1209,27 +1309,29 @@ def main() -> int:
 
     with ThreadPoolExecutor() as pool:
         named_ok = {a for a, ok in zip(list(class_of_init), pool.map(check_loose, list(class_of_init))) if ok}
-    # The key-element pairs go to files of their own, each with the declarations its collections need; a
-    # pair whose declarations would collide with a file's starts the next.
-    pairs = sorted(a for a in named_ok if KEY_VALUE_CLASS_RE.fullmatch(class_of_init[a]))
-    pair_files: list[list[tuple[list[str], tuple]]] = []
+    # Template instances (key-element pairs, VALUE_TEMPLATES) go to files of their own by kind, each with the
+    # declarations its types need; one whose declarations would collide with a file's starts the next.
+    pairs = sorted(a for a in named_ok if template_value_kind(class_of_init[a]))
+    by_kind: dict[str, list[list[tuple[list[str], list[str], list]]]] = {k: [] for k in TEMPLATE_VALUE_FILES}
     for a in pairs:
-        body, node = key_value_lines(orig, class_of_init[a], *ctors[a])
-        if not pair_files or len(pair_files[-1]) >= REGISTRATION_CHUNK \
-                or gen_types.declaration_clashes([n for _, n in pair_files[-1]] + [node]):
-            pair_files.append([])
-        pair_files[-1].append((body, node))
-    for f in OUT.glob("key_element_values_*.cpp"):
-        f.unlink()
-    for k, group in enumerate(pair_files):
-        decls = sorted({d for _, n in group for d in gen_types.type_declarations(n)})
-        lines = ["// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
-                 "// The classes of the pairs collections' key-element iterators yield (base/reflection/KeyElementValue.h),",
-                 "// byte-identical to the original.", *KEY_VALUE_HEAD, "", *decls, ""]
-        for body, _ in group:
-            lines += body + [""]
-            ctors_generated += 1
-        (OUT / f"key_element_values_{k:02d}.cpp").write_text(chr(10).join(lines), encoding="utf-8", newline=chr(10))
+        item = template_value_lines(orig, class_of_init[a], *ctors[a])
+        files_of_kind = by_kind[template_value_kind(class_of_init[a])]
+        if not files_of_kind or len(files_of_kind[-1]) >= REGISTRATION_CHUNK \
+                or gen_types.declaration_clashes([n for _, _, ns in files_of_kind[-1] for n in ns] + item[2]):
+            files_of_kind.append([])
+        files_of_kind[-1].append(item)
+    for kind, groups in by_kind.items():
+        for f in OUT.glob(f"{kind}_*.cpp"):
+            f.unlink()
+        head, about = TEMPLATE_VALUE_FILES[kind]
+        for k, group in enumerate(groups):
+            decls = sorted({d for _, ds, _ in group for d in ds})
+            lines = ["// Generated by tools/gen_reflection.py from main; regenerate rather than edit.",
+                     f"// {about}", "// byte-identical to the original.", *head, "", *decls, ""]
+            for body, _, _ in group:
+                lines += body + [""]
+                ctors_generated += 1
+            (OUT / f"{kind}_{k:02d}.cpp").write_text(chr(10).join(lines), encoding="utf-8", newline=chr(10))
     loose = [a for a in loose if a not in pairs]
     for k in range(0, len(loose), REGISTRATION_CHUNK):
         chunk = loose[k:k + REGISTRATION_CHUNK]
@@ -1256,7 +1358,7 @@ def main() -> int:
         (OUT / f"class_descriptors_{k // REGISTRATION_CHUNK:02d}.cpp").write_text(chr(10).join(lines), encoding="utf-8",
                                                                                 newline=chr(10))
     print(f"loose descriptor constructors: {len(named_ok) - len(pairs)} of {len(loose)} in the namespace form, "
-          f"{len(pairs)} key-element pairs by collection ({len(class_of_init)} named by data/functions/)")
+          f"{len(pairs)} template instances by type ({len(class_of_init)} named by data/functions/)")
     write_chunks("registration", ["// Attribute/member-field registration functions not reached from a class getter",
                                   "// (tools/refl_attrs.py), byte-identical to the original."],
                  {a: others[a] for a in others_ok})
