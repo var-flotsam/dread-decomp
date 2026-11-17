@@ -7,7 +7,7 @@
 #include "types.h"
 
 // The 27 bytes after the first word, copied as one block.
-struct __attribute__((packed)) UnkElemData2661 {
+struct __attribute__((packed)) UnkElemData2661_l06f344 {
     u8 bytes[27];
 };
 
@@ -20,7 +20,7 @@ struct UnkTunableHolderVtable_l06f344 {
 struct UnkTunableHolder_l06f344 {
     const UnkTunableHolderVtable_l06f344* vtable;
     u64 field_0x8;
-    UnkElemData2661 data;  // 0x10
+    UnkElemData2661_l06f344 data;  // 0x10
     u8 pad_0x2b[5];
 
     UnkTunableHolder_l06f344(const UnkTunableHolder_l06f344& other)

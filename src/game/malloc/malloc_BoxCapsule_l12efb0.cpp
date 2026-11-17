@@ -11,7 +11,7 @@ using base::math::CVector3D;
 
 // The type-8 shape: an upright capsule, its centre, the half height of its straight part and its radius.
 struct UnkShape8Geometry;
-struct UnkCapsule2D {
+struct UnkCapsule2D_l12efb0 {
     CVector2D center;
     f32 half_height;
     f32 radius;
@@ -85,7 +85,7 @@ static inline bool HitCircle(const void* b, void* x5, const UnkCapsuleCircle& ci
 }
 
 bool fn_710012efb0(const void* b, void* x5, const UnkShape8Geometry* a, UnkContactPoint* out) {
-    const UnkCapsule2D* capsule = reinterpret_cast<const UnkCapsule2D*>(a);
+    const UnkCapsule2D_l12efb0* capsule = reinterpret_cast<const UnkCapsule2D_l12efb0*>(a);
     UnkCapsuleContact* result = reinterpret_cast<UnkCapsuleContact*>(out);
 
     bool hit = false;
