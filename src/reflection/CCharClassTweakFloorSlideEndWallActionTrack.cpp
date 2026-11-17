@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakFloorSlideEndWallActionTrack
 namespace CCharClassTweakFloorSlideEndWallActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Floor Slide End Wall Action");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Floor Slide");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Floor Slide End Wall Action");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Floor Slide");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxDistanceToCollisionToApply", 0x34, (DefaultValue, -1.0f), (Description, "-1.0f means: any distance. Other values mean: only apply track data when distance to collision is smaller than this value"));

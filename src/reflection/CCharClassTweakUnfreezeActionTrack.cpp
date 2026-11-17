@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassTweakUnfreezeActionTrack
 namespace CCharClassTweakUnfreezeActionTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Unfreeze Action");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Tweak", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Unfreeze Action");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Tweak", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

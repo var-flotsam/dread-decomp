@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // behaviortree::CBehaviorTree
 namespace behaviortree::CBehaviorTree {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x10005u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10005u);
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void*, const void*) { return false; }

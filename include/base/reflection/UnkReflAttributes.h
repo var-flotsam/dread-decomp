@@ -75,18 +75,18 @@ struct UnkReflValueRef {
 }  // namespace base::reflection
 
 // Get (creating on first use) a type's attribute container (CType+0x80).
-base::reflection::UnkReflAttrs* fn_710009dd6c(base::reflection::CType* type);
+base::reflection::UnkReflAttrs* TypeAttributes(base::reflection::CType* type);
 // Insert a (key, value) pair.
 void fn_71000934b8(base::reflection::UnkReflAttrs* attrs, const base::reflection::UnkReflAttrKey& key,
                    const base::reflection::UnkReflValueRef& value);
 
 // Register a member field: name, type, offset in the object. The two -1s are unknown.
-base::reflection::UnkReflField* fn_7100096524(base::reflection::CClass* cls, base::global::CStrId name,
+base::reflection::UnkReflField* AddReflectedField(base::reflection::CClass* cls, base::global::CStrId name,
                                               const base::reflection::CType* type, u64 offset, s64 unk_4,
                                               s64 unk_5);
 
 // Add a function named `name` to a class; null if the class already has one by that name.
-base::reflection::UnkReflFunction* fn_7100097550(base::reflection::CClass* cls, const base::global::CStrId& name);
+base::reflection::UnkReflFunction* AddReflectedFunction(base::reflection::CClass* cls, const base::global::CStrId& name);
 
 // Resize a function's parameter attribute containers (0x38 bytes each, at +0x88) to `count`.
 void fn_710009ae5c(base::reflection::UnkReflFunction* fn, u32 count);

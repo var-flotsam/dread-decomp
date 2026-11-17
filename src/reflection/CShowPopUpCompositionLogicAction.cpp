@@ -23,7 +23,7 @@ extern base::reflection::CType g_unk_7101d5c998;
 namespace CShowPopUpCompositionLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("vtexts", true), &g_unk_7101d5c998, 0x10, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("vtexts", true), &g_unk_7101d5c998, 0x10, -1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

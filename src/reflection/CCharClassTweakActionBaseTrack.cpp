@@ -29,29 +29,29 @@ void fn_7100d2c880();
 void fn_7100d2c364(UnkReflFunction* fn, const char* name);
 namespace CCharClassTweakActionBaseTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Jump Ground Action");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Tweak Jump Ground Action");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrame_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bMaintainFrame_GetterFunction") {
         fn->name = base::global::UnkStrId("_bMaintainFrame_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2c7f0);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrame_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bMaintainFrame_SetterFunction")
         fn_7100d2c1e8(fn, "_bMaintainFrame_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bMaintainFrame", (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrameUsePercentage_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bMaintainFrameUsePercentage_GetterFunction") {
         fn->name = base::global::UnkStrId("_bMaintainFrameUsePercentage_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100d2c880);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bMaintainFrameUsePercentage_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bMaintainFrameUsePercentage_SetterFunction")
         fn_7100d2c364(fn, "_bMaintainFrameUsePercentage_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bMaintainFrameUsePercentage", (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fToFrame", 0x28, (DefaultValue, 0.0f));

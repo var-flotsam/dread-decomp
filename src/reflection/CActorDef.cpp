@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // CActorDef
 namespace CActorDef {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0xf0200u);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0xf0200u);
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void*, const void*) { return false; }

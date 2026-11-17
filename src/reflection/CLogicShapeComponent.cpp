@@ -31,21 +31,21 @@ void fn_7100913144(UnkReflFunction* fn, const char* name);
 namespace CLogicShapeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("pLogicShape", true), fn_7100913068(), 0x30, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("pLogicShape", true), fn_7100913068(), 0x30, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::SetRenderItemSelectionIdCall(), true);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Shape");
     field0->attrs.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     field0->attrs.AddTyped<s64, &fn_71009155a8>(base::reflection::attr::DefaultValue(), 0);
     field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterShapeDeserialization", true));
     DREAD_REFLECTED_FIELD(bool, "bWantsToGenerateNavMeshEdges", 0x38, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterShapeDeserialization", true))) {
+    DREAD_REFLECTED_FUNCTION("AfterShapeDeserialization") {
         fn->name = base::global::UnkStrId("AfterShapeDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71009158dc);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsActorInside", true)))
+    DREAD_REFLECTED_FUNCTION("IsActorInside")
         fn_7100913144(fn, "IsActorInside");
 }
 bool refl_Equals(const void*, const void*) { return false; }

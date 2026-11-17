@@ -34,16 +34,16 @@ namespace CCutsceneComponent::SActorInfo {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x30);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_lnkActor_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_lnkActor_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_lnkActor_GetterFunction", true);
         fn->return_type = &g_unk_717269bb48;
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ad0ec);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_lnkActor_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_lnkActor_SetterFunction")
         fn_71007a2ac8(fn, "_m_lnkActor_SetterFunction");
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("lnkActor", true), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("lnkActor", true), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"sId"}, 0xa, nullptr, 0xf)));
     DREAD_REFLECTED_FIELD(bool, "bStartingVisibleState", 0x81, (EditorVisible, false), (DefaultValue, true));
@@ -310,23 +310,23 @@ extern base::reflection::CType g_unk_7101d679f0;
 void fn_71007abef0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71007a13a4(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007abea0);
     }
-    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutsceneComponent::SActorInfo::refl_GetClass();
         fn->field_0xb2 = 0x1;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007abef0);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -343,22 +343,22 @@ extern base::reflection::CType g_unk_7101d679f0;
 void fn_71007ac060();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71007a1994(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_key_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
         fn->name = base::global::UnkStrId("_key_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ac010);
     }
-    UnkReflField* field0 = fn_7100096524(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_element_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutsceneComponent::SActorInfo::refl_GetClass();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007ac060);
     }
-    UnkReflField* field1 = fn_7100096524(cls, g_unk_7101d5a458, CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
 }

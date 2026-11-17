@@ -29,7 +29,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CTimelineComponent::ENextPolicy", "eNextPolicy", 0x58, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0x68, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0x6c, (DefaultValue, 0.0f));
-    UnkReflField* field4 = fn_7100096524(cls, CStrId("eLayerInFrustumToLaunchInRandomDelayPolicy", true), &g_unk_7101d580f0, 0x70, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("eLayerInFrustumToLaunchInRandomDelayPolicy", true), &g_unk_7101d580f0, 0x70, -1, -1);
     field4->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7101d580f0, s32(base::reflection::refl_GetEnumZero<0x7101d57cc8>()));
 }
 bool refl_Equals(const void*, const void*) { return false; }

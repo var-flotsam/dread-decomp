@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassRestoreFanMudEvent
 namespace CCharClassRestoreFanMudEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Restore Fan Mud");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Cooldown Boss", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Restore Fan Mud");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Cooldown Boss", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

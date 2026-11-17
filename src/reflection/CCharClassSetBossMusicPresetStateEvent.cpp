@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetBossMusicPresetStateEvent
 namespace CCharClassSetBossMusicPresetStateEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Boss Music Preset State");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Boss Music Preset State");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("EMusicManagerInGameState", "eState", 0xc, (DefaultValue, 0));

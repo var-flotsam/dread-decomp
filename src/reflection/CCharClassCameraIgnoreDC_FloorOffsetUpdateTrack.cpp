@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack
 namespace CCharClassCameraIgnoreDC_FloorOffsetUpdateTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Camera Ignore DC_Floor Offset Update");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Camera Ignore DC_Floor Offset Update");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

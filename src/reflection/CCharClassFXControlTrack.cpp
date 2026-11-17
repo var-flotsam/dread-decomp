@@ -29,28 +29,28 @@ void fn_7100cfd18c();
 void fn_7100cfc67c(UnkReflFunction* fn, const char* name);
 namespace CCharClassFXControlTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Control");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("FX", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "FX Control");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("FX", true));
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sActive_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sActive_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sActive_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100cfd080);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sActive_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sActive_SetterFunction")
         fn_7100cfc500(fn, "_m_sActive_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sActive", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Active"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sEnabled_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sEnabled_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sEnabled_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100cfd18c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sEnabled_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sEnabled_SetterFunction")
         fn_7100cfc67c(fn, "_m_sEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Active"));
 }

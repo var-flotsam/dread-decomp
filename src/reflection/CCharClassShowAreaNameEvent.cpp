@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassShowAreaNameEvent
 namespace CCharClassShowAreaNameEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Show Area Name");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Scenario", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Show Area Name");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Scenario", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFade", 0xc, (DefaultValue, 1.0f));

@@ -58,7 +58,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aVignettes", 0xa8);
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetOpenState", true))) {
+        DREAD_REFLECTED_FUNCTION("SetOpenState") {
             fn->name = base::global::UnkStrId("SetOpenState", true);
             fn->return_type = &g_unk_7101d5af48;
             fn->field_0xb2 = 0;

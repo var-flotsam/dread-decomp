@@ -24,7 +24,7 @@ void fn_71008a3a04(UnkReflFunction* fn, const char* name);
 namespace CBasicLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddDamageSource", true))) {
+    DREAD_REFLECTED_FUNCTION("AddDamageSource") {
         fn_71008a3a04(fn, "AddDamageSource");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Add Damage source (POWER_BEAM, CHARGE_BEAM, ...)"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);

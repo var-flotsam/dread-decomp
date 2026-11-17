@@ -55,13 +55,13 @@ void fn_71003540d8(UnkReflFunction* fn);
 namespace CBaseTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("IsPlayerInside", true))) {
+    DREAD_REFLECTED_FUNCTION("IsPlayerInside") {
         fn_7100a46978(fn, "IsPlayerInside");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString(""));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x9bc, (DefaultValue, false));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DisableLogic", true))) {
+    DREAD_REFLECTED_FUNCTION("DisableLogic") {
         fn->name = base::global::UnkStrId("DisableLogic", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;

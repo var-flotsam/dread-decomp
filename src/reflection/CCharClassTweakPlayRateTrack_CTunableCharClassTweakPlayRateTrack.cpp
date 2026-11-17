@@ -106,8 +106,8 @@ DREAD_REFLECTED_CLASS(CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRa
 // CCharClassTweakPlayRateTrack
 namespace CCharClassTweakPlayRateTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Use Tunable Play Rate");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Animation", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Use Tunable Play Rate");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Animation", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sTunableId", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Tunable within CTunableCharClassTweakPlayRateTrack to use when modifying play rate. Uses default tunable when not found"));

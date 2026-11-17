@@ -29,14 +29,14 @@ namespace CCharClassFrozenAsPlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sCollisionMaskToFreeze", 0xa0, (DefaultValue, base::global::CRntString("DAMAGE")), (Description, "Collision Mask to create the ice platform"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollisionTagsExcludedFromFreezing_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_m_sCollisionTagsExcludedFromFreezing_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_sCollisionTagsExcludedFromFreezing_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007fd394);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_m_sCollisionTagsExcludedFromFreezing_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_m_sCollisionTagsExcludedFromFreezing_SetterFunction")
         fn_71007fc518(fn, "_m_sCollisionTagsExcludedFromFreezing_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionTagsExcludedFromFreezing", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Comma separated list of collision tags to exclude in the ice platform created"));
     DREAD_REFLECTED_FIELD(f32, "fPlatformDepth", 0x100, (DefaultValue, 100.0f), (Description, "Size of the platform in Z"));

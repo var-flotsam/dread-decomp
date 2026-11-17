@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassPlayMusicEvent
 namespace CCharClassPlayMusicEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Music");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Play Music");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));

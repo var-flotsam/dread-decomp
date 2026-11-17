@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCollisionMaterialFXSetActiveEvent
 namespace CCharClassCollisionMaterialFXSetActiveEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Collision Material FX Set Emission Enabled");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Collision Material FX Set Emission Enabled");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -67,14 +67,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "v3TargetPadding", 0x3c, (DefaultValue, base::math::CVector3D{150.0f, 50.0f, 0.0f}), (Description, "Padding added to the offset to make sure that the target stays inside camera when in mid and long range"));
     DREAD_REFLECTED_FIELD(f32, "fEmmyAlarmVolume", 0x48, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fAimNewCameraDistance", 0x68, (DefaultValue, 600.0f), (ShowInConfig, true), (Description, "Distance"), (MinValue, 500.0f), (MaxValue, 5000.0f), (ControlFloatStep, 10.0f), (InternalTag, "Camera|Aim"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAimNewCameraAng_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAimNewCameraAng_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAimNewCameraAng_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71007236e4);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAimNewCameraAng_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAimNewCameraAng_SetterFunction")
         fn_7100721b74(fn, "_fAimNewCameraAng_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAimNewCameraAng", (DefaultValue, 60.0f), (ShowInConfig, true), (Description, "Angle"), (MinValue, 0.0f), (MaxValue, 90.0f), (ControlFloatStep, 1.0f), (InternalTag, "Camera|Aim"));
     DREAD_REFLECTED_FIELD(f32, "fAimNewCameraOffsetY", 0x6c, (DefaultValue, 70.0f), (ShowInConfig, true), (Description, "Offset Y"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 10.0f), (InternalTag, "Camera|Aim"));
@@ -83,14 +83,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAimNewCameraChaseAutoAimMaxInterpolationDist", 0x5c, (DefaultValue, 1500.0f));
     DREAD_REFLECTED_FIELD(bool, "bAimNewCameraChaseAutoAimForceEmmyMaxYInsideCamera", 0x60, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(f32, "fAimNewCameraFreeAimInterpolationSpeed", 0x64, (DefaultValue, 100.0f), (ShowInConfig, true), (Description, "Free aim interpolation speed"), (MinValue, 1.0f), (MaxValue, 10000.0f), (ControlFloatStep, 1.0f), (InternalTag, "Camera|Aim"));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAimNewCameraInputMode_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_iAimNewCameraInputMode_GetterFunction") {
         fn->name = base::global::UnkStrId("_iAimNewCameraInputMode_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<int>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710072378c);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_iAimNewCameraInputMode_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_iAimNewCameraInputMode_SetterFunction")
         fn_7100721cf0(fn, "_iAimNewCameraInputMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iAimNewCameraInputMode", (DefaultValue, 1));
     UnkTunableRegistry* registry = g_unk_7101d47350;

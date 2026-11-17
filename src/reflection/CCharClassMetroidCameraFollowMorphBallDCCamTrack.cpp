@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassMetroidCameraFollowMorphBallDCCamTrack
 namespace CCharClassMetroidCameraFollowMorphBallDCCamTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Metroid Camera Follow DC_Cam");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Camera");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Metroid Camera Follow DC_Cam");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Camera");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

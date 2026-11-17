@@ -22,7 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 // navmesh::CDynamicSmartLinkRules
 namespace navmesh::CDynamicSmartLinkRules {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<u32>(base::reflection::attr::Version(), 0x1001fu);
+    TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x1001fu);
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void*, const void*) { return false; }

@@ -35,7 +35,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(s32, "iIgnorePlayerMode", 0x24, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bShowBossLifebar", 0x28, (DefaultValue, false));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("eBumpMode", true), &g_unk_71727bc3f0, 0x2c, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("eBumpMode", true), &g_unk_71727bc3f0, 0x2c, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bc3f0, 3);
     DREAD_REFLECTED_FIELD(bool, "bShowEnemyLife", 0x30, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bShowEnemyDamage", 0x31, (DefaultValue, false));

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassFlotingPropActingStopFlotationEvent
 namespace CCharClassFlotingPropActingStopFlotationEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Floating Prop Acting Stop Flotation");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Props");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Floating Prop Acting Stop Flotation");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Props");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

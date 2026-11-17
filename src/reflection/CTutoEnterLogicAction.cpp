@@ -28,7 +28,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sLiteralID", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bShowMessage", 0x10, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bWaitForInput", 0x11, (DefaultValue, false));
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("wpObserver", true), &g_unk_717269bb48, 0x20, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpObserver", true), &g_unk_717269bb48, 0x20, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sLuaCallbackOnMessageClosed", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sMissionLogTutoId", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)));

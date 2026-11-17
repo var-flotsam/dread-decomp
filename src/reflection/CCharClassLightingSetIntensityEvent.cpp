@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassLightingSetIntensityEvent
 namespace CCharClassLightingSetIntensityEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "SetIntensity");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Lighting", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "SetIntensity");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Lighting", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

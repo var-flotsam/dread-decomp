@@ -23,11 +23,11 @@ using base::reflection::DestroyDestructorFirst;
 extern base::reflection::CType g_unk_7172772bb0;
 namespace CharClassSakaiModifyShieldEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Sakai shield");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Sakai shield");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("eAction", true), &g_unk_7172772bb0, 0xc, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eAction", true), &g_unk_7172772bb0, 0xc, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172772bb0, 2147483647);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

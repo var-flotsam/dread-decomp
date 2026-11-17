@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassForceCameraDetphEntityPositionZeroTrack
 namespace CCharClassForceCameraDetphEntityPositionZeroTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Force Camera Detph Entity Position Zero");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Force Camera Detph Entity Position Zero");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

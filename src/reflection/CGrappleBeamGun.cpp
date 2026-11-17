@@ -66,7 +66,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 25.0f), (Description, "Single shot damage amount"));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x28, (DefaultValue, 0.3f), (Description, "Maximun damage to the shield"));
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("iSelectionMode", true), &base::reflection::PrimitiveType<int>::Get(), 0x2c, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("iSelectionMode", true), &base::reflection::PrimitiveType<int>::Get(), 0x2c, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172725900, 0);
     field2->attrs.Add<bool>(base::reflection::attr::ShowInConfig(), true);
     field2->attrs.Add<const char*>(base::reflection::attr::Description(), "Grapple Beam selection mode");
@@ -74,7 +74,7 @@ void refl_AddFields(CClass* cls) {
     field2->attrs.Add<s32>(base::reflection::attr::MaxValueI(), 3);
     field2->attrs.Add<s32>(base::reflection::attr::ControlIntStep(), 1);
     field2->attrs.Add<const char*>(base::reflection::attr::InternalTag(), "General");
-    UnkReflField* field3 = fn_7100096524(cls, CStrId("iSelectionInput", true), &base::reflection::PrimitiveType<int>::Get(), 0x30, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("iSelectionInput", true), &base::reflection::PrimitiveType<int>::Get(), 0x30, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172725a60, 0);
     field3->attrs.Add<bool>(base::reflection::attr::ShowInConfig(), true);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Grapple Beam selection input");

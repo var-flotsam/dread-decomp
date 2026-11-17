@@ -30,20 +30,20 @@ void fn_7100acbea0(UnkReflFunction* fn, const char* name);
 namespace CWorldGraph {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tNodes", true), &g_unk_7172756230, 0x30, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("tNodes", true), &g_unk_7172756230, 0x30, -1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "World Graph Nodes");
     field0->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateNode", true));
     field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteNode", true));
     field0->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterNodesCollectionDeserialization");
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AfterNodesCollectionDeserialization", true))) {
+    DREAD_REFLECTED_FUNCTION("AfterNodesCollectionDeserialization") {
         fn->name = base::global::UnkStrId("AfterNodesCollectionDeserialization", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100acceb8);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateNode", true))) {
+    DREAD_REFLECTED_FUNCTION("CreateNode") {
         fn->name = base::global::UnkStrId("CreateNode", true);
         fn->return_type = &g_unk_7172755e70;
         fn->field_0xb2 = 0x1;
@@ -57,7 +57,7 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
         fn->ParamAttrs(2)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sID", true));
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("DeleteNode", true))) {
+    DREAD_REFLECTED_FUNCTION("DeleteNode") {
         fn_7100acbea0(fn, "DeleteNode");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Delete Node At Index");
         fn_710009ae5c(fn, fn->params.count);

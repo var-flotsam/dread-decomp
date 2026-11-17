@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassActiveMeleeIgnorePeacefulEnemyTrack
 namespace CCharClassActiveMeleeIgnorePeacefulEnemyTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Active Melee Ignore Peaceful Enemy");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Damage");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Active Melee Ignore Peaceful Enemy");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Damage");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

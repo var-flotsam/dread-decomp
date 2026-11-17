@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassFloorSlideDefaultMeleeTrack
 namespace CCharClassFloorSlideDefaultMeleeTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Floor Slide Default Melee");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Floor Slide", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Floor Slide Default Melee");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Floor Slide", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -28,14 +28,14 @@ void fn_710071108c(UnkReflFunction* fn, const char* name);
 namespace CCharClassAnimationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bOverrideDisableInEditor_GetterFunction") {
         fn->name = base::global::UnkStrId("_bOverrideDisableInEditor_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100711508);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bOverrideDisableInEditor_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bOverrideDisableInEditor_SetterFunction")
         fn_710071108c(fn, "_bOverrideDisableInEditor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOverrideDisableInEditor", (DefaultValue, true));
     DREAD_REFLECTED_FIELD(CStrId, "sInitialAction", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Initial Action"));

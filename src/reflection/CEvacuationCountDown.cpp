@@ -28,7 +28,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vEntitiesToPowerOff", 0xc8);
     [&] {
-        if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("StopCountDown", true))) {
+        DREAD_REFLECTED_FUNCTION("StopCountDown") {
             fn->name = base::global::UnkStrId("StopCountDown", true);
             fn->return_type = &g_unk_7101d5af48;
             fn->field_0xb2 = 0;

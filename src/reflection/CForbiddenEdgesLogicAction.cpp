@@ -28,9 +28,9 @@ namespace CForbiddenEdgesLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("navmesh::ENavMeshGroup", "eNavMeshGroup", 0x94, (DefaultValue, 0), (Persistence, 0), (EditorVisible, false));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpSpawnPoint", true), &g_unk_71727b6270, 0x10, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpSpawnPoint", true), &g_unk_71727b6270, 0x10, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x50, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x50, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 4);
     DREAD_REFLECTED_FIELD_OF("CForbiddenEdgesLogicAction::EState", "eState", 0x90, (DefaultValue, 1));
 }

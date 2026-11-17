@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassCooldownXBossLaunchDeathCutsceneEvent
 namespace CCharClassCooldownXBossLaunchDeathCutsceneEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "CooldownXBoss Launch Death Cutscene");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "CooldownXBoss Launch Death Cutscene");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

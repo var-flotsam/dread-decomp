@@ -161,7 +161,7 @@ void fn_7100097f80(UnkKeyedArray<UnkReflFunctionData>* array, u32 capacity);
 
 // Add a function named `name` to a class; null if the class already has one by that name. A
 // class whose "_EditorOnly" attribute is set marks the new function the same way.
-UnkReflFunction* fn_7100097550(CClass* cls, const CStrId& name) {
+UnkReflFunction* AddReflectedFunction(CClass* cls, const CStrId& name) {
     auto& fns = *reinterpret_cast<UnkKeyedArray<UnkReflFunctionData>*>(&cls->m_array_0x110);
     if (fns.Find(name) != fns.End())
         return nullptr;
@@ -183,7 +183,7 @@ UnkReflFunction* fn_7100097550(CClass* cls, const CStrId& name) {
     }
     // NOTE: the volatile read keeps the default in memory, as the original reads the flag
     // through the selected pointer on every path; the behaviour is the same.
-    auto* attrs = reinterpret_cast<UnkReflAttrsData*>(fn_710009dd6c(cls));
+    auto* attrs = reinterpret_cast<UnkReflAttrsData*>(TypeAttributes(cls));
     if (*reinterpret_cast<const volatile u8*>(&attrs->Get<bool>(fn_710000d120(), g_unk_7101d5bdd8 != 0)))
         fn->Public()->Attrs()->Add<bool>(fn_710000d120(), true);
     return fn->Public();

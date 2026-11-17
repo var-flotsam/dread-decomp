@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassSetActionToOtherEntityEvent
 namespace CCharClassSetActionToOtherEntityEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Action To Other Entity");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Actions", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Set Action To Other Entity");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Actions", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sEntity", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));

@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassToRecoilBlendTimeOverrideTrack
 namespace CCharClassToRecoilBlendTimeOverrideTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "To Recoil Blend Time");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Animation", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "To Recoil Blend Time");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Animation", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fValue", 0x18, (DefaultValue, 0.0f));

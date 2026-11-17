@@ -34,11 +34,11 @@ extern base::reflection::CType g_unk_71727bc110;
 namespace CNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddDefaultCollider", true)))
+    DREAD_REFLECTED_FUNCTION("AddDefaultCollider")
         fn_71009be10c(fn, "AddDefaultCollider");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("CreateStage", true)))
+    DREAD_REFLECTED_FUNCTION("CreateStage")
         fn_71009be288(fn, "CreateStage");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("AddStageCollider", true))) {
+    DREAD_REFLECTED_FUNCTION("AddStageCollider") {
         fn->name = base::global::UnkStrId("AddStageCollider", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -46,7 +46,7 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71009c29f0);
         fn_7100500260(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetStageSide", true))) {
+    DREAD_REFLECTED_FUNCTION("SetStageSide") {
         fn->name = base::global::UnkStrId("SetStageSide", true);
         fn->return_type = &g_unk_7101d5af48;
         fn->field_0xb2 = 0;
@@ -54,13 +54,13 @@ void refl_AddFields(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71009c2b04);
         fn_7100500260(fn);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("ChangeStage", true)))
+    DREAD_REFLECTED_FUNCTION("ChangeStage")
         fn_71009be404(fn, "ChangeStage");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("OverrideInitialStage", true)))
+    DREAD_REFLECTED_FUNCTION("OverrideInitialStage")
         fn_71009be580(fn, "OverrideInitialStage");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("SetStage", true)))
+    DREAD_REFLECTED_FUNCTION("SetStage")
         fn_71009be6fc(fn, "SetStage");
-    UnkReflField* field0 = fn_7100096524(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &g_unk_71727b6630, 0x188, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &g_unk_71727b6630, 0x188, -1, -1);
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Spawn points to set forbidden edges"));
     field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
 }

@@ -317,12 +317,12 @@ class AttributeKeysByName(unittest.TestCase):
         text = "\n".join(['#include "base/reflection/CClass.h"', "",
                           "const base::reflection::UnkReflAttrKey& fn_7100007e80();  // \"Description\"",
                           "void f(CClass* cls) {",
-                          '    fn_710009dd6c(cls)->Add<const char*>(fn_7100007e80(), "Text");',
+                          '    TypeAttributes(cls)->Add<const char*>(fn_7100007e80(), "Text");',
                           "    g(fn_7100000400());",
                           "}"])
         out = gr.attribute_keys_by_name(text, {0x7100007e80: "Description"}).split("\n")
         self.assertEqual(out[1], '#include "base/reflection/ReflectedFields.h"')
-        self.assertIn('    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Text");', out)
+        self.assertIn('    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Text");', out)
         self.assertIn("    g(fn_7100000400());", out)
         self.assertFalse(any("fn_7100007e80" in line for line in out))
 

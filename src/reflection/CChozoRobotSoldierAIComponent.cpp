@@ -27,9 +27,9 @@ namespace CChozoRobotSoldierAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAlternativeSkin", 0x27790, (DefaultValue, false));
-    UnkReflField* field1 = fn_7100096524(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x14ad8, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpPatrolPath", true), &g_unk_717269bb48, 0x14ad8, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field2 = fn_7100096524(cls, CStrId("tShootingPositions", true), &g_unk_717269bf08, 0x14b28, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("tShootingPositions", true), &g_unk_717269bf08, 0x14b28, -1, -1);
     field2->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Shooting positions"));
     field2->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 6);
 }

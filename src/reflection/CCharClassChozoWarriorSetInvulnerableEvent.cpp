@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassChozoWarriorSetInvulnerableEvent
 namespace CCharClassChozoWarriorSetInvulnerableEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "ChozoWarrior Enable Invulnerability");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "ChozoWarrior Enable Invulnerability");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0xc, (DefaultValue, false));

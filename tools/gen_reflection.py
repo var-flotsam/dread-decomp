@@ -617,7 +617,24 @@ def attribute_keys_by_name(text: str, keys: dict[int, str]) -> str:
                  for line in lines]
         if not any(re.search(rf"\bfn_{a:x}\b", line) for line in lines if not decl.fullmatch(line)):
             lines = [line for line in lines if not decl.fullmatch(line)]
-    include = '#include "base/reflection/ReflectedFields.h"'
+    return with_include(chr(10).join(lines), '#include "base/reflection/ReflectedFields.h"')
+
+
+# A reflected function's registration, in the form DREAD_REFLECTED_FUNCTION (ReflectedFields.h) writes.
+FUNCTION_RE = re.compile(r'^(\s*)if \(UnkReflFunction\* fn = AddReflectedFunction\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\)\)\)',
+                         re.M)
+
+
+def functions_by_macro(text: str) -> str:
+    """`text` with each reflected function's registration written DREAD_REFLECTED_FUNCTION("Name") (the same
+    `if`, from base/reflection/ReflectedFields.h)."""
+    new = FUNCTION_RE.sub(r"\1DREAD_REFLECTED_FUNCTION(\2)", text)
+    return with_include(new, '#include "base/reflection/ReflectedFields.h"') if new != text else text
+
+
+def with_include(text: str, include: str) -> str:
+    """`text` with `include` after its other includes, unless it has it."""
+    lines = text.split(chr(10))
     if include not in lines:
         head = max((i + 1 for i, line in enumerate(lines[:40]) if line.startswith("#include")), default=0)
         lines.insert(head, include)
@@ -1036,7 +1053,7 @@ def main() -> int:
     by_type = 0
     for f in sorted(OUT.glob("*.cpp")):
         old = f.read_text(encoding="utf-8")
-        new = attribute_keys_by_name(types_by_type(old, *keyed), keys)
+        new = functions_by_macro(attribute_keys_by_name(types_by_type(old, *keyed), keys))
         if new != old:
             by_type += 1
             f.write_text(new, encoding="utf-8", newline=chr(10))
@@ -1047,7 +1064,7 @@ def main() -> int:
           f"types of a local class; {len(others_ok)} of {len(others)} other registration functions (and {others_local} in their getter's TU); "
           f"{len(inits_ok)} of {len(inits)} function initialisers; "
           f"{ctors_generated} of {len(ctors)} descriptor constructors outside generated getter TUs; "
-          f"type getters and attribute keys called by name in {by_type} files. Skipped TUs: build/reflection_tus.json")
+          f"type getters, attribute keys and reflected functions written by name in {by_type} files. Skipped TUs: build/reflection_tus.json")
     return 0
 
 

@@ -27,18 +27,18 @@ void fn_7100c1e228();
 void fn_7100c1d9bc(UnkReflFunction* fn, const char* name);
 namespace CCharClassForceBumpFXTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "ForceBumpFX");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "ForceBumpFX");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
 }
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sColliders_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_sColliders_GetterFunction") {
         fn->name = base::global::UnkStrId("_sColliders_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100c1e228);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_sColliders_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_sColliders_SetterFunction")
         fn_7100c1d9bc(fn, "_sColliders_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));
 }

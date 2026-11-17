@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassAutoolBottomThrusterFXTrack
 namespace CCharClassAutoolBottomThrusterFXTrack {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Autool Bottom Thruster Mode");
-    fn_710009dd6c(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Autool", true));
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Autool Bottom Thruster Mode");
+    TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Autool", true));
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CAutoolAIComponent::EThrusterMode", "eThrusterMode", 0x18, (Description, "Autool Bottom Thruster Mode"), (DefaultValue, 0));

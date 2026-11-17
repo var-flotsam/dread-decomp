@@ -22,8 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 // CCharClassMagnetSurfaceTransitionCompletedEvent
 namespace CCharClassMagnetSurfaceTransitionCompletedEvent {
 void refl_AddAttributes(CClass* cls) {
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::Description(), "Magnet Surface Transition Completed");
-    fn_710009dd6c(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Samus");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Magnet Surface Transition Completed");
+    TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Samus");
 }
 void refl_AddFields(CClass*) {}
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -26,7 +26,7 @@ void fn_71010d499c();
 namespace CMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bIsFlying_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bIsFlying_GetterFunction") {
         fn->name = base::global::UnkStrId("_bIsFlying_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;

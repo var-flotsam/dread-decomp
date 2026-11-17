@@ -3,8 +3,8 @@
 Both kinds receive the class descriptor and are sequences of two statement forms
 (include/base/reflection/UnkReflAttributes.h):
 
-  class attribute:  fn_710009dd6c(cls)->Add<T>(KEY(), value);
-  member field:     UnkReflField* field0 = fn_7100096524(cls, CStrId("name", true), TYPE(), offset, -1, -1);
+  class attribute:  TypeAttributes(cls)->Add<T>(KEY(), value);
+  member field:     UnkReflField* field0 = AddReflectedField(cls, CStrId("name", true), TYPE(), offset, -1, -1);
                     field0->attrs.Add<T>(KEY(), value);   // zero or more
 
 and, at the end of the CTunable* classes' field functions, a registration with a global
@@ -593,7 +593,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             lines.append("    " + line)
 
     def function(j: int) -> tuple[int, list[str]] | None:
-        """fn = fn_7100097550(cls, CStrId(name)); then an inline or an out-of-line initialiser."""
+        """fn = AddReflectedFunction(cls, CStrId(name)); then an inline or an out-of-line initialiser."""
         s = evs[j].regs.get("1")
         if not s or s[0] != "str" or evs[j].regs.get("2") != ("imm", 1):
             return None
@@ -604,7 +604,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
         k, vals = next_bl(skip_release(j + 1))
         if vals or k >= n:
             return None
-        head = f"    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId({name}, true)))"
+        head = f"    if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId({name}, true)))"
         if evs[k].target == CSTRID_CTOR:
             # Inline initialiser (getters): name, return type, invoker.
             if evs[k].regs.get("1") != s or evs[k].regs.get("2") != ("imm", 1):
@@ -694,7 +694,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             return None
         var = f"field{fields}"
         fields += 1
-        body.append(f"    UnkReflField* {var} = fn_7100096524(cls, {name_expr}, "
+        body.append(f"    UnkReflField* {var} = AddReflectedField(cls, {name_expr}, "
                     f"{type_expr}, {off[1]:#x}, {index[0]}, {index[1]});")
         i = j + 1
         while True:
@@ -759,7 +759,7 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
                         f"base::global::CName({c_string(name)})), {index});")
             i = k + 1
         elif evs[j].target == GET_ATTRS:
-            r = attribute(j + 1, "fn_710009dd6c(cls)->")
+            r = attribute(j + 1, "TypeAttributes(cls)->")
             if r is None:
                 return None
             i, line = r
@@ -942,7 +942,7 @@ def statements(src: str) -> list[list[str]]:
 
 
 def is_function_statement(stmt: list[str]) -> bool:
-    return stmt[0].startswith("    if (UnkReflFunction* fn = fn_7100097550(")
+    return stmt[0].startswith("    if (UnkReflFunction* fn = AddReflectedFunction(")
 
 
 TYPED_ADD = re.compile(r"Add<(\w+)>\((fn_\w+\(\)), (fn_\w+)\(\), ")
@@ -1077,7 +1077,7 @@ ATTRIBUTE_NAMES = {  # attribute key getter -> the name it registers (attr:: in 
     0x7100f9eba0: "FileNameOnly", 0x71010434d0: "eActorLinkToComponentLinkTransform",
 }
 TYPED_KEYS = {0x710000BF80: 0x7101D679F0, 0x71000923A0: 0x7101D55008}  # key -> its enum type (TypedAttrKey)
-FIELD_RE = re.compile(r'^    UnkReflField\* (field\d+) = fn_7100096524\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), '
+FIELD_RE = re.compile(r'^    UnkReflField\* (field\d+) = AddReflectedField\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), '
                       r'(?:fn_([0-9a-f]{10})\(\)|&g_unk_([0-9a-f]{10})), (0x[0-9a-f]+, -1, -1|0xffffffff, '
                       r'cls->m_array_0x110\.size\(\) - [12], (?:cls->m_array_0x110\.size\(\) - 1|-1))\);$')
 PROPERTY_TAILS = {  # a property's offset and accessor indices -> its macro (ReflectedFields.h)
@@ -1175,7 +1175,7 @@ def readable_fields(lines: list[str], class_types: dict[int, str] | None = None,
     return out
 
 
-FIELD_OBJECT_RE = re.compile(r'fn_7100096524\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), &g_unk_([0-9a-f]{10}), ')
+FIELD_OBJECT_RE = re.compile(r'AddReflectedField\(cls, CStrId\(("(?:[^"\\]|\\.)*"), true\), &g_unk_([0-9a-f]{10}), ')
 
 
 def type_object_names(sources: dict[str, str], field_types: dict[tuple[str, str], str],

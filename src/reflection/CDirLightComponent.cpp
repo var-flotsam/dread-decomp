@@ -34,34 +34,34 @@ void fn_71008eaea8(UnkReflFunction* fn, const char* name);
 namespace CDirLightComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDir_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_vDir_GetterFunction") {
         fn->name = base::global::UnkStrId("_vDir_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
         fn->field_0xb2 = 0x101;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008eba60);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_vDir_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_vDir_SetterFunction")
         fn_71008eabb0(fn, "_vDir_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vDir", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 3), (bSkipDataFlowOrder, true), (Persistence, 0));
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAnimFrame_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_fAnimFrame_GetterFunction") {
         fn->name = base::global::UnkStrId("_fAnimFrame_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<float>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ebb34);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_fAnimFrame_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_fAnimFrame_SetterFunction")
         fn_71008ead2c(fn, "_fAnimFrame_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAnimFrame");
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bCastShadows_GetterFunction", true))) {
+    DREAD_REFLECTED_FUNCTION("_bCastShadows_GetterFunction") {
         fn->name = base::global::UnkStrId("_bCastShadows_GetterFunction", true);
         fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71008ebbec);
     }
-    if (UnkReflFunction* fn = fn_7100097550(cls, CStrId("_bCastShadows_SetterFunction", true)))
+    DREAD_REFLECTED_FUNCTION("_bCastShadows_SetterFunction")
         fn_71008eaea8(fn, "_bCastShadows_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCastShadows");
 }
