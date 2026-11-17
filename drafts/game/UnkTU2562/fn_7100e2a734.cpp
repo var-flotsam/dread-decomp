@@ -8,6 +8,7 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
@@ -41,9 +42,6 @@ struct UnkBillboardSet {
     UnkBillboardSet() asm("fn_71007bf550");
 };
 static_assert(sizeof(UnkBillboardSet) == 0x440, "set size");
-
-struct UnkDropEntrySet_ovb0208;
-UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other);
 
 struct UnkDropTarget_ovb0208;
 
@@ -112,7 +110,7 @@ static inline void LoadPath(const CRntString& path, UnkStrIdPathResource* resour
 }
 
 // The colour assignment, source first (as `dst = src` evaluates it).
-static inline void CopyColor(const CColor4F& src, CColor4F& dst) { fn_7100030728(&dst, &src); }
+static inline void CopyColor(const CColor4F& src, CColor4F& dst) { dst = src; }
 
 static inline const UnkBillboardTunable& Tunable() {
     return reinterpret_cast<const UnkBillboardTunable&>(g_unk_71727c10c8);
@@ -124,8 +122,7 @@ static inline void Show(UnkBillboard* billboard, const CStrId& id, UnkDroppedIte
     billboard->owner = owner;
     billboard->callback = fn_7100e2fa00;
     billboard->field_0x488 = count;
-    fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(&billboard->set),
-                  reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&set));
+    reinterpret_cast<UnkDropTable&>(billboard->set) = reinterpret_cast<const UnkDropTable&>(set);  // fn_7100e2c3f4
     g_unk_717269c4d8 = true;
     billboard->vtable->refresh(billboard);
     g_unk_717269c4d8 = false;

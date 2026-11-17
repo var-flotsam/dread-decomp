@@ -114,7 +114,7 @@ void fn_7100744d90(UnkUnit2560Element* self) {
     self->parent = nullptr;
     fn_710074580c(self->sub);
     self->field_0xd8 = 0;
-    fn_7100030728(&self->color_0x118, &self->color_0x108);
+    self->color_0x118 = self->color_0x108;
     self->field_0x25 = 1;
     self->field_0x28 = 0;
     self->field_0x184 = 1.0f;
@@ -358,17 +358,17 @@ void fn_7100744e4c(UnkUnit2560Element* self, f32 dt) {
         if (remaining <= 0.0f) {
             self->field_0x12c = 0.0f;
             const CColor4F* target = &self->color_0x130;
-            fn_7100030728(&self->color_0x118, target);
+            self->color_0x118 = *target;
             if (self->field_0x150)
                 self->field_0x24 = 0;
         } else {
             f32 duration = self->field_0x128;
             CColor4F c = fn_710003088c((duration - remaining) / duration, self->color_0x140, self->color_0x130);
-            fn_7100030728(&self->color_0x118, &c);
+            self->color_0x118 = c;
         }
     }
     const CColor4F* current = &self->color_0x118;
-    fn_7100030728(&self->render->color, current);
+    self->render->color = *current;
     self->render->color.a = self->field_0xc0 * self->render->color.a;
     fn_71007451d0(self, dt);
     u8 a = self->field_0xbc;

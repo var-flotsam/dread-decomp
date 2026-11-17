@@ -43,11 +43,11 @@ void fn_7100e2813c(UnkDroppedItems_e2813c* self) {
         entry.id.ReleaseAndTake(name);
     }
     entry.field_0x8 = g_unk_71727c1088[0];
-    fn_7100030728(&entry.color, &g_unk_710164be00);
+    entry.color = g_unk_710164be00;
     entry.color.a = 1.0f;
     {
         CColor4F red(1.0f, 0.0f, 0.0f, 0.0f);
-        fn_7100030728(&entry.field_0x20, &red);
+        entry.field_0x20 = red;
     }
     entry.field_0x3c = -1;
     fn_7100e2c124(1.0f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1048), &entry.id, 0x19,
@@ -62,8 +62,7 @@ void fn_7100e2813c(UnkDroppedItems_e2813c* self) {
         drop->owner = self;
         drop->callback = fn_7100e2f98c;
         drop->amount = amount;
-        fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(&drop->table),
-                      reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&copy));
+        drop->table = copy;
         g_unk_717269c4d8 = true;
         drop->Start();
         g_unk_717269c4d8 = false;

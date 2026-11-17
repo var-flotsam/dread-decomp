@@ -9,13 +9,10 @@ void fn_7100e211cc(void* self);
 #include "base/global/CStrId.h"
 
 struct UnkDropTarget_ovb0208;
-struct UnkDropEntrySet_ovb0208;
 // Hands the billboard singleton a drop request for `target`. The second argument register is never read
 // (an UnkNoArg: the callers leave it unloaded).
 void fn_7100e2c124(f32 value, UnkNoArg, UnkDropTarget_ovb0208* target, const base::global::CStrId* id, u32 a, u32 b,
                    u32 c, u32 d, u32 e, bool flag);
-// Copies a drop's entry set.
-UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other);
 // The drops' callbacks, each given the manager.
 void fn_7100e2f98c(void* owner);
 void fn_7100e2f994(void* owner);

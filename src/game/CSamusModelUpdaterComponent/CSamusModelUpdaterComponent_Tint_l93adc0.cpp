@@ -54,7 +54,7 @@ static inline UnkV4_b47 operator*(const CColor4F& c, f32 s) {
 
 // The colour's assignment (each component clamped to be non-negative).
 static inline void Assign(CColor4F* c, const UnkV4_b47& v) {
-    fn_7100030728(c, reinterpret_cast<const CColor4F*>(&v));
+    *c = reinterpret_cast<const CColor4F&>(v);
 }
 
 // Makes the colour opaque unless it is black; returns the sum of its components.

@@ -1,6 +1,8 @@
 // Unit 9 (tools/tu_map.py): sets up a block of tuning values, a few scalars and two flags and then a run of
 // colours (base::color::CColor4F); the colours are cleared first.
 // Names and layouts are placeholders.
+#include <new>
+
 #include "base/color/CColor4F.h"
 #include "types.h"
 
@@ -89,7 +91,8 @@ struct UnkTunables_l0026cc {
 static_assert(sizeof(UnkTunables_l0026cc) == 0x330, "");
 
 void fn_71000026cc(UnkTunables_l0026cc* self) {
-    self->colors = UnkColors_l0026cc();
+    // Every colour starts cleared (value-initialised: zeros, not the assignment's clamp).
+    new (&self->colors) UnkColors_l0026cc();
     self->field_0x0 = 1.0f;
     self->field_0x4 = 8.0f;
     self->field_0x8 = 8.0f;
@@ -123,47 +126,47 @@ void fn_71000026cc(UnkTunables_l0026cc* self) {
     self->field_0x78 = true;
     self->field_0x79 = true;
     self->field_0x7c = 1.25f;
-    self->colors.field_0x80 = base::color::CColor4F(0.9f, 0.9f, 0.9f, 1.0f);
-    self->colors.field_0x90 = base::color::CColor4F(0.6f, 0.6f, 0.6f, 1.0f);
-    self->colors.field_0xa0 = base::color::CColor4F(0.0f, 0.0f, 0.0f, 0.7f);
-    self->colors.field_0xb0 = base::color::CColor4F(0.0f, 0.0f, 0.0f, 0.0f);
-    self->colors.field_0xc0 = base::color::CColor4F(0.05f, 0.05f, 0.1f, 0.9f);
-    self->colors.field_0xd0 = base::color::CColor4F(0.7f, 0.7f, 0.7f, 0.65f);
-    self->colors.field_0xe0 = base::color::CColor4F(0.0f, 0.0f, 0.0f, 0.0f);
-    self->colors.field_0xf0 = base::color::CColor4F(0.8f, 0.8f, 0.8f, 0.3f);
-    self->colors.field_0x100 = base::color::CColor4F(0.9f, 0.8f, 0.8f, 0.4f);
-    self->colors.field_0x110 = base::color::CColor4F(0.9f, 0.65f, 0.65f, 0.45f);
-    self->colors.field_0x120 = base::color::CColor4F(0.27f, 0.27f, 0.54f, 0.83f);
-    self->colors.field_0x130 = base::color::CColor4F(0.4f, 0.4f, 0.8f, 0.2f);
-    self->colors.field_0x140 = base::color::CColor4F(0.32f, 0.32f, 0.63f, 0.87f);
-    self->colors.field_0x150 = base::color::CColor4F(0.4f, 0.4f, 0.55f, 0.8f);
-    self->colors.field_0x160 = base::color::CColor4F(0.2f, 0.25f, 0.3f, 0.6f);
-    self->colors.field_0x170 = base::color::CColor4F(0.4f, 0.4f, 0.8f, 0.3f);
-    self->colors.field_0x180 = base::color::CColor4F(0.4f, 0.4f, 0.8f, 0.4f);
-    self->colors.field_0x190 = base::color::CColor4F(0.8f, 0.5f, 0.5f, 0.4f);
-    self->colors.field_0x1a0 = base::color::CColor4F(0.2f, 0.2f, 0.2f, 0.99f);
-    self->colors.field_0x1b0 = base::color::CColor4F(0.9f, 0.9f, 0.9f, 0.5f);
-    self->colors.field_0x1c0 = base::color::CColor4F(1.0f, 1.0f, 1.0f, 0.3f);
-    self->colors.field_0x1d0 = base::color::CColor4F(0.8f, 0.5f, 0.5f, 1.0f);
-    self->colors.field_0x1e0 = base::color::CColor4F(0.67f, 0.4f, 0.4f, 0.6f);
-    self->colors.field_0x1f0 = base::color::CColor4F(0.67f, 0.4f, 0.4f, 1.0f);
-    self->colors.field_0x200 = base::color::CColor4F(0.8f, 0.5f, 0.5f, 1.0f);
-    self->colors.field_0x210 = base::color::CColor4F(0.4f, 0.4f, 0.9f, 0.45f);
-    self->colors.field_0x220 = base::color::CColor4F(0.45f, 0.45f, 0.9f, 0.8f);
-    self->colors.field_0x230 = base::color::CColor4F(0.53f, 0.53f, 0.87f, 0.8f);
-    self->colors.field_0x240 = base::color::CColor4F(0.5f, 0.5f, 0.5f, 1.0f);
-    self->colors.field_0x250 = base::color::CColor4F(0.7f, 0.6f, 0.6f, 1.0f);
-    self->colors.field_0x260 = base::color::CColor4F(0.9f, 0.7f, 0.7f, 1.0f);
-    self->colors.field_0x270 = base::color::CColor4F(1.0f, 1.0f, 1.0f, 0.3f);
-    self->colors.field_0x280 = base::color::CColor4F(1.0f, 1.0f, 1.0f, 0.6f);
-    self->colors.field_0x290 = base::color::CColor4F(1.0f, 1.0f, 1.0f, 0.9f);
-    self->colors.field_0x2a0 = base::color::CColor4F(0.5f, 0.5f, 0.9f, 0.5f);
-    self->colors.field_0x2b0 = base::color::CColor4F(0.7f, 0.7f, 0.9f, 0.6f);
-    self->colors.field_0x2c0 = base::color::CColor4F(0.7f, 0.7f, 0.7f, 1.0f);
-    self->colors.field_0x2d0 = base::color::CColor4F(1.0f, 1.0f, 1.0f, 1.0f);
-    self->colors.field_0x2e0 = base::color::CColor4F(0.9f, 0.7f, 0.0f, 1.0f);
-    self->colors.field_0x2f0 = base::color::CColor4F(0.9f, 0.7f, 0.0f, 1.0f);
-    self->colors.field_0x300 = base::color::CColor4F(1.0f, 0.6f, 0.0f, 1.0f);
-    self->colors.field_0x310 = base::color::CColor4F(0.0f, 0.0f, 1.0f, 0.35f);
-    self->colors.field_0x320 = base::color::CColor4F(0.2f, 0.2f, 0.2f, 0.35f);
+    self->colors.field_0x80.Set(0.9f, 0.9f, 0.9f, 1.0f);
+    self->colors.field_0x90.Set(0.6f, 0.6f, 0.6f, 1.0f);
+    self->colors.field_0xa0.Set(0.0f, 0.0f, 0.0f, 0.7f);
+    self->colors.field_0xb0.Set(0.0f, 0.0f, 0.0f, 0.0f);
+    self->colors.field_0xc0.Set(0.05f, 0.05f, 0.1f, 0.9f);
+    self->colors.field_0xd0.Set(0.7f, 0.7f, 0.7f, 0.65f);
+    self->colors.field_0xe0.Set(0.0f, 0.0f, 0.0f, 0.0f);
+    self->colors.field_0xf0.Set(0.8f, 0.8f, 0.8f, 0.3f);
+    self->colors.field_0x100.Set(0.9f, 0.8f, 0.8f, 0.4f);
+    self->colors.field_0x110.Set(0.9f, 0.65f, 0.65f, 0.45f);
+    self->colors.field_0x120.Set(0.27f, 0.27f, 0.54f, 0.83f);
+    self->colors.field_0x130.Set(0.4f, 0.4f, 0.8f, 0.2f);
+    self->colors.field_0x140.Set(0.32f, 0.32f, 0.63f, 0.87f);
+    self->colors.field_0x150.Set(0.4f, 0.4f, 0.55f, 0.8f);
+    self->colors.field_0x160.Set(0.2f, 0.25f, 0.3f, 0.6f);
+    self->colors.field_0x170.Set(0.4f, 0.4f, 0.8f, 0.3f);
+    self->colors.field_0x180.Set(0.4f, 0.4f, 0.8f, 0.4f);
+    self->colors.field_0x190.Set(0.8f, 0.5f, 0.5f, 0.4f);
+    self->colors.field_0x1a0.Set(0.2f, 0.2f, 0.2f, 0.99f);
+    self->colors.field_0x1b0.Set(0.9f, 0.9f, 0.9f, 0.5f);
+    self->colors.field_0x1c0.Set(1.0f, 1.0f, 1.0f, 0.3f);
+    self->colors.field_0x1d0.Set(0.8f, 0.5f, 0.5f, 1.0f);
+    self->colors.field_0x1e0.Set(0.67f, 0.4f, 0.4f, 0.6f);
+    self->colors.field_0x1f0.Set(0.67f, 0.4f, 0.4f, 1.0f);
+    self->colors.field_0x200.Set(0.8f, 0.5f, 0.5f, 1.0f);
+    self->colors.field_0x210.Set(0.4f, 0.4f, 0.9f, 0.45f);
+    self->colors.field_0x220.Set(0.45f, 0.45f, 0.9f, 0.8f);
+    self->colors.field_0x230.Set(0.53f, 0.53f, 0.87f, 0.8f);
+    self->colors.field_0x240.Set(0.5f, 0.5f, 0.5f, 1.0f);
+    self->colors.field_0x250.Set(0.7f, 0.6f, 0.6f, 1.0f);
+    self->colors.field_0x260.Set(0.9f, 0.7f, 0.7f, 1.0f);
+    self->colors.field_0x270.Set(1.0f, 1.0f, 1.0f, 0.3f);
+    self->colors.field_0x280.Set(1.0f, 1.0f, 1.0f, 0.6f);
+    self->colors.field_0x290.Set(1.0f, 1.0f, 1.0f, 0.9f);
+    self->colors.field_0x2a0.Set(0.5f, 0.5f, 0.9f, 0.5f);
+    self->colors.field_0x2b0.Set(0.7f, 0.7f, 0.9f, 0.6f);
+    self->colors.field_0x2c0.Set(0.7f, 0.7f, 0.7f, 1.0f);
+    self->colors.field_0x2d0.Set(1.0f, 1.0f, 1.0f, 1.0f);
+    self->colors.field_0x2e0.Set(0.9f, 0.7f, 0.0f, 1.0f);
+    self->colors.field_0x2f0.Set(0.9f, 0.7f, 0.0f, 1.0f);
+    self->colors.field_0x300.Set(1.0f, 0.6f, 0.0f, 1.0f);
+    self->colors.field_0x310.Set(0.0f, 0.0f, 1.0f, 0.35f);
+    self->colors.field_0x320.Set(0.2f, 0.2f, 0.2f, 0.35f);
 }

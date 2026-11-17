@@ -84,7 +84,7 @@ static inline bool UnkGetSlot(UnkSlots* self, u32 id, u32 kind, CColor4F* out, u
     clamped.g = UnkNonNegative(value.y);
     clamped.b = UnkNonNegative(value.z);
     clamped.a = UnkNonNegative(value.w);
-    fn_7100030728(out, &clamped);
+    *out = clamped;
     return ok;
 }
 
@@ -119,8 +119,8 @@ bool fn_71001c3040(UnkSlots* self, u64 key, u32 kind, const CColor4F* target, u3
         if (!running)
             self->count = count + 1;
         UnkSlotBlend* blend = UnkBlendAt(self, index);
-        fn_7100030728(&blend->from, &from);
-        fn_7100030728(&blend->to, target);
+        blend->from = from;
+        blend->to = *target;
         blend->time = duration;
         blend->duration = duration;
         blend->id = found;
