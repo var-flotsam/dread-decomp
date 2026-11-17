@@ -21,3 +21,7 @@ void fn_7100426b54(UnkChozoCommanderAttack* self, u64 id, bool flag);
 
 // The base update of the attacks, with the step (s0), which the derived updates pass on.
 void fn_7100424b5c(UnkChozoCommanderAttack* self, f32 dt);
+
+// The attack's reset: the base reset (fn_71003609b8), then, when the owner's AI component is a
+// CChozoCommanderAIComponent, a request by the owner's current animation (fn_7100426b54).
+void fn_71004269a4(UnkChozoCommanderAttack* self);

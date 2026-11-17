@@ -3940,7 +3940,7 @@ address,size,name,name_source,subsystem,status
 0x71009cd410,92,fn_71009cd410,unknown,game/components?,O
 0x71009cd46c,344,fn_71009cd46c,unknown,game/components?,O
 0x71009cd5c4,144,fn_71009cd5c4,unknown,game/components?,O
-0x71009cd654,652,fn_71009cd654,unknown,game/components?,U
+0x71009cd654,652,fn_71009cd654,unknown,game/components?,O
 0x71009cd8e0,256,fn_71009cd8e0,unknown,game/components?,O
 0x71009cd9e0,604,fn_71009cd9e0,unknown,game/components?,U
 0x71009cdc3c,12,fn_71009cdc3c,unknown,game/components?,O

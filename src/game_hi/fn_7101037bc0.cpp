@@ -3,39 +3,15 @@
 // path), and randomises volume, pitch and pan within the definition's ranges and given scales.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "game/sound/UnkSoundDesc.h"
 #include "types.h"
 
 static inline f32 Min(f32 a, f32 b) { return b < a ? b : a; }
 
-// A file-path string id (pool g_unk_7101d47200) as the code assigns it, with CStrId's copy-assignment,
-// which CFilePathStrId's header lacks; the default path g_unk_7101d470e8 is viewed through it.
-struct UnkPathId : base::global::CFilePathStrId {
-    UnkPathId& operator=(const UnkPathId& other) {
-        if (data != other.data) {
-            base::global::UnkStringData* d = other.data;
-            base::global::UnkStringPool* pool = g_unk_7101d47200;
-            if (d != &pool->empty)
-                ++d->ref_count;
-            if (data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
-            }
-            data = d;
-        }
-        return *this;
-    }
-};
-
 extern "C" int rand();
 
-struct UnkIdPair {
-    u32 a;
-    u32 b;
-};
-
 struct UnkPathList_0x50 {
-    UnkPathId* data;
+    base::global::CFilePathStrId* data;
     u32 count;
     u8 pad_0xc[0x44];
 };
@@ -45,52 +21,28 @@ struct UnkSoundDef {
     base::global::CStrId field_0x58;
     u8 pad_0x60[0x8];
     UnkPathList_0x50 field_0x68[16];
-    UnkIdPair field_0x568;
+    UnkSoundKind field_0x568;
     u8 pad_0x570[0x4];
     u32 field_0x574;
     u8 pad_0x578[0x8];
-    u32 field_0x580;
-    u32 field_0x584;
+    f32 field_0x580;
+    f32 field_0x584;
     f32 field_0x588;
     f32 field_0x58c;
     f32 field_0x590;
     f32 field_0x594;
     f32 field_0x598;
     f32 field_0x59c;
-    u32 field_0x5a0;
-    u32 field_0x5a4;
+    f32 field_0x5a0;
+    f32 field_0x5a4;
     f32 field_0x5a8;
-    u32 field_0x5ac;
-    u32 field_0x5b0;
-    u32 field_0x5b4;
-    u32 field_0x5b8;
-    u32 field_0x5bc;
+    f32 field_0x5ac;
+    f32 field_0x5b0;
+    f32 field_0x5b4;
+    f32 field_0x5b8;
+    f32 field_0x5bc;
     u8 pad_0x5c0[0x4];
-    u8 field_0x5c4;
-};
-
-struct UnkSoundDesc {
-    UnkIdPair field_0x0;
-    UnkIdPair field_0x8;
-    u8 pad_0x10[0x8];
-    base::global::CStrId field_0x18;
-    UnkPathId field_0x20;
-    u8 pad_0x28[0x10];
-    f32 field_0x38;
-    u32 field_0x3c;
-    u32 field_0x40;
-    f32 field_0x44;
-    f32 field_0x48;
-    u32 field_0x4c;
-    u32 field_0x50;
-    u8 pad_0x54[0x4];
-    u32 field_0x58;
-    u32 field_0x5c;
-    u32 field_0x60;
-    u32 field_0x64;
-    u32 field_0x68;
-    u8 field_0x6c;
-    bool field_0x6d;
+    bool field_0x5c4;
 };
 
 static inline f32 RandVary(const f32& base, const f32& range) {
@@ -100,16 +52,14 @@ static inline f32 RandVary(const f32& base, const f32& range) {
 static inline f32 Clamp(f32 v, f32 lo, f32 hi) { return v <= lo ? lo : Min(v, hi); }
 
 void fn_7101037bc0(UnkSoundDef* self, UnkSoundDesc* out, f32* scales, u32 index) {
-    const UnkIdPair& ids = self->field_0x568;
-    UnkIdPair& valid = out->field_0x0;
-    valid.a = ids.a < 7 ? ids.a : 0x7fffffff;
-    valid.b = ids.b < 10 ? ids.b : 0x7fffffff;
-    UnkIdPair& raw = out->field_0x8;
-    raw.a = ids.a;
-    raw.b = ids.b;
-    out->field_0x18 = self->field_0x58;
+    const UnkSoundKind& kind = self->field_0x568;
+    out->kind.field_0x0 = kind.field_0x0 < 7 ? kind.field_0x0 : 0x7fffffff;
+    out->kind.field_0x4 = kind.field_0x4 < 10 ? kind.field_0x4 : 0x7fffffff;
+    out->field_0x8.field_0x0 = kind.field_0x0;
+    out->field_0x8.field_0x4 = kind.field_0x4;
+    out->name = self->field_0x58;
 
-    UnkPathId* path = static_cast<UnkPathId*>(&g_unk_7101d470e8);
+    base::global::CFilePathStrId* path = &g_unk_7101d470e8;
     if (index != 0xffffffff && !(self->field_0x5a8 > 0.0f && rand() % 100 < (s32)self->field_0x5a8)) {
         UnkPathList_0x50& list = self->field_0x68[index];
         if (list.count != 0) {
@@ -120,7 +70,7 @@ void fn_7101037bc0(UnkSoundDef* self, UnkSoundDesc* out, f32* scales, u32 index)
             path = &self->field_0x68[0].data[i];
         }
     }
-    out->field_0x20 = *path;
+    out->path = *path;
 
     bool scaled = false;
     f32 s0 = -1.0f;

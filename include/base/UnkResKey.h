@@ -22,6 +22,7 @@ extern const UnkResType g_unk_716e453ff8;  // models
 extern const UnkResType g_unk_716e4540f8;  // textures
 extern const UnkResType g_unk_716e454078;  // what the sonar ability loads
 extern const UnkResType g_unk_716e453f78;  // what unit 2739 loads (src/game/UnkUnit2739/fn_71011ab410.cpp)
+extern const UnkResType g_unk_716e454278;  // the second resource unit 232 links (src/game/UnkTU232/fn_71001aaf80.cpp)
 
 struct UnkResRegistry;
 extern UnkResRegistry* g_unk_7101d472f8;

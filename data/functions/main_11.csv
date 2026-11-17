@@ -1334,7 +1334,7 @@ address,size,name,name_source,subsystem,status
 0x7101158cb8,124,fn_7101158cb8,unknown,game/characters?,O
 0x7101158d34,4,fn_7101158d34,unknown,game/characters?,O
 0x7101158d38,64,fn_7101158d38,unknown,game/characters?,O
-0x7101158d78,440,fn_7101158d78,unknown,game/characters?,U
+0x7101158d78,440,fn_7101158d78,unknown,game/characters?,O
 0x7101158f30,20,fn_7101158f30,unknown,game/characters?,O
 0x7101158f44,92,fn_7101158f44,unknown,game/characters?,O
 0x7101158fa0,616,fn_7101158fa0,unknown,game/characters?,U

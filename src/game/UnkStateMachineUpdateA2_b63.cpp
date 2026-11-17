@@ -12,6 +12,7 @@
 #include "game/UnkTU2702.h"
 #include "types.h"
 #include "game_s2/UnkSpitAttack.h"
+#include "game_s2/UnkChozoCommanderAttack.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkManager_71726af468.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -469,10 +470,8 @@ __attribute__((always_inline)) static inline void StartLinked_A2_b63(UnkSmLinked
     Unlink_A2_b63(&self->handle_b, self->link_b);
 }
 
-void fn_71004269a4(UnkSmLinked_A2_b63<0x88>*);
-
 void fn_710043e9f4(UnkSmLinked_A2_b63<0x88>* self) {
-    fn_71004269a4(self);
+    fn_71004269a4(reinterpret_cast<UnkChozoCommanderAttack*>(self));
     UnkManager_71726af468* manager = g_unk_71726af468;
     if (!manager) {
         manager = static_cast<UnkManager_71726af468*>(fn_71000839a0(0x2610, 0x3f));
