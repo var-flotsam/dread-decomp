@@ -4,6 +4,7 @@
 #include "base/UnkResPathVec.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ using base::global::CFilePathStrId;
 using base::global::CStrId;
 
 struct UnkStrIdRecord_lfa4b64;
-UnkStrIdRecord_lfa4b64* fn_7100fa4b64(UnkStrIdRecord_lfa4b64* self, const UnkStrIdRecord_lfa4b64* other);
 
 // Each part below is assigned through its own out-of-line copy-assignment.
 struct UnkIdRecord_lfa579c {

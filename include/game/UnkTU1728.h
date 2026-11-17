@@ -5,8 +5,11 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkRecord120;
 struct UnkAnimTiming;
 struct UnkMotionTracks;
 struct UnkTimeline;
 void fn_7100b8b3bc(UnkTimeline* self, void* target, UnkMotionTracks* tracks, const u32* flags, f32 from, f32 to);
 f32 fn_7100b8aff0(f32 seconds, const UnkAnimTiming* timing);  // Seconds to frames.
+void fn_7100b8aa94(void* part);
+void fn_7100b8b7e8(UnkRecord120* self);

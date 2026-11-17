@@ -6,6 +6,7 @@
 #include "base/reflection/CClass.h"
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
+#include "base/UnkCountedDeferredSet.h"
 #include "types.h"
 
 struct UnkAnimTags_ovb0010;
@@ -65,3 +66,6 @@ extern void* g_unk_7101cb4880[];
 void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, bool c, bool d, f32 e);
 void fn_71011787dc(UnkAnimTags_ovb0010* self, bool flag);
 void fn_7101178e08(UnkActorTarget* target, u32 value, bool apply, bool flag, f32 time);
+bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
+void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
+void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);

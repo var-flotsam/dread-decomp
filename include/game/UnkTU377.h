@@ -5,5 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkUnit392Entry;
 struct UnkRefVectorHolder_b47;
 void fn_71002b67e8(UnkRefVectorHolder_b47* record);
+void fn_71002b6920(UnkUnit392Entry* entry);

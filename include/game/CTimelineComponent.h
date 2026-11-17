@@ -4,6 +4,7 @@
 // 0x7100a29e60-0x7100a2ec48). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "base/UnkCountedDeferredSet.h"
 #include "types.h"
 
 struct UnkTimelineComponent;
@@ -14,3 +15,5 @@ void fn_7100a2cddc(void* table, void* key, base::global::CStrId* id, f32 delay, 
 extern char g_unk_7101a8dcc0[];
 extern char g_unk_7101a8de78[];
 extern char g_unk_7101a8de98[];
+void fn_7100a2e30c(base::UnkCountedDeferredSet<void>* self, void* value);
+void fn_7100a2e4a0(base::UnkCountedDeferredWalk<void>* walk);

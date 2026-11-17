@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 
 using base::global::UnkStringData;
@@ -18,10 +19,6 @@ struct UnkSoundSettings_ovb0074 {
     u8 pad_0x0[0x21];
     bool flags[8];  // 0x21
 };
-extern UnkSoundSettings_ovb0074 g_unk_7108b6c5f0;
-
-void fn_71000fea74(void* member, u32 mask, f32 fade);
-void fn_71000fd1d4(void* member, const u32* mask, f32 fade);
 
 struct UnkSoundSystemFlags_ovb0074 {
     void** vtable;

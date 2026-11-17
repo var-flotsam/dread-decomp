@@ -6,3 +6,4 @@
 #include "types.h"
 extern void* g_unk_7101a77000[];  // The listener's vtable.
 extern void* g_unk_7101a76dc0[];  // The class's vtable.
+void* fn_710082e510(void* key);

@@ -1,12 +1,13 @@
 #pragma once
 
-// CSoundSystem: functions of this translation unit that other files call (tools/tu_map.py unit 103,
+// CSoundSystem: functions and globals of this translation unit that other files use (tools/tu_map.py unit 103,
 // 0x7100106b64-0x7100108ea4). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkSoundSettings_ovb0074;
 struct UnkSoundSystemMasks_ovb0074;
 struct UnkSoundRef_A5_b76;
 struct UnkHandle;
@@ -33,3 +34,4 @@ void fn_710010807c(UnkSoundMgr* mgr, const base::math::CVector3D* pos, const bas
 UnkSoundRef_A5_b76 fn_7100108aa4(UnkSoundMgr* self, const base::global::CFilePathStrId* path, bool flag);
 void fn_7100108c2c(UnkSoundMgr* self, const u32* mask, u32 v, f32 f);
 void fn_7100108464(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
+extern UnkSoundSettings_ovb0074 g_unk_7108b6c5f0;

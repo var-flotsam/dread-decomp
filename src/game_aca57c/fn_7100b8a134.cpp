@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "game/UnkTU1728.h"
 #include "types.h"
 
 using base::UnkAllocator;
@@ -68,8 +69,6 @@ struct UnkRecord120 {
           field_0xd0(static_cast<UnkMovedArray&&>(other.field_0xd0)),
           field_0xf8(static_cast<UnkMovedArray&&>(other.field_0xf8)) {}
 };
-
-void fn_7100b8b7e8(UnkRecord120* record);  // destructor
 
 using UnkRecord120Table = base::global::CRntSmallDictionary<void*, UnkRecord120>;
 

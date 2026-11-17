@@ -157,7 +157,1410 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through 61f13b2de543d694439b149e8a972b218a4188a6 -->
+<!-- journal_sync: through 4efc8a6043ad3e615599b884d3e3f4f61a2256a1 -->
+
+**permute.py --scopes: block and hoist mutations for local lifetimes; 2 drafts match (#566, 2026-11-17).**
+
+**`tools/permute.py --scopes`** adds three mutations to the search. All three change how long a local lives, which decides whether two locals may share a stack slot or a register.
+
+- **scope**: puts two to eight statements, at least one of them a declaration, in a block of their own. It is skipped when a name declared inside is used after the block.
+- **unscope**: removes the braces of a bare block.
+- **hoist**: moves a declaration without an initialiser out of its block, to just before the line that opens the block. Combined with the existing `split`, this gives the C89 style of declaring locals at the top.
+
+Without `--scopes` the search is unchanged. Three tests in `tools/tests/test_permute.py` cover the new mutations.
+
+**Run on the 195 `registers or order` rows of `drafts/INDEX.csv`** (500 tries each, 13 minutes on 4 cores): 3 matched and 20 came closer.
+
+- `fn_710021e874` (unit 324, 492 B) matched with one hoisted declaration. It moved to `src/`.
+  - Its two virtual tables, `g_unk_7101a20498` and `g_unk_7101a204c0`, are now declared once in `game/UnkTU324.h` as `void*[]`. The constructor in `UnkTU324_Construct_l21e6e8.cpp` loses its `char[]` copies and offset casts, and still matches.
+  - `fn_71002204d8` is now declared once, in the same header.
+- `fn_710122ff10` (nn::atk voice update, unit 2772, 288 B) matched with its locals declared at the top of the function. It moved to `src/`.
+  - The port runtime's `nn/audio.h` gains `IsVoiceDroppedFlagOn` and `GetVoicePlayedSampleCount`, declarations only, as for the other voice calls.
+- `fn_7100d46804` (unit 2506) matched by commuting one operand, an existing mutation. It stays in `drafts/`, held on its declaration of `fn_7100d4ae50`: the draft's hand layout of the group array differs from the `CRntSmallDictionary` alias its definition uses. Its row is regraded as a match.
+
+On the four large drafts whose frame is smaller than the original's (trymatch's `SHAPE` line), the scope mutations gave nothing that the plain search did not. In all four the original's frame is the bigger one: it keeps a local apart that ours shares.
+
+**Rules: the port is on hold until 95% of the code matches (#565, 2026-11-17).**
+
+Records the owner's decision of 2026-11-17: the PC port is on hold until 95% of the code matches. Documentation and skills only; no source, tool, gate or CI check changes.
+
+**What the hold means**
+
+- No port work: `port/`, the lifter, boot runs, graphics, Windows.
+- No work chosen because the port needs it. The boot path loses its priority in "what to match next"; the order is what unlocks or costs least over the whole binary: `tools/hubs.py` (callees that gate the most), `--ready`, and a slot family's unmatched functions beside their matched siblings (`tools/vtables.py --family N`).
+- A new non-match no longer stays in `src/` because the port needs it. It goes to `drafts/` like any other.
+
+**What stays**
+
+- The port sweep in the hosted `compile` job. It proves every source compiles for a second compiler and target, and a port left to rot costs more to resume than the sweep costs to keep.
+- The oracle, as the test of drafts.
+
+**Why** (the full reasoning is the new row in `docs/reference.md`)
+
+- The port's checks were not the cost. The sweep is part of the hosted `compile` job, about 3.5 minutes beside the other checks and not on the owner's runner, and the boot run has been by hand since 2026-11-12.
+- The cost was the order of work, thread time on traps, graphics and Windows that moves neither matched nor finished, and the `src/` exception above.
+- Given up until then: running the game as the one whole-program test of behaviour.
+
+**Files**: `CLAUDE.md` (goal, command line for `hubs.py`, matching standard, what to match next, status), `docs/reference.md` (the decision and its reason), `.claude/skills/dread-match` and `dread-hubs`, `CONTRIBUTING.md`, `tools/batch/lean/COORDINATOR.md` (the `--boot` ordering and the port exception).
+
+**Not done here.** `docs/HANDOFF.md` still lists the port stream's next steps and the boot-first order; the merging session marks them paused. `docs/PORT_PLAN.md` is unchanged, as the plan to resume from.
+
+**trymatch: a SHAPE line for how close a non-match is; a plainer unit 210 billboard draft (#564, 2026-11-17).**
+
+**A `SHAPE` line in `tools/trymatch.py`**, printed under `KIND` for every function that differs (`asmdiff.structure`). It reports three things:
+- The share of the original's opcodes that ours has in the same order. The positional score counts one inserted instruction as a difference on every line after it, so a large function can score 20% and still be nearly done.
+- The frame size each version sets up.
+- How many distinct stack slots each body uses, outside the callee-saved saves. Frame-pointer offsets are folded into sp offsets, so one slot counts once. A gap here is a spill, or a local that lives in memory on one side only.
+
+The lean kit's `try.py` keeps the line, and `worker.md` step 3 says how to read it. The new `tools/tests/test_structure.py` checks it on hand-encoded instructions.
+
+On the six closest drafts over 2 KB, every one has 95% to 100% of its opcodes in order. `fn_71008c5ad0` shows a 0x10-byte frame gap with one extra slot, and `fn_710080d4a0` two extra slots: those are the frame-layout cases from the large-function plan.
+
+**Unit 210 billboard draft.** `fn_710018faf0` is the variant with no attribute buffers. Its draft is replaced with a plain-store version under the unit's `no-strict-aliasing` flag, with no `may_alias`. It goes from 18.7% to 21.8%, and 81.9% of its opcodes are in order; the loop body lines up. Two things still differ:
+- **The loop counter.** The original keeps a 64-bit index with a 32-bit exit compare. Here, induction-variable simplification widens the counter and moves the exit compare to 64 bits as well, and loop strength reduction then turns the index into a byte offset. Twenty-five loop forms all give the same result: signed and unsigned, `<` and `!=`, do-while, with and without the early return, a 64-bit index, and the loop in an inlined helper. So the original's compare was never widened, and what stopped it is still unknown.
+- **Setup spills.**
+
+**vtables.py: slot families, and a same-slot sibling among a worker's reference matches (#563, 2026-11-17).**
+
+Adds `tools/vtables.py`, a read-only tool that finds main's function-pointer tables (virtual tables, mostly) and groups them into slot families, and has the lean kit show a worker a matched function from the same slot. It serves two jobs: one slot name names every override in a family, and a function's siblings at the same slot share its signature, so the matched ones are reference matches.
+
+**Method**
+
+- Every `R_AARCH64_RELATIVE` relocation in `orig/<version>/main.elf` that points at a function start in `data/functions` is a pointer slot. A run of three or more consecutive slots is a table. The game has no RTTI, so this is how its virtual tables are found.
+- Two tables join one family when they hold the same function at the same slot. Bodies of 8 bytes or less are ignored for joining, because the linker folds them across unrelated classes.
+- A family approximates a class hierarchy; it is not a recovered one. A derived class that overrides every slot starts a family of its own, and a long table that is not a virtual table is a family of one.
+
+**Views**
+
+- Default: writes `build/vtables/<version>/slots.csv` (`table,slot,function,family`; untracked, derived from the dump) and prints the summary.
+- `--summary --top N`: the largest families with tables, slots, functions, unnamed and `U` counts.
+- `--function <addr|name>`: the function's slots and its siblings, matched first, then nearest in size.
+- `--family N [--slot S]`: a family slot by slot, or one slot's implementations.
+
+The tool uses the standard library only (its own small ELF reader), so it runs without `lz4` or `pyelftools`.
+
+**The lean kit** (`tools/batch/lean/similar.py`, `prepare.py`)
+
+- A third kind of reference, `slot`: a matched, hand-written function in the same slot of the same family, at most three times the function's size. Of the twelve nearest in size, the one whose instructions line up best is shown, second, after the most alike reference.
+- With no `slots.csv` the references are exactly what they were. No batch has been run with it; the measurement is for the thread that owns the batches.
+
+**What it found on 2.1.0** (run on the owner's PC; counts only)
+
+- 6,857 tables in 5,170 families hold 73,882 functions (7.48 MB). 45,806 of them are unnamed (5.35 MB) and 1,852 are `U` (1.71 MB).
+- Family 0 has 1,147 tables and 270 slots. It covers 9,326 unnamed functions (1.79 MB) and 1,039 `U` functions (1.00 MB). 33 of its slots have 50 or more implementations, and slot 1 alone has 842.
+- Family 1 is a single 2,761-entry table and is probably a registration table, not a virtual table.
+- About 1,266 `U` functions (1.23 MB) have a hand-written matched sibling within three times their size (approximate: "hand-written" was a quick scan of `src/`); 1,153 of them are under 2 KB.
+
+**Reusable**
+
+- For naming: a slot name in a large family is the cheapest name in the project. `tools/rename.py` does not take a slot yet, so each override is still renamed by address.
+
+**Also changed**: `tools/gen_commands.py` lists the tool under "Reconnaissance" and `docs/commands.md` is regenerated; `docs/reference.md` and `tools/batch/README.md` get a line each.
+
+**Build units without strict aliasing where the original was; ALIAS probe; 27 drafts match (#562, 2026-11-17).**
+
+**Some of the game's units were built without type-based alias analysis** (owner decision, 2026-11-17: allowed unit by unit where the evidence supports it). The game's Lua and dlmalloc were already known to be built this way. This PR adds:
+
+- **`// build-flags: no-strict-aliasing`**. A source names this in its first 40 lines, and `buildcfg.cxx_command` adds the flag. Every tool that compiles through `buildcfg` picks it up: check, trymatch, equiv_test, permute and drafts. The port already builds `dread_game` with the flag.
+- **`data/unit_flags.csv`** lists 29 units, with the evidence for each. A unit qualifies when a draft of it matches only with the flag and none of the unit's hand-written `O` functions change under the flag. 5 more units had a draft that matches only this way, but they have `O` functions that do change, so they are left out (341 CActor, 424, 1163, 2506, 2712). Unit 210 is in the list because its matched age loop (`fn_7100170184`) gives identical bytes with plain stores and the flag.
+- **An ALIAS probe in `tools/trymatch.py`.** When a function doesn't match, trymatch builds the file again with the flag and prints `ALIAS <fn>: a% -> b% without strict aliasing`, or `matches`. `--no-alias-probe` turns it off. The lean kit's `try.py` keeps the line, and `worker.md` and `tips.md` say what to do with it: write the stores plainly, with no union, `memcpy` or `may_alias` to force the reload.
+
+**How the units were found.** Every draft in `drafts/INDEX.csv` was built with `trymatch.py` twice, without and with the flag:
+- 52 of them match fully with the flag, and 41 of those don't match without it.
+- Across all hand-written sources, only 175 of 12,543 `O` functions change under the flag, scattered over 125 units. So the flag is per unit, not global.
+
+**Matched:**
+- 27 of those drafts moved to `src/` with the build-flags line (`tools/drafts.py promote`), and `check.py --update` makes 28 functions `O`.
+- 6 stay drafts, held on declarations: `fn_7100004578`, `fn_7100133a94`, `fn_71001cab0c`, `fn_71007613d8`, `fn_7100838f20` and `fn_7100e8eaac`. A seventh, `fn_7100900cf4`, also stays a draft: moving `fn_7100901264` into its unit header clashes with the local `UnkValues10ByKey` alias in that file. These 7 already carry the build-flags line.
+- `fn_71000f0648` and `fn_710102796c` are now declared once, in `game/UnkTU94.h` and `game/sound/CSoundManager.h` (`tools/hub_migrate.py`).
+- Local layouts that clashed by name were renamed per file: `UnkAssetResRef_1ac144`, `UnkAudioPresetPair_b0192_3bd84`, `UnkBoundObj_6fe80`, and `UnkSoundEvent(Id)_fcb618` / `_fcb874`.
+
+**Not in this PR.** Unit 210's billboard update family is 96 variants of one template, 1.2 to 1.5 KB each, picked by `fn_7100170268`. Written plainly with the flag, the variant with no attribute buffers (`fn_710018faf0`) lines up instruction for instruction in its body. Two things still differ:
+- The loop counter. The original keeps a 64-bit index with a 32-bit exit compare. Our Clang turns it into a byte offset in every source form tried.
+- Register spill choices.
+
+That work continues on its own branch.
+
+**Match batch 8: 26 functions and 9 verified equivalent from the 2 KB pool (#561, 2026-11-17).**
+
+Batch 8 of the lean matching runs (tag `lean-r2kh`): 63 worker groups over untried ready functions of 2 KB or less.
+
+- **26 new byte matches (O)**, in their units' files.
+- **9 verified equivalent (m)**: registers-only drafts that pass `equiv_test.py`, promoted from `drafts/`. Three more passing drafts stayed in drafts because they lean on a union around a member or a single-field `memcpy`.
+- **248 non-matches** filed to `drafts/` with graded rows.
+- **14 matches held in drafts**, because their callees or globals clash with another file's declaration. Each row's note says which.
+
+Declarations:
+- `fn_71011cfba8` is now declared once, in `include/game/UnkTU2747.h`. Six local copies are replaced, and `UnkGuiS7.h` re-exports it with a `using`.
+- `g_unk_71729f02b0` is declared once, with its real type `unk_static_init::UnkEnumType`, in `include/game/sound/SGUISoundEventsSelector.h`.
+- `fn_7100308d0c` joins `CAbilityGhostAura_Length_l308950.cpp`, so `UnkStruct_71007142e8` gains no new definition.
+
+Findings worth reusing:
+- **Unit 210 billboard writers (about 40 functions).** One loop shape blocks the whole family. The original keeps a 64-bit `i`, recomputes `i << 2` on each pass, exits on a 32-bit compare and guards with `cbz`. The closest form so far is `u32 i` with `indices[(s32)i]`, at 65%, but it adds a sign extension. Writing the four UV corner products as locals reproduces the original's arithmetic. The planning thread now owns this family.
+- **Wrong declaration found:** `fn_7100798e88` in `CCollisionMaterialCacheComponent.h` takes the material source in x0, but the header has no parameter.
+
+Gates: `check.py` (no REGRESSION, DUPLICATE or RELOC), `decl_check --strict`, `struct_check`, `fakematch --unset --strict`, `policy_check`, `name_check --strict` and `lost_matches` all pass against origin/main.
+
+**Rules: tool-written code counts when it matches and reads as source; an oracle pass is not done (#560, 2026-11-17).**
+
+Records two owner decisions of 2026-11-17 in `CLAUDE.md` ("Purpose and completion") and in `docs/reference.md` ("The rules in `CLAUDE.md`, with their reasons"). Documentation only: no source, tool, gate or CI check changes.
+
+**1. The metric is readable, matching code, whoever or whatever wrote it.** This replaces "readable, hand-typed code".
+
+- A function counts when its bytes are proven (tier 1 or 2) and its text reads as source. A tool's output is held to the same two tests, so a generator is finished by making its output readable, not by retyping it.
+- Readable means no `fn_<addr>` or `Unk` name, no offset cast, typed members and no steering form.
+- Two figures are kept apart: strict (no placeholder anywhere) and loose (the function's own name, class and members are real, placeholder callees allowed). Under the strict figure alone, every function waits on the names of its hubs.
+- A generated family also needs a sampled read: 20 random functions per generator release, pass or fail for the family. A tool-checked floor alone would be met by our own generators without the code reading any better.
+- `tools/progress.py --origin` still reports who wrote what, but it is no longer the metric.
+
+**2. An oracle pass is not done.**
+
+- Done stays a byte match or a verified registers-only difference. A byte match proves the source has the original's structure; the P-code oracle is a test on sampled inputs and cannot see a path no input takes.
+- Oracle-verified is tier 3 with its own figure. It decides what the port may run: a readable draft that passes replaces its lift there, and it still owes a match.
+- A semantic lift of a large function is machine code transliterated and does not read as source, whatever its variables are called.
+
+**Why it matters for planning.** About 50 of the 79 points missing from complete already match as generated code (reflection 4.56 MB, lifted 2.18 MB, clones 1.29 MB, tables and statics 1.14 MB, from the handoff of 2026-11-11). The work on them is the generators' output, class layouts and names.
+
+**Not done here.** `tools/progress.py` does not report the strict and loose figures, the sampled read or the oracle-verified figure yet. `docs/HANDOFF.md` still describes hand-typed code as the metric; the merging session regenerates it.
+
+**Replace the dead Pin condition in the CWeightActivated state search with FindStateById (#559, 2026-11-17).**
+
+The CWeightActivated state search in three files had a `Pin` template parameter whose `if (Pin)` read like a condition that could skip the search. Pin defaulted to true and no caller ever passed false, so the condition was dead code, not a behaviour bug. Checked against the original: in fn_7100aca6e0, fn_7100a0ab24 and fn_7100a0c4e4 the search loop is guarded only by the byte-count test, with no other branch, so the original always searches.
+
+Each file's FindState now calls the shared `FindStateById` (`include/game/UnkStateMachineFind.h`). The Pin parameter is gone, along with every `always_inline` and empty barrier in the three files.
+
+- src/game/CWeightActivablePropComponent/CWeightActivableProp_Request_A5_b72.cpp
+- src/game/CWeightActivatedPlatformSmartObjectComponent/CWeightActivatedPlatformSmartObjectComponent_Finished_ovb0103.cpp
+- src/game/CWeightActivatedPlatformSmartObjectComponent/CWeightActivatedPlatform_Requests_A5_b72.cpp
+
+**Match 35 drafts on a second try; promote 8 verified-equivalent drafts (#558, 2026-11-17).**
+
+A second try at the closest drafts from the lean batches, plus a small 2–6 KB batch.
+
+- **Retry batch (`lean-retry-a`).** I picked the 120 drafts that were already 85% or more similar, mostly registers-only, and gave each a fresh Opus attempt budget starting from its best draft.
+  - **33 of them now match byte for byte**, and their drafts are removed.
+  - Two more match but are held as drafts because their callers declare them with other types. Their notes in `drafts/INDEX.csv` say what blocks them.
+  - Two callers' declarations were corrected so that two matches could land:
+    - `fn_71010fc554` returns `bool`.
+    - `fn_710083b83c` returns the gun it adds.
+  - In both cases the callers still match.
+- **Tier 2.** I ran `equiv_test.py` over every registers-only draft. 28 pass.
+  - **8 of the passes move to `src/` as `NON_MATCHING(minor)`**, with their verdicts written to `data/equivalence.csv`.
+  - 15 passes wait on declaration conflicts, and 3 have callees that are not ready.
+  - Two passes stay drafts because they rely on a union around a member or a single-field `__builtin_memcpy`.
+- **2–6 KB batch (`lean-r6kb`).** The 33 ready functions of that size that no batch had tried yet. **None matched**; all are filed as drafts with their notes.
+- **Declarations:**
+  - The grown-only `decl_plan` pass, run through `hub_migrate`.
+  - Eleven existing multi-file declarations moved into their unit headers, among them `fn_7100d46c60` (9 copies), `fn_71011787dc` and the navmesh helpers.
+  - Two batch-local layouts renamed per file: `UnkCapsule2D_l12efb0` and `UnkElemData2661_l06f344`.
+
+Against origin/main: **+35 O, +8 m, none lost**.
+
+**Find loops onto the shared helper and three held matches: 4 match (#557, 2026-11-17).**
+
+Two follow-ups to #553 that merge cleanly together: the remaining state-machine find loops move onto the shared helper, and three held matches get their declarations fixed. Four drafts now match.
+
+### Find loops onto FindStateById
+
+- The find-state loop now goes through FindStateById in:
+  - UnkDoorStateMachine_b58.h, keeping FindState_b58 as a one-line wrapper because fn_7100343ca8 calls it
+  - UnkSmRequest_A5_b73.h
+  - 23 sources: 16 copies of FindState that return through an out-parameter, UnkTU2544_Rush, and 6 Launder and owner-plus-offset forms
+- UnkSmRequest_A5_b73.h loses an unused Pin=false parameter.
+  - Its pointer barrier is now commented. Without it, fn_7100a6ab44 drops to 1.9%.
+  - Its other two barriers, in SwitchState, were already on main without comments.
+- **Steering forms removed:**
+  - About 30 barriers and almost every always_inline around the copies are gone, and no always_inline was added.
+  - Two existing always_inlines stay, Update_A5_b62 and Update_A2_b63. Without them those functions are emitted out of line, and 2 or 3 stop matching.
+- **fn_7100a0a2dc** moves from drafts and matches, with no always_inline. Its state types sit in an anonymous namespace, so its Request, used once, has internal linkage and inlines as it does in the original. The same approach may help other drafts held only on always_inline.
+- **Drafts that improved but stay drafts:**
+  - fn_710088af9c went from not building to 95.3%. Clang turns its `i++ > 8` limit into `== 10`.
+  - fn_710099bab0 went from not building to 45.8%.
+- **Left for later:**
+  - UnkStateMachineSetA6_b62 has a Pin=false caller, which changes control flow, so that change was reverted.
+  - The loops that search on `->kind` would need a second, named template. They are in the CSamus*MovementState files, CEmmySanc_Hang and UnkTU1176_Central.
+- **Worth a look, already on main:** CWeightActivableProp_Request_A5_b72, CWeightActivatedPlatformSmartObjectComponent_Finished_ovb0103 and CWeightActivatedPlatform_Requests_A5_b72 write the loop as `if (Pin) for (...)`, with the barrier line missing. So the search only runs when Pin is true, which reads like a transcription slip.
+
+### Three held matches
+
+fn_710043e248, fn_7100507d24 and fn_7100a601cc now match.
+
+- **fn_710043e248:** fn_7100443508 is declared in CChozoCommanderUltimateGrabAttack.h, on its definition's template type. The delegate stores it with a function-pointer cast, as the Warrior X twin does.
+- **fn_7100a601cc:** declared in CTriggerComponent.h, which UnkTU2553_Relocate now includes. Relocate stays `m`, unchanged, and its actor view still casts to the trigger's target type.
+  - Its barrier stays, now with a comment: the original tests the byte size, not the count, for zero. Without the barrier, the function is a 95.5% registers-only near-miss.
+- **fn_7100507d24:**
+  - fn_7100fd8720 is declared in CTunableMusicManager.h. Its definition's local layout is renamed UnkMusicSlotOwner_fd8720.
+  - fn_71010e4a80 is declared in CCameraComponent.h, and fn_710050a30c's g_unk_71726de5c0 is retyped as CStrId.
+  - g_unk_71726de5d0 is declared in CEmmyGrabSamusAttack.h.
+  - fn_7101178e08 is declared once, in CAnimationComponent.h, for all 19 files that call it (via `hub_migrate`). Its definition still takes `UnkAnimComponent_b52*`, a mismatch that was already on main.
+  - The Emmy grab attack's layout moves to a header of its own, UnkEmmyGrabSamusAttack.h, after struct_check flagged a second definition.
+
+**Progress dashboards: matched, finished and untouched up front (#554, 2026-11-17).**
+
+Reworks both progress dashboards around the project's headline metrics: matched, finished (matched and readable) and untouched.
+
+**README status card** (`tools/status_card.py`, `docs/status.svg`)
+- Leads with three figures for the whole binary: **matched** (`O` code bytes), **finished** (byte-matching and readable, read from the `--quality` line under HANDOFF's progress table) and **untouched** (`U` bytes). The whole binary is one bar: finished inside matched, with untouched at the right end.
+- The boot path keeps one matched bar.
+- The port drops from eight HANDOFF rows to three under short labels: Linux build, lifted code still to replace, Windows. Several of the old rows were long sentences that drew over their own labels in the image. The rest (lift acceptance counts, M0/M1) stay in HANDOFF.
+- The markdown form (the PR job summary) has the same shape.
+- README.md and `docs/status.svg` are regenerated in this PR because the format changed. The card was also stale: it showed 67.3%, and main is at 70.41%.
+
+**Private dashboard export** (`tools/dashboard_export.py`)
+- Writes three CSVs: `daily.csv` (tools/daily.py's record), `subsystems.csv` (code, matched share and untouched code per subsystem, most untouched first) and `port.csv` (HANDOFF's port rows). It no longer needs the Ghidra export. The status-letter history, workstreams, lift and boot tables are dropped along with the dashboard sections that showed them.
+- `--now` makes today's row the working tree's, with finished computed fresh when check.py's cache is present.
+
+Finished on the card comes from HANDOFF, so it is only as fresh as the merging session's last `progress.py --slice boot --handoff` with the check cache (17.55% on main today).
+
+**Music map value: fn_7100d90304 is its destructor, two held drafts match (#556, 2026-11-17).**
+
+fn_7100d90304 was declared as a free function in some places and as a destructor in others. It is the destructor of the music manager's 0x68-byte map value, and it is now declared that way. Two held drafts from batch 7 (#544) move from `drafts/` and match: fn_7100f899a8 and fn_7100fdca88. fn_7100d90304 itself still matches, now as the destructor.
+
+**What the value is.**
+- The destructor releases, in order:
+  - the item list at +0x40, whose 0x20-byte polymorphic items are each destroyed through their virtual destructor
+  - the id at +0x30
+  - the layer list at +0x8
+  - the name at +0x0
+- fn_7100fdca88's node layout (key at 0, value at 8, next at 0x78) shows that reflection's map value in ovb56 is the same object. Its 0x70 size had been a guessed pad.
+
+**Changes:**
+- **`include/game/sound/UnkMusicMapValue.h`** (new) holds the one layout.
+  - The members are a name, a layer set with its id, a field at 0x38, and the items.
+  - The layer set and its id are kept as one member. Split in two, the destructor drops to 71%, because the original takes the pair's address once. A comment says so.
+  - The constructor (fn_7100f85a78) and destructor (fn_7100d90304) are declared there with asm labels, as declarations only.
+  - The header also holds the single declaration of fn_7100fed650, which three .cpp files had each declared.
+- **`reflection_environment_ovb0056.cpp`** defines the destructor out of line. The two list wrappers' destructors are plain inline definitions, which Clang 9 inlines on its own.
+  - There is no flatten or always_inline on the destructor. The file's two other flattens were already on main.
+  - The labelled destructor is not inline, so it doesn't trigger the port compiler's hang on labelled inline destructors (#508).
+- **`reflection.h`** loses the `void(void*)` declaration.
+- **Callers through function pointers or lambdas** destroy through a named `DestroyMusicMapValue(void*)`. These are UnkMusicPresets, fn_7100f79844, fn_7100f798fc, UnkStrIdMapErase_A6_b73 and fn_7100f79248. In fn_7100f79248, fn_7100f86f20 is written out instead of using the DEFINE_CLEAR macro, because the macro declares the destroy function itself.
+
+**Left for later:**
+- The generated clones (clones_04 and clones_05) and lifted_0f8 still declare fn_7100d90304 as a free function. They match by address, but if the port links by mangled name, those generators need the destructor form.
+- The 0x50-byte layer record stays opaque.
+
+**Sound description's inline-release form: three callers and their casts (#555, 2026-11-17).**
+
+The sound description (#548) gets its second, inline-release form. Three sound callers and fn_7101037bc0 move onto the header, and their casts to the destructor are gone. This is a readability change, and O is unchanged.
+
+**The two forms:**
+- The layout and constructor move to **UnkInlineSoundDesc**, which has the implicit inline destructor. Its comment cites fn_7100552af0, fn_71009dae9c and fn_7101024e28, which release the name and path inline.
+- **UnkSoundDesc** derives from it and keeps only its out-of-line destructor, fn_710034e0b8.
+- The inline callers copy the default path through its pointer, not as a whole base. CFilePathStrId gains a second, named constructor for that: `CFilePathStrId(UnkCopyByPointer, const CFilePathStrId&)`, with a new tag type.
+  - Its comment cites fn_7100552af0, and only UnkSoundDesc's constructor uses it.
+  - A first try changed CFilePathStrId's own copy constructor instead. That broke 10 matched files, so it was reverted.
+- There is no union, always_inline or asm label.
+
+**Moved onto the header, all still O:**
+- UnkTU811_PlaySound (fn_7100552af0)
+- CRumbleComponent_FromSound (fn_71009dae9c)
+- CSoundManager_Play (fn_7101024e28)
+- fn_7101037bc0, which now takes `UnkInlineSoundDesc*`, so its callers no longer cast
+
+UnkTU811's g_unk_71726e2058 is now declared as a CFilePathStrId.
+
+**Drafts:**
+- 17 drafts moved onto the header mechanically, and none changed grade. Their notes blame the placement of statics in .bss and global merging, not the type.
+- 8 more keep local copies, because their layouts differ. Some have a range struct, an AssetName, u64 fields, a SetRange member, a move-assigned name, or a float at +0x4.
+
+**Near-miss sweep: one state-machine find helper, 11 drafts match (#553, 2026-11-17).**
+
+A near-miss sweep over the 254 drafts that don't match but are at 90% or more, grouped by what blocks them. The largest group, the state machines' find-state loop, is fixed with one shared helper, and 11 drafts now match.
+
+**The fix.**
+- The new `include/game/UnkStateMachineFind.h` has one template, `FindStateById(states, count, id)`. It replaces 12 per-file copies of the loop.
+  - The loop tests a byte count after the shift and steps the pointer first.
+  - It has one commented empty barrier, on the count. No other form gave that loop shape.
+- fn_7100343ca8 uses the existing FindState_b58.
+- fn_7100ddbb7c is declared once, in UnkTU2547.h, and the copy in CAutofocus is removed.
+- fn_7100a9ffcc is declared once, in CUsableComponent.h.
+
+**Now matching (11):** fn_7100343ca8, fn_710043042c, fn_7100486de8, fn_710050a30c, fn_710050aae4, fn_710065f878, fn_7100818420, fn_71008d0ef4, fn_7100918370, fn_7100919254 and fn_71010c8128.
+
+**Kept in drafts, each with its reason in the INDEX row:**
+- fn_7100a09cd4 and fn_7100a0a2dc match, but only with always_inline on their own Request in the function file. The find loop's barrier blocks the inlining otherwise.
+- fn_7100507d24 matches, but its callee and global types conflict with their declarations.
+- fn_710043e248 matches, but fn_7100443508 is defined on a local template type.
+- fn_7100a601cc matches, but UnkTU2553_Relocate's declaration doesn't agree.
+- fn_7100f12c90 now builds, at 95.3%, and fn_710107c470 went from 31.5% to 41.8%.
+
+**The other groups, for follow-up:**
+- **.bss placement of unit statics:** 13 drafts whose code is identical except the guard-to-static offset. This is not a type problem.
+- **Callees declared with other types:** 14 drafts with 14 different callees. Only fn_7100d90304 is shared, by two of them.
+- **Stack-slot assignment:** 14 drafts, with no shared type.
+- **The sound queue-off flag:** 4 drafts. The original tests bit 0 with a branch on the bit and falls through. Neither a bool, a mask, a bit-field nor an expect hint reproduces it, so it is unsolved.
+- **Smaller groups:**
+  - a count reloaded after an aliasing store (8)
+  - float-compare operand order (6)
+  - loops with a negative stride (5)
+  - a bool tested as an int (5)
+- **The rest of the find-loop group** below 90% (about 17) needs its SwitchState and Request restructured. The find copies in UnkDoorStateMachine_b58.h and UnkSmRequest_A5_b73.h could move onto FindStateById, with baselines.
+
+**One string-id path resource: CDrop's records and the billboards' casts (#552, 2026-11-17).**
+
+CDrop's drop resource and the string-id path resource are the same record, so they are now one type. This is a readability change, and O is unchanged. It is the follow-up noted in #546.
+
+- **Empty ids.** `UnkDestructors.h` gains `base::UnkEmptyStrIdOf<Pool>`, each pool's empty id: g_unk_7101d470e0 for pool g_unk_7101d47108, and g_unk_7101d470e8 for g_unk_7101d47200.
+- **Default constructors.**
+  - UnkStrIdMemberOf gains one that copies its pool's empty id, the way CStrId's copy does.
+  - UnkStrIdPathResource gains one that leaves the resource null.
+  - Both comments cite fn_71007bf3f0 and fn_7100e211cc, which build the records this way. No alias or second form was needed.
+- **CDropLayout.h.** UnkDropResource is gone. CDrop's three records, at 0x4a0, 0x4b8 and 0x4d0, are UnkStrIdPathResource.
+  - CDrop_Members builds them with the constructor and matches 4/4.
+  - fn_7100e211cc's seven records use the constructor too. That function stays minor, and its equivalence row is unchanged.
+- **Billboards.** Their two LoadPath helpers take `UnkStrIdPathResource*` and call fn_71000267f8 with no cast.
+- **Other builders.** Three more sources built the same record by hand and now use the constructor: UnkStrIdPathResource_Ctor_b45 (fn_7100027464), CParams_Slide_ovb0004 and UnkTU32_Xform_ovb0177. All still match.
+- **Left for later:** CDrop's destructor, fn_71007bfa70, still casts the three records to `UnkIdPair*` for fn_7100026f70. UnkTU32.h declares that function over a forward-declared UnkIdPair.
+
+**One mask type for the music manager's kinds and loading masks (#551, 2026-11-17).**
+
+UnkMask, UnkKind and UnkLoadingMask are one type, so they are merged into UnkMask. This is a readability change, and O is unchanged.
+
+**Why they are one type:**
+- All three are one u32 with a converting constructor and a user-declared copy constructor. Each is passed as the address of a copy, so all three have the same ABI.
+- The matched fn_7100ce4510 (CCharClassStopMusicEvent) builds the same value, 4 or 2 depending on a flag. It passes that value as a loading mask to fn_7100fd7b44 and as a kind to fn_7100fd82dc.
+- fn_7100fd7b44 was defined with (UnkKind, UnkMask), while all 14 of its callers passed (UnkLoadingMask, UnkLoadingMask).
+- The loading mask's "All" uses the same nine-bit static, g_unk_71726c4080, as UnkMask's.
+- **Caveat:** if the original is a flag-set template over an enum, the kind and the mask may be two instantiations of it. UnkTU2545 passes a four-bit full set as a kind. The layout and ABI are the same either way, so one type is as faithful as the matches can show.
+
+**Changes:**
+- UnkLoadingMask.h and UnkMusicKind.h are deleted. UnkMask.h now covers the music manager's kinds and masks.
+- `UnkMaskOf<UnkMusicMaskTag>::All()` replaces:
+  - nine local UnkLoadingMaskOf templates
+  - three asm-labelled helper pairs
+  - fn_7100fd16ec's own MaskNone and MaskAll
+- The labels on g_unk_71726c4080 and g_unk_71726c4090 are gone from five files, and all five still match.
+- fn_7100fd7b44 is declared as it is defined: (UnkMusicMgr_b0019*, UnkMask, UnkMask, f32).
+- fn_7100fd7c3c and fn_7100fd82dc take UnkMask for the kind, and their callers pass `static_cast<UnkMusicMgr_b0019*>`.
+- In all, 19 src files and 3 drafts changed. No draft's grade moved.
+
+**Left for later:**
+- The `data/equivalence.csv` row for 0x7100e10aac (inconclusive) still names the old guard type in its note. A rerun gives the same verdict.
+- Two copies of Flipped, in TrainUsable and ovb0056, could become an UnkMask member.
+
+**One definition each: motion-rule flags, droppable tunable, resource type and format (#550, 2026-11-17).**
+
+Two readability changes that each give a type one definition. They touch no files in common and are combined to save runner time. O is unchanged.
+
+### Motion-rule flags and the droppable tunable
+
+- **The motion-rule flags type** (UnkFlags_71007142e8) had 16 local copies in `src/` and 5 in `drafts/`. All now use `include/game/UnkMotionRule.h`.
+  - The accessors without labels (CMovementComponent_Motion and 8 others) match through the header's labelled form.
+  - The type and its two statics are now defined only in the header.
+- **The droppable tunable** (g_unk_71727c10c8) gets one layout, in the new `include/game/UnkDroppableTunable.h`. UnkDroppableTunable is 0x258 bytes and derives from UnkTunable. It has every reflected member of CTunableDroppableBillboard, with static asserts.
+  - The two attraction distances, at 0x24c and 0x250, are confirmed by their getters.
+  - The partial view in `UnkDropTunable_ovb0208.h` is removed. Its nine unnamed fields were the reflected preset names.
+  - These files now read members by name instead of through casts or helpers:
+    - CDrop_Members
+    - CLogicDroppedItemManager
+    - the drop probabilities
+    - the radius setters
+    - LoadPaths
+    - the eight billboard functions
+  - **To check:** four billboard files use the byte at +0x78 as an index into a table of drop ids, but reflection names that byte `bDropsDoRelaxMovement`, a bool. The reflected name is kept, with a comment.
+
+### UnkResType
+
+The two definitions named UnkResType were two different objects:
+- **The registered resource type** (0x80 bytes, for example g_unk_716e453ff8) keeps the name UnkResType. Its members are a name, then vectors of formats, extensions and sources. fn_7100004698 builds it and fn_7100004b94 destroys it.
+- **The format record** (0x38 bytes, built on the stack) is now named UnkResFormat. It holds a class id, an extension id and a vector of source ids. fn_7100004578 builds it and fn_7100004a44 destroys it.
+  - Its members stay raw, so the matched static initialisers' arrays of it don't gain constructors.
+  - The nine static-initialiser files now name UnkResFormat.
+
+Both are defined in `include/base/UnkResType.h` with size asserts, and UnkResKey.h includes it.
+
+Three local copies are kept, each for its own matching shape:
+- UnkAnimDesc_ovb0033
+- UnkIdsRecord38
+- UnkResRegistry_l01f460
+
+Folding them in would mean giving the shared types constructors and destructors, which puts static-initialiser matches at risk.
+
+**Batch 7 held drafts: unit globals typed, 4 match (#549, 2026-11-17).**
+
+The last set of shared header fixes for batch 7's (#544) held drafts. It declares unit globals with their real types. Four drafts move from `drafts/` and match: fn_71006ba298, fn_7100714ec0, fn_71008bbc24 and fn_7100e1dde0.
+
+- **Shelmit.** Its two globals are declared in CShelmitAIComponent.h.
+- **Unit 1141.** Its header global is declared in UnkTU1141.h as UnkTUHeader. The header's nine rules are typed in the new UnkMotionRule.h, which also holds a flags type and its accessors. The accessors keep their asm-labelled statics.
+- **Player life tunable.** g_unk_7172a0a0a8 is the player life tunable: 0xd0 bytes covering every reflected member of CTunablePlayerLifeComponent, in the new CPlayerLifeComponent.h.
+  - CDrop_Members now reads the easy-mode drop-amount factors by name, and its 4 functions still match.
+- **Billboard tunable.** Its layout moves to UnkDropTunable_ovb0208.h. CTunableDroppableBillboard.h takes the drop ids from UnkTU2561.h.
+- **Rebuilt on current main.** UnkTU2562.h keeps main's four-argument callbacks and the path strings. The free fn_7100e2c3f4 is gone, because it is now CDrop's table assignment (#543). The header adds the billboard tunable's vtable and its destructor without the delete.
+  - These sources trymatch in full: fn_7100e1dde0, the billboard file (14/14), CDrop_Members (4/4) and fn_71008bbc24.
+- **Left for later:**
+  - The motion-rule flags type still has about six local copies.
+  - The droppable tunable has several views in unit 2562.
+
+**Batch 7 held drafts: sound description and held signatures, 8 match (#548, 2026-11-17).**
+
+More shared header fixes for batch 7's (#544) held drafts, in two parts that merge cleanly together. Eight drafts move from `drafts/` and match.
+
+### Sound description
+
+fn_71009cd654 (pickable) and fn_7100a89dc0 (save station) now match.
+- `include/game/sound/UnkSoundDesc.h` holds the 0x70-byte sound description:
+  - a sound kind at 0x0 and 0x8
+  - the name at 0x18, the path at 0x20 and the position at 0x28
+- Its destructor, fn_710034e0b8, is defined out of line in unit 437. Before, it lived on CAbilitySonar's local pair type. It still matches.
+- These files use the header: CAbilitySonar, the three recharge Start files, and fn_7101037bc0. fn_7101037bc0 had its own, different UnkSoundDesc, which struct_check flagged.
+- fn_7100d7c374 is declared once, in UnkTU2523.h.
+- **Left for later:**
+  - Three sound callers (UnkTU811_PlaySound, CRumbleComponent_FromSound and CSoundManager_Play) keep copies of the description that they destroy inline. Moving them needs a second, named destructor form.
+  - About 25 drafts still define local copies.
+
+### Held signatures
+
+Six functions now match: fn_71001aaf80, fn_71004269a4, fn_710067c478, fn_7100fc7500, fn_7101091580 and fn_7101158d78.
+- **Asset references.** There is now one UnkAssetResRef, in `include/base/UnkAssetResRef.h`. fn_7100017878 is declared in CAsset.h, and g_unk_716e454278 in UnkResKey.h.
+- **Chozo Commander.** fn_71004269a4 is declared in UnkChozoCommanderAttack.h.
+- **Sclawk** gets one AI layout (UnkSclawkAIComponent.h) and a unit header, with no steering form. It includes a ShowSclawkPart helper that the original had inlined three times.
+- **Scenario loading.** fn_7100fc7500 is declared in UnkTU2622.h and joins UnkScenarioLoadRequest.cpp, sharing a CopyBlackboards helper. Its UnkTU2768 caller drops its u64 placeholders.
+- **Music manager.** fn_7100fd82dc's key is a CRntString, declared in CTunableMusicManager.h. UnkKind moves to the new UnkMusicKind.h.
+- **Life components.**
+  - fn_7101158d78 takes its f32, declared in CCharacterLifeComponent.h.
+  - fn_71011603a4 and fn_7101160214 are declared on the life values in CLifeComponent.h.
+  - CEnemyLifeComponent's override now passes on the f32 that the original leaves in s0.
+- **Left for later:**
+  - fn_7100fd7b44's declaration still disagrees with its definition, as it already does on main.
+  - UnkMask, UnkKind and UnkLoadingMask could become one type.
+  - The music manager has no shared layout.
+
+The unit-globals part of this round, which matches 4 more, conflicts with #546's UnkTU2562.h. It will follow in its own PR once it has been rebuilt on current main.
+
+**Resource description and 0x150 entry layouts: two batch-7 drafts match (#547, 2026-11-17).**
+
+Shared header fixes for batch 7's (#544) held drafts: the resource description and the 0x150-byte entry. Two drafts move from `drafts/` and match: fn_71000ebad4 and fn_7100fd11e8.
+
+- **`include/base/UnkResDesc.h`** gives the resource description one layout, taken from its matched constructor, copy and destructor. The constructor (fn_71000e9a7c) and destructor (fn_71000e8dd0) are declared there, with their definitions out of line.
+  - The members are a head (type and registry), a name, three CFilePathStrIds, two callbacks, a factory, the type, and a path vector at +0x60. The path vector has its own destructor.
+  - CRes, UnkResRegistry and fn_71001b1dd0 drop their own copies of the layout. CRes's destructor is now empty, because the members release themselves. fn_71001b1dd0 stays `m`, with the same diff as before.
+- **fn_7100169c74** is declared once, in UnkTU204.h, returning `CFilePathStrId`. UnkShaderPath and UnkTU151_Register drop their local path-id types.
+- **`include/game/UnkEntry_0x150.h`** lays out the entry:
+  - a base with a vtable, kind and value
+  - two freeing vectors
+  - two blocks, each with records and an id
+  - Its destructor, fn_7100fd11e8, is declared there and now just stores the vtable.
+  - fn_7100fd10cc is declared in UnkTU2636.h and rewritten on the type, and it still matches. fn_7100fcfcdc and fn_7100fd0264 use the header.
+- **Left for later:** UnkResType still has two definitions, in UnkResKey.h and UnkResType.h.
+
+**CDrop billboards match: mode bits, four-argument callback, verified constructor (#546, 2026-11-17).**
+
+This reconciles the two X-Parasite billboard drafts with the CDrop layout from #540. Both now match.
+
+- **Matches.** fn_7100e2a734 (the yellow billboard) and fn_7100e2a034 (its green twin) move from `drafts/` and match on CDrop.
+- **Verified equivalent.** fn_7100e211cc, the manager's constructor, moves at tier 2: 49.4%, a registers-only difference, with a passing `equiv_test` row. The permuter's 1,500 tries didn't match it. Ours takes the dictionary's address (+0xa0c8) before building the seven records, and the original takes it after them.
+- **The 2-bit mode at 0x49c is real both ways.** The matched constructor, fn_71007bf3f0, stores the whole byte as 1. Both billboards set only the low two bits, to mode 2. CDrop now has a 2-bit `mode` field plus the other six bits, with a comment saying so. The constructor still compiles to a single byte store.
+- **The callback at 0x18 takes four arguments**, not three: the manager, the item, an argument and a bool flag.
+  - The three lifted callbacks pass the flag on. The two matched ones pass 0 in its place.
+  - All five are declared in `UnkTU2562.h`, and Accumulate.cpp's two definitions gained the unnamed bool.
+- **The 0x4a0 records stay UnkDropResource.** They are the same record as UnkStrIdPathResource: fn_7100e211cc builds them and fn_7100e21b8c loads them. UnkStrIdPathResource has no constructor yet, so the two can't be one type. Each billboard casts once for fn_71000267f8, with a comment.
+- **Declarations.** `UnkTU2562.h` declares the path strings once, as a five-entry array, and LoadPaths uses its first two entries. `CDrop.h` declares fn_71007bf3f0 and fn_71007bfa70.
+- **Left for later:** merging UnkDropResource with UnkStrIdPathResource. That needs default constructors on UnkStrIdPathResource and UnkStrIdMemberOf, which about 42 files include.
+
+**CColor4F assignment and CDrop entry assignment: casts and helpers removed (#543, 2026-11-17).**
+
+CColor4F's assignment is the out-of-line fn_7100030728, so `CColor4F.h` now declares `operator=` as that function. This is a declaration only, and the free declaration is gone. Callers that called the function by address now just assign.
+
+That unlocks the CDrop entry and table types from #540:
+- `CDropLayout.h` declares the entry's and the table's `operator=` as fn_7100e2f28c and fn_7100e2c3f4. Both are defined out of line as `= default` in the billboard file, and both still match.
+- The billboard file loses its own entry and table views, an `always_inline` Assign helper and a `noinline` wrapper. UnkTU2562.h loses the free declaration of fn_7100e2c3f4.
+- The six CDrop callers no longer cast: they write `drop->table = copy`. fn_7100e289ec and fn_7100e28f80 lose a CopyColor helper that existed only to evaluate the source first. All six still match.
+- 21 src files and 5 drafts that called fn_7100030728 by name now assign.
+- The two drafts fn_7100e2a034 and fn_7100e2a734 reach the table's assignment through a commented reference cast.
+
+One function needed care: fn_7100de20d0 in CExplosionGfx. With an overloaded `operator=`, C++17 evaluates the right-hand side before the left, and the original evaluates the destination first. Its three colour copies are now explicit `.operator=` calls with a one-line comment, and it still matches.
+
+**After merging batch 7 (#544).** Batch 7 added two functions that touch colours.
+- fn_71000026cc cleared a struct of colours and then stored each one. Under the out-of-line, clamping assignment, those became 45 calls. The original zeroes the block once and stores each colour unclamped.
+  - CColor4F gains `Set(r, g, b, a)`, an ordinary inline member that stores the four components without the clamp. Its comment cites this function.
+  - The function value-initialises the block with a commented placement new, then calls `Set` for each colour.
+  - It matches again: 1,092 bytes, 0 differences, and no union.
+- The CMissileMovement constructor called fn_7100030728 by name. It now writes `self->color = color`, and it still matches.
+
+**CSpawnPointComponent: remaining local views onto its layout (#545, 2026-11-17).**
+
+A follow-up to #539. It moves the remaining local views of CSpawnPointComponent in UnkTU2704 onto its layout header.
+
+- **fn_7101127c24** takes `CSpawnPointComponent*` and writes the header's flags at +0x330 to +0x338, +0x2b8, +0x340 and +0x348. Its local watcher view is gone.
+- **fn_710112b7c4** reads the scene-shape and collision-scene-shape links as `CGameLink<CActor>`, through a new `CSpawnPointComponent::ResolveLink`. Its local union view, and the casts to the collider setups, are gone. One `reinterpret_cast` remains, on fn_710028aca8's result.
+- **Five more functions** use the layout:
+  - fn_710112c3dc destroys the last blueprint with the element's destructor.
+  - fn_7101127e78 uses `field_0x18` and `field_0x280`, a bool split out of padding.
+  - fn_710112812c (Load) takes the component. It keeps one documented cast for its reflected-object view, because UnkBaseComponent's vtable is a plain `void**`. `UnkComponent.h` splits UnkBaseComponent's `unk_0x8` to expose `field_0x10`.
+  - fn_710112f85c, reflection's clear slot, is now just the vector's `Clear()`.
+  - CSpawnerActorBlueprint gets a header of its own.
+- **Declarations.** fn_7101127c24 and fn_710112b7c4 are now declared once, in `UnkTU2704.h`. The Parasite (UnkTU1102) and Autsharp callers drop their local declarations, which had disagreed with the definitions. Each uses a commented cast, because those units see the spawn point only as a weak target or a base.
+- **Drafts tried, none promoted:**
+  - fn_710112688c now builds, at 64% (calls).
+  - fn_710112c4d8 is at 95.7% (registers). `equiv_test` can't judge it, because coverage is 92%.
+  - fn_7101127834 is at 92.1% (order), and `equiv_test` can't judge it either.
+  - The permuter gained nothing on fn_710112fb38 or fn_71011320dc.
+- **Left for later:**
+  - fn_71011306a4's weak-ref slot, which needs a bridge between handle types
+  - the blueprint-vector slot drafts
+  - making the +0x280 sub-object one type
+
+**Match 133 ready functions up to 2 KB (lean-r2kg) (#544, 2026-11-17).**
+
+The seventh batch, and the last of the ready non-float functions up to 2 KB: 299 functions run through the lean kit (tag `lean-r2kg`) by 75 workers, 4 functions each, with a budget of 4 attempts per function.
+
+- **133 functions now match.** Against origin/main that is +133 O and none lost. Two of them I finished by hand:
+  - `fn_7100a1ac28` matched after it took the `from` local that its twin `fn_7100a1a9bc` matched with.
+  - `fn_7100074c60` matches only when compiled in the same file as its callee, so it now lives next to `fn_7100074354` in `CTunableRumbleManager/fn_7100074354.cpp`. In one file the compiler treats the params as read-only across that call, as the original does.
+- **166 drafts are filed** under `drafts/` (`lean-r2kg`).
+  - 13 of them are registers-only. The permuter found no match among them this time.
+  - **15 of the drafts match but are held**, because their declarations conflict with existing files or their globals need a unit header first. Each one's note in `drafts/INDEX.csv` says why. Most of the conflicts fall into four groups:
+    - The sound description's destructor `fn_710034e0b8` is defined on another type in `CAbilitySonar/fn_7100333544.cpp`.
+    - Placeholder `u64` caller declarations.
+    - `UnkResDesc`'s destructor, whose type is defined only in .cpp files.
+    - Globals that are also declared, with different types, in sibling files.
+- **Header and declaration work:**
+  - The grown-only `decl_plan` pass, run through `hub_migrate`.
+  - About 15 existing multi-file declarations moved into unit headers to keep the declaration gate's totals down. Among them are the rumble manager helpers, the GUI player-status getters, `fn_71009e12d0` (17 copies) and `fn_71009a60fc` (7 copies).
+  - `UnkProjectileMovement` in the new `LinkColliders` file is renamed per file, so the type name keeps a single definition.
+  - The `fn_710015d900` caller declaration now takes `bool` flags; the callee masks them to one bit.
+  - The `UnkTU2212` static initialiser uses main's new `UnkPathIdsFromText`.
+
+**Owned string-id table: 22 destructors use the shared type (#542, 2026-11-17).**
+
+22 destructors wrote out the owned string-id table's reset-and-free sequence by hand. All 22 now hold the table as `UnkOwnedStrIdTable` (from `UnkStrIdTable.h`, added in #539) and let its destructor do it. That is 31 files, +58/−245 lines.
+
+- **Six private table subclasses are removed:** CommanderX, DemolitionBlock, ItemLife, PowerGenerator, PullOffGrapplePoint and WaterTriggerChange.
+- **Five wrapper structs:**
+  - The ArenaManager and TunnelTrap wrappers are removed. The TunnelTrap wrapper took an `always_inline` destructor with it, and the file still matches without it.
+  - The BeamBox, SteamJet and UnkTU1176 wrappers keep their other members, and only their hand-written destructors are dropped.
+- **The remaining destructors** wrote the five lines inline. They now call the table's destructor.
+- The table's reset function (fn_71004f11f8) is now called in `src/game` only from inside UnkOwnedStrIdTable.
+- `UnkStrIdTable.h` changes only in a comment.
+- **Drafts:** the two drafts that use the table, fn_7100a6ce48 and fn_7100ac90a8, are on the type too. Neither was unblocked, because their differences lie elsewhere:
+  - fn_7100a6ce48 is at 97.1% and differs in registers only. 1,500 permuter tries didn't match it.
+  - fn_7100ac90a8 is at 90.1% and differs in its operations.
+
+**Shared path-ids-from-text type: unions removed, one draft matches (#541, 2026-11-17).**
+
+A shared type for path ids parsed from text. It replaces the local unions that were blocking fn_71008c5184, which now moves from `drafts/` and matches.
+
+- **No union was needed.** The unions only stopped the two ids from being default-constructed, because UnkStrIdPathPair has no default constructor. fn_710001f074 is itself a constructor: it empties both ids, then parses the text. The new `include/base/UnkPathIdsFromText.h` declares it as UnkPathIdsFromText's constructor, taking a `const CRntString&`.
+  - The declaration has no inline body, the same form as CStrId.h's labelled declarations, so the port compiler's hang on labelled inline destructors doesn't apply.
+  - The pair's implicit destructor releases the ids.
+  - The free declaration in UnkTU25.h is gone, and fn_71002f7048 in UnkTU426.h now takes the pair.
+- **18 files moved onto the type**, each with its match count unchanged. They include:
+  - CShotManager's built path ids
+  - the audio preset, droppable and string-id path resource sources
+  - fn_7100896410 and UnkTU1501_Init
+  - fn_7100b2de48 and UnkTU2666_TypedValue, whose own union views are removed
+  - UnkTU32_Xform: fn_71000272cc matches through a small `InitFromText` helper that fn_7100027464 also uses, which removes an explicit `Destroy()`
+- **Two forms remain** where a plain local didn't match:
+  - The Play files use a temporary in the call.
+  - The two files that build into a static global's field use plain placement new.
+- **Drafts.** Seven other drafts now use the type and were regraded, with no grade changed. The merge with main kept the CDrop changes in fn_7100e2a734's draft (an include-only conflict).
+- Unions in these files that have nothing to do with path ids (use counts, raw views) were left alone.
+
+**CDrop layout: four drafts match (#540, 2026-11-17).**
+
+A CDrop layout batch, following the UnkXParasiteAI.h recipe. The layout lives in `include/game/CDropLayout.h`, and `CDrop.h` stays declarations only. Four drafts now match: fn_7100e2813c, fn_7100e289ec, fn_7100e28f80 and fn_7100e29514.
+
+- **Layout.** CDrop is 0x4f0 bytes:
+  - owner at +0x10, callback at +0x18 and a table at +0x20
+  - the item at +0x460, an f32 amount at +0x488, and three resources from +0x4a0
+  - The amount is an f32, which the tunable's reflected life-amount fields confirm.
+  - The table (0x440 bytes) is a count at +0x20, then 0x48-byte entries at +0x28. The old views had put the entries at +0x20.
+  - The table's constructor, fn_71007bf550, is now a plain out-of-line constructor, with no always_inline and no placement new.
+  - The reflection data lists no members for CDrop, so the names are placeholders.
+- **CDrop_Members_ovb0105.cpp** loses the 8-byte-early view, its commented cast, `pad_0x458` and the union-wrapped drop id. All four of its functions still match.
+- fn_7100e28594 and fn_7100e29aa4 use the layout and still match.
+- **UnkTU2561.h** declares the drop ids. **UnkTU2562.h** declares the three callbacks. The promoted UnkTU2562 drafts call fn_7100e2c124 through the header with `UnkNoArg()`.
+- **Left for later:**
+  - fn_7100e2a734 now matches in drafts but stays there. Its view has a 2-bit mode field at 0x49c, which the constructor stores as a plain byte. It also types the 0x4a0 records as path resources and takes a 3-argument callback. Reconciling these with the layout comes next.
+  - The billboard's fn_7100e2c3f4 and fn_7100e2f28c keep their own entry view. Their entry's defaulted assignment matches only if CColor4F's assignment is out of line (fn_7100030728). That change would reach every file that copies a colour, so it gets a PR of its own.
+  - fn_7100e2a034 moved from 7.9% to 12.8%.
+
+**CSpawnPointComponent layout: its destructor matches (#539, 2026-11-17).**
+
+A CSpawnPointComponent layout batch. Typing its members correctly lets its destructor, fn_7101125c90 (2,084 bytes), move from `drafts/` and byte-match.
+
+- **CGameLink.h.** Adds UnkGameLinkBase, which has a virtual destructor and a callback array at +0x8. `CGameLink<T>` now derives from it, with its state and handle at +0x30/+0x38. The old `key[0x28]` is now `callbacks`, so its callers pass `&link.callbacks`. Reflection destroys a link through its vtable, and the component's destructor frees a vector of links one element at a time.
+  - Caveat: the vtable comment binds every `CGameLink<T>` to one vtable. If UnkSpawnHolder's link turns out to have its own vtable, that would show up as a RELOC line, not as a false match. The header says so.
+- **CSpawnPointComponent.h.** Members that were padding are now typed: a refptr, string ids and a counted resource (+0x40 to +0x58 and +0x288), an owned string-id table (+0x290), and weak handles (+0x340, +0x348). New offset asserts cover them.
+- **UnkStrIdTable.h.** Adds UnkOwnedStrIdTable, which carries the table's destructor. About six other destructors still write their own copy of it, and they are a follow-up.
+- **UnkTU2704.h.** Declares the unit's helpers with the one parameter each reads, plus the class vtable. Neither call site loads the dropped register, so no UnkNoArg was needed.
+- **UnkTU2704 sources.** ReflValues, SetupColliders, SpawnLinks, Enable and Disable drop their local views of the component. UnkReflElem_b0170 is renamed CSpawnerActorBlueprint. Four drafts that use these members were updated to the new names.
+- **Left for later:**
+  - fn_710112b7c4 still reads the two shape links through its own union view.
+  - fn_7101127c24 and the unit's other local views (Load, ClearValues and others) aren't on the header yet.
+  - UnkCallbackSet_7101a20950 is probably `CGameLink<CActor>` itself. Merging the two would be a sweeping change, so this PR doesn't attempt it.
+
+**Shared vector bits type and sphere range functions: 3 verified equivalent (#538, 2026-11-17).**
+
+Two small shared-type fixes are combined so that one check run covers them. Together they promote three drafts as verified equivalent.
+
+**Vector bits type:**
+- The new `include/game/UnkVec3Bits.h` holds three plain `f32`, with no union.
+- A user-provided copy constructor makes the original return it through the hidden result pointer.
+- One named helper, `CopyBits`, reads all three words before storing any of them. The original needs it, because fn_710045bd10 and fn_71008db1d8 move the words as bits:
+  - Copied through floats, fn_710045bd10 drops to 28%.
+  - Copied word by word into the result, it's a registers-only near-miss: the third load comes after the first store.
+  - Reading all three first gives a byte match.
+- Five files lose their local copies, all baselined unchanged. One of them keeps its bit copy into a local as a single `__builtin_memcpy`, and it stays minor at 80.3%.
+- fn_7100979a60 moves from drafts to src as verified equivalent: 96.2%, two registers apart, and equiv_test passes. It agrees with `CCharacterMovement.h`'s declaration.
+- A per-field union inside a larger struct in unit 101 is a different shape, so it was left alone.
+
+**Sphere range functions:**
+- fn_71002169e0 (97.2%) and fn_7100216ca4 (94.3%) move into their unit's file, `src/game/UnkSphere.cpp`. They're written against `UnkSphere` with no local copy, and they share one small static `WidenRange` helper.
+- Both are registers-only and pass equiv_test. The permuter made 1,500 tries on each and matched neither.
+- `UnkSphere.h` names the ranges' lower bounds at 0x24 and 0x2c, which were padding, and declares both functions.
+- On main, fn_710021688c is already verified equivalent in src, and fn_7100216d30 already matches using `UnkSphere`, so neither moved. fn_7100216b00 stays in drafts because equiv_test can't judge it (96% of its instructions ran).
+
+**Finding:** when a shared type moves as bits, a named helper that reads every word before storing any of them reproduces the original's load-then-store order without a union.
+
+**Near-miss retry: 2 drafts promoted as verified equivalent (#537, 2026-11-17).**
+
+This retries the 55 registers-only drafts at 90% or more that the permuter didn't reach during the draft sweep (#529). Two are promoted as verified equivalent.
+
+**Permuter:** all 55 ran at 1,500 tries each, about 87 minutes in all. None matched. Seven came closer without matching, and one was skipped.
+
+**equiv_test**, with the files listed: 7 pass, 4 fail, 47 can't be judged, and 3 aren't registers-only.
+
+**Promoted, verified equivalent (registers only, passing rows in `data/equivalence.csv`):**
+- fn_7100f984ac (94.7%, 4 instructions apart):
+  - Now declared once in `UnkTU2607.h` with its `UnkVector4D` colour parameters.
+  - Two environment files drop their local declarations.
+  - Its file-local structs get a suffix so that struct_check sees distinct names.
+- fn_7101005fcc (96.2%, 3 instructions apart):
+  - Now declared once in `UnkTU2640.h` with its map, key and value types.
+  - Its caller's node becomes a string id key, the value, and a next pointer. The caller passes the map through a commented cast, because its view of the map starts at the allocator.
+  - The draft's barrier is kept, with its comment.
+
+**Not promoted:**
+- fn_7100979a60 passes equiv_test, but promoting it needed the `UnkBits` union moved into a new shared header, so that change was reverted. Four files each still have their own copy of that bits type, and settling it is the way to promote this one.
+- fn_7100f86fec: its pass note says both runs faulted, on different accesses. Its file also holds fn_7100f843e8, which differs in operations.
+- fn_7100216ca4's file: its three functions pass, but the file also holds fn_710021688c, which isn't registers-only. Splitting that one out would let the rest move.
+
+**Findings:**
+- At 1,500 tries, the permuter closed no gaps among drafts at 90% or more. What's left in that band is mostly control flow or scheduling it can't reach. A declaration or shared type is the better lever there.
+- equiv_test couldn't judge 47 of 55 drafts, so most near-misses still need a match, not a verdict.
+
+**Name the last byte-array and member-enum type objects by type (#536, 2026-11-17).**
+
+- Three sources (the static initialisers of `EAttributeTarget`, `ECollectionAccessMode` and `EExecutionReturnValue`) declared the type object as a byte array, `extern u8 g_unk_...[]`. They now declare it as `TypeObject<T, u8[]>::object`, so each use still passes a byte pointer.
+- `CExplosionGfx` declares its member enum `ETransitionOperationMode` in its layout header (`game/CExplosionGfxLayout.h`). Its unit header now includes that layout and names the object by type, and so do the two sources that use it.
+- The spawn point component's two enum objects use the member enums its header already declares.
+- Hand-written references to enum type objects by address go from 29 to 6:
+  - The 2 remaining `CSubAreaManager::ETransitionType` references belong to a class defined only in a `.cpp`.
+  - The 4 remaining `CCharClassToStateTrack::EMaintainFrameMode` references belong to a class with no layout yet.
+  - Both are left until those classes get a layout header.
+
+**Name header-declared type objects by type (#535, 2026-11-17).**
+
+- 27 headers declared an enum's type object with a placeholder layout (`UnkReflType`, `UnkEnumType`, `UnkEnumInfo`, `CType`). They now declare it as `base::reflection::TypeObject<T, Layout>::object` (#534), and every source that uses one of those objects names it the same way.
+  - Each header was changed only when every source that includes it, directly or through another header, compiled to the same code and relocations before and after.
+  - One header (`CExplosionGfx.h`) is left as it is: one of its includers defines `CExplosionGfx` as a class, so the enum can't be declared inside a namespace of that name.
+- `type_objects_by_type` also rewrites a per-file declaration that ends in a comment. The comment only named the type, which the declaration now spells out. This rewrote 13 more sources, each with byte-identical output.
+- Hand-written references to these objects by address go from 179 to 29, in 7 files:
+  - Objects declared as `u8[]`.
+  - Enums nested in a class the file defines.
+  - Both need a hand edit to the class or the declaration, not a rewrite.
+
+**Name layout-typed type objects by type in hand-written sources (#534, 2026-11-17).**
+
+- `base::reflection::TypeObject` takes an optional second argument: the layout a source declares the object with (`UnkEnumType`, `UnkReflType`, `UnkEnumInfo`, or `const CType`). The default stays `CType`, so the generated sources from #530 and the sources from #531 are unchanged.
+- `gen_reflection.type_objects_by_type` gets a `layouts` switch. When it is on, a file-scope `extern Layout g_unk_<addr>;` for an enum's or flag set's type object becomes `template <> Layout TypeObject<T, Layout>::object asm("g_unk_<addr>");` in the same place, with T declared just above it. Each use then names `TypeObject<T, Layout>::object`, so its type stays the same. A `reinterpret_cast<const CType&>` of a `CType` object is dropped.
+- Running the rewrite a second time no longer changes anything, because an object's own `asm` label is skipped. Tests cover the in-place form, the default and running it twice.
+- 101 hand-written sources were rewritten, each only where it compiles to the same code and relocations as before. Hand-written references to these objects by address went from 643 to 164.
+- These stay as they are:
+  - Sources where the rewrite does not compile. In these, the enum's enclosing class is a class in the file, or the declaration is inside a namespace or a block.
+  - References that are not `extern` declarations.
+
+**Match 95 ready functions up to 2 KB (lean-r2kf) (#533, 2026-11-17).**
+
+The sixth 200-function batch of ready, non-float functions up to 2 KB (lean kit, tag `lean-r2kf`, 50 workers, 4 functions per worker, budget 4).
+
+- **95 functions now match** (O on main: +95, none lost). 93 came from workers; 2 were finished by hand at landing:
+  - `fn_7101074a80` (lua_bind GetProperty): the worker's ungraded `if / else if` draft, the form its twin `fn_71010a0190` matched with.
+  - `fn_71000e82a8` (unit 85): matches once `UnkGameManagerIdTable` has `CStrId field_0xda8`.
+- **105 drafts filed** under `drafts/` (`lean-r2kf`), 9 of them registers-only. Two of these match but are held for declaration conflicts:
+  - `fn_71009c4e10`: `fn_71009bd8c0` is defined with a file-local alias type.
+  - `fn_71010f97ec`: `fn_71011a726c`'s signature conflicts with the one in `CEnemyLifeComponent_Life_ovb0043.cpp`.
+- **Header changes:**
+  - New `include/game/CFactionComponent.h` holds the four faction lists.
+  - `CDemolitionBlockComponent.h` declares `fn_71007b00cc`.
+  - `CBlackboard.h` declares `fn_71010475d0` and `fn_710051d464`.
+  - `UnkGuiEvent.h` declares `fn_71012024f4`, and `CClass.h` declares `fn_71000978e4`.
+  - `CAttack.h` declares `fn_7100360890`, `fn_71003606c0` and `g_unk_7101a21540`.
+  - The rest is the grown-only `decl_plan` run through `hub_migrate`.
+  - `UnkGfxTexture` in `src/engine/UnkGfxSamplerSlots.cpp` names `s32 field_0x10`, as the new user does.
+
+**Promote 14 held match-grade drafts by fixing their shared types and declarations (#532, 2026-11-17).**
+
+This PR works through the drafts that already graded as "match" but were held for a reason in `drafts/INDEX.csv`. For each one, the cause was fixed readably (a shared layout, a declaration, an out-of-line constructor), then the draft was promoted. 14 of the 22 are promoted. Every changed header's includers were baselined unchanged.
+
+**Promoted, with the cause fixed:**
+- fn_710015acf0, fn_710015b160 and fn_710015b8a0: the blend stack gets one layout in the new `include/game/UnkBlendStack.h`.
+  - fn_710015b8a0 returns `bool`, so the unit's `void` declaration is gone.
+  - SAlpha's local blend description became the shared type, and its owner field at 0x58 became `bool`.
+- fn_71001e50b0: one statics layout, in the new `include/game/UnkMinimapRenderStatics.h`.
+- fn_710009e1b0: five hand-declared getters became `PrimitiveType<TRntString32..512>::Get()`, and fn_71000e6db0 is now declared once in `UnkTU85.h`.
+- fn_710086f9e0: its draft also redefined four functions already in src/. It now lives in its unit's file and uses `base::UnkLinkedList::PushBack`.
+- fn_71004321a0: the new `include/game/UnkKiGrabAttack.h`. It returns `bool` and takes `s32`.
+- fn_71008e0adc: takes the `CBlackboard*`, and fn_71008e0e54 now has one declaration.
+- fn_7100a28310: g_unk_7172746208 is `UnkPropertyEx<0x160>`, declared in `CHeatRoomComponent.h`.
+- fn_7100c9db18: a real out-of-line constructor of the breakable tile, in the new `include/game/UnkBreakableTile.h`. The constructor and destructor are declared with their address labels and have no inline bodies, which the port's compiler handles.
+- fn_7100e28594 and fn_7100e29aa4: fn_7100e2c124's unread parameter is `UnkNoArg`, and fn_71007bf550 is declared once in `CDrop.h`.
+  - One file passes its entries through a commented cast, because its view of the drop starts 8 bytes early.
+  - A CDrop layout batch would remove that cast.
+- fn_7100f8ede4: returns the next node. The map gets one layout in the new `include/game/UnkStrIdToIdMap.h`, and the caller's field at 0x18, misnamed "count", is the bucket count.
+- fn_71011bf744: returns `void`, and its four callers still match. g_unk_71729f0188 is declared once in `SGUISoundEventsSelector.h`.
+
+**Left in drafts, 8:**
+- Need a steering form, so left unchanged:
+  - fn_710006f914 needs whole-element memcpy copies.
+  - fn_71006fb648 and fn_7100c8bec8 need a word typed as two u16.
+  - fn_710109d890 needs a full-width bit-field reference count.
+- fn_71008c5184 matched only through a union in a new shared header. The path-id union pattern in about six files needs settling first.
+- fn_7100c9dd20: the tile's destructor doesn't inline the slot destructor. Inlining it would need always_inline or a slot redesign.
+- Need layout batches: fn_710020a18c (UnkWidget, defined in 15 files) and fn_7101125c90 (CSpawnPointComponent).
+- fn_7100fdca88: fn_7100d90304 is a plain function used as a template argument elsewhere, so it can't also be a destructor until the two map value types are unified.
+
+**Findings:**
+- A draft graded "match" is usually held by something outside the function: a declaration's return type, a parameter the callee never reads, or a second layout of the same struct. Fixing the shared side promotes it without touching the function.
+- Other drafts in unit 2562 still declare fn_7100e2c124 locally. They'll need `UnkTU2562.h` and `UnkNoArg()` when promoted.
+
+**Name enum type objects by type in hand-written sources (#531, 2026-11-17).**
+
+- 18 hand-written sources declare an enum's or flag set's type object as `CType`. They now write it as `base::reflection::TypeObject<T>::object` (base/reflection/TypeObject.h, #530), the same rewrite gen_reflection gives the generated sources. In those files, 73 lines that named an object by address now name it by type.
+- The rewrite was applied mechanically by the same function, and only where the file still compiles to identical code and relocations. Each file was compiled before and after the change and compared.
+- These are left as they are:
+  - Sources that declare the objects as layout types (`UnkEnumType`, `UnkReflType`, `UnkEnumInfo`, most of the ~700 hand-written references). They would need a typed name, not a mechanical rewrite.
+  - Six sources that declare an enum's enclosing class as a class, where the enum can't be forward-declared.
+
+**Name enum and flag set type objects by type in the reflection sources (#530, 2026-11-17).**
+
+- The new `include/base/reflection/TypeObject.h` defines `TypeObject<T>::object`, which names the type object a static initialiser builds for an enum or flag set. A source declares the specialisation, `template <> CType TypeObject<EFoo>::object asm("g_unk_<addr>");`. With no initialiser, that is a declaration and not a definition. The asm label keeps the relocation's symbol as it was, so check.py resolves it unchanged and needs no change.
+- gen_reflection gets a last pass over `src/reflection/*.cpp`. It reads the 246 enum and flag set names that src/reflection_types/ gives these objects (each `ValueOps<E>::TypeOf`). In each file it does three things:
+  - writes each use by type, for example `&base::reflection::TypeObject<base::animation::EBlendFunction>::object`;
+  - removes the object's `extern CType g_unk_<addr>;`;
+  - adds the type's declaration and the specialisation.
+
+  A file is rewritten only if it still compiles afterwards. An object the file declares with another type is left alone.
+- Regenerated: 133 files change, and in them the references to these objects by address drop from 1,450 to 195. A local comparison found every rewritten file compiles to identical code and relocations.
+- Still to do: `ReflectedTypes.h`, the enum type files in src/reflection_types/ (which hold the mapping) and the hand-written sources keep the address names.
+
+**Draft sweep against the shared types: 10 matches, 3 verified equivalent (#529, 2026-11-17).**
+
+This sweep retries the drafts against the shared types that landed in #513, #515, #517, #521 and #524. Every draft was regraded. Drafts still carrying local copies of the now-shared vector, list, dictionary, bucket set, id or vector-operation types were switched to the shared ones. Near-misses went to the permuter and equiv_test.
+
+**Promoted, 13 of 14 tried:**
+- 10 byte matches: fn_71000dded4, fn_71004806fc, fn_71008959d4, fn_7100896410, fn_7100ab13c8, fn_7100ab1638, fn_7100bcfe4c, fn_7100d3678c, fn_7100f0dac0 and fn_7100f0e238.
+  - fn_71004806fc keeps one empty barrier, with a comment saying it keeps `self` live across the calls.
+- 3 verified equivalent (registers only, passing `equiv_test` rows): fn_71011785a8, fn_710114bfac and fn_71002ef2d0.
+  - fn_71002ef2d0's verdict note reads "both runs were cut off". That is the skip reason recorded for one input. The verdict is a pass on the inputs that ran to completion, after the tool's coverage checks.
+- Sent back to drafts: fn_7100253834. It passed only with a single-member union around a CRntString in its own function file, which the rules don't allow, and its equivalence row is removed.
+
+**Other changes:**
+- New `include/base/reflection/UnkReflFunctionVtable.h` declares g_unk_7101a1b460 once. A reflection file that came in from main had declared it locally; it now includes the header and still matches.
+- `drafts/INDEX.csv` takes main's rows minus the promoted addresses. The sweep's regraded similarity figures for drafts that stay aren't in this PR, so a later `drafts.py grade --write` refreshes them.
+- Declaration copies drop from 782 to 753 extra (decl_check).
+
+**Permuter:** 81 of the 136 registers-only drafts at 90% or more were tried in an hour, and none matched. The other 55 weren't reached.
+
+**Findings:**
+- 22 rows in `drafts/INDEX.csv` grade as "match" but are held for reasons in their notes, such as fn_710077ab00's asm-labelled destructor. They're the cheapest next promotions.
+- A union that only steers one function's reloads stays in drafts. The same union on a shared type, with a documented reason, is what promotes it.
+
+**Name CGameLink instances, nested element pairs and CVariable in reflection (#528, 2026-11-17).**
+
+This names 11 of the 23 descriptor constructors that #527 left in the tag form.
+
+- The new `include/base/reflection/ReflectedValue.h` holds `DREAD_REFLECTED_VALUE_MEMBERS`. It declares a class template's reflected value operations and its description as static members, so it doesn't change the class's layout. `KeyElementValue` now uses it in place of its private macro.
+- `CGameLink<T>` (include/game/CGameLink.h) declares the members too. gen_reflection writes the descriptions of the four reflected instances as member specialisations in `src/reflection/class_values_00.cpp`: `CGameLink<CActor>`, `<CEntity>`, `<CLogicCamera>` and `<CSpawnPointComponent>`.
+- Key-element pairs can now name a member type of a template instance, such as `CRntVector<GUI::CDisplayObjectTrack<float>::SKey>`. That template is declared with the member. This covers three pairs, six constructors.
+- `base::reflection::CVariable` takes the namespace form, since no reflection header declares a class of that name. It keeps the name reflection data already gives its constructor, and gen_functions_csv names its functions to match.
+- 12 stay in the tag form, on purpose:
+  - 10 are pairs of arrays bounded by an enum's count (`CArray<V, EnumClass<E>::Count, E>`). The bound is a value, and declaring it as a type would misstate it.
+  - 2 are `CRntVector<SFXInstanceData, false>`, whose second template argument the project's CRntVector doesn't have yet.
+
+**Describe collections' key-element pairs by collection type (#527, 2026-11-16).**
+
+- After #525, most of the loose descriptor constructors still in the tag form build one kind of class: the pair a collection's key-element iterator yields, `CollectionTypeMapper<C>::TKeyElementIterator::value_type` and the const iterator's. A namespace can't spell those names.
+- The new `include/base/reflection/KeyElementValue.h` names them by collection: `KeyElementValue<C>` and `ConstKeyElementValue<C>`. Each declares the pair's value operations (`refl_Equals`, `refl_Hash` and the rest) and a `refl_Description`.
+- `tools/gen_reflection.py` writes each pair as specialisations: the description, plus the functions whose shape is known, followed by `DREAD_REFLECTED_DESCRIPTOR(KeyElementValue<C>)`. These go in `src/reflection/key_element_values_NN.cpp`, along with the declarations the collection types need. Each class is checked on its own by compiling it and comparing bytes with strict relocations, and a class that fails keeps the tag form.
+- `DREAD_REFLECTED_DESCRIPTOR` now takes a type that has commas in it.
+- Regenerated: 392 of the 410 pairs move. With #525's 159, only 23 loose constructors are left in the tag form, and the class_descriptors files shrink from three to one. In data/functions, 3,920 rows go from `fn_` to names such as `base::reflection::KeyElementValue<base::global::CRntVector<…>>::refl_Equals`. Neighbour inference moves some rows' guessed subsystems as well.
+
+**Ready functions from 2 to 6 KB, pilot: 14 matched (#526, 2026-11-16).**
+
+A pilot of ready, non-float functions from 2 KB to 6 KB (`lean-r6k`): 51 functions in 43 Opus workers, two functions per worker at most, four graded attempts each.
+
+- **14 functions become byte-matching** (`check.py` passes; no matched function on main is lost). 13 matched in the workers, a quarter of the pilot, about half the 2 KB rate; mostly loaders, destructors, constructors and static initialisers. Two more came from declaration fixes made at landing (below).
+- **One match held in `drafts/`:** fn_710009e1b0 declares five reflection type getters with a global `UnkEnumType` no header declares yet.
+- **38 non-matches filed as drafts**, 2 of them registers-only.
+
+Declarations and layouts:
+- `UnkResType` names its extension list at +0x30, which fn_7100beaf3c reads.
+- `UnkGameManagerIdTable` names the rewards section id at 0x1bf0.
+- `fn_7100778228` has one declaration, in `UnkTU1176.h`; the central unit's entry destructor calls it instead of naming it with an asm label (in both files that had one). That freed fn_710077ab00 from drafts.
+- Three CMinimapData table clears and one id-pool global move into their unit headers. Declarations in more than one file go from 341 to 340.
+
+**Write 159 loose reflected classes in the namespace form by name (#525, 2026-11-16).**
+
+- `tools/gen_reflection.py` now names a descriptor constructor that no class getter calls by the descriptor it builds. It finds that descriptor through the object its TypeOf returns, or through the global its constructor is called on. `gen_fields.built_objects` then gives the name, the same way the enums get theirs.
+- Such a class is written in the namespace form, `namespace T { ... struct refl_Description ... }` followed by `DREAD_REFLECTED_DESCRIPTOR(T)`, in place of the `UnkReflClassTraits<UnkRefl_fn_X>` tag form. A class takes that form only when all four of these hold:
+  - The name is readable and unique, and is not a class in data/reflection_types.csv.
+  - No other constructor shares its functions.
+  - data/functions gives it those names.
+  - Its own compile matches every function it defines, byte for byte, with strict relocations.
+- `tools/gen_functions_csv.py` gives those names: `T::refl_InitClass` and `T::refl_<role>`.
+- The output is regenerated: 159 of the 574 loose constructors are now named, for example `base::core::AssetName` and `CAINavigationState::SParams`. The other 415 keep the tag form; all but four of them are collections' key-element pair types, for a later change.
+- In data/functions, the loose classes' functions go from `fn_` to class names, and neighbour inference changes some rows' guessed subsystem (mostly from unknown to a guess).
+- `tools/gen_types.py` now puts every include first in its candidates file, project headers before library headers, as its generated files already do. Since main's CRntDictionary.h declares `__assert_fail` `[[noreturn]]`, the candidates failed to compile when `<memory>` (bringing musl's plain declaration) came first. src/ is unaffected.
+
+**Round 2 shared types: minimap record, small dictionary variants, counted deferred set, 4D Assign (#524, 2026-11-16).**
+
+Round 2 of the shared-type work combines four branches, each built and gated on its own, so one check run covers them.
+
+**Minimap record (fn_7100ea9eb8's destructor):**
+- The 0x50 record now has one layout in the new `game/UnkMinimapRecord.h`: a string id, a `CRntSmallDictionary<Key, Item>` of 0x20-byte items, then eight words.
+  - fn_7100ea9eb8's body is exactly that dictionary's teardown followed by the name release.
+  - fn_7100ea9c1c, already matched, is the grow of a dictionary of these records, and it destroys old records through fn_7100ea9eb8.
+- Two partial views of the record, in units ovb0199 and ovb0200, now use the shared type.
+- `~UnkMinimapRecord()` keeps its address label and is defined out of line in ovb0199, the same way `src/base/res/CRes.cpp` does it. Out of line, the port's compiler has no trouble with it.
+- fn_7100e97c60 is declared once, in `UnkTU2566.h`, and now matches.
+- Follow-up: the 0x90 cell still has three views. fn_7100ea9dcc looks like the record's constructor.
+
+**Small dictionary variants:**
+- `CRntSmallDictionary` gains `FindIf(Equal)`, a find with a key predicate (from fn_71001389ac).
+- The two word-keyed copies (fn_71000dc190's and fn_7100097e4c's files) match on the template with a may_alias key struct, kept local. A may_alias typedef as the template argument doesn't work, because Clang drops the attribute on template arguments. Nothing was added to the shared header.
+- The 64-bit-index Find (fn_71009c3d44) has no second matched user. Its map moves to the template, and its Find stays a local function.
+- One custom-compare set now uses `FindIf` plus the template's `Clear`. The global map composition keeps its own region find (it returns the slot), and its map moves to the template.
+- `UnkParallelFind.h` now reads `keys` instead of `ids`, which let the two blackboard maps move to the template.
+- 15 copies migrated, all baselined unchanged.
+
+**Counted deferred set (the listener "lock" at +0x78):**
+- +0x78 is not a component-base field. It is the walk count of a counted deferred set: three pointer vectors (pending add, pending remove, items) and a count, 0x80 bytes in all. The attack, timeline, gun and animation components each embed one.
+- New `include/base/UnkCountedDeferredSet.h` holds `base::UnkCountedDeferredSet<T>` and its walk guard. The set moves out of `UnkCloneHelpers.h` with named fields, and the generated clones it feeds are output-identical.
+- The walk count is a documented single-member union, because the original reloads it around each callback. Five matched functions already carried this union locally, so it is not a new form; the shared header now holds it once. This follows the `UnkStringData::reads` and `CRntVectorReloading` precedent.
+- 9 files migrated, all baselined unchanged. fn_710117ecb0 now matches.
+- Two drafts now match their walk but stay held for other reasons: fn_7101136bb4 is registers-only at 93.7% and equiv_test was inconclusive, and fn_710117a190 needs a matrix type built from vector rows.
+
+**4D assign calls:**
+- 42 matched files now call fn_710007b518 as `Assign(dst, src)` from `CVectorOps.h`, and their local declarations are dropped. All were baselined unchanged.
+- Two local 4D structs became `CVector4D`.
+- About eight sites now write the cast to `CVector4D*` explicitly, where a local byte-pointer declaration used to hide it.
+- Left local:
+  - the minimap manager, whose own vector operator clashes with the header
+  - two callers that chain the assignment's returned pointer, which needs a change to `CVector4D.h` and its 1,273 includers
+
+**Findings:**
+- A template argument can't carry may_alias: Clang drops the attribute. A word-keyed container needs a may_alias struct as its key, not a typedef.
+- A union that several matched files carry locally for the same field belongs on the shared type once, with its reason.
+
+**Ready functions up to 2 KB, batch 5: 89 matched (#523, 2026-11-16).**
+
+The fifth batch of ready, non-float functions from 400 B to 2 KB (`lean-r2ke`): 200 functions in 63 Opus workers, at most five functions of one unit per worker, four graded attempts each.
+
+- **89 functions become byte-matching** (`check.py` passes; no matched function on main is lost). 95 matched in the workers: 50 on the first attempt, 27 on the second.
+- **8 matches held in `drafts/`**, each because a declaration elsewhere disagrees with what the original does (notes in `drafts/INDEX.csv`): the three blend-stack functions of unit 177 (g_unk_716e29c6d0 is typed three ways), fn_71001e50b0 (g_unk_716e596638 typed two ways), fn_71008e0adc (takes a CBlackboard* its caller's declaration leaves out), fn_710077ab00 and the CBreakableTileGroup tile constructor and destructor (declared elsewhere as asm-labelled members).
+- **103 non-matches filed as drafts**, 10 of them registers-only.
+
+Layouts and declarations:
+- `UnkGameManager` gains the checkpoint blackboard at +0xd40; `fn_710116c128` returns bool, as the original does (its callers ignore the result).
+- `fn_710117662c` now has one declaration, in `CAnimationComponent.h`, instead of nineteen; the Gobbler and AI-mode-switch files drop their local alias of `UnkActorTarget` to include it.
+- The grapple tunable, the gun's five shot ids, the speed booster's colour reset and flag table, the shinespark's id, a central-unit id and the shakernaut attack vtable move into their unit headers. Declarations in more than one file go from 342 to 341.
+
+**Shared container library: vector, list, dictionary, bucket set and string id families (#517, 2026-11-16).**
+
+The last five families of the shared container library are combined here so one check run covers them: the vector, the linked list, the hash map, the 0x50 bucket set and the string ids. Each family was built and gated on its own, and every migrated file was baselined unchanged. Where the original has two real forms of an operation, the header gets a second named member, as decided in the project thread.
+
+**CRntVector:**
+- New members, with no existing body changed:
+  - `operator[]` (no growth)
+  - `begin`/`end`
+  - `GrownCapacity(n)`
+  - `Resize(n)`
+- 103 hand-written `(n / step + 1) * step` sites in 71 files now call `GrownCapacity`.
+- New `include/base/global/CRntVectorReloading.h` is a separate type with the same layout that keeps the count as a union member. The original reloads the count around every element access in fn_710111c0fc, fn_7100da27f4 and fn_7100fa0b50. All six such vectors moved onto it, and CRntVector itself has no union.
+- 23 src files migrated: 12 plain layout copies, 5 whose operations equal the header's, and 6 onto the reloading type.
+- Left local:
+  - about 16 copies with `void*` elements
+  - two copies that gained an extra allocator call from the header's member defaults
+  - copies that shared headers or signatures name
+  - copies that match only with `always_inline`
+- The 36 local `UNK_VECTOR_GROW_AT_ATTR` definitions are always_inline, not empty, so they stay.
+- The header has about 4,200 includers. The baseline sampled 127 of them: the 67 that derive from it and 60 random ones, all unchanged. The full check.py also passes.
+
+**Linked list:**
+- About 77 local lists in 67 files moved onto `base::UnkLinkedList<Node>`.
+- A new `base::UnkVtableList<Node>` covers lists with a word at offset 0: a vtable word plus the same body, 0x30 bytes. Each user keeps its own constructor and destructor, since the vtable differs per type. fn_710086f718 storing a vtable into that word supports this reading of the word.
+- New member: `ClearDestroying()` destroys each node before freeing it (fn_71011abec4, fn_71011ac024).
+- 11 copies had hidden the flags slot in padding; they now name it.
+- About 21 copies stay local: lists that put tail, allocator and flags in unions; lists with their own allocator types; a flags-before-allocator layout; a three-field list; template copies; and the always_inline-only ones. Doubly linked lists weren't touched.
+
+**CRntDictionary:**
+- 34 src files moved onto `CRntDictionary<K, V>`. The header gains:
+  - a per-key hash trait (string ids fold their two hash words; pointers and u64 keys use the low word; CName xors its halves)
+  - a flags constructor and `ResizeBuckets` (fn_7100e1bca4)
+  - `FindNode` (fn_7100df1ff4)
+  - `Insert` by const reference (fn_71008ebca8) and by move (fn_7100f91fe4)
+  - `InsertChecked` (fn_7100169e28)
+  - node `Next`/`Prev`
+- The drafts fn_7100fd9aa0 and fn_7100fd9d80 now match.
+- The template keeps two parameters, because the generated reflection types forward-declare it with two. Generated users still match fully.
+- Not added:
+  - `ResizeBucketsPtrFirst` has no matched user and stays in `UnkChainedMap.h`.
+  - `Erase` compiled to a tail call instead of inlining, so its user was restored and the member dropped.
+- A second pass moves 22 more src files onto the template: clears, inserts and finds.
+  - Values that are destroyed or copied out of line become small value structs, so the header's Clear and Insert apply.
+  - Local key types get local hash specialisations, and the header adds one for `u32` keys (the sound-id maps).
+  - 6 drafts switched.
+- fn_71000f63b0, a minor non-match with no verdict, moves from 76.2% to 80.9% on the shared Insert, and its comment is updated.
+- Three files that the string id family had retyped in place are on the template instead, and keep a local key type. All three build fully matching.
+- Not added in the second pass:
+  - `Erase` as a member never inlined for either matched form, so the erase views stay local.
+  - A reversed head/tail Clear isn't a real second form: both stores merge into one store pair, and the existing Clear matches both.
+- Left local:
+  - heavy values where Clear or Insert won't inline without always_inline
+  - a few register or layout differences
+  - a node constructor that stores a bool alone where aggregate initialisation would zero the padding
+  - a zero-modulus guard the port relies on
+  - two other insert forms
+  - union links
+  - the partial views, which read the bucket through the vector's bounds check
+
+**Bucket set:**
+- New `include/base/global/UnkBucketSet.h`, layout only:
+  - `UnkBucketSet<Node>`, 0x50 bytes: a CRntVector of bucket heads whose capacity is the modulus, the first bucket, the first node, the node allocator, node flags, node count, and a version bumped on every change.
+  - `UnkPooledBucketSet<Node>`, 0x90 bytes: the set plus a block pool.
+- It has no member functions, because the local insert, erase and walk forms differ in store order or are always_inline.
+- The string pool's set, the file cache set and 9 src files now use it, all baselined unchanged, and 8 drafts switched.
+- Left local:
+  - fn_71002b26fc: embedding the set moved an address computation earlier, so it was restored.
+  - a map that keeps its version in a union
+  - generated users
+  - char-offset views that shared function signatures name
+- No real name was found. Reflection forward-declares `CRntPooledDictionary<K,V>`, but nothing ties it to this layout.
+
+**String ids:** 148 local id types in src and 14 in drafts are mapped onto shared types by behaviour: which pool they use, how they release, and how they copy and move.
+
+| Shared type | src | drafts |
+|---|---|---|
+| `UnkStrIdTwoStep` (two-step release, main pool) | 52 | 1 |
+| new `UnkPathIdTwoStep` (same, path pool) | 10 | 0 |
+| `UnkTwoStepStrId<Pool>` | 9 | 0 |
+| `UnkMovedStrId` | 28 | 4 |
+| new `UnkEmptyStrId` (takes the pool's empty id, no destructor; fn_7101170da0) | 13 | 5 |
+| `base::UnkPooledString` | 14 | 2 |
+| `CStrId` | 11 | 2 |
+| `UnkStrIdMember` | 6 | 0 |
+| `UnkStringData`, from private string-data views | 5 | 0 |
+
+- `UnkTwoStepStrId.h` moves from `include/game_s2` to `include/base/global`, and its 21 includers are updated.
+- `UnkStaticStrId<Pool>` and `UnkDeviceName` become aliases of the identical types.
+- Every always_inline copy that was tried matched without the attribute.
+- Five files that both this family and the container families had migrated now use both shared types, e.g. a `CRntSmallDictionary` keyed by the shared id type. Each was baselined unchanged.
+- About 167 id types in src stay local. They have forms with no shared equivalent yet: release-only types, copy-assign-only types on the path pool, memcpy-move with a destructor, a CRntString constructor, a pool-reference template, full copy, move and destructor sets, and singletons.
+- `UnkPropertyName`, `UnkPooledString` and `UnkFilePathStrIdBase` stay three layout-only types, because merging them would change type identity in about 109 files.
+
+**Findings:**
+- Of 22 vectors that hold their count in a union, only 6 are the reloading form. The rest are data-pointer unions or lists. Check what a union holds before calling it a reload.
+- A hash map's member function that the original inlines can compile to a tail call in the template. The template's call depth differs from the hand-written copy's, so check it before adding the member.
+
+**Name the reflection registration helpers and write reflected functions one line each (#522, 2026-11-16).**
+
+This is step 2b of the plan for readable class descriptions. The three helpers that the class descriptions call most often get names, chosen by flotsam's decision in the project thread and given through `tools/rename.py` with reasons in data/names.csv:
+
+| Address | Name | What it does |
+| --- | --- | --- |
+| 0x7100097550 | `AddReflectedFunction` | adds a function of the given name to a class descriptor and returns its description; null if the class already has one by that name |
+| 0x7100096524 | `AddReflectedField` | registers a member field by name, type and offset, and returns its description |
+| 0x710009dd6c | `TypeAttributes` | returns a type's attribute container (CType+0x80), creating it on first use |
+
+The `refl_` prefix is reserved for generated names, so these names don't use it.
+
+- `rename.py` updated the hand-written users: 2 headers and 10 sources.
+- `tools/refl_attrs.py` emits the names in the class descriptions it reconstructs, and `tools/gen_fields.py` reads them.
+- `DREAD_REFLECTED_FUNCTION("Name")` in `base/reflection/ReflectedFields.h` writes the `if` that adds a reflected function. `gen_reflection.py` uses it for all 2,848 of them, so a registration reads as `DREAD_REFLECTED_FUNCTION("AddIdleLogicPath") { ... }`.
+- Regenerated: 1,032 files in src/reflection/.
+
+Checked before regenerating: each of the 1,031 changed class files was compiled on main and on this branch, and code and relocations were compared with the new names mapped back to their addresses. All 10,699 functions were identical.
+
+**Shared vector math: CVector2D and CVector4D operations, UnkVec3f operations (#521, 2026-11-16).**
+
+This follows #515: the shared vector operations now cover CVector2D, CVector4D and UnkVec3f.
+
+**CVector2D:** in `base/math/CVectorOps.h`, plain inline, with reference parameters, as for 3D.
+- `+`, `-` and `* s`, `Dot`, `LengthSq` and `Length`, each confirmed by at least two matched files.
+- An in-place `Normalize` that divides only when the length isn't zero, unlike the 3D epsilon form. Three matched files confirm it.
+- fn_7100110420 (COBox2D) now matches. Its old by-value operators were what kept it from matching.
+- The 3D-to-2D projection fn_710007b430 is still called, not inlined.
+
+**CVector4D:** calls only, with nothing inlined.
+- All of unit 55's vector functions are declared at their addresses in `base/math/CVector4D.h`: assign, `*=`, `/=`, dot, scale, add, subtract, `==` and normalize. Two of them moved there from `UnkTU55.h`.
+- The operators in `CVectorOps.h` call them. `Assign(dst, src)` is a free function, because CVector4D stays an aggregate.
+- One component drops its always_inline wrappers for a plain `Assign(current, start + (target - start) * k)`.
+- Baselines: 49 files, all unchanged.
+
+**UnkVec3f:** a new `game/UnkVec3fOps.h`, separate so that base/math doesn't include a game header and so that `UnkXformNode.h`'s 285 includers don't clash with local helpers.
+- Results are returned through the hidden result pointer, as the original does.
+- `+`, `-` (including unary), `* s`, `Dot`, `LengthSq`, `Length`, `DistanceSq`, `Distance`, `Cross`, `InvLengthEps` and `Normalized`.
+- Eight matched files confirm the forms. fn_7100206078 (UnkXformNode) now matches.
+- One emitter file keeps its own normalize, because the shared `Normalized` broke two matched functions there.
+- Six game_s1 files with their own float-copy UnkVec3f are left as they are.
+
+**Drafts:** none promoted.
+- Four are now registers-only, but equiv_test was inconclusive and the permuter found nothing: fn_71009ea3e4 (98.1%), fn_710012ed30 (96.2%), fn_710012efb0 (94.7%) and fn_7100126418 (97.4%).
+- fn_7101167aec moves from 97.1% to 97.7%: `Normalized` fixes the normalisation, and one inverted condition pair remains.
+- Six more drafts score the same but read better.
+
+**Findings:**
+- The 2D normalise guards against zero, while the 3D one adds an epsilon. They are two different helpers in the original, not one.
+- `equiv_test.py --drafts` ignores its file list and judges every draft, which takes about 40 minutes. Pass the files without `--drafts`.
+- Six of unit 55's functions (fn_710007b53c, b568, b5c0, b5ec, b618, b644) have status O, but nothing outside `src/lifted` defines them. That's worth a look by whoever owns the status derivation.
+- About 40 direct calls to fn_710007b518 could now be written `Assign(...)`. They are not migrated here.
+
+**Write the attribute keys by name in the class descriptions (#520, 2026-11-16).**
+
+This is step 2a of the plan for readable class descriptions, following #518. The class descriptions in src/reflection/ added attributes under keys named by their getters' addresses, for example `fn_7100007e80()` for "Description". `base/reflection/ReflectedFields.h` already gives 61 of these keys their registered names in `base::reflection::attr`. The generated files now use those names:
+
+- `tools/gen_reflection.py`: `attribute_keys_by_name` runs in the same final pass as `types_by_type`. Each call of a key getter that the header names becomes `base::reflection::attr::<Name>()`, an inline call of the same getter, and the file gains the header's include. The getter's declaration by address goes once nothing else in the file names it. Typed keys such as Persistence carry their enum and are left as they are.
+- Regenerated: 2,621 calls in 912 files. Data/functions is unchanged.
+
+Checked before regenerating: every changed file was compiled before and after, and code and relocations were compared. All 8,884 functions in those files were identical.
+
+**Ready functions up to 2 KB, batch 4: 97 matched (#519, 2026-11-16).**
+
+The fourth batch of ready, non-float functions from 400 B to 2 KB (`lean-r2kd`): 200 functions in 49 Opus workers, at most five functions of one unit per worker, four graded attempts each.
+
+- **97 functions into `src/`, all byte-matching** (`check.py` passes; no matched function on main is lost). 101 matched in the workers, the best rate of the 2 KB batches so far: 54 on the first attempt, 22 on the second, 20 on the third, 5 on the fourth.
+- **5 matches held in `drafts/`**, each because a declaration elsewhere disagrees with what the original does (notes in `drafts/INDEX.csv`): fn_71008c5184 (an asm-labelled constructor for fn_710001f074), fn_7100a28310 (g_unk_7172746208 typed two ways), fn_71004321a0 (returns bool, declared void*), fn_7100f8ede4 (returns the next node, declared void), fn_710031833c (defines a global a second time to share a base register).
+- **99 non-matches filed as drafts**, 8 of them registers-only. The permuter found no match for those 8.
+
+Shared layouts named so matched code needs no offset casts:
+- `UnkGameManager` gains the archive blackboard at +0x820; `UnkGameManagerIdTable` gains the id slots at 0x1260, 0x14e0 and 0x1be8.
+- fn_71004b9cc4's caller now declares it with the fire-ball definition type it really takes.
+- A new `include/game/CSamusGrappleMovementState.h` holds the grapple tunable; the grab registry `g_unk_7172a090b8` moves into `CGrabComponent.h`; the CAbility value-holder vtables, two path-node vtables and `fn_7101045d7c` move into their unit headers. Declarations in more than one file go from 346 to 342.
+
+**Call the type-keyed getters by type in the class descriptions (#518, 2026-11-16).**
+
+This is step 1 of the plan for readable class descriptions. In src/reflection/, the class descriptions named the types of reflected functions' parameters and return values, and of some fields, by the address of each type's getter (`fn_710000abbc()` for float). Now that src/reflection_types/ keys those getters by type (#504, #511, #516), the descriptions call them by type instead:
+
+- `tools/gen_reflection.py`: `types_by_type` runs as a final pass over the written files. Each call of a type-keyed getter becomes `&base::reflection::PrimitiveType<T>::Get()` for a plain type, or `base::reflection::PointerType<T>::Get()` for a pointer type. The pass adds the header, T's declaration and an `extern template` line after the file's includes, so the call stays a call, as in the original. The getter's declaration by address goes once nothing else in the file names that address. It stays where the address is still used, for example as a template argument. `keyed_getters` finds the keyed getters through the `refl_GetType<T>` rows in data/functions.
+- Regenerated: 3,694 calls in 152 files. Data/functions is unchanged.
+
+Checked before regenerating: every changed file was compiled before and after, and code and relocations were compared with the names normalised. All 3,920 functions in those files were identical.
+
+**Ready functions up to 2 KB, batch 3: 37 matched (#514, 2026-11-16).**
+
+Third batch of ready, non-float functions of 400 to 2,048 bytes, as whole units (20 Opus workers).
+
+- **37 functions are added to `src/` as O.**
+- **Declarations corrected where the original disagrees with them:**
+  - `fn_710083f32c` returns `bool`.
+  - `fn_7100f0e238`'s caller passes a `bool`.
+  - `fn_7100a6c9f4`'s caller passes its typed `self`.
+  - `UnkGameManagerIdTable` names its id at +0xfd0.
+- **Shared declarations moved into headers:**
+  - `fn_7100395a30` → `game/CBlackboard.h`
+  - `g_unk_7101648434` and `fn_7100dfb758` → `game/UnkTU2553.h`
+  - `g_unk_710164b968` → `game/UnkTU1730.h`
+  - `g_unk_71726b2398` → `game/UnkBufferStringPool.h`
+  - the weight-platform tunables → `game/CWeightActivatedPlatformSmartObjectComponent.h`
+  - plus what `decl_plan` and `hub_migrate` moved.
+- **Held in `drafts/`, four matches whose declarations conflict with existing ones:**
+  - two CPlayerInfo functions (their handle types);
+  - two CPowerBombMovement functions (bomb-hit member-pointer types that have no header yet).
+- **Checks:** compared with origin/main's O set, nothing is lost and 37 are gained. Local gates pass: check, decl_check, struct_check, name_check, policy and fakematch. The journal and the generated progress pages are not touched.
+
+**Key the class plain types' reflection descriptions by their class (#516, 2026-11-16).**
+
+Follows #511. That PR keyed the 14 built-in plain types by type. This one keys the other 25 plain types, which are all classes: CStrId, CFilePathStrId, CName, CRntString and its fixed-size TRntString variants, CVector2D/3D/4D, the CColor types, the CEnumRef/CFlagsetRef families, CFunction, CGameModelIndex, SCustomData, luaGameObject and luaDisplayObject.
+
+- `tools/gen_types.py`: `primitive_class` picks a plain type whose name a declaration can spell. Such a type gets `PrimitiveTypeDescription<C>` and `PrimitiveType<C>::Get` (`refl_GetType<C>`), preceded by a forward declaration of C. Its function slots stay by address, because these types have no `ValueOps`. A keyed class that fails to match falls back to the tag form. Related getters that call one of these getters (97 calls, for example a dictionary keyed by CStrId) now call it by type.
+- All 39 plain types are now keyed. No `UnkRefl_fn_` tags remain in `primitive_types_00.cpp`.
+- data/functions: one row gets its name: 0x710000ffd0 is `refl_GetType<SCustomData>`. The other 24 getters already had their `refl_GetType<C>` names.
+
+Checked before regenerating: every changed file was compiled before and after the change, and the code and relocations were compared with the names normalised. All 5,551 functions were identical. `data/reflection_fields.csv` is unchanged.
+
+**Shared vector math: CVectorOps.h for CVector3D, 108 local vec3 structs onto it (#515, 2026-11-16).**
+
+This is the first part of the shared vector-math header. A new `include/base/math/CVectorOps.h` gives `base::math::CVector3D` its operations as free inline functions. `CVector3D` itself stays a plain aggregate: a copy constructor would break 35 by-value returns and 71 brace-initialised files.
+
+**Operations:** each form below was confirmed against matched files.
+- Component `+` and `-`, and unary `-`.
+- `v * s`, with the vector first.
+- `Dot` and `LengthSq`, evaluated left to right.
+- `Length`, which is `sqrtf(LengthSq)`.
+- `DistanceSq`, written out in full. Writing it as `LengthSq(a - b)` broke three matched files.
+- `Distance`, which is `Length(a - b)`.
+- `Normalized`, which is `1/(Length + 0.0001f)` followed by a scale. Six matched sites use this form.
+- `Cross` is in the header, but no matched file confirms its form yet.
+
+**Plain `inline`, not `static inline`, and parameters by reference.** One matched file matches only with plain inline, and by-value parameters broke about ten files. The header comment records both.
+
+**New matches:**
+- fn_7101059530 (SLogicPathNode) goes from verified equivalent to a byte match, and its stale verdict row is removed.
+- The draft fn_710063ab04 now matches using the shared `DistanceSq` (it was at 91.1%).
+
+**Migrated, byte-unchanged and baselined:**
+- About 26 matched files drop private 3D helpers or hand-written operations.
+- 108 plain local `{f32 x, y, z}` aggregates in 104 files become `CVector3D`.
+- Left alone:
+  - structs with copy constructors, may_alias word copies, or their own constructors or operators
+  - structs whose names other files use
+  - the `UnkVec3f` family
+- Kept local because of their form:
+  - an out-pointer cross product
+  - a static pointer distance
+  - one hand-written dot product (it is registers-only either way)
+  - the cutscene component's vector, which shared headers name
+
+**Changed but no match lost:**
+- fn_7100110cd4 stays verified equivalent: it moves from 71.9% to 73.7%, and equiv_test was re-run and passes.
+- Two minor functions with no verdict move slightly: fn_710012d960 from 43.2% to 41.9%, and fn_71001b83f8 from 7.5% to 7.2%.
+
+**Findings:**
+- The 1/(length + epsilon) normalisation has one form across the matched code, so one shared `Normalized` covers all six sites.
+- The draft fn_7100e2eef8 moves from 71.8% to 97.4%, registers only. equiv_test was inconclusive, and the permuter found nothing.
+- In fn_7101167aec, `Normalized` applied to the `UnkVec3f` itself reproduces the original, so `UnkVec3f` wants the same operations. That's a later branch.
+
+**Key the plain types' reflection descriptions by the type they describe (#511, 2026-11-16).**
+
+Step 5 of the type-keyed reflection plan. The 14 plain types whose value operations come from `ValueOps.h` (bool, char, signed/unsigned char, short, unsigned short, int, unsigned int, long, unsigned long, long long, unsigned long long, float, double) are now described by the type itself rather than by a tag named after the getter's address:
+
+- `include/base/reflection/UnkReflPrimitiveType.h` gains `PrimitiveType<T>::Get()`, defined out of class and not inline (same reason as `PointerType<T>::Get`: a description in another file names it through `extern template`, so the call stays a call).
+- `tools/gen_types.py` emits `PrimitiveTypeDescription<T>` and `template const CType& PrimitiveType<T>::Get();` for a type with exactly one plain getter (`keyed_primitives`). Pointer and collection descriptions whose related getter (pointee, element, key, ...) is one of these call `&PrimitiveType<T>::Get()`. `settle_externs` now handles both kinds of keyed getter.
+- `tools/asmdiff.py`: `refl_GetType<T>` also aliases `PrimitiveType<T>::Get`.
+- `tools/gen_lift.py`: a keyed plain getter counts as defined.
+- `tools/gen_fields.py`: a keyed description has no address in its text, so its name is found through the `refl_GetType<T>` row in data/functions. `data/reflection_fields.csv` is unchanged.
+- data/functions: 12 getters renamed to `refl_GetType<T>` (for example 0x7100014768 is now `refl_GetType<int>` and 0x710000d228 is `refl_GetType<bool>`). No status changes.
+
+Checked before regenerating: every changed file compiled before and after, with code and relocations compared after the name change (5,630 functions, all identical).
+
+**Shared container library: small dictionary copies onto CRntSmallDictionary (#513, 2026-11-16).**
+
+This is the first container family of the shared container library: local copies of the small dictionary are replaced by `base::global::CRntSmallDictionary<K, V>`. It is a pure consolidation, and every migrated file builds to the same code.
+
+- **Mapping:** a local struct of a values array, a keys array, count, capacity, step, flags and allocator becomes the template. The key comes first in the template's arguments, and values are the first array.
+  - Local names stay as `using` aliases, so declarations that mention them keep the same text across files.
+- **Migrated:** 65 src files and 12 drafts.
+  - 60 were layout-only copies.
+  - 3 had Find and End identical to the template's.
+  - 2 had the growth the header now provides.
+- **Header:** gains `Grow(u32 new_capacity)`, the bitwise two-array growth both local copies wrote. It keeps the original's test of the count rather than the capacity, and adds no attributes.
+- **Baselines:** six batches covering 68 files. Two files changed and were restored. The header's 65 includers are unchanged.
+
+**Left local, with reasons:**
+- fn_71000dc190's keys are a may_alias word type. On the template it dropped from a match to 33.3%, so its file and partner keep their local type.
+- fn_71009c3d44's Find indexes with a 64-bit value and casts. On the template it is registers-only at 75.9%. A named variant can follow.
+- Not merged yet: a key-by-key Grow and two Finds with custom compares.
+- Copies with a move constructor, destructor, Clear or Destroy weren't attempted in this pass.
+- Two copies are held because `include/base/UnkParallelFind.h` requires a member named `ids`.
+- About 20 copies share a `fn_`/`g_unk_` symbol with copies that can't move yet. Changing one side would split the mangled name.
+
+**Finding:** a container whose keys are a may_alias word type doesn't match on the plain template, because the template's typed loads lose the reloads. Those copies need a word-keyed variant, not the shared default.
+
+**Third shared-type batch: game manager members, id table, three CRntVector<UnkVec3f> matches (#512, 2026-11-16).**
+
+A third batch of shared-type and declaration fixes from the matching thread's list. Each item was checked against how the original uses it.
+
+**Three byte matches with no union.** fn_7100e2308c, fn_7100e237f4 and fn_7100e23fa8 had matched only with a local vec3 union. They now match using the shared element type, `CRntVector<UnkVec3f>` (`game/UnkXformNode.h`). Its copy constructor and assignment already go through may_alias words, which gives the reloads the union had forced. Their callee fn_7100e1cfec is declared in `UnkTU2560.h`. Two globals moved into a new `game/UnkTU2561.h` (CTunableDroppableBillboard).
+
+**Members and declarations:**
+- `UnkGameManager`:
+  - `field_0x38` is an embedded object passed to unit 2592's functions.
+  - `f32 field_0x2444` is the game time.
+  - Four drafts now use these members.
+- `UnkGameManagerIdTable` gets CStrId members at 0x970, 0xb08, 0xcc8, 0x18c0, 0x1b58 and 0x1da8, each initialised by the constructor.
+- `UnkChargeTunable` gets `f32 field_0xfc`. Its one reader drops a private view.
+- fn_71006f345c and fn_710110a82c return `bool`. fn_710110a82c's draft is now 98.1%, registers only, but equiv_test was inconclusive.
+- fn_71000a20f4 returns `UnkReflValue`. Its file drops two private result types and still matches.
+
+**Left out:**
+- fn_7100c2c124: no function starts there. The address is inside a reflection attribute function, and nothing refers to it.
+- fn_7100d7c45c's 4th parameter as `bool`: the original passes the register straight through. A `bool` adds a mask, which took the matched function to 23.1%, so it stays `u32`.
+- Three CRntVector users that match only with `always_inline` on `GrowAt`: no attribute was added. Without it they score near 0% (calls), so they aren't tier 2.
+
+**Finding:** a union that a draft needs only for reloads often stands for a shared element type whose copy already goes through may_alias words. Look for the container's real element type before adding a union.
+
+**Daily progress record: matched, finished, untouched and drafts from main's history (#510, 2026-11-16).**
+
+- New `tools/daily.py` prints one row per day: matched (`O`) share and the KB gained, finished (byte-matching and readable) share and its change, untouched (`U`) bytes, and draft count. It reads each day's last first-parent commit of main with `git show`, so the record needs no daily commit to main. `--now` adds the working tree; with `build/check/2.1.0` present its finished figure is computed fresh by `progress.py`'s `quality_report`. `--csv` writes the rows.
+- Finished for past days comes from the quality line under `docs/HANDOFF.md`'s table. That line is only rewritten by a session that has check.py's cache, and it has not been refreshed since 07:24 today, because the merging sessions run without game data.
+- So the nightly self-hosted check (and pushes to main) gets one more step after the build check: `tools/daily.py --ref HEAD --days 1 --now`, printed to the job log and summary. That gives a fresh finished figure each night from the cache the check just wrote. It prints counts only, never runs on pull requests, and is `continue-on-error`, so it is not a gate.
+- `docs/commands.md` regenerated; `tools/tests/test_daily.py` covers the parsing.
+
+History on main begins 2026-11-14 13:13, so the backfill reaches back to then.
+
+**Shared types: list operations, 19 declaration fixes, GUI lookup and tunable line headers (#508, 2026-11-16).**
+
+This PR combines four shared-type branches so one check run covers them all. Each branch was built and gated on its own first. The combination merges them onto current main.
+
+**Linked list operations** (follows #503):
+- `base::UnkLinkedList::Remove` now runs the node's destructor before it frees the node.
+- A new `PushBackTailFirst` covers the push that writes the tail link before the head.
+- fn_71011104c0 now matches.
+
+**Nine held declarations:** each was checked against how the original passes and reads its arguments and return value.
+- fn_7100976c94: the 5th parameter is `u32`. Now verified equivalent (registers only).
+- fn_71001606f0: the parameters are `(u32 index, bool enable, u32 group)`. Now verified equivalent; merged into its unit's file.
+- fn_7101179de0, fn_7101179878, fn_710069409c and fn_71009eaa88 return `bool`.
+- fn_7100d7bea0: the 2nd parameter is `u32 mode`. The original compares it with 0 to 5.
+- fn_7101134420 is fully typed in `CAIAttackComponent.h`, so `CAttackAction_Start` calls it directly instead of through a function-pointer cast.
+- fn_7100216d30 takes an `UnkSphere`, and `UnkSphere.h` names the fields at 0x28, 0x30 and 0x38. It now matches.
+- Follow-up: two drafts in `drafts/game/UnkTU308/` still define their callee on a private type, and should switch to `UnkSphere` when promoted.
+
+**GUI container lookup and the tunable line:**
+- fn_71011d9508 is declared once in `GUI/CDisplayObjectContainer.h`. game_s7's copy in `unk_gui` is replaced with a using-declaration, and 12 other copies moved. fn_7100b5fde0 now matches.
+- The four definitions of the 0x148-byte tunable line are now one `include/base/UnkTunableLine.h`, with the destructor defined inline under its original label. fn_710013c834 now matches.
+- Tool fix: `gen_lift --prune` now treats a member labelled `asm("fn_X")` with a body in the same file as hand-defined. That drops the one lifted copy that check.py had reported as a DUPLICATE. New test: `tools/tests/test_lift_labelled.py`.
+
+**Ten more held declarations:**
+- fn_71010477f0 now matches. fn_710000f750 returns `s32` (it tail-calls a value-returning function, and callers read the result). g_unk_71729fd068 is declared once as `UnkParseCallbacks`.
+- fn_71008724f8 now matches. `UnkFlagList` gets the original's copy constructor and `bool` flags. Its header moved to `include/game/UnkFlagListS7.h` so drafts can include it.
+- fn_7100df78cc now matches with a new `CRntVector(u32 flags, u32 step)` constructor.
+- fn_710015a260's parameter is `bool`. It is now verified equivalent (registers only).
+- Corrected, with their drafts still held:
+  - fn_710014580c takes `(effect, scene)`.
+  - fn_7101024b28 returns `UnkSoundHandle`.
+  - fn_7100fc29e8, fn_7101047068 and fn_71001c2ec0 return `bool`.
+  - fn_7100006e98 is `bool (UnkBlend13*, bool force)`.
+- Left out: the suggested 3rd parameter for fn_7100008ea4. The original never reads that register before a call overwrites it. The caller's zero is probably the dummy argument of libc++'s shared_ptr-from-unique_ptr constructor.
+
+**Findings:**
+- A declaration fix alone often doesn't promote a draft. Of 18 corrected declarations, 7 drafts matched and 4 became verified equivalent; the rest are held on control flow.
+- Clang 18, the port's compiler, never finishes compiling a destructor that is both `asm`-labelled and defined inline. The port sweep timed out on five files that way. The label on `UnkTunableLine`'s destructor is now kept to the matching build (`#if defined(SWITCH)`): Clang 9 ignores it there and check.py reads it from the source.
+- A hand-written destructor kept under its original `asm` label is emitted by any file holding a static of that type, so the lifter has to count labelled members as defined.
+
+**Ready functions up to 2 KB, batch 2: 42 matched (#509, 2026-11-16).**
+
+Second batch of ready, non-float functions of 400 to 2,048 bytes, as whole units of five (20 Opus workers).
+
+- **42 functions are added to `src/` as O.** Workers matched 46 of 100.
+- **Declarations corrected where the original disagrees with them:**
+  - `fn_7100b59690` returns `bool`, and `fn_7100edbef4` returns `self`.
+  - `fn_710111b64c` takes the spawned target its caller (`fn_7100a130d0`) passes through.
+  - `UnkGameManagerIdTable` names its id at +0xfd0.
+- **New shared declarations:**
+  - `fn_710031da18` is declared once in a new `game/UnkTU432.h`, replacing nine local copies.
+  - `fn_7100395c38` is now in `game/CBlackboard.h`.
+  - `g_unk_7101a1b750` is in `game/UnkBufferStringPool.h`, replacing 15 copies.
+  - `g_unk_710164bec0` is in a new `game/CShotManager.h`.
+  - `g_unk_7172764a30` is in `game/GUI/CMissionLog.h`.
+- **Held in `drafts/`, three matches:**
+  - `fn_7100fdca88` names `fn_7100d90304` as a destructor, which `base/reflection.h` declares as a plain function.
+  - `fn_71008959d4` and `fn_7100896410` need unit 1346's header, which that unit's other files can't include yet.
+- **The rest** are filed in `drafts/` with their grades and blockers.
+- **Checks:** compared with origin/main's O set, nothing is lost and 42 are gained. Local gates pass: check, decl_check, struct_check, name_check, policy and fakematch. The journal and the generated progress pages are not touched.
+
+**Call related types' getters by type in reflection descriptions (#507, 2026-11-16).**
+
+Step 4 of the "Type-keyed reflection descriptions" note. It also fixes a regression in the generator that a hand-match on main exposed.
+
+- **Related types by type.** A description's `key()`, `element()`, `iterator()`, `const_iterator()` or `pointee()` whose target is a type-keyed pointer type now reads `return base::reflection::PointerType<T>::Get();` instead of `return fn_<addr>();`. That covers 236 lines in `src/reflection_types/`, mostly collection iterators.
+  - The other related getters still call by address. They point at plain types, classes or descriptor globals, which later steps cover.
+- **Header.** `PointerType<T>::Get` is now defined out of class and not inline. Each file that calls a getter it does not define declares it with `extern template` (200 lines), so the call stays a call, as in the original. `settle_externs` drops a declaration a file defines and repeats none.
+- **Generator fix.** `mapper_members` dropped a mapper slot to its address when a hand-written source defined the `CRntVector` helper it calls. Nothing defines that address, so the slot would have gone from O to U on the next regeneration, starting with `CollectionTypeMapper<CRntVector<AssetName>>::AddCopy` after PR 506 hand-matched `InsertCopy`. The helper is only declared where the slot calls it, so its definition no longer matters. The same fix lets `CRntVector<unsigned short>`'s add slots come from the mapper: 4 rows go from `fn_` to their names, all O → O, and two lifted copies are pruned.
+
+**Ready functions up to 2 KB: 38 matched (#506, 2026-11-16).**
+
+100 ready functions of 400 to 2,048 bytes, taken as whole units of five and skipping float-heavy code (more than 5% floating-point instructions), run as 20 Opus workers.
+
+- **38 functions are added to `src/` as O.**
+  - 34 are worker matches.
+  - Two match once `UnkGameManagerIdTable` names its ids at +0x1c78, +0x1c80, +0x1db8 and +0x1dc0.
+  - `fn_7100b28144` matches when it sits in the same file as `fn_7100b22e50`, which it calls.
+  - One more matched as a side effect of the header changes.
+- **Declarations:** `fn_71000d0958` is now declared once, in `base/UnkResPathVec.h`, with its definition's return type. The other copied declarations were moved with `decl_plan` and `hub_migrate`.
+- **The 62 non-matches** are filed in `drafts/` with their grades. Several are blocked only by a shared type or by globals that are local to their unit; the notes say which.
+- **Checks:** compared with origin/main's O set, nothing is lost and 38 are gained. Local gates pass: check, decl_check, struct_check, name_check, policy and fakematch. The journal and the generated progress pages are not touched.
+
+**Callee batch 2: 18 of the most-called unmatched small functions (#505, 2026-11-16).**
+
+Second callee-first batch: the next 100 unmatched functions of up to 1,000 bytes with the most unmatched callers (58 KB), run as Opus workers, five functions each.
+
+- **18 functions are added to `src/` as O** (21 workers matched; 3 are held, below).
+- **Declarations corrected where the original disagrees with them:**
+  - `fn_7100544fb8` returns `bool` and takes a `bool`.
+  - `fn_71006c0e38`'s mode is a `bool`, and `fn_7101024e28`'s flag is a `u32`.
+  - `UnkGameManagerIdTable` names its slots at +0x8a8 and +0x1588.
+  - The unit 1689 caller declares `fn_71010c0e70` with its definition's signature.
+- **New shared declarations:**
+  - `fn_71011ec424` in `game/GUI/CLabel.h`, which replaces nine local copies.
+  - `fn_710114e674` in a new `game/UnkTU2712.h`.
+  - Two husk globals in `game/CMagnetSurfaceHuskComponent.h`.
+- **Held in `drafts/`:**
+  - `fn_71006fb648` and `fn_7100c8bec8` match only with a word typed as two `u16`, which is a steering form.
+  - `fn_71010477f0` needs `fn_710000f750` to return `s32`.
+- **The 79 non-matches** are filed in `drafts/` with their grades and blockers.
+- **Checks:** compared with origin/main's O set, nothing is lost and 18 are gained. Local gates pass: check, decl_check, struct_check, name_check, policy and fakematch. The journal and the generated progress pages are not touched.
+
+**Key named pointer and collection descriptions by their type (#504, 2026-11-16).**
+
+This is step 3 of the "Type-keyed reflection descriptions" note: the generated pointer and collection descriptions are named by their C++ type instead of an address tag.
+
+**Pointer types.** The 510 pointer types whose value operations come from `ValueOps` are now keyed by their type `T`:
+
+- The description is `PointerTypeDescription<T>`, and its `name` string sits in the description.
+- The getter is `PointerType<T>::Get()`, a new template in `base/reflection/CPointerType.h`.
+- The descriptor constructor is instantiated for `T`.
+- `UnkRefl_fn_` tags and `PointerTypeGetter` specializations are no longer used for these types.
+
+**Collections.** The 141 collections described by their mapper are now `CollectionTypeDescription<C>`, and their constructors are instantiated for `C`.
+
+**Fallback.** A type keeps its address tags when its name belongs to more than one getter in the original, or when more than one mapped collection describes it, so that no two rows share a name. In this build, every candidate is keyed by type.
+
+**Function list.** 1,117 rows are renamed to `base::reflection::refl_GetType<T>` (488 getters) and `base::reflection::refl_InitType<T>` (629 constructors). 1,113 of them were `fn_<addr>`. The other four only change from `std::unique_ptr<X>` to the demangled spelling the other rows use. No status changes.
+
+**Tools.**
+
+- **`gen_types`** writes the type-keyed form (`keyed_pointers`, `keyed_collections`, `type_keyed_names`). It counts every getter's name while scanning and checks the new names in its candidate compile.
+- **`gen_functions_csv`** applies the new names in place of reflection data's spelling. Getters that reflection data already named still serve as neighbours when subsystems are inferred, so no other row changes subsystem.
+- **`asmdiff.name_aliases`** maps `refl_GetType<T>` to `PointerType<T>::Get`, and `refl_InitType<T>` to the `CPointerType` and `CCollectionType` constructors.
+- **`gen_lift`** treats the keyed getters and collection constructors as defined.
+
+**One shared linked-list body, base::UnkLinkedList; six list drafts match (#503, 2026-11-16).**
+
+About ten drafts carried a private singly linked list (count, head, tail, allocator, flags) with the count in a local union so it reloads after a node-link store. `base/UnkSList.h` and `UnkDeviceList` (`base/CDeviceQueue.h`) already had that body, the count already a union member.
+
+- New `include/base/UnkLinkedList.h`: `base::UnkLinkedList<Node>`, the 0x28-byte body for any node with a `next`, with `Clear`, `PushBack`, `PushFront` and `Remove`. `UnkSList` and `UnkDeviceList` inherit it; `UnkDeviceList`'s own `Clear` moved into the template. `tools/baseline.py` over the headers' 51 includers: no output change.
+- Matches, with no local unions: the four CBehaviorTree list functions fn_71003aa8e0, fn_71003aaa48, fn_71003aab64, fn_71003aac0c; fn_710119818c (a vtable plus the list; 45% before); fn_7100289214 (92% before).
+- fn_71003aab64 and fn_71003aac0c return `bool`; `game/behaviortree/CBehaviorTree.h` said `void` (its 6 includers are unchanged). fn_7100394b30 is declared once, in `game/behaviortree/CBehavior.h`.
+- `game_s2/UnkOwnedList.h` is not a linked list (it has the growable-array layout) and is unchanged.
+
+**Callee batch: 21 of the most-called unmatched small functions (#502, 2026-11-16).**
+
+A callee-first batch. It took the 100 unmatched functions of up to 1,000 bytes with the most unmatched callers (55 KB), which are the ones that block the most large functions, and ran them as Opus workers, five functions each.
+
+- **21 functions are added to `src/` as O:** 19 worker matches, plus `fn_7100df28d0` and three permuter matches.
+  - `fn_7100df28d0` matches once its sixth parameter in `game/UnkTU2553.h` is a `u32`.
+  - The permuter matched `fn_7100a68874`, `fn_71009b06dc` and `fn_7100739c64`.
+- **Declarations corrected where the original disagrees with them:**
+  - `fn_71000ee9fc`, `fn_71001cc608` and `fn_7100b5fde0` return `bool`.
+  - Unread arguments: the first argument of `fn_71000eed30` is `UnkNoArg`, and `fn_71007b5d90`'s only argument is dropped.
+  - `fn_710000fbb0` takes the kind and name its callers pass, so `fn_710000f750` no longer needs a function-pointer cast.
+  - `UnkGameManagerIdTable` names its id at +0x1650.
+  - `fn_71001d010c`'s caller in unit 258 calls it through a small helper.
+- **Two matches are held in `drafts/`:**
+  - `fn_7100b5fde0`: it would add a copy of `fn_71011d9508`'s declaration, which still has no header.
+  - `fn_710013c834`: it would add a fifth different `UnkTunableLine`.
+- **The 79 non-matches** are filed in `drafts/` with their grades. Many need a declaration fixed elsewhere first; the notes say which.
+- **Checks:** compared with origin/main's O set, nothing is lost and 21 are gained. Local gates pass: check, decl_check, struct_check, name_check, policy and fakematch. The journal and the generated progress pages are not touched.
+
+**Match three string-text drafts on the shared UnkStringData read count (#501, 2026-11-16).**
+
+Five drafts from batch lean-ob3 were held because the pooled string's use count at +0x44 had to alias; main's `UnkStringData` (#488) now has it as the union member `reads`, with `UnkStrIdBase::Text()` and `UnkStringData::String()`.
+
+- fn_7100e161c0, fn_7100fcd380 and fn_710119d040 match on the shared type (from 30%, 62% and 25%) and move to `src/`, written with `id.Text()`, `data->String()` and `++data->reads` instead of private views.
+- Their callees fn_71000673e8, fn_710119c9fc and fn_7100d7842c each get one declaration, in `base/global/timeline/CEvent.h`, `game/UnkTU2733.h` and `game/UnkTU2523.h`; `tools/hub_migrate.py` moved the old copies with no output change.
+- Not here: fn_7101172f40 reaches 84% (registers only; the string part matches, the float maths order differs: a permute/equiv candidate); fn_71011991c4 is not string data (a weak-handle list count reloaded after link stores).
+
+**Match three keyed-array string-id moves on CStrId::MoveConstructReloading (#499, 2026-11-16).**
+
+Drafts in units 2563 and 2566 moved a string id into a slot through a private union or `Slot` cast, so the original's reload after clearing the moved-from id reproduced. `CStrId` already has the reloading move for this (`MoveConstructReloading`, beside `ReleaseAndTakeReloading`), so no header changes.
+
+- fn_7100e57018, fn_7100e5dec4 and fn_7100eb3e90 use it and match; they move to `src/`. In the erase-and-move-last functions, constructing the last element in place (not through a named reference) also fixes a register swap.
+- fn_7100e60df4 is closer (77.5% → 84.5%, registers only) and fn_7100e97c60 matches but stays held: it names fn_7100ea9eb8 as a record destructor, which `UnkTU2566_Minimap_ovb0199.cpp` defines as a free function.
+- Per the project's rule, this PR leaves `docs/JOURNAL.md` alone.
 
 **Journal from pull request descriptions; fewer reruns of the checks (2026-11-16).** Every open pull request added its entry at the top of this file, so each merge put the others in conflict, and with branches required up to date each catch-up merge reran every check. Branches now leave this file alone: a pull request's "What this changes" is its entry, and the merging session copies the merged ones here with `tools/journal_sync.py` (owner, 2026-11-16: in the round refresh, not a commit after each merge, which the main ruleset would refuse and which would put open branches out of date again). `check-local.yml` skips `check` when a run with the same inputs (a hash of every `DECOMP_PATHS` file at the commit under test) already passed on the pull request or on main, so merging main again after a documentation-only change does not wait for the runner; the hashes are empty markers in the Actions cache, saved by a hosted job. `build.yml` puts ccache in front of the port sweep's clang++, saved by pushes to main and restored by pull requests (the sweep was 5.5 of the compile job's 8 minutes).
 

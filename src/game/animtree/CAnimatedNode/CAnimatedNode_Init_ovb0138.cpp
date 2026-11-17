@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
+#include "game/UnkTU1134.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -18,7 +19,6 @@ struct UnkBoneFilter_ovb0138 {
     u8 pad_0x8[0x18];
     void* field_0x20;
 };
-void fn_710070d188(UnkBoneFilter_ovb0138* self);
 void fn_710070d7f0(UnkBoneFilter_ovb0138* self, void* skeleton);
 void fn_710070d7e8(UnkBoneFilter_ovb0138* self, void* value);
 void fn_710070d7e0(UnkBoneFilter_ovb0138* self, void* field);

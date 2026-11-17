@@ -14,6 +14,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBossAIComponent.h"
 #include "game/CFXComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
@@ -149,7 +150,6 @@ struct UnkSaveStationTunables_ovb0118 {
     u8 pad_0x0[0x24];
     f32 music_wait;  // 0x24
 };
-extern UnkSaveStationTunables_ovb0118 g_unk_71727531f0;
 
 struct UnkSaveStation2_ovb0118 {
     void** vtable;

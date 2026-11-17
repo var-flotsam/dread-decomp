@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkStruct_71007455dc;
+struct UnkVec3Result;
 struct UnkSwarmMember_ovb6;
 struct UnkTarget;
 void fn_7100745440(UnkTarget* target, void* effect, u32 flag);
@@ -14,3 +16,4 @@ struct UnkUnit2560Element {
     u8 data[0x190];
 };
 void fn_7100744d90(UnkUnit2560Element* element);  // Resets one element.
+UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);

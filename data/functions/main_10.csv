@@ -2378,7 +2378,7 @@ address,size,name,name_source,subsystem,status
 0x7101066878,276,fn_7101066878,unknown,unknown,O
 0x710106698c,228,fn_710106698c,unknown,unknown,O
 0x7101066a70,2444,fn_7101066a70,unknown,unknown,U
-0x71010673fc,668,fn_71010673fc,unknown,unknown,U
+0x71010673fc,668,fn_71010673fc,unknown,unknown,O
 0x7101067698,2296,fn_7101067698,unknown,unknown,U
 0x7101067f90,1020,fn_7101067f90,unknown,unknown,U
 0x710106838c,1488,fn_710106838c,unknown,unknown,U
@@ -2640,7 +2640,7 @@ address,size,name,name_source,subsystem,status
 0x71010711d4,12,CCutscene::refl_Destroy,reflection,game/cutscene,O
 0x71010711e0,48,CCutscene::refl_CopyAssign,reflection,game/cutscene,O
 0x7101071210,48,CCutscene::refl_MoveAssign,reflection,game/cutscene,O
-0x7101071240,1108,fn_7101071240,unknown,unknown,U
+0x7101071240,1108,fn_7101071240,unknown,unknown,O
 0x7101071694,616,fn_7101071694,unknown,unknown,O
 0x71010718fc,520,fn_71010718fc,unknown,unknown,O
 0x7101071b04,76,fn_7101071b04,unknown,unknown,O
@@ -3162,7 +3162,7 @@ address,size,name,name_source,subsystem,status
 0x7101090420,8,lua_bind::LogPackUnusedPfgFiles,string,script/bindings,O
 0x7101090430,8,lua_bind::LogPackNoCurrentlyUsedPfgFiles,string,script/bindings,O
 0x7101090440,8,lua_bind::PackSanityCheck,string,script/bindings,O
-0x7101090450,928,lua_bind::SetMaterialProperty,string,script/bindings,U
+0x7101090450,928,lua_bind::SetMaterialProperty,string,script/bindings,O
 0x71010907f0,1136,lua_bind::SetMaterialPropertyTransition,string,script/bindings,U
 0x7101090c60,92,fn_7101090c60,unknown,script/bindings?,O
 0x7101090cc0,8,lua_bind::FactorizerTest,string,script/bindings,O

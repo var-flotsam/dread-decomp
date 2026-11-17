@@ -5180,7 +5180,7 @@ address,size,name,name_source,subsystem,status
 0x71005f2f5c,360,fn_71005f2f5c,unknown,game/ai?,O
 0x71005f30c4,100,fn_71005f30c4,unknown,game/ai?,O
 0x71005f3128,188,fn_71005f3128,unknown,game/ai?,O
-0x71005f31e4,708,fn_71005f31e4,unknown,game/ai?,U
+0x71005f31e4,708,fn_71005f31e4,unknown,game/ai?,O
 0x71005f34a8,220,fn_71005f34a8,unknown,game/ai?,O
 0x71005f3584,924,fn_71005f3584,unknown,game/ai?,U
 0x71005f3920,28,fn_71005f3920,unknown,game/ai?,O

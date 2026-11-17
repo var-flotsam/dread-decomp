@@ -7,11 +7,10 @@
 
 #include "UnkPtrArrayHolder_b70.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU211.h"
 #include "game/UnkTU226.h"
 #include "game/UnkTU27.h"
 #include "types.h"
-
-extern void* g_unk_7101a1dc70[];
 
 namespace {
 

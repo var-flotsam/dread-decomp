@@ -28,7 +28,6 @@ extern CStrId g_unk_716e596120 __attribute__((visibility("hidden")));
 extern u32 g_unk_716e596050[16] __attribute__((visibility("hidden")));
 extern u8 g_unk_7101a1e970 __attribute__((visibility("hidden")));
 
-void* fn_710015abd0();
 void fn_71001d6b94(UnkRenderTargetA1* target);
 void fn_71001cde84(UnkRenderTargetA1* target, bool a, bool b, bool c);
 void fn_71001d0ae4(UnkRenderTargetA1* target);
