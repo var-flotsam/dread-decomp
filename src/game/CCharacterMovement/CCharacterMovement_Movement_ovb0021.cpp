@@ -23,6 +23,7 @@
 #include "game/UnkTU365.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU58.h"
+#include "game/UnkVec3Bits.h"
 #include "game/UnkXformNode.h"
 #include "game/navmesh/CNavMesh.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -162,11 +163,6 @@ struct UnkCharacterMovementCell_ovb0021 {
     u32 cell_frame;  // 0x424, the frame `cell` was looked up on
 };
 
-// A position as three words (as src/game_s2/fn_71005416bc.cpp has it).
-struct UnkVec3Bits {
-    u32 x, y, z;
-    UnkVec3Bits(const UnkVec3Bits& other) : x(other.x), y(other.y), z(other.z) {}
-};
 struct UnkPlace;
 
 static inline UnkNavMeshManager* NavManager() {
