@@ -14,9 +14,9 @@ struct UnkSphere {
     f32 radius;        // 0x8, also kept at 0x28, and times 10000 as an s64 at 0x38
     UnkVec3f offset;   // 0xc: a point in the owner's space
     UnkVec3f pos;      // 0x18
-    u8 pad_0x24[4];
-    f32 field_0x28;    // the radius again
-    u8 pad_0x2c[4];
+    f32 field_0x24;    // lower bound of the range [0x24, 0x28] fn_71002169e0 widens
+    f32 field_0x28;    // the radius again; upper bound of that range
+    f32 field_0x2c;    // lower bound of the second range [0x2c, 0x30]
     f32 base_radius;   // 0x30: the radius before fn_7100216d30's scale
     u8 pad_0x34[4];
     s64 radius_fixed;  // 0x38: the radius times 10000, truncated
@@ -33,6 +33,10 @@ void fn_7100216978(UnkSphere* self, const UnkVec3f* position);
 void fn_710021693c(UnkSphere* self, f32 radius);
 // Sets the radius (and its copies and quantised form) to the base radius times `scale`.
 void fn_7100216d30(UnkSphere* self, f32 scale);
+// Grows both ranges to take in the point's distance beyond the radius.
+void fn_71002169e0(UnkSphere* self, const UnkVec3f* point);
+// Whether `other` lies inside this sphere's range on every axis.
+bool fn_7100216ca4(UnkSphere* self, const UnkSphere* other);
 
 // The sphere embedded at +0x80 of a transform node (inside UnkXformNode::pad_0x74).
 inline UnkSphere* UnkXformNodeSphere(UnkXformNode* node) {

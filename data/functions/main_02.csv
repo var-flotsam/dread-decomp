@@ -628,10 +628,10 @@ address,size,name,name_source,subsystem,status
 0x710021693c,60,fn_710021693c,unknown,unknown,O
 0x7100216978,76,fn_7100216978,unknown,unknown,O
 0x71002169c4,28,fn_71002169c4,unknown,unknown,O
-0x71002169e0,288,fn_71002169e0,unknown,unknown,U
+0x71002169e0,288,fn_71002169e0,unknown,unknown,m
 0x7100216b00,300,fn_7100216b00,unknown,unknown,U
 0x7100216c2c,120,fn_7100216c2c,unknown,unknown,O
-0x7100216ca4,140,fn_7100216ca4,unknown,unknown,U
+0x7100216ca4,140,fn_7100216ca4,unknown,unknown,m
 0x7100216d30,56,fn_7100216d30,unknown,unknown,O
 0x7100216d70,140,fn_7100216d70,unknown,unknown,O
 0x7100216dfc,252,fn_7100216dfc,unknown,unknown,O

@@ -188,8 +188,6 @@ void fn_7100f9819c(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* to
 void fn_7100f98244(CVector4D a, CVector4D b, UnkEnvironmentFade* self, f32 time);
 void fn_7100f98370(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* to);
 void fn_7100f98410(f32 to, f32 time, UnkEnvironmentFade* self);
-void fn_7100f984ac(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* a, const UnkEnvFadeColor* b,
-                   const UnkEnvFadeColor* c);
 void fn_7100f98d24(f32 time, UnkEnvironmentFade* self, const CVector3D* to);
 void fn_7100f98dc4(f32 time, UnkEnvironmentFade* self, const CVector3D* to);
 void fn_7100f986c8(f32 time, UnkEnvironmentFade* self, const CVector3D* to);

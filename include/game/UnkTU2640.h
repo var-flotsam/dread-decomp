@@ -20,3 +20,11 @@ template <class Elem>
 struct UnkElemArray;
 struct UnkElem78;
 void fn_710100147c(UnkElemArray<UnkElem78>* self, u32 capacity);
+
+namespace base::global {
+class CStrId;
+}
+struct UnkMap_b0213;
+struct UnkMapValue_b0213;
+// Inserts a node holding a copy of `key` and the value moved out of `value` (src/game/UnkTU2640/fn_7101005fcc.cpp).
+void fn_7101005fcc(UnkMap_b0213* self, const base::global::CStrId* key, UnkMapValue_b0213* value);

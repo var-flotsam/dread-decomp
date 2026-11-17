@@ -6,35 +6,34 @@
 #include "base/math/CVectorOps.h"
 #include "base/reflection.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2607.h"
 #include "types.h"
 
 using base::math::CVector4D;
 using base::math::UnkVector4D;
 
-struct UnkEnvironmentFade;
-
 namespace {
-struct UnkLightColors {
+struct UnkLightColors_f984ac {
     u8 pad_0x0[0x3c];
     CVector4D first;  // 0x3c
     u8 pad_0x4c[0x10];
     CVector4D second;  // 0x5c
     CVector4D third;   // 0x6c
 };
-struct UnkLightTarget {
+struct UnkLightTarget_f984ac {
     u8 pad_0x0[0x78];
-    UnkLightColors* colors;  // 0x78
+    UnkLightColors_f984ac* colors;  // 0x78
 };
-struct UnkLightObject {
+struct UnkLightObject_f984ac {
     u8 pad_0x0[0x140];
-    UnkLightTarget* target;  // 0x140
+    UnkLightTarget_f984ac* target;  // 0x140
 };
-struct UnkEnvManager {
+struct UnkEnvManager_f984ac {
     u8 pad_0x0[0x498];
-    UnkLightObject* light;  // 0x498
+    UnkLightObject_f984ac* light;  // 0x498
 };
 
-struct UnkFadeLayout {
+struct UnkFadeLayout_f984ac {
     u8 pad_0x0[0x10c];
     CVector4D from8[3][2];  // 0x10c: each colour's start and end
     u8 pad_0x16c[0x1dc];
@@ -42,25 +41,26 @@ struct UnkFadeLayout {
     f32 duration[29];  // 0x3bc
     bool done[29];     // 0x430
 };
-static_assert(__builtin_offsetof(UnkFadeLayout, progress) == 0x348, "UnkFadeLayout placeholder layout");
-static_assert(__builtin_offsetof(UnkFadeLayout, done) == 0x430, "UnkFadeLayout placeholder layout");
+static_assert(__builtin_offsetof(UnkFadeLayout_f984ac, progress) == 0x348, "UnkFadeLayout_f984ac placeholder layout");
+static_assert(__builtin_offsetof(UnkFadeLayout_f984ac, done) == 0x430, "UnkFadeLayout_f984ac placeholder layout");
 }  // namespace
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100f984ac(f32 time, UnkEnvironmentFade* self, const UnkVector4D* a, const UnkVector4D* b,
                    const UnkVector4D* c) {
-    UnkFadeLayout* s = reinterpret_cast<UnkFadeLayout*>(self);
+    UnkFadeLayout_f984ac* s = reinterpret_cast<UnkFadeLayout_f984ac*>(self);
     s->duration[8] = time;
     s->done[8] = false;
     bool lo_ok = time - 0.001f <= 0.0f;
     bool hi_ok = time + 0.001f >= 0.0f;
     s->progress[8] = hi_ok && lo_ok ? 1.0f : 0.0f;
-    UnkEnvManager* manager = static_cast<UnkEnvManager*>(g_unk_7101d47368);
+    UnkEnvManager_f984ac* manager = static_cast<UnkEnvManager_f984ac*>(g_unk_7101d47368);
     if (!manager) {
-        manager = static_cast<UnkEnvManager*>(fn_71000839a0(0x4c8, 0x3f));
+        manager = static_cast<UnkEnvManager_f984ac*>(fn_71000839a0(0x4c8, 0x3f));
         fn_7100d8ced8(manager);
         g_unk_7101d47368 = manager;
     }
-    UnkLightObject* light = manager->light;
+    UnkLightObject_f984ac* light = manager->light;
     const CVector4D* third;
     if (!light) {
         Assign(s->from8[0][0], *a);
