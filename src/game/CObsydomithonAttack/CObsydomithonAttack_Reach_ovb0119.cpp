@@ -8,6 +8,7 @@
 #include "base/UnkVtableList.h"
 
 #include "base/global/CRntVector.h"
+#include "game/CAttack.h"
 #include "game/CObsydomithonAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU394.h"
@@ -18,8 +19,6 @@
 #include "game/UnkAnimationComponent.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101a21540[];  // the node list's vtable
 
 // A list of nodes (link at +8) freed through the allocator.
 struct UnkAttackNodeList_b0119 : base::UnkVtableList<void> {

@@ -6,6 +6,7 @@
 #include "UnkLeftoverReg.h"
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
+#include "base/reflection/CClass.h"
 #include "types.h"
 
 struct UnkNamedIds;
@@ -47,3 +48,4 @@ UnkNamedObjectPtr_b190* fn_7100eee97c(base::global::CRntVector<UnkNamedObjectPtr
 void fn_7100ee4550(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
 void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
 void fn_7100ef1e1c(UnkNamedIds* self);
+const base::reflection::CType* fn_7100ef0e00();

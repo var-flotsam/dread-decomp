@@ -10,6 +10,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
+#include "game/CAttack.h"
 #include "game/CAttackComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/CEnemyMovement.h"
@@ -364,7 +365,6 @@ using base::global::CStrId;
 
 struct UnkEnergyWaveTargetComp_b49;
 struct CAttack;
-const u64* fn_7100360890(CAttack* attack);
 
 struct UnkLinkOwner_l {
     u8 pad_0x0[0x1d8];
@@ -505,7 +505,6 @@ struct UnkLocalNode_w {
     void* first;
     UnkLocalNode_w* next;
 };
-extern char g_unk_7101a21540[];
 struct UnkLocal_w {
     UnkRefObject* handle;  // 0x0
     f32 x;  // 0x8

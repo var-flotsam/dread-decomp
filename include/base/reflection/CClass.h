@@ -208,3 +208,4 @@ void fn_710009ec00(void* list, void* type);
 // Variants with the name's constructor inlined (a few base library types, see UnkStrIdInline).
 #define DREAD_REFL_CLASS_GETTER_INLINE_NAME(ADDR, INIT, NAME, PARENT, FN_0x70, FN_0xE0)                const base::reflection::CClass* fn_##PARENT();                                                     DREAD_REFL_GETTER_IMPL_(ADDR, INIT, base::global::CStrId(base::global::UnkStrIdInline{}, NAME, true),                             fn_##PARENT(), FN_0x70, FN_0xE0)
 #define DREAD_REFL_ROOT_CLASS_GETTER_INLINE_NAME(ADDR, INIT, NAME, FN_0x70, FN_0xE0)                   DREAD_REFL_GETTER_IMPL_(ADDR, INIT, base::global::CStrId(base::global::UnkStrIdInline{}, NAME, true),                             nullptr, FN_0x70, FN_0xE0)
+void* fn_71000978e4(char*, const base::global::CStrId*);

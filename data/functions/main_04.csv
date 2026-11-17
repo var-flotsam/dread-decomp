@@ -1568,7 +1568,7 @@ address,size,name,name_source,subsystem,status
 0x710044e570,404,fn_710044e570,unknown,unknown,O
 0x710044e704,4,CChozoCommanderAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x710044e708,244,CChozoCommanderAIComponent::refl_GetClass,reflection,game/ai,O
-0x710044e7fc,1160,CChozoCommanderAIComponent::refl_AddFields,reflection,game/ai,U
+0x710044e7fc,1160,CChozoCommanderAIComponent::refl_AddFields,reflection,game/ai,O
 0x710044ec84,356,CChozoCommanderAIComponent::refl_InitClass,reflection,game/ai,O
 0x710044ede8,1096,fn_710044ede8,unknown,game/ai?,U
 0x710044f230,2532,fn_710044f230,unknown,game/ai?,U
@@ -1610,7 +1610,7 @@ address,size,name,name_source,subsystem,status
 0x71004546e0,428,fn_71004546e0,unknown,game/ai?,U
 0x710045488c,384,fn_710045488c,unknown,game/ai?,O
 0x7100454a0c,388,fn_7100454a0c,unknown,game/ai?,U
-0x7100454b90,900,fn_7100454b90,unknown,game/ai?,U
+0x7100454b90,900,fn_7100454b90,unknown,game/ai?,O
 0x7100454f14,180,fn_7100454f14,unknown,game/ai?,O
 0x7100454fc8,296,fn_7100454fc8,unknown,game/ai?,O
 0x71004550f0,272,fn_71004550f0,unknown,game/ai?,O
@@ -2372,12 +2372,12 @@ address,size,name,name_source,subsystem,status
 0x7100470cac,656,fn_7100470cac,unknown,game/ai?,U
 0x7100470f3c,828,fn_7100470f3c,unknown,game/ai?,U
 0x7100471278,68,fn_7100471278,unknown,game/ai?,O
-0x71004712bc,564,fn_71004712bc,unknown,game/ai?,U
+0x71004712bc,564,fn_71004712bc,unknown,game/ai?,O
 0x71004714f0,100,fn_71004714f0,unknown,game/ai?,O
 0x7100471554,396,fn_7100471554,unknown,game/ai?,O
 0x71004716e0,540,fn_71004716e0,unknown,game/ai?,U
 0x71004718fc,36,fn_71004718fc,unknown,game/ai?,O
-0x7100471920,632,fn_7100471920,unknown,game/ai?,U
+0x7100471920,632,fn_7100471920,unknown,game/ai?,O
 0x7100471b98,44,fn_7100471b98,unknown,game/ai?,O
 0x7100471bc4,240,fn_7100471bc4,unknown,game/ai?,O
 0x7100471cb4,148,fn_7100471cb4,unknown,game/ai?,O
@@ -3469,7 +3469,7 @@ address,size,name,name_source,subsystem,status
 0x7100499a60,40,fn_7100499a60,unknown,game/ai?,O
 0x7100499a88,932,fn_7100499a88,unknown,game/ai?,U
 0x7100499e2c,332,fn_7100499e2c,unknown,game/ai?,O
-0x7100499f78,512,fn_7100499f78,unknown,game/ai?,U
+0x7100499f78,512,fn_7100499f78,unknown,game/ai?,O
 0x710049a178,468,fn_710049a178,unknown,game/ai?,U
 0x710049a34c,792,fn_710049a34c,unknown,game/ai?,U
 0x710049a664,1104,fn_710049a664,unknown,game/ai?,U
@@ -5371,9 +5371,9 @@ address,size,name,name_source,subsystem,status
 0x71004debd0,160,fn_71004debd0,unknown,unknown,O
 0x71004dec70,4,CDaivoAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x71004dec74,244,CDaivoAIComponent::refl_GetClass,reflection,game/ai,O
-0x71004ded68,936,CDaivoAIComponent::refl_AddFields,reflection,game/ai,U
+0x71004ded68,936,CDaivoAIComponent::refl_AddFields,reflection,game/ai,O
 0x71004df110,356,CDaivoAIComponent::refl_InitClass,reflection,game/ai,O
-0x71004df274,752,fn_71004df274,unknown,game/ai?,U
+0x71004df274,752,fn_71004df274,unknown,game/ai?,O
 0x71004df564,36,fn_71004df564,unknown,game/ai?,O
 0x71004df588,172,fn_71004df588,unknown,game/ai?,O
 0x71004df634,84,fn_71004df634,unknown,game/ai?,O

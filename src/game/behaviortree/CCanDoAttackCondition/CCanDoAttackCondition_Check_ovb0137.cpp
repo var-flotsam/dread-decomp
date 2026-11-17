@@ -2,6 +2,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU2702.h"
@@ -9,8 +10,6 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 #include "base/UnkVtableList.h"
-
-extern char g_unk_7101a21540[];  // the node list's vtable
 
 // A list of nodes (link at +8) freed through the allocator.
 struct UnkCanAttackNodeList_ovb0137 : base::UnkVtableList<void> {

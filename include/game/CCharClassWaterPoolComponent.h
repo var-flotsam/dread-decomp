@@ -3,6 +3,7 @@
 // CCharClassWaterPoolComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1396,
 // 0x7100906580-0x710090e3f0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "game/UnkTUProperty.h"
 #include "types.h"
 
 struct UnkCallbackSetElem;
@@ -15,3 +16,4 @@ extern void* g_unk_7101a80ed8[];  // CCharClassWaterPoolComponent's vtable.
 void fn_710090d00c(UnkCallbackSetVector* v, u32 n);
 void fn_710090d1bc(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
 void fn_710090d2f4(UnkCallbackSetVector* v, u32 size);  // Truncate.
+extern UnkPropertyEx<> g_unk_7172734660;

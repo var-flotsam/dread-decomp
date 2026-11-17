@@ -9,6 +9,7 @@
 
 #include "base/global/CRntVector.h"
 #include "game/CComponent.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTimelineComponent.h"
@@ -36,10 +37,6 @@ struct UnkTimelineTrackTable_ovb0089 {
         }
     }
 };
-
-extern char g_unk_7101a8dcc0[];
-extern char g_unk_7101a8de98[];
-extern char g_unk_7101a8de78[];
 
 struct UnkTimelineComponentFull_ovb0089 {
     char* vtable;  // 0x0

@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSPBGun;
 struct UnkPrimaryGun_A4_b76;
 bool fn_7100835a14(UnkPrimaryGun_A4_b76* self);
 extern char g_unk_7101a77980[];
+void fn_710083593c(UnkSPBGun* self);
+void fn_7100835940(UnkSPBGun* self);

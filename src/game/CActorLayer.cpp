@@ -77,7 +77,6 @@ inline UnkReflAnyList::UnkReflAnyList(UnkReflAnyValue&& first) {
 // The types: the sublayer dictionary (built in this unit), the actor group dictionary, and two
 // whose values tag the fields' attributes (roles unknown).
 extern UnkEnumType g_unk_717269c300;
-extern UnkReflType g_unk_7172756f90;
 static inline const CType* AnyListType() { return reinterpret_cast<const CType*>(fn_710025d654()); }
 
 // Attribute keys used only here (their strings are unknown).

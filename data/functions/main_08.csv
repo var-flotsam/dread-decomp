@@ -1804,8 +1804,8 @@ address,size,name,name_source,subsystem,status
 0x7100854864,56,fn_7100854864,unknown,game?,O
 0x710085489c,16,fn_710085489c,unknown,game?,O
 0x71008548ac,16,fn_71008548ac,unknown,game?,O
-0x71008548bc,1276,fn_71008548bc,unknown,game?,U
-0x7100854db8,704,fn_7100854db8,unknown,game?,U
+0x71008548bc,1276,fn_71008548bc,unknown,game?,O
+0x7100854db8,704,fn_7100854db8,unknown,game?,O
 0x7100855078,28,fn_7100855078,unknown,game?,O
 0x7100855094,68,fn_7100855094,unknown,game?,O
 0x71008550d8,28,fn_71008550d8,unknown,game?,O
@@ -2146,7 +2146,7 @@ address,size,name,name_source,subsystem,status
 0x710086602c,8,fn_710086602c,unknown,unknown,O
 0x7100866034,756,fn_7100866034,unknown,unknown,U
 0x7100866328,8,fn_7100866328,unknown,unknown,O
-0x7100866330,584,fn_7100866330,unknown,unknown,U
+0x7100866330,584,fn_7100866330,unknown,unknown,O
 0x7100866578,8,fn_7100866578,unknown,unknown,O
 0x7100866580,232,fn_7100866580,unknown,unknown,O
 0x7100866668,196,fn_7100866668,unknown,unknown,O
@@ -2393,7 +2393,7 @@ address,size,name,name_source,subsystem,status
 0x7100872908,192,fn_7100872908,unknown,game/components?,O
 0x71008729c8,808,fn_71008729c8,unknown,game/components?,O
 0x7100872cf0,8,fn_7100872cf0,unknown,game/components?,O
-0x7100872d00,1288,fn_7100872d00,unknown,game/components?,U
+0x7100872d00,1288,fn_7100872d00,unknown,game/components?,O
 0x7100873208,2196,fn_7100873208,unknown,game/components?,U
 0x7100873a9c,88,fn_7100873a9c,unknown,game/components?,O
 0x7100873af4,260,fn_7100873af4,unknown,game/components?,O
@@ -2640,7 +2640,7 @@ address,size,name,name_source,subsystem,status
 0x710087a450,244,CThermalRoomConnectionFX::refl_GetClass,reflection,game,O
 0x710087a544,268,CThermalRoomConnectionFX::refl_AddFields,reflection,game,O
 0x710087a650,388,CThermalRoomConnectionFX::refl_InitClass,reflection,game,O
-0x710087a7d4,620,fn_710087a7d4,unknown,game?,U
+0x710087a7d4,620,fn_710087a7d4,unknown,game?,O
 0x710087aa40,36,fn_710087aa40,unknown,game?,O
 0x710087aa64,12,fn_710087aa64,unknown,game?,O
 0x710087aa70,4,fn_710087aa70,unknown,game?,O
@@ -5307,7 +5307,7 @@ address,size,name,name_source,subsystem,status
 0x71008fdbe4,28,CLavaPoolComponent::refl_TypeOf,reflection,game/components,O
 0x71008fdc00,44,CLavaPoolComponent::refl_Construct,reflection,game/components,O
 0x71008fdc2c,12,CLavaPoolComponent::refl_Destroy,reflection,game/components,O
-0x71008fdc40,888,fn_71008fdc40,unknown,unknown,U
+0x71008fdc40,888,fn_71008fdc40,unknown,unknown,O
 0x71008fdfb8,4,CCharClassLiquidPoolComponent::refl_AddAttributes,reflection,game/characters,O
 0x71008fdfbc,244,CCharClassLiquidPoolComponent::refl_GetClass,reflection,game/characters,O
 0x71008fe0b0,1012,CCharClassLiquidPoolComponent::refl_AddFields,reflection,game/characters,O

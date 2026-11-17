@@ -118,3 +118,5 @@ bool fn_71010474f4(CBlackboard* self, const base::global::CStrId& section, const
 bool fn_7100395c38(CBlackboard::CSection* section, const void* key, base::global::CRntString* out);
 bool fn_7100395a30(CBlackboard::CSection* section, const void* key, s32* out);
 const base::reflection::CType* fn_7101045d7c();
+s32 fn_71010475d0(CBlackboard* self, const base::global::CStrId& key, const base::global::CStrId& name);
+bool fn_710051d464(CBlackboard::CSection*, const void*, base::global::CStrId*);

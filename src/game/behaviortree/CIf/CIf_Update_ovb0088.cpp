@@ -11,7 +11,6 @@ struct UnkSelectorNode_A2_b68;
 struct UnkInverterTarget_b66a2;
 struct UnkInverter_b66a2;
 struct UnkStruct_71003aad48;
-bool fn_71003aad48(UnkStruct_71003aad48* self, void* key);
 
 struct UnkIfNode_ovb0088 {
     u8 pad_0x0[0x10];

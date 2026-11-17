@@ -7,10 +7,10 @@
 #include "base/global/CRntVector.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CComponent.h"
+#include "game/CRotationalPlatformComponent.h"
 #include "game/UnkTU341.h"
 
 struct UnkStateObject;
-extern void* g_unk_7101a89c50[];  // the component's vtables
 
 struct UnkRotationalPlatform_ovb0074 {
     void** vtable;

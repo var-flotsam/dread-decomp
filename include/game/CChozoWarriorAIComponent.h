@@ -7,6 +7,7 @@
 #include "base/reflection/CClass.h"
 #include "types.h"
 
+struct UnkChozoWarriorKind_b67a2;
 struct UnkChecker;
 struct UnkChozoWarriorAI733;
 struct UnkDescribed;
@@ -18,3 +19,4 @@ UnkDescribed* fn_710049b3cc(UnkChecker* self);
 void fn_710049d094(UnkWarriorTurn_b58* self);
 base::global::CStrId fn_710049c2f4(base::reflection::UnkReflObject* ai, f32 facing);
 extern base::global::CStrId g_unk_71726d1270 __attribute__((visibility("hidden")));
+extern UnkChozoWarriorKind_b67a2* g_unk_71726d1260 __attribute__((visibility("hidden")));

@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CCustomMarkersDialog.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -168,7 +169,6 @@ void fn_7100afd4c0(UnkMarkersDialog_ovb0124* self) {
 }
 
 struct UnkIdPair;
-extern void* g_unk_7101a99520[];
 
 // A counted reference released (not cleared) on destruction.
 struct UnkMarkersRef_ovb0124 {

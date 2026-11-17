@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflConverter.h"
 #include "base/reflection/UnkReflTypeDtors.h"
 #include "base/reflection/UnkReflTypeGlobals.h"
+#include "game/CCharClassLiquidPoolComponent.h"
 #include "game/UnkTUInit.h"
 #include "types.h"
 
@@ -61,7 +62,6 @@ extern char g_unk_7172733a68[];
 const CType* fn_71008ffa5c();
 extern char g_unk_7172733a69[];
 // CRntSmallDictionary<CStrId, CAABox2D>.
-extern base::reflection::CType g_unk_7172733a70;
 void fn_71008ffb38(CType* self, const CStrId& name, void* a, void* b);
 extern char g_unk_7172733be0[];
 // CLiquidPoolBaseComponent::ELiquidType and its converters to and from int.

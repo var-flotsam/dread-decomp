@@ -87,7 +87,6 @@ static inline const UnkQualifiedId& Qid(UnkScenarioDef& def) {
 // "ScenarioActiveCollider", a property of type CStrId (src/game_s7/fn_7100ae39e0.cpp builds it).
 
 // Reads the string id under the property `name` names (refl_GetKeyedValue for CStrId).
-bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
 
 // A string id built empty inline: the pool is created first when there is none.
 struct UnkScenarioEmptyStrId {

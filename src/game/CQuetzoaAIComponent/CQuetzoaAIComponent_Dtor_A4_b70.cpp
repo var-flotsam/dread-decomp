@@ -5,13 +5,13 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkDestructors.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CAttack.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern void* g_unk_7101a5a240[];
-void fn_71003606c0(void*);  // as src/game_5821e4/CAttackDtor.h declares it
 
 struct UnkQuetzoaDtor_A4_b70;
 

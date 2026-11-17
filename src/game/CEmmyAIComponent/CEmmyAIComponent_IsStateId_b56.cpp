@@ -12,8 +12,6 @@
 
 using base::global::CStrId;
 
-bool fn_710051d464(CBlackboard::CSection* section, const void* name, CStrId* out);
-
 // The ids compared with, declared as raw storage (as CEmmyStateOverrideLogicAction_SetUp_b55.cpp does
 // g_unk_71726ded60).
 extern char g_unk_71726df1a0[];

@@ -8,6 +8,8 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
+namespace unk_prop_bag { struct UnkPropBag; }
+
 namespace unk_prop_bag {
 struct UnkPropBag;  // game_s7/UnkPropBagS7.h
 }
@@ -24,3 +26,4 @@ static_assert(sizeof(UnkGuiEvent) == 0x28, "UnkGuiEvent placeholder layout");
 void fn_710120235c(UnkGuiEvent* self, UnkGuiDisplayObject* object, const s32* kind, unk_prop_bag::UnkPropBag* bag);
 // Destroys the event (frees an owned bag; src/game/GUI/UnkGuiEvent.cpp).
 void fn_7101202488(UnkGuiEvent* self);
+unk_prop_bag::UnkPropBag* fn_71012024f4(UnkGuiEvent* ev);

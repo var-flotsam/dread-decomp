@@ -79,8 +79,6 @@ bool fn_710069a7e4(UnkScourgeSlash_b0115* self, void* arg, u32 mode, bool check,
     return fn_710069a8e8(self, a, b);
 }
 
-extern char g_unk_7101a21540[];
-
 struct UnkScourgeAIView_ovb0115 {
     u8 pad_0x0[0x1140];
     u32 field_0x1140;

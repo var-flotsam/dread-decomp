@@ -4310,7 +4310,7 @@ address,size,name,name_source,subsystem,status
 0x7100fa0cb4,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaCharclassGroup, std::__1::default_delete<CSubareaCharclassGroup>>>>::End",reflection,engine/reflection,O
 0x7100fa0cc8,168,fn_7100fa0cc8,unknown,unknown,O
 0x7100fa0d70,176,fn_7100fa0d70,unknown,unknown,O
-0x7100fa0e20,1076,fn_7100fa0e20,unknown,unknown,U
+0x7100fa0e20,1076,fn_7100fa0e20,unknown,unknown,O
 0x7100fa1254,5196,fn_7100fa1254,unknown,unknown,O
 0x7100fa26a0,388,CSubareaInfo::refl_InitClass,reflection,game,O
 0x7100fa2824,380,fn_7100fa2824,unknown,unknown,O
@@ -4672,7 +4672,7 @@ address,size,name,name_source,subsystem,status
 0x7100fb1314,12,fn_7100fb1314,unknown,unknown,O
 0x7100fb1320,8,fn_7100fb1320,unknown,unknown,O
 0x7100fb1328,12,fn_7100fb1328,unknown,unknown,O
-0x7100fb1334,1256,fn_7100fb1334,unknown,unknown,U
+0x7100fb1334,1256,fn_7100fb1334,unknown,unknown,O
 0x7100fb181c,4,fn_7100fb181c,unknown,unknown,O
 0x7100fb1820,4,fn_7100fb1820,unknown,unknown,O
 0x7100fb1824,4,fn_7100fb1824,unknown,unknown,O

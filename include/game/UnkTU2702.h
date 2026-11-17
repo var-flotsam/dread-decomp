@@ -82,3 +82,4 @@ void fn_710111094c(base::reflection::UnkReflObject* ai, u32 value);
 bool fn_710110a82c(char* self, void* a, void* b);
 extern base::reflection::CType g_unk_7172a05520;
 extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));
+void* fn_7101105970(UnkScorpiusAI_b69a4* ai);

@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkCollisionObject;
 struct UnkHyperBeamSoundHandle;
 struct UnkObj290_b43a3;
 struct UnkSlot_0x40;
@@ -19,3 +20,5 @@ UnkSlot_0x40* fn_7100edbef4(UnkSlot_0x40* self, UnkSlot_0x40* other);
 
 void fn_7100eddc68(UnkObj290_b43a3* self, UnkObj290_b43a3* other);  // Move constructor.
 UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const base::math::CVector3D* pos, u32 id, u32 kind, u32);
+void fn_7100ed77b8(void* player, UnkCollisionObject* object);
+extern void* g_unk_7101ca9fe0[];

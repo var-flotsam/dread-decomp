@@ -24,3 +24,6 @@ UnkWeakTarget* fn_71011b5f5c(u32 script, const char* const* name, const base::gl
 UnkGuiDisplayObject* fn_71011b63c4(UnkGuiRoot* root, UnkButtonTemplate_ovb0108* def);
 const base::global::CStrId& fn_71011b8920(UnkGuiRoot* root);
 const base::reflection::CType* fn_71011bcf1c();  // The type of std::unique_ptr<GUI::CDisplayObjectContainer>.
+const base::reflection::CType* fn_71011b1924();
+const base::reflection::CType* fn_71011b1b28();
+const base::reflection::CType* fn_71011b1d2c();

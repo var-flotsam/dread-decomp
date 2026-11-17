@@ -13,8 +13,6 @@
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-extern void* g_unk_7101ca9fe0[];
-
 template <class T>
 struct UnkCopyVec_b0011;
 struct UnkRefRecord10_b0011;
