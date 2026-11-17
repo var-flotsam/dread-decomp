@@ -18,22 +18,25 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace IPath { enum class EType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CQuetzoaAIComponent
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_71727bc110;
-extern base::reflection::CType g_unk_71727bb8e8;
 namespace CQuetzoaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpShortRangePath", true), &g_unk_717269bb48, 0x14a30, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("eShortRangePathType", true), &g_unk_71727bb8e8, 0x14a70, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("eShortRangePathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x14a70, -1, -1);
+    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<IPath::EType>::object, 3);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("wpLongRangePath", true), &g_unk_717269bb48, 0x14a78, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("eLongRangePathType", true), &g_unk_71727bb8e8, 0x14ab8, -1, -1);
-    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_71727bb8e8, 3);
+    field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("eLongRangePathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x14ab8, -1, -1);
+    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<IPath::EType>::object, 3);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

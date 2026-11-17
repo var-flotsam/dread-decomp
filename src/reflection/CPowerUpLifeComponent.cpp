@@ -18,16 +18,18 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CPowerUpLifeComponent
 extern base::reflection::CType g_unk_71727b6270;
-extern base::reflection::CType g_unk_71727bc110;
 void fn_71008e4a70(UnkReflFunction* fn, const char* name);
 namespace CPowerUpLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpCheckPointEntity", true), &g_unk_71727b6270, 0x388, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD(CStrId, "sPowerupNameLabelID", 0x3d8);
     DREAD_REFLECTED_FUNCTION("SetCustomParams") {
         fn_71008e4a70(fn, "SetCustomParams");

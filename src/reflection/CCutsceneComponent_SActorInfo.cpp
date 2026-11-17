@@ -22,13 +22,17 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace base::serialization { enum class EPersistence : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CCutsceneComponent::SActorInfo
 extern base::reflection::CType g_unk_717269bb48;
 void fn_71007ad0ec();
 void fn_71007a2ac8(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71727bc110;
 extern base::reflection::CType g_unk_7101d60ff0;
 namespace CCutsceneComponent::SActorInfo {
 void refl_AddAttributes(CClass*) {}
@@ -44,7 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_lnkActor_SetterFunction")
         fn_71007a2ac8(fn, "_m_lnkActor_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("lnkActor", true), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"sId"}, 0xa, nullptr, 0xf)));
     DREAD_REFLECTED_FIELD(bool, "bStartingVisibleState", 0x81, (EditorVisible, false), (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bReceiveLogicUpdate", 0x82, (DefaultValue, true));
@@ -306,7 +310,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_71007abea0();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_71007abef0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71007a13a4(CClass* cls) {
@@ -318,7 +321,7 @@ void fn_71007a13a4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71007abea0);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutsceneComponent::SActorInfo::refl_GetClass();
@@ -327,7 +330,7 @@ void fn_71007a13a4(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71007abef0);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -339,7 +342,6 @@ using base::reflection::UnkTunableRegistry;
 void fn_71007ac010();
 extern base::global::CStrId g_unk_7101d5a450;
 const base::reflection::UnkReflAttrKey& fn_710000bf80();
-extern base::reflection::CType g_unk_7101d679f0;
 void fn_71007ac060();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71007a1994(CClass* cls) {
@@ -351,7 +353,7 @@ void fn_71007a1994(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71007ac010);
     }
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
     DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
         fn->name = base::global::UnkStrId("_element_GetterFunction", true);
         fn->return_type = CCutsceneComponent::SActorInfo::refl_GetClass();
@@ -360,5 +362,5 @@ void fn_71007a1994(CClass* cls) {
         fn->invoker = reinterpret_cast<void*>(&fn_71007ac060);
     }
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCutsceneComponent::SActorInfo::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &g_unk_7101d679f0, 0);
+    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
 }

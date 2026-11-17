@@ -20,12 +20,14 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace game::logic::collision { enum class EColMat : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CBreakableTileGroupComponent
 void fn_710075d2e4();
 void fn_71007542cc(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172791c90;
 void fn_710075d374();
 void fn_7100754448(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71727115d0;
@@ -51,15 +53,15 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bFakeHusks", 0x4c, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION("_m_eCollisionMaterial_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_eCollisionMaterial_GetterFunction", true);
-        fn->return_type = &g_unk_7172791c90;
+        fn->return_type = &base::reflection::TypeObject<game::logic::collision::EColMat>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710075d374);
     }
     DREAD_REFLECTED_FUNCTION("_m_eCollisionMaterial_SetterFunction")
         fn_7100754448(fn, "_m_eCollisionMaterial_SetterFunction");
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("eCollisionMaterial", true), &g_unk_7172791c90, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172791c90, 0);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("eCollisionMaterial", true), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Collision Material");
     DREAD_REFLECTED_FUNCTION("CreateNewTile") {
         fn->name = base::global::UnkStrId("CreateNewTile", true);

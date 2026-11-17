@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CNavMeshItemComponent
 void fn_71009be10c(UnkReflFunction* fn, const char* name);
@@ -30,7 +33,6 @@ void fn_71009be404(UnkReflFunction* fn, const char* name);
 void fn_71009be580(UnkReflFunction* fn, const char* name);
 void fn_71009be6fc(UnkReflFunction* fn, const char* name);
 extern base::reflection::CType g_unk_71727b6630;
-extern base::reflection::CType g_unk_71727bc110;
 namespace CNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -62,7 +64,7 @@ void refl_AddFields(CClass* cls) {
         fn_71009be6fc(fn, "SetStage");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("tForbiddenEdgesSpawnPoints", true), &g_unk_71727b6630, 0x188, -1, -1);
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Spawn points to set forbidden edges"));
-    field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

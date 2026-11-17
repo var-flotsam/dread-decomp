@@ -20,6 +20,9 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+enum class EDamageStrength : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EDamageStrength>::object asm("g_unk_7172730858");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -349,7 +352,6 @@ void fn_710078de9c();
 void fn_710078c8ac(UnkReflFunction* fn, const char* name);
 void fn_710078df2c();
 void fn_710078ca28(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7172730858;
 void fn_710078dfbc();
 void fn_710078cba4(UnkReflFunction* fn, const char* name);
 void fn_710078e048();
@@ -444,15 +446,15 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bForceReaction", (DefaultValue, false), (Description, "Force damage reaction [false]"));
     DREAD_REFLECTED_FUNCTION("_m_eDamageStrengthOnForcedReaction_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_eDamageStrengthOnForcedReaction_GetterFunction", true);
-        fn->return_type = &g_unk_7172730858;
+        fn->return_type = &base::reflection::TypeObject<EDamageStrength>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710078dfbc);
     }
     DREAD_REFLECTED_FUNCTION("_m_eDamageStrengthOnForcedReaction_SetterFunction")
         fn_710078cba4(fn, "_m_eDamageStrengthOnForcedReaction_SetterFunction");
-    UnkReflField* field10 = AddReflectedField(cls, CStrId("eDamageStrengthOnForcedReaction", true), &g_unk_7172730858, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field10->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172730858, 3);
+    UnkReflField* field10 = AddReflectedField(cls, CStrId("eDamageStrengthOnForcedReaction", true), &base::reflection::TypeObject<EDamageStrength>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field10->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EDamageStrength>::object, 3);
     field10->attrs.Add<const char*>(base::reflection::attr::Description(), "Override damage strength reaction when forcing reaction [DEFAULT]");
     DREAD_REFLECTED_FUNCTION("_m_bIgnoreInmune_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_bIgnoreInmune_GetterFunction", true);

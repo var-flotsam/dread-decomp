@@ -20,9 +20,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace media { enum class EMovieStatus : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<media::EMovieStatus>::object asm("g_unk_716e599948");
 
 // media::CMoviePlayer
-extern base::reflection::CType g_unk_716e599948;
 void fn_710021e50c();
 extern base::reflection::CType g_unk_7101d5af48;
 void fn_710021e558();
@@ -33,7 +35,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("Start") {
         fn->name = base::global::UnkStrId("Start", true);
-        fn->return_type = &g_unk_716e599948;
+        fn->return_type = &base::reflection::TypeObject<media::EMovieStatus>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710021e50c);
@@ -47,14 +49,14 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FUNCTION("Pause") {
         fn->name = base::global::UnkStrId("Pause", true);
-        fn->return_type = &g_unk_716e599948;
+        fn->return_type = &base::reflection::TypeObject<media::EMovieStatus>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710021e58c);
     }
     DREAD_REFLECTED_FUNCTION("Resume") {
         fn->name = base::global::UnkStrId("Resume", true);
-        fn->return_type = &g_unk_716e599948;
+        fn->return_type = &base::reflection::TypeObject<media::EMovieStatus>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_710021e5d8);

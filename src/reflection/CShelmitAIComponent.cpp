@@ -18,9 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+enum class EShellState : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EShellState>::object asm("g_unk_7172707020");
 
 // CShelmitAIComponent
-extern base::reflection::CType g_unk_7172707020;
 void fn_71006bcb7c();
 void fn_71006b9d50(UnkReflFunction* fn, const char* name);
 namespace CShelmitAIComponent {
@@ -28,15 +30,15 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_eShellState_GetterFunction") {
         fn->name = base::global::UnkStrId("_m_eShellState_GetterFunction", true);
-        fn->return_type = &g_unk_7172707020;
+        fn->return_type = &base::reflection::TypeObject<EShellState>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_71006bcb7c);
     }
     DREAD_REFLECTED_FUNCTION("_m_eShellState_SetterFunction")
         fn_71006b9d50(fn, "_m_eShellState_SetterFunction");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eShellState", true), &g_unk_7172707020, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172707020, 0);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eShellState", true), &base::reflection::TypeObject<EShellState>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EShellState>::object, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

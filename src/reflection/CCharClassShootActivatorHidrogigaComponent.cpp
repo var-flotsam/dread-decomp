@@ -18,6 +18,9 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace SLinkType { enum class ELinkType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CCharClassShootActivatorHidrogigaComponent
 namespace CCharClassShootActivatorHidrogigaComponent {
@@ -49,14 +52,13 @@ DREAD_REFLECTED_CLASS(CCharClassShootActivatorHidrogigaComponent, CCharClassShoo
 
 // CShootActivatorHidrogigaComponent
 extern base::reflection::CType g_unk_71727b6270;
-extern base::reflection::CType g_unk_71727bc110;
 namespace CShootActivatorHidrogigaComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpOtherActivator", true), &g_unk_71727b6270, 0x580, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpWaterNozzle", true), &g_unk_71727b6270, 0x5c0, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &g_unk_71727bc110, 1);
+    field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

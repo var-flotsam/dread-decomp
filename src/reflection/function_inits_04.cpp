@@ -11,6 +11,15 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/CPointerType.h"
+#include "base/reflection/TypeObject.h"
+namespace base::snd { enum class EAttenuationCurve : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EAttenuationCurve>::object asm("g_unk_7108b6cb28");
+namespace base::snd { enum class EPositionalType : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EPositionalType>::object asm("g_unk_7108b6cf48");
+namespace base::snd { enum class ESndPlayerId : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ESndPlayerId>::object asm("g_unk_7108b6d110");
+namespace base::snd { enum class ESndLogicId : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ESndLogicId>::object asm("g_unk_7108b6d270");
 namespace CBlackboard { class CSection; }
 extern template const base::reflection::CType* base::reflection::PointerType<CBlackboard::CSection*>::Get();
 class CCameraCtrl;
@@ -57,13 +66,9 @@ void fn_710103aa88();
 void fn_710103ab88();
 extern base::reflection::CType g_unk_71729fa4e8;
 void fn_710103ac6c();
-extern base::reflection::CType g_unk_7108b6d110;
 void fn_710103ad1c();
-extern base::reflection::CType g_unk_7108b6d270;
 void fn_710103ada8();
-extern base::reflection::CType g_unk_7108b6cb28;
 void fn_710103ae34();
-extern base::reflection::CType g_unk_7108b6cf48;
 void fn_710103aec0();
 void fn_710103af50();
 void fn_710103afe0();
@@ -396,7 +401,7 @@ void fn_71010328d0(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_710103ad1c);
-    fn->params.PushBack(&g_unk_7108b6d110);
+    fn->params.PushBack(&base::reflection::TypeObject<base::snd::ESndPlayerId>::object);
 }
 
 void fn_7101032a44(UnkReflFunction* fn, const char* name) {
@@ -405,7 +410,7 @@ void fn_7101032a44(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_710103ada8);
-    fn->params.PushBack(&g_unk_7108b6d270);
+    fn->params.PushBack(&base::reflection::TypeObject<base::snd::ESndLogicId>::object);
 }
 
 void fn_7101032bb8(UnkReflFunction* fn, const char* name) {
@@ -414,7 +419,7 @@ void fn_7101032bb8(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_710103ae34);
-    fn->params.PushBack(&g_unk_7108b6cb28);
+    fn->params.PushBack(&base::reflection::TypeObject<base::snd::EAttenuationCurve>::object);
 }
 
 void fn_7101032d2c(UnkReflFunction* fn, const char* name) {
@@ -423,7 +428,7 @@ void fn_7101032d2c(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_710103aec0);
-    fn->params.PushBack(&g_unk_7108b6cf48);
+    fn->params.PushBack(&base::reflection::TypeObject<base::snd::EPositionalType>::object);
 }
 
 void fn_7101032ea0(UnkReflFunction* fn, const char* name) {

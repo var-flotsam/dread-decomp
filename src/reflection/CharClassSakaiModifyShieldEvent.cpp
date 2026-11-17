@@ -18,17 +18,19 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+enum class EShieldAction : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EShieldAction>::object asm("g_unk_7172772bb0");
 
 // CharClassSakaiModifyShieldEvent
-extern base::reflection::CType g_unk_7172772bb0;
 namespace CharClassSakaiModifyShieldEvent {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Sakai shield");
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eAction", true), &g_unk_7172772bb0, 0xc, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &g_unk_7172772bb0, 2147483647);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("eAction", true), &base::reflection::TypeObject<EShieldAction>::object, 0xc, -1, -1);
+    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EShieldAction>::object, 2147483647);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

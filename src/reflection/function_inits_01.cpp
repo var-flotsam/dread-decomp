@@ -10,6 +10,11 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace engine::utils { enum class ELightPreset : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<engine::utils::ELightPreset>::object asm("g_unk_716e5992a0");
+enum class EDamageStrength : u32;
+template <> base::reflection::CType base::reflection::TypeObject<EDamageStrength>::object asm("g_unk_7172730858");
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 namespace base::global { class CRntString; }
@@ -31,7 +36,6 @@ extern base::reflection::CType g_unk_7101d5af48;
 void fn_710078dde0();
 void fn_710078dee8();
 void fn_710078df78();
-extern base::reflection::CType g_unk_7172730858;
 void fn_710078e004();
 void fn_710078e094();
 void fn_710078e11c();
@@ -133,7 +137,6 @@ void fn_71008ef4b8();
 void fn_71008ef574();
 void fn_71008ef630();
 void fn_71008ef6f4();
-extern base::reflection::CType g_unk_716e5992a0;
 void fn_71008ef7ac();
 void fn_71008ef860();
 void fn_71008ef924();
@@ -270,7 +273,7 @@ void fn_710078cba4(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_710078e004);
-    fn->params.PushBack(&g_unk_7172730858);
+    fn->params.PushBack(&base::reflection::TypeObject<EDamageStrength>::object);
 }
 
 void fn_710078cd18(UnkReflFunction* fn, const char* name) {
@@ -1125,7 +1128,7 @@ void fn_71008ee8b0(UnkReflFunction* fn, const char* name) {
     fn->field_0xb2 = 0x0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_71008ef7ac);
-    fn->params.PushBack(&g_unk_716e5992a0);
+    fn->params.PushBack(&base::reflection::TypeObject<engine::utils::ELightPreset>::object);
 }
 
 void fn_71008eea24(UnkReflFunction* fn, const char* name) {
