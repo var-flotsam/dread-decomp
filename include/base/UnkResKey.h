@@ -6,16 +6,10 @@
 // (base/UnkCountedResource.h). Names and layouts are placeholders inferred from the code.
 
 #include "base/UnkCountedResource.h"
+#include "base/UnkResType.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "types.h"
-
-// A resource type (as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp registers them): its name first.
-struct UnkResType {
-    base::global::CStrId name;
-    u8 pad_0x8[0x28];
-    const base::global::CStrId* extensions;  // 0x30, the file extensions this type loads
-};
 
 // Registered resource types, by what they load.
 extern const UnkResType g_unk_716e453ff8;  // models
