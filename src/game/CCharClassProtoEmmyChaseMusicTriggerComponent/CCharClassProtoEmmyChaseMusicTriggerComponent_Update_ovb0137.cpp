@@ -16,7 +16,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 using base::global::CRntString;
 
@@ -27,8 +27,6 @@ struct UnkActor;
 struct UnkStruct_710024fa0c;
 
 struct UnkEmmyRegistry_b55;
-
-// The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy).
 
 // The music manager, created on first use.
 static inline void* MusicManager() {
@@ -102,7 +100,7 @@ void fn_7100717108(UnkChaseMusicTrigger_ovb0137* self, f32 dt) {
         }
         if (!playing)
             continue;
-        fn_7100fd7b44(MusicManager(), UnkLoadingMask(2), UnkLoadingMask(0x80), -1.0f);
+        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(2), UnkMask(0x80), -1.0f);
         fn_710024fa0c(reinterpret_cast<UnkStruct_710024fa0c*>(self), false);
     }
 }

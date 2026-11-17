@@ -132,7 +132,7 @@ s32 fn_71010966a0(lua_State* L) {
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkTypedValue.h"
 #include "base/UnkStrPair.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 using base::global::CFilePathStrId;
 
@@ -348,33 +348,18 @@ s32 fn_7101082860(lua_State* L) {
     return 0;
 }
 
-struct UnkMaskStaticZero_b0163 {
-    u32 value;
-    UnkMaskStaticZero_b0163() : value(0) {}
-};
-
-inline const UnkMaskStaticZero_b0163& MaskNone_b0163() {
-    static UnkMaskStaticZero_b0163 s_value asm("g_unk_71726c4090");
-    return s_value;
-}
-
-inline u32 MaskAll_b0163() {
-    static u32 s_mask asm("g_unk_71726c4080") = ~MaskNone_b0163().value & 0x1ff;
-    return s_mask;
-}
-
 s32 fn_7101091420(lua_State* L) {
     bool flag = false;
     const char* name = nullptr;
     if (fn_71010c0ad0(L, 0, 1, "b|s", &flag, &name)) {
-        u32 bits = name ? 1u << fn_7101097578(name) : MaskAll_b0163();
+        u32 bits = name ? 1u << fn_7101097578(name) : UnkMaskOf<UnkMusicMaskTag>::All().bits;
         void* manager = g_unk_71726bc560;
         if (!manager) {
             manager = fn_71000839a0(0xf18, 0x3f);
             fn_7100fd3804(manager);
             g_unk_71726bc560 = static_cast<UnkMgr_0xf18*>(manager);
         }
-        fn_7100fd7b44(manager, UnkLoadingMask(flag ? 4 : 2), UnkLoadingMask(bits), -1.0f);
+        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(manager), UnkMask(flag ? 4 : 2), UnkMask(bits), -1.0f);
     }
     return 0;
 }

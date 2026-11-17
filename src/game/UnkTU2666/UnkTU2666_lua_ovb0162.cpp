@@ -47,7 +47,7 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/UnkTypedValue.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
@@ -213,23 +213,9 @@ s32 fn_710108d310(lua_State* L) {
     return 0;
 }
 
-// ---- music manager and sound manager ----
-template <class T>
-struct UnkLoadingMaskOf_b0162 {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
-        return s;
-    }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkLoadingMaskTag_b0162;
-
 s32 fn_7101077d50(lua_State*) {
     void* music = MusicManager();
-    fn_7100fd7b44(music, UnkLoadingMask(2), UnkLoadingMaskOf_b0162<UnkLoadingMaskTag_b0162>::All(), 0.0f);
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All(), 0.0f);
     UnkGameManager* manager = g_unk_7101d47310;
     fn_7100deac9c(manager, CRntString("MAINMENU"));
     return 0;
@@ -694,12 +680,12 @@ s32 fn_7101078950(lua_State* L) {
 
 template <class T>
 struct UnkLayerMaskOf_b0162 {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
+    static const UnkMask& None() {
+        static UnkMask s;
         return s;
     }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x7ff);
+    static const UnkMask& All() {
+        static UnkMask s(~None().bits & 0x7ff);
         return s;
     }
 };

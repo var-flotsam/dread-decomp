@@ -6,15 +6,15 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkMask.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 char* fn_71003696d4(char* self);
 void fn_7100df5cec(UnkGameManager* manager, void* target);
-struct UnkMgr_0xf18;
-void fn_7100fdb9e0(UnkMgr_0xf18* manager, u32 kind, u32 flag, f32 a, f32 b);
 extern void* g_unk_71726bc560;
 extern const u8 g_unk_710164b958;
 extern const u8 g_unk_7172769740;
@@ -36,27 +36,6 @@ inline UnkIdTable_l403c5c& IdTable_l403c5c() {
     static UnkIdTable_l403c5c s_table;
     return s_table;
 }
-
-// The channel mask as src/game/UnkLoadingScreen.cpp defines it, and its two guarded constants.
-struct UnkLoadingMask {
-    u32 bits;
-    UnkLoadingMask() : bits(0) {}
-    UnkLoadingMask(u32 b) : bits(b) {}
-    UnkLoadingMask(const UnkLoadingMask& o) : bits(o.bits) {}
-};
-template <class T>
-struct UnkLoadingMaskOf {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
-        return s;
-    }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkLoadingMaskTag;
-void fn_7100fd7b44(void* manager, UnkLoadingMask channels, UnkLoadingMask mask, f32 time);
 
 static inline void* MusicManager() {
     void* manager = g_unk_71726bc560;
@@ -96,7 +75,8 @@ void fn_7100403c5c(UnkSelf_l403c5c* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     if (manager->field_0x2238.data != g_unk_71726c40e8.data) {
         fn_7100df5cec(manager, &g_unk_71726c40e8);
-        fn_7100fd7b44(MusicManager(), UnkLoadingMask(4), UnkLoadingMaskOf<UnkLoadingMaskTag>::All(), 0.2f);
+        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(4),
+                      UnkMaskOf<UnkMusicMaskTag>::All(), 0.2f);
     }
     fn_7100fdb9e0(static_cast<UnkMgr_0xf18*>(MusicManager()), 7, 0, -1.0f, 0.0f);
 }

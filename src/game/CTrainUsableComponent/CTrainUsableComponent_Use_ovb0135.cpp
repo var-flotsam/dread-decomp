@@ -12,29 +12,14 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 struct UnkUsableComponent2_A6_b62;
 void fn_7100aa23d4(UnkUsableComponent2_A6_b62* self);
 
-// The channel mask as src/game/UnkLoadingScreen.cpp defines it (passed through a copy), and its two
-// guarded constants.
-template <class T>
-struct UnkLoadingMaskOf {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
-        return s;
-    }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkLoadingMaskTag;
-
 // A copy of `mask` with `bit` flipped.
-static inline UnkLoadingMask Flipped(const UnkLoadingMask& mask, u32 bit) {
-    return UnkLoadingMask((mask.bits & bit) ? mask.bits & ~bit : mask.bits | bit);
+static inline UnkMask Flipped(const UnkMask& mask, u32 bit) {
+    return UnkMask((mask.bits & bit) ? mask.bits & ~bit : mask.bits | bit);
 }
 
 // The music manager, created on first use.
@@ -78,8 +63,8 @@ void fn_7100a99ba4(UnkTrainUsable_ovb0135* self) {
     fn_7100aa23d4(reinterpret_cast<UnkUsableComponent2_A6_b62*>(self));
     UnkAnimationComponent* animation = self->owner->animation;
     if (animation && fn_710117ae38(animation, g_unk_7172752d38->animation, false)) {
-        fn_7100fd7b44(MusicManager(), UnkLoadingMask(0xc),
-                      Flipped(UnkLoadingMaskOf<UnkLoadingMaskTag>::All(), 0x100), 1.5f);
+        fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(MusicManager()), UnkMask(0xc),
+                      Flipped(UnkMaskOf<UnkMusicMaskTag>::All(), 0x100), 1.5f);
         fn_7100e015b8(g_unk_7101d47310);
     }
     UnkTrainPlayer_ovb0135* player = reinterpret_cast<UnkTrainPlayer_ovb0135*>(fn_7100dec788(g_unk_7101d47310));

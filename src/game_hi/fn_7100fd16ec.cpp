@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkPooledId.h"
 #include "game/CBossAIComponent.h"
+#include "game/UnkMask.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 #include "game/sound/CMusicManager.h"
@@ -14,29 +15,6 @@ struct UnkPathEntry_0x18 {
     u64 field_0x8;
     u64 field_0x10;
 };
-
-struct UnkMask {
-    u32 bits;
-    UnkMask() : bits(0) {}
-    UnkMask(u32 b) : bits(b) {}
-    UnkMask(const UnkMask& o) : bits(o.bits) {}
-};
-
-struct UnkKind {
-    u32 value;
-    UnkKind(u32 v) : value(v) {}
-    UnkKind(const UnkKind& o) : value(o.value) {}
-};
-
-inline const UnkMask& MaskNone() {
-    static UnkMask s;
-    return s;
-}
-
-inline const UnkMask& MaskAll() {
-    static UnkMask s(~MaskNone().bits & 0x1ff);
-    return s;
-}
 
 struct UnkRequest {
     u8 data[0xc];
@@ -78,8 +56,8 @@ void fn_7100fd16ec(UnkStruct_0x150* self, u32, u32) {
     if (!self->field_0x30)
         return;
     self->field_0x30 = false;
-    fn_7100fd7c3c(GetMgr(), 0, &self->field_0x88, self->field_0x94, UnkKind(2), MaskAll());
-    fn_7100fd7c3c(GetMgr(), 1, &self->field_0xe8, self->field_0xf4, UnkKind(2), MaskAll());
+    fn_7100fd7c3c(GetMgr(), 0, &self->field_0x88, self->field_0x94, UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All());
+    fn_7100fd7c3c(GetMgr(), 1, &self->field_0xe8, self->field_0xf4, UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All());
     self->field_0xb0.Clear();
     self->field_0x110.Clear();
     self->field_0xe0 = g_unk_7101d470e0;
