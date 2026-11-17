@@ -4,31 +4,14 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A file-path id released in two steps (decrement, then reload and test), as CStrId::Reset.
-struct UnkPathId_ovb0214 {
-    UnkStringData* data;
-
-    ~UnkPathId_ovb0214() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkPathRecord_ovb0214 {
-    UnkPathId_ovb0214 id;
+    UnkPathIdTwoStep id;
     u64 field_0x8;
     u32 field_0x10;
 };
@@ -159,19 +142,8 @@ struct UnkMapNode_ovb0214 {
     UnkMapNode_ovb0214* next;
 };
 
-// The pointer is cleared before the pool is made sure of.
-struct UnkEmptyId_ovb0214 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) UnkEmptyId_ovb0214() : data(nullptr) {
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 struct UnkNamedMap_ovb0214 {
-    UnkEmptyId_ovb0214 name;
+    UnkEmptyStrId name;
     base::UnkAllocator* allocator;
     u32 flags;
     u32 count;

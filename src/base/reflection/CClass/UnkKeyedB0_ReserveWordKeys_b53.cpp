@@ -4,25 +4,20 @@
 // (src/base/reflection/UnkKeyedB0_Reserve_b52.cpp) does for string-id keys: each record moved
 // (fn_7100097d18) and the old one destroyed (fn_71000e70c4), the keys copied through the aliasing
 // word type (the count and the key pointer are reloaded). Names are placeholders.
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU85.h"
 #include "types.h"
 
-typedef u64 __attribute__((may_alias)) UnkAliasWord_71000dc190;
+struct __attribute__((may_alias)) UnkAliasWord_71000dc190 {
+    u64 value;
+};
 
 struct UnkValue_71000dc190 {
     u8 data[0xb0];
 };
 
-struct UnkKeyedArray_71000dc190 {
-    UnkValue_71000dc190* values;
-    UnkAliasWord_71000dc190* keys;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkKeyedArray_71000dc190 = base::global::CRntSmallDictionary<UnkAliasWord_71000dc190, UnkValue_71000dc190>;
 
 struct UnkRecordB0_b44a1;  // the record as src/base/reflection/UnkReflKeyedB0_b44.cpp names it
 // As src/game_s1/fn_71000dbc34.cpp declares it.
@@ -33,7 +28,7 @@ void fn_7100097e4c(UnkKeyedArray_71000dc190* self, u32 capacity) {
         UnkValue_71000dc190* values = static_cast<UnkValue_71000dc190*>(
             self->allocator->vf_0x40((u64)capacity * sizeof(UnkValue_71000dc190), 8, self->flags));
         UnkAliasWord_71000dc190* keys = static_cast<UnkAliasWord_71000dc190*>(
-            self->allocator->vf_0x40((u64)capacity * sizeof(u64), 8, self->flags));
+            self->allocator->vf_0x40((u64)capacity * sizeof(UnkAliasWord_71000dc190), 8, self->flags));
         if (self->values) {
             UnkValue_71000dc190* src = self->values;
             UnkValue_71000dc190* dst = values;

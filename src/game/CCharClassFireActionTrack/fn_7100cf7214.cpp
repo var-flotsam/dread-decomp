@@ -9,11 +9,13 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CCharClassCooldownXBossDamageShapesTrack.h"
 #include "game/CCharClassFXControlTrack.h"
 #include "game/CCharClassForceBumpFXTrack.h"
 #include "game/CCharClassIgnoreBumpFXTrack.h"
+#include "game/CCharClassModifyColliderStateBaseTrack.h"
 #include "game/CCharClassModifyDamageTrack.h"
 #include "game/CCharClassToRunNearWallTrack.h"
 #include "types.h"
@@ -430,24 +432,12 @@ void fn_7100d223f0(UnkRootIdArrayIdWord<g_unk_7101aa7d00>* self) {
     new (self) UnkRootIdArrayIdWord<g_unk_7101aa7d00>(&g_unk_71727ac0f8);
 }
 
-// Two ids set to the empty id directly (the pool is created first if there is none yet).
-struct UnkDirectEmptyId {
-    base::global::UnkStringData* data;
-
-    __attribute__((always_inline)) UnkDirectEmptyId() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            base::global::UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 template <void** Vtable>
 struct UnkRootTwoDirectEmptyIds : UnkRoot {
-    UnkDirectEmptyId ids[2];
+    UnkEmptyStrId ids[2];
 
     __attribute__((always_inline)) explicit UnkRootTwoDirectEmptyIds(UnkClass* cls)
-        : UnkRoot(cls), ids{(SetVtable(Vtable), UnkDirectEmptyId()), UnkDirectEmptyId()} {}
+        : UnkRoot(cls), ids{(SetVtable(Vtable), UnkEmptyStrId()), UnkEmptyStrId()} {}
 };
 
 extern UnkClass g_unk_7172781298 __attribute__((visibility("hidden")));
@@ -469,8 +459,6 @@ struct UnkIdArrayIdWordGroup {
     __attribute__((always_inline)) UnkIdArrayIdWordGroup()
         : id("", true), values(Flags), id_0x30("", true), field_0x38(0) {}
 };
-
-extern void* g_unk_7101aa7cb0[];
 
 struct UnkRootSixGroups : UnkRoot {
     UnkIdArrayIdWordGroup<5> field_0x18;

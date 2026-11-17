@@ -52,7 +52,7 @@ void fn_710061c9ec(base::global::CRntVector<Entry>* self, const Entry* value) {
     u32 old_capacity = self->capacity;
     u32 new_capacity = old_capacity;
     if (old_capacity <= n && self->step != 0)
-        new_capacity = (n / self->step + 1) * self->step;
+        new_capacity = self->GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }
@@ -110,7 +110,7 @@ void fn_710061cd0c(base::global::CRntVector<Entry>* self, const Entry* value, u3
     }
     u32 cap = self->capacity;
     if (cap <= n && self->step != 0) {
-        u32 grown = (n / self->step + 1) * self->step;
+        u32 grown = self->GrownCapacity(n);
         if (cap < grown) {
             Entry* p = MoveTo(self, grown);
             n = self->count;

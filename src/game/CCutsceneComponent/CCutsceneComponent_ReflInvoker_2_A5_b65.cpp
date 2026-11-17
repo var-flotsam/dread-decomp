@@ -2,6 +2,7 @@
 // the first names (fn_710106b284 on the object at +0x200 of the target) and stores the second in it
 // (+8); answers the empty status {0, 0, 2, 1}. Names are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU2661.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
@@ -15,8 +16,6 @@ struct UnkCutsceneTarget2_A5_b65 {
     u8 pad_0x0[0x200];
     void* field_0x200;
 };
-
-UnkCutsceneEntry_A5_b65* fn_710106b284(void* object, u32 id);
 
 static inline __attribute__((always_inline)) void* ArgPtr2_A5_b65(UnkReflValue* arg) {
     if (arg->field_0x14 == 1 || *reinterpret_cast<const u64*>(arg->type + 0x18) > 8)

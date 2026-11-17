@@ -29,7 +29,6 @@ struct UnkMorphBallLauncher_b57;
 struct UnkModelData;
 
 void fn_71009f194c(char*);
-void fn_7100219e18(UnkRenderManager*, UnkModel*, bool);
 
 struct UnkAreaFXDef_ovb0081 : UnkReflObject {
     u8 pad_0x8[0x50];

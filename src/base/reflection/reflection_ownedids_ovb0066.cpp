@@ -3,6 +3,7 @@
 // assigning a pair that either holds its key and set or refers to them.
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "base/global/CRntVectorReloading.h"
 #include "game/UnkTU2577.h"
 #include "types.h"
 
@@ -37,17 +38,8 @@ struct UnkOwnedIds_ovb0066 {
     }
 };
 
-struct UnkOwnedIdsArray_ovb0066 {
-    UnkOwnedIds_ovb0066* data;
-    union {  // reloaded after the elements move
-        u32 count;
-    };
-    u32 capacity;
-    u8 unk_0x10[0x10];
-    base::UnkAllocator* allocator;  // 0x20
-};
-
-void fn_7100fa0b50(UnkOwnedIdsArray_ovb0066* self) {
+// The count is reloaded after each element is destroyed (base/global/CRntVectorReloading.h).
+void fn_7100fa0b50(base::global::CRntVectorReloading<UnkOwnedIds_ovb0066>* self) {
     if (!self->data)
         return;
     for (u64 i = 0; i < self->count; i++)

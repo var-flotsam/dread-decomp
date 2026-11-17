@@ -3,18 +3,10 @@
 #include "base/UnkCollectionIter.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-struct UnkTU2640MovedId {
-    UnkStringData* data;
-
-    UnkTU2640MovedId(UnkTU2640MovedId&& other) {
-        data = other.data;
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
 
 struct UnkTU2640Array {
     void* data;
@@ -35,12 +27,12 @@ struct UnkTU2640Array {
 };
 
 struct UnkTU2640Record {
-    UnkTU2640MovedId id;
+    UnkMovedStrId id;
     UnkTU2640Array array;  // 0x8
 
     UnkTU2640Record(UnkTU2640Record&& other) = default;
 };
 
 void fn_7101002be8(void* dst, const void* src) {
-    base::refl_IterValueMove<UnkTU2640Record, UnkTU2640MovedId>(dst, src);
+    base::refl_IterValueMove<UnkTU2640Record, UnkMovedStrId>(dst, src);
 }

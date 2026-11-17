@@ -3,8 +3,9 @@
 // guard}, its nodes also linked in insertion order (head +0x40, tail +0x38). fn_7100b1e0d0 destroys
 // every handler and list and empties the map; fn_7100b1e3fc runs the handlers whose mask meets the event's, dropping the ones whose guard
 // says they are done. Names and layouts are placeholders.
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkEvent_b257f;
 
@@ -36,44 +37,11 @@ struct UnkNode_b257f {
     UnkNode_b257f* next;
 };
 
-struct UnkList_b257f {
-    void** vtable;
-    // A union member: no type-based alias info, so the count is reloaded after the links are stored.
-    union {
-        u32 count;  // 0x8
-    };
-    UnkNode_b257f* head;  // 0x10
-    UnkNode_b257f* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
-};
+using UnkList_b257f = base::UnkVtableList<UnkNode_b257f>;
 
-struct UnkMapNode_b257f {
-    u32 key;
-    UnkList_b257f* value;  // 0x8
-    UnkMapNode_b257f* next_all;  // 0x10
-    UnkMapNode_b257f* prev_all;  // 0x18
-    UnkMapNode_b257f* next;  // 0x20: the bucket's chain
-};
-
-struct UnkMap_b257f {
-    base::UnkAllocator* allocator;
-    u32 flags;  // 0x8
-    u32 count;  // 0xc
-    UnkMapNode_b257f** buckets;  // 0x10
-    u32 field_0x18;
-    u32 bucket_count;  // 0x1c
-    u8 pad_0x20[0x18];
-    UnkMapNode_b257f* tail;  // 0x38
-    UnkMapNode_b257f* head;  // 0x40
-
-    __attribute__((always_inline)) UnkMapNode_b257f** Bucket(u32 key) {
-        if (!field_0x18)
-            return nullptr;
-        u32 index = key % bucket_count;
-        return &buckets[index];
-    }
-};
+// The handler lists by event key.
+using UnkMap_b257f = base::global::CRntDictionary<u32, UnkList_b257f*>;
+using UnkMapNode_b257f = UnkMap_b257f::TNode;
 
 struct UnkEventSource_b257f {
     u8 pad_0x0[0x10];
@@ -100,7 +68,7 @@ static inline __attribute__((always_inline)) void DestroyItem_b257f(UnkItem_b257
 }
 
 void fn_7100b1e0d0(UnkMap_b257f* self) {
-    for (UnkMapNode_b257f* node = self->head; node; node = node->next_all) {
+    for (UnkMapNode_b257f* node = self->first; node; node = node->next) {
         UnkList_b257f* list = node->value;
         for (UnkNode_b257f* it = list->head; it; it = it->next) {
             if (it->item) {
@@ -118,17 +86,7 @@ void fn_7100b1e0d0(UnkMap_b257f* self) {
         list->tail = nullptr;
         reinterpret_cast<UnkObj_b257f*>(list)->vf_0x8();
     }
-    if (self->count) {
-        for (UnkMapNode_b257f* node = self->head; node;) {
-            UnkMapNode_b257f* next = node->next_all;
-            self->allocator->vf_0x48(node);
-            node = next;
-        }
-        __builtin_memset(self->buckets, 0, (u64)self->bucket_count * 8);
-        self->count = 0;
-        self->tail = nullptr;
-        self->head = nullptr;
-    }
+    self->Clear();
 }
 
 void fn_7100b1e3fc(UnkMap_b257f* self, UnkEvent_b257f* event) {
@@ -136,14 +94,15 @@ void fn_7100b1e3fc(UnkMap_b257f* self, UnkEvent_b257f* event) {
         return;
     if (!event->source || !event->source->field_0x10)
         return;
-    if (!self->field_0x18)
+    if (!self->buckets.count)
         return;
-    UnkMapNode_b257f** slot = self->Bucket(event->key);
+    u32 index = event->key % self->buckets.capacity;
+    UnkMapNode_b257f** slot = &self->buckets.data[index];
     if (!slot)
         return;
     UnkMapNode_b257f* found = *slot;
     while (found && found->key != event->key)
-        found = found->next;
+        found = found->bucket_next;
     if (!found)
         return;
     UnkList_b257f* list = found->value;

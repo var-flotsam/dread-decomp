@@ -1,5 +1,6 @@
 // CBreakableTileGroupComponent: a reflected function's invoker (fn_710075d5cc) taking two ints, a pair of
 // ints and a string id; the result of fn_7100758b14 is answered by reference. Names and layouts are placeholders.
+#include "base/UnkPooledStrId.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
 #include "types.h"
@@ -17,10 +18,6 @@ struct UnkIntPair_l75d5cc {
     u32 second;
 };
 
-struct UnkRawId_l75d5cc {
-    UnkStringData* data;
-};
-
 void* fn_7100758b14(void* self, u32 a, u32 b, const UnkIntPair_l75d5cc* __attribute__((noescape)) pair, const CStrId* __attribute__((noescape)) name);
 
 UnkReflValue fn_710075d5cc(char* obj, UnkReflValue* const* args) {
@@ -33,7 +30,7 @@ UnkReflValue fn_710075d5cc(char* obj, UnkReflValue* const* args) {
     pair.first = src->first;
     pair.second = src->second;
     // A copy of the string id, released by hand: its data pointer stays in a register across the call.
-    UnkRawId_l75d5cc name = *base::reflection::refl_ArgValue<UnkRawId_l75d5cc>(&a[3]);
+    base::UnkPooledString name = *base::reflection::refl_ArgValue<base::UnkPooledString>(&a[3]);
     UnkStringData* data = name.data;
     if (&g_unk_7101d47108->empty != data)
         ++data->ref_count;

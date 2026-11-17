@@ -2,24 +2,18 @@
 // global string id into nine id members, sets a flag and two words (0xdac and 5).
 #include <new>
 
+#include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"  // g_unk_7101d470e0, the shared id
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassLifeComponent.h"
 #include "types.h"
 
-// A pooled string's record with a plain reference count (CStrId.h makes the count a union
-// member, which would force reloads the original doesn't have), so the copy is done by hand.
-struct UnkStringData_71008bca30 {
-    u8 unk_0x0[0x8];
-    s32 ref_count;
-};
-
 struct UnkStrId_71008bca30 {
-    UnkStringData_71008bca30* data;
+    base::global::UnkStringData* data;
     // CStrId's copy constructor: retains unless the string is the pool's empty one.
     explicit UnkStrId_71008bca30(base::global::UnkStringData* d)
-        : data(reinterpret_cast<UnkStringData_71008bca30*>(d)) {
-        if (reinterpret_cast<UnkStringData_71008bca30*>(&g_unk_7101d47108->empty) != data)
+        : data(d) {
+        if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
     }
 };

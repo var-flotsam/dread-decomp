@@ -139,7 +139,7 @@ static inline __attribute__((always_inline)) void PushBackCopyOol(UnkElements* v
     u32 old_capacity = v->capacity;
     u32 new_capacity = old_capacity;
     if (old_capacity <= n && v->step != 0)
-        new_capacity = (n / v->step + 1) * v->step;
+        new_capacity = v->GrownCapacity(n);
     if ((s32)n >= (s32)new_capacity)
         for (;;) {
         }
@@ -178,7 +178,7 @@ static inline __attribute__((always_inline)) void InsertOol(UnkElements* v, UnkE
     if (n == index) {
         u32 new_capacity = cap;
         if (cap <= n && v->step != 0)
-            new_capacity = (index / v->step + 1) * v->step;
+            new_capacity = v->GrownCapacity(index);
         if ((s32)new_capacity <= (s32)index)
             for (;;) {
             }
@@ -187,7 +187,7 @@ static inline __attribute__((always_inline)) void InsertOol(UnkElements* v, UnkE
     } else {
         u32 new_capacity = cap;
         if (cap <= n && v->step != 0)
-            new_capacity = (n / v->step + 1) * v->step;
+            new_capacity = v->GrownCapacity(n);
         fn_71002cd854(v, new_capacity);
         for (u32 i = v->count - 1; i >= index; --i) {
             UnkElement* q = &v->data[i];

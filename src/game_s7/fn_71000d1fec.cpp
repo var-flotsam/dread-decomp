@@ -9,6 +9,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU108.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkTU365.h"
@@ -308,22 +309,7 @@ static inline UnkBoundValueString* Assign(UnkBoundValueString* self, const UnkBo
 }
 
 // A pair of an id and two arrays, set to refer to another pair's referents.
-struct UnkPairReleasedStrId {
-    base::global::UnkStringData* data;
-
-    ~UnkPairReleasedStrId() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
+using UnkPairReleasedStrId = UnkStrIdTwoStep;
 
 struct UnkVectorPair {
     UnkFreedVector<u32> first;

@@ -6,6 +6,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkRenderPassSlots.h"
 #include "types.h"
 
@@ -15,15 +16,8 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A sound's id: moved out of with the empty id left behind.
-struct UnkTU2604SoundId {
-    UnkStringData* data;
-
-    UnkTU2604SoundId(UnkTU2604SoundId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-};
-
 struct UnkTU2604Sound {  // CEnvironmentSoundData::SSound
-    UnkTU2604SoundId id;
+    UnkMovedStrId id;
     u64 field_0x8;
     u64 field_0x10;
     u32 field_0x18;

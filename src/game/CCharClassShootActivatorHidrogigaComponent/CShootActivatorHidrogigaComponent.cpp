@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "game/UnkTU437.h"
+#include "game/UnkTU883.h"
 #include "types.h"
 
 struct UnkHidrogigaShootActivator {
@@ -20,7 +21,6 @@ struct UnkHidrogigaShootActivator {
 };
 
 void fn_7100890ae4(UnkHidrogigaShootActivator* self);
-char* fn_71005c1008(u64 id);
 using UnkRef = base::UnkRefPtrMember;
 
 void fn_7100897298(UnkHidrogigaShootActivator* self) {

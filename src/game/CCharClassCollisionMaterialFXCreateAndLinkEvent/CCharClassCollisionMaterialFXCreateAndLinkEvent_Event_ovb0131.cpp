@@ -8,6 +8,7 @@
 // layouts are placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "game/CCharClassCollisionMaterialFXCreateAndLinkEvent.h"
 #include "types.h"
@@ -15,36 +16,17 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-template <UnkStringPool** Pool>
-struct UnkReleasedId_ovb0131 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedId_ovb0131() {
-        if (UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-using UnkReleasedStrId_ovb0131 = UnkReleasedId_ovb0131<&g_unk_7101d47108>;
-using UnkReleasedPathId_ovb0131 = UnkReleasedId_ovb0131<&g_unk_7101d47200>;
 
 struct UnkMaterialFXEvent_ovb0131 {
     char* vtable;
     u8 unk_0x8[0x8];
-    UnkReleasedStrId_ovb0131 a;      // 0x10
+    UnkStrIdTwoStep a;      // 0x10
     u8 unk_0x18[0x8];
-    UnkReleasedPathId_ovb0131 path;  // 0x20
+    UnkPathIdTwoStep path;  // 0x20
     u8 unk_0x28[0x8];
-    UnkReleasedStrId_ovb0131 b;      // 0x30
+    UnkStrIdTwoStep b;      // 0x30
     u8 unk_0x38[0x28];
-    UnkReleasedStrId_ovb0131 c;      // 0x60
+    UnkStrIdTwoStep c;      // 0x60
 
     __attribute__((always_inline)) ~UnkMaterialFXEvent_ovb0131() { vtable = g_unk_7101aa08c8 + 0x10; }
 };

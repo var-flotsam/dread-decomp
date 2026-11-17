@@ -4,6 +4,7 @@
 // with an array of id/word records.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/global/timeline/CTrack.h"
 #include "game/CCharClassCooldownXBossDamageShapesTrack.h"
 #include "game/CCharClassForceBumpFXTrack.h"
@@ -14,27 +15,6 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// A string id (or, with the file-path pool, a path id) whose destructor decrements and tests in two
-// steps (the original reloads the id after the decrement).
-template <UnkStringPool** Pool>
-struct UnkReleasedStrIdT {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrIdT() {
-        if (UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-using UnkReleasedStrId = UnkReleasedStrIdT<&g_unk_7101d47108>;
 
 template <class T>
 struct UnkReleasedArray {
@@ -61,8 +41,8 @@ template <void** Vtable>
 struct UnkIdListHolder {
     void** vtable;
     u8 unk_0x8[0x10];
-    UnkReleasedStrId id;
-    UnkReleasedArray<UnkReleasedStrId> ids;
+    UnkStrIdTwoStep id;
+    UnkReleasedArray<UnkStrIdTwoStep> ids;
 
     __attribute__((always_inline)) ~UnkIdListHolder() { vtable = Vtable + 2; }
 };
@@ -77,12 +57,12 @@ void fn_7100c1db38(UnkIdListHolder<g_unk_7101aa3030>* self) { Destroy(self); }
 void fn_7100c274e8(UnkIdListHolder<g_unk_7101aa3440>* self) { Destroy(self); }
 
 struct UnkIdWord {
-    UnkReleasedStrId id;
+    UnkStrIdTwoStep id;
     u64 field_0x8;
 };
 
 struct UnkIdWordList {
-    UnkReleasedStrId key;
+    UnkStrIdTwoStep key;
     UnkReleasedArray<UnkIdWord> entries;
 };
 
@@ -92,11 +72,11 @@ void fn_7100ea8cd4(UnkIdWordList* self) { self->~UnkIdWordList(); }
 // The same with path ids (the entries' after a word), in another unit.
 struct UnkPathIdWord {
     u64 field_0x0;
-    UnkReleasedStrIdT<&g_unk_7101d47200> id;
+    UnkPathIdTwoStep id;
 };
 
 struct UnkPathIdWordList {
-    UnkReleasedStrIdT<&g_unk_7101d47200> key;
+    UnkPathIdTwoStep key;
     UnkReleasedArray<UnkPathIdWord> entries;
 };
 
@@ -107,9 +87,9 @@ template <void** Vtable>
 struct UnkIdListIdHolder {
     void** vtable;
     u8 unk_0x8[0x10];
-    UnkReleasedStrId id;
-    UnkReleasedArray<UnkReleasedStrId> ids;
-    UnkReleasedStrId id_0x48;
+    UnkStrIdTwoStep id;
+    UnkReleasedArray<UnkStrIdTwoStep> ids;
+    UnkStrIdTwoStep id_0x48;
     u32 field_0x50;
 
     __attribute__((always_inline)) ~UnkIdListIdHolder() { vtable = Vtable + 2; }

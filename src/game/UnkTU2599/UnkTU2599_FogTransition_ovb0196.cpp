@@ -7,10 +7,12 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCollectionIter.h"
 #include "base/UnkStrIdValueVec.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU2599.h"
 #include "types.h"
 
@@ -47,13 +49,13 @@ template <class T>
 static inline __attribute__((always_inline)) void* CopyA(T* self, const T* other) {
     if (self != other) {
         self->field_0x0 = other->field_0x0;
-        fn_710007b518(&self->field_0x4, &other->field_0x4);
+        Assign(self->field_0x4, other->field_0x4);
         u32 t = other->field_0x1c;
         self->field_0x14 = other->field_0x14;
         self->field_0x1c = t;
         self->field_0x20 = other->field_0x20;
         self->field_0x24 = other->field_0x24;
-        fn_710007b518(&self->field_0x28, &other->field_0x28);
+        Assign(self->field_0x28, other->field_0x28);
         self->field_0x38 = other->field_0x38;
     }
     return self;
@@ -96,14 +98,14 @@ template <class T>
 static inline __attribute__((always_inline)) void* CopyB(T* self, const T* other) {
     if (self != other) {
         self->field_0x0 = other->field_0x0;
-        fn_710007b518(&self->field_0x4, &other->field_0x4);
+        Assign(self->field_0x4, other->field_0x4);
         u32 t = other->field_0x1c;
         self->field_0x14 = other->field_0x14;
         self->field_0x1c = t;
         self->field_0x20 = other->field_0x20;
         self->field_0x24 = other->field_0x24;
         self->field_0x28 = other->field_0x28;
-        fn_710007b518(&self->field_0x2c, &other->field_0x2c);
+        Assign(self->field_0x2c, other->field_0x2c);
         u32 last = other->field_0x3c[4];
         u64 hi, lo;
         __builtin_memcpy(&hi, &other->field_0x3c[2], 8);
@@ -310,59 +312,26 @@ struct CEnvironmentData;
 void fn_7100f42c44(void*, void*);
 void fn_7100f44fd8(env_move::CEnvironmentData* self, env_move::CEnvironmentData* other);
 
-struct UnkEnvNode_b0196 {
-    base::global::CStrId key;
-    u8 value[0x3a8];
-    UnkEnvNode_b0196* next;   // 0x3b0: the list of all nodes
-    UnkEnvNode_b0196* prev;   // 0x3b8
-    UnkEnvNode_b0196* chain;  // 0x3c0: the next node in the bucket
+// The environment data a map node holds (0x3a8 bytes), copied and moved out of line.
+struct UnkEnvValue_b0196 {
+    u8 bytes[0x3a8];
 
-    // The list links, through accessors (their stores may alias the map's ends).
-    UnkEnvNode_b0196*& Next() { return next; }
-    UnkEnvNode_b0196*& Prev() { return prev; }
-};
-static_assert(sizeof(UnkEnvNode_b0196) == 0x3c8, "UnkEnvNode_b0196 layout");
-
-struct UnkEnvMap_b0196 {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    UnkEnvNode_b0196** buckets;  // 0x10
-    u32 bucket_count;            // 0x18
-    u32 bucket_capacity;         // 0x1c
-    u8 pad_0x20[0x18];
-    UnkEnvNode_b0196* tail;  // 0x38
-    UnkEnvNode_b0196* head;  // 0x40
+    UnkEnvValue_b0196(const UnkEnvValue_b0196& other) { fn_7100f42c44(bytes, const_cast<u8*>(other.bytes)); }
+    UnkEnvValue_b0196(UnkEnvValue_b0196&& other) {
+        fn_7100f44fd8(reinterpret_cast<env_move::CEnvironmentData*>(bytes),
+                      reinterpret_cast<env_move::CEnvironmentData*>(other.bytes));
+    }
 };
 
-static inline u32 Hash(const base::global::CStrId* id) {
-    const u32* h = reinterpret_cast<const u32*>(reinterpret_cast<const char*>(id->data) + 0x30);
-    return h[0] ^ h[1];
+// The environment data by name.
+using UnkEnvMap_b0196 = base::global::CRntDictionary<base::global::CStrId, UnkEnvValue_b0196>;
+static_assert(sizeof(UnkEnvMap_b0196::TNode) == 0x3c8, "UnkEnvMap_b0196 node layout");
+
+// The collection's add by copy and add by move.
+void fn_7100f79314(UnkEnvMap_b0196* self, const base::global::CStrId* key, const UnkEnvValue_b0196* value) {
+    self->Insert(*key, *value);
 }
 
-#define ENV_MAP_INSERT(addr, CONSTRUCT)                                                      \
-    void fn_##addr(UnkEnvMap_b0196* self, const base::global::CStrId* key, void* value) {    \
-        UnkEnvNode_b0196** slot = nullptr;                                                   \
-        if (self->bucket_count) {                                                                        u32 h = Hash(key);                                                                           u32 idx = h % self->bucket_capacity;                                                         slot = &self->buckets[idx];                                                              }                                                                                            UnkEnvNode_b0196* chain = *slot;                                                     \
-        auto* n = static_cast<UnkEnvNode_b0196*>(self->allocator->vf_0x40(0x3c8, 8, self->flags)); \
-        if (n) {                                                                             \
-            new (&n->key) base::global::CStrId(*key);                                        \
-            CONSTRUCT;                                                                       \
-            n->chain = nullptr;                                                              \
-            n->prev = nullptr;                                                               \
-            n->next = nullptr;                                                               \
-        }                                                                                    \
-        n->chain = chain;                                                                    \
-        *slot = n;                                                                           \
-        if (!self->head) {                                                                   \
-            self->head = n;                                                                  \
-        } else if (self->tail) {                                                             \
-            n->Prev() = self->tail;                                                            \
-            self->tail->Next() = n;                                                            \
-        }                                                                                    \
-        self->tail = n;                                                                      \
-        ++self->count;                                                                       \
-    }
-
-ENV_MAP_INSERT(7100f79314, fn_7100f42c44(n->value, value))
-ENV_MAP_INSERT(7100f79420, fn_7100f44fd8(reinterpret_cast<env_move::CEnvironmentData*>(n->value), static_cast<env_move::CEnvironmentData*>(value)))
+void fn_7100f79420(UnkEnvMap_b0196* self, const base::global::CStrId* key, UnkEnvValue_b0196* value) {
+    self->Insert(*key, static_cast<UnkEnvValue_b0196&&>(*value));
+}

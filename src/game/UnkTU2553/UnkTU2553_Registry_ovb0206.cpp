@@ -5,6 +5,7 @@
 // steps (batch b0206). Each function is introduced by a comment. Names and layouts are placeholders.
 #include <stdio.h>
 #include <stdlib.h>
+#include "base/UnkVtableList.h"
 
 #include <nn/os.h>
 
@@ -57,6 +58,7 @@
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
+#include "base/UnkLinkedList.h"
 
 // ---- fn_7100df5cec ----
 // CGameManager::CTunableGameManager's unit: replaces the id at +0x2238; when the old one was not empty the
@@ -158,29 +160,11 @@ struct UnkNode_decc8c {
     UnkNode_decc8c* next;
 };
 
-struct UnkNodeList_decc8c {
-    u32 count;
-    UnkNode_decc8c* head;
-    UnkNode_decc8c* tail;
-    base::UnkAllocator* allocator;
-
-    void Clear() {
-        for (UnkNode_decc8c* node = head; node;) {
-            UnkNode_decc8c* next = node->next;
-            allocator->vf_0x48(node);
-            node = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
-    }
-};
-
 struct UnkGameManagerLists_decc8c {
     u8 pad_0x0[0x2770];
-    UnkNodeList_decc8c taken;  // 0x2770
-    u8 pad_0x2790[0x50];
-    UnkNodeList_decc8c pending;  // 0x27e0
+    base::UnkLinkedList<UnkNode_decc8c> taken;  // 0x2770
+    u8 pad_0x2798[0x48];
+    base::UnkLinkedList<UnkNode_decc8c> pending;  // 0x27e0
 };
 static_assert(__builtin_offsetof(UnkGameManagerLists_decc8c, pending) == 0x27e0, "layout");
 
@@ -224,18 +208,8 @@ void fn_7100decc8c(UnkGameManager* self) {
 // list, and zeroes the count. Names and layouts are placeholders.
 using base::global::CStrId;
 
-struct UnkRefList_de92e8 {
-    UnkRefObject** data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
 struct UnkRefListMap_de92e8 {
-    UnkRefList_de92e8* values;
+    base::global::CRntVector<UnkRefObject*>* values;
     CStrId* keys;
     u32 count;
 };
@@ -247,7 +221,7 @@ void fn_7100de92e8(UnkRefListMap_de92e8* self) {
     }
     if (self->values && self->count) {
         for (u64 i = 0; i < self->count; ++i) {
-            UnkRefList_de92e8* list = &self->values[i];
+            base::global::CRntVector<UnkRefObject*>* list = &self->values[i];
             if (list->data) {
                 for (u64 j = 0; j < list->count; ++j) {
                     if (UnkRefObject* object = list->data[j]) {
@@ -331,14 +305,7 @@ struct UnkListedPath {
     UnkStrIdMemberOf<g_unk_7101d47200> id;
     UnkListedPath* next;
 };
-struct UnkFilePathList {
-    void** vtable;
-    u32 count;
-    UnkListedPath* head;
-    UnkListedPath* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;
@@ -612,7 +579,6 @@ using base::global::CStrId;
 
 // The user data's owner, created on first use (as src/game/CBossRushManager.cpp has it).
 struct UnkUserDataOwner;
-extern u8 g_unk_71727be8a8[];
 
 static inline UnkUserDataOwner* GetOwner_e04b00() {
     if (!g_unk_7101d47308) {
@@ -834,13 +800,6 @@ struct UnkEntityNode_de6ee8 {
     UnkEntityNode_de6ee8* next;
 };
 
-struct UnkEntityList_de6ee8 {
-    u32 count;
-    UnkEntityNode_de6ee8* head;
-    UnkEntityNode_de6ee8* tail;
-    base::UnkAllocator* allocator;
-};
-
 struct UnkCharClass_de6ee8 {
     virtual const CClass* vf_0x0();
     u8 pad_0x8[0x128];
@@ -859,7 +818,7 @@ struct UnkManagerView_de6ee8 {
     u8 pad_0x0[0x25f8];
     u8 field_0x25f8[0x48];
     u8 field_0x2640[0xc0];
-    UnkEntityList_de6ee8 field_0x2700;
+    base::UnkLinkedList<UnkEntityNode_de6ee8> field_0x2700;
 };
 static_assert(__builtin_offsetof(UnkManagerView_de6ee8, field_0x2700) == 0x2700, "layout");
 
@@ -887,15 +846,8 @@ void fn_7100de6ee8(UnkGameManager* self) {
         if (!fn_710119dd94(reinterpret_cast<UnkActorTable_b43a3*>(cache), reinterpret_cast<UnkActorWithDef_b43a3*>(object)))
             fn_7100232124(reinterpret_cast<UnkBoundObj*>(object));
     }
-    UnkEntityList_de6ee8& list = view->field_0x2700;
-    for (UnkEntityNode_de6ee8* node = list.head; node;) {
-        UnkEntityNode_de6ee8* next = node->next;
-        list.allocator->vf_0x48(node);
-        node = next;
-    }
-    list.count = 0;
-    list.head = nullptr;
-    list.tail = nullptr;
+    base::UnkLinkedList<UnkEntityNode_de6ee8>& list = view->field_0x2700;
+    list.Clear();
 }
 
 // ---- fn_7100dfe36c ----

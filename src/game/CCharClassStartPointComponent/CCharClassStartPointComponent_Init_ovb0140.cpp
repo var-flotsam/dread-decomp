@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "base/reflection/UnkReflTypeDtors.h"
+#include "game/CCharClassStartPointComponent.h"
 #include "game/CEmmyProtoAIComponent.h"
 
 using namespace unk_static_init;
@@ -20,7 +21,6 @@ extern char g_unk_7172a0a4a0[];
 extern char g_unk_7172a0a4a1[];
 extern UnkEnumType g_unk_7172a0a4a8;
 extern char g_unk_7172a0a5e0[];
-extern UnkPropertyEx<> g_unk_7172a0a5e8;
 void fn_710116b8ec(UnkEnumType* type, const CStrId& name, const base::reflection::CType*, void*, void (*)(), void*);
 void fn_710116b770();
 

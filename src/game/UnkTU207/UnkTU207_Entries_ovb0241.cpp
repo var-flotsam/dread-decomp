@@ -11,6 +11,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU207.h"
 #include "game/msapi/material/SAlpha.h"
 #include "types.h"
@@ -130,7 +131,7 @@ void fn_710016ac04(UnkController_u207* self, UnkTarget_ac04* target, const CStrI
     u32 cap = v->capacity;
     u32 grown = cap;
     if (cap <= n && v->step != 0)
-        grown = (n / v->step + 1) * v->step;
+        grown = v->GrownCapacity(n);
     if ((s32)n >= (s32)grown)
         for (;;) {
         }
@@ -185,7 +186,7 @@ void fn_710016aa9c(UnkController_u207* self, UnkTarget_aa9c* target) {
     u32 cap = v->capacity;
     u32 grown = cap;
     if (cap <= n && v->step != 0)
-        grown = (n / v->step + 1) * v->step;
+        grown = v->GrownCapacity(n);
     if ((s32)n >= (s32)grown)
         for (;;) {
         }
@@ -234,10 +235,10 @@ void fn_710016a8dc(UnkTintOwner_a8dc* self, UnkTinted_a8dc* next) {
         current.y = self->target->tint_a.y;
         current.z = self->target->tint_a.z;
         current.w = self->target->tint_a.w;
-        fn_710007b518(&saved, &current);
-        fn_710007b518(&self->saved_a, &saved);
+        Assign(saved, current);
+        Assign(self->saved_a, saved);
         UnkTinted_a8dc* t = self->target;
-        fn_710007b518(&t->tint_a, &self->saved_a);
+        Assign(t->tint_a, self->saved_a);
         if (t->slot_a)
             *t->slot_a->value = self->saved_a;
         t = self->target;
@@ -245,9 +246,9 @@ void fn_710016a8dc(UnkTintOwner_a8dc* self, UnkTinted_a8dc* next) {
         current.y = t->tint_b.y;
         current.z = t->tint_b.z;
         current.w = t->tint_b.w;
-        fn_710007b518(&self->saved_b, &current);
+        Assign(self->saved_b, current);
         t = self->target;
-        fn_710007b518(&t->tint_b, &self->saved_b);
+        Assign(t->tint_b, self->saved_b);
         if (t->slot_b)
             *t->slot_b->value = self->saved_b;
     }

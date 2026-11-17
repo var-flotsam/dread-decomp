@@ -1,0 +1,54 @@
+// CPositionalSoundComponent unit (tools/tu_map.py, the name from reflection): the property handler.
+// Reads four floats, a flag, a float or the sound paths (one string each, while the stream has more
+// and paths remain) from the property's stream; other keys go to the base handler (fn_71010c4250).
+// Names and layouts are placeholders.
+#include "../../game_s7/UnkPropS7.h"
+#include "base/global/CFilePathStrId.h"
+#include "base/global/CRntFile.h"
+#include "game/UnkComponent.h"
+#include "types.h"
+
+using namespace unk_prop;
+using base::global::CFilePathStrId;
+using base::global::CRntFile;
+
+struct UnkPositionalSound_l14c878 {
+    u8 unk_0x0[0x48];
+    s32 path_count;  // 0x48
+    u8 unk_0x4c[4];
+    CFilePathStrId paths[4];  // 0x50
+    f32 field_0x70;
+    f32 field_0x74;
+    f32 field_0x78;
+    f32 field_0x7c;
+    f32 field_0x80;
+    u8 unk_0x84[0x24];
+    bool field_0xa8;
+};
+static_assert(__builtin_offsetof(UnkPositionalSound_l14c878, field_0xa8) == 0xa8, "layout");
+
+u32 fn_710114c878(UnkPositionalSound_l14c878* self, UnkProp* p) {
+    if (Is(p, Key(0x1498)) && p->set) {
+        fn_710007cf30(p->stream, "ffff", &self->field_0x7c, &self->field_0x80, &self->field_0x70,
+                      &self->field_0x74);
+        return true;
+    }
+    if (Is(p, Key(0x1ff0)) && p->set) {
+        fn_710007cf30(p->stream, "b", &self->field_0xa8);
+        return true;
+    }
+    if (Is(p, Key(0x1fe8)) && p->set) {
+        fn_710007cf30(p->stream, "f", &self->field_0x78);
+        return true;
+    }
+    if (Is(p, Key(0x1fa8)) && p->set) {
+        CRntFile* file = reinterpret_cast<CRntFile*>(p->stream);
+        for (int i = 0; file->position < file->size && i < self->path_count; ++i) {
+            const char* path;
+            fn_710007cee4(file, &path);
+            self->paths[i] = CFilePathStrId(path, true);
+        }
+        return true;
+    }
+    return fn_71010c4250(reinterpret_cast<UnkBaseComponent*>(self), reinterpret_cast<UnkComponentProp*>(p));
+}

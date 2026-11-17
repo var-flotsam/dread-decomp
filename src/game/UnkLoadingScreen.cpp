@@ -2,6 +2,7 @@
 // ELoadingScreen enum and names "LoadingScreen", "LoadinScreenTip%d" and the loading animations):
 // the loading screen. Names and layouts are placeholders.
 // Holds fn_7100e10aac (closes the loading screen) and fn_7100e0fc00 (the tips' labels).
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "game/CBossAIComponent.h"
 #include "game/GUI/CLabel.h"
@@ -195,28 +196,8 @@ struct UnkCreatedSceneObj {
 static_assert(__builtin_offsetof(UnkCreatedSceneObj, field_0x128) == 0x128, "UnkCreatedSceneObj placeholder layout");
 void fn_710014520c(UnkCreatedSceneObj* self, const CStrId* name);  // the constructor
 
-// The set: buckets of nodes by key, the nodes also in a list in insertion order.
-struct UnkSceneObjNode {
-    void* key;
-    UnkCreatedSceneObj* value;
-    UnkSceneObjNode* next;
-    UnkSceneObjNode* prev;
-    UnkSceneObjNode* bucket_next;
-};
-struct UnkSceneObjSet {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    UnkSceneObjNode** buckets;
-    u32 field_0x18;  // the buckets exist
-    u32 capacity;
-    u8 pad_0x20[0x18];
-    // A union member: the original reloads the tail after storing the new node's link to it.
-    union {
-        UnkSceneObjNode* tail;
-    };
-    UnkSceneObjNode* head;
-};
+// The set: the objects by their key.
+using UnkSceneObjSet = base::global::CRntDictionary<void*, UnkCreatedSceneObj*>;
 
 // Creates a scene object named `name` showing `model` (when there is one), adds it to `set` and
 // stores it in `*out` (when given). The original also returns the object's key (its +8; null when
@@ -235,30 +216,7 @@ void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const
         void* key = obj->key;
         if (model)
             obj->part.SetModel(model);
-        UnkSceneObjNode** bucket = nullptr;
-        if (set->field_0x18) {
-            u32 index = (u32)(u64)key % set->capacity;
-            bucket = set->buckets + index;
-        }
-        UnkSceneObjNode* first = *bucket;
-        auto* node = static_cast<UnkSceneObjNode*>(set->allocator->vf_0x40(sizeof(UnkSceneObjNode), 8, set->flags));
-        if (node) {
-            node->key = key;
-            node->value = obj;
-            node->bucket_next = nullptr;
-            node->next = nullptr;
-            node->prev = nullptr;
-        }
-        node->bucket_next = first;
-        *bucket = node;
-        if (!set->head)
-            set->head = node;
-        else if (set->tail) {
-            node->prev = set->tail;
-            set->tail->next = node;
-        }
-        set->tail = node;
-        ++set->count;
+        set->Insert(key, obj);
     }
     if (out)
         *out = reinterpret_cast<UnkSceneObj_71010e2278*>(obj);

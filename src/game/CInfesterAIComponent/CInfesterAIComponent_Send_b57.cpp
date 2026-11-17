@@ -7,6 +7,7 @@
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CAnimationComponent.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
@@ -16,7 +17,6 @@ using base::global::CStrId;
 struct UnkQuetzoaAIComponent;
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 struct UnkFlagTarget;
 
 struct UnkInfesterOwner_b57a3 {

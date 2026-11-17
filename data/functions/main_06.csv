@@ -4321,7 +4321,7 @@ address,size,name,name_source,subsystem,status
 0x71006ad198,160,CShakernautAIComponent::refl_AddFields,reflection,game/ai,O
 0x71006ad238,356,CShakernautAIComponent::refl_InitClass,reflection,game/ai,O
 0x71006ad39c,380,fn_71006ad39c,unknown,game/ai?,O
-0x71006ad518,544,fn_71006ad518,unknown,game/ai?,U
+0x71006ad518,544,fn_71006ad518,unknown,game/ai?,O
 0x71006ad738,36,fn_71006ad738,unknown,game/ai?,O
 0x71006ad75c,208,fn_71006ad75c,unknown,game/ai?,O
 0x71006ad82c,44,fn_71006ad82c,unknown,game/ai?,O
@@ -6065,7 +6065,7 @@ address,size,name,name_source,subsystem,status
 0x71006fe9d4,684,fn_71006fe9d4,unknown,unknown,U
 0x71006fec80,988,fn_71006fec80,unknown,unknown,U
 0x71006ff05c,724,fn_71006ff05c,unknown,unknown,U
-0x71006ff330,780,fn_71006ff330,unknown,unknown,U
+0x71006ff330,780,fn_71006ff330,unknown,unknown,O
 0x71006ff63c,32,fn_71006ff63c,unknown,unknown,O
 0x71006ff660,140,fn_71006ff660,unknown,unknown,O
 0x71006ff6ec,456,fn_71006ff6ec,unknown,unknown,O

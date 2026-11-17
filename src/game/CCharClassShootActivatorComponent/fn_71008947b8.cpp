@@ -1,6 +1,7 @@
 // Copy-constructs a value-or-reference holder: kind 1 holds a value (an id and an entry) in
 // place, kind 2 points at them; the copy always holds them in place (kind 1).
 // fn_71008aa61c is an identical copy.
+#include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
 #include "base/UnkErasedVector.h"
 #include "base/UnkRefHandle.h"
@@ -159,30 +160,9 @@ void fn_71008aa61c(UnkHolder* self, const UnkHolder* other) {
 
 
 
-// An entry as the array's Reserve moves it and its assignment destroys it: CStrId has no move
-// constructor, and its destructor would release a second time, so the id is a plain pointer
-// here, emptied when moved from.
-struct UnkMovedId {
-    UnkStringData* data;
-
-    UnkMovedId(UnkMovedId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-    __attribute__((always_inline)) ~UnkMovedId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkMovedEntry {
     UnkCallbackSet set;
-    UnkMovedId id;
+    base::UnkStrIdMember id;
 };
 
 struct UnkEntryVector;

@@ -4,6 +4,7 @@
 // sets up its animation. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
+#include "base/global/CRntVectorReloading.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
@@ -32,13 +33,8 @@ struct UnkVulkranRefPtr_ovb0121 {
     }
 };
 
-struct UnkVulkranRefList_ovb0121 {
-    UnkVulkranRefPtr_ovb0121* data;
-    union {
-        u32 count;
-    };
-    u8 unk_0xc[0x1c];
-
+// The original reloads the count after each element (base/global/CRntVectorReloading.h).
+struct UnkVulkranRefList_ovb0121 : base::global::CRntVectorReloading<UnkVulkranRefPtr_ovb0121> {
     __attribute__((always_inline)) void RemoveEntities() {
         for (UnkVulkranRefPtr_ovb0121* it = data, *end = data + count; it != end; ++it) {
             UnkVulkranRef_ovb0121* ref = it->p;
@@ -160,7 +156,6 @@ bool fn_71006dcdec(UnkVulkranAIBury_ovb0121* self) {
 
 struct UnkActorTarget;
 void fn_7101178e08(UnkActorTarget*, u32, bool, bool, f32);
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkVulkranOwner_ovb0121 {
     u8 pad_0x0[0x218];

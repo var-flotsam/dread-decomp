@@ -85,15 +85,7 @@ struct UnkSetPair_b0230 {
           second(static_cast<UnkCallbackSet_7101a20950&&>(o.second)) {}
 };
 
-struct UnkPairVec_b0230 {
-    UnkSetPair_b0230* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
+using UnkPairVec_b0230 = base::global::CRntVector<UnkSetPair_b0230>;
 
 // As src/game/CCentralUnitComponent/CCentralUnitComponent_b40.cpp declares them.
 // An entry of the array, destroyed out of line (as src/game/CCentralUnitComponent/CCentralUnitComponent_b40.cpp).

@@ -4,6 +4,7 @@
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU32.h"
@@ -37,24 +38,6 @@ struct UnkMineSoundId_ovb0132 {
     }
 };
 
-// A file-path id released in two steps (the original reloads the id after the decrement).
-struct UnkMineSoundPath_ovb0132 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkMineSoundPath_ovb0132() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 struct UnkMineSoundResource_ovb0132 {
     UnkCountedResource* ptr;
 
@@ -69,7 +52,7 @@ struct UnkMineSoundResource_ovb0132 {
 // A sound's name and path with the resource the path resolves to.
 struct UnkMineSoundRecord_ovb0132 {
     UnkMineSoundId_ovb0132 id;
-    UnkMineSoundPath_ovb0132 path;
+    UnkPathIdTwoStep path;
     UnkMineSoundResource_ovb0132 resource;
 
     explicit UnkMineSoundRecord_ovb0132(const UnkStrIdPathRecord_b48* other) {

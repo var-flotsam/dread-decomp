@@ -13,3 +13,4 @@ UnkZiplineRailPart_b49* fn_71005c3084(void* object);
 void fn_71005c4828(void*, void**);  // Unregisters.
 extern base::global::CStrId g_unk_71726eb440 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_71726eb450 __attribute__((visibility("hidden")));
+char* fn_71005c1008(u64 id);

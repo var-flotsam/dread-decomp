@@ -4,6 +4,7 @@
 // swaps places with the last one and the count drops. The entry layout is fn_7100926874.cpp's. Names and
 // layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU1273.h"
 #include "types.h"
 
@@ -60,7 +61,7 @@ void fn_7100926494(UnkMaterialFX_b49a4* self_, s32 index_) {
         case 0: {
             UnkMaterialFXSlots_ovb0112* s = Slots(e->key);
             u32 n = e->slot;
-            fn_710007b518(&s->field_0x240[n], &e->field_0x1c);
+            Assign(s->field_0x240[n], e->field_0x1c);
             if (UnkMaterialFXTarget_ovb0112* t = s->field_0x2e0[n])
                 __builtin_memcpy(t->value, &e->field_0x1c, sizeof(CVector4D));
             break;
@@ -68,7 +69,7 @@ void fn_7100926494(UnkMaterialFX_b49a4* self_, s32 index_) {
         case 1: {
             UnkMaterialFXSlots_ovb0112* s = Slots(e->key);
             u32 n = e->slot;
-            fn_710007b518(&s->field_0x14c[n], &e->field_0x1c);
+            Assign(s->field_0x14c[n], e->field_0x1c);
             if (UnkMaterialFXTarget_ovb0112* t = s->field_0x1f0[n])
                 __builtin_memcpy(t->value, &e->field_0x1c, sizeof(CVector4D));
             break;

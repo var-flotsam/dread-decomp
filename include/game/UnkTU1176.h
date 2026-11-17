@@ -30,3 +30,4 @@ void fn_7100772698(base::reflection::UnkReflObject* component, const base::globa
 UnkNamedEntry_7100772cb0* fn_7100772cb0(UnkNamedList_7100772cb0* self, const base::global::CStrId* id);
 void fn_7100775610(UnkCentralUnit* unit, bool on, const base::global::CStrId* id);
 void fn_710077a700(base::global::CRntVector<UnkEntry_cu>* self, const UnkEntry_cu* value);
+extern const u64 g_unk_710164aa90;

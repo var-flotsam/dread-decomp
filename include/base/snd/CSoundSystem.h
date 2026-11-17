@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkSoundSystemMasks_ovb0074;
 struct UnkSoundRef_A5_b76;
 struct UnkHandle;
 struct UnkMgr;
@@ -31,3 +32,4 @@ void fn_7100107b74(UnkSoundMgr* self, const base::global::CFilePathStrId* path);
 void fn_710010807c(UnkSoundMgr* mgr, const base::math::CVector3D* pos, const base::math::CVector3D* a, const base::math::CVector3D* b);
 UnkSoundRef_A5_b76 fn_7100108aa4(UnkSoundMgr* self, const base::global::CFilePathStrId* path, bool flag);
 void fn_7100108c2c(UnkSoundMgr* self, const u32* mask, u32 v, f32 f);
+void fn_7100108464(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);

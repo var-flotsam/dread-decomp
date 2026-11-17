@@ -17,6 +17,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
@@ -427,7 +428,7 @@ extern __attribute__((visibility("hidden"))) nn::os::MutexType g_unk_716e595cb8;
 // Sets the clear colour (the colour's components as a vector).
 void fn_71001cc3a8(UnkGraphicsSystem* self, const CColor4F* color) {
     UnkVector4D value = fn_7100030878(color);
-    fn_710007b518(&self->field_0x317aca8, &value);
+    Assign(self->field_0x317aca8, value);
 }
 
 // The resolution scale: 1 when docked, 0.8 in handheld mode.
@@ -481,9 +482,9 @@ static inline bool NamedVector(UnkGraphicsSystem* self, const u64* key, Value* v
     if (!found)
         return false;
     if (Get)
-        fn_710007b518(const_cast<CVector4D*>(value), &t.values[i].value);
+        Assign(*const_cast<CVector4D*>(value), t.values[i].value);
     else
-        fn_710007b518(&t.values[i].value, value);
+        Assign(t.values[i].value, *value);
     return true;
 }
 
@@ -1633,7 +1634,7 @@ struct UnkGfxPairEntry {
 struct UnkGfxPairMap {
     u8 pad_0x0[0x3183628];
     UnkGfxPairEntry* values;
-    base::global::CStrId* ids;
+    base::global::CStrId* keys;
     u32 count;
 };
 

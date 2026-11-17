@@ -8,6 +8,7 @@
 // Names and layouts are placeholders.
 #include <new>
 #include <stdio.h>
+#include "base/UnkVtableList.h"
 
 #include "base/UnkNoArg.h"
 #include "base/global/CRntVector.h"
@@ -335,16 +336,7 @@ struct UnkNode38_ovb0229 {
     }
 };
 
-struct UnkList38_ovb0229 {
-    void* vtable;  // 0x0
-    union {
-        u32 count;  // 0x8
-    };
-    UnkNode38_ovb0229* head;  // 0x10
-    UnkNode38_ovb0229* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
-
+struct UnkList38_ovb0229 : base::UnkVtableList<UnkNode38_ovb0229> {
     void PushBackCopy(const UnkNode38_ovb0229& value) {
         auto* node = static_cast<UnkNode38_ovb0229*>(allocator->vf_0x40(sizeof(UnkNode38_ovb0229), 8, flags));
         if (!node)
@@ -370,16 +362,7 @@ struct UnkNode10_ovb0229 {
     UnkNode10_ovb0229(const UnkNode10_ovb0229& other) : value(other.value), next(nullptr) {}
 };
 
-struct UnkList10_ovb0229 {
-    void* vtable;  // 0x0
-    union {
-        u32 count;  // 0x8
-    };
-    UnkNode10_ovb0229* head;  // 0x10
-    UnkNode10_ovb0229* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
-
+struct UnkList10_ovb0229 : base::UnkVtableList<UnkNode10_ovb0229> {
     void PushBackCopy(const UnkNode10_ovb0229& value) {
         auto* node = static_cast<UnkNode10_ovb0229*>(allocator->vf_0x40(sizeof(UnkNode10_ovb0229), 8, flags));
         if (!node)

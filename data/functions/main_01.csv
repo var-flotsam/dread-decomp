@@ -1139,12 +1139,12 @@ address,size,name,name_source,subsystem,status
 0x71001336dc,20,fn_71001336dc,unknown,unknown,O
 0x71001336f0,36,fn_71001336f0,unknown,unknown,O
 0x7100133714,108,fn_7100133714,unknown,unknown,O
-0x7100133780,664,fn_7100133780,unknown,unknown,U
+0x7100133780,664,fn_7100133780,unknown,unknown,O
 0x7100133a18,124,fn_7100133a18,unknown,unknown,O
 0x7100133a94,336,fn_7100133a94,unknown,unknown,U
 0x7100133be4,268,fn_7100133be4,unknown,unknown,O
 0x7100133cf0,312,fn_7100133cf0,unknown,unknown,O
-0x7100133e28,500,fn_7100133e28,unknown,unknown,U
+0x7100133e28,500,fn_7100133e28,unknown,unknown,O
 0x7100134020,2612,fn_7100134020,unknown,unknown,m
 0x7100134a60,1096,fn_7100134a60,unknown,unknown,m
 0x7100134eb0,756,fn_7100134eb0,unknown,unknown,m
@@ -1301,7 +1301,7 @@ address,size,name,name_source,subsystem,status
 0x71001391c0,20,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CRntString, base::tunable::CTunable*>>::End",reflection,engine/reflection,O
 0x71001391d4,100,fn_71001391d4,unknown,engine/base?,O
 0x7100139238,116,fn_7100139238,unknown,engine/base?,O
-0x71001392b0,776,fn_71001392b0,unknown,engine/base?,U
+0x71001392b0,776,fn_71001392b0,unknown,engine/base?,O
 0x71001395b8,220,fn_71001395b8,unknown,engine/base?,O
 0x7100139694,328,base::tunable::CTunableManager::refl_InitClass,reflection,engine/base,O
 0x71001397dc,220,base::reflection::refl_GetType<base::tunable::CTunableManager*>,reflection,engine/reflection,O
@@ -4178,7 +4178,7 @@ address,size,name,name_source,subsystem,status
 0x71001e2184,432,fn_71001e2184,unknown,unknown,O
 0x71001e2334,484,fn_71001e2334,unknown,unknown,O
 0x71001e2518,396,fn_71001e2518,unknown,unknown,O
-0x71001e26a4,1044,fn_71001e26a4,unknown,unknown,U
+0x71001e26a4,1044,fn_71001e26a4,unknown,unknown,O
 0x71001e2ab8,20,fn_71001e2ab8,unknown,unknown,O
 0x71001e2acc,856,fn_71001e2acc,unknown,unknown,U
 0x71001e2e30,4024,fn_71001e2e30,unknown,unknown,O

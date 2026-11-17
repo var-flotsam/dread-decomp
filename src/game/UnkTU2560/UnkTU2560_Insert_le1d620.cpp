@@ -3,7 +3,7 @@
 // it. Names and layouts are placeholders.
 #include <new>
 
-#include "base/global/CRntVector.h"
+#include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
 #include "types.h"
 
@@ -40,60 +40,10 @@ struct UnkDropList_le1d620 {
 };
 #pragma pack(pop)
 
-struct UnkDropNode_le1d620 {
-    CStrId key;
-    UnkDropList_le1d620 list;
-    UnkDropNode_le1d620* next;   // 0x290
-    UnkDropNode_le1d620* prev;   // 0x298
-    UnkDropNode_le1d620* chain;  // 0x2a0
+using UnkDropMap_le1d620 = base::global::CRntDictionary<CStrId, UnkDropList_le1d620>;
+static_assert(sizeof(UnkDropMap_le1d620::TNode) == 0x2a8, "node layout");
 
-    UnkDropNode_le1d620(const CStrId& k, const UnkDropList_le1d620& l)
-        : key(k), list(l), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    UnkDropNode_le1d620*& Next() { return next; }
-    UnkDropNode_le1d620*& Prev() { return prev; }
-};
-static_assert(sizeof(UnkDropNode_le1d620) == 0x2a8, "node layout");
-
-struct UnkHashed_le1d620 {
-    u8 pad_0x0[0x30];
-    u32 hash_lo;
-    u32 hash_hi;
-};
-
-struct UnkDropMap_le1d620 {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;  // 0xc
-    UnkDropNode_le1d620** buckets;
-    u32 bucket_count;
-    u32 divisor;
-    u8 pad_0x20[0x18];
-    UnkDropNode_le1d620* tail;  // 0x38
-    UnkDropNode_le1d620* head;  // 0x40
-};
-
-UnkDropNode_le1d620* fn_7100e1d620(UnkDropMap_le1d620* map, const CStrId* key, const UnkDropList_le1d620* list) {
-    UnkDropNode_le1d620** bucket = nullptr;
-    if (map->bucket_count != 0) {
-        const UnkHashed_le1d620* h = reinterpret_cast<const UnkHashed_le1d620*>(key->data);
-        u32 index = (h->hash_lo ^ h->hash_hi) % map->divisor;
-        bucket = &map->buckets[index];
-    }
-    UnkDropNode_le1d620* old = *bucket;
-    auto* node =
-        static_cast<UnkDropNode_le1d620*>(map->allocator->vf_0x40(sizeof(UnkDropNode_le1d620), 8, map->flags));
-    if (node)
-        new (node) UnkDropNode_le1d620(*key, *list);
-    node->chain = old;
-    *bucket = node;
-    if (!map->head)
-        map->head = node;
-    else if (map->tail) {
-        node->Prev() = map->tail;
-        map->tail->Next() = node;
-    }
-    map->tail = node;
-    ++map->count;
-    return node;
+UnkDropMap_le1d620::TNode* fn_7100e1d620(UnkDropMap_le1d620* map, const CStrId* key,
+                                         const UnkDropList_le1d620* list) {
+    return map->Insert(*key, *list);
 }

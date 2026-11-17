@@ -10,6 +10,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/math/CVector.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -22,6 +23,7 @@
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkMapMenuController.h"
+#include "game/UnkMinimapRecord.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1689.h"
@@ -38,21 +40,9 @@ using namespace base::global;
 
 struct UnkIdValuesArray;
 
-// A string id that starts out as the empty id.
-struct UnkSlotId_b0200 {
-    UnkStringData* data;
-
-    UnkSlotId_b0200() {
-        data = nullptr;
-        if (!g_unk_7101d47108)
-            UnkEnsureStringPool();
-        data = &g_unk_7101d47108->empty;
-    }
-};
-
 // A string id and a value; a new one is zeroed, then built.
 struct UnkIdSlot_b0200 {
-    UnkSlotId_b0200 id;
+    UnkEmptyStrId id;
     u64 value = 0;
 };
 
@@ -63,7 +53,7 @@ UnkIdSlot_b0200* fn_7100eb0058(void* array, u32 index) {
     if (self->field_0x14 && self->count <= index) {
         u32 cap = self->capacity;
         if (cap <= index && self->step != 0)
-            cap = (index / self->step + 1) * self->step;
+            cap = self->GrownCapacity(index);
         fn_7100b48af4(reinterpret_cast<UnkIdValuesArray*>(self), cap);
         u32 n = index + 1;
         fn_7100b48af4(reinterpret_cast<UnkIdValuesArray*>(self), n);
@@ -418,7 +408,7 @@ UnkIdValuesVector_b0200* fn_7100eafb70(UnkIdValuesVector_b0200* self, const UnkI
             u32 n = self->count;
             u32 new_capacity = self->capacity;
             if (new_capacity <= n && self->step != 0)
-                new_capacity = (n / self->step + 1) * self->step;
+                new_capacity = self->GrownCapacity(n);
             if ((s32)n >= (s32)new_capacity)
                 for (;;) {
                 }
@@ -515,7 +505,7 @@ void fn_7100eafeb8(base::global::CRntVector<UnkIdWords_b0200c>* self, UnkIdWords
     u32 n = self->count;
     if (n == index) {
         if (cap <= n && self->step != 0)
-            cap = (index / self->step + 1) * self->step;
+            cap = self->GrownCapacity(index);
         if ((s32)cap <= (s32)index)
             for (;;) {
             }
@@ -523,7 +513,7 @@ void fn_7100eafeb8(base::global::CRntVector<UnkIdWords_b0200c>* self, UnkIdWords
         new (&self->data[self->count]) UnkIdWords_b0200c(static_cast<UnkIdWords_b0200c&&>(*value));
     } else {
         if (cap <= n && self->step != 0)
-            cap = (n / self->step + 1) * self->step;
+            cap = self->GrownCapacity(n);
         Grow(self, cap);
         for (u32 i = self->count - 1; i >= index; --i) {
             UnkIdWords_b0200c* q = &self->data[i];
@@ -592,13 +582,8 @@ void fn_7100e8f9c0(UnkMinimapSetter_b0200* self, bool flag) {
     }
 }
 
-struct UnkEntry50_b0200b {
-    u8 data[0x50];
-};
-void fn_7100ea9eb8(UnkEntry50_b0200b* entry);
-
 struct UnkGroup90_b0200 {
-    UnkEntry50_b0200b* entries;  // 0x0
+    UnkMinimapRecord* entries;   // 0x0
     void* keys;                  // 0x8
     u32 count;                   // 0x10
     u32 capacity;                // 0x14
@@ -606,7 +591,7 @@ struct UnkGroup90_b0200 {
     u32 flags;                   // 0x1c
     base::UnkAllocator* allocator;  // 0x20
     u8 pad_0x28[0x10];
-    UnkEntry50_b0200b tail;  // 0x38
+    UnkMinimapRecord tail;  // 0x38
 };
 static_assert(sizeof(UnkGroup90_b0200) == 0x88, "layout");
 
@@ -631,11 +616,11 @@ void fn_7100eb3648(UnkGroupTable_b0200* self) {
     if (groups && self->count) {
         for (u64 i = 0; i < self->count; ++i) {
             UnkGroup90_b0200* g = &groups[i].group;
-            fn_7100ea9eb8(&g->tail);
+            g->tail.~UnkMinimapRecord();
             if (g->entries && g->count) {
-                fn_7100ea9eb8(&g->entries[0]);
+                g->entries[0].~UnkMinimapRecord();
                 for (u64 j = 1; j < g->count; ++j)
-                    fn_7100ea9eb8(&g->entries[j]);
+                    g->entries[j].~UnkMinimapRecord();
             }
             g->count = 0;
             if (g->keys)

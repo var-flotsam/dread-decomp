@@ -4,6 +4,7 @@
 // string-id sets at +0x130 and +0x178. Names and layouts are placeholders inferred from the code.
 #include <new>
 
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkPooledId.h"
@@ -460,59 +461,8 @@ void fn_7100fd613c(UnkMusicSlots_b0019* self, u32 index, bool immediate) {
     }
 }
 
-// A string id whose destructor decrements and then re-tests the count.
-struct UnkSetKey_b0019 {
-    base::global::UnkStringData* data;
-
-    ~UnkSetKey_b0019() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-struct UnkIdSetNode_0x28 {
-    UnkSetKey_b0019 key;
-    void* value;
-    UnkIdSetNode_0x28* next;
-    UnkIdSetNode_0x28* prev;
-    UnkIdSetNode_0x28* chain;
-};
-
 // A chained hash map keyed by string id, with its nodes also kept in insertion order.
-struct UnkIdSet_0x48 {
-    base::UnkAllocator* allocator;
-    u32 flags;
-    u32 count;
-    UnkIdSetNode_0x28** buckets;
-    u32 bucket_count;
-    u32 bucket_capacity;
-    u8 pad_0x18[0x18];
-    UnkIdSetNode_0x28* last;   // 0x38
-    UnkIdSetNode_0x28* first;  // 0x40
-
-    void Clear() {
-        if (count == 0)
-            return;
-        for (UnkIdSetNode_0x28* n = first; n;) {
-            UnkIdSetNode_0x28* next = n->next;
-            n->~UnkIdSetNode_0x28();
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        __builtin_memset(buckets, 0, (u64)bucket_capacity * sizeof(UnkIdSetNode_0x28*));
-        count = 0;
-        last = nullptr;
-        first = nullptr;
-    }
-};
+using UnkIdSet_0x48 = base::global::CRntDictionary<base::global::CStrId, void*>;
 
 struct UnkMusicSets_b0019 {
     u8 pad_0x0[0x130];

@@ -29,17 +29,7 @@ struct UnkTU2640Rec50 {
 };
 static_assert(sizeof(UnkTU2640Rec50) == 0x50, "UnkTU2640Rec50 layout");
 
-struct UnkTU2640Rec50Array {
-    UnkTU2640Rec50* data;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    bool field_0x14;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-
-void fn_7100ffd0a8(UnkTU2640Rec50Array* self, const u32* index, const UnkTU2640Rec50* value) {
+void fn_7100ffd0a8(base::global::CRntVector<UnkTU2640Rec50>* self, const u32* index, const UnkTU2640Rec50* value) {
     u32 i = *index;
     if (self->field_0x14 && self->count <= i) {
         u32 grown = self->capacity;

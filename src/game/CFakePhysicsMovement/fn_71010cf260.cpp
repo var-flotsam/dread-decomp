@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "game/CGooplotAIComponent.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkBase_0x238 {
     void** vtable;
@@ -19,23 +20,10 @@ struct UnkNode_0x18 {
 
 extern void* g_unk_7101cb0740[];
 
-struct UnkNodeList_0x28 {
-    void** vtable;
-    u32 count;
-    UnkNode_0x18* head;
-    UnkNode_0x18* tail;
-    base::UnkAllocator* allocator;
-
+struct UnkNodeList_0x28 : base::UnkVtableList<UnkNode_0x18> {
     ~UnkNodeList_0x28() {
         vtable = &g_unk_7101a4d8b8[2];
-        for (UnkNode_0x18* n = head; n;) {
-            UnkNode_0x18* next = n->next;
-            allocator->vf_0x48(n);
-            n = next;
-        }
-        count = 0;
-        head = nullptr;
-        tail = nullptr;
+        Clear();
     }
 };
 

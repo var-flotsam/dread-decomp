@@ -4,18 +4,12 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU2563.h"
 #include "types.h"
 
 using base::UnkAllocator;
 using base::global::UnkStringData;
-
-// A string id whose move leaves the pool's empty string behind.
-struct UnkMovedStrId {
-    UnkStringData* data;
-
-    UnkMovedStrId(UnkMovedStrId&& other) : data(other.data) { other.data = &g_unk_7101d47108->empty; }
-};
 
 // A string id that is copied (taking a reference) and destroyed like base::UnkStrIdMember.
 struct UnkTableId {

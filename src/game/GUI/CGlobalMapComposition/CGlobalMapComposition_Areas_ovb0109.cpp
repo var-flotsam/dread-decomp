@@ -15,6 +15,7 @@
 // Names and layouts are placeholders.
 #include "base/UnkDeferredSet.h"
 #include "base/UnkDestructors.h"
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
@@ -113,27 +114,21 @@ __attribute__((noinline)) void fn_7100b262f4(UnkMapRegion_ovb0109* self) {
 inline UnkMapRegion_ovb0109::~UnkMapRegion_ovb0109() { fn_7100b262f4(this); }
 
 // The regions keyed by id: two parallel arrays sharing a count, capacity and allocator.
-struct UnkMapRegions_ovb0109 {
-    UnkMapRegion_ovb0109* values;
-    UnkStrIdMember* keys;
-    u32 count;
-    u32 capacity;
-    u32 field_0x18;
-    u32 flags;
-    base::UnkAllocator* allocator;
+using UnkMapRegions_ovb0109 = base::global::CRntSmallDictionary<UnkStrIdMember, UnkMapRegion_ovb0109>;
 
-    // The region with this key, or the one past the end.
-    UnkMapRegion_ovb0109* Find(const CStrId& key) {
-        u32 n = count;
-        UnkMapRegion_ovb0109* v = values;
-        u64 i = 0;
-        for (; i != n; i++) {
-            if (keys[i].data == key.data)
-                break;
-        }
-        return &v[i];
+// The region with this key, or the one past the end: the find fn_7100b29d9c inlines, which stops the
+// scan at the key and returns the slot it stopped at (the shared Find, returning from inside the loop,
+// branches otherwise).
+static UnkMapRegion_ovb0109* FindRegion(UnkMapRegions_ovb0109* self, const CStrId& key) {
+    u32 n = self->count;
+    UnkMapRegion_ovb0109* v = self->values;
+    u64 i = 0;
+    for (; i != n; i++) {
+        if (self->keys[i].data == key.data)
+            break;
     }
-};
+    return &v[i];
+}
 
 void fn_7100b2b660(UnkMapRegions_ovb0109* self, u32 n) {
     if (self->capacity >= n)
@@ -269,7 +264,8 @@ void fn_7100b29d9c(UnkMapComposition_ovb0109* self, f32 dt) {
         self->reveal_state = 2;
         {
             CStrId area(self->pending_area);
-            fn_7100b26470(reinterpret_cast<UnkGlobalMapComposition*>(self), self->regions.Find(area)->marker, true);
+            fn_7100b26470(reinterpret_cast<UnkGlobalMapComposition*>(self), FindRegion(&self->regions, area)->marker,
+                          true);
         }
         self->reveal_timer = 1.5f;
         break;

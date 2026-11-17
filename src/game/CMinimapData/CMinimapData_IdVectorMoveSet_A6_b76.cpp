@@ -7,22 +7,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-struct UnkIdElem_A6_b76 : base::global::UnkStrIdBase {
-    ~UnkIdElem_A6_b76() {
-        if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
-using UnkIdVector_A6_b76 = base::global::CRntVector<UnkIdElem_A6_b76>;
+using UnkIdVector_A6_b76 = base::global::CRntVector<base::global::CStrId>;
 
 struct UnkIdVectorFlatMap_A6_b76 {
     UnkIdVector_A6_b76* values;

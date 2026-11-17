@@ -3,6 +3,7 @@
 #include "base/file/CPackManagerDevice.h"
 #include "base/file/IDevice.h"
 #include "base/global/CRntString.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/snd/CSoundSystem.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBTObserverComponent.h"
@@ -35,6 +36,7 @@
 #include "game/UnkTU99.h"
 #include "game/nn/time.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
+#include "base/UnkVtableList.h"
 
 using base::global::CStrId;
 
@@ -317,36 +319,12 @@ static inline const char* CStr(const CRntString& s) {
     return s.data ? s.data : g_unk_710162e2ed;
 }
 
-// A path id whose release decrements and tests the count in two steps.
-struct UnkListedPathId {
-    UnkStringData* data;
-
-    ~UnkListedPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 struct UnkListedPath {
-    UnkListedPathId id;
+    UnkPathIdTwoStep id;
     UnkListedPath* next;
 };
 // A list of path ids (its destructor is fn_7100087cf8).
-struct UnkFilePathList {
-    void** vtable;
-    u32 count;
-    UnkListedPath* head;
-    UnkListedPath* tail;
-    base::UnkAllocator* allocator;
-    u32 flags;
-
+struct UnkFilePathList : base::UnkVtableList<UnkListedPath> {
     UnkFilePathList() {
         vtable = &g_unk_7101a1b030[2];
         count = 0;
@@ -359,7 +337,7 @@ struct UnkFilePathList {
         vtable = &g_unk_7101a1b030[2];
         for (UnkListedPath* n = head; n;) {
             UnkListedPath* next = n->next;
-            n->id.~UnkListedPathId();
+            n->id.~UnkPathIdTwoStep();
             allocator->vf_0x48(n);
             n = next;
         }
@@ -1370,7 +1348,6 @@ UnkWeakTarget* fn_7100debbc8(UnkGameManager* self, const u64* id, const u32* fla
 }
 
 // The empty list returned for an id no object is registered under.
-extern UnkGameManagerIdList g_unk_71727bebc0;
 
 UnkGameManagerIdList* fn_7100de94cc(UnkGameManager* self, const u64* id) {
     UnkGameManagerIdLists& lists = self->field_0x2450;

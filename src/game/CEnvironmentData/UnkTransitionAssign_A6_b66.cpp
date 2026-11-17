@@ -1,6 +1,7 @@
 // CEnvironmentData transition unit (tools/tu_map.py): assignment of a {u32, CVector4D, u64 at +0x14} record,
 // skipped on self-assignment. Two copies. Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 struct UnkTransitionRec_A6 {
@@ -12,7 +13,7 @@ struct UnkTransitionRec_A6 {
 static inline __attribute__((always_inline)) UnkTransitionRec_A6* Assign(UnkTransitionRec_A6* self, const UnkTransitionRec_A6* other) {
     if (self != other) {
         self->field_0x0 = other->field_0x0;
-        fn_710007b518(&self->color, &other->color);
+        Assign(self->color, other->color);
         self->field_0x14 = other->field_0x14;
     }
     return self;

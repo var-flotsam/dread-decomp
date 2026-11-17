@@ -3,18 +3,12 @@
 // step when it is full (hanging when there is no room, as base::global::CRntVector::PushBack does), has
 // fn_7100da2900 make room, then stores the reference in a cleared slot and counts it. Names are
 // placeholders.
+#include "base/global/CRntVectorReloading.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-struct UnkRefPtrArray_b46a3 {
-    UnkRefObject** data;
-    // A union member: the original reloads the count after the slot stores.
-    union {
-        u32 count;
-    };
-    u32 capacity;
-    u32 step;
-};
+// The original reloads the count after the slot stores (base/global/CRntVectorReloading.h).
+using UnkRefPtrArray_b46a3 = base::global::CRntVectorReloading<UnkRefObject*>;
 
 void fn_7100da2900(UnkRefPtrArray_b46a3* self, u32 capacity);
 

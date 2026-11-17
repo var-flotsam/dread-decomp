@@ -50,6 +50,16 @@ struct CRntSmallDictionary {
         return End();
     }
 
+    // The value whose key `equal` accepts, or End(): the find for keys the original compares through
+    // a function rather than == (fn_71001389ac, CRntString keys compared by fn_710007f120).
+    template <class Equal>
+    V* FindIf(Equal equal) {
+        for (u32 i = 0; i < count; ++i)
+            if (equal(keys[i]))
+                return &values[i];
+        return End();
+    }
+
     // Reallocates both arrays to new_capacity entries, copying the entries over bitwise (for keys and
     // values that are plain words) and freeing the old arrays. The original tests the count, not the
     // capacity, against new_capacity.

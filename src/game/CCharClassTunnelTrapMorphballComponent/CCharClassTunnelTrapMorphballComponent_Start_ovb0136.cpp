@@ -15,6 +15,7 @@
 #include "base/UnkStrIdTable.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
@@ -215,24 +216,6 @@ struct UnkTunnelTrapPart2_ovb0136 {
     u8 pad_0x8[0x38];
 };
 
-// The id at +0x78: released in two steps (the original reloads `data` and the count after the decrement).
-struct UnkTunnelTrapId_ovb0136 {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkTunnelTrapId_ovb0136() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 // The link registered with the target (vtable g_unk_7101a22d48): unregisters itself and drops the target's
 // handle when destroyed.
 struct UnkTunnelTrapListener_ovb0136 {
@@ -273,7 +256,7 @@ struct UnkTunnelTrapMorphballComponent_ovb0136 {
     u8 pad_0x48[0x8];
     UnkTunnelTrapListener_ovb0136 listener;  // 0x50
     u8 pad_0x70[0x8];
-    UnkTunnelTrapId_ovb0136 id;                             // 0x78
+    UnkStrIdTwoStep id;                             // 0x78
     UnkTunnelTrapTable_ovb0136 table;                       // 0x80
     base::global::CRntVector<UnkTunnelTrapPart2_ovb0136> parts;      // 0xa8
 

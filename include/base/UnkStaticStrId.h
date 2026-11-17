@@ -4,28 +4,14 @@
 // atexit: the elements are released last to first, each only while the pool exists.
 
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "types.h"
 
 namespace base {
 
-// A string id whose release decrements and tests the count in two steps.
+// A string id whose release decrements and tests the count in two steps (UnkTwoStepStrId).
 template <global::UnkStringPool** Pool>
-struct UnkStaticStrId {
-    global::UnkStringData* data;
-
-    ~UnkStaticStrId() {
-        if (global::UnkStringPool* pool = *Pool) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = *Pool;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
+using UnkStaticStrId = ::UnkTwoStepStrId<Pool>;
 using UnkStaticPathId = UnkStaticStrId<&g_unk_7101d47200>;
 using UnkStaticId = UnkStaticStrId<&g_unk_7101d47108>;
 

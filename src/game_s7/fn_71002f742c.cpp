@@ -5,6 +5,7 @@
 // count still the one read at the start). fn_7100d94220 and its copies take the map at 8.
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "base/global/UnkBucketSet.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -45,16 +46,7 @@ struct UnkPathNode {
     UnkPathNode* next;
 };
 
-struct UnkPathMap {
-    UnkPathNode** buckets;
-    u32 bucket_count;
-    u8 unk_0xc[0x1c];
-    u32 first_bucket;
-    UnkPathNode* first;
-    u8 unk_0x38[0xc];
-    u32 size;
-    u32 modification;
-};
+using UnkPathMap = base::global::UnkBucketSet<UnkPathNode>;
 
 // Stops (node null) at the end or once the map has changed.
 struct UnkPathMapIterator {
@@ -64,21 +56,21 @@ struct UnkPathMapIterator {
     u32 modification;
 
     __attribute__((always_inline)) explicit UnkPathMapIterator(UnkPathMap* map)
-        : map(map), node(map->first), bucket(map->first_bucket), modification(map->modification) {}
+        : map(map), node(map->first_node), bucket(map->first_bucket), modification(map->version) {}
 
     __attribute__((always_inline)) void Next() {
-        if (map->modification != modification) {
+        if (map->version != modification) {
             node = nullptr;
             return;
         }
         node = node->next;
         if (!node) {
             while (!node) {
-                if (++bucket >= map->bucket_count) {
+                if (++bucket >= map->buckets.count) {
                     node = nullptr;
                     break;
                 }
-                node = map->buckets[bucket];
+                node = map->buckets.data[bucket];
             }
         }
     }
@@ -87,7 +79,7 @@ struct UnkPathMapIterator {
 template <u32 Offset>
 __attribute__((always_inline)) static inline UnkPathIdList_7100d94220 CopyIds(char* self) {
     UnkPathMap* map = reinterpret_cast<UnkPathMap*>(self + Offset);
-    u32 size = map->size;
+    u32 size = map->node_count;
     UnkPathIdList_7100d94220 ids(0xf);
     ids.Reserve(size);
     for (UnkPathMapIterator it(map); it.node; it.Next())

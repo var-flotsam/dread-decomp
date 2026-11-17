@@ -3,6 +3,7 @@
 // layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "types.h"
+#include "base/UnkVtableList.h"
 
 struct UnkUnit1674Item {
     void* field_0x0;
@@ -16,17 +17,7 @@ struct UnkUnit1674Node {
 };
 
 // A singly linked list with its nodes from `allocator` with `flags` (as base/CDeviceQueue.h's list).
-struct UnkUnit1674List {
-    u8 pad_0x0[0x8];
-    // A union member: no type-based alias info, so the count is reloaded after the link is stored.
-    union {
-        u32 count;  // +0x8
-    };
-    UnkUnit1674Node* head;  // 0x10
-    UnkUnit1674Node* tail;  // 0x18
-    base::UnkAllocator* allocator;  // 0x20
-    u32 flags;  // 0x28
-
+struct UnkUnit1674List : base::UnkVtableList<UnkUnit1674Node> {
     void PushFront(UnkUnit1674Item* const& item) {
         auto* node = static_cast<UnkUnit1674Node*>(allocator->vf_0x40(sizeof(UnkUnit1674Node), 8, flags));
         if (!node)

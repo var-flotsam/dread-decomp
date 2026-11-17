@@ -65,68 +65,19 @@ s32 fn_71001bab30(const UnkFrustumView* self, UnkBoundSphere* sphere) {
 
 // ---- The view's cull object (fn_71001b7a60) ----
 
+#include "base/global/CRntDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVectorOps.h"
 #include "game/UnkSphere.h"
-
-extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
 // The registry every view's cull object is entered in: a chained hash set of pointers at +8 (the
 // layout of base/UnkHashMap.h: buckets indexed by the key's low 32 bits modulo the capacity, and a
 // list of all nodes). src/game_lo/fn_710019e100.cpp removes a key from it.
 struct UnkKeyOwner;
 
-struct UnkCullNode {
-    u64 key;
-    u64 value;
-    UnkCullNode* next;   // the list of all nodes
-    UnkCullNode* prev;
-    UnkCullNode* chain;  // the next node in the bucket
-
-    explicit UnkCullNode(u64 k) : key(k), value(k), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    // The list links, through accessors (their stores may alias the registry's list ends).
-    UnkCullNode*& Next() { return next; }
-    UnkCullNode*& Prev() { return prev; }
-};
-
 struct UnkCullRegistry {
     u8 pad_0x0[0x8];
-    base::UnkAllocator* allocator;  // +0x8
-    u32 flags;                      // +0x10
-    u32 count;                      // +0x14
-    UnkCullNode** buckets;          // +0x18 (base::global::CRntVector)
-    u32 bucket_count;               // +0x20
-    u32 bucket_capacity;            // +0x24
-    u8 pad_0x28[0x18];
-    UnkCullNode* tail;  // +0x40
-    UnkCullNode* head;  // +0x48
-
-    // Adds a node for `key` at the front of its bucket and at the end of the list. An empty
-    // bucket array gives a null bucket, which the original dereferences all the same.
-    void Insert(u64 key) {
-        UnkCullNode** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)key % bucket_capacity;
-            if (bucket_count <= i)
-                __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-            bucket = &buckets[i];
-        }
-        UnkCullNode* old = *bucket;
-        auto* node = static_cast<UnkCullNode*>(allocator->vf_0x40(sizeof(UnkCullNode), 8, flags));
-        if (node)
-            new (node) UnkCullNode(key);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
+    base::global::CRntDictionary<u64, u64> objects;  // +0x8: each object its own value
 };
 
 // The 0xb8-byte cull object.
@@ -346,7 +297,7 @@ void fn_71001b7a60(UnkCullView* self) {
     auto* cull = static_cast<UnkCullObject*>(fn_71000839a0(0xb8, 0x34));
     fn_71001691ac(cull);
     if (cull)
-        registry->Insert((u64)cull);
+        registry->objects.InsertChecked((u64)cull, (u64)cull);
     self->cull = cull;
 }
 

@@ -1,7 +1,9 @@
 // Sets a record's number and builds its two ids from a base string: the string with the number
 // appended, and then with "_border" appended as well.
 #include "UnkBufferString.h"
+#include "base/UnkPooledStrId.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -12,16 +14,11 @@ using base::global::UnkStringPool;
 
 using UnkString20 = UnkBufferString<0x20, g_unk_7101a1b5a0>;
 
-// A string id made from a string (fn_7100000850) and moved into place, so never destroyed.
-struct UnkTempStrId {
-    UnkStringData* data;
-};
-
 // A string id taking over another (CStrId's move-assignment).
 struct UnkAssignedStrId {
     UnkStringData* data;
 
-    __attribute__((always_inline)) void operator=(UnkTempStrId&& other) {
+    __attribute__((always_inline)) void operator=(base::UnkPooledString&& other) {
         UnkStringPool* pool = g_unk_7101d47108;
         if (pool) {
             if (data && data != &pool->empty) {
@@ -46,7 +43,7 @@ struct UnkNumberedIds {
     UnkAssignedStrId field_0x10;
 };
 
-struct UnkTempStrIdT : UnkTempStrId {
+struct UnkTempStrIdT : base::UnkPooledString {
     __attribute__((always_inline)) UnkTempStrIdT(const UnkString20& str) {
         fn_7100000850(reinterpret_cast<UnkStrIdBase*>(this), *str.Str(), true);
     }
@@ -66,23 +63,6 @@ void fn_7100ea56f0(UnkNumberedIds* self, u32 number) {
 
 // Builds a record's id from a string, with "[suffix]" appended when the suffix isn't empty, and
 // takes the word after the string.
-struct UnkReleasedStrId {
-    UnkStringData* data;
-
-    __attribute__((always_inline)) ~UnkReleasedStrId() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
-
 using UnkString80 = UnkBufferString<0x80, g_unk_7101a1b750>;
 
 struct UnkSuffix {
@@ -95,7 +75,7 @@ struct UnkStringWord {
 };
 
 struct UnkIdWord {
-    UnkReleasedStrId id;
+    UnkStrIdTwoStep id;
     u64 field_0x8;
 };
 
@@ -108,8 +88,8 @@ void fn_7100ae9bb0(UnkIdWord* self, const UnkStringWord* source, const UnkSuffix
         fn_710007f3b4(str.Str(), reinterpret_cast<const base::global::CRntString*>(suffix));
         fn_710007f5ac(str.Str(), ']');
     }
-    UnkTempStrId id;
+    base::UnkPooledString id;
     fn_7100000850(reinterpret_cast<UnkStrIdBase*>(&id), *str.Str(), true);
-    self->id.~UnkReleasedStrId();
+    self->id.~UnkStrIdTwoStep();
     self->id.data = id.data;
 }

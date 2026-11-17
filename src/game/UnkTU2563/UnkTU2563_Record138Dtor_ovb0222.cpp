@@ -5,28 +5,13 @@
 #include "base/UnkFreedVectorPair.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/global/UnkTwoStepStrId.h"
 #include "game/UnkTU2563.h"
 #include "game_s2/UnkItem50.h"
 #include "types.h"
 
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
-
-struct UnkReleasedStrIdDtor_ovb0222 {
-    UnkStringData* data;
-    __attribute__((always_inline)) ~UnkReleasedStrIdDtor_ovb0222() {
-        if (UnkStringPool* pool = g_unk_7101d47108) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47108;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-};
 
 // An element destroyed through its vtable (slot 1).
 struct UnkPolyElemDtor_ovb0222 {
@@ -49,7 +34,7 @@ struct UnkItemDtor_ovb0222 {
 };
 
 struct alignas(8) UnkRecord138Dtor_ovb0222 {
-    UnkReleasedStrIdDtor_ovb0222 name;
+    UnkStrIdTwoStep name;
     u32 field_0x8;
     UnkItemDtor_ovb0222 item;  // 0x10
     u32 unk_0x60[6];

@@ -2,17 +2,9 @@
 // become the empty string and the moved-from array gives up its buffer.
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
+#include "base/global/UnkTwoStepStrId.h"
 
 using base::global::UnkStringData;
-
-struct UnkMovedId {
-    UnkStringData* data;
-
-    UnkMovedId(UnkMovedId&& other) {
-        data = other.data;
-        other.data = &g_unk_7101d47108->empty;
-    }
-};
 
 struct UnkArray {
     void* data;
@@ -33,9 +25,9 @@ struct UnkArray {
 };
 
 struct UnkRecord_0x60 {
-    UnkMovedId field_0x0;
+    UnkMovedStrId field_0x0;
     u32 field_0x8;
-    UnkMovedId field_0x10;
+    UnkMovedStrId field_0x10;
     void* field_0x18;
     void* field_0x20;
     u32 field_0x28;

@@ -6,6 +6,7 @@
 // instances dropped by state. Names and layouts are placeholders.
 #include <new>
 
+#include "base/global/CRntDictionary.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkPairArrays.h"
 #include "base/global/CRntVector.h"
@@ -15,8 +16,6 @@
 #include "game/UnkTU287.h"
 #include "game/UnkTU324.h"
 #include "types.h"
-
-extern "C" [[noreturn]] void __assert_fail(const char* expr, const char* file, int line, const char* func);
 
 // A counted reference to a resource, set as base::core::CAssetLink's (src/base/core/CAssetLink.cpp).
 static inline void SetCountedRef(UnkCountedResource*& ref, UnkCountedResource* res) {
@@ -72,59 +71,10 @@ static_assert(sizeof(UnkModelInstance) == 0x180, "UnkModelInstance layout");
 
 // Constructs an instance named `name` (its node built with it).
 
-struct UnkInstanceNode {
-    u64 key;
-    u64 value;
-    UnkInstanceNode* next;   // the list of all nodes
-    UnkInstanceNode* prev;
-    UnkInstanceNode* chain;  // the next node in the bucket
-
-    explicit UnkInstanceNode(u64 k) : key(k), value(k), next(nullptr), prev(nullptr), chain(nullptr) {}
-
-    // The list links, through accessors (their stores may alias the set's list ends).
-    UnkInstanceNode*& Next() { return next; }
-    UnkInstanceNode*& Prev() { return prev; }
-};
-
 // The render manager's pool of scene objects (game/UnkRenderManager.h's UnkRenderPool) as far as
-// this file uses it: a chained hash set of the objects, keyed by the pointer's low 32 bits
-// (base/UnkChainedMap.h's layout).
-struct UnkInstanceSet {
-    base::UnkAllocator* allocator;
-    u32 flags;                    // 0x8
-    u32 count;                    // 0xc
-    UnkInstanceNode** buckets;    // 0x10 (base::global::CRntVector)
-    u32 bucket_count;             // 0x18
-    u32 bucket_capacity;          // 0x1c
-    u8 pad_0x20[0x18];
-    UnkInstanceNode* tail;  // 0x38
-    UnkInstanceNode* head;  // 0x40
-
-    // Adds a node for `key` at the front of its bucket and at the end of the list.
-    void Insert(u64 key) {
-        UnkInstanceNode** bucket = nullptr;
-        if (bucket_count != 0) {
-            u32 i = (u32)key % bucket_capacity;
-            if (bucket_count <= i)
-                __assert_fail("i < m_iSize", "..\\Base/global/RntVector.h", 0x15b, "operator[]");
-            bucket = &buckets[i];
-        }
-        UnkInstanceNode* old = *bucket;
-        auto* node = static_cast<UnkInstanceNode*>(allocator->vf_0x40(sizeof(UnkInstanceNode), 8, flags));
-        if (node)
-            new (node) UnkInstanceNode(key);
-        node->chain = old;
-        *bucket = node;
-        if (!head)
-            head = node;
-        else if (tail) {
-            node->Prev() = tail;
-            tail->Next() = node;
-        }
-        tail = node;
-        ++count;
-    }
-};
+// this file uses it: a chained hash set of the objects, each its own value, keyed by the pointer's
+// low 32 bits.
+using UnkInstanceSet = base::global::CRntDictionary<u64, u64>;
 
 // The pool's creator for these instances (like fn_7100149930, fn_71006cae2c and fn_7100a0feac for
 // its other objects): an instance named `name` drawing `resource` (also given to its node, which is
@@ -142,7 +92,7 @@ UnkModelInstance* fn_710021d3d4(UnkRenderPool* pool, UnkCountedResource* resourc
             SetCountedRef(instance->Node()->resource, resource);
             instance->Node()->vf_0x90();
         }
-        set->Insert((u64)instance);
+        set->InsertChecked((u64)instance, (u64)instance);
         result = instance;
     }
     if (out)
