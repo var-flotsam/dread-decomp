@@ -119,9 +119,10 @@ inline void DestroyDestructorFirst(void* obj) {
     }                                                                                                   \
     DREAD_REFL_GETTER_BODY_(T, base::global::CStrId(base::global::UnkStrIdInline{}, #T, true), nullptr)
 
-// Only the descriptor constructor (T::refl_InitClass), for a class whose getter isn't generated.
-#define DREAD_REFLECTED_DESCRIPTOR(T)                                                                   \
+// Only the descriptor constructor (T::refl_InitClass), for a class whose getter isn't generated. T may
+// be a template instance with commas in its arguments.
+#define DREAD_REFLECTED_DESCRIPTOR(...)                                                                 \
     template base::reflection::CClass::CClass(const base::global::CStrId&,                             \
                                               const base::reflection::CClass*,                         \
                                               base::reflection::ClassSetupFn,                            \
-                                              base::reflection::ClassSetupFn, T::refl_Description*)
+                                              base::reflection::ClassSetupFn, __VA_ARGS__::refl_Description*)

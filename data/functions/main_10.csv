@@ -1,9 +1,9 @@
 address,size,name,name_source,subsystem,status
-0x71010000d0,300,fn_71010000d0,unknown,audio?,O
+0x71010000d0,300,fn_71010000d0,unknown,unknown,O
 0x71010001fc,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>>::Begin",reflection,engine/reflection,O
 0x7101000208,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TScenarioMusicPreset>>::End",reflection,engine/reflection,O
-0x7101000210,144,fn_7101000210,unknown,audio?,O
-0x71010002a0,64,fn_71010002a0,unknown,audio?,O
+0x7101000210,144,fn_7101000210,unknown,unknown,O
+0x71010002a0,64,fn_71010002a0,unknown,unknown,O
 0x71010002e0,12,sound::TBossMusicTrack::refl_Equals,reflection,audio,O
 0x71010002ec,8,sound::TBossMusicTrack::refl_Hash,reflection,audio,O
 0x71010002f4,12,sound::TBossMusicTrack::refl_TypeOf,reflection,audio,O
@@ -13,60 +13,60 @@ address,size,name,name_source,subsystem,status
 0x7101000518,244,sound::TBossMusicTrack::refl_Destroy,reflection,audio,O
 0x710100060c,232,sound::TBossMusicTrack::refl_CopyAssign,reflection,audio,O
 0x71010006f4,48,sound::TBossMusicTrack::refl_MoveAssign,reflection,audio,O
-0x7101000724,404,fn_7101000724,unknown,audio?,O
-0x71010008b8,12,fn_71010008b8,unknown,audio?,O
-0x71010008c4,8,fn_71010008c4,unknown,audio?,O
-0x71010008cc,12,fn_71010008cc,unknown,audio?,O
-0x71010008d8,8,fn_71010008d8,unknown,audio?,O
-0x71010008e0,8,fn_71010008e0,unknown,audio?,O
-0x71010008e8,4,fn_71010008e8,unknown,audio?,O
-0x71010008ec,60,fn_71010008ec,unknown,audio?,O
-0x7101000928,356,fn_7101000928,unknown,audio?,O
-0x7101000a8c,180,fn_7101000a8c,unknown,audio?,O
-0x7101000b40,316,fn_7101000b40,unknown,audio?,U
-0x7101000c7c,80,fn_7101000c7c,unknown,audio?,O
-0x7101000ccc,56,fn_7101000ccc,unknown,audio?,O
-0x7101000d04,12,fn_7101000d04,unknown,audio?,O
-0x7101000d10,8,fn_7101000d10,unknown,audio?,O
-0x7101000d18,12,fn_7101000d18,unknown,audio?,O
-0x7101000d24,8,fn_7101000d24,unknown,audio?,O
-0x7101000d2c,8,fn_7101000d2c,unknown,audio?,O
-0x7101000d34,504,fn_7101000d34,unknown,audio?,O
-0x7101000f2c,60,fn_7101000f2c,unknown,audio?,O
-0x7101000f68,8,fn_7101000f68,unknown,audio?,O
-0x7101000f70,8,fn_7101000f70,unknown,audio?,O
-0x7101000f78,80,fn_7101000f78,unknown,audio?,O
-0x7101000fc8,56,fn_7101000fc8,unknown,audio?,O
+0x7101000724,404,fn_7101000724,unknown,unknown,O
+0x71010008b8,12,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Equals,reflection,engine/reflection,O
+0x71010008c4,8,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Hash,reflection,engine/reflection,O
+0x71010008cc,12,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_TypeOf,reflection,engine/reflection,O
+0x71010008d8,8,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Construct,reflection,engine/reflection,O
+0x71010008e0,8,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71010008e8,4,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71010008ec,60,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Destroy,reflection,engine/reflection,O
+0x7101000928,356,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7101000a8c,180,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7101000b40,316,fn_7101000b40,unknown,engine/reflection?,U
+0x7101000c7c,80,fn_7101000c7c,unknown,engine/reflection?,O
+0x7101000ccc,56,fn_7101000ccc,unknown,engine/reflection?,O
+0x7101000d04,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Equals,reflection,engine/reflection,O
+0x7101000d10,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Hash,reflection,engine/reflection,O
+0x7101000d18,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_TypeOf,reflection,engine/reflection,O
+0x7101000d24,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Construct,reflection,engine/reflection,O
+0x7101000d2c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7101000d34,504,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7101000f2c,60,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Destroy,reflection,engine/reflection,O
+0x7101000f68,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7101000f70,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7101000f78,80,fn_7101000f78,unknown,unknown,O
+0x7101000fc8,56,fn_7101000fc8,unknown,unknown,O
 0x7101001000,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::Count,reflection,engine/reflection,O
-0x7101001008,4,fn_7101001008,unknown,audio?,O
-0x710100100c,16,fn_710100100c,unknown,audio?,O
-0x710100101c,16,fn_710100101c,unknown,audio?,O
-0x710100102c,32,fn_710100102c,unknown,audio?,O
-0x710100104c,20,fn_710100104c,unknown,audio?,O
-0x7101001060,40,fn_7101001060,unknown,audio?,O
-0x7101001088,360,fn_7101001088,unknown,audio?,O
-0x71010011f0,132,fn_71010011f0,unknown,audio?,O
-0x7101001274,12,fn_7101001274,unknown,audio?,O
+0x7101001008,4,fn_7101001008,unknown,unknown,O
+0x710100100c,16,fn_710100100c,unknown,unknown,O
+0x710100101c,16,fn_710100101c,unknown,unknown,O
+0x710100102c,32,fn_710100102c,unknown,unknown,O
+0x710100104c,20,fn_710100104c,unknown,unknown,O
+0x7101001060,40,fn_7101001060,unknown,unknown,O
+0x7101001088,360,fn_7101001088,unknown,unknown,O
+0x71010011f0,132,fn_71010011f0,unknown,unknown,O
+0x7101001274,12,fn_7101001274,unknown,unknown,O
 0x7101001280,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::Hash,reflection,engine/reflection,O
 0x7101001288,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::TypeOf,reflection,engine/reflection,O
 0x7101001294,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::Construct,reflection,engine/reflection,O
-0x71010012d4,128,fn_71010012d4,unknown,audio?,O
+0x71010012d4,128,fn_71010012d4,unknown,unknown,O
 0x7101001354,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::MoveConstruct,reflection,engine/reflection,O
-0x7101001394,4,fn_7101001394,unknown,audio?,O
-0x7101001398,116,fn_7101001398,unknown,audio?,O
-0x710100140c,112,fn_710100140c,unknown,audio?,O
-0x710100147c,536,fn_710100147c,unknown,audio?,O
-0x7101001694,352,fn_7101001694,unknown,audio?,U
-0x71010017f4,340,fn_71010017f4,unknown,audio?,O
-0x7101001948,832,fn_7101001948,unknown,audio?,U
-0x7101001c88,764,fn_7101001c88,unknown,audio?,U
-0x7101001f84,264,fn_7101001f84,unknown,audio?,U
-0x710100208c,716,fn_710100208c,unknown,audio?,O
-0x7101002358,212,fn_7101002358,unknown,audio?,O
+0x7101001394,4,fn_7101001394,unknown,unknown,O
+0x7101001398,116,fn_7101001398,unknown,unknown,O
+0x710100140c,112,fn_710100140c,unknown,unknown,O
+0x710100147c,536,fn_710100147c,unknown,unknown,O
+0x7101001694,352,fn_7101001694,unknown,unknown,U
+0x71010017f4,340,fn_71010017f4,unknown,unknown,O
+0x7101001948,832,fn_7101001948,unknown,unknown,U
+0x7101001c88,764,fn_7101001c88,unknown,unknown,U
+0x7101001f84,264,fn_7101001f84,unknown,unknown,U
+0x710100208c,716,fn_710100208c,unknown,unknown,O
+0x7101002358,212,fn_7101002358,unknown,unknown,O
 0x710100242c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<sound::TBossMusicTrack>>::Begin,reflection,engine/reflection,O
-0x7101002438,24,fn_7101002438,unknown,audio?,O
-0x7101002450,408,fn_7101002450,unknown,audio?,U
-0x71010025e8,420,fn_71010025e8,unknown,audio?,U
+0x7101002438,24,fn_7101002438,unknown,unknown,O
+0x7101002450,408,fn_7101002450,unknown,unknown,U
+0x71010025e8,420,fn_71010025e8,unknown,unknown,U
 0x710100278c,12,sound::TBossMusicSubStateConfig::refl_Equals,reflection,audio,O
 0x7101002798,8,sound::TBossMusicSubStateConfig::refl_Hash,reflection,audio,O
 0x71010027a0,12,sound::TBossMusicSubStateConfig::refl_TypeOf,reflection,audio,O
@@ -76,48 +76,48 @@ address,size,name,name_source,subsystem,status
 0x7101002998,112,sound::TBossMusicSubStateConfig::refl_Destroy,reflection,audio,O
 0x7101002a08,216,sound::TBossMusicSubStateConfig::refl_CopyAssign,reflection,audio,O
 0x7101002ae0,216,sound::TBossMusicSubStateConfig::refl_MoveAssign,reflection,audio,O
-0x7101002bb8,12,fn_7101002bb8,unknown,audio?,O
-0x7101002bc4,8,fn_7101002bc4,unknown,audio?,O
-0x7101002bcc,12,fn_7101002bcc,unknown,audio?,O
-0x7101002bd8,8,fn_7101002bd8,unknown,audio?,O
-0x7101002be0,8,fn_7101002be0,unknown,audio?,O
-0x7101002be8,260,fn_7101002be8,unknown,audio?,O
-0x7101002cec,60,fn_7101002cec,unknown,audio?,O
-0x7101002d28,460,fn_7101002d28,unknown,audio?,O
-0x7101002ef4,48,fn_7101002ef4,unknown,audio?,O
-0x7101002f24,736,fn_7101002f24,unknown,audio?,O
-0x7101003204,80,fn_7101003204,unknown,audio?,O
-0x7101003254,56,fn_7101003254,unknown,audio?,O
-0x710100328c,12,fn_710100328c,unknown,audio?,O
-0x7101003298,8,fn_7101003298,unknown,audio?,O
-0x71010032a0,12,fn_71010032a0,unknown,audio?,O
-0x71010032ac,8,fn_71010032ac,unknown,audio?,O
-0x71010032b4,8,fn_71010032b4,unknown,audio?,O
-0x71010032bc,4,fn_71010032bc,unknown,audio?,O
-0x71010032c0,60,fn_71010032c0,unknown,audio?,O
-0x71010032fc,8,fn_71010032fc,unknown,audio?,O
-0x7101003304,8,fn_7101003304,unknown,audio?,O
-0x710100330c,404,fn_710100330c,unknown,audio?,O
-0x71010034a0,80,fn_71010034a0,unknown,audio?,O
-0x71010034f0,56,fn_71010034f0,unknown,audio?,O
+0x7101002bb8,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_Equals",reflection,engine/reflection,O
+0x7101002bc4,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_Hash",reflection,engine/reflection,O
+0x7101002bcc,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_TypeOf",reflection,engine/reflection,O
+0x7101002bd8,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_Construct",reflection,engine/reflection,O
+0x7101002be0,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101002be8,260,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7101002cec,60,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_Destroy",reflection,engine/reflection,O
+0x7101002d28,460,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7101002ef4,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7101002f24,736,fn_7101002f24,unknown,engine/reflection?,O
+0x7101003204,80,fn_7101003204,unknown,engine/reflection?,O
+0x7101003254,56,fn_7101003254,unknown,engine/reflection?,O
+0x710100328c,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_Equals",reflection,engine/reflection,O
+0x7101003298,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_Hash",reflection,engine/reflection,O
+0x71010032a0,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_TypeOf",reflection,engine/reflection,O
+0x71010032ac,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_Construct",reflection,engine/reflection,O
+0x71010032b4,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71010032bc,4,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71010032c0,60,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_Destroy",reflection,engine/reflection,O
+0x71010032fc,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7101003304,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::refl_MoveAssign",reflection,engine/reflection,O
+0x710100330c,404,fn_710100330c,unknown,unknown,O
+0x71010034a0,80,fn_71010034a0,unknown,unknown,O
+0x71010034f0,56,fn_71010034f0,unknown,unknown,O
 0x7101003528,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Count",reflection,engine/reflection,O
-0x7101003530,120,fn_7101003530,unknown,audio?,O
-0x71010035a8,4,fn_71010035a8,unknown,audio?,O
-0x71010035ac,4,fn_71010035ac,unknown,audio?,O
-0x71010035b0,4,fn_71010035b0,unknown,audio?,O
-0x71010035b4,48,fn_71010035b4,unknown,audio?,O
-0x71010035e4,88,fn_71010035e4,unknown,audio?,O
-0x710100363c,288,fn_710100363c,unknown,audio?,O
-0x710100375c,288,fn_710100375c,unknown,audio?,U
+0x7101003530,120,fn_7101003530,unknown,unknown,O
+0x71010035a8,4,fn_71010035a8,unknown,unknown,O
+0x71010035ac,4,fn_71010035ac,unknown,unknown,O
+0x71010035b0,4,fn_71010035b0,unknown,unknown,O
+0x71010035b4,48,fn_71010035b4,unknown,unknown,O
+0x71010035e4,88,fn_71010035e4,unknown,unknown,O
+0x710100363c,288,fn_710100363c,unknown,unknown,O
+0x710100375c,288,fn_710100375c,unknown,unknown,U
 0x710100387c,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Equals",reflection,engine/reflection,O
 0x7101003888,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Hash",reflection,engine/reflection,O
 0x7101003890,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::TypeOf",reflection,engine/reflection,O
 0x710100389c,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Construct",reflection,engine/reflection,O
-0x71010038a0,152,fn_71010038a0,unknown,audio?,O
+0x71010038a0,152,fn_71010038a0,unknown,unknown,O
 0x7101003938,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::Begin",reflection,engine/reflection,O
 0x7101003944,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::End",reflection,engine/reflection,O
-0x710100394c,144,fn_710100394c,unknown,audio?,O
-0x71010039dc,64,fn_71010039dc,unknown,audio?,O
+0x710100394c,144,fn_710100394c,unknown,unknown,O
+0x71010039dc,64,fn_71010039dc,unknown,unknown,O
 0x7101003a1c,12,sound::TBossMusicSpawnGroupConfig::refl_Equals,reflection,audio,O
 0x7101003a28,8,sound::TBossMusicSpawnGroupConfig::refl_Hash,reflection,audio,O
 0x7101003a30,12,sound::TBossMusicSpawnGroupConfig::refl_TypeOf,reflection,audio,O
@@ -127,53 +127,53 @@ address,size,name,name_source,subsystem,status
 0x7101003a48,4,sound::TBossMusicSpawnGroupConfig::refl_Destroy,reflection,audio,O
 0x7101003a4c,184,sound::TBossMusicSpawnGroupConfig::refl_CopyAssign,reflection,audio,O
 0x7101003b04,84,sound::TBossMusicSpawnGroupConfig::refl_MoveAssign,reflection,audio,O
-0x7101003b58,40,fn_7101003b58,unknown,audio?,O
-0x7101003b80,116,fn_7101003b80,unknown,audio?,O
-0x7101003bf4,220,fn_7101003bf4,unknown,audio?,O
-0x7101003cd0,412,fn_7101003cd0,unknown,audio?,O
-0x7101003e6c,20,fn_7101003e6c,unknown,audio?,O
-0x7101003e80,12,fn_7101003e80,unknown,audio?,O
-0x7101003e8c,8,fn_7101003e8c,unknown,audio?,O
-0x7101003e94,12,fn_7101003e94,unknown,audio?,O
-0x7101003ea0,8,fn_7101003ea0,unknown,audio?,O
-0x7101003ea8,8,fn_7101003ea8,unknown,audio?,O
-0x7101003eb0,108,fn_7101003eb0,unknown,audio?,O
-0x7101003f1c,136,fn_7101003f1c,unknown,audio?,O
-0x7101003fa4,48,fn_7101003fa4,unknown,audio?,O
-0x7101003fd4,48,fn_7101003fd4,unknown,audio?,O
-0x7101004004,412,fn_7101004004,unknown,audio?,O
-0x71010041a0,488,fn_71010041a0,unknown,audio?,U
-0x7101004388,80,fn_7101004388,unknown,audio?,O
-0x71010043d8,56,fn_71010043d8,unknown,audio?,O
-0x7101004410,12,fn_7101004410,unknown,audio?,O
-0x710100441c,8,fn_710100441c,unknown,audio?,O
-0x7101004424,12,fn_7101004424,unknown,audio?,O
-0x7101004430,8,fn_7101004430,unknown,audio?,O
-0x7101004438,8,fn_7101004438,unknown,audio?,O
-0x7101004440,108,fn_7101004440,unknown,audio?,O
-0x71010044ac,136,fn_71010044ac,unknown,audio?,O
-0x7101004534,8,fn_7101004534,unknown,audio?,O
-0x710100453c,8,fn_710100453c,unknown,audio?,O
-0x7101004544,80,fn_7101004544,unknown,audio?,O
-0x7101004594,56,fn_7101004594,unknown,audio?,O
+0x7101003b58,40,fn_7101003b58,unknown,unknown,O
+0x7101003b80,116,fn_7101003b80,unknown,unknown,O
+0x7101003bf4,220,fn_7101003bf4,unknown,unknown,O
+0x7101003cd0,412,fn_7101003cd0,unknown,unknown,O
+0x7101003e6c,20,fn_7101003e6c,unknown,unknown,O
+0x7101003e80,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_Equals",reflection,engine/reflection,O
+0x7101003e8c,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_Hash",reflection,engine/reflection,O
+0x7101003e94,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_TypeOf",reflection,engine/reflection,O
+0x7101003ea0,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_Construct",reflection,engine/reflection,O
+0x7101003ea8,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101003eb0,108,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7101003f1c,136,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_Destroy",reflection,engine/reflection,O
+0x7101003fa4,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7101003fd4,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7101004004,412,fn_7101004004,unknown,engine/reflection?,O
+0x71010041a0,488,fn_71010041a0,unknown,engine/reflection?,U
+0x7101004388,80,fn_7101004388,unknown,engine/reflection?,O
+0x71010043d8,56,fn_71010043d8,unknown,engine/reflection?,O
+0x7101004410,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_Equals",reflection,engine/reflection,O
+0x710100441c,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_Hash",reflection,engine/reflection,O
+0x7101004424,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_TypeOf",reflection,engine/reflection,O
+0x7101004430,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_Construct",reflection,engine/reflection,O
+0x7101004438,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101004440,108,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71010044ac,136,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_Destroy",reflection,engine/reflection,O
+0x7101004534,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_CopyAssign",reflection,engine/reflection,O
+0x710100453c,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7101004544,80,fn_7101004544,unknown,unknown,O
+0x7101004594,56,fn_7101004594,unknown,unknown,O
 0x71010045cc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Count",reflection,engine/reflection,O
-0x71010045d4,204,fn_71010045d4,unknown,audio?,O
-0x71010046a0,264,fn_71010046a0,unknown,audio?,O
-0x71010047a8,264,fn_71010047a8,unknown,audio?,O
-0x71010048b0,4,fn_71010048b0,unknown,audio?,O
-0x71010048b4,48,fn_71010048b4,unknown,audio?,O
-0x71010048e4,88,fn_71010048e4,unknown,audio?,O
-0x710100493c,256,fn_710100493c,unknown,audio?,O
-0x7101004a3c,148,fn_7101004a3c,unknown,audio?,O
+0x71010045d4,204,fn_71010045d4,unknown,unknown,O
+0x71010046a0,264,fn_71010046a0,unknown,unknown,O
+0x71010047a8,264,fn_71010047a8,unknown,unknown,O
+0x71010048b0,4,fn_71010048b0,unknown,unknown,O
+0x71010048b4,48,fn_71010048b4,unknown,unknown,O
+0x71010048e4,88,fn_71010048e4,unknown,unknown,O
+0x710100493c,256,fn_710100493c,unknown,unknown,O
+0x7101004a3c,148,fn_7101004a3c,unknown,unknown,O
 0x7101004ad0,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Equals",reflection,engine/reflection,O
 0x7101004adc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Hash",reflection,engine/reflection,O
 0x7101004ae4,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::TypeOf",reflection,engine/reflection,O
 0x7101004af0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Construct",reflection,engine/reflection,O
-0x7101004af4,4,fn_7101004af4,unknown,audio?,O
+0x7101004af4,4,fn_7101004af4,unknown,unknown,O
 0x7101004af8,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::Begin",reflection,engine/reflection,O
 0x7101004b04,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::End",reflection,engine/reflection,O
-0x7101004b0c,360,fn_7101004b0c,unknown,audio?,O
-0x7101004c74,356,fn_7101004c74,unknown,audio?,O
+0x7101004b0c,360,fn_7101004b0c,unknown,unknown,O
+0x7101004c74,356,fn_7101004c74,unknown,unknown,O
 0x7101004dd8,12,sound::TBossMusicPreset::refl_Equals,reflection,audio,O
 0x7101004de4,8,sound::TBossMusicPreset::refl_Hash,reflection,audio,O
 0x7101004dec,12,sound::TBossMusicPreset::refl_TypeOf,reflection,audio,O
@@ -188,27 +188,27 @@ address,size,name,name_source,subsystem,status
 0x7101004edc,220,fn_7101004edc,unknown,unknown,O
 0x7101004fb8,412,fn_7101004fb8,unknown,unknown,O
 0x7101005154,20,fn_7101005154,unknown,unknown,O
-0x7101005168,12,fn_7101005168,unknown,unknown,O
-0x7101005174,8,fn_7101005174,unknown,unknown,O
-0x710100517c,12,fn_710100517c,unknown,unknown,O
-0x7101005188,8,fn_7101005188,unknown,unknown,O
-0x7101005190,8,fn_7101005190,unknown,unknown,O
-0x7101005198,108,fn_7101005198,unknown,unknown,O
-0x7101005204,136,fn_7101005204,unknown,unknown,O
-0x710100528c,264,fn_710100528c,unknown,unknown,O
-0x7101005394,48,fn_7101005394,unknown,unknown,O
-0x71010053c4,404,fn_71010053c4,unknown,unknown,O
-0x7101005558,80,fn_7101005558,unknown,unknown,O
-0x71010055a8,56,fn_71010055a8,unknown,unknown,O
-0x71010055e0,12,fn_71010055e0,unknown,unknown,O
-0x71010055ec,8,fn_71010055ec,unknown,unknown,O
-0x71010055f4,12,fn_71010055f4,unknown,unknown,O
-0x7101005600,8,fn_7101005600,unknown,unknown,O
-0x7101005608,8,fn_7101005608,unknown,unknown,O
-0x7101005610,108,fn_7101005610,unknown,unknown,O
-0x710100567c,136,fn_710100567c,unknown,unknown,O
-0x7101005704,8,fn_7101005704,unknown,unknown,O
-0x710100570c,8,fn_710100570c,unknown,unknown,O
+0x7101005168,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_Equals",reflection,engine/reflection,O
+0x7101005174,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_Hash",reflection,engine/reflection,O
+0x710100517c,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_TypeOf",reflection,engine/reflection,O
+0x7101005188,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_Construct",reflection,engine/reflection,O
+0x7101005190,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101005198,108,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7101005204,136,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_Destroy",reflection,engine/reflection,O
+0x710100528c,264,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7101005394,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_MoveAssign",reflection,engine/reflection,O
+0x71010053c4,404,fn_71010053c4,unknown,engine/reflection?,O
+0x7101005558,80,fn_7101005558,unknown,engine/reflection?,O
+0x71010055a8,56,fn_71010055a8,unknown,engine/reflection?,O
+0x71010055e0,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_Equals",reflection,engine/reflection,O
+0x71010055ec,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_Hash",reflection,engine/reflection,O
+0x71010055f4,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_TypeOf",reflection,engine/reflection,O
+0x7101005600,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_Construct",reflection,engine/reflection,O
+0x7101005608,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101005610,108,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x710100567c,136,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_Destroy",reflection,engine/reflection,O
+0x7101005704,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_CopyAssign",reflection,engine/reflection,O
+0x710100570c,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::refl_MoveAssign",reflection,engine/reflection,O
 0x7101005714,80,fn_7101005714,unknown,unknown,O
 0x7101005764,56,fn_7101005764,unknown,unknown,O
 0x710100579c,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::Count",reflection,engine/reflection,O
@@ -521,20 +521,20 @@ address,size,name,name_source,subsystem,status
 0x7101020b9c,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::TElementIterator>",reflection,engine/reflection,O
 0x7101020c78,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::TElementConstIterator>",reflection,engine/reflection,O
 0x7101020d54,900,fn_7101020d54,unknown,engine/reflection?,O
-0x71010210d8,388,fn_71010210d8,unknown,engine/reflection?,O
+0x71010210d8,388,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_InitClass",reflection,engine/reflection,O
 0x710102125c,220,fn_710102125c,unknown,engine/reflection?,O
 0x7101021338,900,fn_7101021338,unknown,engine/reflection?,O
-0x71010216bc,388,fn_71010216bc,unknown,engine/reflection?,O
+0x71010216bc,388,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_InitClass",reflection,engine/reflection,O
 0x7101021840,220,fn_7101021840,unknown,engine/reflection?,O
 0x710102191c,504,"base::reflection::refl_InitType<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>",reflection,engine/reflection,O
 0x7101021b14,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<sound::CSoundEventsDef::TSoundEventRules>::TElementIterator>,reflection,engine/reflection,O
 0x7101021bf0,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<sound::CSoundEventsDef::TSoundEventRules>::TElementConstIterator>,reflection,engine/reflection,O
 0x7101021ccc,900,fn_7101021ccc,unknown,engine/reflection?,O
-0x7101022050,388,fn_7101022050,unknown,engine/reflection?,O
+0x7101022050,388,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_InitClass,reflection,engine/reflection,O
 0x71010221d4,516,base::reflection::refl_GetType<std::unique_ptr<sound::CSoundEventsDef::SSoundEventsRule>>,reflection,engine/reflection,O
 0x71010223d8,220,fn_71010223d8,unknown,engine/reflection?,O
 0x71010224b4,900,fn_71010224b4,unknown,engine/reflection?,O
-0x7101022838,388,fn_7101022838,unknown,engine/reflection?,O
+0x7101022838,388,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_InitClass,reflection,engine/reflection,O
 0x71010229bc,220,fn_71010229bc,unknown,engine/reflection?,O
 0x7101022a98,480,fn_7101022a98,unknown,engine/reflection?,O
 0x7101022c78,220,fn_7101022c78,unknown,engine/reflection?,O
@@ -774,81 +774,81 @@ address,size,name,name_source,subsystem,status
 0x7101028f28,8,sound::CSoundManager::refl_Hash,reflection,audio,O
 0x7101028f30,28,sound::CSoundManager::refl_TypeOf,reflection,audio,O
 0x7101028f4c,76,fn_7101028f4c,unknown,unknown,O
-0x7101028f98,12,fn_7101028f98,unknown,unknown,O
-0x7101028fa4,8,fn_7101028fa4,unknown,unknown,O
-0x7101028fac,12,fn_7101028fac,unknown,unknown,O
-0x7101028fb8,8,fn_7101028fb8,unknown,unknown,O
-0x7101028fc0,8,fn_7101028fc0,unknown,unknown,O
-0x7101028fc8,4,fn_7101028fc8,unknown,unknown,O
-0x7101028fcc,136,fn_7101028fcc,unknown,unknown,O
-0x7101029054,264,fn_7101029054,unknown,unknown,O
-0x710102915c,48,fn_710102915c,unknown,unknown,O
-0x710102918c,380,fn_710102918c,unknown,unknown,O
-0x7101029308,404,fn_7101029308,unknown,unknown,O
-0x710102949c,80,fn_710102949c,unknown,unknown,O
-0x71010294ec,56,fn_71010294ec,unknown,unknown,O
-0x7101029524,12,fn_7101029524,unknown,unknown,O
-0x7101029530,8,fn_7101029530,unknown,unknown,O
-0x7101029538,12,fn_7101029538,unknown,unknown,O
-0x7101029544,8,fn_7101029544,unknown,unknown,O
-0x710102954c,8,fn_710102954c,unknown,unknown,O
-0x7101029554,4,fn_7101029554,unknown,unknown,O
-0x7101029558,136,fn_7101029558,unknown,unknown,O
-0x71010295e0,8,fn_71010295e0,unknown,unknown,O
-0x71010295e8,8,fn_71010295e8,unknown,unknown,O
-0x71010295f0,380,fn_71010295f0,unknown,unknown,O
-0x710102976c,80,fn_710102976c,unknown,unknown,O
-0x71010297bc,56,fn_71010297bc,unknown,unknown,O
+0x7101028f98,12,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_Equals",reflection,engine/reflection,O
+0x7101028fa4,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_Hash",reflection,engine/reflection,O
+0x7101028fac,12,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_TypeOf",reflection,engine/reflection,O
+0x7101028fb8,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_Construct",reflection,engine/reflection,O
+0x7101028fc0,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101028fc8,4,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7101028fcc,136,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_Destroy",reflection,engine/reflection,O
+0x7101029054,264,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_CopyAssign",reflection,engine/reflection,O
+0x710102915c,48,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_MoveAssign",reflection,engine/reflection,O
+0x710102918c,380,fn_710102918c,unknown,engine/reflection?,O
+0x7101029308,404,fn_7101029308,unknown,engine/reflection?,O
+0x710102949c,80,fn_710102949c,unknown,engine/reflection?,O
+0x71010294ec,56,fn_71010294ec,unknown,engine/reflection?,O
+0x7101029524,12,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_Equals",reflection,engine/reflection,O
+0x7101029530,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_Hash",reflection,engine/reflection,O
+0x7101029538,12,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_TypeOf",reflection,engine/reflection,O
+0x7101029544,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_Construct",reflection,engine/reflection,O
+0x710102954c,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101029554,4,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7101029558,136,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_Destroy",reflection,engine/reflection,O
+0x71010295e0,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71010295e8,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::refl_MoveAssign",reflection,engine/reflection,O
+0x71010295f0,380,fn_71010295f0,unknown,engine/reflection?,O
+0x710102976c,80,fn_710102976c,unknown,engine/reflection?,O
+0x71010297bc,56,fn_71010297bc,unknown,engine/reflection?,O
 0x71010297f4,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::Count",reflection,engine/reflection,O
-0x71010297fc,244,fn_71010297fc,unknown,unknown,O
-0x71010298f0,4,fn_71010298f0,unknown,unknown,O
-0x71010298f4,4,fn_71010298f4,unknown,unknown,O
-0x71010298f8,124,fn_71010298f8,unknown,unknown,O
-0x7101029974,20,fn_7101029974,unknown,unknown,O
-0x7101029988,108,fn_7101029988,unknown,unknown,O
-0x71010299f4,144,fn_71010299f4,unknown,unknown,O
-0x7101029a84,144,fn_7101029a84,unknown,unknown,O
-0x7101029b14,12,fn_7101029b14,unknown,unknown,O
+0x71010297fc,244,fn_71010297fc,unknown,engine/reflection?,O
+0x71010298f0,4,fn_71010298f0,unknown,engine/reflection?,O
+0x71010298f4,4,fn_71010298f4,unknown,engine/reflection?,O
+0x71010298f8,124,fn_71010298f8,unknown,engine/reflection?,O
+0x7101029974,20,fn_7101029974,unknown,engine/reflection?,O
+0x7101029988,108,fn_7101029988,unknown,engine/reflection?,O
+0x71010299f4,144,fn_71010299f4,unknown,engine/reflection?,O
+0x7101029a84,144,fn_7101029a84,unknown,engine/reflection?,O
+0x7101029b14,12,fn_7101029b14,unknown,engine/reflection?,O
 0x7101029b20,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::Hash",reflection,engine/reflection,O
 0x7101029b28,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::TypeOf",reflection,engine/reflection,O
 0x7101029b34,52,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::Construct",reflection,engine/reflection,O
-0x7101029b68,4,fn_7101029b68,unknown,unknown,O
+0x7101029b68,4,fn_7101029b68,unknown,engine/reflection?,O
 0x7101029b6c,68,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::MoveConstruct",reflection,engine/reflection,O
-0x7101029bb0,304,fn_7101029bb0,unknown,unknown,O
-0x7101029ce0,48,fn_7101029ce0,unknown,unknown,O
-0x7101029d10,48,fn_7101029d10,unknown,unknown,O
-0x7101029d40,392,fn_7101029d40,unknown,unknown,O
-0x7101029ec8,548,fn_7101029ec8,unknown,unknown,O
-0x710102a0ec,600,fn_710102a0ec,unknown,unknown,O
-0x710102a344,564,fn_710102a344,unknown,unknown,O
-0x710102a578,324,fn_710102a578,unknown,unknown,O
-0x710102a6bc,324,fn_710102a6bc,unknown,unknown,O
-0x710102a800,520,fn_710102a800,unknown,unknown,O
+0x7101029bb0,304,fn_7101029bb0,unknown,engine/reflection?,O
+0x7101029ce0,48,fn_7101029ce0,unknown,engine/reflection?,O
+0x7101029d10,48,fn_7101029d10,unknown,engine/reflection?,O
+0x7101029d40,392,fn_7101029d40,unknown,engine/reflection?,O
+0x7101029ec8,548,fn_7101029ec8,unknown,engine/reflection?,O
+0x710102a0ec,600,fn_710102a0ec,unknown,engine/reflection?,O
+0x710102a344,564,fn_710102a344,unknown,engine/reflection?,O
+0x710102a578,324,fn_710102a578,unknown,engine/reflection?,O
+0x710102a6bc,324,fn_710102a6bc,unknown,engine/reflection?,O
+0x710102a800,520,fn_710102a800,unknown,engine/reflection?,O
 0x710102aa08,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::Begin",reflection,engine/reflection,O
-0x710102aa14,24,fn_710102aa14,unknown,unknown,O
-0x710102aa2c,276,fn_710102aa2c,unknown,unknown,O
-0x710102ab40,292,fn_710102ab40,unknown,unknown,O
-0x710102ac64,144,fn_710102ac64,unknown,unknown,O
-0x710102acf4,8,fn_710102acf4,unknown,unknown,O
-0x710102acfc,12,fn_710102acfc,unknown,unknown,O
-0x710102ad08,8,fn_710102ad08,unknown,unknown,O
-0x710102ad10,4,fn_710102ad10,unknown,unknown,O
-0x710102ad14,72,fn_710102ad14,unknown,unknown,O
-0x710102ad5c,80,fn_710102ad5c,unknown,unknown,O
-0x710102adac,8,fn_710102adac,unknown,unknown,O
-0x710102adb4,48,fn_710102adb4,unknown,unknown,O
-0x710102ade4,224,fn_710102ade4,unknown,unknown,O
-0x710102aec4,80,fn_710102aec4,unknown,unknown,O
-0x710102af14,84,fn_710102af14,unknown,unknown,O
-0x710102af68,144,fn_710102af68,unknown,unknown,O
-0x710102aff8,8,fn_710102aff8,unknown,unknown,O
-0x710102b000,12,fn_710102b000,unknown,unknown,O
-0x710102b00c,8,fn_710102b00c,unknown,unknown,O
-0x710102b014,4,fn_710102b014,unknown,unknown,O
-0x710102b018,4,fn_710102b018,unknown,unknown,O
-0x710102b01c,80,fn_710102b01c,unknown,unknown,O
-0x710102b06c,8,fn_710102b06c,unknown,unknown,O
-0x710102b074,8,fn_710102b074,unknown,unknown,O
+0x710102aa14,24,fn_710102aa14,unknown,engine/reflection?,O
+0x710102aa2c,276,fn_710102aa2c,unknown,engine/reflection?,O
+0x710102ab40,292,fn_710102ab40,unknown,engine/reflection?,O
+0x710102ac64,144,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Equals,reflection,engine/reflection,O
+0x710102acf4,8,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Hash,reflection,engine/reflection,O
+0x710102acfc,12,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_TypeOf,reflection,engine/reflection,O
+0x710102ad08,8,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Construct,reflection,engine/reflection,O
+0x710102ad10,4,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710102ad14,72,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710102ad5c,80,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Destroy,reflection,engine/reflection,O
+0x710102adac,8,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_CopyAssign,reflection,engine/reflection,O
+0x710102adb4,48,base::reflection::KeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_MoveAssign,reflection,engine/reflection,O
+0x710102ade4,224,fn_710102ade4,unknown,engine/reflection?,O
+0x710102aec4,80,fn_710102aec4,unknown,engine/reflection?,O
+0x710102af14,84,fn_710102af14,unknown,engine/reflection?,O
+0x710102af68,144,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Equals,reflection,engine/reflection,O
+0x710102aff8,8,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Hash,reflection,engine/reflection,O
+0x710102b000,12,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_TypeOf,reflection,engine/reflection,O
+0x710102b00c,8,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Construct,reflection,engine/reflection,O
+0x710102b014,4,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710102b018,4,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710102b01c,80,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_Destroy,reflection,engine/reflection,O
+0x710102b06c,8,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_CopyAssign,reflection,engine/reflection,O
+0x710102b074,8,base::reflection::ConstKeyElementValue<sound::CSoundEventsDef::TSoundEventRules>::refl_MoveAssign,reflection,engine/reflection,O
 0x710102b07c,80,fn_710102b07c,unknown,unknown,O
 0x710102b0cc,84,fn_710102b0cc,unknown,unknown,O
 0x710102b120,8,fn_710102b120,unknown,unknown,O
@@ -1270,10 +1270,10 @@ address,size,name,name_source,subsystem,status
 0x710103dcb8,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::TElementIterator>",reflection,engine/reflection,O
 0x710103dd94,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::TElementConstIterator>",reflection,engine/reflection,O
 0x710103de70,900,fn_710103de70,unknown,unknown,O
-0x710103e1f4,388,fn_710103e1f4,unknown,unknown,O
-0x710103e378,220,fn_710103e378,unknown,unknown,O
-0x710103e454,900,fn_710103e454,unknown,unknown,O
-0x710103e7d8,388,fn_710103e7d8,unknown,unknown,O
+0x710103e1f4,388,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_InitClass",reflection,engine/reflection,O
+0x710103e378,220,fn_710103e378,unknown,engine/reflection?,O
+0x710103e454,900,fn_710103e454,unknown,engine/reflection?,O
+0x710103e7d8,388,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_InitClass",reflection,engine/reflection,O
 0x710103e95c,220,fn_710103e95c,unknown,unknown,O
 0x710103ea38,464,"base::reflection::refl_InitType<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>",reflection,engine/reflection,O
 0x710103ec08,220,"base::reflection::refl_GetType<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>*>",reflection,engine/reflection,O
@@ -1391,28 +1391,28 @@ address,size,name,name_source,subsystem,status
 0x71010418e8,128,fn_71010418e8,unknown,unknown,O
 0x7101041968,412,fn_7101041968,unknown,unknown,O
 0x7101041b04,20,fn_7101041b04,unknown,unknown,O
-0x7101041b18,12,fn_7101041b18,unknown,unknown,O
-0x7101041b24,8,fn_7101041b24,unknown,unknown,O
-0x7101041b2c,12,fn_7101041b2c,unknown,unknown,O
-0x7101041b38,8,fn_7101041b38,unknown,unknown,O
-0x7101041b40,8,fn_7101041b40,unknown,unknown,O
-0x7101041b48,108,fn_7101041b48,unknown,unknown,O
-0x7101041bb4,136,fn_7101041bb4,unknown,unknown,O
-0x7101041c3c,200,fn_7101041c3c,unknown,unknown,O
-0x7101041d04,48,fn_7101041d04,unknown,unknown,O
-0x7101041d34,352,fn_7101041d34,unknown,unknown,U
-0x7101041e94,404,fn_7101041e94,unknown,unknown,O
-0x7101042028,80,fn_7101042028,unknown,unknown,O
-0x7101042078,96,fn_7101042078,unknown,unknown,O
-0x71010420d8,12,fn_71010420d8,unknown,unknown,O
-0x71010420e4,8,fn_71010420e4,unknown,unknown,O
-0x71010420ec,12,fn_71010420ec,unknown,unknown,O
-0x71010420f8,8,fn_71010420f8,unknown,unknown,O
-0x7101042100,8,fn_7101042100,unknown,unknown,O
-0x7101042108,108,fn_7101042108,unknown,unknown,O
-0x7101042174,136,fn_7101042174,unknown,unknown,O
-0x71010421fc,8,fn_71010421fc,unknown,unknown,O
-0x7101042204,8,fn_7101042204,unknown,unknown,O
+0x7101041b18,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_Equals",reflection,engine/reflection,O
+0x7101041b24,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_Hash",reflection,engine/reflection,O
+0x7101041b2c,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_TypeOf",reflection,engine/reflection,O
+0x7101041b38,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_Construct",reflection,engine/reflection,O
+0x7101041b40,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101041b48,108,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7101041bb4,136,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_Destroy",reflection,engine/reflection,O
+0x7101041c3c,200,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7101041d04,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7101041d34,352,fn_7101041d34,unknown,engine/reflection?,U
+0x7101041e94,404,fn_7101041e94,unknown,engine/reflection?,O
+0x7101042028,80,fn_7101042028,unknown,engine/reflection?,O
+0x7101042078,96,fn_7101042078,unknown,engine/reflection?,O
+0x71010420d8,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_Equals",reflection,engine/reflection,O
+0x71010420e4,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_Hash",reflection,engine/reflection,O
+0x71010420ec,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_TypeOf",reflection,engine/reflection,O
+0x71010420f8,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_Construct",reflection,engine/reflection,O
+0x7101042100,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7101042108,108,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7101042174,136,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_Destroy",reflection,engine/reflection,O
+0x71010421fc,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7101042204,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::refl_MoveAssign",reflection,engine/reflection,O
 0x710104220c,80,fn_710104220c,unknown,unknown,O
 0x710104225c,96,fn_710104225c,unknown,unknown,O
 0x71010422bc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::Count",reflection,engine/reflection,O
@@ -1476,11 +1476,11 @@ address,size,name,name_source,subsystem,status
 0x71010456bc,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<CBlackboard::TSectionContainer>::TElementIterator>,reflection,engine/reflection,O
 0x7101045798,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<CBlackboard::TSectionContainer>::TElementConstIterator>,reflection,engine/reflection,O
 0x7101045874,900,fn_7101045874,unknown,unknown,O
-0x7101045bf8,388,fn_7101045bf8,unknown,unknown,O
+0x7101045bf8,388,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_InitClass,reflection,engine/reflection,O
 0x7101045d7c,220,base::reflection::refl_GetType<CBlackboard::CSection*>,reflection,engine/reflection,O
-0x7101045e58,220,fn_7101045e58,unknown,unknown,O
-0x7101045f34,900,fn_7101045f34,unknown,unknown,O
-0x71010462b8,388,fn_71010462b8,unknown,unknown,O
+0x7101045e58,220,fn_7101045e58,unknown,engine/reflection?,O
+0x7101045f34,900,fn_7101045f34,unknown,engine/reflection?,O
+0x71010462b8,388,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_InitClass,reflection,engine/reflection,O
 0x710104643c,220,fn_710104643c,unknown,unknown,O
 0x7101046518,500,fn_7101046518,unknown,unknown,O
 0x710104670c,220,base::reflection::refl_GetType<CBlackboard::TSectionContainer*>,reflection,engine/reflection,O
@@ -1613,27 +1613,27 @@ address,size,name,name_source,subsystem,status
 0x7101049fa8,56,fn_7101049fa8,unknown,unknown,O
 0x7101049fe0,296,fn_7101049fe0,unknown,unknown,O
 0x710104a108,60,fn_710104a108,unknown,unknown,O
-0x710104a144,176,fn_710104a144,unknown,unknown,O
-0x710104a1f4,8,fn_710104a1f4,unknown,unknown,O
-0x710104a1fc,12,fn_710104a1fc,unknown,unknown,O
-0x710104a208,8,fn_710104a208,unknown,unknown,O
-0x710104a210,8,fn_710104a210,unknown,unknown,O
-0x710104a218,112,fn_710104a218,unknown,unknown,O
-0x710104a288,128,fn_710104a288,unknown,unknown,O
-0x710104a308,268,fn_710104a308,unknown,unknown,O
-0x710104a414,48,fn_710104a414,unknown,unknown,O
-0x710104a444,404,fn_710104a444,unknown,unknown,O
-0x710104a5d8,80,fn_710104a5d8,unknown,unknown,O
-0x710104a628,84,fn_710104a628,unknown,unknown,O
-0x710104a67c,176,fn_710104a67c,unknown,unknown,O
-0x710104a72c,8,fn_710104a72c,unknown,unknown,O
-0x710104a734,12,fn_710104a734,unknown,unknown,O
-0x710104a740,8,fn_710104a740,unknown,unknown,O
-0x710104a748,8,fn_710104a748,unknown,unknown,O
-0x710104a750,112,fn_710104a750,unknown,unknown,O
-0x710104a7c0,128,fn_710104a7c0,unknown,unknown,O
-0x710104a840,8,fn_710104a840,unknown,unknown,O
-0x710104a848,8,fn_710104a848,unknown,unknown,O
+0x710104a144,176,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_Equals,reflection,engine/reflection,O
+0x710104a1f4,8,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_Hash,reflection,engine/reflection,O
+0x710104a1fc,12,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_TypeOf,reflection,engine/reflection,O
+0x710104a208,8,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_Construct,reflection,engine/reflection,O
+0x710104a210,8,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710104a218,112,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710104a288,128,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_Destroy,reflection,engine/reflection,O
+0x710104a308,268,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_CopyAssign,reflection,engine/reflection,O
+0x710104a414,48,base::reflection::KeyElementValue<CBlackboard::TSectionContainer>::refl_MoveAssign,reflection,engine/reflection,O
+0x710104a444,404,fn_710104a444,unknown,engine/reflection?,O
+0x710104a5d8,80,fn_710104a5d8,unknown,engine/reflection?,O
+0x710104a628,84,fn_710104a628,unknown,engine/reflection?,O
+0x710104a67c,176,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_Equals,reflection,engine/reflection,O
+0x710104a72c,8,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_Hash,reflection,engine/reflection,O
+0x710104a734,12,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_TypeOf,reflection,engine/reflection,O
+0x710104a740,8,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_Construct,reflection,engine/reflection,O
+0x710104a748,8,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710104a750,112,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710104a7c0,128,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_Destroy,reflection,engine/reflection,O
+0x710104a840,8,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_CopyAssign,reflection,engine/reflection,O
+0x710104a848,8,base::reflection::ConstKeyElementValue<CBlackboard::TSectionContainer>::refl_MoveAssign,reflection,engine/reflection,O
 0x710104a850,80,fn_710104a850,unknown,unknown,O
 0x710104a8a0,84,fn_710104a8a0,unknown,unknown,O
 0x710104a8f4,8,fn_710104a8f4,unknown,unknown,O
@@ -1670,15 +1670,15 @@ address,size,name,name_source,subsystem,status
 0x710104c290,240,CFXPoolPack::refl_GetClass,reflection,game,O
 0x710104c380,148,CFXPoolPack::refl_AddFields,reflection,game,O
 0x710104c414,388,CFXPoolPack::refl_InitClass,reflection,game,O
-0x710104c598,220,fn_710104c598,unknown,game?,O
-0x710104c674,220,fn_710104c674,unknown,game?,O
-0x710104c750,912,fn_710104c750,unknown,game?,O
-0x710104cae0,388,fn_710104cae0,unknown,game?,O
-0x710104cc64,220,fn_710104cc64,unknown,game?,O
-0x710104cd40,912,fn_710104cd40,unknown,game?,O
-0x710104d0d0,388,fn_710104d0d0,unknown,game?,O
-0x710104d254,220,fn_710104d254,unknown,game?,O
-0x710104d330,504,fn_710104d330,unknown,game?,O
+0x710104c598,220,fn_710104c598,unknown,unknown,O
+0x710104c674,220,fn_710104c674,unknown,unknown,O
+0x710104c750,912,fn_710104c750,unknown,unknown,O
+0x710104cae0,388,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_InitClass,reflection,engine/reflection,O
+0x710104cc64,220,fn_710104cc64,unknown,engine/reflection?,O
+0x710104cd40,912,fn_710104cd40,unknown,engine/reflection?,O
+0x710104d0d0,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_InitClass,reflection,engine/reflection,O
+0x710104d254,220,fn_710104d254,unknown,unknown,O
+0x710104d330,504,fn_710104d330,unknown,unknown,O
 0x710104d528,4,CFXPool::CDefinition::refl_AddAttributes,reflection,game,O
 0x710104d52c,240,CFXPool::CDefinition::refl_GetClass,reflection,game,O
 0x710104d61c,644,CFXPool::CDefinition::refl_AddFields,reflection,game,O
@@ -1754,55 +1754,55 @@ address,size,name,name_source,subsystem,status
 0x710104ed30,212,CFXPoolPack::refl_Destroy,reflection,game,O
 0x710104ee04,48,CFXPoolPack::refl_CopyAssign,reflection,game,O
 0x710104ee34,256,CFXPoolPack::refl_MoveAssign,reflection,game,O
-0x710104ef34,12,fn_710104ef34,unknown,game?,O
-0x710104ef40,8,fn_710104ef40,unknown,game?,O
-0x710104ef48,12,fn_710104ef48,unknown,game?,O
-0x710104ef54,8,fn_710104ef54,unknown,game?,O
-0x710104ef5c,8,fn_710104ef5c,unknown,game?,O
-0x710104ef64,132,fn_710104ef64,unknown,game?,O
-0x710104efe8,128,fn_710104efe8,unknown,game?,O
-0x710104f068,296,fn_710104f068,unknown,game?,O
-0x710104f190,48,fn_710104f190,unknown,game?,O
-0x710104f1c0,384,fn_710104f1c0,unknown,game?,O
-0x710104f340,80,fn_710104f340,unknown,game?,O
-0x710104f390,88,fn_710104f390,unknown,game?,O
-0x710104f3e8,12,fn_710104f3e8,unknown,game?,O
-0x710104f3f4,8,fn_710104f3f4,unknown,game?,O
-0x710104f3fc,12,fn_710104f3fc,unknown,game?,O
-0x710104f408,8,fn_710104f408,unknown,game?,O
-0x710104f410,8,fn_710104f410,unknown,game?,O
-0x710104f418,168,fn_710104f418,unknown,game?,O
-0x710104f4c0,128,fn_710104f4c0,unknown,game?,O
-0x710104f540,8,fn_710104f540,unknown,game?,O
-0x710104f548,8,fn_710104f548,unknown,game?,O
-0x710104f550,80,fn_710104f550,unknown,game?,O
-0x710104f5a0,88,fn_710104f5a0,unknown,game?,O
-0x710104f5f8,8,fn_710104f5f8,unknown,game?,O
-0x710104f600,180,fn_710104f600,unknown,game?,O
-0x710104f6b4,16,fn_710104f6b4,unknown,game?,O
-0x710104f6c4,16,fn_710104f6c4,unknown,game?,O
-0x710104f6d4,8,fn_710104f6d4,unknown,game?,O
-0x710104f6dc,12,fn_710104f6dc,unknown,game?,O
-0x710104f6e8,36,fn_710104f6e8,unknown,game?,O
-0x710104f70c,152,fn_710104f70c,unknown,game?,O
-0x710104f7a4,152,fn_710104f7a4,unknown,game?,O
-0x710104f83c,12,fn_710104f83c,unknown,game?,O
-0x710104f848,8,fn_710104f848,unknown,game?,O
-0x710104f850,12,fn_710104f850,unknown,game?,O
-0x710104f85c,64,fn_710104f85c,unknown,game?,O
-0x710104f89c,4,fn_710104f89c,unknown,game?,O
-0x710104f8a0,64,fn_710104f8a0,unknown,game?,O
-0x710104f8e0,212,fn_710104f8e0,unknown,game?,O
-0x710104f9b4,48,fn_710104f9b4,unknown,game?,O
-0x710104f9e4,256,fn_710104f9e4,unknown,game?,O
-0x710104fae4,440,fn_710104fae4,unknown,game?,U
-0x710104fc9c,404,fn_710104fc9c,unknown,game?,U
-0x710104fe30,308,fn_710104fe30,unknown,game?,U
-0x710104ff64,340,fn_710104ff64,unknown,game?,O
-0x71010500b8,12,fn_71010500b8,unknown,game?,O
-0x71010500c4,20,fn_71010500c4,unknown,game?,O
-0x71010500d8,216,fn_71010500d8,unknown,game?,O
-0x71010501b0,224,fn_71010501b0,unknown,game?,O
+0x710104ef34,12,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_Equals,reflection,engine/reflection,O
+0x710104ef40,8,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_Hash,reflection,engine/reflection,O
+0x710104ef48,12,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_TypeOf,reflection,engine/reflection,O
+0x710104ef54,8,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_Construct,reflection,engine/reflection,O
+0x710104ef5c,8,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710104ef64,132,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710104efe8,128,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_Destroy,reflection,engine/reflection,O
+0x710104f068,296,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710104f190,48,base::reflection::KeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710104f1c0,384,fn_710104f1c0,unknown,engine/reflection?,O
+0x710104f340,80,fn_710104f340,unknown,engine/reflection?,O
+0x710104f390,88,fn_710104f390,unknown,engine/reflection?,O
+0x710104f3e8,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_Equals,reflection,engine/reflection,O
+0x710104f3f4,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_Hash,reflection,engine/reflection,O
+0x710104f3fc,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_TypeOf,reflection,engine/reflection,O
+0x710104f408,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_Construct,reflection,engine/reflection,O
+0x710104f410,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710104f418,168,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710104f4c0,128,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_Destroy,reflection,engine/reflection,O
+0x710104f540,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710104f548,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CFXPool::CDefinition>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710104f550,80,fn_710104f550,unknown,unknown,O
+0x710104f5a0,88,fn_710104f5a0,unknown,unknown,O
+0x710104f5f8,8,fn_710104f5f8,unknown,unknown,O
+0x710104f600,180,fn_710104f600,unknown,unknown,O
+0x710104f6b4,16,fn_710104f6b4,unknown,unknown,O
+0x710104f6c4,16,fn_710104f6c4,unknown,unknown,O
+0x710104f6d4,8,fn_710104f6d4,unknown,unknown,O
+0x710104f6dc,12,fn_710104f6dc,unknown,unknown,O
+0x710104f6e8,36,fn_710104f6e8,unknown,unknown,O
+0x710104f70c,152,fn_710104f70c,unknown,unknown,O
+0x710104f7a4,152,fn_710104f7a4,unknown,unknown,O
+0x710104f83c,12,fn_710104f83c,unknown,unknown,O
+0x710104f848,8,fn_710104f848,unknown,unknown,O
+0x710104f850,12,fn_710104f850,unknown,unknown,O
+0x710104f85c,64,fn_710104f85c,unknown,unknown,O
+0x710104f89c,4,fn_710104f89c,unknown,unknown,O
+0x710104f8a0,64,fn_710104f8a0,unknown,unknown,O
+0x710104f8e0,212,fn_710104f8e0,unknown,unknown,O
+0x710104f9b4,48,fn_710104f9b4,unknown,unknown,O
+0x710104f9e4,256,fn_710104f9e4,unknown,unknown,O
+0x710104fae4,440,fn_710104fae4,unknown,unknown,U
+0x710104fc9c,404,fn_710104fc9c,unknown,unknown,U
+0x710104fe30,308,fn_710104fe30,unknown,unknown,U
+0x710104ff64,340,fn_710104ff64,unknown,unknown,O
+0x71010500b8,12,fn_71010500b8,unknown,unknown,O
+0x71010500c4,20,fn_71010500c4,unknown,unknown,O
+0x71010500d8,216,fn_71010500d8,unknown,unknown,O
+0x71010501b0,224,fn_71010501b0,unknown,unknown,O
 0x7101050290,12,CFXPool::CDefinition::refl_Equals,reflection,game,O
 0x710105029c,8,CFXPool::CDefinition::refl_Hash,reflection,game,O
 0x71010502a4,28,CFXPool::CDefinition::refl_TypeOf,reflection,game,O
@@ -1904,28 +1904,28 @@ address,size,name,name_source,subsystem,status
 0x71010561fc,220,fn_71010561fc,unknown,unknown,O
 0x71010562d8,220,fn_71010562d8,unknown,unknown,O
 0x71010563b4,912,fn_71010563b4,unknown,unknown,O
-0x7101056744,388,fn_7101056744,unknown,unknown,O
-0x71010568c8,220,fn_71010568c8,unknown,unknown,O
-0x71010569a4,912,fn_71010569a4,unknown,unknown,O
-0x7101056d34,388,fn_7101056d34,unknown,unknown,O
-0x7101056eb8,220,fn_7101056eb8,unknown,unknown,O
-0x7101056f94,504,fn_7101056f94,unknown,unknown,O
-0x710105718c,220,fn_710105718c,unknown,unknown,O
-0x7101057268,220,fn_7101057268,unknown,unknown,O
-0x7101057344,912,fn_7101057344,unknown,unknown,O
-0x71010576d4,388,fn_71010576d4,unknown,unknown,O
-0x7101057858,220,fn_7101057858,unknown,unknown,O
-0x7101057934,912,fn_7101057934,unknown,unknown,O
-0x7101057cc4,388,fn_7101057cc4,unknown,unknown,O
-0x7101057e48,220,fn_7101057e48,unknown,unknown,O
-0x7101057f24,504,fn_7101057f24,unknown,unknown,O
+0x7101056744,388,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_InitClass,reflection,engine/reflection,O
+0x71010568c8,220,fn_71010568c8,unknown,engine/reflection?,O
+0x71010569a4,912,fn_71010569a4,unknown,engine/reflection?,O
+0x7101056d34,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_InitClass,reflection,engine/reflection,O
+0x7101056eb8,220,fn_7101056eb8,unknown,engine/reflection?,O
+0x7101056f94,504,fn_7101056f94,unknown,engine/reflection?,O
+0x710105718c,220,fn_710105718c,unknown,engine/reflection?,O
+0x7101057268,220,fn_7101057268,unknown,engine/reflection?,O
+0x7101057344,912,fn_7101057344,unknown,engine/reflection?,O
+0x71010576d4,388,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_InitClass,reflection,engine/reflection,O
+0x7101057858,220,fn_7101057858,unknown,engine/reflection?,O
+0x7101057934,912,fn_7101057934,unknown,engine/reflection?,O
+0x7101057cc4,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_InitClass,reflection,engine/reflection,O
+0x7101057e48,220,fn_7101057e48,unknown,engine/reflection?,O
+0x7101057f24,504,fn_7101057f24,unknown,engine/reflection?,O
 0x710105811c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorPathSegment>>::TElementIterator>,reflection,engine/reflection,O
 0x71010581f8,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorPathSegment>>::TElementConstIterator>,reflection,engine/reflection,O
-0x71010582d4,900,fn_71010582d4,unknown,unknown,O
-0x7101058658,388,fn_7101058658,unknown,unknown,O
-0x71010587dc,220,fn_71010587dc,unknown,unknown,O
-0x71010588b8,900,fn_71010588b8,unknown,unknown,O
-0x7101058c3c,388,fn_7101058c3c,unknown,unknown,O
+0x71010582d4,900,fn_71010582d4,unknown,engine/reflection?,O
+0x7101058658,388,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_InitClass,reflection,engine/reflection,O
+0x71010587dc,220,fn_71010587dc,unknown,engine/reflection?,O
+0x71010588b8,900,fn_71010588b8,unknown,engine/reflection?,O
+0x7101058c3c,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_InitClass,reflection,engine/reflection,O
 0x7101058dc0,220,fn_7101058dc0,unknown,unknown,O
 0x7101058e9c,500,base::reflection::refl_InitType<base::global::CRntVector<CEditorPathSegment>>,reflection,engine/reflection,O
 0x7101059090,8,fn_7101059090,unknown,unknown,O
@@ -2172,118 +2172,118 @@ address,size,name,name_source,subsystem,status
 0x710105d744,12,SLogicPath::refl_Destroy,reflection,game,O
 0x710105d750,216,SLogicPath::refl_CopyAssign,reflection,game,O
 0x710105d828,216,SLogicPath::refl_MoveAssign,reflection,game,O
-0x710105d900,12,fn_710105d900,unknown,unknown,O
-0x710105d90c,8,fn_710105d90c,unknown,unknown,O
-0x710105d914,12,fn_710105d914,unknown,unknown,O
-0x710105d920,8,fn_710105d920,unknown,unknown,O
-0x710105d928,8,fn_710105d928,unknown,unknown,O
-0x710105d930,176,fn_710105d930,unknown,unknown,O
-0x710105d9e0,24,fn_710105d9e0,unknown,unknown,O
-0x710105d9f8,144,fn_710105d9f8,unknown,unknown,O
-0x710105da88,228,fn_710105da88,unknown,unknown,O
-0x710105db6c,80,fn_710105db6c,unknown,unknown,O
-0x710105dbbc,96,fn_710105dbbc,unknown,unknown,O
-0x710105dc1c,12,fn_710105dc1c,unknown,unknown,O
-0x710105dc28,8,fn_710105dc28,unknown,unknown,O
-0x710105dc30,12,fn_710105dc30,unknown,unknown,O
-0x710105dc3c,8,fn_710105dc3c,unknown,unknown,O
-0x710105dc44,8,fn_710105dc44,unknown,unknown,O
-0x710105dc4c,176,fn_710105dc4c,unknown,unknown,O
-0x710105dcfc,24,fn_710105dcfc,unknown,unknown,O
-0x710105dd14,8,fn_710105dd14,unknown,unknown,O
-0x710105dd1c,8,fn_710105dd1c,unknown,unknown,O
-0x710105dd24,80,fn_710105dd24,unknown,unknown,O
-0x710105dd74,96,fn_710105dd74,unknown,unknown,O
-0x710105ddd4,8,fn_710105ddd4,unknown,unknown,O
-0x710105dddc,96,fn_710105dddc,unknown,unknown,O
-0x710105de3c,16,fn_710105de3c,unknown,unknown,O
-0x710105de4c,16,fn_710105de4c,unknown,unknown,O
-0x710105de5c,200,fn_710105de5c,unknown,unknown,U
-0x710105df24,16,fn_710105df24,unknown,unknown,O
-0x710105df34,36,fn_710105df34,unknown,unknown,O
-0x710105df58,360,fn_710105df58,unknown,unknown,O
-0x710105e0c0,376,fn_710105e0c0,unknown,unknown,O
-0x710105e238,12,fn_710105e238,unknown,unknown,O
-0x710105e244,8,fn_710105e244,unknown,unknown,O
-0x710105e24c,12,fn_710105e24c,unknown,unknown,O
-0x710105e258,64,fn_710105e258,unknown,unknown,O
-0x710105e298,4,fn_710105e298,unknown,unknown,O
-0x710105e29c,64,fn_710105e29c,unknown,unknown,O
-0x710105e2dc,156,fn_710105e2dc,unknown,unknown,O
-0x710105e378,48,fn_710105e378,unknown,unknown,O
-0x710105e3a8,172,fn_710105e3a8,unknown,unknown,O
-0x710105e454,12,fn_710105e454,unknown,unknown,O
-0x710105e460,20,fn_710105e460,unknown,unknown,O
-0x710105e474,168,fn_710105e474,unknown,unknown,U
-0x710105e51c,172,fn_710105e51c,unknown,unknown,O
-0x710105e5c8,12,fn_710105e5c8,unknown,unknown,O
-0x710105e5d4,8,fn_710105e5d4,unknown,unknown,O
-0x710105e5dc,12,fn_710105e5dc,unknown,unknown,O
-0x710105e5e8,8,fn_710105e5e8,unknown,unknown,O
-0x710105e5f0,8,fn_710105e5f0,unknown,unknown,O
-0x710105e5f8,244,fn_710105e5f8,unknown,unknown,O
-0x710105e6ec,196,fn_710105e6ec,unknown,unknown,O
-0x710105e7b0,176,fn_710105e7b0,unknown,unknown,O
-0x710105e860,48,fn_710105e860,unknown,unknown,O
-0x710105e890,400,fn_710105e890,unknown,unknown,O
-0x710105ea20,80,fn_710105ea20,unknown,unknown,O
-0x710105ea70,96,fn_710105ea70,unknown,unknown,O
-0x710105ead0,12,fn_710105ead0,unknown,unknown,O
-0x710105eadc,8,fn_710105eadc,unknown,unknown,O
-0x710105eae4,12,fn_710105eae4,unknown,unknown,O
-0x710105eaf0,8,fn_710105eaf0,unknown,unknown,O
-0x710105eaf8,8,fn_710105eaf8,unknown,unknown,O
-0x710105eb00,172,fn_710105eb00,unknown,unknown,O
-0x710105ebac,196,fn_710105ebac,unknown,unknown,O
-0x710105ec70,8,fn_710105ec70,unknown,unknown,O
-0x710105ec78,8,fn_710105ec78,unknown,unknown,O
-0x710105ec80,80,fn_710105ec80,unknown,unknown,O
-0x710105ecd0,96,fn_710105ecd0,unknown,unknown,O
-0x710105ed30,8,fn_710105ed30,unknown,unknown,O
-0x710105ed38,96,fn_710105ed38,unknown,unknown,O
-0x710105ed98,16,fn_710105ed98,unknown,unknown,O
-0x710105eda8,16,fn_710105eda8,unknown,unknown,O
-0x710105edb8,260,fn_710105edb8,unknown,unknown,U
-0x710105eebc,20,fn_710105eebc,unknown,unknown,O
-0x710105eed0,40,fn_710105eed0,unknown,unknown,O
-0x710105eef8,60,fn_710105eef8,unknown,unknown,O
-0x710105ef34,196,fn_710105ef34,unknown,unknown,O
-0x710105eff8,12,fn_710105eff8,unknown,unknown,O
-0x710105f004,8,fn_710105f004,unknown,unknown,O
-0x710105f00c,12,fn_710105f00c,unknown,unknown,O
-0x710105f018,64,fn_710105f018,unknown,unknown,O
-0x710105f058,4,fn_710105f058,unknown,unknown,O
-0x710105f05c,64,fn_710105f05c,unknown,unknown,O
-0x710105f09c,156,fn_710105f09c,unknown,unknown,O
-0x710105f138,48,fn_710105f138,unknown,unknown,O
-0x710105f168,172,fn_710105f168,unknown,unknown,O
-0x710105f214,596,fn_710105f214,unknown,unknown,U
-0x710105f468,936,fn_710105f468,unknown,unknown,U
-0x710105f810,732,fn_710105f810,unknown,unknown,U
-0x710105faec,12,fn_710105faec,unknown,unknown,O
-0x710105faf8,24,fn_710105faf8,unknown,unknown,O
-0x710105fb10,276,fn_710105fb10,unknown,unknown,O
-0x710105fc24,288,fn_710105fc24,unknown,unknown,O
-0x710105fd44,228,fn_710105fd44,unknown,unknown,O
-0x710105fe28,8,fn_710105fe28,unknown,unknown,O
-0x710105fe30,12,fn_710105fe30,unknown,unknown,O
-0x710105fe3c,8,fn_710105fe3c,unknown,unknown,O
-0x710105fe44,8,fn_710105fe44,unknown,unknown,O
-0x710105fe4c,92,fn_710105fe4c,unknown,unknown,O
-0x710105fea8,24,fn_710105fea8,unknown,unknown,O
-0x710105fec0,164,fn_710105fec0,unknown,unknown,O
-0x710105ff64,200,fn_710105ff64,unknown,unknown,O
-0x710106002c,80,fn_710106002c,unknown,unknown,O
-0x710106007c,60,fn_710106007c,unknown,unknown,O
-0x71010600b8,228,fn_71010600b8,unknown,unknown,O
-0x710106019c,8,fn_710106019c,unknown,unknown,O
-0x71010601a4,12,fn_71010601a4,unknown,unknown,O
-0x71010601b0,8,fn_71010601b0,unknown,unknown,O
-0x71010601b8,8,fn_71010601b8,unknown,unknown,O
-0x71010601c0,92,fn_71010601c0,unknown,unknown,O
-0x710106021c,24,fn_710106021c,unknown,unknown,O
-0x7101060234,8,fn_7101060234,unknown,unknown,O
-0x710106023c,8,fn_710106023c,unknown,unknown,O
+0x710105d900,12,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_Equals,reflection,engine/reflection,O
+0x710105d90c,8,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_Hash,reflection,engine/reflection,O
+0x710105d914,12,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_TypeOf,reflection,engine/reflection,O
+0x710105d920,8,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_Construct,reflection,engine/reflection,O
+0x710105d928,8,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710105d930,176,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710105d9e0,24,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_Destroy,reflection,engine/reflection,O
+0x710105d9f8,144,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710105da88,228,base::reflection::KeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710105db6c,80,fn_710105db6c,unknown,engine/reflection?,O
+0x710105dbbc,96,fn_710105dbbc,unknown,engine/reflection?,O
+0x710105dc1c,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_Equals,reflection,engine/reflection,O
+0x710105dc28,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_Hash,reflection,engine/reflection,O
+0x710105dc30,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_TypeOf,reflection,engine/reflection,O
+0x710105dc3c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_Construct,reflection,engine/reflection,O
+0x710105dc44,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710105dc4c,176,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710105dcfc,24,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_Destroy,reflection,engine/reflection,O
+0x710105dd14,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710105dd1c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicPathNode>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710105dd24,80,fn_710105dd24,unknown,engine/reflection?,O
+0x710105dd74,96,fn_710105dd74,unknown,engine/reflection?,O
+0x710105ddd4,8,fn_710105ddd4,unknown,engine/reflection?,O
+0x710105dddc,96,fn_710105dddc,unknown,engine/reflection?,O
+0x710105de3c,16,fn_710105de3c,unknown,engine/reflection?,O
+0x710105de4c,16,fn_710105de4c,unknown,engine/reflection?,O
+0x710105de5c,200,fn_710105de5c,unknown,engine/reflection?,U
+0x710105df24,16,fn_710105df24,unknown,engine/reflection?,O
+0x710105df34,36,fn_710105df34,unknown,engine/reflection?,O
+0x710105df58,360,fn_710105df58,unknown,engine/reflection?,O
+0x710105e0c0,376,fn_710105e0c0,unknown,engine/reflection?,O
+0x710105e238,12,fn_710105e238,unknown,engine/reflection?,O
+0x710105e244,8,fn_710105e244,unknown,engine/reflection?,O
+0x710105e24c,12,fn_710105e24c,unknown,engine/reflection?,O
+0x710105e258,64,fn_710105e258,unknown,engine/reflection?,O
+0x710105e298,4,fn_710105e298,unknown,engine/reflection?,O
+0x710105e29c,64,fn_710105e29c,unknown,engine/reflection?,O
+0x710105e2dc,156,fn_710105e2dc,unknown,engine/reflection?,O
+0x710105e378,48,fn_710105e378,unknown,engine/reflection?,O
+0x710105e3a8,172,fn_710105e3a8,unknown,engine/reflection?,O
+0x710105e454,12,fn_710105e454,unknown,engine/reflection?,O
+0x710105e460,20,fn_710105e460,unknown,engine/reflection?,O
+0x710105e474,168,fn_710105e474,unknown,engine/reflection?,U
+0x710105e51c,172,fn_710105e51c,unknown,engine/reflection?,O
+0x710105e5c8,12,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_Equals,reflection,engine/reflection,O
+0x710105e5d4,8,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_Hash,reflection,engine/reflection,O
+0x710105e5dc,12,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_TypeOf,reflection,engine/reflection,O
+0x710105e5e8,8,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_Construct,reflection,engine/reflection,O
+0x710105e5f0,8,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710105e5f8,244,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710105e6ec,196,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_Destroy,reflection,engine/reflection,O
+0x710105e7b0,176,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710105e860,48,base::reflection::KeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710105e890,400,fn_710105e890,unknown,engine/reflection?,O
+0x710105ea20,80,fn_710105ea20,unknown,engine/reflection?,O
+0x710105ea70,96,fn_710105ea70,unknown,engine/reflection?,O
+0x710105ead0,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_Equals,reflection,engine/reflection,O
+0x710105eadc,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_Hash,reflection,engine/reflection,O
+0x710105eae4,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_TypeOf,reflection,engine/reflection,O
+0x710105eaf0,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_Construct,reflection,engine/reflection,O
+0x710105eaf8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710105eb00,172,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710105ebac,196,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_Destroy,reflection,engine/reflection,O
+0x710105ec70,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710105ec78,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<SLogicSubPath>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710105ec80,80,fn_710105ec80,unknown,engine/reflection?,O
+0x710105ecd0,96,fn_710105ecd0,unknown,engine/reflection?,O
+0x710105ed30,8,fn_710105ed30,unknown,engine/reflection?,O
+0x710105ed38,96,fn_710105ed38,unknown,engine/reflection?,O
+0x710105ed98,16,fn_710105ed98,unknown,engine/reflection?,O
+0x710105eda8,16,fn_710105eda8,unknown,engine/reflection?,O
+0x710105edb8,260,fn_710105edb8,unknown,engine/reflection?,U
+0x710105eebc,20,fn_710105eebc,unknown,engine/reflection?,O
+0x710105eed0,40,fn_710105eed0,unknown,engine/reflection?,O
+0x710105eef8,60,fn_710105eef8,unknown,engine/reflection?,O
+0x710105ef34,196,fn_710105ef34,unknown,engine/reflection?,O
+0x710105eff8,12,fn_710105eff8,unknown,engine/reflection?,O
+0x710105f004,8,fn_710105f004,unknown,engine/reflection?,O
+0x710105f00c,12,fn_710105f00c,unknown,engine/reflection?,O
+0x710105f018,64,fn_710105f018,unknown,engine/reflection?,O
+0x710105f058,4,fn_710105f058,unknown,engine/reflection?,O
+0x710105f05c,64,fn_710105f05c,unknown,engine/reflection?,O
+0x710105f09c,156,fn_710105f09c,unknown,engine/reflection?,O
+0x710105f138,48,fn_710105f138,unknown,engine/reflection?,O
+0x710105f168,172,fn_710105f168,unknown,engine/reflection?,O
+0x710105f214,596,fn_710105f214,unknown,engine/reflection?,U
+0x710105f468,936,fn_710105f468,unknown,engine/reflection?,U
+0x710105f810,732,fn_710105f810,unknown,engine/reflection?,U
+0x710105faec,12,fn_710105faec,unknown,engine/reflection?,O
+0x710105faf8,24,fn_710105faf8,unknown,engine/reflection?,O
+0x710105fb10,276,fn_710105fb10,unknown,engine/reflection?,O
+0x710105fc24,288,fn_710105fc24,unknown,engine/reflection?,O
+0x710105fd44,228,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_Equals,reflection,engine/reflection,O
+0x710105fe28,8,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_Hash,reflection,engine/reflection,O
+0x710105fe30,12,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_TypeOf,reflection,engine/reflection,O
+0x710105fe3c,8,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_Construct,reflection,engine/reflection,O
+0x710105fe44,8,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710105fe4c,92,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710105fea8,24,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_Destroy,reflection,engine/reflection,O
+0x710105fec0,164,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710105ff64,200,base::reflection::KeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710106002c,80,fn_710106002c,unknown,engine/reflection?,O
+0x710106007c,60,fn_710106007c,unknown,engine/reflection?,O
+0x71010600b8,228,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_Equals,reflection,engine/reflection,O
+0x710106019c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_Hash,reflection,engine/reflection,O
+0x71010601a4,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_TypeOf,reflection,engine/reflection,O
+0x71010601b0,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_Construct,reflection,engine/reflection,O
+0x71010601b8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71010601c0,92,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710106021c,24,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_Destroy,reflection,engine/reflection,O
+0x7101060234,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710106023c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CEditorPathSegment>>::refl_MoveAssign,reflection,engine/reflection,O
 0x7101060244,80,fn_7101060244,unknown,unknown,O
 0x7101060294,60,fn_7101060294,unknown,unknown,O
 0x71010602d0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CEditorPathSegment>>::Count,reflection,engine/reflection,O
@@ -2341,19 +2341,19 @@ address,size,name,name_source,subsystem,status
 0x71010626f0,220,fn_71010626f0,unknown,unknown,O
 0x71010627cc,220,fn_71010627cc,unknown,unknown,O
 0x71010628a8,900,fn_71010628a8,unknown,unknown,O
-0x7101062c2c,388,fn_7101062c2c,unknown,unknown,O
-0x7101062db0,220,fn_7101062db0,unknown,unknown,O
-0x7101062e8c,900,fn_7101062e8c,unknown,unknown,O
-0x7101063210,388,fn_7101063210,unknown,unknown,O
-0x7101063394,220,fn_7101063394,unknown,unknown,O
-0x7101063470,500,fn_7101063470,unknown,unknown,O
+0x7101062c2c,388,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_InitClass,reflection,engine/reflection,O
+0x7101062db0,220,fn_7101062db0,unknown,engine/reflection?,O
+0x7101062e8c,900,fn_7101062e8c,unknown,engine/reflection?,O
+0x7101063210,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_InitClass,reflection,engine/reflection,O
+0x7101063394,220,fn_7101063394,unknown,engine/reflection?,O
+0x7101063470,500,fn_7101063470,unknown,engine/reflection?,O
 0x7101063664,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TElementIterator>,reflection,engine/reflection,O
 0x7101063740,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TElementConstIterator>,reflection,engine/reflection,O
-0x710106381c,900,fn_710106381c,unknown,unknown,O
-0x7101063ba0,388,fn_7101063ba0,unknown,unknown,O
+0x710106381c,900,fn_710106381c,unknown,engine/reflection?,O
+0x7101063ba0,388,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_InitClass,reflection,engine/reflection,O
 0x7101063d24,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TKeyElementIterator>,reflection,engine/reflection,O
-0x7101063e00,900,fn_7101063e00,unknown,unknown,O
-0x7101064184,388,fn_7101064184,unknown,unknown,O
+0x7101063e00,900,fn_7101063e00,unknown,engine/reflection?,O
+0x7101064184,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_InitClass,reflection,engine/reflection,O
 0x7101064308,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x71010643e4,496,base::reflection::refl_InitType<base::global::CRntVector<CCutscene*>>,reflection,engine/reflection,O
 0x71010645d4,4,CCutscene::CTunableCutscene::refl_AddAttributes,reflection,game/cutscene,O
@@ -2520,74 +2520,74 @@ address,size,name,name_source,subsystem,status
 0x710106e978,88,base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::TKeyElementConstIterator>::MoveAssign,reflection,engine/reflection,O
 0x710106e9d0,28,fn_710106e9d0,unknown,unknown,O
 0x710106e9ec,36,fn_710106e9ec,unknown,unknown,O
-0x710106ea10,12,fn_710106ea10,unknown,unknown,O
-0x710106ea1c,8,fn_710106ea1c,unknown,unknown,O
-0x710106ea24,12,fn_710106ea24,unknown,unknown,O
-0x710106ea30,8,fn_710106ea30,unknown,unknown,O
-0x710106ea38,8,fn_710106ea38,unknown,unknown,O
-0x710106ea40,160,fn_710106ea40,unknown,unknown,O
-0x710106eae0,100,fn_710106eae0,unknown,unknown,O
-0x710106eb44,152,fn_710106eb44,unknown,unknown,O
-0x710106ebdc,212,fn_710106ebdc,unknown,unknown,O
-0x710106ecb0,80,fn_710106ecb0,unknown,unknown,O
-0x710106ed00,56,fn_710106ed00,unknown,unknown,O
-0x710106ed38,12,fn_710106ed38,unknown,unknown,O
-0x710106ed44,8,fn_710106ed44,unknown,unknown,O
-0x710106ed4c,12,fn_710106ed4c,unknown,unknown,O
-0x710106ed58,8,fn_710106ed58,unknown,unknown,O
-0x710106ed60,8,fn_710106ed60,unknown,unknown,O
-0x710106ed68,160,fn_710106ed68,unknown,unknown,O
-0x710106ee08,100,fn_710106ee08,unknown,unknown,O
-0x710106ee6c,8,fn_710106ee6c,unknown,unknown,O
-0x710106ee74,8,fn_710106ee74,unknown,unknown,O
-0x710106ee7c,80,fn_710106ee7c,unknown,unknown,O
-0x710106eecc,56,fn_710106eecc,unknown,unknown,O
-0x710106ef04,8,fn_710106ef04,unknown,unknown,O
-0x710106ef0c,96,fn_710106ef0c,unknown,unknown,O
-0x710106ef6c,16,fn_710106ef6c,unknown,unknown,O
-0x710106ef7c,16,fn_710106ef7c,unknown,unknown,O
-0x710106ef8c,216,fn_710106ef8c,unknown,unknown,U
-0x710106f064,20,fn_710106f064,unknown,unknown,O
-0x710106f078,40,fn_710106f078,unknown,unknown,O
-0x710106f0a0,68,fn_710106f0a0,unknown,unknown,O
-0x710106f0e4,68,fn_710106f0e4,unknown,unknown,O
-0x710106f128,12,fn_710106f128,unknown,unknown,O
-0x710106f134,8,fn_710106f134,unknown,unknown,O
-0x710106f13c,12,fn_710106f13c,unknown,unknown,O
-0x710106f148,64,fn_710106f148,unknown,unknown,O
-0x710106f188,4,fn_710106f188,unknown,unknown,O
-0x710106f18c,64,fn_710106f18c,unknown,unknown,O
-0x710106f1cc,156,fn_710106f1cc,unknown,unknown,O
-0x710106f268,48,fn_710106f268,unknown,unknown,O
-0x710106f298,172,fn_710106f298,unknown,unknown,O
-0x710106f344,648,fn_710106f344,unknown,unknown,U
-0x710106f5cc,704,fn_710106f5cc,unknown,unknown,U
-0x710106f88c,744,fn_710106f88c,unknown,unknown,U
-0x710106fb74,744,fn_710106fb74,unknown,unknown,U
-0x710106fe5c,12,fn_710106fe5c,unknown,unknown,O
-0x710106fe68,24,fn_710106fe68,unknown,unknown,O
-0x710106fe80,332,fn_710106fe80,unknown,unknown,U
-0x710106ffcc,344,fn_710106ffcc,unknown,unknown,O
-0x7101070124,176,fn_7101070124,unknown,unknown,O
-0x71010701d4,8,fn_71010701d4,unknown,unknown,O
-0x71010701dc,12,fn_71010701dc,unknown,unknown,O
-0x71010701e8,8,fn_71010701e8,unknown,unknown,O
-0x71010701f0,8,fn_71010701f0,unknown,unknown,O
-0x71010701f8,72,fn_71010701f8,unknown,unknown,O
-0x7101070240,24,fn_7101070240,unknown,unknown,O
-0x7101070258,128,fn_7101070258,unknown,unknown,O
-0x71010702d8,156,fn_71010702d8,unknown,unknown,O
-0x7101070374,80,fn_7101070374,unknown,unknown,O
-0x71010703c4,84,fn_71010703c4,unknown,unknown,O
-0x7101070418,176,fn_7101070418,unknown,unknown,O
-0x71010704c8,8,fn_71010704c8,unknown,unknown,O
-0x71010704d0,12,fn_71010704d0,unknown,unknown,O
-0x71010704dc,8,fn_71010704dc,unknown,unknown,O
-0x71010704e4,8,fn_71010704e4,unknown,unknown,O
-0x71010704ec,72,fn_71010704ec,unknown,unknown,O
-0x7101070534,24,fn_7101070534,unknown,unknown,O
-0x710107054c,8,fn_710107054c,unknown,unknown,O
-0x7101070554,8,fn_7101070554,unknown,unknown,O
+0x710106ea10,12,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_Equals,reflection,engine/reflection,O
+0x710106ea1c,8,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_Hash,reflection,engine/reflection,O
+0x710106ea24,12,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_TypeOf,reflection,engine/reflection,O
+0x710106ea30,8,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_Construct,reflection,engine/reflection,O
+0x710106ea38,8,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710106ea40,160,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710106eae0,100,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_Destroy,reflection,engine/reflection,O
+0x710106eb44,152,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710106ebdc,212,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710106ecb0,80,fn_710106ecb0,unknown,engine/reflection?,O
+0x710106ed00,56,fn_710106ed00,unknown,engine/reflection?,O
+0x710106ed38,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_Equals,reflection,engine/reflection,O
+0x710106ed44,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_Hash,reflection,engine/reflection,O
+0x710106ed4c,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_TypeOf,reflection,engine/reflection,O
+0x710106ed58,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_Construct,reflection,engine/reflection,O
+0x710106ed60,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710106ed68,160,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710106ee08,100,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_Destroy,reflection,engine/reflection,O
+0x710106ee6c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710106ee74,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene::CActor>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710106ee7c,80,fn_710106ee7c,unknown,engine/reflection?,O
+0x710106eecc,56,fn_710106eecc,unknown,engine/reflection?,O
+0x710106ef04,8,fn_710106ef04,unknown,engine/reflection?,O
+0x710106ef0c,96,fn_710106ef0c,unknown,engine/reflection?,O
+0x710106ef6c,16,fn_710106ef6c,unknown,engine/reflection?,O
+0x710106ef7c,16,fn_710106ef7c,unknown,engine/reflection?,O
+0x710106ef8c,216,fn_710106ef8c,unknown,engine/reflection?,U
+0x710106f064,20,fn_710106f064,unknown,engine/reflection?,O
+0x710106f078,40,fn_710106f078,unknown,engine/reflection?,O
+0x710106f0a0,68,fn_710106f0a0,unknown,engine/reflection?,O
+0x710106f0e4,68,fn_710106f0e4,unknown,engine/reflection?,O
+0x710106f128,12,fn_710106f128,unknown,engine/reflection?,O
+0x710106f134,8,fn_710106f134,unknown,engine/reflection?,O
+0x710106f13c,12,fn_710106f13c,unknown,engine/reflection?,O
+0x710106f148,64,fn_710106f148,unknown,engine/reflection?,O
+0x710106f188,4,fn_710106f188,unknown,engine/reflection?,O
+0x710106f18c,64,fn_710106f18c,unknown,engine/reflection?,O
+0x710106f1cc,156,fn_710106f1cc,unknown,engine/reflection?,O
+0x710106f268,48,fn_710106f268,unknown,engine/reflection?,O
+0x710106f298,172,fn_710106f298,unknown,engine/reflection?,O
+0x710106f344,648,fn_710106f344,unknown,engine/reflection?,U
+0x710106f5cc,704,fn_710106f5cc,unknown,engine/reflection?,U
+0x710106f88c,744,fn_710106f88c,unknown,engine/reflection?,U
+0x710106fb74,744,fn_710106fb74,unknown,engine/reflection?,U
+0x710106fe5c,12,fn_710106fe5c,unknown,engine/reflection?,O
+0x710106fe68,24,fn_710106fe68,unknown,engine/reflection?,O
+0x710106fe80,332,fn_710106fe80,unknown,engine/reflection?,U
+0x710106ffcc,344,fn_710106ffcc,unknown,engine/reflection?,O
+0x7101070124,176,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_Equals,reflection,engine/reflection,O
+0x71010701d4,8,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_Hash,reflection,engine/reflection,O
+0x71010701dc,12,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_TypeOf,reflection,engine/reflection,O
+0x71010701e8,8,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_Construct,reflection,engine/reflection,O
+0x71010701f0,8,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71010701f8,72,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7101070240,24,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_Destroy,reflection,engine/reflection,O
+0x7101070258,128,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x71010702d8,156,base::reflection::KeyElementValue<base::global::CRntVector<CCutscene*>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7101070374,80,fn_7101070374,unknown,engine/reflection?,O
+0x71010703c4,84,fn_71010703c4,unknown,engine/reflection?,O
+0x7101070418,176,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_Equals,reflection,engine/reflection,O
+0x71010704c8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_Hash,reflection,engine/reflection,O
+0x71010704d0,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_TypeOf,reflection,engine/reflection,O
+0x71010704dc,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_Construct,reflection,engine/reflection,O
+0x71010704e4,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71010704ec,72,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7101070534,24,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_Destroy,reflection,engine/reflection,O
+0x710107054c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7101070554,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CCutscene*>>::refl_MoveAssign,reflection,engine/reflection,O
 0x710107055c,80,fn_710107055c,unknown,unknown,O
 0x71010705ac,84,fn_71010705ac,unknown,unknown,O
 0x7101070600,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CCutscene*>>::Count,reflection,engine/reflection,O
@@ -3935,10 +3935,10 @@ address,size,name,name_source,subsystem,status
 0x71010c30f8,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::TElementIterator>",reflection,engine/reflection,O
 0x71010c31d4,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::TElementConstIterator>",reflection,engine/reflection,O
 0x71010c32b0,900,fn_71010c32b0,unknown,unknown,O
-0x71010c3634,388,fn_71010c3634,unknown,unknown,O
-0x71010c37b8,220,fn_71010c37b8,unknown,unknown,O
-0x71010c3894,900,fn_71010c3894,unknown,unknown,O
-0x71010c3c18,388,fn_71010c3c18,unknown,unknown,O
+0x71010c3634,388,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_InitClass",reflection,engine/reflection,O
+0x71010c37b8,220,fn_71010c37b8,unknown,engine/reflection?,O
+0x71010c3894,900,fn_71010c3894,unknown,engine/reflection?,O
+0x71010c3c18,388,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_InitClass",reflection,engine/reflection,O
 0x71010c3d9c,220,fn_71010c3d9c,unknown,unknown,O
 0x71010c3e78,500,"base::reflection::refl_InitType<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>",reflection,engine/reflection,O
 0x71010c406c,220,"base::reflection::refl_GetType<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*> const*>",reflection,engine/reflection,O
@@ -4046,27 +4046,27 @@ address,size,name,name_source,subsystem,status
 0x71010c5858,92,fn_71010c5858,unknown,unknown,O
 0x71010c58b4,76,fn_71010c58b4,unknown,unknown,O
 0x71010c5900,68,fn_71010c5900,unknown,unknown,O
-0x71010c5944,176,fn_71010c5944,unknown,unknown,O
-0x71010c59f4,8,fn_71010c59f4,unknown,unknown,O
-0x71010c59fc,12,fn_71010c59fc,unknown,unknown,O
-0x71010c5a08,8,fn_71010c5a08,unknown,unknown,O
-0x71010c5a10,8,fn_71010c5a10,unknown,unknown,O
-0x71010c5a18,112,fn_71010c5a18,unknown,unknown,O
-0x71010c5a88,128,fn_71010c5a88,unknown,unknown,O
-0x71010c5b08,268,fn_71010c5b08,unknown,unknown,O
-0x71010c5c14,48,fn_71010c5c14,unknown,unknown,O
-0x71010c5c44,404,fn_71010c5c44,unknown,unknown,O
-0x71010c5dd8,80,fn_71010c5dd8,unknown,unknown,O
-0x71010c5e28,84,fn_71010c5e28,unknown,unknown,O
-0x71010c5e7c,176,fn_71010c5e7c,unknown,unknown,O
-0x71010c5f2c,8,fn_71010c5f2c,unknown,unknown,O
-0x71010c5f34,12,fn_71010c5f34,unknown,unknown,O
-0x71010c5f40,8,fn_71010c5f40,unknown,unknown,O
-0x71010c5f48,8,fn_71010c5f48,unknown,unknown,O
-0x71010c5f50,112,fn_71010c5f50,unknown,unknown,O
-0x71010c5fc0,128,fn_71010c5fc0,unknown,unknown,O
-0x71010c6040,8,fn_71010c6040,unknown,unknown,O
-0x71010c6048,8,fn_71010c6048,unknown,unknown,O
+0x71010c5944,176,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_Equals",reflection,engine/reflection,O
+0x71010c59f4,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_Hash",reflection,engine/reflection,O
+0x71010c59fc,12,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_TypeOf",reflection,engine/reflection,O
+0x71010c5a08,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_Construct",reflection,engine/reflection,O
+0x71010c5a10,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71010c5a18,112,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71010c5a88,128,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_Destroy",reflection,engine/reflection,O
+0x71010c5b08,268,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71010c5c14,48,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_MoveAssign",reflection,engine/reflection,O
+0x71010c5c44,404,fn_71010c5c44,unknown,engine/reflection?,O
+0x71010c5dd8,80,fn_71010c5dd8,unknown,engine/reflection?,O
+0x71010c5e28,84,fn_71010c5e28,unknown,engine/reflection?,O
+0x71010c5e7c,176,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_Equals",reflection,engine/reflection,O
+0x71010c5f2c,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_Hash",reflection,engine/reflection,O
+0x71010c5f34,12,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_TypeOf",reflection,engine/reflection,O
+0x71010c5f40,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_Construct",reflection,engine/reflection,O
+0x71010c5f48,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71010c5f50,112,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71010c5fc0,128,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_Destroy",reflection,engine/reflection,O
+0x71010c6040,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71010c6048,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::refl_MoveAssign",reflection,engine/reflection,O
 0x71010c6050,80,fn_71010c6050,unknown,unknown,O
 0x71010c60a0,84,fn_71010c60a0,unknown,unknown,O
 0x71010c60f4,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CComponent*>>::Count",reflection,engine/reflection,O
@@ -4831,25 +4831,25 @@ address,size,name,name_source,subsystem,status
 0x71010f40d8,12,CCameraFX_Shake::refl_Destroy,reflection,game,O
 0x71010f40e4,8,CCameraFX_Shake::refl_CopyAssign,reflection,game,O
 0x71010f40ec,8,CCameraFX_Shake::refl_MoveAssign,reflection,game,O
-0x71010f4100,160,fn_71010f4100,unknown,game?,O
-0x71010f41a0,1808,fn_71010f41a0,unknown,game?,U
-0x71010f48b0,852,fn_71010f48b0,unknown,game?,U
-0x71010f4c04,524,fn_71010f4c04,unknown,game?,O
+0x71010f4100,160,fn_71010f4100,unknown,unknown,O
+0x71010f41a0,1808,fn_71010f41a0,unknown,unknown,U
+0x71010f48b0,852,fn_71010f48b0,unknown,unknown,U
+0x71010f4c04,524,fn_71010f4c04,unknown,unknown,O
 0x71010f4e10,384,base::reflection::refl_InitType<ELOSMode>,reflection,engine/reflection,O
-0x71010f4f90,908,fn_71010f4f90,unknown,game?,O
+0x71010f4f90,908,fn_71010f4f90,unknown,unknown,O
 0x71010f531c,384,base::reflection::refl_InitType<ELOSCheckLevel>,reflection,engine/reflection,O
-0x71010f549c,812,fn_71010f549c,unknown,game?,O
+0x71010f549c,812,fn_71010f549c,unknown,unknown,O
 0x71010f57c8,384,base::reflection::refl_InitType<CAIComponent::PathLimitSelectionMode>,reflection,engine/reflection,O
 0x71010f5948,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SFallBackPath>>::TElementIterator>,reflection,engine/reflection,O
 0x71010f5a24,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<SFallBackPath>>::TElementConstIterator>,reflection,engine/reflection,O
-0x71010f5b00,900,fn_71010f5b00,unknown,game?,O
-0x71010f5e84,388,fn_71010f5e84,unknown,game?,O
-0x71010f6008,220,fn_71010f6008,unknown,game?,O
-0x71010f60e4,900,fn_71010f60e4,unknown,game?,O
-0x71010f6468,388,fn_71010f6468,unknown,game?,O
-0x71010f65ec,220,fn_71010f65ec,unknown,game?,O
+0x71010f5b00,900,fn_71010f5b00,unknown,unknown,O
+0x71010f5e84,388,base::reflection::KeyElementValue<base::global::CRntVector<SFallBackPath>>::refl_InitClass,reflection,engine/reflection,O
+0x71010f6008,220,fn_71010f6008,unknown,engine/reflection?,O
+0x71010f60e4,900,fn_71010f60e4,unknown,engine/reflection?,O
+0x71010f6468,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<SFallBackPath>>::refl_InitClass,reflection,engine/reflection,O
+0x71010f65ec,220,fn_71010f65ec,unknown,unknown,O
 0x71010f66c8,500,base::reflection::refl_InitType<base::global::CRntVector<SFallBackPath>>,reflection,engine/reflection,O
-0x71010f68bc,268,fn_71010f68bc,unknown,game?,O
+0x71010f68bc,268,fn_71010f68bc,unknown,unknown,O
 0x71010f69c8,388,SFallBackPath::refl_InitClass,reflection,game,O
 0x71010f6b4c,4,CAIComponent::refl_AddAttributes,reflection,game/ai,O
 0x71010f6b50,244,CAIComponent::refl_GetClass,reflection,game/ai,O

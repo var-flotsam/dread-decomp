@@ -1308,11 +1308,11 @@ address,size,name,name_source,subsystem,status
 0x71003648fc,220,base::reflection::refl_GetType<std::unique_ptr<CAttackPreset>>,reflection,engine/reflection,O
 0x71003649d8,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementIterator>",reflection,engine/reflection,O
 0x7100364ab4,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementConstIterator>",reflection,engine/reflection,O
-0x7100364b90,900,fn_7100364b90,unknown,unknown,O
-0x7100364f14,388,fn_7100364f14,unknown,unknown,O
-0x7100365098,220,fn_7100365098,unknown,unknown,O
-0x7100365174,900,fn_7100365174,unknown,unknown,O
-0x71003654f8,388,fn_71003654f8,unknown,unknown,O
+0x7100364b90,900,fn_7100364b90,unknown,engine/reflection?,O
+0x7100364f14,388,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_InitClass",reflection,engine/reflection,O
+0x7100365098,220,fn_7100365098,unknown,engine/reflection?,O
+0x7100365174,900,fn_7100365174,unknown,engine/reflection?,O
+0x71003654f8,388,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_InitClass",reflection,engine/reflection,O
 0x710036567c,220,fn_710036567c,unknown,unknown,O
 0x7100365758,480,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>",reflection,engine/reflection,O
 0x7100365938,4,CAttackPreset::refl_AddAttributes,reflection,game,O
@@ -1340,20 +1340,20 @@ address,size,name,name_source,subsystem,status
 0x7100366d50,20,fn_7100366d50,unknown,unknown,O
 0x7100366d64,20,fn_7100366d64,unknown,unknown,O
 0x7100366d78,352,base::reflection::refl_InitType<std::unique_ptr<CAttackPreset>>,reflection,engine/reflection,O
-0x7100366ed8,104,fn_7100366ed8,unknown,unknown,O
-0x7100366f40,36,fn_7100366f40,unknown,unknown,O
-0x7100366f64,4,fn_7100366f64,unknown,unknown,O
-0x7100366f68,20,fn_7100366f68,unknown,unknown,O
-0x7100366f7c,8,fn_7100366f7c,unknown,unknown,O
-0x7100366f84,20,fn_7100366f84,unknown,unknown,O
-0x7100366f98,8,fn_7100366f98,unknown,unknown,O
-0x7100366fa0,16,fn_7100366fa0,unknown,unknown,O
-0x7100366fb0,32,fn_7100366fb0,unknown,unknown,O
-0x7100366fd0,72,fn_7100366fd0,unknown,unknown,O
+0x7100366ed8,104,fn_7100366ed8,unknown,engine/reflection?,O
+0x7100366f40,36,fn_7100366f40,unknown,engine/reflection?,O
+0x7100366f64,4,fn_7100366f64,unknown,engine/reflection?,O
+0x7100366f68,20,fn_7100366f68,unknown,engine/reflection?,O
+0x7100366f7c,8,fn_7100366f7c,unknown,engine/reflection?,O
+0x7100366f84,20,fn_7100366f84,unknown,engine/reflection?,O
+0x7100366f98,8,fn_7100366f98,unknown,engine/reflection?,O
+0x7100366fa0,16,fn_7100366fa0,unknown,engine/reflection?,O
+0x7100366fb0,32,fn_7100366fb0,unknown,engine/reflection?,O
+0x7100366fd0,72,fn_7100366fd0,unknown,engine/reflection?,O
 0x7100367018,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementIterator>",reflection,engine/reflection,O
-0x7100367180,88,fn_7100367180,unknown,unknown,O
-0x71003671d8,12,fn_71003671d8,unknown,unknown,O
-0x71003671e4,16,fn_71003671e4,unknown,unknown,O
+0x7100367180,88,fn_7100367180,unknown,engine/reflection?,O
+0x71003671d8,12,fn_71003671d8,unknown,engine/reflection?,O
+0x71003671e4,16,fn_71003671e4,unknown,engine/reflection?,O
 0x71003671f4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementIterator>::Equals",reflection,engine/reflection,O
 0x7100367208,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementIterator>::Hash",reflection,engine/reflection,O
 0x7100367210,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
@@ -1364,9 +1364,9 @@ address,size,name,name_source,subsystem,status
 0x7100367248,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
 0x710036725c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
 0x7100367270,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementConstIterator>",reflection,engine/reflection,O
-0x71003673d8,88,fn_71003673d8,unknown,unknown,O
-0x7100367430,12,fn_7100367430,unknown,unknown,O
-0x710036743c,16,fn_710036743c,unknown,unknown,O
+0x71003673d8,88,fn_71003673d8,unknown,engine/reflection?,O
+0x7100367430,12,fn_7100367430,unknown,engine/reflection?,O
+0x710036743c,16,fn_710036743c,unknown,engine/reflection?,O
 0x710036744c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
 0x7100367460,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
 0x7100367468,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
@@ -1376,53 +1376,53 @@ address,size,name,name_source,subsystem,status
 0x710036749c,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
 0x71003674a0,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
 0x71003674b4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
-0x71003674c8,364,fn_71003674c8,unknown,unknown,O
-0x7100367634,60,fn_7100367634,unknown,unknown,O
-0x7100367670,4,fn_7100367670,unknown,unknown,O
-0x7100367674,112,fn_7100367674,unknown,unknown,O
-0x71003676e4,20,fn_71003676e4,unknown,unknown,O
-0x71003676f8,8,fn_71003676f8,unknown,unknown,O
-0x7100367700,20,fn_7100367700,unknown,unknown,O
-0x7100367714,16,fn_7100367714,unknown,unknown,O
-0x7100367724,40,fn_7100367724,unknown,unknown,O
-0x710036774c,40,fn_710036774c,unknown,unknown,O
-0x7100367774,76,fn_7100367774,unknown,unknown,O
-0x71003677c0,176,fn_71003677c0,unknown,unknown,O
-0x7100367870,176,fn_7100367870,unknown,unknown,O
-0x7100367920,364,fn_7100367920,unknown,unknown,O
-0x7100367a8c,60,fn_7100367a8c,unknown,unknown,O
-0x7100367ac8,4,fn_7100367ac8,unknown,unknown,O
-0x7100367acc,112,fn_7100367acc,unknown,unknown,O
-0x7100367b3c,20,fn_7100367b3c,unknown,unknown,O
-0x7100367b50,8,fn_7100367b50,unknown,unknown,O
-0x7100367b58,20,fn_7100367b58,unknown,unknown,O
-0x7100367b6c,16,fn_7100367b6c,unknown,unknown,O
-0x7100367b7c,40,fn_7100367b7c,unknown,unknown,O
-0x7100367ba4,40,fn_7100367ba4,unknown,unknown,O
-0x7100367bcc,76,fn_7100367bcc,unknown,unknown,O
-0x7100367c18,176,fn_7100367c18,unknown,unknown,O
-0x7100367cc8,176,fn_7100367cc8,unknown,unknown,O
-0x7100367d78,12,fn_7100367d78,unknown,unknown,O
-0x7100367d84,144,fn_7100367d84,unknown,unknown,O
-0x7100367e14,8,fn_7100367e14,unknown,unknown,O
-0x7100367e1c,12,fn_7100367e1c,unknown,unknown,O
-0x7100367e28,8,fn_7100367e28,unknown,unknown,O
-0x7100367e30,4,fn_7100367e30,unknown,unknown,O
-0x7100367e34,72,fn_7100367e34,unknown,unknown,O
-0x7100367e7c,76,fn_7100367e7c,unknown,unknown,O
-0x7100367ec8,8,fn_7100367ec8,unknown,unknown,O
-0x7100367ed0,228,fn_7100367ed0,unknown,unknown,O
-0x7100367fb4,80,fn_7100367fb4,unknown,unknown,O
-0x7100368004,84,fn_7100368004,unknown,unknown,O
-0x7100368058,144,fn_7100368058,unknown,unknown,O
-0x71003680e8,8,fn_71003680e8,unknown,unknown,O
-0x71003680f0,12,fn_71003680f0,unknown,unknown,O
-0x71003680fc,8,fn_71003680fc,unknown,unknown,O
-0x7100368104,4,fn_7100368104,unknown,unknown,O
-0x7100368108,4,fn_7100368108,unknown,unknown,O
-0x710036810c,76,fn_710036810c,unknown,unknown,O
-0x7100368158,8,fn_7100368158,unknown,unknown,O
-0x7100368160,8,fn_7100368160,unknown,unknown,O
+0x71003674c8,364,fn_71003674c8,unknown,engine/reflection?,O
+0x7100367634,60,fn_7100367634,unknown,engine/reflection?,O
+0x7100367670,4,fn_7100367670,unknown,engine/reflection?,O
+0x7100367674,112,fn_7100367674,unknown,engine/reflection?,O
+0x71003676e4,20,fn_71003676e4,unknown,engine/reflection?,O
+0x71003676f8,8,fn_71003676f8,unknown,engine/reflection?,O
+0x7100367700,20,fn_7100367700,unknown,engine/reflection?,O
+0x7100367714,16,fn_7100367714,unknown,engine/reflection?,O
+0x7100367724,40,fn_7100367724,unknown,engine/reflection?,O
+0x710036774c,40,fn_710036774c,unknown,engine/reflection?,O
+0x7100367774,76,fn_7100367774,unknown,engine/reflection?,O
+0x71003677c0,176,fn_71003677c0,unknown,engine/reflection?,O
+0x7100367870,176,fn_7100367870,unknown,engine/reflection?,O
+0x7100367920,364,fn_7100367920,unknown,engine/reflection?,O
+0x7100367a8c,60,fn_7100367a8c,unknown,engine/reflection?,O
+0x7100367ac8,4,fn_7100367ac8,unknown,engine/reflection?,O
+0x7100367acc,112,fn_7100367acc,unknown,engine/reflection?,O
+0x7100367b3c,20,fn_7100367b3c,unknown,engine/reflection?,O
+0x7100367b50,8,fn_7100367b50,unknown,engine/reflection?,O
+0x7100367b58,20,fn_7100367b58,unknown,engine/reflection?,O
+0x7100367b6c,16,fn_7100367b6c,unknown,engine/reflection?,O
+0x7100367b7c,40,fn_7100367b7c,unknown,engine/reflection?,O
+0x7100367ba4,40,fn_7100367ba4,unknown,engine/reflection?,O
+0x7100367bcc,76,fn_7100367bcc,unknown,engine/reflection?,O
+0x7100367c18,176,fn_7100367c18,unknown,engine/reflection?,O
+0x7100367cc8,176,fn_7100367cc8,unknown,engine/reflection?,O
+0x7100367d78,12,fn_7100367d78,unknown,engine/reflection?,O
+0x7100367d84,144,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_Equals",reflection,engine/reflection,O
+0x7100367e14,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_Hash",reflection,engine/reflection,O
+0x7100367e1c,12,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x7100367e28,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_Construct",reflection,engine/reflection,O
+0x7100367e30,4,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7100367e34,72,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7100367e7c,76,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_Destroy",reflection,engine/reflection,O
+0x7100367ec8,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100367ed0,228,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100367fb4,80,fn_7100367fb4,unknown,engine/reflection?,O
+0x7100368004,84,fn_7100368004,unknown,engine/reflection?,O
+0x7100368058,144,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_Equals",reflection,engine/reflection,O
+0x71003680e8,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_Hash",reflection,engine/reflection,O
+0x71003680f0,12,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71003680fc,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_Construct",reflection,engine/reflection,O
+0x7100368104,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7100368108,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x710036810c,76,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_Destroy",reflection,engine/reflection,O
+0x7100368158,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100368160,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::refl_MoveAssign",reflection,engine/reflection,O
 0x7100368168,80,fn_7100368168,unknown,unknown,O
 0x71003681b8,84,fn_71003681b8,unknown,unknown,O
 0x710036820c,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CAttackPreset, std::__1::default_delete<CAttackPreset>>>>::Count",reflection,engine/reflection,O
@@ -5077,14 +5077,14 @@ address,size,name,name_source,subsystem,status
 0x71003eb864,388,SBigkranXSpitLaunchPatternStep::refl_InitClass,reflection,game,O
 0x71003eb9e8,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator>,reflection,engine/reflection,O
 0x71003ebac4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementConstIterator>,reflection,engine/reflection,O
-0x71003ebba0,900,fn_71003ebba0,unknown,game?,O
-0x71003ebf24,388,fn_71003ebf24,unknown,game?,O
-0x71003ec0a8,220,fn_71003ec0a8,unknown,game?,O
-0x71003ec184,900,fn_71003ec184,unknown,game?,O
-0x71003ec508,388,fn_71003ec508,unknown,game?,O
-0x71003ec68c,220,fn_71003ec68c,unknown,game?,O
-0x71003ec768,500,fn_71003ec768,unknown,game?,O
-0x71003ec95c,424,fn_71003ec95c,unknown,game?,O
+0x71003ebba0,900,fn_71003ebba0,unknown,unknown,O
+0x71003ebf24,388,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_InitClass,reflection,engine/reflection,O
+0x71003ec0a8,220,fn_71003ec0a8,unknown,engine/reflection?,O
+0x71003ec184,900,fn_71003ec184,unknown,engine/reflection?,O
+0x71003ec508,388,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_InitClass,reflection,engine/reflection,O
+0x71003ec68c,220,fn_71003ec68c,unknown,unknown,O
+0x71003ec768,500,fn_71003ec768,unknown,unknown,O
+0x71003ec95c,424,fn_71003ec95c,unknown,unknown,O
 0x71003ecb04,388,SBigkranXSpitLaunchConfig::refl_InitClass,reflection,game,O
 0x71003ecc88,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<TBigkranXSpitLaunchPattern>::TElementIterator>,reflection,engine/reflection,O
 0x71003ecdf4,96,fn_71003ecdf4,unknown,game?,O
@@ -5147,55 +5147,55 @@ address,size,name,name_source,subsystem,status
 0x71003ed828,4,SBigkranXSpitLaunchPatternStep::refl_Destroy,reflection,game,O
 0x71003ed82c,28,SBigkranXSpitLaunchPatternStep::refl_CopyAssign,reflection,game,O
 0x71003ed848,28,SBigkranXSpitLaunchPatternStep::refl_MoveAssign,reflection,game,O
-0x71003ed864,12,fn_71003ed864,unknown,game?,O
-0x71003ed870,8,fn_71003ed870,unknown,game?,O
-0x71003ed878,12,fn_71003ed878,unknown,game?,O
-0x71003ed884,8,fn_71003ed884,unknown,game?,O
-0x71003ed88c,8,fn_71003ed88c,unknown,game?,O
-0x71003ed894,80,fn_71003ed894,unknown,game?,O
-0x71003ed8e4,24,fn_71003ed8e4,unknown,game?,O
-0x71003ed8fc,164,fn_71003ed8fc,unknown,game?,O
-0x71003ed9a0,160,fn_71003ed9a0,unknown,game?,O
-0x71003eda40,80,fn_71003eda40,unknown,game?,O
-0x71003eda90,60,fn_71003eda90,unknown,game?,O
-0x71003edacc,12,fn_71003edacc,unknown,game?,O
-0x71003edad8,8,fn_71003edad8,unknown,game?,O
-0x71003edae0,12,fn_71003edae0,unknown,game?,O
-0x71003edaec,8,fn_71003edaec,unknown,game?,O
-0x71003edaf4,8,fn_71003edaf4,unknown,game?,O
-0x71003edafc,80,fn_71003edafc,unknown,game?,O
-0x71003edb4c,24,fn_71003edb4c,unknown,game?,O
-0x71003edb64,8,fn_71003edb64,unknown,game?,O
-0x71003edb6c,8,fn_71003edb6c,unknown,game?,O
-0x71003edb74,80,fn_71003edb74,unknown,game?,O
-0x71003edbc4,60,fn_71003edbc4,unknown,game?,O
-0x71003edc00,8,fn_71003edc00,unknown,game?,O
-0x71003edc08,8,fn_71003edc08,unknown,game?,O
-0x71003edc10,16,fn_71003edc10,unknown,game?,O
-0x71003edc20,16,fn_71003edc20,unknown,game?,O
-0x71003edc30,116,fn_71003edc30,unknown,game?,U
-0x71003edca4,20,fn_71003edca4,unknown,game?,O
-0x71003edcb8,40,fn_71003edcb8,unknown,game?,O
-0x71003edce0,52,fn_71003edce0,unknown,game?,O
-0x71003edd14,52,fn_71003edd14,unknown,game?,O
-0x71003edd48,12,fn_71003edd48,unknown,game?,O
-0x71003edd54,8,fn_71003edd54,unknown,game?,O
-0x71003edd5c,12,fn_71003edd5c,unknown,game?,O
-0x71003edd68,64,fn_71003edd68,unknown,game?,O
-0x71003edda8,4,fn_71003edda8,unknown,game?,O
-0x71003eddac,64,fn_71003eddac,unknown,game?,O
-0x71003eddec,60,fn_71003eddec,unknown,game?,O
-0x71003ede28,48,fn_71003ede28,unknown,game?,O
-0x71003ede58,76,fn_71003ede58,unknown,game?,O
-0x71003edea4,492,fn_71003edea4,unknown,game?,O
-0x71003ee090,484,fn_71003ee090,unknown,game?,O
-0x71003ee274,544,fn_71003ee274,unknown,game?,O
-0x71003ee494,544,fn_71003ee494,unknown,game?,O
-0x71003ee6b4,440,fn_71003ee6b4,unknown,game?,U
-0x71003ee86c,12,fn_71003ee86c,unknown,game?,O
-0x71003ee878,24,fn_71003ee878,unknown,game?,O
-0x71003ee890,168,fn_71003ee890,unknown,game?,O
-0x71003ee938,180,fn_71003ee938,unknown,game?,O
+0x71003ed864,12,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_Equals,reflection,engine/reflection,O
+0x71003ed870,8,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_Hash,reflection,engine/reflection,O
+0x71003ed878,12,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_TypeOf,reflection,engine/reflection,O
+0x71003ed884,8,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_Construct,reflection,engine/reflection,O
+0x71003ed88c,8,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71003ed894,80,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71003ed8e4,24,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_Destroy,reflection,engine/reflection,O
+0x71003ed8fc,164,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_CopyAssign,reflection,engine/reflection,O
+0x71003ed9a0,160,base::reflection::KeyElementValue<TBigkranXSpitLaunchPattern>::refl_MoveAssign,reflection,engine/reflection,O
+0x71003eda40,80,fn_71003eda40,unknown,engine/reflection?,O
+0x71003eda90,60,fn_71003eda90,unknown,engine/reflection?,O
+0x71003edacc,12,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_Equals,reflection,engine/reflection,O
+0x71003edad8,8,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_Hash,reflection,engine/reflection,O
+0x71003edae0,12,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_TypeOf,reflection,engine/reflection,O
+0x71003edaec,8,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_Construct,reflection,engine/reflection,O
+0x71003edaf4,8,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71003edafc,80,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71003edb4c,24,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_Destroy,reflection,engine/reflection,O
+0x71003edb64,8,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_CopyAssign,reflection,engine/reflection,O
+0x71003edb6c,8,base::reflection::ConstKeyElementValue<TBigkranXSpitLaunchPattern>::refl_MoveAssign,reflection,engine/reflection,O
+0x71003edb74,80,fn_71003edb74,unknown,unknown,O
+0x71003edbc4,60,fn_71003edbc4,unknown,unknown,O
+0x71003edc00,8,fn_71003edc00,unknown,unknown,O
+0x71003edc08,8,fn_71003edc08,unknown,unknown,O
+0x71003edc10,16,fn_71003edc10,unknown,unknown,O
+0x71003edc20,16,fn_71003edc20,unknown,unknown,O
+0x71003edc30,116,fn_71003edc30,unknown,unknown,U
+0x71003edca4,20,fn_71003edca4,unknown,unknown,O
+0x71003edcb8,40,fn_71003edcb8,unknown,unknown,O
+0x71003edce0,52,fn_71003edce0,unknown,unknown,O
+0x71003edd14,52,fn_71003edd14,unknown,unknown,O
+0x71003edd48,12,fn_71003edd48,unknown,unknown,O
+0x71003edd54,8,fn_71003edd54,unknown,unknown,O
+0x71003edd5c,12,fn_71003edd5c,unknown,unknown,O
+0x71003edd68,64,fn_71003edd68,unknown,unknown,O
+0x71003edda8,4,fn_71003edda8,unknown,unknown,O
+0x71003eddac,64,fn_71003eddac,unknown,unknown,O
+0x71003eddec,60,fn_71003eddec,unknown,unknown,O
+0x71003ede28,48,fn_71003ede28,unknown,unknown,O
+0x71003ede58,76,fn_71003ede58,unknown,unknown,O
+0x71003edea4,492,fn_71003edea4,unknown,unknown,O
+0x71003ee090,484,fn_71003ee090,unknown,unknown,O
+0x71003ee274,544,fn_71003ee274,unknown,unknown,O
+0x71003ee494,544,fn_71003ee494,unknown,unknown,O
+0x71003ee6b4,440,fn_71003ee6b4,unknown,unknown,U
+0x71003ee86c,12,fn_71003ee86c,unknown,unknown,O
+0x71003ee878,24,fn_71003ee878,unknown,unknown,O
+0x71003ee890,168,fn_71003ee890,unknown,unknown,O
+0x71003ee938,180,fn_71003ee938,unknown,unknown,O
 0x71003ee9ec,12,SBigkranXSpitLaunchConfig::refl_Equals,reflection,game,O
 0x71003ee9f8,8,SBigkranXSpitLaunchConfig::refl_Hash,reflection,game,O
 0x71003eea00,12,SBigkranXSpitLaunchConfig::refl_TypeOf,reflection,game,O
