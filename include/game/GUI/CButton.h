@@ -7,6 +7,7 @@
 #include "types.h"
 
 struct UnkGuiButton;
+struct UnkGuiButtonIds;
 struct UnkMissionLogButton_ovb0079;
 struct UnkRumbleTunableButton_ovb0085;
 UnkGuiDisplayObject* fn_71011c08dc(UnkMissionLogButton_ovb0079* self);
@@ -16,3 +17,5 @@ void fn_71011bfd28(UnkRumbleTunableButton_ovb0085* self);
 void fn_71011c14e0();  // The bound callback.
 extern char g_unk_7101cb5908[];  // CButton's vtable.
 void fn_71011c0158(UnkGuiDisplayObject* self);
+// Selects what the button's label for `state` (0 to 3) names.
+void fn_71011bf744(UnkGuiButtonIds* button, u32 state);

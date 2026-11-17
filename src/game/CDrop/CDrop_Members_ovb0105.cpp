@@ -14,6 +14,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2561.h"
 #include "game/UnkTU32.h"
 #include "game/UnkTU365.h"
 #include "types.h"
@@ -75,14 +76,14 @@ struct UnkDrop_b0105 {
 };
 static_assert(__builtin_offsetof(UnkDrop_b0105, field_0x4d0) == 0x4d0, "UnkDrop_b0105 layout");
 
-void fn_71007bf550(UnkDropEntry_b0105* entries);  // constructs the entries
-
 void fn_71007bf3f0(UnkDrop_b0105* self) {
     fn_7101043904(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101a71568) + 2;
     self->field_0x10 = 0;
     self->field_0x18 = 0;
-    fn_71007bf550(self->entries);
+    // The entries are the table fn_71007bf550 builds, seen without its leading count: the count shares the
+    // first entry's field_0x0 here.
+    fn_71007bf550(reinterpret_cast<UnkTable_71007bf550*>(self->entries));
     new (&self->field_0x460.id) CStrId(g_unk_710162e2ed, true);
     self->field_0x468 = 0;
     new (&self->field_0x470.id) CStrId(g_unk_710162e2ed, true);
@@ -128,11 +129,9 @@ struct UnkDropScaleTunable_b0105 {
 extern UnkDropScaleTunable_b0105 g_unk_7172a0a0a8;
 
 extern CStrId g_unk_71727c1048;
-extern CStrId g_unk_71727c1050;
 extern CStrId g_unk_71727c1058;
 extern CStrId g_unk_71727c1060;
 extern CStrId g_unk_71727c1068;
-extern CStrId g_unk_71727c1070;
 extern CStrId g_unk_71727c1078;
 
 struct UnkDropAmount_b0105 {

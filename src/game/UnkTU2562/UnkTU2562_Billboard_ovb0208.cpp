@@ -24,6 +24,7 @@
 #include "game/UnkTU134.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2560.h"
+#include "game/UnkTU2562.h"
 #include "game/UnkTU2739.h"
 #include "game/UnkTU57.h"
 #include "game/UnkTUProperty.h"
@@ -513,7 +514,7 @@ static inline void* Singleton() {
     return p;
 }
 
-void fn_7100e2c124(f32 value, void* self, UnkDropTarget_ovb0208* target, const CStrId* id, u32 a, u32 b, u32 c, u32 d, u32 e,
+void fn_7100e2c124(f32 value, UnkNoArg, UnkDropTarget_ovb0208* target, const CStrId* id, u32 a, u32 b, u32 c, u32 d, u32 e,
                    bool flag) {
     UnkDropRequest_ovb0208 request;
     request.field_0x14 = flag;

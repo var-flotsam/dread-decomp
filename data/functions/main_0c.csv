@@ -4839,7 +4839,7 @@ address,size,name,name_source,subsystem,status
 0x7100c9d070,780,fn_7100c9d070,unknown,unknown,O
 0x7100c9d380,1676,fn_7100c9d380,unknown,unknown,U
 0x7100c9da0c,268,fn_7100c9da0c,unknown,unknown,O
-0x7100c9db18,520,fn_7100c9db18,unknown,unknown,U
+0x7100c9db18,520,fn_7100c9db18,unknown,unknown,O
 0x7100c9dd20,692,fn_7100c9dd20,unknown,unknown,U
 0x7100c9dfd4,700,fn_7100c9dfd4,unknown,unknown,U
 0x7100c9e290,24,fn_7100c9e290,unknown,unknown,O

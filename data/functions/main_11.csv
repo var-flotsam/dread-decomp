@@ -2735,7 +2735,7 @@ address,size,name,name_source,subsystem,status
 0x71011bf558,264,fn_71011bf558,unknown,gui?,O
 0x71011bf660,188,fn_71011bf660,unknown,gui?,O
 0x71011bf71c,40,fn_71011bf71c,unknown,gui?,O
-0x71011bf744,1052,fn_71011bf744,unknown,gui?,U
+0x71011bf744,1052,fn_71011bf744,unknown,gui?,O
 0x71011bfb60,40,fn_71011bfb60,unknown,gui?,O
 0x71011bfb88,84,fn_71011bfb88,unknown,gui?,O
 0x71011bfbdc,84,fn_71011bfbdc,unknown,gui?,O

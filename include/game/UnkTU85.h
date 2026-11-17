@@ -20,6 +20,9 @@ namespace base::reflection {
 struct UnkReflTypedPtr;
 }
 
+// Whether the holder's bool attribute under the key fn_7100090910 is set; false for a null holder.
+bool fn_71000e6db0(UnkVersionEntry* self);
+
 // Gets the field's value.
 bool fn_71000e78e0(UnkReflField* field, const UnkReflFieldObject* obj, UnkReflValueArg* value);
 

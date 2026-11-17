@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU85.h"
 #include "types.h"
 
 using base::reflection::CType;
@@ -32,8 +33,6 @@ struct UnkFieldAccessor85 {
     virtual void vf_0x8();
     virtual UnkReflValue vf_0x10(const UnkTypedRef& obj, const UnkFieldArgs85& args, u32 flags);
 };
-
-struct UnkVersionEntry;
 
 // Whether the bool attribute under the key (fn_7100090910) is set; false for a null holder.
 bool fn_71000e6db0(UnkVersionEntry* self) {

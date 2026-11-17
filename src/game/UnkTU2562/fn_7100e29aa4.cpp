@@ -4,15 +4,16 @@
 #include "base/UnkNoArg.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CStrId.h"
+#include "game/CDrop.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkTU2561.h"
+#include "game/UnkTU2562.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 using base::color::CColor4F;
 using base::global::CStrId;
 
-extern CStrId g_unk_71727c1070;
-extern CStrId g_unk_71727c1088;  // the first of a table of ids
 
 // One entry of the drop's table (0x48 bytes).
 struct UnkLifeEntry_e29aa4 {
@@ -35,8 +36,6 @@ struct UnkLifeTable_e29aa4 {
 };
 static_assert(sizeof(UnkLifeTable_e29aa4) == 0x440, "layout");
 
-struct UnkTable_71007bf550;
-void fn_71007bf550(UnkTable_71007bf550* self);
 
 // The drop (0x4f0 bytes), as this function sees it.
 struct UnkDrop_e29aa4 {
@@ -82,11 +81,6 @@ struct UnkDroppableTunable_e29aa4 {
     u8 field_0x78;  // which id of g_unk_71727c1088's table the second entry takes
 };
 
-struct UnkDropTarget_ovb0208;
-struct UnkDropEntrySet_ovb0208;
-void fn_7100e2c124(f32 value, UnkNoArg, UnkDropTarget_ovb0208* target, const CStrId* id, u32 a, u32 b, u32 c, u32 d,
-                   u32 e, bool flag);
-UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other);
 void fn_7100e2f99c(void* owner);
 
 void fn_7100e29aa4(UnkDroppedItems_e29aa4* self) {
@@ -94,7 +88,7 @@ void fn_7100e29aa4(UnkDroppedItems_e29aa4* self) {
     fn_71007bf550(reinterpret_cast<UnkTable_71007bf550*>(storage));
     UnkLifeTable_e29aa4& table = *reinterpret_cast<UnkLifeTable_e29aa4*>(storage);
     const UnkDroppableTunable_e29aa4* tunable = reinterpret_cast<const UnkDroppableTunable_e29aa4*>(&g_unk_71727c10c8);
-    const CStrId* ids = &g_unk_71727c1088;
+    const CStrId* ids = g_unk_71727c1088;
 
     UnkLifeEntry_e29aa4& second = table.entries[1];
     second.field_0x30 = 0;

@@ -1,42 +1,12 @@
-// Unit 177 (the graphics state of game/UnkGraphicsState.h): pops the blend stack and, when asked, applies the
-// blend state now on top (the base state once the stack is empty), pushing each changed value to NVN.
+// Unit 177 (the graphics state of game/UnkGraphicsState.h): applies the blend state on top of the blend stack
+// again (the base state when the stack is empty), unless it is locked, pushing each changed value to NVN.
 // Names and layouts are placeholders.
+#include "game/UnkBlendStack.h"
 #include "game/UnkGraphicsState.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU176.h"
 #include "game/UnkTU177.h"
 #include "types.h"
-
-struct UnkBlendState_l15b8a0 {
-    s32 field_0x0;
-    s32 field_0x4;
-    s32 field_0x8;
-    s32 mode;  // 0xc
-    s32 field_0x10;
-    s32 field_0x14;
-    bool enable;  // 0x18
-    u8 field_0x19;
-};
-
-struct UnkBlendStack_l15b8a0 {
-    u8 applied;  // 0x0
-    u8 pad_0x1[7];
-    u32 count;  // 0x8
-    u8 pad_0xc[0x24];
-    UnkBlendState_l15b8a0 base;  // 0x30
-    UnkBlendState_l15b8a0 current;  // 0x4c
-    UnkBlendState_l15b8a0 entries[0x3f];  // 0x68
-};
-static_assert(__builtin_offsetof(UnkBlendStack_l15b8a0, entries) == 0x68, "");
-
-extern UnkBlendStack_l15b8a0 g_unk_716e29c6d0 __attribute__((visibility("hidden")));
-extern s32 g_unk_716e29c694;
-extern void (*g_unk_716e29b6b0)(void* object, s32 which, s32 value);
-extern s32 g_unk_716e29c240;
-extern void (*g_unk_716e29b9b8)(void* context, s32 which, s32 value);
-extern s32 g_unk_716e29c244;
-extern void (*g_unk_716e29b9b0)(void* context, s32 which, s32 value);
-void fn_710015afd0(s32 a, s32 b, s32 c);
 
 static inline void MarkDirty() {
     g_unk_7101a1d7c5 = true;
@@ -113,31 +83,25 @@ inline void SetBlendValue10(s32 value) {
     }
 }
 
-// Returns whether an entry is left on the stack.
-bool fn_710015b8a0(bool apply) {
+void fn_710015b160() {
     u32 count = g_unk_716e29c6d0.count;
+    const u8& allowed = count == 0 ? g_unk_716e29c6d0.base.field_0x19 : g_unk_716e29c6d0.entries[count - 1].field_0x19;
+    if (!allowed)
+        return;
     g_unk_716e29c6d0.applied = 0;
-    if (count >= 2) {
-        g_unk_716e29c6d0.count = count - 1;
-        if (apply) {
-            UnkBlendState_l15b8a0 top = g_unk_716e29c6d0.entries[count - 2];
-            SetBlendEnable(top.enable);
-            SetBlendMode(top.mode);
-            SetBlendValue14(top.field_0x14);
-            SetBlendValue10(top.field_0x10);
-            fn_710015afd0(top.field_0x0, top.field_0x4, top.field_0x8);
-        }
-        return true;
-    }
-    if (count == 1)
-        g_unk_716e29c6d0.count = 0;
-    if (apply) {
-        const UnkBlendState_l15b8a0& base = g_unk_716e29c6d0.base;
+    if (count != 0) {
+        UnkBlendState top = g_unk_716e29c6d0.entries[count - 1];
+        SetBlendEnable(top.enable);
+        SetBlendMode(top.mode);
+        SetBlendValue14(top.field_0x14);
+        SetBlendValue10(top.field_0x10);
+        fn_710015afd0(top.field_0x0, top.field_0x4, top.field_0x8);
+    } else {
+        const UnkBlendState& base = g_unk_716e29c6d0.base;
         SetBlendEnable(base.enable);
         SetBlendMode(base.mode);
         SetBlendValue14(base.field_0x14);
         SetBlendValue10(base.field_0x10);
         fn_710015afd0(base.field_0x0, base.field_0x4, base.field_0x8);
     }
-    return false;
 }
