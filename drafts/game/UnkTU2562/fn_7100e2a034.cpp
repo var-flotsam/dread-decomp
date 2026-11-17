@@ -1,12 +1,16 @@
 // Dropped-item manager (unit 2562, hint CLogicDroppedItemManager::CTunableDroppableBillboard): sets up
 // the "X-Parasite Green" billboard (slot 6): one drop entry, its pickup callback and its three paths.
 // Names and layouts are placeholders.
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkNoArg.h"
 #include "base/color/CColor4F.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkTU2561.h"
+#include "game/UnkTU2562.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTU341.h"
 #include "types.h"
@@ -20,13 +24,9 @@ struct UnkDroppedItem;
 struct UnkDropTarget_ovb0208;
 struct UnkDropEntrySet_ovb0208;
 
-extern CStrId g_unk_71727c1078;
-extern CStrId g_unk_71727c1088[];  // the billboards' default ids
 // The billboards' path prefix and suffixes.
 __attribute__((visibility("hidden"))) extern CRntString g_unk_71727c13c8[];
 
-void fn_7100e2c124(f32 value, void* self, UnkDropTarget_ovb0208* target, const CStrId* id, u32 a, u32 b, u32 c, u32 d, u32 e,
-                   bool flag);
 UnkDropEntrySet_ovb0208* fn_7100e2c3f4(UnkDropEntrySet_ovb0208* self, const UnkDropEntrySet_ovb0208* other);
 void fn_7100e2f9a4(UnkDroppedItemManager* self, UnkDroppedItem* item, void* arg);
 
@@ -104,27 +104,11 @@ struct UnkDropManager_e2a034 {
     UnkDropBillboard_e2a034 billboard;  // 0x9630
 };
 
-// The string id and file-path id fn_710001f074 builds in place from a path, destroyed in reverse order.
-struct UnkBuiltPathIds_e2a034 {
-    struct Ids {
-        CStrId id;
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-    alignas(Ids) u8 storage[sizeof(Ids)];
-
-    explicit UnkBuiltPathIds_e2a034(const CRntString& text) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(storage), reinterpret_cast<const UnkInlineString*>(&text));
-    }
-    const UnkStrIdPathPair& Pair() const { return *reinterpret_cast<const UnkStrIdPathPair*>(storage); }
-    ~UnkBuiltPathIds_e2a034() { reinterpret_cast<Ids*>(storage)->~Ids(); }
-};
-
 static inline CRntString operator+(const CRntString& a, const CRntString& b) { return fn_710007eee0(&a, &b); }
 
 // Points a path resource at the ids parsed from a path.
 static inline void SetPath(UnkStrIdPathResource* resource, const CRntString& path) {
-    UnkBuiltPathIds_e2a034 ids(path);
-    fn_71000267f8(resource, ids.Pair());
+    fn_71000267f8(resource, UnkPathIdsFromText(path).ids);
 }
 
 static inline void SetColor(CColor4F& color, const CColor4F& value) { fn_7100030728(&color, &value); }
@@ -153,7 +137,7 @@ void fn_7100e2a034(UnkDropManager_e2a034* self) {
     entry.field_0x34 = Tunable().field_0x7c;
     SetColor(entry.color0, CColor4F(0.1f, 1.0f, 0.0f, 1.0f));
     SetColor(entry.color1, CColor4F(0.0f, 0.0f, 0.0f, 0.0f));
-    fn_7100e2c124(0.5f, nullptr, reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1078), &entry.id0, 0x10, 0x10, 0x10, 0,
+    fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1078), &entry.id0, 0x10, 0x10, 0x10, 0,
                   0, true);
 
     UnkDropBillboard_e2a034* billboard = &self->billboard;

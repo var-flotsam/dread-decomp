@@ -4,6 +4,8 @@
 #include "base/global/CStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
+#include "game/CSpawnPointComponent.h"
+#include "game/UnkTU2704.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
 #include <new>
@@ -34,15 +36,10 @@ struct UnkSpawnOwner_l129064 {
     base::global::CStrId name;  // 0x30
 };
 
-struct UnkSpawnPoint_l129064 {
-    u8 pad_0x0[0x30];
-    UnkSpawnOwner_l129064* owner;  // 0x30
-    u8 pad_0x38[0x168 - 0x38];
-    UnkSpawnCollider_l129064* collider;  // 0x168
-    u8 pad_0x170[0x1b0 - 0x170];
-    void* tracked;  // 0x1b0
-};
-static_assert(__builtin_offsetof(UnkSpawnPoint_l129064, tracked) == 0x1b0, "layout");
+// The collider as this function uses it.
+static UnkSpawnCollider_l129064* Collider(CSpawnPointComponent* self) {
+    return static_cast<UnkSpawnCollider_l129064*>(self->field_0x168);
+}
 
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
@@ -52,7 +49,6 @@ struct UnkTriggerCollider_b0058;
 using base::reflection::UnkReflObject;
 struct UnkTracker_71008618cc;
 void fn_7100d59994(UnkTracker_71008618cc*, UnkReflObject*);
-void fn_71011265c0(UnkSpawnPoint_l129064* self, void* shape);
 
 static inline UnkStruct_71007e44b8* Manager() {
     UnkManager_7100863a8c* m = g_unk_71726a4788;
@@ -64,24 +60,25 @@ static inline UnkStruct_71007e44b8* Manager() {
     return reinterpret_cast<UnkStruct_71007e44b8*>(m);
 }
 
-void fn_7101129064(UnkSpawnPoint_l129064* self, void* shape) {
-    fn_71011265c0(self, shape);
+void fn_7101129064(CSpawnPointComponent* self, void* shape) {
+    fn_71011265c0(self);
     alignas(8) u8 name_storage[sizeof(base::global::CStrId)];
     {
         UnkStruct_71007e44b8* manager = Manager();
-        base::global::CStrId* name = new (name_storage) base::global::CStrId(self->owner->name);
-        self->collider = reinterpret_cast<UnkSpawnCollider_l129064*>(fn_71007e44b8(manager, self, name, 0));
+        base::global::CStrId* name =
+            new (name_storage) base::global::CStrId(self->Owner<UnkSpawnOwner_l129064>()->name);
+        self->field_0x168 = fn_71007e44b8(manager, self, name, 0);
         name->~CStrId();
     }
-    self->collider->vf_0x30(true);
-    fn_7100d36d30(reinterpret_cast<UnkTriggerCollider_b0058*>(self->collider), shape);
-    self->collider->vf_0x60(2);
-    fn_7100d35a98(reinterpret_cast<UnkEntry*>(self->collider), true);
+    Collider(self)->vf_0x30(true);
+    fn_7100d36d30(static_cast<UnkTriggerCollider_b0058*>(self->field_0x168), shape);
+    Collider(self)->vf_0x60(2);
+    fn_7100d35a98(static_cast<UnkEntry*>(self->field_0x168), true);
     {
         UnkStruct_71007e44b8* manager = Manager();
-        base::global::CStrId name(self->owner->name);
-        self->tracked = fn_7100d475ec(manager, &name, 1);
+        base::global::CStrId name(self->Owner<UnkSpawnOwner_l129064>()->name);
+        self->field_0x1b0 = fn_7100d475ec(manager, &name, 1);
     }
-    fn_7100d59994(static_cast<UnkTracker_71008618cc*>(self->tracked),
-                  reinterpret_cast<UnkReflObject*>(self->collider));
+    fn_7100d59994(static_cast<UnkTracker_71008618cc*>(self->field_0x1b0),
+                  static_cast<UnkReflObject*>(self->field_0x168));
 }

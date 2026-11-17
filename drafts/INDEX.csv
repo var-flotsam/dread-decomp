@@ -291,9 +291,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710020f450,552,drafts/game/UnkTU296/fn_710020f450.cpp,control flow,90.1,11,overnight,
 0x7100215ef4,52,drafts/game/UnkTU307/fn_7100215ef4.cpp,registers or order,84.6,2,lean-b3,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU307/fn_7100215ef4.cpp:20 fn_7100215ef4: defined as UnkVec3 fn_7100215ef4(const UnkBounds*) -> declared elsewhere with other types; use this parameter list and r...
 0x71002165e8,176,drafts/game/UnkTU307/fn_71002165e8.cpp,operations,17.0,36,lean-b3,stores not merged into stp; load order of centre/scale; 3 extra insns
-0x71002169e0,288,drafts/game/UnkTU308/fn_71002169e0.cpp,registers or order,97.2,2,overnight,
 0x7100216b00,300,drafts/game/UnkTU308/fn_7100216b00.cpp,registers or order,97.3,2,lean-b6,order of mov v2 and str in the first Include branch
-0x7100216ca4,140,drafts/game/UnkTU308/fn_7100216ca4.cpp,registers or order,94.3,2,overnight,
 0x710021c4cc,828,drafts/game/UnkTU322/fn_710021c4cc.cpp,operations,26.1,150,lean-r2kg,inline CFilePathStrId ctor: ours jump-threads the found branch past the empty-id select (original merges then
 0x710021e874,492,drafts/game/UnkTU324/fn_710021e874.cpp,registers or order,96.7,4,overnight,not a match: the permuter spike's result read `first` before it was set (put back 2026-11-13; tools/permute.py refuses that now); takes g_unk_7101a203f8 from its header
 0x710021f168,144,drafts/game/UnkTU324/fn_710021f168.cpp,registers or order,86.1,5,lean-b5,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU324/fn_710021f168.cpp:26 fn_710021f168: defined as bool fn_710021f168(UnkMedia324*; s32) -> declared elsewhere with other types; use this parameter list and res...
@@ -705,7 +703,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100866034,756,drafts/game/CCollisionComponent/fn_7100866034.cpp,control flow,64.6,65,lean-r2kb,filter-list loop: original reloads the local copy count after each virtual call (pointer loop; as if the copy
 0x710086bd4c,532,drafts/game/CHeatableShieldComponent/fn_710086bd4c.cpp,calls,0.8,49,lean-r2ke,only merged-global offsets differ: the unit statics (path 0x398; guard 0x3b8; params 0x430; another 0x70 stati
 0x710086c218,1360,drafts/game/CHeatableShieldComponent/fn_710086c218.cpp,operations,5.6,301,lean-r2ke,find/add shape lines up but 20 fewer instructions later (original rematerialises the pool GOT address after ea
-0x710086f9e0,324,drafts/game/UnkTU1325/fn_710086f9e0.cpp,match,100.0,0,overnight,
 0x71008717d4,1448,drafts/game/CInputComponent/fn_71008717d4.cpp,operations,1.1,357,lean-r2kf,119-binding array unrolls but zero halves store as 2 x 8-byte stores (extra add per binding) where the origina
 0x7100872690,456,drafts/game/CInputComponent/fn_7100872690.cpp,operations,4.3,109,lean-oc1,copied list (by-value arg) kept in registers across the allocator vcall; original reloads count/tail/allocator
 0x7100875ed0,668,drafts/game/CActionSwitcherComponent/fn_7100875ed0.cpp,build fails,,,lean-r2kg,on/off action slot select folds to an offset csel (def kept in x21; extra x23 saved); original selects def+0x5
@@ -723,7 +720,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71008be4e0,1916,drafts/game/CChozoCommanderXLifeComponent/fn_71008be4e0.cpp,build fails,,,lean-r2kd,same calls and flow; the request-argument slots share stack with the temporary strings (original gives them th
 0x71008bf4fc,1096,drafts/game/CChozoCommanderXLifeComponent/fn_71008bf4fc.cpp,build fails,,,lean-r2kd,same calls and flow; the listener link address (self+0x260) is kept in a callee-saved register (one extra CSR)
 0x71008c0004,612,drafts/game/CChozoCommanderXLifeComponent/fn_71008c0004.cpp,operations,0.7,149,lean-r2kd,same instructions; stack slot order (id above the string; value below) and map pointer kept in x21/pool in x22
-0x71008c5184,656,drafts/game/CDemolitionBlockLifeComponent/fn_71008c5184.cpp,match,100.0,0,lean-r2kd,matches; held: builds the path ids through an asm-labelled constructor for fn_710001f074; which UnkTU25.h declares as a free function
 0x71008c5ad0,2836,drafts/game/CDemolitionBlockLifeComponent/fn_71008c5ad0.cpp,operations,95.5,32,lean-r6k,stack: mode/mask (0x2a0/0x298) share slots in ours (frame 0x3a0 vs 0x3b0); cbnz vs tbnz on has_debris|held; su
 0x71008d07f8,528,drafts/game/UnkTU1376/fn_71008d07f8.cpp,calls,0.0,50,lean-oc2,GlobalMerge: g_unk_7172731730 is an internal static of unit 1376 merged with the guard and the static params (
 0x71008d0a08,540,drafts/game/UnkTU1376/fn_71008d0a08.cpp,control flow,40.7,76,lean-r2k,name key load hoisted above set branch; return value register shared; loop tail block layout differs (16 bytes
@@ -780,7 +776,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71009788f4,436,drafts/game/CCharacterMovement/fn_71009788f4.cpp,operations,45.0,59,lean-oc2,identity matrix store merging: original has no memset runs (pairs merged from 0x7c); ours merges zero runs
 0x7100978aa8,380,drafts/game/CCharacterMovement/fn_7100978aa8.cpp,operations,88.4,11,lean-oc1,self-check compare operand order (cmp other;this); zeroing order of 0x60..0x77 and matrix zeros (original desc
 0x7100978c24,756,drafts/game/CCharacterMovement/fn_7100978c24.cpp,operations,48.1,94,lean-oc1,control flow matches; copy of the rescaled product back into the local matrix is scalarized differently (origi
-0x7100979a60,208,drafts/game/CCharacterMovement/fn_7100979a60.cpp,registers or order,96.2,2,lean,passes tools/equiv_test.py; held: 1 declaration problem: src/game/CCharacterMovement/fn_7100979a60.cpp:52 fn_7100979a60: defined as UnkCmResult fn_7100979a60(UnkCm*) -> declared elsewhere with other types; use this parameter list a...
 0x710097c53c,508,drafts/game/UnkTU1449/fn_710097c53c.cpp,registers or order,90.6,12,overnight,
 0x710097f71c,1852,drafts/game/UnkTU1450/fn_710097f71c.cpp,build fails,,,lean-r2kg,mode-2 orientation test: original evaluates both conditions in one block (byte load and id-table guard hoisted
 0x710098008c,424,drafts/game/UnkTU1452/fn_710098008c.cpp,operations,83.0,18,lean-r2kg,scheduling only: state_1 owner and record count stores sink below the id reload; and state_2 callback zeroing
@@ -1092,12 +1087,8 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e1cbdc,148,drafts/game/UnkTU2560/fn_7100e1cbdc.cpp,operations,94.6,2,overnight,
 0x7100e211cc,1012,drafts/game/UnkTU2562/fn_7100e211cc.cpp,registers or order,49.4,128,lean-r2kd,base register for the 0x7808 block (0x7814 vs 0x7808) and the dictionary address hoisted
 0x7100e22a74,1560,drafts/game/UnkTU2562/fn_7100e22a74.cpp,operations,96.7,13,lean-r2kb,Reserve move loop of the 12-byte entry: original copies 3 words with may-alias accesses (reloads count and dat
-0x7100e2813c,1112,drafts/game/UnkTU2562/fn_7100e2813c.cpp,control flow,7.0,258,lean-r2kd,stack slots: the by-value table copy does not share its slot with the Life2 id and colour temporaries (frame 0
-0x7100e289ec,1428,drafts/game/UnkTU2562/fn_7100e289ec.cpp,operations,26.5,262,lean-r2kb,MATCHES once fn_7100e2c124 param 2 (void* self) becomes UnkNoArg (x0 unloaded); matching copy build/lean/scrat
-0x7100e28f80,1428,drafts/game/UnkTU2562/fn_7100e28f80.cpp,operations,26.5,262,lean-r2kb,MATCHES once fn_7100e2c124 param 2 (void* self) becomes UnkNoArg (x0 unloaded); matching copy build/lean/scrat
-0x7100e29514,1424,drafts/game/UnkTU2562/fn_7100e29514.cpp,operations,26.5,261,lean-r2kb,98% only with fn_7100e2c124 param self as UnkNoArg (x0 unloaded; scratch build/lean/scratch/UnkTU2562_PowerBom
-0x7100e2a034,1792,drafts/game/UnkTU2562/fn_7100e2a034.cpp,control flow,7.9,412,lean-r2k,prologue/stack now match; CStrId move-assign of the X-Parasite id lays out its release blocks differently (poo
-0x7100e2a734,1784,drafts/game/UnkTU2562/fn_7100e2a734.cpp,operations,21.7,349,lean-r2kb,MATCHES once fn_7100e2c124 param 2 (void* self) becomes UnkNoArg; also needs g_unk_71727c13c8 declared as a CR
+0x7100e2a034,1792,drafts/game/UnkTU2562/fn_7100e2a034.cpp,control flow,12.8,390,lean-r2k,prologue/stack now match; CStrId move-assign of the X-Parasite id lays out its release blocks differently (poo
+0x7100e2a734,1784,drafts/game/UnkTU2562/fn_7100e2a734.cpp,match,100.0,0,lean-r2kb,MATCHES once fn_7100e2c124 param 2 (void* self) becomes UnkNoArg; also needs g_unk_71727c13c8 declared as a CR
 0x7100e2d4ec,284,drafts/game/UnkTU2562/fn_7100e2d4ec.cpp,operations,9.9,57,lean-b5,box merge scheduling and loop shape differ; z loaded as integer word in original
 0x7100e2eef8,312,drafts/game/UnkTU2562/fn_7100e2eef8.cpp,registers or order,97.4,2,lean-b5,same instructions; register/order differences
 0x7100e2f030,220,drafts/game/UnkTU2562/fn_7100e2f030.cpp,operations,29.1,38,lean-b5,loop induction var: original keeps the active-byte pointer and post-index fuses slot address; ours uses flags/
@@ -1460,7 +1451,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710111a968,592,drafts/game/CSpawnGroupComponent/fn_710111a968.cpp,operations,73.6,38,lean-ob3,fill loop: original bases the element pointer at +0x38 (the handle); store/call order after the allocator call
 0x710111ad64,340,drafts/game/CSpawnGroupComponent/fn_710111ad64.cpp,operations,89.4,9,lean-ob3,order of the four float bound compares in the fccmp chain; false-return block placement
 0x71011258e4,940,drafts/game/UnkTU2704/fn_71011258e4.cpp,operations,30.6,155,lean-r2kg,original stores each array flag byte past +0x100 through a separate base add (x8=self+off; strb [x8;#0x1c]); o
-0x7101125c90,2084,drafts/game/UnkTU2704/fn_7101125c90.cpp,match,100.0,0,lean-r6k,byte-matches only when fn_71011264b4/fn_71011265c0 are declared with one parameter: the defining file (UnkTU27
 0x710112688c,308,drafts/game/UnkTU2704/fn_710112688c.cpp,build fails,,,spawnpoint,CStrId dtor duplicated into null-section path (7 calls vs 6); original shares tail; header split of pad 0x290/
 0x7101127834,304,drafts/game/UnkTU2704/fn_7101127834.cpp,registers or order,92.1,6,spawnpoint,instruction order only: flag load at +0x1b2 before the other link state test; and the final call arg setup ord
 0x710112a3bc,412,drafts/game/UnkTU2704/fn_710112a3bc.cpp,calls,31.0,67,pilot50,KIND calls: 3 calls vs 4; return-true block layout

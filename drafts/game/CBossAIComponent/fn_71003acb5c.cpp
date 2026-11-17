@@ -45,7 +45,7 @@ struct UnkBossLinkSource_l3acb5c {
     UnkBossLinkedActor_l3acb5c* Linked() {
         if (link.state == 1) {
             {
-                UnkRefPtr ref = fn_710023b580(link.key);
+                UnkRefPtr ref = fn_710023b580(&link.callbacks);
                 fn_7100234f78(&link.handle, reinterpret_cast<const base::UnkRefHandle*>(&ref));
             }
             link.state = 2;

@@ -7,6 +7,7 @@
 #include "base/UnkCloneHelpers.h"
 #include "base/UnkCountedResource.h"
 #include "base/UnkDestructors.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
@@ -51,23 +52,6 @@ struct UnkInlineString {
     u8 buffer[0x80];
     u64 field_0xb8;
     u32 field_0xc0;
-};
-
-struct UnkPathIds;
-
-struct UnkPathIds {
-    union {
-        CStrId id;
-    };
-    union {
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-
-    explicit UnkPathIds(const UnkInlineString& source) { fn_710001f074(this, &source); }
-    ~UnkPathIds() {
-        path.~UnkStrIdMemberOf();
-        id.~CStrId();
-    }
 };
 
 struct UnkResourceHandle {
@@ -147,8 +131,8 @@ s32 fn_7101079e20(lua_State* L) {
             UnkResourceHandle handle;
         } slot;
         UnkResourceManager* manager = g_unk_71726ae8a8;
-        UnkPathIds ids(path);
-        new (&slot.handle) UnkResourceHandle(fn_71002f7048(manager, ids));
+        UnkPathIdsFromText ids(*str);
+        new (&slot.handle) UnkResourceHandle(fn_71002f7048(manager, ids.ids));
         UnkCountedResource* picked = slot.handle.ptr;
         if (picked) {
             if (!fn_710009d50c(reinterpret_cast<UnkReflObject*>(picked)->vf_0x0(), fn_71002e970c()))

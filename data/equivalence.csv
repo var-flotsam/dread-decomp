@@ -56,6 +56,8 @@ address,digest,verdict,rules,detail
 0x7100216568,9d5819b29aaa14cdffe97a1dee3d0213,pass,2,both runs faulted; on different accesses
 0x7100216698,ba9319342c60e06c89ec25a9c1c55b74,pass,2,
 0x710021688c,cbd0ad11d3e1511ce8aab8f793590b5b,pass,2,
+0x71002169e0,42c72ab4b3522e67433a8a3b97146126,pass,2,
+0x7100216ca4,5481964823677a0563ce220156a548d6,pass,2,
 0x710023b424,969cca954272de5fa2098bfd510be899,pass,2,
 0x710024657c,f867b4a21c73dac11accd22bf2bd1caf,pass,2,
 0x710025fdf4,d273febb0112307f30a0f741971c9183,inconclusive,2,unresolved UnkEntry_710025fdf4::UnkEntry_710025fdf4(UnkEntry_710025fdf4 const&)
@@ -117,6 +119,7 @@ address,digest,verdict,rules,detail
 0x710087f018,4cdde458ffff53b070002450edaff6d6,pass,2,
 0x710089f764,f50125fe8b6ccf8a8ca9f94af5317281,pass,2,
 0x7100976c94,8e72f162ff6f166d57cb15c32aede87a,pass,2,
+0x7100979a60,82648695177038aa616938d2c0d9ad88,pass,2,
 0x71009881b0,5afb7e2395df36e3ca9d150ff4d1a495,pass,2,
 0x71009cde54,d980ce8242f098adb0ef195783b93d79,inconclusive,2,only 79% of the original's instructions ran
 0x71009e307c,d2d74df9929cd064da2bfd12de663cbb,pass,2,

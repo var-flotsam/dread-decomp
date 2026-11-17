@@ -4,39 +4,17 @@
 // built into ids by fn_710001f074, assigned by fn_71000267f8). With both ids set, the preset is
 // stopped on the actor (fn_7100d7c548) with the event's two times (+0x30, +0x34). Names and layouts
 // are placeholders. fn_7100be45dc sets the preset name and resolves the ids from it the same way.
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkActor.h"
-#include "game/UnkTU25.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU57.h"
 #include "types.h"
 
 using base::global::CRntString;
-using base::global::CStrId;
-
-struct UnkPathIds;
-struct UnkInlineString;
-
-// The ids the builder fills in place, destroyed in reverse order (as in CDroppableComponent_b50.cpp).
-struct UnkPresetIds_ovb0134 {
-    union {
-        CStrId id;
-    };
-    union {
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-
-    explicit UnkPresetIds_ovb0134(const CRntString& source) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(this), reinterpret_cast<const UnkInlineString*>(&source));
-    }
-    ~UnkPresetIds_ovb0134() {
-        path.~UnkStrIdMemberOf();
-        id.~CStrId();
-    }
-};
 
 // The preset name: a pooled string whose text is at +0x10 and use count at +0x44.
 struct UnkPresetName_ovb0134 {
@@ -69,9 +47,8 @@ static inline bool IsSet(const UnkStrIdPathResource* preset) {
 __attribute__((always_inline)) static inline void Resolve(UnkStopAudioPresetEvent_ovb0134* self,
                                                           UnkStrIdPathResource* preset, UnkPresetName_ovb0134* name) {
     ++name->use_count;
-    fn_71000267f8(preset, reinterpret_cast<const UnkStrIdPathPair&>(static_cast<const UnkPresetIds_ovb0134&>(
-                                     UnkPresetIds_ovb0134(fn_710007f050("audiopreset:system/snd/presets/",
-                                                                        &self->Name()->text)))));
+    fn_71000267f8(preset,
+                  UnkPathIdsFromText(fn_710007f050("audiopreset:system/snd/presets/", &self->Name()->text)).ids);
 }
 
 // Sets the preset name and resolves the ids from it.

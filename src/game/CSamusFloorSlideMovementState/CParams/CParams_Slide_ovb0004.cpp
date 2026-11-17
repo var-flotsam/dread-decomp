@@ -7,6 +7,7 @@
 // the state reports (fn_71009954ec, by the animation tracks it has) and the slide timing helpers.
 // Names and layouts are placeholders.
 #include "../../../game_s2/UnkSpitSend.h"
+#include "base/UnkPathIdsFromText.h"
 #include "base/UnkStrIdPathPair.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
@@ -27,7 +28,6 @@
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1728.h"
 #include "game/UnkTU1730.h"
-#include "game/UnkTU25.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
@@ -644,32 +644,11 @@ f32 fn_7100991e30(void* self, UnkTimeline* timeline) {
 
 // ---- fn_7100991b30, fn_7100991d0c: constructor and destructor body ----
 
-struct UnkPathIds;
-struct UnkInlineString;
-
-// The ids the builder fills in place (the members start out unset), destroyed in reverse order
-// (as in src/base/UnkStrIdPathResource_Ctor_b45.cpp).
-struct UnkBuiltPathIds_ovb0004 {
-    union {
-        CStrId id;
-    };
-    union {
-        base::UnkStrIdMemberOf<g_unk_7101d47200> path;
-    };
-
-    explicit UnkBuiltPathIds_ovb0004(const UnkInlineString* source) {
-        fn_710001f074(reinterpret_cast<UnkPathIds*>(this), source);
-    }
-    ~UnkBuiltPathIds_ovb0004() {
-        path.~UnkStrIdMemberOf();
-        id.~CStrId();
-    }
-};
-
 // The unit's default path text, with its use count.
 struct UnkPathSource_ovb0004 {
     u8 pad_0x0[0x10];
-    u8 text[0x34];  // 0x10
+    base::global::CRntString text;  // 0x10
+    u8 pad_0x40[0x4];
     union {
         u32 use_count;  // 0x44
     };
@@ -747,8 +726,7 @@ void fn_7100991b30(UnkFloorSlideStateData_ovb0004* self) {
     if (self->path.ids.id.data == &g_unk_7101d47108->empty || self->path.ids.path.data == &g_unk_7101d47200->empty) {
         UnkPathSource_ovb0004* source = g_unk_717273b7d8;
         ++source->use_count;
-        fn_71000267f8(&self->path, reinterpret_cast<const UnkStrIdPathPair&>(static_cast<const UnkBuiltPathIds_ovb0004&>(
-                                       UnkBuiltPathIds_ovb0004(reinterpret_cast<const UnkInlineString*>(source->text)))));
+        fn_71000267f8(&self->path, UnkPathIdsFromText(source->text).ids);
     }
 }
 

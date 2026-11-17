@@ -6,25 +6,11 @@
 #include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkVec3Bits.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-union UnkBits {
-    u32 u;
-    f32 f;
-};
-
-// Not trivially copyable, so it is returned in memory.
-struct UnkVec3Bits {
-    UnkBits x;
-    UnkBits y;
-    UnkBits z;
-
-    UnkVec3Bits(u32 x, u32 y, u32 z) : x{x}, y{y}, z{z} {}
-    UnkVec3Bits(const UnkVec3Bits& other) : x(other.x), y(other.y), z(other.z) {}
-};
 
 struct UnkPlace;
 
@@ -70,7 +56,7 @@ bool fn_71005416bc(UnkStepper* self, bool flag) {
             pos = {body->field_0x44, body->field_0x54, body->field_0x64};
             if (body->field_0x1f8) {
                 UnkVec3Bits other = fn_7100979a60(body->field_0x1f8);
-                pos = {other.x.u, other.y.u, other.z.u};
+                __builtin_memcpy(&pos, &other, sizeof(pos));
             }
         } else {
             pos = {0, 0, 0};

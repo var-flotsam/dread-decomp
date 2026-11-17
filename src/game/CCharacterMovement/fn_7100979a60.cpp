@@ -2,15 +2,11 @@
 // Names and layouts are placeholders.
 #include "types.h"
 #include "base/math/CVector.h"
+#include "game/CCharacterMovement.h"
+#include "game/UnkVec3Bits.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
-
-struct UnkCmResult {
-    f32 x, y, z;
-    UnkCmResult() {}
-    UnkCmResult(const UnkCmResult& o) : x(o.x), y(o.y), z(o.z) {}
-};
 
 struct UnkCmAttach {
     virtual void vf_0x0();
@@ -21,7 +17,7 @@ struct UnkCmAttach {
 
 struct UnkCmAnchor {
     virtual void vf_0x0();
-    UnkCmResult vf_0x68_get() { return reinterpret_cast<UnkCmResult (**)(UnkCmAnchor*)>(*reinterpret_cast<void***>(this))[0x68 / 8](this); }
+    UnkVec3Bits vf_0x68_get() { return reinterpret_cast<UnkVec3Bits (**)(UnkCmAnchor*)>(*reinterpret_cast<void***>(this))[0x68 / 8](this); }
 };
 
 struct UnkCmSink {
@@ -40,7 +36,7 @@ struct UnkCmOwner {
     UnkCmSink* field_0x2a0;
 };
 
-struct UnkCm {
+struct UnkPlace {
     u8 pad_0x0[0x30];
     UnkCmOwner* field_0x30;
     u8 pad_0x38[0x3b8 - 0x38];
@@ -48,7 +44,9 @@ struct UnkCm {
     UnkCmAttach* field_0x3c0;
 };
 
-UnkCmResult fn_7100979a60(UnkCm* self) {
+// NON_MATCHING(minor): registers only: the x and y copied into the result go through w9/w8 where the
+// original uses w10/w9; passes tools/equiv_test.py.
+UnkVec3Bits fn_7100979a60(UnkPlace* self) {
     CVector2D xy;
     {
         UnkCmOwner* o = self->field_0x30;
@@ -65,14 +63,14 @@ UnkCmResult fn_7100979a60(UnkCm* self) {
             s->vf_0x178_set(self->field_0x3b8, 0);
         UnkCmAnchor* anc = a->field_0x158;
         if (anc) {
-            UnkCmResult p3 = anc->vf_0x68_get();
+            UnkVec3Bits p3 = anc->vf_0x68_get();
             CVector2D off;
             fn_710007b430(&off, reinterpret_cast<const CVector3D*>(&p3));
             xy.x = off.x + xy.x;
             xy.y = off.y + xy.y;
         }
     }
-    UnkCmResult r;
+    UnkVec3Bits r;
     r.z = self->field_0x30->field_0x64;
     r.x = xy.x;
     r.y = xy.y;
