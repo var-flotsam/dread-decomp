@@ -33,7 +33,7 @@ static inline bool GetSlotColour(UnkSlots* self, u32 id, u32 kind, CColor4F* out
     clamped.g = ClampPositive(box.y);
     clamped.b = ClampPositive(box.z);
     clamped.a = ClampPositive(box.w);
-    fn_7100030728(out, &clamped);
+    *out = clamped;
     return found;
 }
 
@@ -60,8 +60,8 @@ bool fn_71001c2ec0(void* target, u32 id, u32 kind, CVector4D* colour, u32 mode, 
         self->count = count + 1;
 
     UnkSlotFade_l1c2ec0* e = reinterpret_cast<UnkSlotFade_l1c2ec0*>(self->entries[index]);
-    fn_7100030728(&e->from, &current);
-    fn_7100030728(&e->to, reinterpret_cast<const CColor4F*>(colour));
+    e->from = current;
+    e->to = reinterpret_cast<const CColor4F&>(*colour);
     e->duration = time;
     e->remaining = time;
     e->id = id;

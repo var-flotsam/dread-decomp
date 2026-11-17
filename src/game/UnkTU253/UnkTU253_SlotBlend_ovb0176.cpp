@@ -54,8 +54,8 @@ static inline bool StartBlend(UnkSlots* self, u32 id, u32 kind, const CColor4F* 
         if (!running)
             self->count = count + 1;
         UnkSlotBlend_ovb0176* blend = BlendAt(self, index);
-        fn_7100030728(&blend->from, from);
-        fn_7100030728(&blend->to, to);
+        blend->from = *from;
+        blend->to = *to;
         blend->time = duration;
         blend->duration = duration;
         blend->id = id;

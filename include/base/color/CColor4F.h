@@ -2,7 +2,7 @@
 
 // base::color::CColor4F. The name and size (0x10) come from reflection (refl_GetType
 // fn_7100068204); the layout is four floats. Its reflected constructor sets every component to 1
-// and its reflected assignment calls fn_7100030728, which clamps each component to be
+// and its reflected assignment calls operator= (fn_7100030728), which clamps each component to be
 // non-negative. Its copy constructor is user-provided (a member-wise copy), so a colour passed or
 // returned by value goes in memory (x8, or the address of a copy). Code here spells out the
 // initial value instead of relying on the default constructor.
@@ -21,13 +21,12 @@ struct CColor4F {
     CColor4F() = default;
     CColor4F(f32 r_, f32 g_, f32 b_, f32 a_) : r(r_), g(g_), b(b_), a(a_) {}
     CColor4F(const CColor4F& other) : r(other.r), g(other.g), b(other.b), a(other.a) {}
+    // The assignment (out of line): each component of `other` clamped to be non-negative.
+    CColor4F& operator=(const CColor4F& other) asm("fn_7100030728");
 };
 static_assert(sizeof(CColor4F) == 0x10, "CColor4F layout");
 
 }  // namespace base::color
-
-// The colour's assignment (out of line): each component of `other` clamped to be non-negative.
-void fn_7100030728(base::color::CColor4F* self, const base::color::CColor4F* other);
 
 // The blend of two colours: `from` at t <= 0, `to` at t >= 1, linear in between; each component
 // then clamped to be non-negative.

@@ -36,9 +36,6 @@ struct UnkBillboardManager_e289ec {
     CDrop billboard;  // 0x8270
 };
 
-// The colour assignment, source first (as `dst = src` evaluates it).
-static inline void CopyColor(const CColor4F& src, CColor4F& dst) { fn_7100030728(&dst, &src); }
-
 static inline const UnkBillboardTunable_e289ec& Tunable() {
     return reinterpret_cast<const UnkBillboardTunable_e289ec&>(g_unk_71727c10c8);
 }
@@ -48,8 +45,7 @@ static inline void Show(CDrop* billboard, const CStrId& id, void* owner, f32 cou
     billboard->owner = owner;
     billboard->callback = fn_7100e2f994;
     billboard->amount = count;
-    fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(&billboard->table),
-                  reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&set));
+    billboard->table = set;
     g_unk_717269c4d8 = true;
     billboard->Start();
     g_unk_717269c4d8 = false;
@@ -67,8 +63,8 @@ void fn_7100e289ec(UnkBillboardManager_e289ec* self) {
         second.id.ReleaseAndTake(id);
     }
     second.field_0x8 = g_unk_71727c1088[Tunable().field_0x78];
-    CopyColor(CColor4F(1.0f, 1.0f, 1.0f, 1.0f), second.color);
-    CopyColor(CColor4F(0.0f, 0.0f, 0.0f, 0.0f), second.field_0x20);
+    second.color = CColor4F(1.0f, 1.0f, 1.0f, 1.0f);
+    second.field_0x20 = CColor4F(0.0f, 0.0f, 0.0f, 0.0f);
     second.field_0x34 = 1.0f;
     fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1058), &second.id, 0x1e, 0x1e, 1, 0, 0, true);
 
@@ -80,8 +76,8 @@ void fn_7100e289ec(UnkBillboardManager_e289ec* self) {
         first.id.ReleaseAndTake(id);
     }
     first.field_0x8 = g_unk_71727c1088[Tunable().field_0x78];
-    CopyColor(CColor4F(1.0f, 1.0f, 1.0f, 1.0f), first.color);
-    CopyColor(CColor4F(1.0f, 0.0f, 0.0f, 0.0f), first.field_0x20);
+    first.color = CColor4F(1.0f, 1.0f, 1.0f, 1.0f);
+    first.field_0x20 = CColor4F(1.0f, 0.0f, 0.0f, 0.0f);
     first.color.a = 1.0f;
     fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1058), &first.id, 0x1e, 0x1e, 1, 0, 0, true);
 

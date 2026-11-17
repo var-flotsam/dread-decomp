@@ -49,9 +49,6 @@ static inline void LoadPath(const CRntString& path, UnkDropResource* model) {
     fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(model), UnkPathIdsFromText(path).ids);
 }
 
-// The colour assignment, source first (as `dst = src` evaluates it).
-static inline void CopyColor(const CColor4F& src, CColor4F& dst) { fn_7100030728(&dst, &src); }
-
 static inline const UnkBillboardTunable_e2a034& Tunable() {
     return reinterpret_cast<const UnkBillboardTunable_e2a034&>(g_unk_71727c10c8);
 }
@@ -61,8 +58,7 @@ static inline void Show(CDrop* billboard, const CStrId& id, void* owner, f32 cou
     billboard->owner = owner;
     billboard->callback = fn_7100e2f9a4;
     billboard->amount = count;
-    fn_7100e2c3f4(reinterpret_cast<UnkDropEntrySet_ovb0208*>(&billboard->table),
-                  reinterpret_cast<const UnkDropEntrySet_ovb0208*>(&set));
+    billboard->table = set;
     g_unk_717269c4d8 = true;
     billboard->Start();
     g_unk_717269c4d8 = false;
@@ -82,8 +78,8 @@ void fn_7100e2a034(UnkBillboardManager_e2a034* self) {
     entry.field_0x8 = g_unk_71727c1088[6];
     entry.field_0x3c = -1;
     entry.field_0x34 = Tunable().fMiniXGreenMotionScale;
-    CopyColor(CColor4F(0.1f, 1.0f, 0.0f, 1.0f), entry.color);
-    CopyColor(CColor4F(0.0f, 0.0f, 0.0f, 0.0f), entry.field_0x20);
+    entry.color = CColor4F(0.1f, 1.0f, 0.0f, 1.0f);
+    entry.field_0x20 = CColor4F(0.0f, 0.0f, 0.0f, 0.0f);
     fn_7100e2c124(0.5f, UnkNoArg(), reinterpret_cast<UnkDropTarget_ovb0208*>(&g_unk_71727c1078), &entry.id, 0x10, 0x10,
                   0x10, 0, 0, true);
 
