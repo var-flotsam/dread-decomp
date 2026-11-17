@@ -11,6 +11,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
 #include "base/reflection/CEnumType.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -188,7 +189,6 @@ s32 fn_7101090f50(lua_State* L) {
 
 // ---- the rumble manager ----
 using base::input::UnkRumbleManager;
-void fn_7100074f94(base::input::UnkRumbleManager* self, const u32* mask);
 struct UnkTunableRumbleManager_b0068;
 void fn_7100075020(UnkTunableRumbleManager_b0068* self, bool flag, const u32* channels);
 

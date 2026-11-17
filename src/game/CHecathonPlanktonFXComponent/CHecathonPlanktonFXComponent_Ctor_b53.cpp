@@ -6,12 +6,11 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CFilePathStrId.h"
+#include "game/CHecathonPlanktonFXComponent.h"
 #include "game/CSceneComponent.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
-
-extern char g_unk_7101a74d08[];
 
 struct UnkBreakableTileGroup_b46a2;
 

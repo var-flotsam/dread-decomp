@@ -4,6 +4,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/CGrappleBeamComponent.h"
 #include "types.h"
 
 using base::reflection::UnkTunable;
@@ -159,7 +160,6 @@ void fn_71008187e8(UnkGrappleSmOwner_ovb0047* self) {
 }
 
 // The tunables (CTunableGrappleBeamComponent, src/reflection/CGrappleBeamComponent_CTunableGrappleBeamComponent.cpp).
-extern UnkTunable g_unk_71727232d8;
 struct UnkGrappleSmTunable_ovb0047 {
     u8 pad_0x0[0x24];
     f32 advance_speed;  // fAdvanceSpeed

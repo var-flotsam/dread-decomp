@@ -333,7 +333,6 @@ struct UnkGhostAuraBase_b0040;
 
 void fn_71002f8414(UnkGhostAuraBase_b0040* self);
 void fn_7100314d94(void* self);
-extern void* g_unk_7101a22a88[];
 
 template <class T>
 static inline T& At_b0040(void* base, u64 offset) {

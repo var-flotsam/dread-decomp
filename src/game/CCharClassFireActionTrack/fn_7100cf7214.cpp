@@ -15,6 +15,7 @@
 #include "game/CCharClassFXControlTrack.h"
 #include "game/CCharClassForceBumpFXTrack.h"
 #include "game/CCharClassIgnoreBumpFXTrack.h"
+#include "game/CCharClassModifyColliderStateBaseTrack.h"
 #include "game/CCharClassModifyDamageTrack.h"
 #include "game/CCharClassToRunNearWallTrack.h"
 #include "types.h"
@@ -458,8 +459,6 @@ struct UnkIdArrayIdWordGroup {
     __attribute__((always_inline)) UnkIdArrayIdWordGroup()
         : id("", true), values(Flags), id_0x30("", true), field_0x38(0) {}
 };
-
-extern void* g_unk_7101aa7cb0[];
 
 struct UnkRootSixGroups : UnkRoot {
     UnkIdArrayIdWordGroup<5> field_0x18;

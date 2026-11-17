@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkIdsString;
+
 // Probably whether the caller is on the sound thread (it compares a stored thread id with the current one).
 bool fn_7100132cd0();
 
@@ -15,3 +17,5 @@ f32 fn_7100132fe0();  // One of the screen's two aspect factors (thunks of fn_71
 f32 fn_7100132ff0();  // One of the screen's two aspect factors (thunks of fn_71001329e0 and fn_71001329d0).
 u32 fn_7100132f80();
 u32 fn_7100132f90();
+void fn_7100133be4(UnkIdsString* self);
+void* fn_7100136df0();

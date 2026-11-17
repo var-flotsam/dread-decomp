@@ -17,6 +17,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU811.h"
+#include "game/UnkTU883.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkChargeComponent.h"
@@ -333,7 +334,6 @@ struct UnkHydrogigaSm_b61 {
 // Asks for state 4 once the level of the two linked parts (+0x149a8, +0x149b0; looked up by id with
 // fn_71005c1008) is at most 0.2: fn_7100a68874 of the first flagged one (+0x44), else the first part's
 // value at +0x178.
-char* fn_71005c1008(u64);
 f32 fn_7100a68874(char*);
 
 struct UnkHydrogigaPartRef_b61 {

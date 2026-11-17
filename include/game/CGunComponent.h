@@ -6,6 +6,9 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkGunComponent;
+struct UnkGunBeam_ovb0070;
+struct UnkSamusGun_ovb0070;
 struct UnkComponent;
 struct UnkItem_710083e9d4;
 struct UnkListener_b40;
@@ -21,3 +24,5 @@ bool fn_710083f32c(UnkSamusGunComponent* gun, const base::global::CStrId* id, bo
 void fn_710083d27c(UnkSamusGunComponent* gun, bool flag);
 bool fn_710084088c(UnkSamusGunComponent*);
 void fn_7100840f50(void*, void**);
+const base::global::CStrId* fn_71008407fc(UnkGunComponent* self);
+UnkGunBeam_ovb0070* fn_7100840828(UnkSamusGun_ovb0070* self);

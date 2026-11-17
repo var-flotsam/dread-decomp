@@ -3,12 +3,12 @@
 // "relax_spawn90" id (refl_EmitU32). Names are placeholders.
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkBehaviorTree.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "types.h"
 
 struct UnkActorTarget;
-void fn_710117662c(UnkActorTarget*, u32 value, u32 extra, bool apply, bool flag, f32 time);
 
 struct UnkCaterzillaSendOwner_b58 {
     u8 pad_0x0[0x220];

@@ -5,6 +5,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAnimationComponent.h"
 #include "game/CInputComponent.h"
@@ -17,7 +18,6 @@ using base::global::CStrId;
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
 struct UnkDoorKeyOwner_dae8a4;
-void fn_7100dae8a4(UnkDoorKeyOwner_dae8a4* self, bool add, CStrId* key);
 extern CStrId g_unk_7172a03e20 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172a03e38 __attribute__((visibility("hidden")));
 

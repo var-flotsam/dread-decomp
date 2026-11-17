@@ -11,6 +11,7 @@
 #include "base/reflection.h"
 #include "base/reflection/UnkTunableRegistry.h"
 #include "base/snd/CSoundSystem.h"
+#include "base/tunable/CTunable.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CBossAIComponent.h"
 #include "game/CTeamManager/CTunableTeamManager.h"
@@ -443,7 +444,6 @@ struct UnkTypedPair_b0157 {
     void* type;
     void* obj;
 };
-void* fn_7100136df0();
 s32 fn_7100fbde70(void* state, UnkTypedPair_b0157* value, s32 arg0, s32 arg1);
 
 s32 fn_71010948a0(lua_State* L) {
