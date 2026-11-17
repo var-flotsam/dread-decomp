@@ -1,53 +1,53 @@
 address,size,name,name_source,subsystem,status
-0x710020002c,240,fn_710020002c,unknown,unknown,O
-0x710020011c,28,fn_710020011c,unknown,unknown,O
-0x7100200138,12,fn_7100200138,unknown,unknown,O
-0x7100200144,8,fn_7100200144,unknown,unknown,O
-0x710020014c,12,fn_710020014c,unknown,unknown,O
-0x7100200158,8,fn_7100200158,unknown,unknown,O
-0x7100200160,28,fn_7100200160,unknown,unknown,O
-0x710020017c,324,fn_710020017c,unknown,unknown,U
-0x71002002c0,300,fn_71002002c0,unknown,unknown,O
-0x71002003ec,236,fn_71002003ec,unknown,unknown,U
-0x71002004d8,28,fn_71002004d8,unknown,unknown,O
-0x71002004f4,8320,fn_71002004f4,unknown,unknown,U
-0x7100202574,8,fn_7100202574,unknown,unknown,O
-0x710020257c,336,fn_710020257c,unknown,unknown,O
-0x71002026cc,220,fn_71002026cc,unknown,unknown,O
-0x71002027a8,244,fn_71002027a8,unknown,unknown,U
-0x710020289c,40,fn_710020289c,unknown,unknown,O
-0x71002028c4,168,fn_71002028c4,unknown,unknown,O
-0x710020296c,148,fn_710020296c,unknown,unknown,U
-0x7100202a00,20,fn_7100202a00,unknown,unknown,O
-0x7100202a14,172,fn_7100202a14,unknown,unknown,O
-0x7100202ac0,172,fn_7100202ac0,unknown,unknown,O
-0x7100202b6c,240,fn_7100202b6c,unknown,unknown,O
-0x7100202c5c,128,fn_7100202c5c,unknown,unknown,O
-0x7100202cdc,20,fn_7100202cdc,unknown,unknown,O
-0x7100202cf0,16,fn_7100202cf0,unknown,unknown,O
-0x7100202d00,20,fn_7100202d00,unknown,unknown,O
-0x7100202d14,16,fn_7100202d14,unknown,unknown,O
-0x7100202d24,32,fn_7100202d24,unknown,unknown,O
-0x7100202d44,24,fn_7100202d44,unknown,unknown,O
-0x7100202d5c,64,fn_7100202d5c,unknown,unknown,O
-0x7100202d9c,56,fn_7100202d9c,unknown,unknown,O
-0x7100202dd4,52,fn_7100202dd4,unknown,unknown,O
-0x7100202e08,16,fn_7100202e08,unknown,unknown,O
-0x7100202e18,48,fn_7100202e18,unknown,unknown,O
-0x7100202e48,52,fn_7100202e48,unknown,unknown,O
-0x7100202e7c,52,fn_7100202e7c,unknown,unknown,O
-0x7100202eb0,20,fn_7100202eb0,unknown,unknown,O
-0x7100202ec4,32,fn_7100202ec4,unknown,unknown,O
-0x7100202ee4,28,fn_7100202ee4,unknown,unknown,O
-0x7100202f00,28,fn_7100202f00,unknown,unknown,O
-0x7100202f1c,28,fn_7100202f1c,unknown,unknown,O
-0x7100202f38,28,fn_7100202f38,unknown,unknown,O
-0x7100202f54,28,fn_7100202f54,unknown,unknown,O
-0x7100202f70,16,fn_7100202f70,unknown,unknown,O
-0x7100202f80,16,fn_7100202f80,unknown,unknown,O
-0x7100202f90,16,fn_7100202f90,unknown,unknown,O
-0x7100202fa0,44,fn_7100202fa0,unknown,unknown,O
-0x7100202fcc,16,fn_7100202fcc,unknown,unknown,O
+0x710020002c,240,fn_710020002c,unknown,engine/reflection?,O
+0x710020011c,28,fn_710020011c,unknown,engine/reflection?,O
+0x7100200138,12,fn_7100200138,unknown,engine/reflection?,O
+0x7100200144,8,fn_7100200144,unknown,engine/reflection?,O
+0x710020014c,12,fn_710020014c,unknown,engine/reflection?,O
+0x7100200158,8,fn_7100200158,unknown,engine/reflection?,O
+0x7100200160,28,fn_7100200160,unknown,engine/reflection?,O
+0x710020017c,324,fn_710020017c,unknown,engine/reflection?,U
+0x71002002c0,300,fn_71002002c0,unknown,engine/reflection?,O
+0x71002003ec,236,fn_71002003ec,unknown,engine/reflection?,U
+0x71002004d8,28,fn_71002004d8,unknown,engine/reflection?,O
+0x71002004f4,8320,fn_71002004f4,unknown,engine/reflection?,U
+0x7100202574,8,fn_7100202574,unknown,engine/reflection?,O
+0x710020257c,336,fn_710020257c,unknown,engine/reflection?,O
+0x71002026cc,220,fn_71002026cc,unknown,engine/reflection?,O
+0x71002027a8,244,fn_71002027a8,unknown,engine/reflection?,U
+0x710020289c,40,fn_710020289c,unknown,engine/reflection?,O
+0x71002028c4,168,fn_71002028c4,unknown,engine/reflection?,O
+0x710020296c,148,fn_710020296c,unknown,engine/reflection?,U
+0x7100202a00,20,fn_7100202a00,unknown,engine/reflection?,O
+0x7100202a14,172,fn_7100202a14,unknown,engine/reflection?,O
+0x7100202ac0,172,fn_7100202ac0,unknown,engine/reflection?,O
+0x7100202b6c,240,fn_7100202b6c,unknown,engine/reflection?,O
+0x7100202c5c,128,fn_7100202c5c,unknown,engine/reflection?,O
+0x7100202cdc,20,fn_7100202cdc,unknown,engine/reflection?,O
+0x7100202cf0,16,fn_7100202cf0,unknown,engine/reflection?,O
+0x7100202d00,20,fn_7100202d00,unknown,engine/reflection?,O
+0x7100202d14,16,fn_7100202d14,unknown,engine/reflection?,O
+0x7100202d24,32,fn_7100202d24,unknown,engine/reflection?,O
+0x7100202d44,24,fn_7100202d44,unknown,engine/reflection?,O
+0x7100202d5c,64,fn_7100202d5c,unknown,engine/reflection?,O
+0x7100202d9c,56,fn_7100202d9c,unknown,engine/reflection?,O
+0x7100202dd4,52,fn_7100202dd4,unknown,engine/reflection?,O
+0x7100202e08,16,fn_7100202e08,unknown,engine/reflection?,O
+0x7100202e18,48,fn_7100202e18,unknown,engine/reflection?,O
+0x7100202e48,52,fn_7100202e48,unknown,engine/reflection?,O
+0x7100202e7c,52,fn_7100202e7c,unknown,engine/reflection?,O
+0x7100202eb0,20,fn_7100202eb0,unknown,engine/reflection?,O
+0x7100202ec4,32,fn_7100202ec4,unknown,engine/reflection?,O
+0x7100202ee4,28,fn_7100202ee4,unknown,engine/reflection?,O
+0x7100202f00,28,fn_7100202f00,unknown,engine/reflection?,O
+0x7100202f1c,28,fn_7100202f1c,unknown,engine/reflection?,O
+0x7100202f38,28,fn_7100202f38,unknown,engine/reflection?,O
+0x7100202f54,28,fn_7100202f54,unknown,engine/reflection?,O
+0x7100202f70,16,fn_7100202f70,unknown,engine/reflection?,O
+0x7100202f80,16,fn_7100202f80,unknown,engine/reflection?,O
+0x7100202f90,16,fn_7100202f90,unknown,engine/reflection?,O
+0x7100202fa0,44,fn_7100202fa0,unknown,engine/reflection?,O
+0x7100202fcc,16,fn_7100202fcc,unknown,engine/reflection?,O
 0x7100202fdc,364,base::reflection::refl_InitType<engine::scene::CSceneSlot*>,reflection,engine/reflection,O
 0x7100203148,96,fn_7100203148,unknown,unknown,O
 0x71002031a8,12,fn_71002031a8,unknown,unknown,O
@@ -142,26 +142,26 @@ address,size,name,name_source,subsystem,status
 0x7100204460,368,fn_7100204460,unknown,unknown,O
 0x71002045d0,808,fn_71002045d0,unknown,unknown,U
 0x71002048f8,76,fn_71002048f8,unknown,unknown,O
-0x7100204944,176,fn_7100204944,unknown,unknown,O
-0x71002049f4,8,fn_71002049f4,unknown,unknown,O
-0x71002049fc,12,fn_71002049fc,unknown,unknown,O
-0x7100204a08,8,fn_7100204a08,unknown,unknown,O
-0x7100204a10,8,fn_7100204a10,unknown,unknown,O
-0x7100204a18,72,fn_7100204a18,unknown,unknown,O
-0x7100204a60,24,fn_7100204a60,unknown,unknown,O
-0x7100204a78,128,fn_7100204a78,unknown,unknown,O
-0x7100204af8,156,fn_7100204af8,unknown,unknown,O
-0x7100204b94,80,fn_7100204b94,unknown,unknown,O
-0x7100204be4,84,fn_7100204be4,unknown,unknown,O
-0x7100204c38,176,fn_7100204c38,unknown,unknown,O
-0x7100204ce8,8,fn_7100204ce8,unknown,unknown,O
-0x7100204cf0,12,fn_7100204cf0,unknown,unknown,O
-0x7100204cfc,8,fn_7100204cfc,unknown,unknown,O
-0x7100204d04,8,fn_7100204d04,unknown,unknown,O
-0x7100204d0c,72,fn_7100204d0c,unknown,unknown,O
-0x7100204d54,24,fn_7100204d54,unknown,unknown,O
-0x7100204d6c,8,fn_7100204d6c,unknown,unknown,O
-0x7100204d74,8,fn_7100204d74,unknown,unknown,O
+0x7100204944,176,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_Equals,reflection,engine/reflection,O
+0x71002049f4,8,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_Hash,reflection,engine/reflection,O
+0x71002049fc,12,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100204a08,8,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_Construct,reflection,engine/reflection,O
+0x7100204a10,8,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100204a18,72,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7100204a60,24,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_Destroy,reflection,engine/reflection,O
+0x7100204a78,128,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100204af8,156,base::reflection::KeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7100204b94,80,fn_7100204b94,unknown,engine/reflection?,O
+0x7100204be4,84,fn_7100204be4,unknown,engine/reflection?,O
+0x7100204c38,176,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_Equals,reflection,engine/reflection,O
+0x7100204ce8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_Hash,reflection,engine/reflection,O
+0x7100204cf0,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100204cfc,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_Construct,reflection,engine/reflection,O
+0x7100204d04,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100204d0c,72,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7100204d54,24,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_Destroy,reflection,engine/reflection,O
+0x7100204d6c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100204d74,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<engine::scene::CSceneSlot*>>::refl_MoveAssign,reflection,engine/reflection,O
 0x7100204d7c,80,fn_7100204d7c,unknown,unknown,O
 0x7100204dcc,84,fn_7100204dcc,unknown,unknown,O
 0x7100204e20,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<engine::scene::CSceneSlot*>>::Count,reflection,engine/reflection,O
@@ -1098,82 +1098,82 @@ address,size,name,name_source,subsystem,status
 0x71002292b4,380,fn_71002292b4,unknown,engine/reflection?,O
 0x7100229430,380,fn_7100229430,unknown,engine/reflection?,O
 0x71002295ac,220,base::reflection::refl_GetType<CActor*>,reflection,engine/reflection,O
-0x7100229688,220,fn_7100229688,unknown,unknown,O
+0x7100229688,220,fn_7100229688,unknown,engine/reflection?,O
 0x7100229764,220,"base::reflection::refl_GetType<base::global::CRntDictionary<base::global::CStrId, CActor*>*>",reflection,engine/reflection,O
 0x7100229840,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::TElementIterator>,reflection,engine/reflection,O
 0x710022991c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::TElementConstIterator>,reflection,engine/reflection,O
-0x71002299f8,900,fn_71002299f8,unknown,unknown,O
-0x7100229d7c,388,fn_7100229d7c,unknown,unknown,O
+0x71002299f8,900,fn_71002299f8,unknown,engine/reflection?,O
+0x7100229d7c,388,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_InitClass,reflection,engine/reflection,O
 0x7100229f00,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::TKeyElementIterator>,reflection,engine/reflection,O
-0x7100229fdc,900,fn_7100229fdc,unknown,unknown,O
-0x710022a360,388,fn_710022a360,unknown,unknown,O
+0x7100229fdc,900,fn_7100229fdc,unknown,engine/reflection?,O
+0x710022a360,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_InitClass,reflection,engine/reflection,O
 0x710022a4e4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x710022a5c0,496,base::reflection::refl_InitType<base::global::CRntVector<CActor*>>,reflection,engine/reflection,O
 0x710022a7b0,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CPooledList<CActor*>>::TElementIterator>,reflection,engine/reflection,O
 0x710022a88c,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CPooledList<CActor*>>::TElementConstIterator>,reflection,engine/reflection,O
-0x710022a968,900,fn_710022a968,unknown,unknown,O
-0x710022acec,388,fn_710022acec,unknown,unknown,O
-0x710022ae70,220,fn_710022ae70,unknown,unknown,O
-0x710022af4c,900,fn_710022af4c,unknown,unknown,O
-0x710022b2d0,388,fn_710022b2d0,unknown,unknown,O
-0x710022b454,220,fn_710022b454,unknown,unknown,O
-0x710022b530,488,fn_710022b530,unknown,unknown,O
+0x710022a968,900,fn_710022a968,unknown,engine/reflection?,O
+0x710022acec,388,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_InitClass,reflection,engine/reflection,O
+0x710022ae70,220,fn_710022ae70,unknown,engine/reflection?,O
+0x710022af4c,900,fn_710022af4c,unknown,engine/reflection?,O
+0x710022b2d0,388,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_InitClass,reflection,engine/reflection,O
+0x710022b454,220,fn_710022b454,unknown,engine/reflection?,O
+0x710022b530,488,fn_710022b530,unknown,engine/reflection?,O
 0x710022b718,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::TElementIterator>,reflection,engine/reflection,O
 0x710022b7f4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::TElementConstIterator>,reflection,engine/reflection,O
-0x710022b8d0,900,fn_710022b8d0,unknown,unknown,O
-0x710022bc54,388,fn_710022bc54,unknown,unknown,O
-0x710022bdd8,220,fn_710022bdd8,unknown,unknown,O
-0x710022beb4,900,fn_710022beb4,unknown,unknown,O
-0x710022c238,388,fn_710022c238,unknown,unknown,O
-0x710022c3bc,220,fn_710022c3bc,unknown,unknown,O
+0x710022b8d0,900,fn_710022b8d0,unknown,engine/reflection?,O
+0x710022bc54,388,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_InitClass,reflection,engine/reflection,O
+0x710022bdd8,220,fn_710022bdd8,unknown,engine/reflection?,O
+0x710022beb4,900,fn_710022beb4,unknown,engine/reflection?,O
+0x710022c238,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_InitClass,reflection,engine/reflection,O
+0x710022c3bc,220,fn_710022c3bc,unknown,engine/reflection?,O
 0x710022c498,496,base::reflection::refl_InitType<base::global::CRntVector<base::global::CWeakPtr<CActor>>>,reflection,engine/reflection,O
 0x710022c688,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::TElementIterator>",reflection,engine/reflection,O
 0x710022c764,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::TElementConstIterator>",reflection,engine/reflection,O
-0x710022c840,900,fn_710022c840,unknown,unknown,O
-0x710022cbc4,388,fn_710022cbc4,unknown,unknown,O
-0x710022cd48,220,fn_710022cd48,unknown,unknown,O
-0x710022ce24,900,fn_710022ce24,unknown,unknown,O
-0x710022d1a8,388,fn_710022d1a8,unknown,unknown,O
-0x710022d32c,220,fn_710022d32c,unknown,unknown,O
+0x710022c840,900,fn_710022c840,unknown,engine/reflection?,O
+0x710022cbc4,388,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_InitClass",reflection,engine/reflection,O
+0x710022cd48,220,fn_710022cd48,unknown,engine/reflection?,O
+0x710022ce24,900,fn_710022ce24,unknown,engine/reflection?,O
+0x710022d1a8,388,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_InitClass",reflection,engine/reflection,O
+0x710022d32c,220,fn_710022d32c,unknown,engine/reflection?,O
 0x710022d408,464,"base::reflection::refl_InitType<base::global::CRntDictionary<base::global::CStrId, CActor*>>",reflection,engine/reflection,O
-0x710022d5d8,220,fn_710022d5d8,unknown,unknown,O
+0x710022d5d8,220,fn_710022d5d8,unknown,engine/reflection?,O
 0x710022d6b4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::TElementIterator>,reflection,engine/reflection,O
 0x710022d790,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::TElementConstIterator>,reflection,engine/reflection,O
-0x710022d86c,900,fn_710022d86c,unknown,unknown,O
-0x710022dbf0,388,fn_710022dbf0,unknown,unknown,O
-0x710022dd74,220,fn_710022dd74,unknown,unknown,O
-0x710022de50,900,fn_710022de50,unknown,unknown,O
-0x710022e1d4,388,fn_710022e1d4,unknown,unknown,O
-0x710022e358,220,fn_710022e358,unknown,unknown,O
+0x710022d86c,900,fn_710022d86c,unknown,engine/reflection?,O
+0x710022dbf0,388,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_InitClass,reflection,engine/reflection,O
+0x710022dd74,220,fn_710022dd74,unknown,engine/reflection?,O
+0x710022de50,900,fn_710022de50,unknown,engine/reflection?,O
+0x710022e1d4,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_InitClass,reflection,engine/reflection,O
+0x710022e358,220,fn_710022e358,unknown,engine/reflection?,O
 0x710022e434,480,base::reflection::refl_InitType<base::global::CRntVector<TActorUniquePtr>>,reflection,engine/reflection,O
 0x710022e614,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::TElementIterator>",reflection,engine/reflection,O
 0x710022e6f0,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::TElementConstIterator>",reflection,engine/reflection,O
-0x710022e7cc,900,fn_710022e7cc,unknown,unknown,O
-0x710022eb50,388,fn_710022eb50,unknown,unknown,O
-0x710022ecd4,220,fn_710022ecd4,unknown,unknown,O
-0x710022edb0,900,fn_710022edb0,unknown,unknown,O
-0x710022f134,388,fn_710022f134,unknown,unknown,O
-0x710022f2b8,220,fn_710022f2b8,unknown,unknown,O
+0x710022e7cc,900,fn_710022e7cc,unknown,engine/reflection?,O
+0x710022eb50,388,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_InitClass",reflection,engine/reflection,O
+0x710022ecd4,220,fn_710022ecd4,unknown,engine/reflection?,O
+0x710022edb0,900,fn_710022edb0,unknown,engine/reflection?,O
+0x710022f134,388,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_InitClass",reflection,engine/reflection,O
+0x710022f2b8,220,fn_710022f2b8,unknown,engine/reflection?,O
 0x710022f394,468,"base::reflection::refl_InitType<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>",reflection,engine/reflection,O
-0x710022f568,160,fn_710022f568,unknown,unknown,O
-0x710022f608,388,fn_710022f608,unknown,unknown,O
-0x710022f78c,380,fn_710022f78c,unknown,unknown,O
+0x710022f568,160,fn_710022f568,unknown,engine/reflection?,O
+0x710022f608,388,fn_710022f608,unknown,engine/reflection?,O
+0x710022f78c,380,fn_710022f78c,unknown,engine/reflection?,O
 0x710022f908,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::TElementIterator>,reflection,engine/reflection,O
 0x710022f9e4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::TElementConstIterator>,reflection,engine/reflection,O
-0x710022fac0,900,fn_710022fac0,unknown,unknown,O
-0x710022fe44,388,fn_710022fe44,unknown,unknown,O
-0x710022ffc8,220,fn_710022ffc8,unknown,unknown,O
-0x71002300a4,900,fn_71002300a4,unknown,unknown,O
-0x7100230428,388,fn_7100230428,unknown,unknown,O
-0x71002305ac,220,fn_71002305ac,unknown,unknown,O
+0x710022fac0,900,fn_710022fac0,unknown,engine/reflection?,O
+0x710022fe44,388,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_InitClass,reflection,engine/reflection,O
+0x710022ffc8,220,fn_710022ffc8,unknown,engine/reflection?,O
+0x71002300a4,900,fn_71002300a4,unknown,engine/reflection?,O
+0x7100230428,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_InitClass,reflection,engine/reflection,O
+0x71002305ac,220,fn_71002305ac,unknown,engine/reflection?,O
 0x7100230688,500,base::reflection::refl_InitType<base::global::CRntVector<CGameLink<CActor>>>,reflection,engine/reflection,O
 0x710023087c,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::TElementIterator>",reflection,engine/reflection,O
 0x7100230958,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::TElementConstIterator>",reflection,engine/reflection,O
-0x7100230a34,900,fn_7100230a34,unknown,unknown,O
-0x7100230db8,388,fn_7100230db8,unknown,unknown,O
-0x7100230f3c,220,fn_7100230f3c,unknown,unknown,O
-0x7100231018,900,fn_7100231018,unknown,unknown,O
-0x710023139c,388,fn_710023139c,unknown,unknown,O
+0x7100230a34,900,fn_7100230a34,unknown,engine/reflection?,O
+0x7100230db8,388,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_InitClass",reflection,engine/reflection,O
+0x7100230f3c,220,fn_7100230f3c,unknown,engine/reflection?,O
+0x7100231018,900,fn_7100231018,unknown,engine/reflection?,O
+0x710023139c,388,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_InitClass",reflection,engine/reflection,O
 0x7100231520,220,fn_7100231520,unknown,unknown,O
 0x71002315fc,468,"base::reflection::refl_InitType<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>",reflection,engine/reflection,O
 0x71002317d0,220,base::reflection::refl_GetType<base::global::CRntVector<CActor*>*>,reflection,engine/reflection,O
@@ -1858,9 +1858,9 @@ address,size,name,name_source,subsystem,status
 0x710023e44c,76,fn_710023e44c,unknown,unknown,O
 0x710023e498,220,base::reflection::refl_GetType<CActorComponent*>,reflection,engine/reflection,O
 0x710023e574,360,base::reflection::refl_InitType<CActorComponent*>,reflection,engine/reflection,O
-0x710023e6dc,88,fn_710023e6dc,unknown,unknown,O
-0x710023e734,12,fn_710023e734,unknown,unknown,O
-0x710023e740,16,fn_710023e740,unknown,unknown,O
+0x710023e6dc,88,fn_710023e6dc,unknown,engine/reflection?,O
+0x710023e734,12,fn_710023e734,unknown,engine/reflection?,O
+0x710023e740,16,fn_710023e740,unknown,engine/reflection?,O
 0x710023e750,20,base::reflection::ValueOps<CActorComponent*>::Equals,reflection,engine/reflection,O
 0x710023e764,8,base::reflection::ValueOps<CActorComponent*>::Hash,reflection,engine/reflection,O
 0x710023e76c,20,base::reflection::ValueOps<CActorComponent*>::TypeOf,reflection,engine/reflection,O
@@ -1870,38 +1870,38 @@ address,size,name,name_source,subsystem,status
 0x710023e7a0,4,base::reflection::ValueOps<CActorComponent*>::Destroy,reflection,engine/reflection,O
 0x710023e7a4,20,base::reflection::ValueOps<CActorComponent*>::CopyAssign,reflection,engine/reflection,O
 0x710023e7b8,20,base::reflection::ValueOps<CActorComponent*>::MoveAssign,reflection,engine/reflection,O
-0x710023e7cc,232,fn_710023e7cc,unknown,unknown,O
-0x710023e8b4,60,fn_710023e8b4,unknown,unknown,O
-0x710023e8f0,168,fn_710023e8f0,unknown,unknown,O
-0x710023e998,76,fn_710023e998,unknown,unknown,O
-0x710023e9e4,196,fn_710023e9e4,unknown,unknown,O
-0x710023eaa8,176,fn_710023eaa8,unknown,unknown,O
-0x710023eb58,8,fn_710023eb58,unknown,unknown,O
-0x710023eb60,12,fn_710023eb60,unknown,unknown,O
-0x710023eb6c,8,fn_710023eb6c,unknown,unknown,O
-0x710023eb74,8,fn_710023eb74,unknown,unknown,O
-0x710023eb7c,72,fn_710023eb7c,unknown,unknown,O
-0x710023ebc4,24,fn_710023ebc4,unknown,unknown,O
-0x710023ebdc,128,fn_710023ebdc,unknown,unknown,O
-0x710023ec5c,156,fn_710023ec5c,unknown,unknown,O
-0x710023ecf8,80,fn_710023ecf8,unknown,unknown,O
-0x710023ed48,84,fn_710023ed48,unknown,unknown,O
-0x710023ed9c,176,fn_710023ed9c,unknown,unknown,O
-0x710023ee4c,8,fn_710023ee4c,unknown,unknown,O
-0x710023ee54,12,fn_710023ee54,unknown,unknown,O
-0x710023ee60,8,fn_710023ee60,unknown,unknown,O
-0x710023ee68,8,fn_710023ee68,unknown,unknown,O
-0x710023ee70,72,fn_710023ee70,unknown,unknown,O
-0x710023eeb8,24,fn_710023eeb8,unknown,unknown,O
-0x710023eed0,8,fn_710023eed0,unknown,unknown,O
-0x710023eed8,8,fn_710023eed8,unknown,unknown,O
-0x710023eee0,80,fn_710023eee0,unknown,unknown,O
-0x710023ef30,84,fn_710023ef30,unknown,unknown,O
+0x710023e7cc,232,fn_710023e7cc,unknown,engine/reflection?,O
+0x710023e8b4,60,fn_710023e8b4,unknown,engine/reflection?,O
+0x710023e8f0,168,fn_710023e8f0,unknown,engine/reflection?,O
+0x710023e998,76,fn_710023e998,unknown,engine/reflection?,O
+0x710023e9e4,196,fn_710023e9e4,unknown,engine/reflection?,O
+0x710023eaa8,176,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_Equals,reflection,engine/reflection,O
+0x710023eb58,8,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_Hash,reflection,engine/reflection,O
+0x710023eb60,12,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_TypeOf,reflection,engine/reflection,O
+0x710023eb6c,8,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_Construct,reflection,engine/reflection,O
+0x710023eb74,8,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710023eb7c,72,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710023ebc4,24,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_Destroy,reflection,engine/reflection,O
+0x710023ebdc,128,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710023ec5c,156,base::reflection::KeyElementValue<base::global::CRntVector<CActor*>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710023ecf8,80,fn_710023ecf8,unknown,engine/reflection?,O
+0x710023ed48,84,fn_710023ed48,unknown,engine/reflection?,O
+0x710023ed9c,176,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_Equals,reflection,engine/reflection,O
+0x710023ee4c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_Hash,reflection,engine/reflection,O
+0x710023ee54,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_TypeOf,reflection,engine/reflection,O
+0x710023ee60,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_Construct,reflection,engine/reflection,O
+0x710023ee68,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710023ee70,72,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710023eeb8,24,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_Destroy,reflection,engine/reflection,O
+0x710023eed0,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710023eed8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CActor*>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710023eee0,80,fn_710023eee0,unknown,engine/reflection?,O
+0x710023ef30,84,fn_710023ef30,unknown,engine/reflection?,O
 0x710023ef84,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::Count,reflection,engine/reflection,O
 0x710023ef8c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::Clear,reflection,engine/reflection,O
 0x710023ef94,16,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::AddCopy,reflection,engine/reflection,O
 0x710023efa4,16,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::AddMove,reflection,engine/reflection,O
-0x710023efb4,92,fn_710023efb4,unknown,unknown,O
+0x710023efb4,92,fn_710023efb4,unknown,engine/reflection?,O
 0x710023f010,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::At,reflection,engine/reflection,O
 0x710023f01c,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::Find,reflection,engine/reflection,O
 0x710023f040,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::SetCopy,reflection,engine/reflection,O
@@ -1922,134 +1922,134 @@ address,size,name,name_source,subsystem,status
 0x710023f838,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::End,reflection,engine/reflection,O
 0x710023f84c,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::ConstBegin,reflection,engine/reflection,O
 0x710023f8f4,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<CActor*>>::ConstEnd,reflection,engine/reflection,O
-0x710023f9a4,176,fn_710023f9a4,unknown,unknown,O
-0x710023fa54,8,fn_710023fa54,unknown,unknown,O
-0x710023fa5c,12,fn_710023fa5c,unknown,unknown,O
-0x710023fa68,8,fn_710023fa68,unknown,unknown,O
-0x710023fa70,8,fn_710023fa70,unknown,unknown,O
-0x710023fa78,72,fn_710023fa78,unknown,unknown,O
-0x710023fac0,24,fn_710023fac0,unknown,unknown,O
-0x710023fad8,128,fn_710023fad8,unknown,unknown,O
-0x710023fb58,156,fn_710023fb58,unknown,unknown,O
-0x710023fbf4,80,fn_710023fbf4,unknown,unknown,O
-0x710023fc44,84,fn_710023fc44,unknown,unknown,O
-0x710023fc98,176,fn_710023fc98,unknown,unknown,O
-0x710023fd48,8,fn_710023fd48,unknown,unknown,O
-0x710023fd50,12,fn_710023fd50,unknown,unknown,O
-0x710023fd5c,8,fn_710023fd5c,unknown,unknown,O
-0x710023fd64,8,fn_710023fd64,unknown,unknown,O
-0x710023fd6c,72,fn_710023fd6c,unknown,unknown,O
-0x710023fdb4,24,fn_710023fdb4,unknown,unknown,O
-0x710023fdcc,8,fn_710023fdcc,unknown,unknown,O
-0x710023fdd4,8,fn_710023fdd4,unknown,unknown,O
-0x710023fddc,80,fn_710023fddc,unknown,unknown,O
-0x710023fe2c,84,fn_710023fe2c,unknown,unknown,O
-0x710023fe80,8,fn_710023fe80,unknown,unknown,O
-0x710023fe88,84,fn_710023fe88,unknown,unknown,O
-0x710023fedc,188,fn_710023fedc,unknown,unknown,O
-0x710023ff98,188,fn_710023ff98,unknown,unknown,O
-0x7100240054,176,fn_7100240054,unknown,unknown,O
-0x7100240104,48,fn_7100240104,unknown,unknown,O
-0x7100240134,52,fn_7100240134,unknown,unknown,O
-0x7100240168,300,fn_7100240168,unknown,unknown,O
-0x7100240294,300,fn_7100240294,unknown,unknown,O
-0x71002403c0,12,fn_71002403c0,unknown,unknown,O
-0x71002403cc,8,fn_71002403cc,unknown,unknown,O
-0x71002403d4,12,fn_71002403d4,unknown,unknown,O
-0x71002403e0,4,fn_71002403e0,unknown,unknown,O
-0x71002403e4,4,fn_71002403e4,unknown,unknown,O
-0x71002403e8,12,fn_71002403e8,unknown,unknown,O
-0x71002403f4,208,fn_71002403f4,unknown,unknown,O
-0x71002404c4,208,fn_71002404c4,unknown,unknown,O
-0x7100240594,476,fn_7100240594,unknown,unknown,O
-0x7100240770,248,fn_7100240770,unknown,unknown,O
-0x7100240868,224,fn_7100240868,unknown,unknown,O
-0x7100240948,100,fn_7100240948,unknown,unknown,O
-0x71002409ac,84,fn_71002409ac,unknown,unknown,O
-0x7100240a00,280,fn_7100240a00,unknown,unknown,O
-0x7100240b18,280,fn_7100240b18,unknown,unknown,O
-0x7100240c30,12,fn_7100240c30,unknown,unknown,O
-0x7100240c3c,8,fn_7100240c3c,unknown,unknown,O
-0x7100240c44,172,fn_7100240c44,unknown,unknown,O
-0x7100240cf0,36,fn_7100240cf0,unknown,unknown,O
-0x7100240d14,184,fn_7100240d14,unknown,unknown,O
-0x7100240dcc,8,fn_7100240dcc,unknown,unknown,O
-0x7100240dd4,12,fn_7100240dd4,unknown,unknown,O
-0x7100240de0,8,fn_7100240de0,unknown,unknown,O
-0x7100240de8,8,fn_7100240de8,unknown,unknown,O
-0x7100240df0,188,fn_7100240df0,unknown,unknown,O
-0x7100240eac,88,fn_7100240eac,unknown,unknown,O
-0x7100240f04,152,fn_7100240f04,unknown,unknown,O
-0x7100240f9c,180,fn_7100240f9c,unknown,unknown,O
-0x7100241050,80,fn_7100241050,unknown,unknown,O
-0x71002410a0,84,fn_71002410a0,unknown,unknown,O
-0x71002410f4,184,fn_71002410f4,unknown,unknown,O
-0x71002411ac,8,fn_71002411ac,unknown,unknown,O
-0x71002411b4,12,fn_71002411b4,unknown,unknown,O
-0x71002411c0,8,fn_71002411c0,unknown,unknown,O
-0x71002411c8,8,fn_71002411c8,unknown,unknown,O
-0x71002411d0,188,fn_71002411d0,unknown,unknown,O
-0x710024128c,88,fn_710024128c,unknown,unknown,O
-0x71002412e4,8,fn_71002412e4,unknown,unknown,O
-0x71002412ec,8,fn_71002412ec,unknown,unknown,O
-0x71002412f4,80,fn_71002412f4,unknown,unknown,O
-0x7100241344,84,fn_7100241344,unknown,unknown,O
+0x710023f9a4,176,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_Equals,reflection,engine/reflection,O
+0x710023fa54,8,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_Hash,reflection,engine/reflection,O
+0x710023fa5c,12,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_TypeOf,reflection,engine/reflection,O
+0x710023fa68,8,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_Construct,reflection,engine/reflection,O
+0x710023fa70,8,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710023fa78,72,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710023fac0,24,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_Destroy,reflection,engine/reflection,O
+0x710023fad8,128,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710023fb58,156,base::reflection::KeyElementValue<base::global::CPooledList<CActor*>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710023fbf4,80,fn_710023fbf4,unknown,engine/reflection?,O
+0x710023fc44,84,fn_710023fc44,unknown,engine/reflection?,O
+0x710023fc98,176,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_Equals,reflection,engine/reflection,O
+0x710023fd48,8,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_Hash,reflection,engine/reflection,O
+0x710023fd50,12,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_TypeOf,reflection,engine/reflection,O
+0x710023fd5c,8,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_Construct,reflection,engine/reflection,O
+0x710023fd64,8,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710023fd6c,72,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710023fdb4,24,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_Destroy,reflection,engine/reflection,O
+0x710023fdcc,8,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710023fdd4,8,base::reflection::ConstKeyElementValue<base::global::CPooledList<CActor*>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710023fddc,80,fn_710023fddc,unknown,engine/reflection?,O
+0x710023fe2c,84,fn_710023fe2c,unknown,engine/reflection?,O
+0x710023fe80,8,fn_710023fe80,unknown,engine/reflection?,O
+0x710023fe88,84,fn_710023fe88,unknown,engine/reflection?,O
+0x710023fedc,188,fn_710023fedc,unknown,engine/reflection?,O
+0x710023ff98,188,fn_710023ff98,unknown,engine/reflection?,O
+0x7100240054,176,fn_7100240054,unknown,engine/reflection?,O
+0x7100240104,48,fn_7100240104,unknown,engine/reflection?,O
+0x7100240134,52,fn_7100240134,unknown,engine/reflection?,O
+0x7100240168,300,fn_7100240168,unknown,engine/reflection?,O
+0x7100240294,300,fn_7100240294,unknown,engine/reflection?,O
+0x71002403c0,12,fn_71002403c0,unknown,engine/reflection?,O
+0x71002403cc,8,fn_71002403cc,unknown,engine/reflection?,O
+0x71002403d4,12,fn_71002403d4,unknown,engine/reflection?,O
+0x71002403e0,4,fn_71002403e0,unknown,engine/reflection?,O
+0x71002403e4,4,fn_71002403e4,unknown,engine/reflection?,O
+0x71002403e8,12,fn_71002403e8,unknown,engine/reflection?,O
+0x71002403f4,208,fn_71002403f4,unknown,engine/reflection?,O
+0x71002404c4,208,fn_71002404c4,unknown,engine/reflection?,O
+0x7100240594,476,fn_7100240594,unknown,engine/reflection?,O
+0x7100240770,248,fn_7100240770,unknown,engine/reflection?,O
+0x7100240868,224,fn_7100240868,unknown,engine/reflection?,O
+0x7100240948,100,fn_7100240948,unknown,engine/reflection?,O
+0x71002409ac,84,fn_71002409ac,unknown,engine/reflection?,O
+0x7100240a00,280,fn_7100240a00,unknown,engine/reflection?,O
+0x7100240b18,280,fn_7100240b18,unknown,engine/reflection?,O
+0x7100240c30,12,fn_7100240c30,unknown,engine/reflection?,O
+0x7100240c3c,8,fn_7100240c3c,unknown,engine/reflection?,O
+0x7100240c44,172,fn_7100240c44,unknown,engine/reflection?,O
+0x7100240cf0,36,fn_7100240cf0,unknown,engine/reflection?,O
+0x7100240d14,184,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_Equals,reflection,engine/reflection,O
+0x7100240dcc,8,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_Hash,reflection,engine/reflection,O
+0x7100240dd4,12,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100240de0,8,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_Construct,reflection,engine/reflection,O
+0x7100240de8,8,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100240df0,188,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7100240eac,88,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_Destroy,reflection,engine/reflection,O
+0x7100240f04,152,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100240f9c,180,base::reflection::KeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7100241050,80,fn_7100241050,unknown,engine/reflection?,O
+0x71002410a0,84,fn_71002410a0,unknown,engine/reflection?,O
+0x71002410f4,184,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_Equals,reflection,engine/reflection,O
+0x71002411ac,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_Hash,reflection,engine/reflection,O
+0x71002411b4,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_TypeOf,reflection,engine/reflection,O
+0x71002411c0,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_Construct,reflection,engine/reflection,O
+0x71002411c8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002411d0,188,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710024128c,88,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_Destroy,reflection,engine/reflection,O
+0x71002412e4,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002412ec,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002412f4,80,fn_71002412f4,unknown,engine/reflection?,O
+0x7100241344,84,fn_7100241344,unknown,engine/reflection?,O
 0x7100241398,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::Count,reflection,engine/reflection,O
-0x71002413a0,128,fn_71002413a0,unknown,unknown,O
-0x7100241420,16,fn_7100241420,unknown,unknown,O
-0x7100241430,16,fn_7100241430,unknown,unknown,O
-0x7100241440,284,fn_7100241440,unknown,unknown,U
-0x710024155c,12,fn_710024155c,unknown,unknown,O
-0x7100241568,36,fn_7100241568,unknown,unknown,O
-0x710024158c,260,fn_710024158c,unknown,unknown,O
-0x7100241690,260,fn_7100241690,unknown,unknown,O
-0x7100241794,92,fn_7100241794,unknown,unknown,O
+0x71002413a0,128,fn_71002413a0,unknown,engine/reflection?,O
+0x7100241420,16,fn_7100241420,unknown,engine/reflection?,O
+0x7100241430,16,fn_7100241430,unknown,engine/reflection?,O
+0x7100241440,284,fn_7100241440,unknown,engine/reflection?,U
+0x710024155c,12,fn_710024155c,unknown,engine/reflection?,O
+0x7100241568,36,fn_7100241568,unknown,engine/reflection?,O
+0x710024158c,260,fn_710024158c,unknown,engine/reflection?,O
+0x7100241690,260,fn_7100241690,unknown,engine/reflection?,O
+0x7100241794,92,fn_7100241794,unknown,engine/reflection?,O
 0x71002417f0,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::Hash,reflection,engine/reflection,O
 0x71002417f8,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::TypeOf,reflection,engine/reflection,O
 0x7100241804,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::Construct,reflection,engine/reflection,O
-0x7100241844,4,fn_7100241844,unknown,unknown,O
+0x7100241844,4,fn_7100241844,unknown,engine/reflection?,O
 0x7100241848,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::MoveConstruct,reflection,engine/reflection,O
-0x7100241888,144,fn_7100241888,unknown,unknown,O
-0x7100241918,48,fn_7100241918,unknown,unknown,O
-0x7100241948,212,fn_7100241948,unknown,unknown,O
-0x7100241a1c,276,fn_7100241a1c,unknown,unknown,O
-0x7100241b30,328,fn_7100241b30,unknown,unknown,O
-0x7100241c78,356,fn_7100241c78,unknown,unknown,O
-0x7100241ddc,480,fn_7100241ddc,unknown,unknown,O
-0x7100241fbc,480,fn_7100241fbc,unknown,unknown,O
+0x7100241888,144,fn_7100241888,unknown,engine/reflection?,O
+0x7100241918,48,fn_7100241918,unknown,engine/reflection?,O
+0x7100241948,212,fn_7100241948,unknown,engine/reflection?,O
+0x7100241a1c,276,fn_7100241a1c,unknown,engine/reflection?,O
+0x7100241b30,328,fn_7100241b30,unknown,engine/reflection?,O
+0x7100241c78,356,fn_7100241c78,unknown,engine/reflection?,O
+0x7100241ddc,480,fn_7100241ddc,unknown,engine/reflection?,O
+0x7100241fbc,480,fn_7100241fbc,unknown,engine/reflection?,O
 0x710024219c,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<base::global::CWeakPtr<CActor>>>::Begin,reflection,engine/reflection,O
-0x71002421a8,20,fn_71002421a8,unknown,unknown,O
-0x71002421bc,296,fn_71002421bc,unknown,unknown,O
-0x71002422e4,304,fn_71002422e4,unknown,unknown,O
-0x7100242414,176,fn_7100242414,unknown,unknown,O
-0x71002424c4,8,fn_71002424c4,unknown,unknown,O
-0x71002424cc,12,fn_71002424cc,unknown,unknown,O
-0x71002424d8,8,fn_71002424d8,unknown,unknown,O
-0x71002424e0,8,fn_71002424e0,unknown,unknown,O
-0x71002424e8,112,fn_71002424e8,unknown,unknown,O
-0x7100242558,128,fn_7100242558,unknown,unknown,O
-0x71002425d8,268,fn_71002425d8,unknown,unknown,O
-0x71002426e4,48,fn_71002426e4,unknown,unknown,O
-0x7100242714,404,fn_7100242714,unknown,unknown,O
-0x71002428a8,80,fn_71002428a8,unknown,unknown,O
-0x71002428f8,84,fn_71002428f8,unknown,unknown,O
-0x710024294c,176,fn_710024294c,unknown,unknown,O
-0x71002429fc,8,fn_71002429fc,unknown,unknown,O
-0x7100242a04,12,fn_7100242a04,unknown,unknown,O
-0x7100242a10,8,fn_7100242a10,unknown,unknown,O
-0x7100242a18,8,fn_7100242a18,unknown,unknown,O
-0x7100242a20,112,fn_7100242a20,unknown,unknown,O
-0x7100242a90,128,fn_7100242a90,unknown,unknown,O
-0x7100242b10,8,fn_7100242b10,unknown,unknown,O
-0x7100242b18,8,fn_7100242b18,unknown,unknown,O
-0x7100242b20,80,fn_7100242b20,unknown,unknown,O
-0x7100242b70,84,fn_7100242b70,unknown,unknown,O
+0x71002421a8,20,fn_71002421a8,unknown,engine/reflection?,O
+0x71002421bc,296,fn_71002421bc,unknown,engine/reflection?,O
+0x71002422e4,304,fn_71002422e4,unknown,engine/reflection?,O
+0x7100242414,176,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_Equals",reflection,engine/reflection,O
+0x71002424c4,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_Hash",reflection,engine/reflection,O
+0x71002424cc,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002424d8,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_Construct",reflection,engine/reflection,O
+0x71002424e0,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002424e8,112,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7100242558,128,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_Destroy",reflection,engine/reflection,O
+0x71002425d8,268,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002426e4,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100242714,404,fn_7100242714,unknown,engine/reflection?,O
+0x71002428a8,80,fn_71002428a8,unknown,engine/reflection?,O
+0x71002428f8,84,fn_71002428f8,unknown,engine/reflection?,O
+0x710024294c,176,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_Equals",reflection,engine/reflection,O
+0x71002429fc,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_Hash",reflection,engine/reflection,O
+0x7100242a04,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_TypeOf",reflection,engine/reflection,O
+0x7100242a10,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_Construct",reflection,engine/reflection,O
+0x7100242a18,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7100242a20,112,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7100242a90,128,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_Destroy",reflection,engine/reflection,O
+0x7100242b10,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100242b18,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, CActor*>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100242b20,80,fn_7100242b20,unknown,engine/reflection?,O
+0x7100242b70,84,fn_7100242b70,unknown,engine/reflection?,O
 0x7100242bc4,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::Count",reflection,engine/reflection,O
-0x7100242bcc,208,fn_7100242bcc,unknown,unknown,O
-0x7100242c9c,252,fn_7100242c9c,unknown,unknown,O
-0x7100242d98,252,fn_7100242d98,unknown,unknown,O
-0x7100242e94,4,fn_7100242e94,unknown,unknown,O
-0x7100242e98,48,fn_7100242e98,unknown,unknown,O
+0x7100242bcc,208,fn_7100242bcc,unknown,engine/reflection?,O
+0x7100242c9c,252,fn_7100242c9c,unknown,engine/reflection?,O
+0x7100242d98,252,fn_7100242d98,unknown,engine/reflection?,O
+0x7100242e94,4,fn_7100242e94,unknown,engine/reflection?,O
+0x7100242e98,48,fn_7100242e98,unknown,engine/reflection?,O
 0x7100242ec8,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::Find",reflection,engine/reflection,O
 0x7100242f20,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::SetCopy",reflection,engine/reflection,O
 0x7100242f78,88,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::SetMove",reflection,engine/reflection,O
@@ -2057,189 +2057,189 @@ address,size,name,name_source,subsystem,status
 0x7100242fdc,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::Hash",reflection,engine/reflection,O
 0x7100242fe4,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::TypeOf",reflection,engine/reflection,O
 0x7100242ff0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::Construct",reflection,engine/reflection,O
-0x7100242ff4,4,fn_7100242ff4,unknown,unknown,O
-0x7100242ff8,240,fn_7100242ff8,unknown,unknown,O
-0x71002430e8,384,fn_71002430e8,unknown,unknown,O
+0x7100242ff4,4,fn_7100242ff4,unknown,engine/reflection?,O
+0x7100242ff8,240,fn_7100242ff8,unknown,engine/reflection?,O
+0x71002430e8,384,fn_71002430e8,unknown,engine/reflection?,O
 0x7100243268,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::Begin",reflection,engine/reflection,O
 0x7100243274,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, CActor*>>::End",reflection,engine/reflection,O
-0x710024327c,16,fn_710024327c,unknown,unknown,O
-0x710024328c,12,fn_710024328c,unknown,unknown,O
-0x7100243298,88,fn_7100243298,unknown,unknown,O
-0x71002432f0,144,fn_71002432f0,unknown,unknown,O
-0x7100243380,8,fn_7100243380,unknown,unknown,O
-0x7100243388,12,fn_7100243388,unknown,unknown,O
-0x7100243394,8,fn_7100243394,unknown,unknown,O
-0x710024339c,4,fn_710024339c,unknown,unknown,O
-0x71002433a0,72,fn_71002433a0,unknown,unknown,O
-0x71002433e8,96,fn_71002433e8,unknown,unknown,O
-0x7100243448,8,fn_7100243448,unknown,unknown,O
-0x7100243450,248,fn_7100243450,unknown,unknown,O
-0x7100243548,80,fn_7100243548,unknown,unknown,O
-0x7100243598,84,fn_7100243598,unknown,unknown,O
-0x71002435ec,144,fn_71002435ec,unknown,unknown,O
-0x710024367c,8,fn_710024367c,unknown,unknown,O
-0x7100243684,12,fn_7100243684,unknown,unknown,O
-0x7100243690,8,fn_7100243690,unknown,unknown,O
-0x7100243698,4,fn_7100243698,unknown,unknown,O
-0x710024369c,4,fn_710024369c,unknown,unknown,O
-0x71002436a0,96,fn_71002436a0,unknown,unknown,O
-0x7100243700,8,fn_7100243700,unknown,unknown,O
-0x7100243708,8,fn_7100243708,unknown,unknown,O
-0x7100243710,80,fn_7100243710,unknown,unknown,O
-0x7100243760,84,fn_7100243760,unknown,unknown,O
+0x710024327c,16,fn_710024327c,unknown,engine/reflection?,O
+0x710024328c,12,fn_710024328c,unknown,engine/reflection?,O
+0x7100243298,88,fn_7100243298,unknown,engine/reflection?,O
+0x71002432f0,144,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_Equals,reflection,engine/reflection,O
+0x7100243380,8,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_Hash,reflection,engine/reflection,O
+0x7100243388,12,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100243394,8,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_Construct,reflection,engine/reflection,O
+0x710024339c,4,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002433a0,72,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002433e8,96,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_Destroy,reflection,engine/reflection,O
+0x7100243448,8,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100243450,248,base::reflection::KeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7100243548,80,fn_7100243548,unknown,engine/reflection?,O
+0x7100243598,84,fn_7100243598,unknown,engine/reflection?,O
+0x71002435ec,144,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_Equals,reflection,engine/reflection,O
+0x710024367c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_Hash,reflection,engine/reflection,O
+0x7100243684,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100243690,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_Construct,reflection,engine/reflection,O
+0x7100243698,4,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710024369c,4,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002436a0,96,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_Destroy,reflection,engine/reflection,O
+0x7100243700,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100243708,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<TActorUniquePtr>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7100243710,80,fn_7100243710,unknown,engine/reflection?,O
+0x7100243760,84,fn_7100243760,unknown,engine/reflection?,O
 0x71002437b4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Count,reflection,engine/reflection,O
-0x71002437bc,128,fn_71002437bc,unknown,unknown,O
-0x710024383c,4,fn_710024383c,unknown,unknown,O
-0x7100243840,16,fn_7100243840,unknown,unknown,O
-0x7100243850,232,fn_7100243850,unknown,unknown,O
-0x7100243938,12,fn_7100243938,unknown,unknown,O
-0x7100243944,36,fn_7100243944,unknown,unknown,O
-0x7100243968,4,fn_7100243968,unknown,unknown,O
-0x710024396c,96,fn_710024396c,unknown,unknown,O
-0x71002439cc,76,fn_71002439cc,unknown,unknown,O
+0x71002437bc,128,fn_71002437bc,unknown,engine/reflection?,O
+0x710024383c,4,fn_710024383c,unknown,engine/reflection?,O
+0x7100243840,16,fn_7100243840,unknown,engine/reflection?,O
+0x7100243850,232,fn_7100243850,unknown,engine/reflection?,O
+0x7100243938,12,fn_7100243938,unknown,engine/reflection?,O
+0x7100243944,36,fn_7100243944,unknown,engine/reflection?,O
+0x7100243968,4,fn_7100243968,unknown,engine/reflection?,O
+0x710024396c,96,fn_710024396c,unknown,engine/reflection?,O
+0x71002439cc,76,fn_71002439cc,unknown,engine/reflection?,O
 0x7100243a18,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Hash,reflection,engine/reflection,O
 0x7100243a20,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::TypeOf,reflection,engine/reflection,O
 0x7100243a2c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Construct,reflection,engine/reflection,O
 0x7100243a6c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::MoveConstruct,reflection,engine/reflection,O
-0x7100243aac,172,fn_7100243aac,unknown,unknown,O
-0x7100243b58,204,fn_7100243b58,unknown,unknown,O
-0x7100243c24,672,fn_7100243c24,unknown,unknown,U
-0x7100243ec4,612,fn_7100243ec4,unknown,unknown,U
+0x7100243aac,172,fn_7100243aac,unknown,engine/reflection?,O
+0x7100243b58,204,fn_7100243b58,unknown,engine/reflection?,O
+0x7100243c24,672,fn_7100243c24,unknown,engine/reflection?,U
+0x7100243ec4,612,fn_7100243ec4,unknown,engine/reflection?,U
 0x7100244128,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Begin,reflection,engine/reflection,O
-0x7100244134,20,fn_7100244134,unknown,unknown,O
-0x7100244148,328,fn_7100244148,unknown,unknown,O
-0x7100244290,336,fn_7100244290,unknown,unknown,O
-0x71002443e0,240,fn_71002443e0,unknown,unknown,O
-0x71002444d0,8,fn_71002444d0,unknown,unknown,O
-0x71002444d8,12,fn_71002444d8,unknown,unknown,O
-0x71002444e4,8,fn_71002444e4,unknown,unknown,O
-0x71002444ec,8,fn_71002444ec,unknown,unknown,O
-0x71002444f4,220,fn_71002444f4,unknown,unknown,O
-0x71002445d0,60,fn_71002445d0,unknown,unknown,O
-0x710024460c,264,fn_710024460c,unknown,unknown,O
-0x7100244714,48,fn_7100244714,unknown,unknown,O
-0x7100244744,736,fn_7100244744,unknown,unknown,O
-0x7100244a24,80,fn_7100244a24,unknown,unknown,O
-0x7100244a74,56,fn_7100244a74,unknown,unknown,O
-0x7100244aac,240,fn_7100244aac,unknown,unknown,O
-0x7100244b9c,8,fn_7100244b9c,unknown,unknown,O
-0x7100244ba4,12,fn_7100244ba4,unknown,unknown,O
-0x7100244bb0,8,fn_7100244bb0,unknown,unknown,O
-0x7100244bb8,8,fn_7100244bb8,unknown,unknown,O
-0x7100244bc0,108,fn_7100244bc0,unknown,unknown,O
-0x7100244c2c,60,fn_7100244c2c,unknown,unknown,O
-0x7100244c68,8,fn_7100244c68,unknown,unknown,O
-0x7100244c70,8,fn_7100244c70,unknown,unknown,O
-0x7100244c78,80,fn_7100244c78,unknown,unknown,O
-0x7100244cc8,56,fn_7100244cc8,unknown,unknown,O
+0x7100244134,20,fn_7100244134,unknown,engine/reflection?,O
+0x7100244148,328,fn_7100244148,unknown,engine/reflection?,O
+0x7100244290,336,fn_7100244290,unknown,engine/reflection?,O
+0x71002443e0,240,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002444d0,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002444d8,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002444e4,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002444ec,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002444f4,220,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002445d0,60,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Destroy",reflection,engine/reflection,O
+0x710024460c,264,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100244714,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100244744,736,fn_7100244744,unknown,engine/reflection?,O
+0x7100244a24,80,fn_7100244a24,unknown,engine/reflection?,O
+0x7100244a74,56,fn_7100244a74,unknown,engine/reflection?,O
+0x7100244aac,240,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Equals",reflection,engine/reflection,O
+0x7100244b9c,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Hash",reflection,engine/reflection,O
+0x7100244ba4,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x7100244bb0,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Construct",reflection,engine/reflection,O
+0x7100244bb8,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7100244bc0,108,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7100244c2c,60,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_Destroy",reflection,engine/reflection,O
+0x7100244c68,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100244c70,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100244c78,80,fn_7100244c78,unknown,engine/reflection?,O
+0x7100244cc8,56,fn_7100244cc8,unknown,engine/reflection?,O
 0x7100244d00,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Count",reflection,engine/reflection,O
-0x7100244d08,120,fn_7100244d08,unknown,unknown,O
-0x7100244d80,264,fn_7100244d80,unknown,unknown,O
-0x7100244e88,4,fn_7100244e88,unknown,unknown,O
-0x7100244e8c,4,fn_7100244e8c,unknown,unknown,O
-0x7100244e90,48,fn_7100244e90,unknown,unknown,O
-0x7100244ec0,88,fn_7100244ec0,unknown,unknown,O
-0x7100244f18,108,fn_7100244f18,unknown,unknown,O
-0x7100244f84,284,fn_7100244f84,unknown,unknown,O
+0x7100244d08,120,fn_7100244d08,unknown,engine/reflection?,O
+0x7100244d80,264,fn_7100244d80,unknown,engine/reflection?,O
+0x7100244e88,4,fn_7100244e88,unknown,engine/reflection?,O
+0x7100244e8c,4,fn_7100244e8c,unknown,engine/reflection?,O
+0x7100244e90,48,fn_7100244e90,unknown,engine/reflection?,O
+0x7100244ec0,88,fn_7100244ec0,unknown,engine/reflection?,O
+0x7100244f18,108,fn_7100244f18,unknown,engine/reflection?,O
+0x7100244f84,284,fn_7100244f84,unknown,engine/reflection?,O
 0x71002450a0,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Equals",reflection,engine/reflection,O
 0x71002450ac,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Hash",reflection,engine/reflection,O
 0x71002450b4,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::TypeOf",reflection,engine/reflection,O
 0x71002450c0,4,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Construct",reflection,engine/reflection,O
-0x71002450c4,152,fn_71002450c4,unknown,unknown,O
-0x710024515c,220,fn_710024515c,unknown,unknown,O
-0x7100245238,308,fn_7100245238,unknown,unknown,O
-0x710024536c,300,fn_710024536c,unknown,unknown,O
+0x71002450c4,152,fn_71002450c4,unknown,engine/reflection?,O
+0x710024515c,220,fn_710024515c,unknown,engine/reflection?,O
+0x7100245238,308,fn_7100245238,unknown,engine/reflection?,O
+0x710024536c,300,fn_710024536c,unknown,engine/reflection?,O
 0x7100245498,12,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::Begin",reflection,engine/reflection,O
 0x71002454a4,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CWeakPtr<CActor>>>>::End",reflection,engine/reflection,O
-0x71002454ac,140,fn_71002454ac,unknown,unknown,O
-0x7100245538,64,fn_7100245538,unknown,unknown,O
-0x7100245578,252,fn_7100245578,unknown,unknown,O
-0x7100245674,8,fn_7100245674,unknown,unknown,O
-0x710024567c,12,fn_710024567c,unknown,unknown,O
-0x7100245688,104,fn_7100245688,unknown,unknown,O
-0x71002456f0,200,fn_71002456f0,unknown,unknown,O
-0x71002457b8,4,fn_71002457b8,unknown,unknown,O
-0x71002457bc,12,fn_71002457bc,unknown,unknown,O
-0x71002457c8,76,fn_71002457c8,unknown,unknown,O
-0x7100245814,144,fn_7100245814,unknown,unknown,O
-0x71002458a4,252,fn_71002458a4,unknown,unknown,O
-0x71002459a0,92,fn_71002459a0,unknown,unknown,O
-0x71002459fc,4,fn_71002459fc,unknown,unknown,O
-0x7100245a00,8,fn_7100245a00,unknown,unknown,O
-0x7100245a08,12,fn_7100245a08,unknown,unknown,O
-0x7100245a14,8,fn_7100245a14,unknown,unknown,O
-0x7100245a1c,8,fn_7100245a1c,unknown,unknown,O
-0x7100245a24,68,fn_7100245a24,unknown,unknown,O
-0x7100245a68,248,fn_7100245a68,unknown,unknown,O
-0x7100245b60,188,fn_7100245b60,unknown,unknown,O
-0x7100245c1c,48,fn_7100245c1c,unknown,unknown,O
-0x7100245c4c,432,fn_7100245c4c,unknown,unknown,O
-0x7100245dfc,372,fn_7100245dfc,unknown,unknown,O
-0x7100245f70,80,fn_7100245f70,unknown,unknown,O
-0x7100245fc0,56,fn_7100245fc0,unknown,unknown,O
-0x7100245ff8,4,fn_7100245ff8,unknown,unknown,O
-0x7100245ffc,8,fn_7100245ffc,unknown,unknown,O
-0x7100246004,12,fn_7100246004,unknown,unknown,O
-0x7100246010,8,fn_7100246010,unknown,unknown,O
-0x7100246018,8,fn_7100246018,unknown,unknown,O
-0x7100246020,4,fn_7100246020,unknown,unknown,O
-0x7100246024,248,fn_7100246024,unknown,unknown,O
-0x710024611c,8,fn_710024611c,unknown,unknown,O
-0x7100246124,8,fn_7100246124,unknown,unknown,O
-0x710024612c,432,fn_710024612c,unknown,unknown,O
-0x71002462dc,400,fn_71002462dc,unknown,unknown,O
-0x710024646c,80,fn_710024646c,unknown,unknown,O
-0x71002464bc,56,fn_71002464bc,unknown,unknown,O
+0x71002454ac,140,fn_71002454ac,unknown,engine/reflection?,O
+0x7100245538,64,fn_7100245538,unknown,engine/reflection?,O
+0x7100245578,252,fn_7100245578,unknown,engine/reflection?,O
+0x7100245674,8,fn_7100245674,unknown,engine/reflection?,O
+0x710024567c,12,fn_710024567c,unknown,engine/reflection?,O
+0x7100245688,104,fn_7100245688,unknown,engine/reflection?,O
+0x71002456f0,200,fn_71002456f0,unknown,engine/reflection?,O
+0x71002457b8,4,fn_71002457b8,unknown,engine/reflection?,O
+0x71002457bc,12,fn_71002457bc,unknown,engine/reflection?,O
+0x71002457c8,76,fn_71002457c8,unknown,engine/reflection?,O
+0x7100245814,144,fn_7100245814,unknown,engine/reflection?,O
+0x71002458a4,252,fn_71002458a4,unknown,engine/reflection?,O
+0x71002459a0,92,fn_71002459a0,unknown,engine/reflection?,O
+0x71002459fc,4,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Equals,reflection,engine/reflection,O
+0x7100245a00,8,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Hash,reflection,engine/reflection,O
+0x7100245a08,12,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100245a14,8,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Construct,reflection,engine/reflection,O
+0x7100245a1c,8,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100245a24,68,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7100245a68,248,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Destroy,reflection,engine/reflection,O
+0x7100245b60,188,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100245c1c,48,base::reflection::KeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7100245c4c,432,fn_7100245c4c,unknown,engine/reflection?,O
+0x7100245dfc,372,fn_7100245dfc,unknown,engine/reflection?,O
+0x7100245f70,80,fn_7100245f70,unknown,engine/reflection?,O
+0x7100245fc0,56,fn_7100245fc0,unknown,engine/reflection?,O
+0x7100245ff8,4,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Equals,reflection,engine/reflection,O
+0x7100245ffc,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Hash,reflection,engine/reflection,O
+0x7100246004,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100246010,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Construct,reflection,engine/reflection,O
+0x7100246018,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100246020,4,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7100246024,248,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_Destroy,reflection,engine/reflection,O
+0x710024611c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100246124,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<CGameLink<CActor>>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710024612c,432,fn_710024612c,unknown,engine/reflection?,O
+0x71002462dc,400,fn_71002462dc,unknown,engine/reflection?,O
+0x710024646c,80,fn_710024646c,unknown,engine/reflection?,O
+0x71002464bc,56,fn_71002464bc,unknown,engine/reflection?,O
 0x71002464f4,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::Count,reflection,engine/reflection,O
-0x71002464fc,96,fn_71002464fc,unknown,unknown,O
-0x710024655c,16,fn_710024655c,unknown,unknown,O
-0x710024656c,16,fn_710024656c,unknown,unknown,O
-0x710024657c,168,fn_710024657c,unknown,unknown,m
-0x7100246624,16,fn_7100246624,unknown,unknown,O
-0x7100246634,36,fn_7100246634,unknown,unknown,O
-0x7100246658,68,fn_7100246658,unknown,unknown,O
-0x710024669c,140,fn_710024669c,unknown,unknown,O
-0x7100246728,4,fn_7100246728,unknown,unknown,O
+0x71002464fc,96,fn_71002464fc,unknown,engine/reflection?,O
+0x710024655c,16,fn_710024655c,unknown,engine/reflection?,O
+0x710024656c,16,fn_710024656c,unknown,engine/reflection?,O
+0x710024657c,168,fn_710024657c,unknown,engine/reflection?,m
+0x7100246624,16,fn_7100246624,unknown,engine/reflection?,O
+0x7100246634,36,fn_7100246634,unknown,engine/reflection?,O
+0x7100246658,68,fn_7100246658,unknown,engine/reflection?,O
+0x710024669c,140,fn_710024669c,unknown,engine/reflection?,O
+0x7100246728,4,fn_7100246728,unknown,engine/reflection?,O
 0x710024672c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::Hash,reflection,engine/reflection,O
 0x7100246734,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::TypeOf,reflection,engine/reflection,O
 0x7100246740,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::Construct,reflection,engine/reflection,O
-0x7100246780,4,fn_7100246780,unknown,unknown,O
+0x7100246780,4,fn_7100246780,unknown,engine/reflection?,O
 0x7100246784,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::MoveConstruct,reflection,engine/reflection,O
-0x71002467c4,156,fn_71002467c4,unknown,unknown,O
-0x7100246860,48,fn_7100246860,unknown,unknown,O
-0x7100246890,172,fn_7100246890,unknown,unknown,O
-0x710024693c,344,fn_710024693c,unknown,unknown,O
-0x7100246a94,276,fn_7100246a94,unknown,unknown,O
-0x7100246ba8,456,fn_7100246ba8,unknown,unknown,U
-0x7100246d70,328,fn_7100246d70,unknown,unknown,O
-0x7100246eb8,564,fn_7100246eb8,unknown,unknown,O
-0x71002470ec,596,fn_71002470ec,unknown,unknown,O
-0x7100247340,592,fn_7100247340,unknown,unknown,O
+0x71002467c4,156,fn_71002467c4,unknown,engine/reflection?,O
+0x7100246860,48,fn_7100246860,unknown,engine/reflection?,O
+0x7100246890,172,fn_7100246890,unknown,engine/reflection?,O
+0x710024693c,344,fn_710024693c,unknown,engine/reflection?,O
+0x7100246a94,276,fn_7100246a94,unknown,engine/reflection?,O
+0x7100246ba8,456,fn_7100246ba8,unknown,engine/reflection?,U
+0x7100246d70,328,fn_7100246d70,unknown,engine/reflection?,O
+0x7100246eb8,564,fn_7100246eb8,unknown,engine/reflection?,O
+0x71002470ec,596,fn_71002470ec,unknown,engine/reflection?,O
+0x7100247340,592,fn_7100247340,unknown,engine/reflection?,O
 0x7100247590,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<CGameLink<CActor>>>::Begin,reflection,engine/reflection,O
-0x710024759c,20,fn_710024759c,unknown,unknown,O
-0x71002475b0,316,fn_71002475b0,unknown,unknown,O
-0x71002476ec,324,fn_71002476ec,unknown,unknown,O
-0x7100247830,144,fn_7100247830,unknown,unknown,O
-0x71002478c0,8,fn_71002478c0,unknown,unknown,O
-0x71002478c8,12,fn_71002478c8,unknown,unknown,O
-0x71002478d4,8,fn_71002478d4,unknown,unknown,O
-0x71002478dc,8,fn_71002478dc,unknown,unknown,O
-0x71002478e4,220,fn_71002478e4,unknown,unknown,O
-0x71002479c0,256,fn_71002479c0,unknown,unknown,O
-0x7100247ac0,264,fn_7100247ac0,unknown,unknown,O
-0x7100247bc8,48,fn_7100247bc8,unknown,unknown,O
-0x7100247bf8,656,fn_7100247bf8,unknown,unknown,O
-0x7100247e88,80,fn_7100247e88,unknown,unknown,O
-0x7100247ed8,56,fn_7100247ed8,unknown,unknown,O
-0x7100247f10,144,fn_7100247f10,unknown,unknown,O
-0x7100247fa0,8,fn_7100247fa0,unknown,unknown,O
-0x7100247fa8,12,fn_7100247fa8,unknown,unknown,O
-0x7100247fb4,8,fn_7100247fb4,unknown,unknown,O
-0x7100247fbc,8,fn_7100247fbc,unknown,unknown,O
-0x7100247fc4,108,fn_7100247fc4,unknown,unknown,O
-0x7100248030,256,fn_7100248030,unknown,unknown,O
-0x7100248130,8,fn_7100248130,unknown,unknown,O
-0x7100248138,8,fn_7100248138,unknown,unknown,O
+0x710024759c,20,fn_710024759c,unknown,engine/reflection?,O
+0x71002475b0,316,fn_71002475b0,unknown,engine/reflection?,O
+0x71002476ec,324,fn_71002476ec,unknown,engine/reflection?,O
+0x7100247830,144,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002478c0,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002478c8,12,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002478d4,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002478dc,8,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002478e4,220,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002479c0,256,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_Destroy",reflection,engine/reflection,O
+0x7100247ac0,264,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100247bc8,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100247bf8,656,fn_7100247bf8,unknown,engine/reflection?,O
+0x7100247e88,80,fn_7100247e88,unknown,engine/reflection?,O
+0x7100247ed8,56,fn_7100247ed8,unknown,engine/reflection?,O
+0x7100247f10,144,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_Equals",reflection,engine/reflection,O
+0x7100247fa0,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_Hash",reflection,engine/reflection,O
+0x7100247fa8,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x7100247fb4,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_Construct",reflection,engine/reflection,O
+0x7100247fbc,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7100247fc4,108,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7100248030,256,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_Destroy",reflection,engine/reflection,O
+0x7100248130,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100248138,8,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::refl_MoveAssign",reflection,engine/reflection,O
 0x7100248140,80,fn_7100248140,unknown,unknown,O
 0x7100248190,56,fn_7100248190,unknown,unknown,O
 0x71002481c8,8,"base::reflection::CollectionTypeMapper<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::Count",reflection,engine/reflection,O
@@ -2280,10 +2280,10 @@ address,size,name,name_source,subsystem,status
 0x710024e644,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::TElementIterator>",reflection,engine/reflection,O
 0x710024e720,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::TElementConstIterator>",reflection,engine/reflection,O
 0x710024e7fc,900,fn_710024e7fc,unknown,unknown,O
-0x710024eb80,388,fn_710024eb80,unknown,unknown,O
-0x710024ed04,220,fn_710024ed04,unknown,unknown,O
-0x710024ede0,900,fn_710024ede0,unknown,unknown,O
-0x710024f164,388,fn_710024f164,unknown,unknown,O
+0x710024eb80,388,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_InitClass",reflection,engine/reflection,O
+0x710024ed04,220,fn_710024ed04,unknown,engine/reflection?,O
+0x710024ede0,900,fn_710024ede0,unknown,engine/reflection?,O
+0x710024f164,388,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_InitClass",reflection,engine/reflection,O
 0x710024f2e8,220,fn_710024f2e8,unknown,unknown,O
 0x710024f3c4,500,"base::reflection::refl_InitType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>",reflection,engine/reflection,O
 0x710024f5b8,220,"base::reflection::refl_GetType<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*> const*>",reflection,engine/reflection,O
@@ -2405,26 +2405,26 @@ address,size,name,name_source,subsystem,status
 0x7100251118,12,CActorComponent::refl_Destroy,reflection,game/components,O
 0x7100251124,8,CActorComponent::refl_CopyAssign,reflection,game/components,O
 0x710025112c,8,CActorComponent::refl_MoveAssign,reflection,game/components,O
-0x7100251134,176,fn_7100251134,unknown,unknown,O
-0x71002511e4,8,fn_71002511e4,unknown,unknown,O
-0x71002511ec,12,fn_71002511ec,unknown,unknown,O
-0x71002511f8,8,fn_71002511f8,unknown,unknown,O
-0x7100251200,8,fn_7100251200,unknown,unknown,O
-0x7100251208,112,fn_7100251208,unknown,unknown,O
-0x7100251278,128,fn_7100251278,unknown,unknown,O
-0x71002512f8,268,fn_71002512f8,unknown,unknown,O
-0x7100251404,48,fn_7100251404,unknown,unknown,O
-0x7100251434,80,fn_7100251434,unknown,unknown,O
-0x7100251484,84,fn_7100251484,unknown,unknown,O
-0x71002514d8,176,fn_71002514d8,unknown,unknown,O
-0x7100251588,8,fn_7100251588,unknown,unknown,O
-0x7100251590,12,fn_7100251590,unknown,unknown,O
-0x710025159c,8,fn_710025159c,unknown,unknown,O
-0x71002515a4,8,fn_71002515a4,unknown,unknown,O
-0x71002515ac,112,fn_71002515ac,unknown,unknown,O
-0x710025161c,128,fn_710025161c,unknown,unknown,O
-0x710025169c,8,fn_710025169c,unknown,unknown,O
-0x71002516a4,8,fn_71002516a4,unknown,unknown,O
+0x7100251134,176,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_Equals",reflection,engine/reflection,O
+0x71002511e4,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_Hash",reflection,engine/reflection,O
+0x71002511ec,12,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002511f8,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_Construct",reflection,engine/reflection,O
+0x7100251200,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x7100251208,112,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x7100251278,128,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_Destroy",reflection,engine/reflection,O
+0x71002512f8,268,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_CopyAssign",reflection,engine/reflection,O
+0x7100251404,48,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_MoveAssign",reflection,engine/reflection,O
+0x7100251434,80,fn_7100251434,unknown,engine/reflection?,O
+0x7100251484,84,fn_7100251484,unknown,engine/reflection?,O
+0x71002514d8,176,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_Equals",reflection,engine/reflection,O
+0x7100251588,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_Hash",reflection,engine/reflection,O
+0x7100251590,12,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_TypeOf",reflection,engine/reflection,O
+0x710025159c,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_Construct",reflection,engine/reflection,O
+0x71002515a4,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002515ac,112,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x710025161c,128,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_Destroy",reflection,engine/reflection,O
+0x710025169c,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002516a4,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::refl_MoveAssign",reflection,engine/reflection,O
 0x71002516ac,80,fn_71002516ac,unknown,unknown,O
 0x71002516fc,84,fn_71002516fc,unknown,unknown,O
 0x7100251750,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorComponent*>>::Count",reflection,engine/reflection,O
@@ -2521,22 +2521,22 @@ address,size,name,name_source,subsystem,status
 0x71002567b8,28,CActorDef::refl_TypeOf,reflection,game,O
 0x71002567d4,44,CActorDef::refl_Construct,reflection,game,O
 0x7100256800,12,CActorDef::refl_Destroy,reflection,game,O
-0x7100256810,1660,fn_7100256810,unknown,game?,O
-0x7100256e90,348,fn_7100256e90,unknown,game?,O
-0x7100256ff0,728,fn_7100256ff0,unknown,game?,O
-0x71002572d0,160,fn_71002572d0,unknown,game?,O
+0x7100256810,1660,fn_7100256810,unknown,unknown,O
+0x7100256e90,348,fn_7100256e90,unknown,unknown,O
+0x7100256ff0,728,fn_7100256ff0,unknown,unknown,O
+0x71002572d0,160,fn_71002572d0,unknown,unknown,O
 0x7100257370,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::TElementIterator>",reflection,engine/reflection,O
 0x710025744c,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::TElementConstIterator>",reflection,engine/reflection,O
-0x7100257528,900,fn_7100257528,unknown,game?,O
-0x71002578ac,388,fn_71002578ac,unknown,game?,O
-0x7100257a30,220,fn_7100257a30,unknown,game?,O
-0x7100257b0c,900,fn_7100257b0c,unknown,game?,O
-0x7100257e90,388,fn_7100257e90,unknown,game?,O
-0x7100258014,220,fn_7100258014,unknown,game?,O
+0x7100257528,900,fn_7100257528,unknown,unknown,O
+0x71002578ac,388,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_InitClass",reflection,engine/reflection,O
+0x7100257a30,220,fn_7100257a30,unknown,engine/reflection?,O
+0x7100257b0c,900,fn_7100257b0c,unknown,engine/reflection?,O
+0x7100257e90,388,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_InitClass",reflection,engine/reflection,O
+0x7100258014,220,fn_7100258014,unknown,unknown,O
 0x71002580f0,504,"base::reflection::refl_InitType<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>",reflection,engine/reflection,O
 0x71002582e8,220,"base::reflection::refl_GetType<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>*>",reflection,engine/reflection,O
 0x71002583c4,220,"base::reflection::refl_GetType<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer> const*>",reflection,engine/reflection,O
-0x71002584a0,2872,fn_71002584a0,unknown,game?,O
+0x71002584a0,2872,fn_71002584a0,unknown,unknown,O
 0x7100258fd8,388,CActorLayer::refl_InitClass,reflection,game,O
 0x710025915c,372,fn_710025915c,unknown,unknown,O
 0x71002592d0,372,fn_71002592d0,unknown,unknown,O
@@ -2740,28 +2740,28 @@ address,size,name,name_source,subsystem,status
 0x710025ef3c,12,fn_710025ef3c,unknown,unknown,O
 0x710025ef48,12,fn_710025ef48,unknown,unknown,O
 0x710025ef54,12,fn_710025ef54,unknown,unknown,O
-0x710025ef60,12,fn_710025ef60,unknown,unknown,O
-0x710025ef6c,8,fn_710025ef6c,unknown,unknown,O
-0x710025ef74,12,fn_710025ef74,unknown,unknown,O
-0x710025ef80,8,fn_710025ef80,unknown,unknown,O
-0x710025ef88,8,fn_710025ef88,unknown,unknown,O
-0x710025ef90,108,fn_710025ef90,unknown,unknown,O
-0x710025effc,136,fn_710025effc,unknown,unknown,O
-0x710025f084,200,fn_710025f084,unknown,unknown,O
-0x710025f14c,48,fn_710025f14c,unknown,unknown,O
-0x710025f17c,416,fn_710025f17c,unknown,unknown,O
-0x710025f31c,404,fn_710025f31c,unknown,unknown,O
-0x710025f4b0,80,fn_710025f4b0,unknown,unknown,O
-0x710025f500,56,fn_710025f500,unknown,unknown,O
-0x710025f538,12,fn_710025f538,unknown,unknown,O
-0x710025f544,8,fn_710025f544,unknown,unknown,O
-0x710025f54c,12,fn_710025f54c,unknown,unknown,O
-0x710025f558,8,fn_710025f558,unknown,unknown,O
-0x710025f560,8,fn_710025f560,unknown,unknown,O
-0x710025f568,108,fn_710025f568,unknown,unknown,O
-0x710025f5d4,136,fn_710025f5d4,unknown,unknown,O
-0x710025f65c,8,fn_710025f65c,unknown,unknown,O
-0x710025f664,8,fn_710025f664,unknown,unknown,O
+0x710025ef60,12,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_Equals",reflection,engine/reflection,O
+0x710025ef6c,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_Hash",reflection,engine/reflection,O
+0x710025ef74,12,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_TypeOf",reflection,engine/reflection,O
+0x710025ef80,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_Construct",reflection,engine/reflection,O
+0x710025ef88,8,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x710025ef90,108,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x710025effc,136,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_Destroy",reflection,engine/reflection,O
+0x710025f084,200,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_CopyAssign",reflection,engine/reflection,O
+0x710025f14c,48,"base::reflection::KeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_MoveAssign",reflection,engine/reflection,O
+0x710025f17c,416,fn_710025f17c,unknown,engine/reflection?,O
+0x710025f31c,404,fn_710025f31c,unknown,engine/reflection?,O
+0x710025f4b0,80,fn_710025f4b0,unknown,engine/reflection?,O
+0x710025f500,56,fn_710025f500,unknown,engine/reflection?,O
+0x710025f538,12,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_Equals",reflection,engine/reflection,O
+0x710025f544,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_Hash",reflection,engine/reflection,O
+0x710025f54c,12,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_TypeOf",reflection,engine/reflection,O
+0x710025f558,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_Construct",reflection,engine/reflection,O
+0x710025f560,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x710025f568,108,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x710025f5d4,136,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_Destroy",reflection,engine/reflection,O
+0x710025f65c,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_CopyAssign",reflection,engine/reflection,O
+0x710025f664,8,"base::reflection::ConstKeyElementValue<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::refl_MoveAssign",reflection,engine/reflection,O
 0x710025f66c,80,fn_710025f66c,unknown,unknown,O
 0x710025f6bc,56,fn_710025f6bc,unknown,unknown,O
 0x710025f6f4,8,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CActorSublayer>>::Count",reflection,engine/reflection,O
@@ -2937,15 +2937,15 @@ address,size,name,name_source,subsystem,status
 0x7100264814,244,navmesh::CDynamicSmartLinkGroup::refl_GetClass,reflection,ai/navmesh,O
 0x7100264908,268,navmesh::CDynamicSmartLinkGroup::refl_AddFields,reflection,ai/navmesh,O
 0x7100264a14,372,navmesh::CDynamicSmartLinkGroup::refl_InitClass,reflection,ai/navmesh,O
-0x7100264b88,220,fn_7100264b88,unknown,ai/navmesh?,O
-0x7100264c64,220,fn_7100264c64,unknown,ai/navmesh?,O
-0x7100264d40,912,fn_7100264d40,unknown,ai/navmesh?,O
-0x71002650d0,388,fn_71002650d0,unknown,ai/navmesh?,O
-0x7100265254,220,fn_7100265254,unknown,ai/navmesh?,O
-0x7100265330,912,fn_7100265330,unknown,ai/navmesh?,O
-0x71002656c0,388,fn_71002656c0,unknown,ai/navmesh?,O
-0x7100265844,220,fn_7100265844,unknown,ai/navmesh?,O
-0x7100265920,504,fn_7100265920,unknown,ai/navmesh?,O
+0x7100264b88,220,fn_7100264b88,unknown,unknown,O
+0x7100264c64,220,fn_7100264c64,unknown,unknown,O
+0x7100264d40,912,fn_7100264d40,unknown,unknown,O
+0x71002650d0,388,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_InitClass,reflection,engine/reflection,O
+0x7100265254,220,fn_7100265254,unknown,engine/reflection?,O
+0x7100265330,912,fn_7100265330,unknown,engine/reflection?,O
+0x71002656c0,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_InitClass,reflection,engine/reflection,O
+0x7100265844,220,fn_7100265844,unknown,unknown,O
+0x7100265920,504,fn_7100265920,unknown,unknown,O
 0x7100265b18,4,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_AddAttributes,reflection,ai/navmesh,O
 0x7100265b1c,240,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass,reflection,ai/navmesh,O
 0x7100265c0c,148,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_AddFields,reflection,ai/navmesh,O
@@ -3017,60 +3017,60 @@ address,size,name,name_source,subsystem,status
 0x7100267310,4,navmesh::CDynamicSmartLinkGroup::refl_MoveConstruct,reflection,ai/navmesh,O
 0x7100267314,12,navmesh::CDynamicSmartLinkGroup::refl_Destroy,reflection,ai/navmesh,O
 0x7100267320,8,navmesh::CDynamicSmartLinkGroup::refl_MoveAssign,reflection,ai/navmesh,O
-0x7100267328,12,fn_7100267328,unknown,ai/navmesh?,O
-0x7100267334,8,fn_7100267334,unknown,ai/navmesh?,O
-0x710026733c,12,fn_710026733c,unknown,ai/navmesh?,O
-0x7100267348,8,fn_7100267348,unknown,ai/navmesh?,O
-0x7100267350,8,fn_7100267350,unknown,ai/navmesh?,O
-0x7100267358,4,fn_7100267358,unknown,ai/navmesh?,O
-0x710026735c,156,fn_710026735c,unknown,ai/navmesh?,O
-0x71002673f8,368,fn_71002673f8,unknown,ai/navmesh?,O
-0x7100267568,48,fn_7100267568,unknown,ai/navmesh?,O
-0x7100267598,236,fn_7100267598,unknown,ai/navmesh?,O
-0x7100267684,500,fn_7100267684,unknown,ai/navmesh?,O
-0x7100267878,80,fn_7100267878,unknown,ai/navmesh?,O
-0x71002678c8,88,fn_71002678c8,unknown,ai/navmesh?,O
-0x7100267920,12,fn_7100267920,unknown,ai/navmesh?,O
-0x710026792c,8,fn_710026792c,unknown,ai/navmesh?,O
-0x7100267934,12,fn_7100267934,unknown,ai/navmesh?,O
-0x7100267940,8,fn_7100267940,unknown,ai/navmesh?,O
-0x7100267948,8,fn_7100267948,unknown,ai/navmesh?,O
-0x7100267950,4,fn_7100267950,unknown,ai/navmesh?,O
-0x7100267954,156,fn_7100267954,unknown,ai/navmesh?,O
-0x71002679f0,8,fn_71002679f0,unknown,ai/navmesh?,O
-0x71002679f8,8,fn_71002679f8,unknown,ai/navmesh?,O
-0x7100267a00,268,fn_7100267a00,unknown,ai/navmesh?,O
-0x7100267b0c,80,fn_7100267b0c,unknown,ai/navmesh?,O
-0x7100267b5c,88,fn_7100267b5c,unknown,ai/navmesh?,O
-0x7100267bb4,8,fn_7100267bb4,unknown,ai/navmesh?,O
-0x7100267bbc,232,fn_7100267bbc,unknown,ai/navmesh?,O
-0x7100267ca4,16,fn_7100267ca4,unknown,ai/navmesh?,O
-0x7100267cb4,16,fn_7100267cb4,unknown,ai/navmesh?,O
-0x7100267cc4,8,fn_7100267cc4,unknown,ai/navmesh?,O
-0x7100267ccc,12,fn_7100267ccc,unknown,ai/navmesh?,O
-0x7100267cd8,36,fn_7100267cd8,unknown,ai/navmesh?,O
-0x7100267cfc,208,fn_7100267cfc,unknown,ai/navmesh?,O
-0x7100267dcc,208,fn_7100267dcc,unknown,ai/navmesh?,O
-0x7100267e9c,12,fn_7100267e9c,unknown,ai/navmesh?,O
-0x7100267ea8,8,fn_7100267ea8,unknown,ai/navmesh?,O
-0x7100267eb0,12,fn_7100267eb0,unknown,ai/navmesh?,O
-0x7100267ebc,64,fn_7100267ebc,unknown,ai/navmesh?,O
-0x7100267efc,4,fn_7100267efc,unknown,ai/navmesh?,O
-0x7100267f00,64,fn_7100267f00,unknown,ai/navmesh?,O
-0x7100267f40,260,fn_7100267f40,unknown,ai/navmesh?,O
-0x7100268044,48,fn_7100268044,unknown,ai/navmesh?,O
-0x7100268074,308,fn_7100268074,unknown,ai/navmesh?,O
-0x71002681a8,320,fn_71002681a8,unknown,ai/navmesh?,O
-0x71002682e8,396,fn_71002682e8,unknown,ai/navmesh?,O
-0x7100268474,480,fn_7100268474,unknown,ai/navmesh?,O
-0x7100268654,580,fn_7100268654,unknown,ai/navmesh?,O
-0x7100268898,544,fn_7100268898,unknown,ai/navmesh?,O
-0x7100268ab8,428,fn_7100268ab8,unknown,ai/navmesh?,O
-0x7100268c64,340,fn_7100268c64,unknown,ai/navmesh?,O
-0x7100268db8,12,fn_7100268db8,unknown,ai/navmesh?,O
-0x7100268dc4,20,fn_7100268dc4,unknown,ai/navmesh?,O
-0x7100268dd8,224,fn_7100268dd8,unknown,ai/navmesh?,O
-0x7100268eb8,232,fn_7100268eb8,unknown,ai/navmesh?,O
+0x7100267328,12,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_Equals,reflection,engine/reflection,O
+0x7100267334,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_Hash,reflection,engine/reflection,O
+0x710026733c,12,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100267348,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_Construct,reflection,engine/reflection,O
+0x7100267350,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100267358,4,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710026735c,156,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_Destroy,reflection,engine/reflection,O
+0x71002673f8,368,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100267568,48,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7100267598,236,fn_7100267598,unknown,engine/reflection?,O
+0x7100267684,500,fn_7100267684,unknown,engine/reflection?,O
+0x7100267878,80,fn_7100267878,unknown,engine/reflection?,O
+0x71002678c8,88,fn_71002678c8,unknown,engine/reflection?,O
+0x7100267920,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_Equals,reflection,engine/reflection,O
+0x710026792c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_Hash,reflection,engine/reflection,O
+0x7100267934,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100267940,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_Construct,reflection,engine/reflection,O
+0x7100267948,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100267950,4,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7100267954,156,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_Destroy,reflection,engine/reflection,O
+0x71002679f0,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002679f8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7100267a00,268,fn_7100267a00,unknown,unknown,O
+0x7100267b0c,80,fn_7100267b0c,unknown,unknown,O
+0x7100267b5c,88,fn_7100267b5c,unknown,unknown,O
+0x7100267bb4,8,fn_7100267bb4,unknown,unknown,O
+0x7100267bbc,232,fn_7100267bbc,unknown,unknown,O
+0x7100267ca4,16,fn_7100267ca4,unknown,unknown,O
+0x7100267cb4,16,fn_7100267cb4,unknown,unknown,O
+0x7100267cc4,8,fn_7100267cc4,unknown,unknown,O
+0x7100267ccc,12,fn_7100267ccc,unknown,unknown,O
+0x7100267cd8,36,fn_7100267cd8,unknown,unknown,O
+0x7100267cfc,208,fn_7100267cfc,unknown,unknown,O
+0x7100267dcc,208,fn_7100267dcc,unknown,unknown,O
+0x7100267e9c,12,fn_7100267e9c,unknown,unknown,O
+0x7100267ea8,8,fn_7100267ea8,unknown,unknown,O
+0x7100267eb0,12,fn_7100267eb0,unknown,unknown,O
+0x7100267ebc,64,fn_7100267ebc,unknown,unknown,O
+0x7100267efc,4,fn_7100267efc,unknown,unknown,O
+0x7100267f00,64,fn_7100267f00,unknown,unknown,O
+0x7100267f40,260,fn_7100267f40,unknown,unknown,O
+0x7100268044,48,fn_7100268044,unknown,unknown,O
+0x7100268074,308,fn_7100268074,unknown,unknown,O
+0x71002681a8,320,fn_71002681a8,unknown,unknown,O
+0x71002682e8,396,fn_71002682e8,unknown,unknown,O
+0x7100268474,480,fn_7100268474,unknown,unknown,O
+0x7100268654,580,fn_7100268654,unknown,unknown,O
+0x7100268898,544,fn_7100268898,unknown,unknown,O
+0x7100268ab8,428,fn_7100268ab8,unknown,unknown,O
+0x7100268c64,340,fn_7100268c64,unknown,unknown,O
+0x7100268db8,12,fn_7100268db8,unknown,unknown,O
+0x7100268dc4,20,fn_7100268dc4,unknown,unknown,O
+0x7100268dd8,224,fn_7100268dd8,unknown,unknown,O
+0x7100268eb8,232,fn_7100268eb8,unknown,unknown,O
 0x7100268fa0,12,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_Equals,reflection,ai/navmesh,O
 0x7100268fac,8,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_Hash,reflection,ai/navmesh,O
 0x7100268fb4,28,navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_TypeOf,reflection,ai/navmesh,O
@@ -3089,10 +3089,10 @@ address,size,name,name_source,subsystem,status
 0x7100269a24,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementIterator>,reflection,engine/reflection,O
 0x7100269b00,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TElementConstIterator>,reflection,engine/reflection,O
 0x7100269bdc,900,fn_7100269bdc,unknown,unknown,O
-0x7100269f60,388,fn_7100269f60,unknown,unknown,O
+0x7100269f60,388,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_InitClass,reflection,engine/reflection,O
 0x710026a0e4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementIterator>,reflection,engine/reflection,O
-0x710026a1c0,900,fn_710026a1c0,unknown,unknown,O
-0x710026a544,388,fn_710026a544,unknown,unknown,O
+0x710026a1c0,900,fn_710026a1c0,unknown,engine/reflection?,O
+0x710026a544,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_InitClass,reflection,engine/reflection,O
 0x710026a6c8,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::TKeyElementConstIterator>,reflection,engine/reflection,O
 0x710026a7a4,496,base::reflection::refl_InitType<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>,reflection,engine/reflection,O
 0x710026a994,104,fn_710026a994,unknown,unknown,O
@@ -3170,33 +3170,33 @@ address,size,name,name_source,subsystem,status
 0x710026b864,12,navmesh::CDynamicSmartLinkRule::refl_Destroy,reflection,ai/navmesh,O
 0x710026b870,8,navmesh::CDynamicSmartLinkRule::refl_CopyAssign,reflection,ai/navmesh,O
 0x710026b878,8,navmesh::CDynamicSmartLinkRule::refl_MoveAssign,reflection,ai/navmesh,O
-0x710026b880,176,fn_710026b880,unknown,ai/navmesh?,O
-0x710026b930,8,fn_710026b930,unknown,ai/navmesh?,O
-0x710026b938,12,fn_710026b938,unknown,ai/navmesh?,O
-0x710026b944,8,fn_710026b944,unknown,ai/navmesh?,O
-0x710026b94c,8,fn_710026b94c,unknown,ai/navmesh?,O
-0x710026b954,72,fn_710026b954,unknown,ai/navmesh?,O
-0x710026b99c,24,fn_710026b99c,unknown,ai/navmesh?,O
-0x710026b9b4,128,fn_710026b9b4,unknown,ai/navmesh?,O
-0x710026ba34,156,fn_710026ba34,unknown,ai/navmesh?,O
-0x710026bad0,80,fn_710026bad0,unknown,ai/navmesh?,O
-0x710026bb20,84,fn_710026bb20,unknown,ai/navmesh?,O
-0x710026bb74,176,fn_710026bb74,unknown,ai/navmesh?,O
-0x710026bc24,8,fn_710026bc24,unknown,ai/navmesh?,O
-0x710026bc2c,12,fn_710026bc2c,unknown,ai/navmesh?,O
-0x710026bc38,8,fn_710026bc38,unknown,ai/navmesh?,O
-0x710026bc40,8,fn_710026bc40,unknown,ai/navmesh?,O
-0x710026bc48,72,fn_710026bc48,unknown,ai/navmesh?,O
-0x710026bc90,24,fn_710026bc90,unknown,ai/navmesh?,O
-0x710026bca8,8,fn_710026bca8,unknown,ai/navmesh?,O
-0x710026bcb0,8,fn_710026bcb0,unknown,ai/navmesh?,O
-0x710026bcb8,80,fn_710026bcb8,unknown,ai/navmesh?,O
-0x710026bd08,84,fn_710026bd08,unknown,ai/navmesh?,O
+0x710026b880,176,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_Equals,reflection,engine/reflection,O
+0x710026b930,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_Hash,reflection,engine/reflection,O
+0x710026b938,12,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_TypeOf,reflection,engine/reflection,O
+0x710026b944,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_Construct,reflection,engine/reflection,O
+0x710026b94c,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710026b954,72,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710026b99c,24,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_Destroy,reflection,engine/reflection,O
+0x710026b9b4,128,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710026ba34,156,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710026bad0,80,fn_710026bad0,unknown,engine/reflection?,O
+0x710026bb20,84,fn_710026bb20,unknown,engine/reflection?,O
+0x710026bb74,176,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_Equals,reflection,engine/reflection,O
+0x710026bc24,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_Hash,reflection,engine/reflection,O
+0x710026bc2c,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_TypeOf,reflection,engine/reflection,O
+0x710026bc38,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_Construct,reflection,engine/reflection,O
+0x710026bc40,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x710026bc48,72,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710026bc90,24,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_Destroy,reflection,engine/reflection,O
+0x710026bca8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_CopyAssign,reflection,engine/reflection,O
+0x710026bcb0,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::refl_MoveAssign,reflection,engine/reflection,O
+0x710026bcb8,80,fn_710026bcb8,unknown,unknown,O
+0x710026bd08,84,fn_710026bd08,unknown,unknown,O
 0x710026bd5c,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::Count,reflection,engine/reflection,O
 0x710026bd64,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::Clear,reflection,engine/reflection,O
 0x710026bd6c,16,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::AddCopy,reflection,engine/reflection,O
 0x710026bd7c,16,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::AddMove,reflection,engine/reflection,O
-0x710026bd8c,92,fn_710026bd8c,unknown,ai/navmesh?,O
+0x710026bd8c,92,fn_710026bd8c,unknown,unknown,O
 0x710026bde8,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::At,reflection,engine/reflection,O
 0x710026bdf4,36,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::Find,reflection,engine/reflection,O
 0x710026be18,40,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::SetCopy,reflection,engine/reflection,O
@@ -3217,7 +3217,7 @@ address,size,name,name_source,subsystem,status
 0x710026c610,20,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::End,reflection,engine/reflection,O
 0x710026c624,168,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::ConstBegin,reflection,engine/reflection,O
 0x710026c6cc,176,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CDynamicSmartLinkRule*>>::ConstEnd,reflection,engine/reflection,O
-0x710026c780,768,fn_710026c780,unknown,ai/navmesh?,O
+0x710026c780,768,fn_710026c780,unknown,unknown,O
 0x710026ca80,88,navmesh::CDynamicSmartLinkRules::refl_AddAttributes,reflection,ai/navmesh,O
 0x710026cad8,244,navmesh::CDynamicSmartLinkRules::refl_GetClass,reflection,ai/navmesh,O
 0x710026cbcc,4,navmesh::CDynamicSmartLinkRules::refl_AddFields,reflection,ai/navmesh,O
@@ -3244,10 +3244,10 @@ address,size,name,name_source,subsystem,status
 0x710026dad8,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementIterator>,reflection,engine/reflection,O
 0x710026dbb4,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TElementConstIterator>,reflection,engine/reflection,O
 0x710026dc90,900,fn_710026dc90,unknown,unknown,O
-0x710026e014,388,fn_710026e014,unknown,unknown,O
-0x710026e198,220,fn_710026e198,unknown,unknown,O
-0x710026e274,900,fn_710026e274,unknown,unknown,O
-0x710026e5f8,388,fn_710026e5f8,unknown,unknown,O
+0x710026e014,388,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_InitClass,reflection,engine/reflection,O
+0x710026e198,220,fn_710026e198,unknown,engine/reflection?,O
+0x710026e274,900,fn_710026e274,unknown,engine/reflection?,O
+0x710026e5f8,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_InitClass,reflection,engine/reflection,O
 0x710026e77c,220,fn_710026e77c,unknown,unknown,O
 0x710026e858,500,base::reflection::refl_InitType<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>,reflection,engine/reflection,O
 0x710026ea4c,132,fn_710026ea4c,unknown,unknown,O
@@ -3338,66 +3338,66 @@ address,size,name,name_source,subsystem,status
 0x7100272a00,4,navmesh::CFixedDynamicSmartLinkRule::SMask::refl_Destroy,reflection,ai/navmesh,O
 0x7100272a04,104,navmesh::CFixedDynamicSmartLinkRule::SMask::refl_CopyAssign,reflection,ai/navmesh,O
 0x7100272a6c,224,navmesh::CFixedDynamicSmartLinkRule::SMask::refl_MoveAssign,reflection,ai/navmesh,O
-0x7100272b4c,12,fn_7100272b4c,unknown,ai/navmesh?,O
-0x7100272b58,8,fn_7100272b58,unknown,ai/navmesh?,O
-0x7100272b60,12,fn_7100272b60,unknown,ai/navmesh?,O
-0x7100272b6c,8,fn_7100272b6c,unknown,ai/navmesh?,O
-0x7100272b74,8,fn_7100272b74,unknown,ai/navmesh?,O
-0x7100272b7c,4,fn_7100272b7c,unknown,ai/navmesh?,O
-0x7100272b80,60,fn_7100272b80,unknown,ai/navmesh?,O
-0x7100272bbc,216,fn_7100272bbc,unknown,ai/navmesh?,O
-0x7100272c94,48,fn_7100272c94,unknown,ai/navmesh?,O
-0x7100272cc4,280,fn_7100272cc4,unknown,ai/navmesh?,O
-0x7100272ddc,452,fn_7100272ddc,unknown,ai/navmesh?,U
-0x7100272fa0,80,fn_7100272fa0,unknown,ai/navmesh?,O
-0x7100272ff0,56,fn_7100272ff0,unknown,ai/navmesh?,O
-0x7100273028,12,fn_7100273028,unknown,ai/navmesh?,O
-0x7100273034,8,fn_7100273034,unknown,ai/navmesh?,O
-0x710027303c,12,fn_710027303c,unknown,ai/navmesh?,O
-0x7100273048,8,fn_7100273048,unknown,ai/navmesh?,O
-0x7100273050,8,fn_7100273050,unknown,ai/navmesh?,O
-0x7100273058,68,fn_7100273058,unknown,ai/navmesh?,O
-0x710027309c,60,fn_710027309c,unknown,ai/navmesh?,O
-0x71002730d8,8,fn_71002730d8,unknown,ai/navmesh?,O
-0x71002730e0,8,fn_71002730e0,unknown,ai/navmesh?,O
-0x71002730e8,80,fn_71002730e8,unknown,ai/navmesh?,O
-0x7100273138,56,fn_7100273138,unknown,ai/navmesh?,O
+0x7100272b4c,12,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_Equals,reflection,engine/reflection,O
+0x7100272b58,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_Hash,reflection,engine/reflection,O
+0x7100272b60,12,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100272b6c,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_Construct,reflection,engine/reflection,O
+0x7100272b74,8,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100272b7c,4,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x7100272b80,60,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_Destroy,reflection,engine/reflection,O
+0x7100272bbc,216,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_CopyAssign,reflection,engine/reflection,O
+0x7100272c94,48,base::reflection::KeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_MoveAssign,reflection,engine/reflection,O
+0x7100272cc4,280,fn_7100272cc4,unknown,engine/reflection?,O
+0x7100272ddc,452,fn_7100272ddc,unknown,engine/reflection?,U
+0x7100272fa0,80,fn_7100272fa0,unknown,engine/reflection?,O
+0x7100272ff0,56,fn_7100272ff0,unknown,engine/reflection?,O
+0x7100273028,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_Equals,reflection,engine/reflection,O
+0x7100273034,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_Hash,reflection,engine/reflection,O
+0x710027303c,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_TypeOf,reflection,engine/reflection,O
+0x7100273048,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_Construct,reflection,engine/reflection,O
+0x7100273050,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x7100273058,68,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x710027309c,60,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_Destroy,reflection,engine/reflection,O
+0x71002730d8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002730e0,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002730e8,80,fn_71002730e8,unknown,unknown,O
+0x7100273138,56,fn_7100273138,unknown,unknown,O
 0x7100273170,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::Count,reflection,engine/reflection,O
-0x7100273178,88,fn_7100273178,unknown,ai/navmesh?,O
-0x71002731d0,16,fn_71002731d0,unknown,ai/navmesh?,O
-0x71002731e0,16,fn_71002731e0,unknown,ai/navmesh?,O
-0x71002731f0,20,fn_71002731f0,unknown,ai/navmesh?,O
-0x7100273204,20,fn_7100273204,unknown,ai/navmesh?,O
-0x7100273218,40,fn_7100273218,unknown,ai/navmesh?,O
-0x7100273240,368,fn_7100273240,unknown,ai/navmesh?,O
-0x71002733b0,508,fn_71002733b0,unknown,ai/navmesh?,O
-0x71002735ac,12,fn_71002735ac,unknown,ai/navmesh?,O
+0x7100273178,88,fn_7100273178,unknown,unknown,O
+0x71002731d0,16,fn_71002731d0,unknown,unknown,O
+0x71002731e0,16,fn_71002731e0,unknown,unknown,O
+0x71002731f0,20,fn_71002731f0,unknown,unknown,O
+0x7100273204,20,fn_7100273204,unknown,unknown,O
+0x7100273218,40,fn_7100273218,unknown,unknown,O
+0x7100273240,368,fn_7100273240,unknown,unknown,O
+0x71002733b0,508,fn_71002733b0,unknown,unknown,O
+0x71002735ac,12,fn_71002735ac,unknown,unknown,O
 0x71002735b8,8,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::Hash,reflection,engine/reflection,O
 0x71002735c0,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::TypeOf,reflection,engine/reflection,O
 0x71002735cc,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::Construct,reflection,engine/reflection,O
-0x710027360c,4,fn_710027360c,unknown,ai/navmesh?,O
+0x710027360c,4,fn_710027360c,unknown,unknown,O
 0x7100273610,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::MoveConstruct,reflection,engine/reflection,O
-0x7100273650,140,fn_7100273650,unknown,ai/navmesh?,O
-0x71002736dc,48,fn_71002736dc,unknown,ai/navmesh?,O
-0x710027370c,164,fn_710027370c,unknown,ai/navmesh?,O
-0x71002737b0,400,fn_71002737b0,unknown,ai/navmesh?,O
-0x7100273940,404,fn_7100273940,unknown,ai/navmesh?,O
-0x7100273ad4,220,fn_7100273ad4,unknown,ai/navmesh?,O
-0x7100273bb0,272,fn_7100273bb0,unknown,ai/navmesh?,U
+0x7100273650,140,fn_7100273650,unknown,unknown,O
+0x71002736dc,48,fn_71002736dc,unknown,unknown,O
+0x710027370c,164,fn_710027370c,unknown,unknown,O
+0x71002737b0,400,fn_71002737b0,unknown,unknown,O
+0x7100273940,404,fn_7100273940,unknown,unknown,O
+0x7100273ad4,220,fn_7100273ad4,unknown,unknown,O
+0x7100273bb0,272,fn_7100273bb0,unknown,unknown,U
 0x7100273cc0,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<navmesh::CFixedDynamicSmartLinkRule::SMask>>::Begin,reflection,engine/reflection,O
-0x7100273ccc,24,fn_7100273ccc,unknown,ai/navmesh?,O
-0x7100273ce4,216,fn_7100273ce4,unknown,ai/navmesh?,O
-0x7100273dbc,228,fn_7100273dbc,unknown,ai/navmesh?,O
-0x7100273ea0,12,fn_7100273ea0,unknown,ai/navmesh?,O
-0x7100273eac,4,operator.delete,symbol,ai/navmesh?,O
-0x7100273eb0,56,fn_7100273eb0,unknown,ai/navmesh?,O
-0x7100273ee8,24,fn_7100273ee8,unknown,ai/navmesh?,O
-0x7100273f00,4,fn_7100273f00,unknown,ai/navmesh?,O
-0x7100273f04,4,operator.delete,symbol,ai/navmesh?,O
-0x7100273f08,228,fn_7100273f08,unknown,ai/navmesh?,O
-0x7100273fec,4,fn_7100273fec,unknown,ai/navmesh?,O
-0x7100273ff0,228,fn_7100273ff0,unknown,ai/navmesh?,O
-0x71002740e0,1128,fn_71002740e0,unknown,ai/navmesh?,O
+0x7100273ccc,24,fn_7100273ccc,unknown,unknown,O
+0x7100273ce4,216,fn_7100273ce4,unknown,unknown,O
+0x7100273dbc,228,fn_7100273dbc,unknown,unknown,O
+0x7100273ea0,12,fn_7100273ea0,unknown,unknown,O
+0x7100273eac,4,operator.delete,symbol,unknown,O
+0x7100273eb0,56,fn_7100273eb0,unknown,unknown,O
+0x7100273ee8,24,fn_7100273ee8,unknown,unknown,O
+0x7100273f00,4,fn_7100273f00,unknown,unknown,O
+0x7100273f04,4,operator.delete,symbol,unknown,O
+0x7100273f08,228,fn_7100273f08,unknown,unknown,O
+0x7100273fec,4,fn_7100273fec,unknown,unknown,O
+0x7100273ff0,228,fn_7100273ff0,unknown,unknown,O
+0x71002740e0,1128,fn_71002740e0,unknown,unknown,O
 0x7100274548,88,navmesh::CNavMesh::refl_AddAttributes,reflection,ai/navmesh,O
 0x71002745a0,244,navmesh::CNavMesh::refl_GetClass,reflection,ai/navmesh,O
 0x7100274694,4,navmesh::CNavMesh::refl_AddFields,reflection,ai/navmesh,O
@@ -3904,11 +3904,11 @@ address,size,name,name_source,subsystem,status
 0x71002b6b38,220,base::reflection::refl_GetType<std::unique_ptr<querysystem::CEvaluator>>,reflection,engine/reflection,O
 0x71002b6c14,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementIterator>",reflection,engine/reflection,O
 0x71002b6cf0,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementConstIterator>",reflection,engine/reflection,O
-0x71002b6dcc,900,fn_71002b6dcc,unknown,unknown,O
-0x71002b7150,388,fn_71002b7150,unknown,unknown,O
-0x71002b72d4,220,fn_71002b72d4,unknown,unknown,O
-0x71002b73b0,900,fn_71002b73b0,unknown,unknown,O
-0x71002b7734,388,fn_71002b7734,unknown,unknown,O
+0x71002b6dcc,900,fn_71002b6dcc,unknown,engine/reflection?,O
+0x71002b7150,388,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_InitClass",reflection,engine/reflection,O
+0x71002b72d4,220,fn_71002b72d4,unknown,engine/reflection?,O
+0x71002b73b0,900,fn_71002b73b0,unknown,engine/reflection?,O
+0x71002b7734,388,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_InitClass",reflection,engine/reflection,O
 0x71002b78b8,220,fn_71002b78b8,unknown,unknown,O
 0x71002b7994,480,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>",reflection,engine/reflection,O
 0x71002b7b74,4,querysystem::CEvaluator::refl_AddAttributes,reflection,ai/querysystem,O
@@ -3935,20 +3935,20 @@ address,size,name,name_source,subsystem,status
 0x71002b83cc,20,fn_71002b83cc,unknown,unknown,O
 0x71002b83e0,20,fn_71002b83e0,unknown,unknown,O
 0x71002b83f4,352,base::reflection::refl_InitType<std::unique_ptr<querysystem::CEvaluator>>,reflection,engine/reflection,O
-0x71002b8554,104,fn_71002b8554,unknown,unknown,O
-0x71002b85bc,36,fn_71002b85bc,unknown,unknown,O
-0x71002b85e0,4,fn_71002b85e0,unknown,unknown,O
-0x71002b85e4,20,fn_71002b85e4,unknown,unknown,O
-0x71002b85f8,8,fn_71002b85f8,unknown,unknown,O
-0x71002b8600,20,fn_71002b8600,unknown,unknown,O
-0x71002b8614,8,fn_71002b8614,unknown,unknown,O
-0x71002b861c,16,fn_71002b861c,unknown,unknown,O
-0x71002b862c,32,fn_71002b862c,unknown,unknown,O
-0x71002b864c,72,fn_71002b864c,unknown,unknown,O
+0x71002b8554,104,fn_71002b8554,unknown,engine/reflection?,O
+0x71002b85bc,36,fn_71002b85bc,unknown,engine/reflection?,O
+0x71002b85e0,4,fn_71002b85e0,unknown,engine/reflection?,O
+0x71002b85e4,20,fn_71002b85e4,unknown,engine/reflection?,O
+0x71002b85f8,8,fn_71002b85f8,unknown,engine/reflection?,O
+0x71002b8600,20,fn_71002b8600,unknown,engine/reflection?,O
+0x71002b8614,8,fn_71002b8614,unknown,engine/reflection?,O
+0x71002b861c,16,fn_71002b861c,unknown,engine/reflection?,O
+0x71002b862c,32,fn_71002b862c,unknown,engine/reflection?,O
+0x71002b864c,72,fn_71002b864c,unknown,engine/reflection?,O
 0x71002b8694,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementIterator>",reflection,engine/reflection,O
-0x71002b87fc,88,fn_71002b87fc,unknown,unknown,O
-0x71002b8854,12,fn_71002b8854,unknown,unknown,O
-0x71002b8860,16,fn_71002b8860,unknown,unknown,O
+0x71002b87fc,88,fn_71002b87fc,unknown,engine/reflection?,O
+0x71002b8854,12,fn_71002b8854,unknown,engine/reflection?,O
+0x71002b8860,16,fn_71002b8860,unknown,engine/reflection?,O
 0x71002b8870,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementIterator>::Equals",reflection,engine/reflection,O
 0x71002b8884,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementIterator>::Hash",reflection,engine/reflection,O
 0x71002b888c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementIterator>::TypeOf",reflection,engine/reflection,O
@@ -3959,9 +3959,9 @@ address,size,name,name_source,subsystem,status
 0x71002b88c4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementIterator>::CopyAssign",reflection,engine/reflection,O
 0x71002b88d8,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementIterator>::MoveAssign",reflection,engine/reflection,O
 0x71002b88ec,360,"base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementConstIterator>",reflection,engine/reflection,O
-0x71002b8a54,88,fn_71002b8a54,unknown,unknown,O
-0x71002b8aac,12,fn_71002b8aac,unknown,unknown,O
-0x71002b8ab8,16,fn_71002b8ab8,unknown,unknown,O
+0x71002b8a54,88,fn_71002b8a54,unknown,engine/reflection?,O
+0x71002b8aac,12,fn_71002b8aac,unknown,engine/reflection?,O
+0x71002b8ab8,16,fn_71002b8ab8,unknown,engine/reflection?,O
 0x71002b8ac8,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementConstIterator>::Equals",reflection,engine/reflection,O
 0x71002b8adc,8,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementConstIterator>::Hash",reflection,engine/reflection,O
 0x71002b8ae4,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementConstIterator>::TypeOf",reflection,engine/reflection,O
@@ -3971,53 +3971,53 @@ address,size,name,name_source,subsystem,status
 0x71002b8b18,4,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementConstIterator>::Destroy",reflection,engine/reflection,O
 0x71002b8b1c,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementConstIterator>::CopyAssign",reflection,engine/reflection,O
 0x71002b8b30,20,"base::reflection::ValueOps<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::TElementConstIterator>::MoveAssign",reflection,engine/reflection,O
-0x71002b8b44,364,fn_71002b8b44,unknown,unknown,O
-0x71002b8cb0,60,fn_71002b8cb0,unknown,unknown,O
-0x71002b8cec,4,fn_71002b8cec,unknown,unknown,O
-0x71002b8cf0,112,fn_71002b8cf0,unknown,unknown,O
-0x71002b8d60,20,fn_71002b8d60,unknown,unknown,O
-0x71002b8d74,8,fn_71002b8d74,unknown,unknown,O
-0x71002b8d7c,20,fn_71002b8d7c,unknown,unknown,O
-0x71002b8d90,16,fn_71002b8d90,unknown,unknown,O
-0x71002b8da0,40,fn_71002b8da0,unknown,unknown,O
-0x71002b8dc8,40,fn_71002b8dc8,unknown,unknown,O
-0x71002b8df0,76,fn_71002b8df0,unknown,unknown,O
-0x71002b8e3c,176,fn_71002b8e3c,unknown,unknown,O
-0x71002b8eec,176,fn_71002b8eec,unknown,unknown,O
-0x71002b8f9c,364,fn_71002b8f9c,unknown,unknown,O
-0x71002b9108,60,fn_71002b9108,unknown,unknown,O
-0x71002b9144,4,fn_71002b9144,unknown,unknown,O
-0x71002b9148,112,fn_71002b9148,unknown,unknown,O
-0x71002b91b8,20,fn_71002b91b8,unknown,unknown,O
-0x71002b91cc,8,fn_71002b91cc,unknown,unknown,O
-0x71002b91d4,20,fn_71002b91d4,unknown,unknown,O
-0x71002b91e8,16,fn_71002b91e8,unknown,unknown,O
-0x71002b91f8,40,fn_71002b91f8,unknown,unknown,O
-0x71002b9220,40,fn_71002b9220,unknown,unknown,O
-0x71002b9248,76,fn_71002b9248,unknown,unknown,O
-0x71002b9294,176,fn_71002b9294,unknown,unknown,O
-0x71002b9344,176,fn_71002b9344,unknown,unknown,O
-0x71002b93f4,12,fn_71002b93f4,unknown,unknown,O
-0x71002b9400,144,fn_71002b9400,unknown,unknown,O
-0x71002b9490,8,fn_71002b9490,unknown,unknown,O
-0x71002b9498,12,fn_71002b9498,unknown,unknown,O
-0x71002b94a4,8,fn_71002b94a4,unknown,unknown,O
-0x71002b94ac,4,fn_71002b94ac,unknown,unknown,O
-0x71002b94b0,72,fn_71002b94b0,unknown,unknown,O
-0x71002b94f8,76,fn_71002b94f8,unknown,unknown,O
-0x71002b9544,8,fn_71002b9544,unknown,unknown,O
-0x71002b954c,228,fn_71002b954c,unknown,unknown,O
-0x71002b9630,80,fn_71002b9630,unknown,unknown,O
-0x71002b9680,84,fn_71002b9680,unknown,unknown,O
-0x71002b96d4,144,fn_71002b96d4,unknown,unknown,O
-0x71002b9764,8,fn_71002b9764,unknown,unknown,O
-0x71002b976c,12,fn_71002b976c,unknown,unknown,O
-0x71002b9778,8,fn_71002b9778,unknown,unknown,O
-0x71002b9780,4,fn_71002b9780,unknown,unknown,O
-0x71002b9784,4,fn_71002b9784,unknown,unknown,O
-0x71002b9788,76,fn_71002b9788,unknown,unknown,O
-0x71002b97d4,8,fn_71002b97d4,unknown,unknown,O
-0x71002b97dc,8,fn_71002b97dc,unknown,unknown,O
+0x71002b8b44,364,fn_71002b8b44,unknown,engine/reflection?,O
+0x71002b8cb0,60,fn_71002b8cb0,unknown,engine/reflection?,O
+0x71002b8cec,4,fn_71002b8cec,unknown,engine/reflection?,O
+0x71002b8cf0,112,fn_71002b8cf0,unknown,engine/reflection?,O
+0x71002b8d60,20,fn_71002b8d60,unknown,engine/reflection?,O
+0x71002b8d74,8,fn_71002b8d74,unknown,engine/reflection?,O
+0x71002b8d7c,20,fn_71002b8d7c,unknown,engine/reflection?,O
+0x71002b8d90,16,fn_71002b8d90,unknown,engine/reflection?,O
+0x71002b8da0,40,fn_71002b8da0,unknown,engine/reflection?,O
+0x71002b8dc8,40,fn_71002b8dc8,unknown,engine/reflection?,O
+0x71002b8df0,76,fn_71002b8df0,unknown,engine/reflection?,O
+0x71002b8e3c,176,fn_71002b8e3c,unknown,engine/reflection?,O
+0x71002b8eec,176,fn_71002b8eec,unknown,engine/reflection?,O
+0x71002b8f9c,364,fn_71002b8f9c,unknown,engine/reflection?,O
+0x71002b9108,60,fn_71002b9108,unknown,engine/reflection?,O
+0x71002b9144,4,fn_71002b9144,unknown,engine/reflection?,O
+0x71002b9148,112,fn_71002b9148,unknown,engine/reflection?,O
+0x71002b91b8,20,fn_71002b91b8,unknown,engine/reflection?,O
+0x71002b91cc,8,fn_71002b91cc,unknown,engine/reflection?,O
+0x71002b91d4,20,fn_71002b91d4,unknown,engine/reflection?,O
+0x71002b91e8,16,fn_71002b91e8,unknown,engine/reflection?,O
+0x71002b91f8,40,fn_71002b91f8,unknown,engine/reflection?,O
+0x71002b9220,40,fn_71002b9220,unknown,engine/reflection?,O
+0x71002b9248,76,fn_71002b9248,unknown,engine/reflection?,O
+0x71002b9294,176,fn_71002b9294,unknown,engine/reflection?,O
+0x71002b9344,176,fn_71002b9344,unknown,engine/reflection?,O
+0x71002b93f4,12,fn_71002b93f4,unknown,engine/reflection?,O
+0x71002b9400,144,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002b9490,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002b9498,12,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002b94a4,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002b94ac,4,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002b94b0,72,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002b94f8,76,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_Destroy",reflection,engine/reflection,O
+0x71002b9544,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002b954c,228,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x71002b9630,80,fn_71002b9630,unknown,engine/reflection?,O
+0x71002b9680,84,fn_71002b9680,unknown,engine/reflection?,O
+0x71002b96d4,144,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002b9764,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002b976c,12,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002b9778,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002b9780,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002b9784,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002b9788,76,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_Destroy",reflection,engine/reflection,O
+0x71002b97d4,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002b97dc,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::refl_MoveAssign",reflection,engine/reflection,O
 0x71002b97e4,80,fn_71002b97e4,unknown,unknown,O
 0x71002b9834,84,fn_71002b9834,unknown,unknown,O
 0x71002b9888,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CEvaluator, std::__1::default_delete<querysystem::CEvaluator>>>>::Count",reflection,engine/reflection,O
@@ -4141,16 +4141,16 @@ address,size,name,name_source,subsystem,status
 0x71002bd95c,28,querysystem::CFilterToEvaluator::refl_TypeOf,reflection,ai/querysystem,O
 0x71002bd978,60,querysystem::CFilterToEvaluator::refl_Construct,reflection,ai/querysystem,O
 0x71002bd9b4,12,querysystem::CFilterToEvaluator::refl_Destroy,reflection,ai/querysystem,O
-0x71002bd9c0,160,fn_71002bd9c0,unknown,ai/querysystem?,O
-0x71002bda60,220,fn_71002bda60,unknown,ai/querysystem?,O
+0x71002bd9c0,160,fn_71002bd9c0,unknown,unknown,O
+0x71002bda60,220,fn_71002bda60,unknown,unknown,O
 0x71002bdb3c,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::TElementIterator>",reflection,engine/reflection,O
 0x71002bdc18,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::TElementConstIterator>",reflection,engine/reflection,O
-0x71002bdcf4,900,fn_71002bdcf4,unknown,ai/querysystem?,O
-0x71002be078,388,fn_71002be078,unknown,ai/querysystem?,O
-0x71002be1fc,220,fn_71002be1fc,unknown,ai/querysystem?,O
-0x71002be2d8,900,fn_71002be2d8,unknown,ai/querysystem?,O
-0x71002be65c,388,fn_71002be65c,unknown,ai/querysystem?,O
-0x71002be7e0,220,fn_71002be7e0,unknown,ai/querysystem?,O
+0x71002bdcf4,900,fn_71002bdcf4,unknown,unknown,O
+0x71002be078,388,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_InitClass",reflection,engine/reflection,O
+0x71002be1fc,220,fn_71002be1fc,unknown,engine/reflection?,O
+0x71002be2d8,900,fn_71002be2d8,unknown,engine/reflection?,O
+0x71002be65c,388,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_InitClass",reflection,engine/reflection,O
+0x71002be7e0,220,fn_71002be7e0,unknown,unknown,O
 0x71002be8bc,480,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>",reflection,engine/reflection,O
 0x71002bea9c,4,querysystem::CFilter::refl_AddAttributes,reflection,ai/querysystem,O
 0x71002beaa0,240,querysystem::CFilter::refl_GetClass,reflection,ai/querysystem,O
@@ -4227,26 +4227,26 @@ address,size,name,name_source,subsystem,status
 0x71002bfd4c,176,fn_71002bfd4c,unknown,unknown,O
 0x71002bfdfc,176,fn_71002bfdfc,unknown,unknown,O
 0x71002bfeac,12,fn_71002bfeac,unknown,unknown,O
-0x71002bfeb8,144,fn_71002bfeb8,unknown,unknown,O
-0x71002bff48,8,fn_71002bff48,unknown,unknown,O
-0x71002bff50,12,fn_71002bff50,unknown,unknown,O
-0x71002bff5c,8,fn_71002bff5c,unknown,unknown,O
-0x71002bff64,4,fn_71002bff64,unknown,unknown,O
-0x71002bff68,72,fn_71002bff68,unknown,unknown,O
-0x71002bffb0,76,fn_71002bffb0,unknown,unknown,O
-0x71002bfffc,8,fn_71002bfffc,unknown,unknown,O
-0x71002c0004,228,fn_71002c0004,unknown,unknown,O
-0x71002c00e8,80,fn_71002c00e8,unknown,unknown,O
-0x71002c0138,84,fn_71002c0138,unknown,unknown,O
-0x71002c018c,144,fn_71002c018c,unknown,unknown,O
-0x71002c021c,8,fn_71002c021c,unknown,unknown,O
-0x71002c0224,12,fn_71002c0224,unknown,unknown,O
-0x71002c0230,8,fn_71002c0230,unknown,unknown,O
-0x71002c0238,4,fn_71002c0238,unknown,unknown,O
-0x71002c023c,4,fn_71002c023c,unknown,unknown,O
-0x71002c0240,76,fn_71002c0240,unknown,unknown,O
-0x71002c028c,8,fn_71002c028c,unknown,unknown,O
-0x71002c0294,8,fn_71002c0294,unknown,unknown,O
+0x71002bfeb8,144,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002bff48,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002bff50,12,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002bff5c,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002bff64,4,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002bff68,72,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002bffb0,76,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_Destroy",reflection,engine/reflection,O
+0x71002bfffc,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002c0004,228,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x71002c00e8,80,fn_71002c00e8,unknown,engine/reflection?,O
+0x71002c0138,84,fn_71002c0138,unknown,engine/reflection?,O
+0x71002c018c,144,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002c021c,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002c0224,12,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002c0230,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002c0238,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002c023c,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002c0240,76,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_Destroy",reflection,engine/reflection,O
+0x71002c028c,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002c0294,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::refl_MoveAssign",reflection,engine/reflection,O
 0x71002c029c,80,fn_71002c029c,unknown,unknown,O
 0x71002c02ec,84,fn_71002c02ec,unknown,unknown,O
 0x71002c0340,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<querysystem::CFilter, std::__1::default_delete<querysystem::CFilter>>>>::Count",reflection,engine/reflection,O
@@ -4460,22 +4460,22 @@ address,size,name,name_source,subsystem,status
 0x71002c74e0,388,SLaunchPatternStep::refl_InitClass,reflection,game,O
 0x71002c7664,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator>,reflection,engine/reflection,O
 0x71002c7740,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementConstIterator>,reflection,engine/reflection,O
-0x71002c781c,900,fn_71002c781c,unknown,game?,O
-0x71002c7ba0,388,fn_71002c7ba0,unknown,game?,O
-0x71002c7d24,220,fn_71002c7d24,unknown,game?,O
-0x71002c7e00,900,fn_71002c7e00,unknown,game?,O
-0x71002c8184,388,fn_71002c8184,unknown,game?,O
-0x71002c8308,220,fn_71002c8308,unknown,game?,O
-0x71002c83e4,500,fn_71002c83e4,unknown,game?,O
-0x71002c85d8,1396,fn_71002c85d8,unknown,game?,O
+0x71002c781c,900,fn_71002c781c,unknown,unknown,O
+0x71002c7ba0,388,base::reflection::KeyElementValue<TLaunchPattern>::refl_InitClass,reflection,engine/reflection,O
+0x71002c7d24,220,fn_71002c7d24,unknown,engine/reflection?,O
+0x71002c7e00,900,fn_71002c7e00,unknown,engine/reflection?,O
+0x71002c8184,388,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_InitClass,reflection,engine/reflection,O
+0x71002c8308,220,fn_71002c8308,unknown,unknown,O
+0x71002c83e4,500,fn_71002c83e4,unknown,unknown,O
+0x71002c85d8,1396,fn_71002c85d8,unknown,unknown,O
 0x71002c8b4c,388,SLaunchConfig::refl_InitClass,reflection,game,O
 0x71002c8cd0,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementIterator>,reflection,engine/reflection,O
 0x71002c8dac,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<TLaunchConfigs>::TElementConstIterator>,reflection,engine/reflection,O
 0x71002c8e88,900,fn_71002c8e88,unknown,unknown,O
-0x71002c920c,388,fn_71002c920c,unknown,unknown,O
-0x71002c9390,220,fn_71002c9390,unknown,unknown,O
-0x71002c946c,900,fn_71002c946c,unknown,unknown,O
-0x71002c97f0,388,fn_71002c97f0,unknown,unknown,O
+0x71002c920c,388,base::reflection::KeyElementValue<TLaunchConfigs>::refl_InitClass,reflection,engine/reflection,O
+0x71002c9390,220,fn_71002c9390,unknown,engine/reflection?,O
+0x71002c946c,900,fn_71002c946c,unknown,engine/reflection?,O
+0x71002c97f0,388,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_InitClass,reflection,engine/reflection,O
 0x71002c9974,220,fn_71002c9974,unknown,unknown,O
 0x71002c9a50,500,fn_71002c9a50,unknown,unknown,O
 0x71002c9c44,364,base::reflection::refl_InitType<base::reflection::CollectionTypeMapper<TLaunchPattern>::TElementIterator>,reflection,engine/reflection,O
@@ -4593,55 +4593,55 @@ address,size,name,name_source,subsystem,status
 0x71002cb5f0,4,SLaunchPatternStep::refl_Destroy,reflection,game,O
 0x71002cb5f4,20,SLaunchPatternStep::refl_CopyAssign,reflection,game,O
 0x71002cb608,20,SLaunchPatternStep::refl_MoveAssign,reflection,game,O
-0x71002cb61c,12,fn_71002cb61c,unknown,game?,O
-0x71002cb628,8,fn_71002cb628,unknown,game?,O
-0x71002cb630,12,fn_71002cb630,unknown,game?,O
-0x71002cb63c,8,fn_71002cb63c,unknown,game?,O
-0x71002cb644,8,fn_71002cb644,unknown,game?,O
-0x71002cb64c,84,fn_71002cb64c,unknown,game?,O
-0x71002cb6a0,24,fn_71002cb6a0,unknown,game?,O
-0x71002cb6b8,156,fn_71002cb6b8,unknown,game?,O
-0x71002cb754,152,fn_71002cb754,unknown,game?,O
-0x71002cb7ec,80,fn_71002cb7ec,unknown,game?,O
-0x71002cb83c,60,fn_71002cb83c,unknown,game?,O
-0x71002cb878,12,fn_71002cb878,unknown,game?,O
-0x71002cb884,8,fn_71002cb884,unknown,game?,O
-0x71002cb88c,12,fn_71002cb88c,unknown,game?,O
-0x71002cb898,8,fn_71002cb898,unknown,game?,O
-0x71002cb8a0,8,fn_71002cb8a0,unknown,game?,O
-0x71002cb8a8,84,fn_71002cb8a8,unknown,game?,O
-0x71002cb8fc,24,fn_71002cb8fc,unknown,game?,O
-0x71002cb914,8,fn_71002cb914,unknown,game?,O
-0x71002cb91c,8,fn_71002cb91c,unknown,game?,O
-0x71002cb924,80,fn_71002cb924,unknown,game?,O
-0x71002cb974,60,fn_71002cb974,unknown,game?,O
-0x71002cb9b0,8,fn_71002cb9b0,unknown,game?,O
-0x71002cb9b8,8,fn_71002cb9b8,unknown,game?,O
-0x71002cb9c0,16,fn_71002cb9c0,unknown,game?,O
-0x71002cb9d0,16,fn_71002cb9d0,unknown,game?,O
-0x71002cb9e0,92,fn_71002cb9e0,unknown,game?,U
-0x71002cba3c,12,fn_71002cba3c,unknown,game?,O
-0x71002cba48,36,fn_71002cba48,unknown,game?,O
-0x71002cba6c,44,fn_71002cba6c,unknown,game?,O
-0x71002cba98,44,fn_71002cba98,unknown,game?,O
-0x71002cbac4,12,fn_71002cbac4,unknown,game?,O
-0x71002cbad0,8,fn_71002cbad0,unknown,game?,O
-0x71002cbad8,12,fn_71002cbad8,unknown,game?,O
-0x71002cbae4,64,fn_71002cbae4,unknown,game?,O
-0x71002cbb24,4,fn_71002cbb24,unknown,game?,O
-0x71002cbb28,64,fn_71002cbb28,unknown,game?,O
-0x71002cbb68,60,fn_71002cbb68,unknown,game?,O
-0x71002cbba4,48,fn_71002cbba4,unknown,game?,O
-0x71002cbbd4,76,fn_71002cbbd4,unknown,game?,O
-0x71002cbc20,444,fn_71002cbc20,unknown,game?,O
-0x71002cbddc,444,fn_71002cbddc,unknown,game?,O
-0x71002cbf98,496,fn_71002cbf98,unknown,game?,U
-0x71002cc188,496,fn_71002cc188,unknown,game?,U
-0x71002cc378,412,fn_71002cc378,unknown,game?,U
-0x71002cc514,12,fn_71002cc514,unknown,game?,O
-0x71002cc520,20,fn_71002cc520,unknown,game?,O
-0x71002cc534,168,fn_71002cc534,unknown,game?,U
-0x71002cc5dc,172,fn_71002cc5dc,unknown,game?,O
+0x71002cb61c,12,base::reflection::KeyElementValue<TLaunchPattern>::refl_Equals,reflection,engine/reflection,O
+0x71002cb628,8,base::reflection::KeyElementValue<TLaunchPattern>::refl_Hash,reflection,engine/reflection,O
+0x71002cb630,12,base::reflection::KeyElementValue<TLaunchPattern>::refl_TypeOf,reflection,engine/reflection,O
+0x71002cb63c,8,base::reflection::KeyElementValue<TLaunchPattern>::refl_Construct,reflection,engine/reflection,O
+0x71002cb644,8,base::reflection::KeyElementValue<TLaunchPattern>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002cb64c,84,base::reflection::KeyElementValue<TLaunchPattern>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002cb6a0,24,base::reflection::KeyElementValue<TLaunchPattern>::refl_Destroy,reflection,engine/reflection,O
+0x71002cb6b8,156,base::reflection::KeyElementValue<TLaunchPattern>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002cb754,152,base::reflection::KeyElementValue<TLaunchPattern>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002cb7ec,80,fn_71002cb7ec,unknown,engine/reflection?,O
+0x71002cb83c,60,fn_71002cb83c,unknown,engine/reflection?,O
+0x71002cb878,12,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_Equals,reflection,engine/reflection,O
+0x71002cb884,8,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_Hash,reflection,engine/reflection,O
+0x71002cb88c,12,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_TypeOf,reflection,engine/reflection,O
+0x71002cb898,8,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_Construct,reflection,engine/reflection,O
+0x71002cb8a0,8,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002cb8a8,84,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002cb8fc,24,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_Destroy,reflection,engine/reflection,O
+0x71002cb914,8,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002cb91c,8,base::reflection::ConstKeyElementValue<TLaunchPattern>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002cb924,80,fn_71002cb924,unknown,unknown,O
+0x71002cb974,60,fn_71002cb974,unknown,unknown,O
+0x71002cb9b0,8,fn_71002cb9b0,unknown,unknown,O
+0x71002cb9b8,8,fn_71002cb9b8,unknown,unknown,O
+0x71002cb9c0,16,fn_71002cb9c0,unknown,unknown,O
+0x71002cb9d0,16,fn_71002cb9d0,unknown,unknown,O
+0x71002cb9e0,92,fn_71002cb9e0,unknown,unknown,U
+0x71002cba3c,12,fn_71002cba3c,unknown,unknown,O
+0x71002cba48,36,fn_71002cba48,unknown,unknown,O
+0x71002cba6c,44,fn_71002cba6c,unknown,unknown,O
+0x71002cba98,44,fn_71002cba98,unknown,unknown,O
+0x71002cbac4,12,fn_71002cbac4,unknown,unknown,O
+0x71002cbad0,8,fn_71002cbad0,unknown,unknown,O
+0x71002cbad8,12,fn_71002cbad8,unknown,unknown,O
+0x71002cbae4,64,fn_71002cbae4,unknown,unknown,O
+0x71002cbb24,4,fn_71002cbb24,unknown,unknown,O
+0x71002cbb28,64,fn_71002cbb28,unknown,unknown,O
+0x71002cbb68,60,fn_71002cbb68,unknown,unknown,O
+0x71002cbba4,48,fn_71002cbba4,unknown,unknown,O
+0x71002cbbd4,76,fn_71002cbbd4,unknown,unknown,O
+0x71002cbc20,444,fn_71002cbc20,unknown,unknown,O
+0x71002cbddc,444,fn_71002cbddc,unknown,unknown,O
+0x71002cbf98,496,fn_71002cbf98,unknown,unknown,U
+0x71002cc188,496,fn_71002cc188,unknown,unknown,U
+0x71002cc378,412,fn_71002cc378,unknown,unknown,U
+0x71002cc514,12,fn_71002cc514,unknown,unknown,O
+0x71002cc520,20,fn_71002cc520,unknown,unknown,O
+0x71002cc534,168,fn_71002cc534,unknown,unknown,U
+0x71002cc5dc,172,fn_71002cc5dc,unknown,unknown,O
 0x71002cc688,12,SLaunchConfig::refl_Equals,reflection,game,O
 0x71002cc694,8,SLaunchConfig::refl_Hash,reflection,game,O
 0x71002cc69c,12,SLaunchConfig::refl_TypeOf,reflection,game,O
@@ -4651,60 +4651,60 @@ address,size,name,name_source,subsystem,status
 0x71002cc7ec,136,SLaunchConfig::refl_Destroy,reflection,game,O
 0x71002cc874,172,SLaunchConfig::refl_CopyAssign,reflection,game,O
 0x71002cc920,172,SLaunchConfig::refl_MoveAssign,reflection,game,O
-0x71002cc9cc,12,fn_71002cc9cc,unknown,game?,O
-0x71002cc9d8,8,fn_71002cc9d8,unknown,game?,O
-0x71002cc9e0,12,fn_71002cc9e0,unknown,game?,O
-0x71002cc9ec,8,fn_71002cc9ec,unknown,game?,O
-0x71002cc9f4,8,fn_71002cc9f4,unknown,game?,O
-0x71002cc9fc,228,fn_71002cc9fc,unknown,game?,O
-0x71002ccae0,160,fn_71002ccae0,unknown,game?,O
-0x71002ccb80,48,fn_71002ccb80,unknown,game?,O
-0x71002ccbb0,48,fn_71002ccbb0,unknown,game?,O
-0x71002ccbe0,280,fn_71002ccbe0,unknown,game?,O
-0x71002cccf8,420,fn_71002cccf8,unknown,game?,O
-0x71002cce9c,80,fn_71002cce9c,unknown,game?,O
-0x71002cceec,56,fn_71002cceec,unknown,game?,O
-0x71002ccf24,12,fn_71002ccf24,unknown,game?,O
-0x71002ccf30,8,fn_71002ccf30,unknown,game?,O
-0x71002ccf38,12,fn_71002ccf38,unknown,game?,O
-0x71002ccf44,8,fn_71002ccf44,unknown,game?,O
-0x71002ccf4c,8,fn_71002ccf4c,unknown,game?,O
-0x71002ccf54,228,fn_71002ccf54,unknown,game?,O
-0x71002cd038,160,fn_71002cd038,unknown,game?,O
-0x71002cd0d8,8,fn_71002cd0d8,unknown,game?,O
-0x71002cd0e0,8,fn_71002cd0e0,unknown,game?,O
-0x71002cd0e8,80,fn_71002cd0e8,unknown,game?,O
-0x71002cd138,56,fn_71002cd138,unknown,game?,O
-0x71002cd170,8,fn_71002cd170,unknown,game?,O
-0x71002cd178,224,fn_71002cd178,unknown,game?,O
-0x71002cd258,16,fn_71002cd258,unknown,game?,O
-0x71002cd268,16,fn_71002cd268,unknown,game?,O
-0x71002cd278,24,fn_71002cd278,unknown,game?,O
-0x71002cd290,20,fn_71002cd290,unknown,game?,O
-0x71002cd2a4,40,fn_71002cd2a4,unknown,game?,O
-0x71002cd2cc,168,fn_71002cd2cc,unknown,game?,O
-0x71002cd374,168,fn_71002cd374,unknown,game?,O
-0x71002cd41c,12,fn_71002cd41c,unknown,game?,O
-0x71002cd428,8,fn_71002cd428,unknown,game?,O
-0x71002cd430,12,fn_71002cd430,unknown,game?,O
-0x71002cd43c,64,fn_71002cd43c,unknown,game?,O
-0x71002cd47c,4,fn_71002cd47c,unknown,game?,O
-0x71002cd480,64,fn_71002cd480,unknown,game?,O
-0x71002cd4c0,252,fn_71002cd4c0,unknown,game?,O
-0x71002cd5bc,48,fn_71002cd5bc,unknown,game?,O
-0x71002cd5ec,308,fn_71002cd5ec,unknown,game?,O
-0x71002cd720,308,fn_71002cd720,unknown,game?,O
-0x71002cd854,356,fn_71002cd854,unknown,game?,O
-0x71002cd9b8,460,fn_71002cd9b8,unknown,game?,O
-0x71002cdb84,588,fn_71002cdb84,unknown,game?,O
-0x71002cddd0,588,fn_71002cddd0,unknown,game?,O
-0x71002ce01c,436,fn_71002ce01c,unknown,game?,O
-0x71002ce1d0,344,fn_71002ce1d0,unknown,game?,U
-0x71002ce328,12,fn_71002ce328,unknown,game?,O
-0x71002ce334,24,fn_71002ce334,unknown,game?,O
-0x71002ce34c,228,fn_71002ce34c,unknown,game?,O
-0x71002ce430,240,fn_71002ce430,unknown,game?,O
-0x71002ce520,1624,fn_71002ce520,unknown,game?,O
+0x71002cc9cc,12,base::reflection::KeyElementValue<TLaunchConfigs>::refl_Equals,reflection,engine/reflection,O
+0x71002cc9d8,8,base::reflection::KeyElementValue<TLaunchConfigs>::refl_Hash,reflection,engine/reflection,O
+0x71002cc9e0,12,base::reflection::KeyElementValue<TLaunchConfigs>::refl_TypeOf,reflection,engine/reflection,O
+0x71002cc9ec,8,base::reflection::KeyElementValue<TLaunchConfigs>::refl_Construct,reflection,engine/reflection,O
+0x71002cc9f4,8,base::reflection::KeyElementValue<TLaunchConfigs>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002cc9fc,228,base::reflection::KeyElementValue<TLaunchConfigs>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002ccae0,160,base::reflection::KeyElementValue<TLaunchConfigs>::refl_Destroy,reflection,engine/reflection,O
+0x71002ccb80,48,base::reflection::KeyElementValue<TLaunchConfigs>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002ccbb0,48,base::reflection::KeyElementValue<TLaunchConfigs>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002ccbe0,280,fn_71002ccbe0,unknown,engine/reflection?,O
+0x71002cccf8,420,fn_71002cccf8,unknown,engine/reflection?,O
+0x71002cce9c,80,fn_71002cce9c,unknown,engine/reflection?,O
+0x71002cceec,56,fn_71002cceec,unknown,engine/reflection?,O
+0x71002ccf24,12,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_Equals,reflection,engine/reflection,O
+0x71002ccf30,8,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_Hash,reflection,engine/reflection,O
+0x71002ccf38,12,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_TypeOf,reflection,engine/reflection,O
+0x71002ccf44,8,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_Construct,reflection,engine/reflection,O
+0x71002ccf4c,8,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002ccf54,228,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002cd038,160,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_Destroy,reflection,engine/reflection,O
+0x71002cd0d8,8,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002cd0e0,8,base::reflection::ConstKeyElementValue<TLaunchConfigs>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002cd0e8,80,fn_71002cd0e8,unknown,unknown,O
+0x71002cd138,56,fn_71002cd138,unknown,unknown,O
+0x71002cd170,8,fn_71002cd170,unknown,unknown,O
+0x71002cd178,224,fn_71002cd178,unknown,unknown,O
+0x71002cd258,16,fn_71002cd258,unknown,unknown,O
+0x71002cd268,16,fn_71002cd268,unknown,unknown,O
+0x71002cd278,24,fn_71002cd278,unknown,unknown,O
+0x71002cd290,20,fn_71002cd290,unknown,unknown,O
+0x71002cd2a4,40,fn_71002cd2a4,unknown,unknown,O
+0x71002cd2cc,168,fn_71002cd2cc,unknown,unknown,O
+0x71002cd374,168,fn_71002cd374,unknown,unknown,O
+0x71002cd41c,12,fn_71002cd41c,unknown,unknown,O
+0x71002cd428,8,fn_71002cd428,unknown,unknown,O
+0x71002cd430,12,fn_71002cd430,unknown,unknown,O
+0x71002cd43c,64,fn_71002cd43c,unknown,unknown,O
+0x71002cd47c,4,fn_71002cd47c,unknown,unknown,O
+0x71002cd480,64,fn_71002cd480,unknown,unknown,O
+0x71002cd4c0,252,fn_71002cd4c0,unknown,unknown,O
+0x71002cd5bc,48,fn_71002cd5bc,unknown,unknown,O
+0x71002cd5ec,308,fn_71002cd5ec,unknown,unknown,O
+0x71002cd720,308,fn_71002cd720,unknown,unknown,O
+0x71002cd854,356,fn_71002cd854,unknown,unknown,O
+0x71002cd9b8,460,fn_71002cd9b8,unknown,unknown,O
+0x71002cdb84,588,fn_71002cdb84,unknown,unknown,O
+0x71002cddd0,588,fn_71002cddd0,unknown,unknown,O
+0x71002ce01c,436,fn_71002ce01c,unknown,unknown,O
+0x71002ce1d0,344,fn_71002ce1d0,unknown,unknown,U
+0x71002ce328,12,fn_71002ce328,unknown,unknown,O
+0x71002ce334,24,fn_71002ce334,unknown,unknown,O
+0x71002ce34c,228,fn_71002ce34c,unknown,unknown,O
+0x71002ce430,240,fn_71002ce430,unknown,unknown,O
+0x71002ce520,1624,fn_71002ce520,unknown,unknown,O
 0x71002ceb78,4,CPerceptionRuleSet::refl_AddAttributes,reflection,game,O
 0x71002ceb7c,240,CPerceptionRuleSet::refl_GetClass,reflection,game,O
 0x71002cec6c,5676,CPerceptionRuleSet::refl_AddFields,reflection,game,O
@@ -4898,16 +4898,16 @@ address,size,name,name_source,subsystem,status
 0x71002d6464,244,animtree::CAnimTreeDef::refl_GetClass,reflection,animation,O
 0x71002d6558,748,animtree::CAnimTreeDef::refl_AddFields,reflection,animation,O
 0x71002d6844,352,animtree::CAnimTreeDef::refl_InitClass,reflection,animation,O
-0x71002d69a4,380,fn_71002d69a4,unknown,animation?,O
-0x71002d6b20,220,fn_71002d6b20,unknown,animation?,O
-0x71002d6bfc,220,fn_71002d6bfc,unknown,animation?,O
-0x71002d6cd8,912,fn_71002d6cd8,unknown,animation?,O
-0x71002d7068,388,fn_71002d7068,unknown,animation?,O
-0x71002d71ec,220,fn_71002d71ec,unknown,animation?,O
-0x71002d72c8,912,fn_71002d72c8,unknown,animation?,O
-0x71002d7658,388,fn_71002d7658,unknown,animation?,O
-0x71002d77dc,220,fn_71002d77dc,unknown,animation?,O
-0x71002d78b8,504,fn_71002d78b8,unknown,animation?,O
+0x71002d69a4,380,fn_71002d69a4,unknown,unknown,O
+0x71002d6b20,220,fn_71002d6b20,unknown,unknown,O
+0x71002d6bfc,220,fn_71002d6bfc,unknown,unknown,O
+0x71002d6cd8,912,fn_71002d6cd8,unknown,unknown,O
+0x71002d7068,388,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_InitClass,reflection,engine/reflection,O
+0x71002d71ec,220,fn_71002d71ec,unknown,engine/reflection?,O
+0x71002d72c8,912,fn_71002d72c8,unknown,engine/reflection?,O
+0x71002d7658,388,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_InitClass,reflection,engine/reflection,O
+0x71002d77dc,220,fn_71002d77dc,unknown,unknown,O
+0x71002d78b8,504,fn_71002d78b8,unknown,unknown,O
 0x71002d7ab0,4,animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_AddAttributes,reflection,animation,O
 0x71002d7ab4,240,animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass,reflection,animation,O
 0x71002d7ba4,268,animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_AddFields,reflection,animation,O
@@ -4993,27 +4993,27 @@ address,size,name,name_source,subsystem,status
 0x71002d964c,4,base::reflection::ValueOps<animtree::CAnimTreeElementDef*>::Destroy,reflection,engine/reflection,O
 0x71002d9650,20,base::reflection::ValueOps<animtree::CAnimTreeElementDef*>::CopyAssign,reflection,engine/reflection,O
 0x71002d9664,20,base::reflection::ValueOps<animtree::CAnimTreeElementDef*>::MoveAssign,reflection,engine/reflection,O
-0x71002d9678,12,fn_71002d9678,unknown,unknown,O
-0x71002d9684,8,fn_71002d9684,unknown,unknown,O
-0x71002d968c,12,fn_71002d968c,unknown,unknown,O
-0x71002d9698,8,fn_71002d9698,unknown,unknown,O
-0x71002d96a0,8,fn_71002d96a0,unknown,unknown,O
-0x71002d96a8,152,fn_71002d96a8,unknown,unknown,O
-0x71002d9740,200,fn_71002d9740,unknown,unknown,O
-0x71002d9808,348,fn_71002d9808,unknown,unknown,O
-0x71002d9964,48,fn_71002d9964,unknown,unknown,O
-0x71002d9994,504,fn_71002d9994,unknown,unknown,O
-0x71002d9b8c,80,fn_71002d9b8c,unknown,unknown,O
-0x71002d9bdc,88,fn_71002d9bdc,unknown,unknown,O
-0x71002d9c34,12,fn_71002d9c34,unknown,unknown,O
-0x71002d9c40,8,fn_71002d9c40,unknown,unknown,O
-0x71002d9c48,12,fn_71002d9c48,unknown,unknown,O
-0x71002d9c54,8,fn_71002d9c54,unknown,unknown,O
-0x71002d9c5c,8,fn_71002d9c5c,unknown,unknown,O
-0x71002d9c64,196,fn_71002d9c64,unknown,unknown,O
-0x71002d9d28,200,fn_71002d9d28,unknown,unknown,O
-0x71002d9df0,8,fn_71002d9df0,unknown,unknown,O
-0x71002d9df8,8,fn_71002d9df8,unknown,unknown,O
+0x71002d9678,12,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_Equals,reflection,engine/reflection,O
+0x71002d9684,8,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_Hash,reflection,engine/reflection,O
+0x71002d968c,12,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_TypeOf,reflection,engine/reflection,O
+0x71002d9698,8,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_Construct,reflection,engine/reflection,O
+0x71002d96a0,8,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002d96a8,152,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002d9740,200,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_Destroy,reflection,engine/reflection,O
+0x71002d9808,348,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002d9964,48,base::reflection::KeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002d9994,504,fn_71002d9994,unknown,engine/reflection?,O
+0x71002d9b8c,80,fn_71002d9b8c,unknown,engine/reflection?,O
+0x71002d9bdc,88,fn_71002d9bdc,unknown,engine/reflection?,O
+0x71002d9c34,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_Equals,reflection,engine/reflection,O
+0x71002d9c40,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_Hash,reflection,engine/reflection,O
+0x71002d9c48,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_TypeOf,reflection,engine/reflection,O
+0x71002d9c54,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_Construct,reflection,engine/reflection,O
+0x71002d9c5c,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002d9c64,196,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002d9d28,200,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_Destroy,reflection,engine/reflection,O
+0x71002d9df0,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002d9df8,8,base::reflection::ConstKeyElementValue<base::global::CRntVector<animtree::CAnimTreeDef::TAnimTreeLinkDef>>::refl_MoveAssign,reflection,engine/reflection,O
 0x71002d9e00,80,fn_71002d9e00,unknown,unknown,O
 0x71002d9e50,88,fn_71002d9e50,unknown,unknown,O
 0x71002d9ea8,8,fn_71002d9ea8,unknown,unknown,O
@@ -5083,10 +5083,10 @@ address,size,name,name_source,subsystem,status
 0x71002dc0d8,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::TElementIterator>",reflection,engine/reflection,O
 0x71002dc1b4,220,"base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::TElementConstIterator>",reflection,engine/reflection,O
 0x71002dc290,900,fn_71002dc290,unknown,engine/reflection?,O
-0x71002dc614,388,fn_71002dc614,unknown,engine/reflection?,O
+0x71002dc614,388,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_InitClass",reflection,engine/reflection,O
 0x71002dc798,220,fn_71002dc798,unknown,engine/reflection?,O
 0x71002dc874,900,fn_71002dc874,unknown,engine/reflection?,O
-0x71002dcbf8,388,fn_71002dcbf8,unknown,engine/reflection?,O
+0x71002dcbf8,388,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_InitClass",reflection,engine/reflection,O
 0x71002dcd7c,220,fn_71002dcd7c,unknown,engine/reflection?,O
 0x71002dce58,480,"base::reflection::refl_InitType<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>",reflection,engine/reflection,O
 0x71002dd038,352,base::reflection::refl_InitType<std::unique_ptr<animtree::CAnimTreeElementDef>>,reflection,engine/reflection,O
@@ -5162,51 +5162,51 @@ address,size,name,name_source,subsystem,status
 0x71002de13c,12,animtree::CAnimTreeElementDef::refl_Destroy,reflection,animation,O
 0x71002de148,136,animtree::CAnimTreeElementDef::refl_CopyAssign,reflection,animation,O
 0x71002de1d0,136,animtree::CAnimTreeElementDef::refl_MoveAssign,reflection,animation,O
-0x71002de258,144,fn_71002de258,unknown,animation?,O
-0x71002de2e8,8,fn_71002de2e8,unknown,animation?,O
-0x71002de2f0,12,fn_71002de2f0,unknown,animation?,O
-0x71002de2fc,8,fn_71002de2fc,unknown,animation?,O
-0x71002de304,4,fn_71002de304,unknown,animation?,O
-0x71002de308,72,fn_71002de308,unknown,animation?,O
-0x71002de350,76,fn_71002de350,unknown,animation?,O
-0x71002de39c,8,fn_71002de39c,unknown,animation?,O
-0x71002de3a4,228,fn_71002de3a4,unknown,animation?,O
-0x71002de488,80,fn_71002de488,unknown,animation?,O
-0x71002de4d8,84,fn_71002de4d8,unknown,animation?,O
-0x71002de52c,144,fn_71002de52c,unknown,animation?,O
-0x71002de5bc,8,fn_71002de5bc,unknown,animation?,O
-0x71002de5c4,12,fn_71002de5c4,unknown,animation?,O
-0x71002de5d0,8,fn_71002de5d0,unknown,animation?,O
-0x71002de5d8,4,fn_71002de5d8,unknown,animation?,O
-0x71002de5dc,4,fn_71002de5dc,unknown,animation?,O
-0x71002de5e0,76,fn_71002de5e0,unknown,animation?,O
-0x71002de62c,8,fn_71002de62c,unknown,animation?,O
-0x71002de634,8,fn_71002de634,unknown,animation?,O
-0x71002de63c,80,fn_71002de63c,unknown,animation?,O
-0x71002de68c,84,fn_71002de68c,unknown,animation?,O
+0x71002de258,144,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002de2e8,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002de2f0,12,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002de2fc,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002de304,4,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002de308,72,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002de350,76,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_Destroy",reflection,engine/reflection,O
+0x71002de39c,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002de3a4,228,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x71002de488,80,fn_71002de488,unknown,engine/reflection?,O
+0x71002de4d8,84,fn_71002de4d8,unknown,engine/reflection?,O
+0x71002de52c,144,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002de5bc,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002de5c4,12,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002de5d0,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002de5d8,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002de5dc,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002de5e0,76,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_Destroy",reflection,engine/reflection,O
+0x71002de62c,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002de634,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x71002de63c,80,fn_71002de63c,unknown,unknown,O
+0x71002de68c,84,fn_71002de68c,unknown,unknown,O
 0x71002de6e0,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::Count",reflection,engine/reflection,O
-0x71002de6e8,100,fn_71002de6e8,unknown,animation?,O
-0x71002de74c,4,fn_71002de74c,unknown,animation?,O
-0x71002de750,16,fn_71002de750,unknown,animation?,O
-0x71002de760,192,fn_71002de760,unknown,animation?,O
+0x71002de6e8,100,fn_71002de6e8,unknown,unknown,O
+0x71002de74c,4,fn_71002de74c,unknown,unknown,O
+0x71002de750,16,fn_71002de750,unknown,unknown,O
+0x71002de760,192,fn_71002de760,unknown,unknown,O
 0x71002de820,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::At",reflection,engine/reflection,O
 0x71002de82c,36,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::Find",reflection,engine/reflection,O
-0x71002de850,4,fn_71002de850,unknown,animation?,O
-0x71002de854,80,fn_71002de854,unknown,animation?,O
-0x71002de8a4,76,fn_71002de8a4,unknown,animation?,O
+0x71002de850,4,fn_71002de850,unknown,unknown,O
+0x71002de854,80,fn_71002de854,unknown,unknown,O
+0x71002de8a4,76,fn_71002de8a4,unknown,unknown,O
 0x71002de8f0,8,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::Hash",reflection,engine/reflection,O
 0x71002de8f8,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::TypeOf",reflection,engine/reflection,O
 0x71002de904,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::Construct",reflection,engine/reflection,O
 0x71002de944,64,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::MoveConstruct",reflection,engine/reflection,O
-0x71002de984,144,fn_71002de984,unknown,animation?,O
-0x71002dea14,184,fn_71002dea14,unknown,animation?,O
-0x71002deacc,612,fn_71002deacc,unknown,animation?,O
-0x71002ded30,564,fn_71002ded30,unknown,animation?,O
+0x71002de984,144,fn_71002de984,unknown,unknown,O
+0x71002dea14,184,fn_71002dea14,unknown,unknown,O
+0x71002deacc,612,fn_71002deacc,unknown,unknown,O
+0x71002ded30,564,fn_71002ded30,unknown,unknown,O
 0x71002def64,12,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::Begin",reflection,engine/reflection,O
 0x71002def70,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<animtree::CAnimTreeElementDef, std::__1::default_delete<animtree::CAnimTreeElementDef>>>>::End",reflection,engine/reflection,O
-0x71002def84,260,fn_71002def84,unknown,animation?,O
-0x71002df088,268,fn_71002df088,unknown,animation?,O
-0x71002df1a0,840,fn_71002df1a0,unknown,animation?,O
+0x71002def84,260,fn_71002def84,unknown,unknown,O
+0x71002df088,268,fn_71002df088,unknown,unknown,O
+0x71002df1a0,840,fn_71002df1a0,unknown,unknown,O
 0x71002df4e8,4,animtree::CAnimTreeNode::refl_AddAttributes,reflection,animation,O
 0x71002df4ec,244,animtree::CAnimTreeNode::refl_GetClass,reflection,animation,O
 0x71002df5e0,4,animtree::CAnimTreeNode::refl_AddFields,reflection,animation,O
@@ -5580,14 +5580,14 @@ address,size,name,name_source,subsystem,status
 0x71002ea494,448,fn_71002ea494,unknown,game/core?,O
 0x71002ea654,388,CPlaythrough::SCheckpointData::SValidationInfo::refl_InitClass,reflection,game/core,O
 0x71002ea7d8,516,base::reflection::refl_GetType<std::unique_ptr<CPlaythrough::SCheckpointData>>,reflection,engine/reflection,O
-0x71002ea9dc,220,fn_71002ea9dc,unknown,unknown,O
+0x71002ea9dc,220,fn_71002ea9dc,unknown,engine/reflection?,O
 0x71002eaab8,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementIterator>,reflection,engine/reflection,O
 0x71002eab94,220,base::reflection::refl_GetType<base::reflection::CollectionTypeMapper<CPlaythrough::TDictCheckpointDatas>::TElementConstIterator>,reflection,engine/reflection,O
-0x71002eac70,900,fn_71002eac70,unknown,unknown,O
-0x71002eaff4,388,fn_71002eaff4,unknown,unknown,O
-0x71002eb178,220,fn_71002eb178,unknown,unknown,O
-0x71002eb254,900,fn_71002eb254,unknown,unknown,O
-0x71002eb5d8,388,fn_71002eb5d8,unknown,unknown,O
+0x71002eac70,900,fn_71002eac70,unknown,engine/reflection?,O
+0x71002eaff4,388,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_InitClass,reflection,engine/reflection,O
+0x71002eb178,220,fn_71002eb178,unknown,engine/reflection?,O
+0x71002eb254,900,fn_71002eb254,unknown,engine/reflection?,O
+0x71002eb5d8,388,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_InitClass,reflection,engine/reflection,O
 0x71002eb75c,220,fn_71002eb75c,unknown,unknown,O
 0x71002eb838,484,fn_71002eb838,unknown,unknown,O
 0x71002eba1c,36,fn_71002eba1c,unknown,unknown,O
@@ -5721,54 +5721,54 @@ address,size,name,name_source,subsystem,status
 0x71002ee814,4,CPlaythrough::SCheckpointData::SValidationInfo::refl_Destroy,reflection,game/core,O
 0x71002ee818,36,CPlaythrough::SCheckpointData::SValidationInfo::refl_CopyAssign,reflection,game/core,O
 0x71002ee83c,36,CPlaythrough::SCheckpointData::SValidationInfo::refl_MoveAssign,reflection,game/core,O
-0x71002ee860,144,fn_71002ee860,unknown,game/core?,O
-0x71002ee8f0,8,fn_71002ee8f0,unknown,game/core?,O
-0x71002ee8f8,12,fn_71002ee8f8,unknown,game/core?,O
-0x71002ee904,8,fn_71002ee904,unknown,game/core?,O
-0x71002ee90c,4,fn_71002ee90c,unknown,game/core?,O
-0x71002ee910,116,fn_71002ee910,unknown,game/core?,O
-0x71002ee984,60,fn_71002ee984,unknown,game/core?,O
-0x71002ee9c0,8,fn_71002ee9c0,unknown,game/core?,O
-0x71002ee9c8,48,fn_71002ee9c8,unknown,game/core?,O
-0x71002ee9f8,524,fn_71002ee9f8,unknown,game/core?,O
-0x71002eec04,80,fn_71002eec04,unknown,game/core?,O
-0x71002eec54,84,fn_71002eec54,unknown,game/core?,O
-0x71002eeca8,144,fn_71002eeca8,unknown,game/core?,O
-0x71002eed38,8,fn_71002eed38,unknown,game/core?,O
-0x71002eed40,12,fn_71002eed40,unknown,game/core?,O
-0x71002eed4c,8,fn_71002eed4c,unknown,game/core?,O
-0x71002eed54,4,fn_71002eed54,unknown,game/core?,O
-0x71002eed58,4,fn_71002eed58,unknown,game/core?,O
-0x71002eed5c,60,fn_71002eed5c,unknown,game/core?,O
-0x71002eed98,8,fn_71002eed98,unknown,game/core?,O
-0x71002eeda0,8,fn_71002eeda0,unknown,game/core?,O
-0x71002eeda8,80,fn_71002eeda8,unknown,game/core?,O
-0x71002eedf8,84,fn_71002eedf8,unknown,game/core?,O
-0x71002eee4c,8,fn_71002eee4c,unknown,game/core?,O
-0x71002eee54,4,fn_71002eee54,unknown,game/core?,O
-0x71002eee58,4,fn_71002eee58,unknown,game/core?,O
-0x71002eee5c,156,fn_71002eee5c,unknown,game/core?,O
-0x71002eeef8,104,fn_71002eeef8,unknown,game/core?,O
-0x71002eef60,12,fn_71002eef60,unknown,game/core?,O
-0x71002eef6c,104,fn_71002eef6c,unknown,game/core?,O
-0x71002eefd4,4,fn_71002eefd4,unknown,game/core?,O
-0x71002eefd8,264,fn_71002eefd8,unknown,game/core?,O
-0x71002ef0e0,152,fn_71002ef0e0,unknown,game/core?,U
-0x71002ef178,8,fn_71002ef178,unknown,game/core?,O
-0x71002ef180,12,fn_71002ef180,unknown,game/core?,O
-0x71002ef18c,52,fn_71002ef18c,unknown,game/core?,O
-0x71002ef1c0,68,fn_71002ef1c0,unknown,game/core?,O
-0x71002ef204,88,fn_71002ef204,unknown,game/core?,O
-0x71002ef25c,116,fn_71002ef25c,unknown,game/core?,O
-0x71002ef2d0,500,fn_71002ef2d0,unknown,game/core?,U
-0x71002ef4c4,12,fn_71002ef4c4,unknown,game/core?,O
-0x71002ef4d0,20,fn_71002ef4d0,unknown,game/core?,O
-0x71002ef4e4,100,fn_71002ef4e4,unknown,game/core?,O
-0x71002ef548,116,fn_71002ef548,unknown,game/core?,O
-0x71002ef5bc,176,fn_71002ef5bc,unknown,game/core?,O
-0x71002ef66c,568,fn_71002ef66c,unknown,game/core?,O
-0x71002ef8a4,400,fn_71002ef8a4,unknown,game/core?,O
-0x71002efa40,1324,fn_71002efa40,unknown,game/core?,O
+0x71002ee860,144,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_Equals,reflection,engine/reflection,O
+0x71002ee8f0,8,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_Hash,reflection,engine/reflection,O
+0x71002ee8f8,12,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_TypeOf,reflection,engine/reflection,O
+0x71002ee904,8,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_Construct,reflection,engine/reflection,O
+0x71002ee90c,4,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002ee910,116,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002ee984,60,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_Destroy,reflection,engine/reflection,O
+0x71002ee9c0,8,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002ee9c8,48,base::reflection::KeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002ee9f8,524,fn_71002ee9f8,unknown,engine/reflection?,O
+0x71002eec04,80,fn_71002eec04,unknown,engine/reflection?,O
+0x71002eec54,84,fn_71002eec54,unknown,engine/reflection?,O
+0x71002eeca8,144,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_Equals,reflection,engine/reflection,O
+0x71002eed38,8,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_Hash,reflection,engine/reflection,O
+0x71002eed40,12,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_TypeOf,reflection,engine/reflection,O
+0x71002eed4c,8,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_Construct,reflection,engine/reflection,O
+0x71002eed54,4,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_CopyConstruct,reflection,engine/reflection,O
+0x71002eed58,4,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_MoveConstruct,reflection,engine/reflection,O
+0x71002eed5c,60,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_Destroy,reflection,engine/reflection,O
+0x71002eed98,8,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_CopyAssign,reflection,engine/reflection,O
+0x71002eeda0,8,base::reflection::ConstKeyElementValue<CPlaythrough::TDictCheckpointDatas>::refl_MoveAssign,reflection,engine/reflection,O
+0x71002eeda8,80,fn_71002eeda8,unknown,unknown,O
+0x71002eedf8,84,fn_71002eedf8,unknown,unknown,O
+0x71002eee4c,8,fn_71002eee4c,unknown,unknown,O
+0x71002eee54,4,fn_71002eee54,unknown,unknown,O
+0x71002eee58,4,fn_71002eee58,unknown,unknown,O
+0x71002eee5c,156,fn_71002eee5c,unknown,unknown,O
+0x71002eeef8,104,fn_71002eeef8,unknown,unknown,O
+0x71002eef60,12,fn_71002eef60,unknown,unknown,O
+0x71002eef6c,104,fn_71002eef6c,unknown,unknown,O
+0x71002eefd4,4,fn_71002eefd4,unknown,unknown,O
+0x71002eefd8,264,fn_71002eefd8,unknown,unknown,O
+0x71002ef0e0,152,fn_71002ef0e0,unknown,unknown,U
+0x71002ef178,8,fn_71002ef178,unknown,unknown,O
+0x71002ef180,12,fn_71002ef180,unknown,unknown,O
+0x71002ef18c,52,fn_71002ef18c,unknown,unknown,O
+0x71002ef1c0,68,fn_71002ef1c0,unknown,unknown,O
+0x71002ef204,88,fn_71002ef204,unknown,unknown,O
+0x71002ef25c,116,fn_71002ef25c,unknown,unknown,O
+0x71002ef2d0,500,fn_71002ef2d0,unknown,unknown,U
+0x71002ef4c4,12,fn_71002ef4c4,unknown,unknown,O
+0x71002ef4d0,20,fn_71002ef4d0,unknown,unknown,O
+0x71002ef4e4,100,fn_71002ef4e4,unknown,unknown,O
+0x71002ef548,116,fn_71002ef548,unknown,unknown,O
+0x71002ef5bc,176,fn_71002ef5bc,unknown,unknown,O
+0x71002ef66c,568,fn_71002ef66c,unknown,unknown,O
+0x71002ef8a4,400,fn_71002ef8a4,unknown,unknown,O
+0x71002efa40,1324,fn_71002efa40,unknown,unknown,O
 0x71002eff6c,88,CPlaythroughDef::refl_AddAttributes,reflection,game/core,O
 0x71002effc4,244,CPlaythroughDef::refl_GetClass,reflection,game/core,O
 0x71002f00b8,1100,CPlaythroughDef::refl_AddFields,reflection,game/core,O
@@ -5783,11 +5783,11 @@ address,size,name,name_source,subsystem,status
 0x71002f1284,220,fn_71002f1284,unknown,unknown,O
 0x71002f1360,220,fn_71002f1360,unknown,unknown,O
 0x71002f143c,900,fn_71002f143c,unknown,unknown,O
-0x71002f17c0,388,fn_71002f17c0,unknown,unknown,O
+0x71002f17c0,388,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_InitClass",reflection,engine/reflection,O
 0x71002f1944,220,base::reflection::refl_GetType<std::unique_ptr<CPlaythroughDef::SCheckpointDef>>,reflection,engine/reflection,O
 0x71002f1a20,220,fn_71002f1a20,unknown,engine/reflection?,O
 0x71002f1afc,900,fn_71002f1afc,unknown,engine/reflection?,O
-0x71002f1e80,388,fn_71002f1e80,unknown,engine/reflection?,O
+0x71002f1e80,388,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_InitClass",reflection,engine/reflection,O
 0x71002f2004,220,fn_71002f2004,unknown,engine/reflection?,O
 0x71002f20e0,480,fn_71002f20e0,unknown,engine/reflection?,O
 0x71002f22c0,220,fn_71002f22c0,unknown,engine/reflection?,O
@@ -5917,26 +5917,26 @@ address,size,name,name_source,subsystem,status
 0x71002f4f44,100,fn_71002f4f44,unknown,unknown,O
 0x71002f4fa8,100,fn_71002f4fa8,unknown,unknown,O
 0x71002f500c,288,fn_71002f500c,unknown,unknown,O
-0x71002f512c,144,fn_71002f512c,unknown,unknown,O
-0x71002f51bc,8,fn_71002f51bc,unknown,unknown,O
-0x71002f51c4,12,fn_71002f51c4,unknown,unknown,O
-0x71002f51d0,8,fn_71002f51d0,unknown,unknown,O
-0x71002f51d8,4,fn_71002f51d8,unknown,unknown,O
-0x71002f51dc,72,fn_71002f51dc,unknown,unknown,O
-0x71002f5224,76,fn_71002f5224,unknown,unknown,O
-0x71002f5270,8,fn_71002f5270,unknown,unknown,O
-0x71002f5278,228,fn_71002f5278,unknown,unknown,O
-0x71002f535c,80,fn_71002f535c,unknown,unknown,O
-0x71002f53ac,84,fn_71002f53ac,unknown,unknown,O
-0x71002f5400,144,fn_71002f5400,unknown,unknown,O
-0x71002f5490,8,fn_71002f5490,unknown,unknown,O
-0x71002f5498,12,fn_71002f5498,unknown,unknown,O
-0x71002f54a4,8,fn_71002f54a4,unknown,unknown,O
-0x71002f54ac,4,fn_71002f54ac,unknown,unknown,O
-0x71002f54b0,4,fn_71002f54b0,unknown,unknown,O
-0x71002f54b4,76,fn_71002f54b4,unknown,unknown,O
-0x71002f5500,8,fn_71002f5500,unknown,unknown,O
-0x71002f5508,8,fn_71002f5508,unknown,unknown,O
+0x71002f512c,144,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002f51bc,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002f51c4,12,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002f51d0,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002f51d8,4,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002f51dc,72,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002f5224,76,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_Destroy",reflection,engine/reflection,O
+0x71002f5270,8,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002f5278,228,"base::reflection::KeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_MoveAssign",reflection,engine/reflection,O
+0x71002f535c,80,fn_71002f535c,unknown,engine/reflection?,O
+0x71002f53ac,84,fn_71002f53ac,unknown,engine/reflection?,O
+0x71002f5400,144,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_Equals",reflection,engine/reflection,O
+0x71002f5490,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_Hash",reflection,engine/reflection,O
+0x71002f5498,12,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_TypeOf",reflection,engine/reflection,O
+0x71002f54a4,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_Construct",reflection,engine/reflection,O
+0x71002f54ac,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_CopyConstruct",reflection,engine/reflection,O
+0x71002f54b0,4,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_MoveConstruct",reflection,engine/reflection,O
+0x71002f54b4,76,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_Destroy",reflection,engine/reflection,O
+0x71002f5500,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_CopyAssign",reflection,engine/reflection,O
+0x71002f5508,8,"base::reflection::ConstKeyElementValue<base::global::CRntVector<std::__1::unique_ptr<CPlaythroughDef::SCheckpointDef, std::__1::default_delete<CPlaythroughDef::SCheckpointDef>>>>::refl_MoveAssign",reflection,engine/reflection,O
 0x71002f5510,80,fn_71002f5510,unknown,unknown,O
 0x71002f5560,84,fn_71002f5560,unknown,unknown,O
 0x71002f55b4,8,fn_71002f55b4,unknown,unknown,O
