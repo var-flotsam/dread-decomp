@@ -15,6 +15,10 @@ read it whole). Forks: `CONTRIBUTING.md`. The maintainer: `docs/maintaining.md`.
 - **Goal.** Anyone builds a native port from their own files (keys, ROM, filesystem); the project hosts none of
   them. A full source port with no translation layer in the product: the semantic lifts the port runs today are
   scaffolding, reported in `docs/HANDOFF.md` as "lifted code still in the port", and must shrink to zero.
+- **The port is on hold until 95% of the code matches** (owner, 2026-11-17). No port work (`port/`, the
+  lifter, boot runs, graphics, Windows) and no work chosen because the port needs it. What stays: the port
+  sweep in the `compile` job, so every source keeps compiling for a second compiler and target, and the
+  oracle as the test of drafts.
 - **The metric is readable, matching code, whoever or whatever wrote it** (owner, 2026-11-17). A function
   counts when its bytes are proven (tiers below) and its text reads as source; a tool's output counts on the
   same two tests, so a generator is finished by making its output readable, not by retyping it. Readable:
@@ -87,7 +91,7 @@ git config core.hooksPath tools/hooks && git submodule update --init   # once pe
 python tools/check.py --version <ver> [--update]       # build src/, derive statuses; must pass before committing src/
 python tools/verify.py --version <ver> [--regen gen_x] # generators + check --update + progress + policy + decl_check
 python tools/trymatch.py --version <ver> <file.cpp> -v # build and diff one source (RELOC lines; KIND: what to fix first)
-python tools/hubs.py --version <ver> --boot | --ready --boot | --callers <fn>   # what to match next
+python tools/hubs.py --version <ver> [--ready] | --callers <fn>   # what to match next (--boot: the boot path, on hold)
 python tools/gen_lift.py --version <ver> --best ADDR,...   # closest lifted draft -> build/lift_best/ (hand-matching start)
 python tools/tu_map.py --function <addr|name>          # the unit a function belongs to, and its file name
 python tools/tu_status.py [--list partial | --unit <U>] # status per translation unit
@@ -152,8 +156,8 @@ title ID `010093801237C000`. Project compiler: upstream Clang 9.0.1 with the fla
   (`check.py` fails it otherwise: `REFS` lines).
 - **Matching standard.** Aim for `O`; time-box each function to about 30 to 60 minutes. Then a registers-only
   difference gets `permute.py` and `equiv_test.py` and stays in `src/` as minor when it passes; anything else
-  new goes to `drafts/` (`tools/drafts.py add`) unless the port needs it, in which case keep the closest version
-  marked minor or major with the difference spelled out. Reflection boilerplate (`refl_GetClass`,
+  new goes to `drafts/` (`tools/drafts.py add`); "the port needs it" keeps nothing in `src/` while the port is
+  on hold. Reflection boilerplate (`refl_GetClass`,
   `refl_InitClass`) must reach `O` through a shared template or macro.
 - **Check before committing `src/`:** `python tools/check.py --version <ver>`: no `REGRESSION`, `DUPLICATE` or
   hand-written `RELOC` line. Every callee, global and GOT slot a matched function names must be the original's.
@@ -178,7 +182,10 @@ title ID `010093801237C000`. Project compiler: upstream Clang 9.0.1 with the fla
   (`.claude/skills/dread-hubs`).
 - **Files by unit.** New sources go under `src/<subsystem>/`, named for the class or unit
   (`tools/tu_map.py --function <addr>`); no new address-named directories.
-- **What to match next:** `tools/hubs.py --version <ver> --boot`, then `--ready`.
+- **What to match next:** what unlocks or costs least, over the whole binary: `tools/hubs.py --version <ver>`
+  (callees that gate the most), `--ready`, and a slot family's unmatched functions beside their matched
+  siblings (`tools/vtables.py --version <ver> --family N`). The boot path has no priority while the port is on
+  hold.
 - **A layout batch is one class:** its sources, its one layout in a header of its own (unit headers stay
   declarations only), one pull request. Recipe: `include/game/UnkXParasiteAI.h` (journal, 2026-11-13).
 - **Bulk agent runs** on the lean kit need no go-ahead of their own when they keep the shape in
@@ -199,4 +206,4 @@ title ID `010093801237C000`. Project compiler: upstream Clang 9.0.1 with the fla
 ## Status
 
 Phases 1 to 3 (dump, recon, compiler) are done. Phase 4, a clean, readable tree that runs on PC by Route B, is in
-progress: `docs/HANDOFF.md` and `docs/PORT_PLAN.md`.
+progress: `docs/HANDOFF.md`. Its port half (`docs/PORT_PLAN.md`) is on hold until 95% of the code matches.

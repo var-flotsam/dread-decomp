@@ -15,8 +15,8 @@ while one runs.
 
 ## Inputs (ask once if missing)
 
-- What to match: a unit, a class, or a list from `python tools/hubs.py --version 2.1.0 --ready --boot`
-  (functions on the boot path whose callees are done).
+- What to match: a unit, a class, or a list from `python tools/hubs.py --version 2.1.0 --ready`
+  (functions whose callees are done; the boot path has no priority while the port is on hold).
 - The branch: `claude/<topic>-<YYYYMMDD>`, from `origin/main`.
 
 ## Hard rules (short form)
@@ -79,8 +79,8 @@ What the last `KIND` line says decides where the function goes.
      it stays in `src/` and counts as done (the row in `data/equivalence.csv` is the proof; `check.py` fails
      it when the code changes).
 2. **Anything else, or no `pass`:** it does not count, and it is a draft, not a source of `src/` (owner,
-   2026-11-13). The one exception is a function the port needs: keep that in `src/` as `NON_MATCHING(minor)`
-   if you are sure the behaviour is identical, or as `NON_MATCHING(major)` with the difference spelled out.
+   2026-11-13). There is no exception for a function the port needs while the port is on hold (owner,
+   2026-11-17; `CLAUDE.md`, "Purpose and completion").
    A draft:
    `python tools/drafts.py --version 2.1.0 add <file.cpp> <addr> --from <topic> --note "<what differs>" --remove`
    files it under `drafts/` with a graded row, where nothing builds it and the work is not lost.
