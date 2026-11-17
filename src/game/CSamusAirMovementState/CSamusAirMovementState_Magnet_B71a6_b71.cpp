@@ -18,7 +18,6 @@
 
 struct UnkInventory;
 struct UnkAbility;
-u32 fn_71009a60fc();
 
 struct UnkAirRequest_B71a6 {
     void* vtable;

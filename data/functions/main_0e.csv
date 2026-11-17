@@ -324,7 +324,7 @@ address,size,name,name_source,subsystem,status
 0x7100e0de24,48,"base::reflection::KeyElementValue<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::refl_MoveAssign",reflection,engine/reflection,O
 0x7100e0de54,232,fn_7100e0de54,unknown,engine/reflection?,O
 0x7100e0df3c,380,fn_7100e0df3c,unknown,engine/reflection?,O
-0x7100e0e0b8,768,fn_7100e0e0b8,unknown,engine/reflection?,U
+0x7100e0e0b8,768,fn_7100e0e0b8,unknown,engine/reflection?,O
 0x7100e0e3b8,80,fn_7100e0e3b8,unknown,engine/reflection?,O
 0x7100e0e408,96,fn_7100e0e408,unknown,engine/reflection?,O
 0x7100e0e468,12,"base::reflection::ConstKeyElementValue<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::refl_Equals",reflection,engine/reflection,O

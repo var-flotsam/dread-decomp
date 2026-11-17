@@ -18,3 +18,4 @@ extern base::reflection::CType g_unk_7101d5af48;  // The void type.
 base::reflection::UnkReflValue fn_710009ddd4(UnkVersionEntry* self, const base::reflection::UnkReflAttrKey& key);
 // The reflected value's copy-assignment.
 bool fn_710009d960(const base::reflection::CType* type, base::reflection::UnkTypedRef* src, base::reflection::UnkTypedRef* dst);
+bool fn_710009d760(const base::reflection::UnkReflObject* obj, const base::reflection::CType* type);

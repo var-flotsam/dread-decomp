@@ -23,7 +23,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 struct UnkUserDataOwner;
-bool fn_7100deac24(UnkGameManager* self);
 struct UnkStateOwner;
 
 static inline UnkUserDataOwner* GetOwner() {

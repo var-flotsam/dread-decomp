@@ -7,12 +7,12 @@
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/UnkCollisionRecord.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkAttackBase;
-bool fn_71009e12d0(void*);
 struct UnkVec3fR;
 void fn_710007b4b0(UnkVec3fR* v);
 

@@ -10,3 +10,4 @@ struct UnkEnergyWaveCompB_b49;
 struct UnkEnergyWaveObject_b49;
 void fn_710094f8f0(UnkEnergyWaveCompB_b49* comp, UnkEnergyWaveObject_b49* object);
 void* fn_710094c9ac(UnkEventOwner_m_ovb0137* owner);
+void fn_710094b508(void* object);

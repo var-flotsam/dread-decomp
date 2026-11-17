@@ -25,3 +25,4 @@ void fn_71011d99e4(UnkGuiDisplayObject* self, UnkGuiEvent_b49* event);
 // The display object at a dotted path below `self` (each part a child's name, every step but the last a
 // container), or null.
 UnkGuiDisplayObject* fn_71011d9508(UnkGuiDisplayObject* self, const char* const* path);
+void fn_71011d9050(void*);

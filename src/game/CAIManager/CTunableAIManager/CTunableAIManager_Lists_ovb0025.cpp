@@ -5,6 +5,7 @@
 // and a timed weak reference at +0x2410. The pool lists of render items (0x18- and 0x20-byte nodes)
 // drop each node's item from the render manager before freeing it. Names and layouts are placeholders.
 #include "base/UnkVtableList.h"
+#include "game/UnkTU1501.h"
 #include <new>
 
 #include "base/UnkCloneHelpers.h"
@@ -408,7 +409,6 @@ bool fn_7100daa560(void* self, UnkEmmyCheckActor_b0025* actor) {
 }
 
 struct UnkPlayer;
-bool fn_71009e12d0(void*);
 struct UnkStruct_710117af10;
 struct UnkCls_710117af10;
 

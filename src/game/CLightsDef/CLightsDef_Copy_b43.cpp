@@ -6,6 +6,7 @@
 // (src/game/CCutSceneDef/CCutSceneDef_CopyA0_b43.cpp). Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CLightsDef.h"
+#include "game/UnkTU2528.h"
 #include "types.h"
 
 // As src/game/CLightsDef/CLightsDef_b42.cpp declares them.
@@ -25,8 +26,6 @@ struct UnkLightsArray_b42a3 {
 
 // As src/game/CLightManager/fn_7100e0ccf8.cpp declares it.
 struct UnkClearedArray;
-
-void fn_7100d9bffc(UnkLightsElem_b42a3* self, const UnkLightsElem_b42a3* other);  // the element's copy constructor
 
 static inline __attribute__((always_inline)) void AppendAll_b43a3(UnkLightsArray_b42a3* self,
                                                                   const UnkLightsArray_b42a3* other) {

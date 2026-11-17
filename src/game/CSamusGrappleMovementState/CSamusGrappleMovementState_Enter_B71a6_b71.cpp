@@ -5,6 +5,7 @@
 #include "base/math/UnkSegment2D.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CMovementComponent.h"
+#include "game/CSamusMagnetGloveMovementState/CParams.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU55.h"
@@ -48,7 +49,6 @@ struct UnkGrappleState_B71a6 {
 using base::math::CVector3D;
 
 bool fn_71009ad430(UnkGrappleMoveState_B71a6* state);
-u32 fn_71009a60fc();
 
 static inline UnkGrappleMoveState_B71a6* FindState(UnkGrappleMove_B71a6* self, s32 kind) {
     u64 size = (u64)self->state_count * sizeof(UnkGrappleMoveState_B71a6*);

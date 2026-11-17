@@ -280,7 +280,6 @@ using base::global::UnkStringPool;
 extern base::file::UnkFileDevice* g_unk_7101d4d828;
 struct UnkSoundMgr;
 
-void fn_7100089894(base::file::UnkFileDevice* self);  // locks the device
 struct UnkFilePathList;
 // Lists the files under `path` into `out`.
 void fn_7100089eec(base::file::UnkFileDevice* self, const CFilePathStrId* path, UnkFilePathList* out);

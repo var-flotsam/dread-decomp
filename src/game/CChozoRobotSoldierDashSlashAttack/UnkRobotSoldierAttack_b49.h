@@ -11,11 +11,11 @@
 #include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkManager_71726af468.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
 #include "game/CAttack.h"
 
 struct UnkSelf;
-bool fn_71009e12d0(void*);
 
 struct UnkRobotSoldierAI_b49 {
     void** vtable;

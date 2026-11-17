@@ -36,6 +36,7 @@
 #include "game/UnkTU2669.h"
 #include "game/UnkTU2677.h"
 #include "game/UnkTU2704.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTU52.h"
 #include "game/UnkTU92.h"
 #include "game/UnkXformNode.h"
@@ -488,8 +489,6 @@ struct UnkLuaOwner_b0160 {
 };
 bool fn_71011603a4(UnkLuaPart_b0160* part, f32 value);
 bool fn_7101160214(UnkLuaPart_b0160* part, f32 value);
-void fn_71011991c4(void* self, UnkReflObject* object);
-void fn_7101198450(void* self, UnkReflObject* object);
 
 static inline UnkLuaOwner_b0160* FindById(UnkGameManager* manager, const CStrId& id, u32 kind) {
     u64 key = *reinterpret_cast<const u64*>(reinterpret_cast<const u8*>(id.data) + 0x30);

@@ -11,7 +11,6 @@
 #include "types.h"
 
 struct UnkHangMoveState_A6_b70;
-u32 fn_71009a60fc();
 
 struct UnkSancMoveState_ovb0133 {
     void* vtable;

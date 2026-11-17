@@ -2,9 +2,8 @@
 // resolved actor (fn_7100d7c990) has a +0x208 object that fn_71009e12d0 accepts; otherwise 2 when the request's
 // s16 at +0x14 is -1 or its byte at +0x16 is 0xff, else 1. Names and layouts are placeholders.
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "types.h"
-
-bool fn_71009e12d0(void*);
 
 struct UnkBatalloonRequest_b67a2 {
     u8 pad_0x0[0x14];

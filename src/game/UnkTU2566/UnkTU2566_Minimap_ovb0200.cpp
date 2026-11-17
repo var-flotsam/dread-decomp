@@ -30,6 +30,7 @@
 #include "game/UnkTU2547.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2566.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkSubId_7100fc4b34.h"
@@ -71,7 +72,6 @@ extern "C" int __cxa_guard_acquire(u64* guard);
 extern "C" void __cxa_guard_release(u64* guard);
 
 struct UnkMapData;
-u32 fn_710119882c(void* manager, const CFilePathStrId* path);
 
 // A cutscene path and the guard of its one-time construction.
 struct UnkPathSlot_b0200 {

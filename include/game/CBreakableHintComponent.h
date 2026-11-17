@@ -12,3 +12,4 @@ struct UnkBreakableHint_A3_b72;
 void fn_71007523e8(UnkBreakableHint_A3_b72* self);
 extern UnkPropertyEx<> g_unk_7172711390;  // BREAKABLE_HINTS.
 void fn_7100752ba8(base::UnkDeferredSet<UnkHintRef_ovb0093>* set, UnkHintRef_ovb0093* item);
+extern void* g_unk_7101a81968[];

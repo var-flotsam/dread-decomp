@@ -4,6 +4,7 @@
 // refreshed. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CRntString.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
 #include "game/GUI/CButton.h"
 #include "game/GUI/CLabel.h"
@@ -16,7 +17,6 @@ using base::input::UnkRumbleManager;
 using UnkGuiObj = UnkGuiDisplayObject;
 // As src/game/GUI/CMissionLog/CMissionLog_Lifecycle_ovb0079.cpp declares it: the button's label.
 struct UnkMissionLogButton_ovb0079;
-bool fn_710007453c(UnkRumbleManager* self);
 
 struct UnkRumbleTunableButton_ovb0085 {
     u8 unk_0x0[0x2a1];

@@ -4,10 +4,10 @@
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/CAttack.h"
+#include "game/UnkTU1501.h"
 
 bool fn_71006ed714(UnkAttackBase* self, UnkActor* actor);
 struct UnkHelper;
-bool fn_71009e12d0(void*);
 
 bool fn_71006ed69c(UnkAttackBase* self, void* a, u32 b) {
     bool ok = fn_7100360b84(reinterpret_cast<CAttack*>(self), a, b);

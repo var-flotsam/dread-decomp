@@ -313,7 +313,7 @@ address,size,name,name_source,subsystem,status
 0x710010b9d0,4,base::reflection::ValueOps<base::snd::ESndLogicId>::Destroy,reflection,engine/reflection,O
 0x710010b9d4,20,base::reflection::ValueOps<base::snd::ESndLogicId>::CopyAssign,reflection,engine/reflection,O
 0x710010b9e8,20,base::reflection::ValueOps<base::snd::ESndLogicId>::MoveAssign,reflection,engine/reflection,O
-0x710010ba00,1940,fn_710010ba00,unknown,unknown,U
+0x710010ba00,1940,fn_710010ba00,unknown,unknown,O
 0x710010c194,268,fn_710010c194,unknown,unknown,O
 0x710010c2a0,388,base::spatial::CAABox::refl_InitClass,reflection,engine/base,O
 0x710010c424,48,fn_710010c424,unknown,engine/base?,O
@@ -942,7 +942,7 @@ address,size,name,name_source,subsystem,status
 0x7100122788,168,fn_7100122788,unknown,unknown,O
 0x7100122830,176,fn_7100122830,unknown,unknown,O
 0x71001228e0,12,fn_71001228e0,unknown,unknown,O
-0x71001228ec,576,fn_71001228ec,unknown,unknown,U
+0x71001228ec,576,fn_71001228ec,unknown,unknown,O
 0x7100122b2c,576,fn_7100122b2c,unknown,unknown,O
 0x7100122d6c,4,operator.delete,symbol,unknown,O
 0x7100122d70,56,fn_7100122d70,unknown,unknown,O
@@ -2136,7 +2136,7 @@ address,size,name,name_source,subsystem,status
 0x710014c860,4,fn_710014c860,unknown,linker,L
 0x710014c864,24,fn_710014c864,unknown,unknown,O
 0x710014c87c,20,fn_710014c87c,unknown,unknown,O
-0x710014c890,744,fn_710014c890,unknown,unknown,U
+0x710014c890,744,fn_710014c890,unknown,unknown,O
 0x710014cb78,32,fn_710014cb78,unknown,unknown,O
 0x710014cb98,32,fn_710014cb98,unknown,unknown,O
 0x710014cbb8,676,fn_710014cbb8,unknown,unknown,U
@@ -2452,7 +2452,7 @@ address,size,name,name_source,subsystem,status
 0x710015d700,32,fn_710015d700,unknown,unknown,O
 0x710015d720,56,fn_710015d720,unknown,unknown,O
 0x710015d760,412,fn_710015d760,unknown,unknown,O
-0x710015d900,636,fn_710015d900,unknown,unknown,U
+0x710015d900,636,fn_710015d900,unknown,unknown,O
 0x710015db80,16,fn_710015db80,unknown,unknown,O
 0x710015db90,116,fn_710015db90,unknown,unknown,O
 0x710015dc04,244,fn_710015dc04,unknown,unknown,U
@@ -3651,7 +3651,7 @@ address,size,name,name_source,subsystem,status
 0x71001b1324,340,msapi::res::CRenderRes::refl_InitClass,reflection,msapi,O
 0x71001b1478,316,fn_71001b1478,unknown,msapi?,O
 0x71001b15b4,196,fn_71001b15b4,unknown,msapi?,O
-0x71001b1680,940,fn_71001b1680,unknown,msapi?,U
+0x71001b1680,940,fn_71001b1680,unknown,msapi?,O
 0x71001b1a30,340,fn_71001b1a30,unknown,msapi?,U
 0x71001b1b90,504,fn_71001b1b90,unknown,msapi?,U
 0x71001b1d88,20,fn_71001b1d88,unknown,msapi?,O
@@ -3820,7 +3820,7 @@ address,size,name,name_source,subsystem,status
 0x71001bdeac,372,fn_71001bdeac,unknown,unknown,U
 0x71001be020,88,fn_71001be020,unknown,unknown,O
 0x71001be078,340,fn_71001be078,unknown,unknown,O
-0x71001be1cc,604,fn_71001be1cc,unknown,unknown,U
+0x71001be1cc,604,fn_71001be1cc,unknown,unknown,O
 0x71001be428,8,fn_71001be428,unknown,unknown,O
 0x71001be430,60,fn_71001be430,unknown,unknown,O
 0x71001be46c,2680,fn_71001be46c,unknown,unknown,U

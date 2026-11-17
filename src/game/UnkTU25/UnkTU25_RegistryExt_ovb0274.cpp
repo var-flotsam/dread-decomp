@@ -20,7 +20,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkRegistry_7100d92158;
-extern CStrId g_unk_7101d4e590;
 
 struct UnkExtKey_ovb0274 {
     CStrId id;
