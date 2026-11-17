@@ -4285,8 +4285,8 @@ address,size,name,name_source,subsystem,status
 0x7100ab0a30,128,fn_7100ab0a30,unknown,game?,O
 0x7100ab0ab0,1324,fn_7100ab0ab0,unknown,game?,U
 0x7100ab0fdc,1004,fn_7100ab0fdc,unknown,game?,U
-0x7100ab13c8,624,fn_7100ab13c8,unknown,game?,U
-0x7100ab1638,468,fn_7100ab1638,unknown,game?,U
+0x7100ab13c8,624,fn_7100ab13c8,unknown,game?,O
+0x7100ab1638,468,fn_7100ab1638,unknown,game?,O
 0x7100ab180c,196,fn_7100ab180c,unknown,game?,O
 0x7100ab18d0,432,fn_7100ab18d0,unknown,game?,U
 0x7100ab1a80,204,fn_7100ab1a80,unknown,game?,O

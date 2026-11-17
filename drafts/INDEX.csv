@@ -266,6 +266,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710024e2e8,220,drafts/game/CActorComponent/fn_710024e2e8.cpp,control flow,12.1,48,lean-b5,loop iterator/end register shape and key load order after retain
 0x710024f71c,340,drafts/game/CActorComponent/fn_710024f71c.cpp,control flow,64.7,24,lean-b5,original duplicates the name release on each exit path and branches differ; release/tail shape
 0x7100251af0,152,drafts/game/CActorComponent/fn_7100251af0.cpp,operations,57.9,16,lean-b5,inner search loop form (original counts i against -count; hoists both maps loads)
+0x7100253834,340,drafts/game/CActorComponentDef/fn_7100253834.cpp,registers or order,98.8,1,draftsweep,passes equiv_test only with a single-member union around CRntString; sent back
 0x710026ee04,1860,drafts/game/navmesh/CFixedDynamicSmartLinkRule/fn_710026ee04.cpp,build fails,,,lean-r2kd,self is UnkSmartLinkRuleData_ovb0112 but needs a UnkNavRuleValue_A1_b75 at +0x20 (draft uses its own type) and
 0x7100272ddc,452,drafts/game/navmesh/CFixedDynamicSmartLinkRule/fn_7100272ddc.cpp,build fails,,,lean-r2kd,original duplicates the element move per state path (clear loop twice) yet merges the tail with src as a point
 0x7100274df0,860,drafts/game/navmesh/CNavMesh/fn_7100274df0.cpp,control flow,13.3,186,lean-oc2,first 28 insns match; original reloads the map values/count after storing a slot list count (the two u32 field

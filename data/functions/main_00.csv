@@ -5240,7 +5240,7 @@ address,size,name,name_source,subsystem,status
 0x71000ddd84,320,fn_71000ddd84,unknown,unknown,O
 0x71000ddec4,8,fn_71000ddec4,unknown,unknown,O
 0x71000ddecc,8,fn_71000ddecc,unknown,unknown,O
-0x71000dded4,640,fn_71000dded4,unknown,unknown,U
+0x71000dded4,640,fn_71000dded4,unknown,unknown,O
 0x71000de154,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, base::reflection::CFunction>>::Begin",reflection,engine/reflection,O
 0x71000de160,24,fn_71000de160,unknown,unknown,O
 0x71000de178,276,fn_71000de178,unknown,unknown,O
