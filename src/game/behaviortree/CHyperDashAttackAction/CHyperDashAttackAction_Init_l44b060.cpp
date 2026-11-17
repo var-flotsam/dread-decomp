@@ -1,28 +1,12 @@
 // behaviortree::CHyperDashAttackAction's unit (tools/tu_map.py, unit 662): keeps the owner and reads the
 // motion's end (+0x2c) of two of its timelines into +0xbc and +0xc0. Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
 #include "types.h"
 
 struct UnkStruct_7101176ea8;
-
-struct UnkFlags_71007142e8 {
-    u32 bits;
-    UnkFlags_71007142e8() : bits(0) {}
-    UnkFlags_71007142e8(u32 b) : bits(b) {}
-    UnkFlags_71007142e8(const UnkFlags_71007142e8& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_71007142e8& UnkFlagsNone_71007142e8() {
-    static UnkFlags_71007142e8 s_none;
-    return s_none;
-}
-
-inline const UnkFlags_71007142e8& UnkFlagsAll_71007142e8() {
-    static UnkFlags_71007142e8 s_all(~UnkFlagsNone_71007142e8().bits & 7);
-    return s_all;
-}
 
 // The motion fn_71007142e8 initialises: the time it ends on at +0x2c.
 struct UnkStruct_71007142e8 {

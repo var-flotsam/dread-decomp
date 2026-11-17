@@ -29,7 +29,7 @@
 #include "game/UnkXformNode.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
@@ -170,7 +170,6 @@ using UnkItemList = base::UnkSList<UnkItemListTag>;
 void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
 extern const char* const g_unk_7101cab038[][3] __attribute__((visibility("hidden")));
 
-
 void fn_7100f173d0(UnkRewardsMode_b0242* self);
 
 void fn_7100f17218(UnkRewardsMode_b0242* self) {
@@ -207,19 +206,6 @@ void fn_7100f17218(UnkRewardsMode_b0242* self) {
         }
     }
 }
-
-template <class T>
-struct UnkLoadingMaskOf {
-    static const UnkLoadingMask& None() {
-        static UnkLoadingMask s;
-        return s;
-    }
-    static const UnkLoadingMask& All() {
-        static UnkLoadingMask s(~None().bits & 0x1ff);
-        return s;
-    }
-};
-struct UnkLoadingMaskTag;
 
 static inline void* MusicManagerCold() {
     void* manager = g_unk_71726bc560;
@@ -273,7 +259,8 @@ found:
     if (self->field_0x60 <= 2 && self->field_0x68[self->field_0x60])
         return;
     void* music = MusicManager();
-    fn_7100fd7b44(music, UnkLoadingMask(0xc), UnkLoadingMaskOf<UnkLoadingMaskTag>::All(), 1.0f);
+    fn_7100fd7b44(static_cast<UnkMusicMgr_b0019*>(music), UnkMask(0xc),
+                  UnkMaskOf<UnkMusicMaskTag>::All(), 1.0f);
 }
 
 struct UnkMusicMode {

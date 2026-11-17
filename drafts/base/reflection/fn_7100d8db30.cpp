@@ -4,7 +4,7 @@
 // muted or unmuted. With none, the current sound stops and every channel is unmuted. The name of the
 // sound is kept at +0x478. Names and layouts are placeholders.
 #include "base/UnkDestructors.h"
-#include "base/UnkLoadingMask.h"
+#include "game/UnkMask.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
@@ -107,12 +107,12 @@ struct UnkEnvManager_d8db30 {
 static_assert(__builtin_offsetof(UnkEnvManager_d8db30, mute_blocked) == 0x4c2, "layout");
 
 // The sound channels: none, and all eight.
-inline const UnkLoadingMask& UnkEnvChannelsNone_d8db30() {
-    static UnkLoadingMask s_none asm("g_unk_7108b6ab30");
+inline const UnkMask& UnkEnvChannelsNone_d8db30() {
+    static UnkMask s_none asm("g_unk_7108b6ab30");
     return s_none;
 }
-inline const UnkLoadingMask& UnkEnvChannelsAll_d8db30() {
-    static UnkLoadingMask s_all asm("g_unk_7108b6ab50")(~UnkEnvChannelsNone_d8db30().bits & 0xff);
+inline const UnkMask& UnkEnvChannelsAll_d8db30() {
+    static UnkMask s_all asm("g_unk_7108b6ab50")(~UnkEnvChannelsNone_d8db30().bits & 0xff);
     return s_all;
 }
 

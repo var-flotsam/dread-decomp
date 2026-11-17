@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "game/CDropLayout.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkTU2561.h"
 #include "game/UnkTU2562.h"
 #include "game/UnkTU341.h"
@@ -27,16 +28,9 @@ struct UnkDroppedItems_e29aa4 {
 };
 static_assert(__builtin_offsetof(UnkDroppedItems_e29aa4, drops[5]) == 0x9140, "layout");
 
-struct UnkDroppableTunable_e29aa4 {
-    u8 pad_0x0[0x58];
-    f32 fPowerBombBigAmount;  // 0x58
-    u8 pad_0x5c[0x1c];
-    u8 field_0x78;  // which id of g_unk_71727c1088's table the second entry takes
-};
-
 void fn_7100e29aa4(UnkDroppedItems_e29aa4* self) {
     UnkDropTable table;
-    const UnkDroppableTunable_e29aa4* tunable = reinterpret_cast<const UnkDroppableTunable_e29aa4*>(&g_unk_71727c10c8);
+    const UnkDroppableTunable* tunable = &g_unk_71727c10c8;
     const CStrId* ids = g_unk_71727c1088;
 
     UnkDropTableEntry& second = table.entries[1];
@@ -47,7 +41,7 @@ void fn_7100e29aa4(UnkDroppedItems_e29aa4* self) {
         CStrId name("PowerBomb0", true);
         second.id.ReleaseAndTake(name);
     }
-    second.field_0x8 = ids[tunable->field_0x78];
+    second.field_0x8 = ids[tunable->bDropsDoRelaxMovement];
     {
         CColor4F white(1.0f, 1.0f, 1.0f, 1.0f);
         second.color = white;

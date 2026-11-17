@@ -12,6 +12,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "game/CDroppableComponent.h"
 #include "game/CLogicDroppedItemManager/CTunableDroppableBillboard.h"
+#include "game/UnkDroppableTunable.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2510.h"
@@ -19,14 +20,6 @@
 #include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-// The tunable (CTunableDroppableBillboard's instance): the counts above which the second and the
-// third entry are used.
-struct UnkDroppableTunable {
-    u8 pad_0x0[0x90];
-    u32 field_0x90;
-    u32 field_0x94;
-};
 
 // The manager the mean position goes to (a singleton reached through the GOT).
 struct UnkDropTarget;
@@ -75,8 +68,8 @@ void fn_7100e2d39c(UnkDroppedItemManager* self) {
     base::math::CVector3D& sum = self->field_0xa010;
     if (self->field_0xa01c != 0) {
         u64 tier;
-        if (self->field_0xa01c > g_unk_71727c10c8.field_0x90)
-            tier = self->field_0xa01c > g_unk_71727c10c8.field_0x94 ? 2 : 1;
+        if (self->field_0xa01c > g_unk_71727c10c8.uMiniXSmallGroupMaxSize)
+            tier = self->field_0xa01c > g_unk_71727c10c8.uMiniXMediumGroupMaxSize ? 2 : 1;
         else
             tier = 0;
         UnkPlayer* player = fn_7100dec788(g_unk_7101d47310);

@@ -8,6 +8,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/CChozoCommanderAirAttack.h"
 #include "game/UnkActor.h"
+#include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1501.h"
 #include "game/UnkTU1728.h"
@@ -73,23 +74,6 @@ bool fn_710042510c(UnkChargeAttack_ovb0113* self, void* request, u32 flag) {
 // (src/game/CChozoCommanderHypersparkAttack/CChozoCommanderHypersparkAttack_Aim_ovb0023.cpp) does.
 struct UnkStruct_7101176ea8;
 
-struct UnkFlags_ovb0113 {
-    u32 bits;
-    UnkFlags_ovb0113() : bits(0) {}
-    UnkFlags_ovb0113(u32 b) : bits(b) {}
-    UnkFlags_ovb0113(const UnkFlags_ovb0113& o) : bits(o.bits) {}
-};
-
-inline const UnkFlags_ovb0113& UnkFlagsNone_ovb0113() {
-    static UnkFlags_ovb0113 s_none asm("g_unk_71726a4340");
-    return s_none;
-}
-
-inline const UnkFlags_ovb0113& UnkFlagsAll_ovb0113() {
-    static UnkFlags_ovb0113 s_all asm("g_unk_71726a4330")(~UnkFlagsNone_ovb0113().bits & 7);
-    return s_all;
-}
-
 struct UnkStruct_71007142e8 {
     f32 m[12];
     u8 pad_0x30[0x40];
@@ -131,7 +115,7 @@ void fn_7100425840(UnkChargeAttack2_ovb0113* self) {
     UnkStruct_71007142e8 motion;
     fn_71007142e8(&motion);
     UnkMotionTracks* tracks = timeline->tracks;
-    UnkFlags_ovb0113 flags = UnkFlagsAll_ovb0113();
+    UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);
     f32 x = motion.m[3];
     f32 y = motion.m[7];
