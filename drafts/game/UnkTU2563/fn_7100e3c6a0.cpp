@@ -59,10 +59,13 @@ struct UnkMinimapMarker_e3c6a0 {
     void SetBounds(f32 half, f32 height) {
         f32 px = x;
         f32 py = y;
+        f32 left = px - half;
+        f32 right = px + half;
+        f32 top = py + height;
         min_y = py;
-        min_x = px - half;
-        max_x = px + half;
-        max_y = py + height;
+        min_x = left;
+        max_x = right;
+        max_y = top;
     }
 };
 

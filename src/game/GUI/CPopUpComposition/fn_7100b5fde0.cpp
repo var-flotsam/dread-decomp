@@ -38,7 +38,6 @@ struct UnkPopUpIdData_b5fde0 {
 
 // The label paths (string ids' data): the text, the hidden one, the accept and the back prompt.
 extern u8* g_unk_71727653a0 __attribute__((visibility("hidden")));
-extern u8* g_unk_71727653a8 __attribute__((visibility("hidden")));
 extern u8* g_unk_71727653b0 __attribute__((visibility("hidden")));
 extern u8* g_unk_71727653b8 __attribute__((visibility("hidden")));
 

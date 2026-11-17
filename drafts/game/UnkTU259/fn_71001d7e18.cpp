@@ -65,8 +65,7 @@ void fn_71001d7e18(UnkResRecordArrays_l1d7e18* self, u32 new_capacity) {
     if (CStrId* old = self->keys) {
         u64 j = 0;
         for (u32 i = 0; i < self->count; ++i, ++j, ++old) {
-            names[j].data = old->data;
-            old->data = &g_unk_7101d47108->empty;
+            CStrId::MoveConstructReloading(&names[j], *old);
             old->Reset();
         }
         self->allocator->vf_0x48(self->keys);

@@ -47,9 +47,8 @@ static inline f32 Level(UnkHydrogigaZiplines_l5bf13c* self) {
 }
 
 // The entity named `name`, looked up in the game manager.
-static inline UnkWeakTarget* FindEntity(const CStrId& name) {
+static inline UnkWeakTarget* FindEntity(UnkGameManager* manager, const CStrId& name) {
     u64 key = name.data->Key();
-    UnkGameManager* manager = g_unk_7101d47310;
     alignas(8) u32 kind = g_unk_71727bebb8;
     return fn_7100debbc8(manager, &key, &kind);
 }
@@ -58,8 +57,8 @@ void fn_71005bf13c(UnkHydrogigaZiplines_l5bf13c* self) {
     static CStrId s_zipline0("zipline_bottom_hydrogiga_000", true);
     static CStrId s_zipline1("zipline_bottom_hydrogiga_001", true);
     base::global::CRntVector<UnkWeakTarget*> ziplines(0xf);
-    ziplines.PushBack(FindEntity(s_zipline0));
-    ziplines.PushBack(FindEntity(s_zipline1));
+    ziplines.PushBack(FindEntity(g_unk_7101d47310, s_zipline0));
+    ziplines.PushBack(FindEntity(g_unk_7101d47310, s_zipline1));
     for (u32 i = 0; i < ziplines.count; ++i) {
         if (UnkWeakTarget* zipline = ziplines.data[i]) {
             auto* rail = reinterpret_cast<UnkZiplineComponent_b0080*>(fn_71005c3084(zipline));

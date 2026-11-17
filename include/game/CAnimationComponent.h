@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkAnimTags_ovb0010;
 struct UnkFlags_7101176ea8;
 struct UnkS12;
 struct UnkS16;
@@ -62,4 +63,5 @@ extern char g_unk_7101cb4840[];
 extern char g_unk_7101cb4860[];
 extern void* g_unk_7101cb4880[];
 void fn_710117662c(UnkActorTarget* target, u32 a, u32 b, bool c, bool d, f32 e);
+void fn_71011787dc(UnkAnimTags_ovb0010* self, bool flag);
 void fn_7101178e08(UnkActorTarget* target, u32 value, bool apply, bool flag, f32 time);

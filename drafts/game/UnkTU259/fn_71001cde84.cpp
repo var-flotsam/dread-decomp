@@ -114,11 +114,18 @@ void fn_71001cde84(UnkGfxPass_l1cde84* self, u32 pass, bool full) {
         fn_71001ce2f0(self, 1);
         self->field_0x317acb8 = 0;
         self->field_0x317acc0 = 0;
-        u32 mode = self->mode;
-        if (__builtin_expect(mode <= 10 && ((1u << mode) & 0x4b8), 1))
+        switch (self->mode) {
+        case 3:
+        case 4:
+        case 5:
+        case 7:
+        case 10:
             fn_71001cfe44(reinterpret_cast<UnkGfxJ_b0154*>(self));
-        else
+            break;
+        default:
             fn_71001cf9ec(reinterpret_cast<UnkGfxJ_b0154*>(self));
+            break;
+        }
         self->field_0x317acb8 = 0;
         self->field_0x317acc0 = 0;
         UnkPassObject_l1cde84** p = self->objects;

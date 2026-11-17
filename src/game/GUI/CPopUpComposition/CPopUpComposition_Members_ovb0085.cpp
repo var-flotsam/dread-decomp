@@ -18,6 +18,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CDisplayObjectContainer.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkTU32.h"
 #include "types.h"
@@ -40,7 +41,6 @@ void fn_7100b607b4();
 void fn_7100b607d0();
 
 // The child's name: a string id whose text block keeps a use count at +0x44 and the text at +0x10.
-extern u8* g_unk_71727653a8 __attribute__((visibility("hidden")));
 
 static inline const char* ChildName() {
     u8* data = g_unk_71727653a8;

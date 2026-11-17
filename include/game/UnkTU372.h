@@ -5,8 +5,11 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkNavMeshItem;
 struct UnkLinkList;
 struct UnkWeakTarget;
 void* fn_71002b3b84(UnkWeakTarget*);
 void fn_71002b46ec(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002b4538(UnkLinkList* list, UnkLinkList** slot);
+void fn_71002b3114(UnkNavMeshItem* self, UnkNavMeshItem* other);
+void fn_71002b3328(UnkNavMeshItem* self);

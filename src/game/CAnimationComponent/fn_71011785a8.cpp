@@ -13,7 +13,6 @@ struct UnkShakernautCtrl_b53 {
 };
 
 struct UnkAnimTags_ovb0010;
-void fn_71011787dc(UnkAnimTags_ovb0010* self, bool flag);
 
 inline void SetBits(u32& word, const u32& bits) {
     word = word | bits;

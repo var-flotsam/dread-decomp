@@ -49,3 +49,4 @@ void fn_7100ee4550(CSubAreaManager* self, const UnkPoppedRequest* request, bool 
 void fn_7100ee4704(CSubAreaManager* self, const UnkPoppedRequest* request, bool a, bool b);
 void fn_7100ef1e1c(UnkNamedIds* self);
 const base::reflection::CType* fn_7100ef0e00();
+void fn_7100ee62bc(CSubAreaManager* self, UnkSubArea* area);

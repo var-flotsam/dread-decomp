@@ -24,7 +24,8 @@ void fn_7100497b38(void* self, const UnkStrIdBase* ids, u64 count) {
     InitEmptyStrId(&record->ids[0]);
     InitEmptyStrId(&record->ids[1]);
     InitEmptyStrId(&record->ids[2]);
-    if (count < 4) {
+    // The count is taken as 32 bits and checked against the record's capacity.
+    if ((u32)count <= sizeof(record->ids) / sizeof(record->ids[0])) {
         const CStrId* list = static_cast<const CStrId*>(ids);
         u32 n = 0;
         for (const CStrId* it = list; it != list + count; ++it) {

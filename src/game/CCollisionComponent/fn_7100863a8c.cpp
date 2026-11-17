@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
 #include "types.h"
@@ -19,7 +20,6 @@ struct UnkManager_7100863a8c {
     u8 unk_0x0[0x6b0];
 };
 void fn_7100d46804(UnkManager_7100863a8c* self);
-void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* obj);
 
 static inline UnkManager_7100863a8c* GetManager() {
     if (!g_unk_71726a4788) {

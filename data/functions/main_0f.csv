@@ -5272,7 +5272,7 @@ address,size,name,name_source,subsystem,status
 0x7100fd6438,2856,fn_7100fd6438,unknown,unknown,U
 0x7100fd6f60,20,fn_7100fd6f60,unknown,unknown,O
 0x7100fd6f74,1072,fn_7100fd6f74,unknown,unknown,M
-0x7100fd73a4,816,fn_7100fd73a4,unknown,unknown,U
+0x7100fd73a4,816,fn_7100fd73a4,unknown,unknown,O
 0x7100fd76d4,1060,fn_7100fd76d4,unknown,unknown,U
 0x7100fd7af8,68,fn_7100fd7af8,unknown,unknown,O
 0x7100fd7b3c,8,fn_7100fd7b3c,unknown,unknown,O
@@ -5320,7 +5320,7 @@ address,size,name,name_source,subsystem,status
 0x7100fdd4b8,4,fn_7100fdd4b8,unknown,unknown,O
 0x7100fdd4bc,28,fn_7100fdd4bc,unknown,unknown,O
 0x7100fdd4d8,36,fn_7100fdd4d8,unknown,unknown,O
-0x7100fdd4fc,404,fn_7100fdd4fc,unknown,unknown,U
+0x7100fdd4fc,404,fn_7100fdd4fc,unknown,unknown,O
 0x7100fdd690,12,sound::CMusicManager::refl_Equals,reflection,audio,O
 0x7100fdd69c,8,sound::CMusicManager::refl_Hash,reflection,audio,O
 0x7100fdd6a4,12,sound::CMusicManager::refl_TypeOf,reflection,audio,O

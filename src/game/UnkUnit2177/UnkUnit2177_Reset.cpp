@@ -4,6 +4,7 @@
 // elements of the global array g_unk_7172791e48. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/UnkTU2177.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
@@ -11,7 +12,6 @@
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
-void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);
 
 // The global array's elements (as src/game/CChangeStageNavMeshItemComponent/fn_71009ba9f0.cpp).
 struct UnkElem188 {

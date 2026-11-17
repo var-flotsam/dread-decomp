@@ -2,6 +2,7 @@
 // from it, damped while slow motion or the speed booster is on, scaled while the morph-ball style flag (+0x7e4)
 // is set, and zeroed under a few conditions of the aim component. Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CAbilitySpeedBooster.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
@@ -12,8 +13,6 @@ struct UnkAbility;
 struct UnkAimComponent;
 struct UnkRunInfo_l9ecf34;
 
-UnkAbility* fn_7100df5928(UnkPlayer* self);
-bool fn_710033cf20(UnkAbility* ability);
 f32 fn_7100796590(UnkRunInfo_l9ecf34* info);
 f32 fn_71010d6858();
 bool fn_710034f8dc(UnkAimComponent* self);
@@ -66,7 +65,7 @@ static inline f32 TunableAt(const base::reflection::UnkTunable& tunable, u32 off
     return *reinterpret_cast<const f32*>(reinterpret_cast<const char*>(&tunable) + offset);
 }
 
-void fn_71009ecf34(UnkMovement_l9ecf34* self, UnkSample_l9ecf34* out, u32 flags) {
+void fn_71009ecf34(UnkMovement_l9ecf34* self, UnkSample_l9ecf34* out, bool stopWhenIdle) {
     out->y = self->info->field_0xac;
     out->x = fn_7100796590(self->info);
     if (UnkAbility* ability = fn_7100df5928(reinterpret_cast<UnkPlayer*>(g_unk_7101d47310))) {
@@ -86,6 +85,6 @@ void fn_71009ecf34(UnkMovement_l9ecf34* self, UnkSample_l9ecf34* out, u32 flags)
     UnkAim_l9ecf34* aim = self->actor->aim;
     if (aim && aim->field_0x360 && !fn_710034f8dc(reinterpret_cast<UnkAimComponent*>(aim)))
         out->x = 0.0f;
-    if (self->field_0x7c == 0.0f && (flags & 1))
+    if (self->field_0x7c == 0.0f && stopWhenIdle)
         out->x = 0.0f;
 }

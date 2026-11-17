@@ -3850,7 +3850,7 @@ address,size,name,name_source,subsystem,status
 0x71005cbcb4,332,fn_71005cbcb4,unknown,game/ai?,O
 0x71005cbe00,1868,fn_71005cbe00,unknown,game/ai?,U
 0x71005cc54c,1056,fn_71005cc54c,unknown,game/ai?,U
-0x71005cc96c,496,fn_71005cc96c,unknown,game/ai?,U
+0x71005cc96c,496,fn_71005cc96c,unknown,game/ai?,O
 0x71005ccb5c,232,fn_71005ccb5c,unknown,game/ai?,O
 0x71005ccc44,28,fn_71005ccc44,unknown,game/ai?,O
 0x71005ccc60,132,fn_71005ccc60,unknown,game/ai?,O

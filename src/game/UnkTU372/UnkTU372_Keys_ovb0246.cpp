@@ -3,6 +3,7 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU372.h"
+#include "game/UnkTU374.h"
 #include "game/UnkTU39.h"
 #include "types.h"
 #include "base/global/CRntVector.h"
@@ -77,7 +78,6 @@ struct UnkNavMeshItem;
 struct UnkLinkList;
 
 struct UnkNavLoadLink;
-void fn_71002b52a4(UnkNavLoadLink*);
 
 struct UnkDtorLink_b0246 {
     u8 unk_0x0[0x40];

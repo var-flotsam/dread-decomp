@@ -13,6 +13,7 @@
 #include "game/CDemolitionBlockComponent.h"
 #include "game/UnkBroadphaseObject.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU341.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU39.h"
@@ -86,7 +87,6 @@ static_assert(__builtin_offsetof(UnkBaseTrigger, shape_ref.handle) == 0xa08, "la
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
-void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
 UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);

@@ -77,15 +77,20 @@ static inline void InitGroupArray(UnkGroupArray_ovb0244* array) {
     array->allocator = fn_7100083990();
 }
 
+// What a hit query found: the hit point and the values that go with it, cleared as a whole.
+struct UnkHitResult_ld46804 {
+    f32 point_x, point_y, point_z;
+    f32 field_0xc[6];
+    u32 field_0x24[3];
+};
+
 // A collision hit query (the shape src/game/CEntity.cpp gives it), its origin cleared.
 struct UnkHitQuery_ld46804 {
     void** vtable;
     void* object;
     void* field_0x10;
     s32 id;
-    f32 point_x, point_y, point_z;
-    f32 field_0x28[6];
-    u32 field_0x40[3];
+    UnkHitResult_ld46804 hit;  // 0x1c
     u32 pad_0x4c;
     bool field_0x50;
     u32 field_0x54;
@@ -93,9 +98,8 @@ struct UnkHitQuery_ld46804 {
     u64 field_0x68;
 
     UnkHitQuery_ld46804()
-        : object(nullptr), field_0x10(nullptr), id(-1), point_x(0.0f), point_y(0.0f), point_z(0.0f),
-          field_0x28(), field_0x40(), field_0x50(false), origin_x(0.0f), origin_y(0.0f), origin_z(0.0f),
-          field_0x68(0) {
+        : object(nullptr), field_0x10(nullptr), id(-1), hit(), field_0x50(false), origin_x(0.0f), origin_y(0.0f),
+          origin_z(0.0f), field_0x68(0) {
         vtable = g_unk_7101a20fa8 + 2;
     }
 };

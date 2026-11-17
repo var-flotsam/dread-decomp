@@ -8,3 +8,4 @@ void* fn_7100153d50();  // The command buffer.
 void* fn_7100153cd0();  // The graphics device.
 u32 fn_7100153da0();  // The current frame's buffer index.
 void* fn_7100153df0();  // The texture builder.
+void* fn_7100153dd0();

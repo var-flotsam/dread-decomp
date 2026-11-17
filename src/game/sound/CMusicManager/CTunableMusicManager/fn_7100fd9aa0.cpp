@@ -4,6 +4,7 @@
 
 #include "base/global/CRntDictionary.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2640.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -14,7 +15,6 @@ struct UnkIdObject_lfd9aa0;
 using UnkIdSet_lfd9aa0 = base::global::CRntDictionary<CStrId, UnkIdObject_lfd9aa0*>;
 
 // The id the object is registered under.
-const CStrId* fn_7100fed648(UnkIdObject_lfd9aa0* object);
 
 struct UnkMusicManager_lfd9aa0 {
     u8 pad_0x0[0x130];

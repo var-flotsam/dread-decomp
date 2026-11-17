@@ -4,6 +4,7 @@
 // are deleted, and the counters are cleared. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/UnkBreakableTile.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
-void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 
 struct UnkBreakableTileGroupData {
     u8 pad_0x0[0x14];

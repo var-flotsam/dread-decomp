@@ -6,6 +6,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU54.h"
 #include "types.h"
 
 // The base's vtable and the class's (reached through the GOT).
@@ -13,7 +14,6 @@ extern char unk_7101a1db18[];
 extern char unk_7101a1d9f8[];
 
 // The matrix of `value` rotated by `angle` (returned in memory).
-UnkMatrix44 fn_710007966c(const void* value, f32 angle);
 
 // An entry (12 bytes, zeroed).
 struct UnkSceneEntry {

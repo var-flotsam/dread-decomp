@@ -5,3 +5,5 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkNavLoadLink;
+void fn_71002b52a4(UnkNavLoadLink*);

@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/reflection/CClass.h"
 #include "game/CSpawnPointComponent.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU2704.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
@@ -44,7 +45,6 @@ static UnkSpawnCollider_l129064* Collider(CSpawnPointComponent* self) {
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
 UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
-void* fn_7100d475ec(UnkStruct_71007e44b8* self, const base::global::CStrId* name, u32 flag);
 struct UnkTriggerCollider_b0058;
 using base::reflection::UnkReflObject;
 struct UnkTracker_71008618cc;

@@ -27,7 +27,6 @@ struct UnkTunable {
 
 void fn_7100ee5bc4(CSubAreaManager* self);
 void fn_7100ee5dcc(CSubAreaManager* self);
-void fn_7100ee62bc(CSubAreaManager* self, UnkSubArea* area);
 void fn_7100219560(UnkRenderManager* self, void* item, f32 value, bool flag);
 
 struct UnkRenderItems_b190 {

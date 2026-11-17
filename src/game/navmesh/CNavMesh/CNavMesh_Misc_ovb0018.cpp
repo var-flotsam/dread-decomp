@@ -12,6 +12,7 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU367.h"
+#include "game/UnkTU372.h"
 #include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
@@ -454,8 +455,6 @@ struct UnkNavMeshItem;  // src/game/navmesh/UnkNavMeshItem.cpp
 
 struct UnkRecord;  // the item, as src/game_s2/fn_71002b2e9c.cpp names it
 void fn_71002b2e9c(UnkRecord* self);
-void fn_71002b3114(UnkNavMeshItem* self, UnkNavMeshItem* other);
-void fn_71002b3328(UnkNavMeshItem* self);
 
 // An item (0x208 bytes) with its out-of-line constructor, move and destructor.
 struct alignas(8) UnkNavItem9dd4 {

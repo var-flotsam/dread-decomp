@@ -10,6 +10,7 @@
 #include "game/CCharClassLiquidPoolComponent.h"
 #include "game/CCharClassWaterPoolComponent.h"
 #include "game/UnkComponent.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -137,7 +138,6 @@ struct UnkCallbackSetVector;
 struct UnkManager_7100863a8c;
 void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
 struct UnkCollisionObject;
-void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* obj);
 
 static inline UnkManager_7100863a8c* CollisionManager() {
     if (!g_unk_71726a4788) {

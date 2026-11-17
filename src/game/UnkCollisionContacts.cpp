@@ -658,7 +658,6 @@ UnkColliderResult fn_7100d55484(UnkShapeTester_A5_b68* self, UnkShape* a, void* 
 }
 
 bool fn_710012b330(const UnkBox2D* a, const void* b, UnkContactBuffer<4>* out, bool flag);
-bool fn_710012dbd0(const UnkBox2D* a, void* x5, const void* b, UnkContactPoint* out);
 
 // The box `a` against the box `b`: with `flag`, the point set of the pair first, each point through
 // fn_7100d54020 until the sink asks to stop; then the single contact point along `x5`.
