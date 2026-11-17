@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflTypedPtr.h"
 #include "game/CActorComponent.h"
+#include "game/CSpawnPointComponent.h"
 #include "game/UnkTU56.h"
 #include "game/UnkTU85.h"
 #include "types.h"
@@ -40,7 +41,8 @@ struct UnkSpawnPointClass_l12812c {
     }
 };
 
-// A reflected object: its class is vtable slot 0.
+// The component as a reflected object: its class is vtable slot 0 (the base component's layout has its
+// vtable as a plain member, so the component is seen through this view to call it).
 struct UnkSpawnPointObject_l12812c {
     virtual UnkSpawnPointClass_l12812c* GetClass();
 };
@@ -82,8 +84,9 @@ struct UnkFieldId_l12812c : UnkStrIdBase {
 
 static inline bool HasMore(CRntFile* file) { return file->position < file->size; }
 
-void fn_710112812c(UnkSpawnPointObject_l12812c* self, CRntFile* file) {
-    fn_710024fc0c(reinterpret_cast<UnkPickableItem_A4_b76*>(self), file);
+void fn_710112812c(CSpawnPointComponent* component, CRntFile* file) {
+    fn_710024fc0c(reinterpret_cast<UnkPickableItem_A4_b76*>(component), file);
+    auto* self = reinterpret_cast<UnkSpawnPointObject_l12812c*>(component);
 
     const char* unused;  // read and skipped
     const char* startAnimation;

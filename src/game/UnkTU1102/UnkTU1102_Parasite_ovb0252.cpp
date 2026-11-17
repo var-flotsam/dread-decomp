@@ -32,21 +32,26 @@
 // ---- fn_71006e808c ----
 struct UnkActor;
 
-void fn_7101127c24(void* obj, UnkActor* owner, bool, bool b, s32 c, bool d, void* e);
+static inline UnkWeakTarget* Inner(UnkWeakHandle* p) { return p ? p->target : nullptr; }
 
-static inline void* Inner(UnkWeakHandle* p) { return p ? p->target : nullptr; }
+// The grab link's target is a spawn point component; this unit's view of it is only the weak target.
+static inline CSpawnPointComponent* SpawnPoint(UnkWeakHandle* p) {
+    return reinterpret_cast<CSpawnPointComponent*>(Inner(p));
+}
+// The owner as a weak target (UnkActor has no layout that says so yet).
+static inline UnkWeakTarget* AsWeakTarget(UnkActor* owner) { return reinterpret_cast<UnkWeakTarget*>(owner); }
 
 void fn_71006e808c(UnkXParasiteAI* self) {
     if (!self->field_0x147b0 || !self->field_0x147b0->target)
         return;
     UnkXParasiteResult_b0252 found = XParasiteAI_FindFarthestEntry(self);
     if (found.ptr && found.ptr->target && self->field_0x147b8) {
-        fn_7101127c24(Inner(self->field_0x147b0), self->owner, 0, false, 5, false, nullptr);
+        fn_7101127c24(SpawnPoint(self->field_0x147b0), AsWeakTarget(self->owner), 0, false, 5, false, nullptr);
         fn_71006eb8cc(reinterpret_cast<base::UnkRefHandle*>(&self->field_0x147b0), reinterpret_cast<const base::UnkRefHandle*>(&found));
         self->field_0x147b8 = false;
     }
-    fn_7101127c24(Inner(self->field_0x147b0), self->owner, 1, self->field_0x147b8 ? false : self->released == 0,
-                  self->field_0x14724, self->field_0x146e8 != 0, Inner(found.ptr));
+    fn_7101127c24(SpawnPoint(self->field_0x147b0), AsWeakTarget(self->owner), 1,
+                  self->field_0x147b8 ? false : self->released == 0, self->field_0x14724, self->field_0x146e8 != 0, Inner(found.ptr));
     reinterpret_cast<base::UnkRefHandle*>(&self->field_0x147b0)->Set(nullptr);
 }
 

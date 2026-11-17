@@ -1,3 +1,4 @@
+#include "game/CSpawnPointComponent.h"
 #include "game/UnkGameManager.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -9,12 +10,7 @@ struct UnkSpawnKey_ovb0171 {
     u64 id;  // 0x30
 };
 
-struct UnkSpawnWeakHolder_ovb0171 {
-    u8 pad_0x0[0x380];
-    UnkWeakHandle* handle;  // 0x380
-};
-
-void fn_710112c4d8(UnkSpawnWeakHolder_ovb0171* self, UnkSpawnKey_ovb0171** key) {
+void fn_710112c4d8(CSpawnPointComponent* self, UnkSpawnKey_ovb0171** key) {
     UnkSpawnKey_ovb0171* k = *key;
     UnkGameManager* manager = g_unk_7101d47310;
     u64 id;
@@ -24,7 +20,7 @@ void fn_710112c4d8(UnkSpawnWeakHolder_ovb0171* self, UnkSpawnKey_ovb0171** key) 
     flags = *flags_src;
     UnkWeakTarget* target = static_cast<UnkWeakTarget*>(fn_7100deba8c(manager, &id, &flags));
     if (target)
-        AssignRef(&self->handle, GetWeakHandle(target));
+        AssignRef(&self->field_0x380, GetWeakHandle(target));
     else
-        ResetRef(&self->handle);
+        ResetRef(&self->field_0x380);
 }
