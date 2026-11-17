@@ -1,6 +1,7 @@
 // COmniLightComponent: clamps each component of a colour to be non-negative and stores it in the
 // light's data. Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -39,5 +40,5 @@ static inline CVector4D UnkClampColor(const CVector4D* v) {
 void fn_71008f1bd0(UnkOmniLight_l8f1bd0* self, const CVector4D* value) {
     CVector4D* color = &self->base->owner->data->color;
     CVector4D c = UnkClampColor(value);
-    fn_710007b518(color, &c);
+    Assign(*color, c);
 }

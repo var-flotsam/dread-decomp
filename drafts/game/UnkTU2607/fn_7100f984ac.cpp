@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "base/reflection.h"
 #include "game/UnkTU0.h"
 #include "types.h"
@@ -62,18 +63,18 @@ void fn_7100f984ac(f32 time, UnkEnvironmentFade* self, const UnkVector4D* a, con
     UnkLightObject* light = manager->light;
     const CVector4D* third;
     if (!light) {
-        fn_710007b518(&s->from8[0][0], a);
-        fn_710007b518(&s->from8[1][0], a);
+        Assign(s->from8[0][0], *a);
+        Assign(s->from8[1][0], *a);
         third = a;
     } else {
         const CVector4D* first = &light->target->colors->first;
-        fn_710007b518(&s->from8[0][0], first);
+        Assign(s->from8[0][0], *first);
         const CVector4D* second = &light->target->colors->second;
-        fn_710007b518(&s->from8[1][0], second);
+        Assign(s->from8[1][0], *second);
         third = &light->target->colors->third;
     }
-    fn_710007b518(&s->from8[2][0], third);
-    fn_710007b518(&s->from8[0][1], a);
-    fn_710007b518(&s->from8[1][1], b);
-    fn_710007b518(&s->from8[2][1], c);
+    Assign(s->from8[2][0], *third);
+    Assign(s->from8[0][1], *a);
+    Assign(s->from8[1][1], *b);
+    Assign(s->from8[2][1], *c);
 }

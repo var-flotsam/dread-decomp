@@ -4,6 +4,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/CBlackboard.h"
 #include "game/CCollisionComponent.h"
 #include "game/CModelUpdaterComponent.h"
@@ -148,7 +149,7 @@ void fn_71008c6744(UnkDemolitionBlockLife* self) {
             f32 z = node->value.z;
             f32 w = node->value.w;
             CVector4D value = {x, 0.0f, z, w};
-            fn_710007b518(&node->value, &value);
+            Assign(node->value, value);
             if (UnkDemolitionNodeTarget* target = node->target)
                 *target->value = value;
         }

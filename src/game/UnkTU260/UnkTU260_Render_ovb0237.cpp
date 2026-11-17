@@ -2,6 +2,7 @@
 // fixed run of its methods, plus one property query. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU179.h"
@@ -330,11 +331,11 @@ int fn_71001e065c(UnkRenderOwner_b0237* self, u64 id, void* out) {
         return 1;
     case 0xb37573f01782316aull:
         if (out)
-            fn_710007b518(static_cast<base::math::CVector4D*>(out), &g_unk_7101a1e99c);
+            Assign(*static_cast<base::math::CVector4D*>(out), g_unk_7101a1e99c);
         return 4;
     case 0x95a2e304fd05cda8ull:
         if (out)
-            fn_710007b518(static_cast<base::math::CVector4D*>(out), &g_unk_7101a1e98c);
+            Assign(*static_cast<base::math::CVector4D*>(out), g_unk_7101a1e98c);
         return 4;
     }
     return 0;

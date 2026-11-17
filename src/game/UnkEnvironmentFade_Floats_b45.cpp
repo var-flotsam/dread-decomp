@@ -5,6 +5,7 @@
 // The layout below covers only the channels set here. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -127,8 +128,8 @@ __attribute__((always_inline)) inline void FadeColor(UnkFadeLayout* self, u32 ch
     self->StartTime(channel, time);
     const CVector4D* now = &c->now;
     self->StartProgress(channel, time);
-    fn_710007b518(&c->from, now);
-    fn_710007b518(&c->to, to);
+    Assign(c->from, *now);
+    Assign(c->to, *to);
 }
 
 }  // namespace

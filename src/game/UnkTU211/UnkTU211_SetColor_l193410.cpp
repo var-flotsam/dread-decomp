@@ -2,6 +2,7 @@
 // indexed entry's colours and into the vector of the target bound there. Names and layouts are
 // placeholders.
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU211.h"
 #include "types.h"
 
@@ -37,16 +38,16 @@ bool fn_7100193410(UnkEntryListA1_134* list, u32 entryIndex, u32 colorIndex,
     UnkColorEntry* entry = self->entries_0x40[entryIndex];
     if (selector == 0) {
         CVector4D* own = &self->colorsA_0x16c[colorIndex];
-        fn_710007b518(own, color);
-        fn_710007b518(&entry->colorsA_0x240[colorIndex], own);
+        Assign(*own, *color);
+        Assign(entry->colorsA_0x240[colorIndex], *own);
         if (UnkColorTarget* target = entry->targetsA_0x2e0[colorIndex])
             *target->color_0x30 = *own;
         return true;
     }
     if (selector == 1) {
         CVector4D* own = &self->colorsB_0xcc[colorIndex];
-        fn_710007b518(own, color);
-        fn_710007b518(&entry->colorsB_0x14c[colorIndex], own);
+        Assign(*own, *color);
+        Assign(entry->colorsB_0x14c[colorIndex], *own);
         if (UnkColorTarget* target = entry->targetsB_0x1f0[colorIndex])
             *target->color_0x30 = *own;
         return true;

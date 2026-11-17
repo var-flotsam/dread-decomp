@@ -3,17 +3,11 @@
 #include "game/UnkTU1273.h"
 #include "types.h"
 #include "base/global/CStrId.h"
+#include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 
 using base::global::CStrId;
-
-struct UnkVec4 {
-    f32 x, y, z, w;
-    UnkVec4& operator=(const UnkVec4& other);  // fn_710007b518
-};
-
-struct UnkVec4Pod {
-    f32 x, y, z, w;
-};
+using base::math::CVector4D;
 
 struct UnkKey {
     u64 field_0x0;
@@ -24,14 +18,14 @@ struct UnkKey {
 
 struct UnkSlotTarget {
     u8 pad_0x0[0x30];
-    UnkVec4Pod* field_0x30;
+    CVector4D* field_0x30;
 };
 
 struct UnkSlots {
     u8 pad_0x0[0x14c];
-    UnkVec4 field_0x14c[10];
+    CVector4D field_0x14c[10];
     UnkSlotTarget* field_0x1f0[10];
-    UnkVec4 field_0x240[10];
+    CVector4D field_0x240[10];
     UnkSlotTarget* field_0x2e0[10];
 };
 
@@ -39,8 +33,8 @@ struct UnkEntry {
     u32 field_0x0;
     u32 field_0x4;
     u32 field_0x8;
-    UnkVec4 field_0xc;
-    UnkVec4 field_0x1c;
+    CVector4D field_0xc;
+    CVector4D field_0x1c;
     u8 pad_0x2c[0x4];
     UnkKey field_0x30;
     u32 field_0x48;
@@ -56,7 +50,7 @@ struct UnkTable {
 
 // NON_MATCHING(minor): register allocation; the original spills `value` around the search loop and
 // keeps `a` in a register (two extra moves), this build does the opposite.
-void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const UnkVec4& a, const UnkVec4& b, u32 kind,
+void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const CVector4D& a, const CVector4D& b, u32 kind,
                    u32 value, f32 weight) {
     s32 idx = -1;
     for (u64 i = 0; i < self->count; ++i) {
@@ -77,25 +71,25 @@ void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const UnkVec4& a, 
     fn_710080fb00(&e->field_0x30, self);
     e->field_0x4 = id;
     e->field_0x8 = kind;
-    e->field_0xc = a;
-    e->field_0x1c = b;
+    Assign(e->field_0xc, a);
+    Assign(e->field_0x1c, b);
     e->field_0x4c = weight;
     e->field_0x48 = 0;
     switch (e->field_0x8) {
     case 0: {
         UnkSlots* s = fn_710080fa28(&e->field_0x30);
         u32 n = e->field_0x4;
-        s->field_0x240[n] = e->field_0xc;
+        Assign(s->field_0x240[n], e->field_0xc);
         if (UnkSlotTarget* t = s->field_0x2e0[n])
-            __builtin_memcpy(t->field_0x30, &e->field_0xc, sizeof(UnkVec4Pod));
+            __builtin_memcpy(t->field_0x30, &e->field_0xc, sizeof(CVector4D));
         break;
     }
     case 1: {
         UnkSlots* s = fn_710080fa28(&e->field_0x30);
         u32 n = e->field_0x4;
-        s->field_0x14c[n] = e->field_0xc;
+        Assign(s->field_0x14c[n], e->field_0xc);
         if (UnkSlotTarget* t = s->field_0x1f0[n])
-            __builtin_memcpy(t->field_0x30, &e->field_0xc, sizeof(UnkVec4Pod));
+            __builtin_memcpy(t->field_0x30, &e->field_0xc, sizeof(CVector4D));
         break;
     }
     }

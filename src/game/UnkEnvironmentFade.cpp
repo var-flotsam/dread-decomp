@@ -11,6 +11,7 @@
 #include "base/color/CColor4F.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU2607.h"
 #include "types.h"
@@ -97,9 +98,9 @@ void fn_7100f97f64(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* to
     self->Start(0, time);
     UnkEnvFadeColor now;
     fn_7100219fa0(g_unk_7101d47300, &now, 0);
-    fn_710007b518(&self->field_0x0, &now);
-    fn_710007b518(&self->field_0x10, &self->field_0x0);
-    fn_710007b518(&self->field_0x20, to);
+    Assign(self->field_0x0, now);
+    Assign(self->field_0x10, self->field_0x0);
+    Assign(self->field_0x20, *to);
 }
 
 // The render manager's current value for channel 1 (generated, src/lifted/: it forwards to the
@@ -142,8 +143,8 @@ void fn_7100f9819c(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* to
     CColor4F now(1.0f, 1.0f, 1.0f, 1.0f);
     fn_7100219e74(g_unk_7101d47300, &now);
     UnkEnvFadeColor from = fn_7100030878(&now);
-    fn_710007b518(&self->field_0x84, &from);
-    fn_710007b518(&self->field_0x94, to);
+    Assign(self->field_0x84, from);
+    Assign(self->field_0x94, *to);
 }
 
 const UnkEnvFadeColor* fn_71002192b8(UnkRenderManager* self);
@@ -156,7 +157,7 @@ void fn_7100f98244(base::math::CVector4D a, base::math::CVector4D b, UnkEnvironm
     self->field_0xa4[1].from = now.y;
     self->field_0xa4[2].from = now.z;
     self->field_0xa4[3].from = now.w;
-    fn_710007b518(&now, fn_71002192c4(g_unk_7101d47300));
+    Assign(now, *fn_71002192c4(g_unk_7101d47300));
     self->field_0xa4[4].from = now.x;
     self->field_0xa4[5].from = now.y;
     self->field_0xa4[6].from = now.z;
@@ -181,8 +182,8 @@ void fn_7100f98370(f32 time, UnkEnvironmentFade* self, const UnkEnvFadeColor* to
     f32 value;
     UnkEnvFadeColor now;
     fn_7100219fec(g_unk_7101d47300, 1, &value, &now);
-    fn_710007b518(&self->field_0xe4, &now);
-    fn_710007b518(&self->field_0xf4, to);
+    Assign(self->field_0xe4, now);
+    Assign(self->field_0xf4, *to);
 }
 
 // NON_MATCHING(minor): the original computes the scalar out-argument's address (sub x2) right
@@ -290,8 +291,8 @@ void fn_7100f990e0(UnkEnvironmentFade* self, base::math::UnkVector4D to, f32 tim
     self->done[26] = false;
     self->progress[26] = NearlyZero(time) ? 1.0f : 0.0f;
     self->field_0x31c = 1;
-    fn_710007b518(&self->field_0x2f0, &self->field_0x2e0);
-    fn_710007b518(&self->field_0x300, &to);
+    Assign(self->field_0x2f0, self->field_0x2e0);
+    Assign(self->field_0x300, to);
 }
 
 // The faded vectors: copied member by member (the original copies the components as words).

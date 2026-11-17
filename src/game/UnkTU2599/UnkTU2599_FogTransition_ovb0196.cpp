@@ -11,6 +11,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector4D.h"
+#include "base/math/CVectorOps.h"
 #include "game/UnkTU2599.h"
 #include "types.h"
 
@@ -47,13 +48,13 @@ template <class T>
 static inline __attribute__((always_inline)) void* CopyA(T* self, const T* other) {
     if (self != other) {
         self->field_0x0 = other->field_0x0;
-        fn_710007b518(&self->field_0x4, &other->field_0x4);
+        Assign(self->field_0x4, other->field_0x4);
         u32 t = other->field_0x1c;
         self->field_0x14 = other->field_0x14;
         self->field_0x1c = t;
         self->field_0x20 = other->field_0x20;
         self->field_0x24 = other->field_0x24;
-        fn_710007b518(&self->field_0x28, &other->field_0x28);
+        Assign(self->field_0x28, other->field_0x28);
         self->field_0x38 = other->field_0x38;
     }
     return self;
@@ -96,14 +97,14 @@ template <class T>
 static inline __attribute__((always_inline)) void* CopyB(T* self, const T* other) {
     if (self != other) {
         self->field_0x0 = other->field_0x0;
-        fn_710007b518(&self->field_0x4, &other->field_0x4);
+        Assign(self->field_0x4, other->field_0x4);
         u32 t = other->field_0x1c;
         self->field_0x14 = other->field_0x14;
         self->field_0x1c = t;
         self->field_0x20 = other->field_0x20;
         self->field_0x24 = other->field_0x24;
         self->field_0x28 = other->field_0x28;
-        fn_710007b518(&self->field_0x2c, &other->field_0x2c);
+        Assign(self->field_0x2c, other->field_0x2c);
         u32 last = other->field_0x3c[4];
         u64 hi, lo;
         __builtin_memcpy(&hi, &other->field_0x3c[2], 8);

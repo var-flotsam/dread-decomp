@@ -145,11 +145,10 @@ s32 fn_71005c0f2c(UnkHydrogigaAI_b0166* self) {
 
 struct UnkTable;
 struct UnkKey;
-struct UnkVec4;
 struct UnkPolygon2D;
 char* fn_71005c1008(u64 id);
-void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const UnkVec4& a, const UnkVec4& b, u32 kind, u32 value,
-                   f32 weight);
+void fn_7100926874(UnkTable* self, const UnkKey& key, u32 id, const base::math::CVector4D& a, const base::math::CVector4D& b,
+                   u32 kind, u32 value, f32 weight);
 
 // The key as fn_7100926874.cpp's, with its id released in two steps.
 struct UnkMaterialKey_b0166 {
@@ -223,8 +222,7 @@ void fn_71005c18dc(UnkHydrogigaAI_b0166* self, UnkActorWith_b0166* actor) {
         UnkMaterialKey_b0166 key(i);
         base::math::UnkVector4D a = fn_7100030878(&color);
         base::math::UnkVector4D b = fn_7100030878(&color);
-        fn_7100926874(table, reinterpret_cast<const UnkKey&>(key), 2, reinterpret_cast<const UnkVec4&>(a),
-                      reinterpret_cast<const UnkVec4&>(b), 1, 0, 0.0f);
+        fn_7100926874(table, reinterpret_cast<const UnkKey&>(key), 2, a, b, 1, 0, 0.0f);
     }
 }
 
