@@ -13,6 +13,8 @@
 // A resource type (as src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp registers them): its name first.
 struct UnkResType {
     base::global::CStrId name;
+    u8 pad_0x8[0x28];
+    const base::global::CStrId* extensions;  // 0x30, the file extensions this type loads
 };
 
 // Registered resource types, by what they load.

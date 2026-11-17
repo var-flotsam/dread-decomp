@@ -46,3 +46,4 @@ extern const f32 g_unk_710164be30;  // a margin of the minimap's cells (read onl
 void fn_7100e94254(UnkMinimapInput_b0200* self);  // Reads the minimap's input queue.
 void fn_7100e9d7fc(UnkMapData* self);
 extern UnkMapNamedDef_b49 g_unk_71727c9e00;
+extern void* g_unk_7101ca9e38[];
