@@ -10,6 +10,7 @@
 #include "game/CModelUpdaterComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU140.h"
 #include "game/UnkTU54.h"
 #include "game/UnkTU55.h"
 #include "game/UnkXformNode.h"
@@ -27,8 +28,6 @@ struct UnkPathLoad_b0258m {
     CFilePathStrId path_b;  // 0x70
 };
 static_assert(__builtin_offsetof(UnkPathLoad_b0258m, path_b) == 0x70, "layout");
-
-void fn_71001494f8(void* slot, u32 kind, u32 mode, CFilePathStrId* path, u32 flags);
 
 void fn_710057345c(UnkPathLoad_b0258m* self) {
     alignas(8) u8 storage_a[sizeof(CFilePathStrId)];

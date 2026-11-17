@@ -4837,7 +4837,7 @@ address,size,name,name_source,subsystem,status
 0x7100c9cd60,780,fn_7100c9cd60,unknown,unknown,O
 0x7100c9d06c,4,fn_7100c9d06c,unknown,linker,L
 0x7100c9d070,780,fn_7100c9d070,unknown,unknown,O
-0x7100c9d380,1676,fn_7100c9d380,unknown,unknown,U
+0x7100c9d380,1676,fn_7100c9d380,unknown,unknown,O
 0x7100c9da0c,268,fn_7100c9da0c,unknown,unknown,O
 0x7100c9db18,520,fn_7100c9db18,unknown,unknown,O
 0x7100c9dd20,692,fn_7100c9dd20,unknown,unknown,U
@@ -6648,7 +6648,7 @@ address,size,name,name_source,subsystem,status
 0x7100cdece8,48,CCharClassSoundEvent::refl_CopyAssign,reflection,game/characters,O
 0x7100cded18,48,CCharClassSoundEvent::refl_MoveAssign,reflection,game/characters,O
 0x7100cded48,432,fn_7100cded48,unknown,game/characters?,O
-0x7100cdeef8,1076,fn_7100cdeef8,unknown,game/characters?,U
+0x7100cdeef8,1076,fn_7100cdeef8,unknown,game/characters?,O
 0x7100cdf330,160,fn_7100cdf330,unknown,game/characters?,O
 0x7100cdf3d0,232,CCharClassStaticLUACallback1Event::refl_AddAttributes,reflection,game/characters,O
 0x7100cdf4b8,244,CCharClassStaticLUACallback1Event::refl_GetClass,reflection,game/characters,O

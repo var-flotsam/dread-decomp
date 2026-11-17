@@ -7,6 +7,8 @@
 #include "types.h"
 #include "base/reflection/TypeObject.h"
 
+struct UnkNavComponent;
+struct UnkNavGroupInfo;
 struct UnkAIBB_b0144;
 struct UnkPropertyName;
 struct UnkAIComponent;
@@ -85,3 +87,4 @@ enum class ELOSMode : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ELOSMode>::object asm("g_unk_7172a05520");
 extern UnkPropertyName g_unk_7172a06338 __attribute__((visibility("hidden")));
 void* fn_7101105970(UnkScorpiusAI_b69a4* ai);
+UnkNavGroupInfo* fn_710110c3d8(UnkNavComponent* component);

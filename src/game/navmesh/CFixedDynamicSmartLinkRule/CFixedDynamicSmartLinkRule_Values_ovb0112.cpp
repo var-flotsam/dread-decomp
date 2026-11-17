@@ -17,9 +17,8 @@
 #include "game/UnkNavMeshCell.h"
 #include "game/UnkTU367.h"
 #include "game/UnkTU56.h"
+#include "game/navmesh/CDynamicSmartLinkRules.h"
 #include "types.h"
-
-u32 fn_710026d2e4(const char*);
 
 s32 fn_710026f548(const char* name) {
     if (strcmp(name, "None") == 0)

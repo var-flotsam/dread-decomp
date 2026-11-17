@@ -17,6 +17,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU2510.h"
 #include "game/UnkTU365.h"
 #include "game/UnkXformNode.h"
@@ -331,7 +332,6 @@ void fn_71003c930c(UnkAutsharpAI_b0117* self) {
     }
 }
 
-bool fn_71009e12d0(void*);
 void fn_71003c95d8(UnkAutsharpAI_b0117* self);
 void fn_71003c97ec(UnkAutsharpAI_b0117* self);
 void fn_71003c9b7c(UnkAutsharpAI_b0117* self, bool flag);

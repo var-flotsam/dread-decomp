@@ -22,7 +22,7 @@ address,size,name,name_source,subsystem,status
 0x7100f02740,1348,fn_7100f02740,unknown,unknown,m
 0x7100f02c84,340,fn_7100f02c84,unknown,unknown,U
 0x7100f02dd8,120,fn_7100f02dd8,unknown,unknown,O
-0x7100f02e50,488,fn_7100f02e50,unknown,unknown,U
+0x7100f02e50,488,fn_7100f02e50,unknown,unknown,O
 0x7100f03038,36,fn_7100f03038,unknown,unknown,O
 0x7100f0305c,292,fn_7100f0305c,unknown,unknown,O
 0x7100f03180,200,fn_7100f03180,unknown,unknown,U
@@ -305,7 +305,7 @@ address,size,name,name_source,subsystem,status
 0x7100f11614,8,CReserveTankInfo::CTunableReserveTanks::refl_CopyAssign,reflection,game,O
 0x7100f1161c,8,CReserveTankInfo::CTunableReserveTanks::refl_MoveAssign,reflection,game,O
 0x7100f11624,348,fn_7100f11624,unknown,unknown,O
-0x7100f11780,1384,fn_7100f11780,unknown,unknown,U
+0x7100f11780,1384,fn_7100f11780,unknown,unknown,O
 0x7100f11ce8,216,fn_7100f11ce8,unknown,unknown,O
 0x7100f11dc0,136,fn_7100f11dc0,unknown,unknown,O
 0x7100f11e48,788,fn_7100f11e48,unknown,unknown,U
@@ -389,7 +389,7 @@ address,size,name,name_source,subsystem,status
 0x7100f14db0,208,fn_7100f14db0,unknown,unknown,U
 0x7100f14e80,252,fn_7100f14e80,unknown,unknown,O
 0x7100f14f80,212,fn_7100f14f80,unknown,unknown,O
-0x7100f15054,1236,fn_7100f15054,unknown,unknown,U
+0x7100f15054,1236,fn_7100f15054,unknown,unknown,O
 0x7100f15530,1064,fn_7100f15530,unknown,unknown,U
 0x7100f15960,124,fn_7100f15960,unknown,unknown,O
 0x7100f159e0,304,fn_7100f159e0,unknown,unknown,O
@@ -4064,7 +4064,7 @@ address,size,name,name_source,subsystem,status
 0x7100f97268,8,fn_7100f97268,unknown,unknown,O
 0x7100f97270,184,fn_7100f97270,unknown,unknown,O
 0x7100f97328,180,fn_7100f97328,unknown,unknown,O
-0x7100f973e0,1032,fn_7100f973e0,unknown,unknown,U
+0x7100f973e0,1032,fn_7100f973e0,unknown,unknown,O
 0x7100f977e8,4,STransition::refl_AddAttributes,reflection,game,O
 0x7100f977ec,240,STransition::refl_GetClass,reflection,game,O
 0x7100f978dc,4,STransition::refl_AddFields,reflection,game,O
@@ -4842,7 +4842,7 @@ address,size,name,name_source,subsystem,status
 0x7100fb725c,20,"base::reflection::CollectionTypeMapper<base::global::CRntVector<std::__1::unique_ptr<CSubareaSetup, std::__1::default_delete<CSubareaSetup>>>>::End",reflection,engine/reflection,O
 0x7100fb7270,260,fn_7100fb7270,unknown,unknown,O
 0x7100fb7374,268,fn_7100fb7374,unknown,unknown,O
-0x7100fb7480,1024,fn_7100fb7480,unknown,unknown,U
+0x7100fb7480,1024,fn_7100fb7480,unknown,unknown,O
 0x7100fb7880,140,fn_7100fb7880,unknown,unknown,O
 0x7100fb790c,264,fn_7100fb790c,unknown,unknown,O
 0x7100fb7a14,8,fn_7100fb7a14,unknown,unknown,O
@@ -5437,7 +5437,7 @@ address,size,name,name_source,subsystem,status
 0x7100fe0968,4,base::reflection::ValueOps<EMusicManagerInGameState>::Destroy,reflection,engine/reflection,O
 0x7100fe096c,20,base::reflection::ValueOps<EMusicManagerInGameState>::CopyAssign,reflection,engine/reflection,O
 0x7100fe0980,20,base::reflection::ValueOps<EMusicManagerInGameState>::MoveAssign,reflection,engine/reflection,O
-0x7100fe09a0,1672,fn_7100fe09a0,unknown,unknown,U
+0x7100fe09a0,1672,fn_7100fe09a0,unknown,unknown,O
 0x7100fe1028,40,fn_7100fe1028,unknown,unknown,O
 0x7100fe1050,20,fn_7100fe1050,unknown,unknown,O
 0x7100fe1064,52,fn_7100fe1064,unknown,unknown,O

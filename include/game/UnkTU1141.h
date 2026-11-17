@@ -1,6 +1,6 @@
 #pragma once
 
-// UnkTU1141: functions of this translation unit that other files call (tools/tu_map.py unit 1141,
+// UnkTU1141: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1141,
 // 0x71007142e8-0x71007153d4). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -13,3 +13,5 @@ void fn_7100714604(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* o
 void fn_71007149f4(UnkWeighted_7100714808* self, const UnkWeighted_7100714808* other, f32 weight, bool flag);
 void fn_7100714eb4(void* part, const u32* flags);
 void fn_71007142e8(UnkStruct_71007142e8* self);
+extern u8 g_unk_717270ebf0;
+extern u8 g_unk_717270ec68;

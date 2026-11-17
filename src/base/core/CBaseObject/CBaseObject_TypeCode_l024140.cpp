@@ -4,6 +4,7 @@
 #include "base/animation/CBlendSpaceResource.h"
 #include "base/core/CBaseObject.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/CType.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
@@ -12,8 +13,6 @@
 
 using base::reflection::CType;
 using base::reflection::UnkReflObject;
-
-bool fn_710009d760(const UnkReflObject* obj, const CType* type);
 
 s32 fn_7100024140(const CType* type) {
     if (type == fn_710000d228())

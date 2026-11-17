@@ -2172,7 +2172,7 @@ address,size,name,name_source,subsystem,status
 0x7100584ab4,4,fn_7100584ab4,unknown,game/ai?,O
 0x7100584ab8,3376,fn_7100584ab8,unknown,game/ai?,U
 0x71005857e8,220,fn_71005857e8,unknown,game/ai?,O
-0x71005858c4,520,fn_71005858c4,unknown,game/ai?,U
+0x71005858c4,520,fn_71005858c4,unknown,game/ai?,O
 0x7100585acc,460,fn_7100585acc,unknown,game/ai?,U
 0x7100585c98,416,fn_7100585c98,unknown,game/ai?,O
 0x7100585e38,548,fn_7100585e38,unknown,game/ai?,U

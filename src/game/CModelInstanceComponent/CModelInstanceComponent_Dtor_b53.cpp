@@ -12,8 +12,6 @@ using base::global::UnkStringPool;
 
 extern void* g_unk_7101a83cd0[];  // the component's vtable
 
-void fn_710021949c(UnkRenderManager* self, u64 object, u32 arg2, u32 arg3);
-
 struct UnkModelInstanceComponent_b53 : UnkBaseComponent {
     u8 pad_0x40[0x8];
     UnkStringData* field_0x48;  // CFilePathStrId

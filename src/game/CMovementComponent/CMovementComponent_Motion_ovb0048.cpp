@@ -142,7 +142,6 @@ UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact) {
 struct UnkAssignedSlot;
 struct UnkStruct_71007142e8;
 void fn_7101179d08(UnkAnimationComponent* self, UnkStruct_71007142e8* motion, const void* key);
-extern u8 g_unk_717270ec68;
 
 // A reference to a counted object, assigned out of line (fn_71002a5d1c).
 struct UnkSlot_ovb0048 {
@@ -237,7 +236,6 @@ void fn_71010d2c5c(UnkMovement2_ovb0048* self, UnkVec3f* out) {
 
 struct UnkAnimMaskHolder_b47a3;
 bool fn_7101179cbc(UnkAnimMaskHolder_b47a3* self, const u32* bits);
-extern u8 g_unk_717270ebf0;
 
 bool fn_71010d2b9c(UnkMovement2_ovb0048* self, UnkVec3f* out) {
     UnkAnimationComponent* animation = self->owner->animation;

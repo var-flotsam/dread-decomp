@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/UnkNodeOwner.h"
 #include "game/CCharClassAIComponent.h"
+#include "game/navmesh/CDynamicSmartLinkRules.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -25,7 +26,6 @@ struct UnkStrIdText_b43a1 {
 
 s32 fn_7100415050(const char* text);
 s32 fn_710041518c(const CStrId* id);
-u32 fn_710026d2e4(const char* text);  // as src/game/navmesh/CNavMesh.cpp declares it
 s32 fn_710041527c(const CStrId* id);
 s32 fn_710041536c(const char* text);
 s32 fn_710041545c(const CStrId* id);

@@ -32,7 +32,6 @@ struct UnkHangTarget_A6_b70 {
 };
 
 bool fn_710097a564(UnkHangMove_A6_b70* self);
-u32 fn_71009a60fc();
 
 static inline UnkHangMoveState_A6_b70* FindState(UnkHangMove_A6_b70* self, s32 kind) {
     u64 size = (u64)self->state_count * sizeof(UnkHangMoveState_A6_b70*);

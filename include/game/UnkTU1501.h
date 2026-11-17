@@ -26,3 +26,4 @@ extern UnkSamusSettings g_unk_7172740de0;
 // Clears the movement's air state on landing, stops the gun and lets the spin jump reset the animation.
 void fn_71009ea070(UnkGroundMovement_ovb0138* movement);
 f32 fn_71009e754c(UnkMove_b152* self);
+bool fn_71009e12d0(void*);

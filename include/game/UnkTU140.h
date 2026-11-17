@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/UnkXformNode.h"
+#include "base/global/CFilePathStrId.h"
 #include "types.h"
 
 struct UnkRenderPool;
@@ -15,3 +16,4 @@ extern char g_unk_7101a1cbe8[];
 bool fn_710014826c(UnkSceneObject*, u32, u32, UnkColorArg_710050f26c, bool, f32);
 void* fn_7100149930(UnkRenderPool* pool, void* a, UnkSceneObject** out, base::global::CStrId* name);
 void fn_7100149460(UnkSceneObject* object, const UnkVec3f* position);
+void fn_71001494f8(void* slot, u32 kind, u32 mode, base::global::CFilePathStrId* path, u32 flags);

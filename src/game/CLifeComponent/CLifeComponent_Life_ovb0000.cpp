@@ -125,8 +125,6 @@ struct UnkLifeChange_ovb0000 {
     UnkLifeChange_ovb0000(f32 life_, bool increased_) : life(life_), increased(increased_) {}
 };
 
-void fn_710116179c(void* signal, UnkLifeChange_ovb0000* change);
-
 struct UnkLifeState_ovb0000 {
     void** vtable;
     u8 pad_0x8[0x48];

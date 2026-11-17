@@ -177,7 +177,6 @@ struct UnkRelocateManager {
 };
 static_assert(__builtin_offsetof(UnkRelocateManager, field_0x29c0) == 0x29c0, "layout");
 
-bool fn_71009e12d0(void*);
 UnkVec3_sm42 fn_71009e83fc(UnkSamusMovement_sm42* self);
 void fn_7101167da0(char* p0);
 char* fn_71008721dc(char* p0);

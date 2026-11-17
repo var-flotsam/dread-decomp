@@ -1,11 +1,13 @@
 // CGameManager::CTunableGameManager's unit (tools/tu_map.py unit 2553): restarts the current level: quiets the
 // sound, rumble and effects, tears the game down (fn_7100def930), rebuilds the level's .bmssd path and drops
 // the pending file path. Names and layouts are placeholders.
+#include "base/file/CPackManagerDevice.h"
 #include "base/global/CRntVector.h"
 #include "base/file/UnkFileDevice.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
+#include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/input/UnkRumbleManager.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
@@ -34,12 +36,10 @@ struct UnkSoundHolder;
 struct UnkRefPtrArray;
 
 void fn_7100108030(UnkSoundSystem_b65a1* self, bool a, bool b);
-void fn_7100073f48(UnkRumbleManager* self, u32 a, u32 b);
 void fn_7101196bf4(UnkOwner_b0188* self, bool release);
 void fn_7100ee34f0(CSubAreaManager* self);
 void fn_71010e3704(void* self);
 void fn_7100debf3c(UnkGameManager* self);
-void fn_7100089894(base::file::UnkFileDevice* self);
 void fn_710008989c(base::file::UnkFileDevice* self);
 void fn_7100def930(UnkGameManager* self, u32 flags);
 void fn_7100e00b48(UnkGameManager* self);

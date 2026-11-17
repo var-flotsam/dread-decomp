@@ -5,6 +5,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU2636.h"
 #include "types.h"
 
 using base::global::UnkStrIdBase;
@@ -42,8 +43,6 @@ struct UnkEntry_0x150 {
     base::global::CRntVector<void*> field_0x60;
     UnkEntryBlock_0x60 blocks[2];  // +0x88
 };
-
-extern void* g_unk_7101cac0c0[];
 
 void fn_7100fd10cc(UnkEntry_0x150* self, s32 kind) {
     self->kind = kind;

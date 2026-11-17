@@ -5,6 +5,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "types.h"
@@ -14,7 +15,6 @@ using base::global::CStrId;
 struct UnkBoundObject_b260;
 struct UnkRemovedValue_b60;
 void fn_7100242ff8(void* map);
-extern void* g_unk_7101a20c98[];  // vtable
 
 struct UnkBoundObject_b260 {
     u8 unk_0x0[0xc8];

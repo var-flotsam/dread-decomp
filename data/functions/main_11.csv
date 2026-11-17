@@ -373,7 +373,7 @@ address,size,name,name_source,subsystem,status
 0x7101119514,24,fn_7101119514,unknown,unknown,O
 0x710111952c,524,fn_710111952c,unknown,unknown,O
 0x7101119738,48,fn_7101119738,unknown,unknown,O
-0x7101119768,612,fn_7101119768,unknown,unknown,U
+0x7101119768,612,fn_7101119768,unknown,unknown,O
 0x71011199cc,132,fn_71011199cc,unknown,unknown,O
 0x7101119a50,12,fn_7101119a50,unknown,unknown,O
 0x7101119a5c,288,fn_7101119a5c,unknown,unknown,O
@@ -880,7 +880,7 @@ address,size,name,name_source,subsystem,status
 0x71011337ac,352,CAIAttackComponent::refl_InitClass,reflection,game/ai,O
 0x710113390c,388,fn_710113390c,unknown,game/ai?,O
 0x7101133a90,200,fn_7101133a90,unknown,game/ai?,O
-0x7101133b58,476,fn_7101133b58,unknown,game/ai?,U
+0x7101133b58,476,fn_7101133b58,unknown,game/ai?,O
 0x7101133d34,36,fn_7101133d34,unknown,game/ai?,O
 0x7101133d58,112,fn_7101133d58,unknown,game/ai?,O
 0x7101133dc8,164,fn_7101133dc8,unknown,game/ai?,O
@@ -1495,7 +1495,7 @@ address,size,name,name_source,subsystem,status
 0x7101164df8,72,fn_7101164df8,unknown,game/player?,O
 0x7101164e40,204,fn_7101164e40,unknown,game/player?,O
 0x7101164f0c,628,fn_7101164f0c,unknown,game/player?,U
-0x7101165180,1568,fn_7101165180,unknown,game/player?,U
+0x7101165180,1568,fn_7101165180,unknown,game/player?,O
 0x71011657a0,164,fn_71011657a0,unknown,game/player?,O
 0x7101165844,100,fn_7101165844,unknown,game/player?,O
 0x71011658a8,56,fn_71011658a8,unknown,game/player?,O
@@ -1658,7 +1658,7 @@ address,size,name,name_source,subsystem,status
 0x710116ea48,4,base::reflection::ValueOps<CInterpolationComponent::EInterpolationType>::Destroy,reflection,engine/reflection,O
 0x710116ea4c,20,base::reflection::ValueOps<CInterpolationComponent::EInterpolationType>::CopyAssign,reflection,engine/reflection,O
 0x710116ea60,20,base::reflection::ValueOps<CInterpolationComponent::EInterpolationType>::MoveAssign,reflection,engine/reflection,O
-0x710116ea80,684,fn_710116ea80,unknown,game/components?,U
+0x710116ea80,684,fn_710116ea80,unknown,game/components?,O
 0x710116ed2c,2280,fn_710116ed2c,unknown,game/components?,U
 0x710116f614,644,fn_710116f614,unknown,game/components?,U
 0x710116f898,4,CModelUpdaterComponent::refl_AddAttributes,reflection,game/components,O
@@ -1986,7 +1986,7 @@ address,size,name,name_source,subsystem,status
 0x71011843d0,816,fn_71011843d0,unknown,game?,U
 0x7101184700,8,fn_7101184700,unknown,game?,O
 0x7101184708,704,fn_7101184708,unknown,game?,U
-0x71011849c8,724,fn_71011849c8,unknown,game?,U
+0x71011849c8,724,fn_71011849c8,unknown,game?,O
 0x7101184c9c,2484,fn_7101184c9c,unknown,game?,U
 0x7101185650,208,fn_7101185650,unknown,game?,O
 0x7101185720,392,fn_7101185720,unknown,game?,U
@@ -2144,7 +2144,7 @@ address,size,name,name_source,subsystem,status
 0x7101193f88,1028,fn_7101193f88,unknown,unknown,U
 0x710119438c,172,fn_710119438c,unknown,unknown,O
 0x7101194438,68,fn_7101194438,unknown,unknown,O
-0x710119447c,1564,fn_710119447c,unknown,unknown,U
+0x710119447c,1564,fn_710119447c,unknown,unknown,O
 0x7101194a98,8,fn_7101194a98,unknown,unknown,O
 0x7101194aa0,8,fn_7101194aa0,unknown,unknown,O
 0x7101194aa8,476,fn_7101194aa8,unknown,unknown,O
@@ -3454,7 +3454,7 @@ address,size,name,name_source,subsystem,status
 0x71011dc5f8,412,fn_71011dc5f8,unknown,gui?,O
 0x71011dc794,180,fn_71011dc794,unknown,gui?,O
 0x71011dc848,204,fn_71011dc848,unknown,gui?,O
-0x71011dc920,812,fn_71011dc920,unknown,gui?,U
+0x71011dc920,812,fn_71011dc920,unknown,gui?,O
 0x71011dcc4c,4,fn_71011dcc4c,unknown,gui?,O
 0x71011dcc50,4,fn_71011dcc50,unknown,gui?,O
 0x71011dcc54,20,fn_71011dcc54,unknown,gui?,O

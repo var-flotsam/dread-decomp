@@ -1021,7 +1021,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1d7f0,160,fn_7100b1d7f0,unknown,gui?,O
 0x7100b1d890,520,fn_7100b1d890,unknown,gui?,O
 0x7100b1da98,124,fn_7100b1da98,unknown,gui?,O
-0x7100b1db14,688,fn_7100b1db14,unknown,gui?,U
+0x7100b1db14,688,fn_7100b1db14,unknown,gui?,O
 0x7100b1ddc4,28,fn_7100b1ddc4,unknown,gui?,O
 0x7100b1dde0,8,GUI::CEndingRewardsComposition::refl_Equals,reflection,gui,O
 0x7100b1dde8,8,GUI::CEndingRewardsComposition::refl_Hash,reflection,gui,O
@@ -1079,7 +1079,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1ffa8,352,GUI::CGammaAdjustComposition::refl_InitClass,reflection,gui,O
 0x7100b20108,4,fn_7100b20108,unknown,gui?,O
 0x7100b2010c,36,fn_7100b2010c,unknown,gui?,O
-0x7100b20130,700,fn_7100b20130,unknown,gui?,U
+0x7100b20130,700,fn_7100b20130,unknown,gui?,O
 0x7100b203ec,1072,fn_7100b203ec,unknown,gui?,U
 0x7100b2081c,588,fn_7100b2081c,unknown,gui?,U
 0x7100b20a68,156,fn_7100b20a68,unknown,gui?,O
@@ -1722,7 +1722,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4f210,4,operator.delete,symbol,unknown,O
 0x7100b4f220,172,fn_7100b4f220,unknown,unknown,O
 0x7100b4f2cc,316,fn_7100b4f2cc,unknown,unknown,m
-0x7100b4f408,1320,fn_7100b4f408,unknown,unknown,U
+0x7100b4f408,1320,fn_7100b4f408,unknown,unknown,O
 0x7100b4f930,180,fn_7100b4f930,unknown,unknown,O
 0x7100b4f9e4,4,operator.delete,symbol,unknown,O
 0x7100b4f9f0,172,fn_7100b4f9f0,unknown,unknown,O
@@ -1740,7 +1740,7 @@ address,size,name,name_source,subsystem,status
 0x7100b51250,208,fn_7100b51250,unknown,unknown,O
 0x7100b51320,292,fn_7100b51320,unknown,unknown,m
 0x7100b51444,80,fn_7100b51444,unknown,unknown,O
-0x7100b51494,628,fn_7100b51494,unknown,unknown,U
+0x7100b51494,628,fn_7100b51494,unknown,unknown,O
 0x7100b51708,84,fn_7100b51708,unknown,unknown,O
 0x7100b5175c,4,operator.delete,symbol,unknown,O
 0x7100b51760,140,fn_7100b51760,unknown,unknown,O
@@ -1753,7 +1753,7 @@ address,size,name,name_source,subsystem,status
 0x7100b51b64,4,operator.delete,symbol,unknown,O
 0x7100b51b70,172,fn_7100b51b70,unknown,unknown,O
 0x7100b51c1c,292,fn_7100b51c1c,unknown,unknown,m
-0x7100b51d40,812,fn_7100b51d40,unknown,unknown,U
+0x7100b51d40,812,fn_7100b51d40,unknown,unknown,O
 0x7100b5206c,536,fn_7100b5206c,unknown,unknown,O
 0x7100b52284,240,fn_7100b52284,unknown,unknown,O
 0x7100b52374,4,operator.delete,symbol,unknown,O
@@ -1803,7 +1803,7 @@ address,size,name,name_source,subsystem,status
 0x7100b56980,5736,fn_7100b56980,unknown,unknown,U
 0x7100b57fe8,108,fn_7100b57fe8,unknown,unknown,O
 0x7100b58054,980,fn_7100b58054,unknown,unknown,U
-0x7100b58428,640,fn_7100b58428,unknown,unknown,U
+0x7100b58428,640,fn_7100b58428,unknown,unknown,O
 0x7100b586a8,2116,fn_7100b586a8,unknown,unknown,U
 0x7100b58eec,56,fn_7100b58eec,unknown,unknown,O
 0x7100b58f24,1196,fn_7100b58f24,unknown,unknown,U
@@ -2005,7 +2005,7 @@ address,size,name,name_source,subsystem,status
 0x7100b60d58,244,GUI::CPopUpGeneric::refl_GetClass,reflection,gui,O
 0x7100b60e4c,4,GUI::CPopUpGeneric::refl_AddFields,reflection,gui,O
 0x7100b60e50,352,GUI::CPopUpGeneric::refl_InitClass,reflection,gui,O
-0x7100b60fb0,460,fn_7100b60fb0,unknown,gui?,U
+0x7100b60fb0,460,fn_7100b60fb0,unknown,gui?,O
 0x7100b6117c,232,fn_7100b6117c,unknown,gui?,O
 0x7100b61264,508,fn_7100b61264,unknown,gui?,O
 0x7100b61460,36,fn_7100b61460,unknown,gui?,O
@@ -2033,7 +2033,7 @@ address,size,name,name_source,subsystem,status
 0x7100b62574,380,fn_7100b62574,unknown,gui?,O
 0x7100b626f0,376,fn_7100b626f0,unknown,gui?,O
 0x7100b62868,408,fn_7100b62868,unknown,gui?,O
-0x7100b62a00,1436,fn_7100b62a00,unknown,gui?,U
+0x7100b62a00,1436,fn_7100b62a00,unknown,gui?,O
 0x7100b62f9c,212,fn_7100b62f9c,unknown,gui?,O
 0x7100b63070,28,fn_7100b63070,unknown,gui?,O
 0x7100b6308c,212,fn_7100b6308c,unknown,gui?,O
@@ -2831,7 +2831,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8a428,432,fn_7100b8a428,unknown,game/ai?,O
 0x7100b8a5d8,504,fn_7100b8a5d8,unknown,game/ai?,O
 0x7100b8a7d0,708,fn_7100b8a7d0,unknown,game/ai?,U
-0x7100b8aa94,640,fn_7100b8aa94,unknown,game/ai?,U
+0x7100b8aa94,640,fn_7100b8aa94,unknown,game/ai?,O
 0x7100b8ad14,504,fn_7100b8ad14,unknown,game/ai?,O
 0x7100b8af0c,228,fn_7100b8af0c,unknown,game/ai?,U
 0x7100b8aff0,236,fn_7100b8aff0,unknown,game/ai?,U
@@ -2943,7 +2943,7 @@ address,size,name,name_source,subsystem,status
 0x7100b8e3f8,4,base::reflection::ValueOps<TActionInsertFlagset>::Destroy,reflection,engine/reflection,O
 0x7100b8e3fc,20,base::reflection::ValueOps<TActionInsertFlagset>::CopyAssign,reflection,engine/reflection,O
 0x7100b8e410,20,base::reflection::ValueOps<TActionInsertFlagset>::MoveAssign,reflection,engine/reflection,O
-0x7100b8e430,1840,fn_7100b8e430,unknown,unknown,U
+0x7100b8e430,1840,fn_7100b8e430,unknown,unknown,O
 0x7100b8eb60,88,CAIAction::refl_AddAttributes,reflection,game/ai,O
 0x7100b8ebb8,244,CAIAction::refl_GetClass,reflection,game/ai,O
 0x7100b8ecac,4,CAIAction::refl_AddFields,reflection,game/ai,O
@@ -4836,7 +4836,7 @@ address,size,name,name_source,subsystem,status
 0x7100bca270,12,CCharClassPlayTimelineEventByPlayerSuit::refl_Equals,reflection,game/characters,O
 0x7100bca27c,8,CCharClassPlayTimelineEventByPlayerSuit::refl_Hash,reflection,game/characters,O
 0x7100bca284,28,CCharClassPlayTimelineEventByPlayerSuit::refl_TypeOf,reflection,game/characters,O
-0x7100bca2a0,620,CCharClassPlayTimelineEventByPlayerSuit::refl_Construct,reflection,game/characters,U
+0x7100bca2a0,620,CCharClassPlayTimelineEventByPlayerSuit::refl_Construct,reflection,game/characters,O
 0x7100bca50c,188,CCharClassPlayTimelineEventByPlayerSuit::refl_CopyConstruct,reflection,game/characters,O
 0x7100bca5c8,188,CCharClassPlayTimelineEventByPlayerSuit::refl_MoveConstruct,reflection,game/characters,O
 0x7100bca684,12,CCharClassPlayTimelineEventByPlayerSuit::refl_Destroy,reflection,game/characters,O

@@ -9,6 +9,8 @@
 #include "types.h"
 #include "base/reflection/TypeObject.h"
 
+struct UnkIdRecord60;
+struct UnkLightsElem_b42a3;
 struct UnkReflType;
 struct UnkTUHeader;
 
@@ -47,3 +49,5 @@ extern UnkConverter g_unk_71727ba600;
 void fn_7100d977e4(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
 void fn_7100d97c30(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
 void fn_7100d99934(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
+void fn_7100d9b18c(UnkIdRecord60* self, UnkIdRecord60* other);
+void fn_7100d9bffc(UnkLightsElem_b42a3* self, const UnkLightsElem_b42a3* other);

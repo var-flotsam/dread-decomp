@@ -7,13 +7,12 @@
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassAttackComponent.h"
 #include "game/CCharClassComponent.h"
 #include "game/UnkTU0.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern char g_unk_7101a6f348[];
 
 // An array as this class lays it out: the pointer, the counts, then a step, flags and the allocator.
 struct UnkAttackArray_l78d010 {

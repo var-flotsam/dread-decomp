@@ -5,8 +5,10 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkMovieStreamNx_ovb0003;
 struct UnkMediaTrack330;
 void fn_710021b860(UnkMediaTrack330* track, u32, bool b);
 void fn_710021b8a4(void* entry);
 extern char g_unk_7101a20380[];
 extern char g_unk_7101a203f8[];
+void fn_710021b7c4(UnkMovieStreamNx_ovb0003* self);
