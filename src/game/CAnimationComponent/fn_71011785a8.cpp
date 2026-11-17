@@ -23,6 +23,7 @@ inline void ClearBits(u32& word, const u32& bits) {
     word &= ~bits;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71011785a8(UnkShakernautCtrl_b53* self, const UnkShakernautId_b53* id, bool a, bool b) {
     ClearBits(self->field_0x74, id->value);
     SetBits(self->field_0x78, id->value);

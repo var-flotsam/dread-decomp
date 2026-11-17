@@ -6,6 +6,7 @@
 
 #include "base/UnkMatrix44.h"
 #include "game/UnkActor.h"
+#include "game/UnkAttack.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
@@ -22,7 +23,6 @@ struct UnkEnergyWaveAttack_ovb0102 {
 };
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase*);
 
 static inline f32 Sign(f32 f) {
     return (f32)((s32)(f > 0.0f) - (s32)(f < 0.0f));

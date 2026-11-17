@@ -2,7 +2,7 @@
 // ids, a default pair of -1.0 values and a flag, the SHOOT_ACTIVATOR id, the "Used" property, the tunable and
 // class registrations, the SActivatabledOnEventInfo types, the piston sound preset's id and path, and the two
 // listener sets. Names and layouts are placeholders.
-#include "../../../src/game_5821e4/UnkStaticInit.h"
+#include "../../game_5821e4/UnkStaticInit.h"
 #include "base/UnkDeferredSet.h"
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
@@ -14,11 +14,11 @@
 #include "game/CCharClassShootActivatorComponent.h"
 #include "game/UnkTU25.h"
 #include "game/UnkTUProperty.h"
+#include "game/CAbilitySonar.h"
 
 using namespace unk_static_init;
 
 struct UnkIdPathPair_7100333544;
-void fn_7100333544(UnkIdPathPair_7100333544* self);
 
 // The unit's own statics, merged into one block.
 struct UnkShootActivatorStatics_l896410 {
@@ -43,7 +43,6 @@ extern void* g_unk_7101a7c770[];
 void fn_7100893ae8(UnkProperty* p);
 void fn_710088d2c4(void* p);
 extern char g_unk_717272c448[];
-extern UnkTunable g_unk_717272c450;
 extern void* g_unk_7101a7c7c8[];
 extern char g_unk_717272c481[];
 extern UnkEnumType g_unk_717272c488;
@@ -70,7 +69,6 @@ extern UnkEnumType g_unk_717272c848;
 void fn_710088ef8c(UnkEnumType* type, const CStrId& name, void*, void*);
 extern char g_unk_717272c9b8[];
 extern char g_unk_717272c9b9[];
-extern char g_unk_717272c9c0[];  // two listener sets
 void fn_710088fae8(void* sets);
 
 // An empty listener set whose arrays use flags 0xf.

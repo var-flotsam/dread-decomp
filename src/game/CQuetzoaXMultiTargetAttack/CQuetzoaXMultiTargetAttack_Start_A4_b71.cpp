@@ -5,13 +5,13 @@
 // Names and layouts are placeholders.
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkAttack.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 extern "C" int rand();
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 void fn_710063e878();
 
 struct UnkQuetzoaMTLink_A4_b71 {

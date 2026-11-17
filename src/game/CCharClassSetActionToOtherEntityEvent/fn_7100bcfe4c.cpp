@@ -1,26 +1,24 @@
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflStatics.h"
+#include "game/CAttackComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
+#include "game/UnkTU2553.h"
 
 using base::global::CStrId;
 
 extern "C" int rand();
 
-struct UnkActionTimeline_b0265;
-void fn_7101137a38(UnkActionTimeline_b0265* timeline, const CStrId* action, bool flag, u32 value, f32 time);
 struct UnkWeakTarget;
-extern u32 g_unk_71727bebb8;
-UnkWeakTarget* fn_7100debbc8(UnkGameManager* manager, const u64* key, const u32* kind);
 
 struct UnkOtherActionActor {
     u8 pad_0x0[0x220];
     void* animation;  // 0x220
     u8 pad_0x228[0x30];
-    UnkActionTimeline_b0265* timeline;  // 0x258
+    UnkActionTimeline* timeline;  // 0x258
 };
 
 struct UnkActionValue_b0265 {
@@ -57,11 +55,10 @@ void fn_7100bcfe4c(UnkSetActionToOtherEntityEvent* self) {
     alignas(8) u32 kind;
     UnkOtherActionActor* actor;
     {
-        u64 key;
-        UnkOtherEntityRef* entity = self->entity;
-        u32 kind_value = g_unk_71727bebb8;
         UnkGameManager* manager = g_unk_7101d47310;
-        key = entity->key;
+        u32 kind_value = g_unk_71727bebb8;
+        UnkOtherEntityRef* entity = self->entity;
+        u64 key = entity->key;
         kind = kind_value;
         actor = reinterpret_cast<UnkOtherActionActor*>(fn_7100debbc8(manager, &key, &kind));
     }

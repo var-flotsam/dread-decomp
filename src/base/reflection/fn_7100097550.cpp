@@ -12,6 +12,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
+#include "base/reflection/UnkReflFunctionVtable.h"
 #include "game/UnkTU83.h"
 
 using base::global::CStrId;
@@ -21,8 +22,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflAttrKey;
 using base::reflection::UnkReflAttrs;
 using base::reflection::UnkReflFunction;
-
-extern char g_unk_7101a1b460[];  // UnkReflFunction's virtual table (its address point is +0x10)
 
 namespace refl_add_function {
 

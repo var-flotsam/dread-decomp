@@ -77,20 +77,12 @@ bool fn_7100543b30(UnkFarAI_b0194* self);
 void fn_7100546a30(UnkFarAI_b0194* self, bool flag, UnkPlayer* player, const UnkVec3f* position);
 UnkVec3f fn_71008db1d8(UnkFarEntity_b0194* entity);
 
-struct UnkPos2_b0194 {
-    f32 x, y;
-};
-static inline UnkPos2_b0194 PosOf2(const UnkActor* actor) {
-    UnkPos2_b0194 p;
+using base::math::CVector2D;
+static inline CVector2D PosOf2(const UnkActor* actor) {
+    CVector2D p;
     p.x = actor->field_0x44;
     p.y = actor->field_0x54;
     return p;
-}
-static inline UnkPos2_b0194 operator-(const UnkPos2_b0194& a, const UnkPos2_b0194& b) {
-    UnkPos2_b0194 r;
-    r.x = a.x - b.x;
-    r.y = a.y - b.y;
-    return r;
 }
 
 using base::math::CVector3D;
@@ -119,10 +111,9 @@ void fn_7100558bcc(UnkFarAI_b0194* self, UnkFarEntity_b0194* entity) {
             return;
     }
     UnkVec3f target_pos = fn_71008db1d8(entity);
-    UnkPos2_b0194 o = PosOf2(self->owner);
-    UnkPos2_b0194 t = {target_pos.x, target_pos.y};
-    UnkPos2_b0194 d = t - o;
-    f32 distance = d.x * d.x + d.y * d.y;
+    CVector2D o = PosOf2(self->owner);
+    CVector2D t = {target_pos.x, target_pos.y};
+    f32 distance = LengthSq(t - o);
     f32 dz = target_pos.z - self->owner->field_0x64;
     distance += dz * dz;
     f32 radius = self->source->vf_0xd8()->radius;

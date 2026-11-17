@@ -89,7 +89,6 @@ struct UnkRumbleParams {
 };
 
 bool fn_710007453c(UnkRumbleManager* self);
-UnkHandle fn_7100074354(UnkRumbleManager* self, const UnkRumbleParams* params);
 void fn_7100072030(void* rumble, void* arg);
 
 // A rumble the component started (0x68 bytes): its handle, what it was played from and two flags.

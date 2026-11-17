@@ -7,6 +7,7 @@
 #include "game/CAutsharpAIComponent.h"
 #include "game/CChozoWarriorAIComponent.h"
 #include "game/CEnemyMovement.h"
+#include "game/UnkAttack.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkSceneObject.h"
 #include "game/UnkTU140.h"
@@ -17,7 +18,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkAttackBase;
 struct UnkEffectSink;
-void fn_71003608ac(UnkAttackBase* self);
 
 // A colour (its copy constructor makes it passed through memory).
 struct UnkTrailColor_ovb0137 {

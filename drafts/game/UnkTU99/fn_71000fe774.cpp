@@ -51,7 +51,7 @@ bool fn_71000fe774(UnkSoundSystemATK* self, const CFilePathStrId& path, f32 valu
         UnkPathIdSlot slot;
         new (&slot.id) CFilePathStrId(fn_71000f63b0(path));
         base::global::UnkStringData* data = slot.id.data;
-        u64 key = *reinterpret_cast<u64*>(reinterpret_cast<char*>(data) + 0x30);
+        u64 key = data->Key();
         // The sanitised id is released by hand, as the original does.
         if (base::global::UnkStringPool* pool = g_unk_7101d47200) {
             if (data && data != &pool->empty) {

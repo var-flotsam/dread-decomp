@@ -43,20 +43,20 @@ struct UnkTypeNode_l0a4b60 {
 
 // Adds `type` to the set under `name`, at the front of its bucket.
 static inline void AddType(UnkFileCacheSet* set, const CStrId& name, CType* type) {
-    ++set->field_0x48;
+    ++set->version;
     UnkTypeNode_l0a4b60* node =
-        static_cast<UnkTypeNode_l0a4b60*>(set->allocator->vf_0x40(sizeof(UnkTypeNode_l0a4b60), 8, set->flags));
+        static_cast<UnkTypeNode_l0a4b60*>(set->node_allocator->vf_0x40(sizeof(UnkTypeNode_l0a4b60), 8, set->node_flags));
     if (node)
         new (node) UnkTypeNode_l0a4b60(name, type);
     u32 index = set->buckets.count ? name.Hash() % set->buckets.capacity : (u32)-1;
-    u32 first = (u32)set->field_0x28;
-    set->field_0x28 = index < first ? index : first;
+    u32 first = (u32)set->first_bucket;
+    set->first_bucket = index < first ? index : first;
     if (index <= first)
-        set->field_0x30 = reinterpret_cast<UnkFileCacheSetNode*>(node);
+        set->first_node = reinterpret_cast<UnkFileCacheSetNode*>(node);
     UnkTypeNode_l0a4b60** slot = reinterpret_cast<UnkTypeNode_l0a4b60**>(fn_71000a5c1c(&set->buckets, index));
     node->next = *slot;
     *slot = node;
-    ++set->count;
+    ++set->node_count;
 }
 
 void fn_71000a4b60(UnkVersionRegistry* self_) {

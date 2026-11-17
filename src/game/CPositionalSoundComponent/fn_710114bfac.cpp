@@ -23,6 +23,7 @@ struct UnkPositionalSound_l14bfac {
     UnkSoundHandle handles[2];  // 0x88
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710114bfac(UnkPositionalSound_l14bfac* self, f32 volume, f32 time) {
     self->volume = volume;
     for (const UnkSoundHandle& handle : self->handles) {

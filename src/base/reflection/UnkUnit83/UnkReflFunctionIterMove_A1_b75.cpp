@@ -5,11 +5,10 @@
 #include "base/UnkCollectionIter.h"
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
+#include "base/reflection/UnkReflFunctionVtable.h"
 #include "types.h"
 
 using base::global::UnkStringData;
-
-extern char g_unk_7101a1b460[];  // UnkReflFunction's virtual table (its address point is +0x10)
 
 namespace refl_function_iter_a1_b75 {
 

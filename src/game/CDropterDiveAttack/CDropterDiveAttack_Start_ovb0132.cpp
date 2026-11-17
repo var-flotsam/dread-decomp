@@ -5,13 +5,13 @@
 #include "base/global/CStrId.h"
 #include "base/math/CVectorOps.h"
 #include "game/UnkActor.h"
+#include "game/UnkAttack.h"
 #include "game/UnkCollisionRecord.h"
 #include "types.h"
 
 using base::global::CStrId;
 
 struct UnkAttackBase;
-void fn_71003608ac(UnkAttackBase* self);
 bool fn_71009e12d0(void*);
 struct UnkVec3fR;
 void fn_710007b4b0(UnkVec3fR* v);
