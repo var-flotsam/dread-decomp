@@ -843,7 +843,7 @@ TYPE_OBJECT_RE = re.compile(r"^const CType& base::reflection::ValueOps<(.+)>::Ty
                             re.M)
 
 
-def type_objects() -> dict[str, tuple[str, str]]:
+def enum_type_objects() -> dict[str, tuple[str, str]]:
     """{g_unk_<addr>: (kind, T)} of the type objects src/reflection_types/ names by their enum or flag set
     (kind enum or flagset): the objects base/reflection/TypeObject.h names by type."""
     out = {}
@@ -1425,7 +1425,7 @@ def main() -> int:
             f.write_text(new, encoding="utf-8", newline=chr(10))
     # Type objects by type: each file that changes is compiled first, and keeps its addresses if it doesn't build
     # (a declaration of T that collides with one of the file's own).
-    objects = type_objects()
+    objects = enum_type_objects()
     work = ROOT / "build" / "reflection_type_objects"
     work.mkdir(parents=True, exist_ok=True)
 
