@@ -53,7 +53,7 @@ struct UnkShootSet_l890010 : UnkShootSetBase_l890010 {  // vtable g_unk_7101a33f
 struct UnkShootIdList_l890010 {
     u8 field_0x0;
     base::UnkStrIdMember id;
-    UnkStrIdTable table;
+    UnkOwnedStrIdTable table;
 };
 
 struct UnkShootActivator_l890010 {
@@ -101,12 +101,7 @@ void fn_7100890010(UnkShootActivatorBase_b54* self_) {
     fn_71008904b0(reinterpret_cast<UnkClearVector_A4_b75*>(self->field_0x4e0));
     self->field_0x4d8.~UnkStrIdMemberOf();
     self->field_0x4d0.~UnkStrIdMemberOf();
-    UnkStrIdTable* table = &self->list.table;
-    fn_71004f11f8(table);
-    if (table->keys)
-        table->allocator->vf_0x48(table->keys);
-    if (table->values)
-        table->allocator->vf_0x48(table->values);
+    self->list.table.~UnkOwnedStrIdTable();
     self->list.id.~UnkStrIdMemberOf();
     UnkStrIdPathResource* path = &self->field_0x450;
     fn_7100027044(path);

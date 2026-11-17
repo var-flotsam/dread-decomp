@@ -80,7 +80,7 @@ struct UnkObj_71009cf440 {
     UnkPool field_0x138;
     u8 pad_0x160[0x10];
     UnkStrIdField field_0x170;
-    UnkStrIdTable field_0x178;
+    UnkOwnedStrIdTable field_0x178;
     UnkStrIdField field_0x1a0;
     u8 pad_0x1a8[0x10];
     UnkTree field_0x1b8;
@@ -99,11 +99,7 @@ void fn_71009cf440(UnkObj_71009cf440* self) {
     self->field_0x1b8.field_0x8 = nullptr;
     self->field_0x1b8.field_0x10 = nullptr;
     self->field_0x1a0.Release();
-    fn_71004f11f8(&self->field_0x178);
-    if (self->field_0x178.keys)
-        self->field_0x178.allocator->vf_0x48(self->field_0x178.keys);
-    if (self->field_0x178.values)
-        self->field_0x178.allocator->vf_0x48(self->field_0x178.values);
+    self->field_0x178.~UnkOwnedStrIdTable();
     self->field_0x170.Release();
     if (self->field_0x138.data) {
         for (u64 i = 0; i < self->field_0x138.count; ++i) {

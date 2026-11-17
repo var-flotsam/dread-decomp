@@ -59,7 +59,7 @@ struct UnkStateObject : UnkBaseComponent {
     UnkState states[7];
     u8 unk_0x4c0[0x8];
     UnkStringData* field_0x4c8;  // CStrId
-    UnkStrIdTable field_0x4d0;
+    UnkOwnedStrIdTable field_0x4d0;
     u8 unk_0x4f8[0x18];
     UnkRefObject* field_0x510;
     void** listener_vtable;  // a listener at +0x518
@@ -92,11 +92,7 @@ void fn_7100a9e6bc(UnkStateObject* self) {
     }
     Release(self->field_0x530);
     Release(self->field_0x510);
-    fn_71004f11f8(&self->field_0x4d0);
-    if (self->field_0x4d0.keys)
-        self->field_0x4d0.allocator->vf_0x48(self->field_0x4d0.keys);
-    if (self->field_0x4d0.values)
-        self->field_0x4d0.allocator->vf_0x48(self->field_0x4d0.values);
+    self->field_0x4d0.~UnkOwnedStrIdTable();
     if (UnkStringPool* pool = g_unk_7101d47108) {
         UnkStringData** id = &self->field_0x4c8;
         if (*id && *id != &pool->empty) {
