@@ -46,3 +46,4 @@ bool fn_710015b8a0(bool apply);  // Pops the blend stack; whether an entry is le
 extern s32 g_unk_716e29c694;
 extern s32 g_unk_716e29c240;
 extern s32 g_unk_716e29c244;
+void* fn_710015abd0();

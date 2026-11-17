@@ -15,6 +15,7 @@
 #include "game/CHeatRoomComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/CPlayerInfo.h"
+#include "game/CPullOffGrapplePointComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -93,7 +94,6 @@ void fn_7100a45cec(UnkHeatRoom_ovb0083* self);
 struct UnkSoundMgr;
 struct UnkPathNode;
 struct UnkStruct_710024fa0c;
-void* fn_710082e510(void* key);
 struct UnkPlayer;
 struct UnkInventory;
 

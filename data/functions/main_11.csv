@@ -1574,7 +1574,7 @@ address,size,name,name_source,subsystem,status
 0x710116c388,596,fn_710116c388,unknown,unknown,O
 0x710116c5dc,104,fn_710116c5dc,unknown,unknown,O
 0x710116c644,556,fn_710116c644,unknown,unknown,O
-0x710116c870,1004,fn_710116c870,unknown,unknown,O
+0x710116c870,1004,fn_710116c870,unknown,unknown,U
 0x710116cc5c,28,fn_710116cc5c,unknown,unknown,O
 0x710116cc78,132,fn_710116cc78,unknown,unknown,O
 0x710116ccfc,8,CCharClassStartPointComponent::refl_Equals,reflection,game/characters,O

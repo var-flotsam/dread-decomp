@@ -51,7 +51,6 @@ struct UnkVec3Result {
     UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
 };
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
 struct UnkSwarmMember_ovb6;
 
 // One billboard of the set (0x148 bytes): shown (+0x24), its position (+0xa0) and a word at +0xe0.

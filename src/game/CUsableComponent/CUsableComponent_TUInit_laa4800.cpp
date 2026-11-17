@@ -19,9 +19,6 @@ struct UnkUsableComponentTU {
 extern UnkUsableComponentTU g_unk_7172753520 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172753140;
 extern char g_unk_7101a945e0[];
-extern u8 g_unk_7172753170[];  // a UnkProperty
-extern u8 g_unk_7172753198[];  // a UnkProperty
-extern u8 g_unk_71727531c0[];  // a UnkProperty
 void fn_7100aa3e68(UnkProperty* p);
 void fn_7100a9bc70(void* p);
 extern char g_unk_71727531e8;
@@ -29,7 +26,6 @@ extern char g_unk_71727531e9;
 
 // The tunable (declared with the save station's view of it) and its constructor and destructor.
 struct UnkSaveStationTunables_ovb0118;
-extern UnkSaveStationTunables_ovb0118 g_unk_71727531f0;
 struct UnkUsableTunable_la9d3a8;
 void fn_7100a9d3a8(UnkUsableTunable_la9d3a8* self);
 void fn_7100a9d710(void* self);
@@ -37,8 +33,6 @@ void fn_7100a9d710(void* self);
 // Another static of the unit, built and destroyed by two copies of one function.
 struct UnkLinkGroups;
 extern UnkLinkGroups g_unk_7172753260;
-void fn_7100a9dbac(UnkLinkGroups* self);
-void fn_7100a9dd78(UnkLinkGroups* self);
 
 static inline UnkProperty* AsProperty(u8* p) {
     return reinterpret_cast<UnkProperty*>(p);

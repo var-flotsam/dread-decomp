@@ -5,6 +5,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
@@ -21,7 +22,6 @@ void fn_7100fa45a4(UnkObject_lfa45a4* self);
 // As src/base/reflection/reflection_Assign_lfa579c.cpp defines it.
 UnkRecord_lfa579c* fn_7100fa579c(UnkRecord_lfa579c* self, const UnkRecord_lfa579c* other);
 // As src/base/reflection/reflection_Assign_lfa4b64.cpp defines it.
-UnkStrIdRecord_lfa4b64* fn_7100fa4b64(UnkStrIdRecord_lfa4b64* self, const UnkStrIdRecord_lfa4b64* other);
 
 // Nine ids, assigned together (fn_7100fa4b64).
 struct UnkSubAreaIds_lfaa9ec {

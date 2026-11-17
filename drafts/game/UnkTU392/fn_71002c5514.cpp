@@ -2,6 +2,8 @@
 // the entries no filter took with every evaluator, sorts them by total score and returns the best one's
 // subject. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU377.h"
+#include "game/querysystem/CFilter.h"
 #include "types.h"
 
 struct UnkUnit392Filter_b69;
@@ -9,7 +11,6 @@ struct UnkShapedEvaluator_A2_b68;
 template <class T>
 struct UnkFrameVector;
 
-int fn_71002bee84(UnkUnit392Filter_b69* filter, void* context, void* arg);
 f32 fn_71002b80ec(UnkShapedEvaluator_A2_b68* self, void* a, void* b);
 f32* fn_71000d4a50(UnkFrameVector<f32>* v, u32 i);
 
@@ -30,7 +31,6 @@ struct UnkTU392Entry {
 static_assert(sizeof(UnkTU392Entry) == 0x40, "UnkTU392Entry");
 
 struct UnkUnit392Entry;
-void fn_71002b6920(UnkUnit392Entry* entry);
 void fn_71002c5c00(UnkTU392Entry** first, UnkTU392Entry** last);
 
 struct UnkTU392EntryList {

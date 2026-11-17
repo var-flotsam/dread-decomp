@@ -4,6 +4,7 @@
 #include "base/UnkDeferredSet.h"
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
+#include "game/CPullOffGrapplePointComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU341.h"
@@ -12,7 +13,6 @@
 
 struct UnkItemLife_l8e0f30;
 void fn_71008e0f30(UnkItemLife_l8e0f30* self);
-void* fn_710082e510(void* key);
 
 struct UnkShootTarget_l890ae4 {
     u8 pad_0x0[0x198];

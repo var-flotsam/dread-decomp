@@ -10,13 +10,12 @@
 #include "game/UnkTU253.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2677.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
 using base::color::CColor4F;
 using base::global::CStrId;
-
-void* fn_71011986a8(void* gui, const CStrId* id);
 
 // The part of the object fn_7100233684 returns that holds the slots.
 struct UnkSlotOwner_l090450 {

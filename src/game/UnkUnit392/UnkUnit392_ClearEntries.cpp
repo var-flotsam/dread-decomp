@@ -1,10 +1,9 @@
+#include "game/UnkTU377.h"
 #include "types.h"
 
 struct UnkUnit392Entry {
     u8 unk_0x0[0x40];
 };
-
-void fn_71002b6920(UnkUnit392Entry* entry);
 
 struct UnkUnit392Owner {
     u8 unk_0x0[0x18];

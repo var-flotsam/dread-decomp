@@ -5,6 +5,7 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkTU1728.h"
 #include "game_s2/UnkOwnedList.h"
 #include "types.h"
 
@@ -12,8 +13,6 @@ using base::global::CRntSmallDictionary;
 using base::global::CRntVector;
 
 struct UnkRecord120;
-void fn_7100b8b7e8(UnkRecord120* self);
-void fn_7100b8aa94(void* part);
 
 static inline void ReleaseResource(UnkCountedResource* resource) {
     if (resource && --resource->ref_count == 0)

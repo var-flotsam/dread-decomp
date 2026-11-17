@@ -32,10 +32,6 @@ using base::reflection::UnkReflObject;
 
 // ---- The blackboard flags ----
 
-extern u8 g_unk_7172753170[];  // a UnkProperty
-extern u8 g_unk_7172753198[];  // a UnkProperty
-extern u8 g_unk_71727531c0[];  // a UnkProperty
-
 // Stores the bool at `value` under `name` in the blackboard section `section` names (unless the
 // blackboard is locked).
 static inline void SetSectionBool(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name, bool* value) {

@@ -1,7 +1,7 @@
 // CBossRushSurvivalConfiguration's unit (tools/tu_map.py unit 2544): keeps the best time of the level just
 // finished in the rush record (the split time of a boss rush, the total time of a survival rush) and saves
 // the record to the user data. Names and layouts are placeholders.
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"

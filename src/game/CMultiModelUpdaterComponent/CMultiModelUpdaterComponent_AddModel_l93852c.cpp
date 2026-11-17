@@ -10,6 +10,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CStrId.h"
+#include "game/CMultiModelUpdaterComponent.h"
 #include "game/CSpittailMagmaBallMovementComponent.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU127.h"
@@ -26,10 +27,8 @@ struct UnkModelValue_b0119 {
 };
 using UnkModelMap_b0119 = base::global::CRntSmallDictionary<base::UnkPooledString, UnkModelValue_b0119>;
 void fn_7100939678(UnkModelMap_b0119* self, u32 capacity);
-void fn_7100939804(UnkModelValue_b0119* self, const UnkModelValue_b0119* other);
 void fn_7100938ba0(UnkModelValue_b0119* self, const CStrId* name, const CFilePathStrId* path,
                    UnkCountedResource* resource);
-void fn_7100938dec(UnkStrIdPathResource* self);
 
 // A map entry, built in place by fn_7100938ba0: the resource reference and the render model made for it.
 struct UnkModelEntry_l93852c {

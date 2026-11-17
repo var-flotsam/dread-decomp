@@ -116,7 +116,6 @@ struct UnkLocalQuery_d52bd0 {
 void fn_7100d5e570(UnkBoxShape2D_7100d5e570* self, const f32* delta);
 struct UnkBoxShape_d52bd0;
 bool fn_7100d5e5b4(const UnkBoxShape_d52bd0* self, UnkPoint2D_d52bd0 point);
-UnkPoint2D_d52bd0 fn_7100d5e540(const UnkBoxShape_d52bd0* self);
 
 struct UnkShapeBase_d52bd0 {
     const void* vtable;

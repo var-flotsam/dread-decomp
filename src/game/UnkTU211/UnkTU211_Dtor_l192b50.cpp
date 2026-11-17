@@ -5,13 +5,12 @@
 #include "base/UnkCountedResource.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkTU211.h"
+#include "game/UnkTU216.h"
 #include "game/UnkTU226.h"
 #include "game/UnkTU228.h"
 #include "types.h"
 
-extern void* g_unk_7101a1dc70[];
 void fn_7100192df4(void* member);
-void fn_7100196e7c(void* member);
 
 // An object owned through a pointer and deleted through its virtual destructor.
 struct UnkOwned_l192b50 {

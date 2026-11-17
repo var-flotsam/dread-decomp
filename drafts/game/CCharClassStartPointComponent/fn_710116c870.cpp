@@ -19,7 +19,7 @@
 #include "game/UnkTU57.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkXformNode.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "types.h"
 
 using base::global::CRntString;

@@ -19,3 +19,4 @@ u64 fn_7100191d40(UnkKeyPlayer_b0197* self, const UnkKeyRequest_b0197* request, 
 extern char g_unk_7101a1dca0[];
 extern char g_unk_7101a1dcc8[];
 extern char g_unk_7101a1dcf0[];
+extern void* g_unk_7101a1dc70[];

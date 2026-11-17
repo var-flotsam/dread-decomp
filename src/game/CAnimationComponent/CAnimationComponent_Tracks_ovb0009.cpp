@@ -798,9 +798,6 @@ f32 fn_710117a994(UnkAnimComponent_a994* self, const UnkAnimTiming* timing, f32 
 
 // ---- Events -----------------------------------------------------------------------------------
 
-void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);
-void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
-
 // A walk over the component's listeners (+0x438); ending the last one applies the changes made
 // meanwhile (fn_710117ecb0).
 struct UnkAnimListenersWalk : base::UnkCountedDeferredWalk<void> {

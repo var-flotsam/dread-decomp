@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkBufferStringPool.h"
 #include "game/UnkTU101.h"
+#include "game/UnkTU1134.h"
 #include "game/media/CMediaStream.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "../../game_aca57c/UnkBufferString.h"
@@ -19,7 +20,6 @@ using base::global::CRntVector;
 struct UnkRecord_lc8aefc;
 struct UnkBoneFilter_ovb0138;
 void fn_7100c8aefc(UnkRecord_lc8aefc* self);
-void fn_710070d188(UnkBoneFilter_ovb0138* self);
 
 extern void* g_unk_7101cac9b0[];
 

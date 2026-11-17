@@ -4,6 +4,7 @@
 // array (clearing their back-pointers) and empties all three, then frees them. fn_7100a9dbac and
 // fn_7100a9dd78 are identical copies.
 #include "base/global/CRntVector.h"
+#include "game/CUsableComponent.h"
 
 struct UnkLinked {
     void* owner;
@@ -65,8 +66,6 @@ void fn_710027514c(UnkLinkGroups* self) {
     Destroy(self);
 }
 
-void fn_7100a9dd78(UnkLinkGroups* self);
-
 static inline __attribute__((always_inline)) void Construct(UnkLinkGroups* self) {
 #pragma clang loop unroll(full)
     for (int i = 0; i < 5; i++)
@@ -76,6 +75,3 @@ static inline __attribute__((always_inline)) void Construct(UnkLinkGroups* self)
 void fn_710027497c(UnkLinkGroups* self) {
     Construct(self);
 }
-
-void fn_7100a9dbac(UnkLinkGroups* self);
-

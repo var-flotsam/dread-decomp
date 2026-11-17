@@ -12,7 +12,6 @@ using base::global::CStrId;
 extern CStrId g_unk_716e5961b0 __attribute__((visibility("hidden")));
 extern CStrId g_unk_716e5961b8 __attribute__((visibility("hidden")));
 
-void* fn_710015abd0();
 void fn_710015c3f0(UnkBoundTarget* target);
 void fn_71001d6a0c(UnkRenderTargetA1* target);
 void fn_71001d6ad0(UnkRenderTargetA1* target);

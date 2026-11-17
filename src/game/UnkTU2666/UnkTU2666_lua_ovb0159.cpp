@@ -414,7 +414,6 @@ s32 fn_7101088250(lua_State* L) {
 static inline s32 PushObject(lua_State* L, void* arg) {
     return fn_7100fbc4e0(L, arg);
 }
-void* fn_71011986a8(void* gui, const CStrId* id);
 void* fn_71011986b8(void* gui, const CStrId* id);
 
 s32 fn_7101088d40(lua_State* L) {

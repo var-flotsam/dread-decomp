@@ -27,3 +27,5 @@ extern u8 g_unk_7108b6afe8[] __attribute__((visibility("hidden")));
 // The payload size of each command of the sound system's second queue, by command number.
 extern const s32 g_unk_7101647aa8[] __attribute__((visibility("hidden")));
 extern UnkAtkHeap g_unk_7108b690a8;
+void fn_71000fd1d4(void* member, const u32* mask, f32 fade);
+void fn_71000fea74(void* member, u32 mask, f32 fade);

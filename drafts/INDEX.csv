@@ -472,6 +472,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71002b361c,444,drafts/game/UnkTU372/fn_71002b361c.cpp,control flow,56.8,44,pilot50,bit-0 test of merged flag (tbnz vs cbnz) and block layout
 0x71002b3ccc,2096,drafts/game/UnkTU372/fn_71002b3ccc.cpp,calls,0.2,340,lean-r6kb,CRntVector<UnkVec3f>::EmplaceBack not inlined (cost 260 > 250); 7.4% only with flatten; which was taken out; t
 0x71002b5004,460,drafts/game/UnkTU373/fn_71002b5004.cpp,control flow,5.2,105,pilot50,heap sift-down control flow; count widening and loop shape differ
+0x71002c5514,696,drafts/game/UnkTU392/fn_71002c5514.cpp,match,100.0,0,lean-r2ki,matches; held: declares fn_71000d4a50 again (no header yet)
 0x71002cb9e0,92,drafts/game/UnkTU395/fn_71002cb9e0.cpp,operations,17.4,16,lean-b5,loop reloads data and count each pass and masks index with lsl/lsr 4; compare order differs
 0x71002cbf98,496,drafts/game/UnkTU395/fn_71002cbf98.cpp,operations,50.8,58,lean-r2kg,Clang merges the append-without-growth data load with the shifting path's (one slot computation); original kee
 0x71002cc188,496,drafts/game/UnkTU395/fn_71002cc188.cpp,operations,50.8,58,lean-r2kg,slot address of the append-without-growth path merged with the shifting path's; original keeps them apart (try
@@ -969,6 +970,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710081bb50,384,drafts/game/CGrappleBeamComponent/fn_710081bb50.cpp,registers or order,97.9,2,lean-b6,merged failure-return layout and string record copy order/guard sequence
 0x710081c834,676,drafts/game/CGrappleBeamComponent/fn_710081c834.cpp,operations,44.7,93,lean-r2ki,comparator copy sits at sp+8 in the original (fits only if UnkMask_710081ccd0 has 2 words; not 4); one more ca
 0x710081cc58,116,drafts/game/CGrappleBeamComponent/fn_710081cc58.cpp,registers or order,82.8,5,lean-b6,passes tools/equiv_test.py; held: 1 declaration problem: src/game/CGrappleBeamComponent/fn_710081cc58.cpp:7 fn_7100331c7c: void fn_7100331c7c(void*; UnkNoArg) -> declared in include/game/CAbilityShinespark.h: include that header an...
+0x7100825258,736,drafts/game/CHangableGrappleSurfaceComponent/fn_7100825258.cpp,match,100.0,0,lean-r2ki,matches; held: its UnkHang*_b50 structs are supersets of CHangableGrappleSurfaceComponent_b50.cpp's (struct_check); needs one shared layout header
 0x710082ac54,1112,drafts/game/CMovableGrapplePointComponent/fn_710082ac54.cpp,calls,20.1,221,lean-r2ki,one extra call (likely hit-list destructor release loop laid out with 3 releases) and the block layout after i
 0x710082bfd0,700,drafts/game/CPlatformTrapGrapplePointComponent/fn_710082bfd0.cpp,build fails,,,lean-r2kf,stack layout only: the mode-0 send mode/mask share the request slot; original keeps them unmerged (no lifetime
 0x710082c28c,552,drafts/game/CPlatformTrapGrapplePointComponent/fn_710082c28c.cpp,build fails,,,lean-r2kf,stack layout only: state-1 mode arg shares the request slot (original keeps mode/mask at x29-0x18/-0x28 and th
@@ -1431,6 +1433,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100dcbd88,476,drafts/game/UnkTU2544/fn_7100dcbd88.cpp,registers or order,99.2,1,overnight,
 0x7100dcbf64,356,drafts/game/UnkTU2544/fn_7100dcbf64.cpp,operations,53.9,41,lean-b4,entry loop counts bytes down in original; stage compare is signed (s32) in original; ramp/player tail untested
 0x7100dcc404,1676,drafts/game/UnkTU2544/fn_7100dcc404.cpp,operations,1.2,414,lean-r2ke,88% needs UnkTU2544.h fn_7100dcc404 4th param bool->u32 (level; scratch build/lean/scratch/UnkTU2544_Start_ldc
+0x7100dcca90,768,drafts/game/UnkTU2544/fn_7100dcca90.cpp,match,100.0,0,lean-r2ki,matches; held: declares fn_7100dd0b9c and the g_unk_71727bca40/80/cb40 properties again; fold into UnkTU2544_SaveRecord_ldcd278.cpp or a header
 0x7100dccd90,736,drafts/game/UnkTU2544/fn_7100dccd90.cpp,registers or order,90.2,18,lean-r2ki,the true flag store is placed before the USER_DATA string-id ctor instead of after it (w21 kept)
 0x7100dcdd0c,112,drafts/game/UnkTU2544/fn_7100dcdd0c.cpp,operations,16.7,23,lean-b4,compiler hoists null check above stage pick; empty-id global loaded differently
 0x7100dd09a0,148,drafts/game/UnkTU2544/fn_7100dd09a0.cpp,operations,56.8,16,lean-b4,inner search loop is pointer-strength-reduced; original indexes with u64 j and neg-count compare
@@ -1854,6 +1857,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710115f7bc,352,drafts/game/CLifeComponent/fn_710115f7bc.cpp,operations,3.0,85,lean-oc2,99 vs 88 insns: array loops keep two extra callee-saved regs; store merging at 0x70-0x7b differs
 0x710115fe20,420,drafts/game/CLifeComponent/fn_710115fe20.cpp,registers or order,98.1,2,pilot50,load order of kind GOT slot vs key (registers)
 0x7101167aec,692,drafts/game/CPlayerLifeComponent/fn_7101167aec.cpp,operations,97.7,4,fable2b,
+0x710116c870,1004,drafts/game/CCharClassStartPointComponent/fn_710116c870.cpp,match,100.0,0,lean-r2ki,matches; held: declares g_unk_7172a0a4a8 again; fold into the Checkpoint file or a header
 0x710116dd7c,1844,drafts/game/CInterpolationComponent/fn_710116dd7c.cpp,control flow,46.9,238,lean-r2ki,stack frame 0xf0 vs smaller (orig keeps more values in d13-d15 and separate query slots); rotation case 0 load
 0x710116ed2c,2280,drafts/game/CModelUpdaterComponent/fn_710116ed2c.cpp,build fails,,,lean-r6k,event field address (x19+off) computed before the type compares in the original; after in ours; one extra bran
 0x7101171a08,1476,drafts/game/CModelUpdaterComponent/fn_7101171a08.cpp,build fails,,,lean-r2kd,needs header changes (fn_7101171a08 returns bool in game/CModelUpdaterComponent.h; CStrId field_0xd18 in game/

@@ -4427,7 +4427,7 @@ address,size,name,name_source,subsystem,status
 0x71002c5394,188,fn_71002c5394,unknown,ai/querysystem?,O
 0x71002c5450,188,fn_71002c5450,unknown,ai/querysystem?,O
 0x71002c550c,8,fn_71002c550c,unknown,ai/querysystem?,O
-0x71002c5514,696,fn_71002c5514,unknown,ai/querysystem?,O
+0x71002c5514,696,fn_71002c5514,unknown,ai/querysystem?,U
 0x71002c57cc,76,fn_71002c57cc,unknown,ai/querysystem?,O
 0x71002c5818,140,fn_71002c5818,unknown,ai/querysystem?,O
 0x71002c58a4,40,fn_71002c58a4,unknown,ai/querysystem?,O

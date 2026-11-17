@@ -7,6 +7,7 @@
 #include "game/UnkTU1159.h"
 #include "game/UnkTU357.h"
 #include "game/UnkXformNode.h"
+#include "game/logic/collision/CAABoxShape2D.h"
 #include "types.h"
 
 // Returned through x8, so the original's result type is not trivially copyable.
@@ -18,7 +19,6 @@ struct UnkVec3Result {
     UnkVec3Result(const UnkVec3Result& o) : x(o.x), y(o.y), z(o.z) {}
 };
 struct UnkStruct_71007455dc;
-UnkVec3Result fn_71007455dc(UnkStruct_71007455dc* self);
 
 // The query's outcome: 1 found, 2 not.
 struct UnkQueryResult_l724ecc {
@@ -55,7 +55,6 @@ struct UnkPoint2D_d52bd0 {
 // The extents of a kind-4 shape (a box): its upper and lower corners.
 struct UnkBoxShape_d52bd0;
 UnkPoint2D_d52bd0 fn_7100d5e52c(const UnkBoxShape_d52bd0* box);
-UnkPoint2D_d52bd0 fn_7100d5e540(const UnkBoxShape_d52bd0* box);
 
 struct UnkBillboardDef_l724ecc {
     virtual const base::reflection::CType* GetClass();

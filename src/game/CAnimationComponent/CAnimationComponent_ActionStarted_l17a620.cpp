@@ -13,9 +13,6 @@
 
 using base::global::CStrId;
 
-void fn_710117eb1c(base::UnkCountedDeferredSet<void>* self, void* value);
-void fn_710117ecb0(base::UnkCountedDeferredWalk<void>* walk);
-
 // A request's mode (passed by value, through memory).
 struct UnkFlags_7101176ea8 {
     u32 value;

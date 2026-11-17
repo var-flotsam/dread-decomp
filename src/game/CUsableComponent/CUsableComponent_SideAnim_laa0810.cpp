@@ -9,6 +9,8 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CAnimationComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBufferStringPool.h"
@@ -22,7 +24,6 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 
 struct UnkStruct_7101176ea8;
-bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
 
 // The usable tunables: distances and the side ids.
 struct UnkUsableSides_laa0810 {
@@ -40,7 +41,6 @@ struct UnkUsableSides_laa0810 {
 };
 // The usable tunables object (declared with the save station's view of it).
 struct UnkSaveStationTunables_ovb0118;
-extern UnkSaveStationTunables_ovb0118 g_unk_71727531f0;
 
 struct UnkUsableOwner_laa0810 {
     u8 pad_0x0[0x44];

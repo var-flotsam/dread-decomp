@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSaveStationTunables_ovb0118;
+struct UnkLinkGroups;
 struct UnkAmmoRecharge_la77790;
 struct UnkStateObject;
 struct UnkShipRecharge_A5_b73;
@@ -31,3 +33,9 @@ extern void* g_unk_7101a94220[];
 extern void* g_unk_7101a94718[];
 void fn_7100a9ea64(UnkStateObject* self);
 void fn_7100aa2850(UnkAmmoRecharge_la77790* self);
+extern UnkSaveStationTunables_ovb0118 g_unk_71727531f0;
+void fn_7100a9dbac(UnkLinkGroups* self);
+void fn_7100a9dd78(UnkLinkGroups* self);
+extern u8 g_unk_7172753170[];
+extern u8 g_unk_7172753198[];
+extern u8 g_unk_71727531c0[];

@@ -1,17 +1,16 @@
 // base::snd::CSoundSystem's unit (tools/tu_map.py): updates the member at +0x8 (fn_71000fa028), then
 // takes each group flag from the global settings (g_unk_7108b6c5f0 from +0x21) as fn_7100107eb8 sets
 // one: a flag turned off also clears its group in the member. Names and layouts are placeholders.
+#include "base/snd/CSoundSystem.h"
+#include "game/UnkTU99.h"
 #include "types.h"
 
 struct UnkSoundSettings_ovb0074 {
     u8 pad_0x0[0x21];
     bool flags[8];  // 0x21
 };
-extern UnkSoundSettings_ovb0074 g_unk_7108b6c5f0;
 
 char* fn_71000fa028(char* p0, f32 f0);
-void fn_71000fea74(void* member, u32 mask, f32 fade);
-void fn_71000fd1d4(void* member, const u32* mask, f32 fade);
 
 struct UnkSoundSystemUpdate_l107bac {
     void** vtable;

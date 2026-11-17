@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CActionInstance.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkTU1134.h"
 #include "types.h"
 
@@ -49,9 +50,6 @@ struct UnkTimelineComp_ovb0089 {
     u8 pad_0x0[0xf8];
     base::UnkCountedDeferredSet<void> listeners;  // 0xf8
 };
-
-void fn_7100a2e30c(base::UnkCountedDeferredSet<void>* self, void* value);
-void fn_7100a2e4a0(base::UnkCountedDeferredWalk<void>* walk);
 
 struct UnkTrack;
 struct UnkCutsceneTimeline;

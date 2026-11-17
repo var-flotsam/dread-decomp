@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkBoneFilter_ovb0138;
 struct UnkCutsceneTimeline;
 struct UnkTrack;
 struct UnkCls_710117af10;
@@ -20,3 +21,4 @@ u32 fn_710070d840(UnkTrack* track);
 f32 fn_710070d850(UnkTrack* track);
 f32 fn_710070d890(UnkTrack* track);
 f32 fn_710070d89c(UnkTrack* track);
+void fn_710070d188(UnkBoneFilter_ovb0138* self);

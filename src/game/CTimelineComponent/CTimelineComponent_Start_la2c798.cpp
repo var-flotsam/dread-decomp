@@ -6,6 +6,7 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkCountedDeferredSet.h"
 #include "base/global/CStrId.h"
+#include "game/CTimelineComponent.h"
 #include "game/UnkTU1134.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
@@ -14,9 +15,6 @@
 using base::global::CStrId;
 
 extern "C" int rand();
-
-void fn_7100a2e30c(base::UnkCountedDeferredSet<void>* self, void* value);
-void fn_7100a2e4a0(base::UnkCountedDeferredWalk<void>* walk);
 
 struct UnkTimelineRandom_ovb0089;
 void fn_7100a2b9a8(UnkTimelineRandom_ovb0089* self, const u32* value);

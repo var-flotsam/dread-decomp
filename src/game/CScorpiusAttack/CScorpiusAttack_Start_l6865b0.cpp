@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/CAnimationComponent.h"
 #include "game/UnkAttack.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -13,7 +14,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 struct UnkStruct_7101176ea8;
-bool fn_7101176e78(UnkStruct_7101176ea8* self, void* key, void** out);
 
 struct UnkScorpiusAttackConfig_l6865b0 {
     u8 pad_0x0[0xec];

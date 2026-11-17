@@ -2,6 +2,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU1728.h"
 #include "types.h"
 #include <new>
 #include "base/UnkCountedResource.h"
@@ -154,7 +155,6 @@ void fn_7100b8a5d8(base::global::CRntVector<u8>* vector, u32 capacity) {
     }
 }
 
-void fn_7100b8aa94(void* part);
 void fn_7100c95a68(void* element);
 
 struct UnkElem28_b0246 {
