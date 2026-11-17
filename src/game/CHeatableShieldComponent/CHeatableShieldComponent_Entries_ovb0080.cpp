@@ -34,7 +34,7 @@ struct UnkHeatableShieldD_b0080 {
     void** vtable;
     u8 unk_0x8[0x38];
     UnkHeatableEntryD_b0080* entries;  // 0x40
-    base::UnkStrIdMember* ids;        // 0x48
+    base::UnkStrIdMember* keys;       // 0x48
     u32 count;                        // 0x50
     u8 unk_0x54[0xc];
     base::UnkAllocator* allocator;    // 0x60
@@ -45,17 +45,17 @@ static_assert(__builtin_offsetof(UnkHeatableShieldD_b0080, extra) == 0x68, "layo
 void fn_710086ad24(UnkHeatableShieldD_b0080* self) {
     self->vtable = g_unk_7101a7a260 + 2;
     fn_710086ae60(reinterpret_cast<UnkHeatableExtra_b0080*>(self->extra));
-    if (self->ids) {
+    if (self->keys) {
         for (u32 i = 0; i < self->count; ++i)
-            self->ids[i].~UnkStrIdMemberOf();
+            self->keys[i].~UnkStrIdMemberOf();
     }
     if (self->entries) {
         for (u32 i = 0; i < self->count; ++i)
             fn_710086e0ac(reinterpret_cast<UnkHeatableValue_0xd0*>(&self->entries[i]));
     }
     self->count = 0;
-    if (self->ids)
-        self->allocator->vf_0x48(self->ids);
+    if (self->keys)
+        self->allocator->vf_0x48(self->keys);
     if (self->entries)
         self->allocator->vf_0x48(self->entries);
     fn_71010c4194(reinterpret_cast<UnkBaseComponent*>(self));
@@ -144,7 +144,7 @@ static_assert(sizeof(UnkHeatableEntryR_b0080) == 0xd0, "layout");
 struct UnkHeatableEntries_b0080 {
     u8 unk_0x0[0x40];
     UnkHeatableEntryR_b0080* values;  // 0x40
-    CStrId* ids;                     // 0x48
+    CStrId* keys;                    // 0x48
     u32 count;                       // 0x50
 };
 
