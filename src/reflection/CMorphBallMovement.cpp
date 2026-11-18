@@ -28,21 +28,9 @@ void fn_710094feb8();
 namespace CMorphBallMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_bIsMorphBall_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bIsMorphBall_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710094fe70);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bIsMorphBall_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710094fe70);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsMorphBall", (Persistence, 0));
-    DREAD_REFLECTED_FUNCTION("_bIsSamus_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bIsSamus_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710094feb8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bIsSamus_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710094feb8);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsSamus", (Persistence, 0));
     DREAD_REFLECTED_FIELD(f32, "fRunningSpeedX", 0x228c, (DefaultValue, 700.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpiderRunningSpeedX", 0x2290, (DefaultValue, 350.0f));
@@ -107,13 +95,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSqrDistanceToMakeSpiderJumpWithBomb", 0x38, (DefaultValue, 625.0f));
     DREAD_REFLECTED_FIELD(s32, "iForceSpiderBallAvailableMode", 0x3c, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bForceSpringBallAvailable", 0x40, (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_fWalkingSpeedFactor_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fWalkingSpeedFactor_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710094ff98);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fWalkingSpeedFactor_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710094ff98);
     DREAD_REFLECTED_FUNCTION("_fWalkingSpeedFactor_SetterFunction")
         fn_710093d6cc(fn, "_fWalkingSpeedFactor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fWalkingSpeedFactor", (DefaultValue, 0.6f));

@@ -25,13 +25,7 @@ void fn_71009ba658();
 namespace CChangeStageNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("RefreshNavMeshState") {
-        fn->name = base::global::UnkStrId("RefreshNavMeshState", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009ba658);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("RefreshNavMeshState", &g_unk_7101d5af48, 0, fn_71009ba658);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

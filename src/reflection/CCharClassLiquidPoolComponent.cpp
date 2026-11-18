@@ -62,13 +62,7 @@ void fn_71008fec3c(UnkReflFunction* fn, const char* name);
 namespace CLiquidPoolBaseComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_sModelPath_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_sModelPath_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100903928);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_sModelPath_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_7100903928);
     DREAD_REFLECTED_FUNCTION("_m_sModelPath_SetterFunction")
         fn_71008fec3c(fn, "_m_sModelPath_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sModelPath", (DefaultValue, base::global::CFilePathStrId("", true)));

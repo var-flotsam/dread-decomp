@@ -58,13 +58,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aVignettes", 0xa8);
     [&] {
-        DREAD_REFLECTED_FUNCTION("SetOpenState") {
-            fn->name = base::global::UnkStrId("SetOpenState", true);
-            fn->return_type = &g_unk_7101d5af48;
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100a44fc0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("SetOpenState", &g_unk_7101d5af48, 0, fn_7100a44fc0);
     }();
     DREAD_REFLECTED_FIELD(bool, "bDisableCloseTrapSensor", 0xd8);
 }

@@ -27,13 +27,7 @@ void fn_7100422084(UnkReflFunction* fn, const char* name);
 namespace CCharClassChozoCommanderPowerPulseAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_fFinalAngleDeg_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fFinalAngleDeg_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100422470);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fFinalAngleDeg_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100422470);
     DREAD_REFLECTED_FUNCTION("_fFinalAngleDeg_SetterFunction")
         fn_7100422084(fn, "_fFinalAngleDeg_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fFinalAngleDeg", (DefaultValue, 55.0f));

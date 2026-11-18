@@ -28,13 +28,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vEntitiesToPowerOff", 0xc8);
     [&] {
-        DREAD_REFLECTED_FUNCTION("StopCountDown") {
-            fn->name = base::global::UnkStrId("StopCountDown", true);
-            fn->return_type = &g_unk_7101d5af48;
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71007db614);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("StopCountDown", &g_unk_7101d5af48, 0, fn_71007db614);
     }();
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -35,43 +35,19 @@ void fn_71009c9788(UnkReflFunction* fn, const char* name);
 namespace CCharClassPersistenceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sBoolProperty_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sBoolProperty_GetterFunction", true);
-        fn->return_type = &g_unk_717275b580;
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009c9bec);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sBoolProperty_GetterFunction", &g_unk_717275b580, 0x101, fn_71009c9bec);
     DREAD_REFLECTED_FUNCTION("_sBoolProperty_SetterFunction")
         fn_71009c932c(fn, "_sBoolProperty_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("sBoolProperty", true), &g_unk_717275b580, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    DREAD_REFLECTED_FUNCTION("_sIntProperty_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sIntProperty_GetterFunction", true);
-        fn->return_type = &g_unk_717275b580;
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009c9cd8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sIntProperty_GetterFunction", &g_unk_717275b580, 0x101, fn_71009c9cd8);
     DREAD_REFLECTED_FUNCTION("_sIntProperty_SetterFunction")
         fn_71009c94a0(fn, "_sIntProperty_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sIntProperty", true), &g_unk_717275b580, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    DREAD_REFLECTED_FUNCTION("_sFloatProperty_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sFloatProperty_GetterFunction", true);
-        fn->return_type = &g_unk_717275b580;
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009c9dc4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sFloatProperty_GetterFunction", &g_unk_717275b580, 0x101, fn_71009c9dc4);
     DREAD_REFLECTED_FUNCTION("_sFloatProperty_SetterFunction")
         fn_71009c9614(fn, "_sFloatProperty_SetterFunction");
     UnkReflField* field2 = AddReflectedField(cls, CStrId("sFloatProperty", true), &g_unk_717275b580, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    DREAD_REFLECTED_FUNCTION("_sSection_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sSection_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009c9eb0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sSection_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71009c9eb0);
     DREAD_REFLECTED_FUNCTION("_sSection_SetterFunction")
         fn_71009c9788(fn, "_sSection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sSection", (DefaultValue, ""));

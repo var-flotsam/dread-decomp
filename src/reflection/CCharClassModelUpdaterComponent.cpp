@@ -29,13 +29,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vInitPosWorldOffset", 0x58, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Pos World Offset"));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vInitAngWorldOffset", 0x64, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Ang World Offset"));
-    DREAD_REFLECTED_FUNCTION("_bOverrideDisableInEditor_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bOverrideDisableInEditor_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710079252c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bOverrideDisableInEditor_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710079252c);
     DREAD_REFLECTED_FUNCTION("_bOverrideDisableInEditor_SetterFunction")
         fn_7100792280(fn, "_bOverrideDisableInEditor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOverrideDisableInEditor", (DefaultValue, true));

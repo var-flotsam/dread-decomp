@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -18,9 +19,6 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
-#include "base/reflection/TypeObject.h"
-namespace CAIManager { enum class EBumpMode : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<CAIManager::EBumpMode>::object asm("g_unk_71727bc3f0");
 
 // CAIManager::CTunableAIManager
 extern bool g_unk_71727bc590;
@@ -37,8 +35,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(s32, "iIgnorePlayerMode", 0x24, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bShowBossLifebar", 0x28, (DefaultValue, false));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("eBumpMode", true), &base::reflection::TypeObject<CAIManager::EBumpMode>::object, 0x2c, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CAIManager::EBumpMode>::object, 3);
+    DREAD_REFLECTED_FIELD_OF("CAIManager::EBumpMode", "eBumpMode", 0x2c, (DefaultValue, 3));
     DREAD_REFLECTED_FIELD(bool, "bShowEnemyLife", 0x30, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bShowEnemyDamage", 0x31, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bShowPlayerDamage", 0x32, (DefaultValue, false));

@@ -85,76 +85,34 @@ namespace CSteamJetComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDelayStart", 0xbf4, (DefaultValue, 2.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fDamage_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fDamage_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710089fcb4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fDamage_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710089fcb4);
     DREAD_REFLECTED_FUNCTION("_m_fDamage_SetterFunction")
         fn_710089d17c(fn, "_m_fDamage_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDamage", (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 999.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fLength_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fLength_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710089fd6c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fLength_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710089fd6c);
     DREAD_REFLECTED_FUNCTION("_m_fLength_SetterFunction")
         fn_710089d2f8(fn, "_m_fLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fLength", (DefaultValue, 500.0f), (MinValue, 100.0f), (MaxValue, 500.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fWidth_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fWidth_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710089fe14);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fWidth_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710089fe14);
     DREAD_REFLECTED_FUNCTION("_m_fWidth_SetterFunction")
         fn_710089d474(fn, "_m_fWidth_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 100.0f), (MinValue, 50.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fOnTime", 0xbec, (DefaultValue, 1.0f), (MinValue, -1.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fOffTime", 0xbf0, (DefaultValue, 1.0f), (MinValue, -1.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fOnOffTime", 0xc04, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fParticleScale_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fParticleScale_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710089fee0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fParticleScale_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0x101, fn_710089fee0);
     DREAD_REFLECTED_FUNCTION("_m_fParticleScale_SetterFunction")
         fn_710089d5f0(fn, "_m_fParticleScale_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fParticleScale", (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));
-    DREAD_REFLECTED_FUNCTION("_m_bCrossingAllowed_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bCrossingAllowed_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710089ffa4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bCrossingAllowed_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710089ffa4);
     DREAD_REFLECTED_FUNCTION("_m_bCrossingAllowed_SetterFunction")
         fn_710089d76c(fn, "_m_bCrossingAllowed_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCrossingAllowed", (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_m_bForceReactionDirection_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bForceReactionDirection_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008a0044);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bForceReactionDirection_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71008a0044);
     DREAD_REFLECTED_FUNCTION("_m_bForceReactionDirection_SetterFunction")
         fn_710089d8e8(fn, "_m_bForceReactionDirection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bForceReactionDirection", (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_m_vReactionDirection_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_vReactionDirection_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008a00d4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_vReactionDirection_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0x101, fn_71008a00d4);
     DREAD_REFLECTED_FUNCTION("_m_vReactionDirection_SetterFunction")
         fn_710089da64(fn, "_m_vReactionDirection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "vReactionDirection", (DefaultValue, base::math::CVector2D{1.0f, 0.0f}));

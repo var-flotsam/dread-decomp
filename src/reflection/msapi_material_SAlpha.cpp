@@ -242,7 +242,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("cType", true), &base::reflection::PrimitiveType<char>::Get(), 0x10, -1, -1);
     field1->attrs.AddTyped<u8, &fn_7100008500>(base::reflection::attr::DefaultValue(), 102);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 1);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

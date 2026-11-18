@@ -42,23 +42,11 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FIELD(bool, "bCallEntityLuaCallback", 0x3d, (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_m_iReverb_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_iReverb_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a6463c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_iReverb_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7100a6463c);
     DREAD_REFLECTED_FUNCTION("_m_iReverb_SetterFunction")
         fn_7100a5cc80(fn, "_m_iReverb_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iReverb", (DefaultValue, -1));
-    DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a646ec);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_iLowPassFilter_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7100a646ec);
     DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_SetterFunction")
         fn_7100a5cdfc(fn, "_m_iLowPassFilter_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iLowPassFilter", (DefaultValue, -1));
@@ -69,13 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x418, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x204, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bPersistentState", 0x278, (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_sSfxType_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sSfxType_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a64790);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sSfxType_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a64790);
     DREAD_REFLECTED_FUNCTION("_sSfxType_SetterFunction")
         fn_7100a5cf78(fn, "_sSfxType_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(g_unk_7101d470e0)));

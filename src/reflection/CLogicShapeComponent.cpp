@@ -38,13 +38,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.AddTyped<s64, &fn_71009155a8>(base::reflection::attr::DefaultValue(), 0);
     field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterShapeDeserialization", true));
     DREAD_REFLECTED_FIELD(bool, "bWantsToGenerateNavMeshEdges", 0x38, (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("AfterShapeDeserialization") {
-        fn->name = base::global::UnkStrId("AfterShapeDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009158dc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterShapeDeserialization", &g_unk_7101d5af48, 0, fn_71009158dc);
     DREAD_REFLECTED_FUNCTION("IsActorInside")
         fn_7100913144(fn, "IsActorInside");
 }

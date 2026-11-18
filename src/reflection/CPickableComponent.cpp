@@ -26,13 +26,7 @@ namespace CPickableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sOnPickFX", 0x58, (DefaultValue, "system/fx/generic/onpick_small.bcptl"), (Description, "fx on pick"));
-    DREAD_REFLECTED_FUNCTION("OnPickUpAfterCutScene") {
-        fn->name = base::global::UnkStrId("OnPickUpAfterCutScene", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009ce3e4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("OnPickUpAfterCutScene", &g_unk_7101d5af48, 0, fn_71009ce3e4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

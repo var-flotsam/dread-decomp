@@ -34,23 +34,11 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FUNCTION("_bMaintainFrame_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bMaintainFrame_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d2c7f0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bMaintainFrame_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100d2c7f0);
     DREAD_REFLECTED_FUNCTION("_bMaintainFrame_SetterFunction")
         fn_7100d2c1e8(fn, "_bMaintainFrame_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bMaintainFrame", (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_bMaintainFrameUsePercentage_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bMaintainFrameUsePercentage_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d2c880);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bMaintainFrameUsePercentage_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100d2c880);
     DREAD_REFLECTED_FUNCTION("_bMaintainFrameUsePercentage_SetterFunction")
         fn_7100d2c364(fn, "_bMaintainFrameUsePercentage_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bMaintainFrameUsePercentage", (DefaultValue, false));

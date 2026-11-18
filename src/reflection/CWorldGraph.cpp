@@ -36,19 +36,9 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteNode", true));
     field0->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterNodesCollectionDeserialization");
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
-    DREAD_REFLECTED_FUNCTION("AfterNodesCollectionDeserialization") {
-        fn->name = base::global::UnkStrId("AfterNodesCollectionDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100acceb8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterNodesCollectionDeserialization", &g_unk_7101d5af48, 0, fn_7100acceb8);
     DREAD_REFLECTED_FUNCTION("CreateNode") {
-        fn->name = base::global::UnkStrId("CreateNode", true);
-        fn->return_type = &g_unk_7172755e70;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100accfc8);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNode", &g_unk_7172755e70, 0x1, fn_7100accfc8);
         fn_7100acceec(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
         fn_710009ae5c(fn, fn->params.count);

@@ -29,13 +29,7 @@ void fn_7100a12648(UnkReflFunction* fn, const char* name);
 namespace CSwifterSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_eDirection_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_eDirection_GetterFunction", true);
-        fn->return_type = &base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a13530);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_eDirection_GetterFunction", &base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object, 0, fn_7100a13530);
     DREAD_REFLECTED_FUNCTION("_m_eDirection_SetterFunction")
         fn_7100a12648(fn, "_m_eDirection_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("eDirection", true), &base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);

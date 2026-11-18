@@ -61,23 +61,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iDropsRelaxMovementAnimationFrames", 0x74, (DefaultValue, 0), (Description, "When drops move, this is the length of the animation in frames"));
     DREAD_REFLECTED_FIELD(bool, "bDropsDoRelaxMovement", 0x78, (DefaultValue, false), (Description, "Whether drops perform a small movement while in place"));
     DREAD_REFLECTED_FIELD(bool, "bAbsorbDissolvingPickables", 0x79, (DefaultValue, false), (Description, "Whether player can absorb pickables that have started their dissolution process"));
-    DREAD_REFLECTED_FUNCTION("_m_fDefaultAttractionDistanceCm_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fDefaultAttractionDistanceCm_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100e2f79c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fDefaultAttractionDistanceCm_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100e2f79c);
     DREAD_REFLECTED_FUNCTION("_m_fDefaultAttractionDistanceCm_SetterFunction")
         fn_7100e20c1c(fn, "_m_fDefaultAttractionDistanceCm_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultAttractionDistanceCm", (DefaultValue, 800.0f), (Description, "Distance, in centimeters, from which the drop will start to be attracted"));
-    DREAD_REFLECTED_FUNCTION("_m_fMiniXAttractionDistanceCm_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fMiniXAttractionDistanceCm_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100e2f894);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fMiniXAttractionDistanceCm_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100e2f894);
     DREAD_REFLECTED_FUNCTION("_m_fMiniXAttractionDistanceCm_SetterFunction")
         fn_7100e20d98(fn, "_m_fMiniXAttractionDistanceCm_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMiniXAttractionDistanceCm", (DefaultValue, 100.0f), (Description, "Distance, in centimeters, from which a Mini-X will start to be attracted"));

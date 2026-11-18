@@ -32,8 +32,8 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("vColliderIds", true), &g_unk_7101d5c998, 0xffffffff, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::DeprecatedVar(), true);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    field0->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 1);
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
 }
 bool refl_Equals(const void*, const void*) { return false; }

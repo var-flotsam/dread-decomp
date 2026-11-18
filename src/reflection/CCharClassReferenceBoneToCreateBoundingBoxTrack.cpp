@@ -31,13 +31,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sBone_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sBone_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CName>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c47e64);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sBone_GetterFunction", &base::reflection::PrimitiveType<base::global::CName>::Get(), 0x101, fn_7100c47e64);
     DREAD_REFLECTED_FUNCTION("_sBone_SetterFunction")
         fn_7100c47bb8(fn, "_sBone_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CName, "sBone", (DefaultValue, base::global::CName("")));

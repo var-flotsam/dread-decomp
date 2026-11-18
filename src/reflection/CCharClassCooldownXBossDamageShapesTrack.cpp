@@ -32,13 +32,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("AI", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_sLogicShapesEnabled_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_sLogicShapesEnabled_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c13308);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_sLogicShapesEnabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c13308);
     DREAD_REFLECTED_FUNCTION("_m_sLogicShapesEnabled_SetterFunction")
         fn_7100c12908(fn, "_m_sLogicShapesEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sLogicShapesEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Logic Shapes Enabled"));

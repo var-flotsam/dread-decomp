@@ -5,8 +5,9 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
-#include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
+#include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -18,9 +19,6 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
-#include "base/reflection/TypeObject.h"
-namespace CCharClassAnalogAimTrack { enum class EAbortAnalogAimInput : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<CCharClassAnalogAimTrack::EAbortAnalogAimInput>::object asm("g_unk_71727a0738");
 
 // CCharClassAnalogAimTrack
 namespace CCharClassAnalogAimTrack {
@@ -29,9 +27,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eAbortAnalogAimInput", true), &base::reflection::TypeObject<CCharClassAnalogAimTrack::EAbortAnalogAimInput>::object, 0x18, -1, -1);
-    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Abort Analog Aim Input");
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CCharClassAnalogAimTrack::EAbortAnalogAimInput>::object, 2);
+    DREAD_REFLECTED_FIELD_OF("CCharClassAnalogAimTrack::EAbortAnalogAimInput", "eAbortAnalogAimInput", 0x18, (Description, "Abort Analog Aim Input"), (DefaultValue, 2));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

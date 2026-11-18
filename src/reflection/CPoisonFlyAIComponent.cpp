@@ -28,20 +28,10 @@ namespace CPoisonFlyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("AddAttackOffset") {
-        fn->name = base::global::UnkStrId("AddAttackOffset", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100639afc);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddAttackOffset", &g_unk_7101d5af48, 0, fn_7100639afc);
         fn_7100639960(fn);
     }
-    DREAD_REFLECTED_FUNCTION("StopAddingAttackOffsets") {
-        fn->name = base::global::UnkStrId("StopAddingAttackOffsets", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100639bc8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("StopAddingAttackOffsets", &g_unk_7101d5af48, 0, fn_7100639bc8);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

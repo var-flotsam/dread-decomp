@@ -28,23 +28,11 @@ void fn_7101158a9c(UnkReflFunction* fn, const char* name);
 namespace CCharacterLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sImpactAnim_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sImpactAnim_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011592e0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sImpactAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71011592e0);
     DREAD_REFLECTED_FUNCTION("_sImpactAnim_SetterFunction")
         fn_7101158a9c(fn, "_sImpactAnim_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sImpactAnim", (Persistence, 0));
-    DREAD_REFLECTED_FUNCTION("_sDeadAnim_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sDeadAnim_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011592e0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sDeadAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71011592e0);
     DREAD_REFLECTED_FUNCTION("_sDeadAnim_SetterFunction")
         fn_7101158a9c(fn, "_sDeadAnim_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sDeadAnim", (Persistence, 0));

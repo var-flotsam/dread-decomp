@@ -66,163 +66,67 @@ void fn_71008f8d2c(UnkReflFunction* fn, const char* name);
 namespace CSpotLightComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_fAttMin_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fAttMin_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008f9c3c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fAttMin_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008f9c3c);
     DREAD_REFLECTED_FUNCTION("_fAttMin_SetterFunction")
         fn_71008f76e8(fn, "_fAttMin_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttMin", (DefaultValue, 400.0f), (MaxValueProperty, CStrId("fAttMax", true)));
-    DREAD_REFLECTED_FUNCTION("_fAttMax_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fAttMax_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008f9cec);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fAttMax_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008f9cec);
     DREAD_REFLECTED_FUNCTION("_fAttMax_SetterFunction")
         fn_71008f7864(fn, "_fAttMax_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttMax", (DefaultValue, 500.0f), (MinValueProperty, CStrId("fAttMin", true)));
-    DREAD_REFLECTED_FUNCTION("_fAttIn_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fAttIn_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008f9dc0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fAttIn_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008f9dc0);
     DREAD_REFLECTED_FUNCTION("_fAttIn_SetterFunction")
         fn_71008f79e0(fn, "_fAttIn_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttIn", (DefaultValue, 90.0f));
-    DREAD_REFLECTED_FUNCTION("_fAttOut_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fAttOut_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008f9ee0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fAttOut_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008f9ee0);
     DREAD_REFLECTED_FUNCTION("_fAttOut_SetterFunction")
         fn_71008f7b5c(fn, "_fAttOut_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttOut", (DefaultValue, 120.0f));
-    DREAD_REFLECTED_FUNCTION("_fAttConstantFactor_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fAttConstantFactor_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa018);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fAttConstantFactor_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008fa018);
     DREAD_REFLECTED_FUNCTION("_fAttConstantFactor_SetterFunction")
         fn_71008f7cd8(fn, "_fAttConstantFactor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttConstantFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
-    DREAD_REFLECTED_FUNCTION("_fAttQuadraticFactor_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fAttQuadraticFactor_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa0c0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fAttQuadraticFactor_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008fa0c0);
     DREAD_REFLECTED_FUNCTION("_fAttQuadraticFactor_SetterFunction")
         fn_71008f7e54(fn, "_fAttQuadraticFactor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttQuadraticFactor", (DefaultValue, 0.0f), (MinValue, 0.0f));
-    DREAD_REFLECTED_FUNCTION("_vDir_GetterFunction") {
-        fn->name = base::global::UnkStrId("_vDir_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa168);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_vDir_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_71008fa168);
     DREAD_REFLECTED_FUNCTION("_vDir_SetterFunction")
         fn_71008f7fd0(fn, "_vDir_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vDir", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 1), (Persistence, 0));
-    DREAD_REFLECTED_FUNCTION("_fAnimFrame_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fAnimFrame_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa23c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fAnimFrame_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008fa23c);
     DREAD_REFLECTED_FUNCTION("_fAnimFrame_SetterFunction")
         fn_71008f814c(fn, "_fAnimFrame_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAnimFrame");
-    DREAD_REFLECTED_FUNCTION("_bCastShadows_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bCastShadows_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa2f4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bCastShadows_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71008fa2f4);
     DREAD_REFLECTED_FUNCTION("_bCastShadows_SetterFunction")
         fn_71008f82c8(fn, "_bCastShadows_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCastShadows");
-    DREAD_REFLECTED_FUNCTION("_vShadowNearFar_GetterFunction") {
-        fn->name = base::global::UnkStrId("_vShadowNearFar_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa3b0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_vShadowNearFar_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0x101, fn_71008fa3b0);
     DREAD_REFLECTED_FUNCTION("_vShadowNearFar_SetterFunction")
         fn_71008f8444(fn, "_vShadowNearFar_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "vShadowNearFar", (DefaultValue, base::math::CVector2D{0.0f, 0.0f}));
-    DREAD_REFLECTED_FUNCTION("_fShadowBias_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fShadowBias_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa458);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fShadowBias_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008fa458);
     DREAD_REFLECTED_FUNCTION("_fShadowBias_SetterFunction")
         fn_71008f85c0(fn, "_fShadowBias_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fShadowBias", (DefaultValue, 0.001f), (MinValue, 0.0f));
-    DREAD_REFLECTED_FUNCTION("_bStaticShadows_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bStaticShadows_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa500);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bStaticShadows_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71008fa500);
     DREAD_REFLECTED_FUNCTION("_bStaticShadows_SetterFunction")
         fn_71008f873c(fn, "_bStaticShadows_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bStaticShadows");
-    DREAD_REFLECTED_FUNCTION("_fShadowScl_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fShadowScl_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa5a8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fShadowScl_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008fa5a8);
     DREAD_REFLECTED_FUNCTION("_fShadowScl_SetterFunction")
         fn_71008f88b8(fn, "_fShadowScl_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fShadowScl", (DefaultValue, 1.0f), (MinValue, 0.01f), (MaxValue, 1.0f));
-    DREAD_REFLECTED_FUNCTION("_bHasProjectorTexture_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bHasProjectorTexture_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa660);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bHasProjectorTexture_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71008fa660);
     DREAD_REFLECTED_FUNCTION("_bHasProjectorTexture_SetterFunction")
         fn_71008f8a34(fn, "_bHasProjectorTexture_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bHasProjectorTexture");
-    DREAD_REFLECTED_FUNCTION("_sTexturePath_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sTexturePath_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa708);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sTexturePath_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_71008fa708);
     DREAD_REFLECTED_FUNCTION("_sTexturePath_SetterFunction")
         fn_71008f8bb0(fn, "_sTexturePath_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sTexturePath");
-    DREAD_REFLECTED_FUNCTION("_vProjectorUVScroll_GetterFunction") {
-        fn->name = base::global::UnkStrId("_vProjectorUVScroll_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector4D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008fa834);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_vProjectorUVScroll_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector4D>::Get(), 0x101, fn_71008fa834);
     DREAD_REFLECTED_FUNCTION("_vProjectorUVScroll_SetterFunction")
         fn_71008f8d2c(fn, "_vProjectorUVScroll_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector4D, "vProjectorUVScroll", (DefaultValue, base::math::CVector4D{1.0f, 1.0f, 0.0f, 0.0f}));

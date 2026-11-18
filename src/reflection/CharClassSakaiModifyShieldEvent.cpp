@@ -5,8 +5,9 @@
 // descriptor points to (those of a known uniform shape defined, the others declared) and the
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
-#include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
+#include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -18,9 +19,6 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
-#include "base/reflection/TypeObject.h"
-enum class EShieldAction : u32;
-template <> base::reflection::CType base::reflection::TypeObject<EShieldAction>::object asm("g_unk_7172772bb0");
 
 // CharClassSakaiModifyShieldEvent
 namespace CharClassSakaiModifyShieldEvent {
@@ -29,8 +27,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Enemy own actions", true));
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eAction", true), &base::reflection::TypeObject<EShieldAction>::object, 0xc, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EShieldAction>::object, 2147483647);
+    DREAD_REFLECTED_FIELD_OF("EShieldAction", "eAction", 0xc, (DefaultValue, 2147483647));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -27,13 +27,7 @@ namespace CCameraRailComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(SCameraRail, "oCameraRail", 0x30, (Description, base::global::CRntString("CameraRail")), (SetRenderItemSelectionIdCall, true), (AfterElementDeserialization, CStrId("AfterRailDeserialization", true)));
-    DREAD_REFLECTED_FUNCTION("AfterRailDeserialization") {
-        fn->name = base::global::UnkStrId("AfterRailDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100769f4c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterRailDeserialization", &g_unk_7101d5af48, 0, fn_7100769f4c);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

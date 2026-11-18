@@ -27,13 +27,7 @@ void fn_71008169ac(UnkReflFunction* fn, const char* name);
 namespace CCharClassGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_bAutoEnableGlow_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bAutoEnableGlow_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100816d34);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bAutoEnableGlow_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100816d34);
     DREAD_REFLECTED_FUNCTION("_m_bAutoEnableGlow_SetterFunction")
         fn_71008169ac(fn, "_m_bAutoEnableGlow_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAutoEnableGlow", (DefaultValue, true), (Description, "Auto enable glow fx?"));

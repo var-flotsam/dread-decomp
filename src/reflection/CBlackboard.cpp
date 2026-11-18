@@ -33,15 +33,9 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x30001u);
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_hashSections_GetterFunction") {
-        fn->name = base::global::UnkStrId("_hashSections_GetterFunction", true);
-        fn->return_type = &g_unk_71729fc870;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101049fa8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_hashSections_GetterFunction", &g_unk_71729fc870, 0x1, fn_7101049fa8);
     UnkReflField* field0 = AddReflectedField(cls, CStrId("hashSections", true), &g_unk_71729fc870, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 1);
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 1);
     field0->attrs.Add<const char*>(base::reflection::attr::CreateElement(), "CreateSection");
     field0->attrs.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterSectionsDeserialization", true));
     DREAD_REFLECTED_FUNCTION("CreateSection") {
@@ -50,13 +44,7 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sKey", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
     }
-    DREAD_REFLECTED_FUNCTION("AfterSectionsDeserialization") {
-        fn->name = base::global::UnkStrId("AfterSectionsDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104a108);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterSectionsDeserialization", &g_unk_7101d5af48, 0, fn_710104a108);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

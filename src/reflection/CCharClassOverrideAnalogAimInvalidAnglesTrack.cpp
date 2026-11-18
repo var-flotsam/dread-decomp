@@ -32,23 +32,11 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Analog", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_fMinInvaligAngle_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fMinInvaligAngle_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c431fc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fMinInvaligAngle_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100c431fc);
     DREAD_REFLECTED_FUNCTION("_fMinInvaligAngle_SetterFunction")
         fn_7100c42dd8(fn, "_fMinInvaligAngle_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMinInvaligAngle", (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FUNCTION("_fMaxInvaligAngle_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fMaxInvaligAngle_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c432bc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fMaxInvaligAngle_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100c432bc);
     DREAD_REFLECTED_FUNCTION("_fMaxInvaligAngle_SetterFunction")
         fn_7100c42f54(fn, "_fMaxInvaligAngle_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMaxInvaligAngle", (DefaultValue, 0.0f));

@@ -60,24 +60,12 @@ void fn_7100718010(UnkReflFunction* fn, const char* name);
 namespace CSoundTrigger {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_eReverb_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_eReverb_GetterFunction", true);
-        fn->return_type = &base::reflection::TypeObject<base::snd::EReverbIntensity>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100718544);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_eReverb_GetterFunction", &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0, fn_7100718544);
     DREAD_REFLECTED_FUNCTION("_m_eReverb_SetterFunction")
         fn_7100717e9c(fn, "_m_eReverb_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("eReverb", true), &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<base::snd::EReverbIntensity>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_iLowPassFilter_GetterFunction", true);
-        fn->return_type = &base::reflection::TypeObject<base::snd::ELowPassFilter>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007185d0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_iLowPassFilter_GetterFunction", &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0, fn_71007185d0);
     DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_SetterFunction")
         fn_7100718010(fn, "_m_iLowPassFilter_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("iLowPassFilter", true), &base::reflection::TypeObject<base::snd::ELowPassFilter>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);

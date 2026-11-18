@@ -27,13 +27,7 @@ void fn_71007330e4(UnkReflFunction* fn, const char* name);
 namespace CCharClassSwarmAttackComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_fMaxDamage_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fMaxDamage_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710073332c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fMaxDamage_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710073332c);
     DREAD_REFLECTED_FUNCTION("_m_fMaxDamage_SetterFunction")
         fn_71007330e4(fn, "_m_fMaxDamage_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMaxDamage", (DefaultValue, 0.0f), (Description, "Max damage ID"));

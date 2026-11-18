@@ -50,13 +50,7 @@ void refl_AddFields(CClass* cls) {
         fn_71011755d8(fn, "IsPlayingAnim");
     DREAD_REFLECTED_FUNCTION("IsPlayingAnimLike")
         fn_710117568c(fn, "IsPlayingAnimLike");
-    DREAD_REFLECTED_FUNCTION("ClearActions") {
-        fn->name = base::global::UnkStrId("ClearActions", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710117c12c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("ClearActions", &g_unk_7101d5af48, 0, fn_710117c12c);
     DREAD_REFLECTED_FUNCTION("SetActionFromEditor")
         fn_7101175740(fn, "SetActionFromEditor");
 }
