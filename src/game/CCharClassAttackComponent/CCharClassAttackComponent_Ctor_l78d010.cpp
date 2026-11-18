@@ -51,7 +51,7 @@ struct UnkCharClassAttack_l78d010 {
 void fn_710078d010(UnkCharClassAttack_l78d010* self) {
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = reinterpret_cast<void**>(g_unk_7101a6f348 + 0x10);
-    new (&self->id_0x58) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x58) CStrId(base::global::CStrId::Empty());
     fn_7100000850(&self->id_0x60, g_unk_7101d58d10, true);
     self->field_0x68 = 0;
     self->field_0x6c = false;

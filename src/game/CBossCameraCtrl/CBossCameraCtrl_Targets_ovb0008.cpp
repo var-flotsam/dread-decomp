@@ -143,7 +143,7 @@ struct UnkMusicManagerView_ovb0008 {
 };
 
 void fn_710074f80c(UnkBossCameraCtrl_ovb0008* self) {
-    g_unk_7101d47310->field_0x2230 = g_unk_7101d470e0;
+    g_unk_7101d47310->field_0x2230 = base::global::CStrId::Empty();
     UnkMusicState_ovb0008* state = static_cast<UnkMusicManagerView_ovb0008*>(MusicManager())->state;
     if (state && state->kind == 7)
         fn_7100fdb9e0(reinterpret_cast<UnkMgr_0xf18*>(MusicManager()), 1, 0, -1.0f, 0.5f);

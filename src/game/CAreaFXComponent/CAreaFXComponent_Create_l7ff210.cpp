@@ -51,7 +51,7 @@ struct UnkFXComponentSelf {
 void fn_71007ff210(UnkFXComponentSelf* self, const f32* color) {
     UnkFXManager* manager = self->owner->manager;
     UnkGameManagerIdTable& table = GameManagerIdTable();
-    UnkFXEntry* entry = manager->vt->Create(manager, g_unk_7172721528, g_unk_7172721528 + 8, &g_unk_7101d470e0,
+    UnkFXEntry* entry = manager->vt->Create(manager, g_unk_7172721528, g_unk_7172721528 + 8, &base::global::CStrId::Empty(),
                                             &table.field_0x628, 0x80, 0, 1, 0, -1, nullptr, -1, 0, -1,
                                             false, false, true);
     UnkFXObject* object = entry->object;

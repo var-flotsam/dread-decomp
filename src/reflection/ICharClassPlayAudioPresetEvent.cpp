@@ -34,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sPresetUniqueID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100beee0c);
     DREAD_REFLECTED_FUNCTION("_sPresetUniqueID_SetterFunction")
         fn_7100bee960(fn, "_sPresetUniqueID_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sPresetUniqueID", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sPresetUniqueID", (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0x30, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fPitch", 0x34, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 2.0f));
     DREAD_REFLECTED_FIELD(bool, "bApplyModifier", 0x38, (DefaultValue, true));

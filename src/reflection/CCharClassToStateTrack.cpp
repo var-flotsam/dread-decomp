@@ -24,7 +24,7 @@ using base::reflection::DestroyDestructorFirst;
 namespace CCharClassToStateTrack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bMaintainFrame", 0x20, (DefaultValue, false));
     DREAD_REFLECTED_FIELD_OF("CCharClassToStateTrack::EMaintainFrameMode", "eMaintainFrameMode", 0x24, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(s32, "iFrame", 0x28, (DefaultValue, 0));

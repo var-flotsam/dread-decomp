@@ -65,7 +65,7 @@ struct UnkMarkersAsset_lafc0bc {
     CFilePathStrId path;
     UnkCountedResource* resource;
 
-    UnkMarkersAsset_lafc0bc() : id(g_unk_7101d470e0), path(g_unk_7101d470e8), resource(nullptr) {}
+    UnkMarkersAsset_lafc0bc() : id(base::global::CStrId::Empty()), path(g_unk_7101d470e8), resource(nullptr) {}
 
     void Set(const UnkMarkersIds_lafc0bc& ids) {
         fn_71000267f8(reinterpret_cast<UnkStrIdPathResource*>(this),

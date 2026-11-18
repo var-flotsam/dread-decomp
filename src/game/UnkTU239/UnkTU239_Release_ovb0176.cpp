@@ -51,7 +51,7 @@ void fn_71001b3754(UnkTrackedTarget_ovb0176* self) {
         self->field_0x1c = 0;
         self->field_0x20 = 0;
         self->field_0x24 = 0;
-        self->name = g_unk_7101d470e0;
+        self->name = base::global::CStrId::Empty();
         fn_7100160590(self->slot.field_0x0);
         UnkTrackedBlock_ovb0176* block = self->block;
         if (block) {

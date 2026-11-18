@@ -196,10 +196,10 @@ struct UnkEntityWithIdLink {
 
 const base::global::CStrId& fn_7100d7ba84(const UnkEntityWithIdLink* self) {
     UnkEntityIdSource* src = self->field_0x398 ? self->field_0x398->field_0x10 : nullptr;
-    if (!src) return g_unk_7101d470e0;
+    if (!src) return base::global::CStrId::Empty();
     base::global::CStrId* p = src->field_0x30;
     base::global::CStrId* name = reinterpret_cast<base::global::CStrId*>(reinterpret_cast<char*>(p) + 0x30);
-    const base::global::CStrId* empty = &g_unk_7101d470e0;
+    const base::global::CStrId* empty = &base::global::CStrId::Empty();
     asm("" : "+r"(empty), "+r"(name), "+r"(p));
     return p ? *name : *empty;
 }

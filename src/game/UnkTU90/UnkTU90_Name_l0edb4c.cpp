@@ -37,7 +37,7 @@ s32 fn_71000edb4c(UnkWriter_b0202* self, UnkWriteNode_l0edb4c* node, const void*
         fn_71000ed480(self, reinterpret_cast<const UnkReflValueRef*>(&value));
     }
     UnkReflObject* object = node->object;
-    CStrId name = g_unk_7101d470e0;
+    CStrId name = base::global::CStrId::Empty();
     if (fn_710009d760(object, reinterpret_cast<const CType*>(fn_710009bedc()))) {
         if (!type)
             type = fn_710009c640(object);

@@ -32,7 +32,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sModelAlias_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71009393fc);
     DREAD_REFLECTED_FUNCTION("_sModelAlias_SetterFunction")
         fn_7100937dd0(fn, "_sModelAlias_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sModelAlias", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, base::global::CRntString("Current model alias")));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sModelAlias", (DefaultValue, CStrId(CStrId::Empty())), (Description, base::global::CRntString("Current model alias")));
     DREAD_REFLECTED_FUNCTION("SetVertexLightsEnabled") {
         fn_7100937f48(fn, "SetVertexLightsEnabled");
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set Vertex Lights Enabled"));

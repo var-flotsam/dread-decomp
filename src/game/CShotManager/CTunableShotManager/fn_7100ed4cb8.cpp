@@ -50,7 +50,7 @@ __attribute__((always_inline)) static inline void LoadModel(UnkModel*& slot, con
         UnkModel* model;
         CFilePathStrId id(path, true);
         model = nullptr;
-        fn_71006cae2c(manager->field_0x218, id, &model, &g_unk_7101d470e0);
+        fn_71006cae2c(manager->field_0x218, id, &model, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr, 0);
         slot = model;
     }

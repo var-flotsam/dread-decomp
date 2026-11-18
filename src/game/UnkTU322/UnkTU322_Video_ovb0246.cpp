@@ -173,7 +173,7 @@ struct UnkCd80Zero_b0246 {
 
 static inline __attribute__((always_inline)) UnkCd80Widget_b0246* CreateWidget_b0246(UnkRenderManager* manager) {
     UnkWidget* created = nullptr;
-    fn_710021d3d4(manager->field_0x218, nullptr, &created, &g_unk_7101d470e0);
+    fn_710021d3d4(manager->field_0x218, nullptr, &created, &base::global::CStrId::Empty());
     fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(created), 2);
     return reinterpret_cast<UnkCd80Widget_b0246*>(created);
 }

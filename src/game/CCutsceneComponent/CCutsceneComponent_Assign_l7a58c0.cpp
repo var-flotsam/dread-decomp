@@ -87,7 +87,7 @@ void fn_71007a58c0(UnkCutsceneEntry_l7a58c0* self, const UnkActorLink_l7a58c0* l
         return;
     if (self->link.state == 2) {
         if (UnkCutsceneActor_l7a58c0* actor = Actor(self->link.handle)) {
-            if (self->name == g_unk_7101d470e0)
+            if (self->name == base::global::CStrId::Empty())
                 self->name = actor->name;
             self->field_0x80 = actor->field_0x1b3;
         }

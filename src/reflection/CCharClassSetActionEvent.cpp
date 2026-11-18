@@ -28,7 +28,7 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bForce", 0xc, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iFrame", 0x10, (DefaultValue, 0), (MinValue, 0.0f), (MaxValue, 100000.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bIsAttack", 0x20, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fProbability", 0x24, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
 }

@@ -97,7 +97,7 @@ static inline const CStrId& IdTableKey(u32 offset) {
 static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = reinterpret_cast<UnkQualifiedId&>(item.field_0x10);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, reinterpret_cast<UnkIdSource*>(&item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, reinterpret_cast<UnkIdSource*>(&item), base::global::CStrId::Empty());
     return qid;
 }
 
@@ -143,5 +143,5 @@ void fn_7100b5206c(UnkPopUpTimer_b0249* self, UnkPopUpOwner_b0249* owner, f32 dt
     if (popup)
         popup = fn_710009d50c(popup->vf_0x0(), fn_7100b5e368()) ? popup : nullptr;
     CStrId id("#GUI_FILEMENU_PROMPT_NEWCHOZOMEMORIES", true);
-    fn_7100b5fd6c(popup, &id.data, &g_unk_7101d470e0, true, false);
+    fn_7100b5fd6c(popup, &id.data, &base::global::CStrId::Empty(), true, false);
 }

@@ -1,6 +1,6 @@
 // CDamageTriggerComponent unit (tools/tu_map.py unit 1563): its constructor, on the component base
 // (fn_71011acd10): the vtable, a flag at +0x58, an empty file-path id at +0x60, string ids at +0x70
-// ("") and +0x88 ("Lava Pool"), a flag pair at +0x90, a copy of the global id g_unk_7101d470e0 at
+// ("") and +0x88 ("Lava Pool"), a flag pair at +0x90, a copy of the global id base::global::CStrId::Empty() at
 // +0x98 and cleared words. Names and layouts are placeholders.
 #include <new>
 
@@ -51,6 +51,6 @@ void fn_7100a4b100(UnkDamageTriggerComponent_b52* self) {
     self->field_0x90 = true;
     self->field_0x91 = false;
     self->field_0x94 = 0;
-    new (&self->field_0x98) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x98) CStrId(base::global::CStrId::Empty());
     self->field_0xa0 = 0;
 }

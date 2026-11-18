@@ -47,7 +47,7 @@ void fn_71004e8ea0(void* state, char* data);
 __attribute__((always_inline)) static inline void CreateEffect(UnkSceneObject*& slot, const u64* key) {
     UnkRenderManager* manager = g_unk_7101d47300;
     UnkSceneObject* effect = nullptr;
-    fn_7100149930(manager->field_0x218, nullptr, &effect, &g_unk_7101d470e0);
+    fn_7100149930(manager->field_0x218, nullptr, &effect, &base::global::CStrId::Empty());
     fn_7100219ae0(manager, effect ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(effect) + 8) : nullptr, 0);
     slot = effect;
     if (effect) {

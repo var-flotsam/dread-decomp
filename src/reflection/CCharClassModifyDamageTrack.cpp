@@ -35,8 +35,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sColliders_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d2279c);
     DREAD_REFLECTED_FUNCTION("_sColliders_SetterFunction")
         fn_7100d21e7c(fn, "_sColliders_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("EDamageStrength", "eDamageStrength", 0x50, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

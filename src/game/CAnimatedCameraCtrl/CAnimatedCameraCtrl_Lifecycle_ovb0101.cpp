@@ -363,7 +363,7 @@ void fn_71010e87b8(UnkAnimatedCameraStart_b0101* self, UnkCamArg_b0101* arg) {
         self->field_0x260 = 0.01f;
         self->field_0x658 = false;
         if (self->field_0x510.data != &g_unk_7101d47108->empty)
-            self->field_0x510 = g_unk_7101d470e0;
+            self->field_0x510 = base::global::CStrId::Empty();
     }
     self->field_0x4e0 = fn_7100206154(&arg->node);
     self->field_0x4ec = arg->def->field_0xb4;

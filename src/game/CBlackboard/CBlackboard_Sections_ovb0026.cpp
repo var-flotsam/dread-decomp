@@ -391,7 +391,7 @@ s32 fn_710104b540(UnkBlackboardReader_b0026* self, base::reflection::UnkReflObje
     void* reader = self->reader;
     arg.type = fn_710000fd7c();
     arg.value = &name;
-    fn_71000ee9fc(reader, 0, &arg, &g_unk_7101d470e0);
+    fn_71000ee9fc(reader, 0, &arg, &base::global::CStrId::Empty());
     const base::reflection::CType* type = fn_710009c640(obj);
     if (fn_710009d50c(reinterpret_cast<const base::reflection::CType*>(obj->vf_0x0()),
                       reinterpret_cast<const base::reflection::CType*>(fn_710009bedc()))) {
@@ -399,7 +399,7 @@ s32 fn_710104b540(UnkBlackboardReader_b0026* self, base::reflection::UnkReflObje
         reader = self->reader;
         arg.type = fn_710000fd7c();
         arg.value = &id;
-        fn_71000ee9fc(reader, 1, &arg, &g_unk_7101d470e0);
+        fn_71000ee9fc(reader, 1, &arg, &base::global::CStrId::Empty());
         if (id != (u64)-1)
             type = reinterpret_cast<const base::reflection::CType*>(fn_71000a5118(g_unk_7101d4c8d0, &id));
     }

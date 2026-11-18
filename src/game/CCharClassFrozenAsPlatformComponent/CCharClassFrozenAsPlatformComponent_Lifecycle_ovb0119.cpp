@@ -137,10 +137,10 @@ void fn_71007fc694(UnkFrozenAsPlatformInit_b0119* self) {
     fn_71007ee4c8(reinterpret_cast<UnkFrozenIceBase_b44a2*>(self));
     self->vtable = g_unk_7101a74408 + 0x10;
     new (self->field_0xa0) base::global::CRntString("DAMAGE");
-    new (&self->field_0xd0) CStrId(g_unk_7101d470e0);
+    new (&self->field_0xd0) CStrId(base::global::CStrId::Empty());
     new (&self->field_0xd8) base::global::CRntVector<base::UnkPooledString>(0xf);
     self->ReserveIds(4);
     self->field_0x100 = 100.0f;
-    new (&self->field_0x108) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x108) CStrId(base::global::CStrId::Empty());
     self->field_0x110 = 0x42c8000042c80000;
 }

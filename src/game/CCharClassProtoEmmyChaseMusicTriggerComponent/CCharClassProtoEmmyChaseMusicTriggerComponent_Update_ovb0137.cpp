@@ -84,7 +84,7 @@ void fn_7100717108(UnkChaseMusicTrigger_ovb0137* self, f32 dt) {
         return;
     UnkQualifiedId& qid = ItemQualifiedId(g_unk_717275ac18);
     if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&qid, ItemSource(g_unk_717275ac18), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(g_unk_717275ac18), base::global::CStrId::Empty());
     if (!fn_71011428bc(inventory, qid))
         return;
     UnkChaseEmmyList_ovb0137* list =

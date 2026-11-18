@@ -140,7 +140,7 @@ static inline u64 IdHash(const CStrId& id) {
 bool fn_710062a120(UnkObsydomithonAttack_b0119* self, UnkObsydomithonEvent_b0119* event) {
     UnkAnimationComponent* anim = self->owner ? self->owner->anim : nullptr;
     const CStrId& id = event->field_0x8 && event->field_0x8->field_0x10 ? event->field_0x8->field_0x10->id
-                                                                         : g_unk_7101d470e0;
+                                                                         : base::global::CStrId::Empty();
     if (!anim || id.data == &g_unk_7101d47108->empty)
         return true;
     switch (event->kind) {

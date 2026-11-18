@@ -33,8 +33,8 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpPartnerFootStepPlatformEntity", true), &g_unk_71727b6270, 0x88, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnOpened", 0xe0, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnClosed", 0xe8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnOpened", 0xe0, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnClosed", 0xe8, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FUNCTION_OF("CloseDoor", &base::reflection::TypeObject<void>::object, 0, fn_71007e8b58);
 }
 bool refl_Equals(const void*, const void*) { return false; }

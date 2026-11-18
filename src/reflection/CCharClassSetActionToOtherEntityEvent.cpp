@@ -26,10 +26,10 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Actions", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sEntity", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sEntity", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x18, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iFrame", 0x1c, (DefaultValue, 0), (MinValue, 0.0f), (MaxValue, 100000.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sEntityAction", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sEntityAction", 0x20, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bIsAttack", 0x28, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fProbability", 0x2c, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
 }

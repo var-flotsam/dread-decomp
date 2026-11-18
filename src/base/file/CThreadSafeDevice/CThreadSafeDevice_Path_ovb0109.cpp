@@ -64,7 +64,7 @@ struct UnkPathPart_ovb0109 : UnkBufferString<0x200, g_unk_7101a1a5a8> {
 
 // The empty id's text (its read count at +0x44 raised).
 static inline const CRntString* EmptyText() {
-    base::global::UnkStringData* data = g_unk_7101d470e0.data;
+    base::global::UnkStringData* data = base::global::CStrId::Empty().data;
     ++*reinterpret_cast<s32*>(reinterpret_cast<u8*>(data) + 0x44);
     return reinterpret_cast<const CRntString*>(reinterpret_cast<u8*>(data) + 0x10);
 }

@@ -93,7 +93,7 @@ void fn_71006690c4(UnkRodoSelf* self) {
     if (!object) {
         const CStrId* key = reinterpret_cast<const CStrId*>(GameManagerIdTable().pad_0x0 + 0x19d0);
         object = reinterpret_cast<UnkRodoCreate>((*reinterpret_cast<void***>(container))[0x168 / 8])(
-            container, name, name, &g_unk_7101d470e0, key, 0x2000, 1, 0, 0, -1, 0, -1, 0, -1, false, false, true);
+            container, name, name, &base::global::CStrId::Empty(), key, 0x2000, 1, 0, 0, -1, 0, -1, 0, -1, false, false, true);
         if (!object)
             return;
     }

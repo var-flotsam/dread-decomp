@@ -25,7 +25,7 @@ void fn_71002d403c_A2_b76(UnkAnimatedNodeDef_A2_b76* self) asm("_Z13fn_71002d403
 void fn_71002d403c_A2_b76(UnkAnimatedNodeDef_A2_b76* self) {
     __builtin_memset(self, 0, sizeof(*self));
     self->vtable = reinterpret_cast<char*>(g_unk_7101a21718) + 0x10;
-    new (&self->name) CStrId(g_unk_7101d470e0);
+    new (&self->name) CStrId(base::global::CStrId::Empty());
     self->vtable = reinterpret_cast<char*>(g_unk_7101a216e8) + 0x10;
     new (&self->field_0x18) base::global::CRntVector<u64>(0xf);
     new (&self->field_0x40) base::global::CRntVector<u64>(0xf);

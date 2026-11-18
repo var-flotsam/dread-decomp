@@ -146,9 +146,9 @@ DREAD_REFLECTED_CLASS(CCharClassCooldownXBossWindTunnelAttack::CTunableCharClass
 namespace CCharClassCooldownXBossWindTunnelAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0x100, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sShotAttackAnim", 0x108, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sStunAttackAnim", 0x110, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0x100, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sShotAttackAnim", 0x108, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sStunAttackAnim", 0x110, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(s32, "iNumShots", 0x118, (DefaultValue, 8));
     DREAD_REFLECTED_FIELD(f32, "fTimeToEndAttack", 0x11c, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>", "tLaunchPatterns", 0x120);

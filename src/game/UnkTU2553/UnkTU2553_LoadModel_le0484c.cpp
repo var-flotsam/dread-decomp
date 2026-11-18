@@ -64,7 +64,7 @@ bool fn_7100e0484c(UnkGameManager* manager, const CFilePathStrId* path) {
         return false;
     UnkRenderManager* render = g_unk_7101d47300;
     UnkModel* created = nullptr;
-    fn_71006cae2c(render->field_0x218, *path, &created, &g_unk_7101d470e0);
+    fn_71006cae2c(render->field_0x218, *path, &created, &base::global::CStrId::Empty());
     fn_7100219ae0(render, created ? &reinterpret_cast<UnkModelParts_e0484c*>(created)->node : nullptr, 0);
     UnkModel* model = created;
     fn_71001c0968(reinterpret_cast<UnkModelParts_e0484c*>(model)->data, true);

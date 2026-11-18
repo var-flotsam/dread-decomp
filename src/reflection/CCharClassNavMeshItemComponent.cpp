@@ -24,7 +24,7 @@ using base::reflection::DestroyDestructorFirst;
 namespace CCharClassNavMeshItemComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sInitialStage", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sInitialStage", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("ENavMeshItemType", "eType", 0x60, (DefaultValue, 0), (Description, "Type (Static, Dynamic or Destructible)"));
     DREAD_REFLECTED_FIELD(bool, "bConnectSubareas", 0x64, (DefaultValue, false), (Description, "Connect subareas?"));
 }

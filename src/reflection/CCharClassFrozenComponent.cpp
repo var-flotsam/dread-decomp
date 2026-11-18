@@ -28,11 +28,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnFrozen", 0x60, (DefaultValue, "frozen_onfrozen"), (Description, "Timeline to play when frozen"));
     DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnThawing", 0x68, (DefaultValue, "frozen_onthawing"), (Description, "Timeline to play when thawing starts"));
     DREAD_REFLECTED_FIELD(CStrId, "sTimelineIdOnUnfreeze", 0x70, (DefaultValue, "frozen_onunfreeze"), (Description, "Timeline to play when unfreezing (any reason)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeInit", 0x78, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when freezing starts. If empty, entity will freeze in frame"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEnd", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when freezing ends. Required if m_sActionFreezeInit is filled"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEndFalling", 0x88, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when freezing ends if falling"));
-    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayer", 0x90, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayerMixerNode", 0x98, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeInit", 0x78, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing starts. If empty, entity will freeze in frame"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEnd", 0x80, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing ends. Required if m_sActionFreezeInit is filled"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionFreezeEndFalling", 0x88, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when freezing ends if falling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayer", 0x90, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sCustomLayerMixerNode", 0x98, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

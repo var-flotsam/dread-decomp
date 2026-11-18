@@ -130,7 +130,7 @@ void fn_71010edd64(UnkCameraCtrl_ovb0049* self) {
         reinterpret_cast<UnkStringEntry_ovb0049*>(self->on_reset.data)->readers++;
         const char* name = reinterpret_cast<UnkStringEntry_ovb0049*>(self->on_reset.data)->text;
         fn_7100000790(name ? name : g_unk_710162e2ed, "o", self);
-        self->on_reset = g_unk_7101d470e0;
+        self->on_reset = base::global::CStrId::Empty();
     }
     if (reinterpret_cast<UnkCameraTarget_ovb0049*>(self->handle->target)->field_0xc40 > 0.0f)
         fn_71010e6470(self->Target(), self, true, self->field_0xc0, -1.0f);

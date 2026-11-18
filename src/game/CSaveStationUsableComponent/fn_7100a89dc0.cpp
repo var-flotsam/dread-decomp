@@ -69,7 +69,7 @@ void fn_7100a89dc0(UnkSaveStation_la89dc0* self) {
         s_params.field_0x6c = true;
         s_params.field_0x6d = true;
         s_params.field_0x4c = 0.45f;
-        self->sound = fn_7100d7c374(self->entity, &s_params, &g_unk_7101d470e0, false, true, true);
+        self->sound = fn_7100d7c374(self->entity, &s_params, &base::global::CStrId::Empty(), false, true, true);
     }
     if (self->user && self->user->target)
         fn_7100d7c828(reinterpret_cast<UnkActor*>(self->user->target), &g_unk_710164b5b8, false);

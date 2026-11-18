@@ -37,7 +37,7 @@ void fn_71003e7bf8(UnkOwner* self, UnkOther* other) {
             const CStrId& id = base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0x22a];
             UnkQualifiedId& qid = ItemQualifiedId(g_unk_7172759178);
             if (qid.id.data == &g_unk_7101d47108->empty)
-                fn_7100ae9a10(&qid, ItemSource(g_unk_7172759178), g_unk_7101d470e0);
+                fn_7100ae9a10(&qid, ItemSource(g_unk_7172759178), base::global::CStrId::Empty());
             if (CBlackboard::CSection* target = fn_7101047270(blackboard, id))
                 fn_710006d11c(target, &qid.id, &flag);
             value = flag ^ 1;

@@ -91,8 +91,8 @@ u32 fn_71005bf3cc(UnkHydrogigaAI_l5bf3cc* self, UnkHydrogigaHit_l5bf3cc* hit) {
     if (!animation || !colliders || !target)
         return 2;
     {
-        CStrId group = hit->collider ? hit->collider->group : g_unk_7101d470e0;
-        CStrId name = hit->collider ? *fn_7100864018(colliders, hit->collider) : g_unk_7101d470e0;
+        CStrId group = hit->collider ? hit->collider->group : base::global::CStrId::Empty();
+        CStrId name = hit->collider ? *fn_7100864018(colliders, hit->collider) : base::global::CStrId::Empty();
         if (group == g_unk_71726eb450) {
             ScaleDamage(hit, self->char_class->field_0x578);
             if (self->field_0x149c0) {

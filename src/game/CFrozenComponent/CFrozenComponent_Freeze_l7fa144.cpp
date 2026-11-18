@@ -90,7 +90,7 @@ void fn_71007fa144(UnkFrozenComponent* component, f32 time) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation || !self->char_class)
         return;
-    CStrId track = g_unk_7101d470e0;
+    CStrId track = base::global::CStrId::Empty();
     CStrId blend = track;
     self->GetTrackIds(&track, &blend);
     if (fn_710117b348(animation, fn_7100cfb828())) {

@@ -480,7 +480,7 @@ void fn_7100b2dfc4(UnkStateOwner* self) {
     UnkObject* menu = reinterpret_cast<UnkObject*>(self->field_0x2c0);
     UnkSamusMenu* samus =
         fn_710009d50c(menu->Type(), fn_7100b65dc0()) ? static_cast<UnkSamusMenu*>(menu) : nullptr;
-    samus->field_0x230 = g_unk_7101d470e0;
+    samus->field_0x230 = base::global::CStrId::Empty();
     self->field_0x288 = self->field_0x2c0;
     UnkMissionLog* log = GetMissionLog(self->field_0x490);
     if (log->field_0x240->field_0x320 || log->field_0x238->field_0x262) {
@@ -692,7 +692,7 @@ void fn_7100b31770(void* set, void** slot);
 // Destroyed out of line (fn_7100026f70; the unions keep the members' own destructors out).
 struct UnkIdPair {
     union {
-        CStrId id = g_unk_7101d470e0;
+        CStrId id = base::global::CStrId::Empty();
     };
     union {
         CFilePathStrId path = g_unk_7101d470e8;

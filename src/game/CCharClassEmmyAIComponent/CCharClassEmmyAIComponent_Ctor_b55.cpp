@@ -41,7 +41,7 @@ void fn_710051eaa0(UnkEmmyDef_b55* self) {
     self->vtable = g_unk_7101a480a8 + 2;
     fn_7100504b9c(self->field_0x510);
     self->field_0x600 = 1;
-    new (&self->field_0x608) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x608) CStrId(base::global::CStrId::Empty());
     self->field_0x610 = 0x101;
     // An empty id: the string-id constructor with no string, inlined (the null data is known).
     self->field_0x618.data = nullptr;

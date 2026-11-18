@@ -29,7 +29,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fInitTimeDamageIncrease", 0x90, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageIncreaseAmount", 0x94, (DefaultValue, 10.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDamage", 0x98, (DefaultValue, 100.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sLevelChangeEasingFunction", 0xa0, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function to apply when the lavapool is changing level"));
+    DREAD_REFLECTED_FIELD(CStrId, "sLevelChangeEasingFunction", 0xa0, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function to apply when the lavapool is changing level"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

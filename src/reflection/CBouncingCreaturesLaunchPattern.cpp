@@ -106,7 +106,7 @@ extern base::reflection::CType g_unk_71726ef250;
 namespace CCharClassKraidBouncingCreaturesAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0xf0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0xf0, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("tPatterns", true), &g_unk_71726ef250, 0xf8, -1, -1);
     field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }

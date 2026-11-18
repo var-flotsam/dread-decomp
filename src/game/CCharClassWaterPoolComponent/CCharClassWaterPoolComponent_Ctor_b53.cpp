@@ -55,7 +55,7 @@ void fn_710090be10(UnkWaterPoolComponent_b53* self) {
     self->field_0xcb8 = 0;
     fn_710090b950(self->field_0xcc0);
     INIT_ARRAY_B53(0xd00)
-    new (&self->field_0xd28) base::global::CStrId(g_unk_7101d470e0);
+    new (&self->field_0xd28) base::global::CStrId(base::global::CStrId::Empty());
     self->field_0xcf8 = 0;
     self->field_0xbe0 = true;
     self->field_0xd30 = false;

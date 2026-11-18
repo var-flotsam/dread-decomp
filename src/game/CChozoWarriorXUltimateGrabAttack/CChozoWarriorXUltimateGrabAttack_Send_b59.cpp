@@ -46,7 +46,7 @@ bool fn_7100488f50(UnkUltGrab_b59* self, s32 kind, f32 value) {
         if (void* object = owner->field_0x270) {
             UnkQualifiedId& id = ItemQualifiedId(g_unk_717275ab18);
             if (id.id.data == &g_unk_7101d47108->empty)
-                fn_7100ae9a10(&id, ItemSource(g_unk_717275ab18), g_unk_7101d470e0);
+                fn_7100ae9a10(&id, ItemSource(g_unk_717275ab18), base::global::CStrId::Empty());
             if (fn_71011428bc(static_cast<UnkInventory*>(object), id)) {
                 hash = 0x3490d5d956677171;
                 goto send;

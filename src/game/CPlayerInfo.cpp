@@ -37,7 +37,7 @@ struct UnkPlayerInfoRecord {
     u64 field_0x10;
 
     UnkPlayerInfoRecord()
-        : name(g_unk_7101d470e0, g_unk_7101d47108), path(g_unk_7101d470e8, g_unk_7101d47200), field_0x10(0) {}
+        : name(base::global::CStrId::Empty(), g_unk_7101d47108), path(g_unk_7101d470e8, g_unk_7101d47200), field_0x10(0) {}
 };
 
 // A callback bound to its owner.

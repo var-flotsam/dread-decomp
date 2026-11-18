@@ -74,7 +74,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sChargePlaySound", 0x68, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(CStrId, "sChargeCancelSound", 0x70, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(f32, "fRadiusPropagationTotalTime", 0x78, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sRadiusPropagationEasingFunction", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sRadiusPropagationEasingFunction", 0x80, (DefaultValue, CStrId(CStrId::Empty())));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

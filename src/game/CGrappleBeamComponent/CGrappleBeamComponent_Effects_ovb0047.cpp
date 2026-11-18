@@ -98,7 +98,7 @@ void fn_7100817ffc(UnkGrappleBeamLightning_ovb0047* self) {
         UnkModel* model;
         CFilePathStrId id("actors/weapons/grapplebeam/models/grapplelightning_1.bcmdl", true);
         model = nullptr;
-        fn_71006cae2c(manager->field_0x218, id, &model, &g_unk_7101d470e0);
+        fn_71006cae2c(manager->field_0x218, id, &model, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr, 0);
         self->lightning_model = model;
     }

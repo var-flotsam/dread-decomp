@@ -56,7 +56,7 @@ bool fn_7100b6fa64(UnkSamusMenuComposition_b6fa64* self, UnkSamusMenuCloseArgs_b
     fn_7100108464(reinterpret_cast<UnkSoundSystemMasks_ovb0074*>(g_unk_7101d4d820), false, &groups);
     if (self->callback.data != &g_unk_7101d47108->empty) {
         CStrId callback = self->callback;
-        self->callback = g_unk_7101d470e0;
+        self->callback = base::global::CStrId::Empty();
         if (fn_71010c0bb0(g_unk_7172a01d18, callback.Text())) {
             char result[0x100];
             fn_71010c0d80(g_unk_7172a01d18, 0, result, sizeof(result), nullptr, nullptr);

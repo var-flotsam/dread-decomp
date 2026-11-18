@@ -44,7 +44,7 @@ bool fn_710080706c(UnkChozombieFX_ovb0130* self, void* arg) {
     if (!self->model) {
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkModel* model = nullptr;
-        fn_71006cae2c(manager->field_0x218, self->path, &model, &g_unk_7101d470e0);
+        fn_71006cae2c(manager->field_0x218, self->path, &model, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, Node_ovb0130(model), 0);
         self->model = model;
         if (model) {

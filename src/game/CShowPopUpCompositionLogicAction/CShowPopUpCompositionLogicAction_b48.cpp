@@ -30,6 +30,6 @@ void fn_7100a3fff4(UnkShowPopUpAction_b48* self) {
         auto* entry = static_cast<UnkPopUpEntry_b48*>(g_unk_7101d47310->field_0x2258);
         if (!entry || !entry->composition)
             continue;
-        fn_7100b5fd6c(entry->composition, &fn_71000ce740(&self->ids, i)->data, &g_unk_7101d470e0, true, false);
+        fn_7100b5fd6c(entry->composition, &fn_71000ce740(&self->ids, i)->data, &base::global::CStrId::Empty(), true, false);
     }
 }

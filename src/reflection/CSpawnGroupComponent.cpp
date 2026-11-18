@@ -56,14 +56,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAutoenabled", 0x13e, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bSpawnPointsNotInFrustrum", 0x141, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bGenerateEntitiesByOrder", 0x142, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(CStrId, "sLogicCollisionShapeID", 0x418, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sLogicCollisionShapeID", 0x418, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field20 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0xb8, -1, -1);
     field20->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     UnkReflField* field21 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0xf8, -1, -1);
     field21->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD(f32, "fDropAmmoProb", 0x3d8, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(s32, "iInitToGenerate", 0x188, (DefaultValue, 0));
-    DREAD_REFLECTED_FIELD(CStrId, "sArenaId", 0x1c0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sArenaId", 0x1c0, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bCheckActiveDrops", 0x1a0, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION_OF("_m_iNumDeaths_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_710111fd34);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iNumDeaths", (DefaultValue, 0), (Persistence, 0));

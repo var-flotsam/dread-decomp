@@ -25,10 +25,10 @@ struct UnkEnemyPresetEntry_A3_b66 {
 void fn_7100578b90(UnkEnemyPresetEntry_A3_b66* self) {
     fn_7101043904(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101a49360) + 2;
-    new (&self->field_0x10) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x10) CStrId(base::global::CStrId::Empty());
     self->field_0x18 = -1.0f;
-    new (&self->field_0x20) CStrId(g_unk_7101d470e0);
-    new (&self->field_0x28) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x20) CStrId(base::global::CStrId::Empty());
+    new (&self->field_0x28) CStrId(base::global::CStrId::Empty());
     self->field_0x30 = false;
     reinterpret_cast<void (*)(UnkEnemyPresetEntry_A3_b66*)>(self->vtable[3])(self);
 }

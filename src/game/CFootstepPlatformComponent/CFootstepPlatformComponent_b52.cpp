@@ -64,6 +64,6 @@ void fn_71007e7794(UnkFootstepPlatformComponent* self) {
     self->field_0xd0 = false;
     self->field_0xd4 = 0.0f;
     self->field_0xd8 = 1.5f;
-    new (&self->id_a) CStrId(g_unk_7101d470e0);
-    new (&self->id_b) CStrId(g_unk_7101d470e0);
+    new (&self->id_a) CStrId(base::global::CStrId::Empty());
+    new (&self->id_b) CStrId(base::global::CStrId::Empty());
 }

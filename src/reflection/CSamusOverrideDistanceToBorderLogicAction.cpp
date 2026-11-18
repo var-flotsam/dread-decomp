@@ -23,7 +23,7 @@ using base::reflection::DestroyDestructorFirst;
 namespace CSamusOverrideDistanceToBorderLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fLeftForwardDistance", 0x18, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fLeftBackwardDistance", 0x1c, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fRightForwardDistance", 0x20, (DefaultValue, -1.0f));

@@ -20,8 +20,8 @@ struct UnkAreaFXIdHolder_ovb0081 {
 };
 
 bool fn_7100802418(UnkAreaFXIdHolder_ovb0081* self, CStrId* first, CStrId* second) {
-    *first = g_unk_7101d470e0;
-    *second = g_unk_7101d470e0;
+    *first = base::global::CStrId::Empty();
+    *second = base::global::CStrId::Empty();
     UnkAreaFXIds_ovb0081* ids = self->ids;
     if (!ids)
         return false;

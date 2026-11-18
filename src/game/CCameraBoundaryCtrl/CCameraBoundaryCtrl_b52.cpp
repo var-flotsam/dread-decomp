@@ -61,7 +61,7 @@ void fn_7100766934(UnkCameraBoundaryCtrl* self) {
     UnkWeakHandle* named = object->ref_0xc38;
     CStrId name(named && named->target
                     ? reinterpret_cast<UnkCameraBoundaryNamed*>(named->target)->name
-                    : g_unk_7101d470e0);
+                    : base::global::CStrId::Empty());
     fn_7100eeb834(SubAreaManager());
     UnkCameraBoundaryOwner* owner = self->owner;
     fn_71010e6038(reinterpret_cast<UnkWeakRefAt<0xc30>*>(owner ? owner->object : nullptr), nullptr);

@@ -32,7 +32,7 @@ void fn_7100a29890(UnkLavapumpSend_b57* self) {
     const CStrId& id = base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0x229];
     UnkQualifiedId& qid = ItemQualifiedId(g_unk_7172759278);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(g_unk_7172759278), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(g_unk_7172759278), base::global::CStrId::Empty());
     if (CBlackboard::CSection* target = fn_7101047270(blackboard, id))
         fn_710006d11c(target, &qid.id, &flag);
     if (flag) {

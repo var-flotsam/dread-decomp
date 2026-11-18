@@ -28,7 +28,7 @@ struct UnkActorIds_b61 {
 
 UnkReflValue fn_710023e1ac(void*, char* obj) {
     auto* self = *reinterpret_cast<UnkActorIds_b61**>(obj + 8);
-    const base::global::CStrId* value = &g_unk_7101d470e0;
+    const base::global::CStrId* value = &base::global::CStrId::Empty();
     if (self->name != &g_unk_7101d47108->empty && self->path != &g_unk_7101d47200->empty) {
         UnkReflObject* def = self->def;
         if (def && !fn_710009d50c(reinterpret_cast<const CType*>(def->vf_0x0()),

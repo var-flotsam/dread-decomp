@@ -1,5 +1,5 @@
 // CCharClassShowMessageEvent's unit (tools/tu_map.py): its constructor, on the event base
-// (fn_7100067ea4): the vtable, two copies of the empty string id (g_unk_7101d470e0) and a set flag.
+// (fn_7100067ea4): the vtable, two copies of the empty string id (base::global::CStrId::Empty()) and a set flag.
 // Names and the layout are placeholders.
 #include <new>
 
@@ -22,7 +22,7 @@ struct UnkShowMessageEvent_b42a3 {
 void fn_7100be0368(UnkShowMessageEvent_b42a3* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa1d58 + 0x10;
-    new (&self->id_0x10) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x18) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x10) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x18) CStrId(base::global::CStrId::Empty());
     self->field_0x20 = true;
 }

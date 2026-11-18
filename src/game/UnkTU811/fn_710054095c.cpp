@@ -16,5 +16,5 @@ void fn_710054095c(UnkEmmyAI2_b57a3* self) {
     if (self->barrierFlag)
         fn_7100df5cec(manager, !self->field_0x27720 ? &s_noBarrier : &s_barrier);
     else
-        fn_7100df5cec(manager, &g_unk_7101d470e0);
+        fn_7100df5cec(manager, &base::global::CStrId::Empty());
 }

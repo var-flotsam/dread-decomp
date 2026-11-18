@@ -76,7 +76,7 @@ struct UnkDialogDef : UnkIdSource {
 };
 static inline const UnkQualifiedId& Qid(UnkDialogDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
+        fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());
     return def.qid;
 }
 
@@ -132,7 +132,7 @@ void fn_7100fb89b4(UnkAdamDialog* owner, const CStrId& key, void* arg2, const CS
     UnkDialogCallback on_open;
     on_open.object = nullptr;
     on_open.fn = nullptr;
-    fn_7100b01e60(target, &text, arg2, arg3, &on_close, &g_unk_7101d470e0, &on_open);
+    fn_7100b01e60(target, &text, arg2, arg3, &on_close, &base::global::CStrId::Empty(), &on_open);
 }
 
 // The pooled data behind a string id as its text accessor sees it: the text at +0x10 and a count

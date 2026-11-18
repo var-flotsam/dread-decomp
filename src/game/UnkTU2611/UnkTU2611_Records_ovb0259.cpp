@@ -175,7 +175,7 @@ void fn_7100fac824(UnkNameSet_ovb0259* self, CBlackboard* blackboard) {
         CStrId section_id = fn_71011a2fbc(manager->field_0x608);
         UnkQualifiedName* qualified = reinterpret_cast<UnkQualifiedName*>(g_unk_71729ee018.field_0x10);
         if (!qualified->str || !qualified->str[0])
-            fn_7100ae9d7c(qualified, reinterpret_cast<UnkIdSource*>(&g_unk_71729ee018), g_unk_7101d470e0);
+            fn_7100ae9d7c(qualified, reinterpret_cast<UnkIdSource*>(&g_unk_71729ee018), base::global::CStrId::Empty());
         UnkSubId_7100fc4b34 key = fn_71003327a4(qualified, reinterpret_cast<const CStrId*>(self));
         if (CBlackboard::CSection* section = fn_71010472e0(blackboard, section_id)) {
             if (!blackboard->field_0xe8) {

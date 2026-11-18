@@ -1,6 +1,6 @@
 // CUsableComponent's unit (tools/tu_map.py unit 1607): the string id for a kind, from one of five
 // virtuals (kind 1: slot 0x1b8; 4 to 7: slots 0x198 to 0x1b0), else the empty id
-// (g_unk_7101d470e0). Names are placeholders.
+// (base::global::CStrId::Empty()). Names are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CUsableComponent.h"
 #include "types.h"
@@ -27,6 +27,6 @@ const CStrId& fn_7100aa1f50(UnkUsableComponent_b45a2* self, u32 kind) {
     case 7:
         return self->Call(0x1b0);
     default:
-        return g_unk_7101d470e0;
+        return base::global::CStrId::Empty();
     }
 }

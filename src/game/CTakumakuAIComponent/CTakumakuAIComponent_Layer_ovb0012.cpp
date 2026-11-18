@@ -103,7 +103,7 @@ struct UnkTakumakuAI3_b0012 {
 // by whether the target is behind the owner's facing (+0x8 column of its matrix), event 6 one of two
 // by the movement's mode (+0x218, its +0x6f8).
 void fn_71006d5990(UnkTakumakuAI3_b0012* self, s32 event, void* arg, CStrId* out) {
-    *out = g_unk_7101d470e0;
+    *out = base::global::CStrId::Empty();
     UnkActor* owner = self->owner;
     if (!owner)
         return;

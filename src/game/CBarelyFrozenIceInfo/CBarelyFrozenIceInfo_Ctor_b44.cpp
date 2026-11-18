@@ -1,6 +1,6 @@
 // CBarelyFrozenIceInfo (tools/tu_map.py; the name from reflection): the constructor. The base
 // constructor fn_71007ee4c8, the vtable, cleared fields, two copies of the empty string id
-// (g_unk_7101d470e0) at +0xb0 and +0xb8, an empty array at +0xc8 (capacity 10, flags 0xf, the
+// (base::global::CStrId::Empty()) at +0xb0 and +0xb8, an empty array at +0xc8 (capacity 10, flags 0xf, the
 // default allocator), then the vtable's slot at +0x18 on itself. Names and layout are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
@@ -38,7 +38,7 @@ void fn_71007f3100(UnkFrozenIceInfo_b44a2* self) {
     self->field_0xa0 = 0;
     self->field_0xa4 = 0;
     // Both copies of the empty id: the id and the pool's empty one are read once.
-    UnkIdData_b44a2* id = g_unk_7101d470e0.data;
+    UnkIdData_b44a2* id = base::global::CStrId::Empty().data;
     self->field_0xb0 = id;
     bool counted = &g_unk_7101d47108->empty != id;
     if (counted)
@@ -68,7 +68,7 @@ struct UnkFrozenIceRecord_b44a2 {
 
 void fn_71007f1e6c(UnkFrozenIceRecord_b44a2* self) {
     self->vtable = g_unk_7101a73e10 + 2;
-    UnkIdData_b44a2* id = g_unk_7101d470e0.data;
+    UnkIdData_b44a2* id = base::global::CStrId::Empty().data;
     self->field_0x8 = id;
     bool counted = &g_unk_7101d47108->empty != id;
     if (counted)

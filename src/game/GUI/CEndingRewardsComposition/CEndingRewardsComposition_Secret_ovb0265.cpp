@@ -30,7 +30,7 @@ static inline const CStrId& IdTableKey(u32 offset) {
 static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = reinterpret_cast<UnkQualifiedId&>(item.field_0x10);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, reinterpret_cast<UnkIdSource*>(&item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, reinterpret_cast<UnkIdSource*>(&item), base::global::CStrId::Empty());
     return qid;
 }
 

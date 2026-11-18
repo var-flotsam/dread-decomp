@@ -104,7 +104,7 @@ DREAD_REFLECTED_CLASS(CCharClassKraidAcidBlobsAttack::CTunableCharClassKraidAcid
 namespace CCharClassKraidAcidBlobsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0xf0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0xf0, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fDuration", 0xf8, (DefaultValue, 6.0f));
     DREAD_REFLECTED_FIELD(f32, "fUnbreakableGravity", 0xfc, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fBreakableGravity", 0x100, (DefaultValue, 2000.0f));

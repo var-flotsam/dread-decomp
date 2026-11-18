@@ -58,7 +58,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(bool, "bSetPlayerInvulnerableWithReactionOnDeath", (DefaultValue, true), (Description, "Set Samus invulnerable with reaction on death?"));
     DREAD_REFLECTED_FIELD(bool, "bOpenDoorWhenDie", 0x513, (DefaultValue, true), (Description, "Opens door after death?"));
     DREAD_REFLECTED_FIELD(CStrId, "sBossBattleLabel", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x518, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x518, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bCheckOrientationInGrab", 0x520, (DefaultValue, true), (Description, "Check orientation in grab?"));
     DREAD_REFLECTED_FIELD(bool, "bPersistenBossDefeatedPushSetup", 0x521, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bGiveInventoryItemOnDead", 0x522, (DefaultValue, true));

@@ -73,7 +73,7 @@ void fn_710048cbe8(UnkWallClimbAttack_ovb0137* self) {
     }
     UnkRenderManager* manager = g_unk_7101d47300;
     UnkSceneObject* trail = nullptr;
-    fn_7100149930(manager->field_0x218, nullptr, &trail, &g_unk_7101d470e0);
+    fn_7100149930(manager->field_0x218, nullptr, &trail, &base::global::CStrId::Empty());
     fn_7100219ae0(manager, trail ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(trail) + 8) : nullptr, 0);
     self->trail = trail;
     fn_7100148190(trail, 6, UnkTrailColor_ovb0137(1.0f, 0.0f, 0.0f, 1.0f), true, 425.0f, 50.0f, 1.0f);

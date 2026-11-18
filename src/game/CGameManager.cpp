@@ -54,7 +54,7 @@ CStrId fn_7100dfbda4(UnkGameManager* self, const CStrId& id) {
 CStrId fn_7100de9c30(UnkGameManager* self) {
     if (self->field_0x608)
         return fn_71011a2fbc(self->field_0x608);
-    return g_unk_7101d470e0;
+    return base::global::CStrId::Empty();
 }
 
 // The object behind +0x498 starts with a pointer-sized field, then a string.
@@ -407,7 +407,7 @@ struct UnkGameManagerDef : UnkIdSource {
 };
 static inline const UnkQualifiedId& Qid(UnkGameManagerDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
+        fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());
     return def.qid;
 }
 
@@ -419,7 +419,7 @@ struct UnkGameManagerNamedDef : UnkIdSource {
 };
 static inline UnkSubId_7100fc4b34 SubId(UnkGameManagerNamedDef& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
+        fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     return fn_71003327a4(&def.name, &name);
 }
 
@@ -599,7 +599,7 @@ static inline bool IsMode(UnkGameManager* self, const char* name) {
 // Hides the loading screen and places the four objects at +0x2998.. (the first one also at the
 // start point, or at the origin when there is none, with its triggers reset); then the cameras, the
 // sounds and, unless the flag at +0x578 is set, the blackboard's "[MANTAIN]" pass.
-// NON_MATCHING(minor): the copy of g_unk_7101d470e0 passed to fn_7100df31b8: the original keeps its
+// NON_MATCHING(minor): the copy of base::global::CStrId::Empty() passed to fn_7100df31b8: the original keeps its
 // data pointer in a register across the call (the callee, in this unit, is known not to change its
 // argument) where this reloads it after the call, and the registers of that part differ (21
 // instructions).
@@ -614,7 +614,7 @@ void fn_7100df19c0(UnkGameManager* self) {
             fn_71011a2770(self->field_0x608, RefObject(steps->field_0x29a0));
             fn_71011a2770(self->field_0x608, RefObject(steps->field_0x29a8));
             fn_71011a2770(self->field_0x608, RefObject(steps->field_0x29b0));
-            fn_7100df31b8(self, false, true, 1, g_unk_7101d470e0, false);
+            fn_7100df31b8(self, false, true, 1, base::global::CStrId::Empty(), false);
             auto* first = static_cast<UnkLoadedObject*>(RefObject(steps->field_0x2998));
             auto* second = static_cast<UnkLoadedObject*>(RefObject(steps->field_0x29a0));
             if (first && !first->field_0x1b2)
@@ -684,7 +684,7 @@ void fn_7100df19c0(UnkGameManager* self) {
         fn_7101048af8(blackboard);
         fn_71010472e0(&g_unk_7101d47310->field_0x968, g_unk_7172a0bc98)->data.field_0x38 = false;
         const CStrId& env = self->field_0x608 ? *reinterpret_cast<CStrId*>(reinterpret_cast<char*>(self->field_0x608) + 0x18)
-                                               : g_unk_7101d470e0;
+                                               : base::global::CStrId::Empty();
         const CRntString& name = IdText(env);
         CRntString tag("[MANTAIN]");
         if (self->field_0x608) {
@@ -1273,7 +1273,7 @@ static inline f32 Value734(UnkGameManager* self) {
     return reinterpret_cast<UnkGameManagerProfileValues*>(self)->field_0x734;
 }
 static inline CStrId ScenarioSection(UnkGameManager* self) {
-    return self->field_0x608 ? fn_71011a2fbc(self->field_0x608) : g_unk_7101d470e0;
+    return self->field_0x608 ? fn_71011a2fbc(self->field_0x608) : base::global::CStrId::Empty();
 }
 
 // Writes values to `blackboard` (callers pass "profilesave" or the scenario's name as `name` and

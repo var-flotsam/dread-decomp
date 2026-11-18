@@ -80,7 +80,7 @@ bool fn_710083f32c(UnkSamusGunComponent* gun, const CStrId* id, bool primary, bo
             if (self->Answers(&group->data[0]->id, id) && group->data[0]->IsSelectable())
                 break;
         }
-        self->id = g_unk_7101d470e0;
+        self->id = base::global::CStrId::Empty();
         if (group == self->primary.data + self->primary.count || self->alt == group->data[0])
             return false;
 

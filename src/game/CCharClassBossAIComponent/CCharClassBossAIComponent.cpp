@@ -44,7 +44,7 @@ void fn_710041a430(UnkBossAIDef* self) {
     self->field_0x510 = false;
     self->field_0x511 = true;
     self->field_0x512 = true;
-    new (&self->field_0x518) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x518) CStrId(base::global::CStrId::Empty());
     self->field_0x522 = true;
     self->field_0xc4 = true;
     self->field_0xe8 = false;

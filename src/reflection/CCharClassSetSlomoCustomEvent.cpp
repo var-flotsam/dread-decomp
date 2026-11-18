@@ -28,7 +28,7 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSlomo", 0xc, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 10.0f));
     DREAD_REFLECTED_FIELD(f32, "fTime", 0x10, (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 1000.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sFunction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sFunction", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

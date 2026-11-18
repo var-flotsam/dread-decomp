@@ -73,7 +73,7 @@ void fn_7101036fb8(void* value, const void* arg) {
     fn_7100016c44(self, other);
     self->vtable = g_unk_7101cac748 + 0x10;
     new (&self->id_a) CStrId(PresetIds_l036fb8().field_0x14e0);
-    new (&self->id_b) CStrId(g_unk_7101d470e0);
+    new (&self->id_b) CStrId(base::global::CStrId::Empty());
     fn_7101036a9c(reinterpret_cast<UnkPathIdTable_710103c4e8*>(self->items));
     new (&self->settings) UnkPresetSettings_l036fb8;
 

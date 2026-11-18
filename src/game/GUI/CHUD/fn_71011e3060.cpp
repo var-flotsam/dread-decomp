@@ -88,7 +88,7 @@ static_assert(sizeof(UnkMissileAnim_3060) == 0x30, "UnkMissileAnim_3060 layout")
 static inline UnkQualifiedId& Qid_3060(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 

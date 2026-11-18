@@ -22,7 +22,7 @@ struct UnkNavMeshItemStageIds_ovb0090 {
 };
 
 void fn_71009c5ab8(UnkNavMeshItemStageIds_ovb0090* self, const CStrId* name) {
-    CStrId id(g_unk_7101d470e0);
+    CStrId id(base::global::CStrId::Empty());
     id = *name;
     UnkNavMeshStageEntry_ovb0090* entry = reinterpret_cast<UnkNavMeshStageEntry_ovb0090*>(self->entries) + self->count;
     new (&entry->id) CStrId(id);

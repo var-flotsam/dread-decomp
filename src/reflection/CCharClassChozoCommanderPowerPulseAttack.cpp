@@ -34,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeAtFinalAngle", 0x104, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToReachFinalAngle", 0x108, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinDistToWall", 0x10c, (DefaultValue, 800.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sAngleIncrementCurve", 0x110, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sAngleIncrementCurve", 0x110, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

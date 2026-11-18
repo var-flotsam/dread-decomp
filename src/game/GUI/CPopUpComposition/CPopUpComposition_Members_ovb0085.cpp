@@ -210,7 +210,7 @@ void fn_7100b5e5c0(UnkPopUpComposition_ovb0085* self) {
     new (&self->records) base::global::CRntVector<UnkPopUpIdRecord_ovb0085>(0xf);
     self->panel.ptr = nullptr;
     self->field_0x320.ptr = nullptr;
-    new (reinterpret_cast<CStrId*>(&self->id_0x328)) CStrId(g_unk_7101d470e0);
+    new (reinterpret_cast<CStrId*>(&self->id_0x328)) CStrId(base::global::CStrId::Empty());
     self->pending.field_0x8 = nullptr;
     self->pending.field_0x0 = nullptr;
     self->on_back.field_0x8 = nullptr;
@@ -219,10 +219,10 @@ void fn_7100b5e5c0(UnkPopUpComposition_ovb0085* self) {
     self->on_select.field_0x0 = nullptr;
     self->on_accept.field_0x8 = nullptr;
     self->on_accept.field_0x0 = nullptr;
-    new (&self->ids_0x370.id) CStrId(g_unk_7101d470e0);
+    new (&self->ids_0x370.id) CStrId(base::global::CStrId::Empty());
     new (&self->ids_0x370.path) CFilePathStrId(g_unk_7101d470e8);
     self->field_0x380 = 0;
-    new (&self->ids_0x388.id) CStrId(g_unk_7101d470e0);
+    new (&self->ids_0x388.id) CStrId(base::global::CStrId::Empty());
     new (&self->ids_0x388.path) CFilePathStrId(g_unk_7101d470e8);
     self->field_0x398 = 0;
     self->field_0x3a0 = false;

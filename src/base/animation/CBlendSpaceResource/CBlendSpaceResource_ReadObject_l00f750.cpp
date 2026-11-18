@@ -25,7 +25,7 @@ bool fn_710000fbb0(CRntFile* file, u32 kind, UnkTypedRef* value, const base::glo
 static inline void ReadId(UnkFileReader* reader, u32 kind, UnkTypedRef* arg, u64* id) {
     arg->type = fn_710000fd7c();
     arg->ptr = id;
-    fn_710000fbb0(reinterpret_cast<CRntFile*>(reader), kind, arg, &g_unk_7101d470e0);
+    fn_710000fbb0(reinterpret_cast<CRntFile*>(reader), kind, arg, &base::global::CStrId::Empty());
 }
 
 s32 fn_710000f750(UnkParseContext* self, void* root) {

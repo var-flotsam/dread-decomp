@@ -22,9 +22,9 @@ void fn_7100d2c4e0(UnkFireActionBaseTrack_ovb0076* self, UnkClass* cls);
 void fn_7100cf68f4(UnkFireActionBaseTrack_ovb0076* self, UnkClass* cls) {
     fn_7100d2c4e0(self, cls);
     self->vtable = g_unk_7101aa6cd8 + 2;
-    new (&self->ids[0]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[1]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[2]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[3]) CStrId(g_unk_7101d470e0);
+    new (&self->ids[0]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[1]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[2]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[3]) CStrId(base::global::CStrId::Empty());
     self->field_0x58 = false;
 }

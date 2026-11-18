@@ -1,6 +1,6 @@
 // Unit 32 of tools/tu_map.py: builds an id and path pair with its resource (base/UnkStrIdPathPair.h)
 // from a source object's path text: the source's use count (+0x44) goes up, the pair starts as the
-// empty ids (g_unk_7101d470e0, g_unk_7101d470e8) with no resource, and is then assigned the ids the
+// empty ids (base::global::CStrId::Empty(), g_unk_7101d470e8) with no resource, and is then assigned the ids the
 // text gives (fn_710001f074), which resolves the resource (fn_71000267f8). Names and layouts are
 // placeholders.
 #include "base/UnkPathIdsFromText.h"

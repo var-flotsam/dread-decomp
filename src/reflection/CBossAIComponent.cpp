@@ -50,7 +50,7 @@ void refl_AddFields(CClass* cls) {
     }
     UnkReflField* field7 = AddReflectedField(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x14910, -1, -1);
     field7->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x14950, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x14950, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field9 = AddReflectedField(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x14958, -1, -1);
     field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(bool, "bSaveGameOnAfterDead", 0x14998, (DefaultValue, true));

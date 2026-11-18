@@ -28,9 +28,9 @@ void fn_7100c54548(UnkNearWallTrack_b46a3* self) {
     fn_7100c53d88();
     fn_7100d2a844(self, g_unk_717278e3a8);
     self->vtable = &g_unk_7101aa4890[2];
-    new (&self->field_0x38) CStrId(g_unk_7101d470e0);
-    new (&self->field_0x40) CStrId(g_unk_7101d470e0);
-    new (&self->field_0x48) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x38) CStrId(base::global::CStrId::Empty());
+    new (&self->field_0x40) CStrId(base::global::CStrId::Empty());
+    new (&self->field_0x48) CStrId(base::global::CStrId::Empty());
     self->field_0x50 = -1.0f;
     self->field_0x54 = 1.0f;
 }

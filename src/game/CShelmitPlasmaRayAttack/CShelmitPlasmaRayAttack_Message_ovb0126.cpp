@@ -1,5 +1,5 @@
 // CShelmitPlasmaRayAttack's unit (tools/tu_map.py): fn_71006b6540 handles a message (kind at +0x0, the
-// sender's id at +0x38 of the object at +0x10 of +0x8, the empty id g_unk_7101d470e0 when there is none)
+// sender's id at +0x38 of the object at +0x10 of +0x8, the empty id base::global::CStrId::Empty() when there is none)
 // while the owner (+0x8) has its CShelmitAIComponent (+0x240) and the attack its object at +0x28: kind 3 with
 // id 0x52b2c974f41e0eae runs fn_71006b430c when fn_71006b5c00 allows it; kind 1 with that id moves to state 9
 // (+0x30) and copies the object's word at +0x100 to +0xa8, with ids 0x058e983ee43b033a or 0x9f65ed8ea84722af
@@ -56,10 +56,10 @@ static inline u64 Hash(const CStrId* id) {
 }
 
 bool fn_71006b6540(UnkPlasmaRayAttack_ovb0126* self, const UnkPlasmaRayMessage_ovb0126* message) {
-    const CStrId* id = &g_unk_7101d470e0;
+    const CStrId* id = &base::global::CStrId::Empty();
     if (message->ref) {
         UnkPlasmaRaySender_ovb0126* sender = message->ref->sender;
-        id = sender ? &sender->id : &g_unk_7101d470e0;
+        id = sender ? &sender->id : &base::global::CStrId::Empty();
     }
     UnkPlasmaRayOwner_ovb0126* owner = self->owner;
     if (!owner)

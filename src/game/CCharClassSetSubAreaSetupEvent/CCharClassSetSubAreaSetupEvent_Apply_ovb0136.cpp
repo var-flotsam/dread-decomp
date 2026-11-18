@@ -48,7 +48,7 @@ void fn_7100cd9814(UnkSetSubAreaSetupEvent_ovb0136* self) {
     const CStrId* source = &self->subArea;
     if (self->subArea.data == g_unk_717279de58.data) {
         CStrId* current = static_cast<UnkSubAreaManager_ovb0136*>(SubAreaManager())->field_0x3f0;
-        source = current ? current : &g_unk_7101d470e0;
+        source = current ? current : &base::global::CStrId::Empty();
     }
     CStrId subArea(*source);
     fn_7100eee1f8(SubAreaManager(), &subArea, &self->setup, self->field_0x20, false);

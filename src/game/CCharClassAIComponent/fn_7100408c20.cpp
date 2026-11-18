@@ -306,11 +306,11 @@ void fn_7100408c20(CClass* cls) {
     UnkReflField* field35 = AddReflectedField(cls, CStrId("fReachableSegmentCutDistance", true), fn_710000abbc(), 0x1bc, -1, -1);
     field35->attrs.Add<f32>(fn_7100075240(), 0.0f);
     UnkReflField* field36 = AddReflectedField(cls, CStrId("sNavMeshSmartLinksGroup", true), fn_7100009658(), 0x1c8, -1, -1);
-    field36->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field36->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     UnkReflField* field37 = AddReflectedField(cls, CStrId("sDynamicSmartLinkRulesFile", true), fn_7100009658(), 0x1d8, -1, -1);
-    field37->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field37->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     UnkReflField* field38 = AddReflectedField(cls, CStrId("sDynamicNavigationRulesFile", true), fn_7100009658(), 0x1e8, -1, -1);
-    field38->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field38->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_sNavMeshNavigationModes_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_sNavMeshNavigationModes_GetterFunction", true);
@@ -323,7 +323,7 @@ void fn_7100408c20(CClass* cls) {
             fn_71004121ac(fn, "_sNavMeshNavigationModes_SetterFunction");
     }();
     UnkReflField* field39 = AddReflectedField(cls, CStrId("sNavMeshNavigationModes", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field39->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field39->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_sNavMeshEnvironmentTypes_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_sNavMeshEnvironmentTypes_GetterFunction", true);
@@ -336,7 +336,7 @@ void fn_7100408c20(CClass* cls) {
             fn_7100412328(fn, "_sNavMeshEnvironmentTypes_SetterFunction");
     }();
     UnkReflField* field40 = AddReflectedField(cls, CStrId("sNavMeshEnvironmentTypes", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field40->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field40->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags_GetterFunction", true);
@@ -349,7 +349,7 @@ void fn_7100408c20(CClass* cls) {
             fn_71004124a4(fn, "_sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags_SetterFunction");
     }();
     UnkReflField* field41 = AddReflectedField(cls, CStrId("sForbiddenNavigateOverNavMeshPolygonLogicTypeFlags", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field41->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field41->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_sForbiddenNavigateInsideNavMeshPolygonLogicTypeFlags_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_sForbiddenNavigateInsideNavMeshPolygonLogicTypeFlags_GetterFunction", true);
@@ -378,7 +378,7 @@ void fn_7100408c20(CClass* cls) {
             fn_710041279c(fn, "_sNavMeshGlobalSmartLinkTypes_SetterFunction");
     }();
     UnkReflField* field44 = AddReflectedField(cls, CStrId("sNavMeshGlobalSmartLinkTypes", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field44->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field44->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     [&] {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_fVisitedNavMeshEdgesDistance_GetterFunction", true))) {
             fn->name = base::global::UnkStrId("_fVisitedNavMeshEdgesDistance_GetterFunction", true);
@@ -575,7 +575,7 @@ void fn_7100408c20(CClass* cls) {
             fn_7100412d8c(fn, "_m_sDefaultInvulnerableDamageMask_SetterFunction");
     }();
     UnkReflField* field109 = AddReflectedField(cls, CStrId("sDefaultInvulnerableDamageMask", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field109->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field109->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     field109->attrs.Add<const char*>(fn_7100007e80(), "Invulnerability to damage sources by default");
     [&] {
         if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("_m_sArmoredInvulnerableDamageMask_GetterFunction", true))) {
@@ -589,10 +589,10 @@ void fn_7100408c20(CClass* cls) {
             fn_7100412f08(fn, "_m_sArmoredInvulnerableDamageMask_SetterFunction");
     }();
     UnkReflField* field110 = AddReflectedField(cls, CStrId("sArmoredInvulnerableDamageMask", true), fn_7100009658(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field110->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field110->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     field110->attrs.Add<const char*>(fn_7100007e80(), "Invulnerability to damage sources when armored");
     UnkReflField* field111 = AddReflectedField(cls, CStrId("sMorphingNode", true), fn_7100009658(), 0x458, -1, -1);
-    field111->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field111->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     UnkReflField* field112 = AddReflectedField(cls, CStrId("v3MorphingOffset", true), fn_71000246e4(), 0x460, -1, -1);
     field112->attrs.Add<base::math::CVector3D>(fn_7100075240(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
     UnkReflField* field113 = AddReflectedField(cls, CStrId("eXpawnAngPolicy", true), &base::reflection::TypeObject<EXpawnAngPolicy>::object, 0x46c, -1, -1);
@@ -602,7 +602,7 @@ void fn_7100408c20(CClass* cls) {
     UnkReflField* field115 = AddReflectedField(cls, CStrId("sPushAnim", true), fn_7100009658(), 0x478, -1, -1);
     field115->attrs.Add<CStrId>(fn_7100075240(), CStrId("push", true));
     UnkReflField* field116 = AddReflectedField(cls, CStrId("sPushBackAnim", true), fn_7100009658(), 0x480, -1, -1);
-    field116->attrs.Add<CStrId>(fn_7100075240(), CStrId(g_unk_7101d470e0));
+    field116->attrs.Add<CStrId>(fn_7100075240(), CStrId(base::global::CStrId::Empty()));
     UnkReflField* field117 = AddReflectedField(cls, CStrId("bIgnoreRotateOnPush", true), fn_710000d228(), 0x488, -1, -1);
     field117->attrs.Add<bool>(fn_7100075240(), false);
     field117->attrs.Add<const char*>(fn_7100007e80(), "Whether to ignore rotating to instigator when entity is pushed");

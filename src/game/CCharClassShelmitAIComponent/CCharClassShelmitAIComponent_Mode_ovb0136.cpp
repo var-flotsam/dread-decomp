@@ -31,7 +31,7 @@ static inline const CStrId& Name(const UnkShelmitInfo_ovb0136* info) {
         if (UnkShelmitNamed_ovb0136* named = info->field_0x60)
             return named->name;
     }
-    return g_unk_7101d470e0;
+    return base::global::CStrId::Empty();
 }
 
 u32 fn_71006b92b8(void* self, UnkActor* actor, UnkActor* other, const UnkShelmitInfo_ovb0136* info) {

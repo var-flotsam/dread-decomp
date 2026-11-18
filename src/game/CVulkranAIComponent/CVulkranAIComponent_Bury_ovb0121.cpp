@@ -90,7 +90,7 @@ struct UnkVulkranAI_ovb0121b {
 };
 
 void fn_71006dc870(UnkVulkranAI_ovb0121b* self, s32 kind, void* /*unused*/, CStrId* out) {
-    *out = g_unk_7101d470e0;
+    *out = base::global::CStrId::Empty();
     if (kind != 6)
         return;
     UnkTakumakuComponent* animation = self->owner->animation;
@@ -101,7 +101,7 @@ void fn_71006dc870(UnkVulkranAI_ovb0121b* self, s32 kind, void* /*unused*/, CStr
     else if (fn_7101178e6c(self->owner->animation, 8))
         *out = *fn_71006dac58(self->tuning);
     else
-        *out = g_unk_7101d470e0;
+        *out = base::global::CStrId::Empty();
 }
 
 struct UnkVulkranHashed_ovb0121 {

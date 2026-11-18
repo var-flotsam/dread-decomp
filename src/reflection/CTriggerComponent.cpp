@@ -50,8 +50,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_SetterFunction")
         fn_7100a5cdfc(fn, "_m_iLowPassFilter_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iLowPassFilter", (DefaultValue, -1));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnEnable", 0x1f0, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnDisable", 0x1f8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnEnable", 0x1f0, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnDisable", 0x1f8, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bOnEnableAlways", 0x200, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bOnDisableAlways", 0x201, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x418, (DefaultValue, true));
@@ -60,7 +60,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sSfxType_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a64790);
     DREAD_REFLECTED_FUNCTION("_sSfxType_SetterFunction")
         fn_7100a5cf78(fn, "_sSfxType_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field11 = AddReflectedField(cls, CStrId("lstActivationConditions", true), &g_unk_717274dad8, 0x250, -1, -1);
     field11->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterActivationConditionDeserialization", true));
     DREAD_REFLECTED_FUNCTION("AfterActivationConditionDeserialization")

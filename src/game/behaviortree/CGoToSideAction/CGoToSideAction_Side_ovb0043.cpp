@@ -47,7 +47,7 @@ void fn_7100381224();
 // track, asks its navigation (+0x298) to go there, called back through fn_7100381224.
 bool fn_7100380e48(UnkGoToSideAction_ovb0043* self) {
     void* navigation = self->actor->navigation;
-    bool found = fn_7100394bdc(self, self->field_0x30, &self->side, g_unk_7101d470e0, false);
+    bool found = fn_7100394bdc(self, self->field_0x30, &self->side, base::global::CStrId::Empty(), false);
     self->found = found;
     if (!found || !navigation)
         return false;
