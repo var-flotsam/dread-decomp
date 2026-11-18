@@ -2,6 +2,7 @@
 // src/game/UnkStateMachineSet_b61.cpp, copied here: the machine of src/game/UnkStateMachineUpdate_b59.cpp
 // embedded at some offset, followed by a "busy" flag at +0xa8). One template per (last state, "none"
 // value), instantiated per component and machine offset. Names are placeholders.
+#include "game/UnkUsableKeys.h"
 #include "base/global/CRntString.h"
 #include "../game_aca57c/UnkBufferString.h"
 #include "game/CComponent.h"
@@ -246,7 +247,6 @@ void fn_7100aa1fbc(UnkUsablePrepare_A6_b62* self, UnkUsableArg_A6_b62* arg) {
 
 // CUsableComponent's unit (machine at +0x100): hands two of its virtual getters' values and a constant
 // to fn_7100aa0b04, then requests a state.
-extern const u8 g_unk_710164b668[] __attribute__((visibility("hidden")));
 
 struct UnkUsableVirt_A6_b62 {
     void* const* vtable;
@@ -472,7 +472,6 @@ static inline void SetKey_A6_b62(UnkSaveLink_A6_b62* link, const u64* key) {
 }
 
 extern const u64 g_unk_710164b548;
-extern const u8 g_unk_710164b540[] __attribute__((visibility("hidden")));
 
 struct UnkSaveAccessPoint2_A6_b62 : UnkSaveUsable_A6_b62 {
     UnkSaveLink_A6_b62* link;
@@ -498,7 +497,6 @@ void fn_7100a70380(UnkSaveAccessPoint2_A6_b62* self) {
     });
 }
 
-extern const u64 g_unk_710164b5a8;
 extern const u8 g_unk_710164b590[] __attribute__((visibility("hidden")));
 
 struct UnkSaveUsable3_A6_b62 : UnkSaveUsable_A6_b62 {

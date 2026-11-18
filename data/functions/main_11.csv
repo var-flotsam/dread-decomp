@@ -1517,7 +1517,7 @@ address,size,name,name_source,subsystem,status
 0x7101167de4,116,fn_7101167de4,unknown,game/player?,O
 0x7101167e58,5556,fn_7101167e58,unknown,game/player?,U
 0x710116940c,60,fn_710116940c,unknown,game/player?,O
-0x7101169448,856,fn_7101169448,unknown,game/player?,U
+0x7101169448,856,fn_7101169448,unknown,game/player?,O
 0x71011697a0,564,fn_71011697a0,unknown,game/player?,O
 0x71011699d4,68,fn_71011699d4,unknown,game/player?,O
 0x7101169a18,180,fn_7101169a18,unknown,game/player?,O

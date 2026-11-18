@@ -14,6 +14,7 @@
 #include "game/UnkTypedValue.h"
 #include "game/behaviortree/CBehavior.h"
 #include "game/behaviortree/CEmmyChaseAction.h"
+#include "game/behaviortree/CEmmySearchingAction.h"
 #include "game/behaviortree/CEmmyStateAction.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "game_s2/UnkParams.h"
@@ -29,8 +30,6 @@ struct UnkDoorList_b0193 {
     base::reflection::UnkReflObject** items;
     u32 count;
 };
-
-extern UnkPropertyName g_unk_71726df1a8;
 
 void fn_71007b6be4(UnkDoorEmmyFX_b50* self, bool add);
 

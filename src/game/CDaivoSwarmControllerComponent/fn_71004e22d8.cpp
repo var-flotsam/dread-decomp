@@ -17,9 +17,6 @@ struct UnkVec3Result {
 struct UnkRedenkiSwarmController;
 bool fn_710065244c(UnkRedenkiSwarmController* self);
 
-extern bool g_unk_71726fc5b0;
-extern f32 g_unk_7101a5aef8;
-
 struct UnkDaivoPos_l4e22d8 {
     f32 x, y, z;
 };

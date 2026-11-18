@@ -53,7 +53,6 @@ struct UnkMorphBallMovement_01d8 {
 static_assert(__builtin_offsetof(UnkMorphBallMovement_01d8, timer) == 0x2534, "layout");
 static_assert(__builtin_offsetof(UnkMorphBallMovement_01d8, boost) == 0x2634, "layout");
 
-void fn_71010d7b28(UnkMorphBallMovement_01d8* self, f32 dt);
 void fn_7100940490(UnkMorphBallMovement_01d8* self, f32 dt);
 void fn_7100942550(UnkMorphBallMovement_01d8* self, f32 dt);
 

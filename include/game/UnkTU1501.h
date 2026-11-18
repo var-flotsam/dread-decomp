@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkGroundPlayer_b52;
 struct UnkMove_b152;
 struct UnkSamusSettings;
 struct UnkFlagged;
@@ -27,3 +28,4 @@ extern UnkSamusSettings g_unk_7172740de0;
 void fn_71009ea070(UnkGroundMovement_ovb0138* movement);
 f32 fn_71009e754c(UnkMove_b152* self);
 bool fn_71009e12d0(void*);
+bool fn_71009e1fd4(UnkGroundPlayer_b52* player);

@@ -855,7 +855,7 @@ address,size,name,name_source,subsystem,status
 0x7100545af4,156,fn_7100545af4,unknown,unknown,O
 0x7100545b90,48,fn_7100545b90,unknown,unknown,O
 0x7100545bc0,204,fn_7100545bc0,unknown,unknown,O
-0x7100545c8c,1000,fn_7100545c8c,unknown,unknown,U
+0x7100545c8c,1000,fn_7100545c8c,unknown,unknown,O
 0x7100546074,1116,fn_7100546074,unknown,unknown,U
 0x71005464d0,388,fn_71005464d0,unknown,unknown,U
 0x7100546654,32,fn_7100546654,unknown,unknown,O
@@ -2592,7 +2592,7 @@ address,size,name,name_source,subsystem,status
 0x71005968b4,96,fn_71005968b4,unknown,game/ai?,O
 0x7100596914,540,fn_7100596914,unknown,game/ai?,O
 0x7100596b30,160,fn_7100596b30,unknown,game/ai?,U
-0x7100596bd0,752,fn_7100596bd0,unknown,game/ai?,U
+0x7100596bd0,752,fn_7100596bd0,unknown,game/ai?,m
 0x7100596ec0,28,fn_7100596ec0,unknown,game/ai?,O
 0x7100596edc,12,CGooplotUndoJumpAttack::refl_Equals,reflection,game/ai,O
 0x7100596ee8,8,CGooplotUndoJumpAttack::refl_Hash,reflection,game/ai,O

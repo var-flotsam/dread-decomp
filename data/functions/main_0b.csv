@@ -81,7 +81,7 @@ address,size,name,name_source,subsystem,status
 0x7100b02dc0,352,GUI::CDifficultyButton::refl_InitClass,reflection,gui,O
 0x7100b02f20,212,fn_7100b02f20,unknown,gui?,O
 0x7100b02ff4,4,fn_7100b02ff4,unknown,gui?,O
-0x7100b02ff8,948,fn_7100b02ff8,unknown,gui?,U
+0x7100b02ff8,948,fn_7100b02ff8,unknown,gui?,O
 0x7100b033ac,752,fn_7100b033ac,unknown,gui?,U
 0x7100b0369c,140,fn_7100b0369c,unknown,gui?,O
 0x7100b03728,28,fn_7100b03728,unknown,gui?,O
@@ -1128,7 +1128,7 @@ address,size,name,name_source,subsystem,status
 0x7100b2390c,384,base::reflection::refl_InitType<GUI::CGlobalMapComposition::SState>,reflection,engine/reflection,O
 0x7100b23a8c,1892,fn_7100b23a8c,unknown,gui?,U
 0x7100b241f0,976,fn_7100b241f0,unknown,gui?,U
-0x7100b245c0,1272,fn_7100b245c0,unknown,gui?,U
+0x7100b245c0,1272,fn_7100b245c0,unknown,gui?,O
 0x7100b24ab8,44,fn_7100b24ab8,unknown,gui?,O
 0x7100b24ae4,28,fn_7100b24ae4,unknown,gui?,O
 0x7100b24b00,36,fn_7100b24b00,unknown,gui?,O

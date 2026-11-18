@@ -21,8 +21,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-CRntString fn_7100df703c(u32 kind);
-
 struct UnkMenuEntry_lb4f408 {
     virtual void vf_0x0();
     virtual void vf_0x8();

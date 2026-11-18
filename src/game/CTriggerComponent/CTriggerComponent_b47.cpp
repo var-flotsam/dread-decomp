@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflValue.h"
+#include "game/CCutsceneComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -67,8 +68,6 @@ struct UnkTriggerList {
     u8 list[8];  // 0x30
     u32 count;   // 0x38
 };
-
-UnkTriggerListElement** fn_71007a804c(void* list, u32 index);
 
 UnkReflValue fn_7100a6491c(void*, char* obj, UnkReflValue* const* args) {
     UnkReflValue* arg = args[0];

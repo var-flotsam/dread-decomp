@@ -11,6 +11,7 @@
 #include "game/UnkTU2523.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/UnkUsableKeys.h"
 #include "types.h"
 
 struct __attribute__((packed, aligned(4))) UnkTrackBlend {
@@ -72,7 +73,6 @@ struct UnkApMovement_la6e8a4;
 void fn_710031433c(UnkApMovement_la6e8a4* movement, UnkLeaveParams_l9968ec* params);
 // The access point's movement state (its vtable).
 extern char g_unk_7101a874c0[];
-extern const u8 g_unk_710164b540[] __attribute__((visibility("hidden")));
 
 struct UnkApUser_la6e8a4 {
     u8 pad_0x0[0x208];

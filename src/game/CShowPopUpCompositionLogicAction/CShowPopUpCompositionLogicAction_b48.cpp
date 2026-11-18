@@ -10,7 +10,6 @@
 #include "types.h"
 
 struct UnkTutoExitAction_b47;
-base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMember>* self, u32 index);
 
 struct UnkPopUpEntry_b48 {
     u8 pad_0x0[0x10];

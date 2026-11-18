@@ -12,3 +12,4 @@ void fn_7100ac7224(UnkComponent_0x5b8* self);  // Derived classes call it as the
 s32 fn_7100ac82c0(UnkSplash_b59a4* self, void* other);  // Returns 1 when the hit was taken.
 UnkSphereList* fn_7100ac73b0();
 bool fn_7100ac79d8(void* self, void* actor, void* info);
+char* fn_7100ac77c0();

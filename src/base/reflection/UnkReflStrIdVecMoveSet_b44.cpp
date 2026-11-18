@@ -31,7 +31,6 @@ __attribute__((always_inline)) static inline void ReleaseAndTake(base::UnkStrIdM
 using UnkPathIdMember = base::UnkStrIdMemberOf<g_unk_7101d47200>;
 UnkPathIdMember* fn_710008c174(base::global::CRntVector<UnkPathIdMember>*, u32);
 // The element fetch of fn_71000cdd48's array.
-base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMember>* self, u32 index);
 
 void fn_71000cdd48(base::global::CRntVector<base::UnkStrIdMember>* self, const u32* index, base::UnkStrIdMember* value) {
     ReleaseAndTake(fn_71000ce740(self, *index), value);

@@ -1,6 +1,7 @@
 // The map menu's unit (tools/tu_map.py unit 1689, hint GUI::CMapMenuController): the controller's open and
 // close messages and flags, its id list, its state steps, the page list wiring and a few lookups. Names and
 // layouts are placeholders.
+#include "base/math/UnkZeroVector3.h"
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
@@ -235,7 +236,6 @@ void fn_7100b44ae4(UnkMapMenuController_ovb0203* self) {
 }
 
 // ---- fn_7100b44e88
-extern const base::math::CVector2D g_unk_7101647780;
 void fn_7100b3dbe0(UnkMapMenuController_ovb0203* self, const base::math::CVector2D* __attribute__((noescape)) pos);
 
 void fn_7100b44e88(UnkMapMenuController_ovb0203* self, bool keep) {

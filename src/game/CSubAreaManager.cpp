@@ -683,7 +683,6 @@ struct UnkEnvironmentManager;
 void fn_7100d8dac0(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 7
 void fn_7100d8df84(UnkEnvironmentManager* self, const CStrId* id, bool a, bool b);  // slot 8
 // The sub-area's slot `index`: an id in its table at +0x68.
-const CStrId* fn_7100fac818(UnkSubArea* area, u32 index);
 // The id the three settings are reset with when there is no sub-area.
 extern CStrId g_unk_71729daf08 __attribute__((visibility("hidden")));
 

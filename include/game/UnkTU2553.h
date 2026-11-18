@@ -89,3 +89,4 @@ bool fn_7100df59a8(UnkGameManager*);
 extern u8 g_unk_71727be8a8[];
 extern UnkGameManagerIdList g_unk_71727bebc0;
 bool fn_7100deac24(UnkGameManager* self);
+base::global::CRntString fn_7100df703c(u32 index);

@@ -2,6 +2,7 @@
 // fn_71007ec92c of +0x18 holds, hands it the hidden object at 0x717271fdd0 (fn_71010db850), resets +0xa0 to the
 // constant CVector2D, runs fn_71010dae74 again, then gives the player's +0x1d8 object the hidden object at
 // 0x717271fdc8 (fn_7100872858). Names are placeholders.
+#include "base/math/UnkZeroVector3.h"
 #include "base/math/CVector.h"
 #include "game/CInputComponent.h"
 #include "game/UnkGameManager.h"
@@ -10,7 +11,6 @@
 #include "types.h"
 
 struct UnkPlayer;
-extern const base::math::CVector2D g_unk_7101647780;
 
 struct UnkForcedMovementTarget_A5_b68;
 void* fn_71007ec92c(void* p);

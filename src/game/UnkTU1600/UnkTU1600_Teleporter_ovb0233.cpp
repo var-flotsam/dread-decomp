@@ -52,7 +52,9 @@ struct UnkMatrix4_b0233 {
     f32 m[16];
 };
 
-void fn_7100aa1b08(UnkTeleporterOwner_b0233* self, UnkTeleporterObject_b0233* object, void* arg);
+struct UnkUsable_laa1b08;  // CUsableComponent's layout in CUsableComponent_LevelChangeUse_laa1b08.cpp
+struct UnkUser_laa1b08;
+bool fn_7100aa1b08(UnkUsable_laa1b08* self, UnkUser_laa1b08* user, const char* const* key);
 
 bool fn_7100a8f1d0(UnkTeleporterOwner_b0233* self, UnkTeleporterObject_b0233* object, void* arg) {
     if (!object)
@@ -70,7 +72,8 @@ bool fn_7100a8f1d0(UnkTeleporterOwner_b0233* self, UnkTeleporterObject_b0233* ob
         object->field_0x3c0 = true;
         object->field_0x3b0 = true;
     }
-    fn_7100aa1b08(self, object, arg);
+    fn_7100aa1b08(reinterpret_cast<UnkUsable_laa1b08*>(self), reinterpret_cast<UnkUser_laa1b08*>(object),
+                  static_cast<const char* const*>(arg));
     return true;
 }
 

@@ -20,3 +20,4 @@ void fn_7100fac120(UnkSubArea* area, UnkMask mask, bool a, bool b, void* c, bool
 extern UnkSetupNamedDef g_unk_71729ee018;  // The definition the setup chain is read under.
 UnkSubareaNamedEntry* fn_7100fab838(UnkSubareaNamedList* self, const base::global::CStrId* id);
 bool fn_7100fad66c(UnkSubareaIdLists* self, const base::global::CStrId* id);
+const base::global::CStrId* fn_7100fac818(UnkSubArea*, u32);

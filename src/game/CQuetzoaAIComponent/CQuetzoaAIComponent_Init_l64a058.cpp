@@ -2,6 +2,7 @@
 // the motion's end (+0x2c) of two of the owner's (+0x30) timelines into +0x14aec and +0x14af0.
 // Names and layouts are placeholders.
 #include "game/CAnimationComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
@@ -41,8 +42,6 @@ struct UnkQuetzoaAI_l64a058 {
     u8 pad_0x38[0x14aec - 0x38];
     UnkQuetzoaMotionEnds_l64a058 ends;  // 0x14aec
 };
-
-void fn_71003ac9ec(UnkQuetzoaAI_l64a058* self);
 
 // The end of the motion over the whole of the timeline `key`, when the owner has it.
 static inline bool MotionEnd(UnkStruct_7101176ea8* actions, u64 key, f32* out) {
