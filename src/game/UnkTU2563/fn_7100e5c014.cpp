@@ -43,6 +43,7 @@ UnkMinimapEntry_e5c014* fn_7100e5c014(UnkMinimapEntries_e5c014* self, const CStr
     new (&self->values[self->count]) UnkMinimapEntry_e5c014(*entry);
     UnkMinimapEntry_e5c014* data = self->values;
     u32 count = self->count + 1;
+    data = self->values;
     self->count = count;
     // The last entry (the first when the count wrapped to zero).
     return count ? data + count - 1 : data;

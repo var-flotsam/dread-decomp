@@ -136,6 +136,7 @@ bool fn_71003e7d54(UnkBigFistComponent_l3e7d54* self, UnkBigFistShape_l3e7d54* s
 
     f32 right_limit = right_reach - width;
     f32 left_limit = left_reach - width;
+    right_limit = right_reach - width;
 
     UnkTileOutline arc;
     UnkTilePoint point;

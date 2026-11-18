@@ -56,9 +56,9 @@ s32 fn_71007fdd80(UnkAreaFXRecord_A5_b66 record, void* target, UnkAreaFXPoint_ov
     f32 offset = t->x - center;
     if (t->dir_x * offset >= 0.0f)
         return 0;
+    s32 result = IsNear_l7fdd80(ax, ay) ? 2 : 1;
     out->x = t->x;
     out->y = t->y;
-    s32 result = IsNear_l7fdd80(ax, ay) ? 2 : 1;
     f32 angle = fmodf(t->y, 90.0f);
     if (!IsNear_l7fdd80(angle, 0.0f)) {
         f32 dir_x = t->dir_x;

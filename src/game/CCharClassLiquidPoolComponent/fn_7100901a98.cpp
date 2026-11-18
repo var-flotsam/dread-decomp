@@ -107,8 +107,8 @@ void fn_7100901a98(UnkLiquidPoolTouch_l901a98* self, UnkLiquidPoolToucher_l901a9
     bool second = first ? self->vf_0x188(&GameManagerIdTable().field_0x1650, nullptr) : false;
     fn_7100f0dea4(flags, self, morph_ball != nullptr || second, self->field_0xc0c);
 
-    f32 y = player->field_0x54;
     f32 x = player->field_0x44;
+    f32 y = player->field_0x54;
     f32 depth = self->SurfaceTop() - y;
     if (depth < 100.0f)
         self->SetRatio(&x, 2, false);

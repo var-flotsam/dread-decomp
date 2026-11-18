@@ -20,7 +20,7 @@ address,size,name,name_source,subsystem,status
 0x71009016a0,608,fn_71009016a0,unknown,unknown,O
 0x7100901900,188,fn_7100901900,unknown,unknown,O
 0x71009019bc,220,fn_71009019bc,unknown,unknown,O
-0x7100901a98,828,fn_7100901a98,unknown,unknown,U
+0x7100901a98,828,fn_7100901a98,unknown,unknown,O
 0x7100901dd4,532,fn_7100901dd4,unknown,unknown,O
 0x7100901fe8,432,fn_7100901fe8,unknown,unknown,O
 0x7100902198,4,fn_7100902198,unknown,unknown,O
@@ -1063,7 +1063,7 @@ address,size,name,name_source,subsystem,status
 0x7100922834,8,CMagnetSlidingBlockWithCollisionsComponent::refl_CopyAssign,reflection,game/components,O
 0x710092283c,8,CMagnetSlidingBlockWithCollisionsComponent::refl_MoveAssign,reflection,game/components,O
 0x7100922844,144,fn_7100922844,unknown,game/components?,O
-0x71009228d4,488,fn_71009228d4,unknown,game/components?,U
+0x71009228d4,488,fn_71009228d4,unknown,game/components?,O
 0x7100922ac0,200,fn_7100922ac0,unknown,game/components?,O
 0x7100922b88,4,CMagnetSlidingBlockRailComponent::refl_AddAttributes,reflection,game/components,O
 0x7100922b8c,244,CMagnetSlidingBlockRailComponent::refl_GetClass,reflection,game/components,O

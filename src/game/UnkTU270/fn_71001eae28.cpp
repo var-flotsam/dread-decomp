@@ -37,7 +37,8 @@ bool fn_71001eae28(UnkPool_l1eae28* self, UnkPoolEntry_l1eae28* entry, bool add)
     s32 slot = entry->kindSlot;
     s32 kind = entry->kind;
     UnkPoolEntry_l1eae28** table = kind == 0 ? self->tableA : self->tableB;
-    u32* count = kind == 0 ? &self->countA : &self->countB;
+    u32* count = 0 == kind ? &self->countA : &self->countB;
+    slot = entry->kindSlot;
     if (add) {
         if (slot < 0) {
             self->changed = (kind == 0) | (self->changed != 0);

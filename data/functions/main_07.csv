@@ -5427,7 +5427,7 @@ address,size,name,name_source,subsystem,status
 0x71007fd8b0,212,fn_71007fd8b0,unknown,game/components?,O
 0x71007fd990,660,fn_71007fd990,unknown,game/components?,O
 0x71007fdc30,332,fn_71007fdc30,unknown,game/components?,U
-0x71007fdd80,352,fn_71007fdd80,unknown,game/components?,U
+0x71007fdd80,352,fn_71007fdd80,unknown,game/components?,O
 0x71007fdee0,264,fn_71007fdee0,unknown,game/components?,U
 0x71007fdff0,152,fn_71007fdff0,unknown,game/components?,O
 0x71007fe090,340,fn_71007fe090,unknown,game/components?,O
