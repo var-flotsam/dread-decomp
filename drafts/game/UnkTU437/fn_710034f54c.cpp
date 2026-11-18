@@ -66,21 +66,34 @@ static inline bool InFreeShotCell(UnkShotAim_l34f54c* self) {
     return cell && fn_71002b005c(cell);
 }
 
-// The direction for an aim of 1 (up) to 5 (down); straight ahead otherwise.
-static inline UnkVec3f AimDirection(s32 aim) {
+// The direction for an aim of 1 (up) to 5 (down); any other aim leaves `out` as it is.
+static inline void SetAimDirection(UnkVec3f* out, s32 aim) {
+    f32 x, y;
     switch (aim) {
     case 1:
-        return UnkVec3f(0.0f, 1.0f, 0.0f);
+        x = 0.0f;
+        y = 1.0f;
+        break;
     case 2:
-        return UnkVec3f(0.70710677f, 0.70710677f, 0.0f);
+        x = 0.70710677f;
+        y = 0.70710677f;
+        break;
     case 3:
-        return UnkVec3f(1.0f, 0.0f, 0.0f);
+        x = 1.0f;
+        y = 0.0f;
+        break;
     case 4:
-        return UnkVec3f(0.70710677f, -0.70710677f, 0.0f);
+        x = 0.70710677f;
+        y = -0.70710677f;
+        break;
     case 5:
-        return UnkVec3f(0.0f, -1.0f, 0.0f);
+        x = 0.0f;
+        y = -1.0f;
+        break;
+    default:
+        return;
     }
-    return UnkVec3f(1.0f, 0.0f, 0.0f);
+    *out = UnkVec3f(x, y, 0.0f);
 }
 
 void fn_710034f54c(UnkShotAim_l34f54c* self, s32 aim, UnkVec3f* out) {
@@ -122,10 +135,10 @@ void fn_710034f54c(UnkShotAim_l34f54c* self, s32 aim, UnkVec3f* out) {
         return;
     }
 
-    if (player && fn_71009e12d0(player) && !player->vf_0x3b8())
-        *out = UnkVec3f(1.0f, 0.0f, 0.0f);
-    else
-        *out = AimDirection(aim);
+    bool straight = player && fn_71009e12d0(player) && !player->vf_0x3b8();
+    *out = UnkVec3f(1.0f, 0.0f, 0.0f);
+    if (!straight)
+        SetAimDirection(out, aim);
     if (self->owner->transform.GetAngle().y < 0.0f)
         out->x = -out->x;
 }

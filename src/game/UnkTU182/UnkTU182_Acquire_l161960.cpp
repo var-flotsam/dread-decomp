@@ -49,8 +49,6 @@ extern UnkGfxPoolObject_l161960* g_unk_716e2aadf8[];  // the pool's objects, liv
 extern u32 g_unk_716e2cadf8;                          // how many are live
 extern UnkGfxHeap* g_unk_716e34ae20;                  // the buffer heap for flagged objects
 extern UnkGfxHeap* g_unk_716e34ae28;                  // the buffer heap for the others
-extern void (*g_unk_716e29b040)(void* builder, UnkGfxHeap* heap, u64 offset, u32 size);
-extern void (*g_unk_716e29b068)(void* block, void* builder);
 
 // Allocates the object's buffer from a heap and registers it, and the object's block, with the device.
 inline void AllocateBuffer(UnkGfxPoolObject_l161960* obj, UnkGfxHeap*& heap) {

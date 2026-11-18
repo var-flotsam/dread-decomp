@@ -1,3 +1,4 @@
+// build-flags: no-strict-aliasing
 // Unit 11 (base::animation::CAnimationResource hint): builds a record of a string id and three
 // vectors from a list of entries: the entries themselves, their non-empty second ids, and all of
 // their listed ids. Names and layouts are placeholders.
@@ -83,10 +84,11 @@ void fn_7100004698(UnkIdEntryList_004698* self, const char* name, const UnkIdEnt
 
     for (const UnkIdEntry_004698* e = entries; e != entries + count; ++e) {
         self->entries.PushBack(*e);
-        if (&g_unk_7101d47108->empty != e->field_0x8.data)
+        if (e->field_0x8.data != &g_unk_7101d47108->empty)
             self->seconds.PushBack(e->field_0x8);
         int n = e->ids.count;
         for (int i = 0; i < n; ++i)
             self->ids.PushBack(e->ids.data[i]);
     }
 }
+

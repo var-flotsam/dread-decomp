@@ -20,30 +20,26 @@ struct UnkSegmentList {
     u32 count;
 };
 
+// The last segment that covers `t`; failing that, the last one when `t` is past the first's end,
+// else the first one that starts at or after `t` (the end when none does).
 UnkSegment* fn_7100c959bc(UnkSegmentList* self, f32 t) {
-    u64 count = self->count;
-    if (count == 0)
+    if (self->count == 0)
         return nullptr;
     UnkSegment* first = self->entries;
-    UnkSegment* last = first + count;
-    UnkSegment* base = first - 1;
-    for (u64 i = count; i != 0; --i) {
-        UnkSegment* e = base + i;
-        if (Covers(*e, t)) {
-            if (i != 1)
-                return e;
+    UnkSegment* last = first + self->count;
+    UnkSegment* it = last;
+    do {
+        if (Covers(it[-1], t))
             break;
-        }
-    }
+    } while (--it != first);
+    if (it != first)
+        return it - 1;
     if (first->end <= t)
         return last - 1;
-    if (first->start >= t)
-        return first;
     UnkSegment* p = first;
-    for (u64 n = count - 1; n != 0; --n) {
-        p = p + 1;
+    do {
         if (p->start >= t)
             return p;
-    }
+    } while (++p != last);
     return last;
 }

@@ -78,7 +78,7 @@ inline bool Near(f32 a, f32 b) {
 
 // Whether `v` lies between `lo` and `hi`.
 inline bool InRange(f32 v, f32 lo, f32 hi) {
-    return v <= hi && !(v < lo);
+    return !(v < lo) && v <= hi;
 }
 
 inline bool Near(const CVector2D& a, const CVector2D& b) {
@@ -101,10 +101,9 @@ inline CVector2D Normalized(f32 x, f32 y) {
     return CVector2D{x, y};
 }
 
-// How far the segment's normal points along the ray.
-inline f32 Facing(const UnkSegment2D& seg) {
-    UnkVec2Result n = fn_7100125e78(&seg);
-    return n.x * kRay + n.y * kRay;
+// How far a segment's normal points along the ray.
+inline f32 Facing(const UnkVec2Result& normal) {
+    return normal.x * kRay + normal.y * kRay;
 }
 
 bool fn_71001247c8(const UnkPolygonList_l1247c8* list, const CVector2D* point) {
@@ -153,7 +152,7 @@ bool fn_71001247c8(const UnkPolygonList_l1247c8* list, const CVector2D* point) {
             fn_710007b430(&hit, &contact.point);
             bool facing = true;
             if (Near(hit, seg.start) || Near(hit, seg.end))
-                facing = !(Facing(seg) > 0.0f);
+                facing = !(Facing(fn_7100125e78(&seg)) > 0.0f);
 
             if (best_distance < 0.0f) {
                 fn_7100125b44(&best, &seg);
@@ -172,20 +171,22 @@ bool fn_71001247c8(const UnkPolygonList_l1247c8* list, const CVector2D* point) {
                     facing = false;
             } else {
                 // As near as the best: the edge turned further from the ray wins.
+                CVector2D best_start = best.start;
+                CVector2D best_end = best.end;
                 CVector2D a;
                 CVector2D b;
-                if (Near(seg.start, best.end)) {
+                if (Near(seg.start, best_end)) {
                     a = Normalized(seg.end.x - seg.start.x, seg.end.y - seg.start.y);
-                    b = CVector2D{best.start.x - best.end.x, best.start.y - best.end.y};
+                    b = CVector2D{best_start.x - best_end.x, best_start.y - best_end.y};
                 } else {
                     a = Normalized(seg.start.x - seg.end.x, seg.start.y - seg.end.y);
-                    b = CVector2D{best.end.x - best.start.x, best.end.y - best.start.y};
+                    b = CVector2D{best_end.x - best_start.x, best_end.y - best_start.y};
                 }
                 b = Normalized(b.x, b.y);
                 f32 along_a = a.x * kRay + a.y * kRay;
                 f32 along_b = b.x * kRay + b.y * kRay;
                 if (!(along_a < along_b)) {
-                    if (along_a != along_b || !(Facing(best) >= 0.0f))
+                    if (along_a != along_b || !(Facing(fn_7100125e78(&best)) >= 0.0f))
                         continue;
                 }
                 if (away)
@@ -205,5 +206,5 @@ bool fn_71001247c8(const UnkPolygonList_l1247c8* list, const CVector2D* point) {
     }
     if (best_distance < 0.0f)
         return false;
-    return Facing(best) < 0.0f;
+    return Facing(fn_7100125e78(&best)) < 0.0f;
 }

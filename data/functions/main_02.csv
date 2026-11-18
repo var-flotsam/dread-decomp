@@ -3654,7 +3654,7 @@ address,size,name,name_source,subsystem,status
 0x71002a4814,1608,fn_71002a4814,unknown,unknown,U
 0x71002a4e5c,24,fn_71002a4e5c,unknown,unknown,O
 0x71002a4e74,1752,fn_71002a4e74,unknown,unknown,U
-0x71002a554c,1072,fn_71002a554c,unknown,unknown,U
+0x71002a554c,1072,fn_71002a554c,unknown,unknown,O
 0x71002a597c,220,fn_71002a597c,unknown,unknown,O
 0x71002a5a58,220,fn_71002a5a58,unknown,unknown,O
 0x71002a5b34,28,fn_71002a5b34,unknown,unknown,O
@@ -6004,7 +6004,7 @@ address,size,name,name_source,subsystem,status
 0x71002f8198,244,CAbility::refl_GetClass,reflection,game,O
 0x71002f828c,4,CAbility::refl_AddFields,reflection,game,O
 0x71002f8290,388,CAbility::refl_InitClass,reflection,game,O
-0x71002f8414,432,fn_71002f8414,unknown,unknown,U
+0x71002f8414,432,fn_71002f8414,unknown,unknown,m
 0x71002f85c4,68,fn_71002f85c4,unknown,unknown,O
 0x71002f8608,576,fn_71002f8608,unknown,unknown,O
 0x71002f8848,464,fn_71002f8848,unknown,unknown,O

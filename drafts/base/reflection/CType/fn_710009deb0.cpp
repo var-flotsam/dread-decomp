@@ -56,11 +56,9 @@ inline UnkReflValue Attribute(const CType* type, const CStrId& name) {
     return r;
 }
 
-// Whether `type` is T's type or derives from it.
+// Whether `type` (not null) is T's type or derives from it.
 template <class T>
 inline bool IsKindOf(const CType* type) {
-    if (!type)
-        return false;
     const CType* base = base::reflection::UnkReflTypeOf<T>::Get();
     do {
         if (type == base)
@@ -82,10 +80,11 @@ const CType* fn_710009deb0(const CType* self) {
     UnkReflValue value = Attribute(self, s_name);
     if (value.type) {
         CStrId name(base::global::UnkStrIdInline(), nullptr, false);
-        if (IsKindOf<CStrId>(reinterpret_cast<const CType*>(value.type)))
+        if (value.type && IsKindOf<CStrId>(reinterpret_cast<const CType*>(value.type)))
             name = *refl_ArgValue<CStrId>(&value);
+        UnkVersionRegistry* registry = g_unk_7101d4c8d0;
         u64 hash = HashOf(name);
-        self = reinterpret_cast<const CType*>(fn_71000a5118(g_unk_7101d4c8d0, &hash));
+        self = reinterpret_cast<const CType*>(fn_71000a5118(registry, &hash));
     }
     fn_71000a1c60(&value);
     return self;

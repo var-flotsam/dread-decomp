@@ -149,6 +149,6 @@ void fn_71011841b4(UnkCreditsMode_ovb0070* self, f32 dt) {
             fn_7100fd90d8(0.0f, 0.0f, music, &name, 7, &mode, 0, 0, nullptr);
         }
         f32 volume = *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_7101d68580) + 0x2c);
-        fn_71000fbe1c(reinterpret_cast<u8*>(sound) + 8, 1, volume, 0.3f);
+        fn_71000fbe1c(reinterpret_cast<UnkRampTable*>(reinterpret_cast<u8*>(sound) + 8), 1, volume, 0.3f);
     }
 }

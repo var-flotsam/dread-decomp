@@ -99,9 +99,10 @@ static inline void EraseAt_de9730(UnkHandleList_de9540* list, u32 index) {
     if (index < list->count) {
         Release_de9730(list->data[index]);
         for (u32 i = index; i < list->count - 1; ++i) {
-            UnkWeakHandle* next = list->data[i + 1].handle;
-            new (&list->data[i]) UnkHandleSlot_de9540();
-            list->data[i].Assign(next);
+            UnkHandleSlot_de9540* data = list->data;
+            UnkWeakHandle* next = data[i + 1].handle;
+            new (&data[i]) UnkHandleSlot_de9540();
+            data[i].Assign(next);
             Release_de9730(list->data[i + 1]);
         }
         list->count = list->count - 1;

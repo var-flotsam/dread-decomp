@@ -11,7 +11,6 @@
 
 struct Vec2;
 struct Result;
-bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b);
 
 struct UnkProbeActor_l0d313c {
     u8 pad_0x0[0x44];

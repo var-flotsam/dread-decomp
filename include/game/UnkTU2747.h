@@ -38,3 +38,4 @@ void fn_71011cd5a0(UnkGuiDisplayObject* object);
 UnkVec2Result fn_71011cf12c(UnkGuiDisplayObject* self, const UnkVec2Result& point);
 using UnkGuiObj = UnkGuiDisplayObject;
 void fn_71011cfba8(UnkGuiObj* object, f32 alpha);  // Sets the display object's alpha.
+UnkVec2Result fn_71011cf0a8(UnkGuiDisplayObject* self, const UnkVec2Result& point);

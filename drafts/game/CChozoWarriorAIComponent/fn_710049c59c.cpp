@@ -97,13 +97,15 @@ static inline f32 Offset(UnkChozoWarriorAI_l49c59c* self, void* tracked) {
 static inline f32 Front(UnkChozoWarriorAI_l49c59c* self) {
     f32 base;
     fn_71010fc284(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(self), &base);
-    return base + Offset(self, self->owner->field_0x1f8);
+    f32 offset = Offset(self, self->owner->field_0x1f8);
+    return base + offset;
 }
 
 static inline f32 Back(UnkChozoWarriorAI_l49c59c* self) {
     f32 base;
     fn_71010fc31c(reinterpret_cast<UnkChozoWarriorAI_b66a2*>(self), &base);
-    return base - Offset(self, self->owner->field_0x1f8);
+    f32 offset = Offset(self, self->owner->field_0x1f8);
+    return base - offset;
 }
 
 // How far the timeline `name` moves the owner forward.
@@ -139,7 +141,7 @@ CStrId fn_710049c59c(UnkChozoWarriorAI_l49c59c* self) {
         f32 room = __builtin_fabsf(edge - self->owner->field_0x44) - self->vtable->vf_0x840(self);
         f32 dx = target->field_0x44 - self->owner->field_0x44;
         if (fn_710049cbd8(reinterpret_cast<UnkSelf*>(self))) {
-            s32 sign = (dx > 0.0f) - (dx < 0.0f);
+            f32 sign = (dx > 0.0f) - (dx < 0.0f);
             dx += self->tunables->field_0x800 * sign;
         }
         f32 distance = __builtin_fabsf(dx);

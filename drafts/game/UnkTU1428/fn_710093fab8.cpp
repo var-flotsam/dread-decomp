@@ -23,7 +23,7 @@ struct UnkSoundRef {
     s64 serial;
 };
 
-static inline UnkRollSound_93fab8* SoundOf(const UnkSoundHandle& handle) {
+inline UnkRollSound_93fab8* SoundOf_93fab8(const UnkSoundHandle& handle) {
     if (handle.ref && handle.ref->serial == handle.serial && handle.serial != -1)
         return handle.ref->sound;
     return nullptr;
@@ -72,7 +72,7 @@ void fn_710093fab8(UnkMorphBallMovement_93fab8* self, f32 dt, bool rolling) {
     UnkSoundHandle handle = g_unk_7108b6c460;
     switch (self->mode) {
     case 4:
-        handle = self->use_alt ? self->sound_mode4_alt : self->sound_mode4;
+        handle = !self->use_alt ? self->sound_mode4 : self->sound_mode4_alt;
         break;
     case 2:
         handle = self->sound_mode2;
@@ -82,7 +82,7 @@ void fn_710093fab8(UnkMorphBallMovement_93fab8* self, f32 dt, bool rolling) {
         break;
     }
 
-    if (self->owner->sounds && (!rolling || !SoundOf(handle))) {
+    if (self->owner->sounds && (!rolling || !SoundOf_93fab8(handle))) {
         fn_7100d7c558(self->owner, &self->sound_mode4_alt, 0.0f, 0.0f);
         fn_7100d7c558(self->owner, &self->sound_mode4, 0.0f, 0.0f);
         fn_7100d7c558(self->owner, &self->sound_mode2, 0.0f, 0.0f);
@@ -93,7 +93,7 @@ void fn_710093fab8(UnkMorphBallMovement_93fab8* self, f32 dt, bool rolling) {
         self->sound_mode4_alt = g_unk_7108b6c460;
     }
 
-    UnkRollSound_93fab8* sound = SoundOf(handle);
+    UnkRollSound_93fab8* sound = SoundOf_93fab8(handle);
     if (!sound || !(sound->level > 0.0f))
         return;
 
@@ -101,20 +101,24 @@ void fn_710093fab8(UnkMorphBallMovement_93fab8* self, f32 dt, bool rolling) {
     f32 pitch;
     if (rolling) {
         f32 v = sound->volume + dt * -8.0f;
-        volume = v > 0.0f ? (!(v >= 0.4f) ? v : 0.4f) : 0.0f;
+        volume = !(v <= 0.0f) ? (!(v >= 0.4f) ? v : 0.4f) : 0.0f;
         fn_7100105d34(reinterpret_cast<UnkInterp_7100105d34*>(sound), volume, false, 0.2f);
-        f32 p = SoundOf(handle)->pitch + dt * -12.0f;
-        pitch = p > 0.3f ? (!(p >= 1.1f) ? p : 1.1f) : 0.3f;
+        f32 p = SoundOf_93fab8(handle)->pitch + dt * -12.0f;
+        if (p <= 0.3f)
+            pitch = 0.3f;
+        else
+            pitch = !(p >= 1.1f) ? p : 1.1f;
     } else {
         volume = 0.0f;
         fn_7100105d34(reinterpret_cast<UnkInterp_7100105d34*>(sound), volume, false, 0.2f);
         pitch = 0.4f;
     }
-    fn_7100105da8(reinterpret_cast<UnkInterp_7100105d34*>(SoundOf(handle)), pitch, 0.2f);
+    fn_7100105da8(reinterpret_cast<UnkInterp_7100105d34*>(SoundOf_93fab8(handle)), pitch, 0.2f);
 
+    UnkRollSound_93fab8* playing = SoundOf_93fab8(handle);
     UnkRollSoundOwner_93fab8* owner = self->owner;
     UnkSoundPosition_93fab8 position = {owner->x, owner->y, owner->z};
-    fn_7100105ebc(SoundOf(handle), &position);
+    fn_7100105ebc(playing, &position);
     if (!(volume > 0.0f))
         fn_7100d7c558(self->owner, &handle, 0.2f, 0.0f);
 }

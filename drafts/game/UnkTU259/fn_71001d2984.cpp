@@ -1,6 +1,7 @@
 // Unit 259: sorts the entries [lo, hi] of the pointer array at +0xc0140 by their key (+0x28), ascending:
 // a quicksort that finishes ranges of up to five entries with a bubble sort.
 // Names and layouts are placeholders.
+// build-flags: no-strict-aliasing
 #include "types.h"
 
 struct UnkSortEntry_l1d2984 {
@@ -20,8 +21,8 @@ void fn_71001d2984(UnkSortOwner_l1d2984* self, s32 lo, s32 hi) {
     s32 count = hi - lo;
     if (count > 4) {
         UnkSortEntry_l1d2984* pivot = entries[(lo + hi) / 2];
-        s32 j = hi;
         s32 i = lo;
+        s32 j = hi;
         do {
             while (entries[i]->key < pivot->key)
                 i++;
@@ -39,14 +40,15 @@ void fn_71001d2984(UnkSortOwner_l1d2984* self, s32 lo, s32 hi) {
             fn_71001d2984(self, lo, j);
         if (i < hi)
             fn_71001d2984(self, i, hi);
-        return;
-    }
-    for (s32 pass = 0; pass < count; pass++) {
-        for (s32 k = 0; k < count - pass; k++) {
-            if (entries[lo + k]->key > entries[lo + k + 1]->key) {
-                UnkSortEntry_l1d2984* tmp = entries[lo + k];
-                entries[lo + k] = entries[lo + k + 1];
-                entries[lo + k + 1] = tmp;
+    } else {
+        for (s32 pass = 0; pass < count; pass++) {
+            for (s32 k = 0; k < count - pass; k++) {
+                UnkSortEntry_l1d2984* next = entries[lo + k + 1];
+                UnkSortEntry_l1d2984* cur = entries[lo + k];
+                if (cur->key > next->key) {
+                    entries[lo + k] = next;
+                    entries[lo + k + 1] = cur;
+                }
             }
         }
     }

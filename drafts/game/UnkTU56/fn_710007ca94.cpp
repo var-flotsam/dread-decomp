@@ -9,15 +9,16 @@ using base::global::CRntFile;
 
 namespace {
 
-// One byte of fn_710007c714 (src/base/global/CRntFile.cpp), inline.
-inline void ReadByte(CRntFile* file, u8* dest) {
+// fn_710007c714 (src/base/global/CRntFile.cpp) for single bytes, which the original inlines here:
+// reads one byte at the position unless the position is at the end.
+inline void ReadByte(CRntFile* file, char* dest) {
     u8* data = file->data;
     if (data) {
         u64 position = file->position;
         u64 end = file->size;
         u64 left = end - position;
         if (end > position) {
-            if (1 + (u64)data + position > (u64)data + end) {
+            if (position + 1 + (u64)data > end + (u64)data) {
                 memcpy(dest, data + position, left);
                 file->position += left;
                 return;
@@ -30,12 +31,13 @@ inline void ReadByte(CRntFile* file, u8* dest) {
 
 }  // namespace
 
-u64 fn_710007ca94(CRntFile* file, u8* out) {
+u64 fn_710007ca94(CRntFile* file, char* out) {
     u64 count = 0;
-    u8 c = ' ';
+    char c = ' ';
     do {
         ReadByte(file, &c);
-        out[count++] = c;
-    } while (count < 0x200 && c);
+        out[count] = c;
+        ++count;
+    } while (count < 0x200 && c != 0);
     return count;
 }

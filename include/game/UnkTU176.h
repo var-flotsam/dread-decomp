@@ -40,3 +40,6 @@ extern u64 (*g_unk_716e29b140)(void* builder);
 extern void (*g_unk_716e29b148)(void* builder, UnkGfxHeap* heap, u64 offset);
 extern u8 (*g_unk_716e29b288)(void* texture, void* builder);
 extern void (*g_unk_716e29b038)(void* builder);
+extern void (*g_unk_716e29b040)(void* builder, UnkGfxHeap* heap, u64 offset, u32 size);
+extern void (*g_unk_716e29b068)(void* block, void* builder);
+extern u64 (*g_unk_716e29b088)(void*);

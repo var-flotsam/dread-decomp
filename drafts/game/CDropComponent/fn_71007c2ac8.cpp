@@ -110,6 +110,23 @@ static inline void Normalize(CVector2D& v) {
     }
 }
 
+// Marks each of the eight directions round the actor that the facing (when there is one) or the
+// chosen side (when there is one) rules out.
+inline void MarkBlocked(s32* blocked, const bool& hasFacing, const CVector2D& facing, const u32& side,
+                        const CVector2D& dir, const UnkDropParams_l7c2ac8* params) {
+    for (int i = 0; i < 8; i++) {
+        f32 angle = g_unk_7101a715b8 * (f32)i;
+        f32 c = cosf(angle);
+        f32 s = sinf(angle);
+        if (hasFacing && c * facing.x + s * facing.y > 0.7f)
+            blocked[i] = -1;
+        else if (side != 0 && c * dir.x + s * dir.y < (params->narrow ? 0.8f : 0.1f))
+            blocked[i] = -1;
+        else
+            blocked[i] = 0;
+    }
+}
+
 void fn_71007c2ac8(UnkActor* self, UnkDropParams_l7c2ac8* params, s32* blocked) {
     UnkDropMovement_l7c2ac8* movement = static_cast<UnkDropMovement_l7c2ac8*>(self->field_0x218);
     bool hasFacing = false;
@@ -194,16 +211,6 @@ void fn_71007c2ac8(UnkActor* self, UnkDropParams_l7c2ac8* params, s32* blocked) 
         }
         }
 
-        for (int i = 0; i < 8; i++) {
-            f32 angle = g_unk_7101a715b8 * (f32)i;
-            f32 c = cosf(angle);
-            f32 s = sinf(angle);
-            if (hasFacing && c * facing.x + s * facing.y > 0.7f)
-                blocked[i] = -1;
-            else if (side != 0 && c * dir.x + s * dir.y < (params->narrow ? 0.8f : 0.1f))
-                blocked[i] = -1;
-            else
-                blocked[i] = 0;
-        }
+        MarkBlocked(blocked, hasFacing, facing, side, dir, params);
     }
 }

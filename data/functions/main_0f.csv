@@ -5313,7 +5313,7 @@ address,size,name,name_source,subsystem,status
 0x7100fdca28,96,fn_7100fdca28,unknown,unknown,O
 0x7100fdca88,704,fn_7100fdca88,unknown,unknown,O
 0x7100fdcd48,484,fn_7100fdcd48,unknown,unknown,U
-0x7100fdcf2c,804,fn_7100fdcf2c,unknown,unknown,U
+0x7100fdcf2c,804,fn_7100fdcf2c,unknown,unknown,O
 0x7100fdd250,100,fn_7100fdd250,unknown,unknown,O
 0x7100fdd2b4,500,fn_7100fdd2b4,unknown,unknown,O
 0x7100fdd4a8,16,fn_7100fdd4a8,unknown,unknown,O

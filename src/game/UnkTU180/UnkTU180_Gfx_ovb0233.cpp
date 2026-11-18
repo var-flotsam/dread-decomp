@@ -8,6 +8,7 @@
 #include "base/global/CRntString.h"
 #include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
+#include "game/UnkTU176.h"
 #include "game/UnkTU180.h"
 #include "types.h"
 
@@ -82,7 +83,6 @@ static_assert(sizeof(UnkGfxProgram_b0233d4) == 0x150, "layout");
 
 struct UnkGfxProgram;
 extern UnkGfxProgram* g_unk_716e2a1440[0x400];
-extern u64 (*g_unk_716e29b088)(void*);
 extern void (*g_unk_716e29aef0)(void* sync, void* device);
 extern void (*g_unk_716e29af08)(void* sync, u32 count, void* descs);
 

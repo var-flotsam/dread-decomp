@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkHeap_71001541a0;
 struct UnkObj_71001541a0;
 struct UnkUnit174Singleton;
 void fn_71001541a0(UnkObj_71001541a0* obj);
@@ -13,3 +14,6 @@ void fn_7100154020(UnkObj_71001541a0** out, u32 size, const u32* count, void* da
 UnkUnit174Singleton* fn_7100154470();
 extern UnkObj_71001541a0* g_unk_716e27ab38[];  // Slot table.
 extern u32 g_unk_716e29ab40;  // Live count.
+extern UnkHeap_71001541a0* g_unk_716e29ab50;
+extern UnkHeap_71001541a0* g_unk_716e29ab58;
+extern const u32 g_unk_7101647e48[] __attribute__((visibility("hidden")));  // element size per format

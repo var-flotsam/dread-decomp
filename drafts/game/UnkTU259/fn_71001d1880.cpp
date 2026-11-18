@@ -1,6 +1,7 @@
 // Unit 259 (the graphics system's unit): submits a run of model instances for drawing. Instances that
 // share a model are grouped; each part of the model goes as one draw entry per instance into the
 // list its material picks, or as one instanced batch. Names and layouts are placeholders.
+// build-flags: no-strict-aliasing
 #include "game/UnkTU259.h"
 #include "types.h"
 
@@ -99,9 +100,9 @@ inline void QueueEntry(UnkGfx_l1d1880* self, UnkDrawEntryList_l1d1880* list, Unk
     entry->material = material;
     entry->field_0x28 = -1;
     entry->data = instance->data;
-    entry->id = instance->id;
     entry->callback = fn_71001c4720;
     entry->field_0x48 = true;
+    entry->id = instance->id;
     list->entries[list->count++] = entry;
 }
 
@@ -110,12 +111,15 @@ void fn_71001d1880(UnkRenderTargetA1* target, void* p, u32 n, u32 a) {
     UnkInstance_l1d1880** instances = static_cast<UnkInstance_l1d1880**>(p);
     if (n == 0)
         return;
-    u32 count = n < 0x2000 ? n : 0x2000;
+    if (n > 0x2000)
+        n = 0x2000;
+    UnkDrawEntryList_l1d1880* opaque = &self->opaque;
+    UnkDrawEntryList_l1d1880* special = &self->special;
     u32 group_count = 0;
     UnkModelResource_l1d1880* previous = nullptr;
-    for (s32 i = 0; i < count; i++) {
+    for (u32 i = 0; i < n; i++) {
         UnkModelResource_l1d1880* resource = instances[i]->resource;
-        if (resource == previous) {
+        if (previous == resource) {
             self->group_sizes[group_count - 1]++;
         } else {
             self->group_sizes[group_count++] = 1;
@@ -132,7 +136,7 @@ void fn_71001d1880(UnkRenderTargetA1* target, void* p, u32 n, u32 a) {
             UnkMaterial_l1d1880* material = part->material;
             if (material->type - 0x37 <= 5 && material->kind == 1 && material->field_0x30) {
                 for (u32 k = 0; k < *size; k++)
-                    QueueEntry(self, &self->special, model, part, material, instances[start + k]);
+                    QueueEntry(self, special, model, part, material, instances[start + k]);
             } else if (material->kind == 1 || material->kind == 0x10) {
                 UnkDrawBatch_l1d1880* batch = &self->batches[self->batch_count++];
                 u32 batch_size = *size < 0x100 ? *size : 0x100;
@@ -146,7 +150,7 @@ void fn_71001d1880(UnkRenderTargetA1* target, void* p, u32 n, u32 a) {
                 }
             } else {
                 for (u32 k = 0; k < *size; k++)
-                    QueueEntry(self, &self->opaque, model, part, material, instances[start + k]);
+                    QueueEntry(self, opaque, model, part, material, instances[start + k]);
             }
         }
         start += *size;

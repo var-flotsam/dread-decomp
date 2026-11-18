@@ -32,3 +32,4 @@ f32 fn_71001d7320(UnkGlobal_710b372a98* self);
 void fn_71001cdd6c(UnkRenderTargetA1* target, base::global::CStrId id);
 void fn_71001cae0c(UnkGraphicsSystem* self, const base::global::CStrId* name, UnkCountedResource* texture, void* a);
 bool fn_71001cc608(UnkGraphicsSystem* self, void* program);
+void fn_71001c9048(UnkGlobal_710b372a98* self);

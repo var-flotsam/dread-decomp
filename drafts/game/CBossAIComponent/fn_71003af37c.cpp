@@ -69,9 +69,7 @@ static inline bool ManagerCheck_l3af37c() {
 }
 
 s64 fn_71003af37c(UnkBossAI_l3af37c* self, const CStrId& id, bool any) {
-    s32 kind = -1;
-    if (IsA_l3af37c<fn_7100690c74>(self->owner->field_0x240))  // CScorpiusAIComponent
-        kind = 0;
+    s32 kind = IsA_l3af37c<fn_7100690c74>(self->owner->field_0x240) ? 0 : -1;  // CScorpiusAIComponent
     if (IsA_l3af37c<fn_71005fac74>(self->owner->field_0x240))  // CKraidAIComponent
         kind = 1;
     if (IsA_l3af37c<fn_71005ba098>(self->owner->field_0x240))  // CHydrogigaAIComponent
@@ -106,11 +104,10 @@ s64 fn_71003af37c(UnkBossAI_l3af37c* self, const CStrId& id, bool any) {
             UnkBossLink_l3af37c* link = self->owner->field_0x398;
             if (!(*fn_710112bf20(link ? link->field_0x10 : nullptr) == g_unk_71726bc608))
                 kind = 11;
-            else if (any || !ManagerCheck_l3af37c())
-                kind = 12;
+            else
+                kind = any || !ManagerCheck_l3af37c() ? 12 : kind;
         } else if (id == g_unk_71726bc5d8) {
-            if (any || !ManagerCheck_l3af37c())
-                kind = 13;
+            kind = any || !ManagerCheck_l3af37c() ? 13 : kind;
         }
     }
 
