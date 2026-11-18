@@ -1010,7 +1010,8 @@ def _compile(version: str, candidates: dict[int, tuple[list[str], str]], workdir
             if line not in seen:
                 seen.add(line)
                 decls.append(line)
-    text = PRELUDE + decls + [s for _, s in candidates.values()]
+    # The global tunable registry's helper, which registrations call (base/reflection/UnkTunableRegistry.h).
+    text = PRELUDE + ['#include "base/reflection/UnkTunableRegistry.h"'] + decls + [s for _, s in candidates.values()]
     src.write_text("\n".join(text) + "\n", encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:
