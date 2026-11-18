@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 218: the destructor of the object fn_7100198aac builds: frees the values of its node map, its three
 // owned pointer arrays, its counted references, its array of 0x20-byte members and its keyed records, then
 // destroys its maps and runs the base destructor (fn_710019e82c). Names and layouts are placeholders.

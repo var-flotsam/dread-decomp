@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 2647 (sound::CAudioPreset): the copy assignment of a reflected iterator value over the bank of
 // presets (two lists of file-path ids each). Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"

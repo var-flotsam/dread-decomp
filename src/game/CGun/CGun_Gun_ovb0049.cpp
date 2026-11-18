@@ -154,15 +154,24 @@ struct UnkGunBillboardItem_ovb0049 {
     u8 pad_0x114[0x14];
     UnkGunBillboard_ovb0049* billboard;  // 0x128
 
-    // Written through a plain byte pointer: the original reloads everything after it.
-    void MarkDirtyByte() {
-        u8* flag = &dirty;
-        *flag = 1;
+    void MarkDirtyByte() { dirty = 1; }
+    void SetGrid(u32 columns, u32 rows) {
+        UnkGunBillboard_ovb0049* b = billboard;
+        b->field_0x284 = 1.0f / (f32)columns;
+        b->field_0x288 = 1.0f / (f32)rows;
+        MarkDirtyByte();
     }
-    // Clears the word at +0x2f4 (written by offset: the billboard pointer is reloaded after it), then
-    // passes the value on (fn_71001b7550).
+    void SetField372(bool value) {
+        billboard->field_0x372 = value;
+        MarkDirtyByte();
+    }
+    void SetSize(f32 value) {
+        billboard->field_0x28c = value;
+        MarkDirtyByte();
+    }
+    // Clears the word at +0x2f4, then passes the value on (fn_71001b7550).
     void SetField1dc(u32 value) {
-        __builtin_memset(&billboard->field_0x2f4, 0, sizeof(s32));
+        billboard->field_0x2f4 = 0;
         char* raw = Raw();
         MarkDirtyByte();
         fn_71001b7550(raw, value);
@@ -196,16 +205,12 @@ void fn_71008366fc(UnkGunBillboards_ovb0049* self, const void* path, u32 columns
                   &g_unk_7101d470e0);
     fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(item), 0);
     *slot = item;
-    item->billboard->field_0x284 = 1.0f / (f32)columns;
-    item->billboard->field_0x288 = 1.0f / (f32)rows;
-    item->MarkDirtyByte();
+    item->SetGrid(columns, rows);
     (*slot)->SetField1dc(0x32);
     fn_71001b7584((*slot)->Raw(), mode);
     fn_71001f3224((*slot)->toggle, 1);
-    (*slot)->billboard->field_0x372 = true;
-    (*slot)->MarkDirtyByte();
-    (*slot)->billboard->field_0x28c = size;
-    (*slot)->MarkDirtyByte();
+    (*slot)->SetField372(true);
+    (*slot)->SetSize(size);
     fn_71001b7100(reinterpret_cast<UnkBillboardFlags*>((*slot)->billboard), true);
     fn_71001b75e8((*slot)->Raw(), 5);
     self->field_0xc4 = *slot != nullptr;

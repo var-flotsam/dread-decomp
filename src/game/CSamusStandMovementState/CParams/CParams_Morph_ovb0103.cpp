@@ -107,8 +107,9 @@ void fn_71009b4490(UnkStandState_ovb0103* self) {
         if (b) {
             fn_71010d08d4(reinterpret_cast<UnkMovement_71010d08d4*>(self->movement),
                           reinterpret_cast<const UnkMovementVec_71010d08d4*>(g_unk_710164b428), true);
-            self->movement->field_0x208 = 0;
-            self->movement->field_0x210 = 0;
+            UnkStandMovement_ovb0103* movement = self->movement;
+            movement->field_0x208 = 0;
+            movement->field_0x210 = 0;
         }
         fn_71009b4688(self, kind);
         return;

@@ -262,13 +262,10 @@ __attribute__((always_inline)) static inline Value* Insert(UnkIdTable<Value>* se
     return n == 0 ? self->values : self->values + n - 1;
 }
 
-// NON_MATCHING(minor): the count is reloaded after the key's reference is taken at the join in
-// the original, and in both branches in ours (which then widens it again); registers differ.
 UnkIdsString40<CStrId>* fn_7100e7016c(UnkIdTable<UnkIdsString40<CStrId>>* self, const CStrId* key,
                                       const UnkIdsString40<CStrId>* value) {
     return Insert<UnkIdsString40<CStrId>, const UnkIdsString40<CStrId>&>(self, key, *value);
 }
-// NON_MATCHING(minor): as fn_7100e7016c.
 UnkIdsString40<UnkMovedStrId>* fn_7100e702f0(UnkIdTable<UnkIdsString40<UnkMovedStrId>>* self, const CStrId* key,
                                              UnkIdsString40<UnkMovedStrId>* value) {
     return Insert<UnkIdsString40<UnkMovedStrId>, UnkIdsString40<UnkMovedStrId>&&>(

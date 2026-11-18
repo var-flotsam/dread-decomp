@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // sound::SGUISoundEventsSelector's unit (tools/tu_map.py unit 2625): the copy constructor of an array of
 // (key, string id) events. Names and layouts are placeholders.
 #include <new>

@@ -18,8 +18,10 @@ import fetch_toolchains
 ROOT = Path(__file__).resolve().parent.parent
 COMPILER = "9.0.1"
 
+# -fno-strict-aliasing: the game was built without type-based alias analysis (docs/compiler.md).
 CODEGEN = ["--target=aarch64-none-elf", "-mcpu=cortex-a57", "-O3", "-fPIC",
-           "-fasynchronous-unwind-tables", "-mno-implicit-float", "-ffunction-sections"]
+           "-fasynchronous-unwind-tables", "-mno-implicit-float", "-ffunction-sections",
+           "-fno-strict-aliasing"]
 CXX = ["-std=c++1z", "-fno-rtti", "-fno-exceptions"]
 
 
@@ -36,15 +38,16 @@ def project_includes() -> list[str]:
     return ["-I", str(ROOT / "include"), "-I", str(ROOT / "lib" / "nnsdk" / "include"), "-DSWITCH", "-DNNSDK"]
 
 
-# The game's Lua objects have no type-based alias analysis (every field store may alias a reload);
-# found by tools/sigmatch.py: lcode, llex and lparser match completely only with this flag.
+# The game's Lua objects have no type-based alias analysis either (every field store may alias a reload);
+# found by tools/sigmatch.py: lcode, llex and lparser match completely only with this flag. CODEGEN has it
+# too; the libraries keep their own list.
 LUA_FLAGS = ["-fno-strict-aliasing"]
 
 
-# Some of the game's units were built without type-based alias analysis too: their code reloads a field
-# after a store of another type. A source of such a unit says so in its first lines with
-# `// build-flags: no-strict-aliasing`; data/unit_flags.csv lists the units and the evidence for each.
-SOURCE_FLAGS = {"no-strict-aliasing": ["-fno-strict-aliasing"]}
+# A few sources match only with type-based alias analysis: their code keeps a value in a register across a
+# store of another type. Such a source says so in its first lines with `// build-flags: strict-aliasing`;
+# data/unit_flags.csv lists the units and the evidence for each.
+SOURCE_FLAGS = {"strict-aliasing": ["-fstrict-aliasing"]}
 SOURCE_FLAGS_LINES = 40
 
 

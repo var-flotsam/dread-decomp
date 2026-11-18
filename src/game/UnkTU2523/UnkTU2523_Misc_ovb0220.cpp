@@ -200,19 +200,18 @@ struct UnkIdKeyMap_b0220 {
 
 // Swap-remove of the entry whose key `pos` points at; returns the slot now holding the last entry.
 u64* fn_7100d86e94(UnkIdKeyMap_b0220* self, u64* pos) {
-    u64 offset = ((u64)pos - (u64)self->keys) >> 3;
-    u32 index = (u32)offset;
+    u32 index = pos - self->keys;
     self->values[index].Reset();
-    if (self->count - 1 != (u32)offset) {
-        __builtin_memcpy(&self->keys[index], &self->keys[self->count - 1], sizeof(u64));
-        self->values[index].data = self->values[self->count - 1].data;
-        {
-            u64 empty = (u64)&g_unk_7101d47108->empty;
-            __builtin_memcpy(&self->values[self->count - 1], &empty, sizeof(u64));
-        }
+    if (self->count - 1 != index) {
+        self->keys[index] = self->keys[self->count - 1];
+        // The last id is moved down; its slot is left empty.
+        CStrId* values = self->values;
+        u32 last = self->count - 1;
+        values[index].data = values[last].data;
+        values[last].data = &g_unk_7101d47108->empty;
         self->values[self->count - 1].Reset();
     }
-    self->count = self->count - 1;
+    --self->count;
     return &self->keys[index];
 }
 

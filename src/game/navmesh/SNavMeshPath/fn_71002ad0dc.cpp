@@ -27,16 +27,14 @@ struct UnkRegistration_71002ad0dc {
     }
 };
 
-// A refcounted pointer that is cleared after the release. The count is decremented through a
-// plain int pointer: the original reloads the array count after the decrement.
+// A refcounted pointer that is cleared after the release.
 struct UnkRefPtr_71002ad0dc {
     base::UnkRefCounted* ptr;
 
     ~UnkRefPtr_71002ad0dc() {
-        if (ptr) {
-            s32* count = &ptr->ref_count;
-            if (--*count == 0)
-                delete ptr;
+        if (base::UnkRefCounted* held = ptr) {
+            if (--held->ref_count == 0)
+                delete held;
             ptr = nullptr;
         }
     }

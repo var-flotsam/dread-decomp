@@ -1,7 +1,6 @@
 // CChozoZombieXSpawnPointComponent (unit 1528): the reset after the base step. Its three render items
 // go back to the render manager, and the values it changed in the linked table (+0x3b8) are put back
 // from the saved (index, value) pairs, unless the table is idle. Names and layouts are placeholders.
-// build-flags: no-strict-aliasing
 #include "game/UnkRenderManager.h"
 #include "types.h"
 

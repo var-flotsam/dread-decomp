@@ -51,7 +51,7 @@ def main() -> int:
     ap.add_argument("--no-reloc", action="store_true", help="skip the relocation target check")
     ap.add_argument("--obj-dir", type=Path, help="where the object goes (default build/trymatch/<version>/)")
     ap.add_argument("--no-alias-probe", action="store_true",
-                    help="skip the second build without strict aliasing for functions that do not match")
+                    help="skip the second build with strict aliasing for functions that do not match")
     ap.add_argument("flags", nargs="*", help="extra compiler flags (after --)")
     args = ap.parse_args()
 
@@ -102,18 +102,19 @@ def main() -> int:
 
 
 def alias_probe(src: Path, obj: Path, flags: list[str], results, original, by_name, source, names) -> None:
-    """Build again with -fno-strict-aliasing and say which non-matching functions get closer.
+    """Build again with -fstrict-aliasing and say which non-matching functions get closer.
 
-    A large gain means the original reloads after stores that our types let Clang assume do not alias: look
-    for the original's untyped store, or mark the file `// build-flags: no-strict-aliasing` when its unit is
-    in data/unit_flags.csv (buildcfg.source_flags).
+    The game was built without type-based alias analysis (buildcfg.CODEGEN). A large gain here means the
+    original keeps a value in a register across a store our text makes it reload: look for the local the
+    original read the value into, the helper that read it once, or a value stored twice in one statement. Only
+    a unit listed in data/unit_flags.csv opens its sources with `// build-flags: strict-aliasing`.
     """
     misses = {r.symbol: r for r in results if not r.matching}
     cmd = buildcfg.cxx_command(src, obj, flags)
-    if not misses or "-fno-strict-aliasing" in cmd:
+    if not misses or "-fstrict-aliasing" in cmd:
         return
     probe = obj.with_name(obj.stem + ".alias.o")
-    if subprocess.run(buildcfg.cxx_command(src, probe, [*flags, "-fno-strict-aliasing"]),
+    if subprocess.run(buildcfg.cxx_command(src, probe, [*flags, "-fstrict-aliasing"]),
                       capture_output=True, text=True).returncode != 0:
         return
     again, _, _, _ = check.diff_with_targets(asmdiff.read_object(probe), original, by_name, source=source)
@@ -122,10 +123,10 @@ def alias_probe(src: Path, obj: Path, flags: list[str], results, original, by_na
         if before is None:
             continue
         if res.bytes_match:
-            print(f"  ALIAS  {names.get(res.symbol, res.symbol)} matches without strict aliasing")
+            print(f"  ALIAS  {names.get(res.symbol, res.symbol)} matches with strict aliasing")
         elif res.score >= before.score + 0.05:
             print(f"  ALIAS  {names.get(res.symbol, res.symbol)}: {before.score:.1%} -> {res.score:.1%} "
-                  "without strict aliasing")
+                  "with strict aliasing")
 
 
 if __name__ == "__main__":

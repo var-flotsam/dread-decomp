@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CKraidAcidBlobsMovementComponent's unit (tools/tu_map.py): the blob's update. After the base update
 // (fn_7100ac3a78), a blob still in flight spins its owner about z, faster for a larger size step (+0x5e8,
 // kept in 0..13) and the way its velocity points; then the trail part is placed as at launch. Names and

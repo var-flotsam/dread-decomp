@@ -230,8 +230,8 @@ template <class Tag>
 struct UnkRefOwner {
     char* p;
     ~UnkRefOwner() {
-        if (p && --*reinterpret_cast<u32*>(p + 8) == 0)
-            reinterpret_cast<void (**)(char*)>(*reinterpret_cast<char**>(p))[2](p);
+        if (char* held = p; held && --*reinterpret_cast<u32*>(held + 8) == 0)
+            reinterpret_cast<void (**)(char*)>(*reinterpret_cast<char**>(held))[2](held);
     }
 };
 

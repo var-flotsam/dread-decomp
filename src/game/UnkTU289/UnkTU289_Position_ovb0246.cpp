@@ -27,13 +27,11 @@ static inline bool Near(f32 a, f32 b) { return (a - 1e-4f <= b) && (a + 1e-4f >=
 void fn_710020bbe4(UnkCursor_b0246* self, CVector3D* v) {
     if (Near(self->x, v->x) && Near(self->y, v->y) && Near(self->z, v->z))
         return;
-    f32 z = v->z;
-    self->y = v->y;
-    self->x = v->x;
+    const CVector3D p = *v;
+    self->x = p.x;
+    self->y = p.y;
+    self->z = p.z;
     self->changed = 1;
-    self->z = z;
-    // keeps the stores to the cursor ordered before the reads of the source for the target copy
-    asm volatile("" ::: "memory");
     UnkTarget_b0246* t = self->target;
     t->x = v->x;
     t->y = v->y;

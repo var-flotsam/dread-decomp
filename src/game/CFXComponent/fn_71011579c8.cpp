@@ -28,7 +28,6 @@ struct UnkFXList_l1579c8 {
     base::UnkAllocator* allocator;  // 0x20
 };
 
-// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71011579c8(UnkFXList_l1579c8* self, u32 capacity) {
     if (self->capacity >= capacity)
         return;

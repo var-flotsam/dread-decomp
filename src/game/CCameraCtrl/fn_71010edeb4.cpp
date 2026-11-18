@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CCameraCtrl's unit (tools/tu_map.py, unit 2693): advances a camera controller by `dt`: its clock, the
 // shared timer of what it follows (in the modes that run on a period), its blend weight and progress,
 // then runs its update (vf_0x48) and its finish step (vf_0xd0). Names and layouts are placeholders.

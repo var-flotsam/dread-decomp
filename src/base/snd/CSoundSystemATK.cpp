@@ -1494,16 +1494,12 @@ UnkSoundStartedVoice* fn_71000fce40(UnkSoundSystemStarts* self, const UnkSoundVo
     voice->field_0xa0 = desc->field_0x30;
     voice->field_0xe4[2] = desc->field_0x38;
     voice->field_0xe4[3] = desc->field_0x38;
-    voice->field_0x8 = desc->field_0x38;
-    voice->field_0x0 = desc->field_0x38;
-    voice->field_0x4 = desc->field_0x38;
+    voice->field_0x0 = voice->field_0x4 = voice->field_0x8 = desc->field_0x38;
     voice->field_0xe4[1] = desc->field_0x3c;
     voice->field_0xe4[0] = desc->field_0x40;
     voice->field_0xe4[5] = desc->field_0x48;
     voice->field_0xe4[4] = desc->field_0x44;
-    voice->field_0x44 = desc->field_0x44;
-    voice->field_0x3c = desc->field_0x44;
-    voice->field_0x40 = desc->field_0x44;
+    voice->field_0x3c = voice->field_0x40 = voice->field_0x44 = desc->field_0x44;
     voice->field_0xe4[6] = desc->field_0x4c;
     voice->key = desc->key;
     voice->field_0x11c = desc->field_0x6c;

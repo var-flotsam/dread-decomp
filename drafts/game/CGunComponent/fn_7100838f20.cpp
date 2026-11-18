@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CGunComponent unit (tools/tu_map.py unit 1304): the gun component's destructor. It destroys the
 // weapons of both group lists, then its members last first: the listener lists, the list set, the id
 // and id list, the group lists, the "GUN_INPUT" listener, the two callbacks and the life handle, and

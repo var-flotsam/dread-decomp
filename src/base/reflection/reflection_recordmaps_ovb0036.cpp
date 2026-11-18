@@ -172,10 +172,11 @@ UnkMapRecord_ovb0036* fn_71002613ac(UnkRecordMap_ovb0036* self, UnkMapRecord_ovb
     if (index != self->count - 1) {
         fn_7100262f74(&self->values[index], &self->values[self->count - 1]);
         self->values[self->count - 1].~UnkMapRecord_ovb0036();
+        // The last key is moved down; its slot is left empty.
         UnkMapKey_ovb0036* keys = self->keys;
-        keys[index].data = keys[self->count - 1].data;
-        UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&keys[self->count - 1].data, &empty, sizeof(empty));
+        u32 last = self->count - 1;
+        keys[index].data = keys[last].data;
+        keys[last].data = &g_unk_7101d47108->empty;
         self->keys[self->count - 1].~UnkMapKey_ovb0036();
     }
     --self->count;

@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 2661 (tools/tu_map.py, hint CCutscene::CTunableCutscene): the copy assignment of the object that
 // fn_71010673fc constructs: every member in turn, the counted media base keeping its own vtable and count.
 // Names and layouts are placeholders.

@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 2548 of tools/tu_map.py: the element at an index of an array of 0x30-byte polymorphic
 // holders (vtable g_unk_7101cac988), growing the array to reach it (CRntVector::GrowAt, an
 // out-of-line copy of it written out).

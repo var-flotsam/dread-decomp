@@ -40,11 +40,16 @@ struct UnkBounds_l20eeb8 {
 bool fn_710020eeb8(UnkPlaneTester_l20eeb8* self, UnkBounds_l20eeb8* b, UnkPlaneSet_l20eeb8* set) {
     if (!set)
         set = self->owner->planes;
+    // The point and the limit are read once; the plane index is stored back as it advances.
+    const s32 x = b->x;
+    const s32 y = b->y;
+    const s32 z = b->z;
+    const s64 limit = b->limit;
     u8 plane = b->plane;
     for (u32 i = 0; i < 6; ++i) {
         const UnkPlane_l20eeb8& p = set->planes[plane];
-        s32 dot = b->x * p.nx + b->y * p.ny + b->z * p.nz;
-        if (p.d + dot > b->limit)
+        s32 dot = x * p.nx + y * p.ny + z * p.nz;
+        if (p.d + dot > limit)
             return false;
         u8 next = plane + 1;
         if (next == 6)

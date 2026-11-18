@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CMinimapData's unit (2563): erases an entry of a map of record arrays keyed by string ids by moving the
 // last entry (value and key) into its slot. Names and layouts are placeholders.
 #include <new>

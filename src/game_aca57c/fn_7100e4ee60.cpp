@@ -72,10 +72,7 @@ struct UnkOwned {
     }
 };
 
-// NON_MATCHING(minor): the value array and the count swap registers in the second loop, whose
-// compare takes the count already widened.
 void fn_7100ae31f8(UnkIdRecordTable<UnkOwned<UnkKeyedStrIds, fn_7100ae2df8>>* self) { Clear(self); }
-// NON_MATCHING(minor): as fn_7100ae31f8.
 void fn_7100aecdc4(UnkIdRecordTable<UnkOwned<void, fn_7100aef674>>* self) { Clear(self); }
 
 void fn_7100e4ee60(UnkIdRecordTable<UnkIdRecord28>* self) { Clear(self); }

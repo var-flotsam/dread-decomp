@@ -19,6 +19,11 @@ struct UnkPanel {
     u64 field_0x290;
     u64 field_0x298;
     bool field_0x2a0;
+
+    void ClearRange() {
+        field_0x298 = 0;
+        field_0x290 = 0;
+    }
 };
 
 struct UnkMenuSource {
@@ -39,14 +44,10 @@ struct UnkMenuTarget {
     s32 field_0x280;
 };
 
-// A byte store, which may alias the panel pointer (the original reloads it).
-static inline void StoreFlag(bool* field, bool value) { *reinterpret_cast<u8*>(field) = value; }
-
 static inline void ResetPanel(UnkPanel* const& panel) {
     if (panel) {
-        StoreFlag(&panel->field_0x2a0, true);
-        panel->field_0x298 = 0;
-        panel->field_0x290 = 0;
+        panel->field_0x2a0 = true;
+        panel->ClearRange();
     }
 }
 

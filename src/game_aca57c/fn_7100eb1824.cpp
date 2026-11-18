@@ -89,7 +89,6 @@ void fn_7100eb166c(UnkIdValuesArrays* self) {
     self->capacity = self->count;
 }
 
-// NON_MATCHING(minor): register allocation in the ids loop (x8 and x9 swapped).
 void fn_7100b48944(UnkIdValuesArrays* self, u32 n) {
     if (self->capacity >= n)
         return;

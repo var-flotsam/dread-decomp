@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // behaviortree::CHyperDashAttackAction's unit (tools/tu_map.py, unit 662): the node's start. Picks the dash
 // target with the commander's flag at +0x15ed0 lowered, then either signals the owner's slot at +0x298 or
 // starts the dash. Names and layouts are placeholders.

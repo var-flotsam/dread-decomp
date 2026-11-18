@@ -59,7 +59,6 @@ struct UnkRecordArrays_l2ef2d0 {
 };
 
 // Grows both arrays to `new_capacity`: the records and the names are moved.
-// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71002ef2d0(UnkRecordArrays_l2ef2d0* self, u32 new_capacity) {
     if (self->capacity >= new_capacity)
         return;

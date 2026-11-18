@@ -399,7 +399,7 @@ address,size,name,name_source,subsystem,status
 0x7100110b90,196,fn_7100110b90,unknown,engine/base?,O
 0x7100110c54,84,fn_7100110c54,unknown,engine/base?,O
 0x7100110ca8,44,fn_7100110ca8,unknown,engine/base?,O
-0x7100110cd4,228,fn_7100110cd4,unknown,engine/base?,m
+0x7100110cd4,228,fn_7100110cd4,unknown,engine/base?,O
 0x7100110db8,168,fn_7100110db8,unknown,engine/base?,m
 0x7100110e60,520,fn_7100110e60,unknown,engine/base?,O
 0x7100111068,388,base::spatial::CEditorSegment::refl_InitClass,reflection,engine/base,O

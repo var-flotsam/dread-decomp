@@ -1,3 +1,4 @@
+// build-flags: strict-aliasing
 // Unit 395 (tools/tu_map.py): growable arrays and iterator values of the reflected collections:
 // 16-byte entries (copy construction and assignment of the array) and 0x48-byte entries (an array,
 // a string id and three words: clear, free, move and copy of the array, insert, erase, and the

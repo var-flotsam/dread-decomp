@@ -45,6 +45,12 @@ struct UnkSamusMoveTracker_A6_b70 {
     void* field_0x70;
     void* field_0x78;
     void* field_0x80;
+
+    void Clear() {
+        field_0x70 = nullptr;
+        field_0x78 = nullptr;
+        field_0x80 = nullptr;
+    }
 };
 
 #pragma pack(push, 4)
@@ -66,12 +72,8 @@ void fn_71009e0658(UnkSamusMove_A6_b70* self) {
     fn_710002fa90(self->timer);
     self->tracker_a->vf_0x80();
     self->tracker_b->vf_0x80();
-    self->tracker_a->field_0x70 = nullptr;
-    self->tracker_a->field_0x78 = nullptr;
-    self->tracker_a->field_0x80 = nullptr;
-    self->tracker_b->field_0x70 = nullptr;
-    self->tracker_b->field_0x78 = nullptr;
-    self->tracker_b->field_0x80 = nullptr;
+    self->tracker_a->Clear();
+    self->tracker_b->Clear();
     UnkSamusMoveState_A6_b70** it = self->states;
     u64 bytes = (u64)self->state_count * sizeof(*it);
     asm("" : "+r"(bytes));
