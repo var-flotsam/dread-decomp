@@ -24,8 +24,8 @@ struct UnkCameraRefObj_l0e1bb4 {
 struct UnkCameraRef_l0e1bb4 {
     UnkCameraRefObj_l0e1bb4* ptr;
     ~UnkCameraRef_l0e1bb4() {
-        if (ptr && --ptr->ref_count == 0)
-            ptr->vf_0x10();
+        if (UnkCameraRefObj_l0e1bb4* held = ptr; held && --held->ref_count == 0)
+            held->vf_0x10();
     }
 };
 
