@@ -196,9 +196,12 @@ bool fn_71000f17c8(UnkTypedRefWriter* self) {
     if (!parent)
         return true;
 
-    u32 depth = 0;
-    while (ContextAt(self, self->count - depth - 2) != parent)
-        ++depth;
+    // How many contexts below the top one the parent is.
+    u32 depth;
+    u32 below = 0;
+    do {
+        depth = below++;
+    } while (ContextAt(self, self->count - below - 1) != parent);
 
     const CType* type = reinterpret_cast<const CType*>(parent->value.type);
     CClass* cls = nullptr;

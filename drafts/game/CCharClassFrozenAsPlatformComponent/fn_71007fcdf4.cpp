@@ -66,8 +66,8 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
     }
 
     if (list->pool.blocks.size / sizeof(UnkStringNode_l7fcdf4) < pieces) {
-        base::UnkAllocator* current = list->allocator;
         base::UnkAllocator* parent = list->pool.parent;
+        base::UnkAllocator* current = list->allocator;
         u32 flags = list->flags;
         void* buffer = list->pool.blocks.buffer;
         base::UnkAllocator* source = parent ? parent : current;
@@ -108,7 +108,6 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
             node->field_0xc0 = 0;
             node->next = nullptr;
         }
-        u32 length = (u32)(u64)end - (u32)(u64)text;
         if (list->count == 0) {
             list->head = node;
             list->tail = node;
@@ -119,6 +118,7 @@ void fn_71007fcdf4(const char* text, const char* delimiter, UnkStringList_l7fcdf
             list->count = list->count + 1;
             list->tail = node;
         }
+        u32 length = (u32)(end - text);
         fn_710007e7f8(&node->string, text, length);
         u32 step = length + (u32)delimiter_length;
         consumed += step;

@@ -32,7 +32,7 @@ struct UnkMoveParams_l978aa8 {
     f32 field_0x58;
 
     UnkMoveParams_l978aa8& operator=(const UnkMoveParams_l978aa8& other) {
-        if (this != &other) {
+        if (&other != this) {
             field_0x0 = other.field_0x0;
             field_0x4 = other.field_0x4;
             field_0x8 = other.field_0x8;
@@ -83,12 +83,12 @@ static_assert(__builtin_offsetof(UnkMoveState_l978aa8, field_0x114) == 0x114, "U
 void fn_7100978aa8(UnkMoveState_l978aa8* self, const UnkMoveSource_l978aa8* source, f32 value) {
     self->field_0x0 = value;
     self->field_0x4 = source->field_0x38;
-    self->field_0x60.x = 0.0f;
-    self->field_0x60.y = 0.0f;
-    self->field_0x60.z = 0.0f;
-    self->field_0x6c.x = 0.0f;
-    self->field_0x6c.y = 0.0f;
     self->field_0x6c.z = 0.0f;
+    self->field_0x6c.y = 0.0f;
+    self->field_0x6c.x = 0.0f;
+    self->field_0x60.z = 0.0f;
+    self->field_0x60.y = 0.0f;
+    self->field_0x60.x = 0.0f;
     self->field_0x78 = UnkMatrix44{};
     self->field_0x78.m[15] = 1.0f;
     self->field_0x78.m[10] = 1.0f;

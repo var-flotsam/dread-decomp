@@ -65,3 +65,8 @@ void fn_7100ebf278(UnkNavMeshManager* self);  // constructor (game_hi/fn_7100ebf
 // bounding-box tree at +0x400 when there is one, if the cell accepts `flags`; 0xffff otherwise.
 // Defined in src/game/navmesh/CNavMesh/fn_710027a41c.cpp.
 u16 fn_710027a41c(UnkNavMesh* self, const base::math::CVector2D* point, u32 flags);
+
+// Probes the navigation mesh from a point (src/game_hi/fn_7100ebfa7c.cpp; its point and result types are local there).
+struct Vec2;
+struct Result;
+bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b);

@@ -1,4 +1,4 @@
-// Unit 182 (13.1%: the original reloads the base after storing it; the creation path is laid out last): sets one attribute slot of a graphics buffer, taking a slot record from the shared pool
+// Unit 182 (tools/tu_map.py): sets one attribute slot of a graphics buffer, taking a slot record from the shared pool
 // the first time; copies the data into the buffer's mapping and derives the slot's type from the format.
 // Names and layouts are placeholders.
 #include <string.h>
@@ -65,9 +65,9 @@ void fn_7100161e60(UnkGfxBuffer252* buffer, u32 kind, u32 a, u32 offset, u32 for
     attrib->size = size;
     if (buffer->flags & 1) {
         if (buffer->flags & 4) {
-            if (data)
-                buffer->base = data;
-            data = static_cast<const u8*>(buffer->base) + (offset & ~3u);
+            const void* base = data ? data : buffer->base;
+            buffer->base = base;
+            data = static_cast<const u8*>(base) + (offset & ~3u);
         }
         attrib->data = data;
         if (buffer->mapping && data)

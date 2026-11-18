@@ -25,10 +25,10 @@ u32 fn_71001186d8(const UnkPolygon108* poly, u32 index, const base::math::CVecto
     f32 dx = seg.end.x - seg.start.x;
     f32 dy = seg.end.y - seg.start.y;
     f32 dot = dx * v->x + dy * v->y;
-    u32 result = dot <= 0.0f;
     f32 low = dot + -0.00001f;
+    u32 result = !(dot > 0.0f);
     f32 high = dot + 0.00001f;
-    if (low <= 0.0f && high >= 0.0f)
+    if (high >= 0.0f && low <= 0.0f)
         result = 2;
     return result;
 }

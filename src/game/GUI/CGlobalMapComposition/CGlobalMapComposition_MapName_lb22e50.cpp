@@ -74,8 +74,6 @@ UnkMapNameId fn_7100b22e50(const CStrId& scenario) {
     return result;
 }
 
-UnkVec2Result fn_71011cf0a8(UnkGuiDisplayObject* self, const UnkVec2Result& point);
-
 // A point of a display object's anchor state (the block at +0x78) by horizontal and vertical
 // anchor, as src/game/GUI/CMapMenuController/CMapMenuController_BindWidgets.cpp declares it.
 struct UnkGuiPos {

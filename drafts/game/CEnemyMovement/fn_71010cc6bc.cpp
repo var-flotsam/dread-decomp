@@ -87,16 +87,16 @@ void fn_71010cc6bc(UnkEnemyMovement_cc6bc* self, UnkMoveStep_cc6bc* step) {
             fn_710117b348(static_cast<UnkAnimationComponent*>(enemy->field_0x220), fn_7100cec578())) {
             UnkMelee_cc6bc* melee = static_cast<UnkMelee_cc6bc*>(enemy->field_0x208);
             f32 limit = melee->strength * step->dt;
+            f32 push = step->dt * melee->push;
             if (!(limit + 0.001f >= 0.0f) || !(limit - 0.001f <= 0.0f)) {
-                f32 push = step->dt * melee->push;
                 f32 x = push + step->velocity.x;
                 if (limit > 0.0f) {
-                    step->velocity.x = x > limit ? x : limit;
                     f32 y = push + step->applied.x;
+                    step->velocity.x = x > limit ? x : limit;
                     step->applied.x = y > limit ? y : limit;
                 } else {
-                    step->velocity.x = x < limit ? x : limit;
                     f32 y = push + step->applied.x;
+                    step->velocity.x = x < limit ? x : limit;
                     step->applied.x = y < limit ? y : limit;
                 }
             }

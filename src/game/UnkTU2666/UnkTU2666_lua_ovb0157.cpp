@@ -86,7 +86,7 @@ s32 fn_710108e200(lua_State* L) {
     f32 a = 1.0f;
     f32 b = 0.2f;
     if (fn_71010c0270(L, "ff", &a, &b))
-        fn_71000fbe1c(reinterpret_cast<u8*>(g_unk_7101d4d820) + 8, 0, a, b);
+        fn_71000fbe1c(reinterpret_cast<UnkRampTable*>(reinterpret_cast<u8*>(g_unk_7101d4d820) + 8), 0, a, b);
     return 0;
 }
 
@@ -98,7 +98,7 @@ s32 fn_7101092690(lua_State* L) {
         UnkSoundMgr* sound = g_unk_7101d4d820;
         f32 factor = scale;
         f32 volume = *reinterpret_cast<const f32*>(reinterpret_cast<const u8*>(&g_unk_7101d68580) + 0x3c);
-        fn_71000fbe1c(reinterpret_cast<u8*>(sound) + 8, 5, factor * volume, 0.0f);
+        fn_71000fbe1c(reinterpret_cast<UnkRampTable*>(reinterpret_cast<u8*>(sound) + 8), 5, factor * volume, 0.0f);
     }
     return 0;
 }

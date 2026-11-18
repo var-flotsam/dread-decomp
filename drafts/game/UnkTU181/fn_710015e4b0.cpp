@@ -42,35 +42,36 @@ struct UnkGfxStagePrograms {
     UnkGfxStageProgram* programs[3];
 };
 
-void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b) {
-    UnkGfxStagePrograms* stages = static_cast<UnkGfxStagePrograms*>(state);
-    if (!location || !stages)
-        return;
-    u32 index = static_cast<u32>(location - 15);
-    UnkGfxStageProgram* program;
+// The program of stage 0, 1 or 2; none for any other stage.
+static inline UnkGfxStageProgram* ProgramOf(UnkGfxStagePrograms* stages, u32 stage) {
     switch (stage) {
     case 0:
-        program = stages->programs[0];
-        break;
+        return stages->programs[0];
     case 1:
-        program = stages->programs[1];
-        break;
+        return stages->programs[1];
     case 2:
-        program = stages->programs[2];
-        break;
-    default:
-        program = nullptr;
-        break;
+        return stages->programs[2];
     }
+    return nullptr;
+}
+
+static inline u32 Min(u32 x, u32 y) {
+    return x < y ? x : y;
+}
+
+void fn_710015e4b0(void* state, u32 stage, u64 location, u32 count, u32 a, const UnkMatrix44* values, u32 b) {
+    UnkGfxStagePrograms* stages = static_cast<UnkGfxStagePrograms*>(state);
+    if (!stages || !location)
+        return;
+    u32 index = static_cast<u32>(location - 15);
+    UnkGfxStageProgram* program = ProgramOf(stages, stage);
     UnkGfxUniform* uniform = &program->uniforms[index];
     UnkGfxUniformBlock* blocks = program->blocks;
     u32 blockIndex = uniform->block;
     if (blocks[blockIndex].field_0x38) {
         u32 frame = fn_7100153da0();
         UnkGfxUniformBlock* block = &blocks[blockIndex];
-        u32 bytes = count * a * 16;
-        u32 limit = uniform->size * a;
-        memcpy(block->buffers[frame] + uniform->offset, values, bytes < limit ? bytes : limit);
+        memcpy(block->buffers[frame] + uniform->offset, values, Min(count * a * 16, uniform->size * a));
         block->dirty = true;
         program->dirty = true;
         g_unk_716e2a3450 = 1;

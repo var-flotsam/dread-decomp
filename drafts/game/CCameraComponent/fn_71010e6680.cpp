@@ -36,7 +36,7 @@ struct UnkRay_l0e6680 {
     CVector2D to;
     CVector2D dir;
     UnkRay_l0e6680(const CVector2D& start, f32 targetX)
-        : from(start), to{targetX, 0.0f}, dir{targetX - start.x, 0.0f - start.y} {}
+        : from{start.x, start.y}, to{targetX, 0.0f}, dir{to.x - from.x, to.y - from.y} {}
 };
 
 // What the ray hit (vtable g_unk_7101a22c60).

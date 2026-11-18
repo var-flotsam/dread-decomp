@@ -270,7 +270,6 @@ void fn_71004e2630(UnkDaivoLists_b0012* self) {
 // As src/game_hi/fn_7100ebfa7c.cpp defines it (its point and result types are local there).
 struct Vec2;
 struct Result;
-bool fn_7100ebfa7c(UnkNavMeshManager* self, Vec2* pos, Result* out, f32 a, u32 flags, f32 b);
 
 struct UnkNavPoint_b0012 {
     f32 x;

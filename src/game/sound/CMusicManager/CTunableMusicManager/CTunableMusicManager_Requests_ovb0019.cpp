@@ -442,7 +442,7 @@ void fn_7100fd613c(UnkMusicSlots_b0019* self, u32 index, bool immediate) {
     } else if (index == 0 && immediate) {
         UnkSoundMgr* sound = g_unk_7101d4d820;
         f32 volume = *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_7101d68580) + 0x3c);
-        fn_71000fbe1c(reinterpret_cast<char*>(sound) + 8, 5, volume, 0.5f);
+        fn_71000fbe1c(reinterpret_cast<UnkRampTable*>(reinterpret_cast<char*>(sound) + 8), 5, volume, 0.5f);
     }
 }
 

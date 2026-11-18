@@ -18,6 +18,28 @@ static inline u32& NodeFlags(UnkSetupStrList* list) {
     return *reinterpret_cast<u32*>(list->pad_0x28);
 }
 
+// Makes the node pool hold `count` nodes, taking a new buffer when the one it has is too small.
+inline void ReservePool(UnkSetupStrList* list, u32 count) {
+    if (list->field_0x40.size / sizeof(UnkStrNode_l0730a0) >= count)
+        return;
+    base::UnkAllocator* allocator = list->field_0x38 ? list->field_0x38 : list->field_0x20;
+    u32 flags = NodeFlags(list);
+    if (void* block = list->field_0x40.buffer) {
+        fn_71000837f4(&list->field_0x40);
+        list->field_0x38->vf_0x48(block);
+        list->field_0x38 = nullptr;
+    }
+    if (count) {
+        if (!allocator)
+            allocator = fn_7100083990();
+        list->field_0x38 = allocator;
+        u64 size = (u64)count * sizeof(UnkStrNode_l0730a0);
+        void* buffer = allocator->vf_0x40(size, 8, flags);
+        fn_710008378c(&list->field_0x40, buffer, size, sizeof(UnkStrNode_l0730a0));
+    }
+    list->field_0x20 = reinterpret_cast<base::UnkAllocator*>(&list->field_0x30);
+}
+
 void fn_71000730a0(const char* str, const char* separators, UnkSetupStrList* out) {
     out->FreeNodes();
     out->field_0x8 = 0;
@@ -38,27 +60,7 @@ void fn_71000730a0(const char* str, const char* separators, UnkSetupStrList* out
         } while (p);
     }
 
-    // Make the node pool hold every part.
-    if (out->field_0x40.size / sizeof(UnkStrNode_l0730a0) < count) {
-        base::UnkAllocator* allocator = out->field_0x20;
-        if (out->field_0x38)
-            allocator = out->field_0x38;
-        u32 flags = NodeFlags(out);
-        if (void* block = out->field_0x40.buffer) {
-            fn_71000837f4(&out->field_0x40);
-            out->field_0x38->vf_0x48(block);
-            out->field_0x38 = nullptr;
-        }
-        if (count) {
-            if (!allocator)
-                allocator = fn_7100083990();
-            out->field_0x38 = allocator;
-            u64 size = count * sizeof(UnkStrNode_l0730a0);
-            void* buffer = allocator->vf_0x40(size, 8, flags);
-            fn_710008378c(&out->field_0x40, buffer, size, sizeof(UnkStrNode_l0730a0));
-        }
-        out->field_0x20 = reinterpret_cast<base::UnkAllocator*>(&out->field_0x30);
-    }
+    ReservePool(out, count);
 
     if (!length)
         return;

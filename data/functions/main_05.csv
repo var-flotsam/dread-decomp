@@ -2702,7 +2702,7 @@ address,size,name,name_source,subsystem,status
 0x710059c90c,100,fn_710059c90c,unknown,unknown,O
 0x710059c970,752,fn_710059c970,unknown,unknown,O
 0x710059cc60,620,fn_710059cc60,unknown,unknown,U
-0x710059cecc,308,fn_710059cecc,unknown,unknown,U
+0x710059cecc,308,fn_710059cecc,unknown,unknown,O
 0x710059d000,1004,fn_710059d000,unknown,unknown,O
 0x710059d3ec,1016,fn_710059d3ec,unknown,unknown,U
 0x710059d7e4,36,fn_710059d7e4,unknown,unknown,O

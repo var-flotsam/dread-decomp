@@ -2,6 +2,7 @@
 // when their angles are zero). Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -36,15 +37,18 @@ UnkVec3f fn_710007a450(void* xform, const UnkVec3f* angle) {
             r.z = cy * z1 - p.x * sy;
         }
     } else {
-        UnkVec3f p = v;
+        f32 pz = v.z;
+        f32 ax = angle->x;
+        f32 px = v.x;
+        f32 py = v.y;
         f32 sx, cx, sy, cy, sz, cz;
-        SinCos(angle->x, sx, cx);
+        SinCos(ax, sx, cx);
         SinCos(angle->y, sy, cy);
         SinCos(angle->z, sz, cz);
-        f32 x1 = p.x * cz - p.y * sz;
-        f32 y1 = p.x * sz + p.y * cz;
-        f32 y2 = cx * y1 - p.z * sx;
-        f32 z2 = p.z * cx + sx * y1;
+        f32 x1 = px * cz - py * sz;
+        f32 y1 = px * sz + py * cz;
+        f32 y2 = cx * y1 - pz * sx;
+        f32 z2 = pz * cx + sx * y1;
         r.x = cy * x1 + sy * z2;
         r.y = y2;
         r.z = cy * z2 - sy * x1;

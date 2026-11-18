@@ -85,7 +85,12 @@ struct UnkProbeHit_l6580e0 {
     u32 field_0x48;
     void* field_0x50;
     explicit UnkProbeHit_l6580e0(const Vec2& o)
-        : vtable(g_unk_7101a23080 + 2), field_0x8(-1), hit(false), origin(o), field_0x48(0), field_0x50(nullptr) {}
+        : field_0x8(-1), origin(o) {
+        vtable = g_unk_7101a23080 + 2;
+        hit = false;
+        field_0x48 = 0;
+        field_0x50 = nullptr;
+    }
 };
 static_assert(__builtin_offsetof(UnkProbeHit_l6580e0, origin) == 0x40, "layout");
 

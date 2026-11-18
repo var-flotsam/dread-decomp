@@ -678,7 +678,7 @@ void fn_7100df19c0(UnkGameManager* self) {
     fn_710006cea8(Singleton<UnkSoundHolder, 0x48, fn_710006cd9c>(g_unk_7101d47340), true);
     UnkSoundMgr* sound = g_unk_7101d4d820;
     f32 volume = *reinterpret_cast<f32*>(reinterpret_cast<char*>(&g_unk_7101d68580) + 0x28);
-    fn_71000fbe1c(reinterpret_cast<char*>(sound) + 8, 0, volume, 0.0f);
+    fn_71000fbe1c(reinterpret_cast<UnkRampTable*>(reinterpret_cast<char*>(sound) + 8), 0, volume, 0.0f);
     if (!steps->field_0x578) {
         CBlackboard* blackboard = &self->field_0x968;
         fn_7101048af8(blackboard);

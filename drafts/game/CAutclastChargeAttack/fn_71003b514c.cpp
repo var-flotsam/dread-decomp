@@ -96,7 +96,7 @@ struct UnkBoxDesc {
     f32 angle;
     u32 field_0x24;
     UnkBoxDesc(const CVector2D& p, f32 a, f32 length, f32 depth)
-        : pos(p), rotation{cosf(a), sinf(a), -sinf(a), cosf(a)}, half_length(length), half_depth(depth),
+        : pos{p.x, p.y}, rotation{cosf(a), sinf(a), -sinf(a), cosf(a)}, half_length(length), half_depth(depth),
           angle(a), field_0x24(0) {}
 };
 
@@ -130,11 +130,11 @@ bool fn_71003b514c(UnkActor* actor, const CVector2D* from, const CVector2D* dir)
         return false;
 
     const UnkAutclastChargeTunable& tunable = static_cast<UnkAutclastChargeTunable&>(g_unk_71726bd2c8);
-    CVector2D origin = *from;
+    CVector2D origin = {from->x, from->y};
     UnkNavHit hit;
     u32 attempts = tunable.field_0x24;
-    UnkNavRay ray({dir->x * 100.0f + from->x, dir->y * 100.0f + from->y},
-                  {from->x - dir->x * 100.0f, from->y - dir->y * 100.0f});
+    UnkNavRay ray({dir->x * 100.0f + origin.x, dir->y * 100.0f + origin.y},
+                  {origin.x - dir->x * 100.0f, origin.y - dir->y * 100.0f});
     if (!fn_7100ebfa7c(NavMeshManager(), &ray, &hit, 5.0f, 0, -1.0f))
         return false;
 
@@ -145,7 +145,7 @@ bool fn_71003b514c(UnkActor* actor, const CVector2D* from, const CVector2D* dir)
     u8 sides[2] = {side, side};
     u16 cells[2] = {cell, cell};
     f32 depth = tunable.field_0x2c;
-    CVector2D points[2] = {origin, origin};
+    CVector2D points[2] = {{origin.x, origin.y}, {origin.x, origin.y}};
 
     f32 length;
     if (fabsf(dir->x) > 0.9f)
@@ -166,7 +166,7 @@ bool fn_71003b514c(UnkActor* actor, const CVector2D* from, const CVector2D* dir)
     else
         angle = 0.0f;
 
-    UnkBoxDesc start_desc(points[0], angle, length, depth);
+    UnkBoxDesc start_desc(origin, angle, length, depth);
     UnkBoxShape start_box(&start_desc);
     UnkVec3f offset(length * dir->x * 0.5f, length * dir->y * 0.5f, 0.0f);
     UnkMatrix44_7100078c9c transform = fn_7100078cd8(offset);
@@ -210,15 +210,18 @@ bool fn_71003b514c(UnkActor* actor, const CVector2D* from, const CVector2D* dir)
 
                     UnkNavRay ahead({point.x, point.y}, {point.x + length * dir->x, point.y + length * dir->y});
                     UnkNavHit wall_hit;
-                    if (!fn_7100ebfa7c(NavMeshManager(), &ahead, &wall_hit, 50.0f, 0, -1.0f))
-                        return true;
-                    CVector2D reached;
-                    fn_710007b430(&reached, &wall_hit.point);
-                    f32 rx = reached.x - origin.x;
-                    f32 ry = reached.y - origin.y;
-                    f32 distance = sqrtf(rx * rx + ry * ry);
-                    distance = distance > min_distance ? distance : min_distance;
-                    return !(distance < length);
+                    // Clear unless a wall stops the charge short.
+                    bool clear = true;
+                    if (fn_7100ebfa7c(NavMeshManager(), &ahead, &wall_hit, 50.0f, 0, -1.0f)) {
+                        CVector2D reached;
+                        fn_710007b430(&reached, &wall_hit.point);
+                        f32 rx = reached.x - origin.x;
+                        f32 ry = reached.y - origin.y;
+                        f32 distance = sqrtf(rx * rx + ry * ry);
+                        distance = distance > min_distance ? distance : min_distance;
+                        clear = !(distance < length);
+                    }
+                    return clear;
                 } else {
                     // Past the corner: follow the walls round it while they face away from `dir`.
                     UnkReflObject* ai = reinterpret_cast<UnkAutclastComponents*>(actor->field_0x240)->ai;

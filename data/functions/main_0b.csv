@@ -1135,7 +1135,7 @@ address,size,name,name_source,subsystem,status
 0x7100b24b24,3748,fn_7100b24b24,unknown,gui?,U
 0x7100b259c8,2348,fn_7100b259c8,unknown,gui?,U
 0x7100b262f4,380,fn_7100b262f4,unknown,gui?,O
-0x7100b26470,612,fn_7100b26470,unknown,gui?,U
+0x7100b26470,612,fn_7100b26470,unknown,gui?,O
 0x7100b266d4,1236,fn_7100b266d4,unknown,gui?,U
 0x7100b26ba8,1464,fn_7100b26ba8,unknown,gui?,U
 0x7100b27160,1836,fn_7100b27160,unknown,gui?,U

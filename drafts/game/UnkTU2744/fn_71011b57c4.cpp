@@ -12,7 +12,7 @@
 
 using base::global::CRntVector;
 
-void fn_71011bb844(CRntVector<UnkWeakHandle*>* list, u32 capacity);  // reserve
+void fn_71011bb844(void* self, u32 capacity);  // reserve
 void fn_71011cd340(UnkGuiDisplayObject* self);
 
 // The root as this function reads it: the deferral flag and three lists.
@@ -87,12 +87,11 @@ static inline void AppendHandle(CRntVector<UnkWeakHandle*>& list, const UnkHandl
 }
 
 // The index of `object` in `list`, or the count when it is not there.
-static inline u64 IndexOf(const CRntVector<UnkGuiDisplayObject*>& list, UnkGuiDisplayObject* object) {
-    u64 i = 0;
-    for (; i < list.count; ++i)
+static inline u32 IndexOf(const CRntVector<UnkGuiDisplayObject*>& list, UnkGuiDisplayObject* object) {
+    for (u32 i = 0; i < list.count; ++i)
         if (list.data[i] == object)
-            break;
-    return i;
+            return i;
+    return list.count;
 }
 
 void fn_71011b57c4(UnkGuiRoot* root, void* object) {
@@ -110,7 +109,7 @@ void fn_71011b57c4(UnkGuiRoot* root, void* object) {
                       static_cast<UnkDisplayObject_ovb0032*>(object));
     fn_71011cd340(display);
     if (links->field_0x187) {
-        u64 i = IndexOf(self->field_0xa0, display);
+        u32 i = IndexOf(self->field_0xa0, display);
         if (i != self->field_0xa0.count)
             self->field_0xa0.EraseAt(i);
         else
