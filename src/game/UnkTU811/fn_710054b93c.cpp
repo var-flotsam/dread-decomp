@@ -9,6 +9,7 @@
 #include "game/UnkTU134.h"
 #include "game/UnkTU811.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/UnkTU2712.h"
 #include "types.h"
 
 using base::math::CVector4D;
@@ -103,7 +104,6 @@ struct UnkEmmyLabAI_A2_b70 {
 
 const CVector4D* fn_7100572130(s32 state);
 UnkVector4D fn_710054b4b0(UnkEmmyAI_l54b93c* self);
-void fn_7101156bd0(UnkObject* model, UnkPart* part, f32 time, f32 from, f32 to, bool on, bool black);
 extern const u64* g_unk_7101a48c70[] __attribute__((visibility("hidden")));
 
 void fn_710054b93c(UnkEmmyLabAI_A2_b70* ai, s32 from, s32 to) {

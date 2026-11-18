@@ -167,7 +167,6 @@ void fn_7100f165f4(UnkRewardsMode_b0242* self) {
 struct UnkListedItem;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
-void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
 extern const char* const g_unk_7101cab038[][3] __attribute__((visibility("hidden")));
 
 void fn_7100f173d0(UnkRewardsMode_b0242* self);

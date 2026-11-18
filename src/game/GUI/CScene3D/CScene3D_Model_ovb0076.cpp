@@ -197,7 +197,6 @@ void fn_7100b727c4(UnkScene3D_ovb0076* self) {
 struct UnkListedItem;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
-void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
 
 static inline void* ItemList_ovb0076() {
     if (!g_unk_7172729910) {

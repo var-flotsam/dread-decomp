@@ -108,7 +108,7 @@ address,size,name,name_source,subsystem,status
 0x710110c504,756,fn_710110c504,unknown,unknown,U
 0x710110c7f8,68,fn_710110c7f8,unknown,unknown,O
 0x710110c83c,32,fn_710110c83c,unknown,unknown,O
-0x710110c85c,532,fn_710110c85c,unknown,unknown,U
+0x710110c85c,532,fn_710110c85c,unknown,unknown,O
 0x710110ca70,4,fn_710110ca70,unknown,unknown,O
 0x710110ca74,8,fn_710110ca74,unknown,unknown,O
 0x710110ca7c,80,fn_710110ca7c,unknown,unknown,O
@@ -125,7 +125,7 @@ address,size,name,name_source,subsystem,status
 0x710110e554,728,fn_710110e554,unknown,unknown,U
 0x710110e82c,1372,fn_710110e82c,unknown,unknown,U
 0x710110ed88,12,fn_710110ed88,unknown,unknown,O
-0x710110ed94,1076,fn_710110ed94,unknown,unknown,U
+0x710110ed94,1076,fn_710110ed94,unknown,unknown,O
 0x710110f1c8,92,fn_710110f1c8,unknown,unknown,O
 0x710110f224,12,fn_710110f224,unknown,unknown,O
 0x710110f230,12,fn_710110f230,unknown,unknown,O
@@ -1574,7 +1574,7 @@ address,size,name,name_source,subsystem,status
 0x710116c388,596,fn_710116c388,unknown,unknown,O
 0x710116c5dc,104,fn_710116c5dc,unknown,unknown,O
 0x710116c644,556,fn_710116c644,unknown,unknown,O
-0x710116c870,1004,fn_710116c870,unknown,unknown,U
+0x710116c870,1004,fn_710116c870,unknown,unknown,O
 0x710116cc5c,28,fn_710116cc5c,unknown,unknown,O
 0x710116cc78,132,fn_710116cc78,unknown,unknown,O
 0x710116ccfc,8,CCharClassStartPointComponent::refl_Equals,reflection,game/characters,O

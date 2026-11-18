@@ -29,10 +29,11 @@ struct UnkCommanderAI_A2_b68 {
     u8 record[0x10];
 };
 
-bool fn_710110c85c(UnkCommanderAI_A2_b68* self);
+struct UnkAIComponent;
+bool fn_710110c85c(UnkAIComponent* self);
 
 bool fn_71004532a4(UnkCommanderAI_A2_b68* self) {
-    if (!fn_710110c85c(self))
+    if (!fn_710110c85c(reinterpret_cast<UnkAIComponent*>(self)))
         return false;
     UnkCommanderOwner_A2_b68* owner = self->owner;
     UnkCommanderSlot_A2_b68* slot = owner->slot;

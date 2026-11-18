@@ -5,8 +5,6 @@
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 
-void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
-
 UnkVec3f fn_710007a8d0(const void* a, const void* b, const void* c) {
     UnkMatrix44 m;
     fn_71000769f0(&m, a, b, c, &g_unk_7101647790);

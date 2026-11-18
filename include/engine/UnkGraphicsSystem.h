@@ -16,3 +16,4 @@ void fn_71001c8294(UnkGraphicsSystem* self);
 void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* unused);
 // Sets scale `index` (0 or 1), clamped to [0, 1]; false for another index.
 bool fn_71001d2dcc(UnkGraphicsSystem* self, u32 index, f32 value);
+extern __attribute__((visibility("hidden"))) u8 g_unk_716e595b68;  // the graphics system state (1: running)

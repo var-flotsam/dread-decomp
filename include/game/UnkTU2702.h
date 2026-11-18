@@ -7,6 +7,7 @@
 #include "types.h"
 #include "base/reflection/TypeObject.h"
 
+struct UnkStatics_7101116680;
 struct UnkMeleeRequest_l1065bc;
 struct UnkMeleeSelf_l1065bc;
 struct UnkLiquidPoolActorPart_ovb0075;
@@ -107,3 +108,4 @@ void fn_710110bc0c(void* self, void* arg, u32 id, u32 kind, s32 amount);
 void fn_71010fa790(void* ai);
 void fn_71011065bc(UnkMeleeSelf_l1065bc* self, s32 mode, UnkMeleeRequest_l1065bc* request, bool* out);
 void fn_710110f744(void* self, void* object);
+extern UnkStatics_7101116680 g_unk_7172a062c0 __attribute__((visibility("hidden")));

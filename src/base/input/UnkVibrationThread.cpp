@@ -2,6 +2,7 @@
 // loop, which runs the nn::hid vibration nodes' sampling once per sample interval until the thread
 // is told to stop. Names and layouts are placeholders.
 // Holds fn_710006f390.
+#include "base/global/timeline/CEvent.h"
 #include "base/input/UnkHidVibration.h"
 #include "game/UnkTU0.h"
 #include "types.h"
@@ -17,7 +18,6 @@ struct UnkTimer_7100080c40;
 s64 fn_7100080f2c(const UnkTimer_7100080c40* self);
 
 // Sleeps the calling thread for `ms` milliseconds (the first argument is not read).
-void fn_7100066854(void*, s32 ms);
 
 struct UnkVibrationThread {
     u8 pad_0x0[0x1e4];

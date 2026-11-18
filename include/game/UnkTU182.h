@@ -43,3 +43,4 @@ extern u32 g_unk_716e2a7568;
 extern UnkObject_0x130* g_unk_716e2a76a0;
 extern u8 g_unk_716e2a76e8[];
 extern s32 g_unk_716e2a7708[/* 0x800; unsized: x86-64 would assume 16-byte alignment */];
+void fn_7100160910(u32 index, s32 mode, u32 group);

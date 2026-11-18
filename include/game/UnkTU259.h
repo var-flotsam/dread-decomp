@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkGfxResolutionScale;
 struct UnkCountedResource;
 struct UnkGraphicsSystem;
 struct UnkGlobal_710b372a98;
@@ -33,3 +34,8 @@ void fn_71001cdd6c(UnkRenderTargetA1* target, base::global::CStrId id);
 void fn_71001cae0c(UnkGraphicsSystem* self, const base::global::CStrId* name, UnkCountedResource* texture, void* a);
 bool fn_71001cc608(UnkGraphicsSystem* self, void* program);
 void fn_71001c9048(UnkGlobal_710b372a98* self);
+extern bool g_unk_7101a1e60c;
+extern __attribute__((visibility("hidden"))) UnkGfxResolutionScale g_unk_7101a1e75c;
+extern u64 g_unk_716e554928;
+extern u64 g_unk_716e554930;
+extern bool g_unk_716e595b6c[] __attribute__((visibility("hidden")));

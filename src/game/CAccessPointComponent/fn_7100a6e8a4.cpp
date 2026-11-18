@@ -2,8 +2,8 @@
 // Places the user at the owner's anchor (as the teleporter does), keeps a weak handle to it (+0xe8), asks
 // the user's movement for the access-point movement state, starts the use (fn_7100aa0b04) and requests
 // state 6 from the state machine at +0x100 ("none" 8). Names and layouts are placeholders.
-#include "../../../src/game_s2/UnkSpitSend.h"
-#include "../../../src/game/UnkSmRequest_A5_b73.h"
+#include "../../game_s2/UnkSpitSend.h"
+#include "../UnkSmRequest_A5_b73.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CGrabComponent.h"
 #include "game/CUsableComponent.h"
@@ -12,6 +12,7 @@
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "game/UnkUsableKeys.h"
+#include "game/CSamusInteractMovementState/CParams.h"
 #include "types.h"
 
 struct __attribute__((packed, aligned(4))) UnkTrackBlend {
@@ -70,9 +71,7 @@ struct UnkTeleporterActor_b0233;
 struct UnkTeleporterObject_b0233;
 
 struct UnkApMovement_la6e8a4;
-void fn_710031433c(UnkApMovement_la6e8a4* movement, UnkLeaveParams_l9968ec* params);
 // The access point's movement state (its vtable).
-extern char g_unk_7101a874c0[];
 
 struct UnkApUser_la6e8a4 {
     u8 pad_0x0[0x208];
@@ -116,8 +115,8 @@ bool fn_7100a6e8a4(UnkAp_la6e8a4* self, UnkApUser_la6e8a4* user, const char* con
     }
     AssignRef(&self->user, fn_7100d78378(reinterpret_cast<UnkWeakTarget*>(user)));
     if (UnkApMovement_la6e8a4* movement = user->movement) {
-        UnkLeaveParams_l9968ec params(g_unk_7101a874c0 + 0x10);
-        fn_710031433c(movement, &params);
+        UnkLeaveParams_l9968ec params(reinterpret_cast<char*>(&g_unk_7101a874c0[2]));  // the vtable, past its two header words
+        fn_710031433c(reinterpret_cast<UnkAccessTarget_la70e48*>(movement), &params);
     }
     u64 a = fn_7100aa1f50(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);
     u64 b = fn_7100aa1888(reinterpret_cast<UnkShipRecharge_A5_b73*>(self), 6);

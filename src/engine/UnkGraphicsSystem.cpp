@@ -372,11 +372,7 @@ static_assert(sizeof(UnkGraphicsSystem) == 0x3183718, "graphics system size");
 bool fn_7100132a10();  // whether the console is docked (the 1.0 scale) or handheld (0.8)
 u32 fn_71001598d0(u32 max, u32* sizes);  // the display sizes (width, height pairs) and their count
 void fn_7100159910();
-void fn_7100159920();
-void fn_7100159ac0();
-void fn_7100159bf0(s32 a, s32 b);
 void fn_7100159c70();
-void fn_710015bd90(s32 x, s32 y, s32 width, s32 height);
 void fn_710015bdc0(s32 a, s32 b);
 u32 fn_710015be00();  // the number of display modes
 bool fn_710015be10(u32 index, UnkGfxDisplayMode* mode);
@@ -406,11 +402,9 @@ struct UnkGfxResolutionScale {
     f32 x;
     f32 y;
 };
-extern __attribute__((visibility("hidden"))) UnkGfxResolutionScale g_unk_7101a1e75c;
 extern __attribute__((visibility("hidden"))) bool g_unk_716e595b70;
 extern __attribute__((visibility("hidden"))) base::global::CStrId g_unk_716e595b90;
 extern __attribute__((visibility("hidden"))) s32 g_unk_716e595b78;  // flips between 0 and 1 each frame
-extern bool g_unk_7101a1e60c;
 extern u32 g_unk_7101a1dbcc;
 
 // The object whose float at +0x2c fn_71001cc464 eases towards (through the GOT).
@@ -420,8 +414,6 @@ struct UnkGfxFrameSource {
 };
 
 // Values the device layer reads (through the GOT), changed under the mutex below.
-extern u64 g_unk_716e554928;
-extern u64 g_unk_716e554930;
 extern __attribute__((visibility("hidden"))) nn::os::MutexType g_unk_716e595cb8;
 
 // Sets the clear colour (the colour's components as a vector).
@@ -1122,7 +1114,6 @@ void fn_71001c7d80(void* arg);  // the loading screen thread
 // The render scale from the settings (g_unk_7101a1e75c is the resolution scale).
 extern __attribute__((visibility("hidden"))) f32 g_unk_7101a1e758;
 // The loading screen thread's state.
-extern __attribute__((visibility("hidden"))) bool g_unk_716e595b68;
 extern __attribute__((visibility("hidden"))) u8 g_unk_716e595ca8[];  // its event
 extern __attribute__((visibility("hidden"))) u8 g_unk_716e595cd8[];  // its thread
 
@@ -1245,7 +1236,7 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
 
     fn_7100159490(0, 0, config.width, config.height, 0.0f, 1.0f);
     if (fn_71001598c0()) {
-        g_unk_716e595b68 = true;
+        g_unk_716e595b68 = 1;
         fn_7100066674(g_unk_716e595ca8, true);
         fn_71000668f8(&g_unk_716e595cb8);
         fn_7100066744(g_unk_716e595cd8, "LoadingScreenThread", fn_71001c7d80, 0, 0, nullptr);
@@ -1350,7 +1341,8 @@ s32 fn_710015c460();
 // The location of the uniform named `name` of a program's stage, 0 when it has none.
 // Sets `count` matrices of a uniform at `location` of a program state.
 f32 fn_7100132fb0();  // the display's aspect correction
-void fn_71001ccdd8(UnkGraphicsSystem* self);
+struct UnkGfx_l1ccdd8;  // the graphics system's layout in game/UnkTU259/fn_71001ccdd8.cpp
+void fn_71001ccdd8(UnkGfx_l1ccdd8* self);
 void fn_71001cd3a0(UnkGraphicsSystem* self);
 // The draw modes' program keys.
 extern __attribute__((visibility("hidden"))) u8 g_unk_716e595ba0[];
@@ -1399,7 +1391,7 @@ void fn_71001cb604(UnkGraphicsSystem* self, u32 mode, const f32* a, const f32* b
         fn_710015aa80(0);
         *flags = 0x101;
         self->field_0x317af7c = false;
-        fn_71001ccdd8(self);
+        fn_71001ccdd8(reinterpret_cast<UnkGfx_l1ccdd8*>(self));
         break;
     case 2:
     case 3:

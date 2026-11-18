@@ -6,8 +6,6 @@
 #include "game/UnkTU182.h"
 #include "types.h"
 
-void fn_7100160910(u32 index, s32 mode, u32 group);
-
 struct UnkShadowMap_l1ccdd8 {
     u8 pad_0x0[0x8c];
     u32 id;    // 0x8c

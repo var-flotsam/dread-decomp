@@ -7,12 +7,11 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/CCharClassGroundShockerAttack.h"
 #include "types.h"
 
 using base::reflection::UnkTunable;
 
-// As src/reflection/CCharClassGroundShockerAttack.cpp declares it.
-extern UnkTunable g_unk_71726e7be0;
 
 struct UnkGroundShockerAI_A3_b71;
 void fn_71005a50c8(UnkGroundShockerAI_A3_b71* self);

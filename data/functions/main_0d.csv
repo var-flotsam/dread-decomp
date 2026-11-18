@@ -5035,7 +5035,7 @@ address,size,name,name_source,subsystem,status
 0x7100dcc110,444,fn_7100dcc110,unknown,unknown,O
 0x7100dcc2cc,312,fn_7100dcc2cc,unknown,unknown,O
 0x7100dcc404,1676,fn_7100dcc404,unknown,unknown,U
-0x7100dcca90,768,fn_7100dcca90,unknown,unknown,U
+0x7100dcca90,768,fn_7100dcca90,unknown,unknown,O
 0x7100dccd90,736,fn_7100dccd90,unknown,unknown,U
 0x7100dcd070,520,fn_7100dcd070,unknown,unknown,O
 0x7100dcd278,1300,fn_7100dcd278,unknown,unknown,O

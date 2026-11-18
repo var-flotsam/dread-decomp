@@ -13,6 +13,7 @@
 #include "game/UnkItemProperties.h"
 #include "game/UnkTU134.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTU2712.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
@@ -23,8 +24,6 @@ using base::math::UnkVector4D;
 
 struct UnkPlayer;
 struct UnkInventory;
-
-void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
 
 // The origin the death effects are turned about.
 extern const f32 g_unk_710164cf5c[3] __attribute__((visibility("hidden")));
@@ -45,7 +44,7 @@ struct UnkDeathFxStatics_l10ed94 {
     u8 pad_0x0[0x140];
     UnkDeathFx_l10ed94 effects[10];
 };
-extern UnkDeathFxStatics_l10ed94 g_unk_7172a062c0 __attribute__((visibility("hidden")));
+struct UnkStatics_7101116680;  // the unit's statics, as its initialiser fn_7101116680 lays them out
 
 struct UnkFxSlot_l10ed94 {
     u8 pad_0x0[0x30];
@@ -139,7 +138,7 @@ void fn_710110ed94(UnkDeathAI_l10ed94* self) {
     UnkVec3f angle = fn_7100076acc(reinterpret_cast<const UnkXform*>(&m));
 
     for (u32 i = 0; i < 10; ++i) {
-        UnkDeathFx_l10ed94& fx = g_unk_7172a062c0.effects[i];
+        UnkDeathFx_l10ed94& fx = reinterpret_cast<UnkDeathFxStatics_l10ed94&>(g_unk_7172a062c0).effects[i];
         UnkFxPart_l10ed94* part = FindPart(parts, fx.name.data->Key());
         if (!part || !fn_710114e668(static_cast<UnkObject*>(parts), part->id))
             continue;

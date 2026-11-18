@@ -2,11 +2,12 @@
 // (fn_71003adaf8). One kind of message turns the owner a quarter turn away from the side it faces; a hit
 // from the component's own attack is scaled by the tuning and sends the owner's timeline the type id. Names and layouts are
 // placeholders.
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBossAIComponent.h"
+#include "game/CCharClassChozoRobotSoldierAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1370.h"
@@ -23,7 +24,7 @@ struct UnkRobotSoldierTuning_l471d48 {
     u8 pad_0x0[0x3c];
     f32 field_0x3c;  // a damage factor
 };
-extern UnkRobotSoldierTuning_l471d48 g_unk_71726cc6d8;  // reached through the GOT
+struct UnkRobotSoldierTuning_ovb0002;  // CChozoRobotSoldierAIComponent_Checks_ovb0002.cpp's view of the tuning
 
 struct UnkRobotSoldierLife_l471d48 {
     u8 pad_0x0[0x54];
@@ -113,7 +114,7 @@ u32 fn_7100471d48(UnkRobotSoldierAI_l471d48* self, UnkRobotSoldierMessage_l471d4
     UnkRobotSoldierLife_l471d48* life = self->owner->field_0x1b8;
     if (life && life->field_0x54 > 0.0f && msg->source &&
         self->attack->def->field_0x30 == msg->source->field_0x18) {
-        fn_71008c1538(reinterpret_cast<UnkRequest*>(msg), msg->damage * g_unk_71726cc6d8.field_0x3c);
+        fn_71008c1538(reinterpret_cast<UnkRequest*>(msg), msg->damage * reinterpret_cast<UnkRobotSoldierTuning_l471d48&>(g_unk_71726cc6d8).field_0x3c);
         self->hit = true;
         if (UnkTimelineComponent* timeline = self->owner->field_0x2e8) {
             base::reflection::UnkReflTypeIdArg arg;

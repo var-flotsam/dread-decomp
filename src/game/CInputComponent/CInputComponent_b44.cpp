@@ -12,7 +12,6 @@
 struct UnkListedItem;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
-void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
 
 struct UnkInputEntry_b44a2 {
     u8 pad_0x0[0x3c];

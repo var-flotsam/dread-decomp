@@ -2,12 +2,12 @@
 // the per-frame float array at +0xd00 (fn_71000d4a50, the accessor from src/game/UnkFrameSource.cpp), or
 // -1 when the array is empty. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 template <class T>
 struct UnkFrameVector;
 
-f32* fn_71000d4a50(UnkFrameVector<f32>* v, u32 i);
 
 struct UnkWaterPool1396 {
     u8 pad_0x0[0xcf8];

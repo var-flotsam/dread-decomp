@@ -9,12 +9,11 @@
 #include "game/UnkXformNode.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "game_s2/UnkParams.h"
+#include "game/CCharClassGroundShockerAttack.h"
 #include "types.h"
 
 using base::reflection::UnkTunable;
 
-// As src/reflection/CCharClassGroundShockerAttack.cpp declares it.
-extern UnkTunable g_unk_71726e7be0;
 
 // The tunable as this function reads it.
 struct UnkGroundShockerTunable_l5a5488 {
