@@ -126,6 +126,74 @@ def is_library(subsystem: str, name_source: str) -> bool:
     return True
 
 
+# Second-pass labelling for functions the name and neighbour rules leave without a subsystem.
+UNIT_SHARE = 0.9      # a unit labels its unlabelled functions when this share of its labelled bytes agree
+CALL_SHARE = 0.75     # call-graph votes label a function when this share of them agree
+CALLER_WEIGHT = 3     # a caller says more about a function than a callee does
+# Callees everything uses say nothing about the caller's subsystem.
+GENERIC_CALLEES = LIBRARY_SUBSYSTEMS | {"engine/base", "msapi"}
+
+
+def fill_from_units_and_calls(ordered: list[int], funcs: dict[int, int], sub: dict[int, str],
+                              ghidra: dict[int, dict]) -> None:
+    """Label, with a "?" suffix, the functions `sub` still lacks: first by the translation unit
+    (data/tu_map.csv) when at least UNIT_SHARE of the unit's name-labelled bytes share one subsystem,
+    then by call-graph votes (callers weigh CALLER_WEIGHT, callees one; GENERIC_CALLEES do not vote).
+    Library subsystems are never assigned here, so no function becomes L by inference."""
+    import bisect
+
+    tus = []
+    with (ROOT / "data" / "tu_map.csv").open(newline="") as f:
+        for r in csv.DictReader(f):
+            tus.append((int(r["start"], 16), int(r["end"], 16)))
+    starts = [s for s, _ in tus]
+
+    def unit(a: int) -> int | None:
+        i = bisect.bisect_right(starts, a) - 1
+        return i if i >= 0 and a < tus[i][1] else None
+
+    def fillable(s: str) -> bool:
+        return s not in LIBRARY_SUBSYSTEMS
+
+    by_unit: dict[int, dict[str, int]] = {}
+    for a, s in sub.items():
+        u = unit(a)
+        if u is not None and not s.endswith("?"):
+            by_unit.setdefault(u, {})
+            by_unit[u][s] = by_unit[u].get(s, 0) + funcs[a]
+    unit_label: dict[int, str] = {}
+    for u, votes in by_unit.items():
+        top = max(votes, key=votes.get)
+        if fillable(top) and votes[top] >= UNIT_SHARE * sum(votes.values()):
+            unit_label[u] = top
+    for a in ordered:
+        if a not in sub and unit(a) in unit_label:
+            sub[a] = unit_label[unit(a)] + "?"
+
+    callers: dict[int, list[int]] = {}
+    for a, g in ghidra.items():
+        for c in g["calls"]:
+            callers.setdefault(int(c, 16), []).append(a)
+    inferred: dict[int, str] = {}
+    for a in ordered:
+        if a in sub:
+            continue
+        votes: dict[str, int] = {}
+        for c in (ghidra.get(a) or {}).get("calls", []):
+            s = sub.get(int(c, 16), "").rstrip("?")
+            if s and s not in GENERIC_CALLEES:
+                votes[s] = votes.get(s, 0) + 1
+        for c in callers.get(a, []):
+            s = sub.get(c, "").rstrip("?")
+            if s:
+                votes[s] = votes.get(s, 0) + CALLER_WEIGHT
+        if votes:
+            top = max(votes, key=votes.get)
+            if fillable(top) and votes[top] >= CALL_SHARE * sum(votes.values()):
+                inferred[a] = top + "?"
+    sub.update(inferred)   # one pass over the labels as they stood, so the order of functions does not matter
+
+
 # Statuses that come from src/ (tools/check.py) and must survive regeneration.
 DECOMP_STATUSES = {"O", "m", "M", "W"}
 
@@ -319,6 +387,8 @@ def main() -> int:
         if sub[ordered[left]] == sub[ordered[right]] and right - left <= 64:
             for i in range(left + 1, right):
                 sub.setdefault(ordered[i], sub[ordered[left]] + "?")
+
+    fill_from_units_and_calls(ordered, funcs, sub, ghidra)
 
     for a in ordered:
         kind = non_code(img, a, funcs[a])
