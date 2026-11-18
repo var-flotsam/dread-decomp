@@ -194,6 +194,7 @@ address,digest,verdict,rules,detail
 0x7101005fcc,791825f9370865628cb64cad2a6fc3f2,pass,2,
 0x71010182fc,26d1156460e36d4ab6fb3bb414c1603a,inconclusive,2,only 18% of the original's instructions ran
 0x7101053aa4,bcd1548c2d7ebe19c4ae3e73ba1e9be4,pass,2,
+0x7101053c14,0dc5b4cb1b4d84031a6b9a0b0f0589d5,pass,2,
 0x710106b2bc,112cf8d14fa662df9e091193279f87ae,pass,2,
 0x710106bbb4,2fd59d9e96824e543027e7b4ed2adb44,pass,2,
 0x7101080d50,4b936d6fa7a28fddb116359426b976c5,pass,2,

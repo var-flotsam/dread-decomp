@@ -17,8 +17,6 @@ struct UnkObj_71001541a0 {
     u8 field_0x38;
 };
 
-extern UnkHeap_71001541a0* g_unk_716e29ab50;
-extern UnkHeap_71001541a0* g_unk_716e29ab58;
 extern void (*g_unk_716e29b078)(void* data);   // finaliser
 
 // NON_MATCHING(minor): the finaliser pointer's GOT load is scheduled before the store that clears

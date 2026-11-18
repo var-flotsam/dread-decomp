@@ -5,6 +5,7 @@
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU259.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU2656.h"
 #include "game/UnkTU286.h"
@@ -22,27 +23,25 @@ struct UnkFadeColor {
 
 struct UnkModeFlags {
     u8 unk_0x0[0xb8];
-    u8 flag;  // +0xb8
+    bool field_0xb8;
 };
 
-struct UnkFadeParams {
+struct UnkFadeParams_l053c14 {
     base::math::CVector3D color;
     f32 a;
     f32 duration;
     f32 delay;
 };
 
-struct UnkScreenFade {
+struct UnkScreenFade_l053c14 {
     u8* target;  // its node is at +0x18
     bool enabled;
     bool armed;  // +0x9
     u8 unk_0xa[0x2];
-    UnkFadeParams params;  // +0xc
+    UnkFadeParams_l053c14 params;  // +0xc
     f32 elapsed;           // +0x24
     u32 field_0x28;
 };
-
-void fn_71001c9048(UnkGlobal_710b372a98* self);
 
 static inline f32 NonNegative(f32 v) {
     return v <= 0.0f ? 0.0f : v;
@@ -50,13 +49,13 @@ static inline f32 NonNegative(f32 v) {
 
 // NON_MATCHING(minor): only the order of the three argument copies into callee-saved registers differs.
 void fn_7101053c14(void* fx, const base::math::CVector3D* color, f32 delay, f32 duration, f32 alpha) {
-    UnkScreenFade* self = static_cast<UnkScreenFade*>(fx);
+    UnkScreenFade_l053c14* self = static_cast<UnkScreenFade_l053c14*>(fx);
     if (fn_7101198688(g_unk_7101d47330))
         return;
     if (!(delay > 0.0f)) {
-        if (g_unk_71726bc570->flag) {
+        if (g_unk_71726bc570->field_0xb8) {
             self->armed = false;
-            self->params = UnkFadeParams();
+            self->params = UnkFadeParams_l053c14();
             self->elapsed = 0.0f;
         }
         fn_71001c9048(g_unk_710b372a98);

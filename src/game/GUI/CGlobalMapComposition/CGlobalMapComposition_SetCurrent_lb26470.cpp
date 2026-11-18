@@ -24,8 +24,6 @@ struct UnkGuiPos {
     UnkGuiPos(const UnkGuiPos& other) : x(other.x), y(other.y) {}
 };
 
-UnkVec2Result fn_71011cf0a8(UnkGuiDisplayObject* self, const UnkVec2Result& point);
-
 // An area marker on the map.
 struct UnkMapMarker_lb26470 {
     u8 pad_0x0[0xb5];

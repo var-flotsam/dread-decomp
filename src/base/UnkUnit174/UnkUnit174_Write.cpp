@@ -4,9 +4,9 @@
 // range fits. Names are placeholders.
 #include <string.h>
 
+#include "game/UnkTU174.h"
 #include "types.h"
 
-extern const u32 g_unk_7101647e48[] __attribute__((visibility("hidden")));  // element size per format
 
 struct UnkUnit174Buffer {
     u8* data;

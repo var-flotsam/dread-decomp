@@ -6,6 +6,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU259.h"
 #include "game/UnkTU286.h"
 #include "game/UnkTU315.h"
 #include "types.h"
@@ -68,7 +69,6 @@ struct UnkModeHolder {
     virtual bool vf_0x68();
 };
 
-void fn_71001c9048(UnkGlobal_710b372a98* self);
 bool fn_7100209960(void* node);
 
 static inline f32 NonNegative(f32 v) {

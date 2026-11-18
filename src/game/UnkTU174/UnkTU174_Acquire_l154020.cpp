@@ -33,13 +33,6 @@ struct UnkPooledBuffer_l154020 {
 };
 
 extern const u32 g_unk_7101647bac[] __attribute__((visibility("hidden")));
-extern const u32 g_unk_7101647e48[] __attribute__((visibility("hidden")));  // element size per format
-
-extern UnkHeap_71001541a0* g_unk_716e29ab50;
-extern UnkHeap_71001541a0* g_unk_716e29ab58;
-extern void (*g_unk_716e29b040)(void* builder, UnkGfxHeap* heap, u64 offset, u32 size);
-extern void (*g_unk_716e29b068)(void* block, void* builder);
-extern u64 (*g_unk_716e29b088)(void*);
 
 
 // Bytes per element of a format (0 to 2), else 0.
