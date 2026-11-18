@@ -59,7 +59,7 @@ void fn_710002fd10(UnkGuiKeyList* list, CStrId* key) {
                 self->count = 1;
             } else {
                 UnkKeyNode_b0250* last = self->tail;
-                __builtin_memcpy(&last->next, &node, sizeof(node));
+                last->next = node;
                 node->next = nullptr;
                 self->tail = node;
                 self->count = self->count + 1;
@@ -97,7 +97,7 @@ void fn_710002fe64(UnkGuiKeyList* list, CStrId* key, f32 value) {
                 self->count = 1;
             } else {
                 UnkKeyNode_b0250* last = self->tail;
-                __builtin_memcpy(&last->next, &node, sizeof(node));
+                last->next = node;
                 node->next = nullptr;
                 self->tail = node;
                 self->count = self->count + 1;

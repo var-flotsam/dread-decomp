@@ -3,7 +3,7 @@
 // equals the key's (+0x30), or null. Names and layouts are placeholders.
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 struct UnkDisplayObjectDefEntry {
     u8 pad_0x0[0x28];

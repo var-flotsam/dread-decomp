@@ -143,7 +143,7 @@ bool fn_71000878f0(UnkRegistry_0x70* registry, const UnkStrPair_0x10* key_, u32 
                     out->tail = item;
                     out->count = 1;
                 } else {
-                    __builtin_memcpy(&out->tail->next, &item, sizeof(item));
+                    out->tail->next = item;
                     item->next = nullptr;
                     out->tail = item;
                     out->count = out->count + 1;

@@ -143,7 +143,7 @@ void fn_710079f5c0(UnkCubeMapUpdate_ovb0033* self, f32 dt) {
             to = self->from + t * (to - self->from);
         }
         self->value = to;
-        __builtin_memcpy(&self->render_a->data->intensity, &to, 4);
+        self->render_a->data->intensity = to;
         UnkCubeMapRender2_ovb0033* render_b = self->render_b;
         render_b->data->intensity = self->value;
     }

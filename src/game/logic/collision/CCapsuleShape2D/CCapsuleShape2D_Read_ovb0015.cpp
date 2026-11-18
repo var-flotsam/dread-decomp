@@ -46,7 +46,7 @@ bool fn_7100d60094(UnkCapsuleShape2D_ovb0015* self, CRntFile* file) {
         fn_710007c714(file, &radius, 4, 1);
         fn_710007c714(file, &length, 4, 1);
     }
-    __builtin_memcpy(&self->radius, &radius, sizeof(radius));
+    self->radius = radius;
     self->x = 0.0f;
     self->y = 0.0f;
     self->half_length = length * 0.5f;

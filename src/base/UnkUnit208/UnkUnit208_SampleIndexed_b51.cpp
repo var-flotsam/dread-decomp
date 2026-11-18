@@ -4,8 +4,7 @@
 
 #include "types.h"
 
-// Copied as words that may alias anything: the original reloads the target after the stores.
-typedef u32 __attribute__((may_alias)) UnkWord_710016de34;
+typedef u32 UnkWord_710016de34;
 
 struct UnkVec3_710016de34 {
     u32 x, y, z;

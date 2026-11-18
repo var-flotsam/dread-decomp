@@ -82,7 +82,7 @@ struct UnkList {
             tail = n;
             count = 1;
         } else {
-            __builtin_memcpy(&tail->next, &n, sizeof(n));
+            tail->next = n;
             n->next = nullptr;
             tail = n;
             ++count;

@@ -1143,7 +1143,7 @@ struct UnkOwnedVector_ovb0084 {
 // A word copied bytewise.
 struct UnkRawWord_ovb0084 {
     u32 value;
-    UnkRawWord_ovb0084(const UnkRawWord_ovb0084& other) { __builtin_memcpy(&value, &other.value, sizeof(value)); }
+    UnkRawWord_ovb0084(const UnkRawWord_ovb0084& other) { value = other.value; }
 };
 
 // An entry of 0x38 bytes: a list of ids, a value and a name.
@@ -1185,7 +1185,7 @@ struct UnkRedenkiSlot_ovb0084 {
 
     UnkRedenkiSlot_ovb0084() = default;
     UnkRedenkiSlot_ovb0084(const UnkRedenkiSlot_ovb0084& other) {
-        __builtin_memcpy(&active, &other.active, sizeof(active));
+        active = other.active;
         values[0] = other.values[0];
         values[1] = other.values[1];
         values[2] = other.values[2];

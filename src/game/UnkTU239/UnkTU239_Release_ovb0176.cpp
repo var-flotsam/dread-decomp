@@ -58,7 +58,7 @@ void fn_71001b3754(UnkTrackedTarget_ovb0176* self) {
             u64 address = reinterpret_cast<u64>(block);
             if (block->field_0x28) {
                 u64 total = block->field_0x28 - address;
-                __builtin_memcpy(&block->field_0x28, &total, sizeof(total));
+                block->field_0x28 = total;
                 block = self->block;
             }
             if (block->field_0x20)

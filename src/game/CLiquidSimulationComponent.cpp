@@ -18,9 +18,7 @@ struct UnkLiquidVec2 {
     UnkLiquidVec2(f32 x_, f32 y_) : x(x_), y(y_) {}
 };
 
-// Heights are read and written as words that may alias anything (the original reloads the column
-// count after each store).
-typedef f32 __attribute__((may_alias)) UnkLiquidHeight;
+typedef f32 UnkLiquidHeight;
 
 // A 2D box: minimum then maximum corner.
 struct UnkLiquidViewBox {

@@ -50,7 +50,7 @@ static inline void CopyConstructVector(UnkTileElemVector_ovb0028* dst, const Unk
 // A new reference to a key, stored bytewise (no alias info: the original reloads the count after it).
 static inline void CopyKey(CStrId* dst, const CStrId* src) {
     UnkStringData* d = src->data;
-    __builtin_memcpy(&dst->data, &d, sizeof(d));
+    dst->data = d;
     if (&g_unk_7101d47108->empty != d)
         ++d->ref_count;
 }

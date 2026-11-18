@@ -515,7 +515,7 @@ __attribute__((flatten)) void fn_710027ebe4(base::global::CRntVector<UnkNavMeshE
 // A 4-byte key of a link's key array, copied member-wise and destroyed out of line.
 struct UnkNavLinkKeyE258 {
     u32 value;
-    UnkNavLinkKeyE258(const UnkNavLinkKeyE258& o) { __builtin_memcpy(&value, &o.value, sizeof(value)); }
+    UnkNavLinkKeyE258(const UnkNavLinkKeyE258& o) { value = o.value; }
     ~UnkNavLinkKeyE258() { fn_71002874dc(this); }
 };
 

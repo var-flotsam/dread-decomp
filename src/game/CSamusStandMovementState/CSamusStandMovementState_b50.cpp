@@ -26,8 +26,7 @@ struct UnkSamusStandState_b50a5 {
     UnkSamusMove_b50a5* movement;
 };
 
-// The id is written through a may_alias word: the original reloads the movement after the store.
-typedef u64 __attribute__((may_alias)) UnkHashWord_b50a5;
+typedef u64 UnkHashWord_b50a5;
 
 bool fn_71009b5460(UnkSamusStandState_b50a5* self, UnkHashWord_b50a5* id) {
     f32 speed = self->movement->speed;

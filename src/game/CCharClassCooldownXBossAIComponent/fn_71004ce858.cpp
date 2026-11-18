@@ -10,7 +10,7 @@
 #include "game/UnkBossAIComponent.h"
 #include "types.h"
 
-typedef void** __attribute__((may_alias)) UnkVtable;
+typedef void** UnkVtable;
 
 struct UnkNode : UnkBossAIComponent {};
 

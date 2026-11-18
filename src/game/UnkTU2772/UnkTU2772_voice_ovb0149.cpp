@@ -48,12 +48,12 @@ void fn_7101230180(UnkAtkVoicePool_b0149* self, UnkAtkVoiceItem_b0149* item) {
     s32 last = self->count - 1;
     self->count = last;
     UnkAtkVoiceItem_b0149* moved = self->slots[last];
-    __builtin_memcpy(&self->slots[slot], &moved, 8);
-    __builtin_memcpy(&self->slots[last], &item, 8);
+    self->slots[slot] = moved;
+    self->slots[last] = item;
     s32 slot32 = slot;
-    __builtin_memcpy(&self->index[((u64)moved - base) >> 8], &slot32, 4);
+    self->index[((u64)moved - base) >> 8] = slot32;
     s32 none = -1;
-    __builtin_memcpy(&self->index[idx], &none, 4);
+    self->index[idx] = none;
 }
 
 struct UnkAtkLoader;
@@ -192,7 +192,7 @@ void fn_710122fce4(UnkAtkWaveVoice_b0149* self) {
     if (fn_710123a710(out)) {
         self->head = head->next;
         u32 released = 3;
-        __builtin_memcpy(&head->state, &released, 4);
+        head->state = released;
         if (self->head) {
             self->head->state = 2;
         } else {

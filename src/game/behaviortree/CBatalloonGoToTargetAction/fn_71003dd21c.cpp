@@ -6,7 +6,7 @@
 #include "types.h"
 
 typedef u64 u64_a4 __attribute__((aligned(4)));
-typedef void** __attribute__((may_alias)) UnkVtable;
+typedef void** UnkVtable;
 
 struct UnkNode : UnkBehaviorTreeNodeBase {
     u64_a4 field_0x2c;

@@ -29,7 +29,7 @@ struct UnkHandleSlotsB_b0169 {
                     UnkHandle* last = slots[n];
                     // Untyped store: the original reloads the count after it.
                     __builtin_memcpy(p, &last, sizeof(last));
-                    __builtin_memcpy(&slots[used], &h, sizeof(h));
+                    slots[used] = h;
                     break;
                 }
             }
@@ -62,7 +62,7 @@ struct UnkHandlePool_b0169 {
                     UnkHandle* last = slots[n];
                     // Untyped store: the original reloads the count after it.
                     __builtin_memcpy(p, &last, sizeof(last));
-                    __builtin_memcpy(&slots[used], &h, sizeof(h));
+                    slots[used] = h;
                     break;
                 }
             }

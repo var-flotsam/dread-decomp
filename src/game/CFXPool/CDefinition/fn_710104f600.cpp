@@ -25,7 +25,7 @@ struct UnkReleasedStrIdT {
     // reloads the pool.
     UnkReleasedStrIdT(UnkReleasedStrIdT&& other) {
         UnkStringData* d = other.data;
-        __builtin_memcpy(&data, &d, sizeof(d));
+        data = d;
         other.data = &(*Pool)->empty;
     }
     ~UnkReleasedStrIdT() {
@@ -395,7 +395,7 @@ static inline UnkIdMap<V>* Assign(UnkIdMap<V>* self, const UnkIdMap<V>* other) {
         self->count = other->count;
         for (u32 i = 0; i < self->count; ++i) {
             UnkStringData* data = other->keys[i].data;
-            __builtin_memcpy(&self->keys[i], &data, sizeof(data));
+            self->keys[i] = data;
             if (&g_unk_7101d47108->empty != data)
                 ++data->ref_count;
         }

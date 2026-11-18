@@ -1201,8 +1201,7 @@ bool fn_7100232160(UnkActor_7100232160* self, const UnkSource_7100232160* other)
         __builtin_memcpy(&keys[self->count], &data, sizeof(data));
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
-        // The count is reloaded after this store.
-        __builtin_memcpy(&self->values[self->count], &component, sizeof(component));
+        self->values[self->count] = component;
         ++self->count;
         self->vf_0x120(component);
     }

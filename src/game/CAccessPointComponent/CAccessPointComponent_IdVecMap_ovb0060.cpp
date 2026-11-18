@@ -102,7 +102,7 @@ UnkIdVecNode_ovb0060* fn_7100a75548(UnkIdVecMap_ovb0060* self, const CStrId* key
     if (!self->head) {
         self->head = n;
     } else if (self->tail) {
-        __builtin_memcpy(&n->prev, &self->tail, sizeof(n->prev));
+        n->prev = self->tail;
         self->tail->next = n;
     }
     self->tail = n;

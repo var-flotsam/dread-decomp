@@ -14,7 +14,7 @@ struct UnkThermalName_A5_b73 {
     u8 pad_0x18[0x44 - 0x18];
     s32 uses;
 };
-typedef s32 __attribute__((may_alias)) UnkAliasS32_A5_b73;
+typedef s32 UnkAliasS32_A5_b73;
 
 struct UnkThermalDevice_A5_b73 {
     u8 pad_0x0[0x30];

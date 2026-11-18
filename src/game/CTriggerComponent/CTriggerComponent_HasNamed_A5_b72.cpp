@@ -4,9 +4,8 @@
 #include "base/global/CRntString.h"
 #include "types.h"
 
-// The bump goes through a may_alias type: the original reloads the target after it. The key is read through a
-// volatile access: the original loads it from the stack copy on every iteration.
-typedef s32 __attribute__((may_alias)) UnkAliasS32_A5_b72;
+// The key is read through a volatile access: the original loads it from the stack copy on every iteration.
+typedef s32 UnkAliasS32_A5_b72;
 
 namespace {
 struct UnkTriggerTarget_A5_b72 {

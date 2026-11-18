@@ -17,7 +17,7 @@ struct UnkMinimapId_o0313 {
 
     UnkMinimapId_o0313(UnkMinimapId_o0313&& other) {
         UnkStringData* d = other.data;
-        __builtin_memcpy(&data, &d, sizeof(d));
+        data = d;
         // Keeps the pool pointer loaded after the copy, as the original loads it for each id.
         asm volatile("" ::: "memory");
         other.data = &g_unk_7101d47108->empty;
@@ -46,7 +46,7 @@ struct UnkBoundsItem_o0313 {
         : field_0x0(other.field_0x0), field_0x4(other.field_0x4), field_0x8(other.field_0x8),
           field_0xc(other.field_0xc), field_0x10(other.field_0x10), field_0x14(other.field_0x14),
           name(static_cast<UnkMinimapId_o0313&&>(other.name)) {
-        __builtin_memcpy(&field_0x20, &other.field_0x20, sizeof(field_0x20));
+        field_0x20 = other.field_0x20;
     }
 };
 static_assert(sizeof(UnkBoundsItem_o0313) == 0x28, "layout");

@@ -174,7 +174,7 @@ void fn_7100e0e788(UnkLightMap_ovb0060* self, const UnkLightPathId_ovb0060* key,
     if (!self->head) {
         self->head = n;
     } else if (self->tail) {
-        __builtin_memcpy(&n->prev, &self->tail, sizeof(n->prev));
+        n->prev = self->tail;
         self->tail->next = n;
     }
     self->tail = n;

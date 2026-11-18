@@ -161,7 +161,7 @@ struct UnkHyperBeamEntry_ovb0127 {
     UnkHyperBeamEntry_ovb0127() : values{0, 0, 0, 0}, field_0x10(-1.0f) {}
     UnkHyperBeamEntry_ovb0127(const UnkHyperBeamEntry_ovb0127& o) {
         for (int i = 0; i < 4; ++i)
-            __builtin_memcpy(&values[i], &o.values[i], sizeof(u32));
+            values[i] = o.values[i];
         field_0x10 = -1.0f;
     }
 };

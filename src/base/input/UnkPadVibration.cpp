@@ -128,7 +128,7 @@ static inline u32 StyleBits(const nn::hid::NpadStyleSet& s) {
 template <class R>
 static inline bool IsSuccess(const R& r) {
     u32 v;
-    __builtin_memcpy(&v, &r, sizeof(v));
+    v = r;
     return v == 0;
 }
 

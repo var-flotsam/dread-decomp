@@ -120,7 +120,7 @@ static inline __attribute__((always_inline)) void RemoveAt(UnkBillboardCollision
     u32 index = (u32)(p - map.values);
     if (map.count - 1 != index) {
         __builtin_memcpy(&map.values[index], &map.values[map.count - 1], sizeof(UnkEntry*));
-        __builtin_memcpy(&map.keys[index], &map.keys[map.count - 1], sizeof(UnkBillboardKey_ovb0137*));
+        map.keys[index] = map.keys[map.count - 1];
         index = map.count - 1;
     }
     map.count = index;

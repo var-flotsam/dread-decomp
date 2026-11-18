@@ -83,7 +83,7 @@ struct UnkHashVector {
             p = static_cast<u64*>(allocator->Alloc((u64)new_capacity * sizeof(u64), 8, flags));
             if (u64* old = data) {
                 for (u32 i = 0; i < count; ++i)
-                    __builtin_memcpy(&p[i], &old[i], sizeof(u64));
+                    p[i] = old[i];
                 allocator->Free(data);
             }
             n = count;
@@ -92,7 +92,7 @@ struct UnkHashVector {
         } else {
             p = data;
         }
-        __builtin_memcpy(&p[n], &v, sizeof(u64));
+        p[n] = v;
         ++count;
     }
 };

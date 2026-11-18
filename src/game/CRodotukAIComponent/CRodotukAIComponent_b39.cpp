@@ -16,8 +16,7 @@ struct UnkRodotukDef_rai {
     u32 count;  // 0x520
 };
 
-// The count is stored through a may_alias type: the original reloads the array after each store.
-typedef u32 __attribute__((may_alias)) AliasU32_rai;
+typedef u32 AliasU32_rai;
 
 struct UnkRodotukAI_rai {
     u8 pad_0x0[0x14858];

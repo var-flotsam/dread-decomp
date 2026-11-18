@@ -60,7 +60,7 @@ static inline __attribute__((always_inline)) UnkPathByIdIterValue_b60* MoveIterV
             self->state = 0;
         }
         self->state = other->state;
-        __builtin_memcpy(&self->ref, &other->ref, sizeof(self->ref));
+        self->ref = other->ref;
     }
     return self;
 }

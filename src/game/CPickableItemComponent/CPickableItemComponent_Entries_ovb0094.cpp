@@ -100,7 +100,7 @@ UnkPickEntry_ovb0094* fn_71009d42e8(UnkPickPool_ovb0094* self, UnkPickEntry_ovb0
     if (last != index) {
         new (&self->values[index]) UnkPickEntry_ovb0094(self->values[last]);
         self->values[self->count - 1].Reset();
-        __builtin_memcpy(&self->keys[index], &self->keys[self->count - 1], sizeof(u64));
+        self->keys[index] = self->keys[self->count - 1];
     }
     --self->count;
     return &self->values[index];

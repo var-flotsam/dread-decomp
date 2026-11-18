@@ -56,9 +56,8 @@ static inline __attribute__((always_inline)) void Age(UnkEmitter_b0235* self, f3
         } else {
             u32 last = --self->count;
             u32 moved = indices[last];
-            // Untyped stores: the original reloads the emitter's fields after them.
-            __builtin_memcpy(&indices[i], &moved, sizeof(u32));
-            __builtin_memcpy(&self->indices[self->count], &particle, sizeof(u32));
+            indices[i] = moved;
+            self->indices[self->count] = particle;
         }
     }
 }
@@ -120,7 +119,7 @@ void fn_710016e910() {
         fn_7100161dc0(g_unk_716e34e420[i].resource);
         // An untyped store: the original reloads the slot array's pointer after it.
         s32 none = -1;
-        __builtin_memcpy(&g_unk_716e34e420[i].slot, &none, sizeof(none));
+        g_unk_716e34e420[i].slot = none;
         *table++ = &g_unk_716e34e420[i];
     }
     g_unk_716e34e428 = 0;

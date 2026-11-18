@@ -157,7 +157,7 @@ static inline __attribute__((always_inline)) void Link_ovb0224(UnkEntryMap_ovb02
     if (self->head) {
         if (!self->tail) goto done;
         UnkEntryNode_ovb0224* last = self->tail;
-        __builtin_memcpy(&node->prev, &last, sizeof(last));
+        node->prev = last;
         link = &self->tail->next;
     }
     *link = node;

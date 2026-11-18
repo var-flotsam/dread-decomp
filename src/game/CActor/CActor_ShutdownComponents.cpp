@@ -72,8 +72,7 @@ void fn_7100232a48(UnkActor341* self) {
     for (UnkComponent341** it = self->components, **end = it + self->component_count; it != end; ++it) {
         UnkHolder341* holder = (*it)->vf_0x28();
         if (holder && holder->object) {
-            // The original reloads the holder's pointer after this store.
-            typedef UnkCounted341* __attribute__((may_alias)) AliasPtr;
+            typedef UnkCounted341* AliasPtr;
             *reinterpret_cast<AliasPtr*>(&holder->object->owner) = nullptr;
             if (UnkCounted341* object = holder->object) {
                 if (--object->count == 0)

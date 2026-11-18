@@ -66,9 +66,8 @@ void fn_71001cdba4(UnkOwner_71001cdba4* self, UnkEntry_71001cdba4* entry) {
 void fn_71001cdd18(UnkOwner_71001cdba4* self) {
     base::global::CRntVector<UnkEntry_71001cdba4>& v = self->entries;
     u32 n = v.count - 1;
-    // The entry's destructor (its count cleared), as a word that may alias the array's fields: the
-    // original reloads the array after it.
-    typedef u32 __attribute__((may_alias)) UnkAliasCount;
+    // The entry's destructor (its count cleared).
+    typedef u32 UnkAliasCount;
     *reinterpret_cast<UnkAliasCount*>(&v.data[(s32)n].count) = 0;
     v.count = n;
     if (n != 0) {

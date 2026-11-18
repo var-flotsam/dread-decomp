@@ -26,7 +26,7 @@ struct UnkReleasedStrIdT {
     // reloads the pool.
     UnkReleasedStrIdT(UnkReleasedStrIdT&& other) {
         UnkStringData* d = other.data;
-        __builtin_memcpy(&data, &d, sizeof(d));
+        data = d;
         other.data = &(*Pool)->empty;
     }
     ~UnkReleasedStrIdT() {

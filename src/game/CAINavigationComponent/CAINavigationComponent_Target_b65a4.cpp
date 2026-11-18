@@ -38,7 +38,7 @@ struct UnkNavTarget_b65a4 {
 };
 
 // The position copied as an x/y word then z, stored in that order (a plain struct copy stores z first).
-typedef u64 __attribute__((may_alias)) UnkNavPair_b65a4;
+typedef u64 UnkNavPair_b65a4;
 static inline void CopyVec(UnkNavVec_b65a4* out, const char* src) {
     UnkNavPair_b65a4 xy = *reinterpret_cast<const UnkNavPair_b65a4*>(src);
     f32 z = *reinterpret_cast<const f32*>(src + 8);

@@ -239,7 +239,7 @@ void fn_7100fc9084(UnkSoundEventsSelector2_ovb56* self, const CStrId* id) {
     __builtin_memcpy(slot, &self->id, sizeof(CStrId));
     if (&g_unk_7101d47108->empty != slot->data)
         ++slot->data->ref_count;
-    __builtin_memcpy(&registry.selectors[registry.count], &self, sizeof(self));
+    registry.selectors[registry.count] = self;
     ++registry.count;
 }
 

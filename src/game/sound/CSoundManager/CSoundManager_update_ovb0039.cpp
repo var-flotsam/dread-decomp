@@ -162,7 +162,7 @@ struct UnkSoundPairList_ovb0039 {
 // CStrId's copy constructor, with the pointer copied untyped (the count is reloaded after it).
 static inline void CopyId(CStrId* dst, const CStrId* src) {
     base::global::UnkStringData* data = src->data;
-    __builtin_memcpy(&dst->data, &data, sizeof(data));
+    dst->data = data;
     if (&g_unk_7101d47108->empty != data)
         ++data->ref_count;
 }

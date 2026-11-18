@@ -69,8 +69,7 @@ struct UnkMinimapBoundsNameItem {
     __attribute__((always_inline)) UnkMinimapBoundsNameItem(UnkMinimapBoundsNameItem&& other)
         : field_0x0(other.field_0x0), field_0x4(other.field_0x4), min{other.min[0], other.min[1]},
           max{other.max[0], other.max[1]}, name(static_cast<UnkMinimapEmptyStrId&&>(other.name)) {
-        // Copied bitwise, as an implicit copy would (the original reloads the array after it).
-        __builtin_memcpy(&field_0x20, &other.field_0x20, sizeof(field_0x20));
+        field_0x20 = other.field_0x20;
     }
 };
 static_assert(sizeof(UnkMinimapBoundsNameItem) == sizeof(UnkMinimapBoundsName), "layout");

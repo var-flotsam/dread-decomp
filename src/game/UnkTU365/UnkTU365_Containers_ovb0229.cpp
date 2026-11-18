@@ -308,8 +308,7 @@ struct UnkList28_ovb0229 {
             head = tail = node;
             count = 1;
         } else {
-            // Stored untyped: the original reloads the tail and the count afterwards.
-            __builtin_memcpy(&tail->next, &node, sizeof(node));
+            tail->next = node;
             node->prev = tail;
             tail = node;
             ++count;

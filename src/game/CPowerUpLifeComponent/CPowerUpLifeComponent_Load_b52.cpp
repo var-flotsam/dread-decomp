@@ -15,9 +15,7 @@ using base::global::CStrId;
 struct UnkActorDefFactory;
 struct UnkEntityState;
 
-// Counters raised through accesses that may alias anything: the original reloads the pointers it
-// reached them through.
-typedef u32 __attribute__((may_alias)) UnkAliasU32_b52;
+typedef u32 UnkAliasU32_b52;
 
 struct UnkPowerUpLifeName_b52 {
     u8 unk_0x0[0x10];

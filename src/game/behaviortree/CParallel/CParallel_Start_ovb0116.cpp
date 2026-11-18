@@ -71,8 +71,7 @@ s32 fn_71003a8044(UnkParallel_ovb0116* self) {
             self->tail = entry;
             self->running_count = 1;
         } else {
-            // Copied bytewise: the original reloads the count after this store.
-            __builtin_memcpy(&self->tail->next, &entry, sizeof(entry));
+            self->tail->next = entry;
             entry->next = nullptr;
             self->tail = entry;
             ++self->running_count;

@@ -158,7 +158,7 @@ void fn_7100080578(UnkPoolSetWithNodes* set, u32 buckets, u32 nodes) {
                 if (v.count) {
                     u32 i = 0;
                     do {
-                        __builtin_memcpy(&grown[i], &old[i], sizeof(UnkPoolNode*));
+                        grown[i] = old[i];
                         ++i;
                     } while (i < v.count);
                 }

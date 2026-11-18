@@ -61,7 +61,7 @@ void fn_71000dbf8c(UnkKeyedB0Array_b44a1* self, const u64* key) {
     if (last != (u32)i) {
         new (&self->values[(u32)i]) UnkRecordB0_b44a1(static_cast<UnkRecordB0_b44a1&&>(self->values[last]));
         self->values[self->count - 1].~UnkRecordB0_b44a1();
-        __builtin_memcpy(&self->keys[(u32)i], &self->keys[self->count - 1], sizeof(u64));
+        self->keys[(u32)i] = self->keys[self->count - 1];
         last = self->count - 1;
     }
     self->count = last;

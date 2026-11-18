@@ -211,7 +211,7 @@ struct UnkHudIdValue_ovb0017 {
     // The value is copied bitwise: the original reloads the array's count and the string pool
     // after storing it.
     UnkHudIdValue_ovb0017(const UnkHudIdValue_ovb0017& other) : id(other.id) {
-        __builtin_memcpy(&value, &other.value, sizeof(value));
+        value = other.value;
     }
 };
 

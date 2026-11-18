@@ -77,13 +77,13 @@ struct UnkOwnedPtr_A1_b73 {
 static inline __attribute__((always_inline)) void MoveOwned_A1_b73(UnkOwnedPtr_A1_b73* dst, UnkOwnedPtr_A1_b73* src) {
     UnkOwnedObj_A1_b73* p = src->p;
     src->p = nullptr;
-    __builtin_memcpy(&dst->p, &p, sizeof(p));
+    dst->p = p;
 }
 
 static inline __attribute__((always_inline)) void DestroyOwned_A1_b73(UnkOwnedPtr_A1_b73* o) {
     UnkOwnedObj_A1_b73* p = o->p;
     UnkOwnedObj_A1_b73* null = nullptr;
-    __builtin_memcpy(&o->p, &null, sizeof(null));
+    o->p = null;
     if (p) {
         p->vf_0x90();
         p->vf_0x10();
@@ -100,7 +100,7 @@ static inline __attribute__((always_inline)) void MovePair_A1_b73(UnkStrIdPathPa
     src->id.data = &g_unk_7101d47108->empty;
     dst->path.data = src->path.data;
     base::global::UnkStringData* empty = &g_unk_7101d47200->empty;
-    __builtin_memcpy(&src->path.data, &empty, sizeof(empty));
+    src->path.data = empty;
 }
 
 static inline __attribute__((always_inline)) void DestroyPair_A1_b73(UnkStrIdPathPair* p) {

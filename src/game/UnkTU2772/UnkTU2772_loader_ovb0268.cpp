@@ -174,8 +174,7 @@ u32 fn_7101238990(void* self_, void* samples_, u32 count) {
         u32 pos = self->write_pos + self->frame + self->sub_frame * frames;
         if (pos >= self->capacity)
             pos -= self->capacity;
-        // the sample store may alias the cursor fields, so they are re-read after it
-        typedef s16 __attribute__((may_alias)) s16_alias;
+        typedef s16 s16_alias;
         ((s16_alias*)self->buffer)[pos] = samples[i];
         self->sub_frame++;
         if (self->sub_frame < per_frame)

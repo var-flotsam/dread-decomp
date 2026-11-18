@@ -71,7 +71,7 @@ __attribute__((always_inline)) inline void Push(CRntVector<T>& v, T value) {
     } else {
         p = v.data;
     }
-    __builtin_memcpy(&p[n], &value, sizeof(T));
+    p[n] = value;
     ++v.count;
 }
 

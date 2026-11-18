@@ -33,7 +33,7 @@ struct UnkShared_710071faf4 {
     u8 unk_0x0[0x54];
     s32 ref_count;
 };
-typedef s32 __attribute__((may_alias)) UnkAliasS32_710071faf4;
+typedef s32 UnkAliasS32_710071faf4;
 
 struct UnkRef_710071faf4 {
     UnkShared_710071faf4* ptr;

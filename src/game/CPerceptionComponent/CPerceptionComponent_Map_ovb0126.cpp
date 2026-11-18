@@ -16,7 +16,7 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 struct UnkPerceiver_ovb0126 {
     virtual void vf_0x0();

@@ -123,7 +123,7 @@ struct UnkGrowArray_ovb0092 {
             Reallocate(new_capacity);
             n = count;
         }
-        __builtin_memcpy(&data[n], &value, sizeof(T));
+        data[n] = value;
         ++count;
     }
 };

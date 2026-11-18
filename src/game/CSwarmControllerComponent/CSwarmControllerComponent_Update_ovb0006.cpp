@@ -431,8 +431,8 @@ struct UnkShotWeakRef {
     UnkShotWeakRef() {
         UnkShotWeakTarget* none = nullptr;
         s64 invalid = -1;
-        __builtin_memcpy(&target, &none, sizeof(none));
-        __builtin_memcpy(&generation, &invalid, sizeof(invalid));
+        target = none;
+        generation = invalid;
     }
     ~UnkShotWeakRef() {}
 };

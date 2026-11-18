@@ -5,8 +5,7 @@
 #include "game/UnkTU290.h"
 #include "types.h"
 
-// The store may alias any other access: the owner pointer is read again after it.
-typedef f32 __attribute__((may_alias)) UnkAliasF32_b43a2;
+typedef f32 UnkAliasF32_b43a2;
 
 struct UnkTarget_1385_b43a2 {
     u8 pad_0x0[0x7c];

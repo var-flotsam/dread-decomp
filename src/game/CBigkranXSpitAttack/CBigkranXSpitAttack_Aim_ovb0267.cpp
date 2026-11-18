@@ -69,7 +69,7 @@ struct UnkAimTrack_ovb0267 {
     }
 };
 
-typedef u32 __attribute__((may_alias)) a_u32_ovb0267;
+typedef u32 a_u32_ovb0267;
 struct UnkSpitVec3_ovb0267 {
     f32 x, y, z;
     UnkSpitVec3_ovb0267() : x(0), y(0), z(0) {}

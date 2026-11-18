@@ -63,8 +63,7 @@ void fn_710059aa2c(UnkGooplotAI_A3_b68* self) {
             p[0x168] = 1;
     }
     UnkGooplotMovement_A3_b68* movement = self->owner->field_0x218;
-    // Copied as words that may alias anything (x and y, then z).
-    typedef u32 __attribute__((may_alias)) word;
+    typedef u32 word;
     const word* src = reinterpret_cast<const word*>(&g_unk_710164779c);
     word* dst = reinterpret_cast<word*>(&movement->velocity);
     word x = src[0];

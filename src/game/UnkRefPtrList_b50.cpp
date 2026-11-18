@@ -4,7 +4,7 @@
 #include "game/UnkTU1102.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) UnkRefCount_b50;
+typedef u32 UnkRefCount_b50;
 
 struct UnkRefObj_b50 {
     virtual void vf_0();

@@ -5,7 +5,7 @@
 // written by offset.
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32;
+typedef u32 UnkAliasU32;
 
 void fn_71001b7584(char* self, u32 mode) {
     if (*(bool*)(self + 0x375))

@@ -5,7 +5,7 @@
 #include "game/CAreaFXComponent.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) a_u32_ovb0081;
+typedef u32 a_u32_ovb0081;
 
 struct UnkAreaFXRecord_A5_b66 {
     u32 field_0x0;

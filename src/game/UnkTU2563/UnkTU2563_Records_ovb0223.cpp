@@ -354,8 +354,7 @@ UnkFreedVectorPair* fn_7100e551fc(UnkSecondPtrArray<UnkFreedVectorPair>* self, U
         new (dst) UnkFreedVectorPair(static_cast<UnkFreedVectorPair&&>(*src));
         self->data[self->count - 1].~UnkFreedVectorPair();
         void** ptrs = static_cast<void**>(self->field_0x8);
-        // Copied bytewise (the original reloads the count after it).
-        __builtin_memcpy(&ptrs[index], &ptrs[self->count - 1], sizeof(void*));
+        ptrs[index] = ptrs[self->count - 1];
     }
     self->count = self->count - 1;
     return &self->data[index];
@@ -748,7 +747,7 @@ struct UnkMinimapId_b0223 {
 
     UnkMinimapId_b0223(UnkMinimapId_b0223&& other) {
         UnkStringData* d = other.data;
-        __builtin_memcpy(&data, &d, sizeof(d));
+        data = d;
         // Keeps the pool pointer loaded after the copy, as the original loads it for each id.
         asm volatile("" ::: "memory");
         other.data = &g_unk_7101d47108->empty;
@@ -777,7 +776,7 @@ struct UnkBoundsItem_b0223 {
         : field_0x0(other.field_0x0), field_0x4(other.field_0x4), field_0x8(other.field_0x8),
           field_0xc(other.field_0xc), field_0x10(other.field_0x10), field_0x14(other.field_0x14),
           name(static_cast<UnkMinimapId_b0223&&>(other.name)) {
-        __builtin_memcpy(&field_0x20, &other.field_0x20, sizeof(field_0x20));
+        field_0x20 = other.field_0x20;
     }
 };
 static_assert(sizeof(UnkBoundsItem_b0223) == 0x28, "layout");

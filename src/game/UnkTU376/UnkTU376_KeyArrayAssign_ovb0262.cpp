@@ -8,7 +8,7 @@
 // A 4-byte key, copied member-wise and destroyed out of line.
 struct UnkLinkKey_ovb0262j {
     u32 value;
-    UnkLinkKey_ovb0262j(const UnkLinkKey_ovb0262j& o) { __builtin_memcpy(&value, &o.value, sizeof(value)); }
+    UnkLinkKey_ovb0262j(const UnkLinkKey_ovb0262j& o) { value = o.value; }
     ~UnkLinkKey_ovb0262j() { fn_71002874dc(this); }
 };
 

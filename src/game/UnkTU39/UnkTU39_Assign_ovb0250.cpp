@@ -69,7 +69,7 @@ void* fn_710002f90c(void* dst, const void* src) {
             new_count = 1;
         } else {
             UnkKeyNode_b0250* last = self->tail;
-            __builtin_memcpy(&last->next, &copy, sizeof(copy));
+            last->next = copy;
             copy->next = nullptr;
             self->tail = copy;
             new_count = self->count + 1;

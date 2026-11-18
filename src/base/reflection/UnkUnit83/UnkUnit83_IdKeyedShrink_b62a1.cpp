@@ -17,7 +17,7 @@ template <base::global::UnkStringPool*& Pool>
 struct UnkMovedId_b62a1 : base::global::UnkStrIdBase {
     __attribute__((always_inline)) UnkMovedId_b62a1(UnkMovedId_b62a1&& other) : UnkStrIdBase(other) {
         base::global::UnkStringData* empty = &Pool->empty;
-        __builtin_memcpy(&other.data, &empty, sizeof(empty));
+        other.data = empty;
     }
     ~UnkMovedId_b62a1() {
         if (base::global::UnkStringPool* pool = Pool) {

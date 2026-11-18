@@ -7,8 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-// The original reloads the source after every store (its accesses may alias the copy).
-struct __attribute__((may_alias)) UnkBlob_71000947e4 {
+struct UnkBlob_71000947e4 {
     u32 size;
     void* data;
     bool owned;

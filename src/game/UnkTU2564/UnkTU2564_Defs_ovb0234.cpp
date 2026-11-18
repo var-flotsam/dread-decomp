@@ -147,7 +147,7 @@ void fn_7100e68cac(CStrId* kind, const CStrId& name) {
     __builtin_memcpy(slot, kind, sizeof(CStrId));
     if (&g_unk_7101d47108->empty != slot->data)
         ++slot->data->ref_count;
-    __builtin_memcpy(&registry.kinds[registry.count], &kind, sizeof(kind));
+    registry.kinds[registry.count] = kind;
     ++registry.count;
 }
 
@@ -189,7 +189,7 @@ void fn_7100e6e4a0(void* self) { new (self) UnkIdTail_b0234(); }
 // CStrId's copy constructor, with the pointer copied untyped (the count is reloaded after it).
 __attribute__((always_inline)) static inline void CopyId(CStrId* dst, const CStrId* src) {
     UnkStringData* data = src->data;
-    __builtin_memcpy(&dst->data, &data, sizeof(data));
+    dst->data = data;
     if (&g_unk_7101d47108->empty != data)
         ++data->ref_count;
 }

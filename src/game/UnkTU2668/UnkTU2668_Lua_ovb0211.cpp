@@ -69,8 +69,7 @@ struct __attribute__((packed, aligned(4))) UnkLuaScratch {
         } else {
             p = data;
         }
-        // Untyped store: the original reloads the count after the element is written.
-        __builtin_memcpy(&p[n], &value, sizeof(value));
+        p[n] = value;
         ++count;
     }
 };

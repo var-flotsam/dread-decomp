@@ -89,7 +89,7 @@ u32* fn_710079ccb8(UnkColMatDict_ovb0046* self, u32* it) {
         UnkStrIdMember& from = self->keys[self->count - 1];
         self->keys[index].data = from.data;
         base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&from.data, &empty, sizeof(empty));
+        from.data = empty;
         self->keys[self->count - 1].~UnkStrIdMember();
     }
     --self->count;

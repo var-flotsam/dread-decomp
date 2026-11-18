@@ -4,8 +4,7 @@
 #include "base/UnkCollectionIter.h"
 #include "types.h"
 
-// The index: its store may alias the holder's state (the original reloads the state after it).
-struct __attribute__((may_alias)) UnkAliasedIndex_b58 {
+struct UnkAliasedIndex_b58 {
     u64 value;
 };
 
