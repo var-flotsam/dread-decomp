@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 433 (CAbilityShinespark's neighbourhood): writes a float for a string id into a record
 // file, at the id's recorded position or at a new one, and remembers the id.
 // Names and layouts are placeholders.

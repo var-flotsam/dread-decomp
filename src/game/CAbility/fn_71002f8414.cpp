@@ -76,6 +76,7 @@ static inline void InitHolder(UnkAbilityValueHolder_l2f8414* holder, u32 id) {
     holder->field_0x68 = 0;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71002f8414(UnkGhostAuraBase_b0040* object) {
     fn_7101043904(object);
     UnkAbility_l2f8414* self = reinterpret_cast<UnkAbility_l2f8414*>(object);

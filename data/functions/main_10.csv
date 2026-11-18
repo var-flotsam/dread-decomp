@@ -1880,7 +1880,7 @@ address,size,name,name_source,subsystem,status
 0x7101053a7c,28,fn_7101053a7c,unknown,unknown,O
 0x7101053a98,12,fn_7101053a98,unknown,unknown,O
 0x7101053aa4,368,fn_7101053aa4,unknown,unknown,m
-0x7101053c14,348,fn_7101053c14,unknown,unknown,U
+0x7101053c14,348,fn_7101053c14,unknown,unknown,m
 0x7101053d70,180,fn_7101053d70,unknown,unknown,O
 0x7101053e24,520,fn_7101053e24,unknown,unknown,O
 0x710105402c,388,CEditorPathSegment::refl_InitClass,reflection,game,O

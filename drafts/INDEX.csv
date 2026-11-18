@@ -156,7 +156,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710010f774,196,drafts/game/UnkTU107/fn_710010f774.cpp,control flow,16.3,40,lean-ob3,y-range test merged into fccmp; original branches on bottom before computing top
 0x71001176e8,960,drafts/game/UnkTU108/fn_71001176e8.cpp,calls,13.3,184,lean-oc1,loop unswitching: original splits the loop on the index pointer only and checks found/best at loop top; ours s
 0x7100117aa8,248,drafts/game/UnkTU108/fn_7100117aa8.cpp,control flow,22.2,48,lean-b3,loop shape: original has separate empty-case exit and rotated loop; mine merges them
-0x71001186d8,176,drafts/game/UnkTU108/fn_71001186d8.cpp,registers or order,77.3,10,lean-callee1,float scheduling of the tolerance adds and cset
+0x71001186d8,176,drafts/game/UnkTU108/fn_71001186d8.cpp,registers or order,77.3,10,lean-callee1,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU108/fn_71001186d8.cpp:21 fn_71001186d8: defined as u32 fn_71001186d8(const UnkPolygon108*; u32; const base::math::CVector2D*) -> declared elsewhere with other t...
 0x7100118d4c,420,drafts/game/UnkTU108/fn_7100118d4c.cpp,operations,16.0,88,lean-o2,previous-edge wrap: original re-tests i==0 in the shared block (no jump threading); block order differs
 0x7100118ef0,432,drafts/game/UnkTU108/fn_7100118ef0.cpp,control flow,26.9,79,lean-o2,inner walk loop: original counts bytes down and re-tests q==end after a mismatch; ours keeps a u32 counter
 0x7100119fcc,392,drafts/game/UnkTU108/fn_7100119fcc.cpp,calls,5.1,68,lean-b3,std::function-style in-place callable with vtable g_unk_7101a1bdc0; calls 3 vs 4; loop unswitching not reprodu
@@ -490,7 +490,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71002ec304,880,drafts/game/CPlaythrough/fn_71002ec304.cpp,build fails,,,lean-r2kc,end only: the original keeps the store of the empty id into the moved-from path-id temporary (and reloads the
 0x71002ec674,536,drafts/game/CPlaythrough/fn_71002ec674.cpp,operations,45.5,70,lean-r2kc,matches with a union around the owned-pointer member (as UnkOwnedPtr in game_s2/UnkOwnedList.h): the pointer m
 0x71002f271c,600,drafts/game/CPlaythroughDef/fn_71002f271c.cpp,control flow,26.7,109,lean-r2kg,&list+0x40 kept live in a register (extra x28 save); one branch fewer (likely the count!=0 check folded); 57%
-0x71002f8414,432,drafts/game/CAbility/fn_71002f8414.cpp,registers or order,96.3,4,lean-callee1,order of four stp stores in the second holder (0x180..0x1b0 reversed); e4 store placement steers it
 0x71002f9824,620,drafts/game/CAbility/fn_71002f9824.cpp,control flow,17.4,120,lean-r2ke,state-machine find loop post-increments the pointer and the false path does not re-read State() for the 6 test
 0x71002fa8b8,444,drafts/game/CAbility/fn_71002fa8b8.cpp,operations,41.4,65,lean-r2ke,store scheduling order in the holder initialisation; same instruction count
 0x71002fc970,1280,drafts/game/CAbilityComponent/fn_71002fc970.cpp,operations,0.0,320,lean-r2kg,original addresses the class ids; guard and table through one merged-globals base (file statics); extern globa
@@ -864,7 +863,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710064b3f4,1168,drafts/game/CQuetzoaAIComponent/fn_710064b3f4.cpp,build fails,,,lean-r2ki,same 292 insns; one extra callee-saved reg (handle slot kept in x21) shifts the frame 0x10 and every stack off
 0x710064e694,1192,drafts/game/CCharClassRedenkiSwarmControllerComponent/fn_710064e694.cpp,control flow,15.1,161,lean-r2kg,12-entry {CStrId;CFilePathStrId;u64} array ctor: original hoists the empty-id loads and unswitches/unrolls the
 0x7100650d74,1012,drafts/game/CRedenkiSwarmControllerComponent/fn_7100650d74.cpp,operations,12.6,219,lean-r2kh,drift loop reloads list after timer store (alias); float operand order in projection math
-0x7100652df0,428,drafts/game/CRedenkiSwarmControllerComponent/fn_7100652df0.cpp,registers or order,93.5,7,lean-r2kh,equivalent (registers); held: fn_7100ebfa7c needs a header
 0x71006533f0,1548,drafts/game/CRedenkiSwarmControllerComponent/fn_71006533f0.cpp,control flow,1.1,382,lean-r2kh,original treats the returned vector as escaped (reloads step/flags/count; no constant folding of step 10); inl
 0x71006539fc,4820,drafts/game/CRedenkiSwarmControllerComponent/fn_71006539fc.cpp,calls,1.1,619,lean-r6k,original inlines CRntVector<claim>::GrowAt at 4 sites; without always_inline clang calls it out of line (8.9%
 0x7100654cd0,1456,drafts/game/CRedenkiSwarmControllerComponent/fn_7100654cd0.cpp,operations,71.7,103,lean-r2kh,one constant (1e-4) not hoisted before the member loop; register choice after; facing length load order
@@ -1339,7 +1337,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71009f3bf8,652,drafts/game/CShockWaveComponent/fn_71009f3bf8.cpp,registers or order,97.5,4,lean-r2kg,defaulted operator= (asm label); only the 9-byte u64+bool run at 0x108 loads/stores in another order; header d
 0x71009f51f8,632,drafts/game/CShockWaveComponent/fn_71009f51f8.cpp,operations,87.3,20,lean-oc1,stack frame 0x60 vs 0x70: the rotation local shares the angle temporary slot; original keeps four slots
 0x71009f5730,456,drafts/game/CShockWavePoolComponent/fn_71009f5730.cpp,operations,36.2,72,lean-oc2,first 40 insns match; the four floats at 0x194 (1;0;0;1) are two str with separate bases where the original pa
-0x71009f5d50,768,drafts/game/CShockWavePoolComponent/fn_71009f5d50.cpp,registers or order,95.8,8,lean-r2kg,x8/x9 swapped in the two unaligned memcpy copies (0x118 block; 0x1a4 pair): original computes dst address befo
+0x71009f5d50,768,drafts/game/CShockWavePoolComponent/fn_71009f5d50.cpp,registers or order,95.8,8,lean-r2kg,passes tools/equiv_test.py; held: 1 declaration problem: src/game/CShockWavePoolComponent/fn_71009f5d50.cpp:91 fn_71009f5d50: defined as UnkShockWaveDef_l9f5d50* fn_71009f5d50(UnkShockWaveDef_l9f5d50*; const UnkShockWaveDef_l9f5d50...
 0x71009f6050,188,drafts/game/CShockWavePoolComponent/fn_71009f6050.cpp,control flow,34.0,29,lean-fam0a,flag at 0x324 kept as address in x20 across call and cmp/ccmp of target and flag; tried &&; local; reference;
 0x71009f6110,1600,drafts/game/CShockWavePoolComponent/fn_71009f6110.cpp,operations,33.5,265,lean-fam0a,95.6% opcodes in order; outline address (+0x2a8) not hoisted into x20 early; model kept as &self->model in x21
 0x71009f6750,1520,drafts/game/CShockWavePoolComponent/fn_71009f6750.cpp,control flow,21.8,292,lean-r2ki,one 8-byte stack slot too many (frame 0x190 vs 0x180; every slot +8); loop entry tests half>0 once instead of
@@ -1844,7 +1842,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7101052a30,572,drafts/game/CLogicCamera/fn_7101052a30.cpp,control flow,7.0,133,lean-r2kf,frame 0x70 vs 0x80: original keeps &pointee in x23 (callee-saved) across calls; rest of the flow lines up afte
 0x7101053850,280,drafts/game/UnkTU2656/fn_7101053850.cpp,registers or order,72.9,19,lean-b6,arg-register move order and scheduling of the clamp sequence
 0x7101053968,164,drafts/game/UnkTU2656/fn_7101053968.cpp,registers or order,36.6,26,lean-b6,passes tools/equiv_test.py; held: 1 declaration problem: src/game/UnkTU2656/fn_7101053968.cpp:33 fn_7101053968: defined as void fn_7101053968(UnkFadeUser_l053968*; f32; const UnkRgb_l053968*; f32; const UnkRgb_l053968*; f32) -> dec...
-0x7101053c14,348,drafts/game/UnkTU2656/fn_7101053c14.cpp,registers or order,96.6,3,lean-callee1,order of the argument copies into x20/v8/v10 only
 0x7101059794,332,drafts/game/SLogicPathNode/fn_7101059794.cpp,operations,59.0,33,lean-b2,loop control flow: original checks index/count between the body and the travelled test; hit path (fraction sto
 0x7101059a58,196,drafts/game/SLogicPathNode/fn_7101059a58.cpp,operations,71.4,14,lean-callee1,loop base offset: LSR anchors the move loop at data[i+1]+0x18 (ours) vs data[i+1] (original); otherwise same i
 0x710105d3d0,256,drafts/game/SLogicPathNode/fn_710105d3d0.cpp,operations,46.9,32,lean-b2,byte-identical twin of fn_710105d4d0: element move loop reloads data pointer before the virtual destroy; ours

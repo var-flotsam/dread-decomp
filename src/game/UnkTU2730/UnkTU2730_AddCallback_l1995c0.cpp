@@ -1,6 +1,5 @@
 // Unit 2730 (tools/tu_map.py): registers a callback with the callback registry unless the same one (object and
 // function) is already listed. Names and layouts are placeholders.
-// build-flags: no-strict-aliasing
 #include "base/global/CRntVector.h"
 #include "game/UnkTU2730.h"
 #include "types.h"

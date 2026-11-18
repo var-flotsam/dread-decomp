@@ -25,6 +25,7 @@ address,digest,verdict,rules,detail
 0x71000fef18,46e87f5e64ba9eba8d926888024b1384,pass,2,
 0x7100100088,33ef273ca2ceea46eeef3511b9c3517d,pass,2,
 0x7100100e74,e525ff05b83f7bb93df698eeb182d496,pass,2,
+0x7100110db8,8715a50e554727dd011ec517a5f32daf,pass,2,
 0x710011ec5c,88fe1b9031af625ce292c29badada502,pass,2,
 0x710012436c,4ccf526e05b76ea7d5a76da86a8bf0aa,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
 0x71001243ac,5082395eb2918925be5fb35b2289a792,pass,2,
