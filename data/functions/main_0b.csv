@@ -18,7 +18,7 @@ address,size,name,name_source,subsystem,status
 0x7100b00808,4,GUI::CDeleteSlotButton::refl_AddFields,reflection,gui,O
 0x7100b0080c,352,GUI::CDeleteSlotButton::refl_InitClass,reflection,gui,O
 0x7100b0096c,4,fn_7100b0096c,unknown,gui?,O
-0x7100b00970,516,fn_7100b00970,unknown,gui?,U
+0x7100b00970,516,fn_7100b00970,unknown,gui?,O
 0x7100b00b74,488,fn_7100b00b74,unknown,gui?,U
 0x7100b00d5c,188,fn_7100b00d5c,unknown,gui?,U
 0x7100b00e18,200,fn_7100b00e18,unknown,gui?,O
@@ -40,7 +40,7 @@ address,size,name,name_source,subsystem,status
 0x7100b01254,4,GUI::CDialogComposition::refl_AddFields,reflection,gui,O
 0x7100b01258,352,GUI::CDialogComposition::refl_InitClass,reflection,gui,O
 0x7100b013b8,452,fn_7100b013b8,unknown,gui?,O
-0x7100b0157c,604,fn_7100b0157c,unknown,gui?,U
+0x7100b0157c,604,fn_7100b0157c,unknown,gui?,O
 0x7100b017d8,36,fn_7100b017d8,unknown,gui?,O
 0x7100b017fc,256,fn_7100b017fc,unknown,gui?,U
 0x7100b018fc,776,fn_7100b018fc,unknown,gui?,O
@@ -1062,7 +1062,7 @@ address,size,name,name_source,subsystem,status
 0x7100b1f63c,204,fn_7100b1f63c,unknown,gui?,O
 0x7100b1f708,260,fn_7100b1f708,unknown,gui?,O
 0x7100b1f80c,340,fn_7100b1f80c,unknown,gui?,O
-0x7100b1f960,660,fn_7100b1f960,unknown,gui?,U
+0x7100b1f960,660,fn_7100b1f960,unknown,gui?,O
 0x7100b1fbf4,28,fn_7100b1fbf4,unknown,gui?,O
 0x7100b1fc10,124,fn_7100b1fc10,unknown,gui?,O
 0x7100b1fc8c,132,fn_7100b1fc8c,unknown,gui?,O
@@ -1317,7 +1317,7 @@ address,size,name,name_source,subsystem,status
 0x7100b32230,208,fn_7100b32230,unknown,gui?,O
 0x7100b32300,260,fn_7100b32300,unknown,gui?,O
 0x7100b32404,372,fn_7100b32404,unknown,gui?,O
-0x7100b32578,692,fn_7100b32578,unknown,gui?,U
+0x7100b32578,692,fn_7100b32578,unknown,gui?,O
 0x7100b3282c,28,fn_7100b3282c,unknown,gui?,O
 0x7100b32848,124,fn_7100b32848,unknown,gui?,O
 0x7100b328c4,132,fn_7100b328c4,unknown,gui?,O
@@ -1360,7 +1360,7 @@ address,size,name,name_source,subsystem,status
 0x7100b333c8,4,fn_7100b333c8,unknown,gui?,O
 0x7100b333cc,388,fn_7100b333cc,unknown,gui?,O
 0x7100b33550,40,fn_7100b33550,unknown,gui?,O
-0x7100b33578,668,fn_7100b33578,unknown,gui?,U
+0x7100b33578,668,fn_7100b33578,unknown,gui?,O
 0x7100b33814,28,fn_7100b33814,unknown,gui?,O
 0x7100b33830,28,fn_7100b33830,unknown,gui?,O
 0x7100b3384c,8,GUI::CLegendMenuEntryItemRenderer::refl_Equals,reflection,gui,O
@@ -1517,7 +1517,7 @@ address,size,name,name_source,subsystem,status
 0x7100b44a3c,40,fn_7100b44a3c,unknown,unknown,O
 0x7100b44a64,128,fn_7100b44a64,unknown,unknown,O
 0x7100b44ae4,272,fn_7100b44ae4,unknown,unknown,O
-0x7100b44bf4,660,fn_7100b44bf4,unknown,unknown,U
+0x7100b44bf4,660,fn_7100b44bf4,unknown,unknown,O
 0x7100b44e88,120,fn_7100b44e88,unknown,unknown,O
 0x7100b44f00,8,fn_7100b44f00,unknown,unknown,O
 0x7100b44f08,176,fn_7100b44f08,unknown,unknown,O
@@ -1735,7 +1735,7 @@ address,size,name,name_source,subsystem,status
 0x7100b4fff4,1428,fn_7100b4fff4,unknown,unknown,U
 0x7100b50588,3040,fn_7100b50588,unknown,unknown,U
 0x7100b51168,16,fn_7100b51168,unknown,unknown,O
-0x7100b51178,204,fn_7100b51178,unknown,unknown,U
+0x7100b51178,204,fn_7100b51178,unknown,unknown,O
 0x7100b51244,4,operator.delete,symbol,unknown,O
 0x7100b51250,208,fn_7100b51250,unknown,unknown,O
 0x7100b51320,292,fn_7100b51320,unknown,unknown,m
@@ -1944,7 +1944,7 @@ address,size,name,name_source,subsystem,status
 0x7100b5d9a0,460,fn_7100b5d9a0,unknown,gui?,O
 0x7100b5db6c,444,fn_7100b5db6c,unknown,gui?,O
 0x7100b5dd28,200,fn_7100b5dd28,unknown,gui?,O
-0x7100b5ddf0,608,fn_7100b5ddf0,unknown,gui?,U
+0x7100b5ddf0,608,fn_7100b5ddf0,unknown,gui?,O
 0x7100b5e050,28,fn_7100b5e050,unknown,gui?,O
 0x7100b5e06c,80,fn_7100b5e06c,unknown,gui?,O
 0x7100b5e0bc,88,fn_7100b5e0bc,unknown,gui?,O
@@ -2987,7 +2987,7 @@ address,size,name,name_source,subsystem,status
 0x7100b90318,244,CAIAimAngToFrameAction::refl_GetClass,reflection,game/ai,O
 0x7100b9040c,4,CAIAimAngToFrameAction::refl_AddFields,reflection,game/ai,O
 0x7100b90410,388,CAIAimAngToFrameAction::refl_InitClass,reflection,game/ai,O
-0x7100b90594,428,fn_7100b90594,unknown,game/ai?,U
+0x7100b90594,428,fn_7100b90594,unknown,game/ai?,O
 0x7100b90740,792,fn_7100b90740,unknown,game/ai?,U
 0x7100b90a58,120,fn_7100b90a58,unknown,game/ai?,O
 0x7100b90ad0,28,fn_7100b90ad0,unknown,game/ai?,O

@@ -4273,7 +4273,7 @@ address,size,name,name_source,subsystem,status
 0x71010d17c0,128,fn_71010d17c0,unknown,game/components?,O
 0x71010d1840,16,fn_71010d1840,unknown,game/components?,O
 0x71010d1850,148,fn_71010d1850,unknown,game/components?,O
-0x71010d18e4,428,fn_71010d18e4,unknown,game/components?,U
+0x71010d18e4,428,fn_71010d18e4,unknown,game/components?,O
 0x71010d1a90,208,fn_71010d1a90,unknown,game/components?,U
 0x71010d1b60,316,fn_71010d1b60,unknown,game/components?,U
 0x71010d1c9c,4,fn_71010d1c9c,unknown,game/components?,O
