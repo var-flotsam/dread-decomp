@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -18,9 +19,6 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
-#include "base/reflection/TypeObject.h"
-namespace CCharClassSetCameraNearEvent { enum class EDir : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<CCharClassSetCameraNearEvent::EDir>::object asm("g_unk_717279cb00");
 
 // CCharClassSetCameraNearEvent
 namespace CCharClassSetCameraNearEvent {
@@ -31,8 +29,7 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fValue", 0xc, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("eDir", true), &base::reflection::TypeObject<CCharClassSetCameraNearEvent::EDir>::object, 0x18, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CCharClassSetCameraNearEvent::EDir>::object, 0);
+    DREAD_REFLECTED_FIELD_OF("CCharClassSetCameraNearEvent::EDir", "eDir", 0x18, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

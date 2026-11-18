@@ -21,8 +21,6 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
-namespace IPath { enum class EType : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -64,8 +62,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field9 = AddReflectedField(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
     field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SFallBackPath>", "tFallbackPaths", 0x1390);
-    UnkReflField* field11 = AddReflectedField(cls, CStrId("ePathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x13b8, -1, -1);
-    field11->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<IPath::EType>::object, 2);
+    DREAD_REFLECTED_FIELD_OF("IPath::EType", "ePathType", 0x13b8, (DefaultValue, 2));
     DREAD_REFLECTED_FIELD(bool, "bIndividualRequiresActivationPerception", 0x121c, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION_OF("_m_bIgnoreAttack_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7101115c1c);
     DREAD_REFLECTED_FUNCTION("_m_bIgnoreAttack_SetterFunction")

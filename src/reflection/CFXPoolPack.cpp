@@ -25,8 +25,6 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
-enum class EFXType : u32;
-template <> base::reflection::CType base::reflection::TypeObject<EFXType>::object asm("g_unk_71727b8dd8");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CFXPoolPack
@@ -66,8 +64,7 @@ namespace CFXPool::CDefinition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFile", 0x0, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("eType", true), &base::reflection::TypeObject<EFXType>::object, 0x8, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EFXType>::object, 0);
+    DREAD_REFLECTED_FIELD_OF("EFXType", "eType", 0x8, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(u32, "uSize", 0xc, (DefaultValue, 1));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

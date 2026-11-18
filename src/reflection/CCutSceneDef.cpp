@@ -27,8 +27,6 @@ namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 struct TAnimationTagFlagSet;
 template <> base::reflection::CType base::reflection::TypeObject<TAnimationTagFlagSet>::object asm("g_unk_717270e348");
-namespace cutscene { enum class EDevelopmentState : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<cutscene::EDevelopmentState>::object asm("g_unk_7172795110");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
@@ -46,9 +44,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("OnDeserialize", &g_unk_7101d5af48, 0, fn_7100c8d374);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eDevelopmentState", true), &base::reflection::TypeObject<cutscene::EDevelopmentState>::object, 0x0, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<cutscene::EDevelopmentState>::object, 1);
-    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Development State");
+    DREAD_REFLECTED_FIELD_OF("cutscene::EDevelopmentState", "eDevelopmentState", 0x0, (DefaultValue, 1), (Description, "Development State"));
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Id"));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sActionSet", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Description, "ActionSet File"));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vWorldOffset", 0x18, (Description, "CutScene world position"));
