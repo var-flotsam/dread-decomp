@@ -28,7 +28,7 @@ void fn_7100dde0e4(UnkMarkers_b0258s* self) {
     for (u32 i = 0; i < 20; ++i) {
         UnkRenderManager* mgr = g_unk_7101d47300;
         UnkSceneObj_b0258s* node = nullptr;
-        fn_7100dde5d0(mgr->field_0x218, g_unk_71727be340, &node, &g_unk_7101d470e0);
+        fn_7100dde5d0(mgr->field_0x218, g_unk_71727be340, &node, &base::global::CStrId::Empty());
         fn_7100219ae0(mgr, node, 0);
         UnkSceneObj_b0258s* obj = node;
         UnkToggle* toggle = reinterpret_cast<UnkToggle*>(reinterpret_cast<char*>(obj) + 0x18);
@@ -40,7 +40,7 @@ void fn_7100dde0e4(UnkMarkers_b0258s* self) {
     for (u32 i = 0; i < 20; ++i) {
         UnkRenderManager* mgr = g_unk_7101d47300;
         UnkSceneObj_b0258s* node = nullptr;
-        fn_7100dde5d0(mgr->field_0x218, g_unk_71727be348, &node, &g_unk_7101d470e0);
+        fn_7100dde5d0(mgr->field_0x218, g_unk_71727be348, &node, &base::global::CStrId::Empty());
         fn_7100219ae0(mgr, node, 0);
         UnkSceneObj_b0258s* obj = node;
         UnkToggle* toggle = reinterpret_cast<UnkToggle*>(reinterpret_cast<char*>(obj) + 0x18);

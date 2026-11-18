@@ -64,7 +64,7 @@ void fn_710062e6c4(UnkObsydomithonAI_b0129a* self, UnkActor* actor, UnkObsydomit
         return;
     if (frost && fn_71007f9f20(frost))
         return;
-    const CStrId* id = hit->object ? fn_7100864018(collision, hit->object) : &g_unk_7101d470e0;
+    const CStrId* id = hit->object ? fn_7100864018(collision, hit->object) : &base::global::CStrId::Empty();
     if (id->data == g_unk_71726f9438.data)
         return;
     alignas(8) u32 mask = base::reflection::refl_GetEnumNot8<0x7101d57cb8, 0x7101d57cc8>();
@@ -214,7 +214,7 @@ struct UnkHashData_b0129c {
 bool fn_710062f490(UnkObsydomithonAI_b0129c* self, UnkTrackEvent_b0129c* event) {
     UnkAnimationComponent* animation = self->owner ? self->owner->animation : nullptr;
     UnkTrack_b0129c* track = event->track;
-    const CStrId* name = track && track->data ? &track->data->name : &g_unk_7101d470e0;
+    const CStrId* name = track && track->data ? &track->data->name : &base::global::CStrId::Empty();
     if (!animation || name->data == &g_unk_7101d47108->empty)
         return true;
     UnkObsyFacing_b0129c* facing = &self->facing;

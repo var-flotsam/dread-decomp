@@ -29,7 +29,7 @@ struct UnkSpitHandler {
 };
 
 bool fn_71003f3778(UnkSpitHandler* self, UnkSpitEvent* event) {
-    const UnkStrIdBase* name = &g_unk_7101d470e0;
+    const UnkStrIdBase* name = &base::global::CStrId::Empty();
     if (event->field_0x8) {
         UnkEventSource* source = event->field_0x8->field_0x10;
         name = source ? reinterpret_cast<const UnkStrIdBase*>(reinterpret_cast<u8*>(source) + 0x38) : name;

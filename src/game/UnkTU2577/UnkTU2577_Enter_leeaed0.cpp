@@ -23,8 +23,8 @@ struct UnkSubArea {
     u8 pad_0x8[0x48];
     CStrId field_0x50;
 };
-static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : g_unk_7101d470e0; }
-static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : g_unk_7101d470e0; }
+static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : base::global::CStrId::Empty(); }
+static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : base::global::CStrId::Empty(); }
 
 struct UnkScenarioSub {
     u8 pad_0x0[0x58];

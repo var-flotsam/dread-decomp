@@ -54,10 +54,10 @@ static inline void MakeEmpty(CStrId* id) {
 void fn_7100fa45a4(UnkObject_lfa45a4* self) {
     fn_7101043904(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101cab428 + 0x10);
-    new (&self->field_0x10) CStrId(g_unk_7101d470e0);
-    new (&self->field_0x18) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x10) CStrId(base::global::CStrId::Empty());
+    new (&self->field_0x18) CStrId(base::global::CStrId::Empty());
     new (&self->field_0x20) CFilePathStrId(g_unk_7101d470e8);
-    new (&self->field_0x28) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x28) CStrId(base::global::CStrId::Empty());
     MakeEmpty(&self->field_0x30);
     MakeEmpty(&self->field_0x38);
     MakeEmpty(&self->field_0x40);

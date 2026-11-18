@@ -41,7 +41,7 @@ void fn_7100fc20d4(UnkLuaWalker_b0253* self) {
     for (u64 i = 0; i < self->key_count; ++i)
         self->keys[i].Reset();
     self->key_count = 0;
-    self->key = g_unk_7101d470e0;
+    self->key = base::global::CStrId::Empty();
 }
 
 bool fn_7100fc1f4c(UnkLuaWalker_b0253* self) {

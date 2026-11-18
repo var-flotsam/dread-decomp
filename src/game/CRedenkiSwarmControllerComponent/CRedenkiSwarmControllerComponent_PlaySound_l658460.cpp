@@ -28,7 +28,7 @@ struct UnkSoundRecord_l658460 {
     UnkCountedResource* resource;
 
     UnkSoundRecord_l658460() {
-        id = g_unk_7101d470e0.data;
+        id = base::global::CStrId::Empty().data;
         if (&g_unk_7101d47108->empty != id)
             ++id->ref_count;
         path = g_unk_7101d470e8.data;

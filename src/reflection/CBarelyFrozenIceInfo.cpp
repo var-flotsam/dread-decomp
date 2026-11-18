@@ -26,8 +26,8 @@ using base::reflection::DestroyDestructorFirst;
 namespace CBarelyFrozenIceInfo {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sModel", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sModel", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fScale", 0x18, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

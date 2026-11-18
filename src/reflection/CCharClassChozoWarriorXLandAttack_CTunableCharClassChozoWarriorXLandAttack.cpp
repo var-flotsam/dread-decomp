@@ -40,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWaveInitialOffset", 0x38, (DefaultValue, -50.0f));
     DREAD_REFLECTED_FIELD(f32, "fWaveOffset", 0x3c, (DefaultValue, 550.0f));
     DREAD_REFLECTED_FIELD(f32, "fWaveParticlesOffset", 0x40, (DefaultValue, 80.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sWaveOffsetFactorizerFunction", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sWaveOffsetFactorizerFunction", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
     fn_710047d31c(base::reflection::TunableRegistry(), &g_unk_71726ce200, "ChozoWarriorXLandAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -118,7 +118,7 @@ struct UnkElement {
     }
 };
 
-inline UnkElement::UnkElement() : id(g_unk_7101d470e0.data) {
+inline UnkElement::UnkElement() : id(base::global::CStrId::Empty().data) {
     RefId();
     field_0x30.field_0x10 = 0;
     field_0x30.field_0x8 = 0;

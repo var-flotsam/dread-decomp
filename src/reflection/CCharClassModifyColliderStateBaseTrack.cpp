@@ -53,51 +53,51 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollidersEnabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d206e4);
     DREAD_REFLECTED_FUNCTION("_m_sCollidersEnabled_SetterFunction")
         fn_7100d1dcc4(fn, "_m_sCollidersEnabled_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Enabled"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Colliders Enabled"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sLayersEnabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d207f4);
     DREAD_REFLECTED_FUNCTION("_m_sLayersEnabled_SetterFunction")
         fn_7100d1de40(fn, "_m_sLayersEnabled_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Enabled"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Layers Enabled"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollidersDisabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d2089c);
     DREAD_REFLECTED_FUNCTION("_m_sCollidersDisabled_SetterFunction")
         fn_7100d1dfbc(fn, "_m_sCollidersDisabled_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Disabled"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Colliders Disabled"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sLayersDisabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d209ac);
     DREAD_REFLECTED_FUNCTION("_m_sLayersDisabled_SetterFunction")
         fn_7100d1e138(fn, "_m_sLayersDisabled_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Disabled"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Layers Disabled"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollidersEnabled2_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d20a54);
     DREAD_REFLECTED_FUNCTION("_m_sCollidersEnabled2_SetterFunction")
         fn_7100d1e2b4(fn, "_m_sCollidersEnabled2_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled2", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Enabled2"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled2", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Colliders Enabled2"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sLayersEnabled2_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d20b64);
     DREAD_REFLECTED_FUNCTION("_m_sLayersEnabled2_SetterFunction")
         fn_7100d1e430(fn, "_m_sLayersEnabled2_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled2", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Enabled2"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled2", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Layers Enabled2"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollidersDisabled2_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d20c0c);
     DREAD_REFLECTED_FUNCTION("_m_sCollidersDisabled2_SetterFunction")
         fn_7100d1e5ac(fn, "_m_sCollidersDisabled2_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled2", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Disabled2"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled2", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Colliders Disabled2"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sLayersDisabled2_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d20d1c);
     DREAD_REFLECTED_FUNCTION("_m_sLayersDisabled2_SetterFunction")
         fn_7100d1e728(fn, "_m_sLayersDisabled2_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled2", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Disabled2"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled2", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Layers Disabled2"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollidersEnabled3_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d20dc4);
     DREAD_REFLECTED_FUNCTION("_m_sCollidersEnabled3_SetterFunction")
         fn_7100d1e8a4(fn, "_m_sCollidersEnabled3_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled3", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Enabled3"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersEnabled3", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Colliders Enabled3"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sLayersEnabled3_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d20ed4);
     DREAD_REFLECTED_FUNCTION("_m_sLayersEnabled3_SetterFunction")
         fn_7100d1ea20(fn, "_m_sLayersEnabled3_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled3", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Enabled3"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersEnabled3", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Layers Enabled3"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollidersDisabled3_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d20f7c);
     DREAD_REFLECTED_FUNCTION("_m_sCollidersDisabled3_SetterFunction")
         fn_7100d1eb9c(fn, "_m_sCollidersDisabled3_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled3", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Colliders Disabled3"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollidersDisabled3", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Colliders Disabled3"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sLayersDisabled3_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100d2108c);
     DREAD_REFLECTED_FUNCTION("_m_sLayersDisabled3_SetterFunction")
         fn_7100d1ed18(fn, "_m_sLayersDisabled3_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled3", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Layers Disabled3"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLayersDisabled3", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Layers Disabled3"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

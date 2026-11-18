@@ -18,7 +18,7 @@ struct AssetName {
     UnkPooledStrId<g_unk_7101d47200> path;
 
     // A new name is a copy of the global empty ids.
-    AssetName() : id(g_unk_7101d470e0.data), path(g_unk_7101d470e8.data) {}
+    AssetName() : id(base::global::CStrId::Empty().data), path(g_unk_7101d470e8.data) {}
 
     // Both ids compare equal (fn_710001e1d0).
     bool operator==(const AssetName& other) const { return id == other.id && path == other.path; }

@@ -210,7 +210,7 @@ void fn_710110cacc(UnkAIC_b0144* self) {
         const char* name = cfg->field_0x178->field_0x10;
         if (!name)
             name = g_unk_710162e2ed;
-        fn_710115217c(world, effect, 0, 6, &g_unk_7101d470e0, offset, rotation, const_cast<char*>(name));
+        fn_710115217c(world, effect, 0, 6, &base::global::CStrId::Empty(), offset, rotation, const_cast<char*>(name));
         fn_7101152988(reinterpret_cast<UnkRinkaControl_ovb0090*>(world), reinterpret_cast<UnkFxObject_ovb0041*>(effect),
                       reinterpret_cast<UnkRinkaEntry_ruc**>(&g_unk_7172a062e0), nullptr, 0);
     }

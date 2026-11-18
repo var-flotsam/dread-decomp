@@ -95,10 +95,10 @@ void fn_710009ae5c(base::reflection::UnkReflFunction* fn, u32 count);
 // constructor.
 void fn_710013ac14(base::reflection::UnkTunableRegistry* self);
 
-// The CRntString inside the string the global empty id g_unk_7101d470e0 (base/global/CStrId.h)
+// The CRntString inside the string the global empty id base::global::CStrId::Empty() (base/global/CStrId.h)
 // points to (+0x10), whose u32 at +0x44 counts these uses; default values copy it.
 inline const base::global::CRntString& refl_GlobalRntString() {
-    u8* str = reinterpret_cast<u8*>(g_unk_7101d470e0.data);
+    u8* str = reinterpret_cast<u8*>(base::global::CStrId::Empty().data);
     ++*reinterpret_cast<u32*>(str + 0x44);
     return *reinterpret_cast<const base::global::CRntString*>(str + 0x10);
 }

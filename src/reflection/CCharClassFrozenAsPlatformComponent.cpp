@@ -32,7 +32,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sCollisionTagsExcludedFromFreezing_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71007fd394);
     DREAD_REFLECTED_FUNCTION("_m_sCollisionTagsExcludedFromFreezing_SetterFunction")
         fn_71007fc518(fn, "_m_sCollisionTagsExcludedFromFreezing_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionTagsExcludedFromFreezing", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Comma separated list of collision tags to exclude in the ice platform created"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionTagsExcludedFromFreezing", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Comma separated list of collision tags to exclude in the ice platform created"));
     DREAD_REFLECTED_FIELD(f32, "fPlatformDepth", 0x100, (DefaultValue, 100.0f), (Description, "Size of the platform in Z"));
     DREAD_REFLECTED_FIELD(CStrId, "sIceCubeCharClass", 0x108, (DefaultValue, CStrId("ice_cube", true)));
     DREAD_REFLECTED_FIELD(base::math::CVector2D, "vIceCubeSize", 0x110, (DefaultValue, base::math::CVector2D{100.0f, 100.0f}), (Description, "Size X,Y of the ice cube"));

@@ -46,7 +46,7 @@ struct UnkInlineSoundDesc {
     bool field_0x6e;
 
     UnkInlineSoundDesc()
-        : kind{0, 0}, field_0x8{0, 0}, field_0x10(0), name(g_unk_7101d470e0),
+        : kind{0, 0}, field_0x8{0, 0}, field_0x10(0), name(base::global::CStrId::Empty()),
           path(base::global::UnkCopyByPointer(), g_unk_7101d470e8),
           position{0.0f, 0.0f, 0.0f}, field_0x34(-1.0f), field_0x38(1.0f), field_0x3c(500.0f), field_0x40(2000.0f),
           field_0x44(1.0f), field_0x48(0.0f), field_0x4c(0.0f), field_0x50(0.0f), field_0x54(-1.0f),

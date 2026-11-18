@@ -64,7 +64,7 @@ void fn_710021e6e8(UnkMediaConstruct324* self) {
     self->vtable = g_unk_7101a20498 + 2;
     self->field_0xc = 0x7fffffff;
     fn_710008d2ec(reinterpret_cast<UnkStrPair_0x10*>(self->field_0x10), &g_unk_7101d470e8);
-    new (&self->id) base::global::CStrId(g_unk_7101d470e0);
+    new (&self->id) base::global::CStrId(base::global::CStrId::Empty());
     self->field_0x28 = 1.0f;
     self->state = 0;
     self->previous_state = 0;

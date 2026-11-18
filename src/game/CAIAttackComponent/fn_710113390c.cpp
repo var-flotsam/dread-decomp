@@ -95,9 +95,9 @@ void fn_710113390c(UnkAIAttackComponent_l13390c* self) {
     new (&self->pool) UnkAttackPool_l13390c();
     fn_710007e704(&self->key_0x270, g_unk_710162e2ed);
     self->field_0x2a0 = -1;
-    new (&self->id_0x2a8) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x2b0) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x2b8) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x2a8) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x2b0) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x2b8) CStrId(base::global::CStrId::Empty());
     self->field_0x2c0 = 0;
     self->field_0x2c8 = 0;
     self->field_0x2d0 = 0;

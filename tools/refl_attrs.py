@@ -333,8 +333,8 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
     if type_name == "const char*" and kind == "str" and width == 8:
         return c_string(payload)
     if type_name == "base::global::CStrId" and kind == "global" and width == 8:
-        # A copy of a global CStrId (g_unk_7101d470e0 is declared in UnkReflAttributes.h).
-        return f"CStrId(g_unk_{payload:x})"
+        # A copy of a global CStrId: the empty id (base/global/CStrId.h) by name.
+        return "CStrId(CStrId::Empty())" if payload == GLOBAL_CSTRID else f"CStrId(g_unk_{payload:x})"
     if type_name == "base::global::CName" and kind == "imm" and width == 8:
         return f"base::global::CName(base::global::UnkNameHash{{}}, {payload:#x}u)"
     if type_name == "base::global::CStrId" and kind == "gfield" and width == 8:

@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Lighting", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vRotOffset", 0x18, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
     DREAD_REFLECTED_FIELD(f32, "fInterpolationTime", 0x24, (DefaultValue, 0.2f));
 }

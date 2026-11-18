@@ -108,5 +108,5 @@ CStrId fn_7101065a10(UnkNamedTreeOwner_l065a10* self) {
             }
         }
     }
-    return g_unk_7101d470e0;
+    return base::global::CStrId::Empty();
 }

@@ -378,7 +378,7 @@ struct UnkHintSectionValues_ovb0093 {
 static inline const UnkQualifiedId& HintsQualifiedId() {
     UnkQualifiedId& qid = ItemQualifiedId(g_unk_7172711390);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(g_unk_7172711390), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(g_unk_7172711390), base::global::CStrId::Empty());
     return qid;
 }
 

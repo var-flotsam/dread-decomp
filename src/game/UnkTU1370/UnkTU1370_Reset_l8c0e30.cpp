@@ -105,9 +105,9 @@ void fn_71008c0e30(UnkStruct_71008c0c74* object) {
     self->field_0x40 = 0;
     self->field_0x48 = false;
     self->field_0x94 = StaticZero_l8c0e30().value;
-    self->field_0xa0 = g_unk_7101d470e0;
-    self->field_0xa8 = g_unk_7101d470e0;
-    self->field_0xb8 = g_unk_7101d470e0;
+    self->field_0xa0 = base::global::CStrId::Empty();
+    self->field_0xa8 = base::global::CStrId::Empty();
+    self->field_0xb8 = base::global::CStrId::Empty();
     self->field_0x4c = 1.0f;
     self->field_0x50 = 0.0f;
     self->field_0x54 = 1.0f;

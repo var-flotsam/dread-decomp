@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Central Unit", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

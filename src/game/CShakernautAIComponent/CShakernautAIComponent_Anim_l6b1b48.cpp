@@ -49,7 +49,7 @@ static inline f32 Dot(const UnkVec2_sh& a, f32 x, f32 y) { return a.x * x + a.y 
 
 CStrId fn_71006b1b48(UnkShakernautAIComponent_sha* self) {
     if (!fn_7101136308(self->owner->attack))
-        return g_unk_7101d470e0;
+        return base::global::CStrId::Empty();
     UnkReflObject* ai = self->owner->ai;
     const CClass* cls = ai->vf_0x0();
     fn_71006ad0a4();

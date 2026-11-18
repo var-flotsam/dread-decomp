@@ -36,7 +36,7 @@ struct UnkGunToggle_A5_b64 {
 };
 
 void fn_7100835f94(UnkGunToggle_A5_b64* self, UnkGunToggleArg_A5_b64* arg) {
-    CStrId source(g_unk_7101d470e0);
+    CStrId source(base::global::CStrId::Empty());
     UnkTrackQuery query;
     query.cls = fn_7100beff48();
     query.result = nullptr;

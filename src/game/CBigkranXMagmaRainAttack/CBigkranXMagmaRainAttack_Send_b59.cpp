@@ -105,7 +105,7 @@ using base::math::CVector3D;
 bool fn_71003eab78(UnkMagmaRain_b59* self, UnkMagmaRainEvent_b59* event) {
     const base::global::CStrId& id = event->field_0x8 && event->field_0x8->field_0x10
                                          ? event->field_0x8->field_0x10->id
-                                         : g_unk_7101d470e0;
+                                         : base::global::CStrId::Empty();
     if (id.data == &g_unk_7101d47108->empty)
         return true;
     if (event->kind != 1 || id.data != g_unk_71726c1820.data)

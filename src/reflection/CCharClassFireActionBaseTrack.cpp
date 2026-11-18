@@ -24,10 +24,10 @@ namespace CCharClassFireActionBaseTrack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bWantsRecoil", 0x58, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionForward", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionForwardShort", 0x40, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionBackward", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionBackwardShort", 0x50, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionForward", 0x38, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionForwardShort", 0x40, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionBackward", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionBackwardShort", 0x50, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

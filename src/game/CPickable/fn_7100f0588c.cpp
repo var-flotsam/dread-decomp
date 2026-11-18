@@ -80,7 +80,7 @@ void fn_7100f0588c(UnkPickable_lf0588c* self) {
     self->field_0x80 = 0;
     self->field_0xaa = 0;
     self->field_0xb0 = 0;
-    new (&self->field_0xb8) base::global::CStrId(g_unk_7101d470e0);
+    new (&self->field_0xb8) base::global::CStrId(base::global::CStrId::Empty());
     Clear(self->field_0xc0, 13);
     Clear(self->field_0xd0, 13);
     self->field_0xe0 = 0;

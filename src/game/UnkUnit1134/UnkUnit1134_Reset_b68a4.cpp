@@ -44,7 +44,7 @@ void fn_710070d508(UnkUnit1134_b68a4* self) {
             p->vf_0x10();
         self->ref = nullptr;
     }
-    self->id = g_unk_7101d470e0;
+    self->id = base::global::CStrId::Empty();
     fn_710002fa90(self->field_0xb0);
     self->field_0x160 = 0.0f;
     self->field_0x164 = 1.0f;

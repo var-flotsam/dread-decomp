@@ -249,7 +249,7 @@ static_assert(__builtin_offsetof(UnkMapComposition_ovb0109, marker) == 0x798, "U
 static inline CStrId AreaName(UnkMapComposition_ovb0109* self) {
     if (self->area)
         return self->area->name;
-    return g_unk_7101d470e0;
+    return base::global::CStrId::Empty();
 }
 
 void fn_7100b29d9c(UnkMapComposition_ovb0109* self, f32 dt) {

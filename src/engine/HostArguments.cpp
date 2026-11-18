@@ -101,7 +101,7 @@ void fn_7100000610() {
         fn_7100deac9c(g_unk_7101d47310, CRntString("INGAME"));
         fn_7100df28d0(g_unk_7101d47310, g_unk_7101d473c8.field_0x0, g_unk_7101d473c8.field_0x30,
                       g_unk_7101d473c8.field_0x90, UnkStartStrId(g_unk_7101d473c8.field_0x60).id,
-                      true, CRntString(""), g_unk_7101d470e0, 0, nullptr, 0.0f);
+                      true, CRntString(""), base::global::CStrId::Empty(), 0, nullptr, 0.0f);
         fn_7100decdfc(g_unk_7101d47310, 0.0f);
     }
     if (g_unk_7101d473c0) {
@@ -479,7 +479,7 @@ void fn_7100000d40() {
         if (UnkInventory* inventory = player->inventory) {
             UnkQualifiedId& qid = ItemQualifiedId(g_unk_717275a8d8);
             if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-                fn_7100ae9a10(&qid, ItemSource(g_unk_717275a8d8), g_unk_7101d470e0);
+                fn_7100ae9a10(&qid, ItemSource(g_unk_717275a8d8), base::global::CStrId::Empty());
             morph_ball = fn_71011428bc(inventory, qid);
         }
         if (morph_ball != g_unk_7101d47388) {
@@ -510,18 +510,18 @@ void fn_7100000d40() {
 
 #include "base/UnkAtExit.h"
 
-// The unit's static initialiser (fn_7100001390): the global empty string id g_unk_7101d470e0
+// The unit's static initialiser (fn_7100001390): the global empty string id base::global::CStrId::Empty()
 // (base/global/CStrId.h), set to the pool's empty entry behind the guard word after it (an inline
 // variable's: the low byte is tested, the word set to 1), and destroyed by fn_710000051c at exit.
 extern u64 g_unk_7101d470f0;
 
 void fn_7100001390() {
     if (!(*reinterpret_cast<u8*>(&g_unk_7101d470f0) & 1)) {
-        g_unk_7101d470e0.data = nullptr;
+        base::global::CStrId::Empty().data = nullptr;
         if (!g_unk_7101d47108)
             base::global::UnkEnsureStringPool();
-        g_unk_7101d470e0.data = &g_unk_7101d47108->empty;
-        fn_7100000250(fn_710000051c, &g_unk_7101d470e0, g_unk_7101a19000);
+        base::global::CStrId::Empty().data = &g_unk_7101d47108->empty;
+        fn_7100000250(fn_710000051c, &base::global::CStrId::Empty(), g_unk_7101a19000);
         g_unk_7101d470f0 = 1;
     }
 }

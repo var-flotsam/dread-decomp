@@ -112,7 +112,7 @@ bool fn_7100ab6828(UnkLockOnInit_ovb0121* self) {
     if (!self->effect) {
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkSceneObject* effect = nullptr;
-        fn_7100149930(manager->field_0x218, nullptr, &effect, &g_unk_7101d470e0);
+        fn_7100149930(manager->field_0x218, nullptr, &effect, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, effect ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(effect) + 8) : nullptr, 0);
         self->effect = effect;
         if (effect) {

@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Actions");
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Alternative action to be played later on"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Alternative action to be played later on"));
     DREAD_REFLECTED_FIELD(f32, "fMinimumTimeToBeConsidered", 0x18, (DefaultValue, 0.0f), (Description, "Time since this event gets executed while we ignore attempts to play this action"));
     DREAD_REFLECTED_FIELD(f32, "fMinimumChanceToPlay", 0x1c, (DefaultValue, 0.0f), (Description, "When minimum time completes, this is the initial chance to play this action"));
 }

@@ -223,7 +223,7 @@ struct UnkGoliathXSlamAttack_b58a3;
 UnkAttackStrId_b0086 fn_71003627f8(UnkGoliathXSlamAttack_b58a3* attack, UnkActor* owner) {
     UnkAttack3_b0086* self = reinterpret_cast<UnkAttack3_b0086*>(attack);
     if (!self->target)
-        return UnkAttackStrId_b0086(g_unk_7101d470e0);
+        return UnkAttackStrId_b0086(base::global::CStrId::Empty());
     const CRntString* name = UseText(self->vf_0xb0());
     UnkInlineString_b0086 str;
     fn_710007eaa0(str.Str(), name);
@@ -288,6 +288,6 @@ void fn_71003606c8(UnkAttack4_b0086* self, UnkAttackPreset_b0086* preset) {
     }
     u64 hash;
     UnkIdText_b0086* const* id = self->preset ? &self->preset->name
-                                              : reinterpret_cast<UnkIdText_b0086* const*>(&g_unk_7101d470e0);
+                                              : reinterpret_cast<UnkIdText_b0086* const*>(&base::global::CStrId::Empty());
     self->hash = (fn_7100066630(&hash, Addr(fn_710007ef90(LowerCase(UseText(id)->data).Str(), "_end"))), hash);
 }

@@ -74,7 +74,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sChargePlaySound", 0x68, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(CStrId, "sChargeCancelSound", 0x70, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(f32, "fRadiusPropagationTotalTime", 0x78, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sRadiusPropagationEasingFunction", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sRadiusPropagationEasingFunction", 0x80, (DefaultValue, CStrId(CStrId::Empty())));
     fn_710033492c(base::reflection::TunableRegistry(), &g_unk_71726b0c48, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }

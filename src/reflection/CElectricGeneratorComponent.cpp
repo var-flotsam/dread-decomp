@@ -26,7 +26,7 @@ namespace CElectricGeneratorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CElectricGeneratorComponent::EBlackOutZone", "eBlackOutZone", 0x578, (DefaultValue, 2));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnEnterUseLuaCallback", 0x570, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnEnterUseLuaCallback", 0x570, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field2 = AddReflectedField(cls, CStrId("vAffectedSubAreas", true), &g_unk_7101d5c998, 0x540, -1, -1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -34,7 +34,7 @@ s32 fn_7100b09820(UnkDisplayReader_ovb0108* self, base::reflection::UnkReflObjec
 static inline void ReadId(void* reader, u32 flags, UnkDisplayReadArg_ovb0108* arg, u64* id) {
     arg->type = fn_710000fd7c();
     arg->value = id;
-    fn_71000ee9fc(reader, flags, reinterpret_cast<UnkReadArg_b0026*>(arg), &g_unk_7101d470e0);
+    fn_71000ee9fc(reader, flags, reinterpret_cast<UnkReadArg_b0026*>(arg), &base::global::CStrId::Empty());
 }
 
 s32 fn_7100b09720(UnkDisplayReader_ovb0108* self, base::reflection::UnkReflObject* obj) {

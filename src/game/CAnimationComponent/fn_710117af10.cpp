@@ -68,12 +68,12 @@ static inline const base::global::CStrId* TrackName(UnkAnimationComponent* self,
     UnkTrackSet* set = self->field_0x40;
     UnkTrackEntry** it = set->field_0xc8.Find(key);
     if (it == set->field_0xc8.End())
-        return &g_unk_7101d470e0;
+        return &base::global::CStrId::Empty();
     UnkTrackEntry* entry = *it;
     if (entry && entry->field_0x70)
         return reinterpret_cast<const base::global::CStrId*>(
             Name(reinterpret_cast<UnkObj_710117af10*>(entry->field_0x70)));
-    return &g_unk_7101d470e0;
+    return &base::global::CStrId::Empty();
 }
 
 const base::global::CStrId* fn_7101177ae8(UnkAnimationComponent* self, u64 key) { return TrackName<fn_710070d7f8>(self, key); }

@@ -23,7 +23,7 @@ using base::reflection::DestroyDestructorFirst;
 namespace CChangeSetupLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sSetupID", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sSetupID", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bPersistent", 0x18, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bForceChange", 0x19, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bPush", 0x1a, (DefaultValue, true));

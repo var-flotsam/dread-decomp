@@ -44,11 +44,11 @@ void fn_7100a946ec(UnkThermalComp_b0237* self) {
     self->devices_grow = true;
     self->devices_flags = 15;
     self->devices_allocator = fn_7100083990();
-    new (&self->id_0x570) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x578) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x580) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x588) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x590) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x570) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x578) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x580) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x588) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x590) CStrId(base::global::CStrId::Empty());
     self->field_0x598 = 0;
     self->field_0x59d = 0;
     reinterpret_cast<void (*)(UnkThermalComp_b0237*)>(self->vtable[3])(self);

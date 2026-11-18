@@ -36,9 +36,9 @@ struct UnkHeatableValue_b260 {
     u64 field_0xc8;
 
     UnkHeatableValue_b260()
-        : id0(g_unk_7101d470e0), field_0x8(-1), id10(g_unk_7101d470e0), id18(g_unk_7101d470e0), list(0xf),
-          id48(g_unk_7101d470e0), field_0x50(0), field_0x58(0), field_0x60(0), field_0x68(0), field_0x70(0), ids78{g_unk_7101d470e0, g_unk_7101d470e0, g_unk_7101d470e0, g_unk_7101d470e0,
-                                         g_unk_7101d470e0},
+        : id0(base::global::CStrId::Empty()), field_0x8(-1), id10(base::global::CStrId::Empty()), id18(base::global::CStrId::Empty()), list(0xf),
+          id48(base::global::CStrId::Empty()), field_0x50(0), field_0x58(0), field_0x60(0), field_0x68(0), field_0x70(0), ids78{base::global::CStrId::Empty(), base::global::CStrId::Empty(), base::global::CStrId::Empty(), base::global::CStrId::Empty(),
+                                         base::global::CStrId::Empty()},
           field_0xa0(0), field_0xa8(0), field_0xb0(-1), field_0xb8(0), field_0xc0(-1), field_0xc8(0) {}
 };
 static_assert(sizeof(UnkHeatableValue_b260) == 0xd0, "layout");

@@ -51,7 +51,7 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnBeforeGenerate", 0xa8, (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEntityGenerated", 0xd8, (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
-    DREAD_REFLECTED_FIELD(CStrId, "sStartAnimation", 0xa0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartAnimation", 0xa0, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bSpawnOnFloor", 0x108, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bEntityCheckFloor", 0x109, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bCheckCollisions", 0x10a, (DefaultValue, false));
@@ -90,7 +90,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sCharClass_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71011327d8);
     DREAD_REFLECTED_FUNCTION("_sCharClass_SetterFunction")
         fn_7101125760(fn, "_sCharClass_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCharClass", (DefaultValue, CStrId(g_unk_7101d470e0)), (EditorVisible, false));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCharClass", (DefaultValue, CStrId(CStrId::Empty())), (EditorVisible, false));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CSpawnerActorBlueprint>", "voActorBlueprint", 0x390, (CreateElement, "AddNewActorBlueprintAt"), (DeleteElement, "DeleteActorBlueprintAt"), (AfterElementDeserialization, "AfterActorBlueprintDeserialization"));
     DREAD_REFLECTED_FUNCTION_OF("Activate", &base::reflection::PrimitiveType<int>::Get(), 0, fn_71011328d8);
     DREAD_REFLECTED_FUNCTION_OF("Deactivate", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7101132928);

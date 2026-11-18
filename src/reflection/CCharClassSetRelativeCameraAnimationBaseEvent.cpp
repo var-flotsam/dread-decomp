@@ -31,10 +31,10 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bRawChange", 0x18, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fInitInterpTime", 0x1c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fExitInterpTime", 0x20, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sExitInterpCurve", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sExitInterpCurve", 0x28, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bExitInterpStoringValues", 0x30, (DefaultValue, false));
-    DREAD_REFLECTED_FIELD(CStrId, "sStartCallback", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sEndCallback", 0x40, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartCallback", 0x38, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sEndCallback", 0x40, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bHideGUI", 0x48, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bInitialInterp", 0x49, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bInvertSide", 0x4a, (DefaultValue, false));
@@ -45,7 +45,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bResetInterpOnPossess", 0x55, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fDuration", 0x58, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 100000.0f));
     DREAD_REFLECTED_FIELD(bool, "bReplaceCurrentCameraAnimation", 0x5c, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(CStrId, "sAnimID", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sAnimID", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bUpdateGoalParamsOnExitInterpolation", 0x68, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bLoopAnim", 0x69, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bUseRelativeAnimTime", 0x6a, (DefaultValue, false));

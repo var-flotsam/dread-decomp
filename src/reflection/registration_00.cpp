@@ -1555,7 +1555,7 @@ void fn_71002c85d8(CClass* cls) {
     field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.3f);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("tPattern", true), &g_unk_71726a79d0, 0x0, -1, -1);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x28, -1, -1);
-    field3->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(g_unk_7101d470e0));
+    field3->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(CStrId::Empty()));
     UnkReflField* field4 = AddReflectedField(cls, CStrId("fFloorMinAngleDegs", true), &base::reflection::PrimitiveType<float>::Get(), 0x38, -1, -1);
     field4->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
     UnkReflField* field5 = AddReflectedField(cls, CStrId("fFloorMaxAngleDegs", true), &base::reflection::PrimitiveType<float>::Get(), 0x3c, -1, -1);
@@ -1702,7 +1702,7 @@ void fn_71003ec184(CClass* cls) {
 void fn_71003ec95c(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("tPattern", true), &g_unk_71726c1d20, 0x0, -1, -1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x28, -1, -1);
-    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(CStrId::Empty()));
 }
 
 void fn_710045d530(CClass* cls) {

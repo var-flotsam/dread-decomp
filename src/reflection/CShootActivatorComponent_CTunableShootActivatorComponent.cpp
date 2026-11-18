@@ -111,7 +111,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field4 = AddReflectedField(cls, CStrId("vTargetsToDeactivate", true), &g_unk_717269bf08, 0x3b0, -1, -1);
     field4->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field4->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
-    DREAD_REFLECTED_FIELD(CStrId, "sOnUseEntityTimeline", 0x4d8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnUseEntityTimeline", 0x4d8, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field6 = AddReflectedField(cls, CStrId("wpAtmosphereEntity", true), &g_unk_71727b6270, 0x530, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesActivatabledOnEvent", 0x4e0);

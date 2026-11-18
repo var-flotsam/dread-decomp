@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<EShinesparkTravellingDirection>", "lstAllowedDirections", 0x10, (Description, "Allow Cool Shinespark when travelling towards these directions"));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<ECoolShinesparkSituation>", "lstAllowedSituations", 0x38, (Description, "These are the situations we're in"));
-    DREAD_REFLECTED_FIELD(CStrId, "sCoolShinesparkId", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Identifier of this Cool Shinespark situation, used to disable it when successfully completed"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCoolShinesparkId", 0x60, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Identifier of this Cool Shinespark situation, used to disable it when successfully completed"));
     DREAD_REFLECTED_FIELD(bool, "bAllow", 0x68, (DefaultValue, true), (Description, "Whether Cool Shinespark is allowed"));
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x69, (DefaultValue, false), (Description, "Force allow/forbid Cool Shinespark"));
 }

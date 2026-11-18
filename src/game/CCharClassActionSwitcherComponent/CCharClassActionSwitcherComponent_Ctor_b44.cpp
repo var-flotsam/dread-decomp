@@ -1,6 +1,6 @@
 // CCharClassActionSwitcherComponent (tools/tu_map.py; the name from reflection): the constructor.
 // The object is cleared first, then the base constructor fn_71011acd10 runs; the vtable, two copies
-// of the empty string id (g_unk_7101d470e0, the id and the pool's empty one read once, as in
+// of the empty string id (base::global::CStrId::Empty(), the id and the pool's empty one read once, as in
 // src/game/CBarelyFrozenIceInfo/CBarelyFrozenIceInfo_Ctor_b44.cpp) at +0x58 and +0x60, a cleared
 // half-word at +0x68, then the vtable's slot at +0x18 on itself. Names and layout are placeholders.
 #include "base/global/CStrId.h"
@@ -24,7 +24,7 @@ void fn_7100877574(UnkActionSwitcherDef_b44a2* self) {
     __builtin_memset(self, 0, 0x58);
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = g_unk_7101a7aa50 + 2;
-    UnkStringData* id = g_unk_7101d470e0.data;
+    UnkStringData* id = base::global::CStrId::Empty().data;
     self->field_0x58 = id;
     bool counted = &g_unk_7101d47108->empty != id;
     if (counted)

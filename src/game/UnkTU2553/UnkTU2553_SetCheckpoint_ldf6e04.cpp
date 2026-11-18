@@ -25,7 +25,7 @@ inline const CStrId& SectionId_ldf6e04() {
 static inline const UnkQualifiedId& DefId_ldf6e04(UnkPropertyEx<>& def) {
     UnkQualifiedId& qid = ItemQualifiedId(def);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(def), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(def), base::global::CStrId::Empty());
     return qid;
 }
 

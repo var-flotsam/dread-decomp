@@ -1,6 +1,6 @@
 // CCharClassMorphBallLauncherComponent (tools/tu_map.py; the name from reflection): the
 // constructor. The base constructor fn_71011acd10, the vtable, cleared fields, a copy of the empty
-// string id (g_unk_7101d470e0) at +0x70, then the vtable's slot at +0x18 on itself. Names and
+// string id (base::global::CStrId::Empty()) at +0x70, then the vtable's slot at +0x18 on itself. Names and
 // layout are placeholders.
 #include <new>
 
@@ -27,6 +27,6 @@ void fn_7100885304(UnkMorphBallLauncherDef_b44a2* self) {
     self->field_0x68 = 0;
     self->field_0x58 = 0;
     self->field_0x60 = 0;
-    new (&self->field_0x70) base::global::CStrId(g_unk_7101d470e0);
+    new (&self->field_0x70) base::global::CStrId(base::global::CStrId::Empty());
     reinterpret_cast<void (*)(UnkMorphBallLauncherDef_b44a2*)>(self->vtable[3])(self);
 }

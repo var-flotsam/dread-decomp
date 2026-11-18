@@ -137,7 +137,7 @@ void fn_7100838c7c(UnkSamusGun_ovb0070* gun) {
     self->field_0x131 = 0;
     self->mode = 1;
     new (&self->ids) CRntVector<CStrId>(0xf);
-    new (&self->id) CStrId(g_unk_7101d470e0);
+    new (&self->id) CStrId(base::global::CStrId::Empty());
 
     self->charge_start = 0.5f;
     self->charge_full = 1.0f;

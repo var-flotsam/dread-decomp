@@ -29,7 +29,7 @@ bool fn_71004fc4a8() {
     const CStrId& id = *static_cast<const CStrId*>(fn_7100df6d84(gm));
     UnkProtoNamedId_A3_b66& def = reinterpret_cast<UnkProtoNamedId_A3_b66&>(g_unk_71726dd158);
     if (def.qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
+        fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());
     if (CBlackboard::CSection* section = fn_7101047270(blackboard, id))
         fn_710006d11c(section, &def.qid.id, &flag);
     return !flag;

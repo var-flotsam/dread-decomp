@@ -138,7 +138,7 @@ void fn_71010e2278(UnkOwner_71010e2278* self, UnkArg1_71010e2278* a1, UnkArg2_71
                    f32 x, f32 y, f32 z) {
     UnkRenderManager* mgr = g_unk_7101d47300;
     UnkSceneObj_71010e2278* scene = nullptr;
-    fn_7100e13928(mgr->field_0x218, nullptr, &scene, &g_unk_7101d470e0);
+    fn_7100e13928(mgr->field_0x218, nullptr, &scene, &base::global::CStrId::Empty());
     fn_7100219ae0(mgr, scene, 0);
     self->scene = scene;
     scene->xform.Set(x, y, z, a1);

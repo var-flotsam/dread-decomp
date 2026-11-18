@@ -87,7 +87,7 @@ void fn_7100a076b0(UnkUnlockAreaSmartObject2_b0086* self) {
         self->grab.field_0x2b = false;
         fn_710113d940(player->grabber, reinterpret_cast<UnkKraidGrab_b57a4*>(&self->grab), self->owner);
     }
-    self->field_0x148 = g_unk_7101d470e0;
+    self->field_0x148 = base::global::CStrId::Empty();
 }
 
 // The pooled data behind a string id as its hash accessor sees it: the hash at +0x30 and a count of

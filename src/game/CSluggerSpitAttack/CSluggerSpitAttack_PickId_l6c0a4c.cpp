@@ -36,7 +36,7 @@ struct UnkSluggerSpitAttack_PickId {
 
 const CStrId* fn_71006c0a4c(UnkSluggerSpitAttack_PickId* self) {
     if (!self->owner)
-        return &g_unk_7101d470e0;
+        return &base::global::CStrId::Empty();
     UnkAnimationComponent* anim = static_cast<UnkAnimationComponent*>(self->owner->field_0x220);
     UnkSluggerMovement* movement = static_cast<UnkSluggerMovement*>(self->owner->field_0x218);
     UnkReflObject* part = movement ? movement->field_0x10 : nullptr;
@@ -44,10 +44,10 @@ const CStrId* fn_71006c0a4c(UnkSluggerSpitAttack_PickId* self) {
     if (part && fn_710009d50c(part->vf_0x0(), fn_710095629c()))
         enemy = reinterpret_cast<UnkSluggerMovementPart*>(part);
     if (!self->owner)
-        return &g_unk_7101d470e0;
+        return &base::global::CStrId::Empty();
     UnkActor* target = fn_7100d7c990(self->owner);
     if (!anim || !enemy || !target)
-        return &g_unk_7101d470e0;
+        return &base::global::CStrId::Empty();
     bool flag = fn_710117ae38(anim, enemy->field_0x90->field_0x30, false);
     UnkActor* actor = self->owner;
     f32 tx = target->field_0x44;

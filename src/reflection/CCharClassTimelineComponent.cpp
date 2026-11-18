@@ -27,7 +27,7 @@ template <> base::reflection::CType base::reflection::TypeObject<base::global::t
 namespace CCharClassTimelineComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sInitAction", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sInitAction", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("CTimelineComponent::ENextPolicy", "eNextPolicy", 0x58, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0x68, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0x6c, (DefaultValue, 0.0f));

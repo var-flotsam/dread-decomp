@@ -887,7 +887,7 @@ bool fn_71000f7800(UnkSoundSystemATK* self) {
         {
             UnkSoundRegistryEntry entry{g_unk_7108b6ad30,
                                         nullptr,
-                                        g_unk_7101d470e0,
+                                        base::global::CStrId::Empty(),
                                         g_unk_7101d470e8,
                                         base::global::CFilePathStrId(base::global::UnkStrIdInline(), nullptr, true),
                                         nullptr,

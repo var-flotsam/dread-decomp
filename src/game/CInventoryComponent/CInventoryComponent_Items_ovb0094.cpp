@@ -111,7 +111,7 @@ struct UnkInvSection_ovb0094 {
 void fn_7101149354(UnkInvSection_ovb0094* self, const base::global::CRntString& name) {
     UnkInvRntId_ovb0094 id(name);
     self->id = id.id;
-    if (self->id.data != g_unk_7101d470e0.data && fn_7101047208(&g_unk_7101d47310->field_0x968, self->id))
+    if (self->id.data != base::global::CStrId::Empty().data && fn_7101047208(&g_unk_7101d47310->field_0x968, self->id))
         fn_710114433c(self, &fn_71010472e0(&g_unk_7101d47310->field_0x968, self->id)->data);
 }
 
@@ -119,7 +119,7 @@ void fn_7101149354(UnkInvSection_ovb0094* self, const base::global::CRntString& 
 static inline UnkQualifiedId& Qid_ovb0094(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 

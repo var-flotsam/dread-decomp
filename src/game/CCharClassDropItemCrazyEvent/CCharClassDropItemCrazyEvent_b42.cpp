@@ -1,6 +1,6 @@
 // CCharClassDropItemCrazyEvent's unit (tools/tu_map.py): its constructor, on the event base
 // (fn_7100067ea4): the vtable, a cleared flag, a cleared block, a copy of the empty string id
-// (g_unk_7101d470e0), another cleared block, a second copy of the empty id and a cleared word. Names
+// (base::global::CStrId::Empty()), another cleared block, a second copy of the empty id and a cleared word. Names
 // and the layout are placeholders.
 #include <new>
 
@@ -28,8 +28,8 @@ void fn_7100cb5358(UnkDropItemCrazyEvent_b42a3* self) {
     self->vtable = g_unk_7101aa5800 + 0x10;
     self->field_0xc = false;
     __builtin_memset(self->field_0x10, 0, sizeof(self->field_0x10));
-    new (&self->id_0x58) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x58) CStrId(base::global::CStrId::Empty());
     __builtin_memset(self->field_0x60, 0, sizeof(self->field_0x60));
-    new (&self->id_0x78) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x78) CStrId(base::global::CStrId::Empty());
     self->field_0x80 = 0;
 }

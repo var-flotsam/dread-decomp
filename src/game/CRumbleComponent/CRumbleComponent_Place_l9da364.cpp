@@ -67,7 +67,7 @@ struct UnkRumbleEntry_ovb0083 {
     f32 field_0x4c = 1.0f;
     bool field_0x50 = false;
     bool field_0x51 = false;
-    UnkRumbleStrId_ovb0083<g_unk_7101d47108> name{g_unk_7101d470e0.data};  // 0x58
+    UnkRumbleStrId_ovb0083<g_unk_7101d47108> name{base::global::CStrId::Empty().data};  // 0x58
     bool field_0x60 = true;
     bool field_0x61 = true;
     bool restart = false;  // 0x62
@@ -123,7 +123,7 @@ void fn_71009da364(UnkRumbleComponent_l9da364* self) {
         void* target = self->owner->field_0x228;
         bool found = false;
         // The name gives a point of its own when it is set and is neither of two ids of the table.
-        if (target && !SameId(it->name, g_unk_7101d470e0) && !SameId(it->name, GameManagerIdTable().field_0xd40) &&
+        if (target && !SameId(it->name, base::global::CStrId::Empty()) && !SameId(it->name, GameManagerIdTable().field_0xd40) &&
             !SameId(it->name, IdTableSlot2128())) {
             u64 hash = reinterpret_cast<const UnkStringEntry*>(it->name.data)->buffer.key;
             found = fn_710117364c(target, &hash, reinterpret_cast<UnkGrappleAnswer_b50*>(&point));

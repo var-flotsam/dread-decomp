@@ -26,7 +26,7 @@ struct UnkBreakableTileSlot {
     base::global::CFilePathStrId path;
     UnkCountedResource* resource;
 
-    UnkBreakableTileSlot() : id(g_unk_7101d470e0), path(g_unk_7101d470e8), resource(nullptr) {}
+    UnkBreakableTileSlot() : id(base::global::CStrId::Empty()), path(g_unk_7101d470e8), resource(nullptr) {}
     // Releases the ids and the resource (fn_7100027044), then drops the slot's own reference.
     ~UnkBreakableTileSlot() {
         fn_7100027044(reinterpret_cast<UnkStrIdPathResource*>(this));

@@ -17,5 +17,5 @@ CStrId fn_71000999cc(const CEnumType* self, s32 value) {
     for (const UnkEnumEntry_b66a1 *it = entries, *end = entries + self->m_values.count; it != end; ++it)
         if (it->value == value)
             return it->name;
-    return g_unk_7101d470e0;
+    return base::global::CStrId::Empty();
 }

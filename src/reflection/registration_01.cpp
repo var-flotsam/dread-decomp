@@ -1069,9 +1069,9 @@ void fn_7100a552e0(CClass* cls) {
 
 void fn_7100a59af0(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("sID", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x0, -1, -1);
-    field0->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(g_unk_7101d470e0));
+    field0->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(CStrId::Empty()));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sCharclasses", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x10, -1, -1);
-    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(CStrId::Empty()));
     UnkReflField* field2 = AddReflectedField(cls, CStrId("bEnabled", true), &base::reflection::PrimitiveType<bool>::Get(), 0x18, -1, -1);
     field2->attrs.Add<bool>(base::reflection::attr::DefaultValue(), true);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("bAlways", true), &base::reflection::PrimitiveType<bool>::Get(), 0x19, -1, -1);
@@ -1164,7 +1164,7 @@ void fn_7100acd79c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_sID_SetterFunction")
         fn_7100ace58c(fn, "_sID_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sID", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(CStrId::Empty()));
     field1->attrs.Add<const char*>(base::reflection::attr::Description(), "ID");
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 1);
     DREAD_REFLECTED_FUNCTION_OF("_bDeadEnd_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100ad1734);
@@ -1964,7 +1964,7 @@ void fn_7100e0700c(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("eEntryType", true), &base::reflection::TypeObject<EEntryType>::object, 0x0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EEntryType>::object, 0);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sLabelText", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x8, -1, -1);
-    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(g_unk_7101d470e0));
+    field1->attrs.Add<CStrId>(base::reflection::attr::DefaultValue(), CStrId(CStrId::Empty()));
     UnkReflField* field2 = AddReflectedField(cls, CStrId("vCaptionsIds", true), &g_unk_7101d5c998, 0x10, -1, -1);
 }
 

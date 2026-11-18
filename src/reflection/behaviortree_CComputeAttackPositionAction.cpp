@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 namespace behaviortree::CComputeAttackPositionAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sPos", 0x50, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Property name for calculated position"));
-    DREAD_REFLECTED_FIELD(CStrId, "sClockwise", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Property name for calculated clockwise"));
+    DREAD_REFLECTED_FIELD(CStrId, "sPos", 0x50, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Property name for calculated position"));
+    DREAD_REFLECTED_FIELD(CStrId, "sClockwise", 0x58, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Property name for calculated clockwise"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

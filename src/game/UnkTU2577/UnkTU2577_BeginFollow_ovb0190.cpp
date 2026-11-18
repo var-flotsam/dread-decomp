@@ -31,7 +31,7 @@ void fn_7100eed9ec(void* self, void* target);
 struct UnkSubArea {
     CStrId field_0x0;
 };
-static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : g_unk_7101d470e0; }
+static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : base::global::CStrId::Empty(); }
 
 // The player as far as it is read here.
 struct UnkFollowPlayer_b190 {

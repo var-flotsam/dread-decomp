@@ -61,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sDamageSource_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710084db80);
     DREAD_REFLECTED_FUNCTION("_sDamageSource_SetterFunction")
         fn_710084c724(fn, "_sDamageSource_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Source of the damage to be dealt"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Source of the damage to be dealt"));
     DREAD_REFLECTED_FIELD(s32, "iMissilesPerShot", 0x3c, (DefaultValue, 3));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x38, (DefaultValue, 0.75f), (Description, "Maximun damage to the shield"));
     DREAD_REFLECTED_FIELD(bool, "bSwarmMode", 0x28, (DefaultValue, true));

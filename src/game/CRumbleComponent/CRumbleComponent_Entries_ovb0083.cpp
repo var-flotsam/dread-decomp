@@ -70,7 +70,7 @@ struct UnkRumbleEntry_ovb0083 {
     f32 field_0x4c = 1.0f;
     bool field_0x50 = false;
     bool field_0x51 = false;
-    UnkRumbleStrId_ovb0083<g_unk_7101d47108> name{g_unk_7101d470e0.data};  // 0x58
+    UnkRumbleStrId_ovb0083<g_unk_7101d47108> name{base::global::CStrId::Empty().data};  // 0x58
     bool field_0x60 = true;
     bool field_0x61 = true;
     bool restart = false;  // 0x62

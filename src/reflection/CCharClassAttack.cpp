@@ -38,8 +38,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bCheckNotViewDirection", 0xad, (DefaultValue, false), (Description, "Check enemy in NOT view direction"));
     DREAD_REFLECTED_FIELD(bool, "bUpdateAttackWhileFrozen", 0x7e, (DefaultValue, false), (Description, "When frozen, if true, update attack"));
     DREAD_REFLECTED_FIELD(bool, "bFreezeEndsAttack", 0x7f, (DefaultValue, false), (Description, "When frozen, if true, it cancels the current attack"));
-    DREAD_REFLECTED_FIELD(CStrId, "sCancelAttackAnim", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to set if m_bFreezeEndsAttack is true and entity is frozen"));
-    DREAD_REFLECTED_FIELD(CStrId, "sAttackOnEndTimeline", 0x88, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Timeline called when attack finishes"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCancelAttackAnim", 0x80, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to set if m_bFreezeEndsAttack is true and entity is frozen"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAttackOnEndTimeline", 0x88, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Timeline called when attack finishes"));
     DREAD_REFLECTED_FIELD(f32, "fMinTimeBossInCombatToAttack", 0xa0, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(s32, "iMaxToRepeat", 0xa4, (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(s32, "iMaxWithoutLaunch", 0xa8, (DefaultValue, -1));

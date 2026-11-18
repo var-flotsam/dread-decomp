@@ -29,7 +29,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpAccessPoint", true), &g_unk_71727b6270, 0x10, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    DREAD_REFLECTED_FIELD(CStrId, "sDoorsLockedLiteralID", 0x50, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sDoorsLockedLiteralID", 0x50, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bInstantLock", 0xd8, (DefaultValue, false));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -3,7 +3,7 @@
 #include <new>
 
 #include "base/global/CStrId.h"
-#include "base/reflection/UnkReflAttributes.h"  // g_unk_7101d470e0, the shared id
+#include "base/reflection/UnkReflAttributes.h"  // base::global::CStrId::Empty(), the shared id
 #include "game/CCharClassComponent.h"
 #include "game/CCharClassLifeComponent.h"
 #include "types.h"
@@ -34,7 +34,7 @@ void fn_71008bca30(UnkStruct_71008bca30* self) {
     fn_71011acd10(self);
     self->vtable = g_unk_7101a7deb0 + 0x10;
     for (s32 i = 0; i < 9; ++i)
-        new (&self->ids[i]) UnkStrId_71008bca30(g_unk_7101d470e0.data);
+        new (&self->ids[i]) UnkStrId_71008bca30(base::global::CStrId::Empty().data);
     self->field_0xa0 = true;
     self->field_0x18 = 0xdac;
     self->field_0x1c = 5;

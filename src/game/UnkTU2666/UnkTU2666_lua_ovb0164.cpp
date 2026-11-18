@@ -450,7 +450,7 @@ s32 fn_7101082690(lua_State* L) {
         auto start = reinterpret_cast<void (*)(UnkGameManager*, const CRntString&, const CRntString&,
                                                const CRntString&, const CStrId&, u32, const CRntString&,
                                                const CStrId&, u32, void*, f32)>(fn_7100df28d0);
-        start(manager, a, b, c, d, n, e, g_unk_7101d470e0, 0, nullptr, 0.0f);
+        start(manager, a, b, c, d, n, e, base::global::CStrId::Empty(), 0, nullptr, 0.0f);
     }
     return 0;
 }

@@ -16,13 +16,13 @@
 
 namespace base {
 
-// The empty id of a pool, which a default id copies: g_unk_7101d470e0 for the string pool,
+// The empty id of a pool, which a default id copies: base::global::CStrId::Empty() for the string pool,
 // g_unk_7101d470e8 for the file-path pool.
 template <global::UnkStringPool*& Pool>
 struct UnkEmptyStrIdOf;
 template <>
 struct UnkEmptyStrIdOf<g_unk_7101d47108> {
-    static global::UnkStringData* Data() { return g_unk_7101d470e0.data; }
+    static global::UnkStringData* Data() { return base::global::CStrId::Empty().data; }
 };
 template <>
 struct UnkEmptyStrIdOf<g_unk_7101d47200> {

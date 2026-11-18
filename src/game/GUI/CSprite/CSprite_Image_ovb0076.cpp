@@ -138,9 +138,9 @@ void fn_71011f8f80(UnkSprite_ovb0076* self, UnkSpriteImage_ovb0076* image, CStrI
         return;
     }
     self->image = nullptr;
-    self->name = g_unk_7101d470e0;
+    self->name = base::global::CStrId::Empty();
     fn_71011b9a1c(g_unk_717271e8f8, Text_ovb0076(self->sheet));
-    self->sheet = g_unk_7101d470e0;
+    self->sheet = base::global::CStrId::Empty();
     if (UnkSpriteRenderObj_ovb0076* render = self->render) {
         fn_71011bab80(g_unk_717271e8f8, render, (render->flags >> 12) & 0xf);
         self->render = nullptr;
@@ -152,7 +152,7 @@ void fn_71011f918c(UnkSprite_ovb0076* self) {
         fn_71011bab80(g_unk_717271e8f8, render, (render->flags >> 12) & 0xf);
         self->render = nullptr;
     }
-    fn_71011f8f80(self, nullptr, g_unk_7101d470e0);
+    fn_71011f8f80(self, nullptr, base::global::CStrId::Empty());
 }
 
 // The image's size in a frame, and the sprite's size setter (as src/game/GUI/CLabel.cpp and

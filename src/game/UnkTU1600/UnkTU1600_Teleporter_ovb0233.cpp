@@ -237,7 +237,7 @@ bool fn_7100a8e9b4(UnkTeleporterHandles_b0233* self, UnkTeleporterObject_b0233* 
     const CStrId& id = base::reflection::refl_GetStrIdTable<0x7100031894>().ids[0x22a];
     UnkQualifiedId& qid = ItemQualifiedId(g_unk_7172759438);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(g_unk_7172759438), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(g_unk_7172759438), base::global::CStrId::Empty());
     bool value = true;
     if (CBlackboard::CSection* section = fn_71010472e0(blackboard, id)) {
         if (!blackboard->field_0xe8) {

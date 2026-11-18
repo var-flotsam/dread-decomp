@@ -28,7 +28,7 @@ UnkReflValue fn_71011d3cec(void*, char* obj) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     UnkGuiFrame* frame = fn_71011b7a4c(g_unk_717271e8f8, *reinterpret_cast<s32*>(target + 0xb0));
     const base::global::CStrId* source =
-        frame ? reinterpret_cast<const base::global::CStrId*>(frame) : &g_unk_7101d470e0;
+        frame ? reinterpret_cast<const base::global::CStrId*>(frame) : &base::global::CStrId::Empty();
     base::global::CStrId value = *source;
     const base::reflection::CType* type = fn_7100009658();
     UnkReflValue r;
@@ -48,7 +48,7 @@ UnkReflValue fn_71011d3e5c(void*, char* obj) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     void* parent = *reinterpret_cast<void**>(target + 0x128);
     base::global::CStrId value =
-        parent ? fn_71011dcc54(fn_71011dccfc(parent)) : base::global::CStrId(g_unk_7101d470e0);
+        parent ? fn_71011dcc54(fn_71011dccfc(parent)) : base::global::CStrId(base::global::CStrId::Empty());
     const base::reflection::CType* type = fn_7100009658();
     UnkReflValue r;
     r.kind = 2;

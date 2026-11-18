@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fTime", 0x18, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fIntensitySrc", 0x1c, (DefaultValue, 0.0f), (MinValue, -1.0f), (MaxValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fIntensityDst", 0x20, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));

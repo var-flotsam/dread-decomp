@@ -49,7 +49,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_fTargetChangeProbability_SetterFunction")
         fn_71007366f8(fn, "_m_fTargetChangeProbability_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fTargetChangeProbability", (DefaultValue, 0.01f), (Description, "Probability of traveling to another node [.01]"));
-    DREAD_REFLECTED_FIELD(CStrId, "sIndividualLife", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Life of each individual of groups [1]"));
+    DREAD_REFLECTED_FIELD(CStrId, "sIndividualLife", 0x70, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Life of each individual of groups [1]"));
     DREAD_REFLECTED_FUNCTION_OF("_m_fAttackPathOffset_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100737928);
     DREAD_REFLECTED_FUNCTION("_m_fAttackPathOffset_SetterFunction")
         fn_7100736874(fn, "_m_fAttackPathOffset_SetterFunction");

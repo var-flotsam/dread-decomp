@@ -29,6 +29,6 @@ void fn_7100bd37dc(UnkSetDoorLockedEvent* self) {
     UnkDoorLock* door = fn_71002af860(entity);
     if (!door)
         return;
-    CStrId name(g_unk_7101d470e0);
+    CStrId name(base::global::CStrId::Empty());
     fn_71008d586c(door, true, 0, &name);
 }

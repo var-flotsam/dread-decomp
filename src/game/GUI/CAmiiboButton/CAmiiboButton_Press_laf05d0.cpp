@@ -33,13 +33,13 @@ struct UnkAmiiboGuiRef_laf05d0 {
 static inline UnkQualifiedId& Qid_laf05d0(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 
 static inline void ShowMessage_laf05d0(CStrId& text) {
     auto* ref = static_cast<UnkAmiiboGuiRef_laf05d0*>(g_unk_7101d47310->field_0x2258);
-    fn_7100b5fd6c(ref ? ref->composition : nullptr, &text.data, &g_unk_7101d470e0, true, false);
+    fn_7100b5fd6c(ref ? ref->composition : nullptr, &text.data, &base::global::CStrId::Empty(), true, false);
 }
 
 void fn_7100af05d0(UnkObj_7100af65b4* self) {

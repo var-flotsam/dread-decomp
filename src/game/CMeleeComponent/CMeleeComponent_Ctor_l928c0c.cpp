@@ -99,7 +99,7 @@ void fn_7100928c0c(UnkMeleeComponent_l928c0c* self) {
     for (base::global::CRntVector<void*>& list : self->lists)
         new (&list) base::global::CRntVector<void*>(0xf);
     self->field_0x270 = false;
-    new (&self->field_0x278) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x278) CStrId(base::global::CStrId::Empty());
     self->field_0x280 = 1.0f;
     self->field_0x288 = 0;
 }

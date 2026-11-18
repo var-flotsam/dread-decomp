@@ -53,6 +53,6 @@ void fn_7100a972d0(UnkTotalRecharge_la972d0* self) {
     s_params.field_0x3c = 5000.0f;
     s_params.field_0x40 = 50000.0f;
     s_params.field_0x44 = 1.0f;
-    fn_7100d7c374(reinterpret_cast<UnkEntityWithSound*>(self->owner), &s_params, &g_unk_7101d470e0, false, true,
+    fn_7100d7c374(reinterpret_cast<UnkEntityWithSound*>(self->owner), &s_params, &base::global::CStrId::Empty(), false, true,
                   true);
 }

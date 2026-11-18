@@ -274,6 +274,6 @@ struct UnkScenarioScript_ovb0032 {
 void fn_710119fe50(UnkScenarioScript_ovb0032* self, const char* a, const char* b);
 
 void fn_71011a49ec(UnkScenarioScript_ovb0032* self) {
-    fn_710119fe50(self, TextOrEmpty_ovb0032(g_unk_7101d470e0), TextOrEmpty_ovb0032(g_unk_7101d470e0));
+    fn_710119fe50(self, TextOrEmpty_ovb0032(base::global::CStrId::Empty()), TextOrEmpty_ovb0032(base::global::CStrId::Empty()));
     self->vf_0x18();
 }

@@ -385,7 +385,7 @@ u32 fn_71004d2e14(UnkCooldownXDamageAI_ovb0088* self, UnkCooldownXDamage_ovb0088
         f32 value = fn_71008c2de8(reinterpret_cast<UnkRobotSoldierTable_A2_b69*>(self->tables->table), damage->flags);
         fn_71008c1538(reinterpret_cast<UnkRequest*>(damage), value * damage->scale);
     }
-    CStrId id(damage->source ? damage->source->id : g_unk_7101d470e0);
+    CStrId id(damage->source ? damage->source->id : base::global::CStrId::Empty());
     if (IsShieldable(id)) {
         if (damage->flags & 0x8000)
             self->shielded = true;

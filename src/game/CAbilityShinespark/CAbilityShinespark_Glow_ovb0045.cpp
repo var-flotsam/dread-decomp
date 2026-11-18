@@ -173,7 +173,7 @@ struct UnkShinesparkCool_b0045 {
 static inline UnkSubId_7100fc4b34 SubId(UnkPropertyEx<0x160>& def, const CStrId& name) {
     UnkQualifiedName* qualified = reinterpret_cast<UnkQualifiedName*>(def.field_0x10);
     if (!qualified->str || !qualified->str[0])
-        fn_7100ae9d7c(qualified, reinterpret_cast<UnkIdSource*>(&def), g_unk_7101d470e0);
+        fn_7100ae9d7c(qualified, reinterpret_cast<UnkIdSource*>(&def), base::global::CStrId::Empty());
     return fn_71003327a4(qualified, &name);
 }
 
@@ -188,7 +188,7 @@ static inline bool AimsUp(UnkShinesparkCool_b0045* self) {
 void fn_7100331544(UnkShinesparkCool_b0045* self) {
     if (!self->in_air || !AimsUp(self))
         return;
-    if (self->name.data == g_unk_7101d470e0.data)
+    if (self->name.data == base::global::CStrId::Empty().data)
         return;
     UnkGameManager* manager = g_unk_7101d47310;
     UnkTypedValue v;

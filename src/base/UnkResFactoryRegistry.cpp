@@ -98,7 +98,7 @@ struct UnkRegistryEntry : UnkRegistryEntryHead {
 // copies): nothing is inferred from their bodies, so fn_710001fc00 reloads its entry's ids after
 // each release.
 __attribute__((noinline)) inline UnkRegistryEntry::UnkRegistryEntry(UnkRegistryDesc* desc, void* factory)
-    : UnkRegistryEntryHead{desc, factory}, id(g_unk_7101d470e0), path_0x18(g_unk_7101d470e8),
+    : UnkRegistryEntryHead{desc, factory}, id(base::global::CStrId::Empty()), path_0x18(g_unk_7101d470e8),
       field_0x28(nullptr, reinterpret_cast<void (*)()>(fn_71000204c4)),
       field_0x38(nullptr, reinterpret_cast<void (*)()>(fn_71000204cc)) {}
 

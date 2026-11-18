@@ -248,7 +248,7 @@ void fn_71008449ec(UnkHyperBeamGun* self, bool charged, bool cancelled) {
     desc.field_0x20[1] = 1.0f;
     desc.field_0x20[2] = 1.0f;
     desc.field_0x20[3] = 1.0f;
-    self->field_0x18e8 = fn_7100d7c614(self->owner, &desc, &g_unk_7101d470e0, 0, 1, 1);
+    self->field_0x18e8 = fn_7100d7c614(self->owner, &desc, &base::global::CStrId::Empty(), 0, 1, 1);
     self->field_0x18f9 = false;
     self->field_0x18fc = 0.0f;
     self->field_0x18a4 = self->field_0x18a0;

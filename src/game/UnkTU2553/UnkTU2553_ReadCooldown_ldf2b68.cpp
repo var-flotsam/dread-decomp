@@ -31,7 +31,7 @@ static inline void ReadFlag_ldf2b68(CBlackboard* blackboard, const CStrId& secti
                                     bool* out) {
     UnkQualifiedId& qid = ItemQualifiedId(def);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(def), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(def), base::global::CStrId::Empty());
     if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
         fn_710006d11c(s, &qid.id, out);
 }

@@ -475,7 +475,7 @@ void fn_71007a941c(UnkCutsceneComponent_ovb0077* self) {
         if (!ref->vf_0x18())
             ref->vf_0x30();
         if (UnkCutsceneActorObject_ovb0077* actor = Get(ref)) {
-            if (e->name.data == g_unk_7101d470e0.data)
+            if (e->name.data == base::global::CStrId::Empty().data)
                 e->name = actor->name;
             e->field_0x80 = actor->field_0x1b3;
         }

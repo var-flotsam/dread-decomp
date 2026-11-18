@@ -31,7 +31,7 @@ bool fn_71007fe39c(UnkAreaFX_b50* self, void* arg) {
     UnkReflObject* object = self->field_0x10;
     self->field_0x3f8 = object && fn_710009d50c(object->vf_0x0(), fn_71007fbc5c()) ? object : nullptr;
     self->field_0x400 = false;
-    self->field_0x408 = g_unk_7101d470e0;
+    self->field_0x408 = base::global::CStrId::Empty();
     self->field_0x410 = -1.0f;
     self->field_0x414 = false;
     self->field_0x3f4 = false;

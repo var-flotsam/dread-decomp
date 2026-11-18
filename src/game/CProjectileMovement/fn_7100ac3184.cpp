@@ -156,7 +156,7 @@ void fn_7100ac3184(UnkComponent_0x5d0* self) {
     self->field_0x108 = -1.0f;
     self->field_0x524 = 0;
     self->field_0x578 = false;
-    self->field_0x598 = g_unk_7101d470e0;
+    self->field_0x598 = base::global::CStrId::Empty();
     ResetRef(&self->field_0x528);
     ResetRef(&self->field_0x530);
     self->field_0x564 = UnkGetStaticZero_71726b5354().value;

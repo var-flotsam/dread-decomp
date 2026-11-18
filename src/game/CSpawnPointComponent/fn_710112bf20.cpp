@@ -18,5 +18,5 @@ const CStrId* fn_710112bf20(CSpawnPointComponent* self) {
     auto* handle = static_cast<CGameLinkHandle<UnkSpawnTarget>*>(self->field_0x60.handle.ptr);
     if (handle && handle->target)
         return &handle->target->id;
-    return &g_unk_7101d470e0;
+    return &base::global::CStrId::Empty();
 }

@@ -11,5 +11,5 @@ CStrId fn_7100a85ae0() {
     UnkGameManager* manager = g_unk_7101d47310;
     if (manager->field_0x608)
         return fn_71011a2fbc(manager->field_0x608);
-    return g_unk_7101d470e0;
+    return base::global::CStrId::Empty();
 }

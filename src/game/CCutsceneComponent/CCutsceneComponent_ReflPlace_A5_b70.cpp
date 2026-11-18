@@ -38,7 +38,7 @@ static inline UnkVec3_cs Add_A5_b70(const UnkVec3_cs& a, const UnkVec3_cs& b) {
 UnkReflValue fn_71007ad814(void*, char* obj) {
     UnkCutsceneComponent_cs* self = *reinterpret_cast<UnkCutsceneComponent_cs**>(obj + 8);
     UnkCutsceneObject_cs* object = self->object;
-    const base::global::CStrId* name = object->take ? object->take->name : &g_unk_7101d470e0;
+    const base::global::CStrId* name = object->take ? object->take->name : &base::global::CStrId::Empty();
     if (object) {
         void* entry = fn_710106cf74(object, name);
         const UnkVec3_cs& offset = *fn_71000cc374(self->field_0x58, fn_7101068c80(self->object, entry));

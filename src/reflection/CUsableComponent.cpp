@@ -89,13 +89,13 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fOnLoadBackGroundTimeMax", 0x24, (DefaultValue, 0.0f), (Description, "Max time to stay on backgorund when player loads game"));
     DREAD_REFLECTED_FIELD(f32, "fDistanceChannelMin", 0x28, (DefaultValue, 25.0f));
     DREAD_REFLECTED_FIELD(f32, "fDistanceChannelA", 0x2c, (DefaultValue, 75.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelA", 0x30, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelA", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelA", 0x30, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelA", 0x38, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fDistanceChannelB", 0x40, (DefaultValue, 125.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelB", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelB", 0x50, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelC", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelC", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelB", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelB", 0x50, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelC", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelC", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
     fn_7100a9d8f4(base::reflection::TunableRegistry(), &g_unk_71727531f0, "Logic");
 }
 bool refl_Equals(const void*, const void*) { return false; }

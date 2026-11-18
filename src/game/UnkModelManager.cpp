@@ -18,7 +18,7 @@ static inline void LoadModel(UnkOverlayModel*& slot, const char* path) {
     UnkOverlayModel* model;
     CFilePathStrId id(path, true);
     model = nullptr;
-    fn_7100a0feac(render->field_0x218, &id, &model, &g_unk_7101d470e0);
+    fn_7100a0feac(render->field_0x218, &id, &model, &base::global::CStrId::Empty());
     fn_7100219ae0(render, model ? &model->node : nullptr, 0);
     slot = model;
 }

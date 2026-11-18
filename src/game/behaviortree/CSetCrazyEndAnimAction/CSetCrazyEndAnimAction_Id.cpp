@@ -27,10 +27,10 @@ struct UnkAction453 {
 const base::global::CStrId* fn_7100370fa0(const UnkAction453* self) {
     UnkInner453* inner = self->owner->inner;
     if (inner == nullptr) {
-        const base::global::CStrId* none = &g_unk_7101d470e0;
+        const base::global::CStrId* none = &base::global::CStrId::Empty();
         asm("" : "+r"(none));
         return none;
     }
     UnkRecord453* record = inner->record;
-    return record != nullptr ? &record->id : &g_unk_7101d470e0;
+    return record != nullptr ? &record->id : &base::global::CStrId::Empty();
 }

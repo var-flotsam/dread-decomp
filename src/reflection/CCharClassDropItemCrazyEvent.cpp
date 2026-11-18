@@ -45,14 +45,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinDistance", 0x4c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxDistance", 0x50, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxZDisp", 0x54, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fOffsetX", 0x60, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fOffsetY", 0x64, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fOffsetZ", 0x68, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fRawOffsetX", 0x6c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fRawOffsetY", 0x70, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fRawOffsetZ", 0x74, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sDirection", 0x78, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sDirection", 0x78, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bStrictDirection", 0x80, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bForceAttract", 0x81, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreAttractionRadius", 0x82, (DefaultValue, false));

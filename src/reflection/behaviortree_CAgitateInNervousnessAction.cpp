@@ -25,7 +25,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bKeepCalmAndGoPatrol", 0x2c, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fTimeToCalm", 0x30, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sNervousAction", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sNervousAction", 0x38, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

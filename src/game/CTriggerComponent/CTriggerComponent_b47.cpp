@@ -31,7 +31,7 @@ struct UnkTriggerRecord {
     bool field_0x58;
 
     __attribute__((always_inline)) UnkTriggerRecord()
-        : field_0x0(g_unk_7101d470e0), field_0x8(0x7fffffff), field_0x10("", true) {
+        : field_0x0(base::global::CStrId::Empty()), field_0x8(0x7fffffff), field_0x10("", true) {
         field_0x18 = true;
         field_0x19 = false;
         field_0x1c = -1.0f;

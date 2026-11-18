@@ -137,7 +137,7 @@ bool fn_7100b5fde0(UnkGuiComposition_ovb0090* gui, const base::global::CStrId* t
     fn_71011ecfbc(accept_label, reinterpret_cast<const char32_t*>(accept));
 
     self->field_0x2e8 = 1;
-    self->field_0x328 = g_unk_7101d470e0;
+    self->field_0x328 = base::global::CStrId::Empty();
     self->on_back.Clear();
     self->on_accept.Clear();
     self->field_0x330.Clear();

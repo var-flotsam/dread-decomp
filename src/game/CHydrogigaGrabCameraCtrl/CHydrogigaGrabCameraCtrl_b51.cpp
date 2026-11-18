@@ -24,12 +24,12 @@ void fn_710086eb44(UnkGrabCameraCtrl* self) {
     fn_71010edd64(self);
     if (self->camera.data != &g_unk_7101d47108->empty) {
         fn_7100e03a78(g_unk_7101d47310, &self->camera);
-        self->camera = g_unk_7101d470e0;
+        self->camera = base::global::CStrId::Empty();
     }
     if (self->timer > 0.0f) {
         fn_7100df6c78(g_unk_7101d47310, 1.0f, 0.0f);
         // The timer and the word after it, cleared as one doubleword.
         *reinterpret_cast<u64*>(reinterpret_cast<char*>(self) + 0x1ec) = 0;
-        self->field_0x1f8 = g_unk_7101d470e0;
+        self->field_0x1f8 = base::global::CStrId::Empty();
     }
 }
