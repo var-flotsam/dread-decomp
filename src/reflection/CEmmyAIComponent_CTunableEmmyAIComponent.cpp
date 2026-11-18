@@ -21,6 +21,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 namespace base::global { class CStrId; }
@@ -167,7 +168,6 @@ void fn_710053e2c8(UnkReflFunction* fn, const char* name);
 void fn_7100565888();
 void fn_710053e444(UnkReflFunction* fn, const char* name);
 void fn_7100565954();
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100565b44();
 void fn_71005659a8(UnkReflFunction* fn);
 void fn_7100565c1c();
@@ -223,11 +223,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyAutoForbiddenEdgesDef>>", "tAutoForbiddenEdges", 0x2a660);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CEmmyAutoGlobalSmartLinkDef>>", "tAutoGlobalSmartLinks", 0x2a688);
     DREAD_REFLECTED_FUNCTION("AddLastTargetPerception") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddLastTargetPerception", &g_unk_7101d5af48, 0, fn_7100565b44);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddLastTargetPerception", &base::reflection::TypeObject<void>::object, 0, fn_7100565b44);
         fn_71005659a8(fn);
     }
-    DREAD_REFLECTED_FUNCTION_OF("ForceStartChase", &g_unk_7101d5af48, 0, fn_7100565c1c);
-    DREAD_REFLECTED_FUNCTION_OF("ForceStopStagger", &g_unk_7101d5af48, 0, fn_7100565c50);
+    DREAD_REFLECTED_FUNCTION_OF("ForceStartChase", &base::reflection::TypeObject<void>::object, 0, fn_7100565c1c);
+    DREAD_REFLECTED_FUNCTION_OF("ForceStopStagger", &base::reflection::TypeObject<void>::object, 0, fn_7100565c50);
     UnkReflField* field15 = AddReflectedField(cls, CStrId("tLogicShapesToAvoidCornerReposition", true), &g_unk_717269bf08, 0x2a6c8, -1, -1);
     field15->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);

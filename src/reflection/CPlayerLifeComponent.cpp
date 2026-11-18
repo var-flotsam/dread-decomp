@@ -19,12 +19,13 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CPlayerLifeComponent
 void fn_710116a30c();
 void fn_71011623bc(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710116a3b4();
 namespace CPlayerLifeComponent {
 void refl_AddAttributes(CClass*) {}
@@ -36,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_fLifeShards_SetterFunction")
         fn_71011623bc(fn, "_m_fLifeShards_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fLifeShards");
-    DREAD_REFLECTED_FUNCTION_OF("StopLifeAlarmSFX", &g_unk_7101d5af48, 0, fn_710116a3b4);
+    DREAD_REFLECTED_FUNCTION_OF("StopLifeAlarmSFX", &base::reflection::TypeObject<void>::object, 0, fn_710116a3b4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

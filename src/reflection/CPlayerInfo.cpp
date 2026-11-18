@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
@@ -41,7 +43,6 @@ void fn_7100f083f8(UnkReflFunction* fn, const char* name);
 void fn_7100f084ac(UnkReflFunction* fn, const char* name);
 void fn_7100f08560(UnkReflFunction* fn, const char* name);
 void fn_7100f08614(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100f0f428();
 void fn_71003540d8(UnkReflFunction* fn);
 namespace CPlayerInfo {
@@ -124,7 +125,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FUNCTION("IgnoreHang") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("IgnoreHang", &g_unk_7101d5af48, 0, fn_7100f0f428);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("IgnoreHang", &base::reflection::TypeObject<void>::object, 0, fn_7100f0f428);
         fn_71003540d8(fn);
     }
 }

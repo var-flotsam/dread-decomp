@@ -13,6 +13,7 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 namespace CCharClassRodomithonXAIComponent::SFirePillarConfig { enum class EType : u32; }
@@ -159,7 +160,6 @@ void fn_710011d59c();
 void fn_71001111ec(UnkReflFunction* fn, const char* name);
 void fn_710011dcc4();
 void fn_710011242c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710011dd98();
 void fn_710011ddac();
 extern base::reflection::CType g_unk_7108b6da30;
@@ -949,8 +949,8 @@ void fn_7100111368(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("bClosed", true), &base::reflection::PrimitiveType<bool>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
-    DREAD_REFLECTED_FUNCTION_OF("AfterSegmentDataDeserialization", &g_unk_7101d5af48, 0, fn_710011dd98);
-    DREAD_REFLECTED_FUNCTION_OF("AfterSegmentDeserialization", &g_unk_7101d5af48, 0, fn_710011ddac);
+    DREAD_REFLECTED_FUNCTION_OF("AfterSegmentDataDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_710011dd98);
+    DREAD_REFLECTED_FUNCTION_OF("AfterSegmentDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_710011ddac);
     DREAD_REFLECTED_FUNCTION("CreateElement") {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateElement", &g_unk_7108b6da30, 0x101, fn_710011df5c);
         fn_710011ddc0(fn);
@@ -960,7 +960,7 @@ void fn_7100111368(CClass* cls) {
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
     }
     DREAD_REFLECTED_FUNCTION("InsertElement") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("InsertElement", &g_unk_7101d5af48, 0, fn_710011e1e8);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("InsertElement", &base::reflection::TypeObject<void>::object, 0, fn_710011e1e8);
         fn_710011e050(fn);
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
@@ -1438,7 +1438,7 @@ void fn_7100261c94(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sName", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterActorDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterActorDeserialization", &g_unk_7101d5af48, 0, fn_71002643b8);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterActorDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_71002643b8);
         fn_710026421c(fn);
     }
 }

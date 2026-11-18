@@ -20,12 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CSpawnGroupComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710111fc58();
 void fn_710111fcf8();
 extern base::global::CRntString g_unk_7101d58d10;
@@ -35,8 +35,8 @@ extern base::reflection::CType g_unk_7172a07250;
 namespace CSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("EnableSpawnGroup", &g_unk_7101d5af48, 0, fn_710111fc58);
-    DREAD_REFLECTED_FUNCTION_OF("DisableSpawnGroup", &g_unk_7101d5af48, 0, fn_710111fcf8);
+    DREAD_REFLECTED_FUNCTION_OF("EnableSpawnGroup", &base::reflection::TypeObject<void>::object, 0, fn_710111fc58);
+    DREAD_REFLECTED_FUNCTION_OF("DisableSpawnGroup", &base::reflection::TypeObject<void>::object, 0, fn_710111fcf8);
     DREAD_REFLECTED_FIELD(bool, "bIsGenerator", 0x13a, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bIsInfinite", 0x13b, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(s32, "iMaxToGenerate", 0x18c, (DefaultValue, 0));

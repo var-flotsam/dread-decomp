@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
@@ -31,7 +33,6 @@ void fn_7100353fb8();
 void fn_7100340fa4(UnkReflFunction* fn, const char* name);
 void fn_7100354048();
 void fn_7100341120(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100354274();
 void fn_71003540d8(UnkReflFunction* fn);
 namespace CAimComponent {
@@ -56,7 +57,7 @@ void refl_AddFields(CClass* cls) {
         fn_7100341120(fn, "_m_fCurrentAutoAimConeLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fCurrentAutoAimConeLength", (DefaultValue, 0.0f));
     DREAD_REFLECTED_FUNCTION("ForceAimPressed") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceAimPressed", &g_unk_7101d5af48, 0, fn_7100354274);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceAimPressed", &base::reflection::TypeObject<void>::object, 0, fn_7100354274);
         fn_71003540d8(fn);
     }
 }

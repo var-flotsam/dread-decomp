@@ -18,10 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CLogicPathNavMeshItemComponent
 void fn_71009bcc50(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71009bd120();
 void fn_7100500260(UnkReflFunction* fn);
 namespace CLogicPathNavMeshItemComponent {
@@ -30,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateLogicPathStage")
         fn_71009bcc50(fn, "CreateLogicPathStage");
     DREAD_REFLECTED_FUNCTION("AddStageColliderWithOffSet") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddStageColliderWithOffSet", &g_unk_7101d5af48, 0, fn_71009bd120);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddStageColliderWithOffSet", &base::reflection::TypeObject<void>::object, 0, fn_71009bd120);
         fn_7100500260(fn);
     }
 }

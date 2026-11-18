@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassFanCoolDownComponent
 namespace CCharClassFanCoolDownComponent {
@@ -48,16 +50,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassFanCoolDownComponent, CCharClassComponent);
 
 // CFanCoolDownComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100880ea4();
 void fn_7100880ed8();
 void fn_7100880f0c();
 namespace CFanCoolDownComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("StartFan", &g_unk_7101d5af48, 0, fn_7100880ea4);
-    DREAD_REFLECTED_FUNCTION_OF("BlockFan", &g_unk_7101d5af48, 0, fn_7100880ed8);
-    DREAD_REFLECTED_FUNCTION_OF("StopFan", &g_unk_7101d5af48, 0, fn_7100880f0c);
+    DREAD_REFLECTED_FUNCTION_OF("StartFan", &base::reflection::TypeObject<void>::object, 0, fn_7100880ea4);
+    DREAD_REFLECTED_FUNCTION_OF("BlockFan", &base::reflection::TypeObject<void>::object, 0, fn_7100880ed8);
+    DREAD_REFLECTED_FUNCTION_OF("StopFan", &base::reflection::TypeObject<void>::object, 0, fn_7100880f0c);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

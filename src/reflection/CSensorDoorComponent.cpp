@@ -18,14 +18,15 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CSensorDoorComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71007b9228();
 namespace CSensorDoorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("ForceOpen", &g_unk_7101d5af48, 0, fn_71007b9228);
+    DREAD_REFLECTED_FUNCTION_OF("ForceOpen", &base::reflection::TypeObject<void>::object, 0, fn_71007b9228);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

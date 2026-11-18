@@ -21,6 +21,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -37,7 +38,6 @@ void fn_71008dc150();
 void fn_71008cccfc(UnkReflFunction* fn, const char* name);
 void fn_71008dc1e0();
 void fn_71008cce78(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71008dc34c();
 void fn_71008dc270(UnkReflFunction* fn);
 void fn_71008ccff4(UnkReflFunction* fn, const char* name);
@@ -79,18 +79,18 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(s32, "iAreaRight", (DefaultValue, 0), (Description, "Area right type"));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aVignettes", 0xbd8);
     DREAD_REFLECTED_FUNCTION("SetInteractionParams") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetInteractionParams", &g_unk_7101d5af48, 0, fn_71008dc34c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetInteractionParams", &base::reflection::TypeObject<void>::object, 0, fn_71008dc34c);
         fn_71008dc270(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Set Interaction Params");
     }
     DREAD_REFLECTED_FUNCTION("CloseDoor")
         fn_71008ccff4(fn, "CloseDoor");
     DREAD_REFLECTED_FUNCTION("ForceDoorState") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceDoorState", &g_unk_7101d5af48, 0, fn_71008dc890);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceDoorState", &base::reflection::TypeObject<void>::object, 0, fn_71008dc890);
         fn_7100302d14(fn);
     }
     DREAD_REFLECTED_FUNCTION("ForceOpenDoor") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceOpenDoor", &g_unk_7101d5af48, 0, fn_71008dca4c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceOpenDoor", &base::reflection::TypeObject<void>::object, 0, fn_71008dca4c);
         fn_71003540d8(fn);
     }
     DREAD_REFLECTED_FUNCTION("LockDoor") {

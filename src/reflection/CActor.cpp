@@ -21,6 +21,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 class CActorComponent;
 namespace base::global { class CStrId; }
 namespace base::global { template <class, class> class CRntSmallDictionary; }
@@ -42,7 +44,6 @@ void fn_710023e348();
 void fn_7100228ee4(UnkReflFunction* fn, const char* name);
 void fn_710023e44c();
 void fn_710022913c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710023e8b4();
 void fn_71002292b4(UnkReflFunction* fn, const char* name);
 void fn_710023e998();
@@ -82,7 +83,7 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sName", true));
     }
     DREAD_REFLECTED_FUNCTION("RequestDelete") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("RequestDelete", &g_unk_7101d5af48, 0, fn_710023e8b4);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("RequestDelete", &base::reflection::TypeObject<void>::object, 0, fn_710023e8b4);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Request the destruction of the actor");
     }
     DREAD_REFLECTED_FUNCTION("SetWantsEnabled") {

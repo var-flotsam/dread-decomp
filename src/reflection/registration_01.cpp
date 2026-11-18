@@ -15,6 +15,7 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/TypeObject.h"
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 enum class EShinesparkTravellingDirection : u32;
@@ -423,7 +424,6 @@ void fn_7100e0e550();
 void fn_7100e0e5a0();
 extern base::reflection::CType g_unk_7101d5c078;
 extern base::reflection::CType g_unk_7101d5d580;
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100e4f5f4();
 extern base::reflection::CType g_unk_7108b6d8f0;
 void fn_7100e50ad8();
@@ -1990,7 +1990,7 @@ void fn_7100e2fd9c(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "CalculateBox");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("aVertex", true), &g_unk_7101d5c078, 0x0, -1, -1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("aIndex", true), &g_unk_7101d5d580, 0x28, -1, -1);
-    DREAD_REFLECTED_FUNCTION_OF("CalculateBox", &g_unk_7101d5af48, 0, fn_7100e4f5f4);
+    DREAD_REFLECTED_FUNCTION_OF("CalculateBox", &base::reflection::TypeObject<void>::object, 0, fn_7100e4f5f4);
 }
 
 void fn_7100e3015c(CClass* cls) {
@@ -2023,7 +2023,7 @@ void fn_7100e30aa4(CClass* cls) {
 void fn_7100e30d34(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "BuildGeoData");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("oPolyLine", true), &g_unk_7108b6d8f0, 0x0, -1, -1);
-    DREAD_REFLECTED_FUNCTION_OF("BuildGeoData", &g_unk_7101d5af48, 0, fn_7100e50ad8);
+    DREAD_REFLECTED_FUNCTION_OF("BuildGeoData", &base::reflection::TypeObject<void>::object, 0, fn_7100e50ad8);
 }
 
 void fn_7100e31084(CClass* cls) {
@@ -2040,7 +2040,7 @@ void fn_7100e31084(CClass* cls) {
     field4->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field5 = AddReflectedField(cls, CStrId("vSurfaceStart", true), &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0x64, -1, -1);
     UnkReflField* field6 = AddReflectedField(cls, CStrId("vSurfaceEnd", true), &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0x6c, -1, -1);
-    DREAD_REFLECTED_FUNCTION_OF("BuildGeoData", &g_unk_7101d5af48, 0, fn_7100e51508);
+    DREAD_REFLECTED_FUNCTION_OF("BuildGeoData", &base::reflection::TypeObject<void>::object, 0, fn_7100e51508);
 }
 
 void fn_7100e31748(CClass* cls) {
@@ -2050,7 +2050,7 @@ void fn_7100e31748(CClass* cls) {
     UnkReflField* field2 = AddReflectedField(cls, CStrId("sDestAreaId", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x10, -1, -1);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("fZOffset", true), &base::reflection::PrimitiveType<float>::Get(), 0x78, -1, -1);
     field3->attrs.Add<f32>(base::reflection::attr::DefaultValue(), 0.0f);
-    DREAD_REFLECTED_FUNCTION_OF("BuildGeoData", &g_unk_7101d5af48, 0, fn_7100e51bbc);
+    DREAD_REFLECTED_FUNCTION_OF("BuildGeoData", &base::reflection::TypeObject<void>::object, 0, fn_7100e51bbc);
 }
 
 void fn_7100e32da4(CClass* cls) {

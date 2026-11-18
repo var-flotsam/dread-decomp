@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 
@@ -27,7 +29,6 @@ void fn_7100aa8ef8();
 void fn_7100aa7c00(UnkReflFunction* fn, const char* name);
 void fn_7100aa8fa0();
 void fn_7100aa7d7c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100aa9048();
 void fn_7100aa9090();
 namespace CVideoManagerComponent {
@@ -43,8 +44,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_sVideoAux_2_Path_SetterFunction")
         fn_7100aa7d7c(fn, "_sVideoAux_2_Path_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sVideoAux_2_Path");
-    DREAD_REFLECTED_FUNCTION_OF("PlayVideos", &g_unk_7101d5af48, 0, fn_7100aa9048);
-    DREAD_REFLECTED_FUNCTION_OF("StopVideos", &g_unk_7101d5af48, 0, fn_7100aa9090);
+    DREAD_REFLECTED_FUNCTION_OF("PlayVideos", &base::reflection::TypeObject<void>::object, 0, fn_7100aa9048);
+    DREAD_REFLECTED_FUNCTION_OF("StopVideos", &base::reflection::TypeObject<void>::object, 0, fn_7100aa9090);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

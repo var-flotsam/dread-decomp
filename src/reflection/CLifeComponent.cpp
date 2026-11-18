@@ -20,6 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -39,7 +40,6 @@ void fn_710115f424(UnkReflFunction* fn, const char* name);
 void fn_710115f5a0(UnkReflFunction* fn, const char* name);
 void fn_710115f654(UnkReflFunction* fn, const char* name);
 void fn_710115f708(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101161700();
 void fn_7100302d14(UnkReflFunction* fn);
 namespace CLifeComponent {
@@ -86,7 +86,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FUNCTION("ForceDead") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceDead", &g_unk_7101d5af48, 0, fn_7101161700);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceDead", &base::reflection::TypeObject<void>::object, 0, fn_7101161700);
         fn_7100302d14(fn);
     }
 }

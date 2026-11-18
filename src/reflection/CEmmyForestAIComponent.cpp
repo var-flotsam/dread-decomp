@@ -18,16 +18,17 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CEmmyForestAIComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71004f337c();
 void fn_71004f33b0();
 namespace CEmmyForestAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("StartWeightedEdges", &g_unk_7101d5af48, 0, fn_71004f337c);
-    DREAD_REFLECTED_FUNCTION_OF("StopWeightedEdges", &g_unk_7101d5af48, 0, fn_71004f33b0);
+    DREAD_REFLECTED_FUNCTION_OF("StartWeightedEdges", &base::reflection::TypeObject<void>::object, 0, fn_71004f337c);
+    DREAD_REFLECTED_FUNCTION_OF("StopWeightedEdges", &base::reflection::TypeObject<void>::object, 0, fn_71004f33b0);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

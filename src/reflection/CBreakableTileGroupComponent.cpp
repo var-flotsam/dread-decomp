@@ -21,6 +21,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace game::logic::collision { enum class EColMat : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
@@ -34,7 +35,6 @@ extern base::reflection::CType g_unk_71727115d0;
 void fn_710075d73c();
 void fn_710075d430(UnkReflFunction* fn);
 void fn_71007545bc(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710075d94c();
 namespace CBreakableTileGroupComponent {
 void refl_AddAttributes(CClass*) {}
@@ -63,7 +63,7 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FUNCTION("DeleteTileAt")
         fn_71007545bc(fn, "DeleteTileAt");
-    DREAD_REFLECTED_FUNCTION_OF("AfterGridDeserialization", &g_unk_7101d5af48, 0, fn_710075d94c);
+    DREAD_REFLECTED_FUNCTION_OF("AfterGridDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_710075d94c);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

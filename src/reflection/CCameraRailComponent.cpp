@@ -18,16 +18,17 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCameraRailComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100769f4c();
 namespace SCameraRail { const base::reflection::CClass* refl_GetClass(); }
 namespace CCameraRailComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(SCameraRail, "oCameraRail", 0x30, (Description, base::global::CRntString("CameraRail")), (SetRenderItemSelectionIdCall, true), (AfterElementDeserialization, CStrId("AfterRailDeserialization", true)));
-    DREAD_REFLECTED_FUNCTION_OF("AfterRailDeserialization", &g_unk_7101d5af48, 0, fn_7100769f4c);
+    DREAD_REFLECTED_FUNCTION_OF("AfterRailDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100769f4c);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

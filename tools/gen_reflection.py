@@ -853,7 +853,12 @@ def enum_type_objects() -> dict[str, tuple[str, str]]:
             for t, g in TYPE_OBJECT_RE.findall(f.read_text(encoding="utf-8")):
                 if gen_types.QUALIFIED_RE.fullmatch(t):
                     out[g] = (kind, t)
+    out.update(BUILTIN_TYPE_OBJECTS)
     return out
+
+
+# Type objects of built-in types, which need no declaration of T: the void type (base/reflection/CType.h).
+BUILTIN_TYPE_OBJECTS = {"g_unk_7101d5af48": ("builtin", "void")}
 
 
 def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts: bool = False) -> str:
@@ -872,7 +877,8 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
         others = [line for line in lines if re.search(rf"\b{g}\b", line) and "extern" in line and not decl.fullmatch(line)]
         kind, t = objects[g]
         scope, _, leaf = t.rpartition("::")
-        declared = gen_types.enum_declaration(t) if kind == "enum" else gen_types.declare_in(scope, f"struct {leaf};")
+        declared = (gen_types.enum_declaration(t) if kind == "enum" else
+                    gen_types.declare_in(scope, f"struct {leaf};") if kind == "flagset" else "")
         if others:
             layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};(?:\s*//.*)?")
             match = [layout.fullmatch(line) for line in others]
@@ -887,12 +893,14 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
                 head = spelled
             name = f"base::reflection::TypeObject<{spelled_t}>::object"
             at = lines.index(others[0])
-            lines[at:at + 1] = [*declared.split(chr(10)), f'template <> {head} {name} asm("{g}");']
-            lines = [re.sub(rf"\b{g}\b", name, line) if i < at or i > at + declared.count(chr(10)) + 1 else line
+            spec = [*declared.split(chr(10))] if declared else []
+            lines[at:at + 1] = spec + [f'template <> {head} {name} asm("{g}");']
+            lines = [re.sub(rf"\b{g}\b", name, line) if i < at or i > at + len(spec) else line
                      for i, line in enumerate(lines)]
             in_place = True
             continue
-        first.append(declared)
+        if declared:
+            first.append(declared)
         first.append(f'template <> base::reflection::CType base::reflection::TypeObject<{t}>::object asm("{g}");')
         lines = [line if decl.fullmatch(line) else re.sub(rf"\b{g}\b", f"base::reflection::TypeObject<{t}>::object", line)
                  for line in lines if not decl.fullmatch(line)]

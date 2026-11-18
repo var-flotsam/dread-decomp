@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassActivatableComponent
 namespace CCharClassActivatableComponent {
@@ -48,14 +50,13 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassActivatableComponent, CCharClassComponent);
 
 // CActivatableComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100878d94();
 void fn_7100878dd4();
 namespace CActivatableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("Activate", &g_unk_7101d5af48, 0, fn_7100878d94);
-    DREAD_REFLECTED_FUNCTION_OF("Deactivate", &g_unk_7101d5af48, 0, fn_7100878dd4);
+    DREAD_REFLECTED_FUNCTION_OF("Activate", &base::reflection::TypeObject<void>::object, 0, fn_7100878d94);
+    DREAD_REFLECTED_FUNCTION_OF("Deactivate", &base::reflection::TypeObject<void>::object, 0, fn_7100878dd4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

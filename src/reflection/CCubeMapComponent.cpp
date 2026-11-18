@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 namespace base::math { class CVector3D; }
@@ -44,7 +46,6 @@ void fn_710079f14c(UnkReflFunction* fn, const char* name);
 void fn_71007a0d58();
 void fn_710079f2c8(UnkReflFunction* fn, const char* name);
 void fn_710079f444(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71007a0efc();
 namespace CCubeMapComponent {
 void refl_AddAttributes(CClass*) {}
@@ -83,7 +84,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sTexturePathDiffuse");
     DREAD_REFLECTED_FUNCTION("CalculateCubemap")
         fn_710079f444(fn, "CalculateCubemap");
-    DREAD_REFLECTED_FUNCTION_OF("ApplyCubemap", &g_unk_7101d5af48, 0, fn_71007a0efc);
+    DREAD_REFLECTED_FUNCTION_OF("ApplyCubemap", &base::reflection::TypeObject<void>::object, 0, fn_71007a0efc);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

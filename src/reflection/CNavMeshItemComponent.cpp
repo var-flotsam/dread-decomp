@@ -19,13 +19,13 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CNavMeshItemComponent
 void fn_71009be10c(UnkReflFunction* fn, const char* name);
 void fn_71009be288(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71009c29f0();
 void fn_7100500260(UnkReflFunction* fn);
 void fn_71009c2b04();
@@ -41,11 +41,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateStage")
         fn_71009be288(fn, "CreateStage");
     DREAD_REFLECTED_FUNCTION("AddStageCollider") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddStageCollider", &g_unk_7101d5af48, 0, fn_71009c29f0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddStageCollider", &base::reflection::TypeObject<void>::object, 0, fn_71009c29f0);
         fn_7100500260(fn);
     }
     DREAD_REFLECTED_FUNCTION("SetStageSide") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetStageSide", &g_unk_7101d5af48, 0, fn_71009c2b04);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetStageSide", &base::reflection::TypeObject<void>::object, 0, fn_71009c2b04);
         fn_7100500260(fn);
     }
     DREAD_REFLECTED_FUNCTION("ChangeStage")

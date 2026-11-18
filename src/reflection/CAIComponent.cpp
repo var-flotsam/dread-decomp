@@ -21,12 +21,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CAIComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101115758();
 void fn_71011155bc(UnkReflFunction* fn);
 void fn_71010f7d90(UnkReflFunction* fn, const char* name);
@@ -38,7 +38,7 @@ namespace CAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("AddPresetLogicPath") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddPresetLogicPath", &g_unk_7101d5af48, 0, fn_7101115758);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddPresetLogicPath", &base::reflection::TypeObject<void>::object, 0, fn_7101115758);
         fn_71011155bc(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Add Preset Navigation Path");
     }

@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -26,7 +28,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // GUI::CDisplayObject
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71011d3514();
 void fn_71011d366c();
 void fn_71008dc538(UnkReflFunction* fn);
@@ -118,13 +119,13 @@ namespace GUI::CDisplayObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     [&] {
-        DREAD_REFLECTED_FUNCTION_OF("ForceRedraw", &g_unk_7101d5af48, 0, fn_71011d3514);
+        DREAD_REFLECTED_FUNCTION_OF("ForceRedraw", &base::reflection::TypeObject<void>::object, 0, fn_71011d3514);
         DREAD_REFLECTED_FUNCTION("SetEventHandler") {
-            DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetEventHandler", &g_unk_7101d5af48, 0, fn_71011d366c);
+            DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetEventHandler", &base::reflection::TypeObject<void>::object, 0, fn_71011d366c);
             fn_71008dc538(fn);
         }
         DREAD_REFLECTED_FUNCTION("SetSortKeyOverride") {
-            DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetSortKeyOverride", &g_unk_7101d5af48, 0, fn_71011d36a4);
+            DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetSortKeyOverride", &base::reflection::TypeObject<void>::object, 0, fn_71011d36a4);
             fn_7100a2dbec(fn);
         }
         DREAD_REFLECTED_FUNCTION("SetSceneIdx")

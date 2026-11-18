@@ -19,10 +19,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CMinimapData
 extern base::reflection::CType g_unk_71727c9380;
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100e51c54();
 namespace CMinimapData {
 void refl_AddAttributes(CClass* cls) {
@@ -54,7 +55,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>", "mapBossBattleLabels", 0x62d0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>", "mapAbilityLabels", 0x62f8);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TOccludedIcons>", "mapVignetteOccludedIcons", 0x6320);
-    DREAD_REFLECTED_FUNCTION_OF("UpdateEmmyZoneLimits", &g_unk_7101d5af48, 0, fn_7100e51c54);
+    DREAD_REFLECTED_FUNCTION_OF("UpdateEmmyZoneLimits", &base::reflection::TypeObject<void>::object, 0, fn_7100e51c54);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

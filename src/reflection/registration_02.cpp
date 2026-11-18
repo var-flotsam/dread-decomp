@@ -15,6 +15,7 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/TypeObject.h"
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 namespace base::snd { enum class EReverbIntensity : u32; }
@@ -201,7 +202,6 @@ extern base::reflection::CType g_unk_71729e9180;
 void fn_7100f8a428();
 void fn_7100f88d84(UnkReflFunction* fn, const char* name);
 void fn_7100f88f04(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100f8a77c();
 void fn_7100f8a5e0(UnkReflFunction* fn);
 extern base::reflection::CType g_unk_71729f3b60;
@@ -887,7 +887,7 @@ void fn_7100f87e50(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sID", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &g_unk_7101d5af48, 0, fn_7100f8a77c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100f8a77c);
         fn_7100f8a5e0(fn);
     }
     DREAD_REFLECTED_FUNCTION_OF("_dicBossPresets_GetterFunction", &g_unk_71729f3b60, 0x1, fn_7100f8a87c);
@@ -910,7 +910,7 @@ void fn_7100f87e50(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sBoss", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterBossMusicPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterBossMusicPresetDeserialization", &g_unk_7101d5af48, 0, fn_7100f8abd8);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterBossMusicPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100f8abd8);
         fn_7100f8aa3c(fn);
     }
 }
@@ -954,7 +954,7 @@ void fn_7100f8b514(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sToPreset", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterTransitionDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterTransitionDeserialization", &g_unk_7101d5af48, 0, fn_7100f915d4);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterTransitionDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100f915d4);
         fn_7100f91438(fn);
     }
 }
@@ -999,7 +999,7 @@ void fn_7100f92a44(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sID", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &g_unk_7101d5af48, 0, fn_7100f967a4);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100f967a4);
         fn_7100f96608(fn);
     }
 }
@@ -1044,7 +1044,7 @@ void fn_7100f9b32c(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sID", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &g_unk_7101d5af48, 0, fn_7100f9cc28);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100f9cc28);
         fn_7100f9ca8c(fn);
     }
 }
@@ -1233,7 +1233,7 @@ void fn_7100fd1c7c(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sID", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &g_unk_7101d5af48, 0, fn_7100fdd870);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100fdd870);
         fn_7100f8a5e0(fn);
     }
     DREAD_REFLECTED_FUNCTION_OF("_dicGlobalBossMusicPresets_GetterFunction", &g_unk_71729f3b60, 0x1, fn_7100fdd970);
@@ -1256,7 +1256,7 @@ void fn_7100fd1c7c(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sBoss", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterBossMusicPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterBossMusicPresetDeserialization", &g_unk_7101d5af48, 0, fn_7100fddb30);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterBossMusicPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100fddb30);
         fn_7100f8aa3c(fn);
     }
 }
@@ -1433,7 +1433,7 @@ void fn_7100fe9960(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("eState", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &g_unk_7101d5af48, 0, fn_7101003e6c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7101003e6c);
         fn_7101003cd0(fn);
     }
 }
@@ -1477,7 +1477,7 @@ void fn_7100feb7d4(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sSpawnGroup", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &g_unk_7101d5af48, 0, fn_7101005154);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7101005154);
         fn_7101004fb8(fn);
     }
 }
@@ -1550,7 +1550,7 @@ void fn_710102cba4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("AfterDeserialization")
         fn_710102d0d0(fn, "AfterDeserialization");
     DREAD_REFLECTED_FUNCTION("AfterFileDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterFileDeserialization", &g_unk_7101d5af48, 0, fn_710103a7f8);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterFileDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_710103a7f8);
         fn_710103a65c(fn);
     }
 }
@@ -1612,7 +1612,7 @@ void fn_710103d05c(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sUniqueId", true));
     }
     DREAD_REFLECTED_FUNCTION("AfterPresetDeserialization") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &g_unk_7101d5af48, 0, fn_7101041b04);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AfterPresetDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7101041b04);
         fn_7101041968(fn);
     }
 }

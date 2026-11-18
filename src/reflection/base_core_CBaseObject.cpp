@@ -18,15 +18,16 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // base::core::CBaseObject
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100024edc();
 namespace base::core::CBaseObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("PrintTypeLists") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("PrintTypeLists", &g_unk_7101d5af48, 0, fn_7100024edc);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("PrintTypeLists", &base::reflection::TypeObject<void>::object, 0, fn_7100024edc);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Print type vars");
     }
 }

@@ -23,6 +23,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 namespace base::global { class CStrId; }
@@ -34,7 +35,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_717269bf08;
 void fn_71011255e4(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101132780();
 void fn_71011327d8();
 void fn_7101125760(UnkReflFunction* fn, const char* name);
@@ -81,7 +81,7 @@ void refl_AddFields(CClass* cls) {
     field22->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
     DREAD_REFLECTED_FUNCTION("SetDynamicSpawnPositionOverride")
         fn_71011255e4(fn, "SetDynamicSpawnPositionOverride");
-    DREAD_REFLECTED_FUNCTION_OF("ResetDynamicSpawnPositionOverride", &g_unk_7101d5af48, 0, fn_7101132780);
+    DREAD_REFLECTED_FUNCTION_OF("ResetDynamicSpawnPositionOverride", &base::reflection::TypeObject<void>::object, 0, fn_7101132780);
     UnkReflField* field23 = AddReflectedField(cls, CStrId("tXCellTransformTargets", true), &g_unk_717269bf08, 0x2c8, -1, -1);
     field23->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field23->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
@@ -96,7 +96,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("Deactivate", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7101132928);
     DREAD_REFLECTED_FUNCTION_OF("AddNewActorBlueprintAt", &g_unk_7172a06930, 0x1, fn_7101132978);
     DREAD_REFLECTED_FUNCTION_OF("DeleteActorBlueprintAt", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011329bc);
-    DREAD_REFLECTED_FUNCTION_OF("AfterActorBlueprintDeserialization", &g_unk_7101d5af48, 0, fn_7101132a0c);
+    DREAD_REFLECTED_FUNCTION_OF("AfterActorBlueprintDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7101132a0c);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

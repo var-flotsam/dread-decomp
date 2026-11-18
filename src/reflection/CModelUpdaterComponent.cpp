@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CFilePathStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
 
@@ -31,7 +33,6 @@ void fn_7101170798(UnkReflFunction* fn, const char* name);
 void fn_710117084c(UnkReflFunction* fn, const char* name);
 void fn_7101170900(UnkReflFunction* fn, const char* name);
 void fn_71011709b4(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101174a28();
 namespace CModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
@@ -67,7 +68,7 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FUNCTION("GetNodePosition")
         fn_71011709b4(fn, "GetNodePosition");
-    DREAD_REFLECTED_FUNCTION_OF("ForceUpdate", &g_unk_7101d5af48, 0, fn_7101174a28);
+    DREAD_REFLECTED_FUNCTION_OF("ForceUpdate", &base::reflection::TypeObject<void>::object, 0, fn_7101174a28);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
