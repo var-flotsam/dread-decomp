@@ -1041,6 +1041,13 @@ def with_include(text: str, include: str) -> str:
     return chr(10).join(lines)
 
 
+def with_registry_include(text: str) -> str:
+    """`text` with the tunable registry helper's header when it calls the helper (the final pass adds it)."""
+    if "base::reflection::TunableRegistry()" in text:
+        return with_include(text, '#include "base/reflection/UnkTunableRegistry.h"')
+    return text
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--version", required=True)
@@ -1376,10 +1383,7 @@ def main() -> int:
 
     def checked_text(name: str) -> str:
         # The include the final pass adds to a file that calls the tunable registry's helper.
-        t = text(*files[name], file_getters.get(name))
-        if "base::reflection::TunableRegistry()" in t:
-            t = with_include(t, '#include "base/reflection/UnkTunableRegistry.h"')
-        return t
+        return with_registry_include(text(*files[name], file_getters.get(name)))
 
     def check_file(name: str) -> set[int]:
         src, obj = work / f"{name}.cpp", work / f"{name}.o"
@@ -1549,7 +1553,7 @@ def main() -> int:
         if new == old:
             return False
         trial = f.with_name(f"{f.stem}.type_objects.cpp")
-        trial.write_text(new, encoding="utf-8", newline=chr(10))
+        trial.write_text(with_registry_include(new), encoding="utf-8", newline=chr(10))
         try:
             ok = subprocess.run(buildcfg.cxx_command(trial, work / f"{f.stem}.o"), capture_output=True, text=True).returncode == 0
         finally:
@@ -1563,9 +1567,7 @@ def main() -> int:
     typed_keys = typed_attribute_keys()
     for f in sorted(OUT.glob("*.cpp")):
         old = f.read_text(encoding="utf-8")
-        new = functions_in_one_line(typed_keys_by_name(old, typed_keys))
-        if "base::reflection::TunableRegistry()" in new:
-            new = with_include(new, '#include "base/reflection/UnkTunableRegistry.h"')
+        new = with_registry_include(functions_in_one_line(typed_keys_by_name(old, typed_keys)))
         if new != old:
             f.write_text(new, encoding="utf-8", newline=chr(10))
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
