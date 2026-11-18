@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -49,7 +50,6 @@ DREAD_REFLECTED_CLASS(CSamusMagnetGloveMovementState::CParams, CSamusMovementSta
 
 // CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState
 extern bool g_unk_717273c6b0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717273c650;
 void fn_71009a5de4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState {
@@ -77,13 +77,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSpiderPoseRequiresRetap", 0x54, (DefaultValue, false), (Description, "Whether player must retap input to allow spider pose or use configured time instead"));
     DREAD_REFLECTED_FIELD(f32, "fMagnetWallJumpIgnoreMovementTime", 0x58, (DefaultValue, 0.2f), (Description, "After jumping from a magnet wall, time while movement input towards that wall is ignored"));
     DREAD_REFLECTED_FIELD(f32, "fOpticalCamouflageMagnetWallJumpIgnoreMovementTime", 0x5c, (DefaultValue, 0.4f), (Description, "After jumping from a magnet wall with Optical Camouflage enabled, time while movement input towards that wall is ignored"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71009a5de4(registry, &g_unk_717273c650, "MagnetGlove");
+    fn_71009a5de4(base::reflection::TunableRegistry(), &g_unk_717273c650, "MagnetGlove");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

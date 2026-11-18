@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -41,7 +42,6 @@ DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierDisruptionFieldAttack, CCharCla
 
 // CCharClassChozoRobotSoldierDisruptionFieldAttack::CTunableCharClassChozoRobotSoldierDisruptionFieldAttack
 extern bool g_unk_71726cb438;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726cb3f8;
 void fn_7100462ff4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoRobotSoldierDisruptionFieldAttack::CTunableCharClassChozoRobotSoldierDisruptionFieldAttack {
@@ -58,13 +58,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fExplosionTimeToReachRadius", 0x30, (DefaultValue, 0.7f));
     DREAD_REFLECTED_FIELD(f32, "fExplosionTimeAtMaxRadius", 0x34, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpecialEnergyConsume", 0x38, (DefaultValue, 1000.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100462ff4(registry, &g_unk_71726cb3f8, "ChozoRobotSoldier");
+    fn_7100462ff4(base::reflection::TunableRegistry(), &g_unk_71726cb3f8, "ChozoRobotSoldier");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

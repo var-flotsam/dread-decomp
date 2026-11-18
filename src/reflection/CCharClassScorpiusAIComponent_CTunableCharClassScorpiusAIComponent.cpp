@@ -8,6 +8,7 @@
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent
 extern bool g_unk_7172703ee8;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172703e88;
 void fn_710068f380(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassScorpiusAIComponent::CTunableCharClassScorpiusAIComponent {
@@ -49,13 +49,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBackMaxDistance", 0x50, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageMultiplayerInPhase2", 0x54, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fTailDamageToActivateCamouflage", 0x58, (DefaultValue, 300.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710068f380(registry, &g_unk_7172703e88, "Scorpius");
+    fn_710068f380(base::reflection::TunableRegistry(), &g_unk_7172703e88, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

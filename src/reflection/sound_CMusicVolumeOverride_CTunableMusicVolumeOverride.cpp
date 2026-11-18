@@ -19,6 +19,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // sound::CMusicVolumeOverride::CTunableMusicVolumeOverride
@@ -169,7 +170,6 @@ void fn_710101e3f4();
 void fn_7101017d4c(UnkReflFunction* fn, const char* name);
 void fn_710101e4d8();
 void fn_7101017ec8(UnkReflFunction* fn, const char* name);
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71729f8150;
 void fn_7101018044(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride {
@@ -618,13 +618,7 @@ void refl_AddFields(CClass* cls) {
             fn_7101017ec8(fn, "_fJinglePowerUpGet_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fJinglePowerUpGet", (DefaultValue, -1.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7101018044(registry, &g_unk_71729f8150, "MUSIC");
+    fn_7101018044(base::reflection::TunableRegistry(), &g_unk_71729f8150, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

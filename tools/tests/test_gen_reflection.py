@@ -473,5 +473,15 @@ class TypedKeysByName(unittest.TestCase):
         self.assertNotIn("fn_710000bf80", out)
 
 
+
+class RegistryInclude(unittest.TestCase):
+    def test_added_only_where_called(self):
+        inc = '#include "base/reflection/UnkTunableRegistry.h"'
+        calls = '#include "a.h"\nvoid f() { g(base::reflection::TunableRegistry()); }'
+        self.assertEqual(gr.with_registry_include(calls).split(chr(10))[:2], ['#include "a.h"', inc])
+        self.assertEqual(gr.with_registry_include(gr.with_registry_include(calls)).count(inc), 1)
+        self.assertEqual(gr.with_registry_include('#include "a.h"\nvoid f();'), '#include "a.h"\nvoid f();')
+
+
 if __name__ == "__main__":
     unittest.main()

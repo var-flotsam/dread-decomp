@@ -8,6 +8,7 @@
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent
 extern bool g_unk_71726fa158;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726fa0f8;
 void fn_7100637c8c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassPoisonFlyAIComponent::CTunableCharClassPoisonFlyAIComponent {
@@ -48,13 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWaitTimeToReturnPatrol", 0x58, (DefaultValue, 2.0f), (ShowInDevConfig, true), (Description, "Wait time before going back to patrol"), (MinValue, 0.0f), (MaxValue, 5.0f), (ControlFloatStep, 0.25f), (InternalDevTag, "RegularEnemies|PoisonFly"));
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x5c, (DefaultValue, 2350.0f), (ShowInDevConfig, true), (Description, "Motion speed"), (MinValue, 0.0f), (MaxValue, 5000.0f), (ControlFloatStep, 50.0f), (InternalDevTag, "RegularEnemies|PoisonFly"));
     DREAD_REFLECTED_FIELD(f32, "fMinAnticipationRelocationDistance", 0x38, (DefaultValue, 150.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100637c8c(registry, &g_unk_71726fa0f8, "PoisonFly");
+    fn_7100637c8c(base::reflection::TunableRegistry(), &g_unk_71726fa0f8, "PoisonFly");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

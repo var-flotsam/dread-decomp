@@ -21,6 +21,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
@@ -34,7 +35,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 extern bool g_unk_71726e0bb0;
 void fn_7100564f50();
 void fn_710053b4fc(UnkReflFunction* fn, const char* name);
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726e0aa8;
 void fn_710053b678(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEmmyAIComponent::CTunableEmmyAIComponent {
@@ -114,13 +114,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAlwaysWinQTE1", 0xf5, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fCentralUnitAlarmVolumeOnGrab", 0xf8, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fTimeInFrustumToMarkEmmySeen", 0xfc, (DefaultValue, 1.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710053b678(registry, &g_unk_71726e0aa8, "Emmy");
+    fn_710053b678(base::reflection::TunableRegistry(), &g_unk_71726e0aa8, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

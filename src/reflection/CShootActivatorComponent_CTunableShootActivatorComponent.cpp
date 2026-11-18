@@ -20,12 +20,12 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CShootActivatorComponent::CTunableShootActivatorComponent
 extern bool g_unk_717272c480;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717272c450;
 void fn_710088d830(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CShootActivatorComponent::CTunableShootActivatorComponent {
@@ -39,13 +39,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fVolumeMin", 0x24, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fDecreaseVolumeFactor", 0x28, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fPitchMin", 0x2c, (DefaultValue, 0.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710088d830(registry, &g_unk_717272c450, "ShootActivator");
+    fn_710088d830(base::reflection::TunableRegistry(), &g_unk_717272c450, "ShootActivator");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

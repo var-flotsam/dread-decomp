@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -49,7 +50,6 @@ DREAD_REFLECTED_CLASS(CAbilityShinespark, CAbility);
 
 // CAbilityShinespark::CTunableAbilityShinespark
 extern bool g_unk_71726b0408;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726b0378;
 void fn_7100327044(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityShinespark::CTunableAbilityShinespark {
@@ -86,13 +86,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bActiveCollisionChecksEnabled", 0x80, (DefaultValue, false), (Description, "Are active collision checks enabled at all?"));
     DREAD_REFLECTED_FIELD(f32, "fActiveCollisionChecksSamusOffset", 0x84, (DefaultValue, 30.0f), (Description, "Offset along the selected travelling direction while Samus"));
     DREAD_REFLECTED_FIELD(f32, "fActiveCollisionChecksMorphBallOffset", 0x88, (DefaultValue, 60.0f), (Description, "Offset along the selected travelling direction while Morph Ball"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100327044(registry, &g_unk_71726b0378, "");
+    fn_7100327044(base::reflection::TunableRegistry(), &g_unk_71726b0378, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack
 extern bool g_unk_71726faf90;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726faf68;
 void fn_71006427bc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack {
@@ -33,13 +33,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMaxChargingDistance", 0x24, (DefaultValue, 1500.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71006427bc(registry, &g_unk_71726faf68, "QuetzoaChargeAttack");
+    fn_71006427bc(base::reflection::TunableRegistry(), &g_unk_71726faf68, "QuetzoaChargeAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorXLandAttack::CTunableCharClassChozoWarriorXLandAttack
 extern bool g_unk_71726ce250;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726ce200;
 void fn_710047d31c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoWarriorXLandAttack::CTunableCharClassChozoWarriorXLandAttack {
@@ -41,13 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWaveOffset", 0x3c, (DefaultValue, 550.0f));
     DREAD_REFLECTED_FIELD(f32, "fWaveParticlesOffset", 0x40, (DefaultValue, 80.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sWaveOffsetFactorizerFunction", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710047d31c(registry, &g_unk_71726ce200, "ChozoWarriorXLandAttack");
+    fn_710047d31c(base::reflection::TunableRegistry(), &g_unk_71726ce200, "ChozoWarriorXLandAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

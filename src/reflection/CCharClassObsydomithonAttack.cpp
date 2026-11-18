@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -44,7 +45,6 @@ DREAD_REFLECTED_CLASS(CCharClassObsydomithonAttack, CCharClassAttack);
 
 // CCharClassObsydomithonAttack::CTunableCharClassObsydomithonAttack
 extern bool g_unk_71726f89c0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726f8988;
 void fn_71006279b0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassObsydomithonAttack::CTunableCharClassObsydomithonAttack {
@@ -60,13 +60,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fChargeLoopDuration", 0x2c, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD(f32, "fAttackLoopDuration", 0x30, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fVerticalAttackAngleToleranceForOtherPlatform", 0x34, (DefaultValue, 30.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71006279b0(registry, &g_unk_71726f8988, "Obsydomithon");
+    fn_71006279b0(base::reflection::TunableRegistry(), &g_unk_71726f8988, "Obsydomithon");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

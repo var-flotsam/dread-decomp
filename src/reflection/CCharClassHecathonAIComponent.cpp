@@ -8,6 +8,7 @@
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -44,7 +45,6 @@ DREAD_REFLECTED_CLASS(CCharClassHecathonAIComponent, CCharClassBehaviorTreeAICom
 
 // CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent
 extern bool g_unk_71726e8d68;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726e8d00;
 void fn_71005a7384(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassHecathonAIComponent::CTunableCharClassHecathoAIComponent {
@@ -72,13 +72,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToChangeSpeed", 0x5c, (DefaultValue, 0.4f));
     DREAD_REFLECTED_FIELD(f32, "fSpeedFactor", 0x60, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToEat", 0x64, (DefaultValue, 1.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71005a7384(registry, &g_unk_71726e8d00, "HecathonAI");
+    fn_71005a7384(base::reflection::TunableRegistry(), &g_unk_71726e8d00, "HecathonAI");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

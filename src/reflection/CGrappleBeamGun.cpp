@@ -20,6 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace CGrappleBeamGun { enum class ESelectionMode : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CGrappleBeamGun::ESelectionMode>::object asm("g_unk_7172725900");
 namespace CGrappleBeamGun { enum class ESelectionInput : u32; }
@@ -56,7 +57,6 @@ DREAD_REFLECTED_CLASS(CGrappleBeamGun, CPrimaryGun);
 
 // CGrappleBeamGun::CTunableGrappleBeamGun
 extern bool g_unk_7172725c00;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172725bc8;
 void fn_7100833190(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGrappleBeamGun::CTunableGrappleBeamGun {
@@ -85,13 +85,7 @@ void refl_AddFields(CClass* cls) {
     field3->attrs.Add<s32>(base::reflection::attr::MaxValueI(), 2);
     field3->attrs.Add<s32>(base::reflection::attr::ControlIntStep(), 1);
     field3->attrs.Add<const char*>(base::reflection::attr::InternalTag(), "General");
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100833190(registry, &g_unk_7172725bc8, "");
+    fn_7100833190(base::reflection::TunableRegistry(), &g_unk_7172725bc8, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

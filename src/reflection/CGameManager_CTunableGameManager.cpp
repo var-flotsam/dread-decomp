@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGameManager::CTunableGameManager
 extern bool g_unk_71727be8a0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727be870;
 void fn_7100de2e20(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGameManager::CTunableGameManager {
@@ -37,13 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSamusCenterPointDebug", 0x29, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bCheatDetectedDebug", 0x2a, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bForceHardMode", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100de2e20(registry, &g_unk_71727be870, "");
+    fn_7100de2e20(base::reflection::TunableRegistry(), &g_unk_71727be870, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -110,13 +104,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fVolumeInMenu", 0x24, (DefaultValue, 0.7f), (Description, "Multiplier for the music volume in menu"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100de3a68(registry, &g_unk_71727be8d8, "MUSIC");
+    fn_7100de3a68(base::reflection::TunableRegistry(), &g_unk_71727be8d8, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

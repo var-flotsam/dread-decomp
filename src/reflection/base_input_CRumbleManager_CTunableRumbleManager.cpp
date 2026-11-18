@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // base::input::CRumbleManager::CTunableRumbleManager
 extern bool g_unk_7101d58710;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7101d586e8;
 void fn_7100072940(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace base::input::CRumbleManager::CTunableRumbleManager {
@@ -33,13 +33,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMainGain", 0x24, (DefaultValue, 1.0f), (Description, "Main Gain"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100072940(registry, &g_unk_7101d586e8, "Rumble");
+    fn_7100072940(base::reflection::TunableRegistry(), &g_unk_7101d586e8, "Rumble");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

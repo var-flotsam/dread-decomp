@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -44,7 +45,6 @@ DREAD_REFLECTED_CLASS(CSamusGunComponent, CGunComponent);
 
 // CSamusGunComponent::CTunableSamusGunComponent
 extern bool g_unk_7172728188;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172728150;
 void fn_7100857fdc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusGunComponent::CTunableSamusGunComponent {
@@ -59,13 +59,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamActiveTime", 0x28, (DefaultValue, 5.0f), (Description, "Burst Charge Beam max active time"));
     DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamIdleActiveTimeFactor", 0x2c, (DefaultValue, 1.3f), (Description, "Burst Charge Beam idle active time factor"));
     DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamInitialBurstTime", 0x30, (DefaultValue, 0.0f), (Description, "Burst Charge Beam Initial burst time"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100857fdc(registry, &g_unk_7172728150, "Player");
+    fn_7100857fdc(base::reflection::TunableRegistry(), &g_unk_7172728150, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
