@@ -136,7 +136,7 @@ void fn_71000d8290(UnkPropertyArrays* self) {
 struct UnkNegKey_b0174 {
     u64 v;
     UnkNegKey_b0174() { __builtin_memset(&v, 0xff, 8); }
-    UnkNegKey_b0174(UnkNegKey_b0174&& o) { __builtin_memcpy(&v, &o.v, 8); }
+    UnkNegKey_b0174(UnkNegKey_b0174&& o) { v = o.v; }
 };
 UnkNegKey_b0174* fn_71000cf92c(base::global::CRntVector<UnkNegKey_b0174>* self, u32 index) {
     return &self->GrowAt(index);
@@ -162,8 +162,8 @@ UnkStringElem_b0174* fn_71000e0bb8(base::global::CRntVector<UnkStringElem_b0174>
 // ---- copies of word and string vectors (fn_71000cf1fc, fn_71000e0320, fn_71000e0524) ----
 struct UnkWord_b0174 {
     u64 v;
-    UnkWord_b0174(const UnkWord_b0174& o) { __builtin_memcpy(&v, &o.v, 8); }
-    UnkWord_b0174(UnkWord_b0174&& o) { __builtin_memcpy(&v, &o.v, 8); }
+    UnkWord_b0174(const UnkWord_b0174& o) { v = o.v; }
+    UnkWord_b0174(UnkWord_b0174&& o) { v = o.v; }
 };
 
 __attribute__((flatten)) void fn_71000cf1fc(base::global::CRntVector<UnkWord_b0174>* self, const base::global::CRntVector<UnkWord_b0174>* other) {
@@ -341,7 +341,7 @@ template <base::global::UnkStringPool*& Pool>
 struct UnkMovedId_b0174 : base::global::UnkStrIdBase {
     __attribute__((always_inline)) UnkMovedId_b0174(UnkMovedId_b0174&& other) : UnkStrIdBase(other) {
         base::global::UnkStringData* empty = &Pool->empty;
-        __builtin_memcpy(&other.data, &empty, sizeof(empty));
+        other.data = empty;
     }
     ~UnkMovedId_b0174() {
         if (base::global::UnkStringPool* pool = Pool) {
@@ -397,7 +397,7 @@ using base::global::CStrId;
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-typedef u32 __attribute__((may_alias)) a_u32_b0174;
+typedef u32 a_u32_b0174;
 
 // Two ids that are either stored inline in the two words, or (kind 2) pointed to by them.
 struct UnkIdRefPair_b0174 {

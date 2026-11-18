@@ -14,7 +14,7 @@
 
 using base::global::CStrId;
 
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 // A rectangle returned in memory, copied word by word (as in src/game/CMinimapManager.cpp).
 struct UnkMinimapRect {

@@ -402,8 +402,7 @@ void fn_710083cd54(UnkGun_ovb0091* self, const CStrId* id, s32 value, bool now) 
     UnkGunWeapon_ovb0091* weapon = self->alt;
     if (!weapon || weapon->id.data == id->data)
         return;
-    // Stored through an untyped path: the original reloads the id after it.
-    __builtin_memcpy(&self->field_0x138, &value, sizeof(value));
+    self->field_0x138 = value;
     UnkSamusGunComponent* gun = reinterpret_cast<UnkSamusGunComponent*>(self);
     if (now) {
         fn_710083f32c(gun, id, true, true, false);

@@ -6,7 +6,7 @@
 #include "game/UnkTU32.h"
 #include "types.h"
 
-typedef u64 __attribute__((may_alias)) UnkAliasWord_le2fa5c;
+typedef u64 UnkAliasWord_le2fa5c;
 
 struct UnkIdPairs_le2fa5c {
     u8 pair0[0x18];

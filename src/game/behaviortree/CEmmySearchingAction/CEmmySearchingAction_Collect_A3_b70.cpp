@@ -64,8 +64,7 @@ static inline __attribute__((always_inline)) void Collect_A3_b70(UnkCollectOwner
             list->tail = node;
             list->count = 1;
         } else {
-            // Stored bytewise: the original reloads the count after this store.
-            __builtin_memcpy(&list->tail->next, &node, sizeof(node));
+            list->tail->next = node;
             node->next = nullptr;
             list->tail = node;
             list->count = list->count + 1;

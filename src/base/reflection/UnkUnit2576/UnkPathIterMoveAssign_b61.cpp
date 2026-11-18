@@ -9,8 +9,7 @@
 using base::global::UnkStringData;
 using base::global::UnkStringPool;
 
-// The index: its store may alias the holder's state (the original reloads the state after it).
-typedef u64 __attribute__((may_alias)) UnkIndex_b61;
+typedef u64 UnkIndex_b61;
 
 
 // A string id released in two steps (decrement, then reload and test), in the given pool.

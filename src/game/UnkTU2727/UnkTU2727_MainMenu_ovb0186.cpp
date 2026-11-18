@@ -163,7 +163,7 @@ inline UnkGameManagerIdTable* IdTable_ovb0186() {
         UnkGameManagerIdTable* table = IdTable_ovb0186();                       \
         UnkStringEntry* entry = reinterpret_cast<UnkStringEntry*>(table->slot.data); \
         u32 count = entry->tail.field_0x44 + 1;                                 \
-        __builtin_memcpy(&entry->tail.field_0x44, &count, 4);                   \
+        entry->tail.field_0x44 = count;                   \
         reinterpret_cast<const UnkCompared_0x30*>(                              \
             &reinterpret_cast<UnkStringEntry*>(table->slot.data)->buffer);      \
     })

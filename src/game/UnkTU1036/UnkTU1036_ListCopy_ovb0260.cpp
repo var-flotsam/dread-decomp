@@ -42,7 +42,7 @@ struct UnkCountedList_b260 {
             head = node;
             tail = node;
         } else {
-            __builtin_memcpy(&tail->next, &node, sizeof(node));
+            tail->next = node;
             node->next = nullptr;
             tail = node;
         }

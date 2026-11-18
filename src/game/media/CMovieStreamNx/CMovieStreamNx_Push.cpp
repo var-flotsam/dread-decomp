@@ -5,7 +5,7 @@
 #include "base/UnkDefaultAllocator.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) UnkMovieWord;
+typedef u32 UnkMovieWord;
 
 struct UnkMovieWordRing {
     UnkMovieWord* read;

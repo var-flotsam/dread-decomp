@@ -75,10 +75,10 @@ struct UnkGfxNamedVector {
     CVector4D value;  // 0x8
 
     UnkGfxNamedVector(UnkGfxNamedVector&& other) : name(static_cast<UnkGfxStrId&&>(other.name)) {
-        __builtin_memcpy(&value.x, &other.value.x, sizeof(f32));
-        __builtin_memcpy(&value.y, &other.value.y, sizeof(f32));
-        __builtin_memcpy(&value.z, &other.value.z, sizeof(f32));
-        __builtin_memcpy(&value.w, &other.value.w, sizeof(f32));
+        value.x = other.value.x;
+        value.y = other.value.y;
+        value.z = other.value.z;
+        value.w = other.value.w;
     }
 };
 static_assert(sizeof(UnkGfxNamedVector) == 0x18, "named vector size");
@@ -600,7 +600,7 @@ void fn_71001d6c58(UnkGfxNamedVectors* self, u32 capacity) {
         }
         if (u64* old_keys = self->keys) {
             for (u32 i = 0; i < self->count; ++i)
-                __builtin_memcpy(&keys[i], &old_keys[i], sizeof(u64));
+                keys[i] = old_keys[i];
             self->allocator->vf_0x48(self->keys);
         }
         self->values = values;

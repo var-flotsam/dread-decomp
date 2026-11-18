@@ -40,8 +40,7 @@ void fn_71000ea374(UnkQueueOwner_b47* self, void* value) {
         self->tail = node;
         self->count = 1;
     } else {
-        // Copied bytewise: the original reloads the count after this store.
-        __builtin_memcpy(&node->next, &self->head, sizeof(node->next));
+        node->next = self->head;
         self->head = node;
         ++self->count;
     }

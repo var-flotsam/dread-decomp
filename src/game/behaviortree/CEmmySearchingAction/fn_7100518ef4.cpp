@@ -19,8 +19,7 @@ struct __attribute__((packed)) UnkRecord {
     u8 pad_0x11a[6];
 };
 
-// Accessed through this: the original reloads the block's pointer after the increment.
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 struct UnkCounted {
     void** vtable;

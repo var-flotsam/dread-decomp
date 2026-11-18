@@ -146,7 +146,7 @@ struct UnkLiquidKey_ovb0075 {
     }
 };
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32_ovb0075;
+typedef u32 UnkAliasU32_ovb0075;
 
 struct UnkLiquidValue_ovb0075 {
     u32 x, y, z, w;
@@ -254,7 +254,7 @@ struct UnkLiquidKey : base::global::CStrId {
         Reset();
         data = o.data;
         base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&o.data, &empty, sizeof(empty));
+        o.data = empty;
         return *this;
     }
 };
@@ -615,7 +615,7 @@ void fn_710090248c(UnkLiquidPoolSet_ovb0075* self, f32 level) {
     }
     if (fn_710024fb2c(reinterpret_cast<UnkActivatable_b48*>(self))) {
         f32 duration = self->vf_0x260();
-        __builtin_memcpy(&self->start, &self->level, sizeof(f32));
+        self->start = self->level;
         self->duration = duration;
         self->elapsed = 0.0f;
     } else {
@@ -642,7 +642,7 @@ void fn_7100902334(UnkLiquidPoolSet_ovb0075* self, f32 level) {
     }
     if (fn_710024fb2c(reinterpret_cast<UnkActivatable_b48*>(self))) {
         f32 duration = self->vf_0x260();
-        __builtin_memcpy(&self->start, &self->level, sizeof(f32));
+        self->start = self->level;
         self->duration = duration;
         self->elapsed = 0.0f;
     } else {

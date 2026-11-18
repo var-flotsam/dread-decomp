@@ -325,7 +325,7 @@ bool fn_710119e4ec(UnkSubAreaGuiCache* cache, const CStrId* id, bool flag) {
 struct UnkPowerUpLifeEntry_b52;
 struct alignas(8) UnkPowerUpLifeType_b52;
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32_b0231;
+typedef u32 UnkAliasU32_b0231;
 
 // The name data of a pooled id: the use count at +0x44 and the text at +0x10.
 struct UnkPoolName_b0231 {

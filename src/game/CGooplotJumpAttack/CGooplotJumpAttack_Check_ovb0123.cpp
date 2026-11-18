@@ -198,8 +198,7 @@ void fn_7100594c08(UnkGooplotStart_ovb0123* self) {
     if (auto* ai = static_cast<UnkGooplotStartAI_ovb0123*>(owner->field_0x240)) {
         ai->position = UnkVec3f(owner->field_0x44, owner->field_0x54, owner->field_0x64);
         f32 angle_x = self->owner->transform.GetAngle().x;
-        // An untyped store: the original reloads the owner after it.
-        __builtin_memcpy(&ai->angle_x, &angle_x, sizeof(angle_x));
+        ai->angle_x = angle_x;
         UnkReflObject* other = static_cast<UnkReflObject*>(reinterpret_cast<UnkActor*>(self->owner)->field_0x240);
         if (other && fn_710009d50c(other->vf_0x0(), fn_710059e014()))
             fn_710059f058(other);

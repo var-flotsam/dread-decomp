@@ -27,5 +27,5 @@ void fn_7100745994(UnkTransition* self, UnkTransitionTarget* target, u32 frames,
     if (value >= 0.0f)
         self->value = value;
     else
-        __builtin_memcpy(&self->value, &self->current, sizeof(f32));
+        self->value = self->current;
 }

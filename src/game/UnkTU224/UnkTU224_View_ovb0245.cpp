@@ -38,7 +38,7 @@ UnkMatrix44* fn_710019d920(UnkView_ovb0245* self, UnkSize_ovb0245* size) {
 
 
 struct UnkPair_ovb0245 {
-    typedef u32 __attribute__((may_alias)) U32A;
+    typedef u32 U32A;
     U32A w[2];
     UnkPair_ovb0245() {
         w[0] = 0;

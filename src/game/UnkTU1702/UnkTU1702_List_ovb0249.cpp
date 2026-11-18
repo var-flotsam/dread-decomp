@@ -58,7 +58,7 @@ void fn_7100b52284(UnkListOwner_b0249* owner, UnkListScreen_b0249* screen) {
     if (screen->mode == 8)
         return;
     // a char store: the parent is read again afterwards
-    __builtin_memcpy(&screen->parent, &owner->field_0x8, sizeof(screen->parent));
+    screen->parent = owner->field_0x8;
     UnkGuiObj* root = owner->field_0x8;
     UnkGuiObj* list;
     {

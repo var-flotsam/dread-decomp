@@ -45,8 +45,7 @@ struct UnkRectEntry_ovb0061 {
 
     UnkRectEntry_ovb0061() : owner(nullptr), selected(0) {}
     UnkRectEntry_ovb0061(const UnkRectEntry_ovb0061& o) : owner(o.owner), value(o.value) {
-        // Copied as a plain byte (an untyped store: the array's count is read again after it).
-        __builtin_memcpy(&selected, &o.selected, sizeof(selected));
+        selected = o.selected;
     }
 };
 static_assert(sizeof(UnkRectEntry_ovb0061) == 0x28, "UnkRectEntry_ovb0061 layout");

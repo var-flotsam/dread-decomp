@@ -102,8 +102,7 @@ bool fn_71010f9dac(UnkAIList_b0143* self) {
         UnkAIEntryPtr_b0143* it = list;
         do {
             UnkAIEntry_b0143* entry = *it++;
-            // Untyped copy: the owner and the count are read again after each store.
-            __builtin_memcpy(&entry->field_0x8, &self->owner, 8);
+            entry->field_0x8 = self->owner;
         } while (it != list + self->count);
     }
     if (self->field_0x1610) {

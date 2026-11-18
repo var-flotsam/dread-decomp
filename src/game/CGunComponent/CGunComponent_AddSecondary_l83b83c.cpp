@@ -198,7 +198,7 @@ inline void Append_l83b83c(UnkGunList_l83b83c& list, UnkSecondaryGun_l83b83c* gu
     } else {
         p = list.data;
     }
-    __builtin_memcpy(&p[n], &gun, sizeof(gun));
+    p[n] = gun;
     ++list.count;
 }
 

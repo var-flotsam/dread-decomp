@@ -162,7 +162,7 @@ void fn_7101029ec8(UnkSoundIdTable_b0038* self, u32 capacity) {
 // CStrId's copy constructor, with the pointer copied untyped (the count is reloaded after it).
 __attribute__((always_inline)) static inline void CopyId(CStrId* dst, const CStrId* src) {
     base::global::UnkStringData* data = src->data;
-    __builtin_memcpy(&dst->data, &data, sizeof(data));
+    dst->data = data;
     if (&g_unk_7101d47108->empty != data)
         ++data->ref_count;
 }
@@ -567,9 +567,9 @@ void fn_710102b828(UnkSoundPtrArray_b0038* self, UnkSoundIter_b0038<0>* out) {
 __attribute__((always_inline)) static inline void MoveAssign(UnkStrIdTwoStep* self,
                                                              UnkStrIdTwoStep* other) {
     self->~UnkStrIdTwoStep();
-    __builtin_memcpy(&self->data, &other->data, sizeof(self->data));
+    self->data = other->data;
     base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-    __builtin_memcpy(&other->data, &empty, sizeof(empty));
+    other->data = empty;
 }
 
 using UnkSoundIdRecordPair_b0038 = UnkSoundPairRef_b0038<UnkStrIdTwoStep, UnkStrIdPathResource>;

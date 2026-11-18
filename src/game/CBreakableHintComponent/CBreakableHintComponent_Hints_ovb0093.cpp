@@ -114,7 +114,7 @@ UnkHintRef_ovb0093* fn_7100752a78(UnkHintMap_ovb0093* self, UnkHintRef_ovb0093* 
     if (last != index) {
         new (&self->values[index]) UnkHintRef_ovb0093(static_cast<UnkHintRef_ovb0093&&>(self->values[last]));
         self->values[self->count - 1].~UnkHintRef_ovb0093();
-        __builtin_memcpy(&self->keys[index], &self->keys[self->count - 1], sizeof(u64));
+        self->keys[index] = self->keys[self->count - 1];
     }
     --self->count;
     return &self->values[index];

@@ -237,8 +237,7 @@ UnkObserverIdNode_ovb0055* fn_7100caa690(UnkObserverIdMap_ovb0055* map, const CS
     *slot = node;
     if (map->head) {
         if (map->tail) {
-            // Stored untyped: the original reloads the tail afterwards.
-            __builtin_memcpy(&node->prev, &map->tail, sizeof(node->prev));
+            node->prev = map->tail;
             map->tail->next = node;
         }
     } else {
@@ -271,12 +270,12 @@ UnkObserverIdNode_ovb0055* fn_7100caa83c(UnkObserverIdMap_ovb0055* map, const CS
         map->head = node->next;
     // The links are stored untyped: the original reloads them after each store.
     if (map->tail == node)
-        __builtin_memcpy(&map->tail, &node->prev, sizeof(map->tail));
+        map->tail = node->prev;
     if (node->prev)
-        __builtin_memcpy(&node->prev->next, &node->next, sizeof(node->next));
+        node->prev->next = node->next;
     UnkObserverIdNode_ovb0055* next = nullptr;
     if (node->next) {
-        __builtin_memcpy(&node->next->prev, &node->prev, sizeof(node->prev));
+        node->next->prev = node->prev;
         next = node->next;
     }
     node->items.Free();
@@ -350,8 +349,7 @@ UnkObserverGroupItems_ovb0055* fn_7100ca7510(UnkObserverGroupOwner_ovb0055* self
     *slot = node;
     if (map.head) {
         if (map.tail) {
-            // Stored untyped: the original reloads the tail afterwards.
-            __builtin_memcpy(&node->prev, &map.tail, sizeof(node->prev));
+            node->prev = map.tail;
             map.tail->next = node;
         }
     } else {
@@ -439,7 +437,7 @@ static inline void MoveId(UnkStrIdMember& to, UnkStrIdMember& from) {
     to.~UnkStrIdMemberOf();
     to.data = from.data;
     base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-    __builtin_memcpy(&from.data, &empty, sizeof(empty));
+    from.data = empty;
 }
 
 UnkIdVecVariant_ovb0055* fn_7100ca9dc8(UnkIdVecVariant_ovb0055* self, UnkIdVecVariant_ovb0055* other) {
@@ -520,7 +518,7 @@ u32 fn_7100ca6f00(UnkObserverById_ovb0055* self, u32 id) {
         }
     }
     self->ids[n] = id;
-    __builtin_memcpy(&self->values[self->count], &observer, sizeof(observer));
+    self->values[self->count] = observer;
     ++self->count;
     return id;
 }

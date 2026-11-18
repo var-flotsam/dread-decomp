@@ -9,7 +9,7 @@
 
 using base::global::CStrId;
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32_b52;
+typedef u32 UnkAliasU32_b52;
 
 struct UnkMaterialFXVec4_b52 {
     f32 v[4];

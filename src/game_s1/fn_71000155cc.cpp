@@ -2,7 +2,7 @@
 // array. Returns 0 when it is full.
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 struct UnkElem_0x40 {
     a_u32 words[16];

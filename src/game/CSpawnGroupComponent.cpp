@@ -22,7 +22,7 @@ struct lua_State;
 s32 fn_71010bf400(lua_State* L, const char* fmt, va_list args);
 s32 fn_71010c0cd0(lua_State* L, s32 count, char* buf, u32 size, UnkPropBag* results);
 
-typedef s64 __attribute__((may_alias)) a_s64;
+typedef s64 a_s64;
 
 // The original reloads the count after every key it stores (base/global/CRntVectorReloading.h).
 struct UnkKeyVector : base::global::CRntVectorReloading<s64> {

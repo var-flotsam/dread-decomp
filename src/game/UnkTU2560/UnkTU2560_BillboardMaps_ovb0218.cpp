@@ -107,7 +107,7 @@ struct UnkDrop_b218 {
     u32 pad_0x24;
 
     UnkDrop_b218(const UnkDrop_b218& other) : id(other.id) {
-        __builtin_memcpy(&field_0x8, &other.field_0x8, 0x1c);  // the words, not the last padding
+        field_0x8 = other.field_0x8;  // the words, not the last padding
     }
 };
 static_assert(sizeof(UnkDrop_b218) == 0x28, "drop layout");

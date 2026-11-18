@@ -139,7 +139,7 @@ void fn_710016ac04(UnkController_u207* self, UnkTarget_ac04* target, const CStrI
     UnkEntry_u207* slot = v->data;
     n = v->count;
     // the element is stored bitwise and its id then retained, as the copy constructor does
-    __builtin_memcpy(&slot[n].target, &target, sizeof(target));
+    slot[n].target = target;
     __builtin_memcpy(&slot[n].id, &tmp, sizeof(tmp));
     if (&g_unk_7101d47108->empty != tmp.data)
         ++tmp.data->ref_count;

@@ -149,8 +149,7 @@ void fn_7100e608e0(UnkValues80ByKey* a, const u64* key) {
 // The reserve of a keyed array of 0x40-byte records with its storage (fn_7100015378): both arrays
 // grow to `capacity`, the records copied word by word (the count reread for each) and the keys
 // copied by a 64-bit index beside a 32-bit counter.
-// Words that may alias anything: the array's fields are reread after the copies.
-typedef u32 __attribute__((may_alias)) UnkAliasWord;
+typedef u32 UnkAliasWord;
 
 struct UnkWordRecord_0x40 {
     UnkAliasWord words[16];
@@ -173,7 +172,7 @@ void fn_7100015378(UnkRecordsByKeyStore* self, u32 capacity) {
         if (u64* src = self->keys) {
             u64 j = 0;
             for (u32 i = 0; i < self->count; ++i, ++j)
-                __builtin_memcpy(&keys[j], &src[j], sizeof(u64));
+                keys[j] = src[j];
             self->allocator->vf_0x48(self->keys);
         }
         self->values = values;

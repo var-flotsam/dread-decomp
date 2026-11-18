@@ -120,7 +120,7 @@ CFilePathStrId fn_71000f63b0(const CFilePathStrId& id) {
             }
         }
     }
-    typedef s32 __attribute__((may_alias)) alias_s32;
+    typedef s32 alias_s32;
     ++*reinterpret_cast<alias_s32*>(name + 0x44);
     char lower[128];
     const CRntString* source_name = reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(id.data) + 0x10);
@@ -319,7 +319,7 @@ union UnkPathIdSlot {
 // The text of a file-path id's pooled data (a CRntString at +0x10), with the count of its reads at
 // +0x44 (a word that may alias the id: the original reloads it after each increment).
 static inline const CRntString& PathString(const CFilePathStrId& id) {
-    typedef s32 __attribute__((may_alias)) alias_s32;
+    typedef s32 alias_s32;
     ++*reinterpret_cast<alias_s32*>(reinterpret_cast<char*>(id.data) + 0x44);
     return *reinterpret_cast<const CRntString*>(reinterpret_cast<char*>(id.data) + 0x10);
 }

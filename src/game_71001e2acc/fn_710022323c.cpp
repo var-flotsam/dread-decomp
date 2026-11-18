@@ -8,8 +8,7 @@
 
 #include "types.h"
 
-// The count's stores may alias the id pointers (the original reloads them after each one).
-typedef u32 __attribute__((may_alias)) UnkAliasedCount;
+typedef u32 UnkAliasedCount;
 
 struct UnkIdEntry_710022323c {
     u8 unk_0x0[0x10];

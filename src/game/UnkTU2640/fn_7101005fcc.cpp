@@ -26,15 +26,14 @@ struct UnkMapValue_b0213 {
         : id(o.id) {
         void* p = o.ptr;
         base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&o.id, &empty, sizeof(empty));
+        o.id = empty;
         ptr = p;
-        // The remaining fields are copied bytewise, so they are read after the id is replaced.
-        __builtin_memcpy(&field_0x10, &o.field_0x10, 4);
-        __builtin_memcpy(&field_0x14, &o.field_0x14, 4);
-        __builtin_memcpy(&field_0x18, &o.field_0x18, 4);
-        __builtin_memcpy(&field_0x1c, &o.field_0x1c, 1);
-        __builtin_memcpy(&field_0x20, &o.field_0x20, 4);
-        __builtin_memcpy(&field_0x28, &o.field_0x28, 8);
+        field_0x10 = o.field_0x10;
+        field_0x14 = o.field_0x14;
+        field_0x18 = o.field_0x18;
+        field_0x1c = o.field_0x1c;
+        field_0x20 = o.field_0x20;
+        field_0x28 = o.field_0x28;
         __builtin_memset(&o.ptr, 0, 16);
     }
 };
@@ -83,7 +82,7 @@ void fn_7101005fcc(UnkMap_b0213* self, const CStrId* key, UnkMapValue_b0213* val
         self->head = n;
     } else if (self->tail) {
         UnkMapNode_b0213* tail = self->tail;
-        __builtin_memcpy(&n->prev, &tail, sizeof(tail));
+        n->prev = tail;
         self->tail->next = n;
     }
     self->tail = n;

@@ -125,7 +125,7 @@ __attribute__((flatten)) void* fn_71000e22ec(void* dst, void* src) {
                  static_cast<UnkRntStringVec_ovb0173&&>(*static_cast<UnkRntStringVec_ovb0173*>(src)));
 }
 
-typedef u32 UnkAliasU32_ovb0173 __attribute__((may_alias));
+typedef u32 UnkAliasU32_ovb0173;
 
 struct UnkStringHolder_ovb0173 {
     u8 pad_0x0[0x10];
@@ -228,7 +228,7 @@ UnkResPathVec* fn_71000d0958(UnkResPathVec* self, const UnkResPathVec* other) {
 struct UnkMovedId_ovb0173 : base::global::UnkStrIdBase {
     __attribute__((always_inline)) UnkMovedId_ovb0173(UnkMovedId_ovb0173&& other) : UnkStrIdBase(other) {
         base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&other.data, &empty, sizeof(empty));
+        other.data = empty;
     }
     ~UnkMovedId_ovb0173() {
         if (base::global::UnkStringPool* pool = g_unk_7101d47108) {
@@ -428,7 +428,7 @@ struct UnkMoveIter_ovb0173 {
             state = 0;
         }
         state = other.state;
-        __builtin_memcpy(&ref, &other.ref, sizeof(ref));
+        ref = other.ref;
         return *this;
     }
 };

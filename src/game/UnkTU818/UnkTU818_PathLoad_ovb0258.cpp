@@ -151,15 +151,15 @@ void fn_71005735b8(UnkAim_b0258y* self, f32 dt) {
                 fn_71000774fc(reinterpret_cast<UnkXform*>(&m));
             CVector2D flat;
             CVector3D pos;
-            __builtin_memcpy(&pos.x, &m.m[3], 4);
-            __builtin_memcpy(&pos.y, &m.m[7], 4);
-            __builtin_memcpy(&pos.z, &m.m[11], 4);
+            pos.x = m.m[3];
+            pos.y = m.m[7];
+            pos.z = m.m[11];
             fn_710007b430(&flat, &pos);
             __builtin_memcpy(&self->pos_x, &flat.x, 4);
             __builtin_memcpy(&self->pos_y, &flat.y, 4);
-            __builtin_memcpy(&pos.x, &m.m[0], 4);
-            __builtin_memcpy(&pos.y, &m.m[4], 4);
-            __builtin_memcpy(&pos.z, &m.m[8], 4);
+            pos.x = m.m[0];
+            pos.y = m.m[4];
+            pos.z = m.m[8];
             fn_710007b444(self->dir, reinterpret_cast<const UnkVec3*>(&pos));
         }
     }

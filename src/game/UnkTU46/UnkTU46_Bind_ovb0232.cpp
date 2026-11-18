@@ -45,7 +45,7 @@ void fn_710006d2a0(UnkSoundGroup* self_, u32 id) {
     if (entry == self->map.values + self->map.count) {
         if (self->map.count == self->map.capacity)
             fn_710006d88c(&self->map, self->map.step + self->map.count);
-        __builtin_memcpy(&self->map.keys[self->map.count], &id, 4);
+        self->map.keys[self->map.count] = id;
         new (&self->map.values[self->map.count]) base::global::CRntVector<u32>(0xf);
         u32 n = self->map.count + 1;
         base::global::CRntVector<u32>* end = &self->map.values[n];

@@ -26,6 +26,6 @@ void fn_7100193c40(UnkUnit211AssignPass* self, const u32* indices, u32 count) {
         u32 index = *indices++;
         UnkUnit211AssignPair* e = &self->values->pairs[index];
         __builtin_memcpy(&e->a, &self->a, sizeof(e->a));
-        __builtin_memcpy(&e->b, &self->b, sizeof(e->b));
+        e->b = self->b;
     }
 }

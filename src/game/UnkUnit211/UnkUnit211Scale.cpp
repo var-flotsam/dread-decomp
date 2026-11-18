@@ -3,7 +3,7 @@
 // source's slot 0x10 is called with the index instead of adding it. Names and layouts are placeholders.
 #include "types.h"
 
-typedef f32 __attribute__((may_alias)) UnkUnit211ScaleFloat;
+typedef f32 UnkUnit211ScaleFloat;
 
 struct UnkUnit211ScaleVec3 {
     UnkUnit211ScaleFloat v[3];

@@ -5,7 +5,7 @@
 #include "game/UnkTU252.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32_252;
+typedef u32 UnkAliasU32_252;
 
 struct UnkPart252 {
     u8 pad_0x0[0x18];

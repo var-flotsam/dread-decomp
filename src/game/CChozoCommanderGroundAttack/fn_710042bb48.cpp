@@ -6,8 +6,8 @@
 #include "game/UnkActor.h"
 #include "types.h"
 
-typedef f32 __attribute__((may_alias)) a_f32;
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef f32 a_f32;
+typedef u32 a_u32;
 
 struct UnkOut {
     f32 x;

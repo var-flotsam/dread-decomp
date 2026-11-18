@@ -374,8 +374,7 @@ void fn_7100dcc110(UnkRush_b0195* self) {
         return;
     }
     UnkRushScoreRow_b0195* row = ScoreRowAt_b0195(self, (s32)self->level);
-    // An untyped copy: the original reloads the flag after it.
-    __builtin_memcpy(&row->field_0x9a0, &row->field_0x99c, sizeof(f32));
+    row->field_0x9a0 = row->field_0x99c;
     if (self->flag_0xb8) {
         bool flag = self->flag_0xba;
         if (flag)

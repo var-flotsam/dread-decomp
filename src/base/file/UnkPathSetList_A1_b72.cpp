@@ -99,7 +99,7 @@ bool fn_710008c3bc(void* base_object, const CFilePathStrId& path, UnkFilePathLis
             out->tail = n;
             c = 1;
         } else {
-            __builtin_memcpy(&out->tail->next, &n, sizeof(n));
+            out->tail->next = n;
             n->next = nullptr;
             out->tail = n;
             c = out->count + 1;

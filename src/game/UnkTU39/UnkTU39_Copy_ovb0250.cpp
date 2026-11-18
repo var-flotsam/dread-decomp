@@ -59,7 +59,7 @@ void fn_710002f588(void* dst, const void* src) {
             new_count = 1;
         } else {
             UnkKeyNode_b0250* last = self->tail;
-            __builtin_memcpy(&last->next, &node, sizeof(node));
+            last->next = node;
             node->next = nullptr;
             self->tail = node;
             new_count = self->count + 1;

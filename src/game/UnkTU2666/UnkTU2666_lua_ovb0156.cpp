@@ -143,7 +143,7 @@ s32 fn_7101082b20(lua_State* L) {
         return 0;
     // Counts the use through an untyped store so the inner pointer is read again afterwards.
     s32 uses = holder->field_0x18->field_0x44 + 1;
-    __builtin_memcpy(&holder->field_0x18->field_0x44, &uses, sizeof(uses));
+    holder->field_0x18->field_0x44 = uses;
     const char* name = holder->field_0x18->field_0x10;
     return fn_71010c0b40(L, "s", name ? name : g_unk_710162e2ed);
 }

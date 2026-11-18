@@ -14,9 +14,9 @@ extern void* g_unk_7101a6d6f8[];  // the controller's vtable
 struct UnkSwarmEntry_ovb0063 {
     u32 v[3];
     UnkSwarmEntry_ovb0063(const UnkSwarmEntry_ovb0063& o) {
-        __builtin_memcpy(&v[0], &o.v[0], 4);
-        __builtin_memcpy(&v[1], &o.v[1], 4);
-        __builtin_memcpy(&v[2], &o.v[2], 4);
+        v[0] = o.v[0];
+        v[1] = o.v[1];
+        v[2] = o.v[2];
     }
 };
 

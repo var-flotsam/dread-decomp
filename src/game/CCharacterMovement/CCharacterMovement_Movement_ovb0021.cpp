@@ -57,7 +57,7 @@ struct UnkTimedRef_ovb0021 {
             }
             handle = p;
         }
-        __builtin_memcpy(&time, &other.time, sizeof(time));
+        time = other.time;
     }
     ~UnkTimedRef_ovb0021() {
         if (UnkWeakHandle* p = handle) {
@@ -192,8 +192,8 @@ UnkNavMeshCell* fn_7100979b30(UnkCharacterMovementCell_ovb0021* self) {
                             fn_710027a5f0(reinterpret_cast<UnkOwner_710027a41c*>(mesh), &point, self->cell);
         if (!still_inside) {
             CVector2D query;
-            __builtin_memcpy(&query.x, &point.x, 4);
-            __builtin_memcpy(&query.y, &point.y, 4);
+            query.x = point.x;
+            query.y = point.y;
             self->cell = fn_710027a41c(mesh, &query, 0);
         }
     }
@@ -246,8 +246,8 @@ static inline void EraseAt(UnkCollisionOwnerLists_ovb0021* lists, void** it) {
         u32 index = static_cast<u32>(it - lists->entries);
         u32 last = lists->count - 1;
         if (index != last) {
-            __builtin_memcpy(&lists->entries[index], &lists->entries[last], sizeof(void*));
-            __builtin_memcpy(&lists->owners[index], &lists->owners[lists->count - 1], sizeof(void*));
+            lists->entries[index] = lists->entries[last];
+            lists->owners[index] = lists->owners[lists->count - 1];
         }
         lists->count = lists->count - 1;
     }

@@ -42,11 +42,11 @@ UnkEmptyBoundsItem* fn_7100e45270(UnkEmptyBoundsArray* self, const CStrId* key) 
     item->min_y = 3.4028235e38f;
     item->max_x = -3.4028235e38f;
     item->max_y = -3.4028235e38f;
-    __builtin_memcpy(&item->name, &empty, sizeof(empty));
+    item->name = empty;
     UnkStringPool* before = g_unk_7101d47108;
     __builtin_memset(&item->field_0x20, 0, sizeof(item->field_0x20));
     u32 n = self->count + 1;
-    __builtin_memcpy(&self->count, &n, sizeof(n));
+    self->count = n;
     UnkEmptyBoundsItem* result = n != 0 ? &self->items[n] - 1 : self->items;
     UnkStringPool* after = g_unk_7101d47108;
     if (after && before != after) {

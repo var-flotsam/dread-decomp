@@ -332,7 +332,7 @@ void fn_71001d4f84(UnkOwner_b0154e* self, UnkEntry_b0154e* entry, UnkViewport_b0
     fn_7100159530();
     base::global::CRntVector<UnkEntry_b0154e>& v = self->entries;
     u32 n = v.count - 1;
-    typedef u32 __attribute__((may_alias)) UnkAliasCount;
+    typedef u32 UnkAliasCount;
     *reinterpret_cast<UnkAliasCount*>(&v.data[(s32)n].count) = 0;
     v.count = n;
     if (n != 0) {

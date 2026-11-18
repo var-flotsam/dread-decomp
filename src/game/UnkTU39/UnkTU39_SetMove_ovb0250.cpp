@@ -19,7 +19,7 @@ void fn_710003017c(UnkDeferredSet<UnkDeferredCallback<f32>>* self, UnkDeferredSe
     self->locked = other->locked;
     for (UnkDeferredCallback<f32>**it = other->items.data, **end = it + other->items.count; it != end; ++it) {
         UnkDeferredCallback<f32>* cb = *it;
-        __builtin_memcpy(&cb->field_0x0, &self, sizeof(self));
+        cb->field_0x0 = self;
         self->items.PushBack(cb);
     }
     other->items.count = 0;

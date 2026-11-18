@@ -30,8 +30,7 @@ struct UnkOwner134 {
     UnkHolder134* holder;  // 0x160
 };
 
-// The index is written through a type that may alias the list's pointers (the original reloads them).
-typedef s32 __attribute__((may_alias)) UnkAliasS32;
+typedef s32 UnkAliasS32;
 
 __attribute__((always_inline)) static inline bool FindIndex(UnkOwner134* self, void* key, UnkAliasS32* out) {
     *out = -1;

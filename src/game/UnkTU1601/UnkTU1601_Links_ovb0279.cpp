@@ -85,7 +85,7 @@ static inline UnkWeakTarget* LinkTarget(UnkThermalLink_b0279* link) {
     return h ? h->target : nullptr;
 }
 
-typedef s32 __attribute__((may_alias)) UnkAliasS32_b0279;
+typedef s32 UnkAliasS32_b0279;
 
 static inline void CallScript(UnkThermalDevice_b0279* self, UnkStringEntry_b0279** slot) {
     if (reinterpret_cast<u64>(*slot) == reinterpret_cast<u64>(&g_unk_7101d47108->empty))

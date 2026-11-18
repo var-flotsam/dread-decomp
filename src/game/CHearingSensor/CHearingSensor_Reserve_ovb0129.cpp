@@ -27,7 +27,7 @@ struct UnkHearingHolder_b0129 {
 
     __attribute__((always_inline)) UnkHearingHolder_b0129(const UnkHearingHolder_b0129& other) {
         vtable = g_unk_7101caa330 + 0x10;
-        __builtin_memcpy(&value, &other.value, sizeof(value));
+        value = other.value;
         vtable = g_unk_7101caa308 + 0x10;
         shared = nullptr;
         if (UnkHearingShared_b0129* p = other.shared) {

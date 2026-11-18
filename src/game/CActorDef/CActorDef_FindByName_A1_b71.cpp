@@ -5,7 +5,7 @@
 #include "base/global/CRntString.h"
 #include "types.h"
 
-typedef s32 __attribute__((may_alias)) UnkAliasS32_A1b71;
+typedef s32 UnkAliasS32_A1b71;
 
 struct UnkActorDefInfo_A1b71 {
     u8 pad_0x0[0x30];

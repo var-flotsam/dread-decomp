@@ -51,7 +51,7 @@ struct UnkHashList {
         } else {
             p = data;
         }
-        __builtin_memcpy(&p[n], &value, sizeof(UnkHash));
+        p[n] = value;
         ++count;
     }
 

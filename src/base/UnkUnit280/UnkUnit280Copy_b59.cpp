@@ -11,8 +11,8 @@
 struct UnkSceneEntry;
 
 // An entry (0x28 bytes), moved field by field when the array grows.
-typedef u64 __attribute__((may_alias)) UnkAliasU64_b59;
-typedef u32 __attribute__((may_alias)) UnkAliasU32_b59;
+typedef u64 UnkAliasU64_b59;
+typedef u32 UnkAliasU32_b59;
 struct UnkUnit280Entry_b59 {
     u64 field_0x0;
     u32 field_0x8;

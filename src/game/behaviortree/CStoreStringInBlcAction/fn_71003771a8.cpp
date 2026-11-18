@@ -11,7 +11,7 @@
 using base::global::CRntString;
 using base::global::UnkStrId;
 
-typedef void** __attribute__((may_alias)) UnkVtable;
+typedef void** UnkVtable;
 
 struct UnkNode : UnkBehaviorTreeNodeBase {
     u8 pad_0x2c[4];

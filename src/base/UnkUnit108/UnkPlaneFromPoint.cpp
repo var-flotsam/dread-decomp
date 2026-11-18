@@ -3,8 +3,8 @@
 #include "base/math/CVector.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) UnkPlaneWord;
-typedef u64 __attribute__((may_alias)) UnkPlaneDword;
+typedef u32 UnkPlaneWord;
+typedef u64 UnkPlaneDword;
 
 using base::math::CVector3D;
 

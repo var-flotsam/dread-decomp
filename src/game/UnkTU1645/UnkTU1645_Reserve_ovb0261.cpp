@@ -20,7 +20,7 @@ struct UnkReleasedId_b0261 {
 
     UnkReleasedId_b0261(UnkReleasedId_b0261&& other) {
         UnkStringData* d = other.data;
-        __builtin_memcpy(&data, &d, sizeof(d));
+        data = d;
         other.data = &g_unk_7101d47108->empty;
     }
     ~UnkReleasedId_b0261() {

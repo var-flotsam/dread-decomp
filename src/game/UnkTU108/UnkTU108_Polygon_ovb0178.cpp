@@ -23,7 +23,7 @@ struct UnkPathPair {
     // Each word is copied bitwise.
     void CopyFrom(const UnkPathPair& other) {
         __builtin_memcpy(&value[0], &other.value[0], sizeof(u32));
-        __builtin_memcpy(&value[1], &other.value[1], sizeof(u32));
+        value[1] = other.value[1];
     }
     UnkPathPair(const UnkPathPair& other) { CopyFrom(other); }
     UnkPathPair(UnkPathPair&& other) { CopyFrom(other); }
@@ -118,8 +118,8 @@ struct UnkPathLink {
         __builtin_memset(&field_0x4, 0, sizeof(u32));
     }
     UnkPathLink(UnkPathLink&& other) {
-        __builtin_memcpy(&field_0x0, &other.field_0x0, sizeof(u32));
-        __builtin_memcpy(&field_0x4, &other.field_0x4, sizeof(u32));
+        field_0x0 = other.field_0x0;
+        field_0x4 = other.field_0x4;
     }
 };
 
@@ -274,9 +274,9 @@ struct UnkVertex12 {
         __builtin_memset(&field_0x8, 0, sizeof(u32));
     }
     UnkVertex12(UnkVertex12&& other) {
-        __builtin_memcpy(&field_0x0, &other.field_0x0, sizeof(u32));
-        __builtin_memcpy(&field_0x4, &other.field_0x4, sizeof(u32));
-        __builtin_memcpy(&field_0x8, &other.field_0x8, sizeof(u32));
+        field_0x0 = other.field_0x0;
+        field_0x4 = other.field_0x4;
+        field_0x8 = other.field_0x8;
     }
 };
 

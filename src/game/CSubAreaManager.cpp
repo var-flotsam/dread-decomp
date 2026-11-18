@@ -464,7 +464,7 @@ struct UnkPoppedRequest {
     // The moved-from id is cleared through an untyped store: the original reloads the queue's read
     // pointer after it.
     explicit UnkPoppedRequest(UnkSubAreaRequest& r) {
-        typedef base::global::UnkStringData* __attribute__((may_alias)) AnyData;
+        typedef base::global::UnkStringData* AnyData;
         id.data = r.id.data;
         *reinterpret_cast<AnyData*>(&r.id.data) = &g_unk_7101d47108->empty;
         flags = r.flags;

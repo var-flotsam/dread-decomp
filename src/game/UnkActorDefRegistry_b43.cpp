@@ -13,7 +13,7 @@ struct UnkActor341;
 void fn_7100232a48(UnkActor341* self);
 void fn_7100232654(UnkActor341* actor, void* payload);
 
-typedef u32 __attribute__((may_alias)) AliasU32_b43a3;
+typedef u32 AliasU32_b43a3;
 
 struct UnkActorDefKey_b43a3 {
     u8 pad_0x0[0x30];

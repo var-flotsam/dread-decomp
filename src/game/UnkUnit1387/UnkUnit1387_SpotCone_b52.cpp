@@ -41,8 +41,7 @@ struct UnkSpotLightComponent_b52 {
     UnkSpotLight_b52* light;  // 0x120
 };
 
-// Stored through an access that may alias anything: the original reads the light again after it.
-typedef f32 __attribute__((may_alias)) UnkAliasF32_b52;
+typedef f32 UnkAliasF32_b52;
 
 static inline f32 Max_b52(f32 a, f32 b) {
     return a < b ? b : a;

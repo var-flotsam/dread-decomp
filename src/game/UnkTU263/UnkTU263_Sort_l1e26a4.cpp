@@ -34,7 +34,7 @@ inline void PushBack(CRntVector<T>& v, const T& value) {
         for (;;) {
         }
     v.Reserve(new_capacity);
-    __builtin_memcpy(&v.data[v.count], &value, sizeof(T));
+    v.data[v.count] = value;
     ++v.count;
 }
 

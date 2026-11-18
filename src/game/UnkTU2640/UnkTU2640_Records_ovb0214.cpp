@@ -59,12 +59,12 @@ struct UnkRecord_ovb0214 {
         records.flags = other.records.flags;
         records.allocator = other.records.allocator;
         __builtin_memset(&other.records, 0, 0x10);
-        __builtin_memcpy(&tail, &other.tail, sizeof(tail));
+        tail = other.tail;
     }
     UnkRecord_ovb0214& operator=(UnkRecord_ovb0214&& other) {
         field_0x0 = other.field_0x0;
         records.vec() = static_cast<base::global::CRntVector<UnkPathRecord_ovb0214>&&>(other.records.vec());
-        __builtin_memcpy(&tail, &other.tail, sizeof(tail));
+        tail = other.tail;
         return *this;
     }
     ~UnkRecord_ovb0214() { records.vec().Free(); }

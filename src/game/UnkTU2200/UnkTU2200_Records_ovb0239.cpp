@@ -224,7 +224,7 @@ void fn_7100c8bd98(UnkStrIdMap_b239* self, const UnkStrIdMap_b239* other);
 // Copies an id with an untyped store of the pointer (the caller's loop bound is reloaded after it).
 static inline void CopyIdUntyped(CStrId* dst, const CStrId& src) {
     base::global::UnkStringData* d = src.data;
-    __builtin_memcpy(&dst->data, &d, sizeof(d));
+    dst->data = d;
     if (&g_unk_7101d47108->empty != d)
         ++d->ref_count;
 }

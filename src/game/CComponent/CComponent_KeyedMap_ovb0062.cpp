@@ -85,7 +85,7 @@ struct UnkSwapMap_ovb0062 {
         u32 index = it - values;
         keys[index].~UnkSwapKey_ovb0062();
         if (index != count - 1) {
-            __builtin_memcpy(&values[index], &values[count - 1], sizeof(u64));
+            values[index] = values[count - 1];
             new (&keys[index]) UnkSwapKey_ovb0062(static_cast<UnkSwapKey_ovb0062&&>(keys[count - 1]));
             keys[count - 1].~UnkSwapKey_ovb0062();
         }

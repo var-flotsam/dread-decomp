@@ -23,8 +23,7 @@ struct UnkIdPathPair_b49a1 {
     CFilePathStrId path;
 };
 
-// The use count may alias the id: the original reloads the id's entry after counting the use.
-typedef u32 __attribute__((may_alias)) UnkAliasU32_b49a1;
+typedef u32 UnkAliasU32_b49a1;
 
 // A pool entry as the file-path builder reads it: the text at +0x10 and a use count at +0x44.
 struct UnkPathEntry_b49a1 {

@@ -76,7 +76,7 @@ void fn_71006aa9e0(UnkShakernautChase_ovb0136* self) {
             if (UnkShakernautAI_ovb0136* ai = owner->ai) {
                 // Stored untyped: the original reloads the owner afterwards.
                 s32 state = 2;
-                __builtin_memcpy(&ai->field_0x14518, &state, sizeof(state));
+                ai->field_0x14518 = state;
             }
         }
     }

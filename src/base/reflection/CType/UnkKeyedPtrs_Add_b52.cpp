@@ -30,7 +30,7 @@ struct UnkKeyedPtrs_b52 {
             // Copied bytewise: the original rereads the count after each key.
             u64 j = 0;
             for (u32 i = 0; i < count; ++i, ++j)
-                __builtin_memcpy(&new_keys[j], &src[j], sizeof(u64));
+                new_keys[j] = src[j];
             allocator->vf_0x48(keys);
         }
         values = new_values;
@@ -50,6 +50,6 @@ void fn_710009dba0(UnkKeyedPtrsOwner_b52* self, const u64* key, void* value) {
         a.Grow(a.step + a.count);
     // Both stored bytewise: the original rereads the arrays and the count after each.
     __builtin_memcpy(&a.keys[a.count], key, sizeof(u64));
-    __builtin_memcpy(&a.values[a.count], &value, sizeof(void*));
+    a.values[a.count] = value;
     ++a.count;
 }

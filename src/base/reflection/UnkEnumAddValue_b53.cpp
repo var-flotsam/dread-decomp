@@ -41,6 +41,6 @@ void fn_7100014948(void* e, const CStrId& name, u32 value) {
     fn_7100014a48(&list, capacity);
     UnkEnumValue_b53* slot = &list.data[list.count];
     new (&slot->name) CStrId(entry.name);
-    __builtin_memcpy(&slot->value, &entry.value, sizeof(u32));
+    slot->value = entry.value;
     ++list.count;
 }

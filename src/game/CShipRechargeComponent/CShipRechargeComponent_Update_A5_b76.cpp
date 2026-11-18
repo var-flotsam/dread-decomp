@@ -94,8 +94,7 @@ static inline UnkShipRecharge_A5_b73* Cast_A5_b76(UnkShipRecharge_A5_b76* self) 
     return reinterpret_cast<UnkShipRecharge_A5_b73*>(self);
 }
 
-// The count is bumped through an aliasing type: the original reloads the name pointer after it.
-typedef s32 __attribute__((may_alias)) UnkAliasS32_A5_b76;
+typedef s32 UnkAliasS32_A5_b76;
 
 static inline bool Playing_A5_b76(const UnkSoundRef_A5_b76& ref) {
     if (!ref.entry)

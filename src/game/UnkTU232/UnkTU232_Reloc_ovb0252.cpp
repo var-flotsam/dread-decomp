@@ -3,7 +3,7 @@
 #include "base/UnkCountedResource.h"
 #include "types.h"
 
-typedef u64 __attribute__((may_alias)) UnkAliasU64_b0252;
+typedef u64 UnkAliasU64_b0252;
 
 struct UnkRelocHeader_b0252 {
     u8 pad_0x0[8];
@@ -44,15 +44,15 @@ struct UnkRelocOwner_b0252 {
             u64 base = reinterpret_cast<u64>(header);
             if (u64 v = header->field_0x8) {
                 v -= base;
-                __builtin_memcpy(&header->field_0x8, &v, sizeof(v));
+                header->field_0x8 = v;
             }
             if (u64 v = header->field_0x30) {
                 v -= base;
-                __builtin_memcpy(&header->field_0x30, &v, sizeof(v));
+                header->field_0x30 = v;
             }
             if (u64 v = header->field_0x28) {
                 v -= base;
-                __builtin_memcpy(&header->field_0x28, &v, sizeof(v));
+                header->field_0x28 = v;
             }
             second.Reset();
             first.Reset();

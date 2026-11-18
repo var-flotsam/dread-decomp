@@ -172,7 +172,7 @@ void fn_710037a4bc(UnkChaseAction_ovb0132* self) {
             if (UnkChaseMover_ovb0132* mover = static_cast<UnkChaseMover_ovb0132*>(actor->field_0x240)) {
                 // Untyped: the original reloads the state after this store.
                 u32 two = 2;
-                __builtin_memcpy(&mover->field_0x14518, &two, 4);
+                mover->field_0x14518 = two;
                 if (self->field_0x5a && self->state != 2)
                     fn_71010fa828(reinterpret_cast<UnkAIComponent*>(mover));
             }

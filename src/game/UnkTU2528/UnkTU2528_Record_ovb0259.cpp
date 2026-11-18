@@ -41,8 +41,8 @@ void fn_7100d9bffc(UnkRecord_ovb0259* self, void*) {
 
 UnkRecord_ovb0259* fn_7100d9b27c(UnkRecord_ovb0259* self, UnkRecord_ovb0259* other) {
     self->id_0x8.ReleaseAndTake(other->id_0x8);
-    __builtin_memcpy(&self->field_0x0, &other->field_0x0, 4);
-    __builtin_memcpy(&self->field_0x4, &other->field_0x4, 4);
+    self->field_0x0 = other->field_0x0;
+    self->field_0x4 = other->field_0x4;
     self->id_0x10.ReleaseAndTake(other->id_0x10);
     self->field_0x18[0] = other->field_0x18[0];
     self->field_0x18[1] = other->field_0x18[1];

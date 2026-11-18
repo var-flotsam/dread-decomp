@@ -7,7 +7,7 @@
 #include "game/UnkTU212.h"
 #include "types.h"
 
-typedef u64 __attribute__((may_alias)) UnkAliasWord_b54a1;
+typedef u64 UnkAliasWord_b54a1;
 
 struct UnkRecord98_b54a1 {
     u8 data[0x98];
