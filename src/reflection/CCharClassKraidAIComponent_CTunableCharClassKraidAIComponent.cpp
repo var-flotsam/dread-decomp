@@ -19,11 +19,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CCharClassKraidAIComponent::CTunableCharClassKraidAIComponent
 extern bool g_unk_71726f3480;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726f3440;
 void fn_71005f9478(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassKraidAIComponent::CTunableCharClassKraidAIComponent {
@@ -47,13 +47,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "BOUNCING_CREATURES", 0x3d, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "SHOCKER_SPLASH", 0x3e, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "FIERCE_SWIPE", 0x3f, (DefaultValue, true));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71005f9478(registry, &g_unk_71726f3440, "Kraid");
+    fn_71005f9478(base::reflection::TunableRegistry(), &g_unk_71726f3440, "Kraid");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

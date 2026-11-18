@@ -188,6 +188,16 @@ class Parse(unittest.TestCase):
         self.assertIn('    fn_7100dddd00(registry, &g_unk_7101710000, "CTunableFoo");', src)
         self.assertIn("fn_71000839a0(0x40, 0x8)", src)
 
+    def test_global_tunable_registry(self):
+        obj, reg = 0x7101710000, 0x7100DDDD00
+        evs = [bl(ra.ALLOC, **{"0": ("imm", 0x58), "1": ("imm", 0x3f), "19": ("global", ra.TUNABLE_REGISTRY)}),
+               bl(ra.TUNABLE_REGISTRY_CTOR),
+               bl(reg, **{"1": ("ptr", obj), "2": ("str", "CTunableFoo")})]
+        decls, src = run_parse(evs)
+        self.assertNotIn(f"extern UnkTunableRegistry* g_unk_{ra.TUNABLE_REGISTRY:x};", decls)
+        self.assertIn('    fn_7100dddd00(base::reflection::TunableRegistry(), &g_unk_7101710000, "CTunableFoo");', src)
+        self.assertNotIn("fn_71000839a0", src)
+
     def test_unknown_shapes(self):
         self.assertIsNone(run_parse([]))
         self.assertIsNone(run_parse([bl(0x7100EEEE00)]))  # a lone call that is no statement

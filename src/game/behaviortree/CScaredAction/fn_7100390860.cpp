@@ -39,7 +39,7 @@ struct UnkHandler {
 };
 
 u32 fn_7100390860(UnkHandler* self, UnkMessage* message) {
-    const CStrId* id = &g_unk_7101d470e0;
+    const CStrId* id = &base::global::CStrId::Empty();
     if (message->field_0x8) {
         UnkPayload* inner = message->field_0x8->field_0x10;
         id = inner ? &inner->field_0x38 : id;

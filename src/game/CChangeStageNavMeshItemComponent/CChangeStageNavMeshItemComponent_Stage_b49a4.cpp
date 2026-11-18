@@ -31,7 +31,7 @@ bool fn_71009b9f6c(UnkChangeStageItem_b49a4* self);
 static inline void Send(UnkChangeStageItem_b49a4* self, UnkStageNameData_b49a4* UnkStageSettings_b49a4::*name) {
     if (void* target = fn_71002b3b84(self->target)) {
         UnkStageNameData_b49a4* data = self->settings->*name;
-        if (__builtin_expect(data != reinterpret_cast<UnkStageNameData_b49a4*>(g_unk_7101d470e0.data), 1)) {
+        if (__builtin_expect(data != reinterpret_cast<UnkStageNameData_b49a4*>(base::global::CStrId::Empty().data), 1)) {
             fn_71009c0f1c(target, data->hash);
             fn_71009bffdc(static_cast<UnkOwner*>(target), true);
         }

@@ -78,7 +78,7 @@ void fn_710035131c(UnkSelf* self) {
         return;
     UnkQualifiedId& id = ItemQualifiedId(g_unk_717275ac18);
     if (id.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&id, ItemSource(g_unk_717275ac18), g_unk_7101d470e0);
+        fn_7100ae9a10(&id, ItemSource(g_unk_717275ac18), base::global::CStrId::Empty());
     if (!fn_71011428bc(static_cast<UnkInventory*>(object), id))
         return;
     UnkAnimationComponent* attack = self->field_0x30->field_0x220;

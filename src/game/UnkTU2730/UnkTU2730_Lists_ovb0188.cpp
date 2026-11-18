@@ -250,7 +250,7 @@ struct UnkCutsceneMgr_b0188 {
 static inline __attribute__((always_inline)) void ReadSub(CBlackboard::CSection* section, const void* key, u32* count) {
     UnkGameManagerNamedDef& def = g_unk_7172a0bb10;
     if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
+        fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     UnkSubId_7100fc4b34 id = fn_710119a610(&def.name, key);
     fn_7100a68fb0(section, &id, count);
 }

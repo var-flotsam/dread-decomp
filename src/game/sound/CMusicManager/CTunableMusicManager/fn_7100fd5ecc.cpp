@@ -113,7 +113,7 @@ void fn_7100fd5ecc(UnkMusicMgr_lfd5ecc* self, u32 index, bool hold, f32 time) {
     for (u64 i = 0; i < request.paths.count; ++i)
         ResetPath_lfd5ecc(request.paths.data[i].path);
     request.paths.count = 0;
-    request.name = g_unk_7101d470e0;
+    request.name = base::global::CStrId::Empty();
     request.state = 0;
     if (request.on_stop)
         request.on_stop(CStr_lfd5ecc(path.Str()));

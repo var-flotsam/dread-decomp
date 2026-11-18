@@ -24,7 +24,7 @@ void fn_71003afa88(UnkStruct_71003afa88* self, const CStrId* name, void* ptr) {
     InitEmptyStrId(&self->name);
     InitEmptyStrId(&self->field_0x8);
     self->name = *name;
-    self->field_0x8 = g_unk_7101d470e0;
+    self->field_0x8 = base::global::CStrId::Empty();
     self->field_0x10 = ptr;
     self->field_0x18 = -1.0f;
 }

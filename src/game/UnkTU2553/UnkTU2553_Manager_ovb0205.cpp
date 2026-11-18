@@ -135,7 +135,7 @@ void fn_7100df2acc(UnkGameManager* manager) {
                                            const CRntString&, UnkNoArg, u32, const CRntString&, const CStrId&, u32,
                                            void*, f32)>(fn_7100df28d0);
     start(manager, self->field_0x2a28, self->field_0x2a58, self->field_0x2a88, UnkNoArg(), self->field_0x2ae4,
-          CRntString(g_unk_710162e2ed), g_unk_7101d470e0, 0,
+          CRntString(g_unk_710162e2ed), base::global::CStrId::Empty(), 0,
           nullptr, 0.0f);
 }
 
@@ -249,7 +249,7 @@ void fn_7100df3300(UnkTgmScreen_b205* self, s32 mode, u32 value, bool a, bool ke
 }
 
 void fn_7100df3418(UnkGameManager* manager, bool a, bool b, void* x3) {
-    CStrId id = g_unk_7101d470e0;
+    CStrId id = base::global::CStrId::Empty();
     fn_7100df3300(reinterpret_cast<UnkTgmScreen_b205*>(manager), 2, 0, a, b, &id, false, x3);
 }
 
@@ -339,7 +339,7 @@ bool fn_7100dfaf88(UnkGameManager* manager, void* name, const CRntString& tag, b
 void fn_7100e015b8(UnkGameManager* self) {
     CBlackboard* blackboard = &g_unk_7101d47310->field_0x968;
     UnkGameManagerSub_0x1af8* sub = self->field_0x1af8;
-    CStrId id = self->field_0x608 ? fn_71011a2fbc(self->field_0x608) : g_unk_7101d470e0;
+    CStrId id = self->field_0x608 ? fn_71011a2fbc(self->field_0x608) : base::global::CStrId::Empty();
     fn_7100ca7a60(sub, blackboard, &id);
 }
 
@@ -539,7 +539,7 @@ struct UnkTgmBlackboards_b205 {
 static inline UnkQualifiedId& Qid_b205(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 

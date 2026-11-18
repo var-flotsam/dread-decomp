@@ -122,7 +122,7 @@ bool fn_7100803490(UnkAreaFXSet_ovb0081* self, void* arg) {
     if (!self->model) {
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkModel* model = nullptr;
-        fn_71006cae2c(manager->field_0x218, self->path, &model, &g_unk_7101d470e0);
+        fn_71006cae2c(manager->field_0x218, self->path, &model, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr,
                       0);
         self->model = model;
@@ -139,7 +139,7 @@ void fn_71008036a8(UnkAreaFXSet_ovb0081* self) {
         UnkRenderManager* manager = g_unk_7101d47300;
         {
             UnkModel* model = nullptr;
-            fn_71006cae2c(manager->field_0x218, self->path, &model, &g_unk_7101d470e0);
+            fn_71006cae2c(manager->field_0x218, self->path, &model, &base::global::CStrId::Empty());
             fn_7100219ae0(manager, Node_ovb0081(model), 0);
             self->field_0xcd0 = model;
             fn_71001436a0(model, 0);
@@ -156,7 +156,7 @@ void fn_71008036a8(UnkAreaFXSet_ovb0081* self) {
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkModel*& slot = self->Model(i);
         UnkModel* model = nullptr;
-        fn_71006cae2c(manager->field_0x218, self->path, &model, &g_unk_7101d470e0);
+        fn_71006cae2c(manager->field_0x218, self->path, &model, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, Node_ovb0081(model), 0);
         slot = model;
         fn_710014364c(self->Model(i), 0);

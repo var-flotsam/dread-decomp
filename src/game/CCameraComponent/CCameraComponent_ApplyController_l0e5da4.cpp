@@ -90,9 +90,9 @@ struct UnkCamComp6_ovb5 {
     // The id of the current controller, the empty id without one.
     const CStrId& CurrentId() const {
         if (current.slot == nullptr)
-            return g_unk_7101d470e0;
+            return base::global::CStrId::Empty();
         UnkCamObject_l0e5da4* object = *current.slot;
-        return object == nullptr ? g_unk_7101d470e0 : object->id;
+        return object == nullptr ? base::global::CStrId::Empty() : object->id;
     }
 };
 static_assert(__builtin_offsetof(UnkCamComp6_ovb5, field_0x258) == 0x258, "layout");

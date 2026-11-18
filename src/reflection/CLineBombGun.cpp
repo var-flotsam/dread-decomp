@@ -19,6 +19,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace base::global { class CRntString; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CRntString>::Get();
 
@@ -55,7 +56,6 @@ extern bool g_unk_7172726bb0;
 void fn_710084b964();
 void fn_710084ac1c(UnkReflFunction* fn, const char* name);
 extern base::global::CRntString g_unk_7101d58d10;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172726b48;
 void fn_710084ad98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLineBombGun::CTunableLineBomb {
@@ -72,13 +72,7 @@ void refl_AddFields(CClass* cls) {
         fn_710084ac1c(fn, "_sDamageSource_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource", (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Source of the damage to be dealt")));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x60, (DefaultValue, 0.7f), (Description, "Maximun damage to the shield"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710084ad98(registry, &g_unk_7172726b48, "");
+    fn_710084ad98(base::reflection::TunableRegistry(), &g_unk_7172726b48, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

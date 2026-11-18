@@ -83,7 +83,7 @@ static inline CBlackboard* Table() {
 void fn_71011415f4(UnkComponent_71011415f4* self) {
     self->Refresh();
     fn_7100de9540(g_unk_7101d47310, &g_unk_7172a092b0, reinterpret_cast<UnkWeakTarget*>(self));
-    if (self->id.data != g_unk_7101d470e0.data && fn_7101047208(Table(), self->id))
+    if (self->id.data != base::global::CStrId::Empty().data && fn_7101047208(Table(), self->id))
         self->Apply(&fn_71010472e0(Table(), self->id)->data);
     self->flags.Clear();
     self->flags.Add(g_unk_7172a092b8, true);

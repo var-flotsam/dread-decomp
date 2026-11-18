@@ -26,7 +26,7 @@ struct UnkDef_7100fc4b34 : UnkIdSource {
 
 static inline const UnkQualifiedId& Qid(UnkDef_7100fc4b34& def) {
     if ((u64)def.qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
+        fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());
     return def.qid;
 }
 
@@ -34,7 +34,7 @@ static inline const UnkQualifiedId& Qid(UnkDef_7100fc4b34& def) {
 static inline const UnkQualifiedId& Qid(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 
@@ -47,7 +47,7 @@ struct UnkNamedDef_7100fc4b34 : UnkIdSource {
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_7100fc4b34& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
+        fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     return fn_71003327a4(&def.name, &name);
 }
 

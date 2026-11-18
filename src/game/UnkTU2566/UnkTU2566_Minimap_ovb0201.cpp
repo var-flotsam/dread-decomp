@@ -551,7 +551,7 @@ void fn_7100e99e18(UnkMinimapOwner_v* self, const CFilePathStrId* room) {
         UnkRenderManager* manager = g_unk_7101d47300;
         {
             UnkModel* model = nullptr;
-            fn_71006cae2c(manager->field_0x218, path, &model, &g_unk_7101d470e0);
+            fn_71006cae2c(manager->field_0x218, path, &model, &base::global::CStrId::Empty());
             fn_7100219ae0(manager, model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr, 6);
             self->model = model;
         }

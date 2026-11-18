@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Damage", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sDamageSourcesMask", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Damage Source Mask"));
+    DREAD_REFLECTED_FIELD(CStrId, "sDamageSourcesMask", 0x18, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Damage Source Mask"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

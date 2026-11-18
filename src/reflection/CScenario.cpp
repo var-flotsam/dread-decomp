@@ -20,6 +20,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
 
@@ -73,7 +74,6 @@ DREAD_REFLECTED_CLASS(CScenario, CGameObject);
 
 // CScenario::CTunableScenario
 extern bool g_unk_7172a0bee0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172a0bea8;
 void fn_710119fb40(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CScenario::CTunableScenario {
@@ -88,13 +88,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAreaTextLabelY", 0x28, (DefaultValue, -0.28f));
     DREAD_REFLECTED_FIELD(f32, "fAreaTextSpriteX", 0x2c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fAreaTextSpriteY", 0x30, (DefaultValue, -0.36f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710119fb40(registry, &g_unk_7172a0bea8, "");
+    fn_710119fb40(base::reflection::TunableRegistry(), &g_unk_7172a0bea8, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

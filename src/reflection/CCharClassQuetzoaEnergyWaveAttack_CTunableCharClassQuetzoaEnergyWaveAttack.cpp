@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassQuetzoaEnergyWaveAttack::CTunableCharClassQuetzoaEnergyWaveAttack
 extern bool g_unk_71726fb268;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726fb238;
 void fn_710064346c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassQuetzoaEnergyWaveAttack::CTunableCharClassQuetzoaEnergyWaveAttack {
@@ -35,13 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxProjectileDistance", 0x24, (DefaultValue, 2500.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeBeforeElectrify", 0x28, (DefaultValue, 1.1f));
     DREAD_REFLECTED_FIELD(f32, "fElectrifyTime", 0x2c, (DefaultValue, 0.5f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710064346c(registry, &g_unk_71726fb238, "QuetzoaEnergyWaveAttack");
+    fn_710064346c(base::reflection::TunableRegistry(), &g_unk_71726fb238, "QuetzoaEnergyWaveAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

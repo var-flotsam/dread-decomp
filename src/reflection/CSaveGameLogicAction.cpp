@@ -29,7 +29,7 @@ namespace CSaveGameLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CSaveGameLogicAction::EDestination", "eDestination", 0x10, (DefaultValue, 1));
-    DREAD_REFLECTED_FIELD(CStrId, "sCheckpointKey", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sCheckpointKey", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field2 = AddReflectedField(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x20, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(bool, "bForce", 0x60, (DefaultValue, false));

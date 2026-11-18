@@ -19,6 +19,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
@@ -50,8 +51,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_iLowPassFilter_SetterFunction")
         fn_7100a5cdfc(fn, "_m_iLowPassFilter_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iLowPassFilter", (DefaultValue, -1));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnEnable", 0x1f0, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnDisable", 0x1f8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnEnable", 0x1f0, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnDisable", 0x1f8, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bOnEnableAlways", 0x200, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bOnDisableAlways", 0x201, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bStartEnabled", 0x418, (DefaultValue, true));
@@ -60,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sSfxType_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a64790);
     DREAD_REFLECTED_FUNCTION("_sSfxType_SetterFunction")
         fn_7100a5cf78(fn, "_sSfxType_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field11 = AddReflectedField(cls, CStrId("lstActivationConditions", true), &g_unk_717274dad8, 0x250, -1, -1);
     field11->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterActivationConditionDeserialization", true));
     DREAD_REFLECTED_FUNCTION("AfterActivationConditionDeserialization")
@@ -83,7 +84,6 @@ DREAD_REFLECTED_CLASS(CTriggerComponent, CComponent);
 
 // CTriggerComponent::CTunableTriggerComponent
 extern bool g_unk_717274de10;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717274ddd8;
 void fn_7100a5d808(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CTriggerComponent::CTunableTriggerComponent {
@@ -98,13 +98,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iWaterLowPassFilter", 0x28, (DefaultValue, 1550));
     DREAD_REFLECTED_FIELD(s32, "iLavaReverb", 0x2c, (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(s32, "iLavaLowPassFilter", 0x30, (DefaultValue, 1900));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100a5d808(registry, &g_unk_717274ddd8, "");
+    fn_7100a5d808(base::reflection::TunableRegistry(), &g_unk_717274ddd8, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

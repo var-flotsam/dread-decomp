@@ -1,6 +1,6 @@
 // CCharClassStaticLUACallback1Event's unit (tools/tu_map.py): its constructor, on the event base
 // (fn_7100067ea4): the vtable, a string id built from "" and a copy of the empty string id
-// (g_unk_7101d470e0). Names and the layout are placeholders.
+// (base::global::CStrId::Empty()). Names and the layout are placeholders.
 #include <new>
 
 #include "base/global/CStrId.h"
@@ -21,5 +21,5 @@ void fn_7100cdfc88(UnkStaticLUACallback1Event_b42a3* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa6410 + 0x10;
     new (&self->id_0x10) CStrId("", true);
-    new (&self->id_0x18) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x18) CStrId(base::global::CStrId::Empty());
 }

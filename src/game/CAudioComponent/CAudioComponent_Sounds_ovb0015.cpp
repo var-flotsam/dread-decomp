@@ -248,7 +248,7 @@ struct UnkAudioLinkNew_ovb0015 {
 
     UnkAudioLinkNew_ovb0015(UnkSoundHandle h, const UnkAudioIdRes_ovb0015& s)
         : handle(h), field_0x10(g_unk_7101d586c0), field_0x20(0), field_0x28(0), field_0x30(0),
-          field_0x38(reinterpret_cast<const UnkStrId_ovb0015&>(g_unk_7101d470e0)),
+          field_0x38(reinterpret_cast<const UnkStrId_ovb0015&>(base::global::CStrId::Empty())),
           field_0x40(reinterpret_cast<const UnkPathIdCopy_ovb0015&>(g_unk_7101d470e8)),
           field_0x48(0.0f), field_0x4c(0.0f), field_0x50(0.0f), field_0x54(-1.0f), field_0x58(1.0f),
           field_0x5c(500.0f), field_0x60(2000.0f), field_0x64(1.0f), field_0x68(0.0f), field_0x6c(0.0f),

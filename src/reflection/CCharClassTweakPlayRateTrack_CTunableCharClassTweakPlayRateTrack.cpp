@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack
 extern bool g_unk_7172790ab8;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172790a08;
 void fn_7100c611bc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack {
@@ -71,13 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCantFireBufferedInput", 0x98, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fScorpiusRegereratingMaskAction", 0xac, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fScorpiusHeadBlendSpeed", 0x9c, (DefaultValue, 1.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100c611bc(registry, &g_unk_7172790a08, "");
+    fn_7100c611bc(base::reflection::TunableRegistry(), &g_unk_7172790a08, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -110,7 +104,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Animation", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sTunableId", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Tunable within CTunableCharClassTweakPlayRateTrack to use when modifying play rate. Uses default tunable when not found"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTunableId", 0x18, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Tunable within CTunableCharClassTweakPlayRateTrack to use when modifying play rate. Uses default tunable when not found"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

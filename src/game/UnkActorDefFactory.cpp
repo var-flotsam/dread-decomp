@@ -157,7 +157,7 @@ struct UnkActorDefEntry {
     UnkActorDefEntryCallback field_0x38;
 
     __attribute__((always_inline)) UnkActorDefEntry(void* desc, void* factory)
-        : desc(desc), factory(factory), id(g_unk_7101d470e0), path_0x18(g_unk_7101d470e8),
+        : desc(desc), factory(factory), id(base::global::CStrId::Empty()), path_0x18(g_unk_7101d470e8),
           field_0x28{nullptr, reinterpret_cast<void (*)()>(fn_71000204c4)},
           field_0x38{nullptr, reinterpret_cast<void (*)()>(fn_71000204cc)} {}
     // Inlined into each registration, as the implicit destructor is when there is only one.

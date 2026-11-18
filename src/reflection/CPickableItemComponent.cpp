@@ -38,7 +38,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FIELD(f32, "fTimeToCanBePicked", 0x12c, (DefaultValue, 0.0f), (Description, "Time to can be picked"));
-    DREAD_REFLECTED_FIELD(CStrId, "sStartPoint", 0x120, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartPoint", 0x120, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

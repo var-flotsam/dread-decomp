@@ -394,7 +394,7 @@ void fn_710113adb4(UnkGrabComponent_ovb0057* self) {
     self->field_0x1bc = 1.0f;
     self->field_0x1c0 = 1.0f;
     self->requests = nullptr;
-    new (&self->field_0x1d0) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x1d0) CStrId(base::global::CStrId::Empty());
     self->field_0x1d8 = false;
     self->field_0x1e0 = 0;
     self->field_0x1e8 = self;

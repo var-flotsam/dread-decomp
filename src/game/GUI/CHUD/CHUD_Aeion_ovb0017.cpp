@@ -95,7 +95,7 @@ static inline UnkSpecialEnergy_ovb0017* PlayerSpecialEnergy() {
 static inline UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 
@@ -189,7 +189,7 @@ bool fn_71011e4b4c(UnkHud_ovb0017* self) {
     CStrId text("#GUI_ITEM_ACQUIRED_AEION", true);
     PopUpEntry(g_unk_7101d47310)->composition->field_0x2e4 = true;
     UnkPopUpEntry_ovb0017* entry = PopUpEntry(g_unk_7101d47310);
-    fn_7100b5fd6c(entry ? entry->composition : nullptr, &text.data, &g_unk_7101d470e0, false, false);
+    fn_7100b5fd6c(entry ? entry->composition : nullptr, &text.data, &base::global::CStrId::Empty(), false, false);
     if (UnkSpecialEnergy_ovb0017* energy = PlayerSpecialEnergy()) {
         self->field_0x258 = true;
         fn_7100a1fa98(reinterpret_cast<UnkLifeComponent*>(energy), false, true, 0.0f);

@@ -53,10 +53,10 @@ void fn_7100b013b8(UnkDialogComposition_lb013b8* self) {
     for (base::global::CRntVector<void*>& list : self->lists)
         new (&list) base::global::CRntVector<void*>(0xf);
     self->field_0x2e0 = false;
-    new (&self->field_0x2e8) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x2e8) CStrId(base::global::CStrId::Empty());
     self->field_0x2f0 = 0;
     self->field_0x2f8 = 0;
-    new (&self->field_0x300) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x300) CStrId(base::global::CStrId::Empty());
     self->field_0x308 = 0;
     self->field_0x310 = 0;
     self->field_0x318 = 0;

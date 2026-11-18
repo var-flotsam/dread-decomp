@@ -274,5 +274,5 @@ base::global::CStrId fn_7101065450(UnkNamedTreeOwner* a, UnkNamedTreeOwner* b) {
                 return fn_7100195304(root, 0)->name;
         }
     }
-    return g_unk_7101d470e0;
+    return base::global::CStrId::Empty();
 }

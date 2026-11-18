@@ -249,7 +249,7 @@ void fn_710069b8a0(UnkScourgeSlashShape_ovb0115* self, UnkTileOutline* outline) 
             reinterpret_cast<char*>(&base::reflection::refl_GetSingleton()) + 0x1f98);  // "POLYCOLLECTION2D"
         UnkCreateCollider_ovb0115 create =
             (*reinterpret_cast<UnkCreateCollider_ovb0115**>(collision))[0x168 / 8];
-        collider = create(collision, &g_unk_7172704968, &g_unk_7172704968 + 1, &g_unk_7101d470e0, type, 0x2000, 0,
+        collider = create(collision, &g_unk_7172704968, &g_unk_7172704968 + 1, &base::global::CStrId::Empty(), type, 0x2000, 0,
                           1, nullptr, -1, nullptr, -1, nullptr, -1, false, false, true);
         if (!collider)
             return;

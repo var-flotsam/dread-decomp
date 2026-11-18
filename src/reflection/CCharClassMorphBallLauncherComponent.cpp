@@ -28,7 +28,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToAccelerateCannon", 0x60, (DefaultValue, 0.0f), (Description, "Time it takes for the cannon to reach its maximum rotation speed"));
     DREAD_REFLECTED_FIELD(f32, "fMinCannonActionPlayRate", 0x64, (DefaultValue, 0.0f), (Description, "Minimum play rate for cannon's layer"));
     DREAD_REFLECTED_FIELD(f32, "fMaxCannonActionPlayRate", 0x68, (DefaultValue, 0.0f), (Description, "Maximum play rate for cannon's layer"));
-    DREAD_REFLECTED_FIELD(CStrId, "sCannonActionPlayRateEasingFunction", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function to apply when transitioning from minimum to maximum play rate on cannon's layer"));
+    DREAD_REFLECTED_FIELD(CStrId, "sCannonActionPlayRateEasingFunction", 0x70, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function to apply when transitioning from minimum to maximum play rate on cannon's layer"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

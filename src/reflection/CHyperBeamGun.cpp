@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -41,7 +42,6 @@ DREAD_REFLECTED_CLASS(CHyperBeamGun, CBeamGun);
 
 // CHyperBeamGun::CTunableHyperBeam
 extern bool g_unk_7172726568;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172726520;
 void fn_7100843194(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CHyperBeamGun::CTunableHyperBeam {
@@ -61,13 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSingleFireChargeTime", 0x3c, (DefaultValue, 0.5f), (Description, "Time to charge when you fire after releasing the button for a period of time"));
     DREAD_REFLECTED_FIELD(f32, "fRepeatedlyFireChargeTime", 0x40, (DefaultValue, 0.3f), (Description, "Time to charge if you trigger the fire button multiple times"));
     DREAD_REFLECTED_FIELD(f32, "fInterruptFireChargeTime", 0x44, (DefaultValue, 0.07f), (Description, "Time to charge if the beam was interrupted without releasing the fire button"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100843194(registry, &g_unk_7172726520, "");
+    fn_7100843194(base::reflection::TunableRegistry(), &g_unk_7172726520, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

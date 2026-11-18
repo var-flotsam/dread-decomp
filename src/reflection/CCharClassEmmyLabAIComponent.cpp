@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -41,7 +42,6 @@ DREAD_REFLECTED_CLASS(CCharClassEmmyLabAIComponent, CCharClassEmmyAIComponent);
 
 // CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent
 extern bool g_unk_71726dc228;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726dbfa0;
 void fn_71004f687c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEmmyConfiguration { const base::reflection::CClass* refl_GetClass(); }
@@ -78,13 +78,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterPhase2ProtectorDestroyedOutOfCameraCloseSpeed", 0x27c, (DefaultValue, 3.0f), (ShowInConfig, true), (Description, "Speed booster phase 2 protector destroyed out of cmaera close speed"), (MinValue, 0.05f), (MaxValue, 4.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterPhase2ProtectionHeadImpactedSpeedFactor", 0x280, (DefaultValue, 0.5f), (ShowInConfig, true), (Description, "Speed booster phase 2 protection head impacted speed factor"), (MinValue, 0.05f), (MaxValue, 4.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterAudioVolumeIncrease", 0x284, (DefaultValue, 1.5f), (ShowInConfig, true), (Description, "Speed booster VolumeIncrease"), (MinValue, 1.0f), (MaxValue, 2.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71004f687c(registry, &g_unk_71726dbfa0, "Emmy");
+    fn_71004f687c(base::reflection::TunableRegistry(), &g_unk_71726dbfa0, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

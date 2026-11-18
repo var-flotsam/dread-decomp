@@ -29,6 +29,6 @@ const CStrId& fn_7100aa1888(UnkUsableComponent_A5_b69* self, u32 kind) {
     case 7:
         return self->Get(0x210);
     default:
-        return g_unk_7101d470e0;
+        return base::global::CStrId::Empty();
     }
 }

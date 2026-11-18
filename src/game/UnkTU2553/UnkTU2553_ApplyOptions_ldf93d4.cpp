@@ -31,7 +31,7 @@ struct UnkOptionsManager_ldf93d4 {
 static inline void ReadInt_ldf93d4(CBlackboard* blackboard, const CStrId& section, UnkPropertyEx<>& def, s32* out) {
     UnkQualifiedId& qid = ItemQualifiedId(def);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(def), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(def), base::global::CStrId::Empty());
     if (CBlackboard::CSection* s = fn_7101047270(blackboard, section))
         fn_7100395a30(s, &qid.id, out);
 }

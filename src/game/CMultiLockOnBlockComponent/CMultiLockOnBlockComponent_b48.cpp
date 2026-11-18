@@ -30,7 +30,7 @@ bool fn_7100882bac(UnkMultiLockOnBlock_b48* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     UnkGameManagerSub_0x608* scenario = manager->field_0x608;
     CBlackboard::CSection* section =
-        fn_71010472e0(&manager->field_0x968, scenario ? fn_71011a2fbc(scenario) : CStrId(g_unk_7101d470e0));
+        fn_71010472e0(&manager->field_0x968, scenario ? fn_71011a2fbc(scenario) : CStrId(base::global::CStrId::Empty()));
     if (section) {
         u64 index = 0;
         u32 count = self->count;

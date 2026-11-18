@@ -29,7 +29,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpLauncherExit", true), &g_unk_71727b6270, 0x2b8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 11);
-    DREAD_REFLECTED_FIELD(CStrId, "sTravellingAction", 0x2f8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play on the morphball to travel towards the exit"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTravellingAction", 0x2f8, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play on the morphball to travel towards the exit"));
     DREAD_REFLECTED_FIELD(bool, "bManualActivation", 0x300, (DefaultValue, true), (Description, "Whether we require a bomb to start launch sequence"));
 }
 bool refl_Equals(const void*, const void*) { return false; }

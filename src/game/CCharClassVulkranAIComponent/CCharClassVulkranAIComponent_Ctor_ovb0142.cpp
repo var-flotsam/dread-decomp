@@ -1,7 +1,7 @@
 // CCharClassVulkranAIComponent's unit (tools/tu_map.py unit 1083): the constructor of the class whose
 // destructor is fn_71006da89c (src/game/CCharClassVulkranAIComponent/CCharClassVulkranAIComponent_Dtor_A4_b70.cpp):
 // the base constructor fn_7100416db8, the vtable 0x7101a687e8, four records (a small array, a string
-// id set to g_unk_7101d470e0, two floats of -1) at +0x570, an array of records at +0x690 and a string
+// id set to base::global::CStrId::Empty(), two floats of -1) at +0x570, an array of records at +0x690 and a string
 // id at +0x6d8 set to the empty string. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
@@ -15,7 +15,7 @@ struct UnkObject_7100416db8;
 
 struct UnkVulkranRecord_ovb0142 {
     base::global::CRntVector<u32> values{15};
-    CStrId id = g_unk_7101d470e0;
+    CStrId id = base::global::CStrId::Empty();
     f32 field_0x30 = -1.0f;
     f32 field_0x34 = -1.0f;
     u64 field_0x38 = 0;

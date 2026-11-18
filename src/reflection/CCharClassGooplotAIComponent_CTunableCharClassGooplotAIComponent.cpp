@@ -8,6 +8,7 @@
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent
 extern bool g_unk_71726e7310;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726e72b8;
 void fn_7100598718(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent {
@@ -46,13 +46,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset1", 0x4c, (DefaultValue, 70.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 1"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset2", 0x50, (DefaultValue, 0.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 2"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset3", 0x54, (DefaultValue, -70.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 3"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100598718(registry, &g_unk_71726e72b8, "Gooplot");
+    fn_7100598718(base::reflection::TunableRegistry(), &g_unk_71726e72b8, "Gooplot");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

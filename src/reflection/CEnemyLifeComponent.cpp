@@ -19,6 +19,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 
@@ -63,7 +64,6 @@ DREAD_REFLECTED_CLASS(CEnemyLifeComponent, CCharacterLifeComponent);
 
 // CEnemyLifeComponent::CTunableEnemyLifeComponent
 extern bool g_unk_7172a09b90;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172a09b68;
 void fn_710115a430(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEnemyLifeComponent::CTunableEnemyLifeComponent {
@@ -76,13 +76,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnemiesLifeLocked", 0x21, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fOverrideDamage", 0x24, (DefaultValue, 0.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710115a430(registry, &g_unk_7172a09b68, "EnemyLife");
+    fn_710115a430(base::reflection::TunableRegistry(), &g_unk_7172a09b68, "EnemyLife");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -40,7 +40,7 @@ UnkReflValue fn_71008dc7b0(void*, char* obj, UnkReflValue* const* args) {
 UnkReflValue fn_71008dca58(void*, char* obj, UnkReflValue* const*) {
     UnkDoorLock* door = *reinterpret_cast<UnkDoorLock**>(obj + 8);
     {
-        CStrId name(g_unk_7101d470e0);
+        CStrId name(base::global::CStrId::Empty());
         fn_71008d586c(door, true, 1, &name);
     }
     s32 one = 1;

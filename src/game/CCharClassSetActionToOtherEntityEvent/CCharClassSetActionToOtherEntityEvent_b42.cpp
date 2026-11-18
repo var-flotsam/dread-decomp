@@ -1,5 +1,5 @@
 // CCharClassSetActionToOtherEntityEvent's unit (tools/tu_map.py): its constructor, on the event base
-// (fn_7100067ea4): the vtable, a copy of the empty string id (g_unk_7101d470e0), a set flag, a cleared
+// (fn_7100067ea4): the vtable, a copy of the empty string id (base::global::CStrId::Empty()), a set flag, a cleared
 // word, another copy of the empty id, a cleared flag and a float of 1. Names and the layout are
 // placeholders.
 #include <new>
@@ -26,10 +26,10 @@ struct UnkSetActionToOtherEntityEvent_b42a3 {
 void fn_7100bd009c(UnkSetActionToOtherEntityEvent_b42a3* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa1918 + 0x10;
-    new (&self->id_0x10) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x10) CStrId(base::global::CStrId::Empty());
     self->field_0x18 = true;
     self->field_0x1c = 0;
-    new (&self->id_0x20) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x20) CStrId(base::global::CStrId::Empty());
     self->field_0x28 = false;
     self->field_0x2c = 1.0f;
 }

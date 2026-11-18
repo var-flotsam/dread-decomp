@@ -60,7 +60,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<float32>", "vWaterLevelChanges", 0xd00);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CWaterPoolComponent::FloatingEntitiesInfo>", "tFloatingEntities", 0xc90);
-    DREAD_REFLECTED_FIELD(CStrId, "sOnActivatedLuaCallback", 0xd28, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnActivatedLuaCallback", 0xd28, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bChangedLevelOnCooldownEvent", 0xd30, (DefaultValue, false));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vFloatingEntities", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
 }

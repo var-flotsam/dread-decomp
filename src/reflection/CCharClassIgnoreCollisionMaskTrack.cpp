@@ -36,11 +36,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sMasksToIgnore_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c29f5c);
     DREAD_REFLECTED_FUNCTION("_m_sMasksToIgnore_SetterFunction")
         fn_7100c299c0(fn, "_m_sMasksToIgnore_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToIgnore", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Mask to Ignore"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToIgnore", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Mask to Ignore"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sMasksToEnforce_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c2a0d0);
     DREAD_REFLECTED_FUNCTION("_m_sMasksToEnforce_SetterFunction")
         fn_7100c29b3c(fn, "_m_sMasksToEnforce_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToEnforce", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Mask to Enforce"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToEnforce", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Mask to Enforce"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

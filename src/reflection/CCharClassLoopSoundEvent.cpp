@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSoundID", 0x10, (DefaultValue, base::global::CFilePathStrId(" ", true)));
-    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sNode", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0x20, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fRadiusMinAttenuation", 0x24, (DefaultValue, 500.0f), (MinValue, 100.0f), (MaxValue, 50000.0f));
     DREAD_REFLECTED_FIELD(f32, "fRadiusMaxAttenuation", 0x28, (DefaultValue, 3000.0f), (MinValue, 500.0f), (MaxValue, 50000.0f));

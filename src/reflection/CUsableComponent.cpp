@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -75,7 +76,6 @@ DREAD_REFLECTED_CLASS(CUsableComponent, CComponent);
 
 // CUsableComponent::CTunableUsableComponent
 extern bool g_unk_7172753258;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727531f0;
 void fn_7100a9d8f4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CUsableComponent::CTunableUsableComponent {
@@ -89,20 +89,14 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fOnLoadBackGroundTimeMax", 0x24, (DefaultValue, 0.0f), (Description, "Max time to stay on backgorund when player loads game"));
     DREAD_REFLECTED_FIELD(f32, "fDistanceChannelMin", 0x28, (DefaultValue, 25.0f));
     DREAD_REFLECTED_FIELD(f32, "fDistanceChannelA", 0x2c, (DefaultValue, 75.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelA", 0x30, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelA", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelA", 0x30, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelA", 0x38, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fDistanceChannelB", 0x40, (DefaultValue, 125.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelB", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelB", 0x50, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelC", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelC", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100a9d8f4(registry, &g_unk_71727531f0, "Logic");
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelB", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelB", 0x50, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sForwardChannelC", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sBackwardChannelC", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
+    fn_7100a9d8f4(base::reflection::TunableRegistry(), &g_unk_71727531f0, "Logic");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -61,7 +61,7 @@ UnkRef_71011934b0 fn_71011934b0(UnkCache_71011934b0* self, UnkKey_71011934b0* co
         }
     }
     if (!value) {
-        value = fn_7100255ce8(g_unk_7101d470e0, key, 0);
+        value = fn_7100255ce8(base::global::CStrId::Empty(), key, 0);
         if (!value)
             return UnkRef_71011934b0();
         fn_7101193cb4(self, value, key);

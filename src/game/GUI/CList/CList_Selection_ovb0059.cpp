@@ -152,7 +152,7 @@ struct UnkList_ovb0059 {
         spacing_y = 0.02f;
         selected = -1;
         previous = -1;
-        new (&selected_name) CStrId(g_unk_7101d470e0);
+        new (&selected_name) CStrId(base::global::CStrId::Empty());
         field_0x258 = 0;
         field_0x260 = false;
         field_0x261 = true;
@@ -263,7 +263,7 @@ void fn_71011ff79c(UnkList_ovb0059* self) {
         fn_710002ffb4(&g_unk_717271e8f8->field_0xca8, &g_unk_7172a10df0);
     if (self->selected_name.data != &g_unk_7101d47108->empty) {
         self->SelectById(self->selected_name);
-        self->selected_name = g_unk_7101d470e0;
+        self->selected_name = base::global::CStrId::Empty();
     }
     if (self->selected < 0) {
         self->previous = self->selected;

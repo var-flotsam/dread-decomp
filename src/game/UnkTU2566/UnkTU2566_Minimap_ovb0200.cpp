@@ -276,7 +276,7 @@ extern UnkSetFlagDef_b0200 g_unk_71727c9968;
 
 static inline UnkSubId_7100fc4b34 SubId(UnkSetFlagDef_b0200& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
+        fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     return fn_71003327a4(&def.name, &name);
 }
 
@@ -338,7 +338,7 @@ u32 fn_7100e9be04(UnkSelf_b0200* self, base::reflection::UnkReflObject* object) 
         CBlackboard* blackboard = &manager->field_0x968;
         CStrId section_id = fn_7100de9c30(manager);
         if (g_unk_71727ca210.qid.id.data == &g_unk_7101d47108->empty)
-            fn_7100ae9a10(&g_unk_71727ca210.qid, &g_unk_71727ca210, g_unk_7101d470e0);
+            fn_7100ae9a10(&g_unk_71727ca210.qid, &g_unk_71727ca210, base::global::CStrId::Empty());
         UnkXformMatrix_b0200* m = usable->xform->matrix;
         f32 x = m->x;
         f32 y = m->y;
@@ -431,7 +431,7 @@ struct UnkNamedDef_b43a3;
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_b0200c& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
+        fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     return fn_71003327a4(&def.name, &name);
 }
 

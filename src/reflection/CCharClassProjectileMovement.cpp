@@ -24,12 +24,12 @@ using base::reflection::DestroyDestructorFirst;
 namespace CCharClassProjectileMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sCameraFXPresetOnImpact", 0xf0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sCameraFXPresetOnImpact", 0xf0, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bUseCheckBeforeCast", 0xf8, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fGravity", 0xfc, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(bool, "bApplyGravityOnInitialSpeed", 0x100, (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(CStrId, "sColliderToCheckCollisions", 0x108, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sColliderToCheckDamage", 0x110, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sColliderToCheckCollisions", 0x108, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sColliderToCheckDamage", 0x110, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bDeleteAfterCollisionProcessed", 0x118, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bAddOwnerVelocityOnBeginPlay", 0x11a, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fOwnerVelocityFactor", 0x11c, (DefaultValue, 1.0f));

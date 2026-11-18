@@ -53,7 +53,7 @@ struct UnkNamedValue_ld8d45c {
     u64 value;
 
     void Reset() {
-        name = g_unk_7101d470e0;
+        name = base::global::CStrId::Empty();
         value = 0;
     }
 };

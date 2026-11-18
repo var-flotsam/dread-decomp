@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -41,7 +42,6 @@ DREAD_REFLECTED_CLASS(CAbilitySpeedBooster, CAbility);
 
 // CAbilitySpeedBooster::CTunableAbilitySpeedBooster
 extern bool g_unk_71726b1010;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726b0fc0;
 void fn_710033b030(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilitySpeedBooster::CTunableAbilitySpeedBooster {
@@ -63,13 +63,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDefaultDamageAndRepelVerticalImpulse", 0x44, (DefaultValue, 300.0f), (Description, "Vertical impulse to apply to Samus when hitting an entity that receives damage and repels her"));
     DREAD_REFLECTED_FIELD(f32, "fMorphBallDamageAndRepelImpulse", 0x48, (DefaultValue, 1500.0f), (Description, "When Morph Ball can't convert to Samus after hitting an entity that repels her, apply this impulse to Morph Ball"));
     DREAD_REFLECTED_FIELD(f32, "fBufferedActivationTime", 0x4c, (DefaultValue, 0.25f), (Description, "When player tries to activate the ability and it can't be done, we re-check for activation for this time"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710033b030(registry, &g_unk_71726b0fc0, "");
+    fn_710033b030(base::reflection::TunableRegistry(), &g_unk_71726b0fc0, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

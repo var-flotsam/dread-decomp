@@ -106,7 +106,7 @@ int fn_71010945d0(lua_State* L) {
 int fn_7101094e20(lua_State* L) {
     auto* m = static_cast<UnkSubAreaManagerView*>(GetOrCreate<void,
                                                   0xae8>(reinterpret_cast<void*&>(g_unk_7101d47360), fn_7100ee1f34));
-    const CStrId& id = m->current ? m->current->name : g_unk_7101d470e0;
+    const CStrId& id = m->current ? m->current->name : base::global::CStrId::Empty();
     const CRntString& str = base::reflection::refl_RntStringOf(id);
     return fn_71010c0b40(L, "s", str.data ? str.data : "");
 }

@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CArenaManager::CTunableArenaManager
 extern bool g_unk_71727c09f0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727c09c8;
 void fn_7100e14514(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CArenaManager::CTunableArenaManager {
@@ -33,13 +33,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fSelectPreviousArenaProbability", 0x24, (DefaultValue, 0.25f), (Description, "Select previous arenam probability"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100e14514(registry, &g_unk_71727c09c8, "ArenaManager");
+    fn_7100e14514(base::reflection::TunableRegistry(), &g_unk_71727c09c8, "ArenaManager");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

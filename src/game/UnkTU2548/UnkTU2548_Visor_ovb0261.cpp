@@ -55,7 +55,7 @@ void fn_7100ddbd18(UnkVisorHud_b0261* self) {
         {
             UnkQuadNode_ovb0259* created = nullptr;
             manager = g_unk_7101d47300;
-            fn_710035d9e0(manager->field_0x218, &path, &created, &g_unk_7101d470e0);
+            fn_710035d9e0(manager->field_0x218, &path, &created, &base::global::CStrId::Empty());
             fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(created), 2);
             self->widget = reinterpret_cast<UnkVisorWidget_b0261*>(created);
         }

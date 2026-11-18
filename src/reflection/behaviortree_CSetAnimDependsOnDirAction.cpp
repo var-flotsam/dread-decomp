@@ -41,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iMaxRandSuffix", 0x80, (DefaultValue, -1), (Description, "Maximum suffix value. -1 means not to use suffix [-1]"));
     DREAD_REFLECTED_FIELD(bool, "bCheckInSmartlink", 0x8a, (DefaultValue, false), (Description, "Abort when is in smartlink"));
     DREAD_REFLECTED_FIELD(bool, "bCheckInTurn", 0x8c, (DefaultValue, false), (Description, "Abort when is in turn"));
-    DREAD_REFLECTED_FIELD(CStrId, "sReturnActionDisp", 0x90, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action launched"));
+    DREAD_REFLECTED_FIELD(CStrId, "sReturnActionDisp", 0x90, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action launched"));
     DREAD_REFLECTED_FIELD(bool, "bFailIfSmartlink", 0x8b, (DefaultValue, false), (Description, "Abort when is in turn"));
 }
 bool refl_Equals(const void*, const void*) { return false; }

@@ -43,5 +43,5 @@ void fn_71009cd654(UnkPickableComponent_l9cd654* self) {
     s_desc.field_0x6c = true;
     s_desc.field_0x6d = true;
     s_desc.field_0x4c = 1.0f;
-    self->loop_sound = fn_7100d7c374(self->entity, &s_desc, &g_unk_7101d470e0, false, true, true);
+    self->loop_sound = fn_7100d7c374(self->entity, &s_desc, &base::global::CStrId::Empty(), false, true, true);
 }

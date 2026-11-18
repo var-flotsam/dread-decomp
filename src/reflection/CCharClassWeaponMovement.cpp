@@ -49,7 +49,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sCollisionMask_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100ab3bb4);
     DREAD_REFLECTED_FUNCTION("_sCollisionMask_SetterFunction")
         fn_7100ab3724(fn, "_sCollisionMask_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionMask", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sCollisionMask", (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bWantsProcessBreakableTileHit", 0xe4, (DefaultValue, true));
     DREAD_REFLECTED_FIELD_OF("EForcedDamageMode", "eForcedDamageMode", 0xe8, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bSetHitPosOnCollisionProcessed", 0xec, (DefaultValue, true));

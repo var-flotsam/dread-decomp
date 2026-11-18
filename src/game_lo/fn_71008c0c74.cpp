@@ -79,7 +79,7 @@ void fn_71008c0c74(UnkStruct_71008c0c74* self) {
     self->field_0x8c = 0;
     self->field_0x90 = 0;
     self->field_0x94 = 0;
-    new (&self->field_0xa0) CStrId(g_unk_7101d470e0);
+    new (&self->field_0xa0) CStrId(base::global::CStrId::Empty());
     InitEmptyStrId(&self->field_0xa8);
     InitEmptyStrId(&self->field_0xb8);
     self->field_0xd8 = 0;

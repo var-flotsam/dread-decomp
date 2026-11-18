@@ -137,7 +137,7 @@ bool fn_7100fd6f74(UnkMusicManager* self, const base::global::CRntString* name, 
     if (first.files.count == 0 && second.files.count == 0)
         return false;
     const UnkMusicRequest* playing = reinterpret_cast<const UnkMusicRequest*>(self->entries.data);
-    if (first.name.data != g_unk_7101d470e0.data && first.name.data == playing[0].name.data)
+    if (first.name.data != base::global::CStrId::Empty().data && first.name.data == playing[0].name.data)
         return true;
     bool result = false;
     if (first.files.count != 0 && playing[0].files.count != 0) {
@@ -146,7 +146,7 @@ bool fn_7100fd6f74(UnkMusicManager* self, const base::global::CRntString* name, 
             return false;
         result = true;
     }
-    if (second.name.data != g_unk_7101d470e0.data && second.name.data == playing[1].name.data)
+    if (second.name.data != base::global::CStrId::Empty().data && second.name.data == playing[1].name.data)
         return true;
     if (second.files.count == 0 || playing[1].files.count == 0)
         return result;

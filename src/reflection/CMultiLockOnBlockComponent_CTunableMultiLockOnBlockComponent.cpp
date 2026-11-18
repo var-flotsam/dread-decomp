@@ -8,6 +8,7 @@
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -22,7 +23,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent
 extern bool g_unk_717272b628;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717272b600;
 void fn_7100881e44(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent {
@@ -34,13 +34,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMaxTimeActivate", 0x24, (DefaultValue, 0.9f), (Description, "Max time to activated multi lock on points"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100881e44(registry, &g_unk_717272b600, "Multi lock on block");
+    fn_7100881e44(base::reflection::TunableRegistry(), &g_unk_717272b600, "Multi lock on block");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

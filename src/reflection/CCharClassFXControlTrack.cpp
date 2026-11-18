@@ -36,11 +36,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sActive_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100cfd080);
     DREAD_REFLECTED_FUNCTION("_m_sActive_SetterFunction")
         fn_7100cfc500(fn, "_m_sActive_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sActive", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Active"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sActive", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Active"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sEnabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100cfd18c);
     DREAD_REFLECTED_FUNCTION("_m_sEnabled_SetterFunction")
         fn_7100cfc67c(fn, "_m_sEnabled_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Active"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sEnabled", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Active"));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

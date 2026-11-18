@@ -51,7 +51,7 @@ bool fn_7100dfbe78(UnkGameManager* self, void* text) {
     Lock_ovb0207(blackboard, SectionId_ovb0207(0x1148));
     Lock_ovb0207(blackboard, SectionId_ovb0207(0x1bd0));
     {
-        CStrId id = self->field_0x608 ? fn_71011a2fbc(self->field_0x608) : g_unk_7101d470e0;
+        CStrId id = self->field_0x608 ? fn_71011a2fbc(self->field_0x608) : base::global::CStrId::Empty();
         Lock_ovb0207(blackboard, id);
     }
     base::UnkNamedEntry a, b;

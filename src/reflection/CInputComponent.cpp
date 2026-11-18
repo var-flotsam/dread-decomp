@@ -20,6 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
@@ -61,7 +62,6 @@ DREAD_REFLECTED_CLASS(CInputComponent, CComponent);
 
 // CInputComponent::CTunableInputComponent
 extern bool g_unk_71727298f8;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727298b0;
 void fn_7100871330(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CInputComponent::CTunableInputComponent {
@@ -80,13 +80,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWalkSamusMovementVolume", 0x38, (DefaultValue, 0.2f));
     DREAD_REFLECTED_FIELD(bool, "bWalkEmmySoundReverb", 0x3c, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iInputPreset", 0x40, (DefaultValue, 0));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100871330(registry, &g_unk_71727298b0, "Input");
+    fn_7100871330(base::reflection::TunableRegistry(), &g_unk_71727298b0, "Input");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

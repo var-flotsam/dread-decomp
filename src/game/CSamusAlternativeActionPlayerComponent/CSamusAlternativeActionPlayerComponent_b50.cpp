@@ -14,7 +14,7 @@ struct UnkInventory;
 static inline const UnkQualifiedId& GetQualifiedId_b50(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 

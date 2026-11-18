@@ -141,7 +141,7 @@ void fn_71000269c4(UnkStrIdPathResource* self, UnkCountedResource* resource) {
         new (&t.id) base::global::CStrId(ids->id);
         new (&t.path) base::global::CFilePathStrId(ids->path);
     } else {
-        new (&t.id) base::global::CStrId(g_unk_7101d470e0);
+        new (&t.id) base::global::CStrId(base::global::CStrId::Empty());
         new (&t.path) base::global::CFilePathStrId(g_unk_7101d470e8);
     }
     self->ids.id = reinterpret_cast<const base::UnkStrIdMember&>(t.id);

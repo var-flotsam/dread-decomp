@@ -28,7 +28,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fValue", 0xc, (DefaultValue, 100.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("CCharClassSetCameraNearEvent::EDir", "eDir", 0x18, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

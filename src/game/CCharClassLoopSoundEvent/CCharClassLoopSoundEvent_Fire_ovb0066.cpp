@@ -41,7 +41,7 @@ void fn_7100cc7a78(UnkLoopSoundEvent_ovb0066* self, void* arg) {
         return;
     if (fn_7100deabe4(g_unk_7101d47310))
         return;
-    fn_7100cdc910(self, &self->path, &self->sound, &g_unk_7101d470e0, &g_unk_7101d470e0, self->field_0x20,
+    fn_7100cdc910(self, &self->path, &self->sound, &base::global::CStrId::Empty(), &base::global::CStrId::Empty(), self->field_0x20,
                   self->field_0x24, self->field_0x28, self->field_0x2c, self->field_0x30, true, -1.0f,
                   self->field_0x34, self->field_0x38, self->field_0x3c, self->field_0x31, self->field_0x44,
                   self->field_0x40, arg);

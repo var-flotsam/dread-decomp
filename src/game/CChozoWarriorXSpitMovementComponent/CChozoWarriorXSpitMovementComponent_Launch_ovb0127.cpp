@@ -88,7 +88,7 @@ void fn_710049069c(UnkChozoWarriorXSpitMovement_ovb0127* self) {
     }
     UnkRenderManager* manager = g_unk_7101d47300;
     UnkSceneObject* effect = nullptr;
-    fn_7100149930(manager->field_0x218, nullptr, &effect, &g_unk_7101d470e0);
+    fn_7100149930(manager->field_0x218, nullptr, &effect, &base::global::CStrId::Empty());
     fn_7100219ae0(manager, effect ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(effect) + 8) : nullptr, 0);
     self->effect = effect;
     fn_710014826c(effect, 6, 0x28, UnkColorArg_710050f26c(UnkRGB_710050f26c{0.0f, 0.1f, 1.0f}, 1.0f), true,

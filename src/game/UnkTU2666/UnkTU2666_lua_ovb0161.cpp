@@ -128,10 +128,10 @@ s32 fn_7101093740(lua_State* L) {
         UnkPropertyEx<>& item = g_unk_717275a898;
         UnkQualifiedId& qid = ItemQualifiedId(item);
         if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-            fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+            fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
         bool has = fn_71011428bc(inventory, qid);
         if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-            fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+            fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
         f32 amount = has ? 0.0f : 1.0f;
         fn_7101142a28(inventory, qid, true, true, true, amount, 0.0f);
     }
@@ -314,13 +314,13 @@ s32 fn_71010866b0(lua_State* L) {
                 UnkPropertyEx<>& count_item = g_unk_7172759fd8;
                 UnkQualifiedId& count_id = ItemQualifiedId(count_item);
                 if ((u64)count_id.id.data == (u64)g_unk_7101d47108 + 0x10)
-                    fn_7100ae9a10(&count_id, ItemSource(count_item), g_unk_7101d470e0);
+                    fn_7100ae9a10(&count_id, ItemSource(count_item), base::global::CStrId::Empty());
                 s32 current = fn_71011442a0(inventory, count_id, 0);
                 s32 total = added + current;
                 UnkPropertyEx<>& total_item = g_unk_717275a018;
                 UnkQualifiedId& total_id = ItemQualifiedId(total_item);
                 if ((u64)total_id.id.data == (u64)g_unk_7101d47108 + 0x10)
-                    fn_7100ae9a10(&total_id, ItemSource(total_item), g_unk_7101d470e0);
+                    fn_7100ae9a10(&total_id, ItemSource(total_item), base::global::CStrId::Empty());
                 fn_71011406b4(inventory, total_id, total, true, true, true, 0.0f);
             }
         }
@@ -388,7 +388,7 @@ s32 fn_7101084870(lua_State* L) {
         return 1;
     UnkSpawnEntry_b0161* entry = static_cast<UnkSpawnEntry_b0161*>(reinterpret_cast<void* (*)(UnkObj_7101129240*, bool)>(
         &fn_7101129b08)(reinterpret_cast<UnkObj_7101129240*>(registered), false));
-    const CStrId& id = entry ? entry->name : g_unk_7101d470e0;
+    const CStrId& id = entry ? entry->name : base::global::CStrId::Empty();
     ++reinterpret_cast<UnkStringText_b0161*>(id.data)->readers;
     const char* text = reinterpret_cast<UnkStringText_b0161*>(id.data)->text;
     return fn_71010c0b40(L, "s", text ? text : g_unk_710162e2ed);

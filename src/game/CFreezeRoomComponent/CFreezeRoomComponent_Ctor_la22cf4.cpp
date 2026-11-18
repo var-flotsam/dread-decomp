@@ -73,7 +73,7 @@ void fn_7100a22cf4(UnkFreezeRoom_la22cf4* self) {
     self->field_0xadc = 2;
     self->field_0xbe0 = true;
     self->field_0xae9 = true;
-    self->field_0xc40 = g_unk_7101d470e0;
+    self->field_0xc40 = base::global::CStrId::Empty();
     self->environment = UnkStrId("ICEZONE", true);
     self->field_0xc48 = true;
 }

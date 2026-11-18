@@ -77,7 +77,7 @@ void fn_71005b39d8(UnkBraidStart_ovb0132* self) {
     const CStrId* type =
         reinterpret_cast<const CStrId*>(reinterpret_cast<char*>(&base::reflection::refl_GetSingleton()) + 0x628);
     UnkBraidCreateCollider_ovb0132 create = (*reinterpret_cast<UnkBraidCreateCollider_ovb0132**>(collision))[0x168 / 8];
-    create(collision, &g_unk_71726eaa10, &g_unk_71726eaa10, &g_unk_7101d470e0, type, 0x180, 0, 1, nullptr, -1,
+    create(collision, &g_unk_71726eaa10, &g_unk_71726eaa10, &base::global::CStrId::Empty(), type, 0x180, 0, 1, nullptr, -1,
            nullptr, -1, nullptr, -1, false, false, true);
 }
 

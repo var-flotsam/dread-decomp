@@ -23,7 +23,7 @@ using base::reflection::DestroyDestructorFirst;
 namespace CCharClassMovablePlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sMovableColliderId", 0x68, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sMovableColliderId", 0x68, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bDisableOnActivatedOnLoadScenario", 0x70, (DefaultValue, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }

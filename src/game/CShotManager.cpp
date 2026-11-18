@@ -235,7 +235,7 @@ struct UnkShotIdRecord {
     };
     u64 field_0x10;
 
-    UnkShotIdRecord() : id(g_unk_7101d470e0), path(g_unk_7101d470e8), field_0x10(0) {}
+    UnkShotIdRecord() : id(base::global::CStrId::Empty()), path(g_unk_7101d470e8), field_0x10(0) {}
     ~UnkShotIdRecord() {}
 };
 static_assert(sizeof(UnkShotIdRecord) == 0x18, "UnkShotIdRecord placeholder layout");

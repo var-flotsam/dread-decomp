@@ -79,7 +79,7 @@ void fn_710055b1e8(UnkEmmyRelaxAI_b59* self) {
     base::reflection::UnkReflTypeIdArg mode;
     base::reflection::UnkReflTypeIdArg mask;
     fn_7100544a34(reinterpret_cast<UnkEmmyActor_b55*>(self), g_unk_71726debd0, false);
-    SetSectionId(&self->blackboard, g_unk_71726b7cb8, &g_unk_71726debd8, &g_unk_7101d470e0, v);
+    SetSectionId(&self->blackboard, g_unk_71726b7cb8, &g_unk_71726debd8, &base::global::CStrId::Empty(), v);
     if (self->owner->field_0x220) {
         fn_710117662c(self->owner->field_0x220, 8, g_unk_7101649db8, false, false, -1.0f);
         UnkActorTarget* target = self->owner->field_0x220;

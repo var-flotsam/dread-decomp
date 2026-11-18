@@ -39,7 +39,7 @@ struct UnkPopUpRecord_lb60fb0 {
     u64 field_0x10;
 
     UnkPopUpRecord_lb60fb0()
-        : name(g_unk_7101d470e0, g_unk_7101d47108), path(g_unk_7101d470e8, g_unk_7101d47200), field_0x10(0) {}
+        : name(base::global::CStrId::Empty(), g_unk_7101d47108), path(g_unk_7101d470e8, g_unk_7101d47200), field_0x10(0) {}
 };
 
 // Three vectors (allocation flags 0xf) and a flag.

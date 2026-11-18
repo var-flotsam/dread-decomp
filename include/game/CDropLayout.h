@@ -17,8 +17,8 @@ struct UnkDroppedItem;
 
 // One entry of a drop's table (0x48 bytes): two ids, two colours and its counts.
 struct UnkDropTableEntry {
-    base::global::CStrId id = g_unk_7101d470e0;  // 0x0
-    base::global::CStrId field_0x8 = g_unk_7101d470e0;
+    base::global::CStrId id = base::global::CStrId::Empty();  // 0x0
+    base::global::CStrId field_0x8 = base::global::CStrId::Empty();
     base::color::CColor4F color{1.0f, 1.0f, 1.0f, 1.0f};  // 0x10
     base::color::CColor4F field_0x20{0.0f, 0.0f, 0.0f, 0.0f};
     u32 field_0x30 = 1;

@@ -20,7 +20,7 @@ struct UnkMaterialFXEntry_l92623c {
     f32 field_0x1c[4] = {};
     u8 pad_0x2c[0x4];
     u64 field_0x30 = 0;
-    CStrId id = g_unk_7101d470e0;  // 0x38
+    CStrId id = base::global::CStrId::Empty();  // 0x38
     u32 index = 0xffffffff;        // 0x40
     u32 type = 3;                  // 0x44
     u32 field_0x48 = 0;

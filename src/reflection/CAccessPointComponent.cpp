@@ -20,6 +20,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
@@ -30,7 +31,7 @@ namespace CAccessPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vDoorsToChange", 0x898);
-    DREAD_REFLECTED_FIELD(CStrId, "sInteractionLiteralID", 0x588, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sInteractionLiteralID", 0x588, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>", "tCaptionList", 0x5a0);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("wpThermalDevice", true), &g_unk_71727b6270, 0x540, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
@@ -58,7 +59,6 @@ DREAD_REFLECTED_CLASS(CAccessPointComponent, CUsableComponent);
 
 // CAccessPointComponent::CTunableAccessPointComponent
 extern bool g_unk_717274ec88;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717274ec40;
 void fn_7100a6c73c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAccessPointComponent::CTunableAccessPointComponent {
@@ -78,13 +78,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fVoiceFadeOutTime", 0x3c, (DefaultValue, 0.2f), (Description, "Voice Fade Out Time"));
     DREAD_REFLECTED_FIELD(f32, "fVoiceReverb", 0x40, (DefaultValue, 0.5f), (Description, "Voice Reverb Intensity"));
     DREAD_REFLECTED_FIELD(f32, "fAdamSpeechVolume", 0x44, (DefaultValue, 1.0f), (Description, "Adam Speech Volume"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100a6c73c(registry, &g_unk_717274ec40, "Logic");
+    fn_7100a6c73c(base::reflection::TunableRegistry(), &g_unk_717274ec40, "Logic");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

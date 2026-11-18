@@ -70,7 +70,7 @@ bool fn_710093852c(UnkMultiModel_l93852c* self, const CStrId* name, const CFileP
 
     UnkRenderManager* manager = g_unk_7101d47300;
     model = nullptr;
-    fn_71006cae2c(manager->field_0x218, *path, &model, &g_unk_7101d470e0);
+    fn_71006cae2c(manager->field_0x218, *path, &model, &base::global::CStrId::Empty());
     fn_7100219ae0(manager, Node_l93852c(model), 0);
     entry.model = model;
     fn_710014364c(entry.model, 0);

@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 namespace CCharClassActionSwitcherComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sActivateAction", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sDeactivateAction", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sActivateAction", 0x58, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sDeactivateAction", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bScalePlayRate", 0x68, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bDisableOnActivatedOnDeattachActor", 0x69, (DefaultValue, false));
 }

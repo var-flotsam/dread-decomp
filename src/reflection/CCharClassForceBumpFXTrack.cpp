@@ -34,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sColliders_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c1e228);
     DREAD_REFLECTED_FUNCTION("_sColliders_SetterFunction")
         fn_7100c1d9bc(fn, "_sColliders_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -39,6 +39,7 @@ ADD_FUNCTION = 0x7100097550
 CSTRID_CTOR = 0x71000003D4
 CSTRID_RELEASE = 0x71000803A4  # inlined ~CStrId
 GLOBAL_CSTRID = 0x7101D470E0   # g_unk_7101d470e0
+TUNABLE_REGISTRY = 0x7101D47350  # g_unk_7101d47350, the global tunable registry
 ALLOC = 0x71000839A0           # allocation (size, flags)
 TUNABLE_REGISTRY_CTOR = 0x710013AC14
 # Out-of-line parts of value types (include/base/global/): CRntString's constructors and
@@ -332,8 +333,8 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
     if type_name == "const char*" and kind == "str" and width == 8:
         return c_string(payload)
     if type_name == "base::global::CStrId" and kind == "global" and width == 8:
-        # A copy of a global CStrId (g_unk_7101d470e0 is declared in UnkReflAttributes.h).
-        return f"CStrId(g_unk_{payload:x})"
+        # A copy of a global CStrId: the empty id (base/global/CStrId.h) by name.
+        return "CStrId(CStrId::Empty())" if payload == GLOBAL_CSTRID else f"CStrId(g_unk_{payload:x})"
     if type_name == "base::global::CName" and kind == "imm" and width == 8:
         return f"base::global::CName(base::global::UnkNameHash{{}}, {payload:#x}u)"
     if type_name == "base::global::CStrId" and kind == "gfield" and width == 8:
@@ -799,16 +800,20 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if not obj or obj[0] != "ptr" or not name or name[0] != "str":
                 return None
             register = evs[j].target
-            decls += [f"extern UnkTunableRegistry* g_unk_{slot[0]:x};",
-                      f"extern UnkTunable g_unk_{obj[1]:x};",
+            decls += [f"extern UnkTunable g_unk_{obj[1]:x};",
                       f"void fn_{register:x}(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);"]
-            body += [f"    UnkTunableRegistry* registry = g_unk_{slot[0]:x};",
-                     "    if (!registry) {",
-                     f"        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0({size[1]:#x}, {flags[1]:#x}));",
-                     "        fn_710013ac14(registry);",
-                     f"        g_unk_{slot[0]:x} = registry;",
-                     "    }",
-                     f"    fn_{register:x}(registry, &g_unk_{obj[1]:x}, {c_string(name[1])});"]
+            if (slot[0], size[1], flags[1]) == (TUNABLE_REGISTRY, 0x58, 0x3f):
+                # The global registry, created on first use (base/reflection/UnkTunableRegistry.h).
+                body += [f"    fn_{register:x}(base::reflection::TunableRegistry(), &g_unk_{obj[1]:x}, {c_string(name[1])});"]
+            else:
+                decls.insert(-2, f"extern UnkTunableRegistry* g_unk_{slot[0]:x};")
+                body += [f"    UnkTunableRegistry* registry = g_unk_{slot[0]:x};",
+                         "    if (!registry) {",
+                         f"        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0({size[1]:#x}, {flags[1]:#x}));",
+                         "        fn_710013ac14(registry);",
+                         f"        g_unk_{slot[0]:x} = registry;",
+                         "    }",
+                         f"    fn_{register:x}(registry, &g_unk_{obj[1]:x}, {c_string(name[1])});"]
             i = j + 1
         else:
             return None
@@ -1005,7 +1010,8 @@ def _compile(version: str, candidates: dict[int, tuple[list[str], str]], workdir
             if line not in seen:
                 seen.add(line)
                 decls.append(line)
-    text = PRELUDE + decls + [s for _, s in candidates.values()]
+    # The global tunable registry's helper, which registrations call (base/reflection/UnkTunableRegistry.h).
+    text = PRELUDE + ['#include "base/reflection/UnkTunableRegistry.h"'] + decls + [s for _, s in candidates.values()]
     src.write_text("\n".join(text) + "\n", encoding="utf-8")
     r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
     if r.returncode != 0:

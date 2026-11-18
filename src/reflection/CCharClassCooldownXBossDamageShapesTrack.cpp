@@ -35,8 +35,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sLogicShapesEnabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c13308);
     DREAD_REFLECTED_FUNCTION("_m_sLogicShapesEnabled_SetterFunction")
         fn_7100c12908(fn, "_m_sLogicShapesEnabled_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sLogicShapesEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Logic Shapes Enabled"));
-    DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sLogicShapesEnabled", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Logic Shapes Enabled"));
+    DREAD_REFLECTED_FIELD(CStrId, "sDamageID", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("EDamageStrength", "eDamageStrength", 0x50, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

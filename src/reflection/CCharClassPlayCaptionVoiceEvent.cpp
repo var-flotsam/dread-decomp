@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Caption", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sCaptionID", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sCaptionID", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0x18, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     DREAD_REFLECTED_FIELD(bool, "bSubtitledInOccident", 0x1c, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bSubltiledInOrient", 0x1d, (DefaultValue, true));

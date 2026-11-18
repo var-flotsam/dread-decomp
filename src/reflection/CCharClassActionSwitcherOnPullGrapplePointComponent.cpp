@@ -23,12 +23,12 @@ using base::reflection::DestroyDestructorFirst;
 namespace CCharClassActionSwitcherOnPullGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", 0x78, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Name of the Collider to use as a grapple point"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleCollider", 0x78, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Name of the Collider to use as a grapple point"));
     DREAD_REFLECTED_FIELD(f32, "fGrappleMinAlignmentX", 0xa0, (DefaultValue, 0.98f), (Description, "Minimum grapple hit dot X-axis to allow grappling"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleAttach", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when grapple beam attaches"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullStart", 0x88, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when player starts pulling"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullAbort", 0x90, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when player stops pulling"));
-    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleDetach", 0x98, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play when grapple beam detaches without performing the pull"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleAttach", 0x80, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when grapple beam attaches"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullStart", 0x88, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when player starts pulling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnPullAbort", 0x90, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when player stops pulling"));
+    DREAD_REFLECTED_FIELD(CStrId, "sActionOnGrappleDetach", 0x98, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play when grapple beam detaches without performing the pull"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

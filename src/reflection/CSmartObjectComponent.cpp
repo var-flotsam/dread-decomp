@@ -50,19 +50,19 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sOnUseStart_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a04d10);
     DREAD_REFLECTED_FUNCTION("_m_sOnUseStart_SetterFunction")
         fn_7100a01964(fn, "_m_sOnUseStart_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseStart", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseStart", (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FUNCTION_OF("_m_sOnUseFailure_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a04e10);
     DREAD_REFLECTED_FUNCTION("_m_sOnUseFailure_SetterFunction")
         fn_7100a01ae0(fn, "_m_sOnUseFailure_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseFailure", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseFailure", (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FUNCTION_OF("_m_sOnUseSuccess_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a04f10);
     DREAD_REFLECTED_FUNCTION("_m_sOnUseSuccess_SetterFunction")
         fn_7100a01c5c(fn, "_m_sOnUseSuccess_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseSuccess", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sOnUseSuccess", (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FUNCTION_OF("_m_sUsableEntity_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a05010);
     DREAD_REFLECTED_FUNCTION("_m_sUsableEntity_SetterFunction")
         fn_7100a01dd8(fn, "_m_sUsableEntity_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sUsableEntity", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sUsableEntity", (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FUNCTION_OF("_m_sDefaultUseAction_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100a05110);
     DREAD_REFLECTED_FUNCTION("_m_sDefaultUseAction_SetterFunction")
         fn_7100a01f54(fn, "_m_sDefaultUseAction_SetterFunction");

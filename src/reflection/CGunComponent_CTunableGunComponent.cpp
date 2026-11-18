@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGunComponent::CTunableGunComponent
 extern bool g_unk_7172726270;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172726228;
 void fn_7100837e98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGunComponent::CTunableGunComponent {
@@ -40,13 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDiffusionFireChargeMinTime", 0x38, (DefaultValue, 0.0f), (Description, "Min time to Start Charge Diffusion Beams"));
     DREAD_REFLECTED_FIELD(f32, "fDiffusionFireChargeMaxTime", 0x3c, (DefaultValue, 0.0f), (Description, "Max time to End Charge Diffusion Beams"));
     DREAD_REFLECTED_FIELD(f32, "fIgnoreFireAfterChargeReleasedTime", 0x40, (DefaultValue, 0.2f), (Description, "Time after firing a charged beam that the fire input is ignored"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100837e98(registry, &g_unk_7172726228, "Gun");
+    fn_7100837e98(base::reflection::TunableRegistry(), &g_unk_7172726228, "Gun");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

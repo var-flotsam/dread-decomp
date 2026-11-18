@@ -24,7 +24,7 @@ void fn_7100823fe4(UnkHangableGrappleSurface* self) {
     fn_7100816b28(reinterpret_cast<char*>(self));
     self->vtable = g_unk_7101a758d8 + 2;
     self->field_0x68 = 0.5f;
-    new (&self->field_0x70) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x70) CStrId(base::global::CStrId::Empty());
     self->field_0x78 = 100.0f;
     reinterpret_cast<void (*)(UnkHangableGrappleSurface*)>(self->vtable[3])(self);
 }

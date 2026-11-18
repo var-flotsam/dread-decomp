@@ -21,7 +21,7 @@ struct UnkPullableGrapplePoint_b53 {
 void fn_7100828af4(UnkPullableGrapplePoint_b53* self) {
     fn_7100816b28(reinterpret_cast<char*>(self));
     self->vtable = reinterpret_cast<void**>(g_unk_7101a76348 + 0x10);
-    new (&self->id_0x68) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x70) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x68) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x70) CStrId(base::global::CStrId::Empty());
     reinterpret_cast<void (*)(UnkPullableGrapplePoint_b53*)>(self->vtable[3])(self);
 }

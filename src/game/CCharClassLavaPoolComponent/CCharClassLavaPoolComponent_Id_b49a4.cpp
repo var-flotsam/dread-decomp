@@ -11,7 +11,7 @@
 static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if (__builtin_expect((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10, 0))
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 

@@ -142,7 +142,7 @@ bool fn_7100a9f94c(void* self, void* context, const char* name) {
         void* composition;
         if (entry && (composition = entry->composition)) {
             CStrId id(name, true);
-            fn_7100b5fd6c(composition, &id.data, &g_unk_7101d470e0, true, false);
+            fn_7100b5fd6c(composition, &id.data, &base::global::CStrId::Empty(), true, false);
         }
     }
     return true;
@@ -215,7 +215,7 @@ struct UnkUsableUser_b0101 {
 static inline const UnkQualifiedId& GetQualifiedId(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 

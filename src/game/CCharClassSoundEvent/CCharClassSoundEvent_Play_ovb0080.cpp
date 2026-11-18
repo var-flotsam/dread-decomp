@@ -49,6 +49,6 @@ void fn_7100cdebcc(UnkCharClassSoundEvent_b0080* self, void* arg) {
     fn_7100cdc2f0(self, self->field_0x10, self->field_0x18, self->field_0x20, self->field_0x28, self->field_0x30,
                   self->field_0x38, self->field_0x40, self->field_0x58, self->field_0x5c, self->field_0x60,
                   self->field_0x64, self->field_0x68, self->field_0x70, self->field_0x74, self->field_0x7c,
-                  self->field_0x48, self->field_0x90, &g_unk_7101d470e0, self->field_0x88, self->field_0x6c,
+                  self->field_0x48, self->field_0x90, &base::global::CStrId::Empty(), self->field_0x88, self->field_0x6c,
                   self->field_0x98, self->field_0x80, self->field_0x81, self->field_0x78, arg);
 }

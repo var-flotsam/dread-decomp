@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Actions");
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Action to play"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x10, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Action to play"));
     DREAD_REFLECTED_FIELD(f32, "fChanceIncrementOnFail", 0x18, (DefaultValue, 0.0f), (Description, "When action play fails (random value wasn't good enough), this is how much next chances increment"));
     DREAD_REFLECTED_FIELD(f32, "fMaximumChanceIncrementOnFail", 0x1c, (DefaultValue, 0.0f), (Description, "When action play fails, this is the maximum value next chances can increase to"));
 }

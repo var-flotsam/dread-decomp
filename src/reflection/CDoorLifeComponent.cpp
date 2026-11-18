@@ -21,6 +21,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
@@ -131,7 +132,6 @@ DREAD_REFLECTED_CLASS(CDoorLifeComponent, CItemLifeComponent);
 extern bool g_unk_71727313a0;
 void fn_71008dccec();
 void fn_71008cda44(UnkReflFunction* fn, const char* name);
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172731368;
 void fn_71008cdbc0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CDoorLifeComponent::CTunableDoorLifeComponent {
@@ -149,13 +149,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_bForceAllDoorsOpened_SetterFunction")
         fn_71008cda44(fn, "_bForceAllDoorsOpened_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bForceAllDoorsOpened");
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71008cdbc0(registry, &g_unk_7172731368, "");
+    fn_71008cdbc0(base::reflection::TunableRegistry(), &g_unk_7172731368, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

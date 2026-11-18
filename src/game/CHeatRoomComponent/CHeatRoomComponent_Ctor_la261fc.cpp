@@ -74,7 +74,7 @@ void fn_7100a261fc(UnkHeatRoom_la261fc* self) {
     self->field_0xadc = 2;
     self->field_0xbe0 = true;
     self->field_0xae9 = true;
-    self->previous_environment = g_unk_7101d470e0;
+    self->previous_environment = base::global::CStrId::Empty();
     self->field_0xc80 = false;
     self->field_0xc81 = false;
     self->field_0xc68 = true;

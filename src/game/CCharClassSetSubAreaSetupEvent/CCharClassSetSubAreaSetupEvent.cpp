@@ -1,6 +1,6 @@
 // CCharClassSetSubAreaSetupEvent's default constructor (shaped as fn_71002536b0,
 // src/game/CActorComponentDef/CActorComponentDef_Ctor.cpp): on the event base (fn_7100067ea4), two
-// string ids copied from the empty id g_unk_7101d470e0, then a cleared flag. Names and
+// string ids copied from the empty id base::global::CStrId::Empty(), then a cleared flag. Names and
 // layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/global/timeline/CEvent.h"
@@ -28,7 +28,7 @@ static inline void CopyEmptyId(CStrId* id, UnkStringData* data) {
 void fn_7100cd99ec(UnkSubAreaSetupEvent* self) {
     fn_7100067ea4(self);
     self->vtable = g_unk_7101aa62c0 + 0x10;
-    UnkStringData* empty = g_unk_7101d470e0.data;
+    UnkStringData* empty = base::global::CStrId::Empty().data;
     CopyEmptyId(&self->id_0x10, empty);
     CopyEmptyId(&self->id_0x18, empty);
     self->flag_0x20 = false;

@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -49,7 +50,6 @@ DREAD_REFLECTED_CLASS(CSamusAirMovementState::CParams, CSamusMovementState::CPar
 
 // CSamusAirMovementState::CTunableSamusAirMovementState
 extern bool g_unk_717273b008;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717273afe0;
 void fn_7100988ac0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusAirMovementState::CTunableSamusAirMovementState {
@@ -63,13 +63,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSpinDoubleJump", 0x21, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bWallDoubleJump", 0x22, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bAllowKickJumpWithSpaceJump", 0x23, (DefaultValue, true));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100988ac0(registry, &g_unk_717273afe0, "SamusAir");
+    fn_7100988ac0(base::reflection::TunableRegistry(), &g_unk_717273afe0, "SamusAir");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

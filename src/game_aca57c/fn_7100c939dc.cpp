@@ -1,4 +1,4 @@
-// Two constructors of a record: a copy of the global id g_unk_7101d470e0, a word (zero or the
+// Two constructors of a record: a copy of the global id base::global::CStrId::Empty(), a word (zero or the
 // argument), the "all" mask of two function-local static masks, then zeroed fields.
 #include <new>
 
@@ -37,7 +37,7 @@ struct UnkMaskedId {
     bool field_0x1c;
 
     __attribute__((always_inline)) explicit UnkMaskedId(u32 v)
-        : id(g_unk_7101d470e0), field_0x8(v), mask(UnkMaskAll_7101d57cb8().value), field_0x10(0),
+        : id(base::global::CStrId::Empty()), field_0x8(v), mask(UnkMaskAll_7101d57cb8().value), field_0x10(0),
           field_0x18(0), field_0x1c(false) {}
 };
 

@@ -105,7 +105,7 @@ void fn_71011df648(UnkGuiObject_71011df648* self) {
     Bind(&self->field_0x488, self, fn_71011e7ed8);
     self->field_0x4a0 = 0;
     self->field_0x4a4 = false;
-    UnkStringData* id = g_unk_7101d470e0.data;
+    UnkStringData* id = base::global::CStrId::Empty().data;
     self->field_0x4a8 = id;
     if (&g_unk_7101d47108->empty != id)
         ++id->ref_count;

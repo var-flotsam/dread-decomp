@@ -53,7 +53,7 @@ u32 fn_7100590fc4(UnkGoliathAI2_ovb0106* self, UnkGoliathHit2_ovb0106* hit) {
     if (self->IsTarget(hit->field_0x60) && !(hit->field_0xb4 & 0x2018020))
         return 2;
     UnkCollisionContainer* collision = self->owner->field_0x2a0;
-    CStrId id(collision ? *fn_7100864018(collision, hit->field_0x60) : g_unk_7101d470e0);
+    CStrId id(collision ? *fn_7100864018(collision, hit->field_0x60) : base::global::CStrId::Empty());
     if (id.data == g_unk_71726e6748.data)
         return (hit->field_0xb4 & 0x8000000) ? 6 : 0;
     return 0;

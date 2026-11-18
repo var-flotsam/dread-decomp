@@ -60,7 +60,7 @@ void fn_7100fd16ec(UnkStruct_0x150* self, u32, u32) {
     fn_7100fd7c3c(GetMgr(), 1, &self->field_0xe8, self->field_0xf4, UnkMask(2), UnkMaskOf<UnkMusicMaskTag>::All());
     self->field_0xb0.Clear();
     self->field_0x110.Clear();
-    self->field_0xe0 = g_unk_7101d470e0;
-    self->field_0x140 = g_unk_7101d470e0;
+    self->field_0xe0 = base::global::CStrId::Empty();
+    self->field_0x140 = base::global::CStrId::Empty();
     self->field_0x148 = 0x7fffffff;
 }

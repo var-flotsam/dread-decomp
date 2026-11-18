@@ -55,7 +55,7 @@ namespace CStartPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnTeleport", 0x40, (DefaultValue, base::global::CRntString(refl_GlobalRntString())));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnTeleportLogicCamera", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnTeleportLogicCamera", 0x70, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bOnTeleportLogicCameraRaw", 0x78, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bProjectOnFloor", 0x79, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bMorphballMode", 0x7a, (DefaultValue, false));

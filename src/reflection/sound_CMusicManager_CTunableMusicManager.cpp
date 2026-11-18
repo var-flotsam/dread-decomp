@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // sound::CMusicManager::CTunableMusicManager
 extern bool g_unk_71729f0880;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71729f0858;
 void fn_7100fd352c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace sound::CMusicManager::CTunableMusicManager {
@@ -33,13 +33,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bNCLCurrentMusicDebugEnable", 0x21, (DefaultValue, false));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100fd352c(registry, &g_unk_71729f0858, "MUSIC");
+    fn_7100fd352c(base::reflection::TunableRegistry(), &g_unk_71729f0858, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

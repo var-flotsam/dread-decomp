@@ -27,7 +27,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAttMinRange", 0x38, (DefaultValue, 0.0f), (Description, "When the distance to the source is under this value, no attenuation gets applied"));
     DREAD_REFLECTED_FIELD(f32, "fAttMaxRange", 0x3c, (DefaultValue, 0.0f), (Description, "When the distance to the source is over this value, use the max attenuation value"));
     DREAD_REFLECTED_FIELD(f32, "fAttRange", 0x40, (DefaultValue, 0.0f), (Description, "Attenuation gets calculated between no attenuation and this number"));
-    DREAD_REFLECTED_FIELD(CStrId, "sAttRangeFunction", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Attenuation curve to apply between [min,max]. Its value gets multiplied by m_fAttRange"));
+    DREAD_REFLECTED_FIELD(CStrId, "sAttRangeFunction", 0x48, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Attenuation curve to apply between [min,max]. Its value gets multiplied by m_fAttRange"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -68,7 +68,7 @@ static_assert(__builtin_offsetof(UnkCommanderLife_b0266, handle) == 0x2e8, "layo
 static inline UnkSubId_7100fc4b34 SubId(const char* name) {
     UnkQualifiedName* qualified = reinterpret_cast<UnkQualifiedName*>(reinterpret_cast<char*>(&g_unk_7172759848) + 0x10);
     if (!qualified->str || !qualified->str[0])
-        fn_7100ae9d7c(qualified, reinterpret_cast<UnkIdSource*>(&g_unk_7172759848), g_unk_7101d470e0);
+        fn_7100ae9d7c(qualified, reinterpret_cast<UnkIdSource*>(&g_unk_7172759848), base::global::CStrId::Empty());
     return fn_71008c0004(qualified, name);
 }
 

@@ -23,6 +23,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
@@ -96,7 +97,6 @@ DREAD_REFLECTED_ROOT_CLASS(CCooldownXBossFireWallDef);
 
 // CCharClassCooldownXBossWindTunnelAttack::CTunableCharClassCooldownXBossWindTunnelAttack
 extern bool g_unk_71726d6468;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726d6438;
 void fn_71004b92c8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassCooldownXBossWindTunnelAttack::CTunableCharClassCooldownXBossWindTunnelAttack {
@@ -110,13 +110,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iForcedPattern", 0x24, (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(f32, "fShinesparkChargeExtensionWindTunnelPlayRate", 0x28, (DefaultValue, 1.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71004b92c8(registry, &g_unk_71726d6438, "CooldownXBoss");
+    fn_71004b92c8(base::reflection::TunableRegistry(), &g_unk_71726d6438, "CooldownXBoss");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -146,9 +140,9 @@ DREAD_REFLECTED_CLASS(CCharClassCooldownXBossWindTunnelAttack::CTunableCharClass
 namespace CCharClassCooldownXBossWindTunnelAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0x100, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sShotAttackAnim", 0x108, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sStunAttackAnim", 0x110, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sEndAttackAnim", 0x100, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sShotAttackAnim", 0x108, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sStunAttackAnim", 0x110, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(s32, "iNumShots", 0x118, (DefaultValue, 8));
     DREAD_REFLECTED_FIELD(f32, "fTimeToEndAttack", 0x11c, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<base::global::CRntVector<std::unique_ptr<CCooldownXBossFireWallDef>>>", "tLaunchPatterns", 0x120);

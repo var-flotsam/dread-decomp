@@ -44,7 +44,7 @@ void fn_71003f543c(UnkComponent* self) {
     self->field_0x14b4c = -1.0f;
     self->field_0x14b50 = 0.0f;
     new (&self->field_0x14b58) base::global::CRntVector<void*>(0xf);
-    new (&self->field_0x14b80) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x14b80) CStrId(base::global::CStrId::Empty());
     self->field_0x14b88 = -1.0f;
     self->field_0x14b8c = -1.0f;
     self->field_0x14b90 = 0;

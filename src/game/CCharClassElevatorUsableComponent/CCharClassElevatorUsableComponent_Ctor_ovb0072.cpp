@@ -30,7 +30,7 @@ static inline void CopyId_ovb0072(CStrId* id, UnkStringData* data) {
 static inline void Construct_ovb0072(UnkElevatorUsableDef_ovb0072* self) {
     fn_7100a7b494(reinterpret_cast<UnkShipRechargeDef*>(self));
     self->vtable = g_unk_7101a91170 + 0x10;
-    UnkStringData* empty = g_unk_7101d470e0.data;
+    UnkStringData* empty = base::global::CStrId::Empty().data;
     CopyId_ovb0072(&self->id_0x1b8, empty);
     CopyId_ovb0072(&self->id_0x1c0, empty);
     CopyId_ovb0072(&self->id_0x1c8, empty);

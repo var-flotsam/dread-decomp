@@ -20,6 +20,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
@@ -51,7 +52,6 @@ DREAD_REFLECTED_CLASS(CSwarmControllerComponent, CComponent);
 
 // CSwarmControllerComponent::CTunableSwarmDamage
 extern bool g_unk_7172710c78;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172710c40;
 void fn_7100747540(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSwarmControllerComponent::CTunableSwarmDamage {
@@ -67,13 +67,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMissileSplashDamageRadius", 0x2c, (DefaultValue, 30.0f), (Description, "Radius of the splash damage of the missile [30]"));
     DREAD_REFLECTED_FIELD(f32, "fSuperMissileSplashDamageRadius", 0x30, (DefaultValue, 60.0f), (Description, "Radius of the splash damage of the super missile [60]"));
     DREAD_REFLECTED_FIELD(f32, "fBeamRadius", 0x34, (DefaultValue, 25.0f), (Description, "Radius of the beam shots when calculating impacts [25]"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100747540(registry, &g_unk_7172710c40, "Swarms damage");
+    fn_7100747540(base::reflection::TunableRegistry(), &g_unk_7172710c40, "Swarms damage");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

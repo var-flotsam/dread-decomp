@@ -35,7 +35,7 @@ struct UnkDropSettings_e211cc {
     f32 field_0x84;
 
     UnkDropSettings_e211cc()
-        : field_0x0(-1), field_0x4(-1), field_0xc(-1), field_0x10(-1), sound(g_unk_7108b6c460), id(g_unk_7101d470e0),
+        : field_0x0(-1), field_0x4(-1), field_0xc(-1), field_0x10(-1), sound(g_unk_7108b6c460), id(base::global::CStrId::Empty()),
           path(g_unk_7101d470e8), field_0x38(), field_0x80(true), field_0x84(160.0f) {}
 };
 static_assert(sizeof(UnkDropSettings_e211cc) == 0x88, "layout");

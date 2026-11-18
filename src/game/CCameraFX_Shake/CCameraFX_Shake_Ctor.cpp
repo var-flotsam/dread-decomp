@@ -33,7 +33,7 @@ void fn_71010f4050(UnkCameraFXShake* self) {
     self->field_0x38 = 0;
     self->field_0x3c = 0;
     self->field_0x40 = 0;
-    new (&self->field_0x48) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x48) CStrId(base::global::CStrId::Empty());
     self->field_0x50 = 0;
     self->field_0x54 = false;
     reinterpret_cast<void (*)(UnkCameraFXShake*)>(self->vtable[3])(self);

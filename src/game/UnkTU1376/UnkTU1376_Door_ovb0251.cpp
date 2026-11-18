@@ -423,7 +423,7 @@ void fn_71008d2690(UnkDoorFlow_b0251* self) {
         break;
     case 3: {
         {
-            CStrId id = g_unk_7101d470e0;
+            CStrId id = base::global::CStrId::Empty();
             fn_71008d586c(reinterpret_cast<UnkDoorLock*>(self), false, 0, &id);
         }
         if (void* actor = fn_71002b3b84(self->owner))

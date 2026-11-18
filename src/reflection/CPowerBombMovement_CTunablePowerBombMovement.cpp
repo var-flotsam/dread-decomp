@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CPowerBombMovement::CTunablePowerBombMovement
 extern bool g_unk_7172754170;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172754138;
 void fn_7100ab005c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CPowerBombMovement::CTunablePowerBombMovement {
@@ -36,13 +36,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fPowerBombExplosionMaxRadius", 0x28, (DefaultValue, 3000.0f), (Description, "Radius at maximum extension"));
     DREAD_REFLECTED_FIELD(f32, "fPowerBombExplosionSpeed", 0x2c, (DefaultValue, 3800.0f), (Description, "Radius growth speed"));
     DREAD_REFLECTED_FIELD(f32, "fPowerBombImplosionSpeed", 0x30, (DefaultValue, 3800.0f), (Description, "Radius decreasing speed"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100ab005c(registry, &g_unk_7172754138, "PowerBombMovement");
+    fn_7100ab005c(base::reflection::TunableRegistry(), &g_unk_7172754138, "PowerBombMovement");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

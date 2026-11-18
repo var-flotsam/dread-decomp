@@ -32,9 +32,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_bOverrideDisableInEditor_SetterFunction")
         fn_710071108c(fn, "_bOverrideDisableInEditor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOverrideDisableInEditor", (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(CStrId, "sInitialAction", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Initial Action"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInitialAction", 0x58, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Initial Action"));
     DREAD_REFLECTED_FIELD(CStrId, "sDefaultLoop", 0x60, (DefaultValue, CStrId(base::reflection::refl_GetStrIdTable<0x7100031894>().ids[943])), (Description, "Default Loop"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimTree", 0x68, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "AnimTree File"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimTree", 0x68, (DefaultValue, CStrId(CStrId::Empty())), (Description, "AnimTree File"));
     DREAD_REFLECTED_FIELD_OF("CAnimationPrefix::SPrefix::Enum", "sInitialPrefix", 0x70, (DefaultValue, 0), (Description, "Initial Prefix"));
     DREAD_REFLECTED_FIELD(s32, "iDebugLine", 0x74, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fInitialFrame", 0x78, (DefaultValue, 0.0f));

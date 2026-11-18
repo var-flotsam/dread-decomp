@@ -21,6 +21,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 enum class EDamageStrength : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EDamageStrength>::object asm("g_unk_7172730858");
 namespace base::global { class CStrId; }
@@ -29,7 +30,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassAttackComponent::CTunableCharClassAttackComponent
 extern bool g_unk_71727165a8;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172716160;
 void fn_7100789ca4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassAttackComponent::CTunableCharClassAttackComponent {
@@ -303,13 +303,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamageFulmiteBellyMineExplosionDefault", 0x438, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageInfesterBallExplosionDefault", 0x43c, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageCooldownXBossLaser", 0x440, (DefaultValue, 50.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100789ca4(registry, &g_unk_7172716160, "Damage");
+    fn_7100789ca4(base::reflection::TunableRegistry(), &g_unk_7172716160, "Damage");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -362,11 +356,11 @@ void fn_710078ce94(UnkReflFunction* fn, const char* name);
 namespace CCharClassAttackComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sDefaultDamageID", 0x58, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Default damage ID"));
+    DREAD_REFLECTED_FIELD(CStrId, "sDefaultDamageID", 0x58, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Default damage ID"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sDamageSource_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710078d8c0);
     DREAD_REFLECTED_FUNCTION("_m_sDamageSource_SetterFunction")
         fn_710078bfc4(fn, "_m_sDamageSource_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Damage source"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Damage source"));
     DREAD_REFLECTED_FUNCTION_OF("_m_bRotateToInstigatorHitCollider_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710078da0c);
     DREAD_REFLECTED_FUNCTION("_m_bRotateToInstigatorHitCollider_SetterFunction")
         fn_710078c140(fn, "_m_bRotateToInstigatorHitCollider_SetterFunction");
@@ -375,19 +369,19 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sSuccessDownDefaultAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710078da9c);
     DREAD_REFLECTED_FUNCTION("_m_sSuccessDownDefaultAnim_SetterFunction")
         fn_710078c2bc(fn, "_m_sSuccessDownDefaultAnim_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessDownDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Down anim"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessDownDefaultAnim", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Down anim"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sSuccessUpDefaultAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710078db9c);
     DREAD_REFLECTED_FUNCTION("_m_sSuccessUpDefaultAnim_SetterFunction")
         fn_710078c438(fn, "_m_sSuccessUpDefaultAnim_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessUpDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Up anim"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessUpDefaultAnim", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Up anim"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sSuccessFrontDefaultAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710078dc9c);
     DREAD_REFLECTED_FUNCTION("_m_sSuccessFrontDefaultAnim_SetterFunction")
         fn_710078c5b4(fn, "_m_sSuccessFrontDefaultAnim_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessFrontDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Front anim"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessFrontDefaultAnim", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Front anim"));
     DREAD_REFLECTED_FUNCTION_OF("_m_sSuccessBackDefaultAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710078dd9c);
     DREAD_REFLECTED_FUNCTION("_m_sSuccessBackDefaultAnim_SetterFunction")
         fn_710078c730(fn, "_m_sSuccessBackDefaultAnim_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessBackDefaultAnim", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Back anim"));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sSuccessBackDefaultAnim", (DefaultValue, CStrId(CStrId::Empty())), (Description, "Back anim"));
     DREAD_REFLECTED_FUNCTION_OF("_m_bIgnoreReaction_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710078de9c);
     DREAD_REFLECTED_FUNCTION("_m_bIgnoreReaction_SetterFunction")
         fn_710078c8ac(fn, "_m_bIgnoreReaction_SetterFunction");
@@ -411,7 +405,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sIgnoreBumpColliders_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710078e0d8);
     DREAD_REFLECTED_FUNCTION("_sIgnoreBumpColliders_SetterFunction")
         fn_710078ce94(fn, "_sIgnoreBumpColliders_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sIgnoreBumpColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sIgnoreBumpColliders", (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

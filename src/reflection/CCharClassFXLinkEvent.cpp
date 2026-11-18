@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("FX", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("ELinkType", "eLinkType", 0x18, (DefaultValue, 4));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x28, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetY", 0x2c, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
@@ -35,7 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fAngleOffsetX", 0x34, (DefaultValue, 0.0f), (MinValue, -3.14f), (MaxValue, 3.14f));
     DREAD_REFLECTED_FIELD(f32, "fAngleOffsetY", 0x38, (DefaultValue, 0.0f), (MinValue, -3.14f), (MaxValue, 3.14f));
     DREAD_REFLECTED_FIELD(f32, "fAngleOffsetZ", 0x3c, (DefaultValue, 0.0f), (MinValue, -3.14f), (MaxValue, 3.14f));
-    DREAD_REFLECTED_FIELD(CStrId, "sAdditional", 0x40, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sAdditional", 0x40, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

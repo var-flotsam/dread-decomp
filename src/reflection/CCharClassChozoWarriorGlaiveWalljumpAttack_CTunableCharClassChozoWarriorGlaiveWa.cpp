@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack
 extern bool g_unk_71726d05d0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726d05a0;
 void fn_7100492bb4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoWarriorGlaiveWalljumpAttack::CTunableCharClassChozoWarriorGlaiveWalljumpAttack {
@@ -35,13 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 2000.0f));
     DREAD_REFLECTED_FIELD(f32, "fSkipAttackProb", 0x2c, (DefaultValue, 0.5f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100492bb4(registry, &g_unk_71726d05a0, "ChozoWarriorGlaiveWalljumpAttack");
+    fn_7100492bb4(base::reflection::TunableRegistry(), &g_unk_71726d05a0, "ChozoWarriorGlaiveWalljumpAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

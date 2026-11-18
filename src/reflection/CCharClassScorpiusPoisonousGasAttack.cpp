@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -44,7 +45,6 @@ DREAD_REFLECTED_CLASS(CCharClassScorpiusPoisonousGasAttack, CCharClassScorpiusAt
 
 // CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack
 extern bool g_unk_7172702070;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172702030;
 void fn_71006817b4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassScorpiusPoisonousGasAttack::CTunableCharClassScorpiusPoisonousGasAttack {
@@ -63,13 +63,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fShockWaveTimeGrowing", 0x34, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fShockWaveTimeAtMaxRadius", 0x38, (DefaultValue, 6.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinChargingTime", 0x3c, (DefaultValue, 1.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71006817b4(registry, &g_unk_7172702030, "Scorpius");
+    fn_71006817b4(base::reflection::TunableRegistry(), &g_unk_7172702030, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

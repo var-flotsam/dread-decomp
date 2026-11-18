@@ -33,7 +33,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::TrackGroup(), "Tweak");
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sAction", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FUNCTION_OF("_bMaintainFrame_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100d2c7f0);
     DREAD_REFLECTED_FUNCTION("_bMaintainFrame_SetterFunction")
         fn_7100d2c1e8(fn, "_bMaintainFrame_SetterFunction");

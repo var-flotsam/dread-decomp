@@ -337,8 +337,8 @@ void fn_7100ee327c(CSubAreaManager* self, const CRntString& scenario, const CStr
 }
 
 // The sub-area's ids, the global empty id without one.
-static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : g_unk_7101d470e0; }
-static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : g_unk_7101d470e0; }
+static inline const CStrId& FirstId(const UnkSubArea* area) { return area ? area->field_0x0 : base::global::CStrId::Empty(); }
+static inline const CStrId& SecondId(const UnkSubArea* area) { return area ? area->field_0x50 : base::global::CStrId::Empty(); }
 
 // The camera holder fn_7100defcec gives and its current camera controller (game/UnkCameraCtrl.h).
 void fn_7100723120(void* holder);

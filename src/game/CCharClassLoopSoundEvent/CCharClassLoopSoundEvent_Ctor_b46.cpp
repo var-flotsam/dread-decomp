@@ -38,7 +38,7 @@ void fn_7100cc7b60(UnkLoopSoundEvent_b46a3* self) {
     fn_7100cdc2b8(self);
     self->vtable = &g_unk_7101aa5d48[2];
     new (&self->field_0x10) CFilePathStrId(" ", true);
-    new (&self->field_0x18) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x18) CStrId(base::global::CStrId::Empty());
     self->field_0x20 = 1.0f;
     self->field_0x24 = 500.0f;
     self->field_0x28 = 3000.0f;
