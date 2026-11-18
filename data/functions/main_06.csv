@@ -6020,7 +6020,7 @@ address,size,name,name_source,subsystem,status
 0x71006fb3ec,8,fn_71006fb3ec,unknown,unknown,O
 0x71006fb3f4,288,fn_71006fb3f4,unknown,unknown,O
 0x71006fb514,308,fn_71006fb514,unknown,unknown,O
-0x71006fb648,472,fn_71006fb648,unknown,unknown,U
+0x71006fb648,472,fn_71006fb648,unknown,unknown,O
 0x71006fb820,548,fn_71006fb820,unknown,unknown,O
 0x71006fba50,140,fn_71006fba50,unknown,unknown,O
 0x71006fbadc,136,fn_71006fbadc,unknown,unknown,O

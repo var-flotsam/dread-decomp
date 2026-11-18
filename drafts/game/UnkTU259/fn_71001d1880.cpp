@@ -1,7 +1,6 @@
 // Unit 259 (the graphics system's unit): submits a run of model instances for drawing. Instances that
 // share a model are grouped; each part of the model goes as one draw entry per instance into the
 // list its material picks, or as one instanced batch. Names and layouts are placeholders.
-// build-flags: no-strict-aliasing
 #include "game/UnkTU259.h"
 #include "types.h"
 

@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 368: whether a navigation cell, and the cell across one of its sides, let something with the
 // given flags through; `reason` says which tile flag stopped it. Names and layouts are placeholders.
 #include "game/UnkNavMeshCell.h"

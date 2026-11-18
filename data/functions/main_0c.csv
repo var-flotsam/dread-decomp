@@ -4459,7 +4459,7 @@ address,size,name,name_source,subsystem,status
 0x7100c8b9c8,476,fn_7100c8b9c8,unknown,game/cutscene?,O
 0x7100c8bba4,500,fn_7100c8bba4,unknown,game/cutscene?,O
 0x7100c8bd98,304,fn_7100c8bd98,unknown,game/cutscene?,U
-0x7100c8bec8,576,fn_7100c8bec8,unknown,game/cutscene?,U
+0x7100c8bec8,576,fn_7100c8bec8,unknown,game/cutscene?,O
 0x7100c8c108,264,fn_7100c8c108,unknown,game/cutscene?,O
 0x7100c8c210,296,fn_7100c8c210,unknown,game/cutscene?,O
 0x7100c8c338,1148,fn_7100c8c338,unknown,game/cutscene?,O

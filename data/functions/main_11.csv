@@ -368,7 +368,7 @@ address,size,name,name_source,subsystem,status
 0x710111756c,5740,CSpawnGroupComponent::refl_AddFields,reflection,game/components,O
 0x7101118bd8,388,CSpawnGroupComponent::refl_InitClass,reflection,game/components,O
 0x7101118d5c,732,fn_7101118d5c,unknown,unknown,U
-0x7101119038,1208,fn_7101119038,unknown,unknown,U
+0x7101119038,1208,fn_7101119038,unknown,unknown,O
 0x71011194f0,36,fn_71011194f0,unknown,unknown,O
 0x7101119514,24,fn_7101119514,unknown,unknown,O
 0x710111952c,524,fn_710111952c,unknown,unknown,O
@@ -1246,7 +1246,7 @@ address,size,name,name_source,subsystem,status
 0x7101152008,160,fn_7101152008,unknown,unknown,O
 0x71011520a8,212,fn_71011520a8,unknown,unknown,O
 0x710115217c,2060,fn_710115217c,unknown,unknown,U
-0x7101152988,412,fn_7101152988,unknown,unknown,U
+0x7101152988,412,fn_7101152988,unknown,unknown,O
 0x7101152b24,108,fn_7101152b24,unknown,unknown,O
 0x7101152b90,124,fn_7101152b90,unknown,unknown,m
 0x7101152c0c,188,fn_7101152c0c,unknown,unknown,m
@@ -2731,7 +2731,7 @@ address,size,name,name_source,subsystem,status
 0x71011bf348,36,fn_71011bf348,unknown,gui?,O
 0x71011bf36c,52,fn_71011bf36c,unknown,gui?,O
 0x71011bf3a0,44,fn_71011bf3a0,unknown,gui?,O
-0x71011bf3cc,396,fn_71011bf3cc,unknown,gui?,U
+0x71011bf3cc,396,fn_71011bf3cc,unknown,gui?,O
 0x71011bf558,264,fn_71011bf558,unknown,gui?,O
 0x71011bf660,188,fn_71011bf660,unknown,gui?,O
 0x71011bf71c,40,fn_71011bf71c,unknown,gui?,O
