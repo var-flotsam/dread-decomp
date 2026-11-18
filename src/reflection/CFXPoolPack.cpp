@@ -238,28 +238,15 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710104f340();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_710104f390();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_710104c750(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104f340);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710104f340);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = CFXPool::CDefinition::refl_GetClass();
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104f390);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CFXPool::CDefinition::refl_GetClass(), 0x1, fn_710104f390);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CFXPool::CDefinition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -270,26 +257,13 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710104f550();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_710104f5a0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_710104cd40(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104f550);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710104f550);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = CFXPool::CDefinition::refl_GetClass();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104f5a0);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CFXPool::CDefinition::refl_GetClass(), 0x101, fn_710104f5a0);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CFXPool::CDefinition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

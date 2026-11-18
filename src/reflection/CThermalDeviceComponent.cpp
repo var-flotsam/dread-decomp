@@ -37,24 +37,12 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sOnSetupUseStateLuaCallback", 0x580, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sUseEndActionOverride", 0x590, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bCheckpointBeforeUsage", 0x59c, (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_ePipeGroup1_GetterFunction", true);
-        fn->return_type = &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a94804);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_ePipeGroup1_GetterFunction", &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0, fn_7100a94804);
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_SetterFunction")
         fn_7100a90798(fn, "_m_ePipeGroup1_SetterFunction");
     UnkReflField* field6 = AddReflectedField(cls, CStrId("ePipeGroup1", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field6->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_m_ePipeGroup2_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_ePipeGroup2_GetterFunction", true);
-        fn->return_type = &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a94890);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_ePipeGroup2_GetterFunction", &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0, fn_7100a94890);
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup2_SetterFunction")
         fn_7100a9090c(fn, "_m_ePipeGroup2_SetterFunction");
     UnkReflField* field7 = AddReflectedField(cls, CStrId("ePipeGroup2", true), &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);

@@ -28,13 +28,7 @@ void fn_71006b9d50(UnkReflFunction* fn, const char* name);
 namespace CShelmitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_eShellState_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_eShellState_GetterFunction", true);
-        fn->return_type = &base::reflection::TypeObject<EShellState>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71006bcb7c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_eShellState_GetterFunction", &base::reflection::TypeObject<EShellState>::object, 0, fn_71006bcb7c);
     DREAD_REFLECTED_FUNCTION("_m_eShellState_SetterFunction")
         fn_71006b9d50(fn, "_m_eShellState_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("eShellState", true), &base::reflection::TypeObject<EShellState>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);

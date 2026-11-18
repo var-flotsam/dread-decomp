@@ -26,11 +26,7 @@ namespace base::core::CBaseObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("PrintTypeLists") {
-        fn->name = base::global::UnkStrId("PrintTypeLists", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100024edc);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("PrintTypeLists", &g_unk_7101d5af48, 0, fn_7100024edc);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Print type vars");
     }
 }

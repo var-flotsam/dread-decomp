@@ -29,13 +29,7 @@ void fn_7100937f48(UnkReflFunction* fn, const char* name);
 namespace CMultiModelUpdaterComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sModelAlias_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sModelAlias_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009393fc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sModelAlias_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71009393fc);
     DREAD_REFLECTED_FUNCTION("_sModelAlias_SetterFunction")
         fn_7100937dd0(fn, "_sModelAlias_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sModelAlias", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, base::global::CRntString("Current model alias")));

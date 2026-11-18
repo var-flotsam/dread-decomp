@@ -33,20 +33,10 @@ namespace CEmmySancAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("StartSancShutterPerceptionModifier") {
-        fn->name = base::global::UnkStrId("StartSancShutterPerceptionModifier", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005003fc);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("StartSancShutterPerceptionModifier", &g_unk_7101d5af48, 0, fn_71005003fc);
         fn_7100500260(fn);
     }
-    DREAD_REFLECTED_FUNCTION("StopSancShutterPerceptionModifier") {
-        fn->name = base::global::UnkStrId("StopSancShutterPerceptionModifier", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005004a4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("StopSancShutterPerceptionModifier", &g_unk_7101d5af48, 0, fn_71005004a4);
     UnkReflField* field0 = AddReflectedField(cls, CStrId("tFast4LegTransformationMagnet", true), &g_unk_717269bf08, 0x2a700, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpForceEmmyPerceptionVisionConeOffShape", true), &g_unk_717269bb48, 0x2a730, -1, -1);

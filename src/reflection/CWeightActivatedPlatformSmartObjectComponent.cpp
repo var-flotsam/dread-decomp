@@ -29,20 +29,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sDustFX", 0x178, (DefaultValue, "dust"), (Description, "fx id"));
     DREAD_REFLECTED_FIELD(bool, "bDisableWhenEmmyNearby", 0x558, (DefaultValue, false), (Description, "Should disable (or prevent usability) when Emmy is nearby?"));
     DREAD_REFLECTED_FIELD(bool, "bDisableWhenUsed", 0x559, (DefaultValue, false), (Description, "Should disable once is used?"));
-    DREAD_REFLECTED_FUNCTION("SetStateAfterCutScene") {
-        fn->name = base::global::UnkStrId("SetStateAfterCutScene", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a0d274);
-    }
-    DREAD_REFLECTED_FUNCTION("SetStateDuringFakeAdamDialogueCutScene") {
-        fn->name = base::global::UnkStrId("SetStateDuringFakeAdamDialogueCutScene", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a0d2a8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("SetStateAfterCutScene", &g_unk_7101d5af48, 0, fn_7100a0d274);
+    DREAD_REFLECTED_FUNCTION_OF("SetStateDuringFakeAdamDialogueCutScene", &g_unk_7101d5af48, 0, fn_7100a0d2a8);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

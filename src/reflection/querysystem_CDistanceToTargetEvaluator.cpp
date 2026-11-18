@@ -29,23 +29,11 @@ void fn_71002bc8f0(UnkReflFunction* fn, const char* name);
 namespace querysystem::CDistanceToTargetEvaluator {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_fMinDistance_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fMinDistance_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002bcf74);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fMinDistance_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71002bcf74);
     DREAD_REFLECTED_FUNCTION("_fMinDistance_SetterFunction")
         fn_71002bc774(fn, "_fMinDistance_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMinDistance", (DefaultValue, -1.0f));
-    DREAD_REFLECTED_FUNCTION("_fMaxDistance_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fMaxDistance_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002bd004);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fMaxDistance_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71002bd004);
     DREAD_REFLECTED_FUNCTION("_fMaxDistance_SetterFunction")
         fn_71002bc8f0(fn, "_fMaxDistance_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMaxDistance", (DefaultValue, -1.0f));

@@ -31,11 +31,7 @@ namespace CInputComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("IgnoreInput") {
-        fn->name = base::global::UnkStrId("IgnoreInput", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710087412c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("IgnoreInput", &g_unk_7101d5af48, 0, fn_710087412c);
         fn_7100874050(fn);
     }
     DREAD_REFLECTED_FUNCTION("IgnoreInputFor") {
@@ -43,13 +39,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Ignore input for"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    DREAD_REFLECTED_FUNCTION("_bInputIgnored_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bInputIgnored_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100874290);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bInputIgnored_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100874290);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bInputIgnored", (Persistence, 0));
 }
 bool refl_Equals(const void*, const void*) { return false; }

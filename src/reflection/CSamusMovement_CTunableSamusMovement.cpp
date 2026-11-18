@@ -98,21 +98,9 @@ void fn_71009df12c(UnkReflFunction* fn, const char* name);
 namespace CSamusMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_bIsMorphBall_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bIsMorphBall_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009f0f38);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bIsMorphBall_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71009f0f38);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsMorphBall", (Persistence, 0));
-    DREAD_REFLECTED_FUNCTION("_m_bIsSamus_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bIsSamus_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009f0f7c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bIsSamus_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71009f0f7c);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsSamus", (Persistence, 0));
     DREAD_REFLECTED_FUNCTION("ForceDetachGrapple") {
         fn_71009df12c(fn, "ForceDetachGrapple");

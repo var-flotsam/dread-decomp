@@ -36,13 +36,7 @@ void refl_AddFields(CClass* cls) {
     g_unk_7172a09290 = true;
     if (!cls)
         return;
-    DREAD_REFLECTED_FUNCTION("_iMaxNumMissiles_GetterFunction") {
-        fn->name = base::global::UnkStrId("_iMaxNumMissiles_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101149248);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_iMaxNumMissiles_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7101149248);
     DREAD_REFLECTED_FUNCTION("_iMaxNumMissiles_SetterFunction")
         fn_710113ff7c(fn, "_iMaxNumMissiles_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iMaxNumMissiles", (DefaultValue, 100), (ShowInConfig, true), (Description, "Max missiles"), (MinValueI, 0), (MaxValueI, 500), (ControlIntStep, 1), (InternalTag, "General"));

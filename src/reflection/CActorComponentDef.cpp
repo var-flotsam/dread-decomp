@@ -35,43 +35,19 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x70200u);
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_bStartEnabled_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bStartEnabled_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100254640);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bStartEnabled_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100254640);
     DREAD_REFLECTED_FUNCTION("_m_bStartEnabled_SetterFunction")
         fn_71002530c0(fn, "_m_bStartEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bStartEnabled", (DefaultValue, true), (Description, "Should the component start enabled?"));
-    DREAD_REFLECTED_FUNCTION("_bDisabledInEditor_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bDisabledInEditor_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002546d0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bDisabledInEditor_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71002546d0);
     DREAD_REFLECTED_FUNCTION("_bDisabledInEditor_SetterFunction")
         fn_710025323c(fn, "_bDisabledInEditor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bDisabledInEditor", (DefaultValue, true));
-    DREAD_REFLECTED_FUNCTION("_bPrePhysicsUpdateInEditor_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bPrePhysicsUpdateInEditor_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100254728);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bPrePhysicsUpdateInEditor_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100254728);
     DREAD_REFLECTED_FUNCTION("_bPrePhysicsUpdateInEditor_SetterFunction")
         fn_71002533b8(fn, "_bPrePhysicsUpdateInEditor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bPrePhysicsUpdateInEditor", (DefaultValue, true));
-    DREAD_REFLECTED_FUNCTION("_bPostPhysicsUpdateInEditor_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bPostPhysicsUpdateInEditor_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100254784);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bPostPhysicsUpdateInEditor_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100254784);
     DREAD_REFLECTED_FUNCTION("_bPostPhysicsUpdateInEditor_SetterFunction")
         fn_7100253534(fn, "_bPostPhysicsUpdateInEditor_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bPostPhysicsUpdateInEditor", (DefaultValue, true));

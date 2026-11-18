@@ -47,73 +47,31 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::math::CVector4D, "GenericConstValue", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FUNCTION("SetAutoRotateVelocity")
         fn_71011f7b70(fn, "SetAutoRotateVelocity");
-    DREAD_REFLECTED_FUNCTION("_FlipX_GetterFunction") {
-        fn->name = base::global::UnkStrId("_FlipX_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fa690);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_FlipX_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011fa690);
     DREAD_REFLECTED_FUNCTION("_FlipX_SetterFunction")
         fn_71011f7cec(fn, "_FlipX_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "FlipX");
-    DREAD_REFLECTED_FUNCTION("_FlipY_GetterFunction") {
-        fn->name = base::global::UnkStrId("_FlipY_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fa760);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_FlipY_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011fa760);
     DREAD_REFLECTED_FUNCTION("_FlipY_SetterFunction")
         fn_71011f7e68(fn, "_FlipY_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "FlipY");
-    DREAD_REFLECTED_FUNCTION("_SpriteScaleTilesTexture_GetterFunction") {
-        fn->name = base::global::UnkStrId("_SpriteScaleTilesTexture_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fa830);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_SpriteScaleTilesTexture_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011fa830);
     DREAD_REFLECTED_FUNCTION("_SpriteScaleTilesTexture_SetterFunction")
         fn_71011f7fe4(fn, "_SpriteScaleTilesTexture_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "SpriteScaleTilesTexture");
-    DREAD_REFLECTED_FUNCTION("_SpriteSheetItem_GetterFunction") {
-        fn->name = base::global::UnkStrId("_SpriteSheetItem_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fa900);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_SpriteSheetItem_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011fa900);
     DREAD_REFLECTED_FUNCTION("_SpriteSheetItem_SetterFunction")
         fn_71011f8160(fn, "_SpriteSheetItem_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "SpriteSheetItem");
-    DREAD_REFLECTED_FUNCTION("_BlendMode_GetterFunction") {
-        fn->name = base::global::UnkStrId("_BlendMode_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011faaa0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_BlendMode_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011faaa0);
     DREAD_REFLECTED_FUNCTION("_BlendMode_SetterFunction")
         fn_71011f82dc(fn, "_BlendMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "BlendMode");
-    DREAD_REFLECTED_FUNCTION("_USelMode_GetterFunction") {
-        fn->name = base::global::UnkStrId("_USelMode_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fabe8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_USelMode_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011fabe8);
     DREAD_REFLECTED_FUNCTION("_USelMode_SetterFunction")
         fn_71011f8458(fn, "_USelMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "USelMode");
-    DREAD_REFLECTED_FUNCTION("_VSelMode_GetterFunction") {
-        fn->name = base::global::UnkStrId("_VSelMode_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fadf8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_VSelMode_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011fadf8);
     DREAD_REFLECTED_FUNCTION("_VSelMode_SetterFunction")
         fn_71011f85d4(fn, "_VSelMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "VSelMode");

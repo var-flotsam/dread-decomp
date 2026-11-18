@@ -56,20 +56,10 @@ namespace CEmmyValveComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("SetState") {
-        fn->name = base::global::UnkStrId("SetState", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007b4bb0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetState", &g_unk_7101d5af48, 0, fn_71007b4bb0);
         fn_7100302d14(fn);
     }
-    DREAD_REFLECTED_FUNCTION("CleanForceStateFlag") {
-        fn->name = base::global::UnkStrId("CleanForceStateFlag", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007b4c44);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("CleanForceStateFlag", &g_unk_7101d5af48, 0, fn_71007b4c44);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

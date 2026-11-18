@@ -54,20 +54,8 @@ void fn_7100878dd4();
 namespace CActivatableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("Activate") {
-        fn->name = base::global::UnkStrId("Activate", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100878d94);
-    }
-    DREAD_REFLECTED_FUNCTION("Deactivate") {
-        fn->name = base::global::UnkStrId("Deactivate", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100878dd4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("Activate", &g_unk_7101d5af48, 0, fn_7100878d94);
+    DREAD_REFLECTED_FUNCTION_OF("Deactivate", &g_unk_7101d5af48, 0, fn_7100878dd4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

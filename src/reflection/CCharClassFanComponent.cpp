@@ -66,53 +66,23 @@ void fn_710087daa0(UnkReflFunction* fn, const char* name);
 namespace CFanComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_fWindLength_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fWindLength_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710087f868);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fWindLength_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710087f868);
     DREAD_REFLECTED_FUNCTION("_m_fWindLength_SetterFunction")
         fn_710087d4b0(fn, "_m_fWindLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fWindLength", (DefaultValue, 1200.0f), (MinValue, 800.0f), (MaxValue, 1200.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fHurricaneLength_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fHurricaneLength_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710087f914);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fHurricaneLength_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710087f914);
     DREAD_REFLECTED_FUNCTION("_m_fHurricaneLength_SetterFunction")
         fn_710087d62c(fn, "_m_fHurricaneLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fHurricaneLength", (DefaultValue, 800.0f), (MinValue, 600.0f), (MaxValue, 800.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fBarrierLength_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fBarrierLength_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710087f9a4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fBarrierLength_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710087f9a4);
     DREAD_REFLECTED_FUNCTION("_m_fBarrierLength_SetterFunction")
         fn_710087d7a8(fn, "_m_fBarrierLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fBarrierLength", (DefaultValue, 200.0f), (MinValue, 100.0f), (MaxValue, 400.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fWidth_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fWidth_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710087fa34);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fWidth_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710087fa34);
     DREAD_REFLECTED_FUNCTION("_m_fWidth_SetterFunction")
         fn_710087d924(fn, "_m_fWidth_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fWidth", (DefaultValue, 400.0f), (MinValue, 400.0f), (MaxValue, 400.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fParticleScale_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fParticleScale_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710087fae0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fParticleScale_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0x101, fn_710087fae0);
     DREAD_REFLECTED_FUNCTION("_m_fParticleScale_SetterFunction")
         fn_710087daa0(fn, "_m_fParticleScale_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fParticleScale", (DefaultValue, 1.0f), (MinValue, 0.1f), (MaxValue, 2.0f));

@@ -81,64 +81,22 @@ void refl_AddFields(CClass* cls) {
     field22->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
     DREAD_REFLECTED_FUNCTION("SetDynamicSpawnPositionOverride")
         fn_71011255e4(fn, "SetDynamicSpawnPositionOverride");
-    DREAD_REFLECTED_FUNCTION("ResetDynamicSpawnPositionOverride") {
-        fn->name = base::global::UnkStrId("ResetDynamicSpawnPositionOverride", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101132780);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("ResetDynamicSpawnPositionOverride", &g_unk_7101d5af48, 0, fn_7101132780);
     UnkReflField* field23 = AddReflectedField(cls, CStrId("tXCellTransformTargets", true), &g_unk_717269bf08, 0x2c8, -1, -1);
     field23->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field23->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
     UnkReflField* field24 = AddReflectedField(cls, CStrId("wpXCellActivationAreaShape", true), &g_unk_717269bb48, 0x2f0, -1, -1);
     field24->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
-    DREAD_REFLECTED_FUNCTION("_sCharClass_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sCharClass_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011327d8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sCharClass_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71011327d8);
     DREAD_REFLECTED_FUNCTION("_sCharClass_SetterFunction")
         fn_7101125760(fn, "_sCharClass_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sCharClass", (DefaultValue, CStrId(g_unk_7101d470e0)), (EditorVisible, false));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CSpawnerActorBlueprint>", "voActorBlueprint", 0x390, (CreateElement, "AddNewActorBlueprintAt"), (DeleteElement, "DeleteActorBlueprintAt"), (AfterElementDeserialization, "AfterActorBlueprintDeserialization"));
-    DREAD_REFLECTED_FUNCTION("Activate") {
-        fn->name = base::global::UnkStrId("Activate", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011328d8);
-    }
-    DREAD_REFLECTED_FUNCTION("Deactivate") {
-        fn->name = base::global::UnkStrId("Deactivate", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101132928);
-    }
-    DREAD_REFLECTED_FUNCTION("AddNewActorBlueprintAt") {
-        fn->name = base::global::UnkStrId("AddNewActorBlueprintAt", true);
-        fn->return_type = &g_unk_7172a06930;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101132978);
-    }
-    DREAD_REFLECTED_FUNCTION("DeleteActorBlueprintAt") {
-        fn->name = base::global::UnkStrId("DeleteActorBlueprintAt", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011329bc);
-    }
-    DREAD_REFLECTED_FUNCTION("AfterActorBlueprintDeserialization") {
-        fn->name = base::global::UnkStrId("AfterActorBlueprintDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101132a0c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("Activate", &base::reflection::PrimitiveType<int>::Get(), 0, fn_71011328d8);
+    DREAD_REFLECTED_FUNCTION_OF("Deactivate", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7101132928);
+    DREAD_REFLECTED_FUNCTION_OF("AddNewActorBlueprintAt", &g_unk_7172a06930, 0x1, fn_7101132978);
+    DREAD_REFLECTED_FUNCTION_OF("DeleteActorBlueprintAt", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011329bc);
+    DREAD_REFLECTED_FUNCTION_OF("AfterActorBlueprintDeserialization", &g_unk_7101d5af48, 0, fn_7101132a0c);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

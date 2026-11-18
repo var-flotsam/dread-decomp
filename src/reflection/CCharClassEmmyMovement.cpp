@@ -139,673 +139,337 @@ namespace CCharClassEmmyMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpRelaxAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpRelaxAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052d8f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpRelaxAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052d8f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpRelaxAnim_SetterFunction")
             fn_7100527ee0(fn, "_m_sWalkingWallUpRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpFrontAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052d9f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpFrontAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052d9f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpFrontAnim_SetterFunction")
             fn_710052805c(fn, "_m_sWalkingWallUpFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpBackAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052daf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpBackAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052daf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpBackAnim_SetterFunction")
             fn_71005281d8(fn, "_m_sWalkingWallUpBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpFrontInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052dbf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpFrontInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052dbf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpFrontInitAnim_SetterFunction")
             fn_7100528354(fn, "_m_sWalkingWallUpFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpBackInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052dcf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpBackInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052dcf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpBackInitAnim_SetterFunction")
             fn_71005284d0(fn, "_m_sWalkingWallUpBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpFrontEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpFrontEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052ddf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpFrontEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052ddf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpFrontEndAnim_SetterFunction")
             fn_710052864c(fn, "_m_sWalkingWallUpFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpBackEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpBackEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052def8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpBackEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052def8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpBackEndAnim_SetterFunction")
             fn_71005287c8(fn, "_m_sWalkingWallUpBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownRelaxAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownRelaxAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052dff8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownRelaxAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052dff8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownRelaxAnim_SetterFunction")
             fn_7100528944(fn, "_m_sWalkingWallDownRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownFrontAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e0f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownFrontAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e0f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownFrontAnim_SetterFunction")
             fn_7100528ac0(fn, "_m_sWalkingWallDownFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownBackAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e1f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownBackAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e1f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownBackAnim_SetterFunction")
             fn_7100528c3c(fn, "_m_sWalkingWallDownBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownFrontInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e2f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownFrontInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e2f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownFrontInitAnim_SetterFunction")
             fn_7100528db8(fn, "_m_sWalkingWallDownFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownBackInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e3f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownBackInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e3f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownBackInitAnim_SetterFunction")
             fn_7100528f34(fn, "_m_sWalkingWallDownBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownFrontEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownFrontEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e4f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownFrontEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e4f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownFrontEndAnim_SetterFunction")
             fn_71005290b0(fn, "_m_sWalkingWallDownFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownBackEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownBackEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e5f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownBackEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e5f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownBackEndAnim_SetterFunction")
             fn_710052922c(fn, "_m_sWalkingWallDownBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilRelaxAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilRelaxAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e6f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilRelaxAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e6f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilRelaxAnim_SetterFunction")
             fn_71005293a8(fn, "_m_sWalkingCeilRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilFrontAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e7f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilFrontAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e7f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilFrontAnim_SetterFunction")
             fn_7100529524(fn, "_m_sWalkingCeilFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilBackAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilBackAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e8f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilBackAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e8f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilBackAnim_SetterFunction")
             fn_71005296a0(fn, "_m_sWalkingCeilBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilFrontInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052e9f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilFrontInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052e9f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilFrontInitAnim_SetterFunction")
             fn_710052981c(fn, "_m_sWalkingCeilFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilBackInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilBackInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052eaf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilBackInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052eaf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilBackInitAnim_SetterFunction")
             fn_7100529998(fn, "_m_sWalkingCeilBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilFrontEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilFrontEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052ebf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilFrontEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052ebf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilFrontEndAnim_SetterFunction")
             fn_7100529b14(fn, "_m_sWalkingCeilFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilBackEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilBackEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052ecf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilBackEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052ecf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilBackEndAnim_SetterFunction")
             fn_7100529c90(fn, "_m_sWalkingCeilBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolRelaxAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingPatrolRelaxAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052edf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingPatrolRelaxAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052edf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolRelaxAnim_SetterFunction")
             fn_7100529e0c(fn, "_m_sWalkingPatrolRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolFrontAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052eef8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingPatrolFrontAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052eef8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolFrontAnim_SetterFunction")
             fn_7100529f88(fn, "_m_sWalkingPatrolFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolBackAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052eff8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingPatrolBackAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052eff8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolBackAnim_SetterFunction")
             fn_710052a104(fn, "_m_sWalkingPatrolBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolFrontInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f0f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingPatrolFrontInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f0f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolFrontInitAnim_SetterFunction")
             fn_710052a280(fn, "_m_sWalkingPatrolFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolBackInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f1f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingPatrolBackInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f1f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolBackInitAnim_SetterFunction")
             fn_710052a3fc(fn, "_m_sWalkingPatrolBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolFrontEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingPatrolFrontEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f2f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingPatrolFrontEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f2f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolFrontEndAnim_SetterFunction")
             fn_710052a578(fn, "_m_sWalkingPatrolFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolBackEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingPatrolBackEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f3f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingPatrolBackEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f3f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingPatrolBackEndAnim_SetterFunction")
             fn_710052a6f4(fn, "_m_sWalkingPatrolBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingPatrolBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolRelaxAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolRelaxAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f4f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpPatrolRelaxAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f4f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolRelaxAnim_SetterFunction")
             fn_710052a870(fn, "_m_sWalkingWallUpPatrolRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolFrontAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f5f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpPatrolFrontAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f5f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolFrontAnim_SetterFunction")
             fn_710052a9ec(fn, "_m_sWalkingWallUpPatrolFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolBackAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f6f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpPatrolBackAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f6f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolBackAnim_SetterFunction")
             fn_710052ab68(fn, "_m_sWalkingWallUpPatrolBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolFrontInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f7f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpPatrolFrontInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f7f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolFrontInitAnim_SetterFunction")
             fn_710052ace4(fn, "_m_sWalkingWallUpPatrolFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolBackInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f8f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpPatrolBackInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f8f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolBackInitAnim_SetterFunction")
             fn_710052ae60(fn, "_m_sWalkingWallUpPatrolBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolFrontEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolFrontEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052f9f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpPatrolFrontEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052f9f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolFrontEndAnim_SetterFunction")
             fn_710052afdc(fn, "_m_sWalkingWallUpPatrolFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolBackEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallUpPatrolBackEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052faf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallUpPatrolBackEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052faf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallUpPatrolBackEndAnim_SetterFunction")
             fn_710052b158(fn, "_m_sWalkingWallUpPatrolBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallUpPatrolBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolRelaxAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolRelaxAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052fbf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownPatrolRelaxAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052fbf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolRelaxAnim_SetterFunction")
             fn_710052b2d4(fn, "_m_sWalkingWallDownPatrolRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolFrontAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052fcf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownPatrolFrontAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052fcf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolFrontAnim_SetterFunction")
             fn_710052b450(fn, "_m_sWalkingWallDownPatrolFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolBackAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052fdf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownPatrolBackAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052fdf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolBackAnim_SetterFunction")
             fn_710052b5cc(fn, "_m_sWalkingWallDownPatrolBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolFrontInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052fef8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownPatrolFrontInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052fef8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolFrontInitAnim_SetterFunction")
             fn_710052b748(fn, "_m_sWalkingWallDownPatrolFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolBackInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710052fff8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownPatrolBackInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710052fff8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolBackInitAnim_SetterFunction")
             fn_710052b8c4(fn, "_m_sWalkingWallDownPatrolBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolFrontEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolFrontEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005300f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownPatrolFrontEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005300f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolFrontEndAnim_SetterFunction")
             fn_710052ba40(fn, "_m_sWalkingWallDownPatrolFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolBackEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingWallDownPatrolBackEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005301f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingWallDownPatrolBackEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005301f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingWallDownPatrolBackEndAnim_SetterFunction")
             fn_710052bbbc(fn, "_m_sWalkingWallDownPatrolBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingWallDownPatrolBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolRelaxAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolRelaxAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005302f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilPatrolRelaxAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005302f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolRelaxAnim_SetterFunction")
             fn_710052bd38(fn, "_m_sWalkingCeilPatrolRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolFrontAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005303f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilPatrolFrontAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005303f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolFrontAnim_SetterFunction")
             fn_710052beb4(fn, "_m_sWalkingCeilPatrolFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolBackAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005304f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilPatrolBackAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005304f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolBackAnim_SetterFunction")
             fn_710052c030(fn, "_m_sWalkingCeilPatrolBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolFrontInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005305f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilPatrolFrontInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005305f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolFrontInitAnim_SetterFunction")
             fn_710052c1ac(fn, "_m_sWalkingCeilPatrolFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolBackInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005306f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilPatrolBackInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005306f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolBackInitAnim_SetterFunction")
             fn_710052c328(fn, "_m_sWalkingCeilPatrolBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolFrontEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolFrontEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005307f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilPatrolFrontEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005307f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolFrontEndAnim_SetterFunction")
             fn_710052c4a4(fn, "_m_sWalkingCeilPatrolFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolBackEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingCeilPatrolBackEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005308f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingCeilPatrolBackEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005308f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingCeilPatrolBackEndAnim_SetterFunction")
             fn_710052c620(fn, "_m_sWalkingCeilPatrolBackEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingCeilPatrolBackEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelRelaxAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingTunnelRelaxAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71005309f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingTunnelRelaxAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71005309f8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelRelaxAnim_SetterFunction")
             fn_710052c79c(fn, "_m_sWalkingTunnelRelaxAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelRelaxAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelFrontAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100530af8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingTunnelFrontAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100530af8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelFrontAnim_SetterFunction")
             fn_710052c918(fn, "_m_sWalkingTunnelFrontAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelFrontAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelBackAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100530bf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingTunnelBackAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100530bf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelBackAnim_SetterFunction")
             fn_710052ca94(fn, "_m_sWalkingTunnelBackAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelBackAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelFrontInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100530cf8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingTunnelFrontInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100530cf8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelFrontInitAnim_SetterFunction")
             fn_710052cc10(fn, "_m_sWalkingTunnelFrontInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelFrontInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelBackInitAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackInitAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100530df8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingTunnelBackInitAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100530df8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelBackInitAnim_SetterFunction")
             fn_710052cd8c(fn, "_m_sWalkingTunnelBackInitAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelBackInitAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelFrontEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingTunnelFrontEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100530ef8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingTunnelFrontEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100530ef8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelFrontEndAnim_SetterFunction")
             fn_710052cf08(fn, "_m_sWalkingTunnelFrontEndAnim_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sWalkingTunnelFrontEndAnim", (DefaultValue, CStrId(g_unk_7101d470e0)));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelBackEndAnim_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_sWalkingTunnelBackEndAnim_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100530ff8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_sWalkingTunnelBackEndAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100530ff8);
         DREAD_REFLECTED_FUNCTION("_m_sWalkingTunnelBackEndAnim_SetterFunction")
             fn_710052d084(fn, "_m_sWalkingTunnelBackEndAnim_SetterFunction");
     }();

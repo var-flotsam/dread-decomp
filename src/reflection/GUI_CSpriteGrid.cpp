@@ -44,73 +44,31 @@ void fn_71011fc8f4(UnkReflFunction* fn, const char* name);
 namespace GUI::CSpriteGrid {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_Image_GetterFunction") {
-        fn->name = base::global::UnkStrId("_Image_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fde04);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_Image_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_71011fde04);
     DREAD_REFLECTED_FUNCTION("_Image_SetterFunction")
         fn_71011fc00c(fn, "_Image_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "Image");
-    DREAD_REFLECTED_FUNCTION("_CellDefaultSpriteSheetItem_GetterFunction") {
-        fn->name = base::global::UnkStrId("_CellDefaultSpriteSheetItem_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fdf34);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_CellDefaultSpriteSheetItem_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011fdf34);
     DREAD_REFLECTED_FUNCTION("_CellDefaultSpriteSheetItem_SetterFunction")
         fn_71011fc188(fn, "_CellDefaultSpriteSheetItem_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "CellDefaultSpriteSheetItem");
-    DREAD_REFLECTED_FUNCTION("_GridSizeX_GetterFunction") {
-        fn->name = base::global::UnkStrId("_GridSizeX_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fe028);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_GridSizeX_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_71011fe028);
     DREAD_REFLECTED_FUNCTION("_GridSizeX_SetterFunction")
         fn_71011fc304(fn, "_GridSizeX_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "GridSizeX");
-    DREAD_REFLECTED_FUNCTION("_GridSizeY_GetterFunction") {
-        fn->name = base::global::UnkStrId("_GridSizeY_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fe114);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_GridSizeY_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_71011fe114);
     DREAD_REFLECTED_FUNCTION("_GridSizeY_SetterFunction")
         fn_71011fc480(fn, "_GridSizeY_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "GridSizeY");
-    DREAD_REFLECTED_FUNCTION("_CellSizeX_GetterFunction") {
-        fn->name = base::global::UnkStrId("_CellSizeX_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fe200);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_CellSizeX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011fe200);
     DREAD_REFLECTED_FUNCTION("_CellSizeX_SetterFunction")
         fn_71011fc5fc(fn, "_CellSizeX_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "CellSizeX");
-    DREAD_REFLECTED_FUNCTION("_CellSizeY_GetterFunction") {
-        fn->name = base::global::UnkStrId("_CellSizeY_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fe2ec);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_CellSizeY_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011fe2ec);
     DREAD_REFLECTED_FUNCTION("_CellSizeY_SetterFunction")
         fn_71011fc778(fn, "_CellSizeY_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "CellSizeY");
-    DREAD_REFLECTED_FUNCTION("_BlendMode_GetterFunction") {
-        fn->name = base::global::UnkStrId("_BlendMode_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011fe3d8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_BlendMode_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011fe3d8);
     DREAD_REFLECTED_FUNCTION("_BlendMode_SetterFunction")
         fn_71011fc8f4(fn, "_BlendMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "BlendMode");

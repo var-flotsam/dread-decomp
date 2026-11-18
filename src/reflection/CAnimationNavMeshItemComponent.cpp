@@ -30,11 +30,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateAnimationStage")
         fn_71009b7998(fn, "CreateAnimationStage");
     DREAD_REFLECTED_FUNCTION("AddStageColliderWithOffSet") {
-        fn->name = base::global::UnkStrId("AddStageColliderWithOffSet", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009b84d0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddStageColliderWithOffSet", &g_unk_7101d5af48, 0, fn_71009b84d0);
         fn_7100500260(fn);
     }
 }

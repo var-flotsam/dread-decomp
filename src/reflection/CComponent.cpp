@@ -32,31 +32,13 @@ void fn_71010c2ea0(UnkReflFunction* fn, const char* name);
 namespace CComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_bEnabled_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bEnabled_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010c57bc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bEnabled_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71010c57bc);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bEnabled", (DefaultValue, true), (Persistence, 0), (EditorVisible, false), (Description, base::global::CRntString("Enabled?")));
-    DREAD_REFLECTED_FUNCTION("_bWantsEnabled_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bWantsEnabled_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010c580c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bWantsEnabled_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71010c580c);
     DREAD_REFLECTED_FUNCTION("_bWantsEnabled_SetterFunction")
         fn_71010c2d24(fn, "_bWantsEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bWantsEnabled", (DefaultValue, true), (Description, base::global::CRntString("States if the component should be enabled at the begining")));
-    DREAD_REFLECTED_FUNCTION("_bUseDefaultValues_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bUseDefaultValues_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010c58b4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bUseDefaultValues_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71010c58b4);
     DREAD_REFLECTED_FUNCTION("_bUseDefaultValues_SetterFunction")
         fn_71010c2ea0(fn, "_bUseDefaultValues_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bUseDefaultValues", (DefaultValue, true), (Description, base::global::CRntString("Use charclass values instead of specific values")));

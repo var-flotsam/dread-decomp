@@ -33,11 +33,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FUNCTION("StartAction") {
-        fn->name = base::global::UnkStrId("StartAction", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a2dbb4);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("StartAction", &g_unk_7101d5af48, 0, fn_7100a2dbb4);
         fn_7100a2d930(fn);
     }
     DREAD_REFLECTED_FUNCTION("EndAction")

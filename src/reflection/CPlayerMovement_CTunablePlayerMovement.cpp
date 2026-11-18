@@ -60,13 +60,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToStartFocusInOpticCamo", 0x5c, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fFrozenDamage", 0x60, (DefaultValue, 25.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToFrozenDamage", 0x64, (DefaultValue, 0.5f));
-    DREAD_REFLECTED_FUNCTION("_iFocusMode_GetterFunction") {
-        fn->name = base::global::UnkStrId("_iFocusMode_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010dce08);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_iFocusMode_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_71010dce08);
     DREAD_REFLECTED_FUNCTION("_iFocusMode_SetterFunction")
         fn_71010d6424(fn, "_iFocusMode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iFocusMode", (DefaultValue, 0));

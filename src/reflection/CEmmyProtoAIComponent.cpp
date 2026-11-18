@@ -29,13 +29,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sDirtMaterialConstantId", 0x2a700, (DefaultValue, "vDirtColor"), (Description, "Dirt effect constant id"));
     DREAD_REFLECTED_FUNCTION("StandStillFor")
         fn_71004fa958(fn, "StandStillFor");
-    DREAD_REFLECTED_FUNCTION("OnPresentationCutsceneEnd") {
-        fn->name = base::global::UnkStrId("OnPresentationCutsceneEnd", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71004fd4d8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("OnPresentationCutsceneEnd", &g_unk_7101d5af48, 0, fn_71004fd4d8);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

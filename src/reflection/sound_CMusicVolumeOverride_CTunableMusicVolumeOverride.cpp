@@ -181,877 +181,439 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fTitleScreen_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fTitleScreen_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101a4b8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fTitleScreen_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101a4b8);
         DREAD_REFLECTED_FUNCTION("_fTitleScreen_SetterFunction")
             fn_71010113e8(fn, "_fTitleScreen_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fTitleScreen", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fSamusStory_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fSamusStory_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101a59c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fSamusStory_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101a59c);
         DREAD_REFLECTED_FUNCTION("_fSamusStory_SetterFunction")
             fn_7101011564(fn, "_fSamusStory_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSamusStory", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fOpening_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fOpening_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101a680);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fOpening_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101a680);
         DREAD_REFLECTED_FUNCTION("_fOpening_SetterFunction")
             fn_71010116e0(fn, "_fOpening_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fOpening", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fGameOver_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fGameOver_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101a764);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fGameOver_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101a764);
         DREAD_REFLECTED_FUNCTION("_fGameOver_SetterFunction")
             fn_710101185c(fn, "_fGameOver_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fGameOver", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fSaveStation_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fSaveStation_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101a848);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fSaveStation_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101a848);
         DREAD_REFLECTED_FUNCTION("_fSaveStation_SetterFunction")
             fn_71010119d8(fn, "_fSaveStation_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSaveStation", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fMapStation_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fMapStation_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101a92c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fMapStation_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101a92c);
         DREAD_REFLECTED_FUNCTION("_fMapStation_SetterFunction")
             fn_7101011b54(fn, "_fMapStation_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMapStation", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fAccessPoint_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fAccessPoint_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101aa10);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fAccessPoint_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101aa10);
         DREAD_REFLECTED_FUNCTION("_fAccessPoint_SetterFunction")
             fn_7101011cd0(fn, "_fAccessPoint_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fAccessPoint", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fStatueRoom_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fStatueRoom_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101aaf4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fStatueRoom_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101aaf4);
         DREAD_REFLECTED_FUNCTION("_fStatueRoom_SetterFunction")
             fn_7101011e4c(fn, "_fStatueRoom_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fStatueRoom", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fTrainStation_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fTrainStation_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101abd8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fTrainStation_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101abd8);
         DREAD_REFLECTED_FUNCTION("_fTrainStation_SetterFunction")
             fn_7101011fc8(fn, "_fTrainStation_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fTrainStation", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fCave001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fCave001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101acbc);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fCave001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101acbc);
         DREAD_REFLECTED_FUNCTION("_fCave001_SetterFunction")
             fn_7101012144(fn, "_fCave001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fCave001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fCave002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fCave002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101ada0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fCave002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101ada0);
         DREAD_REFLECTED_FUNCTION("_fCave002_SetterFunction")
             fn_71010122c0(fn, "_fCave002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fCave002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fCave003_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fCave003_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101ae84);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fCave003_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101ae84);
         DREAD_REFLECTED_FUNCTION("_fCave003_SetterFunction")
             fn_710101243c(fn, "_fCave003_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fCave003", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fCaveThermalDevice_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fCaveThermalDevice_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101af68);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fCaveThermalDevice_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101af68);
         DREAD_REFLECTED_FUNCTION("_fCaveThermalDevice_SetterFunction")
             fn_71010125b8(fn, "_fCaveThermalDevice_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fCaveThermalDevice", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fCaveCooldDown_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fCaveCooldDown_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b04c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fCaveCooldDown_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b04c);
         DREAD_REFLECTED_FUNCTION("_fCaveCooldDown_SetterFunction")
             fn_7101012734(fn, "_fCaveCooldDown_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fCaveCooldDown", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fMagma001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fMagma001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b130);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fMagma001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b130);
         DREAD_REFLECTED_FUNCTION("_fMagma001_SetterFunction")
             fn_71010128b0(fn, "_fMagma001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMagma001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fMagma002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fMagma002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b214);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fMagma002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b214);
         DREAD_REFLECTED_FUNCTION("_fMagma002_SetterFunction")
             fn_7101012a2c(fn, "_fMagma002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMagma002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fMagmaCoolDown_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fMagmaCoolDown_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b2f8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fMagmaCoolDown_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b2f8);
         DREAD_REFLECTED_FUNCTION("_fMagmaCoolDown_SetterFunction")
             fn_7101012ba8(fn, "_fMagmaCoolDown_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fMagmaCoolDown", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBaseLab001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBaseLab001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b3dc);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBaseLab001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b3dc);
         DREAD_REFLECTED_FUNCTION("_fBaseLab001_SetterFunction")
             fn_7101012d24(fn, "_fBaseLab001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBaseLab001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBaseLabBlackOut_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBaseLabBlackOut_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b4c0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBaseLabBlackOut_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b4c0);
         DREAD_REFLECTED_FUNCTION("_fBaseLabBlackOut_SetterFunction")
             fn_7101012ea0(fn, "_fBaseLabBlackOut_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBaseLabBlackOut", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fAqua001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fAqua001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b5a4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fAqua001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b5a4);
         DREAD_REFLECTED_FUNCTION("_fAqua001_SetterFunction")
             fn_710101301c(fn, "_fAqua001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fAqua001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fAqua002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fAqua002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b688);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fAqua002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b688);
         DREAD_REFLECTED_FUNCTION("_fAqua002_SetterFunction")
             fn_7101013198(fn, "_fAqua002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fAqua002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fForest001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fForest001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b76c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fForest001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b76c);
         DREAD_REFLECTED_FUNCTION("_fForest001_SetterFunction")
             fn_7101013314(fn, "_fForest001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fForest001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fQuarantine001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fQuarantine001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b850);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fQuarantine001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b850);
         DREAD_REFLECTED_FUNCTION("_fQuarantine001_SetterFunction")
             fn_7101013490(fn, "_fQuarantine001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fQuarantine001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fSancturary001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fSancturary001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101b934);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fSancturary001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101b934);
         DREAD_REFLECTED_FUNCTION("_fSancturary001_SetterFunction")
             fn_710101360c(fn, "_fSancturary001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSancturary001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fShipyard001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fShipyard001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101ba18);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fShipyard001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101ba18);
         DREAD_REFLECTED_FUNCTION("_fShipyard001_SetterFunction")
             fn_7101013788(fn, "_fShipyard001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fShipyard001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fSkybase001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fSkybase001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101bafc);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fSkybase001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101bafc);
         DREAD_REFLECTED_FUNCTION("_fSkybase001_SetterFunction")
             fn_7101013904(fn, "_fSkybase001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSkybase001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEscapeSequence_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEscapeSequence_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101bbe0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEscapeSequence_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101bbe0);
         DREAD_REFLECTED_FUNCTION("_fEscapeSequence_SetterFunction")
             fn_7101013a80(fn, "_fEscapeSequence_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEscapeSequence", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmyPatrol_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmyPatrol_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101bcc4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmyPatrol_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101bcc4);
         DREAD_REFLECTED_FUNCTION("_fEmmyPatrol_SetterFunction")
             fn_7101013bfc(fn, "_fEmmyPatrol_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmyPatrol", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmySearch_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmySearch_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101bda8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmySearch_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101bda8);
         DREAD_REFLECTED_FUNCTION("_fEmmySearch_SetterFunction")
             fn_7101013d78(fn, "_fEmmySearch_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmySearch", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmyChase_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmyChase_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101be8c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmyChase_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101be8c);
         DREAD_REFLECTED_FUNCTION("_fEmmyChase_SetterFunction")
             fn_7101013ef4(fn, "_fEmmyChase_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmyChase", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmyDefeated_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmyDefeated_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101bf70);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmyDefeated_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101bf70);
         DREAD_REFLECTED_FUNCTION("_fEmmyDefeated_SetterFunction")
             fn_7101014070(fn, "_fEmmyDefeated_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeated", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedMagma_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmyDefeatedMagma_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c054);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmyDefeatedMagma_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c054);
         DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedMagma_SetterFunction")
             fn_71010141ec(fn, "_fEmmyDefeatedMagma_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedMagma", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedBaselab_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmyDefeatedBaselab_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c138);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmyDefeatedBaselab_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c138);
         DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedBaselab_SetterFunction")
             fn_7101014368(fn, "_fEmmyDefeatedBaselab_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedBaselab", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedForest_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmyDefeatedForest_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c21c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmyDefeatedForest_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c21c);
         DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedForest_SetterFunction")
             fn_71010144e4(fn, "_fEmmyDefeatedForest_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedForest", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedSanctuary_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmyDefeatedSanctuary_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c300);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmyDefeatedSanctuary_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c300);
         DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedSanctuary_SetterFunction")
             fn_7101014660(fn, "_fEmmyDefeatedSanctuary_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedSanctuary", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedShipyard_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEmmyDefeatedShipyard_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c3e4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEmmyDefeatedShipyard_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c3e4);
         DREAD_REFLECTED_FUNCTION("_fEmmyDefeatedShipyard_SetterFunction")
             fn_71010147dc(fn, "_fEmmyDefeatedShipyard_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEmmyDefeatedShipyard", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fCentralUnitPhase1_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fCentralUnitPhase1_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c4c8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fCentralUnitPhase1_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c4c8);
         DREAD_REFLECTED_FUNCTION("_fCentralUnitPhase1_SetterFunction")
             fn_7101014958(fn, "_fCentralUnitPhase1_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fCentralUnitPhase1", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fCentralUnitPhase2_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fCentralUnitPhase2_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c5ac);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fCentralUnitPhase2_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c5ac);
         DREAD_REFLECTED_FUNCTION("_fCentralUnitPhase2_SetterFunction")
             fn_7101014ad4(fn, "_fCentralUnitPhase2_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fCentralUnitPhase2", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossDefeated_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossDefeated_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c690);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossDefeated_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c690);
         DREAD_REFLECTED_FUNCTION("_fBossDefeated_SetterFunction")
             fn_7101014c50(fn, "_fBossDefeated_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossDefeated", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossScorpius001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossScorpius001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c774);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossScorpius001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c774);
         DREAD_REFLECTED_FUNCTION("_fBossScorpius001_SetterFunction")
             fn_7101014dcc(fn, "_fBossScorpius001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossScorpius001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossScorpius002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossScorpius002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c858);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossScorpius002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c858);
         DREAD_REFLECTED_FUNCTION("_fBossScorpius002_SetterFunction")
             fn_7101014f48(fn, "_fBossScorpius002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossScorpius002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossScorpiusPresentation_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossScorpiusPresentation_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101c93c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossScorpiusPresentation_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101c93c);
         DREAD_REFLECTED_FUNCTION("_fBossScorpiusPresentation_SetterFunction")
             fn_71010150c4(fn, "_fBossScorpiusPresentation_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossScorpiusPresentation", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossCoolDownX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossCoolDownX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101ca20);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossCoolDownX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101ca20);
         DREAD_REFLECTED_FUNCTION("_fBossCoolDownX_SetterFunction")
             fn_7101015240(fn, "_fBossCoolDownX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossCoolDownX", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossCoolDownXPresentation_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossCoolDownXPresentation_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101cb04);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossCoolDownXPresentation_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101cb04);
         DREAD_REFLECTED_FUNCTION("_fBossCoolDownXPresentation_SetterFunction")
             fn_71010153bc(fn, "_fBossCoolDownXPresentation_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossCoolDownXPresentation", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossKraid001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossKraid001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101cbe8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossKraid001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101cbe8);
         DREAD_REFLECTED_FUNCTION("_fBossKraid001_SetterFunction")
             fn_7101015538(fn, "_fBossKraid001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossKraid001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossKraid002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossKraid002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101cccc);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossKraid002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101cccc);
         DREAD_REFLECTED_FUNCTION("_fBossKraid002_SetterFunction")
             fn_71010156b4(fn, "_fBossKraid002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossKraid002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossKraidPresentation_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossKraidPresentation_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101cdb0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossKraidPresentation_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101cdb0);
         DREAD_REFLECTED_FUNCTION("_fBossKraidPresentation_SetterFunction")
             fn_7101015830(fn, "_fBossKraidPresentation_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossKraidPresentation", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fHydrogiga001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fHydrogiga001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101ce94);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fHydrogiga001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101ce94);
         DREAD_REFLECTED_FUNCTION("_fHydrogiga001_SetterFunction")
             fn_71010159ac(fn, "_fHydrogiga001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fHydrogiga001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fHydrogiga002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fHydrogiga002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101cf78);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fHydrogiga002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101cf78);
         DREAD_REFLECTED_FUNCTION("_fHydrogiga002_SetterFunction")
             fn_7101015b28(fn, "_fHydrogiga002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fHydrogiga002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fSuperGoliathX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fSuperGoliathX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d05c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fSuperGoliathX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d05c);
         DREAD_REFLECTED_FUNCTION("_fSuperGoliathX_SetterFunction")
             fn_7101015ca4(fn, "_fSuperGoliathX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSuperGoliathX", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fSuperQuetzoaX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fSuperQuetzoaX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d140);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fSuperQuetzoaX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d140);
         DREAD_REFLECTED_FUNCTION("_fSuperQuetzoaX_SetterFunction")
             fn_7101015e20(fn, "_fSuperQuetzoaX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSuperQuetzoaX", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossMidChozoRobotSoldier_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossMidChozoRobotSoldier_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d224);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossMidChozoRobotSoldier_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d224);
         DREAD_REFLECTED_FUNCTION("_fBossMidChozoRobotSoldier_SetterFunction")
             fn_7101015f9c(fn, "_fBossMidChozoRobotSoldier_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossMidChozoRobotSoldier", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossMidChozoWarriorX001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossMidChozoWarriorX001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d308);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossMidChozoWarriorX001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d308);
         DREAD_REFLECTED_FUNCTION("_fBossMidChozoWarriorX001_SetterFunction")
             fn_7101016118(fn, "_fBossMidChozoWarriorX001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossMidChozoWarriorX001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossMidChozoWarriorX002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossMidChozoWarriorX002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d3ec);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossMidChozoWarriorX002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d3ec);
         DREAD_REFLECTED_FUNCTION("_fBossMidChozoWarriorX002_SetterFunction")
             fn_7101016294(fn, "_fBossMidChozoWarriorX002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossMidChozoWarriorX002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossCommanderPresentation_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossCommanderPresentation_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d4d0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossCommanderPresentation_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d4d0);
         DREAD_REFLECTED_FUNCTION("_fBossCommanderPresentation_SetterFunction")
             fn_7101016410(fn, "_fBossCommanderPresentation_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossCommanderPresentation", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossCommander001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossCommander001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d5b4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossCommander001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d5b4);
         DREAD_REFLECTED_FUNCTION("_fBossCommander001_SetterFunction")
             fn_710101658c(fn, "_fBossCommander001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossCommander001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossCommander002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossCommander002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d698);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossCommander002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d698);
         DREAD_REFLECTED_FUNCTION("_fBossCommander002_SetterFunction")
             fn_7101016708(fn, "_fBossCommander002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossCommander002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossCommander003_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossCommander003_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d77c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossCommander003_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d77c);
         DREAD_REFLECTED_FUNCTION("_fBossCommander003_SetterFunction")
             fn_7101016884(fn, "_fBossCommander003_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossCommander003", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossCommanderX001_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossCommanderX001_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d860);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossCommanderX001_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d860);
         DREAD_REFLECTED_FUNCTION("_fBossCommanderX001_SetterFunction")
             fn_7101016a00(fn, "_fBossCommanderX001_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossCommanderX001", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fBossCommanderX002_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fBossCommanderX002_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101d944);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fBossCommanderX002_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101d944);
         DREAD_REFLECTED_FUNCTION("_fBossCommanderX002_SetterFunction")
             fn_7101016b7c(fn, "_fBossCommanderX002_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fBossCommanderX002", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fProfessorX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fProfessorX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101da28);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fProfessorX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101da28);
         DREAD_REFLECTED_FUNCTION("_fProfessorX_SetterFunction")
             fn_7101016cf8(fn, "_fProfessorX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fProfessorX", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEncounterProfessor_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEncounterProfessor_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101db0c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEncounterProfessor_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101db0c);
         DREAD_REFLECTED_FUNCTION("_fEncounterProfessor_SetterFunction")
             fn_7101016e74(fn, "_fEncounterProfessor_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEncounterProfessor", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fSancEmmyPresentation_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fSancEmmyPresentation_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101dbf0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fSancEmmyPresentation_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101dbf0);
         DREAD_REFLECTED_FUNCTION("_fSancEmmyPresentation_SetterFunction")
             fn_7101016ff0(fn, "_fSancEmmyPresentation_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fSancEmmyPresentation", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fStrongReaction_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fStrongReaction_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101dcd4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fStrongReaction_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101dcd4);
         DREAD_REFLECTED_FUNCTION("_fStrongReaction_SetterFunction")
             fn_710101716c(fn, "_fStrongReaction_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fStrongReaction", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fPowerBomb_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fPowerBomb_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101ddb8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fPowerBomb_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101ddb8);
         DREAD_REFLECTED_FUNCTION("_fPowerBomb_SetterFunction")
             fn_71010172e8(fn, "_fPowerBomb_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fPowerBomb", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fCommanderOutro_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fCommanderOutro_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101de9c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fCommanderOutro_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101de9c);
         DREAD_REFLECTED_FUNCTION("_fCommanderOutro_SetterFunction")
             fn_7101017464(fn, "_fCommanderOutro_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fCommanderOutro", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEndGame_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEndGame_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101df80);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEndGame_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101df80);
         DREAD_REFLECTED_FUNCTION("_fEndGame_SetterFunction")
             fn_71010175e0(fn, "_fEndGame_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEndGame", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fStaffRoll_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fStaffRoll_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101e064);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fStaffRoll_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101e064);
         DREAD_REFLECTED_FUNCTION("_fStaffRoll_SetterFunction")
             fn_710101775c(fn, "_fStaffRoll_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fStaffRoll", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fEndScreen_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fEndScreen_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101e148);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fEndScreen_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101e148);
         DREAD_REFLECTED_FUNCTION("_fEndScreen_SetterFunction")
             fn_71010178d8(fn, "_fEndScreen_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fEndScreen", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fJingleTojo_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fJingleTojo_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101e22c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fJingleTojo_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101e22c);
         DREAD_REFLECTED_FUNCTION("_fJingleTojo_SetterFunction")
             fn_7101017a54(fn, "_fJingleTojo_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fJingleTojo", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fJingleItemGet_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fJingleItemGet_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101e310);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fJingleItemGet_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101e310);
         DREAD_REFLECTED_FUNCTION("_fJingleItemGet_SetterFunction")
             fn_7101017bd0(fn, "_fJingleItemGet_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fJingleItemGet", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fJingleItemGetUnknown_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fJingleItemGetUnknown_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101e3f4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fJingleItemGetUnknown_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101e3f4);
         DREAD_REFLECTED_FUNCTION("_fJingleItemGetUnknown_SetterFunction")
             fn_7101017d4c(fn, "_fJingleItemGetUnknown_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fJingleItemGetUnknown", (DefaultValue, -1.0f));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_fJinglePowerUpGet_GetterFunction") {
-            fn->name = base::global::UnkStrId("_fJinglePowerUpGet_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710101e4d8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_fJinglePowerUpGet_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710101e4d8);
         DREAD_REFLECTED_FUNCTION("_fJinglePowerUpGet_SetterFunction")
             fn_7101017ec8(fn, "_fJinglePowerUpGet_SetterFunction");
     }();

@@ -62,11 +62,7 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x9bc, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION("DisableLogic") {
-        fn->name = base::global::UnkStrId("DisableLogic", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a4953c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("DisableLogic", &g_unk_7101d5af48, 0, fn_7100a4953c);
         fn_71003540d8(fn);
     }
 }

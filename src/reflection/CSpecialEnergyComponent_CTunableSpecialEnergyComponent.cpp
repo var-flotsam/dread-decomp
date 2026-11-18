@@ -91,35 +91,17 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Fill energy tanks"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    DREAD_REFLECTED_FUNCTION("_fMaxEnergy_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fMaxEnergy_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a20250);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fMaxEnergy_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100a20250);
     DREAD_REFLECTED_FUNCTION("_fMaxEnergy_SetterFunction")
         fn_7100a1f0ac(fn, "_fMaxEnergy_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMaxEnergy", (DefaultValue, -1.0f), (Description, "Max energy"));
     DREAD_REFLECTED_FIELD(f32, "fEnergy", 0xffffffff, (DefaultValue, -1.0f), (Description, "Current energy"));
-    DREAD_REFLECTED_FUNCTION("_fEnergy_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fEnergy_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a202f8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fEnergy_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100a202f8);
     fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("fEnergy")), cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_fEnergy_SetterFunction")
         fn_7100a1f228(fn, "_fEnergy_SetterFunction");
     fn_71000e8180(base::reflection::refl_FindField(cls, base::global::CName("fEnergy")), cls->m_array_0x110.size() - 1);
-    DREAD_REFLECTED_FUNCTION("_m_bSpecialEnergyLocked_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bSpecialEnergyLocked_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a203a8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bSpecialEnergyLocked_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100a203a8);
     DREAD_REFLECTED_FUNCTION("_m_bSpecialEnergyLocked_SetterFunction")
         fn_7100a1f3a4(fn, "_m_bSpecialEnergyLocked_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bSpecialEnergyLocked", (DefaultValue, false), (Description, "special energy locked"));

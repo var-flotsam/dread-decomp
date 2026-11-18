@@ -47,73 +47,31 @@ void refl_AddFields(CClass* cls) {
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("eHarassPathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x14760, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<IPath::EType>::object, 3);
-    DREAD_REFLECTED_FUNCTION("_fTimeToGoPatrol_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fTimeToGoPatrol_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fTimeToGoPatrol_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71005abe98);
     DREAD_REFLECTED_FUNCTION("_fTimeToGoPatrol_SetterFunction")
         fn_71005a9250(fn, "_fTimeToGoPatrol_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fTimeToGoPatrol", (Persistence, 0), (EditorVisible, false));
-    DREAD_REFLECTED_FUNCTION("_fSpeed_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fSpeed_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fSpeed_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71005abe98);
     DREAD_REFLECTED_FUNCTION("_fSpeed_SetterFunction")
         fn_71005a9250(fn, "_fSpeed_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fSpeed", (Persistence, 0), (EditorVisible, false));
-    DREAD_REFLECTED_FUNCTION("_bIsEating_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bIsEating_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005abef0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bIsEating_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71005abef0);
     DREAD_REFLECTED_FUNCTION("_bIsEating_SetterFunction")
         fn_71005a93cc(fn, "_bIsEating_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bIsEating", (Persistence, 0), (EditorVisible, false));
-    DREAD_REFLECTED_FUNCTION("_bCanEat_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bCanEat_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005abef0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bCanEat_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71005abef0);
     DREAD_REFLECTED_FUNCTION("_bCanEat_SetterFunction")
         fn_71005a93cc(fn, "_bCanEat_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCanEat", (Persistence, 0), (EditorVisible, false));
-    DREAD_REFLECTED_FUNCTION("_fPatrolEatDuration_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fPatrolEatDuration_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fPatrolEatDuration_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71005abe98);
     DREAD_REFLECTED_FUNCTION("_fPatrolEatDuration_SetterFunction")
         fn_71005a9250(fn, "_fPatrolEatDuration_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPatrolEatDuration", (Persistence, 0), (EditorVisible, false));
-    DREAD_REFLECTED_FUNCTION("_fPatrolEatCooldown_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fPatrolEatCooldown_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005abe98);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fPatrolEatCooldown_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71005abe98);
     DREAD_REFLECTED_FUNCTION("_fPatrolEatCooldown_SetterFunction")
         fn_71005a9250(fn, "_fPatrolEatCooldown_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fPatrolEatCooldown", (Persistence, 0), (EditorVisible, false));
-    DREAD_REFLECTED_FUNCTION("_uMask_GetterFunction") {
-        fn->name = base::global::UnkStrId("_uMask_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71005abf48);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_uMask_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0, fn_71005abf48);
     DREAD_REFLECTED_FUNCTION("_uMask_SetterFunction")
         fn_71005a9548(fn, "_uMask_SetterFunction");
     DREAD_REFLECTED_PROPERTY(u32, "uMask", (Persistence, 0), (EditorVisible, false));

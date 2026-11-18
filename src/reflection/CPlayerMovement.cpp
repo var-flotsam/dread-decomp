@@ -29,13 +29,7 @@ void fn_71010d7624(UnkReflFunction* fn, const char* name);
 namespace CPlayerMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_bForcedAnalogInput_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bForcedAnalogInput_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010dced0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bForcedAnalogInput_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71010dced0);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bForcedAnalogInput", (Persistence, 0));
     DREAD_REFLECTED_FIELD(f32, "fImpactImpulseX", 0x7cc, (DefaultValue, 700.0f), (Description, "Impact impulse X"));
     DREAD_REFLECTED_FIELD(f32, "fImpactImpulseY", 0x7d0, (DefaultValue, 1700.0f), (Description, "Impact impulse Y"));

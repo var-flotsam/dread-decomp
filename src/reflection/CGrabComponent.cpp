@@ -27,13 +27,7 @@ void fn_710113f59c();
 namespace CGrabComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_bIsInGrab_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bIsInGrab_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710113f59c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bIsInGrab_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710113f59c);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsInGrab", (Persistence, 0), (EditorVisible, false));
     DREAD_REFLECTED_FIELD_OF("CGrabComponent::ELinkMode", "eLinkModeAsGrabber", 0xc4, (DefaultValue, 1), (Description, "Link Node as Grabbed (DC_Grab, Usable)"));
 }

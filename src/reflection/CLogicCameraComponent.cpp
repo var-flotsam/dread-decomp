@@ -30,13 +30,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("rLogicCamera", true), fn_7100910720(), 0x30, -1, -1);
     [&] {
-        DREAD_REFLECTED_FUNCTION("GetLogicCamera") {
-            fn->name = base::global::UnkStrId("GetLogicCamera", true);
-            fn->return_type = base::reflection::PointerType<CLogicCamera*>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71009115e0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("GetLogicCamera", base::reflection::PointerType<CLogicCamera*>::Get(), 0, fn_71009115e0);
     }();
 }
 bool refl_Equals(const void*, const void*) { return false; }

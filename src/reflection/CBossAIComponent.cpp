@@ -44,11 +44,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field6 = AddReflectedField(cls, CStrId("wpBossCameraCeilingLandmark", true), &g_unk_717269bb48, 0x147a8, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
     DREAD_REFLECTED_FUNCTION("SetBossCamera") {
-        fn->name = base::global::UnkStrId("SetBossCamera", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71003b0e60);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetBossCamera", &g_unk_7101d5af48, 0, fn_71003b0e60);
         fn_7100302d14(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Sets the Boss Camera");
     }

@@ -41,19 +41,11 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateStage")
         fn_71009be288(fn, "CreateStage");
     DREAD_REFLECTED_FUNCTION("AddStageCollider") {
-        fn->name = base::global::UnkStrId("AddStageCollider", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009c29f0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddStageCollider", &g_unk_7101d5af48, 0, fn_71009c29f0);
         fn_7100500260(fn);
     }
     DREAD_REFLECTED_FUNCTION("SetStageSide") {
-        fn->name = base::global::UnkStrId("SetStageSide", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009c2b04);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetStageSide", &g_unk_7101d5af48, 0, fn_71009c2b04);
         fn_7100500260(fn);
     }
     DREAD_REFLECTED_FUNCTION("ChangeStage")

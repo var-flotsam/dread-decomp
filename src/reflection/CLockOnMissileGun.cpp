@@ -58,13 +58,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
-    DREAD_REFLECTED_FUNCTION("_sDamageSource_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sDamageSource_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710084db80);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sDamageSource_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710084db80);
     DREAD_REFLECTED_FUNCTION("_sDamageSource_SetterFunction")
         fn_710084c724(fn, "_sDamageSource_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sDamageSource", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Source of the damage to be dealt"));

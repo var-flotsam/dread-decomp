@@ -34,33 +34,15 @@ void fn_71008eaea8(UnkReflFunction* fn, const char* name);
 namespace CDirLightComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_vDir_GetterFunction") {
-        fn->name = base::global::UnkStrId("_vDir_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008eba60);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_vDir_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_71008eba60);
     DREAD_REFLECTED_FUNCTION("_vDir_SetterFunction")
         fn_71008eabb0(fn, "_vDir_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vDir", (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 0.0f}), (EditorModeDataFlow, 3), (bSkipDataFlowOrder, true), (Persistence, 0));
-    DREAD_REFLECTED_FUNCTION("_fAnimFrame_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fAnimFrame_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008ebb34);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fAnimFrame_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008ebb34);
     DREAD_REFLECTED_FUNCTION("_fAnimFrame_SetterFunction")
         fn_71008ead2c(fn, "_fAnimFrame_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAnimFrame");
-    DREAD_REFLECTED_FUNCTION("_bCastShadows_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bCastShadows_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008ebbec);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bCastShadows_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71008ebbec);
     DREAD_REFLECTED_FUNCTION("_bCastShadows_SetterFunction")
         fn_71008eaea8(fn, "_bCastShadows_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCastShadows");

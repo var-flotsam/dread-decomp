@@ -118,506 +118,252 @@ namespace GUI::CDisplayObject {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     [&] {
-        DREAD_REFLECTED_FUNCTION("ForceRedraw") {
-            fn->name = base::global::UnkStrId("ForceRedraw", true);
-            fn->return_type = &g_unk_7101d5af48;
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d3514);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("ForceRedraw", &g_unk_7101d5af48, 0, fn_71011d3514);
         DREAD_REFLECTED_FUNCTION("SetEventHandler") {
-            fn->name = base::global::UnkStrId("SetEventHandler", true);
-            fn->return_type = &g_unk_7101d5af48;
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d366c);
+            DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetEventHandler", &g_unk_7101d5af48, 0, fn_71011d366c);
             fn_71008dc538(fn);
         }
         DREAD_REFLECTED_FUNCTION("SetSortKeyOverride") {
-            fn->name = base::global::UnkStrId("SetSortKeyOverride", true);
-            fn->return_type = &g_unk_7101d5af48;
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d36a4);
+            DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetSortKeyOverride", &g_unk_7101d5af48, 0, fn_71011d36a4);
             fn_7100a2dbec(fn);
         }
         DREAD_REFLECTED_FUNCTION("SetSceneIdx")
             fn_71011c8808(fn, "SetSceneIdx");
-        DREAD_REFLECTED_FUNCTION("_sID_GetterFunction") {
-            fn->name = base::global::UnkStrId("_sID_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d37ac);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_sID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71011d37ac);
         DREAD_REFLECTED_FUNCTION("_sID_SetterFunction")
             fn_71011c8984(fn, "_sID_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "sID");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_Enabled_GetterFunction") {
-            fn->name = base::global::UnkStrId("_Enabled_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d38ac);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_Enabled_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011d38ac);
         DREAD_REFLECTED_FUNCTION("_Enabled_SetterFunction")
             fn_71011c8b00(fn, "_Enabled_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "Enabled");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_Visible_GetterFunction") {
-            fn->name = base::global::UnkStrId("_Visible_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d3954);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_Visible_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011d3954);
         DREAD_REFLECTED_FUNCTION("_Visible_SetterFunction")
             fn_71011c8c7c(fn, "_Visible_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "Visible", (DefaultValue, true));
     [&] {
-        DREAD_REFLECTED_FUNCTION("_Focusable_GetterFunction") {
-            fn->name = base::global::UnkStrId("_Focusable_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d3a3c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_Focusable_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011d3a3c);
         DREAD_REFLECTED_FUNCTION("_Focusable_SetterFunction")
             fn_71011c8df8(fn, "_Focusable_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "Focusable");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_DragDropEnabled_GetterFunction") {
-            fn->name = base::global::UnkStrId("_DragDropEnabled_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d3b74);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_DragDropEnabled_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011d3b74);
         DREAD_REFLECTED_FUNCTION("_DragDropEnabled_SetterFunction")
             fn_71011c8f74(fn, "_DragDropEnabled_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "DragDropEnabled");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_Autosize_GetterFunction") {
-            fn->name = base::global::UnkStrId("_Autosize_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d3c04);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_Autosize_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011d3c04);
         DREAD_REFLECTED_FUNCTION("_Autosize_SetterFunction")
             fn_71011c90f0(fn, "_Autosize_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(bool, "Autosize");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_StageID_GetterFunction") {
-            fn->name = base::global::UnkStrId("_StageID_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d3cec);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_StageID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011d3cec);
         DREAD_REFLECTED_FUNCTION("_StageID_SetterFunction")
             fn_71011c926c(fn, "_StageID_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "StageID");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_State_GetterFunction") {
-            fn->name = base::global::UnkStrId("_State_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d3e5c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_State_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011d3e5c);
         DREAD_REFLECTED_FUNCTION("_State_SetterFunction")
             fn_71011c93e8(fn, "_State_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "State");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_ClickableAreaShapeID_GetterFunction") {
-            fn->name = base::global::UnkStrId("_ClickableAreaShapeID_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d3fa4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_ClickableAreaShapeID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011d3fa4);
         DREAD_REFLECTED_FUNCTION("_ClickableAreaShapeID_SetterFunction")
             fn_71011c9564(fn, "_ClickableAreaShapeID_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(CStrId, "ClickableAreaShapeID");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_X_GetterFunction") {
-            fn->name = base::global::UnkStrId("_X_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d4178);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_X_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d4178);
         DREAD_REFLECTED_FUNCTION("_X_SetterFunction")
             fn_71011c96dc(fn, "_X_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "X");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_LeftX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_LeftX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d4318);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_LeftX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d4318);
         DREAD_REFLECTED_FUNCTION("_LeftX_SetterFunction")
             fn_71011c9858(fn, "_LeftX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "LeftX");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_RightX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_RightX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d44c0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_RightX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d44c0);
         DREAD_REFLECTED_FUNCTION("_RightX_SetterFunction")
             fn_71011c99d4(fn, "_RightX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "RightX");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_CenterX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_CenterX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d4668);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_CenterX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d4668);
         DREAD_REFLECTED_FUNCTION("_CenterX_SetterFunction")
             fn_71011c9b50(fn, "_CenterX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "CenterX");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_Y_GetterFunction") {
-            fn->name = base::global::UnkStrId("_Y_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d4810);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_Y_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d4810);
         DREAD_REFLECTED_FUNCTION("_Y_SetterFunction")
             fn_71011c9ccc(fn, "_Y_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "Y");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_TopY_GetterFunction") {
-            fn->name = base::global::UnkStrId("_TopY_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d49b0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_TopY_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d49b0);
         DREAD_REFLECTED_FUNCTION("_TopY_SetterFunction")
             fn_71011c9e48(fn, "_TopY_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "TopY");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_BottomY_GetterFunction") {
-            fn->name = base::global::UnkStrId("_BottomY_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d4b58);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_BottomY_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d4b58);
         DREAD_REFLECTED_FUNCTION("_BottomY_SetterFunction")
             fn_71011c9fc4(fn, "_BottomY_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "BottomY");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_CenterY_GetterFunction") {
-            fn->name = base::global::UnkStrId("_CenterY_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d4d00);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_CenterY_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d4d00);
         DREAD_REFLECTED_FUNCTION("_CenterY_SetterFunction")
             fn_71011ca140(fn, "_CenterY_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "CenterY");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_Depth_GetterFunction") {
-            fn->name = base::global::UnkStrId("_Depth_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d4ea8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_Depth_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d4ea8);
         DREAD_REFLECTED_FUNCTION("_Depth_SetterFunction")
             fn_71011ca2bc(fn, "_Depth_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "Depth");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_ScaleX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_ScaleX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d4f84);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_ScaleX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d4f84);
         DREAD_REFLECTED_FUNCTION("_ScaleX_SetterFunction")
             fn_71011ca438(fn, "_ScaleX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "ScaleX");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_ScaleY_GetterFunction") {
-            fn->name = base::global::UnkStrId("_ScaleY_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5084);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_ScaleY_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5084);
         DREAD_REFLECTED_FUNCTION("_ScaleY_SetterFunction")
             fn_71011ca5b4(fn, "_ScaleY_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "ScaleY");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_Angle_GetterFunction") {
-            fn->name = base::global::UnkStrId("_Angle_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5184);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_Angle_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5184);
         DREAD_REFLECTED_FUNCTION("_Angle_SetterFunction")
             fn_71011ca730(fn, "_Angle_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "Angle");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_ColorR_GetterFunction") {
-            fn->name = base::global::UnkStrId("_ColorR_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5260);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_ColorR_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5260);
         DREAD_REFLECTED_FUNCTION("_ColorR_SetterFunction")
             fn_71011ca8ac(fn, "_ColorR_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "ColorR");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_ColorG_GetterFunction") {
-            fn->name = base::global::UnkStrId("_ColorG_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5364);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_ColorG_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5364);
         DREAD_REFLECTED_FUNCTION("_ColorG_SetterFunction")
             fn_71011caa28(fn, "_ColorG_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "ColorG");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_ColorB_GetterFunction") {
-            fn->name = base::global::UnkStrId("_ColorB_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5468);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_ColorB_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5468);
         DREAD_REFLECTED_FUNCTION("_ColorB_SetterFunction")
             fn_71011caba4(fn, "_ColorB_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "ColorB");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_ColorA_GetterFunction") {
-            fn->name = base::global::UnkStrId("_ColorA_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d556c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_ColorA_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d556c);
         DREAD_REFLECTED_FUNCTION("_ColorA_SetterFunction")
             fn_71011cad20(fn, "_ColorA_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "ColorA");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_SizeX_GetterFunction") {
-            fn->name = base::global::UnkStrId("_SizeX_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5670);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_SizeX_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5670);
         DREAD_REFLECTED_FUNCTION("_SizeX_SetterFunction")
             fn_71011cae9c(fn, "_SizeX_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "SizeX");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_SizeY_GetterFunction") {
-            fn->name = base::global::UnkStrId("_SizeY_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d576c);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_SizeY_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d576c);
         DREAD_REFLECTED_FUNCTION("_SizeY_SetterFunction")
             fn_71011cb018(fn, "_SizeY_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "SizeY");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_BlinkColorR_GetterFunction") {
-            fn->name = base::global::UnkStrId("_BlinkColorR_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5868);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_BlinkColorR_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5868);
         DREAD_REFLECTED_FUNCTION("_BlinkColorR_SetterFunction")
             fn_71011cb194(fn, "_BlinkColorR_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "BlinkColorR");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_BlinkColorG_GetterFunction") {
-            fn->name = base::global::UnkStrId("_BlinkColorG_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5950);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_BlinkColorG_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5950);
         DREAD_REFLECTED_FUNCTION("_BlinkColorG_SetterFunction")
             fn_71011cb310(fn, "_BlinkColorG_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "BlinkColorG");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_BlinkColorB_GetterFunction") {
-            fn->name = base::global::UnkStrId("_BlinkColorB_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5a38);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_BlinkColorB_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5a38);
         DREAD_REFLECTED_FUNCTION("_BlinkColorB_SetterFunction")
             fn_71011cb48c(fn, "_BlinkColorB_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "BlinkColorB");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_BlinkColorA_GetterFunction") {
-            fn->name = base::global::UnkStrId("_BlinkColorA_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5b20);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_BlinkColorA_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5b20);
         DREAD_REFLECTED_FUNCTION("_BlinkColorA_SetterFunction")
             fn_71011cb608(fn, "_BlinkColorA_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "BlinkColorA");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_Blink_GetterFunction") {
-            fn->name = base::global::UnkStrId("_Blink_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5c08);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_Blink_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5c08);
         DREAD_REFLECTED_FUNCTION("_Blink_SetterFunction")
             fn_71011cb784(fn, "_Blink_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "Blink");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_TimeToDisableBlink_GetterFunction") {
-            fn->name = base::global::UnkStrId("_TimeToDisableBlink_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5cfc);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_TimeToDisableBlink_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5cfc);
         DREAD_REFLECTED_FUNCTION("_TimeToDisableBlink_SetterFunction")
             fn_71011cb900(fn, "_TimeToDisableBlink_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "TimeToDisableBlink");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_FadeColorR_GetterFunction") {
-            fn->name = base::global::UnkStrId("_FadeColorR_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5db8);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_FadeColorR_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5db8);
         DREAD_REFLECTED_FUNCTION("_FadeColorR_SetterFunction")
             fn_71011cba7c(fn, "_FadeColorR_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "FadeColorR");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_FadeColorG_GetterFunction") {
-            fn->name = base::global::UnkStrId("_FadeColorG_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5ea0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_FadeColorG_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5ea0);
         DREAD_REFLECTED_FUNCTION("_FadeColorG_SetterFunction")
             fn_71011cbbf8(fn, "_FadeColorG_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "FadeColorG");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_FadeColorB_GetterFunction") {
-            fn->name = base::global::UnkStrId("_FadeColorB_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d5f88);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_FadeColorB_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d5f88);
         DREAD_REFLECTED_FUNCTION("_FadeColorB_SetterFunction")
             fn_71011cbd74(fn, "_FadeColorB_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "FadeColorB");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_FadeColorA_GetterFunction") {
-            fn->name = base::global::UnkStrId("_FadeColorA_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d6070);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_FadeColorA_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d6070);
         DREAD_REFLECTED_FUNCTION("_FadeColorA_SetterFunction")
             fn_71011cbef0(fn, "_FadeColorA_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "FadeColorA");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_FadeTime_GetterFunction") {
-            fn->name = base::global::UnkStrId("_FadeTime_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d6158);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_FadeTime_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011d6158);
         DREAD_REFLECTED_FUNCTION("_FadeTime_SetterFunction")
             fn_71011cc06c(fn, "_FadeTime_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "FadeTime");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_FocusIdx_GetterFunction") {
-            fn->name = base::global::UnkStrId("_FocusIdx_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d6238);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_FocusIdx_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_71011d6238);
         DREAD_REFLECTED_FUNCTION("_FocusIdx_SetterFunction")
             fn_71011cc1e8(fn, "_FocusIdx_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(s32, "FocusIdx");
     [&] {
-        DREAD_REFLECTED_FUNCTION("_sSkinName_GetterFunction") {
-            fn->name = base::global::UnkStrId("_sSkinName_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_71011d62fc);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_sSkinName_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0, fn_71011d62fc);
         DREAD_REFLECTED_FUNCTION("_sSkinName_SetterFunction")
             fn_71011cc364(fn, "_sSkinName_SetterFunction");
     }();

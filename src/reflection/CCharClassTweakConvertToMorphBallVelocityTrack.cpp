@@ -33,23 +33,11 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Player", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_bUseFrontDirection_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bUseFrontDirection_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d2eb80);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bUseFrontDirection_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100d2eb80);
     DREAD_REFLECTED_FUNCTION("_bUseFrontDirection_SetterFunction")
         fn_7100d2e758(fn, "_bUseFrontDirection_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bUseFrontDirection", (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_fVelocity_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fVelocity_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d2ec10);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fVelocity_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100d2ec10);
     DREAD_REFLECTED_FUNCTION("_fVelocity_SetterFunction")
         fn_7100d2e8d4(fn, "_fVelocity_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fVelocity", (DefaultValue, 0.0f));

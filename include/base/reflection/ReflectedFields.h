@@ -43,6 +43,19 @@
 #define DREAD_REFLECTED_FUNCTION(NAME) \
     if (base::reflection::UnkReflFunction* fn = AddReflectedFunction(cls, base::global::CStrId(NAME, true)))
 
+// The description a registration gives `fn` in place: its name (the string it is registered under), return
+// type, flags and invoker (the function that calls the accessor), set in this order.
+#define DREAD_REFLECTED_FUNCTION_DESCRIPTION(NAME, RETURN_TYPE, FLAGS, INVOKER) \
+    fn->name = base::global::UnkStrId(NAME, true);                                \
+    fn->return_type = RETURN_TYPE;                                                \
+    fn->field_0xb2 = FLAGS;                                                       \
+    fn->field_0x40 = nullptr;                                                     \
+    fn->invoker = reinterpret_cast<void*>(&INVOKER)
+
+// A reflected function whose registration is its description alone, in one line.
+#define DREAD_REFLECTED_FUNCTION_OF(NAME, RETURN_TYPE, FLAGS, INVOKER) \
+    DREAD_REFLECTED_FUNCTION(NAME) { DREAD_REFLECTED_FUNCTION_DESCRIPTION(NAME, RETURN_TYPE, FLAGS, INVOKER); }
+
 // A field holding an object of reflected class T (its descriptor from T::refl_GetClass).
 #define DREAD_REFLECTED_CLASS_FIELD(T, NAME, OFFSET, ...)                                              \
     DREAD_REFL_FIELD_OF_(T::refl_GetClass(), NAME, OFFSET, -1, -1, __VA_ARGS__)

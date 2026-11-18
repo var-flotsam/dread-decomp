@@ -31,13 +31,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Audio", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sPresetID_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sPresetID_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100be4d2c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sPresetID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100be4d2c);
     DREAD_REFLECTED_FUNCTION("_sPresetID_SetterFunction")
         fn_7100be42fc(fn, "_sPresetID_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPresetID", (DefaultValue, CStrId(g_unk_7101d470e0)));

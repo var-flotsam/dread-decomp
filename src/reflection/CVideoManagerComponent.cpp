@@ -35,40 +35,16 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sVideo_1_Path", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(CStrId, "sVideo_2_Path", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    DREAD_REFLECTED_FUNCTION("_sVideoAux_1_Path_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sVideoAux_1_Path_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100aa8ef8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sVideoAux_1_Path_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_7100aa8ef8);
     DREAD_REFLECTED_FUNCTION("_sVideoAux_1_Path_SetterFunction")
         fn_7100aa7c00(fn, "_sVideoAux_1_Path_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sVideoAux_1_Path");
-    DREAD_REFLECTED_FUNCTION("_sVideoAux_2_Path_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sVideoAux_2_Path_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100aa8fa0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sVideoAux_2_Path_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_7100aa8fa0);
     DREAD_REFLECTED_FUNCTION("_sVideoAux_2_Path_SetterFunction")
         fn_7100aa7d7c(fn, "_sVideoAux_2_Path_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sVideoAux_2_Path");
-    DREAD_REFLECTED_FUNCTION("PlayVideos") {
-        fn->name = base::global::UnkStrId("PlayVideos", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100aa9048);
-    }
-    DREAD_REFLECTED_FUNCTION("StopVideos") {
-        fn->name = base::global::UnkStrId("StopVideos", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100aa9090);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("PlayVideos", &g_unk_7101d5af48, 0, fn_7100aa9048);
+    DREAD_REFLECTED_FUNCTION_OF("StopVideos", &g_unk_7101d5af48, 0, fn_7100aa9090);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

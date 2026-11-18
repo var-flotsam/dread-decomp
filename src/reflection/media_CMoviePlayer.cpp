@@ -33,34 +33,10 @@ void fn_710021e5d8();
 namespace media::CMoviePlayer {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("Start") {
-        fn->name = base::global::UnkStrId("Start", true);
-        fn->return_type = &base::reflection::TypeObject<media::EMovieStatus>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710021e50c);
-    }
-    DREAD_REFLECTED_FUNCTION("Stop") {
-        fn->name = base::global::UnkStrId("Stop", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710021e558);
-    }
-    DREAD_REFLECTED_FUNCTION("Pause") {
-        fn->name = base::global::UnkStrId("Pause", true);
-        fn->return_type = &base::reflection::TypeObject<media::EMovieStatus>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710021e58c);
-    }
-    DREAD_REFLECTED_FUNCTION("Resume") {
-        fn->name = base::global::UnkStrId("Resume", true);
-        fn->return_type = &base::reflection::TypeObject<media::EMovieStatus>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710021e5d8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("Start", &base::reflection::TypeObject<media::EMovieStatus>::object, 0, fn_710021e50c);
+    DREAD_REFLECTED_FUNCTION_OF("Stop", &g_unk_7101d5af48, 0, fn_710021e558);
+    DREAD_REFLECTED_FUNCTION_OF("Pause", &base::reflection::TypeObject<media::EMovieStatus>::object, 0, fn_710021e58c);
+    DREAD_REFLECTED_FUNCTION_OF("Resume", &base::reflection::TypeObject<media::EMovieStatus>::object, 0, fn_710021e5d8);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
