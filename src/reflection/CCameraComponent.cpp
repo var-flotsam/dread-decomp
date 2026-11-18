@@ -21,6 +21,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
@@ -39,7 +41,6 @@ void fn_71010e7434();
 void fn_71010e12d0(UnkReflFunction* fn, const char* name);
 void fn_71010e74c4();
 void fn_71010e144c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71010e7828();
 void fn_71010e7554(UnkReflFunction* fn);
 void fn_71010e15c8(UnkReflFunction* fn, const char* name);
@@ -74,7 +75,7 @@ void refl_AddFields(CClass* cls) {
         fn_71010e144c(fn, "_m_fDefaultFar_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultFar", (Persistence, 0), (EditorVisible, false), (DefaultValue, 60000.0f), (Description, "Default far plane dist"));
     DREAD_REFLECTED_FUNCTION("SetLogicCameraParams") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetLogicCameraParams", &g_unk_7101d5af48, 0, fn_71010e7828);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetLogicCameraParams", &base::reflection::TypeObject<void>::object, 0, fn_71010e7828);
         fn_71010e7554(fn);
     }
     DREAD_REFLECTED_FUNCTION("GetLogicCameraController") {

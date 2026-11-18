@@ -19,9 +19,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CTimelineComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100a2dbb4();
 void fn_7100a2d930(UnkReflFunction* fn);
 void fn_7100a2a998(UnkReflFunction* fn, const char* name);
@@ -33,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinDelayTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fMaxDelayTime", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FUNCTION("StartAction") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("StartAction", &g_unk_7101d5af48, 0, fn_7100a2dbb4);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("StartAction", &base::reflection::TypeObject<void>::object, 0, fn_7100a2dbb4);
         fn_7100a2d930(fn);
     }
     DREAD_REFLECTED_FUNCTION("EndAction")

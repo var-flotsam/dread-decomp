@@ -21,12 +21,12 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace media { enum class EMovieStatus : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<media::EMovieStatus>::object asm("g_unk_716e599948");
 
 // media::CMoviePlayer
 void fn_710021e50c();
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710021e558();
 void fn_710021e58c();
 void fn_710021e5d8();
@@ -34,7 +34,7 @@ namespace media::CMoviePlayer {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("Start", &base::reflection::TypeObject<media::EMovieStatus>::object, 0, fn_710021e50c);
-    DREAD_REFLECTED_FUNCTION_OF("Stop", &g_unk_7101d5af48, 0, fn_710021e558);
+    DREAD_REFLECTED_FUNCTION_OF("Stop", &base::reflection::TypeObject<void>::object, 0, fn_710021e558);
     DREAD_REFLECTED_FUNCTION_OF("Pause", &base::reflection::TypeObject<media::EMovieStatus>::object, 0, fn_710021e58c);
     DREAD_REFLECTED_FUNCTION_OF("Resume", &base::reflection::TypeObject<media::EMovieStatus>::object, 0, fn_710021e5d8);
 }

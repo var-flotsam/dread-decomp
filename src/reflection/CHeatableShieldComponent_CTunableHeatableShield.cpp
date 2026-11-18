@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CHeatableShieldComponent::CTunableHeatableShield
 extern bool g_unk_7172729370;
@@ -72,7 +74,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CHeatableShieldComponent::CTunableHeatableShield, base::tunable::CTunable);
 
 // CHeatableShieldComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710086ce20();
 void fn_710086cb28(UnkReflFunction* fn);
 void fn_710086d4f8();
@@ -82,15 +83,15 @@ namespace CHeatableShieldComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateShield") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateShield", &g_unk_7101d5af48, 0, fn_710086ce20);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateShield", &base::reflection::TypeObject<void>::object, 0, fn_710086ce20);
         fn_710086cb28(fn);
     }
     DREAD_REFLECTED_FUNCTION("AddShieldCollider") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddShieldCollider", &g_unk_7101d5af48, 0, fn_710086d4f8);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddShieldCollider", &base::reflection::TypeObject<void>::object, 0, fn_710086d4f8);
         fn_7100500260(fn);
     }
     DREAD_REFLECTED_FUNCTION("SetTimeToStartHeatRecover") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetTimeToStartHeatRecover", &g_unk_7101d5af48, 0, fn_710086d530);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetTimeToStartHeatRecover", &base::reflection::TypeObject<void>::object, 0, fn_710086d530);
         fn_7100500260(fn);
     }
 }

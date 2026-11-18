@@ -19,13 +19,13 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CBossAIComponent
 extern base::reflection::CType g_unk_71727b6630;
 extern base::reflection::CType g_unk_717269bb48;
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71003b0e60();
 void fn_7100302d14(UnkReflFunction* fn);
 namespace CBossAIComponent {
@@ -44,7 +44,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field6 = AddReflectedField(cls, CStrId("wpBossCameraCeilingLandmark", true), &g_unk_717269bb48, 0x147a8, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
     DREAD_REFLECTED_FUNCTION("SetBossCamera") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetBossCamera", &g_unk_7101d5af48, 0, fn_71003b0e60);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetBossCamera", &base::reflection::TypeObject<void>::object, 0, fn_71003b0e60);
         fn_7100302d14(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Sets the Boss Camera");
     }

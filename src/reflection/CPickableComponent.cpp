@@ -18,15 +18,16 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CPickableComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71009ce3e4();
 namespace CPickableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sOnPickFX", 0x58, (DefaultValue, "system/fx/generic/onpick_small.bcptl"), (Description, "fx on pick"));
-    DREAD_REFLECTED_FUNCTION_OF("OnPickUpAfterCutScene", &g_unk_7101d5af48, 0, fn_71009ce3e4);
+    DREAD_REFLECTED_FUNCTION_OF("OnPickUpAfterCutScene", &base::reflection::TypeObject<void>::object, 0, fn_71009ce3e4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

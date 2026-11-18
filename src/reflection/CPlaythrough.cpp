@@ -21,6 +21,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 class CPlaythroughDef;
 extern template const base::reflection::CType* base::reflection::PointerType<CPlaythroughDef const*>::Get();
 namespace base::global { class CStrId; }
@@ -33,7 +35,6 @@ extern base::reflection::CType g_unk_7101d4ec50;
 void fn_71002ee0fc();
 extern base::reflection::CType g_unk_71726acd78;
 void fn_71002ee124();
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71002ee14c();
 void fn_71002ee510();
 namespace CPlaythrough {
@@ -50,7 +51,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field1 = AddReflectedField(cls, CStrId("oPlayDefLink", true), &g_unk_7101d4ec50, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION_OF("_dctCheckpointDatas_GetterFunction", &g_unk_71726acd78, 0x1, fn_71002ee124);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("dctCheckpointDatas", true), &g_unk_71726acd78, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    DREAD_REFLECTED_FUNCTION_OF("AfterDeserialize", &g_unk_7101d5af48, 0, fn_71002ee14c);
+    DREAD_REFLECTED_FUNCTION_OF("AfterDeserialize", &base::reflection::TypeObject<void>::object, 0, fn_71002ee14c);
     DREAD_REFLECTED_FUNCTION_OF("GetDef", base::reflection::PointerType<CPlaythroughDef const*>::Get(), 0, fn_71002ee510);
 }
 bool refl_Equals(const void*, const void*) { return false; }

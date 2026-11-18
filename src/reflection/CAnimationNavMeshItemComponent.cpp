@@ -18,10 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CAnimationNavMeshItemComponent
 void fn_71009b7998(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71009b84d0();
 void fn_7100500260(UnkReflFunction* fn);
 namespace CAnimationNavMeshItemComponent {
@@ -30,7 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("CreateAnimationStage")
         fn_71009b7998(fn, "CreateAnimationStage");
     DREAD_REFLECTED_FUNCTION("AddStageColliderWithOffSet") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddStageColliderWithOffSet", &g_unk_7101d5af48, 0, fn_71009b84d0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddStageColliderWithOffSet", &base::reflection::TypeObject<void>::object, 0, fn_71009b84d0);
         fn_7100500260(fn);
     }
 }

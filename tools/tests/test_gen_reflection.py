@@ -423,6 +423,14 @@ class TypeObjectsByType(unittest.TestCase):
         self.assertIn('template <> UnkReflType base::reflection::TypeObject<a::E, UnkReflType>::object asm("g_unk_7101d4d5d0");', out)
         self.assertNotIn("// a::E", out)
 
+    def test_builtin_needs_no_declaration(self):
+        text = "extern base::reflection::CType g_unk_7101d5af48;\nvoid f() { use(&g_unk_7101d5af48); }"
+        out = gr.type_objects_by_type(text, {"g_unk_7101d5af48": ("builtin", "void")})
+        self.assertEqual(out.split("\n"), ['#include "base/reflection/TypeObject.h"',
+                                            'template <> base::reflection::CType base::reflection::TypeObject<void>::object '
+                                            'asm("g_unk_7101d5af48");',
+                                            "void f() { use(&base::reflection::TypeObject<void>::object); }"])
+
     def test_layouts_off_leaves_them(self):
         text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
         self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)

@@ -19,10 +19,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CInputComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710087412c();
 void fn_7100874050(UnkReflFunction* fn);
 void fn_7100870a5c(UnkReflFunction* fn, const char* name);
@@ -31,7 +32,7 @@ namespace CInputComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("IgnoreInput") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("IgnoreInput", &g_unk_7101d5af48, 0, fn_710087412c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("IgnoreInput", &base::reflection::TypeObject<void>::object, 0, fn_710087412c);
         fn_7100874050(fn);
     }
     DREAD_REFLECTED_FUNCTION("IgnoreInputFor") {

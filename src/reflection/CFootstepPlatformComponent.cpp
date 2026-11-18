@@ -19,12 +19,12 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CFootstepPlatformComponent
 extern base::reflection::CType g_unk_71727b6270;
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71007e8b58();
 namespace CFootstepPlatformComponent {
 void refl_AddAttributes(CClass*) {}
@@ -35,7 +35,7 @@ void refl_AddFields(CClass* cls) {
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnOpened", 0xe0, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(CStrId, "sCallbackOnClosed", 0xe8, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FUNCTION_OF("CloseDoor", &g_unk_7101d5af48, 0, fn_71007e8b58);
+    DREAD_REFLECTED_FUNCTION_OF("CloseDoor", &base::reflection::TypeObject<void>::object, 0, fn_71007e8b58);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

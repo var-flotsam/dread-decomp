@@ -23,6 +23,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 struct TAnimationTagFlagSet;
@@ -32,7 +33,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CCutSceneDef
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100c8d374();
 extern base::reflection::CType g_unk_7172793b40;
 extern base::reflection::CType g_unk_7172793350;
@@ -43,7 +43,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "OnDeserialize");
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("OnDeserialize", &g_unk_7101d5af48, 0, fn_7100c8d374);
+    DREAD_REFLECTED_FUNCTION_OF("OnDeserialize", &base::reflection::TypeObject<void>::object, 0, fn_7100c8d374);
     DREAD_REFLECTED_FIELD_OF("cutscene::EDevelopmentState", "eDevelopmentState", 0x0, (DefaultValue, 1), (Description, "Development State"));
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Id"));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sActionSet", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Description, "ActionSet File"));

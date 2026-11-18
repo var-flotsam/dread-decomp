@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassEmmyValveComponent
 namespace CCharClassEmmyValveComponent {
@@ -48,7 +50,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassEmmyValveComponent, CCharClassComponent);
 
 // CEmmyValveComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71007b4bb0();
 void fn_7100302d14(UnkReflFunction* fn);
 void fn_71007b4c44();
@@ -56,10 +57,10 @@ namespace CEmmyValveComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("SetState") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetState", &g_unk_7101d5af48, 0, fn_71007b4bb0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetState", &base::reflection::TypeObject<void>::object, 0, fn_71007b4bb0);
         fn_7100302d14(fn);
     }
-    DREAD_REFLECTED_FUNCTION_OF("CleanForceStateFlag", &g_unk_7101d5af48, 0, fn_71007b4c44);
+    DREAD_REFLECTED_FUNCTION_OF("CleanForceStateFlag", &base::reflection::TypeObject<void>::object, 0, fn_71007b4c44);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

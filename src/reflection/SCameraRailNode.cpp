@@ -23,6 +23,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 namespace base::serialization { enum class EPersistence : u32; }
@@ -73,7 +74,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(SCameraRailNode, IPathNode);
 
 // SCameraSubRail
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100c07c30();
 void fn_7100c07c44();
 void fn_7100bfff5c(UnkReflFunction* fn, const char* name);
@@ -84,8 +84,8 @@ void fn_7100c00198(UnkReflFunction* fn, const char* name);
 namespace SCameraSubRail {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("AfterNodesDeserialization", &g_unk_7101d5af48, 0, fn_7100c07c30);
-    DREAD_REFLECTED_FUNCTION_OF("AfterSegmentDeserialization", &g_unk_7101d5af48, 0, fn_7100c07c44);
+    DREAD_REFLECTED_FUNCTION_OF("AfterNodesDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100c07c30);
+    DREAD_REFLECTED_FUNCTION_OF("AfterSegmentDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100c07c44);
     DREAD_REFLECTED_FUNCTION("CreateElement") {
         fn_7100bfff5c(fn, "CreateElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
@@ -95,7 +95,7 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
     }
     DREAD_REFLECTED_FUNCTION("InsertElement") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("InsertElement", &g_unk_7101d5af48, 0, fn_7100c07eb0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("InsertElement", &base::reflection::TypeObject<void>::object, 0, fn_7100c07eb0);
         fn_7100c07d10(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Insert Node At Index");
         fn_710009ae5c(fn, fn->params.count);

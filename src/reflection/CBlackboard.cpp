@@ -19,6 +19,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 
@@ -26,7 +27,6 @@ template <> base::reflection::CType base::reflection::TypeObject<base::serializa
 extern base::reflection::CType g_unk_71729fc870;
 void fn_7101049fa8();
 void fn_7101045544(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710104a108();
 namespace CBlackboard {
 void refl_AddAttributes(CClass* cls) {
@@ -44,7 +44,7 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("sKey", true));
         fn->ParamAttrs(0)->Add<bool>(base::reflection::attr::Required(), true);
     }
-    DREAD_REFLECTED_FUNCTION_OF("AfterSectionsDeserialization", &g_unk_7101d5af48, 0, fn_710104a108);
+    DREAD_REFLECTED_FUNCTION_OF("AfterSectionsDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_710104a108);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

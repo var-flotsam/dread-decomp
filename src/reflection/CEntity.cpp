@@ -20,6 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 namespace base::serialization { enum class EPersistence : u32; }
@@ -35,7 +36,6 @@ void fn_7100d71900(UnkReflFunction* fn, const char* name);
 void fn_7100d719b4(UnkReflFunction* fn, const char* name);
 void fn_7100d71a68(UnkReflFunction* fn, const char* name);
 void fn_7100d71b1c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100d82864();
 void fn_7100d826c8(UnkReflFunction* fn);
 void fn_7100d71c98(UnkReflFunction* fn, const char* name);
@@ -72,7 +72,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Deletes the entity after float seconds");
     }
     DREAD_REFLECTED_FUNCTION("StartTimeline") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("StartTimeline", &g_unk_7101d5af48, 0, fn_7100d82864);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("StartTimeline", &base::reflection::TypeObject<void>::object, 0, fn_7100d82864);
         fn_7100d826c8(fn);
     }
     DREAD_REFLECTED_FUNCTION("EndTimeline")

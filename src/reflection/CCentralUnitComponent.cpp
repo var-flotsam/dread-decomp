@@ -20,6 +20,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 namespace SLinkType { enum class ELinkType : u32; }
@@ -31,7 +32,6 @@ extern base::reflection::CType g_unk_717269bb48;
 extern base::reflection::CType g_unk_717269bf08;
 extern base::reflection::CType g_unk_71727b6630;
 void fn_710076e66c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710077b704();
 void fn_710077b740();
 void fn_710077b774();
@@ -82,13 +82,13 @@ void refl_AddFields(CClass* cls) {
     field19->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FUNCTION("AddEmmySpawnPoint")
         fn_710076e66c(fn, "AddEmmySpawnPoint");
-    DREAD_REFLECTED_FUNCTION_OF("Activate", &g_unk_7101d5af48, 0, fn_710077b704);
-    DREAD_REFLECTED_FUNCTION_OF("OnEnergyPickedUp", &g_unk_7101d5af48, 0, fn_710077b740);
-    DREAD_REFLECTED_FUNCTION_OF("LockDoors", &g_unk_7101d5af48, 0, fn_710077b774);
-    DREAD_REFLECTED_FUNCTION_OF("UnlockDoors", &g_unk_7101d5af48, 0, fn_710077b7a8);
-    DREAD_REFLECTED_FUNCTION_OF("StartCentralUnitCombat", &g_unk_7101d5af48, 0, fn_710077b7dc);
-    DREAD_REFLECTED_FUNCTION_OF("ForceEmmyDeadState", &g_unk_7101d5af48, 0, fn_710077b810);
-    DREAD_REFLECTED_FUNCTION_OF("OnEmmyAbilityObtainedFadeOutCompleted", &g_unk_7101d5af48, 0, fn_710077b844);
+    DREAD_REFLECTED_FUNCTION_OF("Activate", &base::reflection::TypeObject<void>::object, 0, fn_710077b704);
+    DREAD_REFLECTED_FUNCTION_OF("OnEnergyPickedUp", &base::reflection::TypeObject<void>::object, 0, fn_710077b740);
+    DREAD_REFLECTED_FUNCTION_OF("LockDoors", &base::reflection::TypeObject<void>::object, 0, fn_710077b774);
+    DREAD_REFLECTED_FUNCTION_OF("UnlockDoors", &base::reflection::TypeObject<void>::object, 0, fn_710077b7a8);
+    DREAD_REFLECTED_FUNCTION_OF("StartCentralUnitCombat", &base::reflection::TypeObject<void>::object, 0, fn_710077b7dc);
+    DREAD_REFLECTED_FUNCTION_OF("ForceEmmyDeadState", &base::reflection::TypeObject<void>::object, 0, fn_710077b810);
+    DREAD_REFLECTED_FUNCTION_OF("OnEmmyAbilityObtainedFadeOutCompleted", &base::reflection::TypeObject<void>::object, 0, fn_710077b844);
     DREAD_REFLECTED_FUNCTION("AllowAlarm")
         fn_710076e7e8(fn, "AllowAlarm");
 }
