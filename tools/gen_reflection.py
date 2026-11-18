@@ -1557,6 +1557,8 @@ def main() -> int:
     for f in sorted(OUT.glob("*.cpp")):
         old = f.read_text(encoding="utf-8")
         new = functions_in_one_line(typed_keys_by_name(old, typed_keys))
+        if "base::reflection::TunableRegistry()" in new:
+            new = with_include(new, '#include "base/reflection/UnkTunableRegistry.h"')
         if new != old:
             f.write_text(new, encoding="utf-8", newline=chr(10))
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent
 extern bool g_unk_71726d0e40;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726d0e00;
 void fn_7100496d00(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoWarriorAIComponent::CTunableCharClassChozoWarriorAIComponent {
@@ -38,13 +38,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fShieldDamagePerMelee", 0x30, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(bool, "bAllowShieldImpactAnim", 0x34, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(f32, "fMinTimeBetweenShieldImpactAnim", 0x38, (DefaultValue, 1.5f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100496d00(registry, &g_unk_71726d0e00, "ChozoWarrior");
+    fn_7100496d00(base::reflection::TunableRegistry(), &g_unk_71726d0e00, "ChozoWarrior");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

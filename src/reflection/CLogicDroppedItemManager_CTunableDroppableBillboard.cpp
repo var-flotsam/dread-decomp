@@ -19,6 +19,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CLogicDroppedItemManager::CTunableDroppableBillboard
@@ -27,7 +28,6 @@ void fn_7100e2f79c();
 void fn_7100e20c1c(UnkReflFunction* fn, const char* name);
 void fn_7100e2f894();
 void fn_7100e20d98(UnkReflFunction* fn, const char* name);
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727c10c8;
 void fn_7100e20f14(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLogicDroppedItemManager::CTunableDroppableBillboard {
@@ -87,13 +87,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sDropAbsorbMissilePresetName", 0x1b8, (DefaultValue, ""), (Description, "Audio Preset Launched when a Missile Drop is absorbed"));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sDropAbsorbPowerBombPresetName", 0x1e8, (DefaultValue, ""), (Description, "Audio Preset Launched when a Power Bomb Drop is absorbed"));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sAbsorbingSoundPresetName", 0x218, (DefaultValue, ""), (Description, "Audio Preset Launched when a Drop is being atracted"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100e20f14(registry, &g_unk_71727c10c8, "");
+    fn_7100e20f14(base::reflection::TunableRegistry(), &g_unk_71727c10c8, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

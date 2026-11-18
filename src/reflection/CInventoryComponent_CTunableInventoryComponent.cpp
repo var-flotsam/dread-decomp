@@ -19,13 +19,13 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CInventoryComponent::CTunableInventoryComponent
 extern bool g_unk_7172a09290;
 void fn_7101149248();
 void fn_710113ff7c(UnkReflFunction* fn, const char* name);
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172a09268;
 void fn_71011400f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CInventoryComponent::CTunableInventoryComponent {
@@ -40,13 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_iMaxNumMissiles_SetterFunction")
         fn_710113ff7c(fn, "_iMaxNumMissiles_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iMaxNumMissiles", (DefaultValue, 100), (ShowInConfig, true), (Description, "Max missiles"), (MinValueI, 0), (MaxValueI, 500), (ControlIntStep, 1), (InternalTag, "General"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71011400f8(registry, &g_unk_7172a09268, "");
+    fn_71011400f8(base::reflection::TunableRegistry(), &g_unk_7172a09268, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

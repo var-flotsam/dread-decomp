@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -41,7 +42,6 @@ DREAD_REFLECTED_CLASS(CCharClassGooplotUndoJumpAttack, CCharClassAttack);
 
 // CCharClassGooplotUndoJumpAttack::CTunableCharClassGooplotUndoJumpAttack
 extern bool g_unk_71726e6d30;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726e6d00;
 void fn_7100593b30(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassGooplotUndoJumpAttack::CTunableCharClassGooplotUndoJumpAttack {
@@ -54,13 +54,7 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 5500.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100593b30(registry, &g_unk_71726e6d00, "Gooplot");
+    fn_7100593b30(base::reflection::TunableRegistry(), &g_unk_71726e6d00, "Gooplot");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

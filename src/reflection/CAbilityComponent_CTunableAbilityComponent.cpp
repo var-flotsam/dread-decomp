@@ -20,12 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CAbilityComponent::CTunableAbilityComponent
 extern bool g_unk_71726aebe8;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726aeb90;
 void fn_71002fb83c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityComponent::CTunableAbilityComponent {
@@ -48,13 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDashMeleeVariaSuitDamage", 0x4c, (DefaultValue, 20.0f));
     DREAD_REFLECTED_FIELD(f32, "fDashMeleeGravitySuitDamage", 0x50, (DefaultValue, 20.0f));
     DREAD_REFLECTED_FIELD(bool, "bStunnedEnemiesLoseCollision", 0x54, (DefaultValue, true));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71002fb83c(registry, &g_unk_71726aeb90, "Player");
+    fn_71002fb83c(base::reflection::TunableRegistry(), &g_unk_71726aeb90, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

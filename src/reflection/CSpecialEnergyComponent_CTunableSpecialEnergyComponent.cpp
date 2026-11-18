@@ -19,12 +19,12 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CSpecialEnergyComponent::CTunableSpecialEnergyComponent
 extern bool g_unk_71727457b0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172745770;
 void fn_7100a1e21c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent {
@@ -41,13 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyOpticalCamuflage", 0x30, (DefaultValue, 6.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyOpticalCamuflageNotMoving", 0x34, (DefaultValue, 12.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergySonar", 0x38, (DefaultValue, 1.5f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100a1e21c(registry, &g_unk_7172745770, "Player");
+    fn_7100a1e21c(base::reflection::TunableRegistry(), &g_unk_7172745770, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

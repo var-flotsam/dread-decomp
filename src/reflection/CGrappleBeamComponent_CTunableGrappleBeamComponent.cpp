@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CGrappleBeamComponent::CTunableGrappleBeamComponent
 extern bool g_unk_7172723310;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727232d8;
 void fn_71008174c0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGrappleBeamComponent::CTunableGrappleBeamComponent {
@@ -36,13 +36,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fRetractSpeed", 0x28, (DefaultValue, 8000.0f), (Description, "retract speed"));
     DREAD_REFLECTED_FIELD(f32, "fMaxLength", 0x2c, (DefaultValue, 1100.0f), (Description, "max length"));
     DREAD_REFLECTED_FIELD(f32, "fMaxLengthToStartRetract", 0x30, (DefaultValue, 1100.0f), (Description, "max length before retracting"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71008174c0(registry, &g_unk_71727232d8, "Grapple");
+    fn_71008174c0(base::reflection::TunableRegistry(), &g_unk_71727232d8, "Grapple");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

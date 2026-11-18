@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -51,7 +52,6 @@ DREAD_REFLECTED_CLASS(CAbilityMultiLockon, CAbility);
 
 // CAbilityMultiLockon::CTunableAbilityMultiLockon
 extern bool g_unk_71726af920;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726af8b0;
 void fn_7100317550(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityMultiLockon::CTunableAbilityMultiLockon {
@@ -75,13 +75,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bActivationInput_R3", 0x6c, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bActivationInput_FireCharge", 0x6d, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bActivationInput_AimCharge", 0x6e, (DefaultValue, true));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100317550(registry, &g_unk_71726af8b0, "");
+    fn_7100317550(base::reflection::TunableRegistry(), &g_unk_71726af8b0, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

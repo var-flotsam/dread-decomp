@@ -19,6 +19,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
@@ -83,7 +84,6 @@ DREAD_REFLECTED_CLASS(CTriggerComponent, CComponent);
 
 // CTriggerComponent::CTunableTriggerComponent
 extern bool g_unk_717274de10;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717274ddd8;
 void fn_7100a5d808(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CTriggerComponent::CTunableTriggerComponent {
@@ -98,13 +98,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iWaterLowPassFilter", 0x28, (DefaultValue, 1550));
     DREAD_REFLECTED_FIELD(s32, "iLavaReverb", 0x2c, (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(s32, "iLavaLowPassFilter", 0x30, (DefaultValue, 1900));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100a5d808(registry, &g_unk_717274ddd8, "");
+    fn_7100a5d808(base::reflection::TunableRegistry(), &g_unk_717274ddd8, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

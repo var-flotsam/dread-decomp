@@ -19,6 +19,7 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
@@ -76,7 +77,6 @@ DREAD_REFLECTED_CLASS(CMorphBallMovement, CPlayerMovement);
 extern bool g_unk_7172739438;
 void fn_710094ff98();
 void fn_710093d6cc(UnkReflFunction* fn, const char* name);
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71727393d8;
 void fn_710093d848(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMorphBallMovement::CTunableMorphBallMovement {
@@ -105,13 +105,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCornerAssistHorizontalVelocityToConsiderMoving", 0x50, (DefaultValue, 0.0f), (Description, "Minimum horizontal physics velocity to decide whether it's stationary or moving"));
     DREAD_REFLECTED_FIELD(f32, "fCornerAssistMovingAwayFromCornerThresholdFactor", 0x54, (DefaultValue, 0.0f), (Description, "When jumping against a corner, but hitting past the corner, this is the multiplier to MorphBall's radius to consider we're still close enough to the corner to apply assistance"));
     DREAD_REFLECTED_FIELD(f32, "fAirTimeBeforeSoundRelauch", 0x58, (DefaultValue, 1.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710093d848(registry, &g_unk_71727393d8, "MorphBall");
+    fn_710093d848(base::reflection::TunableRegistry(), &g_unk_71727393d8, "MorphBall");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

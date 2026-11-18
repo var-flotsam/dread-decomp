@@ -19,12 +19,12 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CWaterNozzleComponent::CTunableWaterNozzle
 extern bool g_unk_717272dbd0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717272dba8;
 void fn_71008a0b3c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CWaterNozzleComponent::CTunableWaterNozzle {
@@ -36,13 +36,7 @@ void refl_AddFields(CClass* cls) {
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fStopWaterJetDelayTime", 0x24, (DefaultValue, 1.0f), (Description, "Delay time to stop water jet "));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71008a0b3c(registry, &g_unk_717272dba8, "WaterNozzle");
+    fn_71008a0b3c(base::reflection::TunableRegistry(), &g_unk_717272dba8, "WaterNozzle");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

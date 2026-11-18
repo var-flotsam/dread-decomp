@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -49,7 +50,6 @@ DREAD_REFLECTED_CLASS(CWideBeamGun, CPowerBeamGun);
 
 // CWideBeamGun::CTunableWideBeam
 extern bool g_unk_7172729058;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172729020;
 void fn_7100868be8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CWideBeamGun::CTunableWideBeam {
@@ -65,13 +65,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fPerpendicularOffsetSize", 0x2c, (DefaultValue, 50.0f), (Description, "Perpendicular offset"));
     DREAD_REFLECTED_FIELD(f32, "fBackwardCheckLenght", 0x30, (DefaultValue, 100.0f), (Description, "Perpendicular offset"));
     DREAD_REFLECTED_FIELD(f32, "fForwardCheckLenght", 0x34, (DefaultValue, 120.0f), (Description, "Perpendicular offset"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100868be8(registry, &g_unk_7172729020, "");
+    fn_7100868be8(base::reflection::TunableRegistry(), &g_unk_7172729020, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

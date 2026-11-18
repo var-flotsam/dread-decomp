@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // base::snd::CSoundSystemATK::CTunableSoundSystemATK
 extern bool g_unk_7101d685c0;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7101d68580;
 void fn_71000f60e4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace base::snd::CSoundSystemATK::CTunableSoundSystemATK {
@@ -39,13 +39,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fGruntVolume", 0x34, (DefaultValue, 0.5f), (Description, "Grunt Volume"));
     DREAD_REFLECTED_FIELD(f32, "fGUIVolume", 0x38, (DefaultValue, 0.5f), (Description, "GUI Volume"));
     DREAD_REFLECTED_FIELD(f32, "fEnvironmentStreamsVolume", 0x3c, (DefaultValue, 0.5f), (Description, "Environment Streams Volume"));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71000f60e4(registry, &g_unk_7101d68580, "Sounds");
+    fn_71000f60e4(base::reflection::TunableRegistry(), &g_unk_7101d68580, "Sounds");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

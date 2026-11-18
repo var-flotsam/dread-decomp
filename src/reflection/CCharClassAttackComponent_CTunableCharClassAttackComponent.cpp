@@ -21,6 +21,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 enum class EDamageStrength : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EDamageStrength>::object asm("g_unk_7172730858");
 namespace base::global { class CStrId; }
@@ -29,7 +30,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 
 // CCharClassAttackComponent::CTunableCharClassAttackComponent
 extern bool g_unk_71727165a8;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172716160;
 void fn_7100789ca4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassAttackComponent::CTunableCharClassAttackComponent {
@@ -303,13 +303,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamageFulmiteBellyMineExplosionDefault", 0x438, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageInfesterBallExplosionDefault", 0x43c, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageCooldownXBossLaser", 0x440, (DefaultValue, 50.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100789ca4(registry, &g_unk_7172716160, "Damage");
+    fn_7100789ca4(base::reflection::TunableRegistry(), &g_unk_7172716160, "Damage");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

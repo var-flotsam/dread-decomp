@@ -19,11 +19,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/UnkTunableRegistry.h"
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CSamusMovement::CTunableSamusMovement
 extern bool g_unk_7172740e60;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172740de0;
 void fn_71009dd760(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusMovement::CTunableSamusMovement {
@@ -59,13 +59,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bConvertToMorphBallOnWallNoLowerTunnel", 0x79, (DefaultValue, false), (Description, "When pushing a wall (runnearwall) without a lower tunnel to slide into, should we convert to MorphBall instead?"));
     DREAD_REFLECTED_FIELD(bool, "bForceSnapRotationToSides", 0x7a, (DefaultValue, false), (Description, "After each ApplyDeltas, ensure Samus is facing a valid orientation?"));
     DREAD_REFLECTED_FIELD(f32, "fTimeIgnoringKickJumpAfterWeightBlock", 0x7c, (DefaultValue, 0.3f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_71009dd760(registry, &g_unk_7172740de0, "Samus");
+    fn_71009dd760(base::reflection::TunableRegistry(), &g_unk_7172740de0, "Samus");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

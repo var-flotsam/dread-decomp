@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CSamusGrappleMovementState::CTunableSamusGrappleMovementState
 extern bool g_unk_717273bb38;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_717273ba88;
 void fn_7100999924(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusGrappleMovementState::CTunableSamusGrappleMovementState {
@@ -67,13 +67,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fGrappleDirMaxSpeedInterpSpeed", 0xa4, (DefaultValue, 5000.0f));
     DREAD_REFLECTED_FIELD(f32, "fGravityMultiplier", 0xa8, (DefaultValue, 1.25f));
     DREAD_REFLECTED_FIELD(f32, "fMaxHeightRatioToStartBreakImpulse", 0xac, (DefaultValue, 0.7f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100999924(registry, &g_unk_717273ba88, "Grapple");
+    fn_7100999924(base::reflection::TunableRegistry(), &g_unk_717273ba88, "Grapple");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -19,11 +19,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+#include "base/reflection/UnkTunableRegistry.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CHeatableShieldComponent::CTunableHeatableShield
 extern bool g_unk_7172729370;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_7172729300;
 void fn_710086a398(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CHeatableShieldComponent::CTunableHeatableShield {
@@ -41,13 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxRGBColor", 0x64, (DefaultValue, 1.0f), (Description, "Maximum value of red, green or blue [0..1]"));
     DREAD_REFLECTED_FIELD(f32, "fStartEmmitingParticlesOnHeat", 0x68, (DefaultValue, 0.0f), (Description, "Heat value that when reached causes the heat particles to be spawned."));
     DREAD_REFLECTED_FIELD(f32, "fStopEmmitingParticlesOnCooldown", 0x6c, (DefaultValue, 0.1f), (Description, "Heat value that when reduced to from a higher point causes the heat particles to be despawned."));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710086a398(registry, &g_unk_7172729300, "");
+    fn_710086a398(base::reflection::TunableRegistry(), &g_unk_7172729300, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

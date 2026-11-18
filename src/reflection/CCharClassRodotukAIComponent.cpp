@@ -8,6 +8,7 @@
 #include "base/reflection/ReflectedFields.h"
 #include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -48,7 +49,6 @@ DREAD_REFLECTED_CLASS(CCharClassRodotukAIComponent, CCharClassBehaviorTreeAIComp
 
 // CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent
 extern bool g_unk_71726fee40;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71726fedf0;
 void fn_710066db90(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassRodotukAIComponent::CTunableCharClassRodotukAIComponent {
@@ -69,13 +69,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fBombAbsorbBaseSpeed", 0x40, (DefaultValue, 1000.0f));
     DREAD_REFLECTED_FIELD(f32, "fBombAbsorbAcceleration", 0x44, (DefaultValue, 800.0f));
     DREAD_REFLECTED_FIELD(f32, "fBiteAnticipationDistance", 0x48, (DefaultValue, 400.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_710066db90(registry, &g_unk_71726fedf0, "Rodotuk");
+    fn_710066db90(base::reflection::TunableRegistry(), &g_unk_71726fedf0, "Rodotuk");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

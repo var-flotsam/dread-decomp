@@ -7,6 +7,7 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -21,7 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 
 // CShotManager::CTunableShotManager
 extern bool g_unk_71729d1540;
-extern UnkTunableRegistry* g_unk_7101d47350;
 extern UnkTunable g_unk_71729cf280;
 void fn_7100ed419c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CExplosionGfx { const base::reflection::CClass* refl_GetClass(); }
@@ -48,13 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rNoDamageExplosion", 0x1dc8);
     DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rHeatedExplosion", 0x2040);
     DREAD_REFLECTED_FIELD(f32, "fShotSpeed", 0x22b8, (DefaultValue, 2700.0f));
-    UnkTunableRegistry* registry = g_unk_7101d47350;
-    if (!registry) {
-        registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));
-        fn_710013ac14(registry);
-        g_unk_7101d47350 = registry;
-    }
-    fn_7100ed419c(registry, &g_unk_71729cf280, "ShotManager");
+    fn_7100ed419c(base::reflection::TunableRegistry(), &g_unk_71729cf280, "ShotManager");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
