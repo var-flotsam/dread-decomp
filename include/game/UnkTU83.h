@@ -26,3 +26,6 @@ extern u32 g_unk_7101d5bdd8;  // The default of a class's "_EditorOnly" attribut
 void fn_71000df22c(UnkKeyedStrIds* self, u32 capacity);
 extern base::reflection::CType g_unk_7101d5c078;
 void fn_71000ce604(base::global::CRntVector<base::global::CStrId>* self, base::global::CStrId* it);
+template <class T>
+struct UnkFrameVector;  // a vector whose element access grows it (game/UnkFrameSource.cpp)
+f32* fn_71000d4a50(UnkFrameVector<f32>* v, u32 i);

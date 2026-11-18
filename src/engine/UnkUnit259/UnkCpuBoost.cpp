@@ -7,6 +7,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "game/UnkTU177.h"
+#include "game/UnkTU259.h"
 #include "types.h"
 
 #define HIDDEN __attribute__((visibility("hidden")))
@@ -22,7 +23,6 @@ void SetCpuBoostMode(CpuBoostMode mode);
 void fn_7100066698(nn::os::LightEventType* event);
 
 // The flag; the mutex is 0x14c bytes after it (8-byte aligned there, so not a member of one struct).
-extern bool g_unk_716e595b6c[] HIDDEN;
 extern u8 g_unk_716e595ca8[] HIDDEN;
 
 static inline nn::os::MutexType* BoostMutex() {

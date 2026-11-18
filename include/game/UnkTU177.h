@@ -47,3 +47,7 @@ extern s32 g_unk_716e29c694;
 extern s32 g_unk_716e29c240;
 extern s32 g_unk_716e29c244;
 void* fn_710015abd0();
+void fn_7100159920();
+void fn_7100159ac0();
+void fn_7100159bf0(s32 a, s32 b);
+void fn_710015bd90(s32 x, s32 y, s32 width, s32 height);

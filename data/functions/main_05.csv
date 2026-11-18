@@ -903,7 +903,7 @@ address,size,name,name_source,subsystem,status
 0x710054b4a8,8,fn_710054b4a8,unknown,unknown,O
 0x710054b4b0,324,fn_710054b4b0,unknown,unknown,U
 0x710054b5f4,840,fn_710054b5f4,unknown,unknown,U
-0x710054b93c,748,fn_710054b93c,unknown,unknown,U
+0x710054b93c,748,fn_710054b93c,unknown,unknown,O
 0x710054bc28,144,fn_710054bc28,unknown,unknown,O
 0x710054bcb8,612,fn_710054bcb8,unknown,unknown,U
 0x710054bf1c,1512,fn_710054bf1c,unknown,unknown,U
@@ -2946,7 +2946,7 @@ address,size,name,name_source,subsystem,status
 0x71005a52f8,176,fn_71005a52f8,unknown,game/ai?,O
 0x71005a53a8,84,fn_71005a53a8,unknown,game/ai?,O
 0x71005a53fc,140,fn_71005a53fc,unknown,game/ai?,O
-0x71005a5488,408,fn_71005a5488,unknown,game/ai?,U
+0x71005a5488,408,fn_71005a5488,unknown,game/ai?,O
 0x71005a5620,28,fn_71005a5620,unknown,game/ai?,O
 0x71005a563c,132,fn_71005a563c,unknown,game/ai?,O
 0x71005a56c0,8,CGroundShockerAIComponent::refl_Equals,reflection,game/ai,O

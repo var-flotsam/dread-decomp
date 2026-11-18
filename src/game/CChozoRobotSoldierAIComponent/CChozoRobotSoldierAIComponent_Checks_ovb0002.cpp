@@ -6,6 +6,7 @@
 // tuning's chance (+0x50), unless the state machine (+0x1170 count, +0x1178 node) is in a state other
 // than the two at +0x14a18 and +0x14a90, both itself and in its child (+0x18). Names and layouts are
 // placeholders.
+#include "game/CCharClassChozoRobotSoldierAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1501.h"
 #include "types.h"
@@ -18,7 +19,6 @@ struct UnkRobotSoldierTuning_ovb0002 {
     u8 pad_0x30[0x20];
     f32 field_0x50;  // a chance, 0 to 1
 };
-extern UnkRobotSoldierTuning_ovb0002 g_unk_71726cc6d8;  // reached through the GOT
 
 // A node of the state machine: its state at +0x8 and its child node at +0x18.
 struct UnkRobotSoldierStateNode_ovb0002 {

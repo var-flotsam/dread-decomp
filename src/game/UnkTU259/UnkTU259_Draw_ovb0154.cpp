@@ -34,7 +34,6 @@ char* fn_71001a07fc(char* p0);
 void fn_71001d796c(void* sub, u64, u32 b, void* c);
 void fn_7100159530();
 void fn_7100159810(s32 value);
-void fn_7100160910(u32 index, s32 mode, u32 group);
 void fn_7100160cf0(u32 index, u32 value, u32 slot);
 
 struct UnkGfxD_b0154;

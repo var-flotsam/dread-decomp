@@ -9,6 +9,7 @@
 #include "base/UnkCountedResource.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -122,7 +123,6 @@ void fn_71001ab3dc(void* data, u32 frame, u16* a, u16* b, u16* c, u16* d, s16* e
 
 // The arrays' element accessors (growing the array past its end).
 UnkFramePair* fn_710019cf9c(UnkFrameVector<UnkFramePair>* v, u32 i);
-f32* fn_71000d4a50(UnkFrameVector<f32>* v, u32 i);
 
 // Takes `resource` (counted) and, when it is of kind 4, reads its frame data: the counts, and per
 // frame two pairs of 16-bit values, a pair scaled by the counts at +0x90 and +0x94, a signed pair

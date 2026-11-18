@@ -42,7 +42,6 @@ struct UnkStatics_7101116680 {
     u8 pad_0x148[0x98];
     u8 field_0x1e0[8];
 };
-extern UnkStatics_7101116680 g_unk_7172a062c0 __attribute__((visibility("hidden")));
 void fn_71010f41a0(void* self, const UnkIdValue* items, u32 count);
 void fn_71010f48b0(void* self);  // its destructor, as registered
 extern UnkConversion g_unk_7172a05640;

@@ -3894,7 +3894,7 @@ address,size,name,name_source,subsystem,status
 0x71009ca9fc,1448,fn_71009ca9fc,unknown,game?,U
 0x71009cafa4,88,fn_71009cafa4,unknown,game?,O
 0x71009caffc,96,fn_71009caffc,unknown,game?,O
-0x71009cb05c,516,fn_71009cb05c,unknown,game?,U
+0x71009cb05c,516,fn_71009cb05c,unknown,game?,O
 0x71009cb260,384,fn_71009cb260,unknown,game?,O
 0x71009cb3e0,336,fn_71009cb3e0,unknown,game?,O
 0x71009cb530,468,fn_71009cb530,unknown,game?,U

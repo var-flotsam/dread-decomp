@@ -4,6 +4,7 @@
 #include "base/global/CRntVector.h"
 #include "game/UnkTU377.h"
 #include "game/querysystem/CFilter.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 struct UnkUnit392Filter_b69;
@@ -12,7 +13,6 @@ template <class T>
 struct UnkFrameVector;
 
 f32 fn_71002b80ec(UnkShapedEvaluator_A2_b68* self, void* a, void* b);
-f32* fn_71000d4a50(UnkFrameVector<f32>* v, u32 i);
 
 struct UnkTU392Source {
     u8 pad_0x0[0x10];

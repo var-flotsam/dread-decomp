@@ -18,7 +18,6 @@ struct UnkV4_b47 {
     UnkV4_b47(const UnkV4_b47& o) : x(o.x), y(o.y), z(o.z), w(o.w) {}
 };
 
-void fn_7101156bd0(UnkObject* model, UnkPart* part, f32 time, f32 from, f32 to, bool on, bool black);
 
 // What a model part's colour goes to (+0x150): its current value at +0xc4.
 struct UnkTintTarget_l93adc0 {

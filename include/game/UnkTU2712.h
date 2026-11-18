@@ -5,3 +5,5 @@
 
 struct UnkObject;
 bool fn_710114e674(UnkObject* object, u8 value);
+struct UnkPart;
+void fn_7101156bd0(UnkObject* model, UnkPart* part, f32 time, f32 from, f32 to, bool on, bool black);

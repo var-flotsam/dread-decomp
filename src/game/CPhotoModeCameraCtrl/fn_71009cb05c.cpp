@@ -49,7 +49,6 @@ struct UnkListedItem;
 struct UnkItemListTag;
 using UnkItemList = base::UnkSList<UnkItemListTag>;
 const void* fn_71010e53ac(void* holder);
-void fn_710119ba7c(UnkItemList* self, UnkListedItem* item);
 
 struct UnkPhotoTuning_l9cb05c {
     u8 pad_0x0[0xe4];

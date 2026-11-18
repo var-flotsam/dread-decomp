@@ -32,3 +32,4 @@ UnkMatrix44 fn_7100078314(const UnkMatrix44* m);
 UnkMatrix44 fn_710007966c(const void* value, f32 angle);
 UnkVec3f fn_710007a450(void* xform, const UnkVec3f* v);
 UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkMatrix44& m);
+void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);
