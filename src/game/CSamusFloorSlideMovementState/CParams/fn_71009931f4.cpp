@@ -5,12 +5,12 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "game/CMovementComponent.h"
+#include "game/CSamusFloorSlideMovementState/CParams.h"
 #include "types.h"
 
 using base::math::CVector3D;
 
 struct UnkSlideState_ovb0004;
-void fn_7100992724(UnkSlideState_ovb0004* self);
 
 struct UnkSlideOwner_l9931f4 {
     virtual void vf_0();
@@ -127,6 +127,7 @@ static inline CVector3D Position(const UnkSlideOwner_l9931f4* owner) {
     return {owner->xform.m[3], owner->xform.m[7], owner->xform.m[11]};
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71009931f4(void* object, void* arg) {
     UnkFloorSlide_l9931f4* self = static_cast<UnkFloorSlide_l9931f4*>(object);
     const f32* dt = static_cast<const f32*>(arg);

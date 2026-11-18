@@ -57,6 +57,7 @@ struct UnkDaivoSwarm_l4e22d8 {
     }
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71004e22d8(UnkDaivoSwarm_l4e22d8* self) {
     UnkVec3Result goal = fn_710064fef8(reinterpret_cast<UnkSwarmHold_b66a4*>(self));
     const UnkDaivoPos_l4e22d8* end = self->path.points[self->path.count - 1].GetPos();

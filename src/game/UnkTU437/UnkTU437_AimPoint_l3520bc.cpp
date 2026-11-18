@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
+#include "game/CCollisionComponent.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -46,7 +47,6 @@ static inline const char* Text(const Id& id) {
     return reinterpret_cast<const UnkNameText_l3520bc*>(id.data)->text;
 }
 
-UnkCollisionRecord* fn_710086411c(UnkCollisionContainer* self, const UnkCollisionObject* object);
 void fn_7101179ed0(UnkAnimationComponent* self, const char* a, const char* b, UnkMatrix44* matrix, u32 flag);
 
 UnkVec3f fn_71003520bc(UnkNoArg, UnkAimActor_l3520bc* actor, const UnkVec3f* fallback) {

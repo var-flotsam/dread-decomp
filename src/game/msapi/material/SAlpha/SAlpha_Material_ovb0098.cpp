@@ -500,7 +500,6 @@ struct UnkReflValueArg;
 // The member object a field of `obj` holds.
 UnkReflTypedPtr fn_71000e755c(UnkReflField* field, const UnkReflTypedPtr* obj);
 // The field's attribute `key` as a value (an empty value when the field has none).
-UnkReflValue fn_710000cf10(void* field, const base::reflection::UnkReflAttrKey& key, bool inherited);
 void fn_710007ca94(CRntFile*, char*);
 // Reads `size` bytes (fn_710007c714 with one element).
 

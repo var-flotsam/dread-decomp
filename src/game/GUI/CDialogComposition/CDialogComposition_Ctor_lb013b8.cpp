@@ -3,12 +3,11 @@
 // default string id. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CDialogComposition.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a99f18[];  // the dialog's vtable
 
 u32 fn_7100b026b0(void* self);
 u32 fn_7100b02684(void* self);

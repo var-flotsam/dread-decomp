@@ -95,6 +95,7 @@ static inline base::math::CVector3D Position_l835a74(const UnkActor* actor) {
     return v;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100835a74(UnkGun_l835a74* self) {
     UnkGameManager* manager = g_unk_7101d47310;
     self->time = manager->field_0x2444;

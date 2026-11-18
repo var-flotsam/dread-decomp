@@ -43,6 +43,7 @@ struct UnkGooshockerHit_l59ee10 {
 
 void fn_710059b0c0(UnkGooshockerAI_l59ee10* self, const CVector3D* dir, bool arg2, bool arg3);
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710059ee10(UnkGooshockerAI_l59ee10* self, const UnkGooshockerHit_l59ee10* hit) {
     UnkGooshockerOwner_l59ee10* owner = self->owner;
     if (!owner || !owner->attack)

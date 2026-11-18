@@ -6,10 +6,10 @@
 #include "base/UnkDestructors.h"
 #include "game/CAttack.h"
 #include "game/CBossAIComponent.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
 
-extern void* g_unk_7101a3cbc8[];  // the component's vtable
 extern char g_unk_7101a3c9b0[];   // the listening attack's vtable
 
 struct UnkChozoWarriorCallbacks_l49880c;

@@ -13,6 +13,7 @@ struct UnkDoorShieldHit_l8deae8 {
     u32 flags;  // 0xb4
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 u32 fn_71008deae8(UnkDoorShieldLife_l8deae8* self, void* a1, UnkDoorShieldHit_l8deae8* hit, void* a3) {
     u32 flags = hit->flags;
     bool shielded = (self->mask & flags) != 0;

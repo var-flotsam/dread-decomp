@@ -4279,7 +4279,7 @@ address,size,name,name_source,subsystem,status
 0x71010d1c9c,4,fn_71010d1c9c,unknown,game/components?,O
 0x71010d1ca0,4,fn_71010d1ca0,unknown,game/components?,O
 0x71010d1ca4,188,fn_71010d1ca4,unknown,game/components?,O
-0x71010d1d60,296,fn_71010d1d60,unknown,game/components?,U
+0x71010d1d60,296,fn_71010d1d60,unknown,game/components?,m
 0x71010d1e88,148,fn_71010d1e88,unknown,game/components?,O
 0x71010d1f1c,508,fn_71010d1f1c,unknown,game/components?,O
 0x71010d2118,684,fn_71010d2118,unknown,game/components?,U

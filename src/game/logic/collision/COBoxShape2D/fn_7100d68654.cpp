@@ -34,6 +34,7 @@ struct UnkWorldBounds_ld68654 {
     base::math::CVector3D max;
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkWorldBounds_ld68654 fn_7100d68654(const UnkOBoxShape2D* self, const UnkXform* xf) {
     UnkOBoxPlacement box = self->placement;
     base::math::CVector2D t = {xf->m[0][3], xf->m[1][3]};

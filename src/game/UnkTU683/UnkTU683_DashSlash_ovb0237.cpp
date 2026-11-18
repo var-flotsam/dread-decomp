@@ -2,6 +2,7 @@
 // attack motion's end offset, and its start. Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CAnimationComponent.h"
+#include "game/CCharClassChozoRobotSoldierDashSlashAttack.h"
 #include "game/CChozoRobotSoldierCannonShotAttack.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkActor.h"
@@ -33,8 +34,6 @@ struct UnkGoliathAI_b58a3;
 // Signature as the other AI units declare it; here it hands back the next state's id, so it is called through
 // a cast.
 
-
-extern u8 g_unk_71726cb118[];
 
 struct UnkHydrogigaAttack_b47;
 void fn_71003627d0(UnkHydrogigaAttack_b47* self);

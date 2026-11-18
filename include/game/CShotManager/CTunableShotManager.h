@@ -22,3 +22,4 @@ void fn_7100eddc68(UnkObj290_b43a3* self, UnkObj290_b43a3* other);  // Move cons
 UnkHyperBeamSoundHandle fn_7100ed6910(void* player, const base::math::CVector3D* pos, u32 id, u32 kind, u32);
 void fn_7100ed77b8(void* player, UnkCollisionObject* object);
 extern void* g_unk_7101ca9fe0[];
+void* fn_7100ed77a0(void* player);

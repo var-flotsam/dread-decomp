@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "base/reflection/TypeObject.h"
 #include "game/GUI/CAmiiboComposition.h"
+#include "game/GUI/CButton.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2747.h"
@@ -30,7 +31,6 @@ struct UnkButtonClassData_l1c1530 {
     u8 unk_0x8[0x10];
     UnkReflType type;  // 0x18
 };
-extern UnkButtonClassData_l1c1530 g_unk_7172a0d340 __attribute__((visibility("hidden")));
 
 void fn_710120186c(UnkGuiDisplayObject* list);
 

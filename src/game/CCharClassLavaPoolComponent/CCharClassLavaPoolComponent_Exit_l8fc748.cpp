@@ -8,6 +8,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
@@ -25,7 +26,6 @@ struct UnkLiquidPoolActor_l9016a0;
 void fn_71009016a0(UnkLiquidPoolExit_l9016a0* self, UnkLiquidPoolActor_l9016a0* actor, const UnkVec3f* pos);
 
 void fn_7100f0ecec(void* info, const CStrId* id);
-void fn_7100f0e4e4(void* a, void* b, void* c, void* d);
 
 // A named resource whose name is counted on each read.
 struct UnkLavaPoolResource_l8fc748 {

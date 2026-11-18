@@ -4,12 +4,12 @@
 // fn_710093fab8, releases the preset ids at +0x2370 and ends with the base (fn_710097973c).
 // Names and layouts are placeholders.
 #include "base/UnkStrIdPathPair.h"
+#include "game/CCharacterMovement.h"
+#include "game/UnkTU1428.h"
 #include "types.h"
 
 struct UnkMorphBall_eb64;
-void fn_710093efdc(UnkMorphBall_eb64* self, u32 a, u32 b, u32 c);
 struct UnkCharacterMovementOwner_ovb0021;
-void fn_710097973c(UnkCharacterMovementOwner_ovb0021* self);
 
 // A counted object the ball holds while it is in use.
 struct UnkBallHeld_l93f98c {

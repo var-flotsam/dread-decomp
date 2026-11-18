@@ -10,3 +10,4 @@ struct UnkGuiEvent;
 struct UnkMissionLogTarget_ovb0079;
 void fn_7100b018fc(UnkMissionLogTarget_ovb0079* self, UnkGuiEvent* event);
 extern UnkDlgId_ovb0069 g_unk_717275db70 __attribute__((visibility("hidden")));
+extern void* g_unk_7101a99f18[];

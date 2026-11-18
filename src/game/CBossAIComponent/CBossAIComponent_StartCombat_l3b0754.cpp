@@ -22,7 +22,6 @@ struct UnkModeFlags {
 
 struct UnkBossDoorAI_ovb0102;
 struct UnkCameraOwner;
-void fn_71003ad174(UnkCameraOwner* owner, u32 arg);
 void fn_71003b0054(UnkBossDoorAI_ovb0102* self, bool locked);
 
 // The id's text, counting the read.

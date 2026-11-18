@@ -1613,7 +1613,7 @@ address,size,name,name_source,subsystem,status
 0x710094b16c,856,fn_710094b16c,unknown,unknown,U
 0x710094b4c4,68,fn_710094b4c4,unknown,unknown,O
 0x710094b508,64,fn_710094b508,unknown,unknown,O
-0x710094b548,624,fn_710094b548,unknown,unknown,O
+0x710094b548,624,fn_710094b548,unknown,unknown,U
 0x710094b7b8,12,fn_710094b7b8,unknown,unknown,O
 0x710094b7c4,216,fn_710094b7c4,unknown,unknown,O
 0x710094b89c,20,fn_710094b89c,unknown,unknown,O
@@ -2264,7 +2264,7 @@ address,size,name,name_source,subsystem,status
 0x7100979a60,208,fn_7100979a60,unknown,unknown,m
 0x7100979b30,268,fn_7100979b30,unknown,unknown,O
 0x7100979c3c,152,fn_7100979c3c,unknown,unknown,O
-0x7100979cd4,496,fn_7100979cd4,unknown,unknown,U
+0x7100979cd4,496,fn_7100979cd4,unknown,unknown,m
 0x7100979ec4,8,fn_7100979ec4,unknown,unknown,O
 0x7100979ecc,36,fn_7100979ecc,unknown,unknown,O
 0x7100979ef0,40,fn_7100979ef0,unknown,unknown,O
@@ -2771,7 +2771,7 @@ address,size,name,name_source,subsystem,status
 0x710099289c,192,fn_710099289c,unknown,game/player?,O
 0x710099295c,688,fn_710099295c,unknown,game/player?,U
 0x7100992c0c,1512,fn_7100992c0c,unknown,game/player?,U
-0x71009931f4,488,fn_71009931f4,unknown,game/player?,U
+0x71009931f4,488,fn_71009931f4,unknown,game/player?,m
 0x71009933dc,3444,fn_71009933dc,unknown,game/player?,U
 0x7100994150,580,fn_7100994150,unknown,game/player?,U
 0x7100994394,384,fn_7100994394,unknown,game/player?,U
@@ -3272,7 +3272,7 @@ address,size,name,name_source,subsystem,status
 0x71009b49dc,372,fn_71009b49dc,unknown,game/player?,U
 0x71009b4b50,656,fn_71009b4b50,unknown,game/player?,U
 0x71009b4de0,1148,fn_71009b4de0,unknown,game/player?,U
-0x71009b525c,392,fn_71009b525c,unknown,game/player?,O
+0x71009b525c,392,fn_71009b525c,unknown,game/player?,U
 0x71009b53e4,20,fn_71009b53e4,unknown,game/player?,O
 0x71009b53f8,104,fn_71009b53f8,unknown,game/player?,O
 0x71009b5460,176,fn_71009b5460,unknown,game/player?,O

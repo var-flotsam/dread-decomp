@@ -124,7 +124,6 @@ void fn_7100ac46f0(UnkProjectileFx_ovb0046* self, const UnkVec3f* at, const UnkV
     fn_71002093c8(reinterpret_cast<char*>(fx) + 0x28, false);
 }
 
-extern const u8 g_unk_710164b89c[] __attribute__((visibility("hidden")));
 
 // An intrusively counted result (count at +8, deleted through its slot 2).
 struct UnkMoveResult_ovb0046 {

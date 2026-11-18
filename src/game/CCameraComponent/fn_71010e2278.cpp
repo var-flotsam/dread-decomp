@@ -7,6 +7,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU131.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU39.h"
 #include "game/UnkXformNode.h"
 
 #include <new>
@@ -94,7 +95,6 @@ struct UnkSceneObj_71010e2278 : UnkSceneBase_71010e2278, UnkSceneNode {
 extern char g_unk_7172a045f0[] __attribute__((visibility("hidden")));
 
 void fn_7100e13928(void* unk, void* unk2, UnkSceneObj_71010e2278** out, const CStrId* name);
-void fn_7100030fc0(void* dst, const void* src, f32 value);
 
 struct UnkOwner_71010e2278 {
     u8 unk_0x0[0x40];

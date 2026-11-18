@@ -4,6 +4,8 @@
 // alive, else down) with fn_7100977e50. A hit the base handler (fn_71010d9638) does not take is kept
 // (slot 0x218) with +0x2540 telling whether it has no target; otherwise +0x2540 is set, the base
 // contact (fn_710097a664) gets an empty hit and fn_710093ed64 runs. Names and layouts are placeholders.
+#include "game/CCharacterMovement.h"
+#include "game/UnkTU1428.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkXformNode.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -18,10 +20,7 @@ using base::math::CVector3D;
 
 struct UnkCharacterMovement;
 struct UnkCollisionHit;
-bool fn_7100977e50(UnkCharacterMovement* self, f32 max_dot, f32 extra, f32 step, f32 back, u32 mask,
-                   const CVector3D* pos, CVector3D* out_point, UnkCollisionHit* out_hit, const CVector3D* dir);
 struct UnkMorphBall_eb64;
-void fn_710093ed64(UnkMorphBall_eb64* self);
 
 // A counted reference to a weak handle, released through the handle's virtual 0x10.
 struct UnkHitRef_l94b548 {

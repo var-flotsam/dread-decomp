@@ -8,7 +8,6 @@
 #include "types.h"
 
 extern "C" f32 atan2f(f32 y, f32 x);
-extern const u8 g_unk_710164b89c[] __attribute__((visibility("hidden")));
 
 struct UnkProjectileHitInfo_lac4c60 {
     u8 pad_0x0[0x14];
@@ -86,6 +85,7 @@ struct UnkProjectileMovement_lac4c60 {
 static_assert(__builtin_offsetof(UnkProjectileMovement_lac4c60, shot) == 0x3b4, "layout");
 static_assert(__builtin_offsetof(UnkProjectileMovement_lac4c60, def) == 0x5c8, "layout");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_7100ac4c60(UnkBossComponent* component, u64 a, u64 b, u64 c, u64 d) {
     auto* self = reinterpret_cast<UnkProjectileMovement_lac4c60*>(component);
     const auto* hit = reinterpret_cast<const UnkProjectileHitInfo_lac4c60*>(c);

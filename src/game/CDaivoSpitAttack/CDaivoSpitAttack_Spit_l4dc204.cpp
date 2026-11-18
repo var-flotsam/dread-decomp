@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttack.h"
+#include "game/CDaivoSpitAttack.h"
 #include "game/CModelUpdaterComponent.h"
 #include "game/CScenario.h"
 #include "game/UnkActor.h"
@@ -37,7 +38,6 @@ extern u32 g_unk_7172a0ba4c;
 // The mouth's point on the Daivo's model.
 extern const u64 g_unk_7101649be0;
 
-UnkDaivoController_b46a1* fn_71004dc4b4(void* owner);
 void fn_71004dc590(UnkSelf* self, UnkWeakTarget* other);
 void fn_71004e092c(UnkDaivoController_b46a1* controller, const CVector3D* position, const CVector3D* forward,
                    const CVector3D* side);

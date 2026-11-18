@@ -4,12 +4,12 @@
 // fields after it. Names and layouts are placeholders.
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/UnkTU1440.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkImpulseUser_A5_b68;
 struct UnkImpulseMessage_A5_b68;
-void fn_7100969130(char* self);
 bool fn_7100969e84(UnkImpulseUser_A5_b68* self, const UnkImpulseMessage_A5_b68* msg);
 
 struct UnkUnit1441TrackLink_A4_b74 {

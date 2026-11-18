@@ -6,6 +6,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
+struct UnkButtonClassData_l1c1530;
 struct UnkGuiButton;
 struct UnkGuiButtonIds;
 struct UnkMissionLogButton_ovb0079;
@@ -19,3 +20,4 @@ extern char g_unk_7101cb5908[];  // CButton's vtable.
 void fn_71011c0158(UnkGuiDisplayObject* self);
 // Selects what the button's label for `state` (0 to 3) names.
 void fn_71011bf744(UnkGuiButtonIds* button, u32 state);
+extern UnkButtonClassData_l1c1530 g_unk_7172a0d340 __attribute__((visibility("hidden")));

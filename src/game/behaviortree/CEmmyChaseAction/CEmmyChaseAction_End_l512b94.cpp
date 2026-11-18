@@ -13,6 +13,8 @@
 #include "game/CDoorEmmyFXComponent.h"
 #include "game/UnkTypedValue.h"
 #include "game/behaviortree/CBehavior.h"
+#include "game/behaviortree/CEmmyChaseAction.h"
+#include "game/behaviortree/CEmmyStateAction.h"
 #include "game_s2/UnkChargeComponent.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -28,7 +30,6 @@ struct UnkDoorList_b0193 {
     u32 count;
 };
 
-extern UnkPropertyName g_unk_71726debd8;
 extern UnkPropertyName g_unk_71726df1a8;
 
 void fn_71007b6be4(UnkDoorEmmyFX_b50* self, bool add);
@@ -75,7 +76,6 @@ struct UnkEmmyChaseAction_l512b94 {
 };
 
 void fn_7100511f04(UnkEmmyChaseAction_l512b94* self, u32 a, bool b, f32 time);
-void fn_710051db44(UnkComponent* self, u32 arg);
 
 template <class T>
 static inline void SetProperty(CBlackboard* blackboard, UnkPropertyName* name, T* value) {

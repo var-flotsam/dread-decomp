@@ -14,7 +14,6 @@
 #include "types.h"
 
 struct UnkCoreXAI_A2_b73;
-void fn_71003aff64(UnkCoreXAI_A2_b73* self, u32 a, u32 b);
 void fn_71004db7f8();
 
 struct UnkCoreXSource_A2_b73 {

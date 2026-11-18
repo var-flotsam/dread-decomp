@@ -41,6 +41,7 @@ static inline void Grow(UnkAabb* box, const UnkVec3& p) {
     box->max = UnkVec3{Max(box->max.x, p.x), Max(box->max.y, p.y), Max(box->max.z, p.z)};
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100588f10(UnkGoliathXAI_l588f10* self, UnkAabb* out) {
     fn_71011061d0(reinterpret_cast<UnkBoundsComponent*>(self), out);
     UnkGoliathArena_l588f10& arena = self->arena;

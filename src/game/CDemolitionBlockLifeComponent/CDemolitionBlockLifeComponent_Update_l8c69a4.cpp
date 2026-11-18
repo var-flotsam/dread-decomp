@@ -3,6 +3,7 @@
 // the target's tint at +0x2e0, when there is one). Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
+#include "game/CDemolitionBlockLifeComponent.h"
 #include "game/CLifeComponent.h"
 #include "types.h"
 
@@ -11,7 +12,6 @@ using base::math::UnkVector4D;
 
 struct UnkCommanderLife_A5_b63;
 struct UnkColorLerp_A4_b75;
-UnkVector4D fn_71008c6b0c(UnkColorLerp_A4_b75* self, f32 dt);
 
 struct UnkDemolitionLifeTint {
     u8 pad_0x0[0x30];

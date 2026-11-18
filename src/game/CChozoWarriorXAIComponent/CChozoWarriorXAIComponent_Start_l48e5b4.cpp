@@ -5,8 +5,10 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
+#include "game/CChozoWarriorXAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkShakernautId.h"
+#include "game/UnkTU1102.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkXParasiteAI.h"
 #include "types.h"
@@ -17,7 +19,6 @@ struct UnkChozoWarriorAI_l498ff0;
 void fn_7100498ff0(UnkChozoWarriorAI_l498ff0*);
 
 void fn_71000312c4(void* list, const void* key_ptr);
-extern char g_unk_71726cfa68[] __attribute__((visibility("hidden")));
 
 struct UnkChozoXAbility_l48e5b4 {
     u8 pad_0x0[0x5a8];
@@ -42,7 +43,6 @@ struct UnkTgmRefVector_b205 {
     UnkTgmRef_b205** data;
     u32 count;
 };
-UnkTgmRefVector_b205* fn_71006e9fb4();
 void fn_71006e9778(UnkXParasiteAI* self, const s32* state, f32 time);
 
 // Puts the parasite into `state` for `time` seconds.

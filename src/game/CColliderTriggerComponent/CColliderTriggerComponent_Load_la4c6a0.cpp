@@ -3,6 +3,7 @@
 // manager knows it. Names and layouts are placeholders.
 #include "base/global/CRntFile.h"
 #include "base/global/CStrId.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU56.h"
@@ -11,7 +12,6 @@
 using base::global::CStrId;
 
 struct UnkColliderTrigger_b0058;
-void fn_7100a6081c(UnkColliderTrigger_b0058* self, base::global::CRntFile* file);
 struct UnkWeakVariant_b62a1;
 struct UnkWeakTarget;
 void fn_710023df08(UnkWeakVariant_b62a1* self, UnkWeakTarget* target);

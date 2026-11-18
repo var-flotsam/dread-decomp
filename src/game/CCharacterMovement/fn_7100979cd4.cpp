@@ -5,6 +5,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
+#include "game/CCharClassAIComponent.h"
 #include "game/UnkNavMeshHit.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU362.h"
@@ -15,7 +16,6 @@ using base::math::CVector2D;
 using base::math::CVector3D;
 
 struct UnkSource_7100286798;
-u32 fn_7100413fd0(UnkSource_7100286798* self);
 
 struct UnkProbePoint_l979cd4 {
     f32 x;
@@ -89,6 +89,7 @@ static inline UnkNavMeshManager* NavMeshManager() {
     return manager;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkNavMeshHit fn_7100979cd4(UnkProbeMovement_l979cd4* self, const CVector3D* pos, bool adjust) {
     UnkNavMeshHit hit;
     UnkProbeNavSource_l979cd4* nav = self->owner->nav;

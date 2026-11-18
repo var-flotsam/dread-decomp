@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "base/reflection.h"
 #include "game/CGameObject.h"
 #include "types.h"
 
@@ -13,8 +14,6 @@
 using base::global::CFilePathStrId;
 using base::global::CRntVector;
 using base::global::CStrId;
-
-extern char g_unk_7101cab428[];  // the object's vtable
 
 struct UnkEntry_lfa45a4;
 

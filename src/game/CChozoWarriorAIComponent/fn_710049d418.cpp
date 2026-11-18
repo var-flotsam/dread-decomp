@@ -4,10 +4,9 @@
 //
 // The fields are addressed by offset.
 #include "game/CAbilityGhostAura.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
-
-extern void* g_unk_7101a3cbc8[];
 
 // Only the vtable at +0x0 is named; the rest is addressed by offset.
 struct UnkComponent {

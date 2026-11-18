@@ -3,6 +3,7 @@
 // facing points along +x; otherwise the id of the CCharClassShakernautInitAttackTrack record now
 // playing, or the empty id. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CShakernautDoubleGroundShockAttack.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
@@ -14,7 +15,6 @@ using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
 extern __attribute__((visibility("hidden"))) CStrId g_unk_7172705848;
-extern __attribute__((visibility("hidden"))) CStrId g_unk_71727057c0[4];
 
 struct UnkShakernautAI_l6a4260 {
     u8 pad_0x0[0x14810];

@@ -5,6 +5,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoCommanderGroundAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -13,7 +14,6 @@ using base::reflection::UnkReflObject;
 
 struct UnkSelf;
 struct UnkOut;
-bool fn_710042bb48(UnkSelf* self, UnkOut* out);
 
 struct UnkPulseRange_l439bd8 {
     f32 left;

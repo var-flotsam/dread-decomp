@@ -5,6 +5,7 @@
 #include "base/math/CVector4D.h"
 #include "base/math/CVectorOps.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CDemolitionBlockLifeComponent.h"
 #include "game/CItemLifeComponent.h"
 #include "game/CLifeComponent.h"
 #include "types.h"
@@ -76,7 +77,6 @@ using base::math::UnkVector4D;
 
 struct UnkCommanderLife_A5_b63;
 struct UnkColorLerp_A4_b75;
-UnkVector4D fn_71008c6b0c(UnkColorLerp_A4_b75* self, f32 dt);
 
 struct UnkItemLifeTint_ovb0114 {
     u8 pad_0x0[0x30];

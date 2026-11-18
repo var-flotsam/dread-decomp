@@ -8,6 +8,7 @@
 #include "game/CCharClassAttackComponent.h"
 #include "game/CCharClassTweakPlayRateTrack.h"
 #include "game/CCollisionComponent.h"
+#include "game/CGoliathAIComponent.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU85.h"
@@ -19,8 +20,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflTypedPtr;
 
 struct UnkCollisionContainer;
-
-extern CStrId g_unk_71726e6748 __attribute__((visibility("hidden")));
 
 struct UnkGoliathOwner2_ovb0106 {
     u8 pad_0x0[0x2a0];

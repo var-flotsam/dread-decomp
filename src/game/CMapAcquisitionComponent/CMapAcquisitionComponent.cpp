@@ -2,6 +2,7 @@
 // an extended bool property, and the class's registration.
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CEmmyProtoAIComponent.h"
+#include "game/CMapAcquisitionComponent.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
 
@@ -14,8 +15,6 @@ struct UnkMapAcquisitionTU {
 
 extern UnkMapAcquisitionTU g_unk_7172750e58 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172750da0;
-extern UnkProperty g_unk_7172750da8;
-extern UnkPropertyEx<> g_unk_7172750dd0;
 extern char g_unk_7101a92110[];
 extern char g_unk_7101a92168[];
 void fn_7100a88028(UnkProperty* p);

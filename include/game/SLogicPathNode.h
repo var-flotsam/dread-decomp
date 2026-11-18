@@ -6,6 +6,7 @@
 #include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkPathPoints;
 struct UnkMinimapPath;
 struct UnkArgObj;
 struct UnkDashPath;
@@ -17,3 +18,4 @@ void fn_7101059794(f32 distance, UnkDashPath* path, u32* index, f32* fraction);
 void fn_710106146c(UnkInsertTarget* target, const UnkArgObj* obj, u32 value);
 void fn_71010592b0(UnkMinimapPath* path, const base::math::CVector3D* point);  // Adds a point.
 extern char g_unk_7101cac8f0[];
+f32 fn_71010598e0(UnkPathPoints* self, u32 a, u32 b);

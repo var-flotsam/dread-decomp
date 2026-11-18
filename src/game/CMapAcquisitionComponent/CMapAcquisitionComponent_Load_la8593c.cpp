@@ -5,6 +5,7 @@
 #include "base/UnkStrIdTable.h"
 #include "base/global/CStrId.h"
 #include "game/CBlackboard.h"
+#include "game/CMapAcquisitionComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkTUProperty.h"
@@ -25,9 +26,6 @@ struct UnkMapAcquisition_la8593c {
 static_assert(__builtin_offsetof(UnkMapAcquisition_la8593c, table) == 0x7d0, "layout");
 
 void fn_7100a9eff4(UnkMapAcquisition_la8593c* self, CBlackboard* blackboard);  // the base method
-
-extern UnkPropertyEx<> g_unk_7172750dd0;
-extern UnkProperty g_unk_7172750da8;
 
 static inline const UnkQualifiedId& AcquiredId() {
     UnkQualifiedId& qid = ItemQualifiedId(g_unk_7172750dd0);

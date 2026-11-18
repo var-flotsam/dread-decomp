@@ -74,7 +74,6 @@ static_assert(__builtin_offsetof(UnkMapMenu_lb44bf4, sound_0x11c0) == 0x11c0, "l
 
 // As src/game/GUI/CMapMenuController_Timers_b43.cpp declares it.
 struct UnkMapTimersController_b43a3;
-void fn_7100b3feb8(UnkMapTimersController_b43a3*, s32, u32);
 
 // Moves on to the next step (fn_7100b3feb8).
 static inline void Step(UnkMapMenu_lb44bf4* self, s32 a, u32 b) {

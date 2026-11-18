@@ -2,6 +2,7 @@
 // two hashes, the dash slash's own id when the target is in reach (200 units at most), with a local parameter
 // block (a null pointer and 4.0). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CCharClassChozoRobotSoldierDashSlashAttack.h"
 #include "game/CChozoRobotSoldierCannonShotAttack.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
@@ -29,8 +30,6 @@ struct UnkStrIdData_l468f70 {
     u8 pad_0x0[0x30];
     u64 hash;
 };
-
-extern u8 g_unk_71726cb118[];
 
 void fn_7100468f70(UnkDashSlashSend_l468f70* self) {
     void* target = self->owner->field_0x220;

@@ -38,8 +38,6 @@ struct UnkIceShard_ovb0122 {
     f32 field_0x4c;
 };
 
-void fn_7100dde3e4(UnkGameObject_0x150* self, const UnkIceShard_ovb0122* shard);
-
 static inline f32 Random01_labb2e8() {
     return (f32)((rand() & 0x7fff) * (1.0 / 32767.0));
 }

@@ -3,6 +3,7 @@
 // runs out, and a target within the tuned band along the path starts state 1. Names and layouts are placeholders.
 #include "game/CFlockingSwarmControllerComponent.h"
 #include "game/CRedenkiSwarmControllerComponent.h"
+#include "game/SLogicPathNode.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1161.h"
 #include "game/UnkTU2553.h"
@@ -26,7 +27,6 @@ struct UnkSwarmRecord_b65a4 {
 };
 
 struct UnkPathPoints;
-f32 fn_71010598e0(UnkPathPoints* self, u32 a, u32 b);
 
 // Read as one 64-bit word: the area in the low half, the index in the high half.
 struct UnkRedenkiPathPos_l65adec {

@@ -7,13 +7,13 @@
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/logic/collision/CPolygonCollectionShape.h"
 #include "types.h"
 
 struct UnkPlayerInfo_ovb0071;
 void fn_7100f0dd3c(UnkPlayerInfo_ovb0071* self);
-void fn_71010fa790(void* ai);
 
 struct UnkRodotukKey_l66a624;
 extern UnkRodotukKey_l66a624 g_unk_710164a4d8;  // reached through the GOT

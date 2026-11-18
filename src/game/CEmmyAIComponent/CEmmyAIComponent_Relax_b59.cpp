@@ -24,8 +24,6 @@ using base::global::CStrId;
 
 struct UnkEmmyActor_b55;
 
-extern UnkPropertyName g_unk_71726debd8;
-
 struct UnkActorTarget;
 extern u32 g_unk_7101649db8;
 
@@ -62,7 +60,6 @@ struct UnkEmmyRelaxAI_b59 {
     UnkEmmyRelaxRecord_b59 field_0x14b40;
 };
 
-bool fn_710054782c(UnkEmmyRelaxAI_b59* self);
 void fn_7100552324(UnkEmmyRelaxAI_b59* self);
 
 // The typed value lives in the caller's frame for the whole function: the original gives it its own slot.

@@ -4,6 +4,7 @@
 // Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU817.h"
 #include "types.h"
 
 // As src/game/CEmmyAIComponent/CEmmyAIComponent_CanAct_b63a3.cpp defines it.
@@ -11,7 +12,6 @@ struct UnkEmmyAI_b63a3;
 bool fn_7100551d98(UnkEmmyAI_b63a3* self);
 // As src/game/UnkTU818/UnkTU818_PathLoad_ovb0258.cpp declares it.
 struct UnkAim_b0258y;
-void fn_7100573218(UnkAim_b0258y* self);
 // An easing curve over [0, 1].
 f32 fn_7100076880(f32 t);
 

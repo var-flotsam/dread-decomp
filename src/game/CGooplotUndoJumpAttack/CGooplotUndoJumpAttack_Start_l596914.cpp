@@ -8,15 +8,15 @@
 #include "base/UnkMatrix44.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CGooplotJumpAttack.h"
+#include "game/CGooshockerAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkGooplotJump_ovb0123;
-void fn_7100594d5c(UnkGooplotJump_ovb0123* self, u32 state);
 using base::reflection::UnkReflObject;
-void fn_710059f058(UnkReflObject* ai);
 UnkVec3f fn_710059b7ec(void* ai);
 
 // The string id of the angle value, reached PC-relative.

@@ -6,6 +6,8 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CCollisionComponent.h"
+#include "game/CShotManager/CTunableShotManager.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU253.h"
@@ -20,8 +22,6 @@ struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
 
-void* fn_7100ed77a0(void* player);
-UnkCollisionRecord* fn_710086411c(UnkCollisionContainer* self, const UnkCollisionObject* object);
 u32 fn_71001c14fc(char* self, const void* name);
 UnkMatrix44 fn_71000793c0(const UnkVec3f& translation, const UnkVec3f& angle);
 
@@ -72,6 +72,7 @@ static inline const char* Text(const base::UnkStrIdMember& id) {
     return reinterpret_cast<const UnkMissileNameText_laba6d4*>(id.data)->text;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_7100aba6d4(UnkMissileMovement_laba6d4* self, UnkMissileTarget_laba6d4* target, const UnkVec3f* offset,
                    const UnkVec3f* angle) {
     UnkMissileSoundObject_laba6d4* object =

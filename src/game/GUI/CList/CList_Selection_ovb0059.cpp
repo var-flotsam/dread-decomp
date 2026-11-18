@@ -11,6 +11,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/GUI/CDisplayObjectContainer.h"
+#include "game/GUI/CList.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
@@ -34,7 +35,6 @@ void fn_71011ff97c(UnkStruct_71011ff97c* self, bool quiet);
 struct UnkPanel_71011dfeb0;
 
 extern void* g_unk_7101cb6d08[];  // the list's vtable
-extern CStrId g_unk_7172a10df0 __attribute__((visibility("hidden")));  // the selection sound's key
 
 struct UnkListItem_ovb0059 {
     void** vtable;

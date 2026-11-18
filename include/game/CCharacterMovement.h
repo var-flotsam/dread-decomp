@@ -4,8 +4,12 @@
 // 0x71009754a4-0x710097aa78). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "game/UnkXformNode.h"
+#include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkCharacterMovement;
+struct UnkCollisionHit;
+struct UnkCharacterMovementOwner_ovb0021;
 struct UnkGrappleTarget;
 struct UnkAIReach;
 struct UnkFlagged;
@@ -22,3 +26,4 @@ void fn_7100978f58(char* self, const void* arg);  // Reads three words at `arg`.
 void fn_71009796dc(UnkMove_b152* self);
 UnkVec3Bits fn_7100979a60(UnkPlace* place);
 bool fn_7100976c94(UnkGrappleTarget* target, const UnkVec3f* pos, u32 value, void* arg, u32 flag, f32 offset);
+void fn_710097973c(UnkCharacterMovementOwner_ovb0021* self);

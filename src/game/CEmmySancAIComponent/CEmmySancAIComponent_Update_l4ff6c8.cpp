@@ -12,6 +12,7 @@
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU365.h"
+#include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -24,9 +25,6 @@ struct UnkTracker;
 struct UnkNamedEntry_7100772cb0;
 struct UnkNamedList_7100772cb0;
 struct UnkEmmyForestAI_A2_b70;
-
-void fn_710110f744(void* self, void* object);
-void fn_710054d16c(UnkEmmyForestAI_A2_b70* self, f32 dt);
 
 extern CStrId g_unk_71726dd8f0 __attribute__((visibility("hidden")));
 

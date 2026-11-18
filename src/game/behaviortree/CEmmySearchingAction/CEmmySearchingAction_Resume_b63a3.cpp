@@ -10,7 +10,6 @@
 #include "types.h"
 
 struct UnkEmmyActor_b55;
-void fn_7100547428(UnkEmmyActor_b55* self, s32 mode, UnkActor* target, bool b);
 
 struct UnkEmmyAICast_b63a3 {
     void** vtable;

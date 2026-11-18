@@ -24,6 +24,7 @@ struct UnkGun_l835c1c {
 };
 static_assert(__builtin_offsetof(UnkGun_l835c1c, id) == 0x1874, "UnkGun_l835c1c placeholder layout");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100835c1c(UnkGun_l835c1c* self, s32 kind, bool skip) {
     if (self->active && kind != 2 && self->key_check != 0xffffffffffffffffull && !skip) {
         fn_7100ed6a10(static_cast<UnkShotManager_b0011*>(g_unk_71726af0b0), self->id, 0);

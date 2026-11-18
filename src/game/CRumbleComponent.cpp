@@ -89,8 +89,6 @@ struct UnkRumbleParams {
     u16 field_0x40;
 };
 
-void fn_7100072030(void* rumble, void* arg);
-
 // A rumble the component started (0x68 bytes): its handle, what it was played from and two flags.
 struct UnkRumbleRecord {
     UnkHandle handle;

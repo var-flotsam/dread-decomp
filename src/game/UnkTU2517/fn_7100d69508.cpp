@@ -50,6 +50,7 @@ struct UnkSegmentShape_ld69508 : UnkShapeBase_ld69508 {
 };
 static_assert(__builtin_offsetof(UnkSegmentShape_ld69508, field_0xbc) == 0xbc, "layout");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkSegmentShape_ld69508* fn_7100d69508(const UnkSegmentShape_ld69508* other) {
     auto* self = static_cast<UnkSegmentShape_ld69508*>(__builtin_operator_new(0xc0));
     new (self) UnkSegmentShape_ld69508(other->transform, other->segment);

@@ -3,18 +3,17 @@
 // references in the buckets at +0x48 hold, unregisters the area from the game manager under the unit's
 // id and runs the base step (fn_710024fad0). Names and layouts are placeholders.
 #include "base/UnkSList.h"
+#include "game/CActorComponent.h"
 #include "game/CChozoCommanderSentenceSphereAttack.h"
 #include "game/CCollisionComponent.h"
+#include "game/CForcedMovementAreaComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern u64 g_unk_717271fdd8 __attribute__((visibility("hidden")));
-
 // As src/game/CCentralUnitComponent/CCentralUnitComponent_b41.cpp declares it.
 struct UnkSelf_cu41;
-void fn_710024fad0(UnkSelf_cu41* self);
 
 struct UnkAreaListenersTag_l7e96f8;
 using UnkAreaListeners_l7e96f8 = base::UnkSList<UnkAreaListenersTag_l7e96f8>;

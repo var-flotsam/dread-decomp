@@ -7,6 +7,7 @@
 #include "base/math/CVectorOps.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU1501.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -22,7 +23,6 @@ struct UnkMeleeRequest_l1065bc {
 };
 
 struct UnkMeleeSelf_l1065bc;
-void fn_71011065bc(UnkMeleeSelf_l1065bc* self, s32 mode, UnkMeleeRequest_l1065bc* request, bool* out);
 
 // The target's hit state (the actor's +0x208).
 struct UnkYamplotXHitState_l6f0f00 {

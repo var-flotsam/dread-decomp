@@ -12,7 +12,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkKraidAI_ovb0118;
-bool fn_71005fdb70(UnkKraidAI_ovb0118* ai);
 
 // Entries of the Kraid AI component's attacker list.
 struct UnkKraidAttackNode_l5f2624 {

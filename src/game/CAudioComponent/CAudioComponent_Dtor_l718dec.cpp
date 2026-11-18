@@ -7,17 +7,15 @@
 #include "game/UnkComponent.h"
 #include "game/UnkTU101.h"
 #include "game/UnkTU32.h"
+#include "game/UnkTU50.h"
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringPool;
 
-extern void* g_unk_7101a6cca0[];  // the component's vtables
-
 struct UnkAudioSound_ovb0015;
 void fn_710071f878(UnkAudioSound_ovb0015* self);
-void fn_7100072030(void* rumble, void* arg);
 
 // As src/game/CAudioComponent/CAudioComponent_Stop_b65a4.cpp has them.
 struct UnkSoundRef {

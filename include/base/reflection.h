@@ -154,3 +154,4 @@ namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <> UnkReflType base::reflection::TypeObject<gameeditor::EPersistenceTarget, UnkReflType>::object asm("g_unk_7172756f90");
 extern void* g_unk_7101a20c98[];
 UnkStrIdRecord_lfa4b64* fn_7100fa4b64(UnkStrIdRecord_lfa4b64* self, const UnkStrIdRecord_lfa4b64* other);
+extern char g_unk_7101cab428[];

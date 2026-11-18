@@ -5,6 +5,7 @@
 // are placeholders.
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CCharClassBaseTriggerComponent.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "game/UnkCallbackSet_7101a20950.h"
 #include "game/UnkTU2506.h"
@@ -14,8 +15,6 @@
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a8ebc8[];
 
 struct UnkTriggerActor_la46b64;
 

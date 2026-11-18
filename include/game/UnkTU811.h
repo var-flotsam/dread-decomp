@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkEmmyForestAI_A2_b70;
 struct UnkLuaDoorTarget;
 struct UnkListedItem;
 struct UnkActor;
@@ -51,3 +52,6 @@ void fn_71005479a0(UnkEmmyRelaxAI_b59* self);
 void fn_710054095c(UnkEmmyAI2_b57a3* self);
 void fn_7100540dd0(char* self);
 UnkLuaDoorTarget* fn_710055b104(void* object);
+void fn_7100547428(UnkEmmyActor_b55* self, s32 state, UnkActor* target, bool b);
+bool fn_710054782c(UnkEmmyRelaxAI_b59* self);
+void fn_710054d16c(UnkEmmyForestAI_A2_b70* self, f32 dt);

@@ -19,6 +19,7 @@
 #include "game/UnkTU2656.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU394.h"
+#include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -37,8 +38,6 @@ struct UnkHitInfo_l56a8d0;
 s32 fn_7101134f04(UnkEmmyAttack_l56a8d0* self, UnkActor* actor, UnkHitInfo_l56a8d0* info, void* a, void* b);
 bool fn_7101167340(void* life);
 // Its second parameter is a state (2 here); CEmmySearchingAction_Resume_b63a3.cpp declares it bool.
-void fn_7100547428(UnkEmmyActor_b55* self, s32 state, UnkActor* target, bool b);
-bool fn_710054782c(UnkEmmyRelaxAI_b59* self);
 
 // A list of nodes (link at +8) freed through the allocator.
 struct UnkQueryNodeList_l56a8d0 : base::UnkVtableList<void> {

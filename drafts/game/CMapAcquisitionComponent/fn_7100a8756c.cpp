@@ -6,6 +6,7 @@
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "base/snd/CSoundSystem.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU23.h"
@@ -21,8 +22,6 @@ using base::global::CRntString;
 struct UnkActor;
 struct UnkMgr_0xf18;
 struct UnkSoundSystemMasks_ovb0074;
-
-void fn_71001082a8(UnkSoundSystemMasks_ovb0074* self, bool on, const u32* mask);
 
 struct UnkMusicMode {
     u32 kind;

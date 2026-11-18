@@ -6,6 +6,7 @@
 #include "base/global/CRntFile.h"
 #include "types.h"
 
+struct UnkSelf_cu41;
 struct UnkPickableItem_A4_b76;
 struct UnkBaseComponent;
 struct UnkActivatable_b48;
@@ -21,3 +22,4 @@ void fn_710024fc08();
 void fn_710024facc(UnkSmBase_b60*);
 void fn_710024f6d4(UnkBaseComponent* self);
 void fn_710024fc0c(UnkPickableItem_A4_b76* self, base::global::CRntFile* file);
+void fn_710024fad0(UnkSelf_cu41* self);

@@ -1,6 +1,7 @@
 // base::reflection::CClass: the state checksum of a class: its id, then the checksum of every field
 // whose "Persistence" attribute is missing or 1. Names and layouts are placeholders.
 #include "base/UnkHashStream.h"
+#include "base/animation/CBlendSpaceResource.h"
 #include "base/reflection/CType.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflCast.h"
@@ -11,7 +12,6 @@ using base::reflection::UnkReflValue;
 
 struct UnkHashed_71000e81e8;
 s32 fn_71000e81e8(UnkHashed_71000e81e8* self);
-UnkReflValue fn_710000cf10(void* field, const base::reflection::UnkReflAttrKey& key, bool inherited);
 
 struct UnkClassField_0xb0 {
     u8 pad_0x0[0xb0];

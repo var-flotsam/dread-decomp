@@ -24,6 +24,7 @@
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
 #include "game/UnkTU134.h"
+#include "game/UnkTU1428.h"
 #include "game/UnkTU218.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
@@ -371,8 +372,6 @@ using base::global::CStrId;
 struct UnkMove_b152;
 
 struct UnkMorphBall_eb64;
-void fn_710093ed64(UnkMorphBall_eb64* self);
-void fn_710093efdc(UnkMorphBall_eb64* self, u32 a, u32 b, u32 c);
 
 struct UnkIdHolder_eb64 {
     u8 pad_0x0[0x30];

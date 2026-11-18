@@ -48,6 +48,7 @@ inline bool PlaysTrack(UnkMovementOwner_l0d1d60* owner, const base::reflection::
     return animation && fn_710117b348(animation, getClass());
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71010d1d60(UnkMovement_l0d1d60* self, const CVector3D* pos) {
     CVector3D target;
     target.x = pos->x;

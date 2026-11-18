@@ -5,14 +5,13 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoCommanderGroundAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkHypersparkAttack3_ovb0023;
 struct UnkGoliathAI_b58a3;
-
-bool fn_710042bb38(UnkHypersparkAttack3_ovb0023* self);
 
 struct UnkCommanderAI_l42c1f0 {
     void** vtable;

@@ -21,3 +21,4 @@ void fn_7100ac38fc(void* self);  // Takes the component (it reads the rate at +0
 extern void* g_unk_7101a96b30[];
 void fn_7100ac40fc(UnkChargeComponent* self, f32 time);
 void fn_7100ac3880(UnkSelf* self);
+extern const u8 g_unk_710164b89c[] __attribute__((visibility("hidden")));

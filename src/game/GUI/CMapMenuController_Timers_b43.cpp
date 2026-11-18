@@ -55,8 +55,6 @@ struct UnkMapTimersController_b43a3 {
 };
 static_assert(__builtin_offsetof(UnkMapTimersController_b43a3, delay) == 0x8b0, "UnkMapTimersController_b43a3 layout");
 
-void fn_7100b3feb8(UnkMapTimersController_b43a3* self, s32 mode, u32 flags);
-
 static inline UnkMapTimersView_b43a3* MapView_b43a3() {
     return *reinterpret_cast<UnkMapTimersView_b43a3**>(reinterpret_cast<u8*>(g_unk_7101d47310) + 0x2228);
 }

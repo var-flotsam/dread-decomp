@@ -98,6 +98,7 @@ inline void Show(UnkGuiDisplayObject*& object) {
     fn_71011ce208(object, 0.2f);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100b92bb8(UnkReveal_lb92bb8* self, f32 dt) {
     switch (self->step) {
     case 0:

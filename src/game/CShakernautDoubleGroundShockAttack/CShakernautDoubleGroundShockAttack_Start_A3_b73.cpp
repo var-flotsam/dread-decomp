@@ -7,6 +7,7 @@
 // src/game/CChozoWarriorXGlaiveSpinAttack/UnkAttackTrackLink_b54.cpp, and clears +0x60. Names and layouts are
 // placeholders.
 #include "base/global/CStrId.h"
+#include "game/CShakernautDoubleGroundShockAttack.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAbilityGhostAura.h"
@@ -22,7 +23,6 @@ struct UnkAttackBase;
 void fn_71006a5d94();
 struct UnkAnimationComponent;
 
-extern CStrId g_unk_71727057c0[4] __attribute__((visibility("hidden")));
 
 struct UnkShakernautTrackLink_A3_b73 {
     u8 pad_0x0[0x8];

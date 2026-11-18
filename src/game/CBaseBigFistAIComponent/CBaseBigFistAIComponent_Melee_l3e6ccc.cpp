@@ -23,7 +23,6 @@ struct UnkMeleeRequest_l1065bc {
 };
 
 struct UnkMeleeSelf_l1065bc;
-void fn_71011065bc(UnkMeleeSelf_l1065bc* self, s32 mode, UnkMeleeRequest_l1065bc* request, bool* out);
 
 struct UnkBigFistAI_l3e6ccc {
     u8 pad_0x0[0x30];

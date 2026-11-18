@@ -17,6 +17,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiEvent.h"
 #include "../../game_s7/UnkGuiS7.h"
+#include "game/UnkTU1674.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU57.h"
 #include "types.h"
@@ -682,8 +683,6 @@ struct UnkGuiEventTarget_ovb0182 {
     virtual void vf_0x1a8(UnkGuiEventData_ovb0182* event);
     virtual void vf_0x1b0(UnkGuiEventData_ovb0182* event);
 };
-
-void fn_7100b1e3fc(void* slots, UnkGuiEventData_ovb0182* event);
 
 // Hands the event to the handler for its kind; unhandled ones go on to the render slots (+0xb8).
 void fn_71011cf39c(UnkChangeMenuStateButton_b48a3* object, UnkGuiEvent_b48a3* message) {

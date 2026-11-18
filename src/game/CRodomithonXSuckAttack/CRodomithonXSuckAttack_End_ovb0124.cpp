@@ -5,9 +5,8 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CFrozenComponent.h"
 #include "game/UnkAttack.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
-
-void fn_71010fa790(void* ai);
 
 struct UnkSuckOwner_ovb0124 {
     u8 pad_0x0[0x220];

@@ -6,6 +6,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CSamusMovementState/CParams.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
@@ -14,7 +15,6 @@
 #include "types.h"
 
 struct UnkSlideState_ovb0004;
-void fn_71009b1ae8(UnkSlideState_ovb0004* self, const u64* event);
 void fn_710033e494(UnkAbility* ability);  // stops the speed boost
 
 // A track the animation reports: which (-1: none), its layer (0xff: none) and how far it has run.

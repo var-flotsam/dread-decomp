@@ -7,6 +7,7 @@
 #include "game/CAutsharpAIComponent.h"
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1124.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -32,7 +33,6 @@ struct UnkSinkParams_l6fbcb0 {
 static_assert(__builtin_offsetof(UnkSinkParams_l6fbcb0, kind) == 0x38, "layout");
 
 struct UnkTU1123_b257c;
-void fn_71007038c0(UnkTU1123_b257c* self);
 
 struct UnkTU1117_l6fbcb0 {
     virtual void vf_0x0();

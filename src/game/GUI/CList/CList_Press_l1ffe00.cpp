@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/UnkGuiEvent.h"
+#include "game/UnkTU1674.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -62,7 +63,6 @@ static_assert(__builtin_offsetof(UnkList_l1ffe00, previous) == 0x248, "previous"
 
 struct UnkGuiDisplayObject;
 struct UnkGuiEventData_ovb0182;
-void fn_7100b1e3fc(void* slots, UnkGuiEventData_ovb0182* event);
 
 // The id table's id at `index`.
 inline const CStrId& TableId(u32 index) {

@@ -2,15 +2,14 @@
 // lists (+0xb08 and +0xb78) are destroyed in reverse order, then the base destructor fn_7100a46b64 runs.
 // Names and layouts are placeholders.
 #include "base/UnkCloneHelpers.h"
+#include "game/CCharClassBaseTriggerComponent.h"
+#include "game/CCharClassFanComponent.h"
 #include "types.h"
 
-extern void* g_unk_7101a7b368[];  // the class's vtable
 extern char g_unk_7101a7b5b0[];
 extern char g_unk_7101a7b5d0[];
 extern char g_unk_7101a7b5f0[];
 extern char g_unk_7101a7b610[];
-
-void fn_7100a46b64(char*);
 
 struct UnkFanListA_l87de4c;
 struct UnkFanListB_l87de4c;

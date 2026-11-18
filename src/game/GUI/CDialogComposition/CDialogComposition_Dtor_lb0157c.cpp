@@ -6,12 +6,11 @@
 #include "base/UnkDestructors.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/GUI/CDialogComposition.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern void* g_unk_7101a99f18[];  // the dialog's vtable
 
 // A callback registered with a deferred set: unregistered when destroyed.
 struct UnkDlgCallback_lb0157c {

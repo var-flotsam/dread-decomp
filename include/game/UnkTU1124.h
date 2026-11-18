@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkTU1123_b257c;
 struct UnkUnit1124Object;
 void fn_7100703814(UnkUnit1124Object* self, u32 id);
 void fn_71007038f4(void* self, void* params, bool reset);  // Its first argument is the handler, its second the block.
+void fn_71007038c0(UnkTU1123_b257c* self);

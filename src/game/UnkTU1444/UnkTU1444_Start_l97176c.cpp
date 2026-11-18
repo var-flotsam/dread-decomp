@@ -10,13 +10,12 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkObject_0x100.h"
+#include "game/UnkTU1440.h"
 #include "game/UnkTU1444.h"
 #include "game/UnkTU376.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-void fn_7100969130(char* self);
 
 // The enemy movement (CCharClassEnemyMovement) and its flag.
 struct UnkMovement_l97176c : base::reflection::UnkReflObject {

@@ -4,6 +4,7 @@
 // further along x, when the flag at +0x59c is set (fn_710116c388), else directly (fn_710116c128). Names
 // and layouts are placeholders.
 #include "game/CCharClassStartPointComponent.h"
+#include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2553.h"
@@ -15,7 +16,6 @@ struct UnkGeneratorTarget_ovb0120;
 struct UnkElectricGeneratorUpd_ovb0120;
 struct UnkStartPointSaver_l16c388;
 
-void fn_7100aa3264(UnkElectricGeneratorUpd_ovb0120* self);
 bool fn_710116c388(UnkStartPointSaver_l16c388* self, const char* const& a, const UnkVec3f* position,
                    const UnkVec3f* angle, bool flag);
 

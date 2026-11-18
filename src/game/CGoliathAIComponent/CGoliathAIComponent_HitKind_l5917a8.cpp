@@ -5,6 +5,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CCollisionComponent.h"
+#include "game/CGoliathAIComponent.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -19,9 +20,6 @@ struct UnkGoliathIdData_b55 {
         s32 count;  // a union member: the original reloads around its stores
     };
 };
-
-extern UnkGoliathIdData_b55* g_unk_71726e6740 __attribute__((visibility("hidden")));
-extern CStrId g_unk_71726e6748 __attribute__((visibility("hidden")));
 
 struct UnkGoliathOwner_l5917a8 {
     u8 pad_0x0[0x2a0];

@@ -41,6 +41,7 @@ struct UnkProjectileMovement_lac41e0 {
 static_assert(__builtin_offsetof(UnkProjectileMovement_lac41e0, push_level) == 0x508, "layout");
 static_assert(__builtin_offsetof(UnkProjectileMovement_lac41e0, def) == 0x5c8, "layout");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100ac41e0(UnkHomingMovement* movement, void* ctx, f32 dt) {
     auto* self = reinterpret_cast<UnkProjectileMovement_lac41e0*>(movement);
     UnkVec3f* pos = static_cast<UnkVec3f*>(ctx);

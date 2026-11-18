@@ -35,6 +35,7 @@ struct UnkCircleBox2_ld617d8 {
     }
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkCircleBox3_ld617d8 fn_7100d617d8(const UnkCircleShape2D_ld617d8* self, const UnkCircleTransform_ld617d8* transform) {
     f32 size = self->radius + self->radius;
     UnkCircleBox2_ld617d8 box(transform->m[0][3] + 0.0f, transform->m[1][3] + 0.0f, size, size);

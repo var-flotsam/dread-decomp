@@ -516,7 +516,6 @@ struct UnkDaivoSwarm_b0012;
 struct UnkSwarmUpdate_b65a4;
 struct UnkParent_71007455dc;
 struct UnkPathPoints;
-f32 fn_71010598e0(UnkPathPoints* self, u32 a, u32 b);
 
 // Read as one 64-bit word: the area in the low half, the index in the high half.
 struct UnkRedenkiPathPos_ovb0084 {

@@ -4,6 +4,7 @@
 // an enemy movement, clears the two words at +0x19e0.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/behaviortree/CEmmyStateAction.h"
 #include "game_s2/UnkParams.h"
 #include "game_s2/UnkWeakHandle.h"
 
@@ -36,8 +37,6 @@ struct UnkComponent {
     u8 pad_0x65[0x12a8c];
     u8 field_0x12af1;
 };
-
-void fn_710051db44(UnkComponent* self, u32 arg);
 
 void fn_71005174e0(UnkComponent* self, u32 arg) {
     self->field_0x30 = ~0ull;

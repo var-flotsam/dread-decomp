@@ -3,12 +3,11 @@
 // fn_7100f0e4e4 runs on the game manager's +0x38, the cast object's +0x98, the owner's +0x30 and the
 // argument's +0x30. Names and layouts are placeholders.
 #include "base/reflection/UnkReflCast.h"
+#include "game/CPlayerInfo.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 #include "base/reflection/UnkClassGetters.h"
-
-void fn_7100f0e4e4(void* a, void* b, void* c, void* d);
 
 struct UnkRoomOwner_A5_b74 {
     u8 pad_0x0[0x28];

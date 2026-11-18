@@ -8,6 +8,7 @@
 #include "base/math/UnkZeroVector3.h"
 #include "game/CAbilityEnergyWave.h"
 #include "game/CPickableComponent.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU57.h"
@@ -20,10 +21,6 @@ struct UnkScriptCaller;
 struct UnkTriggerUpdate_ovb0067;
 struct UnkTriggerComponent_ovb0067;
 struct UnkTriggerActor_ovb0067;
-
-void fn_7100a5e8a4(UnkTriggerUpdate_ovb0067* self);
-void fn_7100a5ee80(UnkTriggerComponent_ovb0067* self, s32 kind, UnkTriggerActor_ovb0067* actor,
-                   const UnkVec3f* dir);
 
 // A string id's data as read here: its text at +0x10 and a use count at +0x44.
 struct UnkTriggerName_la5ebf8 {

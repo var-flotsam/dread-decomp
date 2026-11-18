@@ -5,12 +5,14 @@
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
 #include "game/CBossAIComponent.h"
+#include "game/CChozoWarriorXAIComponent.h"
 #include "game/CInventoryComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
 #include "game/UnkShakernautId.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU39.h"
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
@@ -32,9 +34,6 @@ struct UnkChozoXAbility_l48e3e4 {
 
 void fn_7100498efc(UnkChozoWarriorXAI_l48e3e4* self);
 struct UnkCoreXAI_A2_b73;
-void fn_71003aff64(UnkCoreXAI_A2_b73* self, u32 a, u32 b);
-void fn_7100030fc0(void* list, const void* key_ptr, f32 value);
-extern char g_unk_71726cfa68[] __attribute__((visibility("hidden")));
 
 static inline void* MusicManager_l48e3e4() {
     if (!g_unk_71726bc560) {

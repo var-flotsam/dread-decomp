@@ -7,14 +7,14 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkReflAttributes.h"
+#include "game/GUI/CList.h"
 #include "game/UnkGuiEvent.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU1674.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
 
 using base::global::CStrId;
-
-extern CStrId g_unk_7172a10df0 __attribute__((visibility("hidden")));  // the selection sound's key
 
 struct UnkListEvent_l1ffb8c {
     u8 pad_0x0[0x1a];
@@ -72,7 +72,6 @@ static_assert(__builtin_offsetof(UnkList_l1ffb8c, quiet) == 0x260, "quiet");
 
 struct UnkGuiDisplayObject;
 struct UnkGuiEventData_ovb0182;
-void fn_7100b1e3fc(void* slots, UnkGuiEventData_ovb0182* event);
 
 // The id table's id at `index`.
 inline const CStrId& TableId(u32 index) {

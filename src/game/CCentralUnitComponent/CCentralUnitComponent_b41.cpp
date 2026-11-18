@@ -3,6 +3,7 @@
 // pass colour g_unk_710164aa90 to (0, 0, 0, 0), releases its two members at +0x7f8 and +0x8a8, and
 // sets two render parameters (named by their hashes) to zero. Names and layouts are placeholders.
 #include "base/math/CVector4D.h"
+#include "game/CActorComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU1176.h"
@@ -20,8 +21,6 @@ struct UnkSelf_cu41 {
     u8 field_0x7f8[0xb0];
     u8 field_0x8a8[0x8];
 };
-
-void fn_710024fad0(UnkSelf_cu41* self);
 
 void fn_7100770354(UnkSelf_cu41* self) {
     fn_710024fad0(self);

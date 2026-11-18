@@ -257,7 +257,6 @@ UnkBaseTriggerWeakRecord& UnkBaseTriggerWeakRecord::operator=(const UnkBaseTrigg
 }
 
 struct UnkStateObject;
-extern void* g_unk_7101a8ebc8[];
 
 // An allocator-backed list (base vtable, empty array with step 10 and flags 0xf, allocator, final
 // vtable), as in src/game/CAIComponent/UnkAIDeviceList.cpp.

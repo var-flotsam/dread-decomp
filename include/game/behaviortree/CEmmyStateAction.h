@@ -7,3 +7,4 @@
 
 struct UnkComponent;
 void fn_710051dab0(UnkComponent* self);
+void fn_710051db44(UnkComponent* self, u32 arg);

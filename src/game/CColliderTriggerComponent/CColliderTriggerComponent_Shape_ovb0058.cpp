@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CCharClassEventScenarioComponent.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "game/logic/collision/CCollider.h"
@@ -143,7 +144,6 @@ void fn_7100a4c444(UnkColliderTrigger_b0058* self, void* shape) {
     self->collider->vf_0x48();
 }
 
-void fn_7100a6081c(UnkColliderTrigger_b0058* self, base::global::CRntFile* file);
 void fn_7100a4c804(UnkColliderTrigger_b0058* self, const base::math::CVector3D* size);
 
 // Reads the component, then the trigger box's size (three floats) and builds the box collider.

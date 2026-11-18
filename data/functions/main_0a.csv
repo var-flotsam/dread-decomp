@@ -3343,7 +3343,7 @@ address,size,name,name_source,subsystem,status
 0x7100a86f9c,312,fn_7100a86f9c,unknown,game/components?,O
 0x7100a870d4,24,fn_7100a870d4,unknown,game/components?,O
 0x7100a870ec,1152,fn_7100a870ec,unknown,game/components?,U
-0x7100a8756c,400,fn_7100a8756c,unknown,game/components?,O
+0x7100a8756c,400,fn_7100a8756c,unknown,game/components?,U
 0x7100a876fc,508,fn_7100a876fc,unknown,game/components?,O
 0x7100a878f8,28,fn_7100a878f8,unknown,game/components?,O
 0x7100a87914,132,fn_7100a87914,unknown,game/components?,O
@@ -4234,7 +4234,7 @@ address,size,name,name_source,subsystem,status
 0x7100aada30,572,fn_7100aada30,unknown,game?,O
 0x7100aadc6c,80,fn_7100aadc6c,unknown,game?,O
 0x7100aadcbc,88,fn_7100aadcbc,unknown,game?,O
-0x7100aadd14,76,fn_7100aadd14,unknown,game?,U
+0x7100aadd14,76,fn_7100aadd14,unknown,game?,m
 0x7100aadd60,2376,fn_7100aadd60,unknown,game?,U
 0x7100aae6a8,216,fn_7100aae6a8,unknown,game?,O
 0x7100aae780,1004,fn_7100aae780,unknown,game?,U
@@ -4507,7 +4507,7 @@ address,size,name,name_source,subsystem,status
 0x7100aba644,72,fn_7100aba644,unknown,game?,O
 0x7100aba68c,68,fn_7100aba68c,unknown,game?,O
 0x7100aba6d0,4,fn_7100aba6d0,unknown,game?,O
-0x7100aba6d4,464,fn_7100aba6d4,unknown,game?,U
+0x7100aba6d4,464,fn_7100aba6d4,unknown,game?,m
 0x7100aba8a4,996,fn_7100aba8a4,unknown,game?,U
 0x7100abac88,56,fn_7100abac88,unknown,game?,O
 0x7100abacc0,4,fn_7100abacc0,unknown,game?,O
@@ -4645,14 +4645,14 @@ address,size,name,name_source,subsystem,status
 0x7100ac40fc,136,fn_7100ac40fc,unknown,game?,O
 0x7100ac4184,24,fn_7100ac4184,unknown,game?,O
 0x7100ac419c,68,fn_7100ac419c,unknown,game?,O
-0x7100ac41e0,412,fn_7100ac41e0,unknown,game?,U
+0x7100ac41e0,412,fn_7100ac41e0,unknown,game?,m
 0x7100ac437c,112,fn_7100ac437c,unknown,game?,O
 0x7100ac43ec,184,fn_7100ac43ec,unknown,game?,O
 0x7100ac44a4,588,fn_7100ac44a4,unknown,game?,O
 0x7100ac46f0,372,fn_7100ac46f0,unknown,game?,O
 0x7100ac4864,928,fn_7100ac4864,unknown,game?,U
 0x7100ac4c04,92,fn_7100ac4c04,unknown,game?,O
-0x7100ac4c60,356,fn_7100ac4c60,unknown,game?,U
+0x7100ac4c60,356,fn_7100ac4c60,unknown,game?,m
 0x7100ac4dc4,252,fn_7100ac4dc4,unknown,game?,O
 0x7100ac4ec0,268,fn_7100ac4ec0,unknown,game?,U
 0x7100ac4fcc,3008,fn_7100ac4fcc,unknown,game?,U
