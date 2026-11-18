@@ -19,6 +19,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassTunnelTrapMorphballComponent
 namespace CCharClassTunnelTrapMorphballComponent {
@@ -51,20 +53,13 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassTunnelTrapMorphballComponent, CCharClassComponent);
 
 // CTunnelTrapMorphballComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100a44fc0();
 namespace CTunnelTrapMorphballComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "aVignettes", 0xa8);
     [&] {
-        DREAD_REFLECTED_FUNCTION("SetOpenState") {
-            fn->name = base::global::UnkStrId("SetOpenState", true);
-            fn->return_type = &g_unk_7101d5af48;
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100a44fc0);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("SetOpenState", &base::reflection::TypeObject<void>::object, 0, fn_7100a44fc0);
     }();
     DREAD_REFLECTED_FIELD(bool, "bDisableCloseTrapSensor", 0xd8);
 }

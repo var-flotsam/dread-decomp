@@ -18,20 +18,17 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CChainReactionActionSwitcherComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100876cfc();
 void fn_7100500260(UnkReflFunction* fn);
 namespace CChainReactionActionSwitcherComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("ChangeActionAndNavhMeshStage") {
-        fn->name = base::global::UnkStrId("ChangeActionAndNavhMeshStage", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100876cfc);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ChangeActionAndNavhMeshStage", &base::reflection::TypeObject<void>::object, 0, fn_7100876cfc);
         fn_7100500260(fn);
     }
 }

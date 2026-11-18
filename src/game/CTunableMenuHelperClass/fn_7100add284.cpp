@@ -10,6 +10,8 @@ using base::reflection::UnkReflField;
 using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern const base::reflection::CType g_unk_71727586d0 __attribute__((visibility("hidden")));
 void fn_7100adeaf4();
 void fn_7100add688(UnkReflFunction* fn, const char* name);
@@ -28,7 +30,7 @@ void fn_7100add284(CClass* cls) {
         fn_7100add688(fn, "SetKey");
     if (UnkReflFunction* fn = AddReflectedFunction(cls, CStrId("SetInfo", true))) {
         fn->name = base::global::UnkStrId("SetInfo", true);
-        fn->return_type = &g_unk_7101d5af48;
+        fn->return_type = &base::reflection::TypeObject<void>::object;
         fn->field_0xb2 = 0;
         fn->field_0x40 = nullptr;
         fn->invoker = reinterpret_cast<void*>(&fn_7100adec94);

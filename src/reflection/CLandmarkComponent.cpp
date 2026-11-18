@@ -27,13 +27,7 @@ void fn_71008a34f0();
 namespace CLandmarkComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sLandmarkID_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sLandmarkID_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71008a34f0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sLandmarkID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71008a34f0);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sLandmarkID", (Persistence, 0), (Description, base::global::CRntString("Landmark ID")));
 }
 bool refl_Equals(const void*, const void*) { return false; }

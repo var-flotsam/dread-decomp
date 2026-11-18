@@ -35,54 +35,24 @@ void fn_710041a01c(UnkReflFunction* fn, const char* name);
 namespace CCharClassBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_bUseIsInFrustumForBossCamera_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bUseIsInFrustumForBossCamera_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710041a4e0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bUseIsInFrustumForBossCamera_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710041a4e0);
     DREAD_REFLECTED_FUNCTION("_m_bUseIsInFrustumForBossCamera_SetterFunction")
         fn_7100419a2c(fn, "_m_bUseIsInFrustumForBossCamera_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bUseIsInFrustumForBossCamera", (DefaultValue, true), (Description, "Use Is In Frustum For Boss Camera"));
-    DREAD_REFLECTED_FUNCTION("_m_bUseAngry_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bUseAngry_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710041a570);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bUseAngry_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710041a570);
     DREAD_REFLECTED_FUNCTION("_m_bUseAngry_SetterFunction")
         fn_7100419ba8(fn, "_m_bUseAngry_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bUseAngry", (DefaultValue, false), (Description, "Use angry?"));
     DREAD_REFLECTED_FIELD(bool, "bManuallyRemoveFromTeamManager", 0x50f, (DefaultValue, false), (Description, "Manually remove from team manager?"));
-    DREAD_REFLECTED_FUNCTION("_m_bWantsLifeFeedback_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bWantsLifeFeedback_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710041a600);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bWantsLifeFeedback_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710041a600);
     DREAD_REFLECTED_FUNCTION("_m_bWantsLifeFeedback_SetterFunction")
         fn_7100419d24(fn, "_m_bWantsLifeFeedback_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bWantsLifeFeedback", (DefaultValue, false), (Description, "Wants Life Feedback?"));
-    DREAD_REFLECTED_FUNCTION("_m_bRemovePlayerInputOnDeath_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bRemovePlayerInputOnDeath_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710041a690);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bRemovePlayerInputOnDeath_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710041a690);
     DREAD_REFLECTED_FUNCTION("_m_bRemovePlayerInputOnDeath_SetterFunction")
         fn_7100419ea0(fn, "_m_bRemovePlayerInputOnDeath_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bRemovePlayerInputOnDeath", (DefaultValue, true), (Description, "Remove player input on death?"));
-    DREAD_REFLECTED_FUNCTION("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710041a720);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bSetPlayerInvulnerableWithReactionOnDeath_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_710041a720);
     DREAD_REFLECTED_FUNCTION("_m_bSetPlayerInvulnerableWithReactionOnDeath_SetterFunction")
         fn_710041a01c(fn, "_m_bSetPlayerInvulnerableWithReactionOnDeath_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bSetPlayerInvulnerableWithReactionOnDeath", (DefaultValue, true), (Description, "Set Samus invulnerable with reaction on death?"));

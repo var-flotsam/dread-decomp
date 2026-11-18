@@ -22,16 +22,13 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
-enum class ELoadingScreen : u32;
-template <> base::reflection::CType base::reflection::TypeObject<ELoadingScreen>::object asm("g_unk_71727c0710");
 
 // CTeleporterUsableComponent
 extern base::reflection::CType g_unk_71727b6270;
 namespace CTeleporterUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eLoadingScreen", true), &base::reflection::TypeObject<ELoadingScreen>::object, 0x53c, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<ELoadingScreen>::object, 0);
+    DREAD_REFLECTED_FIELD_OF("ELoadingScreen", "eLoadingScreen", 0x53c, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(CStrId, "sLevelName", 0x540, (DefaultValue, CStrId("c10_samus", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioName", 0x548, (DefaultValue, CStrId("", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sTargetSpawnPoint", 0x550, (DefaultValue, CStrId("", true)));

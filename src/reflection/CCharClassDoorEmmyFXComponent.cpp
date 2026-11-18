@@ -27,13 +27,7 @@ void fn_71007b5464(UnkReflFunction* fn, const char* name);
 namespace CCharClassDoorEmmyFXComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_fLockedTime_GetterFunction") {
-        fn->name = base::global::UnkStrId("_fLockedTime_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007b6f68);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_fLockedTime_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71007b6f68);
     DREAD_REFLECTED_FUNCTION("_fLockedTime_SetterFunction")
         fn_71007b5464(fn, "_fLockedTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fLockedTime", (DefaultValue, 5.0f));

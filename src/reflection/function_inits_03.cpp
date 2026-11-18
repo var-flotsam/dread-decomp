@@ -11,6 +11,9 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/CPointerType.h"
+#include "base/reflection/TypeObject.h"
+#include "base/reflection/ReflectedFields.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 class CSubareaInfo;
 extern template const base::reflection::CType* base::reflection::PointerType<CSubareaInfo*>::Get();
 namespace base::global { class CFilePathStrId; }
@@ -41,7 +44,6 @@ void fn_7100f0f2dc();
 void fn_7100f0f32c();
 void fn_7100f0f380();
 void fn_7100f0f3d4();
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100f5bc78();
 void fn_7100f5bd64();
 void fn_7100f5be44();
@@ -242,1801 +244,1001 @@ void fn_710101dc3c();
 void fn_710101dd20();
 
 void fn_7100f07fc0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f090);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f090);
     fn_7100601f24(fn);
 }
 
 void fn_7100f08074(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f12c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f12c);
     fn_7100601f24(fn);
 }
 
 void fn_7100f08128(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f184);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f184);
     fn_7100601f24(fn);
 }
 
 void fn_7100f081dc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f1dc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f1dc);
     fn_7100601f24(fn);
 }
 
 void fn_7100f08290(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f22c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f22c);
     fn_7100601f24(fn);
 }
 
 void fn_7100f08344(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f284);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f284);
     fn_7100601f24(fn);
 }
 
 void fn_7100f083f8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f2dc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f2dc);
     fn_7100601f24(fn);
 }
 
 void fn_7100f084ac(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f32c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f32c);
     fn_7100601f24(fn);
 }
 
 void fn_7100f08560(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f380);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f380);
     fn_7100601f24(fn);
 }
 
 void fn_7100f08614(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f0f3d4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<int>::Get(), 0x0, fn_7100f0f3d4);
     fn_7100601f24(fn);
 }
 
 void fn_7100f19e7c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5bc78);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5bc78);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector4D>::Get());
 }
 
 void fn_7100f19ff8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5bd64);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5bd64);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1a174(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5be44);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5be44);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1a2f0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5bf24);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5bf24);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1a46c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5c004);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5c004);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector2D>::Get());
 }
 
 void fn_7100f1a5e8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5c0ec);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5c0ec);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1a764(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5c1cc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5c1cc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1a8e0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5c2ac);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5c2ac);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1aa5c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5c38c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5c38c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1b6f4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5c7f8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5c7f8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1b870(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5c8d8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5c8d8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1b9ec(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5c9b8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5c9b8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1d29c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5e804);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5e804);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector4D>::Get());
 }
 
 void fn_7100f1d418(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5e8f0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5e8f0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f1dc40(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f5ed5c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f5ed5c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f20190(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f608cc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f608cc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2030c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f609ac);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f609ac);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f20488(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f60a8c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f60a8c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f20604(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f60b6c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f60b6c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f20780(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f60c4c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f60c4c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f208fc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f60d2c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f60d2c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f20a78(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f60e0c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f60e0c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f20bf4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f60eec);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f60eec);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f20d70(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f60fcc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f60fcc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f21598(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f61438);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f61438);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f23280(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f63010);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f63010);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector4D>::Get());
 }
 
 void fn_7100f233fc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f630fc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f630fc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f23578(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f631dc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f631dc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f236f4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f632bc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f632bc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f240f0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f63728);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f63728);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2426c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f63808);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f63808);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f26364(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6553c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6553c);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector4D>::Get());
 }
 
 void fn_7100f264e0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f65640);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f65640);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector4D>::Get());
 }
 
 void fn_7100f2665c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f65744);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f65744);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector4D>::Get());
 }
 
 void fn_7100f267d8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f65830);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f65830);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f26954(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f65910);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f65910);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector2D>::Get());
 }
 
 void fn_7100f26ad0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f659f8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f659f8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f274cc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f65e64);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f65e64);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f27648(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f65f44);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f65f44);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f29334(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f67ba8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f67ba8);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector3D>::Get());
 }
 
 void fn_7100f294b0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f67c98);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f67c98);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2962c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f67d88);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f67d88);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector3D>::Get());
 }
 
 void fn_7100f297a8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f67e78);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f67e78);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2a1a4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f682e4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f682e4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2a320(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f683c4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f683c4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2bbe8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f69fa4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f69fa4);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector3D>::Get());
 }
 
 void fn_7100f2bd64(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6a094);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6a094);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2c58c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6a500);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6a500);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2f844(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c20c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c20c);
     fn->params.PushBack(&base::reflection::PrimitiveType<bool>::Get());
 }
 
 void fn_7100f2f9c0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c304);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c304);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector4D>::Get());
 }
 
 void fn_7100f2fb3c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c3f0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c3f0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2fcb8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c4d0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c4d0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2fe34(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c5b0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c5b0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f2ffb0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c690);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c690);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector2D>::Get());
 }
 
 void fn_7100f3012c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c778);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c778);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f302a8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c858);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c858);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f30424(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6c938);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6c938);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f305a0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6ca18);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6ca18);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3071c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6caf8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6caf8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f30898(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6cbd8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6cbd8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f30a14(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6ccb8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6ccb8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f30b90(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6cd98);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6cd98);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f31bd0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6d228);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6d228);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f31d4c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6d308);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6d308);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f31ec8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6d3e8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6d3e8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f32044(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6d4c8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6d4c8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f321c0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6d5a8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6d5a8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f33d54(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6f700);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6f700);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f33ed0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6f7e0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6f7e0);
     fn->params.PushBack(&base::reflection::PrimitiveType<bool>::Get());
 }
 
 void fn_7100f3404c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6f928);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6f928);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get());
 }
 
 void fn_7100f34874(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f6fdec);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f6fdec);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f36a00(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f71924);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f71924);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f36b7c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f71a04);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f71a04);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f36cf8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f71ae4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f71ae4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f37520(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f71f58);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f71f58);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f39de4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f73b80);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f73b80);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f39f60(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f73c60);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f73c60);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3a0dc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f73d40);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f73d40);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3a258(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f73e20);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f73e20);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3a3d4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f73f00);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f73f00);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3a550(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f73fe0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f73fe0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3a6cc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f740d8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f740d8);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::math::CVector4D>::Get());
 }
 
 void fn_7100f3a848(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f741c4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f741c4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3a9c4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f742a4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f742a4);
     fn->params.PushBack(&base::reflection::PrimitiveType<bool>::Get());
 }
 
 void fn_7100f3b1ec(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f74718);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f74718);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3cf64(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f76224);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f76224);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3d0e0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f76304);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f76304);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3d25c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f763e4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f763e4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3d3d8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f764c4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f764c4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f3dc00(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f76938);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f76938);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100f41440(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f78434);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f78434);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f7fd38(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f86550);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f86550);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f88d84(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729e8dc0;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f8a44c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729e8dc0, 0x1, fn_7100f8a44c);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f88f04(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f8a4c0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7100f8a4c0);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f8907c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729f37a0;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f8a8a4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729f37a0, 0x1, fn_7100f8a8a4);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f891fc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f8a918);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7100f8a918);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f8c274(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f91054);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f91054);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f8c3f0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f91198);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100f91198);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get());
 }
 
 void fn_7100f8c56c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729ea500;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f912e8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729ea500, 0x1, fn_7100f912e8);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f8c6ec(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f9135c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7100f9135c);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f932d0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729ea640;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f964bc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729ea640, 0x1, fn_7100f964bc);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f93450(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f96530);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7100f96530);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f9bbb8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729e0568;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f9c940);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729e0568, 0x1, fn_7100f9c940);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f9bd38(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100f9c9b4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7100f9c9b4);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100f9d440(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fa00ac);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fa00ac);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fa2824(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fa8158);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fa8158);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fa29a0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fa8258);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fa8258);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fa2b1c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fa83a4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fa83a4);
     fn->params.PushBack(&base::reflection::PrimitiveType<bool>::Get());
 }
 
 void fn_7100fa2c98(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fa8434);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fa8434);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7100fa2e14(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fa84c4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fa84c4);
     fn->params.PushBack(&base::reflection::PrimitiveType<bool>::Get());
 }
 
 void fn_7100fa2f90(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fa854c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fa854c);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fa310c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fa8680);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fa8680);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fb33e8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fb6568);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fb6568);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fb3564(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = base::reflection::PointerType<CSubareaInfo*>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fb664c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, base::reflection::PointerType<CSubareaInfo*>::Get(), 0x0, fn_7100fb664c);
     fn_7100ef0840(fn);
 }
 
 void fn_7100fb3618(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fb66ec);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7100fb66ec);
     fn->params.PushBack(&base::reflection::PrimitiveType<unsigned int>::Get());
 }
 
 void fn_7100fb3790(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fb6764);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fb6764);
     fn->params.PushBack(base::reflection::PointerType<CSubareaInfo*>::Get());
 }
 
 void fn_7100fc8c70(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fcbc84);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fcbc84);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::TRntString256>::Get());
 }
 
 void fn_7100fd2b98(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729e8dc0;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fdd6d8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729e8dc0, 0x1, fn_7100fdd6d8);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fd2d18(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fdd74c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7100fdd74c);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fd2e90(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729f37a0;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fdd998);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729f37a0, 0x1, fn_7100fdd998);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fd3010(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fdda0c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7100fdda0c);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fe5a58(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7100fff0ac);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100fff0ac);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fea218(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729f2d30;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7101003b80);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729f2d30, 0x1, fn_7101003b80);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fea398(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7101003bf4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7101003bf4);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fec08c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_71729f3268;
-    fn->field_0xb2 = 0x1;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7101004e68);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71729f3268, 0x1, fn_7101004e68);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_7100fec20c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_7101004edc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::PrimitiveType<bool>::Get(), 0x0, fn_7101004edc);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
 void fn_71010113e8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101a504);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101a504);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101011564(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101a5e8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101a5e8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010116e0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101a6cc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101a6cc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_710101185c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101a7b0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101a7b0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010119d8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101a894);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101a894);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101011b54(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101a978);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101a978);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101011cd0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101aa5c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101aa5c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101011e4c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101ab40);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101ab40);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101011fc8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101ac24);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101ac24);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101012144(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101ad08);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101ad08);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010122c0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101adec);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101adec);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_710101243c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101aed0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101aed0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010125b8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101afb4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101afb4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101012734(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b098);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b098);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010128b0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b17c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b17c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101012a2c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b260);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b260);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101012ba8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b344);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b344);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101012d24(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b428);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b428);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101012ea0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b50c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b50c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_710101301c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b5f0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b5f0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013198(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b6d4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b6d4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013314(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b7b8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b7b8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013490(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b89c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b89c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_710101360c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101b980);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101b980);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013788(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101ba64);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101ba64);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013904(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101bb48);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101bb48);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013a80(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101bc2c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101bc2c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013bfc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101bd10);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101bd10);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013d78(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101bdf4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101bdf4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101013ef4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101bed8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101bed8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101014070(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101bfbc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101bfbc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010141ec(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c0a0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c0a0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101014368(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c184);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c184);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010144e4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c268);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c268);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101014660(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c34c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c34c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010147dc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c430);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c430);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101014958(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c514);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c514);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101014ad4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c5f8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c5f8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101014c50(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c6dc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c6dc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101014dcc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c7c0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c7c0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101014f48(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c8a4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c8a4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010150c4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101c988);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101c988);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101015240(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101ca6c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101ca6c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010153bc(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101cb50);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101cb50);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101015538(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101cc34);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101cc34);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010156b4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101cd18);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101cd18);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101015830(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101cdfc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101cdfc);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_71010159ac(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101cee0);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101cee0);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101015b28(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101cfc4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101cfc4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101015ca4(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d0a8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d0a8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101015e20(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d18c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d18c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101015f9c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d270);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d270);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016118(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d354);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d354);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016294(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d438);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d438);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016410(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d51c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d51c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_710101658c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d600);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d600);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016708(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d6e4);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d6e4);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016884(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d7c8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d7c8);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016a00(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d8ac);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d8ac);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016b7c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101d990);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101d990);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016cf8(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101da74);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101da74);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016e74(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101db58);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101db58);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_7101016ff0(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101dc3c);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101dc3c);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }
 
 void fn_710101716c(UnkReflFunction* fn, const char* name) {
-    fn->name = base::global::UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
-    fn->field_0xb2 = 0x0;
-    fn->field_0x40 = nullptr;
-    fn->invoker = reinterpret_cast<void*>(&fn_710101dd20);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710101dd20);
     fn->params.PushBack(&base::reflection::PrimitiveType<float>::Get());
 }

@@ -21,12 +21,13 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // GUI::CDisplayObjectContainer
 void fn_71011d8690(UnkReflFunction* fn, const char* name);
 void fn_71011d8808(UnkReflFunction* fn, const char* name);
 void fn_71011d8980(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71011dc5bc();
 void fn_71011d8af8(UnkReflFunction* fn, const char* name);
 void fn_71011d8bac(UnkReflFunction* fn, const char* name);
@@ -43,13 +44,7 @@ void refl_AddFields(CClass* cls) {
         fn_71011d8980(fn, "FindDescendant");
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sChildToFocus", 0x190, (DefaultValue, base::global::CRntString("ListComposition")));
     DREAD_REFLECTED_FIELD_OF("base::global::CPooledList<GUI::CDisplayObject*>", "lstChildren", 0x1c0, (CreateElement, CStrId("AddDisplayObj", true)), (DeleteElement, CStrId("DeleteDO", true)), (AfterElementDeserialization, CStrId("AfterChildrenListDeserialization", true)));
-    DREAD_REFLECTED_FUNCTION("AfterChildrenListDeserialization") {
-        fn->name = base::global::UnkStrId("AfterChildrenListDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011dc5bc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterChildrenListDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_71011dc5bc);
     DREAD_REFLECTED_FUNCTION("AddDisplayObj") {
         fn_71011d8af8(fn, "AddDisplayObj");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create DO At Index");

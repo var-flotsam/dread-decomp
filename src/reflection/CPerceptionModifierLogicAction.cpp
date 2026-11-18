@@ -22,8 +22,6 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
-namespace CAIManager { enum class EAIGroup : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<CAIManager::EAIGroup>::object asm("g_unk_71727bc290");
 
 // CPerceptionModifierLogicAction
 extern base::reflection::CType g_unk_717269bb48;
@@ -33,8 +31,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CPerceptionModifierLogicAction::EMode", "eMode", 0x10, (DefaultValue, 2147483647));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpPerceivedPosition", true), &g_unk_717269bb48, 0x18, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("eGroup", true), &base::reflection::TypeObject<CAIManager::EAIGroup>::object, 0x58, -1, -1);
-    field2->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<CAIManager::EAIGroup>::object, 0);
+    DREAD_REFLECTED_FIELD_OF("CAIManager::EAIGroup", "eGroup", 0x58, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

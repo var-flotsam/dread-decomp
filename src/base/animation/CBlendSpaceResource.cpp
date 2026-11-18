@@ -23,6 +23,8 @@
 
 using base::reflection::CType;
 using base::reflection::UnkReflValue;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // The file read into memory and two words the opener sets (as in src/game/UnkObjectFileRead.cpp);
 // +0x38 is the version check's result: 0 the registered version, 1 an older one, 2 a newer one.
@@ -70,7 +72,7 @@ bool fn_710000ccd8(UnkFileReader* self) {
 // its own (with `Parse`), and destroys what was read.
 template <s32 (*Parse)(UnkParseContext*, const CType*, void*)>
 __attribute__((always_inline)) static inline void SkipValue(const UnkParseContext* ctx, const CType* type) {
-    if (type == &g_unk_7101d5af48)
+    if (type == &base::reflection::TypeObject<void>::object)
         return;
     UnkReflValue value;
     value.field_0x0 = nullptr;

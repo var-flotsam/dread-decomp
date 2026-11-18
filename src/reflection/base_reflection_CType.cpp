@@ -24,13 +24,7 @@ void fn_710009f1a4();
 void fn_710009c8a8(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("sName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x8, -1, -1);
     [&] {
-        DREAD_REFLECTED_FUNCTION("_sBaseTypeName_GetterFunction") {
-            fn->name = base::global::UnkStrId("_sBaseTypeName_GetterFunction", true);
-            fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-            fn->field_0xb2 = 0x101;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_710009f1a4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_sBaseTypeName_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710009f1a4);
     }();
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sBaseTypeName", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
 }

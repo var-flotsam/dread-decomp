@@ -8,13 +8,15 @@
 using base::global::UnkStrId;
 using base::reflection::CType;
 using base::reflection::UnkReflFunction;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 void fn_7100a199a0();                            // the invoker (reached through the GOT)
 
 // CEmmySpawnPointComponent's "AddPatrolShape": one CStrId parameter.
 void fn_7100a19530(UnkReflFunction* fn, const char* name) {
     fn->name = UnkStrId(name, true);
-    fn->return_type = &g_unk_7101d5af48;
+    fn->return_type = &base::reflection::TypeObject<void>::object;
     fn->field_0xb2 = 0;
     fn->field_0x40 = nullptr;
     fn->invoker = reinterpret_cast<void*>(&fn_7100a199a0);

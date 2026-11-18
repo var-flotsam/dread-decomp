@@ -33,23 +33,11 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Collision", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_sMasksToIgnore_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_sMasksToIgnore_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c29f5c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_sMasksToIgnore_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c29f5c);
     DREAD_REFLECTED_FUNCTION("_m_sMasksToIgnore_SetterFunction")
         fn_7100c299c0(fn, "_m_sMasksToIgnore_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToIgnore", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Mask to Ignore"));
-    DREAD_REFLECTED_FUNCTION("_m_sMasksToEnforce_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_sMasksToEnforce_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c2a0d0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_sMasksToEnforce_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c2a0d0);
     DREAD_REFLECTED_FUNCTION("_m_sMasksToEnforce_SetterFunction")
         fn_7100c29b3c(fn, "_m_sMasksToEnforce_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sMasksToEnforce", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Mask to Enforce"));

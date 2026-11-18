@@ -33,23 +33,11 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("FX", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_sActive_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_sActive_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100cfd080);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_sActive_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100cfd080);
     DREAD_REFLECTED_FUNCTION("_m_sActive_SetterFunction")
         fn_7100cfc500(fn, "_m_sActive_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sActive", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Active"));
-    DREAD_REFLECTED_FUNCTION("_m_sEnabled_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_sEnabled_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100cfd18c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_sEnabled_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100cfd18c);
     DREAD_REFLECTED_FUNCTION("_m_sEnabled_SetterFunction")
         fn_7100cfc67c(fn, "_m_sEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sEnabled", (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Active"));

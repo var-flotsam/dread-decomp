@@ -19,11 +19,6 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
-#include "base/reflection/TypeObject.h"
-enum class EInFrustumMode : u32;
-template <> base::reflection::CType base::reflection::TypeObject<EInFrustumMode>::object asm("g_unk_71727952a8");
-enum class ELOSMode : u32;
-template <> base::reflection::CType base::reflection::TypeObject<ELOSMode>::object asm("g_unk_7172a05520");
 
 // CPerceptionRuleSet
 namespace CPerceptionRuleSet {
@@ -39,9 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bRequiresDamaged", 0x1a, (DefaultValue, false), (Description, "Is damage required to detect the target"));
     DREAD_REFLECTED_FIELD(bool, "bRequiresShooted", 0x1b, (DefaultValue, false), (Description, "Is shooted required to detect the target"));
     DREAD_REFLECTED_FIELD(bool, "bRequiresImpacted", 0x1c, (DefaultValue, false), (Description, "Is any impact required to detect the target"));
-    UnkReflField* field10 = AddReflectedField(cls, CStrId("eLOSMode", true), &base::reflection::TypeObject<ELOSMode>::object, 0x20, -1, -1);
-    field10->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<ELOSMode>::object, 1);
-    field10->attrs.Add<const char*>(base::reflection::attr::Description(), "LOS mode for detection");
+    DREAD_REFLECTED_FIELD_OF("ELOSMode", "eLOSMode", 0x20, (DefaultValue, 1), (Description, "LOS mode for detection"));
     DREAD_REFLECTED_FIELD_OF("ELOSCheckLevel", "eLOSCheckLevel", 0x24, (DefaultValue, 1), (Description, "LOS check level for detection"));
     DREAD_REFLECTED_FIELD(f32, "fMaxDistanceToTarget", 0x28, (DefaultValue, 10000000.0f), (Description, "Maximum dist to see the target at start"));
     DREAD_REFLECTED_FIELD(bool, "bShouldBeInFrustrum", 0x2c, (DefaultValue, true), (Description, "Should we be on frustrum to detect the Target at start"));
@@ -88,9 +81,7 @@ DREAD_REFLECTED_ROOT_CLASS(CPerceptionRuleSet);
 namespace CActivationPerceptionRuleSet {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eOverridedInFrustumMode", true), &base::reflection::TypeObject<EInFrustumMode>::object, 0x30, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EInFrustumMode>::object, 2147483647);
-    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Frustum mode for checks to override AI's default mode");
+    DREAD_REFLECTED_FIELD_OF("EInFrustumMode", "eOverridedInFrustumMode", 0x30, (DefaultValue, 2147483647), (Description, "Frustum mode for checks to override AI's default mode"));
     DREAD_REFLECTED_FIELD(f32, "fInstantDetectionFrontDistance", 0x44, (DefaultValue, -1.0f), (Description, "Within this front distance target is instantly detected if tests passed"));
     DREAD_REFLECTED_FIELD(f32, "fInstantDetectionBackDistance", 0x48, (DefaultValue, -1.0f), (Description, "Within this back distance target is instantly detected if tests passed"));
 }
@@ -122,9 +113,7 @@ DREAD_REFLECTED_CLASS(CActivationPerceptionRuleSet, CPerceptionRuleSet);
 namespace CStartDetectionPerceptionRuleSet {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eOverridedInFrustumMode", true), &base::reflection::TypeObject<EInFrustumMode>::object, 0x30, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EInFrustumMode>::object, 2147483647);
-    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Frustum mode for checks to override AI's default mode");
+    DREAD_REFLECTED_FIELD_OF("EInFrustumMode", "eOverridedInFrustumMode", 0x30, (DefaultValue, 2147483647), (Description, "Frustum mode for checks to override AI's default mode"));
     DREAD_REFLECTED_FIELD(f32, "fInstantDetectionFrontDistance", 0x44, (DefaultValue, 300.0f), (Description, "Within this front distance target is instantly detected if tests passed"));
     DREAD_REFLECTED_FIELD(f32, "fInstantDetectionBackDistance", 0x48, (DefaultValue, 300.0f), (Description, "Within this back distance target is instantly detected if tests passed"));
 }
@@ -156,9 +145,7 @@ DREAD_REFLECTED_CLASS(CStartDetectionPerceptionRuleSet, CPerceptionRuleSet);
 namespace CExtendDetectionPerceptionRuleSet {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("eOverridedInFrustumMode", true), &base::reflection::TypeObject<EInFrustumMode>::object, 0x30, -1, -1);
-    field0->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EInFrustumMode>::object, 1);
-    field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Frustum mode for checks to override AI's default mode");
+    DREAD_REFLECTED_FIELD_OF("EInFrustumMode", "eOverridedInFrustumMode", 0x30, (DefaultValue, 1), (Description, "Frustum mode for checks to override AI's default mode"));
     DREAD_REFLECTED_FIELD(f32, "fInstantDetectionFrontDistance", 0x44, (DefaultValue, -1.0f), (Description, "Within this front distance target is instantly detected if tests passed"));
     DREAD_REFLECTED_FIELD(f32, "fInstantDetectionBackDistance", 0x48, (DefaultValue, -1.0f), (Description, "Within this back distance target is instantly detected if tests passed"));
 }

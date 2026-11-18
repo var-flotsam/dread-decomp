@@ -20,6 +20,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -39,7 +40,6 @@ void fn_710115f424(UnkReflFunction* fn, const char* name);
 void fn_710115f5a0(UnkReflFunction* fn, const char* name);
 void fn_710115f654(UnkReflFunction* fn, const char* name);
 void fn_710115f708(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101161700();
 void fn_7100302d14(UnkReflFunction* fn);
 namespace CLifeComponent {
@@ -51,40 +51,22 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Set on damage lua callback"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    DREAD_REFLECTED_FUNCTION("_m_fMaxLife_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fMaxLife_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710116132c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fMaxLife_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710116132c);
     DREAD_REFLECTED_FUNCTION("_m_fMaxLife_SetterFunction")
         fn_710115f12c(fn, "_m_fMaxLife_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("fMaxLife", true), &base::reflection::PrimitiveType<float>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     field1->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("max life"));
     field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));
     field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
     DREAD_REFLECTED_FIELD(f32, "fCurrentLife", 0x54, (Persistence, 0), (EditorVisible, false), (DefaultValue, -1.0f), (Description, "Current Life"));
-    DREAD_REFLECTED_FUNCTION("_m_fCurrentLife_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fCurrentLife_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71011613dc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentLife_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011613dc);
     fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("_m_fCurrentLife_SetterFunction")
         fn_710115f2a8(fn, "_m_fCurrentLife_SetterFunction");
     fn_71000e8180(base::reflection::refl_FindField(cls, base::global::CName("fCurrentLife")), cls->m_array_0x110.size() - 1);
-    DREAD_REFLECTED_FUNCTION("_m_bCurrentLifeLocked_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bCurrentLifeLocked_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101161490);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bCurrentLifeLocked_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7101161490);
     DREAD_REFLECTED_FUNCTION("_m_bCurrentLifeLocked_SetterFunction")
         fn_710115f424(fn, "_m_bCurrentLifeLocked_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCurrentLifeLocked", (DefaultValue, false), (ShowInConfig, true), (Description, "Player life locked"), (InternalTag, "General"), (Persistence, 0), (EditorVisible, false));
@@ -104,11 +86,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FUNCTION("ForceDead") {
-        fn->name = base::global::UnkStrId("ForceDead", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101161700);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceDead", &base::reflection::TypeObject<void>::object, 0, fn_7101161700);
         fn_7100302d14(fn);
     }
 }

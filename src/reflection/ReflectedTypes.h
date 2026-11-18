@@ -175,18 +175,32 @@ extern base::reflection::CType g_unk_7172750038;
 extern base::reflection::CType g_unk_7172750790;
 extern base::reflection::CType g_unk_7172751840;
 extern base::reflection::CType g_unk_7172751fe8;
+extern base::reflection::CType g_unk_7172752160;
 extern base::reflection::CType g_unk_7172752bb0;
 extern base::reflection::CType g_unk_7172755268;
 extern base::reflection::CType g_unk_71727600a0;
 extern base::reflection::CType g_unk_71727605d8;
 extern base::reflection::CType g_unk_7172760b10;
 extern base::reflection::CType g_unk_71727695f8;
+extern base::reflection::CType g_unk_7172772bb0;
 extern base::reflection::CType g_unk_717277b510;
 extern base::reflection::CType g_unk_717277b908;
+extern base::reflection::CType g_unk_717277df90;
+extern base::reflection::CType g_unk_7172791c90;
+extern base::reflection::CType g_unk_7172795110;
+extern base::reflection::CType g_unk_71727952a8;
+extern base::reflection::CType g_unk_717279cb00;
+extern base::reflection::CType g_unk_71727a0738;
 extern base::reflection::CType g_unk_71727adf10;
 extern base::reflection::CType g_unk_71727b06e8;
 extern base::reflection::CType g_unk_71727b6270;
 extern base::reflection::CType g_unk_71727b6630;
+extern base::reflection::CType g_unk_71727b8dd8;
+extern base::reflection::CType g_unk_71727b8ef8;
+extern base::reflection::CType g_unk_71727bb8e8;
+extern base::reflection::CType g_unk_71727bc290;
+extern base::reflection::CType g_unk_71727bc3f0;
+extern base::reflection::CType g_unk_71727c0710;
 extern base::reflection::CType g_unk_71727c15f0;
 extern base::reflection::CType g_unk_71727c2130;
 extern base::reflection::CType g_unk_71727c2920;
@@ -209,6 +223,7 @@ extern base::reflection::CType g_unk_71729fc870;
 extern base::reflection::CType g_unk_71729fd4b8;
 extern base::reflection::CType g_unk_71729fe538;
 extern base::reflection::CType g_unk_71729fe930;
+extern base::reflection::CType g_unk_7172a05520;
 extern base::reflection::CType g_unk_7172a05680;
 extern base::reflection::CType g_unk_7172a057e0;
 extern base::reflection::CType g_unk_7172a05bc8;
@@ -229,6 +244,10 @@ namespace base::reflection {
 constexpr const CType* TypeNamed(std::string_view name) {
     if (name == "CAIComponent::PathLimitSelectionMode")
         return &g_unk_7172a057e0;
+    if (name == "CAIManager::EAIGroup")
+        return &g_unk_71727bc290;
+    if (name == "CAIManager::EBumpMode")
+        return &g_unk_71727bc3f0;
     if (name == "CActorLayer")
         return &g_unk_71726a07a0;
     if (name == "CAnimationPrefix::SPrefix::Enum")
@@ -239,6 +258,8 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_71729fc870;
     if (name == "CCentralUnitComponent::ECentralUnitMode")
         return &g_unk_7172714248;
+    if (name == "CCharClassAnalogAimTrack::EAbortAnalogAimInput")
+        return &g_unk_71727a0738;
     if (name == "CCharClassDredhedAIComponent::ESubspecies")
         return &g_unk_71726da478;
     if (name == "CCharClassDropterAIComponent::ESubspecies")
@@ -271,6 +292,8 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_71726ff368;
     if (name == "CCharClassSabotoruAIComponent::ESubspecies")
         return &g_unk_71727006c0;
+    if (name == "CCharClassSetCameraNearEvent::EDir")
+        return &g_unk_717279cb00;
     if (name == "CCharClassTakumakuAIComponent::ESubspecies")
         return &g_unk_7172709868;
     if (name == "CCharClassToStateTrack::EMaintainFrameMode")
@@ -347,6 +370,8 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_7172a07528;
     if (name == "CSubAreaManager::ETransitionType")
         return &g_unk_71729da710;
+    if (name == "CThermalDeviceComponent::EPipeGroup")
+        return &g_unk_7172752160;
     if (name == "CTimelineComponent::ENextPolicy")
         return &g_unk_7172746d98;
     if (name == "CXParasiteAIComponent::EXParasiteBehaviorType")
@@ -373,6 +398,8 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_7172730b30;
     if (name == "EElevatorDirection")
         return &g_unk_7172750790;
+    if (name == "EFXType")
+        return &g_unk_71727b8dd8;
     if (name == "EFollowPathRotationMode")
         return &g_unk_717270c900;
     if (name == "EForceOpticCamouflageMode")
@@ -381,18 +408,26 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_7172730580;
     if (name == "EIceMode")
         return &g_unk_71726df9e0;
+    if (name == "EInFrustumMode")
+        return &g_unk_71727952a8;
     if (name == "EInputAction")
         return &g_unk_7172729bc0;
     if (name == "EJumpType")
         return &g_unk_71726bd748;
     if (name == "ELOSCheckLevel")
         return &g_unk_7172a05680;
+    if (name == "ELOSMode")
+        return &g_unk_7172a05520;
     if (name == "ELavaCarpetState")
         return &g_unk_71726d1f78;
     if (name == "ELavaDropArm")
         return &g_unk_71726d37e8;
     if (name == "ELavaDropArmPos")
         return &g_unk_71726d3948;
+    if (name == "ELinkType")
+        return &g_unk_71727b8ef8;
+    if (name == "ELoadingScreen")
+        return &g_unk_71727c0710;
     if (name == "EMinimapMode")
         return &g_unk_71726dfb40;
     if (name == "EMusicFadeType")
@@ -407,6 +442,8 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_717273ae48;
     if (name == "EShellState")
         return &g_unk_7172707020;
+    if (name == "EShieldAction")
+        return &g_unk_7172772bb0;
     if (name == "ESlidleOutSpawnPointDir")
         return &g_unk_7172745348;
     if (name == "ESpinningNailsSpeed")
@@ -421,10 +458,14 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_7172751840;
     if (name == "ETrainDirection")
         return &g_unk_7172752bb0;
+    if (name == "EWings")
+        return &g_unk_717277df90;
     if (name == "GUI::CButton::TextAlign")
         return &g_unk_7172a0d1b8;
     if (name == "GUI::CHUD::EForceVisibilityState")
         return &g_unk_7172a0f690;
+    if (name == "IPath::EType")
+        return &g_unk_71727bb8e8;
     if (name == "SBigkranXSpitLaunchConfig")
         return &g_unk_71726c1e98;
     if (name == "SDropProbabilities::SDir")
@@ -623,10 +664,14 @@ constexpr const CType* TypeNamed(std::string_view name) {
         return &g_unk_71726bc290;
     if (name == "behaviortree::SStatus::Enum")
         return &g_unk_71726bc130;
+    if (name == "cutscene::EDevelopmentState")
+        return &g_unk_7172795110;
     if (name == "engine::utils::ELightPreset")
         return &g_unk_716e5992a0;
     if (name == "engine::utils::EMaterialConstantColor")
         return &g_unk_716e599140;
+    if (name == "game::logic::collision::EColMat")
+        return &g_unk_7172791c90;
     if (name == "msapi::api::shdr::EShaderType")
         return &g_unk_716e34af70;
     if (name == "msapi::api::types::blendFactor::EBlendFactor")

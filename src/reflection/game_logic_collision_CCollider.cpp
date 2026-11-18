@@ -31,13 +31,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("pShape", true), base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0xffffffff, -1, -1);
     [&] {
-        DREAD_REFLECTED_FUNCTION("_m_pShape_GetterFunction") {
-            fn->name = base::global::UnkStrId("_m_pShape_GetterFunction", true);
-            fn->return_type = base::reflection::PointerType<game::logic::collision::CShape*>::Get();
-            fn->field_0xb2 = 0;
-            fn->field_0x40 = nullptr;
-            fn->invoker = reinterpret_cast<void*>(&fn_7100d3f7f4);
-        }
+        DREAD_REFLECTED_FUNCTION_OF("_m_pShape_GetterFunction", base::reflection::PointerType<game::logic::collision::CShape*>::Get(), 0, fn_7100d3f7f4);
     }();
     fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("pShape")), cls->m_array_0x110.size() - 1);
 }

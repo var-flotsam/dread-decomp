@@ -243,28 +243,15 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710000dc30();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_710000dc80();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_71000099f0(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710000dc30);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710000dc30);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass();
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710000dc80);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(), 0x1, fn_710000dc80);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -275,26 +262,13 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710000ded4();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_710000df24();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100009fe0(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710000ded4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710000ded4);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710000df24);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(), 0x101, fn_710000df24);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, base::animation::CBlendSpaceResource::SBlendTarget::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CCharClassBaseTriggerComponent
 namespace CCharClassBaseTriggerComponent {
@@ -49,7 +51,6 @@ DREAD_REFLECTED_CLASS(CCharClassBaseTriggerComponent, CCharClassActivatableCompo
 
 // CBaseTriggerComponent
 void fn_7100a46978(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100a4953c();
 void fn_71003540d8(UnkReflFunction* fn);
 namespace CBaseTriggerComponent {
@@ -62,11 +63,7 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FIELD(bool, "bCheckAllEntities", 0x9bc, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION("DisableLogic") {
-        fn->name = base::global::UnkStrId("DisableLogic", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a4953c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("DisableLogic", &base::reflection::TypeObject<void>::object, 0, fn_7100a4953c);
         fn_71003540d8(fn);
     }
 }

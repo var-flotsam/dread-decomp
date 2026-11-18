@@ -22,6 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
 namespace base::global { class TRntString128; }
@@ -32,29 +33,16 @@ extern template const base::reflection::CType* base::reflection::PointerType<sou
 // sound::CSoundEventsDef
 extern base::reflection::CType g_unk_71729f8d30;
 void fn_7101028a7c();
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7101028aa4();
 namespace sound::CSoundEventsDef {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_aSoundEventRules_GetterFunction") {
-        fn->name = base::global::UnkStrId("_aSoundEventRules_GetterFunction", true);
-        fn->return_type = &g_unk_71729f8d30;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101028a7c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_aSoundEventRules_GetterFunction", &g_unk_71729f8d30, 0x1, fn_7101028a7c);
     UnkReflField* field0 = AddReflectedField(cls, CStrId("aSoundEventRules", true), &g_unk_71729f8d30, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterRulesDeserialization");
-    DREAD_REFLECTED_FUNCTION("AfterRulesDeserialization") {
-        fn->name = base::global::UnkStrId("AfterRulesDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101028aa4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterRulesDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7101028aa4);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -111,13 +99,7 @@ void fn_7101028f4c();
 namespace sound::CSoundManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_pAudioPresets_GetterFunction") {
-        fn->name = base::global::UnkStrId("_pAudioPresets_GetterFunction", true);
-        fn->return_type = base::reflection::PointerType<sound::CAudioPresets*>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7101028f4c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_pAudioPresets_GetterFunction", base::reflection::PointerType<sound::CAudioPresets*>::Get(), 0, fn_7101028f4c);
     UnkReflField* field0 = AddReflectedField(cls, CStrId("pAudioPresets", true), base::reflection::PointerType<sound::CAudioPresets*>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 8);
 }

@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
@@ -41,19 +43,12 @@ void fn_7100f083f8(UnkReflFunction* fn, const char* name);
 void fn_7100f084ac(UnkReflFunction* fn, const char* name);
 void fn_7100f08560(UnkReflFunction* fn, const char* name);
 void fn_7100f08614(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100f0f428();
 void fn_71003540d8(UnkReflFunction* fn);
 namespace CPlayerInfo {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sInputPreset_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sInputPreset_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100f0ed90);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sInputPreset_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100f0ed90);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sInputPreset", (Persistence, 0));
     DREAD_REFLECTED_FUNCTION("SetInputPreset") {
         fn_7100f07cf0(fn, "SetInputPreset");
@@ -65,13 +60,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("SwitchiInput preset"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    DREAD_REFLECTED_FUNCTION("_iHazardousCount_GetterFunction") {
-        fn->name = base::global::UnkStrId("_iHazardousCount_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100f0ef94);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_iHazardousCount_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7100f0ef94);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iHazardousCount", (Description, "Number of hazardous triggers active"), (Persistence, 0));
     DREAD_REFLECTED_FUNCTION("IncrementHazardousCount") {
         fn_7100f07e58(fn, "IncrementHazardousCount");
@@ -88,13 +77,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Reset the number of hazardous triggers active"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    DREAD_REFLECTED_FUNCTION("_iHeatZoneCount_GetterFunction") {
-        fn->name = base::global::UnkStrId("_iHeatZoneCount_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100f0f0e0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_iHeatZoneCount_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7100f0f0e0);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iHeatZoneCount", (Description, "Number of heat zone triggers active"), (Persistence, 0));
     DREAD_REFLECTED_FUNCTION("IncrementHeatZoneCount") {
         fn_7100f08074(fn, "IncrementHeatZoneCount");
@@ -142,11 +125,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
     DREAD_REFLECTED_FUNCTION("IgnoreHang") {
-        fn->name = base::global::UnkStrId("IgnoreHang", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100f0f428);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("IgnoreHang", &base::reflection::TypeObject<void>::object, 0, fn_7100f0f428);
         fn_71003540d8(fn);
     }
 }

@@ -18,6 +18,8 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CAnimationComponent
 void fn_71011753bc(UnkReflFunction* fn, const char* name);
@@ -25,7 +27,6 @@ void fn_7101175470(UnkReflFunction* fn, const char* name);
 void fn_7101175524(UnkReflFunction* fn, const char* name);
 void fn_71011755d8(UnkReflFunction* fn, const char* name);
 void fn_710117568c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710117c12c();
 void fn_7101175740(UnkReflFunction* fn, const char* name);
 namespace CAnimationComponent {
@@ -50,13 +51,7 @@ void refl_AddFields(CClass* cls) {
         fn_71011755d8(fn, "IsPlayingAnim");
     DREAD_REFLECTED_FUNCTION("IsPlayingAnimLike")
         fn_710117568c(fn, "IsPlayingAnimLike");
-    DREAD_REFLECTED_FUNCTION("ClearActions") {
-        fn->name = base::global::UnkStrId("ClearActions", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710117c12c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("ClearActions", &base::reflection::TypeObject<void>::object, 0, fn_710117c12c);
     DREAD_REFLECTED_FUNCTION("SetActionFromEditor")
         fn_7101175740(fn, "SetActionFromEditor");
 }

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -18,9 +19,6 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
-#include "base/reflection/TypeObject.h"
-enum class ELinkType : u32;
-template <> base::reflection::CType base::reflection::TypeObject<ELinkType>::object asm("g_unk_71727b8ef8");
 
 // CCharClassFXLinkEvent
 namespace CCharClassFXLinkEvent {
@@ -30,8 +28,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("eLinkType", true), &base::reflection::TypeObject<ELinkType>::object, 0x18, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<ELinkType>::object, 4);
+    DREAD_REFLECTED_FIELD_OF("ELinkType", "eLinkType", 0x18, (DefaultValue, 4));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x28, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetY", 0x2c, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetZ", 0x30, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));

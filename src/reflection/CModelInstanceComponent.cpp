@@ -32,23 +32,11 @@ void fn_7100936a74(UnkReflFunction* fn, const char* name);
 namespace CModelInstanceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_sModelPath_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_sModelPath_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009374ac);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_sModelPath_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_71009374ac);
     DREAD_REFLECTED_FUNCTION("_m_sModelPath_SetterFunction")
         fn_71009368f8(fn, "_m_sModelPath_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sModelPath", (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    DREAD_REFLECTED_FUNCTION("_m_vScale_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_vScale_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100937554);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_vScale_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_7100937554);
     DREAD_REFLECTED_FUNCTION("_m_vScale_SetterFunction")
         fn_7100936a74(fn, "_m_vScale_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vScale", (DefaultValue, base::math::CVector3D{1.0f, 1.0f, 1.0f}));

@@ -28,13 +28,7 @@ void fn_71009f2f60(UnkReflFunction* fn, const char* name);
 namespace CSceneModelAnimationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sModelAnim_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sModelAnim_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71009f3394);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sModelAnim_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71009f3394);
     DREAD_REFLECTED_FUNCTION("_sModelAnim_SetterFunction")
         fn_71009f2f60(fn, "_sModelAnim_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sModelAnim", (DefaultValue, CStrId("default", true)), (Description, base::global::CRntString("Sets the animation for all the scene models")));

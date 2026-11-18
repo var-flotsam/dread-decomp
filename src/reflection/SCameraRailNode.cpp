@@ -25,6 +25,7 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 namespace base::math { class CVector3D; }
@@ -38,19 +39,13 @@ extern base::reflection::CType g_unk_7101d60ff0;
 namespace SCameraRailNode {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_vPos_GetterFunction") {
-        fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c079cc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_vPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_7100c079cc);
     DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7100bfef1c(fn, "_vPos_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Position"));
-    field0->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 3);
+    field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 3);
     field0->attrs.Add<bool>(base::reflection::attr::bEditorModeDataFlowInit(), true);
     DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>", "wpLogicCamera", 0x18);
 }
@@ -79,7 +74,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(SCameraRailNode, IPathNode);
 
 // SCameraSubRail
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100c07c30();
 void fn_7100c07c44();
 void fn_7100bfff5c(UnkReflFunction* fn, const char* name);
@@ -90,20 +84,8 @@ void fn_7100c00198(UnkReflFunction* fn, const char* name);
 namespace SCameraSubRail {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("AfterNodesDeserialization") {
-        fn->name = base::global::UnkStrId("AfterNodesDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c07c30);
-    }
-    DREAD_REFLECTED_FUNCTION("AfterSegmentDeserialization") {
-        fn->name = base::global::UnkStrId("AfterSegmentDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c07c44);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterNodesDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100c07c30);
+    DREAD_REFLECTED_FUNCTION_OF("AfterSegmentDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100c07c44);
     DREAD_REFLECTED_FUNCTION("CreateElement") {
         fn_7100bfff5c(fn, "CreateElement");
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
@@ -113,11 +95,7 @@ void refl_AddFields(CClass* cls) {
         fn->ParamAttrs(1)->Add<CStrId>(base::reflection::attr::Name(), CStrId("vPos", true));
     }
     DREAD_REFLECTED_FUNCTION("InsertElement") {
-        fn->name = base::global::UnkStrId("InsertElement", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c07eb0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("InsertElement", &base::reflection::TypeObject<void>::object, 0, fn_7100c07eb0);
         fn_7100c07d10(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Insert Node At Index");
         fn_710009ae5c(fn, fn->params.count);
@@ -460,28 +438,15 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100c08624();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_7100c08674();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c00b94(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c08624);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c08624);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = SCameraRailNode::refl_GetClass();
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c08674);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SCameraRailNode::refl_GetClass(), 0x1, fn_7100c08674);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, SCameraRailNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -492,28 +457,15 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100c08a10();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_7100c08a60();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c01184(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c08a10);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c08a10);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = SCameraRailNode::refl_GetClass();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c08a60);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SCameraRailNode::refl_GetClass(), 0x101, fn_7100c08a60);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, SCameraRailNode::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -524,28 +476,15 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100c09dc4();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_7100c09e14();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c01b24(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c09dc4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c09dc4);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = SCameraSubRail::refl_GetClass();
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c09e14);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SCameraSubRail::refl_GetClass(), 0x1, fn_7100c09e14);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, SCameraSubRail::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -556,26 +495,13 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100c09f78();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_7100c09fc8();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100c02114(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c09f78);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c09f78);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = SCameraSubRail::refl_GetClass();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c09fc8);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", SCameraSubRail::refl_GetClass(), 0x101, fn_7100c09fc8);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, SCameraSubRail::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

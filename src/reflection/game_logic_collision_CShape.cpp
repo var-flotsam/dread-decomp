@@ -33,23 +33,11 @@ void fn_7100d69ee0(UnkReflFunction* fn, const char* name);
 namespace game::logic::collision::CShape {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_vPos_GetterFunction") {
-        fn->name = base::global::UnkStrId("_vPos_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d6e0d4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_vPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0, fn_7100d6e0d4);
     DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7100d69d64(fn, "_vPos_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vPos", (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Position"));
-    DREAD_REFLECTED_FUNCTION("_m_bIsSolid_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bIsSolid_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d6e19c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bIsSolid_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100d6e19c);
     DREAD_REFLECTED_FUNCTION("_m_bIsSolid_SetterFunction")
         fn_7100d69ee0(fn, "_m_bIsSolid_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bIsSolid", (DefaultValue, true));

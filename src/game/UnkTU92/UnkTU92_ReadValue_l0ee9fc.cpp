@@ -15,6 +15,8 @@ using base::reflection::CType;
 using base::reflection::UnkReflTypedPtr;
 using base::reflection::UnkReflValue;
 using base::reflection::UnkTypedRef;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 struct UnkReadArg_b0026;
 
@@ -73,7 +75,7 @@ bool fn_71000ee9fc(void* reader, u32 kind, UnkReadArg_b0026* arg, const base::gl
         if (type && entry->typed.ptr)
             ReadStrId(out, &type->m_name);
         else
-            ReadStrId(out, &g_unk_7101d5af48.m_name);
+            ReadStrId(out, &base::reflection::TypeObject<void>::object.m_name);
         break;
     }
     case 2:

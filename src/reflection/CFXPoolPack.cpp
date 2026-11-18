@@ -25,8 +25,6 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
-enum class EFXType : u32;
-template <> base::reflection::CType base::reflection::TypeObject<EFXType>::object asm("g_unk_71727b8dd8");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CFXPoolPack
@@ -66,8 +64,7 @@ namespace CFXPool::CDefinition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFile", 0x0, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("eType", true), &base::reflection::TypeObject<EFXType>::object, 0x8, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<EFXType>::object, 0);
+    DREAD_REFLECTED_FIELD_OF("EFXType", "eType", 0x8, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(u32, "uSize", 0xc, (DefaultValue, 1));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -238,28 +235,15 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710104f340();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_710104f390();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_710104c750(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104f340);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710104f340);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = CFXPool::CDefinition::refl_GetClass();
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104f390);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CFXPool::CDefinition::refl_GetClass(), 0x1, fn_710104f390);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CFXPool::CDefinition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
@@ -270,26 +254,13 @@ using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_710104f550();
 extern base::global::CStrId g_unk_7101d5a450;
-const base::reflection::UnkReflAttrKey& fn_710000bf80();
 void fn_710104f5a0();
 extern base::global::CStrId g_unk_7101d5a458;
 void fn_710104cd40(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_key_GetterFunction") {
-        fn->name = base::global::UnkStrId("_key_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104f550);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710104f550);
     UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
-    DREAD_REFLECTED_FUNCTION("_element_GetterFunction") {
-        fn->name = base::global::UnkStrId("_element_GetterFunction", true);
-        fn->return_type = CFXPool::CDefinition::refl_GetClass();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710104f5a0);
-    }
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CFXPool::CDefinition::refl_GetClass(), 0x101, fn_710104f5a0);
     UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CFXPool::CDefinition::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field1->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

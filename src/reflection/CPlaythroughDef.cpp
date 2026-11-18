@@ -38,23 +38,11 @@ void refl_AddAttributes(CClass* cls) {
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x58, (XmlAttribute, true));
     DREAD_REFLECTED_FIELD(CStrId, "sLevelID", 0x60, (XmlAttribute, true));
-    DREAD_REFLECTED_FUNCTION("_aCheckpointDefs_GetterFunction") {
-        fn->name = base::global::UnkStrId("_aCheckpointDefs_GetterFunction", true);
-        fn->return_type = &g_unk_71726adc98;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002f4644);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_aCheckpointDefs_GetterFunction", &g_unk_71726adc98, 0x1, fn_71002f4644);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("aCheckpointDefs", true), &g_unk_71726adc98, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION("FindCheckpointDef")
         fn_71002f0664(fn, "FindCheckpointDef");
-    DREAD_REFLECTED_FUNCTION("GetCheckpointDefs") {
-        fn->name = base::global::UnkStrId("GetCheckpointDefs", true);
-        fn->return_type = &g_unk_71726adc98;
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002f471c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("GetCheckpointDefs", &g_unk_71726adc98, 0x101, fn_71002f471c);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
@@ -84,13 +72,7 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field2 = AddReflectedField(cls, CStrId("strDesc", true), &base::reflection::PrimitiveType<base::global::TRntString64>::Get(), 0x18, -1, -1);
     field2->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     DREAD_REFLECTED_FIELD(CStrId, "sStartPoint", 0xa0, (XmlAttribute, true));
-    DREAD_REFLECTED_FUNCTION("_strTags_GetterFunction") {
-        fn->name = base::global::UnkStrId("_strTags_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::TRntString128>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002f4f44);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_strTags_GetterFunction", &base::reflection::PrimitiveType<base::global::TRntString128>::Get(), 0, fn_71002f4f44);
     DREAD_REFLECTED_FUNCTION("_strTags_SetterFunction")
         fn_71002f0f90(fn, "_strTags_SetterFunction");
     UnkReflField* field4 = AddReflectedField(cls, CStrId("strTags", true), &base::reflection::PrimitiveType<base::global::TRntString128>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);

@@ -26,13 +26,7 @@ void fn_71010d499c();
 namespace CMovementComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_bIsFlying_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bIsFlying_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010d499c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bIsFlying_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71010d499c);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(bool, "bIsFlying", (Persistence, 0), (EditorVisible, false));
 }
 bool refl_Equals(const void*, const void*) { return false; }

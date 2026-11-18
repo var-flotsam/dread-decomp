@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
@@ -31,7 +33,6 @@ void fn_7100353fb8();
 void fn_7100340fa4(UnkReflFunction* fn, const char* name);
 void fn_7100354048();
 void fn_7100341120(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100354274();
 void fn_71003540d8(UnkReflFunction* fn);
 namespace CAimComponent {
@@ -39,52 +40,24 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sLaserFX", 0x4e0, (DefaultValue, "lasertarget"), (Description, "Laser target ID"));
     DREAD_REFLECTED_FIELD(CStrId, "sAutoAimLaserFX", 0x4e8, (DefaultValue, "lasertargeautoaim"), (Description, "Autoaim laser target ID"));
-    DREAD_REFLECTED_FUNCTION("_m_bAutoAimActive_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bAutoAimActive_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100353e98);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bAutoAimActive_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100353e98);
     DREAD_REFLECTED_FUNCTION("_m_bAutoAimActive_SetterFunction")
         fn_7100340cac(fn, "_m_bAutoAimActive_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAutoAimActive", (DefaultValue, true));
-    DREAD_REFLECTED_FUNCTION("_m_bLockOnSoundAllowed_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bLockOnSoundAllowed_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100353f28);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bLockOnSoundAllowed_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100353f28);
     DREAD_REFLECTED_FUNCTION("_m_bLockOnSoundAllowed_SetterFunction")
         fn_7100340e28(fn, "_m_bLockOnSoundAllowed_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bLockOnSoundAllowed", (DefaultValue, true));
-    DREAD_REFLECTED_FUNCTION("_m_fCurrentAutoAimWidth_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fCurrentAutoAimWidth_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100353fb8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentAutoAimWidth_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100353fb8);
     DREAD_REFLECTED_FUNCTION("_m_fCurrentAutoAimWidth_SetterFunction")
         fn_7100340fa4(fn, "_m_fCurrentAutoAimWidth_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fCurrentAutoAimWidth", (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fCurrentAutoAimConeLength_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fCurrentAutoAimConeLength_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100354048);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentAutoAimConeLength_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100354048);
     DREAD_REFLECTED_FUNCTION("_m_fCurrentAutoAimConeLength_SetterFunction")
         fn_7100341120(fn, "_m_fCurrentAutoAimConeLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fCurrentAutoAimConeLength", (DefaultValue, 0.0f));
     DREAD_REFLECTED_FUNCTION("ForceAimPressed") {
-        fn->name = base::global::UnkStrId("ForceAimPressed", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100354274);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("ForceAimPressed", &base::reflection::TypeObject<void>::object, 0, fn_7100354274);
         fn_71003540d8(fn);
     }
 }

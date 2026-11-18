@@ -20,12 +20,12 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CSpawnGroupComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710111fc58();
 void fn_710111fcf8();
 extern base::global::CRntString g_unk_7101d58d10;
@@ -35,20 +35,8 @@ extern base::reflection::CType g_unk_7172a07250;
 namespace CSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("EnableSpawnGroup") {
-        fn->name = base::global::UnkStrId("EnableSpawnGroup", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710111fc58);
-    }
-    DREAD_REFLECTED_FUNCTION("DisableSpawnGroup") {
-        fn->name = base::global::UnkStrId("DisableSpawnGroup", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710111fcf8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("EnableSpawnGroup", &base::reflection::TypeObject<void>::object, 0, fn_710111fc58);
+    DREAD_REFLECTED_FUNCTION_OF("DisableSpawnGroup", &base::reflection::TypeObject<void>::object, 0, fn_710111fcf8);
     DREAD_REFLECTED_FIELD(bool, "bIsGenerator", 0x13a, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bIsInfinite", 0x13b, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(s32, "iMaxToGenerate", 0x18c, (DefaultValue, 0));
@@ -77,13 +65,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iInitToGenerate", 0x188, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(CStrId, "sArenaId", 0x1c0, (DefaultValue, CStrId(g_unk_7101d470e0)));
     DREAD_REFLECTED_FIELD(bool, "bCheckActiveDrops", 0x1a0, (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_m_iNumDeaths_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_iNumDeaths_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710111fd34);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_iNumDeaths_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_710111fd34);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iNumDeaths", (DefaultValue, 0), (Persistence, 0));
     UnkReflField* field27 = AddReflectedField(cls, CStrId("vectSpawnPoints", true), &g_unk_7172a07250, 0x68, -1, -1);
     field27->attrs.Add<bool>(base::reflection::attr::DisableListAdd(), true);

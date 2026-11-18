@@ -271,8 +271,6 @@ class Scans(unittest.TestCase):
         self.assertNotEqual(gr.shape(one), gr.shape(other))
 
 
-if __name__ == "__main__":
-    unittest.main()
 
 
 class TypesByType(unittest.TestCase):
@@ -425,6 +423,55 @@ class TypeObjectsByType(unittest.TestCase):
         self.assertIn('template <> UnkReflType base::reflection::TypeObject<a::E, UnkReflType>::object asm("g_unk_7101d4d5d0");', out)
         self.assertNotIn("// a::E", out)
 
+    def test_builtin_needs_no_declaration(self):
+        text = "extern base::reflection::CType g_unk_7101d5af48;\nvoid f() { use(&g_unk_7101d5af48); }"
+        out = gr.type_objects_by_type(text, {"g_unk_7101d5af48": ("builtin", "void")})
+        self.assertEqual(out.split("\n"), ['#include "base/reflection/TypeObject.h"',
+                                            'template <> base::reflection::CType base::reflection::TypeObject<void>::object '
+                                            'asm("g_unk_7101d5af48");',
+                                            "void f() { use(&base::reflection::TypeObject<void>::object); }"])
+
     def test_layouts_off_leaves_them(self):
         text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
         self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)
+
+
+class FunctionsInOneLine(unittest.TestCase):
+    HEAD = ['    DREAD_REFLECTED_FUNCTION("_x_GetterFunction") {',
+            '        fn->name = base::global::UnkStrId("_x_GetterFunction", true);',
+            "        fn->return_type = &base::reflection::PointerType<A<B, C>>::Get();",
+            "        fn->field_0xb2 = 0x101;",
+            "        fn->field_0x40 = nullptr;",
+            "        fn->invoker = reinterpret_cast<void*>(&fn_7101049fa8);"]
+
+    def test_description_alone_is_one_line(self):
+        out = gr.functions_in_one_line("\n".join(self.HEAD + ["    }", ""]))
+        self.assertIn('    DREAD_REFLECTED_FUNCTION_OF("_x_GetterFunction", (&base::reflection::PointerType<A<B, C>>::Get()), '
+                      "0x101, fn_7101049fa8);", out)
+        self.assertNotIn("field_0xb2", out)
+
+    def test_block_keeps_the_rest(self):
+        out = gr.functions_in_one_line("\n".join(self.HEAD + ["        fn_7100601f24(fn);", "    }", ""]))
+        self.assertIn('        DREAD_REFLECTED_FUNCTION_DESCRIPTION("_x_GetterFunction", '
+                      "(&base::reflection::PointerType<A<B, C>>::Get()), 0x101, fn_7101049fa8);\n        fn_7100601f24(fn);", out)
+
+    def test_initialiser(self):
+        text = "\n".join(["void fn_7100026684(UnkReflFunction* fn, const char* name) {",
+                          "    fn->name = base::global::UnkStrId(name, true);", "    fn->return_type = &g_unk_7101d5af48;",
+                          "    fn->field_0xb2 = 0x0;", "    fn->field_0x40 = nullptr;",
+                          "    fn->invoker = reinterpret_cast<void*>(&fn_7100027268);", "}", ""])
+        self.assertIn("    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_7101d5af48, 0x0, fn_7100027268);",
+                      gr.functions_in_one_line(text))
+
+
+class TypedKeysByName(unittest.TestCase):
+    def test_key_and_declaration(self):
+        keys = {"fn_710000bf80": ("Persistence", "T<E>::object")}
+        text = "const base::reflection::UnkReflAttrKey& fn_710000bf80();\nf->attrs.Add<s32>(fn_710000bf80(), &T<E>::object, 0);"
+        out = gr.typed_keys_by_name(text, keys)
+        self.assertIn("f->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);", out)
+        self.assertNotIn("fn_710000bf80", out)
+
+
+if __name__ == "__main__":
+    unittest.main()

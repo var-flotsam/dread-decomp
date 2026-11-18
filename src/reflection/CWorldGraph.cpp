@@ -18,10 +18,11 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CWorldGraph
 extern base::reflection::CType g_unk_7172756230;
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100acceb8();
 extern base::reflection::CType g_unk_7172755e70;
 void fn_7100accfc8();
@@ -36,19 +37,9 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteNode", true));
     field0->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterNodesCollectionDeserialization");
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
-    DREAD_REFLECTED_FUNCTION("AfterNodesCollectionDeserialization") {
-        fn->name = base::global::UnkStrId("AfterNodesCollectionDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100acceb8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterNodesCollectionDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100acceb8);
     DREAD_REFLECTED_FUNCTION("CreateNode") {
-        fn->name = base::global::UnkStrId("CreateNode", true);
-        fn->return_type = &g_unk_7172755e70;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100accfc8);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNode", &g_unk_7172755e70, 0x1, fn_7100accfc8);
         fn_7100acceec(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
         fn_710009ae5c(fn, fn->params.count);

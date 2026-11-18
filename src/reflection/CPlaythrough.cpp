@@ -21,6 +21,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 class CPlaythroughDef;
 extern template const base::reflection::CType* base::reflection::PointerType<CPlaythroughDef const*>::Get();
 namespace base::global { class CStrId; }
@@ -33,7 +35,6 @@ extern base::reflection::CType g_unk_7101d4ec50;
 void fn_71002ee0fc();
 extern base::reflection::CType g_unk_71726acd78;
 void fn_71002ee124();
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71002ee14c();
 void fn_71002ee510();
 namespace CPlaythrough {
@@ -42,46 +43,16 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterDeserialize");
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sPlaythroughName_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sPlaythroughName_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002edffc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sPlaythroughName_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71002edffc);
     DREAD_REFLECTED_FUNCTION("_sPlaythroughName_SetterFunction")
         fn_71002ea054(fn, "_sPlaythroughName_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sPlaythroughName", (XmlAttribute, true));
-    DREAD_REFLECTED_FUNCTION("_m_oPlayDefLink_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_oPlayDefLink_GetterFunction", true);
-        fn->return_type = &g_unk_7101d4ec50;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002ee0fc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_oPlayDefLink_GetterFunction", &g_unk_7101d4ec50, 0x1, fn_71002ee0fc);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("oPlayDefLink", true), &g_unk_7101d4ec50, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    DREAD_REFLECTED_FUNCTION("_dctCheckpointDatas_GetterFunction") {
-        fn->name = base::global::UnkStrId("_dctCheckpointDatas_GetterFunction", true);
-        fn->return_type = &g_unk_71726acd78;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002ee124);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_dctCheckpointDatas_GetterFunction", &g_unk_71726acd78, 0x1, fn_71002ee124);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("dctCheckpointDatas", true), &g_unk_71726acd78, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    DREAD_REFLECTED_FUNCTION("AfterDeserialize") {
-        fn->name = base::global::UnkStrId("AfterDeserialize", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002ee14c);
-    }
-    DREAD_REFLECTED_FUNCTION("GetDef") {
-        fn->name = base::global::UnkStrId("GetDef", true);
-        fn->return_type = base::reflection::PointerType<CPlaythroughDef const*>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71002ee510);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterDeserialize", &base::reflection::TypeObject<void>::object, 0, fn_71002ee14c);
+    DREAD_REFLECTED_FUNCTION_OF("GetDef", base::reflection::PointerType<CPlaythroughDef const*>::Get(), 0, fn_71002ee510);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

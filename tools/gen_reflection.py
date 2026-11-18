@@ -853,7 +853,12 @@ def enum_type_objects() -> dict[str, tuple[str, str]]:
             for t, g in TYPE_OBJECT_RE.findall(f.read_text(encoding="utf-8")):
                 if gen_types.QUALIFIED_RE.fullmatch(t):
                     out[g] = (kind, t)
+    out.update(BUILTIN_TYPE_OBJECTS)
     return out
+
+
+# Type objects of built-in types, which need no declaration of T: the void type (base/reflection/CType.h).
+BUILTIN_TYPE_OBJECTS = {"g_unk_7101d5af48": ("builtin", "void")}
 
 
 def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts: bool = False) -> str:
@@ -872,7 +877,8 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
         others = [line for line in lines if re.search(rf"\b{g}\b", line) and "extern" in line and not decl.fullmatch(line)]
         kind, t = objects[g]
         scope, _, leaf = t.rpartition("::")
-        declared = gen_types.enum_declaration(t) if kind == "enum" else gen_types.declare_in(scope, f"struct {leaf};")
+        declared = (gen_types.enum_declaration(t) if kind == "enum" else
+                    gen_types.declare_in(scope, f"struct {leaf};") if kind == "flagset" else "")
         if others:
             layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};(?:\s*//.*)?")
             match = [layout.fullmatch(line) for line in others]
@@ -887,12 +893,14 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
                 head = spelled
             name = f"base::reflection::TypeObject<{spelled_t}>::object"
             at = lines.index(others[0])
-            lines[at:at + 1] = [*declared.split(chr(10)), f'template <> {head} {name} asm("{g}");']
-            lines = [re.sub(rf"\b{g}\b", name, line) if i < at or i > at + declared.count(chr(10)) + 1 else line
+            spec = [*declared.split(chr(10))] if declared else []
+            lines[at:at + 1] = spec + [f'template <> {head} {name} asm("{g}");']
+            lines = [re.sub(rf"\b{g}\b", name, line) if i < at or i > at + len(spec) else line
                      for i, line in enumerate(lines)]
             in_place = True
             continue
-        first.append(declared)
+        if declared:
+            first.append(declared)
         first.append(f'template <> base::reflection::CType base::reflection::TypeObject<{t}>::object asm("{g}");')
         lines = [line if decl.fullmatch(line) else re.sub(rf"\b{g}\b", f"base::reflection::TypeObject<{t}>::object", line)
                  for line in lines if not decl.fullmatch(line)]
@@ -950,6 +958,78 @@ def functions_by_macro(text: str) -> str:
     `if`, from base/reflection/ReflectedFields.h)."""
     new = FUNCTION_RE.sub(r"\1DREAD_REFLECTED_FUNCTION(\2)", text)
     return with_include(new, '#include "base/reflection/ReflectedFields.h"') if new != text else text
+
+
+# A reflected function described in place (tools/refl_attrs.py): its name, return type, flags and invoker.
+DESCRIPTION_RE = re.compile(r'^(\s*)DREAD_REFLECTED_FUNCTION\(("(?:[^"\\]|\\.)*")\) \{\n'
+                            r'\s*fn->name = base::global::UnkStrId\(\2, true\);\n'
+                            r'\s*fn->return_type = ?([^;\n]+);\n'
+                            r'\s*fn->field_0xb2 = (\w+);\n'
+                            r'\s*fn->field_0x40 = nullptr;\n'
+                            r'\s*fn->invoker = reinterpret_cast<void\*>\(&(\w+)\);\n'
+                            r'(\1\}\n)?', re.M)
+
+
+def macro_argument(text: str) -> str:
+    """`text` as one macro argument: in parentheses when it has a comma outside parentheses (a template's, which
+    the preprocessor would split at)."""
+    depth = 0
+    for ch in text:
+        depth += (ch == "(") - (ch == ")")
+        if ch == "," and depth == 0:
+            return f"({text})"
+    return text
+
+
+def functions_in_one_line(text: str) -> str:
+    """`text` with each reflected function described in place written DREAD_REFLECTED_FUNCTION_OF (one line, when
+    the description is all its registration does) or DREAD_REFLECTED_FUNCTION_DESCRIPTION at the head of its
+    block (base/reflection/ReflectedFields.h); the macros expand to the same statements."""
+    def one(m: re.Match) -> str:
+        indent, name, ret, flags, invoker, close = m.groups()
+        args = f"{name}, {macro_argument(ret.strip())}, {flags}, {invoker}"
+        if close:
+            return f"{indent}DREAD_REFLECTED_FUNCTION_OF({args});\n"
+        return f"{indent}DREAD_REFLECTED_FUNCTION({name}) {{\n{indent}    DREAD_REFLECTED_FUNCTION_DESCRIPTION({args});\n"
+    new = DESCRIPTION_RE.sub(one, text)
+    new = INIT_DESCRIPTION_RE.sub(lambda m: f"{m.group(1)}DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, "
+                                             f"{macro_argument(m.group(2).strip())}, {m.group(3)}, {m.group(4)});\n", new)
+    return with_include(new, '#include "base/reflection/ReflectedFields.h"') if new != text else text
+
+
+# The same description in an out-of-line initialiser, `void fn_<addr>(UnkReflFunction* fn, const char* name)`.
+INIT_DESCRIPTION_RE = re.compile(r'^(\s*)fn->name = base::global::UnkStrId\(name, true\);\n'
+                                 r'\s*fn->return_type = ?([^;\n]+);\n'
+                                 r'\s*fn->field_0xb2 = (\w+);\n'
+                                 r'\s*fn->field_0x40 = nullptr;\n'
+                                 r'\s*fn->invoker = reinterpret_cast<void\*>\(&(\w+)\);\n', re.M)
+
+
+# An attribute key whose values are of its own enum type (base/reflection/ReflectedFields.h, TypedAttrKey).
+TYPED_KEY_RE = re.compile(r"^inline TypedAttrKey (\w+)\(\) \{ return \{fn_([0-9a-f]{10})\(\), &(.+?)\}; \}$", re.M)
+
+
+def typed_attribute_keys() -> dict[str, tuple[str, str]]:
+    """{fn_<key getter>: (name, its type object as ReflectedFields.h spells it)} of the typed attribute keys."""
+    text = (ROOT / "include" / "base" / "reflection" / "ReflectedFields.h").read_text(encoding="utf-8")
+    return {f"fn_{a}": (name, obj) for name, a, obj in TYPED_KEY_RE.findall(text)}
+
+
+def typed_keys_by_name(text: str, keys: dict[str, tuple[str, str]]) -> str:
+    """`text` with each attribute added under a typed key with the key's own type, `Add<T>(fn_<key>(), &<type>,
+    v)`, written `Add<T>(base::reflection::attr::<Name>(), v)` (the same key and type); the getter's declaration
+    goes once nothing else names it."""
+    for fn, (name, obj) in keys.items():
+        old = f"({fn}(), &{obj}, "
+        if old not in text:
+            continue
+        text = text.replace(old, f"(base::reflection::attr::{name}(), ")
+        decl = f"const base::reflection::UnkReflAttrKey& {fn}();"
+        lines = text.split(chr(10))
+        if not any(re.search(rf"\b{fn}\b", line) for line in lines if line.strip() != decl):
+            text = chr(10).join(line for line in lines if line.strip() != decl)
+        text = with_include(text, '#include "base/reflection/ReflectedFields.h"')
+    return text
 
 
 def with_include(text: str, include: str) -> str:
@@ -1472,6 +1552,13 @@ def main() -> int:
         return ok
     with ThreadPoolExecutor() as pool:
         objects_by_type = sum(pool.map(by_object_type, sorted(OUT.glob("*.cpp"))))
+    # Reflected functions in one line, typed attribute keys by name: textual, so each file compiles as it did.
+    typed_keys = typed_attribute_keys()
+    for f in sorted(OUT.glob("*.cpp")):
+        old = f.read_text(encoding="utf-8")
+        new = functions_in_one_line(typed_keys_by_name(old, typed_keys))
+        if new != old:
+            f.write_text(new, encoding="utf-8", newline=chr(10))
     (ROOT / "build" / "reflection_tus.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
     print(f"{len(rows)} class getters; {len(located)} located; {len(blocks)} TUs. Generated {generated} getters "
           f"and {helpers_defined} helpers ({attrs_defined} of {attr_total} non-empty attribute/field functions) in {len(list(OUT.glob('*.cpp')))} files; {padded_ok} of the getters in padded TUs; skipped {skipped_layout} (other statics) and "

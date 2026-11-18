@@ -32,24 +32,12 @@ void fn_7100a1c06c(UnkReflFunction* fn, const char* name);
 namespace CSabotoruSpawnPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_wpDoor_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_wpDoor_GetterFunction", true);
-        fn->return_type = &g_unk_71727b6270;
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a1c60c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_wpDoor_GetterFunction", &g_unk_71727b6270, 0x101, fn_7100a1c60c);
     DREAD_REFLECTED_FUNCTION("_m_wpDoor_SetterFunction")
         fn_7100a1bef8(fn, "_m_wpDoor_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("wpDoor", true), &g_unk_71727b6270, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    DREAD_REFLECTED_FUNCTION("_m_wpHomeLandmark_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_wpHomeLandmark_GetterFunction", true);
-        fn->return_type = &g_unk_717269bb48;
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100a1c878);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_wpHomeLandmark_GetterFunction", &g_unk_717269bb48, 0x101, fn_7100a1c878);
     DREAD_REFLECTED_FUNCTION("_m_wpHomeLandmark_SetterFunction")
         fn_7100a1c06c(fn, "_m_wpHomeLandmark_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpHomeLandmark", true), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);

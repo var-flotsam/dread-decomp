@@ -31,13 +31,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("State", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_sColliders_GetterFunction") {
-        fn->name = base::global::UnkStrId("_sColliders_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::global::CStrId>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100c1e228);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_sColliders_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100c1e228);
     DREAD_REFLECTED_FUNCTION("_sColliders_SetterFunction")
         fn_7100c1d9bc(fn, "_sColliders_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sColliders", (DefaultValue, CStrId(g_unk_7101d470e0)));

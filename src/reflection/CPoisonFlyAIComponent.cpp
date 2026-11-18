@@ -18,9 +18,10 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CPoisonFlyAIComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100639afc();
 void fn_7100639960(UnkReflFunction* fn);
 void fn_7100639bc8();
@@ -28,20 +29,10 @@ namespace CPoisonFlyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("AddAttackOffset") {
-        fn->name = base::global::UnkStrId("AddAttackOffset", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100639afc);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("AddAttackOffset", &base::reflection::TypeObject<void>::object, 0, fn_7100639afc);
         fn_7100639960(fn);
     }
-    DREAD_REFLECTED_FUNCTION("StopAddingAttackOffsets") {
-        fn->name = base::global::UnkStrId("StopAddingAttackOffsets", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100639bc8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("StopAddingAttackOffsets", &base::reflection::TypeObject<void>::object, 0, fn_7100639bc8);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

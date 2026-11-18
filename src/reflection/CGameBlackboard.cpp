@@ -25,13 +25,7 @@ void fn_7100aed380();
 namespace CGameBlackboard {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_dctDeltaValues_GetterFunction") {
-        fn->name = base::global::UnkStrId("_dctDeltaValues_GetterFunction", true);
-        fn->return_type = &g_unk_717275b988;
-        fn->field_0xb2 = 0x1;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100aed380);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_dctDeltaValues_GetterFunction", &g_unk_717275b988, 0x1, fn_7100aed380);
     UnkReflField* field0 = AddReflectedField(cls, CStrId("dctDeltaValues", true), &g_unk_717275b988, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

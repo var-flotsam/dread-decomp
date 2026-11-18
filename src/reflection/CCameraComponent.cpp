@@ -21,6 +21,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::math { class CVector3D; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::math::CVector3D>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
@@ -39,7 +41,6 @@ void fn_71010e7434();
 void fn_71010e12d0(UnkReflFunction* fn, const char* name);
 void fn_71010e74c4();
 void fn_71010e144c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71010e7828();
 void fn_71010e7554(UnkReflFunction* fn);
 void fn_71010e15c8(UnkReflFunction* fn, const char* name);
@@ -47,80 +48,34 @@ void fn_71010e167c(UnkReflFunction* fn, const char* name);
 namespace CCameraComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_fCurrentInterp_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fCurrentInterp_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010e70d0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentInterp_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71010e70d0);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(f32, "fCurrentInterp", (Description, base::global::CRntString("Current interpolation speed")), (EditorModeDataFlow, 2), (Persistence, 0));
-    DREAD_REFLECTED_FUNCTION("_vCurrentPos_GetterFunction") {
-        fn->name = base::global::UnkStrId("_vCurrentPos_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010e711c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_vCurrentPos_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_71010e711c);
     DREAD_REFLECTED_FUNCTION("_vCurrentPos_SetterFunction")
         fn_71010e0ce0(fn, "_vCurrentPos_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vCurrentPos", (Description, base::global::CRntString("Current position")), (EditorModeDataFlow, 3));
-    DREAD_REFLECTED_FUNCTION("_vCurrentDir_GetterFunction") {
-        fn->name = base::global::UnkStrId("_vCurrentDir_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector3D>::Get();
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010e7218);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_vCurrentDir_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_71010e7218);
     DREAD_REFLECTED_FUNCTION("_vCurrentDir_SetterFunction")
         fn_71010e0e5c(fn, "_vCurrentDir_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector3D, "vCurrentDir", (Description, base::global::CRntString("Current direction")), (EditorModeDataFlow, 3));
-    DREAD_REFLECTED_FUNCTION("_m_fDefaultInterp_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fDefaultInterp_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010e7314);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fDefaultInterp_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71010e7314);
     DREAD_REFLECTED_FUNCTION("_m_fDefaultInterp_SetterFunction")
         fn_71010e0fd8(fn, "_m_fDefaultInterp_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultInterp", (DefaultValue, 10.0f), (Description, "Default interpolation speed"));
-    DREAD_REFLECTED_FUNCTION("_m_fCurrentInterpChangeSpeed_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fCurrentInterpChangeSpeed_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010e73a4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentInterpChangeSpeed_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71010e73a4);
     DREAD_REFLECTED_FUNCTION("_m_fCurrentInterpChangeSpeed_SetterFunction")
         fn_71010e1154(fn, "_m_fCurrentInterpChangeSpeed_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fCurrentInterpChangeSpeed", (DefaultValue, -1.0f), (Description, "Current interpolation change speed"));
-    DREAD_REFLECTED_FUNCTION("_m_fDefaultNear_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fDefaultNear_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010e7434);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fDefaultNear_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71010e7434);
     DREAD_REFLECTED_FUNCTION("_m_fDefaultNear_SetterFunction")
         fn_71010e12d0(fn, "_m_fDefaultNear_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultNear", (Persistence, 0), (EditorVisible, false), (DefaultValue, 100.0f), (Description, "Default near plane dist"));
-    DREAD_REFLECTED_FUNCTION("_m_fDefaultFar_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fDefaultFar_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010e74c4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fDefaultFar_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71010e74c4);
     DREAD_REFLECTED_FUNCTION("_m_fDefaultFar_SetterFunction")
         fn_71010e144c(fn, "_m_fDefaultFar_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fDefaultFar", (Persistence, 0), (EditorVisible, false), (DefaultValue, 60000.0f), (Description, "Default far plane dist"));
     DREAD_REFLECTED_FUNCTION("SetLogicCameraParams") {
-        fn->name = base::global::UnkStrId("SetLogicCameraParams", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71010e7828);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetLogicCameraParams", &base::reflection::TypeObject<void>::object, 0, fn_71010e7828);
         fn_71010e7554(fn);
     }
     DREAD_REFLECTED_FUNCTION("GetLogicCameraController") {

@@ -39,73 +39,31 @@ void fn_710035bd70(UnkReflFunction* fn, const char* name);
 namespace CCharClassAimComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_fAutoAimWidth_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fAutoAimWidth_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710035c020);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fAutoAimWidth_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710035c020);
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimWidth_SetterFunction")
         fn_710035b488(fn, "_m_fAutoAimWidth_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimWidth", (DefaultValue, 50.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fAutoAimLength_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fAutoAimLength_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710035c0b0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fAutoAimLength_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710035c0b0);
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimLength_SetterFunction")
         fn_710035b604(fn, "_m_fAutoAimLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimLength", (DefaultValue, 2500.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fAutoAimConeLength_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fAutoAimConeLength_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710035c140);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fAutoAimConeLength_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710035c140);
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimConeLength_SetterFunction")
         fn_710035b780(fn, "_m_fAutoAimConeLength_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimConeLength", (DefaultValue, 210.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fAutoAimInterp_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fAutoAimInterp_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710035c1d0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fAutoAimInterp_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710035c1d0);
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimInterp_SetterFunction")
         fn_710035b8fc(fn, "_m_fAutoAimInterp_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimInterp", (DefaultValue, 0.6f));
-    DREAD_REFLECTED_FUNCTION("_m_fAutoAimLockOnInterp_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fAutoAimLockOnInterp_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710035c260);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fAutoAimLockOnInterp_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710035c260);
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimLockOnInterp_SetterFunction")
         fn_710035ba78(fn, "_m_fAutoAimLockOnInterp_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimLockOnInterp", (DefaultValue, 6.0f));
-    DREAD_REFLECTED_FUNCTION("_m_fAutoAimLockOnPredictionTime_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fAutoAimLockOnPredictionTime_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710035c2f0);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fAutoAimLockOnPredictionTime_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710035c2f0);
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimLockOnPredictionTime_SetterFunction")
         fn_710035bbf4(fn, "_m_fAutoAimLockOnPredictionTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimLockOnPredictionTime", (DefaultValue, 0.2f));
-    DREAD_REFLECTED_FUNCTION("_m_fAutoAimLockAfterDeadTime_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fAutoAimLockAfterDeadTime_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710035c380);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fAutoAimLockAfterDeadTime_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_710035c380);
     DREAD_REFLECTED_FUNCTION("_m_fAutoAimLockAfterDeadTime_SetterFunction")
         fn_710035bd70(fn, "_m_fAutoAimLockAfterDeadTime_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAutoAimLockAfterDeadTime", (DefaultValue, 0.5f));

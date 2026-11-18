@@ -37,54 +37,24 @@ namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass();
 namespace CCharClassSwarmControllerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_fMinTimeInNode_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fMinTimeInNode_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100737778);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fMinTimeInNode_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100737778);
     DREAD_REFLECTED_FUNCTION("_m_fMinTimeInNode_SetterFunction")
         fn_7100736400(fn, "_m_fMinTimeInNode_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fMinTimeInNode", (DefaultValue, 2.0f), (Description, "Minimum time waiting in a node [2]"));
-    DREAD_REFLECTED_FUNCTION("_m_fTimeInNodeRandomness_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fTimeInNodeRandomness_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100737808);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fTimeInNodeRandomness_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100737808);
     DREAD_REFLECTED_FUNCTION("_m_fTimeInNodeRandomness_SetterFunction")
         fn_710073657c(fn, "_m_fTimeInNodeRandomness_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fTimeInNodeRandomness", (DefaultValue, 2.0f), (Description, "Minimum time waiting in a node [2]"));
-    DREAD_REFLECTED_FUNCTION("_m_fTargetChangeProbability_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fTargetChangeProbability_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100737898);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fTargetChangeProbability_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100737898);
     DREAD_REFLECTED_FUNCTION("_m_fTargetChangeProbability_SetterFunction")
         fn_71007366f8(fn, "_m_fTargetChangeProbability_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fTargetChangeProbability", (DefaultValue, 0.01f), (Description, "Probability of traveling to another node [.01]"));
     DREAD_REFLECTED_FIELD(CStrId, "sIndividualLife", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Life of each individual of groups [1]"));
-    DREAD_REFLECTED_FUNCTION("_m_fAttackPathOffset_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_fAttackPathOffset_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<float>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100737928);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_fAttackPathOffset_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_7100737928);
     DREAD_REFLECTED_FUNCTION("_m_fAttackPathOffset_SetterFunction")
         fn_7100736874(fn, "_m_fAttackPathOffset_SetterFunction");
     DREAD_REFLECTED_PROPERTY(f32, "fAttackPathOffset", (DefaultValue, 1.0f), (Description, "Offset used to check if Samus is above the attack path [0]"));
-    DREAD_REFLECTED_FUNCTION("_m_iMaxChangingTargetSimul_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_iMaxChangingTargetSimul_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71007379b8);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_iMaxChangingTargetSimul_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_71007379b8);
     DREAD_REFLECTED_FUNCTION("_m_iMaxChangingTargetSimul_SetterFunction")
         fn_71007369f0(fn, "_m_iMaxChangingTargetSimul_SetterFunction");
     DREAD_REFLECTED_PROPERTY(s32, "iMaxChangingTargetSimul", (DefaultValue, 3), (Description, "Max number of groups traveling to another node simultaneously [3]"));

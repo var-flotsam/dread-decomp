@@ -21,6 +21,7 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace game::logic::collision { enum class EColMat : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
@@ -34,41 +35,24 @@ extern base::reflection::CType g_unk_71727115d0;
 void fn_710075d73c();
 void fn_710075d430(UnkReflFunction* fn);
 void fn_71007545bc(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_710075d94c();
 namespace CBreakableTileGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_uGroupId_GetterFunction") {
-        fn->name = base::global::UnkStrId("_uGroupId_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<unsigned int>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710075d2e4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_uGroupId_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0, fn_710075d2e4);
     DREAD_REFLECTED_FUNCTION("_uGroupId_SetterFunction")
         fn_71007542cc(fn, "_uGroupId_SetterFunction");
     DREAD_REFLECTED_PROPERTY(u32, "uGroupId", (EditorModeDataFlow, 1), (DefaultPasteValue, u32(0x0u)));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CBreakableTileGroupComponent::STileInfo>", "aGridTiles", 0x50, (CreateElement, CStrId("CreateNewTile", true)), (DeleteElement, "DeleteTileAt"), (AfterElementDeserialization, "AfterGridDeserialization"));
     DREAD_REFLECTED_FIELD(bool, "bFakeHusks", 0x4c, (DefaultValue, false));
-    DREAD_REFLECTED_FUNCTION("_m_eCollisionMaterial_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_eCollisionMaterial_GetterFunction", true);
-        fn->return_type = &base::reflection::TypeObject<game::logic::collision::EColMat>::object;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710075d374);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_eCollisionMaterial_GetterFunction", &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0, fn_710075d374);
     DREAD_REFLECTED_FUNCTION("_m_eCollisionMaterial_SetterFunction")
         fn_7100754448(fn, "_m_eCollisionMaterial_SetterFunction");
     UnkReflField* field3 = AddReflectedField(cls, CStrId("eCollisionMaterial", true), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Collision Material");
     DREAD_REFLECTED_FUNCTION("CreateNewTile") {
-        fn->name = base::global::UnkStrId("CreateNewTile", true);
-        fn->return_type = &g_unk_71727115d0;
-        fn->field_0xb2 = 0x101;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710075d73c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNewTile", &g_unk_71727115d0, 0x101, fn_710075d73c);
         fn_710075d430(fn);
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));
@@ -79,13 +63,7 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FUNCTION("DeleteTileAt")
         fn_71007545bc(fn, "DeleteTileAt");
-    DREAD_REFLECTED_FUNCTION("AfterGridDeserialization") {
-        fn->name = base::global::UnkStrId("AfterGridDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_710075d94c);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterGridDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_710075d94c);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

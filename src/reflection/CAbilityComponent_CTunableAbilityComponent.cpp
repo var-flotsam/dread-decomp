@@ -19,6 +19,8 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CAbilityComponent::CTunableAbilityComponent
@@ -81,7 +83,6 @@ DREAD_REFLECTED_CLASS(CAbilityComponent::CTunableAbilityComponent, base::tunable
 // CAbilityComponent
 void fn_7100302530();
 void fn_71002fc5c0(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_71003028f0();
 void fn_71003025c0(UnkReflFunction* fn);
 void fn_71002fc73c(UnkReflFunction* fn, const char* name);
@@ -92,22 +93,12 @@ void fn_7100302d14(UnkReflFunction* fn);
 namespace CAbilityComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_m_bAccurateAiming_GetterFunction") {
-        fn->name = base::global::UnkStrId("_m_bAccurateAiming_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100302530);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_m_bAccurateAiming_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100302530);
     DREAD_REFLECTED_FUNCTION("_m_bAccurateAiming_SetterFunction")
         fn_71002fc5c0(fn, "_m_bAccurateAiming_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAccurateAiming", (DefaultValue, false), (Description, "Accurate aiming of the energy wave"));
     DREAD_REFLECTED_FUNCTION("SetAbilityUnlocked") {
-        fn->name = base::global::UnkStrId("SetAbilityUnlocked", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_71003028f0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetAbilityUnlocked", &base::reflection::TypeObject<void>::object, 0, fn_71003028f0);
         fn_71003025c0(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Set Ability Unlocked");
     }
@@ -116,11 +107,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Is Ability Active");
     }
     DREAD_REFLECTED_FUNCTION("IsAnyAbilityUnlocked") {
-        fn->name = base::global::UnkStrId("IsAnyAbilityUnlocked", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100302aa4);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("IsAnyAbilityUnlocked", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100302aa4);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Is Any Ability Active");
     }
     DREAD_REFLECTED_FUNCTION("TrySetSelectedAbility") {
@@ -128,11 +115,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Try to set an ability");
     }
     DREAD_REFLECTED_FUNCTION("DeactivateAllAbilities") {
-        fn->name = base::global::UnkStrId("DeactivateAllAbilities", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100302eb0);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("DeactivateAllAbilities", &base::reflection::TypeObject<void>::object, 0, fn_7100302eb0);
         fn_7100302d14(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "deactivate all abilities");
     }

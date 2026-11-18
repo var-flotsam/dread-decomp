@@ -22,6 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -35,34 +36,21 @@ void fn_7100d71900(UnkReflFunction* fn, const char* name);
 void fn_7100d719b4(UnkReflFunction* fn, const char* name);
 void fn_7100d71a68(UnkReflFunction* fn, const char* name);
 void fn_7100d71b1c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100d82864();
 void fn_7100d826c8(UnkReflFunction* fn);
 void fn_7100d71c98(UnkReflFunction* fn, const char* name);
 namespace CEntity {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_oBBox_GetterFunction") {
-        fn->name = base::global::UnkStrId("_oBBox_GetterFunction", true);
-        fn->return_type = &g_unk_7108b6d3d0;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d823f4);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_oBBox_GetterFunction", &g_unk_7108b6d3d0, 0, fn_7100d823f4);
     UnkReflField* field0 = AddReflectedField(cls, CStrId("oBBox", true), &g_unk_7108b6d3d0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
-    field0->attrs.Add<s32>(fn_71000923a0(), &base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object, 1);
-    field0->attrs.Add<s32>(fn_710000bf80(), &base::reflection::TypeObject<base::serialization::EPersistence>::object, 0);
+    field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 1);
+    field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Entity BBox");
     field0->attrs.Add<CStrId>(base::reflection::attr::DisplayName(), CStrId("Bounding Box", true));
     field0->attrs.Add<bool>(base::reflection::attr::WidgetReadOnly(), true);
     DREAD_REFLECTED_FIELD(bool, "bIsInFrustum", 0xffffffff, (DisplayName, CStrId("Inside Frustum", true)), (Persistence, 0), (EditorVisible, false));
-    DREAD_REFLECTED_FUNCTION("_bIsInFrustum_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bIsInFrustum_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d82448);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bIsInFrustum_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100d82448);
     fn_71000e8118(base::reflection::refl_FindField(cls, base::global::CName("bIsInFrustum")), cls->m_array_0x110.size() - 1);
     DREAD_REFLECTED_FUNCTION("PlayEntityLoop") {
         fn_7100d71900(fn, "PlayEntityLoop");
@@ -84,11 +72,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Deletes the entity after float seconds");
     }
     DREAD_REFLECTED_FUNCTION("StartTimeline") {
-        fn->name = base::global::UnkStrId("StartTimeline", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d82864);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("StartTimeline", &base::reflection::TypeObject<void>::object, 0, fn_7100d82864);
         fn_7100d826c8(fn);
     }
     DREAD_REFLECTED_FUNCTION("EndTimeline")

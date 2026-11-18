@@ -35,33 +35,15 @@ void fn_7100d5de80(UnkReflFunction* fn, const char* name);
 namespace game::logic::collision::CAABoxShape2D {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION("_v2Min_GetterFunction") {
-        fn->name = base::global::UnkStrId("_v2Min_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d5ed18);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_v2Min_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0, fn_7100d5ed18);
     DREAD_REFLECTED_FUNCTION("_v2Min_SetterFunction")
         fn_7100d5db88(fn, "_v2Min_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "v2Min", (DefaultValue, base::math::CVector2D{-200.0f, -200.0f}), (Description, base::global::CRntString("Min Point")));
-    DREAD_REFLECTED_FUNCTION("_v2Max_GetterFunction") {
-        fn->name = base::global::UnkStrId("_v2Max_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<base::math::CVector2D>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d5edcc);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_v2Max_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0, fn_7100d5edcc);
     DREAD_REFLECTED_FUNCTION("_v2Max_SetterFunction")
         fn_7100d5dd04(fn, "_v2Max_SetterFunction");
     DREAD_REFLECTED_PROPERTY(base::math::CVector2D, "v2Max", (DefaultValue, base::math::CVector2D{200.0f, 200.0f}), (Description, base::global::CRntString("Max Point")));
-    DREAD_REFLECTED_FUNCTION("_bOutwardsNormal_GetterFunction") {
-        fn->name = base::global::UnkStrId("_bOutwardsNormal_GetterFunction", true);
-        fn->return_type = &base::reflection::PrimitiveType<bool>::Get();
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100d5ee80);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("_bOutwardsNormal_GetterFunction", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_7100d5ee80);
     DREAD_REFLECTED_FUNCTION("_bOutwardsNormal_SetterFunction")
         fn_7100d5de80(fn, "_bOutwardsNormal_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bOutwardsNormal", (DefaultValue, false));

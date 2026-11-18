@@ -18,22 +18,17 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CLogicPathComponent
-extern base::reflection::CType g_unk_7101d5af48;
 void fn_7100912888();
 namespace SLogicPath { const base::reflection::CClass* refl_GetClass(); }
 namespace CLogicPathComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(SLogicPath, "logicPath", 0x30, (Description, base::global::CRntString("LogicPath")), (SetRenderItemSelectionIdCall, true), (AfterElementDeserialization, CStrId("AfterPathDeserialization", true)));
-    DREAD_REFLECTED_FUNCTION("AfterPathDeserialization") {
-        fn->name = base::global::UnkStrId("AfterPathDeserialization", true);
-        fn->return_type = &g_unk_7101d5af48;
-        fn->field_0xb2 = 0;
-        fn->field_0x40 = nullptr;
-        fn->invoker = reinterpret_cast<void*>(&fn_7100912888);
-    }
+    DREAD_REFLECTED_FUNCTION_OF("AfterPathDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100912888);
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -6,6 +6,7 @@
 // attribute/member-field functions, defined when tools/refl_attrs.py reconstructs them byte-identically.
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
+#include "ReflectedTypes.h"
 #include "base/reflection/UnkReflAttributes.h"
 using base::global::CStrId;
 using base::reflection::CClass;
@@ -18,9 +19,6 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
-#include "base/reflection/TypeObject.h"
-namespace game::logic::collision { enum class EColMat : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
 
 // CCharClassCollisionComponent
 extern base::reflection::CType g_unk_7172718518;
@@ -28,9 +26,7 @@ namespace CCharClassCollisionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "v3SpawnPointCollisionSizeInc", 0x8c, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}), (Description, "Life of the enemy"));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("eDefaultCollisionMaterial", true), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0x98, -1, -1);
-    field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0);
-    field1->attrs.Add<const char*>(base::reflection::attr::Description(), "General Collision Material");
+    DREAD_REFLECTED_FIELD_OF("game::logic::collision::EColMat", "eDefaultCollisionMaterial", 0x98, (DefaultValue, 0), (Description, "General Collision Material"));
     DREAD_REFLECTED_FIELD(bool, "bShouldIgnoreSlopeSupport", 0xc8, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bForceSlopeDirectionOnFloorHit", 0xc9, (DefaultValue, false));
     UnkReflField* field4 = AddReflectedField(cls, CStrId("mExplicitCollisionMaterials", true), &g_unk_7172718518, 0xa0, -1, -1);
