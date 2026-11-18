@@ -1374,14 +1374,21 @@ def main() -> int:
                 for key in [n, *asmdiff.name_aliases(n)]:
                     readable_names[key] = addr
 
+    def checked_text(name: str) -> str:
+        # The include the final pass adds to a file that calls the tunable registry's helper.
+        t = text(*files[name], file_getters.get(name))
+        if "base::reflection::TunableRegistry()" in t:
+            t = with_include(t, '#include "base/reflection/UnkTunableRegistry.h"')
+        return t
+
     def check_file(name: str) -> set[int]:
         src, obj = work / f"{name}.cpp", work / f"{name}.o"
-        src.write_text(text(*files[name], file_getters.get(name)), encoding="utf-8")
+        src.write_text(checked_text(name), encoding="utf-8")
         r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0 and any(len(p) > 3 for p in files[name][1]):
             # Retry without the registration functions (their declarations may clash).
             files[name] = (files[name][0], [p for p in files[name][1] if len(p) == 3])
-            src.write_text(text(*files[name], file_getters.get(name)), encoding="utf-8")
+            src.write_text(checked_text(name), encoding="utf-8")
             r = subprocess.run(buildcfg.cxx_command(src, obj), capture_output=True, text=True)
         if r.returncode != 0:
             return set()
