@@ -87,12 +87,12 @@ struct UnkMgrIds_b189 {
 };
 
 void fn_7100eeb24c(UnkMgrIds_b189* self) {
-    self->field_0x9c0 = g_unk_7101d470e0;
+    self->field_0x9c0 = base::global::CStrId::Empty();
     self->field_0x9c8 = self->field_0x9d0;
 }
 
 void fn_7100eeb15c(UnkMgrIds_b189* self, const CStrId* id) {
-    self->field_0x9c8 = g_unk_7101d470e0;
+    self->field_0x9c8 = base::global::CStrId::Empty();
     self->field_0x9c0 = *id;
 }
 

@@ -43,8 +43,8 @@ struct UnkHydrogigaAI2_A3_b64 {
 void fn_71005c05b0(UnkHydrogigaAI2_A3_b64* self, void* arg, UnkHydrogigaRequest_A3_b64* request) {
     fn_7101105c90(reinterpret_cast<UnkKraidAI2*>(self), arg, reinterpret_cast<UnkKraidRequest*>(request));
     UnkCollisionContainer* collision = self->owner->collision;
-    CStrId name(collision ? *fn_7100864018(collision, request->source) : g_unk_7101d470e0);
-    CStrId id(request->source ? request->source->id : g_unk_7101d470e0);
+    CStrId name(collision ? *fn_7100864018(collision, request->source) : base::global::CStrId::Empty());
+    CStrId id(request->source ? request->source->id : base::global::CStrId::Empty());
     CStrId* ids = g_unk_71726eb430;
     asm("" : "+r"(ids));
     if (name.data == ids[1].data || id.data == ids[4].data || id.data == ids[2].data || id.data == ids[3].data ||

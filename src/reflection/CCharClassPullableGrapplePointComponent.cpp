@@ -23,8 +23,8 @@ using base::reflection::DestroyDestructorFirst;
 namespace CCharClassPullableGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sOnDestructionLeftTimeline", 0x68, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Name of the destruction timeline on the left side"));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnDestructionRightTimeline", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Name of the destruction timeline on the right sidee"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnDestructionLeftTimeline", 0x68, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Name of the destruction timeline on the left side"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnDestructionRightTimeline", 0x70, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Name of the destruction timeline on the right sidee"));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

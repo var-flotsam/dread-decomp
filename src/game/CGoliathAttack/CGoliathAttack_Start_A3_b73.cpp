@@ -82,5 +82,5 @@ void fn_710058e67c(UnkGoliathAttack_A3_b73* self) {
     }
     UnkGoliathManager_A3_b73* manager = reinterpret_cast<UnkGoliathManager_A3_b73*>(g_unk_7101d47360);
     CStrId* id = manager->field_0x3f0;
-    self->id = id ? *id : g_unk_7101d470e0;
+    self->id = id ? *id : base::global::CStrId::Empty();
 }

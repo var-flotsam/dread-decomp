@@ -80,8 +80,8 @@ static_assert(__builtin_offsetof(UnkFrozenComponent_ov110, value) == 0x39c, "lay
 
 // Clears both ids.
 bool fn_71007fb18c(UnkFrozenComponent_ov110* self, CStrId* track, CStrId* blend) {
-    *track = g_unk_7101d470e0;
-    *blend = g_unk_7101d470e0;
+    *track = base::global::CStrId::Empty();
+    *blend = base::global::CStrId::Empty();
     return true;
 }
 
@@ -89,8 +89,8 @@ void fn_71007facf4(UnkFrozenComponent_ov110* self) {
     UnkAnimationComponent* animation = self->owner->animation;
     if (!animation || !self->field_0x2d8)
         return;
-    CStrId track = g_unk_7101d470e0;
-    CStrId blend = g_unk_7101d470e0;
+    CStrId track = base::global::CStrId::Empty();
+    CStrId blend = base::global::CStrId::Empty();
     if (self->GetTrackIds(&track, &blend)) {
         UnkStringPool* pool = g_unk_7101d47108;
         if (track.data != &pool->empty && blend.data != &pool->empty) {
@@ -106,8 +106,8 @@ void fn_71007facf4(UnkFrozenComponent_ov110* self) {
 
 void fn_71007f9d7c(UnkSmOwner_A5_b62<0x228>* owner, f32 dt) {
     UnkFrozenComponent_ov110* self = reinterpret_cast<UnkFrozenComponent_ov110*>(owner);
-    CStrId track = g_unk_7101d470e0;
-    CStrId blend = g_unk_7101d470e0;
+    CStrId track = base::global::CStrId::Empty();
+    CStrId blend = base::global::CStrId::Empty();
     if (self->GetThawIds(&track, &blend)) {
         UnkStringPool* pool = g_unk_7101d47108;
         if (track.data != &pool->empty && blend.data != &pool->empty &&
@@ -133,8 +133,8 @@ void fn_71007f9d7c(UnkSmOwner_A5_b62<0x228>* owner, f32 dt) {
 // Sets the thaw blend layer's weight and, at (about) zero, stops the thaw track.
 void fn_71007f95b8(CFrozenComponent2* component, f32 weight) {
     UnkFrozenComponent_ov110* self = reinterpret_cast<UnkFrozenComponent_ov110*>(component);
-    CStrId track = g_unk_7101d470e0;
-    CStrId blend = g_unk_7101d470e0;
+    CStrId track = base::global::CStrId::Empty();
+    CStrId blend = base::global::CStrId::Empty();
     if (self->GetThawIds(&track, &blend)) {
         UnkStringPool* pool = g_unk_7101d47108;
         if (track.data != &pool->empty && blend.data != &pool->empty) {

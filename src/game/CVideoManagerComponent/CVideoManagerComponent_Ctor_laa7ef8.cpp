@@ -37,8 +37,8 @@ void fn_7100aa7ef8(UnkVideoManager_laa7ef8* self) {
     InitEmptyStrId(&self->video_0x48);
     new (&self->path_0x50) CFilePathStrId();
     new (&self->path_0x58) CFilePathStrId();
-    self->video_0x40 = g_unk_7101d470e0;
-    self->video_0x48 = g_unk_7101d470e0;
+    self->video_0x40 = base::global::CStrId::Empty();
+    self->video_0x48 = base::global::CStrId::Empty();
     self->path_0x50 = g_unk_7101d470e8;
     self->path_0x58 = g_unk_7101d470e8;
 }

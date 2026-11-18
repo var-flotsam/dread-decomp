@@ -41,7 +41,7 @@ struct UnkRecord {
 
 void fn_71002b2e9c(UnkRecord* self) {
     self->field_0x0 = 0;
-    new (&self->field_0x8) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x8) CStrId(base::global::CStrId::Empty());
     self->field_0x10 = -1;
     fn_710002f4e4(reinterpret_cast<UnkSub*>(reinterpret_cast<char*>(self) + 0x18));
     new (&self->field_0xc8) base::global::CRntVector<UnkElem>(0x57);

@@ -26,9 +26,9 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Movement", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sHighAction", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sLowAction", 0x40, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sNoHandAction", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sHighAction", 0x38, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sLowAction", 0x40, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sNoHandAction", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fCheckDistance", 0x54, (DefaultValue, 1.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

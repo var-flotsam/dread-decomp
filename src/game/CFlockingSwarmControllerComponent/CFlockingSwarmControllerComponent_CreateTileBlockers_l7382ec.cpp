@@ -110,7 +110,7 @@ void fn_71007382ec(UnkFlockingSwarm_l7382ec* self) {
         snprintf(text, sizeof(text), "internal_tileblocker_%u", i);
         CStrId name(text, true);
         UnkTileBlocker_l7382ec* blocker = self->field_0x30->field_0x2a0->vf_0x168(
-            name, name, g_unk_7101d470e0, GameManagerIdTable().field_0x1e70, false, false, true, nullptr, -1,
+            name, name, base::global::CStrId::Empty(), GameManagerIdTable().field_0x1e70, false, false, true, nullptr, -1,
             nullptr, -1, nullptr, -1, false, false, true);
         if (blocker) {
             blocker->vf_0x60(false);

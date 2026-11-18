@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Subarea", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sSubareaID", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sSubareaID", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bInCutscene", 0x18, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bFade", 0x19, (DefaultValue, false));
 }

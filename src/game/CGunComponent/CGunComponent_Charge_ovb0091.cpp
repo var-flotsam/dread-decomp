@@ -282,7 +282,7 @@ static inline void CallAll(UnkGunGroups_ovb0091& groups, u32 slot) {
 static inline const UnkQualifiedId& ItemId_ovb0091(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 
@@ -312,7 +312,7 @@ void fn_7100839924(UnkSamusGun_ovb0070* gun) {
     if (self->field_0x218)
         self->field_0x218 = 0;
     UpdateMode(self);
-    self->id = g_unk_7101d470e0;
+    self->id = base::global::CStrId::Empty();
 }
 
 // Always inlined: fn_7100839d70 has it inlined, and it is defined on its own too.
@@ -321,7 +321,7 @@ __attribute__((always_inline)) void fn_7100839f68(UnkGun_ovb0091* self, const CS
     if (!weapon)
         return;
     if (self->id.data == id.data) {
-        self->id = g_unk_7101d470e0;
+        self->id = base::global::CStrId::Empty();
         return;
     }
     if (self->id_count && weapon->id.data == id.data && VCall<bool>(weapon, 0x140))
@@ -395,7 +395,7 @@ void fn_710083ad6c(UnkSamusGunComponent* gun) {
         self->id_count = last;
     }
     self->field_0x138 = 5;
-    self->id = g_unk_7101d470e0;
+    self->id = base::global::CStrId::Empty();
 }
 
 void fn_710083cd54(UnkGun_ovb0091* self, const CStrId* id, s32 value, bool now) {

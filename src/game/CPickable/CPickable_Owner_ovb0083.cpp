@@ -19,6 +19,6 @@ void fn_7100f05a5c(UnkPickable_ovb0083* self, UnkWeakTarget* owner, const CStrId
         self->name = name;
     } else {
         ResetRef(&self->owner);
-        self->name = g_unk_7101d470e0;
+        self->name = base::global::CStrId::Empty();
     }
 }

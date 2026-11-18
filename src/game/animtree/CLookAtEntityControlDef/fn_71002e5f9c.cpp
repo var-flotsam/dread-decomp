@@ -24,7 +24,7 @@ extern void* g_unk_7101a21af8[];
 
 void fn_71002e5f9c(UnkNode* self) {
     self->vtable = g_unk_7101a21718 + 2;
-    new (&self->field_0x8) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x8) CStrId(base::global::CStrId::Empty());
     self->vtable = g_unk_7101a21af8 + 2;
     self->field_0x10 = nullptr;
     if (!g_unk_7101d47108)

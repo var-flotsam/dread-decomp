@@ -24,7 +24,7 @@ struct UnkNavMeshNamedDef_b49 : UnkIdSource {
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNavMeshNamedDef_b49& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
+        fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     return fn_71003327a4(&def.name, &name);
 }
 

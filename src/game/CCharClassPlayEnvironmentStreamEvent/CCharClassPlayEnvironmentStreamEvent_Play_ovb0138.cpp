@@ -59,7 +59,7 @@ struct UnkStreamDesc_ovb0138 {
     f32 field_0x38;
 
     UnkStreamDesc_ovb0138()
-        : group(0), path(g_unk_7101d470e0), name(g_unk_7101d470e0),
+        : group(0), path(base::global::CStrId::Empty()), name(base::global::CStrId::Empty()),
           direction(1), field_0x1c(0), field_0x20(0xffffffff), variant(0), volume(1.0f), field_0x30(0.0f),
           field_0x34(0.0f), field_0x38(-1.0f) {}
 };

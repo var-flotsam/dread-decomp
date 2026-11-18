@@ -33,7 +33,7 @@ const CStrId& fn_7100677b20(UnkSabotoruLife_b57a4* self, UnkSabotoruActor_b57a4*
     if (ai && fn_710009d50c(ai->vf_0x0(), fn_7100677dd4()) && ai->field_0x14778 == 1) {
         if (void* target = actor->field_0x220) {
             UnkSpitSend(target, fn_7100001570("door_death", 10), 0xf4061ff25a2163d6);
-            return g_unk_7101d470e0;
+            return base::global::CStrId::Empty();
         }
     }
     return self->field_0x70;

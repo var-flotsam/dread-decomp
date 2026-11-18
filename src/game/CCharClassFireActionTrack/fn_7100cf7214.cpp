@@ -133,9 +133,9 @@ struct UnkRootTwoIds : UnkRoot {
 
     __attribute__((always_inline)) UnkRootTwoIds(const UnkRootTwoIds& other)
         : UnkRoot(other), ids{(SetVtable(Vtable), other.ids[0]), other.ids[1]} {}
-    // Both ids start as copies of the global id g_unk_7101d470e0.
+    // Both ids start as copies of the global id base::global::CStrId::Empty().
     __attribute__((always_inline)) explicit UnkRootTwoIds(UnkClass* cls)
-        : UnkRoot(cls), ids{(SetVtable(Vtable), g_unk_7101d470e0), g_unk_7101d470e0} {}
+        : UnkRoot(cls), ids{(SetVtable(Vtable), base::global::CStrId::Empty()), base::global::CStrId::Empty()} {}
 };
 
 template <void** Vtable>

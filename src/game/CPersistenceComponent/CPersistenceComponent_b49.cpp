@@ -38,7 +38,7 @@ struct UnkPersistence_b49 {
 };
 
 static inline CStrId SectionId(UnkPersistenceDef_b49* def) {
-    if (def->section.data == g_unk_7101d470e0.data)
+    if (def->section.data == base::global::CStrId::Empty().data)
         return fn_71011a2fbc(g_unk_7101d47310->field_0x608);
     return def->section;
 }

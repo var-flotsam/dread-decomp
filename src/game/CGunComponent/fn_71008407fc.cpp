@@ -28,5 +28,5 @@ const base::global::CStrId* fn_71008407fc(UnkGunComponent* self) {
         // Keeps the two loads apart (Clang would otherwise load through a select of the offsets).
         asm("" : "+r"(object));
     }
-    return !object ? &g_unk_7101d470e0 : &object->id;
+    return !object ? &base::global::CStrId::Empty() : &object->id;
 }

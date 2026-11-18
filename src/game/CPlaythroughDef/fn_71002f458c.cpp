@@ -21,8 +21,8 @@ struct UnkIdArrayHolder {
 void fn_71002f458c(UnkIdArrayHolder* self) {
     fn_7100016ad8(self);
     self->vtable = g_unk_7101a22240 + 2;
-    new (&self->field_0x58) CStrId(g_unk_7101d470e0);
-    new (&self->field_0x60) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x58) CStrId(base::global::CStrId::Empty());
+    new (&self->field_0x60) CStrId(base::global::CStrId::Empty());
     new (&self->field_0x68) base::global::CRntVector<void*>(0xf);
     reinterpret_cast<void (*)(UnkIdArrayHolder*)>(self->vtable[3])(self);
 }

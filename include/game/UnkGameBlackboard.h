@@ -22,7 +22,7 @@ struct UnkIdSource {
 };
 
 // An id of the form "prefix:group:own" (empty parts and their ':' left out) and the object it
-// names. Callers compare `id` with the empty id (g_unk_7101d470e0) to see whether it is built.
+// names. Callers compare `id` with the empty id (base::global::CStrId::Empty()) to see whether it is built.
 struct UnkQualifiedId {
     base::global::CStrId id;
     UnkIdSource* source;

@@ -40,7 +40,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWaveInitialOffset", 0x38, (DefaultValue, -50.0f));
     DREAD_REFLECTED_FIELD(f32, "fWaveOffset", 0x3c, (DefaultValue, 550.0f));
     DREAD_REFLECTED_FIELD(f32, "fWaveParticlesOffset", 0x40, (DefaultValue, 80.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sWaveOffsetFactorizerFunction", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sWaveOffsetFactorizerFunction", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

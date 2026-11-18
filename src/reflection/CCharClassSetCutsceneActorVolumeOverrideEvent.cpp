@@ -29,7 +29,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CName, "sActorName", 0x10, (DefaultValue, base::global::CName(base::global::UnkNameHash{}, 0xffffffffffffffffu)));
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0x18, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fFadeTime", 0x1c, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sSoundGroupId", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sSoundGroupId", 0x20, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

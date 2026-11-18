@@ -77,7 +77,7 @@ void fn_7100775fe0(UnkCentralUnit_l775fe0* self, s32 mode) {
         for (UnkEntityLink_l775fe0* link = self->locks; link != end; ++link) {
             if (UnkWeakTarget* target = link->Get()) {
                 if (UnkDoorLock* lock = fn_71002af860(target))
-                    SetLockState(lock, 0, g_unk_7101d470e0);
+                    SetLockState(lock, 0, base::global::CStrId::Empty());
             }
         }
     }

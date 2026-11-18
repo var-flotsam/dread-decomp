@@ -68,7 +68,7 @@ void fn_710035d7bc(UnkFadeQuads_ovb0259* self) {
         UnkQuadNode_ovb0259* created = nullptr;
         fn_710035d9e0(manager->field_0x218,
                       reinterpret_cast<CFilePathStrId*>(reinterpret_cast<u8*>(&g_unk_71726b21d4) + 0x14), &created,
-                      &g_unk_7101d470e0);
+                      &base::global::CStrId::Empty());
         fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(created), 2);
         self->first = created;
     }
@@ -80,7 +80,7 @@ void fn_710035d7bc(UnkFadeQuads_ovb0259* self) {
     manager = g_unk_7101d47300;
     {
         UnkQuadNode_ovb0259* created = nullptr;
-        fn_710035d9e0(manager->field_0x218, &g_unk_71726b21e8.id, &created, &g_unk_7101d470e0);
+        fn_710035d9e0(manager->field_0x218, &g_unk_71726b21e8.id, &created, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(created), 2);
         self->second = created;
     }

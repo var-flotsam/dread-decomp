@@ -43,10 +43,10 @@ void fn_71008834d4(UnkMultiLockOnBlock_b49* self, u32 flag) {
     UnkGameManager* manager = g_unk_7101d47310;
     UnkGameManagerSub_0x608* scenario = manager->field_0x608;
     CBlackboard* blackboard = &manager->field_0x968;
-    if (!fn_71010472e0(blackboard, scenario ? fn_71011a2fbc(scenario) : CStrId(g_unk_7101d470e0)))
+    if (!fn_71010472e0(blackboard, scenario ? fn_71011a2fbc(scenario) : CStrId(base::global::CStrId::Empty())))
         return;
     UnkGameManagerSub_0x608* current = g_unk_7101d47310->field_0x608;
-    CStrId section_id = current ? fn_71011a2fbc(current) : CStrId(g_unk_7101d470e0);
+    CStrId section_id = current ? fn_71011a2fbc(current) : CStrId(base::global::CStrId::Empty());
     bool value;
     u64 index = 0;
     u32 count = self->count;

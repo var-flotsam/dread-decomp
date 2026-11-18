@@ -30,7 +30,7 @@ namespace CAccessPointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CEntity>>", "vDoorsToChange", 0x898);
-    DREAD_REFLECTED_FIELD(CStrId, "sInteractionLiteralID", 0x588, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sInteractionLiteralID", 0x588, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<base::global::CStrId>>", "tCaptionList", 0x5a0);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("wpThermalDevice", true), &g_unk_71727b6270, 0x540, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);

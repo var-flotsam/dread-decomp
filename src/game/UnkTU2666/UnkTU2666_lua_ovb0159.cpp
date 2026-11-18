@@ -104,7 +104,7 @@ s32 fn_7101077360(lua_State* L) {
 }
 
 s32 fn_710107a2f0(lua_State*) {
-    fn_7100df31b8(g_unk_7101d47310, true, false, 1, g_unk_7101d470e0, false);
+    fn_7100df31b8(g_unk_7101d47310, true, false, 1, base::global::CStrId::Empty(), false);
     return 0;
 }
 

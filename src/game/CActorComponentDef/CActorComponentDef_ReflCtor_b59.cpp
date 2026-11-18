@@ -30,7 +30,7 @@ void fn_7100254584(void* obj) {
     UnkComponentDefEntry_b59* self = static_cast<UnkComponentDefEntry_b59*>(obj);
     fn_7100023838(self);
     self->vtable = g_unk_7101a20ba8 + 0x10;
-    UnkStringData* empty = g_unk_7101d470e0.data;
+    UnkStringData* empty = base::global::CStrId::Empty().data;
     CopyId(&self->id_0x8, empty);
     CopyId(&self->id_0x10, empty);
     self->field_0x18 = 0;

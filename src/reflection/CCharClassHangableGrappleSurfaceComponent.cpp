@@ -24,7 +24,7 @@ namespace CCharClassHangableGrappleSurfaceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMagnetSurfaceMaxIntensityOnGrappleNotAllowed", 0x68, (DefaultValue, 0.5f), (Description, "Magnet surface's material max alpha value when grapple isn't allowed"));
-    DREAD_REFLECTED_FIELD(CStrId, "sGrappleHelperColliderId", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Collider ID to use as grapple helper (reposition grapple point on hit)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sGrappleHelperColliderId", 0x70, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Collider ID to use as grapple helper (reposition grapple point on hit)"));
     DREAD_REFLECTED_FIELD(f32, "fGrappleHelperMaxSegmentLengthToUseCenter", 0x78, (DefaultValue, 100.0f), (Description, "When selecting grapple point on hit, segments smaller than this value will use their center as grapple point"));
 }
 bool refl_Equals(const void*, const void*) { return false; }

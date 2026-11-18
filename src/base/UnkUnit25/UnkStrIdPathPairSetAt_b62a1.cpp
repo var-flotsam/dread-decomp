@@ -2,7 +2,7 @@
 // type) of an array (base::global::CRntVector's layout) of string id and file-path id pairs, in the shape of
 // src/game/animtree/CAnimTreeDef/CAnimTreeDef_IdPairSetAt_b49.cpp: an index past the end of a
 // growable array first reserves (fn_710001e4e8) and constructs the new pairs as copies of the empty
-// ids (g_unk_7101d470e0, g_unk_7101d470e8), then the pair is assigned member by member. Names and
+// ids (base::global::CStrId::Empty(), g_unk_7101d470e8), then the pair is assigned member by member. Names and
 // layouts are placeholders.
 #include <new>
 
@@ -37,7 +37,7 @@ inline void CopyAssignId_b62a1(UnkStringData*& data, UnkStringData* const& other
 }
 
 struct UnkPairId_b62a1 : base::global::CStrId {
-    UnkPairId_b62a1() : CStrId(g_unk_7101d470e0) {}
+    UnkPairId_b62a1() : CStrId(base::global::CStrId::Empty()) {}
     UnkPairId_b62a1& operator=(const UnkPairId_b62a1& other) {
         CStrId::operator=(other);
         return *this;

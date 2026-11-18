@@ -24,8 +24,8 @@ namespace CCameraCtrl {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x10, (DefaultValue, true), (Description, "Enabled"));
-    DREAD_REFLECTED_FIELD(CStrId, "sLuaCallbackOnPossess", 0xc8, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sLuaCallbackOnUnPossess", 0xd0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sLuaCallbackOnPossess", 0xc8, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sLuaCallbackOnUnPossess", 0xd0, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

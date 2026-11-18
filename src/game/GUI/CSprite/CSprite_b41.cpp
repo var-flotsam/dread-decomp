@@ -88,7 +88,7 @@ template <u32 Offset, s32 Last, const char* const* Names>
 static inline __attribute__((always_inline)) UnkReflValue GetEnumName_b41a3(char* obj) {
     char* target = *reinterpret_cast<char**>(obj + 8);
     s32 value = *reinterpret_cast<s32*>(target + Offset);
-    CStrId name = value <= Last ? CStrId(Names[static_cast<u32>(value)], true) : CStrId(g_unk_7101d470e0);
+    CStrId name = value <= Last ? CStrId(Names[static_cast<u32>(value)], true) : CStrId(base::global::CStrId::Empty());
     const base::reflection::CType* type = fn_7100009658();
     UnkReflValue r;
     r.kind = 2;

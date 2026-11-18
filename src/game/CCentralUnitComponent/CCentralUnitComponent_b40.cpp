@@ -80,7 +80,7 @@ struct UnkRanged_cu {
 
 void fn_71007788c4(UnkRanged_cu* self) {
     self->vtable = g_unk_7101a6ec50 + 2;
-    new (&self->field_0x8) base::global::CStrId(g_unk_7101d470e0);
+    new (&self->field_0x8) base::global::CStrId(base::global::CStrId::Empty());
     self->field_0x10 = g_unk_7101a20998 + 2;
     self->field_0x18 = 0;
     self->field_0x20 = 0;
@@ -93,7 +93,7 @@ void fn_71007788c4(UnkRanged_cu* self) {
     self->field_0x48 = 0;
     self->field_0x50 = 0.0f;
     self->field_0x54 = 1.0f;
-    fn_71002b22ac(self->field_0x58, &g_unk_7101d470e0, 0.0f, 1.0f);
+    fn_71002b22ac(self->field_0x58, &base::global::CStrId::Empty(), 0.0f, 1.0f);
 }
 
 

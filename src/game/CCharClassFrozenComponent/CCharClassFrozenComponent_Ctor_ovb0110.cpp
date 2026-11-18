@@ -28,12 +28,12 @@ void fn_71007ee4c8(UnkFrozenIceBase_b44a2* base) {
     fn_71011acd10(reinterpret_cast<UnkStruct_71008bca30*>(self));
     self->vtable = reinterpret_cast<u64>(&g_unk_7101a73dc0[2]);
     self->field_0x58 = 0;
-    new (&self->ids[0]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[1]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[2]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[3]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[4]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[5]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[6]) CStrId(g_unk_7101d470e0);
-    new (&self->ids[7]) CStrId(g_unk_7101d470e0);
+    new (&self->ids[0]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[1]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[2]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[3]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[4]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[5]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[6]) CStrId(base::global::CStrId::Empty());
+    new (&self->ids[7]) CStrId(base::global::CStrId::Empty());
 }

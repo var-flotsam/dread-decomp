@@ -80,8 +80,8 @@ static inline void MakeEmpty(CStrId* id) {
 
 // The component's state as a fresh one has it.
 static inline void ResetTrigger(UnkTriggerComponent_la5dac0* self) {
-    self->field_0x1f0 = g_unk_7101d470e0;
-    self->field_0x1f8 = g_unk_7101d470e0;
+    self->field_0x1f0 = base::global::CStrId::Empty();
+    self->field_0x1f8 = base::global::CStrId::Empty();
     self->field_0x3d = false;
     self->field_0x278 = false;
     self->field_0x200 = false;
@@ -127,6 +127,6 @@ void fn_7100a5dac0(void* p) {
     fn_7100a62f34(self->field_0x280);
     fn_7100ae9cc8(self->field_0x2b8);
     self->field_0x418 = true;
-    new (&self->field_0x420) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x420) CStrId(base::global::CStrId::Empty());
     ResetTrigger(self);
 }

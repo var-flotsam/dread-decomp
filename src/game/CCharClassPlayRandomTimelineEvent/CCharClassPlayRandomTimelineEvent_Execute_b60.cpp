@@ -69,7 +69,7 @@ void fn_7100bc7628(UnkPlayRandomTimelineEvent_b60* self, UnkPlayRandomTimelineTa
             id = &self->ids[6];
             break;
         default:
-            id = reinterpret_cast<base::global::UnkStringData* const*>(&g_unk_7101d470e0);
+            id = reinterpret_cast<base::global::UnkStringData* const*>(&base::global::CStrId::Empty());
             break;
         }
     }

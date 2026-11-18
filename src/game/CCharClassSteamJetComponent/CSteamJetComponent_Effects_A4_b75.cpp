@@ -31,7 +31,7 @@ struct UnkSteamJetEffects_A4_b75 {
 // Places, starts and switches off a new effect.
 static inline __attribute__((always_inline)) void PlaceSteamJetEffect(UnkSteamJetEffects_A4_b75* self, char* effect,
                                                                       char* UnkSteamJetEffects_A4_b75::*field) {
-    fn_710115217c(self->object, effect, 0, 1, &g_unk_7101d470e0,
+    fn_710115217c(self->object, effect, 0, 1, &base::global::CStrId::Empty(),
                   base::math::CVector3D(g_unk_7101647790),
                   base::math::CVector3D(g_unk_710164779c), nullptr);
     fn_7101152c0c(static_cast<UnkObject*>(self->object), self->*field, 1, 1);

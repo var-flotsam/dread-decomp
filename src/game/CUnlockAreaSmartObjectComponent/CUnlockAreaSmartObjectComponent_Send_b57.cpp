@@ -82,5 +82,5 @@ void fn_7100a0782c(UnkUnlockAreaSmartObject_b57* self) {
                 fn_710093fa80(comp, 1, true, true);
         }
     }
-    self->field_0x148 = g_unk_7101d470e0;
+    self->field_0x148 = base::global::CStrId::Empty();
 }

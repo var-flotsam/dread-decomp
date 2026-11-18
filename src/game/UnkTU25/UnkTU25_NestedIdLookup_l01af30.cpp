@@ -58,7 +58,7 @@ struct UnkIdKey {
 struct UnkResult {
     CStrId name;
     CFilePathStrId path;
-    UnkResult() : name(g_unk_7101d470e0), path(g_unk_7101d470e8) {}
+    UnkResult() : name(base::global::CStrId::Empty()), path(g_unk_7101d470e8) {}
 };
 
 

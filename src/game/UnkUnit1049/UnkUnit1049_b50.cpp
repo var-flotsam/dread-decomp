@@ -70,7 +70,7 @@ struct UnkOwner_b50_1049 {
 void* fn_71006b5fec(UnkOwner_b50_1049* self) {
     if (UnkActor_b50_1049* actor = self->actor) {
         if (UnkTarget_b50_1049* target = actor->field_0x2a0)
-            return target->vf_45(g_unk_7172706938, g_unk_7172706938, &g_unk_7101d470e0,
+            return target->vf_45(g_unk_7172706938, g_unk_7172706938, &base::global::CStrId::Empty(),
                                  &GameManagerIdTable().field_0x628, 0x100, 0, 1, 0, -1, 0, -1, 0, -1, false,
                                  false, true);
     }

@@ -27,11 +27,11 @@ void fn_7100828940(UnkSelf_as41* self);
 void fn_71008274dc(UnkSelf_as41* self) {
     fn_7100828940(self);
     self->vtable = &g_unk_7101a760c0[2];
-    new (&self->id_0x78) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x80) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x88) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x90) CStrId(g_unk_7101d470e0);
-    new (&self->id_0x98) CStrId(g_unk_7101d470e0);
+    new (&self->id_0x78) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x80) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x88) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x90) CStrId(base::global::CStrId::Empty());
+    new (&self->id_0x98) CStrId(base::global::CStrId::Empty());
     self->field_0xa0 = 0;
     reinterpret_cast<void (*)(UnkSelf_as41*)>(self->vtable[3])(self);
 }

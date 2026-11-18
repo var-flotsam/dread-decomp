@@ -24,9 +24,9 @@ namespace behaviortree::CWaitAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTime", 0x2c, (DefaultValue, 0.0f), (Description, "Time to wait"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTime", 0x30, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Time to wait (blackboard)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTunable", 0x38, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Time to wait (blackboard)"));
-    DREAD_REFLECTED_FIELD(CStrId, "sTunableVar", 0x40, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Time to wait (blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTime", 0x30, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Time to wait (blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTunable", 0x38, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Time to wait (blackboard)"));
+    DREAD_REFLECTED_FIELD(CStrId, "sTunableVar", 0x40, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Time to wait (blackboard)"));
     DREAD_REFLECTED_FIELD(bool, "bWaitTick", 0x50, (DefaultValue, false), (Description, "Wait at least 1 tick [false]"));
     DREAD_REFLECTED_FIELD(bool, "bShouldHaveLOS", 0x52, (DefaultValue, false), (Description, "Counter will reset if there's no LOS"));
 }

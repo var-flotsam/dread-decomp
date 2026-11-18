@@ -37,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_bCanUseTunnels_SetterFunction")
         fn_710051e924(fn, "_m_bCanUseTunnels_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bCanUseTunnels", (DefaultValue, true));
-    DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x618, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sInventoryItemOnKilled", 0x618, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

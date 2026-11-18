@@ -127,7 +127,7 @@ static inline bool MenuIdle() {
 // Calls the script function named by `function`, resets it to the default id and runs the callback.
 static inline void Fire(CStrId& function, UnkDlgAction_lb018fc& action) {
     fn_7100000790(function.Text(), g_unk_710162e2ed);
-    function = g_unk_7101d470e0;
+    function = base::global::CStrId::Empty();
     if (action.fn)
         action.fn(action.arg);
 }

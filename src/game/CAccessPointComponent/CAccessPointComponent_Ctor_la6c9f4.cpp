@@ -146,7 +146,7 @@ void fn_7100a6c9f4(UnkAp_la6c9f4* self) {
     new (&callbacks.id_0x40) CStrId(g_unk_710162e2ed, true);
     new (&callbacks.id_0x48) CStrId(g_unk_710162e2ed, true);
     callbacks.field_0x50 = 0;
-    new (&callbacks.id_0x58) CStrId(g_unk_7101d470e0);
+    new (&callbacks.id_0x58) CStrId(base::global::CStrId::Empty());
 
     new (&self->map) UnkChainedMap;
     self->map.ResizeBuckets(11);

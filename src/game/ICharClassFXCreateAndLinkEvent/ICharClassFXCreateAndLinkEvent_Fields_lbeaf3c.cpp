@@ -38,7 +38,7 @@ inline CRntString Join(const CRntString& a, const CRntString& b) {
 }
 
 void fn_7100beaf3c(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(base::global::CStrId::Empty())));
     UnkReflField* type = AddReflectedField(cls, CStrId("eType", true), reinterpret_cast<CType*>(&base::reflection::TypeObject<EFXType>::object), 0x18, -1, -1);
     type->attrs.Add<s32>(fn_7100075240(), reinterpret_cast<CType*>(&base::reflection::TypeObject<EFXType>::object), 0);
     UnkReflField* path = AddReflectedField(cls, CStrId("sPath", true), fn_710000ad9c(), 0x20, -1, -1);
@@ -47,7 +47,7 @@ void fn_7100beaf3c(CClass* cls) {
                                 Join(Join(StringOf(g_unk_716e454078.extensions[0]), "|"), StringOf(g_unk_716e453ff8.extensions[0])));
     UnkReflField* link = AddReflectedField(cls, CStrId("eLinkType", true), reinterpret_cast<CType*>(&base::reflection::TypeObject<ELinkType>::object), 0x28, -1, -1);
     link->attrs.Add<s32>(fn_7100075240(), reinterpret_cast<CType*>(&base::reflection::TypeObject<ELinkType>::object), 0);
-    DREAD_REFLECTED_FIELD(CStrId, "sTarget", 0x30, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sTarget", 0x30, (DefaultValue, CStrId(base::global::CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetX", 0x38, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetY", 0x3c, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
     DREAD_REFLECTED_FIELD(f32, "fPositionOffsetZ", 0x40, (DefaultValue, 0.0f), (MinValue, -3.4028235e+38f), (MaxValue, 3.4028235e+38f));
@@ -57,7 +57,7 @@ void fn_7100beaf3c(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fScaleX", 0x50, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fScaleY", 0x54, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fScaleZ", 0x58, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sAdditional", 0x60, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sAdditional", 0x60, (DefaultValue, CStrId(base::global::CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bDropToFloor", 0x68, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fLifeTime", 0x6c, (DefaultValue, -1.0f));
 }

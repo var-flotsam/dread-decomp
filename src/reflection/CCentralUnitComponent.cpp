@@ -59,7 +59,7 @@ void refl_AddFields(CClass* cls) {
     field5->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     UnkReflField* field6 = AddReflectedField(cls, CStrId("wpBossDoor", true), &g_unk_71727b6270, 0x4f8, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    DREAD_REFLECTED_FIELD(CStrId, "sBossCollisionCameraID", 0x538, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBossCollisionCameraID", 0x538, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field8 = AddReflectedField(cls, CStrId("wpEmmySpawnPoint", true), &g_unk_71727b6270, 0x540, -1, -1);
     field8->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CCentralUnitComponent::SStartPointInfo>", "tEmmyStartPointsInfo", 0x580);
@@ -77,7 +77,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "tEmmyPhase2DeactivatedActors", 0x6a8);
     UnkReflField* field17 = AddReflectedField(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x970, -1, -1);
     field17->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x9b0, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x9b0, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field19 = AddReflectedField(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x9b8, -1, -1);
     field19->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FUNCTION("AddEmmySpawnPoint")

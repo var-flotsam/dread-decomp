@@ -25,7 +25,7 @@ struct UnkDialogDef : UnkIdSource {
 };
 static inline const UnkQualifiedId& Qid(UnkDialogDef& def) {
     if (def.qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&def.qid, &def, g_unk_7101d470e0);
+        fn_7100ae9a10(&def.qid, &def, base::global::CStrId::Empty());
     return def.qid;
 }
 

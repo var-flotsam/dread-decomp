@@ -29,7 +29,7 @@ void fn_71006c5618(UnkSluggerDef* self) {
     fn_7100416db8(reinterpret_cast<UnkObject_7100416db8*>(self));
     self->vtable = g_unk_7101a64f60 + 2;
     fn_71006c0044(self->field_0x510);
-    new (&self->field_0x640) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x640) CStrId(base::global::CStrId::Empty());
     self->field_0x648 = -1.0f;
     self->field_0x64c = -1.0f;
     reinterpret_cast<void (*)(UnkSluggerDef*)>(self->vtable[3])(self);
@@ -40,7 +40,7 @@ void fn_71006c5314(UnkSluggerDef* self) {
     fn_7100416db8(reinterpret_cast<UnkObject_7100416db8*>(self));
     self->vtable = g_unk_7101a64f60 + 2;
     fn_71006c0044(self->field_0x510);
-    new (&self->field_0x640) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x640) CStrId(base::global::CStrId::Empty());
     self->field_0x648 = -1.0f;
     self->field_0x64c = -1.0f;
 }

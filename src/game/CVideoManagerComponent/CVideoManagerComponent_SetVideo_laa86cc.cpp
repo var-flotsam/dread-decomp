@@ -47,7 +47,7 @@ static inline const CRntString& IdString(const Id& id) {
 
 void fn_7100aa86cc(UnkVideoManager_laa86cc* self, const CFilePathStrId& path) {
     if (path.data == &g_unk_7101d47200->empty) {
-        self->video = g_unk_7101d470e0;
+        self->video = base::global::CStrId::Empty();
         self->path = g_unk_7101d470e8;
         return;
     }

@@ -23,7 +23,7 @@ struct UnkShelmitAI_b50 {
 };
 
 void fn_71006bc188(UnkShelmitAI_b50* self, void* arg, u32 event, CStrId* out) {
-    *out = g_unk_7101d470e0;
+    *out = base::global::CStrId::Empty();
     if (event == 12) {
         if (UnkTakumakuComponent* component = self->owner->field_0x220) {
             if (fn_7101178e6c(component, 12))

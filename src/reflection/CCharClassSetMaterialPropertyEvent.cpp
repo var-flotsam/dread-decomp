@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::EventGroup(), "Material");
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sMaterialName", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sMaterialName", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("engine::utils::EMaterialConstantColor", "ePropertyName", 0x18, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD_OF("msapi::api::shdr::EShaderType", "eStage", 0x1c, (DefaultValue, 1));
     DREAD_REFLECTED_FIELD(f32, "fColorR", 0x20, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 1.0f));

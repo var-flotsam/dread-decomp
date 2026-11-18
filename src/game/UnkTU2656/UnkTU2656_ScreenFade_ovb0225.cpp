@@ -45,7 +45,7 @@ void fn_7101053650(UnkScreenFade* self, u32 layer, bool enabled) {
     {
         CFilePathStrId path(base::global::UnkStrIdInline(), "gui/textures/white.bctex", true);
         node = nullptr;
-        fn_7100e13abc(render->field_0x218, &path, &node, &g_unk_7101d470e0);
+        fn_7100e13abc(render->field_0x218, &path, &node, &base::global::CStrId::Empty());
         fn_7100219ae0(render, reinterpret_cast<UnkSceneNode*>(node), 2);
         self->target = node;
     }

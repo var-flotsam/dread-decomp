@@ -135,7 +135,7 @@ void fn_710070d5dc(UnkTU1134_b257a* self) {
         o->Release();
         self->field_0x28 = nullptr;
     }
-    self->field_0x30 = g_unk_7101d470e0;
+    self->field_0x30 = base::global::CStrId::Empty();
     fn_710002fa90(self->field_0xb0);
     self->field_0x168 = false;
     self->field_0x160 = 0.0f;

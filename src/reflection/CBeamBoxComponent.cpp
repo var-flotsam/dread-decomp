@@ -26,7 +26,7 @@ void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDisplaceDist", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SBeamBoxActivatable>", "vActivatables", 0x388);
-    DREAD_REFLECTED_FIELD(CStrId, "sAnimationId", 0x478, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sAnimationId", 0x478, (DefaultValue, CStrId(CStrId::Empty())));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

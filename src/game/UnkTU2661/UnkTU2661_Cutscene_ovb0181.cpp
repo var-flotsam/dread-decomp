@@ -250,7 +250,7 @@ UnkNodeEntry_b0181* fn_7101068980(base::global::CRntVector<UnkNodeEntry_b0181>* 
         entry->field_0xc = second;
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkSceneNode* node = nullptr;
-        fn_7100b74b9c(manager->field_0x218, reinterpret_cast<u8*>(owner) + 0x10, &node, &g_unk_7101d470e0);
+        fn_7100b74b9c(manager->field_0x218, reinterpret_cast<u8*>(owner) + 0x10, &node, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, node, 0);
         entry->node = node;
     }

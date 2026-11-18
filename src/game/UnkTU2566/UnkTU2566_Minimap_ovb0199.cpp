@@ -283,7 +283,7 @@ void fn_7100ea585c(UnkMmOwner_b0199* self) {
     CStrId section_id = fn_7100dfbda4(manager, self->field_0x110);
     UnkQualifiedId* qualified = reinterpret_cast<UnkQualifiedId*>(g_unk_71727ca190.field_0x10);
     if (qualified->id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(qualified, reinterpret_cast<UnkIdSource*>(&g_unk_71727ca190), g_unk_7101d470e0);
+        fn_7100ae9a10(qualified, reinterpret_cast<UnkIdSource*>(&g_unk_71727ca190), base::global::CStrId::Empty());
     if (CBlackboard::CSection* s = fn_71010472e0(blackboard, section_id)) {
         if (!manager->field_0x968.field_0xe8) {
             UnkTypedValue v;
@@ -304,7 +304,7 @@ extern UnkNamedDef_b0199 g_unk_71727c9c78;
 
 static inline UnkSubId_7100fc4b34 SubId(UnkNamedDef_b0199& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
+        fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     return fn_71003327a4(&def.name, &name);
 }
 

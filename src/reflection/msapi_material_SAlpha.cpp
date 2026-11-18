@@ -239,7 +239,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Constant");
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(CStrId::Empty())), (Persistence, 1));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("cType", true), &base::reflection::PrimitiveType<char>::Get(), 0x10, -1, -1);
     field1->attrs.AddTyped<u8, &fn_7100008500>(base::reflection::attr::DefaultValue(), 102);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 1);
@@ -306,9 +306,9 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Texture");
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
-    DREAD_REFLECTED_FIELD(CStrId, "sSampler", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
-    DREAD_REFLECTED_FIELD(CStrId, "sType", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(CStrId::Empty())), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sSampler", 0x10, (DefaultValue, CStrId(CStrId::Empty())), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sType", 0x18, (DefaultValue, CStrId(CStrId::Empty())), (Persistence, 1));
     DREAD_REFLECTED_FIELD(s32, "iSlot", 0x20, (DefaultValue, -1), (Persistence, 1));
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAddress", 0x28, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Persistence, 1));
     DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureFilter::ETextureFilter", "eMinFilter", 0x30, (DefaultValue, 0), (Persistence, 1));
@@ -355,10 +355,10 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x20011u);
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sId", 0x10, (DefaultValue, CStrId(CStrId::Empty())), (Persistence, 1));
     DREAD_REFLECTED_FIELD_OF("msapi::material::ETranslucencyType", "eType", 0x18, (DefaultValue, 1), (Persistence, 1));
     DREAD_REFLECTED_FIELD(u32, "uRenderLayer", 0x1c, (DefaultValue, 31), (Persistence, 1));
-    DREAD_REFLECTED_FIELD(CStrId, "sProgramName", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(CStrId, "sProgramName", 0x20, (DefaultValue, CStrId(CStrId::Empty())), (Persistence, 1));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

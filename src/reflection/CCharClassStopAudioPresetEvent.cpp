@@ -34,7 +34,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sPresetID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100be4d2c);
     DREAD_REFLECTED_FUNCTION("_sPresetID_SetterFunction")
         fn_7100be42fc(fn, "_sPresetID_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(CStrId, "sPresetID", (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_PROPERTY(CStrId, "sPresetID", (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fFadeOut", 0x30, (DefaultValue, -1.0f), (MinValue, -1.0f), (MaxValue, 10.0f));
     DREAD_REFLECTED_FIELD(f32, "fDelayed", 0x34, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 10.0f));
 }

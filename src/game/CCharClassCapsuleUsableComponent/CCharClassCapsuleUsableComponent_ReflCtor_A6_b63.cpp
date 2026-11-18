@@ -30,7 +30,7 @@ void fn_7100a79630(void* obj) {
     UnkCapsuleUsableDef_A6_b63* self = static_cast<UnkCapsuleUsableDef_A6_b63*>(obj);
     fn_7100a7ff04(self);
     self->vtable = g_unk_7101a90b30 + 0x10;
-    UnkStringData* empty = g_unk_7101d470e0.data;
+    UnkStringData* empty = base::global::CStrId::Empty().data;
     CopyId_A6_b63(&self->id_0x1d8, empty);
     CopyId_A6_b63(&self->id_0x1e0, empty);
     CopyId_A6_b63(&self->id_0x1e8, empty);

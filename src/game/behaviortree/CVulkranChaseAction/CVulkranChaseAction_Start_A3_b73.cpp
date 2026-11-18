@@ -63,7 +63,7 @@ void fn_71006d73f0(UnkVulkranChase_A3_b73* self) {
     self->field_0x5b = true;
     self->field_0x5c = -1.0f;
     self->field_0x60 = -1.0f;
-    self->id = g_unk_7101d470e0;
+    self->id = base::global::CStrId::Empty();
     UnkReflObject* ai = *reinterpret_cast<UnkReflObject**>(self->owner + 0x240);
     UnkReflObject* vulkran = ai && fn_710009d50c(ai->vf_0x0(), fn_71006db2b8()) ? ai : nullptr;
     self->ai = vulkran;

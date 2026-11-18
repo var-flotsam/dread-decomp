@@ -118,7 +118,7 @@ void fn_710089e3f8(UnkSteamJetComponent_l89e3f8* self) {
     const CStrId* type = SingletonId(0x628);
     UnkSteamJetCreateCollider_l89e3f8 create =
         (*reinterpret_cast<UnkSteamJetCreateCollider_l89e3f8**>(collision))[0x168 / 8];
-    UnkCollisionObject* object = create(collision, name, group, &g_unk_7101d470e0, type, 8, 0, 1, nullptr, -1,
+    UnkCollisionObject* object = create(collision, name, group, &base::global::CStrId::Empty(), type, 8, 0, 1, nullptr, -1,
                                         nullptr, -1, nullptr, -1, false, false, true);
     if (!object)
         return;

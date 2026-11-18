@@ -169,7 +169,7 @@ void fn_71003356ac(UnkAbilitySonar_ovb0085* self, UnkSonarEffect_ovb0085* effect
     rotation.x = 0.0f;
     rotation.y = 0.0f;
     rotation.z = 0.0f;
-    fn_710115217c(object, effect, 0, 8, &g_unk_7101d470e0, offset, rotation,
+    fn_710115217c(object, effect, 0, 8, &base::global::CStrId::Empty(), offset, rotation,
                   IdText(GameManagerIdTable().field_0xd40));
 }
 
@@ -258,7 +258,7 @@ UnkSonarModel_ovb0085* fn_7100336760(UnkAbilitySonar_ovb0085* self, const CFileP
     }
     UnkRenderManager* render = g_unk_7101d47300;
     UnkSonarModel_ovb0085* model = nullptr;
-    fn_7100339900(render->field_0x218, path, &model, &g_unk_7101d470e0);
+    fn_7100339900(render->field_0x218, path, &model, &base::global::CStrId::Empty());
     fn_7100219ae0(render, model ? &model->node : nullptr, 0);
     UnkSonarModel_ovb0085* created = model;
     if (created) {
@@ -312,7 +312,7 @@ bool fn_710033652c(UnkSonarData_ovb0085* self, UnkSonarSource_ovb0085* source) {
     ModelManager();
     UnkRenderManager* render = g_unk_7101d47300;
     pulse = nullptr;
-    fn_7100339d48(render->field_0x218, &path, &pulse, &g_unk_7101d470e0);
+    fn_7100339d48(render->field_0x218, &path, &pulse, &base::global::CStrId::Empty());
     fn_7100219ae0(render, pulse ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<u8*>(pulse) + 8) : nullptr, 0);
     UnkSwitchObject* created = pulse;
     if (created) {

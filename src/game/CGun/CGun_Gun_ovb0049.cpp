@@ -80,9 +80,9 @@ static inline u64 EmptyHash() {
 void fn_7100835410(UnkGunCtor_ovb0049* self) {
     fn_7101043904(self);
     self->vtable = reinterpret_cast<void**>(g_unk_7101a77980 + 0x10);
-    new (&self->field_0x10) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x10) CStrId(base::global::CStrId::Empty());
     self->field_0x18 = nullptr;
-    new (&self->field_0x20) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x20) CStrId(base::global::CStrId::Empty());
     fn_71002ef5bc(self->field_0x28);
     self->field_0x38 = 0;
     self->field_0x3c = -1;
@@ -202,7 +202,7 @@ void fn_71008366fc(UnkGunBillboards_ovb0049* self, const void* path, u32 columns
     UnkRenderManager* manager = g_unk_7101d47300;
     UnkGunBillboardItem_ovb0049* item = nullptr;
     fn_7100836ce8(reinterpret_cast<UnkGunTextureSet_ovb0049*>(manager->field_0x218), path, &item,
-                  &g_unk_7101d470e0);
+                  &base::global::CStrId::Empty());
     fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(item), 0);
     *slot = item;
     item->SetGrid(columns, rows);

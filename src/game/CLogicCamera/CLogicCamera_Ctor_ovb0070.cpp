@@ -36,7 +36,7 @@ struct UnkLogicCamera_ovb0070 {
 void fn_710105263c(UnkLogicCamera_ovb0070* self) {
     fn_7101043904(self);
     self->vtable = &g_unk_7101a81678[2];
-    new (&self->field_0x10) CStrId(g_unk_7101d470e0);
+    new (&self->field_0x10) CStrId(base::global::CStrId::Empty());
     new (&self->field_0x18) CStrId("", true);
     self->field_0x20 = false;
     self->field_0x24 = 0.0f;

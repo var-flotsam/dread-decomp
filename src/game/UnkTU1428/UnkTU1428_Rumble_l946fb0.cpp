@@ -77,13 +77,13 @@ void fn_7100946fb0(UnkBallMovement_l946fb0* self) {
     if (self->kind != 0 && !self->flags.blocked) {
         switch (self->kind) {
         case 1:
-            fn_7100df31b8(g_unk_7101d47310, true, false, 1, g_unk_7101d470e0, false);
+            fn_7100df31b8(g_unk_7101d47310, true, false, 1, base::global::CStrId::Empty(), false);
             break;
         case 2:
-            fn_7100df31b8(g_unk_7101d47310, true, false, 2, g_unk_7101d470e0, false);
+            fn_7100df31b8(g_unk_7101d47310, true, false, 2, base::global::CStrId::Empty(), false);
             break;
         case 3:
-            fn_7100df31b8(g_unk_7101d47310, true, false, 3, g_unk_7101d470e0, false);
+            fn_7100df31b8(g_unk_7101d47310, true, false, 3, base::global::CStrId::Empty(), false);
             break;
         }
     }

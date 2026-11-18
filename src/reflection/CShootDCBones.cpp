@@ -31,7 +31,7 @@ extern base::reflection::CType g_unk_7101d5c998;
 namespace CShootDCBones {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sName", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("tBoneNames", true), &g_unk_7101d5c998, 0x10, -1, -1);
     field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
@@ -64,7 +64,7 @@ namespace COffset {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fOffset", 0x10, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(CStrId, "sBoneName", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sBoneName", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fGravity", 0x14, (DefaultValue, 3000.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpeed", 0x18, (DefaultValue, 1500.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToNextOffset", 0x1c, (DefaultValue, 0.0f));
@@ -98,7 +98,7 @@ extern base::reflection::CType g_unk_71726f5ac0;
 namespace CPattern {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sPatternName", 0x8, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sPatternName", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("tOffsets", true), &g_unk_71726f5ac0, 0x10, -1, -1);
     field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }

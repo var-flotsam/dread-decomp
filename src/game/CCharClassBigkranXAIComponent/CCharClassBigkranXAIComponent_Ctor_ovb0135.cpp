@@ -33,7 +33,7 @@ struct UnkBigkranRange_ovb0135 {
     u64 field_0x38;
     u64 field_0x40;
 
-    UnkBigkranRange_ovb0135() : list(0xf), name(g_unk_7101d470e0), min(-1.0f), max(-1.0f), field_0x38(0), field_0x40(0) {}
+    UnkBigkranRange_ovb0135() : list(0xf), name(base::global::CStrId::Empty()), min(-1.0f), max(-1.0f), field_0x38(0), field_0x40(0) {}
     // What the destructor does (the members are destroyed in place).
     void Destroy() {
         name.Reset();
@@ -67,7 +67,7 @@ void fn_71003f5f3c(UnkBigkranXAI_ovb0135* self) {
     new (&self->far_range) UnkBigkranRange_ovb0135();
     self->near = -1.0f;
     self->far = -1.0f;
-    new (&self->name) CStrId(g_unk_7101d470e0);
+    new (&self->name) CStrId(base::global::CStrId::Empty());
     self->field_0x618 = -1.0f;
     self->field_0x61c = -1.0f;
     self->field_0x620 = -1.0f;

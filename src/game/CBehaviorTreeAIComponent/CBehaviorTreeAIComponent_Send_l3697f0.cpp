@@ -91,7 +91,7 @@ void fn_71003697f0(UnkStruct_710036974c* component) {
     if (self->sent)
         return;
     void* target = self->owner->field_0x220;
-    if (self->owner->field_0x240 && !(self->owner->field_0x240->vf_0x1d0() == g_unk_7101d470e0)) {
+    if (self->owner->field_0x240 && !(self->owner->field_0x240->vf_0x1d0() == base::global::CStrId::Empty())) {
         CStrId name = self->owner->field_0x240->vf_0x1d0();
         u64 hash = name.data->Key();
         base::reflection::UnkReflTypeIdArg mode;

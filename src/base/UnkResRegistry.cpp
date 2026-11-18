@@ -61,7 +61,7 @@ void fn_71000e9a7c(UnkResDesc*, const UnkResType*, UnkResFactory*)
 
 UnkResDesc::UnkResDesc(const UnkResType* type, UnkResFactory* factory)
     : UnkResDescHead(type, g_unk_7101d472f8 ? reinterpret_cast<char*>(g_unk_7101d472f8) + 8 : nullptr),
-      name(g_unk_7101d470e0),
+      name(base::global::CStrId::Empty()),
       field_0x18(g_unk_7101d470e8),
       field_0x20(),
       field_0x28(nullptr, reinterpret_cast<void (*)()>(fn_71000204c4)),

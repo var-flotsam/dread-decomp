@@ -754,7 +754,7 @@ void fn_7100ca6ba0(UnkObserverSetUp_ovb0055* self) {
         UnkRenderManager* manager = g_unk_7101d47300;
         UnkModel** slot = &self->models[i];
         model = nullptr;
-        fn_71006cae2c(manager->field_0x218, path, &model, &g_unk_7101d470e0);
+        fn_71006cae2c(manager->field_0x218, path, &model, &base::global::CStrId::Empty());
         fn_7100219ae0(manager, model ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<char*>(model) + 8) : nullptr,
                       0);
         *slot = model;

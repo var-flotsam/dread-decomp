@@ -153,6 +153,9 @@ public:
     // Not inherited: an inheriting constructor wouldn't be inlined.
     __attribute__((always_inline)) CStrId(UnkStrIdInline tag, const char* str, bool flag)
         : UnkStrIdBase(tag, str, flag) {}
+    // The global empty string id (g_unk_7101d470e0, below): default ids are copied from it.
+    static CStrId& Empty();
+
     CStrId(const CStrId& other) : UnkStrIdBase(other) {
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
@@ -293,3 +296,4 @@ void fn_7100000850(base::global::UnkStrIdBase* self, const base::global::CRntStr
 // from no string, so it holds the pool's empty entry; its destructor is fn_710000051c. Default
 // ids are copied from it and ids are compared with it.
 extern base::global::CStrId g_unk_7101d470e0;
+inline base::global::CStrId& base::global::CStrId::Empty() { return g_unk_7101d470e0; }

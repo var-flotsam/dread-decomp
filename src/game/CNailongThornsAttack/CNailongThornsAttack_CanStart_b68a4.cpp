@@ -31,5 +31,5 @@ bool fn_710060b274(UnkThornsAttack_b68a4* self, void* arg, u32 mode) {
         return ok;
     }
     self->id = fn_710060b344(self);
-    return self->id.data != g_unk_7101d470e0.data;
+    return self->id.data != base::global::CStrId::Empty().data;
 }

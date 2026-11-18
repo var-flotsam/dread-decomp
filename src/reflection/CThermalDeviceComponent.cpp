@@ -32,10 +32,10 @@ namespace CThermalDeviceComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SDoorInfo>", "vThermalDoors", 0x548);
-    DREAD_REFLECTED_FIELD(CStrId, "sOnEnterUseLuaCallback", 0x570, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnSetupInitialStateLuaCallback", 0x578, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnSetupUseStateLuaCallback", 0x580, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sUseEndActionOverride", 0x590, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnEnterUseLuaCallback", 0x570, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnSetupInitialStateLuaCallback", 0x578, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnSetupUseStateLuaCallback", 0x580, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sUseEndActionOverride", 0x590, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bCheckpointBeforeUsage", 0x59c, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION_OF("_m_ePipeGroup1_GetterFunction", &base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object, 0, fn_7100a94804);
     DREAD_REFLECTED_FUNCTION("_m_ePipeGroup1_SetterFunction")

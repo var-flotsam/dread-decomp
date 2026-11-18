@@ -120,5 +120,5 @@ void fn_7100a99e70(UnkTrainUsable_la99e70* self, bool show) {
     const CRntString& b = UseName(self->field_0x558);
     const CRntString& c = UseName(self->field_0x560);
     fn_7100df28d0(gm, a, b, c, CStrId(g_unk_710162e2ed, true), true, CRntString(g_unk_710162e2ed),
-                  g_unk_7101d470e0, 0, nullptr, 0.0f);
+                  base::global::CStrId::Empty(), 0, nullptr, 0.0f);
 }

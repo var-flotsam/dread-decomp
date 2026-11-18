@@ -34,11 +34,11 @@ void refl_AddFields(CClass* cls) {
         return;
     DREAD_REFLECTED_FIELD(f32, "fRumbleMinGain", 0x24, (DefaultValue, 1.0f), (Description, "Gain min Rumble progression "));
     DREAD_REFLECTED_FIELD(f32, "fRumbleMaxGain", 0x28, (DefaultValue, 10.0f), (Description, "Gain max Rumble progression"));
-    DREAD_REFLECTED_FIELD(CStrId, "sRumbleEasingFunction", 0x30, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function Rumble progression"));
+    DREAD_REFLECTED_FIELD(CStrId, "sRumbleEasingFunction", 0x30, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function Rumble progression"));
     DREAD_REFLECTED_FIELD(f32, "fEscapeSequenceMaxTime", 0x38, (DefaultValue, 50.0f), (Description, "Escape sequence max time "));
     DREAD_REFLECTED_FIELD(f32, "fCameraShakeMinShakeDist", 0x3c, (DefaultValue, 0.0f), (Description, "Camera Shake min distance "));
     DREAD_REFLECTED_FIELD(f32, "fCameraShakeMaxShakeDist", 0x40, (DefaultValue, 5.0f), (Description, "Camera Shake max distance"));
-    DREAD_REFLECTED_FIELD(CStrId, "sShakeEasingFunction", 0x48, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function Camera Shake progression"));
+    DREAD_REFLECTED_FIELD(CStrId, "sShakeEasingFunction", 0x48, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function Camera Shake progression"));
     DREAD_REFLECTED_FIELD(f32, "fPercentActivationAmbientFXSoft", 0x50, (DefaultValue, 25.0f), (Description, "Percent to activate ambient soft fx"));
     DREAD_REFLECTED_FIELD(f32, "fPercentActivationAmbientFXMedium", 0x54, (DefaultValue, 50.0f), (Description, "Percent to activate ambient medium fx"));
     DREAD_REFLECTED_FIELD(f32, "fPercentActivationAmbientFXHard", 0x58, (DefaultValue, 75.0f), (Description, "Percent to activate ambient hard fx"));
@@ -47,16 +47,16 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iTimeToBlinkEverysecond", 0x64, (DefaultValue, 15), (Description, "Time left to blink every second"));
     DREAD_REFLECTED_FIELD(f32, "fMinInterPulseTime", 0x68, (DefaultValue, 3.0f), (Description, "Min Time between pulses"));
     DREAD_REFLECTED_FIELD(f32, "fMaxInterPulseTime", 0x6c, (DefaultValue, 1.5f), (Description, "Max Time between pulses"));
-    DREAD_REFLECTED_FIELD(CStrId, "sInterPulseTimeEasingFunction", 0x70, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function Pulse Time progression"));
+    DREAD_REFLECTED_FIELD(CStrId, "sInterPulseTimeEasingFunction", 0x70, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function Pulse Time progression"));
     DREAD_REFLECTED_FIELD(f32, "fMinPulseSpeed", 0x78, (DefaultValue, 2.0f), (Description, "Pulse min Speed"));
     DREAD_REFLECTED_FIELD(f32, "fMaxPulseSpeed", 0x7c, (DefaultValue, 5.0f), (Description, "Pulse max Speed"));
-    DREAD_REFLECTED_FIELD(CStrId, "sPulseSpeedEasingFunction", 0x80, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function Pulse Speed progression"));
+    DREAD_REFLECTED_FIELD(CStrId, "sPulseSpeedEasingFunction", 0x80, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function Pulse Speed progression"));
     DREAD_REFLECTED_FIELD(f32, "fMinBaseColor", 0x88, (DefaultValue, 0.65f), (Description, "Min color factor"));
     DREAD_REFLECTED_FIELD(f32, "fMaxBaseColor", 0x8c, (DefaultValue, 0.8f), (Description, "Max color factor"));
-    DREAD_REFLECTED_FIELD(CStrId, "sBaseColorEasingFunction", 0x90, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function Base color factor progression"));
+    DREAD_REFLECTED_FIELD(CStrId, "sBaseColorEasingFunction", 0x90, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function Base color factor progression"));
     DREAD_REFLECTED_FIELD(f32, "fMinEmberFlyingPercentage", 0x98, (DefaultValue, 0.0f), (Description, "Min ember percentage"));
     DREAD_REFLECTED_FIELD(f32, "fMaxEmberFlyingPercentage", 0x9c, (DefaultValue, 1.0f), (Description, "Max ember percentage"));
-    DREAD_REFLECTED_FIELD(CStrId, "sEmberFyingEasingFunction", 0xa0, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Easing function ember progression"));
+    DREAD_REFLECTED_FIELD(CStrId, "sEmberFyingEasingFunction", 0xa0, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Easing function ember progression"));
     UnkTunableRegistry* registry = g_unk_7101d47350;
     if (!registry) {
         registry = static_cast<UnkTunableRegistry*>(fn_71000839a0(0x58, 0x3f));

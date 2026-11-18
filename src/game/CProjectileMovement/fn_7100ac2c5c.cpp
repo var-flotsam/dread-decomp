@@ -109,14 +109,14 @@ void fn_7100ac2c5c(UnkComponent_0x5b8* self) {
     self->field_0x574 = 0;
     self->field_0x578 = 0;
     self->field_0x57c = 0;
-    UnkStringData* id = g_unk_7101d470e0.data;
+    UnkStringData* id = base::global::CStrId::Empty().data;
     self->field_0x580 = id;
     AddRef(id, g_unk_7101d47108);
     UnkStringData* path = g_unk_7101d470e8.data;
     self->field_0x588 = path;
     AddRef(path, g_unk_7101d47200);
     self->field_0x590 = 0;
-    UnkStringData* id2 = g_unk_7101d470e0.data;
+    UnkStringData* id2 = base::global::CStrId::Empty().data;
     self->field_0x598 = id2;
     AddRef(id2, g_unk_7101d47108);
     self->field_0x5a0 = 0;

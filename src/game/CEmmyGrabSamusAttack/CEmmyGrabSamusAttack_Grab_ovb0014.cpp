@@ -356,8 +356,8 @@ struct UnkGrabAnimId_ovb0014 : UnkStrIdBase {
 // The animation of each grab kind (the first two have none).
 UnkStrId_71005077f8 fn_710050a8f8(u32 kind) {
     UnkGrabAnimId_ovb0014 ids[] = {
-        g_unk_7101d470e0,
-        g_unk_7101d470e0,
+        base::global::CStrId::Empty(),
+        base::global::CStrId::Empty(),
         "impactemmy",
         "grabemmysamusnobarrierfar2",
         "grabemmysamusprep1",
@@ -563,7 +563,7 @@ void fn_710050c06c(UnkGrabAttack10_ovb0014* self) {
         fn_7100507d24(reinterpret_cast<UnkGrabAttack_b58a3*>(self));
         return;
     }
-    fn_7100df31b8(g_unk_7101d47310, true, false, 1, g_unk_7101d470e0, true);
+    fn_7100df31b8(g_unk_7101d47310, true, false, 1, base::global::CStrId::Empty(), true);
     fn_71005068c8(reinterpret_cast<UnkEmmyGrabAttack_A3_b67*>(self), 50.0f, 350.0f, 242.0f, false, true);
     auto* ai = static_cast<base::reflection::UnkReflObject*>(self->owner->field_0x240);
     auto* emmy = ai && fn_710009d50c(ai->vf_0x0(), fn_710053b934()) ? reinterpret_cast<UnkEmmyAI_b61*>(ai) : nullptr;

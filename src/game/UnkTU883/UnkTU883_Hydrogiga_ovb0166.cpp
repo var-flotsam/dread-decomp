@@ -158,7 +158,7 @@ struct UnkMaterialKey_b0166 {
     };
     u32 field_0x10;
     u32 field_0x14;
-    UnkMaterialKey_b0166(u32 index) : field_0x0(0), field_0x8(g_unk_7101d470e0), field_0x10(index), field_0x14(1) {}
+    UnkMaterialKey_b0166(u32 index) : field_0x0(0), field_0x8(base::global::CStrId::Empty()), field_0x10(index), field_0x14(1) {}
     ~UnkMaterialKey_b0166() { field_0x8.Reset(); }
 };
 

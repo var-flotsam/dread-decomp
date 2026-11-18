@@ -18,7 +18,7 @@ void fn_71007a6758(UnkCutsceneComponent_b49a3* self);
 void fn_71007a9e30(UnkCutsceneComponent_b49a3* self) {
     if (self->player != nullptr || self->field_0x20c != 0)
         return;
-    if (self->id.data == g_unk_7101d470e0.data)
+    if (self->id.data == base::global::CStrId::Empty().data)
         return;
     fn_71007a6758(self);
 }

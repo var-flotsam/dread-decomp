@@ -67,7 +67,7 @@ bool fn_7100a0ad9c(UnkPlatformUpdate_A5_b76* platform) {
     void* holder = HandleTarget_la0ad9c(g_unk_7101d47310);
     UnkPlayer* current = fn_7100dec788(g_unk_7101d47310);
     if ((holder == current) & (self->action.data != &g_unk_7101d47108->empty))
-        fn_7100df31b8(g_unk_7101d47310, true, false, 2, CStrId(g_unk_7101d470e0), false);
+        fn_7100df31b8(g_unk_7101d47310, true, false, 2, CStrId(base::global::CStrId::Empty()), false);
 
     auto* player = reinterpret_cast<UnkWapPlayer_la0ad9c*>(fn_7100dec788(g_unk_7101d47310));
     UnkSmartObjectUserA* user = nullptr;

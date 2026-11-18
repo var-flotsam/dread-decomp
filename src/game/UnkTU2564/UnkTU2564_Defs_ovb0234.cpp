@@ -506,7 +506,7 @@ struct UnkIdPathResource_b0234 {
     CFilePathStrId path;
     UnkCountedResource* resource;
 
-    UnkIdPathResource_b0234() : id(g_unk_7101d470e0), path(g_unk_7101d470e8), resource(nullptr) {}
+    UnkIdPathResource_b0234() : id(base::global::CStrId::Empty()), path(g_unk_7101d470e8), resource(nullptr) {}
 };
 static_assert(sizeof(UnkIdPathResource_b0234) == 0x18, "layout");
 

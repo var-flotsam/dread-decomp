@@ -32,8 +32,8 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bIgnoreRotateToInstigator", 0x138, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bShowLifeBar", 0x139, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vLifeBarOffset", 0x13c, (DefaultValue, base::math::CVector3D{0.0f, 0.0f, 0.0f}));
-    DREAD_REFLECTED_FIELD(CStrId, "sDamageTimeline", 0x120, (DefaultValue, CStrId(g_unk_7101d470e0)));
-    DREAD_REFLECTED_FIELD(CStrId, "sDamageSFXTimeline", 0x128, (DefaultValue, CStrId(g_unk_7101d470e0)));
+    DREAD_REFLECTED_FIELD(CStrId, "sDamageTimeline", 0x120, (DefaultValue, CStrId(CStrId::Empty())));
+    DREAD_REFLECTED_FIELD(CStrId, "sDamageSFXTimeline", 0x128, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bDashMeleeAppliesNonLethalDamage", 0x148, (DefaultValue, true));
 }
 bool refl_Equals(const void*, const void*) { return false; }

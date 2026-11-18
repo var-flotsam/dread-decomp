@@ -352,7 +352,7 @@ __attribute__((always_inline)) static inline void ForEachSource_b0230(UnkCentral
         if (auto* h = static_cast<UnkCountedCentral_b0230*>(it->handle_slot.ptr)) {
             if (void* target = h->field_0x10) {
                 if (UnkDoorLock* door = fn_71002af860(static_cast<UnkWeakTarget*>(target))) {
-                    CStrId id = g_unk_7101d470e0;
+                    CStrId id = base::global::CStrId::Empty();
                     act(door, &id);
                 }
             }
@@ -670,7 +670,7 @@ struct UnkEnergyPlayer_b0230 {
 static inline const UnkQualifiedId& ItemId_b0230(UnkPropertyEx<>& item) {
     UnkQualifiedId& qid = ItemQualifiedId(item);
     if ((u64)qid.id.data == (u64)g_unk_7101d47108 + 0x10)
-        fn_7100ae9a10(&qid, ItemSource(item), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(item), base::global::CStrId::Empty());
     return qid;
 }
 

@@ -184,7 +184,7 @@ void XParasiteAI_SetEffectActive(UnkXParasiteAI* self, bool on) {
         const UnkVec3f& src = *reinterpret_cast<const UnkVec3f*>(&g_unk_7101647790);
         UnkVec3f first(src);
         UnkVec3f second(src);
-        fn_710115217c(control, fx, 0, 7, &g_unk_7101d470e0, reinterpret_cast<const base::math::CVector3D&>(first),
+        fn_710115217c(control, fx, 0, 7, &base::global::CStrId::Empty(), reinterpret_cast<const base::math::CVector3D&>(first),
                       reinterpret_cast<const base::math::CVector3D&>(second), nullptr);
         fn_7100146e60(reinterpret_cast<UnkSwitchObject*>(fx), true);
     } else {

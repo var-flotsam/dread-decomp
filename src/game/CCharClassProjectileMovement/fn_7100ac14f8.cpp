@@ -37,7 +37,7 @@ static inline void InitEmptyId(UnkStringData** id) {
 void fn_7100ac14f8(UnkComponent_0x138* self) {
     fn_7100ab38a0(self);
     self->vtable = &g_unk_7101a96758[2];
-    UnkStringData* id = g_unk_7101d470e0.data;
+    UnkStringData* id = base::global::CStrId::Empty().data;
     self->field_0xf0 = id;
     if (&g_unk_7101d47108->empty != id)
         ++*reinterpret_cast<s32*>(reinterpret_cast<char*>(id) + 8);

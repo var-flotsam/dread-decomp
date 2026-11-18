@@ -218,7 +218,7 @@ void fn_7100b44ae4(UnkMapMenuController_ovb0203* self) {
     CBlackboard* blackboard = &g_unk_7101d47310->field_0x968;
     UnkQualifiedId& qid = ItemQualifiedId(g_unk_71727639d0);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(g_unk_71727639d0), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(g_unk_71727639d0), base::global::CStrId::Empty());
     if (CBlackboard::CSection* section = fn_7101047270(blackboard, g_unk_71727cc990))
         fn_710006d11c(section, &qid.id, &self->field_0x8e8);
     UnkMapMenuEntry_ovb0203* entry = self->field_0x928;
@@ -501,7 +501,7 @@ void fn_7100b42148(UnkMapMenuController_ovb0203* self, void* arg) {
     const CStrId& section_id = SectionId_ovb0203(0x1150);
     UnkQualifiedId& qid = ItemQualifiedId(g_unk_7172759478);
     if (qid.id.data == &g_unk_7101d47108->empty)
-        fn_7100ae9a10(&qid, ItemSource(g_unk_7172759478), g_unk_7101d470e0);
+        fn_7100ae9a10(&qid, ItemSource(g_unk_7172759478), base::global::CStrId::Empty());
     if (CBlackboard::CSection* section = fn_7101047270(blackboard, section_id))
         fn_710006d11c(section, &qid.id, &flag);
     UnkMenuListener_ovb0203* listener;
@@ -715,7 +715,7 @@ extern CStrId g_unk_7172763d88 __attribute__((visibility("hidden")));
 
 static inline UnkSubId_7100fc4b34 SubId_ovb0203(UnkMapNamedDef_ovb0203& def, const CStrId& name) {
     if (!def.name.str || !def.name.str[0])
-        fn_7100ae9d7c(&def.name, &def, g_unk_7101d470e0);
+        fn_7100ae9d7c(&def.name, &def, base::global::CStrId::Empty());
     return fn_71003327a4(&def.name, &name);
 }
 

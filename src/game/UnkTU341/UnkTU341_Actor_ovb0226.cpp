@@ -296,7 +296,7 @@ struct UnkActorIds_7100232fcc {
 // id when either of the actor's own ids (+0x18, +0x20) is empty.
 UnkNameHolder_b0161* fn_7100232fcc(void* object) {
     auto* self = static_cast<UnkActorIds_7100232fcc*>(object);
-    const base::global::CStrId* value = &g_unk_7101d470e0;
+    const base::global::CStrId* value = &base::global::CStrId::Empty();
     if (self->name != &g_unk_7101d47108->empty && self->path != &g_unk_7101d47200->empty) {
         UnkReflObject* def = self->def;
         if (def && !fn_710009d50c(reinterpret_cast<const CType*>(def->vf_0x0()),

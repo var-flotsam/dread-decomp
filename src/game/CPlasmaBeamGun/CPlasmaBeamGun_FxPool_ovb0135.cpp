@@ -47,7 +47,7 @@ static inline void Fill(UnkFxObjectPool_ovb0135* self, const CFilePathStrId* pat
     for (; i < n; ++i) {
         UnkRenderManager* render = g_unk_7101d47300;
         T* object = nullptr;
-        Create(render->field_0x218, path, &object, &g_unk_7101d470e0);
+        Create(render->field_0x218, path, &object, &base::global::CStrId::Empty());
         fn_7100219ae0(render, object ? reinterpret_cast<UnkSceneNode*>(reinterpret_cast<u8*>(object) + 8) : nullptr,
                       0);
         T* created = object;

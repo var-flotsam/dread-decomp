@@ -40,5 +40,5 @@ const UnkStrIdBase* fn_71003f1538(UnkSpitAttackIds* self) {
             return ids;
         }
     }
-    return &g_unk_7101d470e0;
+    return &base::global::CStrId::Empty();
 }

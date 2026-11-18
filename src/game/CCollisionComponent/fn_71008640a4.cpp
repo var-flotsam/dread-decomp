@@ -35,7 +35,7 @@ const base::global::CStrId* fn_7100864018(UnkCollisionContainer* self, const Unk
                 return reinterpret_cast<const base::global::CStrId*>(&record.field_0x8);
         }
     }
-    return &g_unk_7101d470e0;
+    return &base::global::CStrId::Empty();
 }
 
 // The same lookup by the record's second id (fn_7100864194).

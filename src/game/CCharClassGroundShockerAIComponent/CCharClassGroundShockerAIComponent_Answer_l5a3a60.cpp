@@ -31,7 +31,7 @@ u32 fn_71005a3a60(void* unused0, UnkShockerOwner_l5a3a60* owner, void* unused1, 
     UnkShockerComponent_l5a3a60* comp = owner->field_0x240;
     if (comp && !fn_710009d50c(comp->vf_0x0(), fn_71005a4004()))
         comp = nullptr;
-    CStrId* id = &g_unk_7101d470e0;
+    CStrId* id = &base::global::CStrId::Empty();
     if (holder) {
         u8* inner = holder->field_0x60;
         if (inner)

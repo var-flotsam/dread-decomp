@@ -27,9 +27,9 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::TrackGroup(), CStrId("Timelines", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(CStrId, "sOnStartTimeline", 0x18, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Main Timeline"));
-    DREAD_REFLECTED_FIELD(CStrId, "sLoopTimeline", 0x20, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "Main Timeline"), (Persistence, 0));
-    DREAD_REFLECTED_FIELD(CStrId, "sOnEndTimeline", 0x28, (DefaultValue, CStrId(g_unk_7101d470e0)), (Description, "On End Timeline"));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnStartTimeline", 0x18, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Main Timeline"));
+    DREAD_REFLECTED_FIELD(CStrId, "sLoopTimeline", 0x20, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Main Timeline"), (Persistence, 0));
+    DREAD_REFLECTED_FIELD(CStrId, "sOnEndTimeline", 0x28, (DefaultValue, CStrId(CStrId::Empty())), (Description, "On End Timeline"));
     DREAD_REFLECTED_FIELD_OF("CLiquidPoolBaseComponent::ELiquidType", "ePlayOnly", 0x30, (DefaultValue, 0));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
