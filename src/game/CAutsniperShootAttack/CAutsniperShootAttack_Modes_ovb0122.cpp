@@ -2,6 +2,7 @@
 // switches. The attack keeps a state (+0x50) and an aiming mode (+0x54, 2 while the shot is locked, when
 // the animation key 0xf4061ff25a2163d6 is set on the owner's animation component and the aim sound is
 // stopped). Names and layouts are placeholders.
+#include "base/math/UnkZeroVector3.h"
 #include "base/UnkMatrix44.h"
 #include "base/math/CVector.h"
 #include "base/reflection/UnkClassGetters.h"
@@ -31,7 +32,6 @@ struct UnkShipRechargeEntity_b49a4;
 UnkSoundHandle fn_7100d7c590(UnkEntityWithSound* self, void* a);
 struct UnkSelf;
 struct UnkVec3;
-extern const base::math::CVector2D g_unk_7101647780;
 
 // The aim sound's id (+0x0) and the shot's animation id (+0x18).
 struct UnkAutsniperIds_ovb0122 {

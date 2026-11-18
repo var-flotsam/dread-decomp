@@ -15,6 +15,7 @@
 #include "game/sound/CMusicManager.h"
 #include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "game_s2/UnkWeakHandle.h"
+#include "game/UnkUsableKeys.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -28,7 +29,6 @@ struct UnkMusicMode {
     u32 field_0x4;
 };
 
-extern const u64 g_unk_710164b5a8;
 
 // The game manager's mode name, seen at +0x438.
 struct UnkGameManagerMode_la8756c {

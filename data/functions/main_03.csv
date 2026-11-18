@@ -2482,7 +2482,7 @@ address,size,name,name_source,subsystem,status
 0x710038d768,688,behaviortree::CStopInIdleAction::refl_AddFields,reflection,ai/behaviortree,O
 0x710038da18,388,behaviortree::CStopInIdleAction::refl_InitClass,reflection,ai/behaviortree,O
 0x710038db9c,368,fn_710038db9c,unknown,ai/behaviortree?,O
-0x710038dd0c,748,fn_710038dd0c,unknown,ai/behaviortree?,U
+0x710038dd0c,748,fn_710038dd0c,unknown,ai/behaviortree?,O
 0x710038dff8,4,fn_710038dff8,unknown,ai/behaviortree?,O
 0x710038dffc,888,fn_710038dffc,unknown,ai/behaviortree?,U
 0x710038e374,8,fn_710038e374,unknown,ai/behaviortree?,O
@@ -4925,7 +4925,7 @@ address,size,name,name_source,subsystem,status
 0x71003e59d0,4,fn_71003e59d0,unknown,game/ai?,O
 0x71003e59d4,36,fn_71003e59d4,unknown,game/ai?,O
 0x71003e59f8,120,fn_71003e59f8,unknown,game/ai?,O
-0x71003e5a70,784,fn_71003e5a70,unknown,game/ai?,U
+0x71003e5a70,784,fn_71003e5a70,unknown,game/ai?,O
 0x71003e5d80,288,fn_71003e5d80,unknown,game/ai?,O
 0x71003e5ea0,84,fn_71003e5ea0,unknown,game/ai?,O
 0x71003e5ef4,4,fn_71003e5ef4,unknown,game/ai?,O

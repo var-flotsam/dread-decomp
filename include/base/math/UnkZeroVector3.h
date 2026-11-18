@@ -9,3 +9,5 @@
 
 extern const base::math::CVector3D g_unk_7101647790;
 extern const base::math::CVector3D g_unk_710164779c;
+// The two-float zero vector just before them, the default several units copy for a 2D offset.
+extern const base::math::CVector2D g_unk_7101647780;

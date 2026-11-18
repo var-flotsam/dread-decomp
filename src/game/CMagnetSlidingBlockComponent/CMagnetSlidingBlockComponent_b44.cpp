@@ -12,7 +12,8 @@ struct UnkMagnetSlidingBlock_b44a2 {
     UnkGuiKeyList* keys() { return reinterpret_cast<UnkGuiKeyList*>(field_0x358); }
 };
 
-void fn_7100920f40(UnkMagnetSlidingBlock_b44a2* self, bool state);
+struct UnkMagnetSlidingBlock_b0086;  // the block's layout in CMagnetSlidingBlockComponent_Slide_ovb0086.cpp
+void fn_7100920f40(UnkMagnetSlidingBlock_b0086* self, bool on);
 
 void fn_710091f100(UnkMagnetSlidingBlock_b44a2* self, bool remove, base::global::CStrId* key) {
     UnkGuiKeyList* list = self->keys();
@@ -22,5 +23,5 @@ void fn_710091f100(UnkMagnetSlidingBlock_b44a2* self, bool remove, base::global:
     else
         fn_710002ffb4(list, key);
     if (before != fn_710002fb70(list))
-        fn_7100920f40(self, !fn_710002fb70(list));
+        fn_7100920f40(reinterpret_cast<UnkMagnetSlidingBlock_b0086*>(self), !fn_710002fb70(list));
 }

@@ -15,7 +15,6 @@ using base::math::CVector3D;
 
 struct UnkModel;
 
-extern const base::math::CVector2D g_unk_7101647780;
 
 // A vector with a fixed capacity, its elements stored in place after the count.
 template <class T, u32 N>

@@ -3,6 +3,7 @@
 // were added by hand. Those copies are member by member (the original loads the components as
 // integers and merges neighbours, unlike a copy of the whole vector). The three globals are
 // constants reached through the GOT (names unknown).
+#include "base/math/UnkZeroVector3.h"
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CExplosionGfx.h"
 using base::global::CStrId;
@@ -14,7 +15,6 @@ using base::reflection::UnkTunableRegistry;
 struct UnkReflType;
 
 extern const base::math::CVector2D g_unk_7101647788;
-extern const base::math::CVector2D g_unk_7101647780;
 extern const base::math::CVector4D g_unk_71016477c4;
 void fn_7100ddf434(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("fLength", true), fn_710000abbc(), 0xd4, -1, -1);
