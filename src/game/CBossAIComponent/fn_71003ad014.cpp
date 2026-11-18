@@ -2,6 +2,7 @@
 // step; if the flag changed, the object is notified (vf_0x830) and a boss camera control found
 // through the id table is told the new state.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CBossAIComponent.h"
 #include "game/CCameraComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
@@ -34,7 +35,6 @@ struct UnkCameraCtrl {
     const void* vf_0x0() { return reinterpret_cast<const void* (*)(UnkCameraCtrl*)>(vtable[0])(this); }
 };
 
-void fn_71003ad174(UnkCameraOwner* self, u32 arg);
 void fn_7100750804(UnkCameraCtrl* ctrl, void* arg);
 void fn_7100750948(UnkCameraCtrl* ctrl, void* arg);
 

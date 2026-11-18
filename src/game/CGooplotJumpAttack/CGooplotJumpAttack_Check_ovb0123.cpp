@@ -18,6 +18,8 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAttack.h"
 #include "game/CCharClassGooplotAIComponent.h"
+#include "game/CGooplotJumpAttack.h"
+#include "game/CGooshockerAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/UnkManager_71726af468.h"
@@ -33,7 +35,6 @@ using base::reflection::UnkReflObject;
 struct UnkGooplotJump_ovb0123;
 bool fn_710059462c(UnkGooplotJump_ovb0123* self, base::math::CVector3D* point);
 void fn_710059531c(UnkGooplotJump_ovb0123* self, u32 arg);
-void fn_7100594d5c(UnkGooplotJump_ovb0123* self, u32 state);
 bool fn_710059d7e4(void* member, UnkActor* owner);
 bool fn_710059edf8(UnkReflObject* ai);
 
@@ -148,7 +149,6 @@ extern UnkGooplotKeys_ovb0123* g_unk_71726e7000 __attribute__((visibility("hidde
 
 struct UnkGooplotRecords_ovb0123;
 void fn_7100595e28(UnkGooplotRecords_ovb0123* self, const u64* key, f32 value);
-void fn_710059f058(UnkReflObject* ai);
 
 struct UnkGooplotTunable_ovb0123 {
     u8 pad_0x0[0x34];

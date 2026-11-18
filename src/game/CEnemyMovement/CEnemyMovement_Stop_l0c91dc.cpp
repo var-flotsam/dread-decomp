@@ -2,11 +2,11 @@
 // weak target and drops the handle, then requests state 0 ("none" 5) from the state machine at +0x838.
 // Names and layouts are placeholders.
 #include "../UnkSmRequest_A5_b73.h"
+#include "game/CCharacterMovement.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
 struct UnkCharacterMovementOwner_ovb0021;
-void fn_710097973c(UnkCharacterMovementOwner_ovb0021* self);
 
 struct UnkEnemyMovement_l0c91dc {
     u8 pad_0x0[0x838];

@@ -104,7 +104,6 @@ void fn_71005f5250(UnkKraidSpikesAttack_ovb0118* self) {
 }
 
 struct UnkSelf_kt41;
-bool fn_71005fdb70(UnkKraidAI_ovb0118* ai);
 
 bool fn_71005f513c(UnkKraidSpikesAttack_ovb0118* self, void* a, void* b) {
     UnkSelf_kt41* base = reinterpret_cast<UnkSelf_kt41*>(self);

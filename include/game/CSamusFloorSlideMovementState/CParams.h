@@ -5,5 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkSlideState_ovb0004;
 struct UnkMovementTransitions;
 void fn_7100997128(UnkMovementTransitions* self, const u32* state);
+void fn_7100992724(UnkSlideState_ovb0004* self);

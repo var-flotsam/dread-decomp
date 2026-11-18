@@ -27,3 +27,4 @@ extern void* g_unk_7101a1a090[];
 extern void* g_unk_7101a1a0b0[];
 void fn_710002f4e4(void*);
 void fn_71000303c0(base::UnkDeferredSet<base::UnkDeferredCallback<bool>>* s, const bool* arg);
+void fn_7100030fc0(void* dst, const void* src, f32 value);

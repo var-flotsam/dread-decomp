@@ -6,6 +6,10 @@
 #include "base/reflection/CClass.h"
 #include "base/global/CStrId.h"
 #include "types.h"
+
+struct UnkKraidAI_ovb0118;
+
 bool fn_71005ff8c0(base::reflection::UnkReflObject* ai);
 extern base::global::CStrId g_unk_71726f3778 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_71726f3788 __attribute__((visibility("hidden")));
+bool fn_71005fdb70(UnkKraidAI_ovb0118* ai);

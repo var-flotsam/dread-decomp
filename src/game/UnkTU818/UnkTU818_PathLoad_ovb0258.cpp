@@ -13,6 +13,7 @@
 #include "game/UnkTU140.h"
 #include "game/UnkTU54.h"
 #include "game/UnkTU55.h"
+#include "game/UnkTU817.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -134,7 +135,6 @@ struct UnkAim_b0258y {
 };
 static_assert(__builtin_offsetof(UnkAim_b0258y, seen) == 0x78, "layout");
 
-void fn_7100573218(UnkAim_b0258y* self);
 bool fn_7100573734(UnkAim_b0258y* self, bool strict);
 
 void fn_71005735b8(UnkAim_b0258y* self, f32 dt) {

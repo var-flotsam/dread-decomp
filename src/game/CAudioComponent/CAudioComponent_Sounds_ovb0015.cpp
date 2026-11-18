@@ -29,7 +29,6 @@ struct UnkEntitySoundComponent;
 struct UnkIdPair;
 
 struct UnkStateObject;
-extern void* g_unk_7101a6cca0[];  // the component's vtables
 
 struct UnkStruct_710071faf4;
 void fn_710071faf4(UnkStruct_710071faf4* self, const UnkStruct_710071faf4* other);

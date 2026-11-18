@@ -61,7 +61,6 @@ struct UnkSource_7100286798 {
     u8 unk_0x22c[0xc];
     u32 field_0x238;
 };
-u32 fn_7100413fd0(UnkSource_7100286798* self);
 
 struct UnkComponent_7100286798 {
     u8 unk_0x0[0x1610];

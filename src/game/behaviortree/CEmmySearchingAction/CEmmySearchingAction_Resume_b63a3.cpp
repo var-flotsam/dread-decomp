@@ -10,7 +10,6 @@
 #include "types.h"
 
 struct UnkEmmyActor_b55;
-void fn_7100547428(UnkEmmyActor_b55* self, bool a, UnkActor* target, bool b);
 
 struct UnkEmmyAICast_b63a3 {
     void** vtable;
@@ -36,5 +35,5 @@ void fn_7100519b48(UnkEmmySearchingAction_b63a3* self) {
             return;
         }
     }
-    fn_7100547428(reinterpret_cast<UnkEmmyActor_b55*>(ai), true, fn_7100d7c990(self->actor), false);
+    fn_7100547428(reinterpret_cast<UnkEmmyActor_b55*>(ai), 1, fn_7100d7c990(self->actor), false);
 }

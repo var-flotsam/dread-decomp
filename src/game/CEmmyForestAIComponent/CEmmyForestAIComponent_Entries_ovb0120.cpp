@@ -12,7 +12,6 @@ using base::global::CStrId;
 
 struct UnkNamedEntry_7100772cb0;
 struct UnkNamedList_7100772cb0;
-void fn_710110f744(void* self, void* object);
 
 struct UnkEmmyForestHolder_ovb0120 {
     u8 pad_0x0[0x10];

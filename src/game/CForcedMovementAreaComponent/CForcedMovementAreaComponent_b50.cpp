@@ -4,12 +4,11 @@
 // registers itself with the game manager under the unit's id. Names and layouts are placeholders.
 #include "game/CChozoCommanderSentenceSphereAttack.h"
 #include "game/CCollisionComponent.h"
+#include "game/CForcedMovementAreaComponent.h"
 #include "game/UnkGameManager.h"
 #include "types.h"
 
 struct UnkWeakTarget;
-
-extern u64 g_unk_717271fdd8 __attribute__((visibility("hidden")));
 
 struct UnkRefObj_b50fm {
     virtual void vf_0x0();

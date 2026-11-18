@@ -5,11 +5,11 @@
 // at +0x18 on itself. Names and layout are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CCharClassBaseTriggerComponent.h"
+#include "game/CCharClassFanComponent.h"
 #include "types.h"
 
 void fn_710087dc1c(void* list, u32 block, u32 flags, u32 alloc_flags, base::UnkAllocator* allocator);
 void fn_710087dd34(void* list, u32 block, u32 flags, u32 alloc_flags, base::UnkAllocator* allocator);
-extern void* g_unk_7101a7b368[];  // the class's vtable
 
 struct UnkFanComponent_b44a2 {
     void** vtable;

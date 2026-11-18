@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkCameraOwner;
 struct UnkSelf;
 struct UnkStruct_71003ae428;
 struct UnkModeFlags;
@@ -27,3 +28,5 @@ extern UnkMgr_0xf18* g_unk_71726bc560;  // The music manager singleton.
 extern UnkModeFlags* g_unk_71726bc570;
 bool fn_71003ad4dc(UnkSelf* self, f32 value, s32 index);
 void fn_71003ae428(UnkStruct_71003ae428*, bool, bool, bool);
+void fn_71003ad174(UnkCameraOwner* owner, u32 arg);
+void fn_71003aff64(UnkCoreXAI_A2_b73* self, u32 a, u32 b);

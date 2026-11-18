@@ -9,6 +9,7 @@
 #include "base/reflection/CClass.h"
 #include "types.h"
 
+struct UnkCollisionRecord;
 struct UnkPowerBombCollider_ovb0127;
 struct UnkPowerBombColliders_ovb0127;
 struct UnkCollisionContainer_b42;
@@ -35,3 +36,4 @@ void fn_7100861fc8(void* part, bool flag);
 void fn_7100861710(UnkCollisionContainer_b42* self, bool force);
 UnkPowerBombCollider_ovb0127* fn_710086420c(UnkPowerBombColliders_ovb0127*, u32);
 extern base::reflection::CType g_unk_7172728bf0 __attribute__((visibility("hidden")));
+UnkCollisionRecord* fn_710086411c(UnkCollisionContainer* self, const UnkCollisionObject* object);

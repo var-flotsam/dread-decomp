@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/CClass.h"
+#include "base/reflection/UnkReflValue.h"
 #include "types.h"
 
 struct UnkParseContext;
@@ -20,3 +21,4 @@ s32 fn_710000f750(UnkParseContext* self, void* root);
 const base::reflection::UnkReflAttrKey& fn_710000d120();
 const base::reflection::CType* fn_7100010e58();  // An 8-byte type's getter.
 extern const base::reflection::CType g_unk_7101d4cfb0 __attribute__((visibility("hidden")));
+base::reflection::UnkReflValue fn_710000cf10(void* field, const base::reflection::UnkReflAttrKey& key, bool inherited);

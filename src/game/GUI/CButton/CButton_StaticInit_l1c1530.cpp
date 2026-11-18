@@ -3,6 +3,7 @@
 // list entry and the name "Button". Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/GUI/CButton.h"
 #include "game/UnkTUInit.h"
 #include "base/reflection/TypeObject.h"
 
@@ -22,7 +23,6 @@ struct UnkButtonClassData_l1c1530 {
 };
 
 extern UnkButtonTUData_l1c1530 g_unk_7172a0d320 __attribute__((visibility("hidden")));
-extern UnkButtonClassData_l1c1530 g_unk_7172a0d340 __attribute__((visibility("hidden")));
 namespace GUI::CButton { enum class TextAlign : u32; }
 template <> UnkReflType base::reflection::TypeObject<GUI::CButton::TextAlign, UnkReflType>::object asm("g_unk_7172a0d1b8");
 extern char g_unk_7172a0d2d0;

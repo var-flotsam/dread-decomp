@@ -1,3 +1,4 @@
+#include "game/CBombMovement.h"
 #include "types.h"
 #include "base/math/UnkZeroVector3.h"
 
@@ -29,8 +30,6 @@ struct CGoliathXBurstProjectionBombMovement {
     base::math::CVector3D field_0xd9c;
     u16 field_0xda8;
 };
-
-void fn_7100aaa024(CGoliathXBurstProjectionBombMovement* self);
 
 void fn_710058a668(CGoliathXBurstProjectionBombMovement* self) {
     fn_7100aaa024(self);

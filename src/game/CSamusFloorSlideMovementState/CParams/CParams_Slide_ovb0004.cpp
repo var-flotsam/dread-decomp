@@ -247,7 +247,6 @@ static_assert(__builtin_offsetof(UnkSlideState_ovb0004, ids) == 0x1d8, "layout")
 static_assert(__builtin_offsetof(UnkSlideState_ovb0004, field_0x2a8) == 0x2a8, "layout");
 
 void fn_710099230c(UnkSlideState_ovb0004* self);
-void fn_7100992724(UnkSlideState_ovb0004* self);
 
 // The slide body (kind 8) of the collision object named g_unk_717273b7c0, or null.
 static inline UnkSlideBody_ovb0004* FindBody_ovb0004(UnkSlideState_ovb0004* self,

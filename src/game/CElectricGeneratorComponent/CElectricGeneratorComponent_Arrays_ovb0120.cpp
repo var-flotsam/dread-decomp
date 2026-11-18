@@ -83,8 +83,6 @@ struct UnkElectricGeneratorUpd_ovb0120 {
     CVector4D blackout;  // 0x57c
 };
 
-void fn_7100aa3264(UnkElectricGeneratorUpd_ovb0120* self);
-
 void fn_7100a7d594(UnkElectricGeneratorUpd_ovb0120* self) {
     fn_7100aa3264(self);
     {

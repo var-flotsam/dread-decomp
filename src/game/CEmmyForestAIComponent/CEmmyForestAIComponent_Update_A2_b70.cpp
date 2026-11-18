@@ -5,6 +5,7 @@
 #include "game/CAnimationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU811.h"
 #include "types.h"
 #include "game/UnkShakernautId.h"
 
@@ -20,8 +21,6 @@ struct UnkEmmyForestAI_A2_b70 {
     u8 pad_0x0[0x30];
     UnkEmmyForestOwner_A2_b70* owner;  // 0x30
 };
-
-void fn_710054d16c(UnkEmmyForestAI_A2_b70* self, f32 dt);
 
 void fn_71004f2c60(UnkEmmyForestAI_A2_b70* self, f32 dt) {
     goto start;

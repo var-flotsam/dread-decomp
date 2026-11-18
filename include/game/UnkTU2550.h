@@ -5,7 +5,9 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkIceShard_ovb0122;
 struct UnkGameObject_0x150;
 struct UnkGameObject_0x60;
 void fn_7100dde0c8(UnkGameObject_0x150* self);
 void fn_7100dde718(UnkGameObject_0x60* self);
+void fn_7100dde3e4(UnkGameObject_0x150* self, const UnkIceShard_ovb0122* shard);

@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkElectricGeneratorUpd_ovb0120;
 struct UnkTeleporterSelf_b0233;
 struct UnkSaveStationTunables_ovb0118;
 struct UnkLinkGroups;
@@ -42,3 +43,4 @@ extern u8 g_unk_7172753198[];
 extern u8 g_unk_71727531c0[];
 void fn_7100a9f300(UnkTeleporterSelf_b0233* self);
 extern UnkLinkGroups g_unk_7172753260;
+void fn_7100aa3264(UnkElectricGeneratorUpd_ovb0120* self);

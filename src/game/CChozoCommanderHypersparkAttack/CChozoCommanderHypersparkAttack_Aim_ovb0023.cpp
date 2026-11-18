@@ -9,6 +9,7 @@
 #include "base/UnkMatrix44.h"
 #include "game/CAbilityGhostAura.h"
 #include "game/CAnimationComponent.h"
+#include "game/CChozoCommanderGroundAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkMotionRule.h"
@@ -112,8 +113,6 @@ struct UnkHypersparkAttack3_ovb0023 {
     u8 pad_0x0[0x8];
     UnkActor* owner;  // 0x8
 };
-
-bool fn_710042bb38(UnkHypersparkAttack3_ovb0023* self);
 
 static inline f32 Sign(f32 v) {
     return static_cast<f32>((v > 0.0f) - (v < 0.0f));

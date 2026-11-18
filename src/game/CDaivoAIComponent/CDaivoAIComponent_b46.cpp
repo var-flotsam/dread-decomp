@@ -2,6 +2,7 @@
 // when it succeeds, finds the "CONTROLLER" child (fn_71004dc4b4, a typed reflection lookup) of the
 // object at +0x10 of the one at +0x14890 and notifies it (fn_71004e10dc). Returns the base's result.
 // Names and layouts are placeholders.
+#include "game/CDaivoSpitAttack.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 
@@ -18,7 +19,6 @@ struct UnkDaivoAIComponent_b46a1 {
     UnkDaivoLink_b46a1* field_0x14890;
 };
 
-UnkDaivoController_b46a1* fn_71004dc4b4(void* owner);
 void fn_71004e10dc(UnkDaivoController_b46a1* controller);
 
 bool fn_71004df7fc(UnkDaivoAIComponent_b46a1* self, UnkDaivoArg_b46a1* arg) {

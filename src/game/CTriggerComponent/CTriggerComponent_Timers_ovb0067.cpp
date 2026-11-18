@@ -7,6 +7,7 @@
 #include <stdlib.h>
 
 #include "game/CActorComponent.h"
+#include "game/CTriggerComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
@@ -40,8 +41,6 @@ struct UnkTriggerUpdate_ovb0067 {
     UnkTriggerTimer_ovb0067** timers;   // 0x250
     u32 timer_count;                    // 0x258
 };
-
-void fn_7100a5e8a4(UnkTriggerUpdate_ovb0067* self);
 
 // std::min's order: the second value when it is smaller.
 static inline f32 Min(f32 a, f32 b) {

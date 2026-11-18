@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CEnemyMovement.h"
+#include "game/UnkTU1124.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
@@ -60,8 +61,6 @@ struct UnkTU1123_b257c {
     bool field_0xec;
     bool field_0xed;
 };
-
-void fn_71007038c0(UnkTU1123_b257c* self);
 
 void fn_71007033c8(UnkTU1123_b257c* self) {
     fn_71007038c0(self);

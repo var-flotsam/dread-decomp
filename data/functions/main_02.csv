@@ -6154,4 +6154,4 @@ address,size,name,name_source,subsystem,status
 0x71002ffcb0,504,fn_71002ffcb0,unknown,unknown,U
 0x71002ffea8,88,fn_71002ffea8,unknown,unknown,O
 0x71002fff00,88,fn_71002fff00,unknown,unknown,O
-0x71002fff58,372,fn_71002fff58,unknown,unknown,U
+0x71002fff58,372,fn_71002fff58,unknown,unknown,O

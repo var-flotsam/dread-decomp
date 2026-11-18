@@ -658,7 +658,7 @@ address,size,name,name_source,subsystem,status
 0x7100718810,388,CAudioComponent::refl_InitClass,reflection,game/components,O
 0x7100718994,748,fn_7100718994,unknown,game/components?,O
 0x7100718c80,364,fn_7100718c80,unknown,game/components?,O
-0x7100718dec,632,fn_7100718dec,unknown,game/components?,U
+0x7100718dec,632,fn_7100718dec,unknown,game/components?,O
 0x7100719064,732,fn_7100719064,unknown,game/components?,U
 0x7100719340,36,fn_7100719340,unknown,game/components?,O
 0x7100719364,112,fn_7100719364,unknown,game/components?,O
@@ -1070,7 +1070,7 @@ address,size,name,name_source,subsystem,status
 0x71007384cc,152,fn_71007384cc,unknown,game/components?,m
 0x7100738564,1848,fn_7100738564,unknown,game/components?,U
 0x7100738c9c,576,fn_7100738c9c,unknown,game/components?,O
-0x7100738edc,500,fn_7100738edc,unknown,game/components?,U
+0x7100738edc,500,fn_7100738edc,unknown,game/components?,O
 0x71007390d0,92,fn_71007390d0,unknown,game/components?,O
 0x710073912c,476,fn_710073912c,unknown,game/components?,U
 0x7100739308,1176,fn_7100739308,unknown,game/components?,U
@@ -4831,7 +4831,7 @@ address,size,name,name_source,subsystem,status
 0x71007e15d0,236,fn_71007e15d0,unknown,unknown,O
 0x71007e16bc,116,fn_71007e16bc,unknown,unknown,O
 0x71007e1730,4952,fn_71007e1730,unknown,unknown,U
-0x71007e2a88,620,fn_71007e2a88,unknown,unknown,U
+0x71007e2a88,620,fn_71007e2a88,unknown,unknown,O
 0x71007e2cf4,472,fn_71007e2cf4,unknown,unknown,O
 0x71007e2ecc,1840,fn_71007e2ecc,unknown,unknown,U
 0x71007e35fc,544,fn_71007e35fc,unknown,unknown,U
@@ -4993,7 +4993,7 @@ address,size,name,name_source,subsystem,status
 0x71007e949c,36,fn_71007e949c,unknown,game/components?,O
 0x71007e94c0,192,fn_71007e94c0,unknown,game/components?,O
 0x71007e9580,376,fn_71007e9580,unknown,game/components?,O
-0x71007e96f8,464,fn_71007e96f8,unknown,game/components?,U
+0x71007e96f8,464,fn_71007e96f8,unknown,game/components?,O
 0x71007e98c8,336,fn_71007e98c8,unknown,game/components?,O
 0x71007e9a18,72,fn_71007e9a18,unknown,game/components?,O
 0x71007e9a60,324,fn_71007e9a60,unknown,game/components?,O

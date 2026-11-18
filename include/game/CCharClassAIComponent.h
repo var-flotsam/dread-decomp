@@ -12,3 +12,4 @@ u32 fn_7100414160();
 u32 fn_7100414070(const char* text);
 u32 fn_7100414168();  // The base character class's check (declared without its arguments in its generated definition).
 u32 fn_7100413fd8(UnkSource_7100286798* self);
+u32 fn_7100413fd0(UnkSource_7100286798* self);

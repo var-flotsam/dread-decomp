@@ -4,8 +4,14 @@
 // 0x7100a59a00-0x7100a653b8). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "game/UnkTUProperty.h"
+#include "base/global/CRntFile.h"
 #include "types.h"
 
+struct UnkTriggerUpdate_ovb0067;
+struct UnkTriggerActor_ovb0067;
+struct UnkTriggerComponent_ovb0067;
+struct UnkVec3f;
+struct UnkColliderTrigger_b0058;
 struct UnkProperty;
 struct UnkHandleList;
 struct UnkTriggerEntry_b50a5;
@@ -26,3 +32,6 @@ extern UnkProperty g_unk_717274d6c8;
 extern UnkTunable g_unk_717274ddd8;
 extern UnkProperty g_unk_717274d6f0;
 extern void* g_unk_7101a8f5c8[];
+void fn_7100a5e8a4(UnkTriggerUpdate_ovb0067* self);
+void fn_7100a5ee80(UnkTriggerComponent_ovb0067* self, s32 kind, UnkTriggerActor_ovb0067* actor, const UnkVec3f* dir);
+void fn_7100a6081c(UnkColliderTrigger_b0058* self, base::global::CRntFile* file);

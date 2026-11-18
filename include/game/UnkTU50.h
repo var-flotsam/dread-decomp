@@ -9,3 +9,4 @@ struct UnkHandle;
 
 void fn_7100072328(void* rumble, f32 time, f32 value);
 extern UnkHandle g_unk_7101d586c0;  // The null handle.
+void fn_7100072030(void* rumble, void* arg);

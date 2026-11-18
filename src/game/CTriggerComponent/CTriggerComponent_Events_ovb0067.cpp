@@ -95,8 +95,6 @@ static inline __attribute__((always_inline)) const CRntString* UseText(UnkTrigge
     return reinterpret_cast<const CRntString*>(id->text);
 }
 
-void fn_7100a5ee80(UnkTriggerComponent_ovb0067* self, s32 kind, UnkTriggerActor_ovb0067* actor,
-                   const UnkVec3f* dir);
 void fn_7100a5f3b0(UnkTriggerComponent_ovb0067* self, bool active);
 
 static inline UnkVec3f DirFromTarget(UnkTriggerActor_ovb0067* actor) {

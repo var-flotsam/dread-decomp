@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct CGoliathXBurstProjectionBombMovement;
 struct UnkFanBombList_ovb0122;
 struct UnkPbMovementBase_ovb0015;
 UnkFanBombList_ovb0122* fn_7100aa9ecc();
@@ -23,3 +24,4 @@ using UnkBombOnTiles_ovb0078 = void (UnkBombHitHandler_ovb0078::*)(UnkBombHitObj
                                                                    f32 value);
 void fn_7100aaaaf4(UnkBombHitHandler_ovb0078* self, u32* kinds, void* arg, UnkBombHitInfo_ovb0078* info,
                    f32 value, UnkBombOnActor_ovb0078 on_actor, UnkBombOnTiles_ovb0078 on_tiles);
+void fn_7100aaa024(CGoliathXBurstProjectionBombMovement* self);

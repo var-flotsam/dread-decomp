@@ -35,6 +35,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkSubAreaGuiCache.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU1102.h"
 #include "game/UnkTU1645.h"
 #include "game/UnkTU23.h"
 #include "game/UnkTU2506.h"
@@ -275,7 +276,6 @@ struct UnkTgmRefVector_b205 {
     UnkTgmRef_b205** data;
     u32 count;
 };
-UnkTgmRefVector_b205* fn_71006e9fb4();
 struct UnkStruct_7100233684;
 
 void fn_7100e010a0(UnkGameManager* self, u32 value) {
