@@ -16,3 +16,9 @@ extern char g_unk_7101a239c8[];  // The value holders' vtable.
 bool fn_710033cf20(UnkAbility* ability);
 extern const u8 g_unk_7101649054[] __attribute__((visibility("hidden")));
 extern const UnkV4_b47 g_unk_7101649044 __attribute__((visibility("hidden")));  // the model colour reset
+namespace base {
+namespace reflection {
+struct UnkTunable;
+}  // namespace reflection
+}  // namespace base
+extern base::reflection::UnkTunable g_unk_71726b0fc0;  // CTunableAbilitySpeedBooster

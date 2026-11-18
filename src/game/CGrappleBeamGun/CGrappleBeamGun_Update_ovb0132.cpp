@@ -6,6 +6,7 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CGrappleBeamGun.h"
+#include "game/CPrimaryGun.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "types.h"
 
@@ -65,7 +66,6 @@ struct UnkGrappleBeamGun_ovb0132 {
 };
 static_assert(__builtin_offsetof(UnkGrappleBeamGun_ovb0132, field_0x1890) == 0x1890, "layout");
 
-void fn_7100857418(UnkGrappleBeamGun_ovb0132* self);
 bool fn_710083f7a0(UnkGrappleGun_ovb0132* gun);
 bool fn_7100818978(void* target);
 bool fn_71008408b0(UnkGrappleGun_ovb0132* gun, UnkGrappleBeamGun_ovb0132* self);

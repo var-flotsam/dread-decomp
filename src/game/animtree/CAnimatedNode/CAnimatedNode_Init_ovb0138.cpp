@@ -8,6 +8,7 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkStringPoolBody.h"
 #include "game/UnkTU1134.h"
+#include "game/animtree/CAnimTreeElement.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -102,8 +103,6 @@ struct UnkAnimatedNode_ovb0138 {
     bool allow_root_motion;  // 0x7e
 };
 static_assert(__builtin_offsetof(UnkAnimatedNode_ovb0138, allow_root_motion) == 0x7e, "layout");
-
-UnkNodeOwner_ovb0138* fn_71002dbb7c(UnkAnimatedNode_ovb0138* self);
 
 // A copy of a string id that only lives for one call: retained, then released without being reset.
 struct UnkBoneId_ovb0138 {

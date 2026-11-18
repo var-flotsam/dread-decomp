@@ -3,11 +3,10 @@
 // CCharClassIgnoreHyperBeamTrack track, runs fn_7100843a50 with 1, sets the flag and clears +0x18a0.
 // Always answers false. Names are placeholders.
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CHyperBeamGun.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "types.h"
-
-void fn_7100843a50(char* self, bool on);
 
 bool fn_7100846aac(char* self) {
     u8* armed = reinterpret_cast<u8*>(self + 0x18fa);

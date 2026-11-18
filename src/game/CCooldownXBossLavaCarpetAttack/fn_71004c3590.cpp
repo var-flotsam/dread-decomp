@@ -34,7 +34,6 @@ struct UnkNode {
     u8 field_0x786;
 };
 
-extern void* g_unk_7101a3e5b8[];
 
 void fn_71004c3590(UnkNode* self) {
     fn_71004c1894(self);

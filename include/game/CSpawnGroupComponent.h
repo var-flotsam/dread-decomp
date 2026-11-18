@@ -14,3 +14,4 @@ extern UnkSpawnGroupKey g_unk_7172a067c0 __attribute__((visibility("hidden")));
 void fn_710111fd80(void*, void*);
 extern UnkProperty g_unk_7172a065e0;
 extern UnkProperty g_unk_7172a06608;
+extern UnkSpawnGroupKey g_unk_7172a067b8 __attribute__((visibility("hidden")));

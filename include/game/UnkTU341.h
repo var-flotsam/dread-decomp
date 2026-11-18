@@ -8,6 +8,8 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkMatrix4_b0233;
+struct UnkTeleporterObject_b0233;
 struct UnkScenarioObject_ovb0032;
 struct UnkScenario_ovb0032;
 struct UnkEntry_b41a1;
@@ -69,3 +71,4 @@ static_assert(sizeof(UnkHalf_cu) == 0x40, "UnkHalf_cu layout");
 extern char g_unk_7101a20a08[];
 void fn_71002337d0(UnkScenarioObject_ovb0032* object, UnkScenario_ovb0032* scenario);
 void fn_710023ae38(void* self);
+void fn_7100233f84(UnkTeleporterObject_b0233* object, UnkMatrix4_b0233* matrix, bool);

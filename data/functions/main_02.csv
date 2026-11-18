@@ -3404,7 +3404,7 @@ address,size,name,name_source,subsystem,status
 0x7100274698,352,navmesh::CNavMesh::refl_InitClass,reflection,ai/navmesh,O
 0x71002747f8,388,fn_71002747f8,unknown,ai/navmesh?,O
 0x710027497c,460,fn_710027497c,unknown,ai/navmesh?,O
-0x7100274b48,680,fn_7100274b48,unknown,ai/navmesh?,U
+0x7100274b48,680,fn_7100274b48,unknown,ai/navmesh?,O
 0x7100274df0,860,fn_7100274df0,unknown,ai/navmesh?,U
 0x710027514c,1228,fn_710027514c,unknown,ai/navmesh?,O
 0x7100275618,36,fn_7100275618,unknown,ai/navmesh?,O
@@ -4787,7 +4787,7 @@ address,size,name,name_source,subsystem,status
 0x71002d2a3c,48,fn_71002d2a3c,unknown,animation?,O
 0x71002d2a6c,52,fn_71002d2a6c,unknown,animation?,O
 0x71002d2aa0,524,fn_71002d2aa0,unknown,animation?,U
-0x71002d2cac,952,fn_71002d2cac,unknown,animation?,U
+0x71002d2cac,952,fn_71002d2cac,unknown,animation?,O
 0x71002d3064,4,fn_71002d3064,unknown,animation?,O
 0x71002d3068,28,fn_71002d3068,unknown,animation?,O
 0x71002d3084,80,fn_71002d3084,unknown,animation?,O
@@ -5593,7 +5593,7 @@ address,size,name,name_source,subsystem,status
 0x71002eba1c,36,fn_71002eba1c,unknown,unknown,O
 0x71002eba40,60,fn_71002eba40,unknown,unknown,O
 0x71002eba7c,412,fn_71002eba7c,unknown,unknown,O
-0x71002ebc18,584,fn_71002ebc18,unknown,unknown,U
+0x71002ebc18,584,fn_71002ebc18,unknown,unknown,O
 0x71002ebe60,36,fn_71002ebe60,unknown,unknown,O
 0x71002ebe84,1152,fn_71002ebe84,unknown,unknown,U
 0x71002ec304,880,fn_71002ec304,unknown,unknown,U
@@ -6149,7 +6149,7 @@ address,size,name,name_source,subsystem,status
 0x71002fe5a0,88,fn_71002fe5a0,unknown,unknown,O
 0x71002fe5f8,536,fn_71002fe5f8,unknown,unknown,U
 0x71002fe810,28,fn_71002fe810,unknown,unknown,O
-0x71002fe82c,404,fn_71002fe82c,unknown,unknown,U
+0x71002fe82c,404,fn_71002fe82c,unknown,unknown,O
 0x71002fe9c0,4848,fn_71002fe9c0,unknown,unknown,U
 0x71002ffcb0,504,fn_71002ffcb0,unknown,unknown,U
 0x71002ffea8,88,fn_71002ffea8,unknown,unknown,O

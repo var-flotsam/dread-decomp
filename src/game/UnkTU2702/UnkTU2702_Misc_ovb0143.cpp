@@ -376,7 +376,6 @@ CAttack* fn_7101105148(UnkAttackListSelf_b0143* self, const char* name) {
 
 struct UnkCancelAttack_ovb0128;
 void* fn_7100362324(UnkCancelAttack_ovb0128*, u32);
-void fn_710110bc0c(void* self, void* arg, u32 id, u32 kind, s32 amount);
 
 typedef UnkCancelAttack_ovb0128* UnkCancelPtr_b0143 __attribute__((aligned(4)));
 

@@ -32,6 +32,7 @@
 #include "game/CLiquidSimulationComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -462,7 +463,6 @@ void fn_7100a47164(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolTarget_ovb0075
 void fn_7100a4716c(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolTarget_ovb0075* target, const UnkVec3f* pos);
 void fn_7100ecf3d4(UnkLiquidPoolTarget_ovb0075* target, const UnkVec3f* pos, s32 kind, u32 param);
 void fn_7100ecf450(UnkLiquidPoolTarget_ovb0075* target, const UnkVec3f* pos);
-void fn_71009014a8(UnkLiquidPoolEnter_ovb0075* self, UnkVec3f pos);
 
 void fn_7100901fe8(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolTarget_ovb0075* target, const UnkVec3f* pos) {
     UnkVec3f at(pos->x, self->SurfaceY(), pos->z);
@@ -512,8 +512,6 @@ struct UnkLiquidPoolMover_ovb0075 {
 };
 
 s32 fn_7100f0d7b0(void* list, UnkLiquidPoolEnter_ovb0075* self, const UnkVec3f* pos);
-UnkLiquidPoolMover_ovb0075* fn_71009019bc(UnkLiquidPoolActor_ovb0075* actor);
-void fn_71010ff50c(UnkLiquidPoolActorPart_ovb0075* part, bool a, u32);
 
 void fn_7100901dd4(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolActor_ovb0075* actor, const UnkVec3f* pos) {
     fn_7100a45f08(self, actor, pos);

@@ -6,6 +6,8 @@
 #include "base/UnkSList.h"
 #include "types.h"
 
+struct UnkMatrix4_b0233;
+struct UnkTeleporterActor_b0233;
 struct UnkStatics_710113f730;
 struct UnkEnergyWaveCompA_b49;
 struct UnkKraidGrab_b57a4;
@@ -19,3 +21,4 @@ extern UnkStatics_710113f730 g_unk_7172a090e8 __attribute__((visibility("hidden"
 struct UnkGrabListTag_ovb0057;
 using UnkGrabList_ovb0057 = base::UnkSList<UnkGrabListTag_ovb0057>;
 extern UnkGrabList_ovb0057 g_unk_7172a090b8;
+void fn_710113cb74(void* component, UnkTeleporterActor_b0233* actor, void* unused, UnkMatrix4_b0233* matrix);

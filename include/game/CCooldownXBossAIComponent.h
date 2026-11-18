@@ -5,5 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkCooldownXRecord_ovb0088;
 struct UnkAIComponent;
 void fn_71004d43dc(UnkAIComponent*, void*);
+void fn_71004d0b00(UnkCooldownXRecord_ovb0088* self);

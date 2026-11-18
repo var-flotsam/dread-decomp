@@ -457,7 +457,6 @@ static_assert(sizeof(UnkDropRequest_ovb0208) == 0x28, "request size");
 
 struct UnkDropPlayer;
 struct UnkDropTarget_ovb0208;
-void fn_7100e1cd34(void* self, UnkDropTarget_ovb0208* target, UnkDropRequest_ovb0208* request);
 
 static inline void* Singleton() {
     void* p = g_unk_71726da048;

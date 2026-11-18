@@ -18,7 +18,6 @@
 
 struct UnkLinkGroups;  // the member at +0x10 (src/game/navmesh/CNavMesh/fn_710027514c.cpp)
 void fn_710027497c(UnkLinkGroups* self);
-extern char g_unk_7101a20e58[];  // navmesh::CNavMesh's vtable
 
 struct UnkNavLoadCell;
 

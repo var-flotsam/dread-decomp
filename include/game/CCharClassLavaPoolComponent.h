@@ -6,7 +6,9 @@
 #include "game/UnkTUProperty.h"
 #include "types.h"
 
+struct UnkWaterPoolPlatform_b0086;
 struct UnkMagmaList_b50;
 UnkMagmaList_b50* fn_71008fbdb4();
 extern UnkProperty g_unk_7172733338;
 extern UnkPropertyEx<> g_unk_7172733360;
+UnkWaterPoolPlatform_b0086* fn_71008fbfc0(void* source);

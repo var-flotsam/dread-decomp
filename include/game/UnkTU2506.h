@@ -14,3 +14,4 @@ extern char g_unk_7101aa87e8[];
 void fn_7100d46c60(UnkManager_7100863a8c* self, UnkCollisionObject* entry);
 void fn_7100d476e4(UnkManager_7100863a8c* self, void* obj);
 void* fn_7100d475ec(UnkStruct_71007e44b8* self, const base::global::CStrId* name, u32 flag);
+void fn_7100d46804(UnkManager_7100863a8c* self);

@@ -2,6 +2,7 @@
 #include "../../game_s7/UnkStaticInitS7.h"
 #include "base/input/CRumbleManager/CTunableRumbleManager.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CAbilityOpticCamouflage.h"
 #include "game/UnkTUProperty.h"
 #include "base/reflection/TypeObject.h"
 
@@ -38,7 +39,6 @@ extern UnkConversion g_unk_71726aff98;
 void fn_7100324a98() __attribute__((visibility("hidden")));
 void fn_7100324aa4() __attribute__((visibility("hidden")));
 extern char g_unk_71726affb8[];
-extern UnkTunable g_unk_71726affc0;
 extern void* g_unk_7101a23250[];
 
 void fn_7100325290() {

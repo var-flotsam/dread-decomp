@@ -3,12 +3,11 @@
 // holder's node (+0x28) uniformly by it (fn_7100208fa4). Returns the empty value. Names and layouts
 // are placeholders.
 #include "base/reflection/UnkReflValue.h"
+#include "game/UnkTU285.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::reflection::UnkReflValue;
-
-void fn_7100208fa4(UnkXformNode* self, const UnkVec3f* v);
 
 struct UnkSteamJetNodeHolder {
     u8 pad_0x0[0x28];

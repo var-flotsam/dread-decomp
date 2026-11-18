@@ -230,7 +230,6 @@ void fn_7101127e78(CSpawnPointComponent* self) {
 // ---- Collision tracker teardown
 
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 struct UnkStruct_7100861148_Collider;
 

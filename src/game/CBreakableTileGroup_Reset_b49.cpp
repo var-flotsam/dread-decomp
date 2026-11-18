@@ -10,7 +10,6 @@
 
 // The collision manager (as src/game/CCharacterMovement_2.cpp declares it).
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 
 struct UnkBreakableTileGroupData {

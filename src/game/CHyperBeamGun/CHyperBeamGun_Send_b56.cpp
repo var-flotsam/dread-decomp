@@ -8,6 +8,7 @@
 // written out, its mode declared above the query). Names are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CHyperBeamGun.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU0.h"
 #include "game/nn/time.h"
@@ -45,8 +46,6 @@ static inline UnkSoundHolder* SoundHolder_b56() {
     }
     return g_unk_7101d47340;
 }
-
-void fn_71008449ec(UnkHyperBeamGun_b56* self, bool a, bool b);
 
 void fn_7100846b20(UnkHyperBeamGun_b56* self) {
     u32 flags = self->field_0x18a0;

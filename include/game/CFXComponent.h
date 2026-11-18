@@ -7,6 +7,7 @@
 #include "base/math/CVector.h"
 #include "types.h"
 
+struct UnkFXComponent_b0052;
 struct UnkPart;
 struct UnkFxObject_ovb0041;
 struct UnkObject;
@@ -27,3 +28,5 @@ UnkPart* fn_7101152b90(UnkWorld* world, u64 hash);  // The part whose name has t
 void fn_710114fe8c(UnkWorld* world, u64 hash, u32 a, u32 b);
 bool fn_710114e668(UnkObject*, u8);
 void fn_710115217c(void* object, void* effect, u32 a, u32 b, const base::global::CStrId* name, const base::math::CVector3D& offset, const base::math::CVector3D& rotation, void* extra);
+void fn_71011531cc(UnkFXComponent_b0052* self, u32 flag, __attribute__((noescape)) void* arg, f32 value);
+void fn_710115351c(UnkFXComponent_b0052* component);

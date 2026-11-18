@@ -229,8 +229,6 @@ static inline UnkLifeComponent* Life(UnkWeakHandle* handle) {
     return reinterpret_cast<UnkLifeComponent*>(handle->target);
 }
 
-void fn_71002fe5f8(CAbilityComponent* self, f32 dt);
-
 // Updates the wave without time passing, then sets the energy to its current value (+0x40).
 void fn_71002fe5a0(CAbilityComponent* self) {
     fn_71002fe5f8(self, 0.0f);

@@ -507,7 +507,6 @@ using base::input::UnkRumbleManager;
 
 // The collision manager singleton (src/game/CCollisionComponent/fn_7100863a8c.cpp).
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);  // constructor
 
 // The file device singleton and the sound manager (src/game/CGameManager.cpp).
 extern base::file::UnkFileDevice* g_unk_7101d4d828;

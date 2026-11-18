@@ -7,7 +7,9 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CWaterPlatformUsableComponent.h"
 #include "game/UnkTU399.h"
+#include "game/animtree/CBoneControl.h"
 #include "types.h"
 
 struct UnkEntry;
@@ -26,9 +28,6 @@ struct UnkWaterLevel_b57 {
     u64 field_0x28;
     u8 pad_0x30[0x10];
 };
-UnkWaterLevel_b57 fn_71002e2958(UnkWaterEntry_b57* entry);
-
-extern __attribute__((visibility("hidden"))) char g_unk_71727537e0[];
 
 struct UnkWaterSub_b57 {
     u8 pad_0x0[0x40];

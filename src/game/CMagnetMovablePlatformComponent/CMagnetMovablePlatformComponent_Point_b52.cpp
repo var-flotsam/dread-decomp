@@ -8,6 +8,7 @@
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU53.h"
+#include "game/behaviortree/CGoToWallFronPathAction.h"
 #include "types.h"
 
 using base::math::CVector3D;
@@ -23,7 +24,6 @@ struct UnkMagnetPathHolder_b52 {
     u8 unk_0x0[0x40];
     UnkDashPath* path;
 };
-UnkMagnetPathHolder_b52* fn_7100382150(UnkActor* actor);
 
 struct UnkMagnetMovablePlatform_b52 {
     u8 unk_0x0[0x30];

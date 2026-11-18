@@ -10,6 +10,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CBombMovement.h"
 #include "game/CSceneComponent.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
@@ -24,7 +25,6 @@
 using base::reflection::UnkReflObject;
 
 // Whether the hit was already handled (bombs that touch the player or something they ignore).
-bool fn_7100ac79d8(void* self, void* actor, void* info);
 
 struct UnkBombDirSource_ovb0078 {
     u8 pad_0x0[0x10];

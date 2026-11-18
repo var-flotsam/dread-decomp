@@ -463,7 +463,7 @@ address,size,name,name_source,subsystem,status
 0x7100712c7c,352,CSamusAlternativeActionPlayerComponent::refl_InitClass,reflection,game/player,O
 0x7100712ddc,4,fn_7100712ddc,unknown,game/player?,O
 0x7100712de0,36,fn_7100712de0,unknown,game/player?,O
-0x7100712e04,480,fn_7100712e04,unknown,game/player?,U
+0x7100712e04,480,fn_7100712e04,unknown,game/player?,O
 0x7100712fe4,276,fn_7100712fe4,unknown,game/player?,O
 0x71007130f8,28,fn_71007130f8,unknown,game/player?,O
 0x7100713114,132,fn_7100713114,unknown,game/player?,O
@@ -922,13 +922,13 @@ address,size,name,name_source,subsystem,status
 0x710072f1a4,552,fn_710072f1a4,unknown,game/characters?,O
 0x710072f3cc,1108,fn_710072f3cc,unknown,game/characters?,O
 0x710072f820,36,fn_710072f820,unknown,game/characters?,O
-0x710072f844,780,fn_710072f844,unknown,game/characters?,U
+0x710072f844,780,fn_710072f844,unknown,game/characters?,O
 0x710072fb50,580,fn_710072fb50,unknown,game/characters?,U
 0x710072fd94,204,fn_710072fd94,unknown,game/characters?,O
 0x710072fe60,820,fn_710072fe60,unknown,game/characters?,U
 0x7100730194,336,fn_7100730194,unknown,game/characters?,O
 0x71007302e4,344,fn_71007302e4,unknown,game/characters?,O
-0x710073043c,2028,fn_710073043c,unknown,game/characters?,U
+0x710073043c,2028,fn_710073043c,unknown,game/characters?,O
 0x7100730c28,28,fn_7100730c28,unknown,game/characters?,O
 0x7100730c44,8,CCharClassBillboardComponent::refl_Equals,reflection,game/characters,O
 0x7100730c4c,8,CCharClassBillboardComponent::refl_Hash,reflection,game/characters,O
@@ -2071,7 +2071,7 @@ address,size,name,name_source,subsystem,status
 0x710077561c,764,fn_710077561c,unknown,unknown,O
 0x7100775918,424,fn_7100775918,unknown,unknown,O
 0x7100775ac0,1312,fn_7100775ac0,unknown,unknown,U
-0x7100775fe0,616,fn_7100775fe0,unknown,unknown,U
+0x7100775fe0,616,fn_7100775fe0,unknown,unknown,O
 0x7100776248,280,fn_7100776248,unknown,unknown,O
 0x7100776360,28,fn_7100776360,unknown,unknown,O
 0x710077637c,28,fn_710077637c,unknown,unknown,O
@@ -4289,7 +4289,7 @@ address,size,name,name_source,subsystem,status
 0x71007cf3c4,20,fn_71007cf3c4,unknown,game?,O
 0x71007cf3d8,192,fn_71007cf3d8,unknown,game?,O
 0x71007cf498,56,fn_71007cf498,unknown,game?,O
-0x71007cf4d0,468,fn_71007cf4d0,unknown,game?,U
+0x71007cf4d0,468,fn_71007cf4d0,unknown,game?,m
 0x71007cf6a4,28,fn_71007cf6a4,unknown,game?,O
 0x71007cf6c0,132,fn_71007cf6c0,unknown,game?,O
 0x71007cf744,8,CDummyMovement::refl_Equals,reflection,game,O
@@ -4938,7 +4938,7 @@ address,size,name,name_source,subsystem,status
 0x71007e6cb0,44,fn_71007e6cb0,unknown,game/components?,O
 0x71007e6cdc,4,fn_71007e6cdc,unknown,game/components?,O
 0x71007e6ce0,160,fn_71007e6ce0,unknown,game/components?,O
-0x71007e6d80,360,fn_71007e6d80,unknown,game/components?,U
+0x71007e6d80,360,fn_71007e6d80,unknown,game/components?,O
 0x71007e6ee8,28,fn_71007e6ee8,unknown,game/components?,O
 0x71007e6f04,132,fn_71007e6f04,unknown,game/components?,O
 0x71007e6f88,8,CFloorShockWaveComponent::refl_Equals,reflection,game/components,O
@@ -4961,7 +4961,7 @@ address,size,name,name_source,subsystem,status
 0x71007e7b10,76,fn_71007e7b10,unknown,game/components?,O
 0x71007e7b5c,172,fn_71007e7b5c,unknown,game/components?,O
 0x71007e7c08,548,fn_71007e7c08,unknown,game/components?,O
-0x71007e7e2c,884,fn_71007e7e2c,unknown,game/components?,U
+0x71007e7e2c,884,fn_71007e7e2c,unknown,game/components?,O
 0x71007e81a0,468,fn_71007e81a0,unknown,game/components?,O
 0x71007e8374,948,fn_71007e8374,unknown,game/components?,U
 0x71007e8728,28,fn_71007e8728,unknown,game/components?,O

@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CCharClassActivatableComponent.h"
 #include "game/CCharClassBaseTriggerComponent.h"
+#include "game/CCharClassEventScenarioComponent.h"
 #include "game/CComponent.h"
 #include "game/CDemolitionBlockComponent.h"
 #include "game/UnkBroadphaseObject.h"
@@ -85,11 +86,9 @@ static_assert(__builtin_offsetof(UnkBaseTrigger, shape_ref.handle) == 0xa08, "la
 
 // The collision manager (as src/game/CBreakableTileGroup_Reset_b49.cpp declares it).
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 struct UnkCollisionObject;
 struct UnkStruct_71007e44b8;
 struct UnkObj_71007e44b8;
-UnkObj_71007e44b8* fn_71007e44b8(UnkStruct_71007e44b8* self, void* owner, const base::global::CStrId* name, u32 index);
 struct UnkTriggerCollider_b0058;
 void fn_7100d36e24(UnkTriggerCollider_b0058* self, void* shape);
 
