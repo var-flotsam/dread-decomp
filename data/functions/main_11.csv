@@ -1313,7 +1313,7 @@ address,size,name,name_source,subsystem,status
 0x7101157884,8,CFXComponent::refl_MoveAssign,reflection,game/components,O
 0x710115788c,128,fn_710115788c,unknown,unknown,O
 0x710115790c,188,fn_710115790c,unknown,unknown,O
-0x71011579c8,384,fn_71011579c8,unknown,unknown,m
+0x71011579c8,384,fn_71011579c8,unknown,unknown,O
 0x7101157b48,192,fn_7101157b48,unknown,unknown,O
 0x7101157c08,436,fn_7101157c08,unknown,unknown,O
 0x7101157dbc,324,fn_7101157dbc,unknown,unknown,U
@@ -2691,7 +2691,7 @@ address,size,name,name_source,subsystem,status
 0x71011bb98c,224,fn_71011bb98c,unknown,gui?,O
 0x71011bba6c,100,fn_71011bba6c,unknown,gui?,O
 0x71011bbad0,84,fn_71011bbad0,unknown,gui?,O
-0x71011bbb24,484,fn_71011bbb24,unknown,gui?,m
+0x71011bbb24,484,fn_71011bbb24,unknown,gui?,O
 0x71011bbd08,36,fn_71011bbd08,unknown,gui?,O
 0x71011bbd2c,148,fn_71011bbd2c,unknown,gui?,O
 0x71011bbdc0,140,fn_71011bbdc0,unknown,gui?,O

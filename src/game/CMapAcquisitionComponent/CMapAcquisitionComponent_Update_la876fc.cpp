@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CMapAcquisitionComponent's unit: the update while the map is acquired, as CSaveStationUsableComponent's
 // fn_7100a8a438: counts the time (+0x810); unless the char class's music (+0x7f8) is still playing and
 // the tunable wait is set and not over, has g_unk_7101d47368 run fn_7100d8e0a0, plays two timeline ids on

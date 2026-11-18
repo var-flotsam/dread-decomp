@@ -29,9 +29,9 @@ struct UnkRefPtr_71002adc8c {
     base::UnkRefCounted* ptr;
 
     void Reset() {
-        if (ptr) {
-            if (--ptr->ref_count == 0)
-                delete ptr;
+        if (base::UnkRefCounted* held = ptr) {
+            if (--held->ref_count == 0)
+                delete held;
             ptr = nullptr;
         }
     }

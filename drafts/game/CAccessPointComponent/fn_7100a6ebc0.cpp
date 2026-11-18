@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CAccessPointComponent's unit (tools/tu_map.py unit 1581): the access point's leave step. Fades the game
 // manager's effect player with the char class's two times; outside the main menu the char class's music is
 // requested again in the main menu (kind 4), the sound system's first group is switched on, the user's

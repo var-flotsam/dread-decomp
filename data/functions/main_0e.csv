@@ -2118,8 +2118,8 @@ address,size,name,name_source,subsystem,status
 0x7100e6fb64,656,fn_7100e6fb64,unknown,engine/reflection?,U
 0x7100e6fdf4,564,fn_7100e6fdf4,unknown,engine/reflection?,O
 0x7100e70028,324,fn_7100e70028,unknown,engine/reflection?,O
-0x7100e7016c,388,fn_7100e7016c,unknown,engine/reflection?,m
-0x7100e702f0,328,fn_7100e702f0,unknown,engine/reflection?,m
+0x7100e7016c,388,fn_7100e7016c,unknown,engine/reflection?,O
+0x7100e702f0,328,fn_7100e702f0,unknown,engine/reflection?,O
 0x7100e70438,504,fn_7100e70438,unknown,engine/reflection?,O
 0x7100e70630,12,fn_7100e70630,unknown,engine/reflection?,O
 0x7100e7063c,24,fn_7100e7063c,unknown,engine/reflection?,O

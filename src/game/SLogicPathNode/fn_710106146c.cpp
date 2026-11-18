@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // SLogicPathNode unit: inserts a copy of a point at an index of an array of 0x20-byte polymorphic
 // points, moving the later ones up one place (growing the array first when it is full):
 // CRntVector::Insert written out. Names and layouts are placeholders.

@@ -19,9 +19,10 @@ struct UnkMatrixNode {
 void fn_7100209a7c(UnkMatrixNode* self, const UnkVec3f* v) {
     if (UNK_CHANGED(self->x_0x24, v->x) || UNK_CHANGED(self->y_0x34, v->y) ||
         UNK_CHANGED(self->z_0x44, v->z)) {
-        self->z_0x44 = v->z;
-        self->x_0x24 = v->x;
-        self->y_0x34 = v->y;
+        const UnkVec3f p = *v;
+        self->x_0x24 = p.x;
+        self->y_0x34 = p.y;
+        self->z_0x44 = p.z;
         self->dirty_0xfa = 1;
         fn_7100216978(&self->sphere_0x80, v);
     }

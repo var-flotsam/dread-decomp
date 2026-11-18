@@ -49,15 +49,16 @@ using base::math::CVector3D;
 
 void fn_7100c9e968(UnkQueryObj* tile);
 
-// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100ca1da4(UnkTileGroup* group, const CVector3D* origin) {
     group->field_0x18 = origin->x;
     group->field_0x1c = origin->y;
     group->field_0x20 = origin->z;
     for (u32 i = 0; i < group->field_0x40; i++) {
         UnkQueryObj* tile = &group->field_0x48[i];
-        tile->field_0x28 = group->field_0x18 + (f32)tile->field_0x8 * 100.0f;
-        tile->field_0x2c = group->field_0x1c + (f32)tile->field_0xc * 100.0f;
+        const f32 x = group->field_0x18 + (f32)tile->field_0x8 * 100.0f;
+        const f32 y = group->field_0x1c + (f32)tile->field_0xc * 100.0f;
+        tile->field_0x28 = x;
+        tile->field_0x2c = y;
         fn_7100c9e968(tile);
     }
     fn_7100ca1180(group);

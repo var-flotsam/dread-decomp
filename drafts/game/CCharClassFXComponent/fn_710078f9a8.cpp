@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CCharClassFXComponent's unit: the read. After the base, replaces the effect paths with the ones in the
 // file, each with two words, and preloads each through the model manager; an entry marked as a list adds
 // and preloads every path of that list instead. Names and layouts are placeholders.

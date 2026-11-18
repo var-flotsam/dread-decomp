@@ -28,18 +28,14 @@ struct UnkShared_lf02e50 {
     virtual void Destroy();  // 0x8
     u8 pad_0x8[0x28];
     u32 refs;  // 0x30
-
-    // The reference count, through an accessor as the original's is: a store through it may alias the array's
-    // count, which is read again after it.
-    u32& Refs() { return refs; }
 };
 
 struct UnkSharedPtr_lf02e50 {
     UnkShared_lf02e50* ptr;
 
     ~UnkSharedPtr_lf02e50() {
-        if (ptr && --ptr->Refs() == 0)
-            ptr->Destroy();
+        if (UnkShared_lf02e50* held = ptr; held && --held->refs == 0)
+            held->Destroy();
     }
 };
 

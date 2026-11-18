@@ -56,9 +56,10 @@ bool fn_7100ad2d90(UnkPathArgs_b0217* a, UnkPathArgs_b0217* b) {
         UnkPathElem_b0217* ea = a->data;
         UnkPathElem_b0217* eb = b->data;
         do {
-            UnkTypedRef ref_a = {ea->type, ea};
+            const CType* type = ea->type;
+            UnkTypedRef ref_a = {type, ea};
             UnkTypedRef ref_b = {eb->type, eb};
-            if (!fn_710009d5d4(reinterpret_cast<const char*>(ea->type), &ref_a, &ref_b))
+            if (!fn_710009d5d4(reinterpret_cast<const char*>(type), &ref_a, &ref_b))
                 return false;
             ++ea;
             ++eb;

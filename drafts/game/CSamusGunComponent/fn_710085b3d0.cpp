@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CSamusGunComponent's unit (tools/tu_map.py unit 1315): reacts to touching another actor. When the contact
 // is blocked (kind 2, or the actor has the part fn_71005012bc finds, as its AI may decide) any held grab is
 // released; otherwise an actor that may be pushed gets a knock-back away from the owner and its AI is told.

@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CTunableMinimapManager's unit (2566): creates the minimap's scene objects: the camera, the two draw-pass
 // objects (with the map's material) and the "MINIMAP" model, each added to its render layer.
 // Names and layouts are placeholders.

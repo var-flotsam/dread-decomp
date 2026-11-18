@@ -65,8 +65,8 @@ void fn_710016e03c(UnkEmitter_b0253* self, UnkEmitterOwner_b0253* owner, const U
     self->field_0x8c = params->field_0x18;
     self->field_0x90 = params->field_0x1c;
     self->active = 0;
-    if (params->start < 0.0f)
+    if (self->start < 0.0f)
         self->active = 1;
     else
-        self->active = self->time <= params->start + params->duration;
+        self->active = self->time <= self->start + self->duration;
 }

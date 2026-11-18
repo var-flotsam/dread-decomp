@@ -1,7 +1,6 @@
 // CTriggerComponent unit (tools/tu_map.py, unit 1578): the component's destructor. Removes its records, deletes
 // its owned objects, hands its collision object back to the manager, destroys its members in reverse order and
 // runs the component base's destructor. Names and layouts are placeholders.
-// build-flags: no-strict-aliasing
 #include "base/UnkStrIdTable.h"
 #include "base/global/CRntString.h"
 #include "base/global/CRntVector.h"

@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CAutoolFollowPathAction unit: copy constructor of a growable array (base::global::CRntVector) of
 // 0x20-byte polymorphic path points (vtable g_unk_7101cac8f0, five words, destroyed through slot 1).
 // Names and layouts are placeholders.

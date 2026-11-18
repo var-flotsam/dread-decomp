@@ -52,10 +52,8 @@ struct UnkContainer_7100778228 {
 
     __attribute__((always_inline)) ~UnkContainer_7100778228() {
         vtable = &unk_7101a20950[2];
-        if (ref) {
-            if (--ref->ref_count == 0)
-                ref->vf_0x10();
-        }
+        if (UnkRefCounted_7100778228* held = ref; held && --held->ref_count == 0)
+            held->vf_0x10();
         vtable = &unk_7101a20998[2];
         if (data) {
             for (u64 i = 0; i < count; ++i) {

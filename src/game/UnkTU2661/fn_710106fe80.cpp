@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 2661 (CCutscene::CTunableCutscene): the reflected Begin of an engine array of 0x30-byte holders.
 // Names and layouts are placeholders.
 #include "base/UnkCollectionIter.h"

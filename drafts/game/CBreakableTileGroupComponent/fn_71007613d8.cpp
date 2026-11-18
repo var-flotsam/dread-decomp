@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CBreakableTileGroupComponent unit (tools/tu_map.py unit 1167): Reserve of the array of 0x48-byte records
 // (base::global::CRntVector's layout): the records are moved to the new storage one by one and the old ones
 // destroyed (their entry arrays freed, their string ids released). Names and layouts are placeholders.

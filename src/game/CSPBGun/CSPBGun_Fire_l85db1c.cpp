@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CSPBGun's unit (tools/tu_map.py unit 1317): firing. Keeps the shot (+0x18a0); once the gun's slot 0x48
 // allows it and the shot is live, fires a projectile (fn_710085ddb4) at each entry of the spread (+0x18a8)
 // around the owner's position along the animation's bone direction, steps the spread's cooldown and row,

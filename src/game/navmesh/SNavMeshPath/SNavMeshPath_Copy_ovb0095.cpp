@@ -39,15 +39,14 @@ UnkNavMeshPathCopy_ovb0095* fn_71002ad420(UnkNavMeshPathCopy_ovb0095* self, cons
     return self;
 }
 
-// A refcounted pointer cleared after the release; the count goes through a plain int pointer.
+// A refcounted pointer cleared after the release.
 struct UnkRefPtr_ovb0095 {
     base::UnkRefCounted* ptr;
 
     ~UnkRefPtr_ovb0095() {
-        if (ptr) {
-            s32* count = &ptr->ref_count;
-            if (--*count == 0)
-                delete ptr;
+        if (base::UnkRefCounted* held = ptr) {
+            if (--held->ref_count == 0)
+                delete held;
             ptr = nullptr;
         }
     }

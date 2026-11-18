@@ -19,11 +19,11 @@ struct UnkMember275 {
 };
 
 struct UnkCountedRef275 {
-    char* counted;
+    UnkCountedResource* counted;
 
     __attribute__((always_inline)) ~UnkCountedRef275() {
-        if (counted && --*reinterpret_cast<s32*>(counted + 0x54) == 0)
-            fn_710001737c(reinterpret_cast<UnkCountedResource*>(counted));
+        if (UnkCountedResource* held = counted; held && --held->ref_count == 0)
+            fn_710001737c(held);
     }
 };
 

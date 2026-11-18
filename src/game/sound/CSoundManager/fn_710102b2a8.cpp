@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // sound::CSoundManager unit (tools/tu_map.py, unit 2646): moves an owning pointer into an array of them
 // at the given index, growing the array to reach it and freeing the object the place held.
 // Names and layouts are placeholders.

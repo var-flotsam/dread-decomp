@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // base::reflection unit (tools/tu_map.py unit 2609): the "move-assign at index" slot of the reflected
 // CRntVector<std::unique_ptr<CSubareaCharclassGroup>>: grows the array up to the index when it may, then
 // moves the owned entry in, destroying the one it replaces. Names and layouts are placeholders.

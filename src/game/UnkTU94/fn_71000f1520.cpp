@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 94 (base::serialization::CTypedRefWriter's unit): ends the innermost context of the writer's
 // stack, first writing its value into the enclosing object's field. Names and layouts are
 // placeholders.

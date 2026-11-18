@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CMultiModelUpdaterComponent's unit (tools/tu_map.py unit 1426): adds a model under a name unless the
 // model map (entries of 0x20 at +0x1e8, keys at +0x1f0) already has one: loads the model resource at the
 // path, builds the entry (fn_7100938ba0), creates the render model on layer 0 and appends the entry under

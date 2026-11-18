@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // Unit 2200 (hint CCutSceneDef): the copy constructor of the record of string ids, a path id, a vector,
 // plain values and four arrays (takes, shots, path ids, path entries) whose copy assignment is fn_7100c8c7b4.
 // Names and layouts are placeholders.

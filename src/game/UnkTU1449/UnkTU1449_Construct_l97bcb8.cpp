@@ -1,3 +1,4 @@
+// build-flags: strict-aliasing
 // Unit 1449 of tools/tu_map.py (no name hint): the constructor of an event source with a state record that
 // holds three states (ids 1 to 3), each with up to four callbacks, and a weak-link listener.
 // Names and layouts are placeholders.

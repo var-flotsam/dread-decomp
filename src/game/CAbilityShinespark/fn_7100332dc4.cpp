@@ -1,4 +1,3 @@
-// build-flags: no-strict-aliasing
 // CAbilityShinespark's unit (433): stores a reflected value under a string id in a section's
 // property arrays: an existing entry takes the value through its type's assignment; otherwise the
 // id and a copy of the value are appended. Names and layouts are placeholders.

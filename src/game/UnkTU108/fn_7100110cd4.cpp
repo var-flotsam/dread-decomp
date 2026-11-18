@@ -6,7 +6,6 @@
 
 using base::math::CVector3D;
 
-// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 u32 fn_7100110cd4(const CVector3D* a, const CVector3D* b, const CVector3D* planePoint,
                   const CVector3D* normal, CVector3D* out) {
     CVector3D dir = *b - *a;
@@ -18,9 +17,7 @@ u32 fn_7100110cd4(const CVector3D* a, const CVector3D* b, const CVector3D* plane
     f32 t = num / denom;
     if (!(t < 0.0f) && !(t > 1.0f)) {
         if (out) {
-            out->x = a->x + dir.x * t;
-            out->y = a->y + dir.y * t;
-            out->z = a->z + dir.z * t;
+            *out = *a + dir * t;
         }
         return 1;
     }
