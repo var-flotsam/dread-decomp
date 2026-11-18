@@ -42,7 +42,6 @@ extern UnkEnumType g_unk_71729f01d0;  // the press sound's event
 extern CStrId g_unk_717275dd18 __attribute__((visibility("hidden")));
 
 // The name of difficulty `index` (0 to 2).
-CRntString fn_7100df703c(u32 index);
 
 // The game manager's view with the current profile's difficulty name.
 struct UnkDifficultyProfile_lb033ac {

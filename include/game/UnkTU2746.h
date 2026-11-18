@@ -7,3 +7,4 @@
 
 struct UnkFadeColor_b0242;
 UnkFadeColor_b0242 fn_71011c1764(const UnkFadeColor_b0242* from, const UnkFadeColor_b0242* to, f32 t);
+void fn_71011c1728(void* color);

@@ -13,6 +13,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiSprite.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2746.h"
 #include "game/UnkTU2747.h"
 #include "types.h"
 
@@ -28,7 +29,6 @@ struct UnkColor_lb02ff8 {
 };
 
 // Fills `color` with white (four ones).
-void fn_71011c1728(void* color);
 
 // A display object's colour (+0xa0), as the label refresh below passes it back.
 struct UnkGuiColored_lb02ff8 {

@@ -7,14 +7,13 @@
 #include "game/CWeaponMovement.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 using base::math::CVector2D;
 using base::math::CVector3D;
 using base::reflection::UnkReflObject;
-
-UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkMatrix44& m);
 
 struct UnkMorphBallMovement_laae780;
 void fn_710094bfe8(UnkMorphBallMovement_laae780* movement, const CVector3D* pos, const CVector2D* scale);

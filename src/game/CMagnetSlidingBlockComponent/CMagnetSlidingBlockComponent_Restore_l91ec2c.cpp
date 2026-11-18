@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflStatics.h"
 #include "game/CBlackboard.h"
 #include "game/CMagnetSlidingBlockComponent.h"
+#include "game/CMagnetSlidingBlockRailComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkStateMachineFind.h"
@@ -23,14 +24,9 @@ extern template bool base::reflection::refl_RegistryMapInit<UnkRefl_fn_710091ef3
     base::reflection::UnkReflRegistryMap*, const base::global::CStrId&);
 
 struct UnkMagnetSlidingBlockRail_ovb0097;
-void fn_7100922f28(UnkMagnetSlidingBlockRail_ovb0097* self, f32 alpha);
 // The rail component of an object.
-UnkMagnetSlidingBlockRail_ovb0097* fn_710091f6bc(void* object);
 
 struct UnkMagnetSlidingBlock_b0086;
-void fn_7100920f40(UnkMagnetSlidingBlock_b0086* self, bool on);
-
-extern CStrId g_unk_71727375d8 __attribute__((visibility("hidden")));
 
 struct UnkMagnetState_l91ec2c {
     virtual void vf_0x0();

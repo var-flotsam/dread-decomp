@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkMorphBallMovement_01d8;
 struct UnkForcedMovementTarget_A5_b68;
 struct UnkHitInfo_b152;
 struct UnkMorphBallMovement_b49a4;
@@ -18,3 +19,4 @@ bool fn_71010d9638(UnkMove_b152* self, UnkHitInfo_b152* hit, u64* out);
 void fn_71010db848(UnkForcedMovementTarget_A5_b68* self, const base::global::CStrId* name, const void* params);
 void fn_71010d7874(void* p);
 f32 fn_71010d6858();
+void fn_71010d7b28(UnkMorphBallMovement_01d8* self, f32 dt);

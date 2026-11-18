@@ -9,6 +9,7 @@
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
 #include "game/CMagnetSlidingBlockComponent.h"
+#include "game/CMagnetSlidingBlockRailComponent.h"
 #include "game/CNavMeshItemComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
@@ -22,10 +23,7 @@
 using base::global::CStrId;
 
 struct UnkMagnetSlidingBlockRail_ovb0097;
-void fn_7100922e30(UnkMagnetSlidingBlockRail_ovb0097* self, bool on);
-void fn_7100922f28(UnkMagnetSlidingBlockRail_ovb0097* self, f32 alpha);
 // The rail component of an object.
-UnkMagnetSlidingBlockRail_ovb0097* fn_710091f6bc(void* object);
 
 extern CStrId g_unk_71727375e8 __attribute__((visibility("hidden")));  // "finished"
 

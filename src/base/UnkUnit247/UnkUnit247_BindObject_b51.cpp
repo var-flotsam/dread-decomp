@@ -7,7 +7,6 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMember>* self, u32 index);
 bool fn_7100199558(void* object, const u64* hash);
 void fn_710016ac04(void* list, void* object, base::UnkStrIdMember* name);
 void fn_710016aa9c(void* list, void* object);

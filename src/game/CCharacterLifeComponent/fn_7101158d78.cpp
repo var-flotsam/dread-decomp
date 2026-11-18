@@ -5,6 +5,7 @@
 // whether the life changed. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CCharacterLifeComponent.h"
+#include "game/CInputComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkXformNode.h"
@@ -12,7 +13,6 @@
 #include "types.h"
 
 struct UnkInputComponentState;
-void fn_7100871d7c(UnkInputComponentState* self);
 
 struct UnkLifeHashHolder_l158d78 {
     u8 pad_0x0[0x30];

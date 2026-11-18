@@ -816,6 +816,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100549ed8,1012,drafts/game/UnkTU811/fn_7100549ed8.cpp,control flow,5.5,226,lean-r2kh,null holder/target checks folded away (target deref on fallback path is UB); state-find loop tests count not b
 0x710054a798,708,drafts/game/UnkTU811/fn_710054a798.cpp,calls,86.0,24,lean-r2kh,shape result must outlive the shape (dtor before the hit test); stack order of shape vs centre; player/current
 0x710054b4b0,324,drafts/game/UnkTU811/fn_710054b4b0.cpp,registers or order,93.8,5,overnight,
+0x710054b93c,748,drafts/game/UnkTU811/fn_710054b93c.cpp,match,100.0,0,lean-sib3,matches; held: fn_7101156bd0 needs a header (also declared in CSamusModelUpdaterComponent_Tint_l93adc0.cpp)
 0x710054bcb8,612,drafts/game/UnkTU811/fn_710054bcb8.cpp,conditions,87.6,19,lean-r2kh,distance compare b.ls vs b.le; mul order; global load order; needs a 3rd null arg to fn_71001bab30 that its de
 0x710054bf1c,1512,drafts/game/UnkTU811/fn_710054bf1c.cpp,control flow,42.5,214,lean-sib3,block layout: the shared end (wait-factor check) is placed after the patrol case; not after the action chain;
 0x710054cff8,372,drafts/game/UnkTU811/fn_710054cff8.cpp,calls,47.3,46,lean-fam0a,state 4/3 branch layout: original shares one list walk and keeps &list in a register; ours duplicates or reord
@@ -856,6 +857,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100588474,684,drafts/game/CGoliathXAIComponent/fn_7100588474.cpp,build fails,,,lean-r2ki,only the motion-parts word's stack slot: original at x29-0x28 (8-aligned); ours x29-0x24; likely an 8-byte or
 0x710058a070,584,drafts/game/CGoliathXBurstProjectionBombMovement/fn_710058a070.cpp,registers or order,98.6,2,lean-r2kf,loop index/remaining-bytes increments swapped; needs count as size_t (src/game_5821e4/UnkStaticInit.h declares
 0x710058a4c0,312,drafts/game/CGoliathXBurstProjectionBombMovement/fn_710058a4c0.cpp,operations,83.3,13,lean-sib2,loop induction variable: original counts the byte offset from 0x520 off self (slot at [x27]; [x27;#0x400]); ou
+0x710058a6e4,792,drafts/game/CGoliathXBurstProjectionBombMovement/fn_710058a6e4.cpp,match,100.0,0,lean-sib3,matches; held: g_unk_71726e5cb0/5cb8 need the unit header; moving them there changed this file's code
 0x710058bc80,620,drafts/game/CGoliathXBurstProjectionBombMovement/fn_710058bc80.cpp,registers or order,85.8,22,lean-sib2,registers only: which of the +-0.001 bounds lands in which s register and the loop counter/pointer pair
 0x710058c040,1148,drafts/game/CGoliathXBurstProjectionBombMovement/fn_710058c040.cpp,control flow,44.6,151,lean-sib3,block layout: the motion-cast normal shares the pointer join with the contact path in the original; the box ca
 0x7100590414,136,drafts/game/CCharClassGoliathAIComponent/fn_7100590414.cpp,control flow,58.8,13,lean-sib2,original returns 4/5 via cinc with a separate return-4 block; ours merges the 4 returns
@@ -1183,6 +1185,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71007a7c40,1036,drafts/game/CCutsceneComponent/fn_71007a7c40.cpp,calls,0.4,121,lean-r2k,matches (100%) only with always_inline on CRntVector<bool>::GrowAt (#define UNK_VECTOR_GROW_AT_ATTR before the
 0x71007a89f0,960,drafts/game/CCutsceneComponent/fn_71007a89f0.cpp,calls,0.8,158,lean-r2k,CRntVector<u8>::GrowAt stays out of line; with always_inline on GrowAt it scores 41.7% (control flow: one extr
 0x71007a9a04,904,drafts/game/CCutsceneComponent/fn_71007a9a04.cpp,build fails,,,lean-r2k,matches (100%) only with always_inline on CRntVector<u8>::GrowAt (#define UNK_VECTOR_GROW_AT_ATTR before the i
+0x71007a9e60,880,drafts/game/CCutsceneComponent/fn_71007a9e60.cpp,match,100.0,0,lean-sib3,matches; held: fn_710119a110 needs a header (CSubAreaManager.cpp and two others declare it)
 0x71007ac91c,608,drafts/game/CCutsceneComponent/fn_71007ac91c.cpp,operations,46.7,79,lean-r2ke,else-path tail (load data + index*0x88) merges with the no-grow path; original keeps it separate; 0x88 shared
 0x71007b0e04,592,drafts/game/CDemolitionBlockComponent/fn_71007b0e04.cpp,operations,79.9,29,lean-oc1,new-element loop: induction base offset 0x1c vs 0x38 (stp of vtable+data not formed; one extra store)
 0x71007b1094,448,drafts/game/CDemolitionBlockComponent/fn_71007b1094.cpp,build fails,,,test40,register pressure in guarded mask statics: extra callee-saved reg and frame size; rest matches modulo shift
@@ -1648,6 +1651,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100afb024,660,drafts/game/GUI/CCopySlotButton/fn_7100afb024.cpp,operations,24.6,124,lean-sib2,slot entry index: original is a 64-bit (slot*4+1; default 1) form with csinc after bfi; draft frame and rest l
 0x7100afc774,2848,drafts/game/GUI/CCustomMarkersDialog/fn_7100afc774.cpp,build fails,,,lean-r6k,final draft is 711 of 712 insns: null-handle push path does not reload the marker-array count after the elemen
 0x7100afd74c,828,drafts/game/GUI/CCustomMarkersDialog/fn_7100afd74c.cpp,control flow,39.1,125,lean-r2kf,original tests the copied id against empty a second time after the ref increment (not threaded); fn_7100b3d16c
+0x7100b033ac,752,drafts/game/GUI/CDifficultyButton/fn_7100b033ac.cpp,match,100.0,0,lean-sib3,matches; held: g_unk_71729f01d0 (SGUISoundEventsSelector enum types) needs one header declaration
 0x7100b06c00,636,drafts/game/GUI/CDisplayObjectDef/fn_7100b06c00.cpp,build fails,,,lean-r2kg,x8/x9 swapped where the null cursor is set to items.data (3 insns)
 0x7100b174b0,316,drafts/game/GUI/IDisplayObjectTrack/fn_7100b174b0.cpp,conditions,62.0,30,lean-b4,load order in linear case; signed prev compare; cubic term order
 0x7100b17dac,84,drafts/game/GUI/IDisplayObjectTrack/fn_7100b17dac.cpp,operations,19.0,14,lean-b4,index masked lsl/lsr and data reload in loop not reproduced
@@ -1668,6 +1672,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100b2aa4c,704,drafts/game/GUI/CGlobalMapComposition/fn_7100b2aa4c.cpp,build fails,,,lean-r2kf,shape matches (two CStrId assigns; 9-way scenario chain; label assign; state 2) but each label load comes out
 0x7100b30928,984,drafts/game/GUI/CIngameMenu/fn_7100b30928.cpp,calls,85.5,34,lean-r2kf,tail merging of the final inventory checks: one extra Has call; branch polarity after the wave checks
 0x7100b34488,632,drafts/game/GUI/CMainMenu/fn_7100b34488.cpp,operations,66.5,53,lean-r2kg,store scheduling; field_0x2f8 misaligned to 0x2f4 in draft (needs 8-byte alignment); 2 attempts lost to a trym
+0x7100b35b60,728,drafts/game/GUI/CMainMenu/fn_7100b35b60.cpp,match,100.0,0,lean-sib3,matches; held: g_unk_71729f01b0 (SGUISoundEventsSelector enum types) needs one header declaration
 0x7100b37c90,2432,drafts/game/UnkTU1689/fn_7100b37c90.cpp,build fails,,,lean-r6k,same instruction count; store scheduling in the callback entries (0x9c8-0xba8) and named-part bases (flag vs v
 0x7100b3cb50,1008,drafts/game/UnkTU1689/fn_7100b3cb50.cpp,control flow,1.6,244,lean-r2ki,frame 0x10 smaller (original spills &markers); ours hoists &self->markers into a register for the clear loop;
 0x7100b3dbe0,1088,drafts/game/UnkTU1689/fn_7100b3dbe0.cpp,operations,2.6,254,lean-r2ki,ours uses an extra callee-saved x23 and a different stack layout for the projected point; 11 fewer instruction

@@ -3,11 +3,11 @@
 // placeholders.
 #include "base/global/CFilePathStrId.h"
 #include "game/UnkGuiDisplayObject.h"
+#include "game/UnkTU2746.h"
 
 using base::global::CFilePathStrId;
 
 extern char g_unk_7101cb6ac8[];  // CSpriteGrid's vtable
-void fn_71011c1728(void* color);  // a white colour (four ones)
 
 struct UnkGuiSpriteGrid {
     char* vtable;

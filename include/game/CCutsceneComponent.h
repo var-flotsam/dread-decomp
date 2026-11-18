@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkTriggerListElement;
 struct UnkElem_0x88;
 struct UnkCutsceneEntry_A5_b68;
 void fn_71007a8280(void* object);
@@ -16,3 +17,4 @@ extern base::reflection::CType g_unk_7172719170;
 UnkElem_0x88& fn_71007a6b58(base::global::CRntVector<UnkElem_0x88>* v, u32 index);
 void fn_71007a8db0(UnkElem_0x88* elem);
 const base::reflection::CType* fn_71007adf30();
+UnkTriggerListElement** fn_71007a804c(void* list, u32 index);

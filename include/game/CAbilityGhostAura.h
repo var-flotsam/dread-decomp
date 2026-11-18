@@ -6,6 +6,7 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkAccessTarget_la70e48;
 struct CGrappleBeamGun;
 struct UnkAuraGunOwner;
 struct UnkWeakHandle;
@@ -28,3 +29,4 @@ extern f32 g_unk_7101a22a70;
 extern f32 g_unk_7101a22a74;
 extern f32 g_unk_7101a22a78;
 extern f32 g_unk_7101a22a7c;
+void fn_710031433c(UnkAccessTarget_la70e48* target, void* params);

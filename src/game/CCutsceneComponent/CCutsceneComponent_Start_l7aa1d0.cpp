@@ -8,6 +8,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCutsceneComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2523.h"
@@ -24,7 +25,6 @@ struct UnkCutsceneComponent_ovb0077;
 void fn_71007a9048(UnkCutsceneComponent_ovb0077* self);
 void fn_71007a941c(UnkCutsceneComponent_ovb0077* self);
 struct UnkTriggerListElement;
-UnkTriggerListElement** fn_71007a804c(void* list, u32 index);
 
 // A sub-area as the sub-area manager lists them (0x188 bytes, its name first).
 struct UnkSubareaEntry_l7aa1d0 {

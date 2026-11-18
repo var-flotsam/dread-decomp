@@ -15,7 +15,6 @@ using base::global::CStrId;
 
 struct UnkManager;
 
-base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMember>* self, u32 index);
 
 // A bit mask passed by value (as src/game/CAnimatedCameraCtrl/CAnimatedCameraCtrl_Lifecycle_ovb0101.cpp).
 struct UnkCamMask_b0101 {

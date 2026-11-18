@@ -3,6 +3,7 @@
 // movement (+0x208) an access transition, then either finishes the linked cutscene's use or starts the use
 // through fn_7100aa0b04 (a fade on failure), requests state 6 and tells the unit's listeners.
 // Names and layouts are placeholders.
+#include "game/UnkUsableKeys.h"
 #include "../UnkSmRequest_A5_b73.h"
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkCloneHelpers.h"
@@ -10,6 +11,7 @@
 #include "game/CAbilityGhostAura.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CCutsceneComponent.h"
+#include "game/CSamusInteractMovementState/CParams.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
@@ -19,11 +21,8 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101a874c0[];
-extern const u8 g_unk_710164b668[] __attribute__((visibility("hidden")));
 
 struct UnkAccessTarget_la70e48;
-void fn_710031433c(UnkAccessTarget_la70e48* target, void* params);
 
 struct UnkCutsceneComponent_b53;
 bool fn_71007a6d6c(UnkCutsceneComponent_b53* self);

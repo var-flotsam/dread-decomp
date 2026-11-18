@@ -4,6 +4,9 @@
 // and empties the owner's node list at +0x320. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/global/CStrId.h"
+#include "game/CInputComponent.h"
+#include "game/CInventoryComponent.h"
+#include "game/CLifeComponent.h"
 #include "game/CPlayerLifeComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
@@ -17,10 +20,7 @@ struct UnkInputComponentState;
 struct UnkAim_7100343ca8;
 struct UnkLifeComponentFull_ovb0000;
 struct UnkPlayerLife_ovb0049;
-f32 fn_7101142988(UnkInventory* inventory, const UnkQualifiedId& item, f32 fallback);
-void fn_7100871d7c(UnkInputComponentState* self);
 void fn_7100343ca8(UnkAim_7100343ca8* self, bool request);
-void fn_710115fd10(UnkLifeComponentFull_ovb0000* self);
 void fn_71011697a0(UnkPlayerLife_ovb0049* self, f32 shards);
 
 struct UnkLifeHashHolder_l169448 {

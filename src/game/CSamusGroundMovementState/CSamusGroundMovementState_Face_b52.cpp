@@ -7,6 +7,7 @@
 #include "base/UnkMatrix44.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkActor.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -31,8 +32,6 @@ struct UnkGroundPlayer_b52 {
     u8 unk_0x160[0x2d08 - 0x160];
     UnkGroundPlayerState_b52* state;  // 0x2d08
 };
-
-bool fn_71009e1fd4(UnkGroundPlayer_b52* player);
 
 typedef void (*UnkGroundSetAngles_b52)(UnkActor*, const UnkVec3f*, bool);
 

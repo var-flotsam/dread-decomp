@@ -14,6 +14,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU2577.h"
+#include "game/UnkTU2611.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTUProperty.h"
 #include "game/UnkTypedValue.h"
@@ -23,7 +24,6 @@ using base::global::CStrId;
 
 struct UnkGeneratorRecord_ovb0120;
 UnkGeneratorRecord_ovb0120* fn_7100a7cd10(base::global::CRntVector<UnkGeneratorRecord_ovb0120>* self, u32 index);
-base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMember>* self, u32 index);
 
 struct UnkScenarioKey_ovb0032;
 struct UnkScenarioLayer_ovb0032;
@@ -31,7 +31,6 @@ void* fn_71011a3234(UnkScenarioLayer_ovb0032* layers, u32 index, UnkScenarioKey_
 
 struct UnkSubArea;
 // The record's id for the scenario's layer of the given kind (as src/game/CSubAreaManager.cpp declares it).
-const CStrId* fn_7100fac818(UnkSubArea*, u32);
 
 struct UnkSwitchable_la7d13c {
     void** vtable;

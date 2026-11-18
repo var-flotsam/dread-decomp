@@ -40,8 +40,6 @@ struct UnkSwarmRecord_b65a4 {
     bool active;
 };
 
-extern bool g_unk_71726fc5b0;
-extern f32 g_unk_7101a5aef8;
 extern u32 g_unk_7101a5aef0;
 extern char g_unk_710164a418[];
 

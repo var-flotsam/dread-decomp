@@ -4,6 +4,7 @@
 // 0x2b0. Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "game/CAbilityGhostAura.h"
+#include "game/CSamusInteractMovementState/CParams.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1730.h"
 #include "game/UnkTU2523.h"
@@ -11,13 +12,10 @@
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
-extern void* g_unk_7101a874c0[];
-
 struct UnkUsable_b0101;
 void fn_7100aa01a4(UnkUsable_b0101* self);
 
 struct UnkAccessTarget_la70e48;
-void fn_710031433c(UnkAccessTarget_la70e48* target, void* params);
 
 struct __attribute__((packed, aligned(4))) UnkTrackBlend {
     u64 kind;

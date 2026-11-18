@@ -247,7 +247,6 @@ void fn_7100aa1fbc(UnkUsablePrepare_A6_b62* self, UnkUsableArg_A6_b62* arg) {
 
 // CUsableComponent's unit (machine at +0x100): hands two of its virtual getters' values and a constant
 // to fn_7100aa0b04, then requests a state.
-extern const u8 g_unk_710164b668[] __attribute__((visibility("hidden")));
 
 struct UnkUsableVirt_A6_b62 {
     void* const* vtable;

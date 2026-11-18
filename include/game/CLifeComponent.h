@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkLifeComponentFull_ovb0000;
 struct UnkLifeChange_ovb0000;
 struct UnkCharacterLife_b0050;
 struct UnkCommanderLife_A5_b63;
@@ -24,3 +25,4 @@ void fn_710116179c(void* signal, UnkLifeChange_ovb0000* change);
 struct UnkLifeValues_b49;
 bool fn_7101160214(UnkLifeValues_b49* self, f32 fraction);
 bool fn_71011603a4(UnkLifeValues_b49* self, f32 fraction);
+void fn_710115fd10(UnkLifeComponentFull_ovb0000* self);

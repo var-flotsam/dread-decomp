@@ -6,6 +6,7 @@
 
 #include "base/global/CStrId.h"
 #include "game/CAnimationComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkMotionRule.h"
 #include "game/UnkTU1141.h"
 #include "game/UnkTU1728.h"
@@ -63,7 +64,6 @@ static_assert(__builtin_offsetof(UnkBigFistAI_l3e5a70, reach) == 0x1499c, "layou
 
 // As the other users of the base's step declare it (src/game/CQuetzoaAIComponent/).
 struct UnkQuetzoaAI_l64a058;
-void fn_71003ac9ec(UnkQuetzoaAI_l64a058* self);
 
 // The derived Goliath component calls this as its base (CGoliathAIComponent_Reach_l590cc0.cpp).
 struct UnkGoliathAI_l590cc0;

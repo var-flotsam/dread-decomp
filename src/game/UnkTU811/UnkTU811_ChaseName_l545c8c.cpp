@@ -17,12 +17,12 @@
 #include "game/UnkTypedValue.h"
 #include "game/behaviortree/CBehavior.h"
 #include "game/behaviortree/CEmmyChaseAction.h"
+#include "game/behaviortree/CEmmySearchingAction.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern UnkPropertyName g_unk_71726df1a8;
 // CEmmyAIComponent's class, which its getter (fn_710053b934, in this unit) builds and returns.
 extern base::reflection::CClass g_unk_71726e2950 __attribute__((visibility("hidden")));
 

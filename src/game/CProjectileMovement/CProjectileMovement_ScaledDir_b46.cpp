@@ -2,9 +2,8 @@
 // virtual speed (vtable slot 0x2f8) times a factor, stores the velocity and, when the linked
 // object's flag is set, records the speed and the absolute direction components there. The
 // layouts are placeholders.
+#include "game/CWeaponMovement.h"
 #include "types.h"
-
-char* fn_7100ac77c0();
 
 struct UnkProjectileLink_b46a3 {
     u8 pad_0x0[0x130];

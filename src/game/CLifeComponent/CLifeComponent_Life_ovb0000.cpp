@@ -29,7 +29,6 @@ struct UnkLifeQueued_ovb0000 {
 };
 
 struct UnkLifeComponentFull_ovb0000;
-void fn_710115fd10(UnkLifeComponentFull_ovb0000* self);
 
 struct UnkLifeComponentFull_ovb0000 {
     void** vtable;

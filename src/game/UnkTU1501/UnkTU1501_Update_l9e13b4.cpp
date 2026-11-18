@@ -5,6 +5,7 @@
 #include "game/CActorComponent.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU1501.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2689.h"
 #include "game/UnkXformNode.h"
@@ -105,8 +106,6 @@ static_assert(__builtin_offsetof(UnkSamusMovement_l9e13b4, field_0x51d0) == 0x51
 static_assert(__builtin_offsetof(UnkSamusMovement_l9e13b4, field_0x5368) == 0x5368, "layout");
 static_assert(__builtin_offsetof(UnkSamusMovement_l9e13b4, target_source) == 0x5458, "layout");
 
-void fn_71010d7b28(UnkMorphBallMovement_01d8* self, f32 dt);
-bool fn_71009e1fd4(UnkGroundPlayer_b52* player);
 UnkVec3f fn_71010d252c(bool flag, const UnkContact_ovb0048* contact);
 void fn_71009e1714(UnkSamusMovement_l9e13b4* self, f32 dt);
 bool fn_71009e9bb8(UnkSamusMovement_l9e13b4* self);

@@ -2,7 +2,7 @@
 // start, takes four values from the target's CGoliathXAIComponent, hands back the old effect, shows the bomb or
 // tracker effect at the owner's position, records that position and, when tracking, picks the tracker damage id
 // before refreshing the request from it. Names and layouts are placeholders.
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
@@ -13,6 +13,8 @@
 #include "game/CAutclastChargeAttack.h"
 #include "game/CCharClassAttackComponent.h"
 #include "game/CFXComponent.h"
+#include "game/CGoliathXBurstProjectionBombMovement.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkModelManager.h"
 #include "game/UnkSwitchObject.h"
@@ -28,8 +30,6 @@ using base::math::CVector3D;
 using base::reflection::CClass;
 using namespace unk_static_init;
 
-char* fn_7100ac77c0();
-
 // As the unit's static initialiser declares them (fn_710058c890.cpp).
 struct UnkStatics_710058c890 {
     HeaderIds ids;
@@ -41,7 +41,6 @@ struct UnkStatics_710058c890 {
     u8 field_0x60[0x10];
     u8 field_0x70[8];
 };
-extern UnkStatics_710058c890 g_unk_71726e5cc0 __attribute__((visibility("hidden")));
 extern UnkFilePathStrIdBase g_unk_71726e5cb0;  // the bomb effect's path
 extern UnkFilePathStrIdBase g_unk_71726e5cb8;  // the tracker effect's path
 

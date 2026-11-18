@@ -3,6 +3,8 @@
 // adds its key and (from 4) darkens its rail, otherwise the machine goes to 5. Names and layouts are placeholders.
 #include "base/UnkRefHandle.h"
 #include "base/global/CStrId.h"
+#include "game/CMagnetSlidingBlockComponent.h"
+#include "game/CMagnetSlidingBlockRailComponent.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkStateMachineFind.h"
 #include "game/UnkTU39.h"
@@ -12,14 +14,9 @@
 using base::global::CStrId;
 
 struct UnkMagnetSlidingBlockRail_ovb0097;
-void fn_7100922e30(UnkMagnetSlidingBlockRail_ovb0097* self, bool on);
 // The rail component of an object.
-UnkMagnetSlidingBlockRail_ovb0097* fn_710091f6bc(void* object);
 
 struct UnkMagnetSlidingBlock_b0086;
-void fn_7100920f40(UnkMagnetSlidingBlock_b0086* self, bool on);
-
-extern CStrId g_unk_71727375d8 __attribute__((visibility("hidden")));
 
 struct UnkMagnetState_l91f3a8 {
     virtual void vf_0x0();

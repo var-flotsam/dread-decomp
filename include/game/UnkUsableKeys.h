@@ -5,3 +5,4 @@
 #include "types.h"
 extern const u8 g_unk_710164b540[] __attribute__((visibility("hidden")));
 extern const u64 g_unk_710164b5a8;
+extern const u8 g_unk_710164b668[] __attribute__((visibility("hidden")));

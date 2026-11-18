@@ -304,3 +304,6 @@ void refl_ListOwnerDeletingDtor(char* self) {
 }
 
 }  // namespace base
+
+// The element at `index` of a string-id vector, growing it with empty ids to reach it.
+base::UnkStrIdMember* fn_71000ce740(base::global::CRntVector<base::UnkStrIdMember>* self, u32 index);
