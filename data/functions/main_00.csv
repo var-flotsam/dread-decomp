@@ -100,7 +100,7 @@ address,size,name,name_source,subsystem,status
 0x7100004da4,12,fn_7100004da4,unknown,engine/reflection?,O
 0x7100004db0,288,fn_7100004db0,unknown,unknown,O
 0x7100004ed0,32,fn_7100004ed0,unknown,unknown,O
-0x7100004ef0,96,fn_7100004ef0,unknown,unknown,U
+0x7100004ef0,96,fn_7100004ef0,unknown,unknown,M
 0x7100004f50,96,fn_7100004f50,unknown,unknown,O
 0x7100004fb0,28,fn_7100004fb0,unknown,unknown,O
 0x7100004fcc,72,fn_7100004fcc,unknown,unknown,O

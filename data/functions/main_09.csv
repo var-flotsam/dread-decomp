@@ -1388,7 +1388,7 @@ address,size,name,name_source,subsystem,status
 0x71009359dc,116,fn_71009359dc,unknown,game?,O
 0x7100935a50,4,fn_7100935a50,unknown,game?,O
 0x7100935a54,68,fn_7100935a54,unknown,game?,O
-0x7100935a98,268,fn_7100935a98,unknown,game?,U
+0x7100935a98,268,fn_7100935a98,unknown,game?,M
 0x7100935ba4,32,fn_7100935ba4,unknown,game?,O
 0x7100935bc4,8,fn_7100935bc4,unknown,game?,O
 0x7100935bcc,32,fn_7100935bcc,unknown,game?,O

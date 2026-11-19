@@ -39,6 +39,7 @@ struct UnkGoToSideAction_l380f34 {
     bool found;  // +0x39
 };
 
+// NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 u32 fn_7100380f34(UnkGoToSideAction_l380f34* self) {
     UnkGoToSideNavigation_l380f34* navigation = self->actor->navigation;
     if (!navigation || !self->found)

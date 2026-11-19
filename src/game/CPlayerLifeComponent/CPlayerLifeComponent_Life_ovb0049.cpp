@@ -13,6 +13,7 @@
 #include "game/CInventoryComponent.h"
 #include "game/CLifeComponent.h"
 #include "game/CMovementComponent.h"
+#include "game/CPlayerLifeComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkItemProperties.h"
@@ -151,7 +152,6 @@ static_assert(__builtin_offsetof(UnkPlayerLife_ovb0049, owner) == 0x458, "layout
 static_assert(__builtin_offsetof(UnkPlayerLife_ovb0049, field_0x51a) == 0x51a, "layout");
 
 void fn_7101164f0c(UnkPlayerLife_ovb0049* self, f32 value);
-void fn_7101164cc0(UnkPlayerLife_ovb0049* self);
 void fn_7101165180(UnkPlayerLife_ovb0049* self);
 void fn_7101158cb8(UnkPlayerLife_ovb0049* self, f32 dt);
 struct UnkEnemyLifeDtor_ovb0043;

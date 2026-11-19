@@ -1,4 +1,5 @@
 address,digest,verdict,rules,detail
+0x7100004ef0,899017e2d2a724b59fdc89210618d604,behaves,2,similarity 12.0%; operations; 1 inputs found for its mutants;
 0x7100015b6c,ae161fc22862a55649fa8066b62f77da,pass,2,
 0x7100017ce8,68cbb625b718552ac1235f662d6148fb,pass,2,both runs were cut off
 0x710002d3e0,ccf33efee148de0fd9c99dd3b31d2492,pass,2,
@@ -44,6 +45,7 @@ address,digest,verdict,rules,detail
 0x710012be70,5c840cc7d1ba8c8435f52e30ed97d945,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
 0x71001306b0,d4e9486290229b9359b78d4a46161ea8,inconclusive,2,only 69% of the original's instructions ran
 0x710014d9e8,b1192fcce325333e0a0534876ca81fc5,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
+0x71001515ec,5ae2520bef75ed699f6d8b98e4496632,behaves,2,similarity 31.6%; control; 1 inputs found for its mutants;
 0x71001541a0,76f5bf0cfb4d21d09686651a9cbfbb97,pass,2,
 0x710015a0e0,6ae3ae9e4faa5b4c53ba0a7894ea5ad2,pass,2,
 0x710015a260,d712039186763f26016350734c77f53a,pass,2,
@@ -67,12 +69,14 @@ address,digest,verdict,rules,detail
 0x71001c12a8,862341af471a5bbd7069d8c7b442ff17,behaves,2,similarity 25.6%; operations;
 0x71001c3cdc,5fe5141a011f51669f4c28f1e8a74982,pass,2,
 0x71001cb51c,d1b3639563b605fe23126216e102261a,behaves,2,similarity 44.4%; operations;
+0x71001d2e0c,61c40e6e160e3a6ef9413c93c25ec47e,behaves,2,similarity 31.6%; operations; 2 inputs found for its mutants;
 0x71001d48cc,42b00f280f0ec80b3896b3687ddc7320,behaves,2,similarity 17.9%; operations;
 0x71001d6c58,5e376fc54992238c5c6485e7a1e30ded,inconclusive,2,only 90% of the original's instructions ran
 0x71001def5c,678020462d6b9dffa6d30d8bc85a927a,inconclusive,2,only 31% of the original's instructions ran
 0x71001e14a4,518363e012a6a4b3771dfc2a76fa93ed,pass,2,
 0x710020db44,3cd76176c26008b827f57c0bdb41166b,behaves,2,similarity 18.9%; operations; both runs faulted; on different accesses
 0x7100216568,9d5819b29aaa14cdffe97a1dee3d0213,pass,2,both runs faulted; on different accesses
+0x71002165e8,c789a896224bc9a1afff2811dd3a0325,behaves,2,similarity 17.0%; operations; 1 inputs found for its mutants;
 0x7100216698,ba9319342c60e06c89ec25a9c1c55b74,pass,2,
 0x710021688c,cbd0ad11d3e1511ce8aab8f793590b5b,pass,2,
 0x71002169e0,42c72ab4b3522e67433a8a3b97146126,pass,2,
@@ -106,7 +110,9 @@ address,digest,verdict,rules,detail
 0x7100338170,8d2681d6c6ff03e9ef54f37c58d2421a,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x710034dc8c,47ce22489714c2de10dba36e0a82b43b,behaves,2,similarity 35.3%; operations;
 0x710035e5f8,0d1075fb899d2700b488f50220298028,inconclusive,2,only 41% of the original's instructions ran
+0x71003667b0,357edb8de9620fe5064edd7e401b3338,behaves,2,similarity 29.5%; operations; 2 inputs found for its mutants;
 0x7100378d84,ad4a05a81803b67a0e1f9da9389e4a4e,pass,2,
+0x7100380f34,49cc38a4bc9141edf3b44ef8ea6c5ec4,behaves,2,similarity 18.8%; control; 1 inputs found for its mutants;
 0x7100382730,a17aa12ebc7ec25fce42b7f566a0ded2,inconclusive,2,3 of 10 conditional branches went only one way
 0x710038f50c,51bf9d19f9243ace2889c3bfa9668e64,pass,2,
 0x71003a4774,b884c1d3334e19112c3af35ccb11687b,pass,2,
@@ -119,6 +125,7 @@ address,digest,verdict,rules,detail
 0x710046971c,07542db2c7b72e8f625a0c24feec16f7,pass,2,
 0x710046a510,704f6674a96778358708f92178ac43fa,pass,2,
 0x710046bba0,bc4c13153001697e1d4a51da18f6e6d4,pass,2,
+0x7100474760,ccbf9e4f3bd0a70d6f8a6b1c6db4c292,behaves,2,similarity 39.8%; control; 2 inputs found for its mutants;
 0x71004869b4,eb443d461645c55ac586c3a346006c25,behaves,2,similarity 21.3%; operations;
 0x71004a51a8,ac1fe95462724d7af005905282f02a6e,pass,2,
 0x71004d24d0,c7e2020a2227d0ff1a3bf14620204bd8,pass,2,
@@ -139,7 +146,9 @@ address,digest,verdict,rules,detail
 0x7100590414,2bd47ef4855478e0ac246e5679923512,behaves,2,similarity 58.8%; operations;
 0x710059bce8,070f37a4c1cf581a4a474ba89ed08157,behaves,2,similarity 96.9%; operations;
 0x71005c4494,1061bc0a6a6eb14c86522733a2794962,pass,2,
+0x71006089ec,86d784b5ed3d66efa89e3cc2d9e4bf96,behaves,2,similarity 13.2%; conditions; 1 inputs found for its mutants;
 0x7100608ee8,deb336849508bdddb035177e7e9edd73,behaves,2,similarity 0.0%; operations;
+0x71006299e4,45f37fb800eb90b939714c232b2f6a78,behaves,2,similarity 60.5%; control; 1 inputs found for its mutants;
 0x7100643f30,308ae696639a3ebe19179d8d1db69583,pass,2,
 0x710064e694,f2addca3a6ab1bc80eba0dadf4fe9523,behaves,2,similarity 15.1%; control;
 0x71006773e4,e17b9e1d2fb64085643e919aa0bcdbfd,behaves,2,similarity 92.1%; operations;
@@ -169,6 +178,7 @@ address,digest,verdict,rules,detail
 0x71008717d4,2b72328baa7b090700d8699f99b93b56,behaves,2,similarity 1.1%; control;
 0x710087f018,4cdde458ffff53b070002450edaff6d6,pass,2,
 0x710089f764,f50125fe8b6ccf8a8ca9f94af5317281,pass,2,
+0x7100935a98,b82c87e385035ec5e4d554835702ce41,behaves,2,similarity 5.9%; operations; 1 inputs found for its mutants; both runs faulted; on different accesses
 0x7100949b7c,41e409329e39a1011769496eae39cbdb,pass,2,
 0x7100976c94,8e72f162ff6f166d57cb15c32aede87a,pass,2,
 0x7100979a60,82648695177038aa616938d2c0d9ad88,pass,2,
@@ -182,6 +192,7 @@ address,digest,verdict,rules,detail
 0x7100a0fcc4,101b8c626f276c918cef4c171dc4d88c,behaves,2,similarity 28.1%; operations;
 0x7100a48994,26fcdf6c645af3524c7f4b6d7294ad6e,behaves,2,similarity 33.0%; operations;
 0x7100aa2948,821c7a629a4fae3987b403881160302c,behaves,2,similarity 14.7%; operations;
+0x7100aa5800,ad6d163c8fee221f747268df3bdbfeb0,behaves,2,similarity 72.7%; control; 2 inputs found for its mutants;
 0x7100abbad8,924110452947410bd70ad81bfeca4287,behaves,2,similarity 80.5%; control;
 0x7100acae80,6b6daf5ebdd8b01476c1e8d543dc4ee4,behaves,2,similarity 39.3%; operations;
 0x7100af45b0,934078e612346f3dbb073e4fbf4b5105,pass,2,
@@ -198,6 +209,8 @@ address,digest,verdict,rules,detail
 0x7100b5462c,f84c8cb02def9c916c49aa89ff0c16c8,inconclusive,2,unresolved base::global::CRntString::CRntString(char const*)
 0x7100b64f14,43852bf104e9a9656495c366cfbef286,behaves,2,similarity 30.3%; operations;
 0x7100b8c61c,48f4c2549036f64da7728b76da17267a,pass,2,
+0x7100bdde54,173ec87562d8a3d0b631672ce3c79367,behaves,2,similarity 9.3%; operations; 1 inputs found for its mutants;
+0x7100d371a8,60909772d7198f0977f31f74ffae2e8c,behaves,2,similarity 0.0%; operations; 1 inputs found for its mutants;
 0x7100d4065c,22a79f7420bd9ba2d21d508e26d1236c,inconclusive,2,only 75% of the original's instructions ran
 0x7100d42e94,f02d5b9a651cba7d658611312d665467,pass,2,
 0x7100d431f0,f6913bb8d61dafc9d3430e8b54511906,behaves,2,similarity 52.8%; operations;
@@ -266,6 +279,7 @@ address,digest,verdict,rules,detail
 0x7101047ca8,c336650f5bd35e8ecec7207d4ddd9c22,behaves,2,similarity 16.0%; operations;
 0x7101053aa4,bcd1548c2d7ebe19c4ae3e73ba1e9be4,pass,2,
 0x7101053c14,0dc5b4cb1b4d84031a6b9a0b0f0589d5,pass,2,
+0x710105d3d0,bd2fa48521c3a0a1a5f8ddeb3377f205,behaves,2,similarity 71.9%; operations; 5 inputs found for its mutants;
 0x7101068d04,15cf0e01ec4209d2c68399b4a31ea11e,behaves,2,similarity 48.1%; operations;
 0x710106a818,8fe3f0c2321570c589331a24f24f0116,behaves,2,similarity 43.3%; operations;
 0x710106b2bc,112cf8d14fa662df9e091193279f87ae,pass,2,
@@ -290,6 +304,7 @@ address,digest,verdict,rules,detail
 0x710114fa60,ffc8a17f4959ef4b283a20c42c8670de,behaves,2,similarity 94.5%; operations;
 0x710115021c,799436b94292edc65c8bac837be823ef,behaves,2,similarity 86.7%; control;
 0x710115f7bc,d24da661fe73296b1a5711116a777856,behaves,2,similarity 3.0%; operations;
+0x7101165b50,88f9e8f67a4348789bbe3c990d0f0234,behaves,2,similarity 21.7%; operations; 1 inputs found for its mutants;
 0x71011785a8,1907803216920bcc6b39ec0ba5b191c0,pass,2,
 0x710117e5b0,015028da5a71252479c1fe1d0ac23362,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x710119aee8,df8f36b0bec5677bd87c97800ce79acc,behaves,2,similarity 1.1%; operations;
@@ -306,5 +321,7 @@ address,digest,verdict,rules,detail
 0x710122f380,9f109320c45a0da48defbd67e11c068c,pass,2,
 0x710122f3f0,4c2223414cf4dc354c185f99bd8ac9e2,pass,2,
 0x71012306e0,823b02d30b3c17b5d50619b32dc6bf0a,pass,2,
+0x7101230724,c7378a121c956bc53b21eaccfd18b2bf,behaves,2,similarity 22.2%; operations; 1 inputs found for its mutants;
+0x7101230780,50a17bdf279365a989ef6e3fc58d5ad7,behaves,2,similarity 22.2%; operations; 1 inputs found for its mutants;
 0x7101230a00,74ce25ae78de4fb1b744bd9fd1959a36,pass,2,
 0x7101230b58,fdb302884a335bc957210854a3827c23,behaves,2,similarity 59.4%; operations;

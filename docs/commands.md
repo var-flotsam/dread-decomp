@@ -431,6 +431,7 @@ python tools/equiv_test.py --version 2.1.0 FILE.cpp [...]   # the non-matching f
 python tools/equiv_test.py --version 2.1.0 --minor          # every file under src/ with NON_MATCHING(minor)
 python tools/equiv_test.py --version 2.1.0 --drafts         # the `registers or order` rows of drafts/INDEX.csv
 python tools/equiv_test.py --version 2.1.0 --all-drafts     # every row of drafts/INDEX.csv, any difference (--any-kind)
+python tools/equiv_test.py --version 2.1.0 --survivors OLD.json # what an earlier run left to a passing mutant
 ```
 
 ### `tools/ref_check.py`

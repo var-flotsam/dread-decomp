@@ -59,6 +59,7 @@ static const UnkCameraVec2_l935a98 s_default_0x2e0 = {280.0f, 3.0f};
 static const UnkCameraVec2_l935a98 s_default_0x2ec = {20.0f, 20.0f};
 static const UnkCameraVec2_l935a98 s_default_0x2f4 = {1.0f, 1.0f};
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_7100935a98(UnkMetroidCameraCtrl_l935a98* self) {
     self->field_0x2e0 = s_default_0x2e0;
     self->field_0x2e8 = 3.0f;

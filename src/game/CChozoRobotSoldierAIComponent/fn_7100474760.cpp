@@ -62,6 +62,7 @@ static inline f32 Sign_l474760(f32 v) {
     return (f32)((v > 0.0f) - (v < 0.0f));
 }
 
+// NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 bool fn_7100474760(UnkSoldierAI_l474760* self, CVector3D* out) {
     const UnkMatrix44& world = fn_710002614c(&self->actor->transform);
     f32 x = world.m[2];

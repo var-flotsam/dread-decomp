@@ -17,7 +17,6 @@
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-void fn_710110f97c(void* emmy, void* block);
 char* fn_7100545560(char* p0);
 
 struct UnkEmmy_laa5800 {
@@ -50,6 +49,7 @@ struct UnkWaterPlatform_laa5800 {
 };
 static_assert(__builtin_offsetof(UnkWaterPlatform_laa5800, area_min) == 0x608, "layout");
 
+// NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_7100aa5800(UnkWaterPlatform_laa5800* self) {
     fn_71010c4234(reinterpret_cast<char*>(self));
     if (self->field_0x5c5)

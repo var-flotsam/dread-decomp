@@ -34,6 +34,7 @@ static inline UnkActor* Actor(UnkObsydomithonOwner_l6299e4* owner) {
     return reinterpret_cast<UnkActor*>(owner);
 }
 
+// NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 const UnkStrIdBase* fn_71006299e4(UnkObsydomithonAttack_l6299e4* self) {
     if (!self->owner->anim || !fn_7100d7c990(Actor(self->owner)) || !self->owner->field_0x1f0)
         return &g_unk_7101d470e0;

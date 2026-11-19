@@ -2161,7 +2161,7 @@ address,size,name,name_source,subsystem,status
 0x710105d0d0,184,fn_710105d0d0,unknown,game?,O
 0x710105d188,416,fn_710105d188,unknown,game?,O
 0x710105d328,168,fn_710105d328,unknown,game?,O
-0x710105d3d0,256,fn_710105d3d0,unknown,game?,U
+0x710105d3d0,256,fn_710105d3d0,unknown,game?,M
 0x710105d4d0,256,fn_710105d4d0,unknown,game?,U
 0x710105d5d0,12,SLogicPath::refl_Equals,reflection,game,O
 0x710105d5dc,8,SLogicPath::refl_Hash,reflection,game,O

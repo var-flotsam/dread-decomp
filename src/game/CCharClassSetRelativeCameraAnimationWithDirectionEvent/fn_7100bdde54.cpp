@@ -36,6 +36,7 @@ static inline bool Looks(const CFilePathStrId& path, UnkVec3f forward, f32 dx, f
            forward.x * dx + forward.y * dy + forward.z * dz >= 0.9f;
 }
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 const CFilePathStrId* fn_7100bdde54(UnkSetRelativeCameraAnimationWithDirectionEvent_lbdde54* self,
                                     UnkDirectionEventTarget_lbdde54* target) {
     UnkMatrix44 matrix = target->actor->xform.GetMatrix();

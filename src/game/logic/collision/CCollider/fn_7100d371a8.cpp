@@ -35,6 +35,7 @@ struct UnkColliderA {
     UnkColliderChild* children[1];  // 0x168
 };
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_7100d371a8(UnkColliderA* self, u32 value) {
     self->flag = value & 1;
     UnkColliderChild** data = self->children;

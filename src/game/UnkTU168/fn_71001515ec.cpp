@@ -28,6 +28,7 @@ struct UnkSelector168 {
 
 void fn_7100151474(UnkSelector168* self, void* value);
 
+// NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_71001515ec(UnkSelector168* self, s32 index) {
     if (self->index == index)
         return;

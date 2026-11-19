@@ -11,12 +11,13 @@ struct UnkAtkRefTable {
     u32 count;  // 0x0
     UnkAtkRef refs[1];  // 0x4
 };
-struct UnkAtkRefOwner {
+struct UnkAtkRefOwner_l230780 {
     u8 pad_0x0[0x14];
     s32 tableOffset;  // 0x14
 };
 
-void* fn_7101230780(UnkAtkRefOwner* self, u32 index) {
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
+void* fn_7101230780(UnkAtkRefOwner_l230780* self, u32 index) {
     UnkAtkRefTable* table = reinterpret_cast<UnkAtkRefTable*>(reinterpret_cast<u8*>(self) + self->tableOffset);
     if (index >= table->count)
         return nullptr;
