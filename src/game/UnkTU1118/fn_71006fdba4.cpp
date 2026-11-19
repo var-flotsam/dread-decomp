@@ -2,6 +2,7 @@
 // freshly constructed one over it. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/UnkTU1118.h"
+#include "game/UnkTU83.h"
 #include "game/UnkXformNode.h"
 #include "game/behaviortree/CFlyingFollowPathAction.h"
 #include "types.h"
@@ -9,8 +10,6 @@
 template <class T>
 struct UnkCopiedVector;
 struct UnkThreeWords;
-UnkCopiedVector<UnkThreeWords>* fn_71000cbcf0(UnkCopiedVector<UnkThreeWords>* self,
-                                              const UnkCopiedVector<UnkThreeWords>* other);
 
 struct UnkTU1118StateEntry {
     u8 flag;

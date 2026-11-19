@@ -8,6 +8,7 @@
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
 #include "base/UnkMatrix44.h"
+#include "game/UnkPolygonEdgeQuery.h"
 #include "game/logic/collision/CCollider.h"
 #include "types.h"
 
@@ -88,11 +89,6 @@ struct UnkPolygon2D {
 };
 static_assert(sizeof(UnkPolygon2D) == 0x48, "UnkPolygon2D layout");
 
-using UnkPointFilter = std::function<bool(const CVector2D&)>;
-using UnkEdgeVisitor = std::function<void(u32, const UnkSegment2D&)>;
-
-void fn_7100117ba0(const UnkPolygon2D* polygon, const CVector2D* point, s32* edge, f32* t, CVector2D* closest,
-                   f32* distance, bool flag, UnkPointFilter filter, UnkEdgeVisitor visit);
 void fn_7100864654(UnkCollisionContainer_l864654* self, u32 mask,
                    base::global::CRntVector<UnkCollisionShape_l864654*>* out, bool all);
 

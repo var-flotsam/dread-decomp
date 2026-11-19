@@ -6,6 +6,7 @@
 
 #include "base/global/CRntVector.h"
 #include "game/UnkTU108.h"
+#include "game/UnkTU83.h"
 #include "types.h"
 
 template <class T>
