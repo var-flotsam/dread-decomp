@@ -22,6 +22,13 @@ function passes only under all of these rules:
 
 Verdicts: `pass`, `fail` (a run differed: the detail names the input and what differed), `inconclusive`
 (coverage, a name with no known address, an instruction the emulator does not know, time) and `not registers`.
+
+`--any-kind` (owner, 2026-11-19) also runs a function whose difference is not registers only, under every other
+rule above, and calls a pass of one `behaves`, never `pass`: the calibration's warning stands (outside the
+registers class the test accepted an off-by-one), so `behaves` is tier 3 with a figure of its own, *functional*:
+correct on every input tried, with full coverage, and owing a match. A function under src/ with such a verdict
+is marked `// NON_MATCHING(functional): <reason>` (status M); tools/check.py fails one without a current
+`behaves` row, as it fails a stale `pass`.
 Calibration, 2026-11-11 (docs/JOURNAL.md): of 300 byte-matching functions none failed (59 passed, 241 could
 not be judged), and of 95 registers-only one-point mutants in 59 functions none that changes behaviour was
 accepted, which bounds the miss rate near 3%, not at zero. A pass is evidence, not a proof; a permuter is
@@ -47,6 +54,8 @@ Usage:
   python tools/equiv_test.py --version 2.1.0 FILE.cpp [...]   # the non-matching functions these files define
   python tools/equiv_test.py --version 2.1.0 --minor          # every file under src/ with NON_MATCHING(minor)
   python tools/equiv_test.py --version 2.1.0 --drafts         # the `registers or order` rows of drafts/INDEX.csv
+  python tools/equiv_test.py --version 2.1.0 --all-drafts     # every row of drafts/INDEX.csv, any difference (--any-kind)
+  ... --any-kind       # judge every non-matching function: a pass of one that is not registers-only is `behaves`
   ... --write          # record the verdicts of functions under src/ in data/equivalence.csv
   ... --json OUT       # every verdict with its detail
   ... --budget SECONDS # per function (default 60)
@@ -203,9 +212,10 @@ def write_table(rows: dict[int, dict], path: Path = TABLE) -> None:
             w.writerow({k: rows[a].get(k, "") for k in FIELDS})
 
 
-def current(row: dict | None, code_digest: str) -> bool:
-    """A table row counts when it is a pass, under today's rules, of exactly this code."""
-    return bool(row) and row["verdict"] == "pass" and row["digest"] == code_digest and row["rules"] == str(RULES)
+def current(row: dict | None, code_digest: str, verdict: str = "pass") -> bool:
+    """A table row counts when it is a pass (or, with verdict="behaves", a functional pass), under today's
+    rules, of exactly this code."""
+    return bool(row) and row["verdict"] == verdict and row["digest"] == code_digest and row["rules"] == str(RULES)
 
 
 def short(detail: str, limit: int = 110) -> str:
@@ -639,9 +649,10 @@ def sources(args) -> list[Path]:
         r = subprocess.run(["git", "grep", "-l", "NON_MATCHING(minor)", "--", "src"], cwd=ROOT, capture_output=True,
                            text=True)
         return [ROOT / p for p in r.stdout.split() if p.endswith(".cpp")]
-    if args.drafts:
+    if args.drafts or args.all_drafts:
         with (ROOT / "drafts" / "INDEX.csv").open(newline="", encoding="utf-8") as fh:
-            rows = [r for r in csv.DictReader(fh) if r["difference"] == "registers or order"]
+            rows = [r for r in csv.DictReader(fh)
+                    if r["difference"] == "registers or order" or args.all_drafts and r["difference"] != "match"]
         ONLY.update({(ROOT / r["file"]).resolve(): int(r["address"], 16) for r in rows})
         return [ROOT / r["file"] for r in rows]
     return [p.resolve() for p in args.files]
@@ -671,10 +682,15 @@ def main() -> int:
     ap.add_argument("files", nargs="*", type=Path)
     ap.add_argument("--minor", action="store_true", help="every file under src/ with NON_MATCHING(minor)")
     ap.add_argument("--drafts", action="store_true", help="the `registers or order` rows of drafts/INDEX.csv")
+    ap.add_argument("--all-drafts", action="store_true",
+                    help="every row of drafts/INDEX.csv whatever its difference (implies --any-kind)")
+    ap.add_argument("--any-kind", action="store_true",
+                    help="judge functions of any difference; a pass of one that is not registers-only is `behaves`")
     ap.add_argument("--write", action="store_true", help="record verdicts of functions under src/ in data/equivalence.csv")
     ap.add_argument("--json", type=Path, help="write every verdict with its detail")
     ap.add_argument("--budget", type=float, default=60.0, help="seconds per function (default 60)")
     args = ap.parse_args()
+    args.any_kind = args.any_kind or args.all_drafts
     files = sources(args)
     if not files:
         ap.error("no files: name some, or --minor, or --drafts")
@@ -704,11 +720,12 @@ def main() -> int:
             kind = asmdiff.classify(ctx.orig.function(res.address), codes[res.symbol]).split(" ")[0]
             row = {"file": rel, "address": f"{res.address:#x}", "size": res.orig_size,
                    "digest": digest(codes[res.symbol], relocs[res.symbol])}
-            if kind != "registers":
+            row["kind"] = kind
+            if kind != "registers" and not args.any_kind:
                 out.append({**row, "verdict": "not registers", "detail": f"the difference is {kind}: not judged"})
             else:
                 jobs.append((res.address, obj, text, row))
-    print(f"{len(files)} files, {len(jobs)} registers-only functions to judge, "
+    print(f"{len(files)} files, {len(jobs)} {'' if args.any_kind else 'registers-only '}functions to judge, "
           f"{len(out)} left out (another kind of difference, or no build)", flush=True)
     if jobs:
         t = time.time()
@@ -717,14 +734,18 @@ def main() -> int:
         oracle = port_lift.Oracle(ctx.orig, ctx.af, db, port_lift.INPUTS)
         for n, (a, obj, text, row) in enumerate(jobs, 1):
             v, d = judge(ctx, oracle, obj, a, text, args.budget)
+            if v == "pass" and row["kind"] != "registers":
+                v = "behaves"  # tier 3: correct on every input tried, not proven (see the docstring)
             out.append({**row, "verdict": v, "detail": d})
             if n % 25 == 0:
                 print(f"  {n} of {len(jobs)} ({time.time() - t:.0f} s)", flush=True)
     counts = collections.Counter(o["verdict"] for o in out)
-    for o in sorted(out, key=lambda o: (o["verdict"] != "pass", o["verdict"], o["file"])):
+    for o in sorted(out, key=lambda o: (o["verdict"] not in ("pass", "behaves"), o["verdict"], o["file"])):
         print(f"{o['verdict']:13} {o['address']:>12}  {o['file']}  {short(o['detail'], 90)}")
     passed = sum(o.get("size", 0) for o in out if o["verdict"] == "pass")
-    print(f"equiv_test: {counts['pass']} pass ({passed:,} bytes), {counts['fail']} fail, "
+    behaved = sum(o.get("size", 0) for o in out if o["verdict"] == "behaves")
+    print(f"equiv_test: {counts['pass']} pass ({passed:,} bytes), {counts['behaves']} behaves ({behaved:,} bytes), "
+          f"{counts['fail']} fail, "
           f"{counts['inconclusive']} cannot be judged, {counts['not registers']} not registers-only")
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)

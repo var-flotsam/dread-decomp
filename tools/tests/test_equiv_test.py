@@ -144,10 +144,11 @@ class Stale(unittest.TestCase):
         return {"address": "0x7100000100", "digest": equiv_test.digest(self.code), "verdict": "pass",
                 "rules": str(equiv_test.RULES), "detail": "", **kw}
 
-    def stale(self, table, statuses, code=None):
+    def stale(self, table, statuses, code=None, functional=frozenset()):
         where = {"0x7100000100": [(self.obj, "fn_7100000100")]}
         return self.check.stale_verdicts(table, statuses, where,
-                                         lambda obj, symbol: equiv_test.digest(code or self.code))
+                                         lambda obj, symbol: equiv_test.digest(code or self.code),
+                                         functional=functional)
 
     def test_a_pass_of_the_code_in_the_tree_is_current(self):
         self.assertEqual(self.stale({0x7100000100: self.row()}, {"0x7100000100": "m"}), [])
@@ -160,6 +161,20 @@ class Stale(unittest.TestCase):
         self.assertIn("no function of src/", self.stale(table, {})[0][1])
         old = {0x7100000100: self.row(rules=str(equiv_test.RULES - 1))}
         self.assertIn("judged under rules", self.stale(old, {"0x7100000100": "m"})[0][1])
+
+    def test_a_behaves_row_needs_a_functional_mark_and_current_code(self):
+        table = {0x7100000100: self.row(verdict="behaves")}
+        marked = {"0x7100000100"}
+        self.assertEqual(self.stale(table, {"0x7100000100": "M"}, functional=marked), [])
+        self.assertIn("not marked NON_MATCHING(functional)", self.stale(table, {"0x7100000100": "M"})[0][1])
+        self.assertIn("its status is m, not M", self.stale(table, {"0x7100000100": "m"}, functional=marked)[0][1])
+        self.assertIn("changed since", self.stale(table, {"0x7100000100": "M"}, words(0xD65F03C0), marked)[0][1])
+
+    def test_a_functional_mark_without_a_behaves_row_fails(self):
+        self.assertIn("without a `behaves` verdict",
+                      self.stale({}, {"0x7100000100": "M"}, functional={"0x7100000100"})[0][1])
+        table = {0x7100000100: self.row(verdict="fail")}
+        self.assertEqual(len(self.stale(table, {"0x7100000100": "M"}, functional={"0x7100000100"})), 1)
 
     def test_rows_that_are_not_a_pass_are_not_checked(self):
         table = {0x7100000100: self.row(verdict="inconclusive", digest="other")}
