@@ -37,7 +37,9 @@ mutant itself on targeted inputs (kill_candidates(): the constant the mutation c
 argument, word read and call result, the run's compares made equal, pairs set to one value), because the
 systematic inputs keep a run only for new coverage of the original and so throw away the boundary input that
 separates `<` from `<=`. An input that tells the mutant apart joins the function's inputs (EXTRA) and the
-function is judged on it again; only a mutant no input tells apart leaves the verdict `inconclusive`.
+function is judged on it again. A mutant no input tells apart is then set aside only when the compiler shows it
+to be the function itself (same_program(): the same code at another optimisation level, or the same optimised
+IR; trivial compiler equivalence); otherwise it leaves the verdict `inconclusive`.
 
 Calibration, 2026-11-11 (docs/JOURNAL.md): of 300 byte-matching functions none failed (59 passed, 241 could
 not be judged), and of 95 registers-only one-point mutants in 59 functions none that changes behaviour was
@@ -68,6 +70,7 @@ Usage:
   python tools/equiv_test.py --version 2.1.0 --survivors OLD.json # what an earlier run left to a passing mutant
   ... --shard K/N      # with --drafts, --all-drafts or --survivors, the K-th of N parts (run them in parallel)
   ... --no-kill        # no targeted search for a passing mutant (the mutation check as before 2026-11-19)
+  ... --no-tce         # no compiler equivalence for a mutant no input tells apart
   ... --any-kind       # judge every non-matching function: a pass of one that is not registers-only is `behaves`
   ... --write          # record the verdicts of functions under src/ in data/equivalence.csv
   ... --json OUT       # every verdict with its detail
@@ -290,9 +293,73 @@ def survivor(ctx: Context, oracle, src: Path, a: int, symbol: str, code: bytes, 
         runs, ret = LAST.get(a, ([], None))
         values = kill_values(ctx.orig.function(a), code, mine[0].code)
         found = kill(ctx, oracle, a, mobj, ret, runs, values, KILL_BUDGET) if KILL else None
-        if found is None:
-            return f"mutant {n} passes too ({short(diff, 60)}), also after a targeted search"
-        EXTRA.setdefault(a, []).append(found)
+        if found is not None:
+            EXTRA.setdefault(a, []).append(found)
+            continue
+        how = same_program(src, msrc, symbol) if TCE else None
+        if how:
+            # the compiler makes one program of both texts: the mutant is the function, not a breakage of it
+            EQUIVALENT.setdefault(a, []).append(f"mutant {n} ({short(diff, 40)}): {how}")
+            judged -= 1
+            continue
+        return f"mutant {n} passes too ({short(diff, 60)}), also after a targeted search"
+    return None
+
+
+# --- mutants the compiler shows to be the function itself (2026-11-19) --------------------------------
+# A mutant that no input tells apart is either a sign of weak inputs or an equivalent mutant: a change that
+# does not change what the function does (a bound the loop can never reach, a constant masked away). Only
+# the first says anything about the test. Trivial compiler equivalence (Papadakis et al., ICSE 2015) is the
+# sound part of telling them apart: the compiler only makes transformations that keep a program's meaning, so
+# when some configuration of it turns the function's text and the mutant's into the same code, the two texts
+# mean the same and the mutant is no breakage. Identical code under the project's own flags is already
+# skipped; same_program() tries the other optimisation levels and the optimised LLVM IR. It never decides
+# that two texts differ, only that they are the same, so a mutant it misses still counts against the draft.
+
+TCE = True               # (a test, or a comparison with the mutation check alone, turns it off)
+TCE_LEVELS = ("-O2", "-O1", "-Os", "-Oz")
+EQUIVALENT: dict[int, list] = {}   # address -> descriptions of the mutants same_program() set aside
+
+
+def ir_function(ll: str, symbol: str) -> str | None:
+    """The body of `define ... @symbol(...)` in an LLVM IR listing with what does not bear on meaning taken
+    out: metadata attachments (`!dbg !12`, `!tbaa !3`), attribute group references (`#4`) and comments.
+    None when the listing has no such definition."""
+    m = re.search(rf"^define [^\n]*@{re.escape(symbol)}\(.*?^\}}", ll, re.M | re.S)
+    if not m:
+        return None
+    body = re.sub(r", ![\w.]+ !\d+|![\w.]+ !\d+|#\d+|;[^\n]*", "", m.group(0))
+    return "\n".join(line.rstrip() for line in body.splitlines() if line.strip())
+
+
+def same_program(src: Path, msrc: Path, symbol: str) -> str | None:
+    """How the compiler shows the mutant in `msrc` to be the function of `src` itself (the same code for
+    `symbol` under another optimisation level, or the same optimised IR), or None."""
+    import asmdiff
+    import buildcfg
+    work = WORK / "mutants"
+    inc = ["-iquote", str(src.parent)]
+
+    def code(path: Path, extra: list[str]) -> bytes | None:
+        out = work / f"{path.stem}_tce{'_'.join(x.strip('-') for x in extra)}.o"
+        if subprocess.run(buildcfg.cxx_command(path, out, inc + extra), capture_output=True).returncode != 0:
+            return None
+        f = [f for f in asmdiff.read_object(out) if f.symbol == symbol]
+        return digest(f[0].code, f[0].relocs).encode() if f else None
+    for level in TCE_LEVELS:
+        a, b = code(src, [level]), code(msrc, [level])
+        if a is not None and a == b:
+            return f"the same code at {level}"
+
+    def ir(path: Path) -> str | None:
+        out = work / f"{path.stem}_tce.ll"
+        cmd = [x for x in buildcfg.cxx_command(path, out, inc + ["-S", "-emit-llvm"]) if x != "-c"]
+        if subprocess.run(cmd, capture_output=True).returncode != 0 or not out.is_file():
+            return None
+        return ir_function(out.read_text(encoding="utf-8", errors="replace"), symbol)
+    a, b = ir(src), ir(msrc)
+    if a is not None and a == b:
+        return "the same optimised IR"
     return None
 
 
@@ -988,6 +1055,8 @@ def main() -> int:
                     help="the functions these --json runs left inconclusive because a mutant passed too (--any-kind)")
     ap.add_argument("--no-kill", action="store_true",
                     help="no targeted search for a mutant that passes: the mutation check as before 2026-11-19")
+    ap.add_argument("--no-tce", action="store_true",
+                    help="no compiler equivalence for a mutant no input tells apart (as before the second 2026-11-19 change)")
     ap.add_argument("--shard", type=lambda t: tuple(int(x) for x in t.split("/")), metavar="K/N",
                     help="with --drafts or --all-drafts: only every N-th row from the K-th (parallel runs)")
     ap.add_argument("--write", action="store_true", help="record verdicts of functions under src/ in data/equivalence.csv")
@@ -997,6 +1066,8 @@ def main() -> int:
     args.any_kind = args.any_kind or args.all_drafts or bool(args.survivors)
     global KILL
     KILL = not args.no_kill
+    global TCE
+    TCE = not args.no_tce
     files = sources(args)
     if not files:
         ap.error("no files: name some, or --minor, or --drafts")
@@ -1055,9 +1126,10 @@ def main() -> int:
                 if v == "behaves" and weak:
                     v, d = "inconclusive", f"behaves, but {weak}: the inputs cannot tell such a change apart"
                 elif v == "behaves":  # how close it is says which functional functions a later pass should take first
-                    told = len(EXTRA.get(a, ()))
+                    told, same = len(EXTRA.get(a, ())), len(EQUIVALENT.get(a, ()))
                     d = f"similarity {row['similarity']}%; {row['kind']}; " \
-                        + (f"{told} inputs found for its mutants; " if told else "") + d
+                        + (f"{told} inputs found for its mutants; " if told else "") \
+                        + (f"{same} mutants the compiler shows equivalent ({EQUIVALENT[a][0]}); " if same else "") + d
             row = {k: x for k, x in row.items() if not k.startswith("_")}
             out.append({**row, "verdict": v, "detail": d})
             if n % 25 == 0:
