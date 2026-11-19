@@ -39,6 +39,7 @@ ADD_FUNCTION = 0x7100097550
 CSTRID_CTOR = 0x71000003D4
 CSTRID_RELEASE = 0x71000803A4  # inlined ~CStrId
 GLOBAL_CSTRID = 0x7101D470E0   # g_unk_7101d470e0
+EMPTY_RNT_STRING = 0x7101D58D10  # g_unk_7101d58d10, base::global::CRntString::Empty()
 # Field names declared with an accessor in base/reflection/UnkReflAttributes.h.
 NAMED_FIELD_NAMES = {0x7101D5A450: "base::reflection::KeyFieldName()",
                      0x7101D5A458: "base::reflection::ElementFieldName()"}
@@ -539,6 +540,8 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             type_name = "base::global::CRntString"
             expr = (f"base::global::CRntString(base::reflection::refl_RntStringOf("
                     f"base::reflection::refl_GetStrIdTable<{statics[base]:#x}>().ids[{disp // 8}]))")
+        elif t == CRNT_COPY and s == ("ptr", EMPTY_RNT_STRING):
+            type_name, expr = "base::global::CRntString", "base::global::CRntString(base::global::CRntString::Empty())"
         elif t == CRNT_COPY and s and s[0] == "ptr":
             decls.append(f"extern base::global::CRntString g_unk_{s[1]:x};")
             type_name, expr = "base::global::CRntString", f"base::global::CRntString(g_unk_{s[1]:x})"

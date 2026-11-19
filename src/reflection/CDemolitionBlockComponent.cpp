@@ -19,17 +19,20 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+class CEntity;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object asm("g_unk_71727b6630");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CDemolitionBlockComponent
-extern base::reflection::CType g_unk_71727b6630;
 namespace CDemolitionBlockComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vObjsToEnable", true), &g_unk_71727b6630, 0xe0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("vObjsToEnable", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0xe0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("vObjsToDisable", true), &g_unk_71727b6630, 0x108, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("vObjsToDisable", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x108, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

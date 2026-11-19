@@ -21,6 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"
+class CActor;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 template <class T> struct CGameLink;
 class CEntity;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
@@ -100,17 +104,16 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassShootActivatorComponent, CCharClassItemLifeComponent);
 
 // CShootActivatorComponent
-extern base::reflection::CType g_unk_717269bf08;
 namespace CShootActivatorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fInitialAccumulatedTime", 0x4b8, (DefaultValue, 0.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fActivationTime", 0x4b0, (DefaultValue, 2.0f), (MinValue, 0.0f), (MaxValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimePerShot", 0x4b4, (DefaultValue, 0.3f), (MinValue, 0.0f), (MaxValue, 100.0f));
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("vTargetsToActivate", true), &g_unk_717269bf08, 0x388, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("vTargetsToActivate", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x388, -1, -1);
     field3->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field3->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("vTargetsToDeactivate", true), &g_unk_717269bf08, 0x3b0, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("vTargetsToDeactivate", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x3b0, -1, -1);
     field4->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field4->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
     DREAD_REFLECTED_FIELD(CStrId, "sOnUseEntityTimeline", 0x4d8, (DefaultValue, CStrId(CStrId::Empty())));

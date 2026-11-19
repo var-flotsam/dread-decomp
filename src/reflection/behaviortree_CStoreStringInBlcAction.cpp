@@ -20,12 +20,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CStoreStringInBlcAction
-extern base::global::CRntString g_unk_7101d58d10;
 namespace behaviortree::CStoreStringInBlcAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sPropName", 0x30, (DefaultValue, ""), (Description, "Property name"));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sValue", 0x38, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Property value")));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sValue", 0x38, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Property value")));
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

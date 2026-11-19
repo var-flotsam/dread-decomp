@@ -442,6 +442,14 @@ class TypeObjectsByType(unittest.TestCase):
         self.assertEqual(out[-1], "void f() { use(&base::reflection::TypeObject<CGameLink<CActor>>::object, "
                                   "&base::reflection::TypeObject<CGameLink<CEntity>>::object); }")
 
+    def test_collection_declares_its_names(self):
+        t = "base::global::CRntVector<base::global::CStrId>"
+        text = "extern base::reflection::CType g_unk_7101d5c998;\nvoid f() { use(&g_unk_7101d5c998); }"
+        out = gr.type_objects_by_type(text, {"g_unk_7101d5c998": ("collection", t)}).split("\n")
+        self.assertIn("namespace base::global { class CStrId; }", out)
+        self.assertIn("namespace base::global { template <class> class CRntVector; }", out)
+        self.assertEqual(out[-1], f"void f() {{ use(&base::reflection::TypeObject<{t}>::object); }}")
+
     def test_layouts_off_leaves_them(self):
         text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
         self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)

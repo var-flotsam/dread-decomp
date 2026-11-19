@@ -23,6 +23,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+class CActor;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 template <class T> struct CGameLink;
 class CActor;
@@ -35,7 +39,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CSpawnPointComponent
-extern base::reflection::CType g_unk_717269bf08;
 void fn_71011255e4(UnkReflFunction* fn, const char* name);
 void fn_7101132780();
 void fn_71011327d8();
@@ -78,13 +81,13 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("CSpawnPointComponent::EXCellSpawnPositionMode", "eXCellSpawnPositionMode", 0x2c4, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(bool, "bUseDynamicSpawnPosition", 0x351, (DefaultValue, false));
     DREAD_REFLECTED_FIELD_OF("CSpawnPointComponent::EDynamicSpawnPositionMode", "eDynamicSpawnPositionMode", 0x354, (DefaultValue, 1));
-    UnkReflField* field22 = AddReflectedField(cls, CStrId("tDynamicSpawnPositions", true), &g_unk_717269bf08, 0x358, -1, -1);
+    UnkReflField* field22 = AddReflectedField(cls, CStrId("tDynamicSpawnPositions", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x358, -1, -1);
     field22->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field22->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
     DREAD_REFLECTED_FUNCTION("SetDynamicSpawnPositionOverride")
         fn_71011255e4(fn, "SetDynamicSpawnPositionOverride");
     DREAD_REFLECTED_FUNCTION_OF("ResetDynamicSpawnPositionOverride", &base::reflection::TypeObject<void>::object, 0, fn_7101132780);
-    UnkReflField* field23 = AddReflectedField(cls, CStrId("tXCellTransformTargets", true), &g_unk_717269bf08, 0x2c8, -1, -1);
+    UnkReflField* field23 = AddReflectedField(cls, CStrId("tXCellTransformTargets", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x2c8, -1, -1);
     field23->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field23->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);
     UnkReflField* field24 = AddReflectedField(cls, CStrId("wpXCellActivationAreaShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x2f0, -1, -1);

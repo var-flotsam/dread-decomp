@@ -19,9 +19,12 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::global { class CStrId; }
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object asm("g_unk_7101d5c998");
 
 // animtree::CAnimatedNodeDef
-extern base::reflection::CType g_unk_7101d5c998;
 namespace animtree::CAnimatedNodeDef {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Animated Node Definition");
@@ -31,9 +34,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fEventsWeightThreshold", 0x14, (DefaultValue, 0.0f), (Description, "Events Weight Threshold"));
     DREAD_REFLECTED_FIELD(bool, "bLaunchEvents", 0x68, (DefaultValue, true), (Description, "Can Launch Events"));
     DREAD_REFLECTED_FIELD(bool, "bAllowRootMotion", 0x69, (DefaultValue, true), (Description, "Allow Root Motion"));
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("vBones", true), &g_unk_7101d5c998, 0x18, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("vBones", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x18, -1, -1);
     field4->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone filters");
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &g_unk_7101d5c998, 0x40, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x40, -1, -1);
     field5->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone hierarchies filters");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

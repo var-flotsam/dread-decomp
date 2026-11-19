@@ -21,6 +21,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"
+namespace base::global { class CStrId; }
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object asm("g_unk_7101d5c998");
 namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
 
@@ -29,7 +32,6 @@ extern base::reflection::CType g_unk_71726a07a0;
 void fn_71011a4a54();
 void fn_71011a4a7c();
 void fn_71011a4aa4();
-extern base::reflection::CType g_unk_7101d5c998;
 namespace CScenario {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x310200u);
@@ -53,7 +55,7 @@ void refl_AddFields(CClass* cls) {
     field5->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Lights"));
     field5->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 1);
     field5->attrs.Add<s32>(base::reflection::attr::ePersistenceTargetExclude(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 0);
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("vLayerFiles", true), &g_unk_7101d5c998, 0x278, -1, -1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("vLayerFiles", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x278, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::ePersistenceTarget(), &base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object, 0);
 }
 bool refl_Equals(const void*, const void*) { return false; }

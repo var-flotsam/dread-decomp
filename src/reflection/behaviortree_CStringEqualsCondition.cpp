@@ -20,11 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CStringEqualsCondition
-extern base::global::CRntString g_unk_7101d58d10;
 namespace behaviortree::CStringEqualsCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sRawValue", 0x38, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Value")));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sRawValue", 0x38, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Value")));
     DREAD_REFLECTED_FIELD(CStrId, "sBlackboardValue", 0x68, (DefaultValue, ""), (Description, "Value (blackboard)"));
 }
 bool refl_Equals(const void*, const void*) { return false; }

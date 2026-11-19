@@ -27,6 +27,9 @@ namespace base::global {
 
 class CRntString {
 public:
+    // The global empty string (g_unk_7101d58d10, below): default strings are copied from it.
+    static CRntString& Empty();
+
     // Leaves owns_allocator unset (inlined in fn_710007eee0).
     CRntString() {
         borrowed = false;
@@ -100,3 +103,4 @@ void fn_710007ed40(base::global::CRntString* self);
 // A global empty string: what a string id with no data reads as (its text, +0x10 of the id's
 // data), and the default modifiers passed with a path.
 extern base::global::CRntString g_unk_7101d58d10;
+inline base::global::CRntString& base::global::CRntString::Empty() { return g_unk_7101d58d10; }

@@ -12,6 +12,9 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
+namespace base::math { class CVector3D; }
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::math::CVector3D>>::object asm("g_unk_7101d5c078");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace engine::utils { enum class ELightPreset : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<engine::utils::ELightPreset>::object asm("g_unk_716e5992a0");
@@ -57,7 +60,6 @@ void fn_71007a0da0();
 void fn_71007a0e04();
 void fn_71007ad114();
 void fn_71007ad584();
-extern base::reflection::CType g_unk_7101d5c078;
 void fn_71007ad6c0();
 void fn_71007ad7a0();
 const base::reflection::CType* fn_71002295ac();
@@ -345,7 +347,7 @@ void fn_71007a515c(UnkReflFunction* fn, const char* name) {
 
 void fn_71007a52d8(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71007ad6c0);
-    fn->params.PushBack(&g_unk_7101d5c078);
+    fn->params.PushBack(&base::reflection::TypeObject<base::global::CRntVector<base::math::CVector3D>>::object);
 }
 
 void fn_71007a544c(UnkReflFunction* fn, const char* name) {

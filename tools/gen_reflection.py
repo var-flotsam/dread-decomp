@@ -865,6 +865,21 @@ LINK_COLLECTION_RE = re.compile(r"^struct base::reflection::CollectionTypeDescri
                                 re.M | re.S)
 
 
+# A collection's type object (src/reflection_types/collection_types_*.cpp): CollectionTypeMapper<T>::TypeOf returns it.
+COLLECTION_TYPE_OBJECT_RE = re.compile(r"^template <> const base::reflection::CType& base::reflection::CollectionTypeMapper<(.+)>"
+                                       r"::TypeOf\(const void\*\) \{ return (g_unk_[0-9a-f]{10}); \}$", re.M)
+
+
+def collection_type_objects() -> dict[str, tuple[str, str]]:
+    """{g_unk_<addr>: ("collection", T)} of the collections whose type objects src/reflection_types/ names."""
+    out = {}
+    for f in sorted((ROOT / "src" / "reflection_types").glob("collection_types_*.cpp")):
+        for t, g in COLLECTION_TYPE_OBJECT_RE.findall(f.read_text(encoding="utf-8")):
+            if gen_types.parse_type(t):
+                out[g] = ("collection", t)
+    return out
+
+
 def link_type_objects() -> dict[str, tuple[str, str]]:
     """{g_unk_<addr>: ("link", "CGameLink<T>")} of the links whose type objects a vector of them names."""
     out = {}
@@ -898,7 +913,8 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
         scope, _, leaf = t.rpartition("::")
         declared = (gen_types.enum_declaration(t) if kind == "enum" else
                     gen_types.declare_in(scope, f"struct {leaf};") if kind == "flagset" else
-                    f"template <class T> struct CGameLink;{chr(10)}class {t[len('CGameLink<'):-1]};" if kind == "link" else "")
+                    f"template <class T> struct CGameLink;{chr(10)}class {t[len('CGameLink<'):-1]};" if kind == "link" else
+                    chr(10).join(gen_types.type_declarations(gen_types.parse_type(t))) if kind == "collection" else "")
         if others:
             layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};(?:\s*//.*)?")
             match = [layout.fullmatch(line) for line in others]
@@ -920,7 +936,7 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
             in_place = True
             continue
         if declared:
-            first.extend(declared.split(chr(10)) if kind == "link" else [declared])
+            first.extend(declared.split(chr(10)) if kind in ("link", "collection") else [declared])
         first.append(f'template <> base::reflection::CType base::reflection::TypeObject<{t}>::object asm("{g}");')
         lines = [line if decl.fullmatch(line) else re.sub(rf"\b{g}\b", f"base::reflection::TypeObject<{t}>::object", line)
                  for line in lines if not decl.fullmatch(line)]
@@ -1563,24 +1579,28 @@ def main() -> int:
             f.write_text(new, encoding="utf-8", newline=chr(10))
     # Type objects by type: each file that changes is compiled first, and keeps its addresses if it doesn't build
     # (a declaration of T that collides with one of the file's own).
-    objects = enum_type_objects()
+    # Collections' objects are tried first with the rest; a file their declarations don't build with keeps the rest.
+    named = enum_type_objects()
+    objects = {**collection_type_objects(), **named}
     work = ROOT / "build" / "reflection_type_objects"
     work.mkdir(parents=True, exist_ok=True)
 
-    def by_object_type(f: Path) -> bool:
-        old = f.read_text(encoding="utf-8")
-        new = type_objects_by_type(old, objects)
-        if new == old:
-            return False
+    def builds(f: Path, text: str) -> bool:
         trial = f.with_name(f"{f.stem}.type_objects.cpp")
-        trial.write_text(with_registry_include(new), encoding="utf-8", newline=chr(10))
+        trial.write_text(with_registry_include(text), encoding="utf-8", newline=chr(10))
         try:
-            ok = subprocess.run(buildcfg.cxx_command(trial, work / f"{f.stem}.o"), capture_output=True, text=True).returncode == 0
+            return subprocess.run(buildcfg.cxx_command(trial, work / f"{f.stem}.o"), capture_output=True, text=True).returncode == 0
         finally:
             trial.unlink()
-        if ok:
-            f.write_text(new, encoding="utf-8", newline=chr(10))
-        return ok
+
+    def by_object_type(f: Path) -> bool:
+        old = f.read_text(encoding="utf-8")
+        for objs in (objects, named):
+            new = type_objects_by_type(old, objs)
+            if new != old and builds(f, new):
+                f.write_text(new, encoding="utf-8", newline=chr(10))
+                return True
+        return False
     with ThreadPoolExecutor() as pool:
         objects_by_type = sum(pool.map(by_object_type, sorted(OUT.glob("*.cpp"))))
     # Reflected functions in one line, typed attribute keys by name: textual, so each file compiles as it did.
