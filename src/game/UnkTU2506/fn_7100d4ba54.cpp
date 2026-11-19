@@ -2,6 +2,7 @@
 // arrays of the container also used by the reserve function, growing it first when full, and returns
 // the new group. Names and layouts are placeholders.
 #include "base/UnkSList.h"
+#include "game/UnkTU2506.h"
 #include "types.h"
 
 struct UnkRefCountedU_ovb0244 {
@@ -30,9 +31,6 @@ struct UnkGroupSource_ld4ba54 {
     u32 count;
     u8 items[128][0x70];
 };
-
-void fn_7100d4b0f4(UnkGroupArray_ovb0244* self, u32 capacity);
-char* fn_7100d4b2fc(char* p0, char* p1);
 
 UnkSlotGroup_ovb0244* fn_7100d4ba54(UnkGroupArray_ovb0244* self, UnkRefCountedU_ovb0244** handle,
                                     UnkGroupSource_ld4ba54* source) {

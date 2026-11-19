@@ -2,10 +2,10 @@
 // entries by moving the last one into its place (and its index entry with it); returns the slot.
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/CSwarmControllerComponent.h"
 #include "types.h"
 
 extern char g_unk_7101a20a08[];
-extern char g_unk_7101a6dee0[];
 
 struct UnkSwarmEntry_l74a568 {
     char* vtable;  // 0x0

@@ -1,10 +1,10 @@
 // Unit 368: whether a navigation cell, and the cell across one of its sides, let something with the
 // given flags through; `reason` says which tile flag stopped it. Names and layouts are placeholders.
 #include "game/UnkNavMeshCell.h"
+#include "game/UnkTU372.h"
 #include "types.h"
 
 struct UnkQueryObj;
-UnkQueryObj* fn_71002b37d8(void* tile);
 bool fn_71002b1270(UnkQueryObj* obj, u32 mask);
 
 extern u32 g_unk_7101a21208;  // the flags fn_71002b1270 tests

@@ -35,3 +35,4 @@ f32 fn_7100fdc468(UnkTuneMgrView_b0019* manager, const u64* path);
 void fn_7100fd82dc(UnkMusicMgr_b0019* self, const base::global::CRntString* name, UnkMask kind, UnkMask mask,
                    f32 time);
 bool fn_7100fd6f74(void* music, const char* name, const u32* mask);
+void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);

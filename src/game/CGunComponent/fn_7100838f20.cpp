@@ -7,6 +7,7 @@
 #include "base/global/CStrId.h"
 #include "base/UnkNamedRegistry.h"
 #include "game/CAbilityEnergyWave.h"
+#include "game/CGunComponent.h"
 #include "game/CInputComponent.h"
 #include "game/UnkComponent.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -15,8 +16,6 @@
 using base::global::CRntVector;
 using base::global::CStrId;
 
-extern void* g_unk_7101a77bc0[];
-extern void* g_unk_7101a77dc8[];
 struct UnkGunCallback_l838f20;
 void fn_7100840f50(void* owner, UnkGunCallback_l838f20* callback);
 void fn_71008410e0(void* owner, UnkGunCallback_l838f20* callback);

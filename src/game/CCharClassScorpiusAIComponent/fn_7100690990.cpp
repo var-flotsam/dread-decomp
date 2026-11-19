@@ -31,8 +31,6 @@ extern char g_unk_7172703e80[];
 extern void* g_unk_7101a60f28[];
 extern char g_unk_7172703ee9[];
 extern UnkStrIdBase g_unk_7172703ef0;
-extern UnkStrIdBase g_unk_7172703ef8;
-extern UnkStrIdBase g_unk_7172703f00;
 
 void fn_7100690990() {
     InitHeaderIds(&g_unk_7172703f08.ids);

@@ -8,6 +8,7 @@
 #include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/CChozoWarriorAttack.h"
 #include "game/UnkActor.h"
 #include "types.h"
@@ -23,8 +24,6 @@ struct UnkGlaiveSpinAttack {
 struct UnkWarriorAI {
     u8 pad_0x0[8];
 };
-
-bool fn_710049cbd8(UnkWarriorAI* ai);
 
 static inline CVector3D Pos(const UnkActor* actor) {
     return {actor->field_0x44, actor->field_0x54, actor->field_0x64};

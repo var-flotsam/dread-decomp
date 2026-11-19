@@ -19,3 +19,4 @@ void fn_71003954fc(UnkSelf* behavior, void* record, f32 value);
 extern base::global::CStrId g_unk_71726b7cb8;
 bool fn_7100395044(UnkStringEqualsCondition_A2_b72* self, base::global::CStrId* id, UnkInlineString_A2_b72* out);
 bool fn_710039525c(UnkSelf* self, void* arg, base::math::CVector3D* out);
+void fn_7100395474(UnkSelf* behavior, void* record, bool value);

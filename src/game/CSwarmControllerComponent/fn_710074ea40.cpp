@@ -4,10 +4,9 @@
 
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
+#include "game/CSwarmControllerComponent.h"
 #include "game/UnkTU341.h"
 #include "types.h"
-
-extern char g_unk_7101a6dee0[];
 
 struct UnkSwarmEntry_l74ea40 {
     char* vtable;  // 0x0

@@ -6,6 +6,7 @@
 #include "base/UnkDestructors.h"
 #include "types.h"
 
+struct UnkAimComponent;
 struct UnkBeamVec_ovb0138;
 struct UnkActor;
 struct UnkAimTunable;
@@ -22,3 +23,4 @@ struct UnkAimTarget;
 bool fn_7100354b34(UnkAimFilter* self, const UnkAimTarget* target);  // Whether the class filter accepts it.
 base::UnkRefPtrMember fn_7100353be8(void* self);  // Returned in memory (x8): a counted reference.
 void fn_710034f54c(void* object, u32 id, UnkBeamVec_ovb0138* dir);
+bool fn_710034f8dc(UnkAimComponent* self);

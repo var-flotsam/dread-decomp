@@ -11,6 +11,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU259.h"
 #include "game/UnkTU27.h"
 #include "types.h"
 
@@ -81,7 +82,6 @@ struct UnkRegistry_710014c790;
 extern UnkRegistry_710014c790* unk_710b372d68;
 void* fn_7100169be4(UnkRegistry_710014c790* registry, const void* key);
 void fn_7100169d28(UnkRegistry_710014c790* registry, const CStrId& name, UnkCountedResource* resource);
-extern __attribute__((visibility("hidden"))) u8 g_unk_716e595bb8[];
 void fn_71001545a0(void* program);
 void fn_71001545b0(void* program);
 void fn_71001545c0(void* program);

@@ -5,6 +5,7 @@
 #include "game/CAbilitySpeedBooster.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU437.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -15,7 +16,6 @@ struct UnkRunInfo_l9ecf34;
 
 f32 fn_7100796590(UnkRunInfo_l9ecf34* info);
 f32 fn_71010d6858();
-bool fn_710034f8dc(UnkAimComponent* self);
 extern base::reflection::UnkTunable g_unk_71726b0fc0;
 extern base::reflection::UnkTunable g_unk_7172a03d80;
 

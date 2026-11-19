@@ -8,6 +8,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/CChozoCommanderAIComponent.h"
@@ -20,6 +21,7 @@
 #include "game/UnkTU437.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -38,14 +40,11 @@ struct UnkMlogMessage_b42a1 {
 };
 
 struct UnkMgr_0xf18;
-void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
 
 struct UnkTimedRef;
 struct UnkWeakTarget;
-bool fn_7100da9018(UnkTimedRef* self, UnkWeakTarget* target, f32 time);
 
 struct UnkObj_710119770c;
-void fn_710119780c(UnkObj_710119770c* self, const CStrId& id);
 
 // A string id built from a pooled string (fn_7100000850, out of line).
 struct UnkScorpiusTextId_l694ea8 : CStrId {

@@ -7,6 +7,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "types.h"
 
+struct UnkPointSet_b61;
 struct UnkShakernautArea_b65a4;
 struct UnkArgObj;
 struct UnkEntry;
@@ -31,3 +32,4 @@ void fn_7100119f98(UnkTileOutline* outline, bool);
 void fn_7100122b2c(UnkInsertTarget* self, const UnkArgObj* point, u32 index);
 bool fn_71001176e8(UnkShakernautArea_b65a4* area, const base::math::CVector2D* pos, u32* out, void* filter, u32 flags, f32 radius);
 void fn_710011ddc0(base::reflection::UnkReflFunction* fn);
+void* fn_7100118950(UnkPointSet_b61* self, u32 index);

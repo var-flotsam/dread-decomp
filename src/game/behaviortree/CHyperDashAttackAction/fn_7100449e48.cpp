@@ -8,6 +8,9 @@
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/behaviortree/CAttackAction.h"
+#include "game/behaviortree/CBehavior.h"
+#include "game/behaviortree/CHyperDashAttackAction.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
@@ -18,11 +21,8 @@ struct UnkAttackActor_ovb0128;
 struct UnkCancelOwner_ovb0128;
 struct UnkSelf;
 struct UnkEffectSink;
-void* fn_71003729a8(UnkAttackActor_ovb0128* actor);
-void fn_7100395474(UnkSelf* behavior, void* record, bool value);
 
 // The blackboard record the run clears when the dash cannot start.
-extern u8 g_unk_71726c8f08[];
 
 template <class T>
 struct UnkOpt_l449e48 {

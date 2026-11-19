@@ -4,6 +4,7 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGameManager.h"
+#include "game/UnkTU2730.h"
 #include "types.h"
 
 using base::global::CRntString;
@@ -45,7 +46,6 @@ struct UnkBuiltId_710119770c {
     ~UnkBuiltId_710119770c() { id.~CStrId(); }
 };
 
-void fn_710119780c(UnkObj_710119770c* self, const CStrId& id);
 void fn_7100e010a0(UnkGameManager* self, u32 value);
 
 void fn_710119770c(UnkObj_710119770c* self, UnkActor_710119770c* actor) {

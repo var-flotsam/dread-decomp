@@ -6,6 +6,7 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CCharClassBaseDamageTriggerComponent.h"
 #include "game/CLiquidSimulationComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
@@ -19,7 +20,6 @@ using base::global::CStrId;
 // As src/game/CHeatRoomComponent/CHeatRoomComponent_Parts_ovb0083.cpp declares it.
 struct UnkHeatRoom_ovb0083;
 struct UnkHeatActor_ovb0083;
-void fn_7100a45f04(UnkHeatRoom_ovb0083* self, UnkHeatActor_ovb0083* actor);
 
 // As src/game/CPlayerInfo/CPlayerInfo_SetFlag_A6_b72.cpp defines it.
 struct UnkFlagList_A6_b72;

@@ -6,6 +6,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
@@ -38,8 +39,6 @@ struct UnkAmiiboCallback_laf0d38 {
 };
 
 struct UnkAmiiboMessages_laf0d38;
-void fn_7100b5fd9c(UnkAmiiboMessages_laf0d38* self, const CStrId& text, UnkAmiiboCallback_laf0d38 callback,
-                   bool a, bool b);
 
 struct UnkAmiiboMessages_laf0d38 {
     u8 pad_0x0[0x2e3];

@@ -4,6 +4,7 @@
 #include <new>
 
 #include "base/global/CRntVector.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
@@ -64,7 +65,6 @@ struct UnkGroupArray_ovb0244 {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-void fn_7100d4b0f4(UnkGroupArray_ovb0244* self, u32 capacity);
 void fn_7100d4ae50(UnkGroupArray_ovb0244* self, u32 capacity);
 
 static inline void InitGroupArray(UnkGroupArray_ovb0244* array) {

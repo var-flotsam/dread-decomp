@@ -18,3 +18,5 @@ UnkElem_0x88& fn_71007a6b58(base::global::CRntVector<UnkElem_0x88>* v, u32 index
 void fn_71007a8db0(UnkElem_0x88* elem);
 const base::reflection::CType* fn_71007adf30();
 UnkTriggerListElement** fn_71007a804c(void* list, u32 index);
+extern void* g_unk_7101a6ff40[];
+extern char g_unk_7101a70078[];

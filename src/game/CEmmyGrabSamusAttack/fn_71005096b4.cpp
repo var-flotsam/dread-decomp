@@ -14,7 +14,6 @@ using base::global::CRntString;
 using base::global::CStrId;
 
 // The vtable of the allocator object of a string with 0x20 bytes of inline storage.
-extern void* g_unk_7101a479c8[];
 
 // A string with 0x20 bytes of inline storage (0x50 bytes in all).
 struct UnkInlineStr50_l5096b4 {

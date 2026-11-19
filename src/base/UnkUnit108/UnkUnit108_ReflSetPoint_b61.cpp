@@ -22,7 +22,6 @@ struct UnkPointSet_b61 {
 // Typed as src/game_s1/fn_710011e1e8.cpp declares it (one signature per symbol).
 struct UnkInsertTarget;
 struct UnkArgObj;
-void* fn_7100118950(UnkPointSet_b61* self, u32 index);
 
 struct UnkProjected_b61 : CVector2D {
     explicit UnkProjected_b61(const CVector3D* v) { fn_710007b430(this, v); }

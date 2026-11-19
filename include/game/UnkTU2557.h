@@ -8,6 +8,7 @@
 #include "types.h"
 #include "base/reflection/TypeObject.h"
 
+struct UnkSceneObj_71010e2278;
 struct UnkReflType;
 struct UnkLoadingScreenData;
 struct UnkLoadingScreen;
@@ -23,3 +24,4 @@ template <> UnkReflType base::reflection::TypeObject<ELoadingScreen, UnkReflType
 extern UnkConverter g_unk_71727c0830;
 extern UnkConverter g_unk_71727c0850;
 void fn_7100e0f4d4(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
+void fn_7100e13928(void* unk, void* unk2, UnkSceneObj_71010e2278** out, const base::global::CStrId* name);

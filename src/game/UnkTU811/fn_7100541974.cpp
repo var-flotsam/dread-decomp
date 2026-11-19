@@ -17,6 +17,7 @@
 #include "game/UnkTU2702.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU55.h"
+#include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -24,9 +25,6 @@ struct UnkRecord;
 struct UnkEmmyAI_b60;
 struct UnkEmmyRelaxAI_b59;
 struct UnkHandleAI_b0193;
-UnkRecord* fn_710054715c(UnkRecord* self, const UnkRecord* other);
-void fn_7100541fd4(UnkEmmyAI_b60* self);
-void fn_7100552324(UnkEmmyRelaxAI_b59* self);
 void fn_7100541e64(UnkHandleAI_b0193* self);
 void fn_7100dacb50(UnkEmmyRegistry_b55* registry, void* ai);
 void fn_71002b1de0(void* group, void* entry);

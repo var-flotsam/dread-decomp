@@ -32,3 +32,4 @@ void fn_71003ae428(UnkStruct_71003ae428*, bool, bool, bool);
 void fn_71003ad174(UnkCameraOwner* owner, u32 arg);
 void fn_71003aff64(UnkCoreXAI_A2_b73* self, u32 a, u32 b);
 void fn_71003ac9ec(UnkQuetzoaAI_l64a058* self);
+extern void* g_unk_7101a29438[];

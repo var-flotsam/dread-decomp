@@ -8,16 +8,14 @@
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU441.h"
 #include "types.h"
-
-extern void* g_unk_7101a29438[];  // CBossAIComponent's vtable
 
 struct UnkItemBase_71011a91c4;
 struct UnkRenderItemPair_b64a2 {
     UnkItemBase_71011a91c4* first;
     UnkItemBase_71011a91c4* second;
 };
-void fn_710035d4ec(UnkRenderItemPair_b64a2* self);
 
 struct UnkBossCallbacks_l3ac388;
 template <>

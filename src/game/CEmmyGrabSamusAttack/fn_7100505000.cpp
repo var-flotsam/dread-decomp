@@ -4,12 +4,12 @@
 #include <new>
 
 #include "base/global/CRntString.h"
+#include "game/CEmmyGrabSamusAttack.h"
 #include "types.h"
 
 using base::global::CRntString;
 
 // The vtable of the allocator object of a string with 0x20 bytes of inline storage.
-extern void* g_unk_7101a479c8[];
 
 // A string with 0x20 bytes of inline storage (0x50 bytes in all).
 struct UnkInlineStr50_l505000 {

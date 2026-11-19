@@ -11,6 +11,7 @@
 #include "game/CAbilityEnergyWave.h"
 #include "game/CAbilityLayout.h"
 #include "game/CComponent.h"
+#include "game/CGunComponent.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU101.h"
 #include "game/sound/UnkSoundHandle.h"
@@ -19,8 +20,6 @@
 using base::global::CRntVector;
 using base::global::CStrId;
 
-extern void* g_unk_7101a77bc0[];
-extern void* g_unk_7101a77dc8[];
 bool fn_7100840db8(void* object, bool value);
 bool fn_7100840eb8(void* object, bool value);
 

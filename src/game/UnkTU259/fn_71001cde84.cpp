@@ -10,11 +10,6 @@ struct UnkGfxO_b0154;
 
 extern u32 g_unk_716e554910;
 
-void fn_71001ce148(UnkGfxN_b0154* self);
-void fn_71001cfe44(UnkGfxJ_b0154* self);
-void fn_71001cf9ec(UnkGfxJ_b0154* self);
-void fn_71001ce514(UnkGfxO_b0154* self);
-
 struct UnkGfxPass_l1cde84;
 void fn_71001ce2f0(UnkGfxPass_l1cde84* self, s32 a);
 

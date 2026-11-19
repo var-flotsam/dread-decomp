@@ -10,6 +10,7 @@
 #include "game/CAIAttackComponent.h"
 #include "game/CAttackComponent.h"
 #include "game/UnkTU2702.h"
+#include "game/behaviortree/CAttackAction.h"
 #include "game/behaviortree/CBehavior.h"
 #include "types.h"
 
@@ -46,7 +47,6 @@ struct UnkScorpiusAI_b69a4;
 struct UnkCommanderPlayer_b67a2;
 
 // The owner's attack player.
-void* fn_71003729a8(UnkAttackActor_ovb0128* actor);
 
 void fn_7100372864(UnkAttackAction_ovb0128* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));

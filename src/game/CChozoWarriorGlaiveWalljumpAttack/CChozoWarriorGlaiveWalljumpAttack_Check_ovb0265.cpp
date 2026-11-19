@@ -6,6 +6,7 @@
 #include "base/math/CVectorOps.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CChozoWarriorAIComponent.h"
 #include "game/CChozoWarriorAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkGameManager.h"
@@ -32,7 +33,6 @@ struct UnkWarriorAI {
 
 f32 fn_710049b2fc(UnkWarriorAI* ai);
 f32 fn_710049b360(UnkWarriorAI* ai);
-bool fn_710049cbd8(UnkWarriorAI* ai);
 
 using base::math::CVector3D;
 

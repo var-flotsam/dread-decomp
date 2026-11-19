@@ -10,6 +10,7 @@
 #include "game/UnkTU140.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU252.h"
+#include "game/UnkTU2557.h"
 #include "game/UnkTU315.h"
 #include "types.h"
 
@@ -21,8 +22,6 @@ struct UnkModelInstance;
 struct UnkCountedResource;
 struct UnkObject_71001c3504;
 
-void fn_71002198cc(UnkRenderManager* self, void* a, void* b, void* c, u32 layer, u32 flag);
-void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const CStrId* name);
 UnkModelInstance* fn_710021d3d4(UnkRenderPool* pool, UnkCountedResource* resource, UnkModelInstance** out,
                                 const base::global::CStrId* name);
 void fn_71001c3504(UnkObject_71001c3504* self, const base::UnkStrIdMember* id);

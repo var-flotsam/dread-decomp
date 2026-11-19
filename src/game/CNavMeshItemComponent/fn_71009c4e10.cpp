@@ -39,7 +39,6 @@ struct UnkMapNamedDef_ovb0203 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern UnkMapNamedDef_ovb0203 g_unk_717273e258;  // "ColliderOffset"
 struct UnkNavMeshNamedDef_b49 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;

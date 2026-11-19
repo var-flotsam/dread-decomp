@@ -6,26 +6,25 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CBossAIComponent.h"
+#include "game/CCharClassScorpiusAIComponent.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU437.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStrIdBase;
 
 struct UnkMgr_0xf18;
-void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
 
 struct UnkTimedRef;
 struct UnkWeakTarget;
-bool fn_7100da9018(UnkTimedRef* self, UnkWeakTarget* target, f32 time);
-
-extern UnkStrIdBase g_unk_7172703ef8;
-extern UnkStrIdBase g_unk_7172703f00;
 
 struct UnkAmiiboComposition_laf0d38;
 
@@ -41,8 +40,6 @@ struct UnkAmiiboCallback_laf0d38 {
 };
 
 struct UnkAmiiboMessages_laf0d38;
-void fn_7100b5fd9c(UnkAmiiboMessages_laf0d38* self, const CStrId& text, UnkAmiiboCallback_laf0d38 callback,
-                   bool a, bool b);
 
 // What the cutscene message calls when it closes.
 void fn_71006986f8(UnkAmiiboComposition_laf0d38* self);
