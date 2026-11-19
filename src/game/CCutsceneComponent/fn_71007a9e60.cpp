@@ -77,8 +77,6 @@ struct UnkCutsceneRecords_l7a9e60 {
 };
 static_assert(__builtin_offsetof(UnkCutsceneRecords_l7a9e60, field_0x310) == 0x310, "layout");
 
-struct UnkPathIdMember;
-void fn_710119a110(void* gui, const UnkPathIdMember* object);
 
 struct UnkCutsceneGui_l7a9e60 {
     u8 pad_0x0[0x58];
@@ -135,7 +133,7 @@ void fn_71007a9e60(UnkCutsceneComponent_l7a9e60* self) {
     }
     self->ref_size = 0;
     if (self->records && __atomic_load_n(&self->records->ref_count, __ATOMIC_SEQ_CST) != 0) {
-        fn_710119a110(g_unk_7101d47330, reinterpret_cast<const UnkPathIdMember*>(self->records->field_0x310));
+        fn_710119a110(g_unk_7101d47330, reinterpret_cast<const base::UnkStrIdMemberOf<g_unk_7101d47200>*>(self->records->field_0x310));
         if (UnkCutsceneRecords_l7a9e60* p = self->records) {
             __atomic_fetch_sub(&p->ref_count, 1, __ATOMIC_SEQ_CST);
             if (__atomic_load_n(&p->ref_count, __ATOMIC_SEQ_CST) == 0)

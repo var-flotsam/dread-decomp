@@ -12,11 +12,10 @@
 #include "game/UnkVec3fOps.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/UnkBvhTree.h"
+#include "game/logic/collision/UnkBvhTreeSweep.h"
 #include "types.h"
 
 using base::math::CVector2D;
-
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 
 struct UnkMatrix44_7100078c9c {
     f32 m[16];

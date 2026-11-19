@@ -5,6 +5,7 @@
 #include "base/math/CVector.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2702.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -23,10 +24,6 @@ struct UnkNavMeshHits {
 
 using UnkNavSideFilter = UnkNavMeshCallback<bool, u16, u8, void*, void*, u64, u32, u32>;
 using UnkNavSideVerdict = UnkNavMeshCallback<s32, UnkNavMeshSideSegment*>;
-
-bool fn_710027b780(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filter_arg, u32 filter_arg2,
-                   u32 filter_arg3, UnkDirectionFilter* direction, UnkNavMeshHits* out,
-                   const UnkNavSideFilter& filter, const UnkNavSideVerdict& verdict);
 
 // A callback passed by value: copied member by member into memory.
 template <class T>

@@ -11,12 +11,11 @@
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU1689.h"
+#include "game/UnkTU2567.h"
 #include "types.h"
 
 using base::global::CStrId;
 
-// Refreshes a text block (the flag arguments as the map menu passes them).
-void fn_7100eb7358(void* object, u32 a, u32 b);
 // The unit's two keys in the GUI root's list, side by side (the second is g_unk_7172763d98).
 extern CStrId g_unk_7172763d90[2] __attribute__((visibility("hidden")));
 

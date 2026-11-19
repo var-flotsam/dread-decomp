@@ -5,6 +5,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/UnkCutsceneRecord_lc8c338.h"
 #include "game/UnkModelManager.h"
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
@@ -21,50 +22,6 @@ using base::global::CStrId;
 
 struct UnkUnit1134Object_b49a3;
 void fn_710070d38c(UnkUnit1134Object_b49a3* self);
-
-// The cutscene record (src/game/UnkTU2200/UnkTU2200_Destroy_lc8c338.cpp defines its destructor).
-
-// A 0x40-byte take, destroyed out of line.
-struct UnkTake_lc8c338 {
-    u8 unk_0x0[0x40];
-
-    ~UnkTake_lc8c338() { fn_7100c8a490(this); }
-};
-
-// A 0xa0-byte shot, destroyed out of line.
-struct UnkShot_lc8c338 {
-    u8 unk_0x0[0xa0];
-
-    ~UnkShot_lc8c338() { fn_7100c886c0(this); }
-};
-
-struct UnkPathEntry_lc8c338 {
-    CFilePathStrId path;
-    u64 value;
-};
-
-struct UnkRecord_lc8c338 {
-    u32 field_0x0;
-    CStrId field_0x8;
-    CFilePathStrId field_0x10;
-    f32 field_0x18[3];
-    CStrId field_0x28;
-    CStrId field_0x30;
-    CStrId field_0x38;
-    CStrId field_0x40;
-    CStrId field_0x48;
-    CStrId field_0x50;
-    u64 field_0x58;
-    u32 field_0x60;
-    bool field_0x64;
-    CRntVector<UnkTake_lc8c338> takes;  // 0x68
-    CRntVector<UnkShot_lc8c338> shots;  // 0x90
-    CRntVector<CFilePathStrId> paths;  // 0xb8
-    CRntVector<UnkPathEntry_lc8c338> entries;  // 0xe0
-    u32 field_0x108;
-
-    ~UnkRecord_lc8c338() asm("fn_7100c8c338");  // fn_7100c8c338
-};
 
 // A clip: polymorphic, 0x30 bytes, destroyed in place.
 struct UnkCutsceneClip_l067f90 {

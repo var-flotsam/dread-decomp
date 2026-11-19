@@ -2,6 +2,7 @@
 // an edge's end, reports the neighbouring edge and which end it shares. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkPolygonEdgeQuery.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -12,21 +13,6 @@ struct UnkPolygon2D_l118124 {
     u8 unk_0xc[0x20];
     u8 closed;
 };
-
-// An empty std::function's layout (callable storage, then the callable pointer); passed in memory.
-struct alignas(16) UnkEmptyCallback {
-    u8 storage[0x20];
-    void* callable;
-    u8 pad_0x28[8];
-    UnkEmptyCallback() : callable(nullptr) {}
-    UnkEmptyCallback(const UnkEmptyCallback&) {}
-};
-using UnkPointFilter = UnkEmptyCallback;
-using UnkEdgeVisitor = UnkEmptyCallback;
-
-struct UnkPolygon2D;
-void fn_7100117ba0(const UnkPolygon2D* polygon, const CVector2D* point, s32* edge, f32* t, CVector2D* closest,
-                   f32* distance, bool flag, UnkPointFilter filter, UnkEdgeVisitor visit);
 
 static inline s32 EdgeCount(const UnkPolygon2D_l118124* p) {
     return p->count - (!p->closed & (p->count != 0));

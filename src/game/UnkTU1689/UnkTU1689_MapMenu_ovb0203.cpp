@@ -397,7 +397,7 @@ struct UnkMapMenuController;
 // same symbol under a flag signature.
 void fn_7100b43b30_flag(UnkMapMenuController* self, const CStrId* id, u32 flag) asm("_Z13fn_7100b43b30P20UnkMapMenuControllerPKN4base6global6CStrIdEPv");
 namespace unk_gui {
-void fn_7100eb7358(void* object, u32 a, u32 b);
+using ::fn_7100eb7358;  // game/UnkTU2567.h
 }
 
 // A slot of the map data that holds an id and a value.

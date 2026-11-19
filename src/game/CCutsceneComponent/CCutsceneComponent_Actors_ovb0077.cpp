@@ -348,8 +348,6 @@ struct UnkCutsceneRecordList_ovb0077 {
 };
 
 struct UnkVec3_cs;
-struct UnkPathIdMember;
-void fn_710119a110(void* gui, const UnkPathIdMember* object);
 
 struct UnkCutsceneComponent_ovb0077 {
     u8 pad_0x0[0x58];
@@ -435,7 +433,7 @@ void fn_71007a6214(UnkCutsceneComponent_ovb0077* self) {
         dst[2] = src[2];
     }
     if (self->records && __atomic_load_n(&self->records->ref_count, __ATOMIC_SEQ_CST) != 0) {
-        fn_710119a110(g_unk_7101d47330, reinterpret_cast<const UnkPathIdMember*>(self->records->field_0x310));
+        fn_710119a110(g_unk_7101d47330, reinterpret_cast<const base::UnkStrIdMemberOf<g_unk_7101d47200>*>(self->records->field_0x310));
         if (UnkCutsceneRecordList_ovb0077* p = self->records) {
             __atomic_fetch_sub(&p->ref_count, 1, __ATOMIC_SEQ_CST);
             if (__atomic_load_n(&p->ref_count, __ATOMIC_SEQ_CST) == 0)

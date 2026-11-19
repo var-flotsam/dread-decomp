@@ -46,6 +46,7 @@
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2577.h"
 #include "game/UnkTU2611.h"
+#include "game/UnkTU2730.h"
 #include "game/UnkTU2739.h"
 #include "game/UnkTU315.h"
 #include "game/UnkTU365.h"
@@ -474,7 +475,6 @@ struct UnkPoppedRequest {
 
 // The GUI root (src/game/CCutscene.cpp) and a 0x48-byte singleton created on first use.
 #include "game/UnkSubAreaGuiCache.h"
-void fn_710119a110(void* root, const UnkPathIdMember* id);
 bool fn_710119e684(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
 bool fn_710119d9b8(UnkSubAreaGuiCache* self, const base::UnkStrIdMember* id, bool flag);
 void fn_710119d910(UnkSubAreaGuiCache* self);

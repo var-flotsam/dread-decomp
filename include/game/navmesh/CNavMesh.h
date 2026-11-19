@@ -9,6 +9,11 @@
 #include "types.h"
 
 struct UnkNavMesh;
+struct UnkDirectionFilter;
+struct UnkNavMeshHits;
+struct UnkNavMeshSideSegment;
+template <class R, class... A>
+struct UnkNavMeshCallback;
 struct UnkNavLoadCell;
 struct UnkOwner_710027a41c;
 bool fn_710027a5f0(UnkOwner_710027a41c* self, const base::math::CVector2D* point, u16 index);
@@ -20,3 +25,9 @@ u32 fn_710027a320(UnkNavMesh* mesh);
 void fn_710027da54(UnkNavMesh_l27da54* self, const u16* value, bool first);
 void fn_710027e258(void* self, const void* other);
 extern char g_unk_7101a20e58[];
+
+// The nearest side to `point` that passes the filters, added to `out` (src/game/navmesh/CNavMesh.cpp).
+bool fn_710027b780(UnkNavMesh* mesh, const base::math::CVector2D* point, u32 flags, u64 filter_arg, u32 filter_arg2,
+                   u32 filter_arg3, UnkDirectionFilter* direction, UnkNavMeshHits* out,
+                   const UnkNavMeshCallback<bool, u16, u8, void*, void*, u64, u32, u32>& filter,
+                   const UnkNavMeshCallback<s32, UnkNavMeshSideSegment*>& verdict);

@@ -26,7 +26,6 @@ struct UnkValue_0x10 {
 };
 struct UnkKeyedValues_71009046bc;
 using UnkValues10ByKey = base::UnkKeyedArray<UnkKeyedValues_71009046bc, u64, UnkValue_0x10>;
-void* fn_7100901264(UnkValues10ByKey* a, UnkValue_0x10* value);  // erases one entry
 
 // A 2D box (base::spatial::CAABox2D, by the dictionary's reflected name), copied member by member.
 struct UnkBounds_l900cf4 {
