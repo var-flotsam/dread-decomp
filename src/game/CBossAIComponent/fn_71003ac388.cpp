@@ -61,7 +61,9 @@ static_assert(__builtin_offsetof(UnkBossAI_l3ac388, fixed) == 0x147e8, "layout")
 static_assert(__builtin_offsetof(UnkBossAI_l3ac388, items) == 0x148f0, "layout");
 static_assert(__builtin_offsetof(UnkBossAI_l3ac388, list_b) == 0x14958, "layout");
 
-void fn_71003ac388(UnkBossAI_l3ac388* self) {
+// Derived classes call it as their base destructor with their own object (game/CBossAIComponent.h).
+void fn_71003ac388(void* object) {
+    UnkBossAI_l3ac388* self = static_cast<UnkBossAI_l3ac388*>(object);
     self->vtable = g_unk_7101a29438 + 2;
     self->list_b.~UnkBossCallbackList_l3ac388();
     self->id_c.~UnkStrIdMemberOf();
