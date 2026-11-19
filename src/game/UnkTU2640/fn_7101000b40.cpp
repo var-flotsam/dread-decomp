@@ -27,20 +27,20 @@ struct __attribute__((packed)) UnkTU2640Block {
     u8 field_0x0[0x1d];
 };
 
-struct UnkTU2640Record {
+struct UnkTU2640Record_l000b40 {
     u32 field_0x0;
     UnkTU2640Array first;  // 0x8
     UnkTU2640Block block;  // 0x30
     UnkTU2640Array second;  // 0x50
 
-    UnkTU2640Record(UnkTU2640Record&& other) = default;
+    UnkTU2640Record_l000b40(UnkTU2640Record_l000b40&& other) = default;
 };
 
 // The iterator value's move constructor (base/UnkCollectionIter.h) written out in the function: the record is too
 // large for it to be inlined otherwise.
 // NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_7101000b40(void* dst, const void* src) {
-    using Value = base::UnkIterValue<UnkTU2640Record>;
+    using Value = base::UnkIterValue<UnkTU2640Record_l000b40>;
     Value* out = static_cast<Value*>(dst);
     Value* in = static_cast<Value*>(const_cast<void*>(src));
     out->state = 0;
@@ -50,6 +50,6 @@ void fn_7101000b40(void* dst, const void* src) {
     } else if (in->state == 2) {
         out->state = 1;
         Value::Ref r = in->ref;
-        new (&out->value) Value::Value{static_cast<u32&&>(*const_cast<u32*>(r.index)), static_cast<UnkTU2640Record&&>(*r.element)};
+        new (&out->value) Value::Value{static_cast<u32&&>(*const_cast<u32*>(r.index)), static_cast<UnkTU2640Record_l000b40&&>(*r.element)};
     }
 }

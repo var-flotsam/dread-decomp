@@ -28,7 +28,7 @@ struct UnkPickableItem {
     u8 field_0x25;
 };
 
-struct UnkPickable {
+struct UnkPickable_lf05ce0 {
     u8 pad_0x0[0x10];
     UnkPickableKey key;  // 0x10
     UnkPickableItem* items[2];  // 0x20
@@ -65,11 +65,11 @@ struct UnkPickable {
     u8 pad_0xc0[0xe0 - 0xc0];
     UnkWeakHandle* target;  // 0xe0
 };
-static_assert(__builtin_offsetof(UnkPickable, field_0x78) == 0x78, "UnkPickable layout");
-static_assert(__builtin_offsetof(UnkPickable, field_0xaa) == 0xaa, "UnkPickable layout");
-static_assert(__builtin_offsetof(UnkPickable, target) == 0xe0, "UnkPickable layout");
+static_assert(__builtin_offsetof(UnkPickable_lf05ce0, field_0x78) == 0x78, "UnkPickable_lf05ce0 layout");
+static_assert(__builtin_offsetof(UnkPickable_lf05ce0, field_0xaa) == 0xaa, "UnkPickable_lf05ce0 layout");
+static_assert(__builtin_offsetof(UnkPickable_lf05ce0, target) == 0xe0, "UnkPickable_lf05ce0 layout");
 
-void fn_7100f05ce0(UnkPickable* self, const UnkPickableKey* key, const UnkPickablePos* pos, f32 a,
+void fn_7100f05ce0(UnkPickable_lf05ce0* self, const UnkPickableKey* key, const UnkPickablePos* pos, f32 a,
                    f32 b, f32 c, f32 d, UnkPickableTarget* target, u8 flag_a9, bool flag_aa,
                    f32 e) {
     self->key = *key;

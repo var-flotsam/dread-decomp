@@ -93,7 +93,7 @@ struct UnkRecordList_b218 {
     UnkRecord_b218 items[16];
 };
 
-struct UnkDrop_b218 {
+struct UnkDrop_b218_le1cbdc {
     CStrId id;
     u32 field_0x8;
     u32 field_0xc;
@@ -104,32 +104,32 @@ struct UnkDrop_b218 {
     f32 field_0x20;
     u32 pad_0x24;
 };
-static_assert(sizeof(UnkDrop_b218) == 0x28, "drop layout");
+static_assert(sizeof(UnkDrop_b218_le1cbdc) == 0x28, "drop layout");
 
-struct UnkDropList_b218 {
+struct UnkDropList_b218_le1cbdc {
     u32 count;
-    UnkDrop_b218 items[16];
+    UnkDrop_b218_le1cbdc items[16];
 };
 
 #pragma pack(pop)
 
-struct UnkRecordNode_b218 {
+struct UnkRecordNode_b218_le1cbdc {
     CStrId key;
     UnkRecordList_b218 list;
-    UnkRecordNode_b218* next;   // 0xb10
-    UnkRecordNode_b218* prev;   // 0xb18
-    UnkRecordNode_b218* chain;  // 0xb20
+    UnkRecordNode_b218_le1cbdc* next;   // 0xb10
+    UnkRecordNode_b218_le1cbdc* prev;   // 0xb18
+    UnkRecordNode_b218_le1cbdc* chain;  // 0xb20
 };
-static_assert(sizeof(UnkRecordNode_b218) == 0xb28, "node layout");
+static_assert(sizeof(UnkRecordNode_b218_le1cbdc) == 0xb28, "node layout");
 
-struct UnkDropNode_b218 {
+struct UnkDropNode_b218_le1cbdc {
     CStrId key;
-    UnkDropList_b218 list;
-    UnkDropNode_b218* next;   // 0x290
-    UnkDropNode_b218* prev;   // 0x298
-    UnkDropNode_b218* chain;  // 0x2a0
+    UnkDropList_b218_le1cbdc list;
+    UnkDropNode_b218_le1cbdc* next;   // 0x290
+    UnkDropNode_b218_le1cbdc* prev;   // 0x298
+    UnkDropNode_b218_le1cbdc* chain;  // 0x2a0
 };
-static_assert(sizeof(UnkDropNode_b218) == 0x2a8, "node layout");
+static_assert(sizeof(UnkDropNode_b218_le1cbdc) == 0x2a8, "node layout");
 
 template <class Node>
 struct UnkMap_b218 {
@@ -151,12 +151,12 @@ struct UnkStrData_b218 {
     u64 hash() const { return *reinterpret_cast<const u64*>(&hash_lo); }
 };
 
-struct UnkBillboardManager_b218 {
+struct UnkBillboardManager_b218_le1cbdc {
     u8 pad_0x0[0x50];
-    UnkMap_b218<UnkDropNode_b218> drops;       // 0x50
-    UnkMap_b218<UnkRecordNode_b218> records;   // 0x98
+    UnkMap_b218<UnkDropNode_b218_le1cbdc> drops;       // 0x50
+    UnkMap_b218<UnkRecordNode_b218_le1cbdc> records;   // 0x98
 };
-static_assert(sizeof(UnkBillboardManager_b218) == 0xe0, "manager layout");
+static_assert(sizeof(UnkBillboardManager_b218_le1cbdc) == 0xe0, "manager layout");
 
 static inline u32 HashU64(u64 h) { return (u32)(h >> 32) ^ (u32)h; }
 
@@ -183,8 +183,8 @@ static inline __attribute__((always_inline)) Node* FindByHash(UnkMap_b218<Node>*
 // The entry whose id hashes to `inner` in the list stored under the id that hashes to `outer`.
 // NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void* fn_7100e1cbdc(void* self_, u64* outer, void* inner_) {
-    UnkBillboardManager_b218* self = static_cast<UnkBillboardManager_b218*>(self_);
-    UnkRecordNode_b218* n = FindByHash(&self->records, *outer);
+    UnkBillboardManager_b218_le1cbdc* self = static_cast<UnkBillboardManager_b218_le1cbdc*>(self_);
+    UnkRecordNode_b218_le1cbdc* n = FindByHash(&self->records, *outer);
     if (!n)
         return nullptr;
     u64 size = (u64)n->list.count * sizeof(UnkRecord_b218);

@@ -9,7 +9,7 @@ struct UnkClip2661 {
     s32 startFrame;  // 0x8
 };
 
-struct UnkTunable2661 {
+struct UnkTunable2661_l06a818 {
     UnkClip2661* clip;  // 0x0
     u8 pad_0x8[4];
     s32 offset;  // 0xc
@@ -23,6 +23,6 @@ static inline f32 SnapSeconds(f32 seconds) {
 }
 
 // NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
-f32 fn_710106a818(UnkTunable2661* self) {
+f32 fn_710106a818(UnkTunable2661_l06a818* self) {
     return SnapSeconds((f32)(self->clip->startFrame + self->offset) * (1.0f / 30.0f));
 }

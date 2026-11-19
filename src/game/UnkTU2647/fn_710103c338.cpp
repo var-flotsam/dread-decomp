@@ -3,7 +3,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-struct UnkPresetList_b0192 {
+struct UnkPresetList_b0192_l03c338 {
     void* data;
     u32 count;
     u32 capacity;
@@ -23,27 +23,27 @@ struct UnkPresetList_b0192 {
     }
 };
 
-struct UnkAudioPresetPair_b0192 {
-    UnkPresetList_b0192 first;
-    UnkPresetList_b0192 second;
-    UnkAudioPresetPair_b0192() {
+struct UnkAudioPresetPair_b0192_l03c338 {
+    UnkPresetList_b0192_l03c338 first;
+    UnkPresetList_b0192_l03c338 second;
+    UnkAudioPresetPair_b0192_l03c338() {
         __builtin_memset(this, 0, sizeof(*this));
         first.Init();
         second.Init();
     }
 };
 
-struct UnkAudioPresetSet_b0192 {
-    UnkAudioPresetPair_b0192 items[16];
+struct UnkAudioPresetSet_b0192_l03c338 {
+    UnkAudioPresetPair_b0192_l03c338 items[16];
 };
 
-void fn_71010396a8(UnkAudioPresetPair_b0192* self);
-UnkAudioPresetPair_b0192* fn_710103a414(UnkAudioPresetPair_b0192* self, UnkAudioPresetPair_b0192* other);
+void fn_71010396a8(UnkAudioPresetPair_b0192_l03c338* self);
+UnkAudioPresetPair_b0192_l03c338* fn_710103a414(UnkAudioPresetPair_b0192_l03c338* self, UnkAudioPresetPair_b0192_l03c338* other);
 
 // NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
-void fn_710103c338(UnkAudioPresetSet_b0192* self, const u32* index) {
-    UnkAudioPresetPair_b0192* slot = &self->items[*index];
-    UnkAudioPresetPair_b0192 empty;
+void fn_710103c338(UnkAudioPresetSet_b0192_l03c338* self, const u32* index) {
+    UnkAudioPresetPair_b0192_l03c338* slot = &self->items[*index];
+    UnkAudioPresetPair_b0192_l03c338 empty;
     fn_710103a414(slot, &empty);
     fn_71010396a8(&empty);
 }

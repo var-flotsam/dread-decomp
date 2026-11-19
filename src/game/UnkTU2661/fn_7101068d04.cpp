@@ -4,13 +4,13 @@
 
 #include "types.h"
 
-struct UnkTunable2661 {
+struct UnkTunable2661_l068d04 {
     u8 pad_0x0[0xc];
     s32 frames;  // 0xc
 };
 
 // NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
-f32 fn_7101068d04(UnkTunable2661* self) {
+f32 fn_7101068d04(UnkTunable2661_l068d04* self) {
     const f32 frameTime = 1.0f / 30.0f;
     f32 seconds = (f32)self->frames * frameTime;
     f32 frames = seconds * 30.0f;

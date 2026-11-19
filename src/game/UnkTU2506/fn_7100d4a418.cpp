@@ -2,10 +2,10 @@
 // a list of fixed-size buckets) and empties it. Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkRefCounted {
+struct UnkRefCounted_ld4a418 {
     struct VTable {
         void* slots[2];
-        void (*release)(UnkRefCounted*);
+        void (*release)(UnkRefCounted_ld4a418*);
     };
     VTable* vtable;
     u32 refCount;
@@ -13,16 +13,16 @@ struct UnkRefCounted {
 
 struct __attribute__((packed)) UnkRefBucket {
     u32 count;
-    UnkRefCounted* items[128];
+    UnkRefCounted_ld4a418* items[128];
 };
 
 struct UnkRefContainer {
     UnkRefBucket* buckets;
-    UnkRefCounted** flat;
+    UnkRefCounted_ld4a418** flat;
     u32 count;
 };
 
-static inline void DropRef(UnkRefCounted* p) {
+static inline void DropRef(UnkRefCounted_ld4a418* p) {
     if (p && --p->refCount == 0)
         p->vtable->release(p);
 }

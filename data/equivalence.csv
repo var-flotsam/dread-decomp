@@ -218,7 +218,7 @@ address,digest,verdict,rules,detail
 0x7100df4610,00a9e610abd21e60f3ecbc301efbe5eb,inconclusive,2,only 81% of the original's instructions ran
 0x7100e0f89c,e10a5aa7f2d188db830af47901f0561c,behaves,2,similarity 13.8%; operations;
 0x7100e10aac,7d9e1eb74b5465e4564f6d912e6ae46d,inconclusive,2,unresolved guard variable for UnkLoadingMaskOf<UnkLoadingMaskTag>::All()::s (no address in the original)
-0x7100e1cbdc,dc37fd5a7d6f02746d18f4e74dbc0754,behaves,2,similarity 94.6%; control;
+0x7100e1cbdc,dc37fd5a7d6f02746d18f4e74dbc0754,behaves,2,similarity 94.6%; operations;
 0x7100e211cc,680b06d4d7c641c3c9ff79f4907e086b,pass,2,
 0x7100e3cee0,810985efc3703226b5a16ff25ab540ca,pass,2,both runs faulted; on different accesses
 0x7100e3da0c,62ea570c773ccb8ddfc348ca61468c45,inconclusive,2,unresolved UnkSegment2D::UnkSegment2D(base::math::CVector2D const&; base::math::CVector2D const&)
@@ -254,14 +254,14 @@ address,digest,verdict,rules,detail
 0x7100f990e0,206d53e16736e4c6b42079528d3567be,pass,2,
 0x7100fa6954,182a1b0c6f66c68b6e035b69d0be8685,behaves,2,similarity 69.9%; operations;
 0x7100ffb1a4,dbbefe2c84d71254486f402c651d8000,behaves,2,similarity 26.7%; operations;
-0x7101000b40,730730b8c43fb65f1e97c699d4d71f78,behaves,2,similarity 92.4%; control;
+0x7101000b40,730730b8c43fb65f1e97c699d4d71f78,behaves,2,similarity 92.4%; operations;
 0x7101005fcc,791825f9370865628cb64cad2a6fc3f2,pass,2,
 0x71010182fc,26d1156460e36d4ab6fb3bb414c1603a,inconclusive,2,only 18% of the original's instructions ran
-0x710103c338,50708b81732d86da7858a0cbe36a270e,behaves,2,similarity 2.4%; operations;
+0x710103c338,ddbff1e3f4a355e52f1d67cc1a0651ce,behaves,2,similarity 2.4%; operations;
 0x7101047ca8,c336650f5bd35e8ecec7207d4ddd9c22,behaves,2,similarity 16.0%; operations;
 0x7101053aa4,bcd1548c2d7ebe19c4ae3e73ba1e9be4,pass,2,
 0x7101053c14,0dc5b4cb1b4d84031a6b9a0b0f0589d5,pass,2,
-0x7101068d04,15cf0e01ec4209d2c68399b4a31ea11e,behaves,2,similarity 48.1%; control;
+0x7101068d04,15cf0e01ec4209d2c68399b4a31ea11e,behaves,2,similarity 48.1%; operations;
 0x710106a818,8fe3f0c2321570c589331a24f24f0116,behaves,2,similarity 43.3%; operations;
 0x710106b2bc,112cf8d14fa662df9e091193279f87ae,pass,2,
 0x710106bbb4,2fd59d9e96824e543027e7b4ed2adb44,pass,2,
