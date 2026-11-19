@@ -21,17 +21,19 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CEmmyOverrideDeathPositionDef
-extern base::reflection::CType g_unk_717269bb48;
 namespace CEmmyOverrideDeathPositionDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpLandmark", true), &g_unk_717269bb48, 0x8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x48, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x48, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
@@ -64,9 +66,9 @@ extern base::reflection::CType g_unk_7101d5c998;
 namespace CEmmyAutoForbiddenEdgesDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpCheckSamusLogicShape", true), &g_unk_717269bb48, 0x8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpCheckSamusLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpCheckEmmyLogicShape", true), &g_unk_717269bb48, 0x48, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpCheckEmmyLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x48, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("tForbiddenLogicShapes", true), &g_unk_717269bf08, 0x88, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
@@ -100,11 +102,11 @@ DREAD_REFLECTED_ROOT_CLASS(CEmmyAutoForbiddenEdgesDef);
 namespace CEmmyAutoGlobalSmartLinkDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpStartLandmark", true), &g_unk_717269bb48, 0x8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpStartLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("tEndLandmarks", true), &g_unk_717269bf08, 0x48, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpActivateLogicShape", true), &g_unk_717269bb48, 0x70, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpActivateLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x70, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

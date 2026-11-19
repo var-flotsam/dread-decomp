@@ -19,12 +19,14 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CDemolitionBlockLifeComponent
 void fn_71008c4ac0(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_717269bb48;
 namespace CDemolitionBlockLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -33,7 +35,7 @@ void refl_AddFields(CClass* cls) {
         fn->Attrs()->Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Add Damage source (POWER_BEAM, CHARGE_BEAM, ...)"));
         fn->Attrs()->Add<bool>(base::reflection::attr::RntFilePackedParams(), true);
     }
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpOtherBlock", true), &g_unk_717269bb48, 0x3a8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpOtherBlock", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x3a8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 12);
 }
 bool refl_Equals(const void*, const void*) { return false; }

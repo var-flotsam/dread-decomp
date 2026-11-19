@@ -21,6 +21,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
@@ -31,7 +34,6 @@ void fn_7101115758();
 void fn_71011155bc(UnkReflFunction* fn);
 void fn_71010f7d90(UnkReflFunction* fn, const char* name);
 void fn_71010f7f0c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_717269bb48;
 void fn_7101115c1c();
 void fn_71010f7fc0(UnkReflFunction* fn, const char* name);
 namespace CAIComponent {
@@ -59,7 +61,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fPathRightCut", 0x13c4, (DefaultValue, 0.0f), (Description, "Desired right cut distance for this ground enemy's (patrol) path"));
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceClockwise", 0x13c8, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only clockwise limit"));
     DREAD_REFLECTED_FIELD(f32, "fCutDistanceCounterClockwise", 0x13cc, (DefaultValue, -1.0f), (Description, "Desired navigable path cut distance [0,inf) for this ground enemy's only counter clockwise limit"));
-    UnkReflField* field9 = AddReflectedField(cls, CStrId("wpPathToFollow", true), &g_unk_717269bb48, 0x1350, -1, -1);
+    UnkReflField* field9 = AddReflectedField(cls, CStrId("wpPathToFollow", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x1350, -1, -1);
     field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SFallBackPath>", "tFallbackPaths", 0x1390);
     DREAD_REFLECTED_FIELD_OF("IPath::EType", "ePathType", 0x13b8, (DefaultValue, 2));

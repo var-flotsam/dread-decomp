@@ -19,18 +19,21 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CItemDestructionLogicAction
-extern base::reflection::CType g_unk_71727b6270;
-extern base::reflection::CType g_unk_717269bb48;
 namespace CItemDestructionLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpItemToDestroy", true), &g_unk_71727b6270, 0x10, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpItemToDestroy", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x10, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpObserver", true), &g_unk_717269bb48, 0x50, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpObserver", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x50, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

@@ -20,6 +20,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
@@ -29,7 +32,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 void fn_710111fc58();
 void fn_710111fcf8();
 extern base::global::CRntString g_unk_7101d58d10;
-extern base::reflection::CType g_unk_717269bb48;
 void fn_710111fd34();
 extern base::reflection::CType g_unk_7172a07250;
 namespace CSpawnGroupComponent {
@@ -57,9 +59,9 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSpawnPointsNotInFrustrum", 0x141, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bGenerateEntitiesByOrder", 0x142, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(CStrId, "sLogicCollisionShapeID", 0x418, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field20 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &g_unk_717269bb48, 0xb8, -1, -1);
+    UnkReflField* field20 = AddReflectedField(cls, CStrId("wpAreaOfInterest", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xb8, -1, -1);
     field20->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
-    UnkReflField* field21 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &g_unk_717269bb48, 0xf8, -1, -1);
+    UnkReflField* field21 = AddReflectedField(cls, CStrId("wpAreaOfInterestEnd", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xf8, -1, -1);
     field21->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD(f32, "fDropAmmoProb", 0x3d8, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(s32, "iInitToGenerate", 0x188, (DefaultValue, 0));

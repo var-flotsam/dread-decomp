@@ -20,15 +20,17 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CRotationalPlatformComponent
-extern base::reflection::CType g_unk_71727b6270;
 namespace CRotationalPlatformComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpDestructibleBlock", true), &g_unk_71727b6270, 0x48, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpDestructibleBlock", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x48, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD_OF("ERotationDirection", "eRotationDirection", 0xe8, (DefaultValue, 0));
 }

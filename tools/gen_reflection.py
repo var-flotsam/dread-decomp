@@ -854,6 +854,25 @@ def enum_type_objects() -> dict[str, tuple[str, str]]:
                 if gen_types.QUALIFIED_RE.fullmatch(t):
                     out[g] = (kind, t)
     out.update(BUILTIN_TYPE_OBJECTS)
+    out.update(link_type_objects())
+    return out
+
+
+# A vector of links' collection descriptor (src/reflection_types/collection_types_*.cpp) and its element's type
+# object: the type object of that CGameLink<T> (game/CGameLink.h).
+LINK_COLLECTION_RE = re.compile(r"^struct base::reflection::CollectionTypeDescription<base::global::CRntVector<"
+                                r"(CGameLink<\w+>)>> .*?^    static const CType\* element\(\) \{ return &(g_unk_[0-9a-f]{10}); \}$",
+                                re.M | re.S)
+
+
+def link_type_objects() -> dict[str, tuple[str, str]]:
+    """{g_unk_<addr>: ("link", "CGameLink<T>")} of the links whose type objects a vector of them names."""
+    out = {}
+    for f in sorted((ROOT / "src" / "reflection_types").glob("collection_types_*.cpp")):
+        for block in f.read_text(encoding="utf-8").split(chr(10) + "template <>" + chr(10)):
+            m = LINK_COLLECTION_RE.match(block)
+            if m:
+                out[m.group(2)] = ("link", m.group(1))
     return out
 
 
@@ -878,7 +897,8 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
         kind, t = objects[g]
         scope, _, leaf = t.rpartition("::")
         declared = (gen_types.enum_declaration(t) if kind == "enum" else
-                    gen_types.declare_in(scope, f"struct {leaf};") if kind == "flagset" else "")
+                    gen_types.declare_in(scope, f"struct {leaf};") if kind == "flagset" else
+                    f"template <class T> struct CGameLink;{chr(10)}class {t[len('CGameLink<'):-1]};" if kind == "link" else "")
         if others:
             layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};(?:\s*//.*)?")
             match = [layout.fullmatch(line) for line in others]
@@ -900,7 +920,7 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
             in_place = True
             continue
         if declared:
-            first.append(declared)
+            first.extend(declared.split(chr(10)) if kind == "link" else [declared])
         first.append(f'template <> base::reflection::CType base::reflection::TypeObject<{t}>::object asm("{g}");')
         lines = [line if decl.fullmatch(line) else re.sub(rf"\b{g}\b", f"base::reflection::TypeObject<{t}>::object", line)
                  for line in lines if not decl.fullmatch(line)]

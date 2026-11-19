@@ -13,6 +13,11 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 enum class ESwifterSpawnGroupDirection : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object asm("g_unk_7172743e90");
@@ -91,11 +96,9 @@ void fn_7100a05778();
 void fn_7100a057d0();
 void fn_7100a05828();
 void fn_7100a13578();
-extern base::reflection::CType g_unk_71727b6270;
 void fn_7100a1abc8();
 void fn_7100a1ae34();
 void fn_7100a1c840();
-extern base::reflection::CType g_unk_717269bb48;
 void fn_7100a1caac();
 void fn_7100a201ec();
 void fn_7100a2029c();
@@ -423,22 +426,22 @@ void fn_7100a12648(UnkReflFunction* fn, const char* name) {
 
 void fn_7100a1a1e8(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100a1abc8);
-    fn->params.PushBack(&g_unk_71727b6270);
+    fn->params.PushBack(&base::reflection::TypeObject<CGameLink<CEntity>>::object);
 }
 
 void fn_7100a1a35c(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100a1ae34);
-    fn->params.PushBack(&g_unk_71727b6270);
+    fn->params.PushBack(&base::reflection::TypeObject<CGameLink<CEntity>>::object);
 }
 
 void fn_7100a1bef8(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100a1c840);
-    fn->params.PushBack(&g_unk_71727b6270);
+    fn->params.PushBack(&base::reflection::TypeObject<CGameLink<CEntity>>::object);
 }
 
 void fn_7100a1c06c(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100a1caac);
-    fn->params.PushBack(&g_unk_717269bb48);
+    fn->params.PushBack(&base::reflection::TypeObject<CGameLink<CActor>>::object);
 }
 
 void fn_7100a1eff8(UnkReflFunction* fn, const char* name) {

@@ -13,6 +13,9 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
@@ -245,7 +248,6 @@ void fn_7100244c78();
 void fn_7100244cc8();
 void fn_710022f78c(UnkReflFunction* fn, const char* name);
 void fn_7100245f70();
-extern base::reflection::CType g_unk_717269bb48;
 void fn_7100245fc0();
 void fn_710024646c();
 void fn_71002464bc();
@@ -1325,8 +1327,8 @@ void fn_710022fac0(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100245f70);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717269bb48, 0x1, fn_7100245fc0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x1, fn_7100245fc0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1334,8 +1336,8 @@ void fn_71002300a4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710024646c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717269bb48, 0x101, fn_71002464bc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x101, fn_71002464bc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 

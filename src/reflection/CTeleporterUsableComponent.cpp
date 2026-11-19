@@ -20,11 +20,13 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CTeleporterUsableComponent
-extern base::reflection::CType g_unk_71727b6270;
 namespace CTeleporterUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -33,7 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sScenarioName", 0x548, (DefaultValue, CStrId("", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sTargetSpawnPoint", 0x550, (DefaultValue, CStrId("", true)));
     DREAD_REFLECTED_FIELD_OF("ETeleporterColorSphere", "eTeleporterColorSphere", 0x588, (DefaultValue, 0));
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpFrozenPlatform", true), &g_unk_71727b6270, 0x590, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpFrozenPlatform", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x590, -1, -1);
     field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
 }
 bool refl_Equals(const void*, const void*) { return false; }

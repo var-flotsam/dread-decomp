@@ -20,18 +20,20 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CQuetzoaAIComponent
-extern base::reflection::CType g_unk_717269bb48;
 namespace CQuetzoaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpShortRangePath", true), &g_unk_717269bb48, 0x14a30, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpShortRangePath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14a30, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("IPath::EType", "eShortRangePathType", 0x14a70, (DefaultValue, 3));
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpLongRangePath", true), &g_unk_717269bb48, 0x14a78, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpLongRangePath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14a78, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD_OF("IPath::EType", "eLongRangePathType", 0x14ab8, (DefaultValue, 3));
 }

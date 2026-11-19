@@ -22,6 +22,9 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"
+template <class T> struct CGameLink;
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
@@ -30,7 +33,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CDoorLifeComponent
-extern base::reflection::CType g_unk_71727b6270;
 void fn_71008dc010();
 void fn_71008cca04(UnkReflFunction* fn, const char* name);
 void fn_71008dc0a8();
@@ -54,9 +56,9 @@ namespace CDoorLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxDistanceOpened", 0x414, (DefaultValue, 400.0f), (Description, "Max distance to be opened"));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpLeftDoorShieldEntity", true), &g_unk_71727b6270, 0x388, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpLeftDoorShieldEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x388, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpRightDoorShieldEntity", true), &g_unk_71727b6270, 0x3c8, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpRightDoorShieldEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x3c8, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FUNCTION_OF("_m_fMinTimeOpened_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71008dc010);
     DREAD_REFLECTED_FUNCTION("_m_fMinTimeOpened_SetterFunction")

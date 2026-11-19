@@ -19,13 +19,15 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CBossAIComponent
 extern base::reflection::CType g_unk_71727b6630;
-extern base::reflection::CType g_unk_717269bb48;
 void fn_71003b0e60();
 void fn_7100302d14(UnkReflFunction* fn);
 namespace CBossAIComponent {
@@ -37,21 +39,21 @@ void refl_AddFields(CClass* cls) {
     UnkReflField* field3 = AddReflectedField(cls, CStrId("tDoors", true), &g_unk_71727b6630, 0x146c8, -1, -1);
     field3->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Door to lock on emmy spawn"));
     field3->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("wpBossCamera", true), &g_unk_717269bb48, 0x14728, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("wpBossCamera", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14728, -1, -1);
     field4->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpBossCameraFloorLandmark", true), &g_unk_717269bb48, 0x14768, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpBossCameraFloorLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14768, -1, -1);
     field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("wpBossCameraCeilingLandmark", true), &g_unk_717269bb48, 0x147a8, -1, -1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("wpBossCameraCeilingLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x147a8, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
     DREAD_REFLECTED_FUNCTION("SetBossCamera") {
         DREAD_REFLECTED_FUNCTION_DESCRIPTION("SetBossCamera", &base::reflection::TypeObject<void>::object, 0, fn_71003b0e60);
         fn_7100302d14(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Sets the Boss Camera");
     }
-    UnkReflField* field7 = AddReflectedField(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &g_unk_717269bb48, 0x14910, -1, -1);
+    UnkReflField* field7 = AddReflectedField(cls, CStrId("wpStartCombatCheckpointStartPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14910, -1, -1);
     field7->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sStartCombatCheckpointSnapshotId", 0x14950, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field9 = AddReflectedField(cls, CStrId("wpDeadCheckpointStartPoint", true), &g_unk_717269bb48, 0x14958, -1, -1);
+    UnkReflField* field9 = AddReflectedField(cls, CStrId("wpDeadCheckpointStartPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14958, -1, -1);
     field9->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(bool, "bSaveGameOnAfterDead", 0x14998, (DefaultValue, true));
 }

@@ -13,6 +13,9 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
@@ -428,7 +431,6 @@ extern base::reflection::CType g_unk_7172a05d40;
 void fn_7101113948();
 void fn_7101113ce4();
 void fn_7101113d34();
-extern base::reflection::CType g_unk_717269bb48;
 const base::reflection::CType* fn_710009d884();
 void fn_710112f650();
 extern base::reflection::CType g_unk_7172a06930;
@@ -1777,7 +1779,7 @@ void fn_71010f60e4(CClass* cls) {
 }
 
 void fn_71010f68bc(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPath", true), &g_unk_717269bb48, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x0, -1, -1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("ePathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x40, -1, -1);
 }
 
