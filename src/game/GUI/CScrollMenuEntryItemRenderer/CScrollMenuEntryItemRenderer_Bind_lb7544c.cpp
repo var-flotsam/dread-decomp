@@ -8,6 +8,7 @@
 #include "base/global/timeline/CEvent.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiLabel.h"
@@ -16,7 +17,6 @@
 using base::global::CStrId;
 
 struct UnkLegendEntryRenderer_ovb0135;
-void fn_71011d9328(UnkLegendEntryRenderer_ovb0135* self);
 void fn_71011cecc4(UnkGuiDisplayObject* self, f32 value);
 void fn_71011ced1c(UnkGuiDisplayObject* self, f32 a, f32 b, f32 c, f32 d, f32 e, f32 f, bool flag);
 

@@ -152,7 +152,6 @@ static inline UnkGuiObj* FindByPath(void* self, const CRntString& path) {
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0178;
 
 struct UnkPowerDescCompositionShow {
     u8 pad_0x0[0x2b0];

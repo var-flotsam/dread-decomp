@@ -1388,6 +1388,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710094ac7c,904,drafts/game/UnkTU1428/fn_710094ac7c.cpp,operations,96.5,8,lean-r2k,same instructions; only the static params object offset from its guard differs (unit .bss placement). Draft re
 0x710094b16c,856,drafts/game/UnkTU1428/fn_710094b16c.cpp,operations,96.3,8,lean-r2k,same instructions; only the static params object offset from its guard differs (0x168 in the unit .bss vs 8 in
 0x710094b548,624,drafts/game/UnkTU1428/fn_710094b548.cpp,build fails,,,lean-sib2,matches; held: fn_7100977e50 needs one shared declaration (callers use local CVector3D types)
+0x710094c19c,896,drafts/game/UnkTU1428/fn_710094c19c.cpp,match,100.0,0,lean-sib4,matches; held: fn_7100d5babc needs a header; moving it there changes UnkTU2510_Collision_ovb0175.cpp's code
 0x710094d5b4,424,drafts/game/UnkTU1428/fn_710094d5b4.cpp,registers or order,99.1,1,overnight,
 0x710094dba0,304,drafts/game/UnkTU1428/fn_710094dba0.cpp,operations,32.9,50,lean-sib2,one instruction short: original clears shape/element (+0x2428/+0x2430) with add+stp xzr;xzr (a 16-byte store);
 0x71009518d8,796,drafts/game/CMovablePlatformComponent/fn_71009518d8.cpp,registers or order,96.5,7,lean-r2ki,only the final out = (move * fraction; 0) - dir block: x/y computed in other order/registers
@@ -2079,6 +2080,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71010603f4,136,drafts/game/SLogicPathNode/fn_71010603f4.cpp,registers or order,64.7,12,lean-b2,register choice for the two array pointers and a fadd operand order
 0x7101066438,432,drafts/game/UnkTU2661/fn_7101066438.cpp,registers or order,92.6,8,overnight,
 0x7101067698,2296,drafts/game/UnkTU2661/fn_7101067698.cpp,control flow,54.4,258,lean-r6k,lookup ids string-id destructor: original keeps the final empty-id store and branches out to the release; cast
+0x7101067f90,1020,drafts/game/UnkTU2661/fn_7101067f90.cpp,match,100.0,0,lean-sib4,matches; held: copies UnkRecord_lc8c338 and fn_7100c8c338's asm-labelled destructor from UnkTU2200_Destroy_lc8c338.cpp; needs them in game/UnkTU2200.h
 0x7101068c80,132,drafts/game/UnkTU2661/fn_7101068c80.cpp,operations,5.9,31,lean-b3,register allocation and instruction order in the find loop (peeled first entry)
 0x7101068d04,108,drafts/game/UnkTU2661/fn_7101068d04.cpp,operations,48.1,14,lean-b3,constant scheduling and fcmp select polarity
 0x710106a818,120,drafts/game/UnkTU2661/fn_710106a818.cpp,operations,43.3,17,lean-b3,float constant scheduling and fcsel polarity

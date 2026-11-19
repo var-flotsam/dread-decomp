@@ -17,3 +17,4 @@ void* fn_710106cf74(UnkCutsceneObject_cs* object, const base::global::CStrId* na
 void fn_710106838c(void* p);
 void fn_710106b2bc(UnkCutscene* self, f32 frame);
 UnkCutsceneEntry_A5_b65* fn_710106b284(void* object, u32 id);
+extern void* g_unk_7101cac9b0[];

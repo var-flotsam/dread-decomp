@@ -14,7 +14,6 @@
 using base::global::CStrId;
 using base::reflection::UnkReflObject;
 
-extern __attribute__((visibility("hidden"))) CStrId g_unk_7172705848;
 
 struct UnkShakernautAI_l6a4260 {
     u8 pad_0x0[0x14810];

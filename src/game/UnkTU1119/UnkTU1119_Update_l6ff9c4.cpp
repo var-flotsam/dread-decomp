@@ -11,6 +11,7 @@
 #include "game/CEnemyMovement.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU1118.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -93,8 +94,6 @@ struct UnkReadyObject_l6fe894;
 struct UnkTU1118Stepper;
 struct UnkNavPath_b66a4;
 struct UnkNavKind2_b66a4;
-UnkNavPath_b66a4* fn_71006fce10(UnkNavKind2_b66a4* obj);
-void fn_71006fc7c4(UnkAIState_l6fe894* self, UnkReadyObject_l6fe894* ready);
 bool fn_71006ff330(UnkTU1118Stepper* self);
 bool fn_71006fda48(UnkTU1119_l6ff9c4* self);
 void fn_71006fdba4(UnkTU1119_l6ff9c4* self);

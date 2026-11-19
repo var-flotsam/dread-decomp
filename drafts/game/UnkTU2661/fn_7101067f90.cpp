@@ -12,7 +12,7 @@
 #include "game/UnkTU2661.h"
 #include "game/UnkTU2739.h"
 #include "game/media/CMediaStream.h"
-#include "../../game_aca57c/UnkBufferString.h"
+#include "../../../src/game_aca57c/UnkBufferString.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
@@ -21,8 +21,6 @@ using base::global::CStrId;
 
 struct UnkUnit1134Object_b49a3;
 void fn_710070d38c(UnkUnit1134Object_b49a3* self);
-
-extern void* g_unk_7101cac9b0[];
 
 // The cutscene record (src/game/UnkTU2200/UnkTU2200_Destroy_lc8c338.cpp defines its destructor).
 

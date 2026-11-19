@@ -9,6 +9,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/CCharClassAttackComponent.h"
+#include "game/CPlayerLifeComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkCameraCtrl.h"
 #include "game/UnkGameManager.h"
@@ -25,7 +26,6 @@ extern CStrId g_unk_71726c7df0 __attribute__((visibility("hidden")));
 
 struct UnkGrabLife_A2_b71;
 struct UnkGrabRequest_A2_b71;
-void fn_7101166c6c(UnkGrabLife_A2_b71* self, UnkGrabRequest_A2_b71* request);
 
 struct UnkKiGrabAI_l430aa0 {
     void** vtable;

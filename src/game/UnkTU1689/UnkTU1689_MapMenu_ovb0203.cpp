@@ -173,7 +173,6 @@ struct UnkMapMenuController_ovb0203 {
 // As src/game/GUI/CMapMenuController_Timers_b43.cpp and src/game/GUI/CMapMenuController_Close.cpp declare them.
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0178;
 struct UnkMapMenuControllerClose;
 
 // ---- fn_7100b37b80

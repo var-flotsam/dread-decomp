@@ -18,7 +18,6 @@ extern CStrId g_unk_7172705808 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172705820 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172705828 __attribute__((visibility("hidden")));
 extern CStrId g_unk_7172705830 __attribute__((visibility("hidden")));
-extern CStrId g_unk_7172705848 __attribute__((visibility("hidden")));
 
 struct UnkShakernautOwner_l6a5258 {
     u8 pad_0x0[0x240];
@@ -34,7 +33,6 @@ struct UnkShakernautShockAttack_l6a5258 {
 };
 
 struct UnkShakernautShockAttack_ovb0020;
-void fn_71006a4d74(UnkShakernautShockAttack_ovb0020* self, const CStrId* id, bool flag);
 void fn_71006b1228(UnkReflObject* ai, bool flag);
 void fn_71006a45e8(UnkShakernautShockAttack_l6a5258* self, u32 state);
 

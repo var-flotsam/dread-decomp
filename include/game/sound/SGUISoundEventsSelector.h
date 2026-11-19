@@ -5,6 +5,9 @@
 // Names and layouts are placeholders.
 #include "game/sound/UnkSoundHandle.h"
 #include "types.h"
+
+struct UnkStateKey;
+
 extern void* g_unk_7101cabad0[];  // The base class's vtable.
 extern void* g_unk_7101caba40[];  // The selector's vtable.
 
@@ -18,3 +21,4 @@ namespace unk_static_init {
 struct UnkEnumType;  // game_5821e4/UnkStaticInit.h: a reflected enum type object
 }  // namespace unk_static_init
 extern unk_static_init::UnkEnumType g_unk_71729f02b0;  // The HUD ammo counters' fill sound event.
+extern UnkStateKey g_unk_71729f0178;

@@ -4,6 +4,8 @@
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CPlayerInfo.h"
+#include "game/CRodotukSuckAttack.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1730.h"
 #include "types.h"
@@ -32,10 +34,8 @@ struct UnkRodotukSuckAttack_l66ab68 {
 };
 
 struct UnkPlayerInfo_ovb0071;
-void fn_7100f0dd3c(UnkPlayerInfo_ovb0071* self);
 
 struct UnkRodotukSuckAttack_l66a624;
-void fn_710066a760(UnkRodotukSuckAttack_l66a624* self);
 
 // The object when it is of the getter's class (or derives from it), else null.
 template <class T>

@@ -2,6 +2,7 @@
 // ready target, it resets its tracked indices and path, and when the owner's navigation record names this
 // state it hands its own ready object on (fn_71006fc7c4). Names and layouts are placeholders.
 #include "game/UnkAIComponent.h"
+#include "game/UnkTU1118.h"
 #include "game/UnkTU1124.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
@@ -48,7 +49,6 @@ static_assert(__builtin_offsetof(UnkAIState_l6fe894, path) == 0x208, "layout");
 
 struct UnkFlyingPathParams_l387b8c;
 void fn_7100387b8c(UnkFlyingPathParams_l387b8c* self, const UnkFlyingPathParams_l387b8c* other, bool reset);
-void fn_71006fc7c4(UnkAIState_l6fe894* self, UnkReadyObject_l6fe894* ready);
 
 // The state the owner's navigation currently runs (null without one).
 static inline void* NavigationState(UnkActor* owner) {

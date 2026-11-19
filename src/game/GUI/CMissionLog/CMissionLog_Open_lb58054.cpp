@@ -12,6 +12,7 @@
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CDisplayObjectContainer.h"
 #include "game/GUI/CLabel.h"
+#include "game/GUI/CList.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
@@ -30,9 +31,7 @@ struct UnkSprite_spr;
 
 extern __attribute__((visibility("hidden"))) CStrId g_unk_7172765050;  // the dialog composition's name
 extern __attribute__((visibility("hidden"))) CStrId g_unk_7172765058;  // the entries label's font
-extern UnkStateKey g_unk_71729f0178;
 
-void fn_71012004ac(UnkList_ovb0059* self);
 void fn_7100e02e98(UnkGameManager* manager, UnkGuiDisplayObject* object);
 void fn_7100b017fc(UnkGuiDisplayObject* dialog);
 
