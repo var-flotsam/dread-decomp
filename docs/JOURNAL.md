@@ -157,7 +157,408 @@ Matching findings worth reusing, by topic. Each line links to the entry that rec
 
 ## Session log (newest first)
 
-<!-- journal_sync: through 4efc8a6043ad3e615599b884d3e3f4f61a2256a1 -->
+<!-- journal_sync: through 2e4bff01ccc726e1af8ba1204c9dad96e6d10f94 -->
+
+**Land 43 held drafts by moving their shared declarations and layouts into headers (#590, 2026-11-19).**
+
+Lands 43 of the drafts that #589 held back only on shared declarations or layouts. Statuses on landing: 29 byte matches (O), 8 verified equivalent (m, registers only, passing `equiv_test.py`), 6 functional (M, `NON_MATCHING(functional)` with a current `behaves` verdict).
+
+How they were unblocked:
+- Each callee a draft declared locally now has one declaration in its unit header under `include/`, with the defining file's types forward-declared. Where a caller held a different placeholder type, it casts at the call; this changes no code.
+- Layouts that a draft and a matched neighbour each defined are now in one header: the area-effect rectangle (`CAreaFXComponent.h`, f32 fields; its two copy-only users still match), unit 180's uniform tables (`UnkUniformTables.h`, the keyed view and the plain range array side by side), the hangable grapple surface (`UnkHangableGrappleSurface.h`), the cutscene record of unit 2200 (`UnkCutsceneRecord_lc8c338.h`), the group array of `ovb0244` and the 0x50-byte inline string.
+- Small new headers: the polygon edge query with its two `std::function` aliases (`UnkPolygonEdgeQuery.h`), and the bounding-volume tree's sweep (`logic/collision/UnkBvhTreeSweep.h`).
+- The widget that the tagged-object constructor builds through fn_710020a18c is a different class from the other `UnkWidget`s (its member at +0x108 is 8 bytes, and it has a matrix and an offset after it). It is now `UnkWidget_l20a18c`, called through a one-line inline adapter in `UnkTaggedObjectWidgetCtors_b48.cpp`. All five constructors there still match.
+- fn_7100118124 passes the edge query two empty callbacks in a layout of its own. Calling it through the header's `std::function` signature made it 2.8%, so it calls the header's symbol through a function-pointer cast to its own empty-callback signature, and it still matches.
+
+Reusable findings:
+- When a draft's declaration differs from a matched caller only by placeholder type names, retyping the caller's call with a cast is safe. Changing the definition's parameter to `void*` with an inner cast is not: it broke two matches here.
+- `bool` vs `u32` return types and inline member destructors are load-bearing. Drafts that needed them changed (fn_71002b106c, fn_7100c9dd20) stay drafts.
+
+Still drafts:
+- Equivalence test inconclusive: fn_710002cff8, fn_7100551f0c, fn_71005668a8, fn_71010fa940, fn_71011063a4, fn_710059462c, fn_710070419c.
+- Need layout or signature work beyond a header move: fn_7100004578, fn_7100004698, fn_7100133a94, fn_71001cab0c, fn_71001cde84, fn_7100221698, fn_71002b106c, fn_7100494c9c, fn_71005096b4, fn_7100694ea8, fn_71006ecce4, fn_710074a568, fn_71009c4e10, fn_71009ecf34, fn_7100c8e034, fn_7100c9dd20.
+
+Not reached: the reflection-readability cleanup.
+
+**Land 72 drafts that pass the behaviour test; count functional code toward the port gate (#589, 2026-11-19).**
+
+These are the overnight runs on the tooling from #586, on the owner's PC with no model matching workers.
+
+**Permuter scope pass** (`permute.py --drafts --scopes`, 3,000 tries each). 301 registers-only drafts were tried, 3 matched and 47 got closer. The matches were `0x71006dfa88` (two loads swapped), `0x7100f05ce0` (store order) and `0x710107e260` (four statements in a block of their own). One of them landed here. The other two stay drafts, held on declarations.
+
+**Behaviour test on every draft** (`equiv_test.py --all-drafts`, 4 shards, ~6 h). 2,007 functions were judged. 26 passed (registers-only), 249 behaved, 211 failed and 1,838 could not be judged: coverage, unknown names, emulator limits or time.
+
+**Mutation check.** The 275 passers were judged again, this time requiring the test to reject small mutants of each function. 29 passed, 110 behaved and 1 failed. 141 became inconclusive because a mutant passed too. Over half the would-be functional verdicts could not tell an off-by-one or a flipped comparison from the original. Without the check those would have landed.
+
+**Landed** with `drafts.py promote --functional --verdicts`: 72 files in `src/`, of which 69 are `NON_MATCHING(functional)`, 2 are `NON_MATCHING(minor)` with a current `pass`, and 1 matches. 57 were held on their declarations. 5 more were returned to drafts after a moment in `src/`, because each declares a shared symbol that no unit header could take yet (`decl_plan.py` could not plan it). The 33 declarations the landed files copied went into unit headers through `decl_plan.py --grown` and `hub_migrate.py`. Eight landed files defined a local type under a name a sibling file defines differently, so their types were renamed with an address suffix (e.g. `UnkPickable_lf05ce0`) and the files judged again. All 7 non-matching ones still behave or pass.
+
+**A sample read** of 20 random functional drafts before landing: all are ordinary hand-written C++ with placeholder names. Five carry an offset cast or an empty barrier, which `--quality` already reports as steering forms. None reads as a machine transliteration.
+
+Note for later: some functional verdicts have very low similarity (0.0% and 2.4% on two of them). These are drafts whose structure differs widely from the original but whose behaviour matched on every input tried. The similarity in each `behaves` row (new since #586) says which ones a later matching pass should take first.
+
+**Port gate** (owner, 2026-11-19, on advice from the "Plan the path to 100%" thread). The port resumes when matched + verified equivalent + functional code reach 95%, and matched + verified equivalent alone reach 85%. That is one line in `CLAUDE.md` and one row in `docs/reference.md`, "Decisions made". There is no new check.
+
+Also in this branch: `equiv_test.py` records similarity and kind in a `behaves` row, and `drafts.py promote --verdicts JSON` reuses a sharded equiv run.
+
+**Match 8 sibling-reference functions under 1 KB (#588, 2026-11-19).**
+
+An overnight sibling-reference batch on functions under 1 KB. The pool was every function that is still U, has never been tried, and has a matched function in the same virtual slot. Earlier batches had already tried the rest, so only 39 qualified. They went to 8 Opus workers, about 5 functions each, with up to four graded attempts per function.
+
+**Results:**
+- Workers matched 10 of the 39 functions (26%).
+- 8 land here as matching (U to O). `check.py` is clean, and no function is lost against main.
+- 2 matches wait in `drafts/` with a "matches; held" note: `fn_710094c19c` needs `fn_7100d5babc` in a header, and `fn_7101067f90` needs `UnkTU2200`'s record layout in a header.
+- `g_unk_7172705848` moved into `CShakernautDoubleGroundShockAttack.h`.
+- None of the 7 registers-only drafts could be judged by `equiv_test.py`, so they stay drafts.
+
+**Rate:** about 2.3M worker tokens for 10 matches, about 233k per match and about 290k per landed function. That is just under the 250k-per-match stop line set for this run. The run ended when the pool was used up, not because the rate crossed the line.
+
+**Recurring blockers:**
+- The weak-handle relink keeps `&self->handle` in a register; the matched siblings avoid that only with a barrier.
+- A send's mode and mask need stack slots of their own.
+- The original tests a count as a byte size where ours tests the count.
+- Several header layouts lack members, for example `UnkGameManagerIdTable` `field_0xd18` and `UnkActor` +0x258.
+- One worker found that an id copy keeps its own stack slot when it is a by-value parameter of a small inline helper.
+
+**Name the CGameLink<T> type objects by type (#587, 2026-11-19).**
+
+- `tools/gen_reflection.py` gains `link_type_objects()`, which reads each link's type object from the collection descriptor of a vector of links in `src/reflection_types/collection_types_*.cpp`. The element of `CRntVector<CGameLink<T>>` is `CGameLink<T>`'s type object.
+- It finds g_unk_717269bb48 for `CGameLink<CActor>` and g_unk_71727b6270 for `CGameLink<CEntity>`. Both are added to the objects that `type_objects_by_type` writes by type, as a new kind, `link`.
+- In 79 generated files, the field types now read `&base::reflection::TypeObject<CGameLink<CActor>>::object` instead of an address. They declare `template <class T> struct CGameLink;` and the argument class once each.
+- A test is added.
+- `CGameLink.h` already defines `CGameLink` as a class template, so the two declarations agree and nothing needed reconciling.
+- Not covered: `CGameLink<CSpawnPointComponent>`, which has no vector descriptor, and the hand-written field functions that name these objects through `TypeOf(g_unk_...)`.
+
+**A functional tier for drafts that behave the same, and a fuzzy-match figure (#586, 2026-11-19).**
+
+The owner approved decompiling past strict byte matching (2026-11-19): correct, compiling source for the hard cases may land labelled non-matching, and near-misses should show as partial progress. This PR adds the tooling for that. The promotions it enables follow in a second pull request once the overnight runs finish.
+
+- **`tools/equiv_test.py --any-kind`** runs the behaviour test on functions of any difference, not only registers-only ones, under every other rule: every write, the result and every call are compared, and full coverage is required. A pass of a function that is not registers-only is recorded as **`behaves`**, never `pass`. The 2026-11-11 calibration found the test can accept wrong code outside the registers class (an off-by-one survived), so this is tier 3, not tier 2, and it does not count as done. The same reasoning applied to oracle passes in #560.
+- **Mutation check.** Before `behaves` is recorded, the function's own text is mutated one change at a time: an integer constant one up or down, a comparison flipped or loosened, the operands of a subtraction swapped. Up to 8 mutants that compile to different code are judged. If any mutant also passes, the verdict is `inconclusive`. This targets the off-by-one weakness directly.
+- `--all-drafts` judges every row of `drafts/INDEX.csv` except `match`, and `--shard K/N` splits a run across parallel processes.
+- **`// NON_MATCHING(functional): <reason>`** is a new annotation with status `M`. `tools/check.py` fails one without a current `behaves` row in `data/equivalence.csv`. It also fails a `behaves` row whose function is not so marked or whose code has changed, as it already does for a stale `pass`. No status code is added, so `data/functions/` and the tools that read it are unchanged. Functional functions stay `M`, so `hubs.py`, the sibling kit and `permute.py` still see them as owing a match. "Functional" is a label for drafts that already exist, not a goal for workers.
+- **`tools/drafts.py promote --functional`** moves a draft whose non-matching functions all `pass` or `behave`, and writes the functional note above each one that only behaves. Landing such drafts in `src/` shares their declarations, which unblocks held matches, and the port sweep compiles them.
+- **`tools/progress.py --fuzzy`** gives partial credit by closeness. It leads with the near-miss count (functions not yet done at 95% similarity or more, and their bytes), then a blended figure: `O` and verified equivalent count at 100%, a draft at its `drafts/INDEX.csv` similarity, and a non-matching source at its diff score from check.py's cache. No threshold uses it, and the port's 95% stays matched code. It goes under the handoff table with `--handoff`. `--quality` gains a *functional* row.
+- `CLAUDE.md`, "Proof tiers": one paragraph on the functional tier and the fuzzy figure.
+
+Today, from the drafts alone: 264 not-yet-done functions are at 95% or more (0.18 MB), and the blended fuzzy figure is 75.19% (`O` is 70.86%).
+
+**Name the collection entry field names and one more enum type object (#585, 2026-11-19).**
+
+**Collection entry field names**
+
+- g_unk_7101d5a450 and g_unk_7101d5a458 are the two global string ids that name an associative collection's entry fields.
+- They are built at start-up from "key" and "element". The neighbouring getters `_key_GetterFunction` and `_element_GetterFunction` confirm the pairing.
+- `include/base/reflection/UnkReflAttributes.h` gains their declarations and two inline accessors, `base::reflection::KeyFieldName()` and `ElementFieldName()`.
+- `tools/refl_attrs.py` emits the accessors by name through `NAMED_FIELD_NAMES`.
+- The 934 uses in 15 generated files now read, for example, `AddReflectedField(cls, base::reflection::KeyFieldName(), ...)`. Their local extern declarations are removed.
+- A test is added in `tools/tests/test_refl_attrs.py`.
+
+**One more enum type object**
+
+- In `src/base/reflection/fn_7100b04900.cpp`, CCharClassToStateTrack::EMaintainFrameMode's type object is now written by type: `TypeObject<CCharClassToStateTrack::EMaintainFrameMode, UnkReflType>::object`. This uses the existing layout-typed rewrite from `gen_reflection.type_objects_by_type`.
+- CSubAreaManager::ETransitionType's object (in `src/game_s7/fn_7100ef2780.cpp`) keeps its address. That unit already declares `CSubAreaManager` as a class, so its nested enum needs the class layout, now local to `src/game/CSubAreaManager.cpp`, to move to a header first.
+
+**Land 6 held drafts and move 38 shared declarations into unit headers (#584, 2026-11-18).**
+
+A declaration pass over the 50 drafts in `drafts/INDEX.csv` marked "match" and held by the declaration or struct gates (the ones from #579, #582 and #583). It used no model matching workers. Six of them land (U to O), each moved by `tools/drafts.py promote --write`, which rechecks that it matches and compiles the same in `src/`. No function on main is lost and the declaration and struct gates do not grow.
+
+**Landed (6):** `fn_71003ac064`, `fn_71003e7d54`, `fn_710048de58`, `fn_71004e44d8`, `fn_71007a5e1c`, `fn_7100901a98`.
+
+**How:**
+- **Shared declarations into unit headers (38 symbols).** With all the held drafts copied into `src/`, `tools/decl_plan.py --grown origin/main --write` planned 41 symbols and `tools/hub_migrate.py --plan` moved 38 of them, keeping only edits whose compiled output was unchanged. The headers keep these declarations even where the draft that needed them stayed in `drafts/`, so the next pass over those drafts starts with fewer conflicts. Three could not move without changing other files' code: `g_unk_71726e5cb0` and `g_unk_71726e5cb8` (the bomb movement reads them through another type), and `fn_7100d5babc` (a local `UnkNode` in `UnkTU2510_Collision_ovb0175.cpp` clashes with the header's).
+- **Callers retyped to the definitions (2).** `fn_710049d418` now declares `fn_71003ac064` with the definition's object type and casts at the call. The deleting destructor `fn_710048e0c0` does the same for `fn_710048de58`. The draft of `fn_710048de58` now names `fn_710049880c` with its definition's type. All three files still match.
+- **A struct renamed (1).** `fn_71004e44d8`'s motion layout is `UnkMotion_l4e44d8` instead of a fifth different `UnkStruct_71007142e8`, cast at the one call to `fn_71007142e8`.
+
+**Tried and returned to drafts/ (their output changed):**
+- `fn_710074a568`: retyping its caller in `CSwarmControllerComponent_Update_ovb0006.cpp` changed `fn_710074a0d4`.
+- `fn_71002b106c`: declaring `fn_71002b1270` with its definition's `u32` result changes the conditions. The `bool` it needs is a load-bearing wrong type.
+- `fn_71003ac388`: taking the header's `void*` and casting inside changes the operations.
+- `fn_7100c9dd20`: written as `UnkBreakableTile_b49`'s out-of-line destructor (`include/game/UnkBreakableTile.h`), the member destructors call differently from the draft's spelled-out slot loop.
+
+**Still held: 43 drafts.** Their notes in `drafts/INDEX.csv` still apply. What blocks most of them:
+- A definition whose types or argument count differ from its callers' declaration, where the caller passes the object through a template argument or by value, or the counts are `u32` against `u64`: `fn_7100004578` and `fn_7100004698` against `UnkResType.h`, `fn_710020a18c`, `fn_71007fdd80`, `fn_7100825258`, `fn_71001cde84`, `fn_71009ecf34`, `fn_7100221698`.
+- Layouts that need one shared header: the unit 2506 group arrays (`fn_7100d46804`, `fn_7100d4ba54`) and `movie::Buffer`.
+- The SGUISoundEventsSelector enum globals, `fn_7100eb7358`, `fn_7100000850` and `fn_71011cff5c`, unchanged from #579.
+
+**Promote 13 registers-only drafts as verified equivalent (#583, 2026-11-18).**
+
+This is the equivalence follow-up to #582. `drafts.py promote` ran `tools/equiv_test.py` over the 316 registers-only drafts. 15 passed, 22 are held on their declarations, and 279 failed or were inconclusive. Of the 15:
+
+- **Promoted, 13 functions (3,996 bytes).** They move to `src/` as `NON_MATCHING(minor)`, verified equivalent (tier 2), with their verdicts written to `data/equivalence.csv` by `equiv_test.py --write`: fn_7100015b6c, fn_71000a5174, fn_71001e14a4, fn_7100253834, fn_710038f50c, fn_710046a510, fn_710046bba0, fn_71005c4494, fn_7100643f30, fn_71007bb208, fn_7100d45790, fn_7101137bf8, fn_71012133d8. Each still owes a byte match, which is the permuter's job.
+- **Held in drafts/, 2 functions.** fn_71010f2918 declares fn_71010f3eb0 and fn_71010f3f20 locally, and they are already declared elsewhere. fn_7100d4a418 defines `UnkRefCounted` differently from the existing definitions. Each keeps its row with a note saying it passes `equiv_test.py` and what holds it.
+
+No source was changed to make anything pass, and no steering forms were added.
+
+**Regrade drafts under the current flags, promote 15 new matches (#582, 2026-11-18).**
+
+Regrades every draft under the project's current flags (`-fno-strict-aliasing` since #571), promotes what now matches, and runs the free permuter over the registers-only drafts. Only the project's tools were used: no hand or model matching attempts.
+
+- **Regrade.** Four drafts still had a `// build-flags: no-strict-aliasing` line. That flag is now the project default, and the build rejects the name, which stopped `drafts.py grade`, so I removed the line. The regrade then rescored 332 of 2402 rows: 107 changed kind and 55 now match (40 before). Biggest moves: control flow -> operations 19, operations -> registers or order 15, control flow -> registers or order 10, control flow -> match 7.
+- **Promotion.** 26 of the 55 could move; 29 stay held on their declarations, as before.
+- **Permuter.** `permute.py --drafts` tried 324 registers-only drafts (2 skipped: no body found). It matched 10 and brought 52 closer without matching. Seven of the 10 could move; 3 are held on declarations.
+- **Held after merging main.** With main merged, 17 of the 33 promoted files declared a shared `fn_`/`g_unk_` symbol in one more file, or defined a struct name differently from an existing source. `decl_check --strict` and `struct_check` fail on that. Those 17 went back to `drafts/` with their matching text and a `match` row whose note says what holds them. Unblocking them is header work: one declaration per symbol in `include/`.
+- **Held for a steering form.** `fn_710006f914` matches only with its element copies written as `__builtin_memcpy`, so it is held too.
+- **Result.** 15 functions are now O, 8,800 bytes: fn_71001eae28, fn_7100243c24, fn_7100243ec4, fn_71002ec674, fn_71006fb648, fn_71007479e4, fn_71009228d4, fn_71009b601c, fn_7100a09cd4, fn_7100c8bec8, fn_7100e5c014, fn_710109d890, fn_7101119038, fn_7101152988, fn_710122c7a0.
+- **Not matched.** `fn_71001f1ab4` grades as "wrong reference": the instructions are identical but a relocation target differs, so it stays a draft. Of the brief's expected list, `fn_710074a568` matches but is held on its declarations.
+- **Equivalence.** The dry run of `drafts.py promote` (which runs `equiv_test.py`) over the 316 remaining registers-only drafts found 15 that pass and could move as verified equivalent, 22 held on declarations and 279 not ready (fail or inconclusive). Those 15 are not in this PR yet; they come as a follow-up commit.
+
+Reusable: a draft's `build-flags` line has to drop a flag once that flag becomes the project default. Also, `drafts.py promote` checks declarations against the branch, not against main, so re-run `decl_check`/`struct_check` after merging main.
+
+**Label unnamed functions by their unit and call graph (#580, 2026-11-18).**
+
+The "unknown" subsystem was the largest bucket on the dashboard: 7.4 MB, with 2.65 MB still U. An investigation found that it is not a library or SDK. Those are already labelled from their symbols. It is ordinary game and engine code with no named function close enough for the neighbour rule to label. Only about 14 KB of it is a near-copy (75% or closer) of a matched function, and the exact-shape families total just 12 KB, so sibling batches will not reach it. It is one-off, mid-size code (the middle function is 716 bytes).
+
+`tools/gen_functions_csv.py` gets a second labelling pass, `fill_from_units_and_calls`, for functions the name and neighbour rules leave unlabelled:
+
+1. **Unit majority.** A translation unit (`data/tu_map.csv`) whose name-labelled bytes are at least 90% one subsystem labels its remaining functions with that subsystem.
+2. **Call-graph votes.** Each remaining function counts its callers (weight 3) and callees (weight 1) from the Ghidra export. Library and catch-all callees (`engine/base`, `msapi`) don't vote. The function is labelled when 75% of the votes agree.
+
+Every label from this pass carries a `?` suffix, like the neighbour rule's, and is never a library subsystem, so no function changes between U and L.
+
+- Unchanged generator output on main reproduces the committed `data/functions/` exactly, so the diff is the new pass alone.
+- Only the `subsystem` column changes. No status, name or size changes. No row that was already labelled changes.
+- Unknown U bytes drop from 2,652,256 to 1,119,984. The largest destinations are `engine/reflection?` (424 KB), `game/components?` (304 KB), `game?` (211 KB) and `ai/navmesh?` (154 KB).
+- 2.4 MB of already-matching functions also leave "unknown".
+
+The 1.12 MB that remains has no signal. It includes a 128 KB run of 96 float-heavy functions near 0x7100170000 that nothing calls, points to or loads by address. It also includes a render cluster around 0x71001c0000–0x71001e0000, identified by its shader-setting strings. Naming either one is the next step for them.
+
+**Plain stores where the aliasing workaround is no longer needed (#581, 2026-11-18).**
+
+The project has built with `-fno-strict-aliasing` since pull request 571. Many hand-written sources still carry the forms that stood in for that flag: a `__builtin_memcpy` of one object where a plain assignment was meant, and typedefs marked `may_alias`. This removes the ones that no longer do anything.
+
+- **Method.** A one-off script took each hand-written source under `src/` (the generated directories excluded) and tried each candidate on its own, from the end of the file: `__builtin_memcpy(&a, &b, n);` became `a = b;`, and a `may_alias` attribute was deleted. A change was kept only when the source's compiled object was byte-identical to the object before the change, with the project compiler and flags. No game data is involved in that test, and no function's bytes change.
+- **Result.** 625 candidates tried, 397 kept, in 254 files: 289 untyped stores are now plain assignments and 108 `may_alias` attributes are gone. The others change the code when removed and stay as they are.
+- **One put back.** `src/base/input/UnkPadVibration.cpp` reads a result's first word through a memcpy. The assignment compiled for the Switch target but not in the port sweep, where the result type has no conversion to an integer, so that file is unchanged. The memcpy there is a real reinterpretation, not a workaround.
+- **Comments.** Where a comment directly above a removed form only explained the workaround ("an untyped store: the original reloads ..."), it went with it. Three comments that also described the function were restored by hand.
+- **Final check.** After the run, every changed file was compiled once more at `main` and in this branch: all objects identical.
+
+Not done here, and reusable later: 945 `__builtin_memcpy` lines in hand-written sources have another shape (a pointer argument, a size that is not the object's) and were not candidates; 56 lines under `include/` were left alone, since a header change needs every includer rebuilt and compared. Some typedefs that lost the attribute keep a name with "Alias" in it; they can be folded into the plain type when their functions are next worked on.
+
+**Land 12 held matches through their declarations (#579, 2026-11-18).**
+
+This is a declaration pass over the 45 drafts in `drafts/INDEX.csv` marked "matches; held". It used no model workers. 12 of them land here (U to O) and `check.py` is clean. No function is lost against main, and the declaration and struct gates do not grow.
+
+**How they landed:**
+- **Moved as they were (4).** Main had changed enough that `fn_71002c5514`, `fn_710054b93c`, `fn_71005a5488` and `fn_71009cb05c` needed only their shared declarations moved into headers:
+  - `fn_71000d4a50` into `UnkTU83.h`, with a template forward declaration of `UnkFrameVector`.
+  - `fn_7101156bd0` into `UnkTU2712.h`.
+  - `fn_710119ba7c` into `UnkTU2732.h`, with the `UnkItemList` alias that its four callers use.
+  - `g_unk_71726e7be0` into a new `CCharClassGroundShockerAttack.h`, declared as `base::reflection::UnkTunable`.
+- **Folded into their units' files (2).** `fn_7100dcca90` went into `UnkTU2544_SaveRecord_ldcd278.cpp`, with its two helpers renamed `AddSplitTime` and `StoreRushRecord`. `fn_710116c870` went into `CCharClassStartPointComponent_Checkpoint_l16c128.cpp`. Each now shares its file's declarations instead of repeating them.
+- **Callers retyped (2).** The callers of `fn_71001ccdd8` and `fn_710110c85c` now name the definitions' parameter types and cast at the call. Their own matches are unchanged.
+- **A shared flag retyped (1).** `fn_71001c7d80` reads `g_unk_716e595b68` as a byte compared with 1, so the flag is now a `u8`, declared in `engine/UnkGraphicsSystem.h`. The graphics system's store is unchanged.
+- **Globals declared with their existing types (2).** `fn_7100471d48` and `fn_710110ed94` now declare `g_unk_71726cc6d8` and `g_unk_7172a062c0` with the type their units already give them, and read them through their own layout.
+- **Header declarations used (1).** `fn_7100a6e8a4` includes the headers that declare `fn_710031433c` and the interact state's vtable, instead of declaring them itself.
+
+**Still held: 33 drafts.** Each needs deeper rework, and its note says what. The main kinds:
+- A callee whose argument count or return type disagrees between files (`fn_71001cde84`, `fn_71009ecf34`, `fn_71006ecce4`, `fn_7100c8e034`, `fn_7100494c9c`).
+- Layouts shared across a unit (CBossAIComponent, CHangableGrappleSurfaceComponent, `UnkStruct_71007142e8`).
+- The SGUISoundEventsSelector enum globals, declared through a global `UnkEnumType` in some files and through `unk_static_init::UnkEnumType` in others.
+- `fn_7100eb7358`, declared global in two files and inside `unk_gui` in two others.
+- Moves into headers that change other files' code (`fn_7100d5babc`, `g_unk_71726e5cb0`).
+
+**Match larger sibling-reference functions: 22 matching, 1 verified equivalent (#578, 2026-11-18).**
+
+This is the third sibling-reference batch, on the larger functions: 600 to 2,000 bytes, each untried and with a matched function in the same virtual slot. The pool was 247 functions in 50 groups of five. After the first four groups, the rate was well above the ~215k-per-match mark the coordinator set, so launching stopped at group 22. The 137 functions in groups 23 to 50 are back in the queue, untried.
+
+**Results:**
+- Workers matched 27 of the 110 functions they ran (25%), and I matched one more by hand: `fn_7100aa1b08`, a store-order change a worker had suggested.
+- 20 of these land here as matching. The other 8 wait in `drafts/` with a "matches; held" note on the declaration each needs reconciled.
+- One registers-only draft, `fn_7100596bd0`, passed `equiv_test.py` and lands as verified equivalent (U to m).
+- Two matches held after #577 also land: `fn_71008073c0` and `fn_7100a8756c`. Their shared globals moved into headers: the 2D zero vector into `base/math/UnkZeroVector3.h`, and `g_unk_710164b540` and `g_unk_710164b5a8` into a new `include/game/UnkUsableKeys.h`.
+- Total: 22 U to O and 1 U to m. `check.py` is clean, and no function is lost against main.
+
+**Rate:** about 6.9M worker tokens for 28 matches, about 250k per match and about 300k per landed function. That is more than twice the cost of the smaller sibling batch (#577, about 100k). The larger sibling functions are not cheap enough to keep running at this shape.
+
+**Declaration changes:**
+- `fn_7100920f40` and `fn_7100aa1b08`: their callers now use the definitions' parameter types.
+- `fn_71000ce740` is now declared once, in `base/UnkDestructors.h`.
+- `g_unk_710164b668` moved to `UnkUsableKeys.h`.
+
+**Recurring blockers in the larger functions:**
+- Several sends need separate stack slots for their mode and mask temporaries, which the matched siblings get only with a `goto` past the declarations.
+- The weak-handle relink keeps `&self->handle` in a register unless an empty barrier stops it.
+- The state search tests the count where the original tests the byte size, which matches only through the barrier inside `FindStateById`.
+- Many drafts need members added to `UnkGameManagerIdTable` and `UnkGameManager`.
+
+**Match a sibling-reference batch: 91 matching, 17 verified equivalent (#577, 2026-11-17).**
+
+This is a sibling-reference batch, run as the owner asked (sibling-reference batches only, for now). The pool held 624 functions that were still U, had never been tried, and had a matched function in the same virtual slot. The 279 smallest went to 47 Opus workers on the lean kit. Each worker took about six functions, with up to four graded attempts per function. Each context file had the same-slot sibling as its reference and Ghidra's view as a read-only guide. Unit 210 was left out.
+
+**Result:**
+- 91 functions match (U to O).
+- 17 more are verified equivalent (U to m): registers-only drafts whose `equiv_test.py` verdict is pass, promoted from drafts.
+- `check.py` is clean, and no function is lost against main.
+- Workers matched 101 of the 279 functions (36%) and got 53 more to registers-only. Of the 101, 91 landed and 10 wait in `drafts/` with a "matches; held" note. Every one of the 10 needs a declaration reconciled first: a callee or global whose existing declarations disagree on its types or namespace (for example `fn_7100eb7358`, global in two files and `unk_gui` in two others), or one that has no header yet. That work goes in a later header batch.
+
+**Rate:** about 11M worker tokens for 108 landed functions, about 100k per function. The fam0a sibling batch (#570) cost about 215k per function and the callee-first batch (#573) about 520k.
+
+**Declaration changes:**
+- `fn_7100547428`'s second parameter is now an `s32` mode, because the original passes 2.
+- `g_unk_71727057c0` moved to a new `include/game/CShakernautDoubleGroundShockAttack.h`.
+- `g_unk_710164b89c` moved to `CProjectileMovement.h`.
+- `decl_plan.py` and `hub_migrate.py` moved 62 other symbols into headers.
+
+**Reusable findings from the workers:**
+- A ternary between `x - y` and `x + y` becomes an fneg+fcsel select. An if-chain whose default value is one of its own arms keeps the branch that the original if-converts.
+- A by-value 8-byte struct passed to a constructor reproduces an orr/stp merged store.
+- A guarded state request matches when the code stores the pending state in each branch and applies it once after the branches join (`if (c) Request(3); else Request(2); ApplyPending()`).
+- `DistanceSq(Pos(a), Pos(b))` schedules as the original does; `LengthSq(a - b)` does not.
+- Many near-misses come from the same weak-handle relink. It matches only with an empty barrier before `fn_7100316018`, so those drafts were left without the barrier.
+
+`fakematch.py --base origin/main` lists 18 offset casts among the batch's helper accessors and 50 untyped stores, left for a later readability pass. Its barrier hits are in existing files that the header migration only touched.
+
+**Register tunables through TunableRegistry() (#576, 2026-11-17).**
+
+- `include/base/reflection/UnkTunableRegistry.h` gains `base::reflection::TunableRegistry()`. It is an inline helper that creates the global tunable registry on first use (allocation of 0x58 bytes with flags 0x3f, then the constructor fn_710013ac14) and returns it.
+- `tools/refl_attrs.py`: a tunable registration that uses the global registry is now emitted as one line: `fn_X(base::reflection::TunableRegistry(), &g_unk_obj, "Name");`. A registration with any other slot, size or flags keeps the old six-line form.
+- `tools/gen_reflection.py` adds the header's include to every generated file that calls the helper.
+- 173 generated files change: 1,400 lines removed and 390 added.
+- A new test is added in `tools/tests/test_refl_attrs.py`.
+
+**Name the empty string id CStrId::Empty() (#575, 2026-11-17).**
+
+- `g_unk_7101d470e0` is the global empty string id. Unit 0's initializer builds it, default ids are copied from it, and ids are compared with it. `base/global/CStrId.h` now has an accessor for it, `CStrId::Empty()`, an inline static that returns the same object by reference.
+- `refl_attrs` writes a field's empty default as `CStrId(CStrId::Empty())`. That covers 438 attributes in src/reflection.
+- The hand-written sources and 7 headers that named the address now call `base::global::CStrId::Empty()`, and their own `extern` declarations of it are gone.
+- Seven hand-written sources keep the address, because they declare or use it in a way the accessor changes. The other generated directories (`src/lifted`, `src/clones`, `src/tables`, `src/reflection_statics`) are left to their generators.
+
+**Name the void type object by type (#574, 2026-11-17).**
+
+- The void type object, `g_unk_7101d5af48`, is now declared in `base/reflection/CType.h` as `TypeObject<void>::object`, with the same label. It is the object most often named by address in src/reflection: 1,060 references, one for the return type of every reflected function that returns nothing.
+- `gen_reflection` treats it as a built-in type object. It is rewritten the same way as the enum objects, but no declaration of T is needed.
+  - src/reflection: 72 files now write `&base::reflection::TypeObject<void>::object` where they named the address.
+  - Hand-written sources: 4 files do the same.
+- Left alone: the 2 pointer-type files in src/reflection_types. They come from `gen_types` and keep 3 references by address.
+
+**Write each reflected function's description in one line (#572, 2026-11-17).**
+
+This is step 3 of the readable class descriptions plan: one line per reflected function.
+
+- Two new macros in `base/reflection/ReflectedFields.h`:
+  - `DREAD_REFLECTED_FUNCTION_DESCRIPTION(NAME, RETURN_TYPE, FLAGS, INVOKER)` sets a reflected function's name, return type, flags and invoker, in the same order as the five statements it replaces.
+  - `DREAD_REFLECTED_FUNCTION_OF(...)` registers a function whose registration is only that description, in one line.
+- `gen_reflection` now writes 2,868 descriptions through these macros: 1,811 one-line registrations, 51 blocks that start with the description, and the out-of-line initialisers in `function_inits_*.cpp`. The generated sources no longer contain `field_0xb2`, `field_0x40` or the five-line blocks.
+  - A return type with a template comma is wrapped in parentheses so the preprocessor keeps it as one argument.
+- The two typed attribute keys, Persistence and EditorModeDataFlow, are now named in the roughly 870 attributes added under them: `Add<s32>(attr::Persistence(), 0)`. Before, each named the key's getter and its enum's type object by address. Each getter's own declaration is removed once nothing in the file uses it.
+- Regenerating also writes 25 enum-typed fields with attributes in the one-line `DREAD_REFLECTED_FIELD_OF("IPath::EType", "ePathType", ...)` form, in 20 files. This now works because the headers changed in #534 and #535 let the generator name those enums. Their type objects are named once each in the generated `ReflectedTypes.h`.
+- src/reflection loses about 15,000 lines. The flags field and the slot at +0x40 keep their placeholder names, but only inside the macro.
+
+**Match a callee-first batch: 12 matching, 3 verified equivalent (#573, 2026-11-17).**
+
+A callee-first batch. The pool was 155 already-drafted functions, each with three or more unmatched callers. They went to 39 Opus workers on the lean kit, four functions to a worker, with up to four graded attempts each and Ghidra's view as a read-only guide.
+
+**Results:** 12 functions match (U to O). 3 more are verified equivalent (U to m: `fn_71002f8414`, `fn_7100652df0`, `fn_7101053c14`), promoted from drafts after `equiv_test.py` passed. `check.py` is clean, and no function is lost against main.
+
+**Held as matching drafts** (`drafts/INDEX.csv` gives the reason for each):
+- `fn_71003ac064` and `fn_71003ac388`, the CBossAIComponent constructor and destructor. They match only with a typed `self`, so they need one CBossAIComponent layout header and a typed declaration, with the callers cast. That makes them a layout batch of their own.
+- `fn_7100004578` and `fn_7100004698`, CAnimationResource. They need the UnkResFormat declarations retyped to the typed list with a u64 count, and `fn_7100005534`'s parameter unified.
+
+**Declaration changes:**
+- `fn_71000fbe1c` now takes `UnkRampTable*` and an `s32` channel, and its six callers cast to it. A `void*` parameter with a cast inside the function did not match.
+- `fn_7100fdcf2c`'s third parameter is now `bool active`.
+- `fn_7100ebfa7c` moved to `UnkNavMeshManager.h`, and `g_unk_7101647e48` moved to `UnkTU174.h`.
+
+**Merged main after #571** (global `-fno-strict-aliasing`). The per-file `no-strict-aliasing` lines on three new sources were dropped.
+
+**Also included:** the equivalence verdict for `fn_7100110db8` (pass), run for #571.
+
+**Rate:** about 7.8M worker tokens for 15 landed functions plus 4 held matches. That is about 520k per landed function, against about 215k for the sibling-reference batch (#570). Per the owner, further batches are sibling-reference only.
+
+**Reusable findings:**
+- In AI-component constructors and destructors, the shared base register appears only when the parameter is the struct pointer itself; a cast does not give it.
+- A guarded `static const size_t n = strlen(...)` keeps the static from being shrunk to a bool.
+- `fakematch.py` lists 15 offset casts in 6 new files (drafts' helper accessors), left for a later readability pass.
+
+**Build every source without strict aliasing, as the game was built (#571, 2026-11-17).**
+
+The build now uses `-fno-strict-aliasing` for every source, as the owner decided on 2026-11-17. That means no type-based alias analysis, which is how the game itself appears to have been built. The per-unit `// build-flags: no-strict-aliasing` lines (43 sources) are gone. `data/unit_flags.csv` now lists the two units that still need strict aliasing, and their sources open with `// build-flags: strict-aliasing`.
+
+With the flag applied globally, 64 `O` functions stopped matching (after #569). Each one was fixed or explained:
+
+- **60 now match without strict aliasing.** In each case our text read a value twice where the original reads it once, and the fix is to read it once:
+  - **Refcounted pointers.** These are released through a local before the decrement, as in #569:
+    - `UnkCloneCalls.h`'s `UnkRefOwner` (10 clones).
+    - The counted-resource members in `UnkCountedMemberDtors_b40`, `UnkUnit275`, `fn_71001bd92c`. These now use `UnkCountedResource*` and `ref_count` directly, with no `s32*` casts.
+    - Their copies in navmesh, CChaseTargetAction, CAreaFX, UnkTU2579, game_lo, flag_id.
+    - The swarm entry copy constructors.
+    - The listener in UnkTU1176, which now holds its link as the refcounted member it is.
+  - **Arrays of refcounted pointers.** These are freed with `CRntVector::Free()` in CAreaFX and CVulkranAI, instead of a hand-written loop.
+  - **Translation setters.**
+    - The nine in `game_s1` take a copy of the vector before storing it.
+    - UnkTU289 does the same, and its `asm volatile` barrier is gone.
+  - **Plane tests.** The two in UnkTU244 and UnkTU294 read the point and the limit once.
+  - **Swap-remove.** The one in UnkTU2523 and the one in the record maps move the last id down through one `values` pointer. The `memcpy` and the offset arithmetic are gone.
+  - **Member functions in place of repeated `(*slot)->` or accessor reads.**
+    - CGun's billboard: `SetGrid`, `SetField372`, `SetSize`. The `memset` and the byte-pointer store are gone.
+    - The ingame menu's mission log: `SetFlags`. The two offset-cast accessors are gone.
+    - The movement trackers: `Clear`.
+    - The aca57c panel: `ClearRange`. The byte-store helper is gone.
+  - **Locals or chained assignments where one value is stored twice:**
+    - CCharClassLockOnMissileMovement.
+    - CSoundSystemATK (`a = b = c = value`).
+    - CFXComponent.
+    - UnkTU1632.
+    - CParams_Morph.
+    - UnkTU215's slot copy.
+    - UnkTU209's emitter, which tests the fields it just stored.
+- **4 match only with strict aliasing.** These are in units 395 and 1449, listed in `data/unit_flags.csv` with the evidence:
+  - Unit 395's element array keeps the string pool pointer in a register across an `int` store of a reference count. Only type-based alias analysis allows that.
+  - Unit 1449's constructor compares the third state's id as the constant it stored. No rewrite I tried reproduces that without the flag. Its IR, optimised on its own without any TBAA, does fold the constant, so the cause may be in the pass pipeline rather than the alias analysis. It is recorded as found, not explained.
+- **12 functions now match that did not before.** `O` goes from 95,793 to 95,805.
+  - Ten match under the flag alone: `fn_71011579c8`, `fn_71002ef2d0`, `fn_710074ea40`, `fn_71011bbb24`, `fn_7100c8e414`, `fn_7100ae31f8`, `fn_7100aecdc4`, `fn_7100e7016c`, `fn_7100e702f0` and `fn_7100b48944`.
+  - Two match with the same read-once fix: `fn_7100110cd4` (`*out = *a + dir * t`) and `fn_7100ca1da4` (the tile's position computed before it is stored).
+  - Their `NON_MATCHING` comments and equivalence rows are removed.
+- **One verdict goes stale.** `fn_7100110db8` is still registers-only, now written `*out = *a + (*b - *a) * t`. Its `data/equivalence.csv` row no longer describes the text, so it is removed. `tools/equiv_test.py` needs Ghidra and could not run here, so it needs `equiv_test.py --write` on a machine that has Ghidra. Until then it is tier 3.
+- **Drafts.** The 15 drafts that had the `no-strict-aliasing` line lose it and build the same way as before. They were not regraded; some may now be closer.
+
+Tooling:
+- `tools/buildcfg.py` adds `-fno-strict-aliasing` to `CODEGEN`. `SOURCE_FLAGS` now knows `strict-aliasing` (placed after the default, so it wins).
+- `tools/trymatch.py`'s `ALIAS` probe now builds with `-fstrict-aliasing` and says when a function gets closer that way.
+- `tools/tests/test_source_flags.py`, `tools/batch/lean/worker.md`, `tools/batch/tips.md` and `docs/compiler.md` are updated to match.
+
+This is a sweeping change to how every source builds, so it is for the owner to merge.
+
+**Match the family-0 sibling batch: 72 functions and 16 verified equivalent (#570, 2026-11-17).**
+
+This is the measured batch on vtable family 0 (tag `lean-fam0a`). It uses the same-slot sibling references from #563.
+
+- **Sample:** 280 functions drawn at random from the 555 untried `U` functions in family 0 that are under 2 KB and have a matched sibling within 3× their size.
+- **Same conditions as batch 9 (#567):** 4 attempts each, five functions to a worker, Ghidra's view as a read-only guide.
+
+**Result: 72 new byte matches (O) and 16 verified equivalent (m), from 280 functions.**
+- 74 matched in the workers' runs, or 26%. Batch 9's rate on the plain 2 KB pool was 10.7% (30 of 280).
+- 54 more came out registers-only. 16 of those pass `equiv_test.py` and are promoted.
+- Tokens: about 250,000 per worker group either way, so the cost per match fell from about 525,000 to about 215,000.
+- The sibling reference is the one change between the two batches.
+
+Other changes:
+- **Eight more units in `data/unit_flags.csv`:** 662, 927, 1189, 1317, 1528, 1581, 1594 and 2693, on the same evidence as #567. In each unit a function matches or becomes registers-only only without strict aliasing, and none of the unit's hand-written matched sources changes with the flag. Three matches depend on these rows.
+- **`fn_710076438c`:** it takes the bool its callers pass in w1. Its definition gains an unread `bool` parameter and still matches.
+- **Declarations:** seven shared globals now have one declaration, in their class headers: the vtables of the CooldownX boss attacks and the cannon shot, the speed-booster and special-energy tunables, and the footstep platform key.
+- **Folded into its unit's file:** `fn_71009b7ba8` matches only beside `fn_71009b7c9c`, so it joins that file.
+- **Held in drafts:** five matches, because a symbol they use has no header yet or clashes with another declaration.
+- **Drafts:** 205 non-matches filed with graded rows.
+
+Findings worth reusing:
+- **Separate stack slots without a `goto`.** A by-value argument temporary gets no lifetime markers, so it keeps its own stack slot. Passing a link or string id by value reproduced the original's separate slots in several functions.
+- **Byte-size loop guards.** The original tests `count * size` and counts that down. Several siblings reproduce it only with an empty barrier, and this batch found no source form for it.
+- **Two declarations found wrong:**
+  - `fn_7101129b08` (UnkTU2704.h) returns an actor, but is declared `void`.
+  - `fn_7101171a08` returns a value, but is declared `void`.
+- **For review:** `7101152cc8` matches only with `__attribute__((noescape))` on its local declaration of `fn_71011531cc`. That is a compiler-steering form.
+
+Gates: `check.py` (no REGRESSION, DUPLICATE or RELOC), `decl_check --strict`, `struct_check`, `fakematch --unset --strict`, `policy_check`, `name_check --strict` and `lost_matches` all pass against origin/main.
+
+**Release refcounted pointers through a local: matches with or without strict aliasing (#569, 2026-11-17).**
+
+The idiom `if (ptr && --ptr->ref_count == 0) delete ptr;` reads the member twice. It matched only because type-based alias analysis let Clang merge the two reads. Written with the pointer held in a local, it gives the same bytes with or without `-fno-strict-aliasing`:
+
+- `include/base/UnkDestructors.h`: `UnkRefPtrMember`'s destructor. Most of the reflection clones use it.
+- 22 source files with their own copies of the idiom, rewritten mechanically as `if (auto* held = ptr; held && --held->ref_count == 0) ...`. In `UnkTU2666_TypedValue_ovb0270.cpp`, the second copy of `UnkResourceHandle` is changed the same way so both copies read alike.
+
+The normal build is unchanged: `check.py` shows no regression and all 95,793 `O` functions still match.
 
 **permute.py --scopes: block and hoist mutations for local lifetimes; 2 drafts match (#566, 2026-11-17).**
 
