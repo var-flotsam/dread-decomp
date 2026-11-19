@@ -348,9 +348,9 @@ def fuzzy_report(version: str, rows: list[dict], verified: frozenset[int] | None
 
 def fuzzy_line(f: dict) -> str:
     n = f["near"]
-    return (f"Fuzzy match, whole binary (`tools/progress.py --fuzzy`; each function's bytes weighted by its "
-            f"similarity, `O` and verified equivalent at 100%): **{f['score_pct']:.2f}%**; {n['functions']:,} "
-            f"functions not yet done are at 95% or more ({n['bytes'] / 1e6:.2f} MB). Closeness, not completion.")
+    return (f"Near misses, whole binary (`tools/progress.py --fuzzy`): {n['functions']:,} functions not yet done "
+            f"are at 95% similarity or more ({n['bytes'] / 1e6:.2f} MB); fuzzy match, each function's bytes "
+            f"weighted by its similarity, {f['score_pct']:.2f}%. Closeness, not completion: no threshold uses it.")
 
 
 HANDOFF = ROOT / "docs" / "HANDOFF.md"
@@ -391,7 +391,7 @@ def update_handoff(path: Path, overall: dict, boot: dict | None, quality_text: s
     quality_text = quality_text or next((ln for ln in old.splitlines() if ln.startswith("Completeness, whole binary")), None)
     if quality_text:
         lines += ["", quality_text]
-    fuzzy_text = fuzzy_text or next((ln for ln in old.splitlines() if ln.startswith("Fuzzy match, whole binary")), None)
+    fuzzy_text = fuzzy_text or next((ln for ln in old.splitlines() if ln.startswith("Near misses, whole binary")), None)
     if fuzzy_text:
         lines += ["", fuzzy_text]
     path.write_text(head + BEGIN + "\n" + "\n".join(lines) + "\n" + END + tail, encoding="utf-8", newline="\n")
