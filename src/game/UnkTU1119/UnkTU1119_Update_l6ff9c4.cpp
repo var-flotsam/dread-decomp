@@ -96,7 +96,6 @@ struct UnkNavPath_b66a4;
 struct UnkNavKind2_b66a4;
 bool fn_71006ff330(UnkTU1118Stepper* self);
 bool fn_71006fda48(UnkTU1119_l6ff9c4* self);
-void fn_71006fdba4(UnkTU1119_l6ff9c4* self);
 void fn_71006ffce4(UnkTU1119_l6ff9c4* self, f32 dt, CVector2D* pos);
 void fn_71007003b4(UnkTU1119_l6ff9c4* self, CVector2D* pos);
 
@@ -128,7 +127,7 @@ void fn_71006ff9c4(UnkTU1119_l6ff9c4* self, f32 dt) {
             self->field_0xf8 = 0;
             self->field_0x50 = 0;
             overrides.field_0x170 = 0;
-            fn_71006fdba4(self);
+            fn_71006fdba4(reinterpret_cast<UnkTU1118Resettable*>(self));
         } else {
             CVector2D now;
             CVector2D pos;

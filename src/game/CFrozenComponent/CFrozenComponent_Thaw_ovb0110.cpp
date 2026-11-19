@@ -157,7 +157,6 @@ void fn_71007f95b8(CFrozenComponent2* component, f32 weight) {
 
 extern void* g_unk_7101a740d0[];
 extern char g_unk_7101a74370[];
-extern void* g_unk_7101a743c8[];
 
 struct UnkLinkList;
 

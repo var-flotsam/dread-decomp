@@ -16,6 +16,8 @@ struct UnkColliderResult;
 struct UnkScenarioSub;
 struct UnkFloorRef_ovb0048;
 struct UnkCollisionObject;
+struct UnkTree;
+struct UnkBvhCollider;
 struct UnkTracker_7100863a8c;
 struct UnkBox;
 struct UnkColliderNode_A6_b70;
@@ -44,3 +46,5 @@ UnkColliderResult fn_7100d5761c(base::reflection::UnkReflObject* objA, base::ref
 UnkColliderResult fn_7100d5823c(base::reflection::UnkReflObject* objA, base::reflection::UnkReflObject* objB,
                                 const base::math::CVector2D* delta, u32 layersA, u32 layersB, void* c, bool ownMotion);
 bool fn_7100d57ca0(UnkLavaDropsShape_A2_b71* self, void* body, void* other, void* out, u32 flags);
+// Queries the tree for what `shape` touches under `mask` (src/game_hi/fn_7100d5bfbc.cpp).
+bool fn_7100d5bfbc(UnkTree* self, u32 mask, UnkBvhCollider* shape, void* arg, u32 arg2);

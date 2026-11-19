@@ -4,4 +4,7 @@
 // 0x7100706818-0x71007080dc). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkSelf_nq41;
 extern void* g_unk_7101a6bff8[];  // The member's vtable.
+void fn_7100706818(UnkSelf_nq41* self, void* owner);  // The path query's constructor.

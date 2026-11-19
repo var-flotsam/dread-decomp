@@ -9,6 +9,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU0.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU58.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -27,7 +28,6 @@ struct UnkContactBuffer {
     UnkContactPoint_ov110 points[N];
 };
 bool fn_710012b330(const UnkBox2D* a, const void* b, UnkContactBuffer<4>* out, bool flag);
-bool fn_7100d5bfbc(void* tracker, u32 mask, UnkCollisionObject* object, void* arg, u32);
 
 struct UnkGfxFrameSource;
 struct UnkTimer_7100080c40;
@@ -105,7 +105,8 @@ bool fn_710088b7dc(UnkTimerSm_b60* platform) {
         shape->Update();
     if (fn_710012b330(box, shape->geometry, &contacts, true))
         return true;
-    return fn_7100d5bfbc(tracker, 0x2000, object, nullptr, 0);
+    return fn_7100d5bfbc(static_cast<UnkTree*>(tracker), 0x2000, reinterpret_cast<UnkBvhCollider*>(object), nullptr,
+                         0);
 }
 
 // The platform's small state machine (+0x260); its update is fn_710088af9c.

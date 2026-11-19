@@ -4,12 +4,12 @@
 // path query of unit 1130 (fn_7100706818) at +0x150 and a few cleared fields after it. Names and layouts
 // are placeholders.
 #include "game/UnkTU1124.h"
+#include "game/UnkTU1130.h"
 #include "game_s2/UnkParams7.h"
 #include "types.h"
 
 struct UnkUnit1124Object;
 struct UnkSelf_nq41;
-void fn_7100706818(UnkSelf_nq41* self, void* owner);
 
 extern void* g_unk_7101a6ba98[];  // the object's vtable
 // g_unk_7101a265a8 (the parameter block's vtable) is declared in game_s2/UnkParams7.h.

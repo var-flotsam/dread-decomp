@@ -2,10 +2,10 @@
 // (fn_7100703814), with the sub-object vtable at +0xb0, cleared state and the path query at +0x140. Names and
 // layouts are placeholders.
 #include "game/UnkTU1124.h"
+#include "game/UnkTU1130.h"
 #include "types.h"
 
 struct UnkGotoTargetQuery;
-void fn_7100706818(UnkGotoTargetQuery* self, void* owner);
 extern void* g_unk_7101a6bb48[];
 extern void* g_unk_7101a25b38[];
 
@@ -76,6 +76,6 @@ void fn_7100702140(UnkGotoTargetNew* self, u32 id) {
     self->field_0x128 = 0;
     self->field_0xf8 = 0;
     self->field_0x100 = 0;
-    fn_7100706818(reinterpret_cast<UnkGotoTargetQuery*>(self->field_0x140), self);
+    fn_7100706818(reinterpret_cast<UnkSelf_nq41*>(self->field_0x140), self);
     self->field_0x38180 = false;
 }

@@ -1,6 +1,7 @@
 // Unit 1118: runs and clears a pending callback, then resets an embedded state block by assigning a
 // freshly constructed one over it. Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
+#include "game/UnkTU1118.h"
 #include "game/UnkXformNode.h"
 #include "game/behaviortree/CFlyingFollowPathAction.h"
 #include "types.h"

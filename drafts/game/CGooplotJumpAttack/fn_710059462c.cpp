@@ -7,6 +7,7 @@
 #include "base/UnkMatrix44.h"
 #include "base/global/CStrId.h"
 #include "base/math/CVector.h"
+#include "game/CGooplotJumpAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"

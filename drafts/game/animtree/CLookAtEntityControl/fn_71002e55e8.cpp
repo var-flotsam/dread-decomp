@@ -6,6 +6,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkXformNode.h"
+#include "game/animtree/CLookAtPosControl.h"
 #include "types.h"
 
 using base::reflection::UnkReflObject;
@@ -35,7 +36,6 @@ struct UnkLookAtEntityControl_b2e55e8 {
     UnkLookAtDef_b2e55e8* def;
 };
 
-void fn_71002e6794(UnkLookAtEntityControl_b2e55e8* self, const UnkVec3f* target, f32 weight);
 void fn_71002e681c(UnkLookAtEntityControl_b2e55e8* self, f32 dt);
 
 // An entity's position (fn_7100d7b7dc), else the translation of the object's transform.
@@ -56,6 +56,7 @@ inline UnkLookAtTarget_b2e55e8* LookAtTarget(UnkLookAtEntityControl_b2e55e8* sel
 void fn_71002e55e8(UnkLookAtEntityControl_b2e55e8* self, f32 dt) {
     UnkLookAtTarget_b2e55e8* target = LookAtTarget(self);
     UnkVec3f pos = target ? PositionOf(target) : UnkVec3f(0.0f, 0.0f, 0.0f);
-    fn_71002e6794(self, &pos, -1.0f);
+    fn_71002e6794(reinterpret_cast<UnkLookAtPosControl_b69*>(self), reinterpret_cast<const base::math::CVector3D&>(pos),
+                  -1.0f);
     fn_71002e681c(self, dt);
 }

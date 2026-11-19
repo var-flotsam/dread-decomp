@@ -18,3 +18,4 @@ bool fn_71007f900c(void* self, void* arg);
 void fn_71007f95b8(CFrozenComponent2* self, f32 value);
 void fn_71007fa130(UnkFrostbiteComponent* self);
 extern char g_unk_7172721120[] __attribute__((visibility("hidden")));
+extern void* g_unk_7101a743c8[];  // The frozen state machine's vtable.
