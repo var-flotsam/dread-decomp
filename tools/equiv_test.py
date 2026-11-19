@@ -32,7 +32,12 @@ is marked `// NON_MATCHING(functional): <reason>` (status M); tools/check.py fai
 of the function's own text (mutants(): an integer constant one up or down, a comparison flipped or loosened, the
 operands of a subtraction swapped; up to MUTANTS of them that compile to other code). A mutant that also
 passes means the inputs cannot tell such a change apart, and the verdict is `inconclusive` instead: this
-aims at the calibration's off-by-one.
+aims at the calibration's off-by-one. Since 2026-11-19 a mutant that passes is not yet a verdict: kill() runs the
+mutant itself on targeted inputs (kill_candidates(): the constant the mutation changed and its neighbours on every
+argument, word read and call result, the run's compares made equal, pairs set to one value), because the
+systematic inputs keep a run only for new coverage of the original and so throw away the boundary input that
+separates `<` from `<=`. An input that tells the mutant apart joins the function's inputs (EXTRA) and the
+function is judged on it again; only a mutant no input tells apart leaves the verdict `inconclusive`.
 
 Calibration, 2026-11-11 (docs/JOURNAL.md): of 300 byte-matching functions none failed (59 passed, 241 could
 not be judged), and of 95 registers-only one-point mutants in 59 functions none that changes behaviour was
@@ -60,7 +65,9 @@ Usage:
   python tools/equiv_test.py --version 2.1.0 --minor          # every file under src/ with NON_MATCHING(minor)
   python tools/equiv_test.py --version 2.1.0 --drafts         # the `registers or order` rows of drafts/INDEX.csv
   python tools/equiv_test.py --version 2.1.0 --all-drafts     # every row of drafts/INDEX.csv, any difference (--any-kind)
-  ... --shard K/N      # with --drafts or --all-drafts, the K-th of N parts (run them in parallel)
+  python tools/equiv_test.py --version 2.1.0 --survivors OLD.json # what an earlier run left to a passing mutant
+  ... --shard K/N      # with --drafts, --all-drafts or --survivors, the K-th of N parts (run them in parallel)
+  ... --no-kill        # no targeted search for a passing mutant (the mutation check as before 2026-11-19)
   ... --any-kind       # judge every non-matching function: a pass of one that is not registers-only is `behaves`
   ... --write          # record the verdicts of functions under src/ in data/equivalence.csv
   ... --json OUT       # every verdict with its detail
@@ -76,6 +83,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import contextlib
 import csv
 import hashlib
 import json
@@ -249,8 +257,10 @@ def mutants(text: str, span: tuple[int, int], limit: int = 64) -> list[str]:
 
 def survivor(ctx: Context, oracle, src: Path, a: int, symbol: str, code: bytes, text: str) -> str | None:
     """For a function that behaves: compile mutants of its body (mutants()) until MUTANTS of them compile to
-    other code, judge each, and return a description of the first that passes too; None when every one
-    failed or could not be judged."""
+    other code, judge each, and return a description of the first that passes too and that a targeted search
+    (kill()) cannot tell apart from the original either; None when every one failed or could not be judged.
+    An input that tells a mutant apart joins EXTRA[a]: the function and every later mutant are judged on it
+    too, so the caller judges the function again when EXTRA[a] grew (a draft may differ there as well)."""
     import asmdiff
     import buildcfg
     span = body_span(text, a, ctx.name_of(a))
@@ -274,10 +284,176 @@ def survivor(ctx: Context, oracle, src: Path, a: int, symbol: str, code: bytes, 
         judged += 1
         SOURCES[mobj] = SOURCES.get(src, str(src))
         v, _ = judge(ctx, oracle, mobj, a, with_headers(mtext), MUTANT_BUDGET)
-        if v == "pass":
-            diff = next((f"{y.strip()}" for x, y in zip(text.splitlines(), mtext.splitlines()) if x != y), "")
-            return f"mutant {n} passes too ({short(diff, 60)})"
+        if v != "pass":
+            continue
+        diff = next((f"{y.strip()}" for x, y in zip(text.splitlines(), mtext.splitlines()) if x != y), "")
+        runs, ret = LAST.get(a, ([], None))
+        values = kill_values(ctx.orig.function(a), code, mine[0].code)
+        found = kill(ctx, oracle, a, mobj, ret, runs, values, KILL_BUDGET) if KILL else None
+        if found is None:
+            return f"mutant {n} passes too ({short(diff, 60)}), also after a targeted search"
+        EXTRA.setdefault(a, []).append(found)
     return None
+
+
+# --- telling a surviving mutant apart (2026-11-19) ----------------------------------------------------
+# PR #589's mutation check made 141 would-be `behaves` verdicts inconclusive: a mutant passed too. The
+# systematic inputs keep a run only when it reaches new code of the original, so the boundary input that
+# separates `<` from `<=` (or 3 from 4) is run and thrown away: both sides of the branch were already
+# reached with other values. kill() runs the mutant itself on targeted inputs and keeps the first that
+# tells it apart from the original. That input is then part of the function's test (EXTRA), so a draft
+# is judged on exactly the inputs that showed the test can see such a change.
+
+KILL = True              # (a test, or a comparison with the mutation check alone, turns it off)
+KILL_BUDGET = 90.0       # seconds of targeted search per mutant that passed
+KILL_EXTRA = (3, 4, 5, 7, 8, 15, 16, 31, 32, 63, 64, 0xFF, 0x100, 0x7FFFFFFF, 0x80000000, 0xFFFFFFFF,
+              0xFFFFFFFFFFFFFFFF)
+EXTRA: dict[int, list] = {}   # address -> [(seed, overrides)]: inputs that told one of its mutants apart
+LAST: dict[int, tuple] = {}   # address -> (the original's runs, the result kind) of its last judge()
+
+
+def immediates(code: bytes) -> list[int]:
+    """Every non-negative immediate of every instruction, in order (repeats kept)."""
+    import capstone
+    cs = capstone.Cs(capstone.CS_ARCH_ARM64, capstone.CS_MODE_ARM)
+    cs.detail = True
+    return [op.imm for x in cs.disasm(code, 0) for op in x.operands
+            if op.type == capstone.arm64_const.ARM64_OP_IMM and 0 <= op.imm < 1 << 64]
+
+
+def kill_values(orig: bytes, ours: bytes, mutant: bytes) -> list[int]:
+    """The values worth trying to tell a mutant from the original, the likeliest first: the immediates the
+    mutant has and ours has not, or ours has and the mutant has not (the changed constant, the bound that
+    moved by one), then the compare constants of the original and of the mutant, each with its neighbours
+    two either way, then small numbers, powers of two and their neighbours, and the sign and width
+    boundaries (KILL_EXTRA)."""
+    import port_lift
+    mine, theirs = collections.Counter(immediates(mutant)), collections.Counter(immediates(ours))
+    changed = list(dict.fromkeys([*(mine - theirs).elements(), *(theirs - mine).elements()]))
+    compared = list(dict.fromkeys([*port_lift.compare_constants(orig), *port_lift.compare_constants(mutant)]))
+    out: list[int] = []
+    for v in [*changed, *compared]:
+        out += [v, v + 1, v - 1, v + 2, v - 2]
+    out += [*SYSTEMATIC, *KILL_EXTRA]
+    mask = (1 << 64) - 1
+    return list(dict.fromkeys(x & mask if x >= 0 else (1 << 32) + x for x in out))
+
+
+def mutable_words(oracle):
+    """Whether a word may be set by an input: as port_lift.Oracle.originals, not a guard, a relocated slot
+    or read-only data."""
+    import pcode_emu
+    guard_words = {g & ~7 for g in oracle.preset_orig}
+    img = oracle.orig.img
+
+    def mutable(w: int) -> bool:
+        off = w - pcode_emu.BASE
+        return w not in guard_words and img.relocs.get(off) is None and not img.in_text(off) \
+            and not img.rodata[0] <= off < img.rodata[1]
+    return mutable
+
+
+def kill_candidates(oracle, a: int, runs: list, values: list[int]):
+    """(seed, overrides) inputs to tell a mutant apart on, the likeliest first and none twice: each value
+    for each argument, memory word read (and the values the run's other words held) and call result of
+    every run of the original (the value outermost: the changed constant on every input before anything
+    else), then each run's register compares made equal (equal_variants, every compare of the run), then
+    every pair of the first arguments and words set to one value: a bound and a count that meet."""
+    import pcode_emu
+    import port_lift
+    f = oracle.af.facts(a)
+    regs = sorted((f.args if f is not None else frozenset(range(8))) - {8})
+    mutable = mutable_words(oracle)
+    size = oracle.orig.sizes[a]
+    bases = [r for r in runs if not isinstance(r[2], str)]
+    floats = [pcode_emu.f_to(v, 4) for v in (*SYS_FLOATS, 2.0, 0.5, -0.5)]
+    seen: set = set()
+
+    def fresh(seed, o):
+        k = (seed, tuple(sorted(o.items(), key=repr)))
+        if k in seen:
+            return False
+        seen.add(k)
+        return True
+
+    def keys(base):
+        return [("r", k) for k in regs] \
+            + [("m", w) for w in base.read_words[:SYS_READ] if mutable(w)] \
+            + [("c", n) for n in range(1, min(base.calls, SYS_CALLS) + 1)]
+
+    def value(base, key, v):
+        return port_lift.placed(base, key[1], v) if key[0] == "m" else v
+    held = {id(b[2]): [v for v in dict.fromkeys(port_lift.held(b[2], w) for w in b[2].read_words[:SYS_READ]) if v > 2]
+            for b in bases}
+    for v in values:
+        for seed, ovr, base in bases:
+            for key in keys(base):
+                if key in ovr or (key[0] == "r" and key[1] >= 100):
+                    continue
+                o = {**ovr, key: value(base, key, v)}
+                if fresh(seed, o):
+                    yield seed, o
+    for seed, ovr, base in bases:
+        for key in keys(base):
+            if key in ovr:
+                continue
+            pool = floats if key[0] == "r" and key[1] >= 100 else held[id(base)] if key[0] == "m" else []
+            for v in pool:
+                o = {**ovr, key: value(base, key, v)}
+                if fresh(seed, o):
+                    yield seed, o
+    for seed, ovr, base in bases:
+        words = [w for w in base.read_words[:SYS_READ] if mutable(w) and ("m", w) not in ovr]
+        for w, v in equal_variants(getattr(base, "compares", ()), words, lambda w, base=base: port_lift.held(base, w),
+                                   lambda pc: a <= pc < a + size, limit=1 << 16):
+            o = {**ovr, ("m", w): port_lift.placed(base, w, v)}
+            if fresh(seed, o):
+                yield seed, o
+    for v in values[:12]:
+        for seed, ovr, base in bases:
+            ks = [k for k in keys(base) if k not in ovr and not (k[0] == "r" and k[1] >= 100)][:8]
+            for i, k1 in enumerate(ks):
+                for k2 in ks[i + 1:]:
+                    o = {**ovr, k1: value(base, k1, v), k2: value(base, k2, v)}
+                    if fresh(seed, o):
+                        yield seed, o
+
+
+def kill(ctx: Context, oracle, a: int, mobj: Path, ret, runs: list, values: list[int], budget: float):
+    """The first input of kill_candidates() on which the mutant in `mobj` and the original differ (a run
+    that fails: other writes, calls or result, or a fault only one of them has), as (seed, overrides);
+    None when none did within `budget` seconds. Each candidate runs the original and the mutant once."""
+    import pcode_emu
+    import port_lift
+    with strict():
+        lo, _ = load(ctx, mobj, a)
+        if a not in lo.functions:
+            return None
+        end = port_lift._clock() + budget
+        saved = oracle.orig_runs.pop(a, None)
+        try:
+            for seed, ovr in kill_candidates(oracle, a, runs, values):
+                if port_lift._clock() > end:
+                    return None
+                oracle.deadline, oracle.over = end, None
+                try:
+                    mo = oracle.run_original(a, seed, ovr)
+                except pcode_emu.Inconclusive:
+                    continue
+                if getattr(mo, "cut", None):
+                    continue
+                oracle.orig_runs[a] = [(seed, ovr, mo)]
+                try:
+                    v, _, _, _ = oracle.check(a, lo, ret)
+                except Exception:  # the emulator on a state it does not model: this input decides nothing
+                    continue
+                if v == "fail":
+                    return seed, ovr
+            return None
+        finally:
+            oracle.orig_runs.pop(a, None)
+            if saved is not None:
+                oracle.orig_runs[a] = saved
 
 
 def conditional_branches(code: bytes, address: int) -> list[int]:
@@ -608,13 +784,7 @@ def more_inputs(oracle, a: int) -> int:
         return len(state["seen"]) * 4 >= size and not one_way(sorted(own), state["outs"])
     f = oracle.af.facts(a)
     regs = sorted((f.args if f is not None else frozenset(range(8))) - {8})
-    guard_words = {g & ~7 for g in oracle.preset_orig}
-    img = oracle.orig.img
-
-    def mutable(w: int) -> bool:  # as port_lift.Oracle.originals: not a guard, a relocated slot or read-only data
-        off = w - pcode_emu.BASE
-        return w not in guard_words and img.relocs.get(off) is None and not img.in_text(off) \
-            and not img.rodata[0] <= off < img.rodata[1]
+    mutable = mutable_words(oracle)
     floats = [pcode_emu.f_to(v, 4) for v in SYS_FLOATS]
     # with the constants the function compares with and their neighbours, every index of a jump table, and all
     # bits set (a sentinel)
@@ -688,16 +858,28 @@ def more_inputs(oracle, a: int) -> int:
     return state["added"]
 
 
-def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60.0) -> tuple[str, str]:
-    """(verdict, detail) for the function at `a` of `obj` under the strict rules. The caller has checked
-    that the difference is registers only."""
+@contextlib.contextmanager
+def strict():
+    """The emulator under this tool's rules while the block runs: arguments compared strictly, a wider window,
+    no modeled library calls."""
     import pcode_emu
-    import port_lift
     global _LOOSE
     _LOOSE = _LOOSE or pcode_emu.same_arg
     window, modeled = pcode_emu.WINDOW, pcode_emu.MODELED
     pcode_emu.same_arg, pcode_emu.WINDOW, pcode_emu.MODELED = strict_same_arg, 256, frozenset()
     try:
+        yield
+    finally:
+        pcode_emu.same_arg, pcode_emu.WINDOW, pcode_emu.MODELED = _LOOSE, window, modeled
+
+
+def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60.0) -> tuple[str, str]:
+    """(verdict, detail) for the function at `a` of `obj` under the strict rules. The caller has checked
+    that the difference is registers only (or asked for any kind). The inputs are the oracle's, this tool's
+    systematic ones (more_inputs) and every input that told one of the function's mutants apart (EXTRA)."""
+    import pcode_emu
+    import port_lift
+    with strict():
         lo, missing = load(ctx, obj, a)
         oracle.retry_runs.clear()
         oracle.deadline, oracle.over = port_lift._clock() + budget, None
@@ -715,11 +897,19 @@ def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60
         try:
             if MORE_INPUTS:
                 more_inputs(oracle, a)
+            if EXTRA.get(a):
+                runs = oracle.originals(a)
+                for seed, ovr in EXTRA[a]:
+                    try:
+                        runs.append((seed, ovr, oracle.run_original(a, seed, ovr)))
+                    except pcode_emu.Inconclusive:
+                        continue
             v, d, _, covered = oracle.check(a, lo, ret)
             outcomes: set = set()
             for _, _, mo in oracle.orig_runs.get(a, ()):
                 if not isinstance(mo, str):
                     outcomes |= mo.outcomes
+            LAST[a] = (list(oracle.orig_runs.get(a, ())), ret)
         except Exception as e:  # the emulator on an instruction or a state it does not model
             return "inconclusive", f"emulator: {type(e).__name__}: {e}"
         finally:
@@ -734,8 +924,6 @@ def judge(ctx: Context, oracle, obj: Path, a: int, text: str, budget: float = 60
         if left:
             return "inconclusive", f"{len(left)} of {len(branches)} conditional branches went only one way"
         return v, d
-    finally:
-        pcode_emu.same_arg, pcode_emu.WINDOW, pcode_emu.MODELED = _LOOSE, window, modeled
 
 
 # --- the command line ---------------------------------------------------------------------------------
@@ -747,6 +935,15 @@ def sources(args) -> list[Path]:
         r = subprocess.run(["git", "grep", "-l", "NON_MATCHING(minor)", "--", "src"], cwd=ROOT, capture_output=True,
                            text=True)
         return [ROOT / p for p in r.stdout.split() if p.endswith(".cpp")]
+    if args.survivors:
+        # the functions an earlier run (--json) left inconclusive because a mutant passed too
+        rows = [o for f in args.survivors for o in json.loads(f.read_text(encoding="utf-8"))
+                if o.get("address") and o["verdict"] == "inconclusive" and "passes too" in o.get("detail", "")]
+        if args.shard:
+            k, n = args.shard
+            rows = rows[k - 1::n]
+        ONLY.update({(ROOT / o["file"]).resolve(): int(o["address"], 16) for o in rows})
+        return list(dict.fromkeys(ROOT / o["file"] for o in rows))
     if args.drafts or args.all_drafts:
         with (ROOT / "drafts" / "INDEX.csv").open(newline="", encoding="utf-8") as fh:
             rows = [r for r in csv.DictReader(fh)
@@ -787,13 +984,19 @@ def main() -> int:
                     help="every row of drafts/INDEX.csv whatever its difference (implies --any-kind)")
     ap.add_argument("--any-kind", action="store_true",
                     help="judge functions of any difference; a pass of one that is not registers-only is `behaves`")
+    ap.add_argument("--survivors", type=Path, nargs="+", metavar="JSON",
+                    help="the functions these --json runs left inconclusive because a mutant passed too (--any-kind)")
+    ap.add_argument("--no-kill", action="store_true",
+                    help="no targeted search for a mutant that passes: the mutation check as before 2026-11-19")
     ap.add_argument("--shard", type=lambda t: tuple(int(x) for x in t.split("/")), metavar="K/N",
                     help="with --drafts or --all-drafts: only every N-th row from the K-th (parallel runs)")
     ap.add_argument("--write", action="store_true", help="record verdicts of functions under src/ in data/equivalence.csv")
     ap.add_argument("--json", type=Path, help="write every verdict with its detail")
     ap.add_argument("--budget", type=float, default=60.0, help="seconds per function (default 60)")
     args = ap.parse_args()
-    args.any_kind = args.any_kind or args.all_drafts
+    args.any_kind = args.any_kind or args.all_drafts or bool(args.survivors)
+    global KILL
+    KILL = not args.no_kill
     files = sources(args)
     if not files:
         ap.error("no files: name some, or --minor, or --drafts")
@@ -841,12 +1044,20 @@ def main() -> int:
             v, d = judge(ctx, oracle, obj, a, text, args.budget)
             if v == "pass" and row["kind"] != "registers":
                 v = "behaves"  # tier 3: correct on every input tried, not proven (see the docstring)
+                before = len(EXTRA.get(a, ()))
                 weak = survivor(ctx, oracle, row["_src"], a, row["_symbol"], row["_code"],
                                 row["_src"].read_text(encoding="utf-8", errors="replace"))
-                if weak:
+                if not weak and len(EXTRA.get(a, ())) > before:
+                    # judged again on the inputs that told mutants apart: the function may differ there too
+                    v2, d2 = judge(ctx, oracle, obj, a, text, args.budget)
+                    if v2 != "pass":
+                        v, d = v2, f"on the inputs that told its mutants apart: {d2}"
+                if v == "behaves" and weak:
                     v, d = "inconclusive", f"behaves, but {weak}: the inputs cannot tell such a change apart"
-                else:  # how close it is says which functional functions a later matching pass should take first
-                    d = f"similarity {row['similarity']}%; {kind}; {d}"
+                elif v == "behaves":  # how close it is says which functional functions a later pass should take first
+                    told = len(EXTRA.get(a, ()))
+                    d = f"similarity {row['similarity']}%; {row['kind']}; " \
+                        + (f"{told} inputs found for its mutants; " if told else "") + d
             row = {k: x for k, x in row.items() if not k.startswith("_")}
             out.append({**row, "verdict": v, "detail": d})
             if n % 25 == 0:

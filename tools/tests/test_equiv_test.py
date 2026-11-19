@@ -360,3 +360,58 @@ class Mutants(unittest.TestCase):
 
     def test_no_definition_no_span(self):
         self.assertIsNone(equiv_test.body_span("int fn_7100000100(int a);\n", 0x7100000100))
+
+
+CMP_W8_6, CMP_W8_3 = 0x7100191F, 0x71000D1F   # cmp w8, #6; cmp w8, #3
+
+
+@unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
+class KillValues(unittest.TestCase):
+    """What a targeted search tries first on a mutant that passed (equiv_test.kill_values)."""
+
+    def test_the_changed_constant_and_its_neighbours_come_first(self):
+        got = equiv_test.kill_values(words(CMP_W8_5, B_NE), words(CMP_W8_5, B_NE), words(CMP_W8_6, B_NE))
+        self.assertEqual(got[:2], [6, 7])
+        for v in (4, 5, 8, 0, 1, 2, 0xFFFFFFFF, 0xFFFFFFFFFFFFFFFF):
+            self.assertIn(v, got)
+
+    def test_the_original_s_compare_constants_are_tried_even_when_no_immediate_changed(self):
+        got = equiv_test.kill_values(words(CMP_W8_3, B_NE), words(CMP_W8_5, B_HI), words(CMP_W8_5, B_HI))
+        self.assertIn(3, got)
+        self.assertIn(4, got)
+
+    def test_no_value_twice_and_none_negative(self):
+        got = equiv_test.kill_values(words(CMP_W8_5), words(CMP_W8_5), words(CMP_W8_6))
+        self.assertEqual(len(got), len(set(got)))
+        self.assertTrue(all(v >= 0 for v in got))
+
+
+@unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
+class KillCandidates(unittest.TestCase):
+    """The inputs a mutant that passed is run on (equiv_test.kill_candidates)."""
+    A = _Oracle.A
+
+    def candidates(self, base, values):
+        oracle = _Oracle([(0, {}, base)])
+        return list(equiv_test.kill_candidates(oracle, self.A, oracle.runs, values))
+
+    def test_the_first_value_is_tried_on_every_input_before_the_second(self):
+        import pcode_emu
+        w = pcode_emu.BASE + 0x40000
+        got = self.candidates(_Run({self.A}, set(), read_words=[w], calls=1), [6, 7])
+        firsts = [o for _, o in got[:4]]
+        self.assertEqual(firsts, [{("r", 0): 6}, {("r", 1): 6}, {("m", w): 6}, {("c", 1): 6}])
+        self.assertEqual(got[4][1], {("r", 0): 7})
+
+    def test_a_run_is_never_tried_twice_and_includes_pairs(self):
+        got = self.candidates(_Run({self.A}, set()), [0, 5])
+        keys = [(s, tuple(sorted(o.items()))) for s, o in got]
+        self.assertEqual(len(keys), len(set(keys)))
+        self.assertIn({("r", 0): 5, ("r", 1): 5}, [o for _, o in got])
+
+    def test_a_compare_is_made_equal(self):
+        import pcode_emu
+        w = pcode_emu.BASE + 0x40000
+        base = _Run({self.A}, set(), read_words=[w])
+        base.compares = [(self.A + 4, 0x5000, 0x6123)]   # the run's word held 0x5000 (_Run.peek)
+        self.assertIn({("m", w): 0x6123}, [o for _, o in self.candidates(base, [1])])
