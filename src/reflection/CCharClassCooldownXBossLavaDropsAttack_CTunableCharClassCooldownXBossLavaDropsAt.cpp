@@ -373,15 +373,13 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_71004b21a8();
-extern base::global::CStrId g_unk_7101d5a450;
 void fn_71004b21f8();
-extern base::global::CStrId g_unk_7101d5a458;
 void fn_71004acf44(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71004b21a8);
-    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCooldownXBossLavaDropsMovementDef::refl_GetClass(), 0x1, fn_71004b21f8);
-    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCooldownXBossLavaDropsMovementDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCooldownXBossLavaDropsMovementDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -392,14 +390,12 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_71004b2330();
-extern base::global::CStrId g_unk_7101d5a450;
 void fn_71004b2380();
-extern base::global::CStrId g_unk_7101d5a458;
 void fn_71004ad534(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71004b2330);
-    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", CCooldownXBossLavaDropsMovementDef::refl_GetClass(), 0x101, fn_71004b2380);
-    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, CCooldownXBossLavaDropsMovementDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), CCooldownXBossLavaDropsMovementDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

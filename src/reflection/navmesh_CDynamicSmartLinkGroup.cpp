@@ -240,15 +240,13 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100267878();
-extern base::global::CStrId g_unk_7101d5a450;
 void fn_71002678c8();
-extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100264d40(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100267878);
-    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass(), 0x1, fn_71002678c8);
-    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -259,14 +257,12 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_7100267b0c();
-extern base::global::CStrId g_unk_7101d5a450;
 void fn_7100267b5c();
-extern base::global::CStrId g_unk_7101d5a458;
 void fn_7100265330(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100267b0c);
-    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass(), 0x101, fn_7100267b5c);
-    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), navmesh::CDynamicSmartLinkGroup::SDynamicSmartLinkRulesSet::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }

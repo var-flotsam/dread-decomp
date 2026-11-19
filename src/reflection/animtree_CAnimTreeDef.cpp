@@ -231,15 +231,13 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_71002d9b8c();
-extern base::global::CStrId g_unk_7101d5a450;
 void fn_71002d9bdc();
-extern base::global::CStrId g_unk_7101d5a458;
 void fn_71002d6cd8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71002d9b8c);
-    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0x1, fn_71002d9bdc);
-    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 #include "base/reflection/UnkReflAttributes.h"
@@ -250,14 +248,12 @@ using base::reflection::UnkReflFunction;
 using base::reflection::UnkTunable;
 using base::reflection::UnkTunableRegistry;
 void fn_71002d9e00();
-extern base::global::CStrId g_unk_7101d5a450;
 void fn_71002d9e50();
-extern base::global::CStrId g_unk_7101d5a458;
 void fn_71002d72c8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71002d9e00);
-    UnkReflField* field0 = AddReflectedField(cls, g_unk_7101d5a450, &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0x101, fn_71002d9e50);
-    UnkReflField* field1 = AddReflectedField(cls, g_unk_7101d5a458, animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), animtree::CAnimTreeDef::TAnimTreeLinkDef::refl_GetClass(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
