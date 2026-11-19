@@ -60,6 +60,7 @@ struct UnkColliderGroup_ld45790 {
 static_assert(__builtin_offsetof(UnkColliderGroup_ld45790, children) == 0x128, "layout");
 static_assert(__builtin_offsetof(UnkColliderGroup_ld45790, dirty) == 0x328, "layout");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkColliderGroupTransform_ld45790* fn_7100d45790(UnkColliderGroup_ld45790* self) {
     if (self->dirty) {
         self->previous = self->current;

@@ -2200,7 +2200,7 @@ address,size,name,name_source,subsystem,status
 0x710046a228,364,fn_710046a228,unknown,game/ai?,O
 0x710046a394,296,fn_710046a394,unknown,game/ai?,O
 0x710046a4bc,84,fn_710046a4bc,unknown,game/ai?,O
-0x710046a510,224,fn_710046a510,unknown,game/ai?,U
+0x710046a510,224,fn_710046a510,unknown,game/ai?,m
 0x710046a5f0,4,fn_710046a5f0,unknown,game/ai?,O
 0x710046a5f4,1048,fn_710046a5f4,unknown,game/ai?,U
 0x710046aa0c,4,fn_710046aa0c,unknown,game/ai?,O
@@ -2242,7 +2242,7 @@ address,size,name,name_source,subsystem,status
 0x710046b924,244,behaviortree::CChozoRobotSoldierPatrolAction::refl_GetClass,reflection,ai/behaviortree,O
 0x710046ba18,4,behaviortree::CChozoRobotSoldierPatrolAction::refl_AddFields,reflection,ai/behaviortree,O
 0x710046ba1c,388,behaviortree::CChozoRobotSoldierPatrolAction::refl_InitClass,reflection,ai/behaviortree,O
-0x710046bba0,288,fn_710046bba0,unknown,ai/behaviortree?,U
+0x710046bba0,288,fn_710046bba0,unknown,ai/behaviortree?,m
 0x710046bcc0,140,fn_710046bcc0,unknown,ai/behaviortree?,O
 0x710046bd4c,8,fn_710046bd4c,unknown,ai/behaviortree?,O
 0x710046bd54,8,fn_710046bd54,unknown,ai/behaviortree?,O

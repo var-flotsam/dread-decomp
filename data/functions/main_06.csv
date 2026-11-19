@@ -1798,7 +1798,7 @@ address,size,name,name_source,subsystem,status
 0x7100643d14,388,CQuetzoaChargeAttack::refl_InitClass,reflection,game/ai,O
 0x7100643e98,56,fn_7100643e98,unknown,game/ai?,O
 0x7100643ed0,96,fn_7100643ed0,unknown,game/ai?,O
-0x7100643f30,336,fn_7100643f30,unknown,game/ai?,U
+0x7100643f30,336,fn_7100643f30,unknown,game/ai?,m
 0x7100644080,4,fn_7100644080,unknown,game/ai?,O
 0x7100644084,196,fn_7100644084,unknown,game/ai?,U
 0x7100644148,868,fn_7100644148,unknown,game/ai?,U

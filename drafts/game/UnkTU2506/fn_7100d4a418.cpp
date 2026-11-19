@@ -27,6 +27,7 @@ static inline void DropRef(UnkRefCounted* p) {
         p->vtable->release(p);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100d4a418(UnkRefContainer* self) {
     if (self->flat && self->count != 0) {
         for (u64 i = 0; i < self->count; i++)

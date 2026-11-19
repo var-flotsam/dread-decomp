@@ -73,6 +73,7 @@ static inline void Roll(UnkRandShake_ovb0131* self, f32 strength) {
     self->offset_w = strength * RandRange(b, -b);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71010f2918(UnkRandShake_ovb0131* self, void* camera, CVector3D* pos, CVector3D* target, void* arg4,
                    f32* roll, f32 dt) {
     if (!self->stopped && (self->duration <= 0.0f || self->time <= self->duration)) {

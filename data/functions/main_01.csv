@@ -4170,7 +4170,7 @@ address,size,name,name_source,subsystem,status
 0x71001e12dc,220,fn_71001e12dc,unknown,unknown,O
 0x71001e13b8,200,fn_71001e13b8,unknown,unknown,O
 0x71001e1480,36,fn_71001e1480,unknown,unknown,O
-0x71001e14a4,372,fn_71001e14a4,unknown,unknown,U
+0x71001e14a4,372,fn_71001e14a4,unknown,unknown,m
 0x71001e1618,108,fn_71001e1618,unknown,unknown,O
 0x71001e1684,260,fn_71001e1684,unknown,unknown,O
 0x71001e1788,436,fn_71001e1788,unknown,unknown,O

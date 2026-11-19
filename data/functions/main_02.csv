@@ -2464,7 +2464,7 @@ address,size,name,name_source,subsystem,status
 0x710025373c,196,fn_710025373c,unknown,game?,O
 0x7100253800,36,fn_7100253800,unknown,game?,O
 0x7100253824,16,fn_7100253824,unknown,game?,O
-0x7100253834,340,fn_7100253834,unknown,game?,U
+0x7100253834,340,fn_7100253834,unknown,game?,m
 0x7100253988,332,fn_7100253988,unknown,game?,O
 0x7100253ad4,28,fn_7100253ad4,unknown,game?,O
 0x7100253af0,144,fn_7100253af0,unknown,game?,O

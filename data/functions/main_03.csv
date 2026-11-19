@@ -2527,7 +2527,7 @@ address,size,name,name_source,subsystem,status
 0x710038f4e0,4,fn_710038f4e0,unknown,ai/behaviortree?,O
 0x710038f4e4,36,fn_710038f4e4,unknown,ai/behaviortree?,O
 0x710038f508,4,fn_710038f508,unknown,ai/behaviortree?,O
-0x710038f50c,364,fn_710038f50c,unknown,ai/behaviortree?,U
+0x710038f50c,364,fn_710038f50c,unknown,ai/behaviortree?,m
 0x710038f678,8,fn_710038f678,unknown,ai/behaviortree?,O
 0x710038f680,28,fn_710038f680,unknown,ai/behaviortree?,O
 0x710038f69c,8,behaviortree::CRotateToPlayer::refl_Equals,reflection,ai/behaviortree,O

@@ -73,6 +73,7 @@ struct UnkRotateToPlayer_l38f50c {
     bool horizontal;  // 0x34
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 s32 fn_710038f50c(UnkRotateToPlayer_l38f50c* self) {
     UnkActor* player = fn_7100d7c990(self->actor);
     UnkActor* actor = self->actor;

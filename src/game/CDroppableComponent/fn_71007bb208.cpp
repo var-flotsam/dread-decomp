@@ -40,6 +40,7 @@ struct UnkDropList_l7bb208 {
 #pragma pack(pop)
 static_assert(sizeof(UnkDropEntry_l7bb208) == 0x48, "entry");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkAddResult_l7bb208 fn_71007bb208(UnkDropList_l7bb208* self, const UnkDropEntry_l7bb208& entry) {
     return self->array.Add(entry);
 }

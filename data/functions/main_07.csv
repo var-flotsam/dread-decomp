@@ -3751,7 +3751,7 @@ address,size,name,name_source,subsystem,status
 0x71007bb108,28,fn_71007bb108,unknown,game/components?,O
 0x71007bb124,36,fn_71007bb124,unknown,game/components?,O
 0x71007bb148,192,fn_71007bb148,unknown,game/components?,O
-0x71007bb208,116,fn_71007bb208,unknown,game/components?,U
+0x71007bb208,116,fn_71007bb208,unknown,game/components?,m
 0x71007bb27c,8,CDroppableComponent::refl_Equals,reflection,game/components,O
 0x71007bb284,8,CDroppableComponent::refl_Hash,reflection,game/components,O
 0x71007bb28c,28,CDroppableComponent::refl_TypeOf,reflection,game/components,O

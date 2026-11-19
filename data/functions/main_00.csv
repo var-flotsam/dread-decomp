@@ -631,7 +631,7 @@ address,size,name,name_source,subsystem,status
 0x7100015680,372,fn_7100015680,unknown,engine/base?,U
 0x71000157f4,496,fn_71000157f4,unknown,engine/base?,U
 0x71000159e4,392,fn_71000159e4,unknown,engine/base?,O
-0x7100015b6c,260,fn_7100015b6c,unknown,engine/base?,U
+0x7100015b6c,260,fn_7100015b6c,unknown,engine/base?,m
 0x7100015c70,840,fn_7100015c70,unknown,engine/base?,O
 0x7100015fc0,1800,fn_7100015fc0,unknown,engine/base?,O
 0x71000166c8,328,fn_71000166c8,unknown,engine/base?,O
@@ -3048,7 +3048,7 @@ address,size,name,name_source,subsystem,status
 0x71000a4f0c,264,fn_71000a4f0c,unknown,engine/reflection?,O
 0x71000a5020,248,fn_71000a5020,unknown,engine/reflection?,O
 0x71000a5118,92,fn_71000a5118,unknown,engine/reflection?,O
-0x71000a5174,232,fn_71000a5174,unknown,engine/reflection?,U
+0x71000a5174,232,fn_71000a5174,unknown,engine/reflection?,m
 0x71000a525c,244,fn_71000a525c,unknown,engine/reflection?,O
 0x71000a5350,112,fn_71000a5350,unknown,engine/reflection?,O
 0x71000a53c0,108,fn_71000a53c0,unknown,engine/reflection?,O

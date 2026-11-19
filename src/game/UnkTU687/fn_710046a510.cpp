@@ -46,6 +46,7 @@ struct UnkUppercutAttack_l46a510 : UnkAttackBase {
     bool field_0x40;  // 0x40
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710046a510(UnkUppercutAttack_l46a510* self) {
     fn_71003608ac(self);
     UnkActor* owner = self->field_0x8;
