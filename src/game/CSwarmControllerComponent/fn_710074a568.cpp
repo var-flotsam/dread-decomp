@@ -3,9 +3,9 @@
 // Names and layouts are placeholders.
 #include "base/global/CRntVector.h"
 #include "game/CSwarmControllerComponent.h"
+#include "game/UnkTU341.h"
 #include "types.h"
 
-extern char g_unk_7101a20a08[];
 
 struct UnkSwarmEntry_l74a568 {
     char* vtable;  // 0x0

@@ -86,11 +86,10 @@ void fn_71004fac90(UnkProtoComponent_ovb0003* self) {
     fn_7100083c00(self);
 }
 
-struct UnkEmmyAI_l541974;
-void fn_7100541974(UnkEmmyAI_l541974* self);
+void fn_7100541974(UnkProtoComponent_ovb0003* self);
 
 void fn_71004fae68(UnkProtoComponent_ovb0003* self) {
-    fn_7100541974(reinterpret_cast<UnkEmmyAI_l541974*>(self));
+    fn_7100541974(self);
     self->callback.field_0x10 = 0;
     self->callback.Detach();
 }

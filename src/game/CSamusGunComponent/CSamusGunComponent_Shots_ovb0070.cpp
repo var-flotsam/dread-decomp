@@ -102,8 +102,7 @@ struct UnkActor;
 // Timeline ids reached through the GOT.
 bool fn_710085befc(UnkSamusGun_ovb0070* self, const UnkGunRequest_ovb0070& request);
 void fn_7100838c7c(UnkSamusGun_ovb0070* self);
-struct UnkGunComponent_l838f20;
-void fn_7100838f20(UnkGunComponent_l838f20* self);
+void fn_7100838f20(UnkSamusGun_ovb0070* self);
 extern void* g_unk_7101a793d0[];
 
 struct UnkSamusGun_ovb0070 {
@@ -164,7 +163,7 @@ void fn_710085843c(UnkSamusGun_ovb0070* self) {
     self->shots.~UnkGunShotArray_ovb0070();
     self->field_0x338.~UnkGunId_ovb0070();
     self->field_0x328.~UnkGunId_ovb0070();
-    fn_7100838f20(reinterpret_cast<UnkGunComponent_l838f20*>(self));
+    fn_7100838f20(self);
 }
 
 struct UnkGunBeamInfo_ovb0070 {

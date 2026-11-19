@@ -5,7 +5,7 @@
 #include "types.h"
 
 struct UnkQueryObj;
-bool fn_71002b1270(UnkQueryObj* obj, u32 mask);
+u32 fn_71002b1270(UnkQueryObj* obj, u32 mask);
 
 extern u32 g_unk_7101a21208;  // the flags fn_71002b1270 tests
 
