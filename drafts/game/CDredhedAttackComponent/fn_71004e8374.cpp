@@ -12,7 +12,7 @@ using base::reflection::UnkReflObject;
 
 struct UnkEmmyAttackComponent_A3_b64;
 struct UnkTileHit_A3_b64;
-bool fn_7101137c8c(UnkEmmyAttackComponent_A3_b64* self, UnkTileHit_A3_b64* hit);
+u8 fn_7101137c8c(UnkEmmyAttackComponent_A3_b64* self, UnkTileHit_A3_b64* hit);
 bool fn_7101178aec(UnkAnimationComponent* self, const u32* flags);
 
 struct UnkDredhedMovement_l4e8374 {
