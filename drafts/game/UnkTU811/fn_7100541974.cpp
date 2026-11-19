@@ -11,12 +11,14 @@
 #include "game/CAnimationComponent.h"
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CFXComponent.h"
+#include "game/UnkMeshListener.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2553.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU39.h"
 #include "game/UnkTU55.h"
+#include "game/UnkTU811.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -24,33 +26,14 @@ struct UnkRecord;
 struct UnkEmmyAI_b60;
 struct UnkEmmyRelaxAI_b59;
 struct UnkHandleAI_b0193;
-UnkRecord* fn_710054715c(UnkRecord* self, const UnkRecord* other);
-void fn_7100541fd4(UnkEmmyAI_b60* self);
-void fn_7100552324(UnkEmmyRelaxAI_b59* self);
 void fn_7100541e64(UnkHandleAI_b0193* self);
 void fn_7100dacb50(UnkEmmyRegistry_b55* registry, void* ai);
 void fn_71002b1de0(void* group, void* entry);
-
-struct UnkMeshListeners_l541974;
-struct UnkMeshListener_l541974;
-void fn_7100566080(UnkMeshListeners_l541974* list, UnkMeshListener_l541974* listener);
 
 extern UnkSpawnGroupKey g_unk_71726e1f60 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_71726e1fa0 __attribute__((visibility("hidden")));
 extern base::global::CStrId g_unk_71726e20b0 __attribute__((visibility("hidden")));
 extern const UnkVec3 g_unk_7101649ed8 __attribute__((visibility("hidden")));
-
-struct UnkMeshListener_l541974 {
-    UnkMeshListeners_l541974* list;
-    u8 pad_0x8[0x10];
-
-    void Detach() {
-        if (list) {
-            fn_7100566080(list, this);
-            list = nullptr;
-        }
-    }
-};
 
 // An entry registered in a deferred set (the entry is the registration's address).
 struct UnkRegistration_l541974 {
@@ -149,7 +132,7 @@ struct UnkEmmyAI_l541974 {
     u8 pad_0x14770[0x10];
     UnkAlerts_l541974 alerts;  // 0x14780
     u8 pad_0x14b88[0x14c68 - 0x14b88];
-    UnkMeshListener_l541974 meshListeners[2];  // 0x14c68
+    UnkMeshListener meshListeners[2];  // 0x14c68
     u8 pad_0x14c98[0x27720 - 0x14c98];
     bool alerted;  // 0x27720
     u8 pad_0x27721[0x29400 - 0x27721];
