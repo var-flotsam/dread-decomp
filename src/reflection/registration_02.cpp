@@ -13,9 +13,6 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
-template <class T> struct CGameLink;
-class CActor;
-template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
@@ -23,6 +20,9 @@ namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 namespace base::snd { enum class EReverbIntensity : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace IPath { enum class EType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
 enum class SMusicPlayFlag : u32;

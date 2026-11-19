@@ -22,10 +22,10 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 template <class T> struct CGameLink;
 class CEntity;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
-template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();

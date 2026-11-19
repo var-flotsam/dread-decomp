@@ -13,16 +13,16 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
-class CEntity;
-template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
-template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 enum class ESwifterSpawnGroupDirection : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object asm("g_unk_7172743e90");
 namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 enum class ELightType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ELightType>::object asm("g_unk_71727ba2e0");
 enum class ELightAttachment : u32;

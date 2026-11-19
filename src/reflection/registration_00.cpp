@@ -13,12 +13,12 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
-template <class T> struct CGameLink;
-class CActor;
-template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace CCharClassRodomithonXAIComponent::SFirePillarConfig { enum class EType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CCharClassRodomithonXAIComponent::SFirePillarConfig::EType>::object asm("g_unk_71726fdc20");
 namespace CCharClassRodotukAIComponent::SAbsorbConfig { enum class EType : u32; }

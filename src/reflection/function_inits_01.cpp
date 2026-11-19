@@ -12,12 +12,12 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
-template <class T> struct CGameLink;
-class CActor;
-template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace engine::utils { enum class ELightPreset : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<engine::utils::ELightPreset>::object asm("g_unk_716e5992a0");
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 enum class EDamageStrength : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EDamageStrength>::object asm("g_unk_7172730858");
 namespace base::global { class CFilePathStrId; }
