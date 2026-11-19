@@ -59,9 +59,7 @@ static_assert(__builtin_offsetof(UnkBossAI_l3ac388, fixed) == 0x147e8, "layout")
 static_assert(__builtin_offsetof(UnkBossAI_l3ac388, items) == 0x148f0, "layout");
 static_assert(__builtin_offsetof(UnkBossAI_l3ac388, list_b) == 0x14958, "layout");
 
-// Derived classes call it as their base's destructor, with their own type.
-void fn_71003ac388(void* object) {
-    auto* self = static_cast<UnkBossAI_l3ac388*>(object);
+void fn_71003ac388(UnkBossAI_l3ac388* self) {
     self->vtable = g_unk_7101a29438 + 2;
     self->list_b.~UnkBossCallbackList_l3ac388();
     self->id_c.~UnkStrIdMemberOf();
