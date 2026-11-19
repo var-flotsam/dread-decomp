@@ -26,6 +26,7 @@ struct UnkRecordOwner83 {
     UnkIdRecord18BArrays arrays;  // 0xc0
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71000a5174(UnkRecordOwner83* self, UnkIdRecord18B* record) {
     if (g_unk_7101d5bdd8)
         *reinterpret_cast<u8*>(&record->field_0x14) = 1;

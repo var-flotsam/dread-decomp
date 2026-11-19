@@ -1,4 +1,5 @@
 address,digest,verdict,rules,detail
+0x7100015b6c,ae161fc22862a55649fa8066b62f77da,pass,2,
 0x7100017ce8,68cbb625b718552ac1235f662d6148fb,pass,2,both runs were cut off
 0x710002d3e0,ccf33efee148de0fd9c99dd3b31d2492,pass,2,
 0x710006981c,8d9dbacc33d1630fac3a014c8b53b7a7,pass,2,both runs were cut off
@@ -18,6 +19,7 @@ address,digest,verdict,rules,detail
 0x7100086ec8,6e2de01bd74502d92dae42c45ebe54b1,pass,2,
 0x7100089668,c35c1faa8999e7305008544d37fde105,pass,2,
 0x710009b050,1b5414776460a2b32d3e838fccc54e5c,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
+0x71000a5174,34492e612678da5eb5dbfd367d53bd2c,pass,2,
 0x71000cd658,0aca046f127df5da4458f29a7c3428f2,pass,2,
 0x71000cfe14,a79e3daa106f598fdb7902dad79fd5af,pass,2,
 0x71000f9e84,c14623b3715aac62d42f13d0ffe84108,pass,2,
@@ -55,6 +57,7 @@ address,digest,verdict,rules,detail
 0x71001c3cdc,5fe5141a011f51669f4c28f1e8a74982,pass,2,
 0x71001d6c58,5e376fc54992238c5c6485e7a1e30ded,inconclusive,2,only 90% of the original's instructions ran
 0x71001def5c,678020462d6b9dffa6d30d8bc85a927a,inconclusive,2,only 31% of the original's instructions ran
+0x71001e14a4,518363e012a6a4b3771dfc2a76fa93ed,pass,2,
 0x7100216568,9d5819b29aaa14cdffe97a1dee3d0213,pass,2,both runs faulted; on different accesses
 0x7100216698,ba9319342c60e06c89ec25a9c1c55b74,pass,2,
 0x710021688c,cbd0ad11d3e1511ce8aab8f793590b5b,pass,2,
@@ -62,6 +65,7 @@ address,digest,verdict,rules,detail
 0x7100216ca4,5481964823677a0563ce220156a548d6,pass,2,
 0x710023b424,969cca954272de5fa2098bfd510be899,pass,2,
 0x710024657c,f867b4a21c73dac11accd22bf2bd1caf,pass,2,
+0x7100253834,4df34d89cc106b7087f71ab4b237e143,pass,2,
 0x710025fdf4,d273febb0112307f30a0f741971c9183,inconclusive,2,unresolved UnkEntry_710025fdf4::UnkEntry_710025fdf4(UnkEntry_710025fdf4 const&)
 0x710027c134,c50ebccf88a437c8062838debe803df9,inconclusive,2,only 91% of the original's instructions ran
 0x7100289ec0,403d76c2b038cd33fbe16f5fc5ddb3ff,pass,2,
@@ -84,12 +88,15 @@ address,digest,verdict,rules,detail
 0x710035e5f8,0d1075fb899d2700b488f50220298028,inconclusive,2,only 41% of the original's instructions ran
 0x7100378d84,ad4a05a81803b67a0e1f9da9389e4a4e,pass,2,
 0x7100382730,a17aa12ebc7ec25fce42b7f566a0ded2,inconclusive,2,3 of 10 conditional branches went only one way
+0x710038f50c,51bf9d19f9243ace2889c3bfa9668e64,pass,2,
 0x71003a4774,b884c1d3334e19112c3af35ccb11687b,pass,2,
 0x71003aad48,e0b5b7f7dee2dfc99a6876a7dbd012d0,inconclusive,2,unresolved vtable for UnkNode_71003aad48
 0x71003c269c,415f772b721c90e19beef580da160300,pass,2,
 0x71003f2710,1d87e0b7ef5a1024eb8aec767fcd4d27,pass,2,
 0x7100430830,b0ffc1a635f3cfd54b29a7a3a7490853,pass,2,
 0x710046971c,07542db2c7b72e8f625a0c24feec16f7,pass,2,
+0x710046a510,704f6674a96778358708f92178ac43fa,pass,2,
+0x710046bba0,bc4c13153001697e1d4a51da18f6e6d4,pass,2,
 0x71004a51a8,ac1fe95462724d7af005905282f02a6e,pass,2,
 0x71004d24d0,c7e2020a2227d0ff1a3bf14620204bd8,pass,2,
 0x71004dcb40,8c482d9c046a16adb5c96b358d256775,inconclusive,2,only 51% of the original's instructions ran
@@ -104,6 +111,8 @@ address,digest,verdict,rules,detail
 0x7100558e14,03df53f844cfb38c773dd4aa4b9077b0,pass,2,
 0x7100569e58,16b8a501d00ba1a57a796d4681a885a8,inconclusive,2,unresolved guard variable for base::global::UnkEnsureStringPool()::s_holder (no address in the original)
 0x7100572a68,825235b2f78d997f3e2579529208032f,pass,2,
+0x71005c4494,1061bc0a6a6eb14c86522733a2794962,pass,2,
+0x7100643f30,308ae696639a3ebe19179d8d1db69583,pass,2,
 0x71006c083c,e01bf5f33f060f8d620f49fe0899d74e,pass,2,
 0x71006eb484,47135ee84631131e2dc775321549c3d7,inconclusive,2,only 89% of the original's instructions ran
 0x71006fc4fc,6aeaeae9f17f329ae66c7cb1aad41398,pass,2,
@@ -113,6 +122,7 @@ address,digest,verdict,rules,detail
 0x710074566c,67c91b4330ba18c0590fb900f7bc9740,pass,2,
 0x7100745bdc,cdec408383f1c17510ff1afcc2a5a1c6,pass,2,
 0x71007a6b58,2da895e7feb192806d52ac6370e56213,inconclusive,2,unresolved UnkElem_0x88::UnkElem_0x88(UnkElem_0x88&&)
+0x71007bb208,5bdccad89f7f3ab0640e33aa8db6a413,pass,2,
 0x71008372ac,7fed56f260680cf56f811cca3f5d2f28,pass,2,
 0x71008407fc,e4ae04b5fbd4537fcd68507779fffc0e,pass,2,
 0x71008449ec,da2c258a851d0aa3829478a40cad372d,inconclusive,2,unresolved base::reflection::UnkReflTypeId<base::reflection::UnkReflTypeIdTag>::id()::s_id (no address in the 
@@ -141,6 +151,7 @@ address,digest,verdict,rules,detail
 0x7100d4065c,22a79f7420bd9ba2d21d508e26d1236c,inconclusive,2,only 75% of the original's instructions ran
 0x7100d42e94,f02d5b9a651cba7d658611312d665467,pass,2,
 0x7100d43390,f02d5b9a651cba7d658611312d665467,pass,2,
+0x7100d45790,50a2e9b582f7f56d765cdc58eb6be786,pass,2,
 0x7100d4dce4,913798cf5123993ffcb830bcf45569ed,pass,2,
 0x7100d54d78,d744a47fb50cdd250a4a6ccc7f8e9e98,inconclusive,2,unresolved guard variable for NoContact()::s_none (no address in the original)
 0x7100d55920,345487375da462bbe2ac5934e90833d7,inconclusive,2,unresolved guard variable for NoContact()::s_none (no address in the original)
@@ -203,12 +214,14 @@ address,digest,verdict,rules,detail
 0x71010d313c,806cc531aa8a60af9d193f16a8eae397,pass,2,
 0x7101110e18,4b2fe63a056e9abba149030bf2075366,pass,2,
 0x710111c0fc,97c43128e4cb8d48d04eda9473f44f4f,inconclusive,2,only 79% of the original's instructions ran
+0x7101137bf8,754cb3553f45fc1a731e19cb18d62839,pass,2,both runs faulted; on different accesses
 0x710114bfac,6f8c1ec6072f70d0becb6a20f0a56595,pass,2,
 0x71011785a8,1907803216920bcc6b39ec0ba5b191c0,pass,2,
 0x710117e5b0,015028da5a71252479c1fe1d0ac23362,inconclusive,2,no definition of the function found in the source: its result type is not known
 0x710119b75c,f88a1cf9b14643808ed04009d9140b30,pass,2,both runs were cut off
 0x71011b7e7c,274dcd780552faf03754d378cf2de86b,pass,2,both runs were cut off
 0x71011b7fc8,870cfedad1877e58e1d6de99ffb4fd06,pass,2,both runs were cut off
+0x71012133d8,ee712cdd5305caa9c26bb86094091f17,pass,2,both runs faulted; on different accesses
 0x7101213600,42c5cc5db299421a23f866d195f9801e,pass,2,
 0x7101213640,c0efa34c44f6dca97f6d97761b538738,pass,2,
 0x7101213858,04792d204afbcaef21f98a1514806588,pass,2,

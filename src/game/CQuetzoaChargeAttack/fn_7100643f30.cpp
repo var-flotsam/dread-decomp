@@ -33,6 +33,7 @@ struct UnkQuetzoaChargeAttack_l643f30 {
     UnkQuetzoaChargeVec_l643f30 origin;  // 0x30
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100643f30(UnkQuetzoaChargeAttack_l643f30* self) {
     fn_71003608ac(reinterpret_cast<UnkAttackBase*>(self));
     UnkActor* owner = self->owner;

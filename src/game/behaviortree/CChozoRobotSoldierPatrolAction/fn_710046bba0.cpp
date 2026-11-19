@@ -8,10 +8,10 @@
 #include "game/behaviortree/CBehavior.h"
 #include "game_s2/UnkParams7.h"
 #include "types.h"
+#include "game/behaviortree/CGoToWallFronPathAction.h"
 
 // As src/game/CMagnetMovablePlatformComponent/CMagnetMovablePlatformComponent_Point_b52.cpp declares it.
 struct UnkMagnetPathHolder_b52;
-UnkMagnetPathHolder_b52* fn_7100382150(UnkActor* actor);
 
 // What fn_7100382150 finds for the target actor: its path starts at +0x30.
 struct UnkPatrolPathHolder_l46bba0 {
@@ -46,6 +46,7 @@ struct UnkChozoRobotSoldierPatrolAction_l46bba0 {
     UnkPatrolOwner_l46bba0* owner;  // 0x18
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710046bba0(UnkChozoRobotSoldierPatrolAction_l46bba0* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));
     UnkPatrolOwner_l46bba0* owner = self->owner;

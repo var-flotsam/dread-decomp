@@ -27,6 +27,7 @@ using UnkHydrogigaTable_b0166 = base::global::CRntSmallDictionary<base::UnkStrId
 
 void fn_71005c4630(UnkHydrogigaTable_b0166* self, u32 n);
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkHydrogigaEntry_b0166* fn_71005c4494(UnkHydrogigaTable_b0166* self, const base::UnkStrIdMember& key,
                                        const UnkHydrogigaEntry_b0166& value) {
     if (self->count == self->capacity)

@@ -15,6 +15,7 @@ struct UnkAttackComponent_l137bf8 {
     UnkActor* owner;  // 0x30
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_7101137bf8(UnkAttackComponent_l137bf8* self, const CStrId* id, bool flag) {
     if (id->data != &g_unk_7101d47108->empty) {
         alignas(8) u32 mode = flag;

@@ -14,6 +14,7 @@ using UnkRecordsByKeyStore = base::global::CRntSmallDictionary<u64, UnkWordRecor
 
 void fn_7100015378(UnkRecordsByKeyStore* self, u32 capacity);
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkWordRecord_0x40& fn_7100015b6c(UnkRecordsByKeyStore* self, const u64* key, const UnkWordRecord_0x40* record) {
     if (self->count == self->capacity)
         fn_7100015378(self, self->count + self->step);

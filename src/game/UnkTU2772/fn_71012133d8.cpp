@@ -83,6 +83,7 @@ static inline u32 ToSampleFormat(u8 encoding) {
     return encoding < 2 ? encoding : 2;
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_71012133d8(UnkAtkWaveReader_2133d8* self, UnkAtkWaveInfo_2133d8* out) {
     switch (self->kind) {
     case 0: {

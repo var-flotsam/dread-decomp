@@ -2551,7 +2551,7 @@ address,size,name,name_source,subsystem,status
 0x7100d455f0,4,game::logic::collision::CColliderGroup::refl_AddFields,reflection,game,O
 0x7100d455f4,352,game::logic::collision::CColliderGroup::refl_InitClass,reflection,game,O
 0x7100d45754,60,fn_7100d45754,unknown,game?,O
-0x7100d45790,380,fn_7100d45790,unknown,game?,U
+0x7100d45790,380,fn_7100d45790,unknown,game?,m
 0x7100d4590c,128,fn_7100d4590c,unknown,game?,O
 0x7100d4598c,156,fn_7100d4598c,unknown,game?,O
 0x7100d45a28,92,fn_7100d45a28,unknown,game?,O

@@ -46,6 +46,7 @@ struct UnkRenderer_l1e14a4 {
 static_assert(__builtin_offsetof(UnkRenderer_l1e14a4, sets) == 0x170, "layout");
 static_assert(sizeof(UnkRenderer_l1e14a4) == 0x3d0, "layout");
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71001e14a4(UnkRenderer_l1e14a4* self) {
     self->global = g_unk_710b372a98;
     // Each texture's format, one 8-byte slot each in the original.

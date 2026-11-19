@@ -943,7 +943,7 @@ address,size,name,name_source,subsystem,status
 0x7101137928,272,fn_7101137928,unknown,game/components?,O
 0x7101137a38,24,fn_7101137a38,unknown,game/components?,O
 0x7101137a50,424,fn_7101137a50,unknown,game/components?,O
-0x7101137bf8,120,fn_7101137bf8,unknown,game/components?,U
+0x7101137bf8,120,fn_7101137bf8,unknown,game/components?,m
 0x7101137c70,4,fn_7101137c70,unknown,game/components?,O
 0x7101137c74,8,fn_7101137c74,unknown,game/components?,O
 0x7101137c7c,8,fn_7101137c7c,unknown,game/components?,O
