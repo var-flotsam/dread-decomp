@@ -9,6 +9,7 @@
 #include "game/CAIManager/CTunableAIManager.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCharClassScorpiusAIComponent.h"
+#include "game/CScorpiusAIComponent.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
@@ -91,7 +92,6 @@ static_assert(__builtin_offsetof(UnkScorpiusAI_l693150, stage3_target) == 0x14dd
 static_assert(__builtin_offsetof(UnkScorpiusAI_l693150, stage2_listener) == 0x14e50, "");
 static_assert(__builtin_offsetof(UnkScorpiusAI_l693150, stage3_listener) == 0x14e68, "");
 
-void fn_71006935a4(UnkScorpiusAI_l693150* self, s32 value, bool flag);
 void fn_7100692c8c(UnkScorpiusAI_l693150* self, s32 value, bool flag);
 
 // The music manager, created on first use.
@@ -156,7 +156,7 @@ void fn_7100693150(UnkScorpiusAI_l693150* self, const UnkScorpiusEvent_l693150* 
         if (UnkAmiiboMessages_laf0d38* messages = CutsceneMessages())
             fn_7100b5fd9c(messages, CStrId("#CUT_SCORPIUS_STAGE_2", true),
                           UnkAmiiboCallback_laf0d38(AsCallbackObject(self), fn_71006986f8), true, false);
-        fn_71006935a4(self, 1, false);
+        fn_71006935a4(reinterpret_cast<UnkScorpiusAI_l697ce0*>(self), 1, false);
     } else if (event->id == g_unk_7172703f00.data) {
         Listen(&self->stage3_listener);
         if (Hand(&self->stage3_target, 0.13f))

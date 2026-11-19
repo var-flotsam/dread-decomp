@@ -4,6 +4,7 @@
 #include "base/UnkMatrix44.h"
 #include "game/CBossAIComponent.h"
 #include "game/CCharClassLifeComponent.h"
+#include "game/CScorpiusAIComponent.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -71,7 +72,6 @@ inline UnkVec3_l697ce0 Position(const UnkActor* actor) {
 struct UnkScorpiusAI_l692a98;
 void fn_7100692a98(UnkScorpiusAI_l692a98* self, f32 amount);
 void fn_71006920f8(UnkScorpiusAI_l697ce0* self, s32 id, s32* mode, u8* out, bool flag);
-void fn_71006935a4(UnkScorpiusAI_l697ce0* self, s32 id, bool flag);
 
 void fn_7100697ce0(UnkScorpiusAI_l697ce0* self, UnkScorpiusState_l697ce0* state) {
     fn_71003ad414(self);
