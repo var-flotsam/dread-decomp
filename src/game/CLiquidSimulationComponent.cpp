@@ -21,7 +21,6 @@ struct UnkLiquidVec2 {
 
 typedef f32 UnkLiquidHeight;
 
-// A 2D box: minimum then maximum corner.
 // The component's placement as the liquid uses it: its size and its position.
 struct UnkLiquidVolume : UnkReflObject {
     virtual void vf_0x18();
