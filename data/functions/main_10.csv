@@ -2380,7 +2380,7 @@ address,size,name,name_source,subsystem,status
 0x7101066a70,2444,fn_7101066a70,unknown,unknown,U
 0x71010673fc,668,fn_71010673fc,unknown,game/cutscene?,O
 0x7101067698,2296,fn_7101067698,unknown,unknown,U
-0x7101067f90,1020,fn_7101067f90,unknown,game/cutscene?,U
+0x7101067f90,1020,fn_7101067f90,unknown,game/cutscene?,O
 0x710106838c,1488,fn_710106838c,unknown,unknown,U
 0x710106895c,36,fn_710106895c,unknown,unknown,O
 0x7101068980,412,fn_7101068980,unknown,gui?,O
