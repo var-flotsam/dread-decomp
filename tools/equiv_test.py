@@ -22,6 +22,18 @@ function passes only under all of these rules:
 
 Verdicts: `pass`, `fail` (a run differed: the detail names the input and what differed), `inconclusive`
 (coverage, a name with no known address, an instruction the emulator does not know, time) and `not registers`.
+
+`--any-kind` (owner, 2026-11-19) also runs a function whose difference is not registers only, under every other
+rule above, and calls a pass of one `behaves`, never `pass`: the calibration's warning stands (outside the
+registers class the test accepted an off-by-one), so `behaves` is tier 3 with a figure of its own, *functional*:
+correct on every input tried, with full coverage, and owing a match. A function under src/ with such a verdict
+is marked `// NON_MATCHING(functional): <reason>` (status M); tools/check.py fails one without a current
+`behaves` row, as it fails a stale `pass`. Before a `behaves` is recorded, the test must reject small breakages
+of the function's own text (mutants(): an integer constant one up or down, a comparison flipped or loosened, the
+operands of a subtraction swapped; up to MUTANTS of them that compile to other code). A mutant that also
+passes means the inputs cannot tell such a change apart, and the verdict is `inconclusive` instead: this
+aims at the calibration's off-by-one.
+
 Calibration, 2026-11-11 (docs/JOURNAL.md): of 300 byte-matching functions none failed (59 passed, 241 could
 not be judged), and of 95 registers-only one-point mutants in 59 functions none that changes behaviour was
 accepted, which bounds the miss rate near 3%, not at zero. A pass is evidence, not a proof; a permuter is
@@ -47,6 +59,9 @@ Usage:
   python tools/equiv_test.py --version 2.1.0 FILE.cpp [...]   # the non-matching functions these files define
   python tools/equiv_test.py --version 2.1.0 --minor          # every file under src/ with NON_MATCHING(minor)
   python tools/equiv_test.py --version 2.1.0 --drafts         # the `registers or order` rows of drafts/INDEX.csv
+  python tools/equiv_test.py --version 2.1.0 --all-drafts     # every row of drafts/INDEX.csv, any difference (--any-kind)
+  ... --shard K/N      # with --drafts or --all-drafts, the K-th of N parts (run them in parallel)
+  ... --any-kind       # judge every non-matching function: a pass of one that is not registers-only is `behaves`
   ... --write          # record the verdicts of functions under src/ in data/equivalence.csv
   ... --json OUT       # every verdict with its detail
   ... --budget SECONDS # per function (default 60)
@@ -173,6 +188,98 @@ def result_kind(rtype: str | None, shape=None) -> str | None:
     return None
 
 
+MUTANTS = 8             # mutants judged before a `behaves` is recorded
+MUTANT_BUDGET = 30.0    # seconds per mutant
+_COMPARE_SWAP = {"<": "<=", "<=": "<", ">": ">=", ">=": ">", "==": "!=", "!=": "=="}
+_SKIP = re.compile(r'//[^\n]*|/\*.*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'', re.S)
+
+
+def body_span(text: str, address: int, name: str | None = None) -> tuple[int, int] | None:
+    """(start, end) of the body of the definition of fn_<address> (or of `name`'s unqualified name) in
+    `text`: the offsets just inside its braces; None when there is no such definition."""
+    found = rf"fn_{address:x}"
+    if name and not name.startswith("fn_"):
+        found = rf"(?:fn_{address:x}|{re.escape(member_name(name))})"
+    for m in re.finditer(rf"^[^;{{}}()=#\n]*?\b(?:\w+::)*{found}\s*\(", text, re.M):
+        depth, i = 1, m.end()
+        while depth and i < len(text):
+            depth += {"(": 1, ")": -1}.get(text[i], 0)
+            i += 1
+        j = text.find("{", i)
+        if j < 0 or ";" in text[i:j]:
+            continue
+        depth, k = 1, j + 1
+        while depth and k < len(text):
+            depth += {"{": 1, "}": -1}.get(text[k], 0)
+            k += 1
+        return j + 1, k - 1
+    return None
+
+
+def mutants(text: str, span: tuple[int, int], limit: int = 64) -> list[str]:
+    """Texts that differ from `text` by one small change inside `span` (a function's body): an integer
+    constant one up or down, a comparison flipped (== and !=) or loosened (< and <=), the operands of a
+    subtraction swapped. Comments and literals are left alone, and so are template brackets and casts.
+    Spread over the body, at most `limit`."""
+    lo, hi = span
+    body = text[lo:hi]
+    skip = [(m.start(), m.end()) for m in _SKIP.finditer(body)]
+
+    def free(a: int, b: int) -> bool:
+        return not any(x < b and a < y for x, y in skip)
+    edits: list[tuple[int, int, str]] = []
+    for m in re.finditer(r"(?<![\w.])(\d+)(?![\w.])", body):
+        if free(m.start(), m.end()):
+            v = int(m.group(1))
+            edits.append((m.start(), m.end(), str(v + 1)))
+            if v:
+                edits.append((m.start(), m.end(), str(v - 1)))
+    for m in re.finditer(r" (<=|>=|==|!=|<|>) ", body):  # spaced: a binary comparison, not <T> or ->
+        if free(m.start(), m.end()):
+            edits.append((m.start() + 1, m.end() - 1, _COMPARE_SWAP[m.group(1)]))
+    for m in re.finditer(r"\b([A-Za-z_]\w*|\d+) - ([A-Za-z_]\w*|\d+)\b", body):
+        if free(m.start(), m.end()) and m.group(1) != m.group(2):
+            edits.append((m.start(), m.end(), f"{m.group(2)} - {m.group(1)}"))
+    edits.sort()
+    if len(edits) > limit:
+        step = len(edits) / limit
+        edits = [edits[int(i * step)] for i in range(limit)]
+    return [text[:lo] + body[:a] + new + body[b:] + text[hi:] for a, b, new in edits]
+
+
+def survivor(ctx: Context, oracle, src: Path, a: int, symbol: str, code: bytes, text: str) -> str | None:
+    """For a function that behaves: compile mutants of its body (mutants()) until MUTANTS of them compile to
+    other code, judge each, and return a description of the first that passes too; None when every one
+    failed or could not be judged."""
+    import asmdiff
+    import buildcfg
+    span = body_span(text, a, ctx.name_of(a))
+    if span is None:
+        return None
+    work = WORK / "mutants"
+    work.mkdir(parents=True, exist_ok=True)
+    judged = 0
+    for n, mtext in enumerate(mutants(text, span)):
+        if judged >= MUTANTS:
+            break
+        msrc, mobj = work / f"{a:x}_{n}{src.suffix}", work / f"{a:x}_{n}.o"
+        msrc.write_text(mtext, encoding="utf-8")
+        r = subprocess.run(buildcfg.cxx_command(msrc, mobj, ["-iquote", str(src.parent)]), capture_output=True,
+                           text=True)
+        if r.returncode != 0:
+            continue
+        mine = [f for f in asmdiff.read_object(mobj) if f.symbol == symbol]
+        if not mine or mine[0].code == code:
+            continue
+        judged += 1
+        SOURCES[mobj] = SOURCES.get(src, str(src))
+        v, _ = judge(ctx, oracle, mobj, a, with_headers(mtext), MUTANT_BUDGET)
+        if v == "pass":
+            diff = next((f"{y.strip()}" for x, y in zip(text.splitlines(), mtext.splitlines()) if x != y), "")
+            return f"mutant {n} passes too ({short(diff, 60)})"
+    return None
+
+
 def conditional_branches(code: bytes, address: int) -> list[int]:
     """The addresses of b.cond, cbz/cbnz and tbz/tbnz in a function."""
     out = []
@@ -203,9 +310,10 @@ def write_table(rows: dict[int, dict], path: Path = TABLE) -> None:
             w.writerow({k: rows[a].get(k, "") for k in FIELDS})
 
 
-def current(row: dict | None, code_digest: str) -> bool:
-    """A table row counts when it is a pass, under today's rules, of exactly this code."""
-    return bool(row) and row["verdict"] == "pass" and row["digest"] == code_digest and row["rules"] == str(RULES)
+def current(row: dict | None, code_digest: str, verdict: str = "pass") -> bool:
+    """A table row counts when it is a pass (or, with verdict="behaves", a functional pass), under today's
+    rules, of exactly this code."""
+    return bool(row) and row["verdict"] == verdict and row["digest"] == code_digest and row["rules"] == str(RULES)
 
 
 def short(detail: str, limit: int = 110) -> str:
@@ -639,9 +747,13 @@ def sources(args) -> list[Path]:
         r = subprocess.run(["git", "grep", "-l", "NON_MATCHING(minor)", "--", "src"], cwd=ROOT, capture_output=True,
                            text=True)
         return [ROOT / p for p in r.stdout.split() if p.endswith(".cpp")]
-    if args.drafts:
+    if args.drafts or args.all_drafts:
         with (ROOT / "drafts" / "INDEX.csv").open(newline="", encoding="utf-8") as fh:
-            rows = [r for r in csv.DictReader(fh) if r["difference"] == "registers or order"]
+            rows = [r for r in csv.DictReader(fh)
+                    if r["difference"] == "registers or order" or args.all_drafts and r["difference"] != "match"]
+        if args.shard:
+            k, n = args.shard
+            rows = rows[k - 1::n]
         ONLY.update({(ROOT / r["file"]).resolve(): int(r["address"], 16) for r in rows})
         return [ROOT / r["file"] for r in rows]
     return [p.resolve() for p in args.files]
@@ -671,10 +783,17 @@ def main() -> int:
     ap.add_argument("files", nargs="*", type=Path)
     ap.add_argument("--minor", action="store_true", help="every file under src/ with NON_MATCHING(minor)")
     ap.add_argument("--drafts", action="store_true", help="the `registers or order` rows of drafts/INDEX.csv")
+    ap.add_argument("--all-drafts", action="store_true",
+                    help="every row of drafts/INDEX.csv whatever its difference (implies --any-kind)")
+    ap.add_argument("--any-kind", action="store_true",
+                    help="judge functions of any difference; a pass of one that is not registers-only is `behaves`")
+    ap.add_argument("--shard", type=lambda t: tuple(int(x) for x in t.split("/")), metavar="K/N",
+                    help="with --drafts or --all-drafts: only every N-th row from the K-th (parallel runs)")
     ap.add_argument("--write", action="store_true", help="record verdicts of functions under src/ in data/equivalence.csv")
     ap.add_argument("--json", type=Path, help="write every verdict with its detail")
     ap.add_argument("--budget", type=float, default=60.0, help="seconds per function (default 60)")
     args = ap.parse_args()
+    args.any_kind = args.any_kind or args.all_drafts
     files = sources(args)
     if not files:
         ap.error("no files: name some, or --minor, or --drafts")
@@ -704,11 +823,13 @@ def main() -> int:
             kind = asmdiff.classify(ctx.orig.function(res.address), codes[res.symbol]).split(" ")[0]
             row = {"file": rel, "address": f"{res.address:#x}", "size": res.orig_size,
                    "digest": digest(codes[res.symbol], relocs[res.symbol])}
-            if kind != "registers":
+            row["kind"] = kind
+            if kind != "registers" and not args.any_kind:
                 out.append({**row, "verdict": "not registers", "detail": f"the difference is {kind}: not judged"})
             else:
                 jobs.append((res.address, obj, text, row))
-    print(f"{len(files)} files, {len(jobs)} registers-only functions to judge, "
+                row["_src"], row["_symbol"], row["_code"] = src, res.symbol, codes[res.symbol]
+    print(f"{len(files)} files, {len(jobs)} {'' if args.any_kind else 'registers-only '}functions to judge, "
           f"{len(out)} left out (another kind of difference, or no build)", flush=True)
     if jobs:
         t = time.time()
@@ -717,14 +838,23 @@ def main() -> int:
         oracle = port_lift.Oracle(ctx.orig, ctx.af, db, port_lift.INPUTS)
         for n, (a, obj, text, row) in enumerate(jobs, 1):
             v, d = judge(ctx, oracle, obj, a, text, args.budget)
+            if v == "pass" and row["kind"] != "registers":
+                v = "behaves"  # tier 3: correct on every input tried, not proven (see the docstring)
+                weak = survivor(ctx, oracle, row["_src"], a, row["_symbol"], row["_code"],
+                                row["_src"].read_text(encoding="utf-8", errors="replace"))
+                if weak:
+                    v, d = "inconclusive", f"behaves, but {weak}: the inputs cannot tell such a change apart"
+            row = {k: x for k, x in row.items() if not k.startswith("_")}
             out.append({**row, "verdict": v, "detail": d})
             if n % 25 == 0:
                 print(f"  {n} of {len(jobs)} ({time.time() - t:.0f} s)", flush=True)
     counts = collections.Counter(o["verdict"] for o in out)
-    for o in sorted(out, key=lambda o: (o["verdict"] != "pass", o["verdict"], o["file"])):
+    for o in sorted(out, key=lambda o: (o["verdict"] not in ("pass", "behaves"), o["verdict"], o["file"])):
         print(f"{o['verdict']:13} {o['address']:>12}  {o['file']}  {short(o['detail'], 90)}")
     passed = sum(o.get("size", 0) for o in out if o["verdict"] == "pass")
-    print(f"equiv_test: {counts['pass']} pass ({passed:,} bytes), {counts['fail']} fail, "
+    behaved = sum(o.get("size", 0) for o in out if o["verdict"] == "behaves")
+    print(f"equiv_test: {counts['pass']} pass ({passed:,} bytes), {counts['behaves']} behaves ({behaved:,} bytes), "
+          f"{counts['fail']} fail, "
           f"{counts['inconclusive']} cannot be judged, {counts['not registers']} not registers-only")
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)

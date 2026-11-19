@@ -17,7 +17,9 @@
            under include/ declares is replaced by that header where the file then compiles to the same code.
            Then its declarations are checked against the tree (tools/decl_check.py's file_problems): a draft
            that declares a shared symbol its own way stays a draft, with the reason in its row's note. Without
-           --write nothing is kept.
+           --write nothing is kept. With --functional (tier 3, owner 2026-11-19) a function with any other
+           difference moves too when tools/equiv_test.py --any-kind says `behaves`; it gets
+           `// NON_MATCHING(functional)` and counts as functional, not done.
 
 After `promote --write`: tools/equiv_test.py --write on the moved files that do not match (the verdict is what
 makes them count), then tools/decl_plan.py and tools/hub_migrate.py for declarations they copied, then
@@ -52,6 +54,8 @@ KINDS = {"registers": "registers or order", "operations": "operations", "conditi
 REGISTERS = KINDS["registers"]
 MINOR_NOTE = ("// NON_MATCHING(minor): the same instructions in another order or with other registers; passes "
               "tools/equiv_test.py.")
+FUNCTIONAL_NOTE = ("// NON_MATCHING(functional): {difference} differ from the original; behaves the same on every "
+                   "input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.")
 INCLUDE = re.compile(r'^(\s*#\s*include\s+")([^"]+)(")', re.M)
 _state: dict = {}
 
@@ -82,11 +86,12 @@ def definition_line(lines: list[str], name: str) -> int | None:
     return None
 
 
-def annotate(text: str, names: list[str]) -> tuple[str, list[str]]:
-    """The text with the tier-2 note above the definition of each named function that has no NON_MATCHING
-    note yet; and the names whose definition was not found."""
+def annotate(text: str, names: list[str], notes: dict[str, str] | None = None) -> tuple[str, list[str]]:
+    """The text with the tier-2 note (or the one `notes` gives the name) above the definition of each named
+    function that has no NON_MATCHING note yet; and the names whose definition was not found."""
     lines = text.split("\n")
     missing = []
+    notes = notes or {}
     for name in names:
         i = definition_line(lines, name)
         if i is None:
@@ -96,7 +101,7 @@ def annotate(text: str, names: list[str]) -> tuple[str, list[str]]:
         while k > 0 and lines[k - 1].lstrip().startswith("//"):
             k -= 1
         if not any("NON_MATCHING(" in line for line in lines[k:i]):
-            lines.insert(i, MINOR_NOTE)
+            lines.insert(i, notes.get(name, MINOR_NOTE))
     return "\n".join(lines), missing
 
 
@@ -283,12 +288,13 @@ def cmd_grade(args) -> int:
     return 0
 
 
-def verdicts(version: str, files: list[Path]) -> dict[int, tuple[str, str]]:
+def verdicts(version: str, files: list[Path], any_kind: bool = False) -> dict[int, tuple[str, str]]:
     """address -> (verdict, detail) from tools/equiv_test.py for the non-matching functions of these files."""
     out = OUT / "equiv.json"
     out.unlink(missing_ok=True)
     r = subprocess.run([sys.executable, str(ROOT / "tools" / "equiv_test.py"), "--version", version,
-                        *[str(f) for f in files], "--json", str(out)], cwd=ROOT, capture_output=True, text=True)
+                        *[str(f) for f in files], "--json", str(out), *(["--any-kind"] if any_kind else [])],
+                       cwd=ROOT, capture_output=True, text=True)
     if not out.is_file():
         raise SystemExit("drafts: tools/equiv_test.py gave no verdicts:\n" + (r.stdout + r.stderr)[-600:])
     return {int(o["address"], 16): (o["verdict"], o.get("detail", "")) for o in json.loads(out.read_text("utf-8"))
@@ -354,23 +360,28 @@ def cmd_promote(args) -> int:
     for r in chosen:
         found = functions(ROOT / r["file"])
         state[r["file"]] = found
+    loose = args.functional
     need = [ROOT / f for f, found in state.items() if not isinstance(found, str)
-            and all(x["difference"] in ("match", REGISTERS) for x in found)
-            and any(x["difference"] == REGISTERS for x in found)]
-    judged = verdicts(args.version, need) if need else {}
+            and (loose or all(x["difference"] in ("match", REGISTERS) for x in found))
+            and any(x["difference"] != "match" for x in found)]
+    judged = verdicts(args.version, need, loose) if need else {}
+
+    def proven(x) -> bool:
+        v = judged.get(x["address"], ("",))[0]
+        return v == "pass" or loose and v == "behaves"
     moved, held, not_yet = [], [], []
     for r in chosen:
         found = state[r["file"]]
         if isinstance(found, str):
             not_yet.append((r, f"does not build: {found}"))
             continue
-        other = [x for x in found if x["difference"] not in ("match", REGISTERS)]
+        other = [x for x in found if x["difference"] not in ("match", REGISTERS) and not loose]
         if other:
             not_yet.append((r, "; ".join(f"{x['name']}: {x['difference']}" for x in other)))
             continue
-        unproven = [x for x in found if x["difference"] == REGISTERS and judged.get(x["address"], ("",))[0] != "pass"]
+        unproven = [x for x in found if x["difference"] != "match" and not proven(x)]
         if unproven:
-            not_yet.append((r, "; ".join(f"{x['name']}: registers or order, tools/equiv_test.py says "
+            not_yet.append((r, "; ".join(f"{x['name']}: {x['difference']}, tools/equiv_test.py says "
                                          f"{judged.get(x['address'], ('nothing',))[0]}" for x in unproven)))
             continue
         # 2. the copy in src/
@@ -385,7 +396,9 @@ def cmd_promote(args) -> int:
         if own:
             held.append((r, f"includes {own[0].split('/drafts/')[1]} of drafts/: that header has to move first"))
             continue
-        text, missing = annotate(text, [x["name"] for x in found if x["difference"] == REGISTERS])
+        behaves = {x["name"]: FUNCTIONAL_NOTE.format(difference=x["difference"].capitalize().replace(" or order", ""))
+                   for x in found if judged.get(x["address"], ("",))[0] == "behaves"}
+        text, missing = annotate(text, [x["name"] for x in found if x["difference"] != "match"], behaves)
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_text(text, encoding="utf-8", newline="\n")
         why, taken = None, []
@@ -420,7 +433,8 @@ def cmd_promote(args) -> int:
     for r, why in held:
         print(f"held   {r['address']}  {r['file']}\n       {why}")
         if args.write:
-            head = "matches" if r["difference"] == "match" else "passes tools/equiv_test.py"
+            head = "matches" if r["difference"] == "match" else "behaves (functional)" \
+                if judged.get(int(r["address"], 16), ("",))[0] == "behaves" else "passes tools/equiv_test.py"
             r["note"] = f"{head}; held: " + short(why.replace(",", ";"), 200)
     for r, why in not_yet:
         print(f"not yet  {r['address']}  {r['file']}\n       {why}")
@@ -450,6 +464,8 @@ def main() -> int:
     p = sub.add_parser("promote", help="move drafts that match or are verified equivalent to src/")
     p.add_argument("files", nargs="+", type=Path)
     p.add_argument("--write", action="store_true", help="keep the moves and write the reasons of the held ones")
+    p.add_argument("--functional", action="store_true",
+                   help="also move functions of any difference that tools/equiv_test.py --any-kind says behave")
     args = ap.parse_args()
     os.chdir(ROOT)
     init(args.version)

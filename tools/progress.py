@@ -34,6 +34,16 @@ equivalent) has a row of its own: acceptable now, a match later. "Readable" is a
 (hand-written, with none of tools/fakematch.py's steering forms in the function), not a reading. The same
 figures go under the handoff's table with --handoff when check.py's cache is there.
 
+A function marked `// NON_MATCHING(functional)` with a current `behaves` verdict of tools/equiv_test.py
+--any-kind (tier 3, owner 2026-11-19) has a row of its own in --quality: the same results on every input tried,
+not proven, not counted as done.
+
+`--fuzzy` (owner, 2026-11-19) adds partial credit: the game's bytes weighted by how close each function is,
+1 for `O` and for verified equivalent, a draft by its similarity in drafts/INDEX.csv, a non-matching source
+in src/ by its diff score in check.py's cache (the higher of the two), 0 for nothing written. It also counts
+the drafts at 95% similarity or more. A figure of closeness, never of completion; it goes under the handoff's
+table with --handoff when it is computed.
+
 `--units` adds the translation units by state (matched, done, partial, untouched), from tools/tu_status.py,
 which has the rest: one unit's functions, the units nearest to matched, data/tu_status.csv.
 
@@ -43,6 +53,7 @@ Usage: python tools/progress.py [--json build/progress.json] [--top 15]
        python tools/progress.py --slice-from CGameBlackboard::refl_GetClass
        python tools/progress.py --origin [--version 2.1.0]
        python tools/progress.py --quality [--version 2.1.0]
+       python tools/progress.py --fuzzy [--version 2.1.0]
        python tools/progress.py --units
 """
 
@@ -68,6 +79,7 @@ def load() -> list[dict]:
 
 
 VERIFIED: frozenset[int] = frozenset()  # addresses with a passing row in data/equivalence.csv (main sets it)
+FUNCTIONAL: frozenset[int] = frozenset()  # addresses with a `behaves` row (main sets it)
 
 
 def verified_addresses() -> frozenset[int]:
@@ -76,6 +88,14 @@ def verified_addresses() -> frozenset[int]:
     import equiv_test
     return frozenset(a for a, r in equiv_test.read_table().items()
                      if r["verdict"] == "pass" and r["rules"] == str(equiv_test.RULES))
+
+
+def functional_addresses() -> frozenset[int]:
+    """The functions tools/equiv_test.py --any-kind found to behave the same with another kind of difference
+    (tier 3, `functional`): the `behaves` rows under the test's current rules; tools/check.py keeps them true."""
+    import equiv_test
+    return frozenset(a for a, r in equiv_test.read_table().items()
+                     if r["verdict"] == "behaves" and r["rules"] == str(equiv_test.RULES))
 
 
 def tally(rows: list[dict], verified: frozenset[int] | None = None) -> dict:
@@ -176,19 +196,22 @@ QUALITIES = {
     "match_steered": "Byte-matching, hand-written with a steering form",
     "match_generated": "Byte-matching, generated source",
     "equivalent": "Identical behaviour, bytes differ (verified equivalent)",
+    "functional": "Same results on every input tried, bytes differ (functional, tier 3, not done)",
     "unproven": "Written, not proven (`m`, `M`, `W` without a passing verdict)",
     "missing": "Not decompiled (`U`)",
 }
 
 
-def quality(status: str, hand: bool, steered: bool, verified: bool) -> str:
+def quality(status: str, hand: bool, steered: bool, verified: bool, functional: bool = False) -> str:
     """Which row of the completeness table a function is in. Two qualities, both needed (owner, 2026-11-13):
     the bytes match, and the source is readable. Identical behaviour with other bytes is a match for later."""
     if status == "O":
         return "match_generated" if not hand else "match_steered" if steered else "complete"
     if status == "U":
         return "missing"
-    return "equivalent" if status == "m" and verified else "unproven"
+    if status == "m" and verified:
+        return "equivalent"
+    return "functional" if status == "M" and functional else "unproven"
 
 
 def quality_by_address(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict[int, tuple[str, bool]]:
@@ -224,7 +247,7 @@ def quality_by_address(version: str, rows: list[dict], verified: frozenset[int] 
         steered.update(e["address"] for e in mine if e.get("name", "").split("::")[-1] in flagged)
     out: dict[int, tuple[str, bool]] = {}
     for a, r in by_addr.items():
-        k = quality(r["status"], a in hand, a in steered, a in verified)
+        k = quality(r["status"], a in hand, a in steered, a in verified, a in FUNCTIONAL)
         if k == "match_generated" and a not in seen:
             k = "unproven"  # an O the cache does not know: the cache is older than the function list
         out[a] = (k, a in steered)
@@ -273,7 +296,61 @@ def quality_line(q: dict, overall: dict) -> str:
             f"but not readable yet {100 * (q['match_steered']['bytes'] + q['match_generated']['bytes']) / total:.2f}% "
             f"(generated source {pct('match_generated')}, hand-written with a steering form {pct('match_steered')}); "
             f"identical behaviour with other bytes {pct('equivalent')} ({q['equivalent']['functions']:,} functions, a "
-            f"match for later). Readable is a floor a tool can see, not a reading.")
+            f"match for later); functional (same results on every input tried, tier 3) {pct('functional')} "
+            f"({q['functional']['functions']:,} functions). Readable is a floor a tool can see, not a reading.")
+
+
+def fuzzy_report(version: str, rows: list[dict], verified: frozenset[int] | None = None) -> dict:
+    """Partial credit by closeness (module docstring, --fuzzy): {score_pct, near: drafts at 95% or more,
+    by_band: bytes by similarity band of the functions not yet done}."""
+    import csv
+    verified = VERIFIED if verified is None else verified
+    close: dict[int, float] = {}
+    index = ROOT / "drafts" / "INDEX.csv"
+    if index.is_file():
+        with index.open(newline="", encoding="utf-8") as fh:
+            for r in csv.DictReader(fh):
+                try:
+                    v = float(r["similarity"]) / 100
+                except ValueError:
+                    continue  # a draft that does not build has no similarity
+                a = int(r["address"], 16)
+                close[a] = max(close.get(a, 0.0), v)
+    cache = ROOT / "build" / "check" / version
+    if cache.is_dir():
+        for p in cache.rglob("*.o.diff.json"):
+            try:
+                entries = json.loads(p.read_text(encoding="utf-8"))["entries"]
+            except (OSError, ValueError, KeyError, TypeError):
+                continue
+            for e in entries:
+                if isinstance(e.get("address"), int) and isinstance(e.get("score"), (int, float)):
+                    close[e["address"]] = max(close.get(e["address"], 0.0), float(e["score"]))
+    total = credit = 0.0
+    near = {"functions": 0, "bytes": 0}
+    bands = {"95-100%": 0, "80-95%": 0, "50-80%": 0, "under 50%": 0}
+    for r in rows:
+        a, size = int(r["address"], 16), int(r["size"])
+        total += size
+        if r["status"] == "O" or (r["status"] == "m" and a in verified):
+            credit += size
+            continue
+        v = close.get(a, 0.0)
+        credit += size * v
+        if a in close:
+            bands["95-100%" if v >= 0.95 else "80-95%" if v >= 0.8 else "50-80%" if v >= 0.5 else "under 50%"] += size
+            if v >= 0.95:
+                near["functions"] += 1
+                near["bytes"] += size
+    return {"score_pct": 100 * credit / total if total else 0.0, "near": near, "by_band": bands,
+            "src_scores": cache.is_dir()}
+
+
+def fuzzy_line(f: dict) -> str:
+    n = f["near"]
+    return (f"Near misses, whole binary (`tools/progress.py --fuzzy`): {n['functions']:,} functions not yet done "
+            f"are at 95% similarity or more ({n['bytes'] / 1e6:.2f} MB); fuzzy match, each function's bytes "
+            f"weighted by its similarity, {f['score_pct']:.2f}%. Closeness, not completion: no threshold uses it.")
 
 
 HANDOFF = ROOT / "docs" / "HANDOFF.md"
@@ -287,7 +364,8 @@ def table_row(label: str, t: dict) -> str:
             f"({b['O']['functions']:,}) | {t['usable_bytes_pct']:.2f}% | {b['U']['functions']:,} |")
 
 
-def update_handoff(path: Path, overall: dict, boot: dict | None, quality_text: str | None = None) -> None:
+def update_handoff(path: Path, overall: dict, boot: dict | None, quality_text: str | None = None,
+                   fuzzy_text: str | None = None) -> None:
     """Replace the generated table in the handoff; keep the old boot row when no slice was computed, and the
     old completeness line when it was not computed (it needs check.py's cache)."""
     text = path.read_text(encoding="utf-8")
@@ -313,6 +391,9 @@ def update_handoff(path: Path, overall: dict, boot: dict | None, quality_text: s
     quality_text = quality_text or next((ln for ln in old.splitlines() if ln.startswith("Completeness, whole binary")), None)
     if quality_text:
         lines += ["", quality_text]
+    fuzzy_text = fuzzy_text or next((ln for ln in old.splitlines() if ln.startswith("Near misses, whole binary")), None)
+    if fuzzy_text:
+        lines += ["", fuzzy_text]
     path.write_text(head + BEGIN + "\n" + "\n".join(lines) + "\n" + END + tail, encoding="utf-8", newline="\n")
 
 
@@ -331,14 +412,17 @@ def main() -> int:
     ap.add_argument("--quality", action="store_true",
                     help="the functions by the two qualities each needs: byte-matching, and readable (needs "
                          "build/check/<version>/)")
+    ap.add_argument("--fuzzy", action="store_true",
+                    help="partial credit by similarity: drafts/INDEX.csv, and check.py's cache when it is there")
     ap.add_argument("--units", action="store_true",
                     help="the translation units by state (tools/tu_status.py has the per-unit views)")
     args = ap.parse_args()
     if args.handoff and args.slice_from:
         ap.error("--handoff takes the boot slice or none, not --slice-from")
 
-    global VERIFIED
+    global VERIFIED, FUNCTIONAL
     VERIFIED = verified_addresses()
+    FUNCTIONAL = functional_addresses()
     rows = load()
     library = [r for r in rows if r["status"] == "L"]
     game = [r for r in rows if r["status"] != "L"]
@@ -386,6 +470,16 @@ def main() -> int:
         print("completeness by the two qualities each function needs, byte-matching and readable (whole binary):")
         print_quality(report["quality"], overall)
 
+    if args.fuzzy or args.handoff:
+        report["fuzzy"] = fuzzy_report(args.version, game)
+    if args.fuzzy:
+        f = report["fuzzy"]
+        print()
+        print(fuzzy_line(f))
+        print("bytes of the functions not yet done, by similarity: "
+              + ", ".join(f"{k} {v / 1e6:.2f} MB" for k, v in f["by_band"].items())
+              + ("" if f["src_scores"] else " (drafts only: no check.py cache for the scores of src/)"))
+
     if args.units:
         import tu_map
         import tu_status
@@ -397,7 +491,8 @@ def main() -> int:
 
     if args.handoff:
         update_handoff(args.handoff, overall, report["slice"]["overall"] if "slice" in report else None,
-                       quality_line(report["quality"], overall) if "quality" in report else None)
+                       quality_line(report["quality"], overall) if "quality" in report else None,
+                       fuzzy_line(report["fuzzy"]) if "fuzzy" in report else None)
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)
         args.json.write_text(json.dumps(report, indent=1), encoding="utf-8")
