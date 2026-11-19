@@ -2,7 +2,7 @@
 // destroys the ultimate grab attack (+0x14dd0, fn_710048a60c) and the five other attacks (each with its
 // listener, last first), then runs the base AI component's destructor (fn_710049880c). Names and layouts are
 // placeholders.
-#include "../../../src/game_5821e4/CAttackDtor.h"
+#include "../../game_5821e4/CAttackDtor.h"
 #include "types.h"
 
 extern void* g_unk_7101a3b830[];  // the component's vtable

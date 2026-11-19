@@ -44,7 +44,7 @@ void fn_71004e44d8(UnkDredhedDiveAttack_l4e44d8* self) {
     if (!timeline)
         return;
     UnkMotion_l4e44d8 motion;
-    fn_71007142e8(&motion);
+    fn_71007142e8(reinterpret_cast<UnkStruct_71007142e8*>(&motion));
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);

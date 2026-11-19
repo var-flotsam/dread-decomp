@@ -292,9 +292,7 @@ struct UnkSwarmSlot_ovb6 {
 static_assert(sizeof(UnkSwarmSlot_ovb6) == 0x40, "UnkSwarmSlot_ovb6 layout");
 
 UnkSwarmTargets_ovb6 fn_710074ab2c(UnkSwarmController_ovb6* self);
-struct UnkSwarmEntries_l74a568;
-struct UnkSwarmEntry_l74a568;
-UnkSwarmEntry_l74a568* fn_710074a568(UnkSwarmEntries_l74a568* self, UnkSwarmEntry_l74a568* entry);
+UnkSwarmSlot_ovb6* fn_710074a568(UnkSwarmSlots_ovb6* self, UnkSwarmSlot_ovb6* slot);
 void fn_710074a360(UnkSwarmController_ovb6* self, f32 dt);
 
 void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
@@ -315,8 +313,7 @@ void fn_710074a0d4(UnkSwarmController_ovb6* self, f32 dt) {
         UnkSwarmSlot_ovb6* it = self->slots.values;
         while (self->slots.values + self->slots.count != it) {
             if (it->field_0x10)
-                it = reinterpret_cast<UnkSwarmSlot_ovb6*>(fn_710074a568(
-                    reinterpret_cast<UnkSwarmEntries_l74a568*>(&self->slots), reinterpret_cast<UnkSwarmEntry_l74a568*>(it)));
+                it = fn_710074a568(&self->slots, it);
             else
                 ++it;
         }

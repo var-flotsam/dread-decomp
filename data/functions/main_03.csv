@@ -3742,7 +3742,7 @@ address,size,name,name_source,subsystem,status
 0x71003ab524,244,CBossAIComponent::refl_GetClass,reflection,game/ai,O
 0x71003ab618,2280,CBossAIComponent::refl_AddFields,reflection,game/ai,O
 0x71003abf00,356,CBossAIComponent::refl_InitClass,reflection,game/ai,O
-0x71003ac064,804,fn_71003ac064,unknown,game/ai?,U
+0x71003ac064,804,fn_71003ac064,unknown,game/ai?,O
 0x71003ac388,1352,fn_71003ac388,unknown,game/ai?,U
 0x71003ac8d0,36,fn_71003ac8d0,unknown,game/ai?,O
 0x71003ac8f4,120,fn_71003ac8f4,unknown,game/ai?,O
@@ -4967,7 +4967,7 @@ address,size,name,name_source,subsystem,status
 0x71003e7bf8,284,fn_71003e7bf8,unknown,game/ai?,O
 0x71003e7d14,16,fn_71003e7d14,unknown,game/ai?,O
 0x71003e7d24,48,fn_71003e7d24,unknown,game/ai?,O
-0x71003e7d54,948,fn_71003e7d54,unknown,game/ai?,U
+0x71003e7d54,948,fn_71003e7d54,unknown,game/ai?,O
 0x71003e8108,148,fn_71003e8108,unknown,game/ai?,O
 0x71003e819c,336,fn_71003e819c,unknown,game/ai?,O
 0x71003e82ec,4,fn_71003e82ec,unknown,game/ai?,O
