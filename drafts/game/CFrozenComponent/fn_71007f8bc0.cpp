@@ -11,7 +11,6 @@
 
 extern void* g_unk_7101a740d0[];
 extern void* g_unk_7101a74318[];
-extern char g_unk_7101a743c8[];
 void fn_71007fb5f8(void* owner);
 
 // One of the four stages (ids 1 to 4).
@@ -53,7 +52,7 @@ struct UnkFrozenTimer_l7f8bc0 {
     u32 field_0xa4;
 
     UnkFrozenTimer_l7f8bc0()
-        : vtable(reinterpret_cast<void**>(g_unk_7101a743c8 + 0x10)), field_0x8(0), field_0x10(0),
+        : vtable(g_unk_7101a743c8 + 2), field_0x8(0), field_0x10(0),
           field_0x18(0), field_0x20(0), field_0xa4(5) {}
 };
 static_assert(sizeof(UnkFrozenTimer_l7f8bc0) == 0xa8, "layout");
