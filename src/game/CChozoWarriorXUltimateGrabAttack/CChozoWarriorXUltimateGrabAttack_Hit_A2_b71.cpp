@@ -7,6 +7,7 @@
 // layouts are placeholders.
 #include "game/CBossAIComponent.h"
 #include "game/CChozoWarriorXUltimateGrabAttack.h"
+#include "game/CPlayerLifeComponent.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1370.h"
 #include "game/UnkTU2523.h"
@@ -48,7 +49,6 @@ struct UnkGrabLife_A2_b71 {
         reinterpret_cast<void (*)(UnkGrabLife_A2_b71*, f32, bool)>(vtable[0x168 / 8])(this, value, flag);
     }
 };
-void fn_7101166c6c(UnkGrabLife_A2_b71* self, UnkGrabRequest_A2_b71* request);
 
 struct UnkGrabPlayer_A2_b71 {
     u8 pad_0x0[0x1c0];

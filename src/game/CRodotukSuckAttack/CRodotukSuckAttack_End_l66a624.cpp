@@ -4,6 +4,8 @@
 // component's reset (fn_71010fa790) and the outlines at +0x70 follow. Names and layouts are
 // placeholders.
 #include "../../game_s2/UnkSpitSend.h"
+#include "game/CPlayerInfo.h"
+#include "game/CRodotukSuckAttack.h"
 #include "game/UnkActor.h"
 #include "game/UnkAttack.h"
 #include "game/UnkGameManager.h"
@@ -13,7 +15,6 @@
 #include "types.h"
 
 struct UnkPlayerInfo_ovb0071;
-void fn_7100f0dd3c(UnkPlayerInfo_ovb0071* self);
 
 struct UnkRodotukKey_l66a624;
 extern UnkRodotukKey_l66a624 g_unk_710164a4d8;  // reached through the GOT
@@ -26,8 +27,6 @@ struct UnkRodotukSuckAttack_l66a624 {
     u8 pad_0x69[0x7];
     u8 outlines[8];  // 0x70
 };
-
-void fn_710066a760(UnkRodotukSuckAttack_l66a624* self);
 
 void fn_710066a624(UnkRodotukSuckAttack_l66a624* self) {
     fn_71003609b8(reinterpret_cast<UnkAttackBase*>(self));

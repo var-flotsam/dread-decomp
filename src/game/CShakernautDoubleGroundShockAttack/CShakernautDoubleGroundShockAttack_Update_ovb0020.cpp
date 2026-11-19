@@ -3,6 +3,7 @@
 // the timer restarts and state 5 moves to 7, state 6 to 8, each handing its id (g_unk_7172705810, g_unk_7172705818)
 // to fn_71006a4d74. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
+#include "game/CShakernautDoubleGroundShockAttack.h"
 #include "game_s2/UnkSpitAttack.h"
 #include "types.h"
 
@@ -23,8 +24,6 @@ struct UnkShakernautShockAttack_ovb0020 {
     u8 unk_0x34[0x2c];
     f32 timer;  // 0x60
 };
-
-void fn_71006a4d74(UnkShakernautShockAttack_ovb0020* self, const CStrId* id, bool flag);
 
 void fn_71006a515c(UnkShakernautShockAttack_ovb0020* self, f32 dt) {
     fn_71003609a8(reinterpret_cast<UnkSpitAttack*>(self), dt);

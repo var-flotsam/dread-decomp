@@ -4,5 +4,9 @@
 // 0x710066a088-0x710066cd70). One declaration per symbol: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
+
+struct UnkRodotukSuckAttack_l66a624;
+
 extern void* g_unk_7101a5da10[];
 extern void* g_unk_7101a5db18[];
+void fn_710066a760(UnkRodotukSuckAttack_l66a624* self);

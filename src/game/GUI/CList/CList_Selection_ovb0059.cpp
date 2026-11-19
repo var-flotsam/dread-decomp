@@ -169,7 +169,6 @@ static inline void Apply(UnkList_ovb0059* self) {
 }
 
 void fn_7101200790(UnkList_ovb0059* self);
-void fn_71012004ac(UnkList_ovb0059* self);
 void fn_7101201b44(UnkList_ovb0059* self) {
     fn_71011d8d24(self);
     self->Init();

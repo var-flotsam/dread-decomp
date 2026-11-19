@@ -1049,7 +1049,7 @@ address,size,name,name_source,subsystem,status
 0x7100430810,32,fn_7100430810,unknown,game/ai?,O
 0x7100430830,300,fn_7100430830,unknown,game/ai?,m
 0x710043095c,324,fn_710043095c,unknown,game/ai?,O
-0x7100430aa0,848,fn_7100430aa0,unknown,game/ai?,U
+0x7100430aa0,848,fn_7100430aa0,unknown,game/ai?,O
 0x7100430df0,632,fn_7100430df0,unknown,game/ai?,O
 0x7100431068,556,fn_7100431068,unknown,game/ai?,O
 0x7100431294,2648,fn_7100431294,unknown,game/ai?,U
