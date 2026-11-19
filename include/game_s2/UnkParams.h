@@ -30,3 +30,4 @@ struct UnkParams {
 // Hands a parameter block to a target: an UnkParams (kind 5), an UnkParams7 (kind 7,
 // game_s2/UnkParams7.h) or another kind's block; the block's vtable tells them apart.
 void fn_71006f4b0c(void* target, void* params, u32 flag);
+extern void* g_unk_7101a25b38[];  // The vtable of another kind of parameter block.

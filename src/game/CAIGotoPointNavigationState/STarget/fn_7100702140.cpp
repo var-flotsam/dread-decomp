@@ -4,10 +4,10 @@
 #include "game/CAIGotoPointNavigationState/STarget.h"
 #include "game/UnkTU1124.h"
 #include "game/UnkTU1130.h"
+#include "game_s2/UnkParams.h"
 #include "types.h"
 
 struct UnkGotoTargetQuery;
-extern void* g_unk_7101a25b38[];
 
 struct __attribute__((packed)) UnkGotoTargetCounters {
     u64 field_0x0;

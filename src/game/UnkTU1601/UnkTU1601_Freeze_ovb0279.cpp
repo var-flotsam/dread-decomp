@@ -27,8 +27,6 @@ using base::math::CVector4D;
 
 struct UnkDoorLock;
 struct UnkDoorShieldStore_A4_b76;
-extern const u64 g_unk_710164b5f0 __attribute__((visibility("hidden")));
-extern const u64 g_unk_710164b5f8 __attribute__((visibility("hidden")));
 
 struct UnkThermalDevice_A5_b73;
 struct UnkThermalDevice_b0279;

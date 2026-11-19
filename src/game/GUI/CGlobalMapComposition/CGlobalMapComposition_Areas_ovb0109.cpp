@@ -38,8 +38,6 @@ using base::global::CStrId;
 struct UnkGallery_A5_b75;
 struct UnkStateSink;
 struct UnkStateKey;
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f01a8;
 struct UnkGlobalMapComposition;
 using UnkGuiObj = UnkGuiDisplayObject;
 

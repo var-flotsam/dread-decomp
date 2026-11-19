@@ -21,10 +21,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f01a0;
-extern UnkEnumType g_unk_71729f01a8;
-
 // The class name and the class type after it.
 struct UnkButtonClassData_l1c1530 {
     CStrId name;

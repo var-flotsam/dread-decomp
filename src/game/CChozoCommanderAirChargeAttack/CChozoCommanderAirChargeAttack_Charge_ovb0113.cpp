@@ -131,8 +131,6 @@ void fn_7100425840(UnkChargeAttack2_ovb0113* self) {
 // src/game/CChozoCommanderLandingSlamAttack/CChozoCommanderLandingSlamAttack_End_A2_b72.cpp builds it.
 using base::reflection::UnkReflValue;
 
-extern void* g_unk_7101a25b38[];
-
 struct UnkChargeParams_ovb0113 {
     void** vtable;
     u8 field_0x8[13];

@@ -9,8 +9,6 @@
 
 using base::reflection::UnkReflValue;
 
-extern void* g_unk_7101a25b38[];
-
 struct UnkSlamParams_A2_b72 {
     void** vtable;
     u64 field_0x8;

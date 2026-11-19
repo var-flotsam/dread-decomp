@@ -28,9 +28,6 @@ struct UnkClone_fn_7100b34974;
 using UnkMenuStateSlot_lb35b60 = UnkCloneElem<UnkClone_fn_7100b34974, 8>;
 extern template UnkMenuStateSlot_lb35b60& base::global::CRntVector<UnkMenuStateSlot_lb35b60>::GrowAt(u32);
 
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f01b0;
-
 // As src/game/GUI/CSlotOptionsComposition/CSlotOptionsComposition_SetMode_A5_b69.cpp defines it.
 struct UnkSlotOptions_A5_b69;
 void fn_7100b7c648(UnkSlotOptions_A5_b69* self, u32 mode);

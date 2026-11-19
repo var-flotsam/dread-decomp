@@ -92,7 +92,6 @@ bool fn_710042a044(UnkBurstEventSelf_ovb0135* self, const UnkBurstEvent_ovb0135*
 // src/game/CChozoCommanderLandingSlamAttack/CChozoCommanderLandingSlamAttack_End_A2_b72.cpp builds it, with
 // the optional at +0x10 left unset); its reflected value (+0x70) is destroyed afterwards.
 using base::reflection::UnkReflValue;
-extern void* g_unk_7101a25b38[];
 
 struct UnkBurstParams_ovb0135 {
     void** vtable;

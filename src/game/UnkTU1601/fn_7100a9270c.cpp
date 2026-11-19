@@ -10,9 +10,6 @@
 
 using base::math::CVector4D;
 
-extern const u64 g_unk_710164b5f0 __attribute__((visibility("hidden")));
-extern const u64 g_unk_710164b5f8 __attribute__((visibility("hidden")));
-
 struct UnkThermalDevice_la9270c {
     u8 pad_0x0[0x53c];
     s32 level;     // 0x53c
