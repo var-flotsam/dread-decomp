@@ -3,7 +3,6 @@
 // the global flag changed. Names and layouts are placeholders.
 #include "game/UnkTU172.h"
 #include "game/UnkTU180.h"
-#include "game/UnkTU180.h"
 #include "types.h"
 
 extern "C" void* memcpy(void* dst, const void* src, u64 n);
