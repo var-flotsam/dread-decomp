@@ -3,6 +3,7 @@
 // Names and layouts are placeholders.
 #include <math.h>
 
+#include "game/UnkTU53.h"
 #include "types.h"
 
 struct UnkPoint3f {
