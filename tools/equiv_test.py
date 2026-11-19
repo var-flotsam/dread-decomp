@@ -28,7 +28,12 @@ rule above, and calls a pass of one `behaves`, never `pass`: the calibration's w
 registers class the test accepted an off-by-one), so `behaves` is tier 3 with a figure of its own, *functional*:
 correct on every input tried, with full coverage, and owing a match. A function under src/ with such a verdict
 is marked `// NON_MATCHING(functional): <reason>` (status M); tools/check.py fails one without a current
-`behaves` row, as it fails a stale `pass`.
+`behaves` row, as it fails a stale `pass`. Before a `behaves` is recorded, the test must reject small breakages
+of the function's own text (mutants(): an integer constant one up or down, a comparison flipped or loosened, the
+operands of a subtraction swapped; up to MUTANTS of them that compile to other code). A mutant that also
+passes means the inputs cannot tell such a change apart, and the verdict is `inconclusive` instead: this
+aims at the calibration's off-by-one.
+
 Calibration, 2026-11-11 (docs/JOURNAL.md): of 300 byte-matching functions none failed (59 passed, 241 could
 not be judged), and of 95 registers-only one-point mutants in 59 functions none that changes behaviour was
 accepted, which bounds the miss rate near 3%, not at zero. A pass is evidence, not a proof; a permuter is
@@ -180,6 +185,98 @@ def result_kind(rtype: str | None, shape=None) -> str | None:
         return SCALAR[rtype]
     if shape:
         return {"x": "x64", "s": "f32", "d": "f64"}[shape[0]] + f"*{shape[1]}"
+    return None
+
+
+MUTANTS = 8             # mutants judged before a `behaves` is recorded
+MUTANT_BUDGET = 30.0    # seconds per mutant
+_COMPARE_SWAP = {"<": "<=", "<=": "<", ">": ">=", ">=": ">", "==": "!=", "!=": "=="}
+_SKIP = re.compile(r'//[^\n]*|/\*.*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\'', re.S)
+
+
+def body_span(text: str, address: int, name: str | None = None) -> tuple[int, int] | None:
+    """(start, end) of the body of the definition of fn_<address> (or of `name`'s unqualified name) in
+    `text`: the offsets just inside its braces; None when there is no such definition."""
+    found = rf"fn_{address:x}"
+    if name and not name.startswith("fn_"):
+        found = rf"(?:fn_{address:x}|{re.escape(member_name(name))})"
+    for m in re.finditer(rf"^[^;{{}}()=#\n]*?\b(?:\w+::)*{found}\s*\(", text, re.M):
+        depth, i = 1, m.end()
+        while depth and i < len(text):
+            depth += {"(": 1, ")": -1}.get(text[i], 0)
+            i += 1
+        j = text.find("{", i)
+        if j < 0 or ";" in text[i:j]:
+            continue
+        depth, k = 1, j + 1
+        while depth and k < len(text):
+            depth += {"{": 1, "}": -1}.get(text[k], 0)
+            k += 1
+        return j + 1, k - 1
+    return None
+
+
+def mutants(text: str, span: tuple[int, int], limit: int = 64) -> list[str]:
+    """Texts that differ from `text` by one small change inside `span` (a function's body): an integer
+    constant one up or down, a comparison flipped (== and !=) or loosened (< and <=), the operands of a
+    subtraction swapped. Comments and literals are left alone, and so are template brackets and casts.
+    Spread over the body, at most `limit`."""
+    lo, hi = span
+    body = text[lo:hi]
+    skip = [(m.start(), m.end()) for m in _SKIP.finditer(body)]
+
+    def free(a: int, b: int) -> bool:
+        return not any(x < b and a < y for x, y in skip)
+    edits: list[tuple[int, int, str]] = []
+    for m in re.finditer(r"(?<![\w.])(\d+)(?![\w.])", body):
+        if free(m.start(), m.end()):
+            v = int(m.group(1))
+            edits.append((m.start(), m.end(), str(v + 1)))
+            if v:
+                edits.append((m.start(), m.end(), str(v - 1)))
+    for m in re.finditer(r" (<=|>=|==|!=|<|>) ", body):  # spaced: a binary comparison, not <T> or ->
+        if free(m.start(), m.end()):
+            edits.append((m.start() + 1, m.end() - 1, _COMPARE_SWAP[m.group(1)]))
+    for m in re.finditer(r"\b([A-Za-z_]\w*|\d+) - ([A-Za-z_]\w*|\d+)\b", body):
+        if free(m.start(), m.end()) and m.group(1) != m.group(2):
+            edits.append((m.start(), m.end(), f"{m.group(2)} - {m.group(1)}"))
+    edits.sort()
+    if len(edits) > limit:
+        step = len(edits) / limit
+        edits = [edits[int(i * step)] for i in range(limit)]
+    return [text[:lo] + body[:a] + new + body[b:] + text[hi:] for a, b, new in edits]
+
+
+def survivor(ctx: Context, oracle, src: Path, a: int, symbol: str, code: bytes, text: str) -> str | None:
+    """For a function that behaves: compile mutants of its body (mutants()) until MUTANTS of them compile to
+    other code, judge each, and return a description of the first that passes too; None when every one
+    failed or could not be judged."""
+    import asmdiff
+    import buildcfg
+    span = body_span(text, a, ctx.name_of(a))
+    if span is None:
+        return None
+    work = WORK / "mutants"
+    work.mkdir(parents=True, exist_ok=True)
+    judged = 0
+    for n, mtext in enumerate(mutants(text, span)):
+        if judged >= MUTANTS:
+            break
+        msrc, mobj = work / f"{a:x}_{n}{src.suffix}", work / f"{a:x}_{n}.o"
+        msrc.write_text(mtext, encoding="utf-8")
+        r = subprocess.run(buildcfg.cxx_command(msrc, mobj, ["-iquote", str(src.parent)]), capture_output=True,
+                           text=True)
+        if r.returncode != 0:
+            continue
+        mine = [f for f in asmdiff.read_object(mobj) if f.symbol == symbol]
+        if not mine or mine[0].code == code:
+            continue
+        judged += 1
+        SOURCES[mobj] = SOURCES.get(src, str(src))
+        v, _ = judge(ctx, oracle, mobj, a, with_headers(mtext), MUTANT_BUDGET)
+        if v == "pass":
+            diff = next((f"{y.strip()}" for x, y in zip(text.splitlines(), mtext.splitlines()) if x != y), "")
+            return f"mutant {n} passes too ({short(diff, 60)})"
     return None
 
 
@@ -731,6 +828,7 @@ def main() -> int:
                 out.append({**row, "verdict": "not registers", "detail": f"the difference is {kind}: not judged"})
             else:
                 jobs.append((res.address, obj, text, row))
+                row["_src"], row["_symbol"], row["_code"] = src, res.symbol, codes[res.symbol]
     print(f"{len(files)} files, {len(jobs)} {'' if args.any_kind else 'registers-only '}functions to judge, "
           f"{len(out)} left out (another kind of difference, or no build)", flush=True)
     if jobs:
@@ -742,6 +840,11 @@ def main() -> int:
             v, d = judge(ctx, oracle, obj, a, text, args.budget)
             if v == "pass" and row["kind"] != "registers":
                 v = "behaves"  # tier 3: correct on every input tried, not proven (see the docstring)
+                weak = survivor(ctx, oracle, row["_src"], a, row["_symbol"], row["_code"],
+                                row["_src"].read_text(encoding="utf-8", errors="replace"))
+                if weak:
+                    v, d = "inconclusive", f"behaves, but {weak}: the inputs cannot tell such a change apart"
+            row = {k: x for k, x in row.items() if not k.startswith("_")}
             out.append({**row, "verdict": v, "detail": d})
             if n % 25 == 0:
                 print(f"  {n} of {len(jobs)} ({time.time() - t:.0f} s)", flush=True)

@@ -324,3 +324,39 @@ class MoreInputsEqual(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Mutants(unittest.TestCase):
+    """The small breakages a `behaves` verdict must reject (equiv_test.mutants)."""
+    TEXT = ("int fn_7100000100(int a, int b);\n"
+            "int fn_7100000100(int a, int b) {\n"
+            "    // 5 in a comment\n"
+            "    if (a < 3) return b - a;\n"
+            "    return a == 2 ? Box<int>::get(\"s1\") : p->q;\n"
+            "}\n")
+
+    def changed(self):
+        span = equiv_test.body_span(self.TEXT, 0x7100000100)
+        return [next(m for m, o in zip(t.splitlines(), self.TEXT.splitlines()) if m != o).strip()
+                for t in equiv_test.mutants(self.TEXT, span)]
+
+    def test_the_body_of_the_definition_not_the_declaration(self):
+        lo, hi = equiv_test.body_span(self.TEXT, 0x7100000100)
+        self.assertTrue(self.TEXT[lo:hi].strip().startswith("// 5"))
+
+    def test_constants_comparisons_and_subtractions_change_one_at_a_time(self):
+        got = self.changed()
+        self.assertIn("if (a <= 3) return b - a;", got)
+        self.assertIn("if (a < 2) return b - a;", got)
+        self.assertIn("if (a < 3) return a - b;", got)
+        self.assertIn('return a != 2 ? Box<int>::get("s1") : p->q;', got)
+
+    def test_comments_strings_templates_and_arrows_are_left_alone(self):
+        for line in self.changed():
+            self.assertNotIn("6 in a comment", line)
+            self.assertNotIn('"s2"', line)
+            self.assertNotIn("Box<=int", line)
+            self.assertIn("->q", line if "->" in line else "->q")
+
+    def test_no_definition_no_span(self):
+        self.assertIsNone(equiv_test.body_span("int fn_7100000100(int a);\n", 0x7100000100))
