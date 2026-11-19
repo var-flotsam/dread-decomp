@@ -185,5 +185,5 @@ void fn_71004cfc28(UnkCooldownXBossAIComponentD_l4cfc28* self) {
     self->part_b.~UnkCooldownXPartB_l4cfc28();
     fn_71004c86cc(reinterpret_cast<UnkLavaDropsAttack_ovb0111*>(self->field_0x15130));
     self->part_a.~UnkCooldownXPartA_l4cfc28();
-    fn_71003ac388(self);
+    fn_71003ac388(reinterpret_cast<UnkBossAI_l3ac388*>(self));
 }

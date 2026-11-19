@@ -107,5 +107,5 @@ void fn_710046f0d4(UnkChozoRobotSoldierAIComponent_l46f0d4* self) {
     self->attack_b.~UnkChozoRobotSoldierAttack_l46f0d4();
     self->attack_a.~UnkChozoRobotSoldierAttack_l46f0d4();
     self->shot.~UnkChozoRobotSoldierShot_l46f0d4();
-    fn_71003ac388(self);
+    fn_71003ac388(reinterpret_cast<UnkBossAI_l3ac388*>(self));
 }
