@@ -4,13 +4,10 @@
 
 #include "base/math/CVector.h"
 #include "base/tunable/CTunable.h"
+#include "game/UnkCameraViewBox.h"
 #include "game/UnkTU311.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
-
-struct UnkCamViewBox_l0e53dc {
-    f32 minX, minY, maxX, maxY;
-};
 
 struct UnkCamTarget_l0e53dc {
     u8 pad_0x0[0x38];
@@ -28,7 +25,7 @@ struct UnkCamComponent_l0e53dc {
     f32 fov;
 };
 
-bool fn_71010e53dc(void* camera, UnkCamViewBox_l0e53dc* box) {
+bool fn_71010e53dc(void* camera, UnkCameraViewBox* box) {
     UnkCamComponent_l0e53dc* self = static_cast<UnkCamComponent_l0e53dc*>(camera);
     if (!self->nodes)
         return false;
