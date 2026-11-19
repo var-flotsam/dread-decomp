@@ -73,6 +73,7 @@ static inline UnkReflObject* AsCharClassAttack(UnkReflObject* attack) {
     return fn_710009d50c(attack->vf_0x0(), fn_7100362e04()) ? attack : nullptr;
 }
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 bool fn_71003667b0(UnkAttackPreset_l3667b0* self, UnkPresetContext_l3667b0* ctx, UnkReflObject* attack) {
     bool enabled = ctx->field_0x1a || self->field_0x10;
     UnkPresetAI_l3667b0* ai = Ai(ctx);

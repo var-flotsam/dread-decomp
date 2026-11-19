@@ -5371,7 +5371,7 @@ address,size,name,name_source,subsystem,status
 0x7100bddb58,388,CCharClassSetRelativeCameraAnimationWithDirectionEvent::refl_InitClass,reflection,game/characters,O
 0x7100bddcdc,340,fn_7100bddcdc,unknown,game/characters?,O
 0x7100bdde30,36,fn_7100bdde30,unknown,game/characters?,O
-0x7100bdde54,344,fn_7100bdde54,unknown,game/characters?,U
+0x7100bdde54,344,fn_7100bdde54,unknown,game/characters?,M
 0x7100bddfac,28,fn_7100bddfac,unknown,game/characters?,O
 0x7100bddfc8,12,CCharClassSetRelativeCameraAnimationWithDirectionEvent::refl_Equals,reflection,game/characters,O
 0x7100bddfd4,8,CCharClassSetRelativeCameraAnimationWithDirectionEvent::refl_Hash,reflection,game/characters,O

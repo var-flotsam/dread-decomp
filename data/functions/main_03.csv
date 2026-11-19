@@ -1321,7 +1321,7 @@ address,size,name,name_source,subsystem,status
 0x7100366604,388,CAttackPreset::refl_InitClass,reflection,game,O
 0x7100366788,4,fn_7100366788,unknown,unknown,O
 0x710036678c,36,fn_710036678c,unknown,game/core?,O
-0x71003667b0,312,fn_71003667b0,unknown,unknown,U
+0x71003667b0,312,fn_71003667b0,unknown,unknown,M
 0x71003668e8,340,fn_71003668e8,unknown,game?,U
 0x7100366a3c,88,fn_7100366a3c,unknown,unknown,O
 0x7100366a94,88,fn_7100366a94,unknown,unknown,O
@@ -2205,7 +2205,7 @@ address,size,name,name_source,subsystem,status
 0x7100380cc0,388,behaviortree::CGoToSideAction::refl_InitClass,reflection,ai/behaviortree,O
 0x7100380e44,4,fn_7100380e44,unknown,ai/behaviortree?,O
 0x7100380e48,236,fn_7100380e48,unknown,ai/behaviortree?,O
-0x7100380f34,112,fn_7100380f34,unknown,ai/behaviortree?,U
+0x7100380f34,112,fn_7100380f34,unknown,ai/behaviortree?,M
 0x7100380fa4,8,fn_7100380fa4,unknown,ai/behaviortree?,O
 0x7100380fac,28,fn_7100380fac,unknown,ai/behaviortree?,O
 0x7100380fc8,124,fn_7100380fc8,unknown,ai/behaviortree?,O

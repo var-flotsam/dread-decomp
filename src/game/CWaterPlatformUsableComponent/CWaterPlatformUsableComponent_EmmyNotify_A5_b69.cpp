@@ -8,8 +8,6 @@
 
 struct UnkEmmyRegistry_b55;
 
-void fn_710110f97c(void* emmy, void* block);
-
 struct UnkEmmyEntry_A5_b69 {
     u8 pad_0x0[0x10];
     void* emmy;

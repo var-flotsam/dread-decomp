@@ -3,6 +3,7 @@
 // inventory's ITEM_CURRENT_LIFE. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CInventoryComponent.h"
+#include "game/CPlayerLifeComponent.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkItemProperties.h"
 #include "types.h"
@@ -12,7 +13,6 @@ struct UnkLifeState_ovb0000;
 struct UnkPlayerLife_ovb0049;
 
 void fn_7101160278(UnkLifeState_ovb0000* self, f32 value);
-void fn_7101164cc0(UnkPlayerLife_ovb0049* self);
 
 struct UnkPlayerLifeActor_l165b50 {
     u8 pad_0x0[0x270];
@@ -38,6 +38,7 @@ static inline const UnkQualifiedId& GetQualifiedId_l165b50(UnkPropertyEx<>& item
     return qid;
 }
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_7101165b50(UnkPlayerLife_l165b50* self, f32 value, bool notify) {
     if (!(self->life >= value - 1e-5f && self->life <= value + 1e-5f)) {
         fn_7101160278(reinterpret_cast<UnkLifeState_ovb0000*>(self), value);

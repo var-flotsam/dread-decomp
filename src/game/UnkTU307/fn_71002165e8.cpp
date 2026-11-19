@@ -12,6 +12,7 @@ struct UnkRanges {
     UnkRange ranges[3];  // 0x8
 };
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_71002165e8(UnkRanges* self, const f32* scale, const f32* centre) {
     for (int i = 0; i < 3; ++i) {
         UnkRange& r = self->ranges[i];

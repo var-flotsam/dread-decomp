@@ -87,6 +87,7 @@ struct UnkKraidSpikePlatform_l6089ec {
 void fn_7100952688(UnkKraidSpikePlatform_l6089ec* self, UnkVec3f* delta);
 UnkKraidSpikeCollider_l6089ec* fn_7100951f20(UnkKraidSpikePlatform_l6089ec* self);
 
+// NON_MATCHING(functional): Conditions differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_71006089ec(UnkKraidSpikePlatform_l6089ec* self, UnkVec3f* delta) {
     fn_7100952688(self, delta);
     if (self->state.id != 1) {

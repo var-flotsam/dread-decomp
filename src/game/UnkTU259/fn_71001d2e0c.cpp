@@ -18,6 +18,7 @@ static inline f32 Clamp01(f32 v) {
     return 0.0f;
 }
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 bool fn_71001d2e0c(UnkTU259Color_l1d2e0c* self, u32 idx, const f32* color) {
     if (idx <= 1) {
         UnkTU259Slot_l1d2e0c* slot = &self->slots[idx];
