@@ -53,6 +53,7 @@ struct UnkGotoTargetNew {
     bool field_0x38180;
 };
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_7100702140(UnkGotoTargetNew* self, u32 id) {
     fn_7100703814(reinterpret_cast<UnkUnit1124Object*>(self), id);
     self->vtable = g_unk_7101a6bb48 + 2;

@@ -67,6 +67,7 @@ static inline char* LightManager() {
     return static_cast<char*>(g_unk_71726b1688);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710034e22c(UnkAimLightSelf_l34e22c* self) {
     bool enabled = self->enabled;
     UnkAimLight_l34e22c* light = self->light;

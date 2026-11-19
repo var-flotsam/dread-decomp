@@ -53,6 +53,7 @@ inline UnkLookAtTarget_b2e55e8* LookAtTarget(UnkLookAtEntityControl_b2e55e8* sel
     return static_cast<UnkLookAtTarget_b2e55e8*>(fn_7100deba8c(manager, &id, &kind));
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71002e55e8(UnkLookAtEntityControl_b2e55e8* self, f32 dt) {
     UnkLookAtTarget_b2e55e8* target = LookAtTarget(self);
     UnkVec3f pos = target ? PositionOf(target) : UnkVec3f(0.0f, 0.0f, 0.0f);

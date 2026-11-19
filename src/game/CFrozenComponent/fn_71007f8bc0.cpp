@@ -87,6 +87,7 @@ static_assert(__builtin_offsetof(UnkFrozenCtor_l7f8bc0, timer) == 0x228, "layout
 static_assert(__builtin_offsetof(UnkFrozenCtor_l7f8bc0, lists) == 0x2e0, "layout");
 static_assert(__builtin_offsetof(UnkFrozenCtor_l7f8bc0, field_0x39c) == 0x39c, "layout");
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_71007f8bc0(void* component) {
     UnkFrozenCtor_l7f8bc0* self = static_cast<UnkFrozenCtor_l7f8bc0*>(component);
     fn_71010c4148(static_cast<UnkStateObject*>(component));
