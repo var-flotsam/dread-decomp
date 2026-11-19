@@ -33,7 +33,6 @@
 using base::reflection::UnkReflObject;
 
 struct UnkGooplotJump_ovb0123;
-bool fn_710059462c(UnkGooplotJump_ovb0123* self, base::math::CVector3D* point);
 void fn_710059531c(UnkGooplotJump_ovb0123* self, u32 arg);
 bool fn_710059d7e4(void* member, UnkActor* owner);
 bool fn_710059edf8(UnkReflObject* ai);
@@ -120,7 +119,8 @@ bool fn_71005944e8(UnkGooplotJump_ovb0123* self, void* arg, u32 mode) {
         return false;
     base::math::CVector3D point = g_unk_710164779c;
     u32 ok = false;
-    if (fn_7100d7bea0(self->owner, false) && Ai(self->owner)->field_0x121e && fn_710059462c(self, &point)) {
+    if (fn_7100d7bea0(self->owner, false) && Ai(self->owner)->field_0x121e &&
+        fn_710059462c(reinterpret_cast<UnkGooplotJumpAttack*>(self), &point)) {
         UnkGooplotJumpAI_ovb0123* ai = Ai(self->owner);
         if (!ai) {
             ok = true;
@@ -192,7 +192,7 @@ void fn_7100594c08(UnkGooplotStart_ovb0123* self) {
     auto* tunable = reinterpret_cast<UnkGooplotTunable_ovb0123*>(&g_unk_71726e72b8);
     self->field_0x7c = tunable->field_0x34;
     self->field_0x80 = tunable->field_0x38;
-    fn_710059462c(reinterpret_cast<UnkGooplotJump_ovb0123*>(self), &self->point);
+    fn_710059462c(reinterpret_cast<UnkGooplotJumpAttack*>(self), &self->point);
     UnkActor* owner = reinterpret_cast<UnkActor*>(self->owner);
     self->position = UnkVec3f(owner->field_0x44, owner->field_0x54, owner->field_0x64);
     if (auto* ai = static_cast<UnkGooplotStartAI_ovb0123*>(owner->field_0x240)) {
