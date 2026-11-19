@@ -14,6 +14,21 @@ struct UnkPolygon2D_l118124 {
     u8 closed;
 };
 
+// An empty std::function's layout (callable storage, then the callable pointer); passed in memory.
+struct alignas(16) UnkEmptyCallback {
+    u8 storage[0x20];
+    void* callable;
+    u8 pad_0x28[8];
+    UnkEmptyCallback() : callable(nullptr) {}
+    UnkEmptyCallback(const UnkEmptyCallback&) {}
+};
+
+// fn_7100117ba0 (game/UnkPolygonEdgeQuery.h) as this caller calls it: the filter and the visitor are left
+// empty, passed in the empty-callback layout.
+using UnkEmptyEdgeQuery = void (*)(const UnkPolygon2D* polygon, const CVector2D* point, s32* edge, f32* t,
+                                   CVector2D* closest, f32* distance, bool flag, UnkEmptyCallback filter,
+                                   UnkEmptyCallback visit);
+
 static inline s32 EdgeCount(const UnkPolygon2D_l118124* p) {
     return p->count - (!p->closed & (p->count != 0));
 }
@@ -21,8 +36,9 @@ static inline s32 EdgeCount(const UnkPolygon2D_l118124* p) {
 bool fn_7100118124(const UnkPolygon2D_l118124* polygon, const CVector2D* point, s32* edge, f32* t,
                    CVector2D* closest, f32* distance, s32* out_edge, f32* out_end) {
     CVector2D found = {};
-    fn_7100117ba0((const UnkPolygon2D*)polygon, point, edge, t, &found, distance, false, UnkPointFilter(),
-                  UnkEdgeVisitor());
+    reinterpret_cast<UnkEmptyEdgeQuery>(&fn_7100117ba0)(reinterpret_cast<const UnkPolygon2D*>(polygon), point, edge,
+                                                        t, &found, distance, false, UnkEmptyCallback(),
+                                                        UnkEmptyCallback());
     if (closest)
         closest->x = found.x, closest->y = found.y;
     if (!out_edge || !out_end)
