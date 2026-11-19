@@ -3,6 +3,7 @@
 // the global flag changed. Names and layouts are placeholders.
 #include "game/UnkTU172.h"
 #include "game/UnkTU180.h"
+#include "game/UnkTU180.h"
 #include "types.h"
 
 extern "C" void* memcpy(void* dst, const void* src, u64 n);
@@ -37,7 +38,8 @@ struct UnkUniformTables {
     UnkUniformTable* tables[3];
 };
 
-void fn_710015e2d0(UnkUniformTables* self, u32 kind, u64 handle, u32 count, u32 stride, const void* data) {
+void fn_710015e2d0(void* state, u32 kind, u64 handle, u32 count, u32 stride, const void* data) {
+    UnkUniformTables* self = static_cast<UnkUniformTables*>(state);
     u64 index = handle + 0xfffffff1u;
     if (!self || !handle)
         return;

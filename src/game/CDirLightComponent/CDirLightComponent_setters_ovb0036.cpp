@@ -101,7 +101,7 @@ void fn_71008eb348(UnkDirLightComponent_ovb0036* self) {
         self->angle[1] = angle.y;
         self->angle[2] = angle.z;
         UnkVec3f direction =
-            Rotate_ovb0036(fn_7100078fc8(reinterpret_cast<const UnkMatrix44&>(angle)), UnkVec3f(1.0f, 0.0f, 0.0f));
+            Rotate_ovb0036(fn_7100078fc8(angle), UnkVec3f(1.0f, 0.0f, 0.0f));
         char* b = *reinterpret_cast<char**>(self->light + 0x138);
         char* light = *reinterpret_cast<char**>(b + 0x78);
         *reinterpret_cast<UnkVec3f*>(light + 0x30) = direction;

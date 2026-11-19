@@ -2,15 +2,12 @@
 #include <math.h>
 
 #include "base/UnkMatrix44.h"
+#include "game/UnkTU54.h"
 #include "types.h"
 
-struct UnkAnglesVec3 {
-    f32 x, y, z;
-};
-
-UnkMatrix44 fn_7100078fc8(const UnkAnglesVec3* angles) {
+UnkMatrix44 fn_7100078fc8(const UnkVec3f& angles) {
     UnkMatrix44 r;
-    f32 a = angles->x, b = angles->y, c = angles->z;
+    f32 a = angles.x, b = angles.y, c = angles.z;
     f32 m0, m1, m2, m4, m5, m6, m8, m9, m10;
     if (fabsf(a) > 0.0001f || fabsf(b) > 0.0001f || fabsf(c) > 0.0001f) {
         f32 sc = sinf(c);

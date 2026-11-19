@@ -27,8 +27,8 @@ UnkMatrix44_7100078c9c fn_7100078c9c(f32 x, f32 y, f32 z) {
     return r;
 }
 
-UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkMatrix44& m) {
-    return fn_7100077c04(fn_7100078fc8(m), v);
+UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkVec3f& angles) {
+    return fn_7100077c04(fn_7100078fc8(angles), v);
 }
 
 // The same translation matrix from a vector (its three components read first).

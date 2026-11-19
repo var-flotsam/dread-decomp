@@ -133,7 +133,7 @@ bool fn_71005540d8(UnkPathAI_b0193* self) {
         if (slot->field_0x0 && slot->field_0x0->field_0x10 && slot->field_0x0->field_0x10->field_0x10 == 1 &&
             slot->field_0x8) {
             if (fn_7100707df4(slot->field_0x8 + 0x140, reinterpret_cast<UnkPathPoint_b67a4*>(&point))) {
-                UnkMatrix44 m = fn_7100078fc8(*reinterpret_cast<const UnkMatrix44*>(&point));
+                UnkMatrix44 m = fn_7100078fc8(point);
                 dir = UnkVec3f(m.m[2], m.m[6], m.m[10]);
             }
         }

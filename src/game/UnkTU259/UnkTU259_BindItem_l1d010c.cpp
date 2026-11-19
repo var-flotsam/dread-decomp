@@ -137,7 +137,7 @@ void fn_71001d010c(UnkGfx_l1d010c* self, UnkDrawItem_l1d010c* item, bool flag) {
     u64 location;
     if (fn_71001aa0b4(program, 0, 0xe7, &location)) {
         CColor4F black(0.0f, 0.0f, 0.0f, 1.0f);
-        fn_710015e2d0(state, 0, location, 4, 1, reinterpret_cast<u64>(&black));
+        fn_710015e2d0(state, 0, location, 4, 1, &black);
     }
     fn_71001d2fc0(reinterpret_cast<UnkGraphicsSystem*>(self), item);
 }

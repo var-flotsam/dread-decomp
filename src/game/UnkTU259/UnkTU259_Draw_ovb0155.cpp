@@ -11,7 +11,7 @@
 #include "types.h"
 
 struct UnkGfxRange_b0155 {
-    u64 data;  // 0x0
+    const void* data;  // 0x0
     u32 field_0x8;
     u32 field_0xc;
     u32 elements;  // 0x10
@@ -85,7 +85,7 @@ void fn_71001d03f8(UnkGraphicsSystem* self, UnkGfxItem_b0155* item, bool upload,
             if (self->field_0x317ae90) {
                 u32 elements = range->elements;
                 void* state = self->field_0x317af68;
-                u64 data = range->data;
+                const void* data = range->data;
                 fn_710015e2d0(state, 0, self->field_0x317ae90, 4, elements * 3, data);
                 fn_71001d2eec(self, range->field_0x20, 0);
             }

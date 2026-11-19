@@ -2,6 +2,7 @@
 // fn_7100494c9c passes and the owner (+0x8) still has life (+0x1d0, +0x54 > 0); when the owner's AI
 // component (+0x240) is a CChozoWarriorXAIComponent, its actor's (+0x30) y must also be at most 50 above the
 // height at +0x149a4. Names and layouts are placeholders.
+#include "game/CChozoWarriorGlaiveSpinAttack.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/UnkActor.h"
@@ -34,11 +35,10 @@ struct UnkGlaiveSpinAttack_A2_b70 {
     UnkGlaiveOwner_A2_b70* owner;
 };
 
-bool fn_7100494c9c(UnkGlaiveSpinAttack_A2_b70* self, void* arg, u32 mode);
-
 // `arg` and `mode` (x1, w2) reach the base check untouched in the original (tools/forwarded_args.py).
 bool fn_7100481914(UnkGlaiveSpinAttack_A2_b70* self, void* arg, u32 mode) {
-    if (!fn_7100494c9c(self, arg, mode))
+    // the X attack derives from the base spin attack, whose check comes first
+    if (!fn_7100494c9c(reinterpret_cast<UnkGlaiveSpinAttack*>(self), arg, mode))
         return false;
     UnkGlaiveOwner_A2_b70* owner = self->owner;
     if (owner->life && !(owner->life->life > 0.0f))
