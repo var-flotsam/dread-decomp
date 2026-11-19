@@ -2,6 +2,7 @@
 // owner (+0x10), builds the three paths (+0x30, +0x12ab8, +0x25540, fn_71002acfe4) and two embedded
 // listeners at +0x37ff8 and +0x38020 that point back at the query. Names and layouts are
 // placeholders.
+#include "game/UnkTU1130.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "types.h"
 
