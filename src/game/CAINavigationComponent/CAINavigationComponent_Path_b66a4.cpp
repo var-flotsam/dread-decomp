@@ -2,6 +2,7 @@
 // ready (its vf_0x20). The record's kind (+0x10) picks the source as in fn_71006f4f28
 // (CAINavigationComponent_Target_b65a4.cpp): kind 1 and kind 7 keep it inside their object
 // (+0x12bf8, +0x12c08), kind 2 answers it with fn_71006fce10. Names and layouts are placeholders.
+#include "game/UnkTU1118.h"
 #include "types.h"
 
 struct UnkNavPath_b66a4 {
@@ -23,7 +24,6 @@ struct UnkNavHead_b66a4 {
 };
 
 struct UnkNavKind2_b66a4;
-UnkNavPath_b66a4* fn_71006fce10(UnkNavKind2_b66a4* obj);
 
 struct UnkNavTable_b66a4 {
     UnkNavHead_b66a4* head;    // 0x0

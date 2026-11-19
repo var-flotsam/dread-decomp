@@ -5,5 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkGrabLife_A2_b71;
+struct UnkGrabRequest_A2_b71;
 struct UnkPlayerLifeTunable;
 extern UnkPlayerLifeTunable g_unk_7172a0a0a8;  // CTunablePlayerLifeComponent (game/UnkPlayerLifeTunable.h)
+void fn_7101166c6c(UnkGrabLife_A2_b71* self, UnkGrabRequest_A2_b71* request);

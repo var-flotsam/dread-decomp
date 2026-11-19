@@ -15,6 +15,9 @@ using base::reflection::UnkTunableRegistry;
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace engine::utils { enum class ELightPreset : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<engine::utils::ELightPreset>::object asm("g_unk_716e5992a0");
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 enum class EDamageStrength : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EDamageStrength>::object asm("g_unk_7172730858");
 namespace base::global { class CFilePathStrId; }
@@ -52,7 +55,6 @@ void fn_71007a0c2c();
 void fn_71007a0cf4();
 void fn_71007a0da0();
 void fn_71007a0e04();
-extern base::reflection::CType g_unk_717269bb48;
 void fn_71007ad114();
 void fn_71007ad584();
 extern base::reflection::CType g_unk_7101d5c078;
@@ -333,7 +335,7 @@ void fn_710079f444(UnkReflFunction* fn, const char* name) {
 
 void fn_71007a2ac8(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71007ad114);
-    fn->params.PushBack(&g_unk_717269bb48);
+    fn->params.PushBack(&base::reflection::TypeObject<CGameLink<CActor>>::object);
 }
 
 void fn_71007a515c(UnkReflFunction* fn, const char* name) {

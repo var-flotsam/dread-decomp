@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/GUI/CDisplayObjectContainer.h"
 #include "game/UnkGameManagerIdTable.h"
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
@@ -16,8 +17,6 @@ static inline const CStrId& TableId(u32 offset) {
 }
 
 struct UnkLegendEntryRenderer_ovb0135 : UnkGuiDisplayObject {};
-
-void fn_71011d9328(UnkLegendEntryRenderer_ovb0135* self);
 
 struct UnkLegendEntryRendererFields_ovb0135 {
     u8 pad_0x0[0x230];

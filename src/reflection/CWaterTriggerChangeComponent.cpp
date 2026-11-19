@@ -19,22 +19,24 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CWaterTriggerChangeComponent
-extern base::reflection::CType g_unk_71727b6270;
 namespace CWaterTriggerChangeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpOriginWaterTrigger", true), &g_unk_71727b6270, 0xa8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpOriginWaterTrigger", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0xa8, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpTargetWaterTrigger", true), &g_unk_71727b6270, 0xe8, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpTargetWaterTrigger", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0xe8, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD(f32, "fChangeTime", 0x168, (DefaultValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fDelay", 0x16c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(bool, "bDeactivateOnFinished", 0x1a0, (DefaultValue, true));
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpOtherWaterTriggerChange", true), &g_unk_71727b6270, 0x128, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("wpOtherWaterTriggerChange", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x128, -1, -1);
     field5->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD(f32, "fOriginChange", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
     DREAD_REFLECTED_FIELD(f32, "fTargetChange", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));

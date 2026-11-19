@@ -21,6 +21,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"
+template <class T> struct CGameLink;
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
@@ -98,7 +101,6 @@ DREAD_REFLECTED_CLASS(CCharClassShootActivatorComponent, CCharClassItemLifeCompo
 
 // CShootActivatorComponent
 extern base::reflection::CType g_unk_717269bf08;
-extern base::reflection::CType g_unk_71727b6270;
 namespace CShootActivatorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -112,7 +114,7 @@ void refl_AddFields(CClass* cls) {
     field4->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field4->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
     DREAD_REFLECTED_FIELD(CStrId, "sOnUseEntityTimeline", 0x4d8, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("wpAtmosphereEntity", true), &g_unk_71727b6270, 0x530, -1, -1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("wpAtmosphereEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x530, -1, -1);
     field6->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesActivatabledOnEvent", 0x4e0);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SActivatabledOnEventInfo>", "vEntitiesDeactivatabledOnEvent", 0x508);

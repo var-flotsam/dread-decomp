@@ -5,4 +5,8 @@
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "types.h"
+
+struct UnkList_ovb0059;
+
 extern base::global::CStrId g_unk_7172a10df0 __attribute__((visibility("hidden")));
+void fn_71012004ac(UnkList_ovb0059* self);

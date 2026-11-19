@@ -6,6 +6,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "types.h"
 
+struct UnkLegendEntryRenderer_ovb0135;
 struct UnkGuiEvent_b49;
 struct UnkDisplayObjectContainer_ovb0032;
 struct UnkDisplayObject_ovb0032;
@@ -26,3 +27,4 @@ void fn_71011d99e4(UnkGuiDisplayObject* self, UnkGuiEvent_b49* event);
 // container), or null.
 UnkGuiDisplayObject* fn_71011d9508(UnkGuiDisplayObject* self, const char* const* path);
 void fn_71011d9050(void*);
+void fn_71011d9328(UnkLegendEntryRenderer_ovb0135* self);

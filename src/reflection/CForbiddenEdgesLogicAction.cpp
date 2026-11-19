@@ -20,19 +20,22 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CForbiddenEdgesLogicAction
-extern base::reflection::CType g_unk_71727b6270;
-extern base::reflection::CType g_unk_717269bb48;
 namespace CForbiddenEdgesLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("navmesh::ENavMeshGroup", "eNavMeshGroup", 0x94, (DefaultValue, 0), (Persistence, 0), (EditorVisible, false));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpSpawnPoint", true), &g_unk_71727b6270, 0x10, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpSpawnPoint", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x10, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpLogicShape", true), &g_unk_717269bb48, 0x50, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("wpLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x50, -1, -1);
     field2->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD_OF("CForbiddenEdgesLogicAction::EState", "eState", 0x90, (DefaultValue, 1));
 }

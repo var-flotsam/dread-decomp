@@ -4409,7 +4409,7 @@ address,size,name,name_source,subsystem,status
 0x7100ab6ccc,828,fn_7100ab6ccc,unknown,unknown,U
 0x7100ab7008,556,fn_7100ab7008,unknown,game?,O
 0x7100ab7234,396,fn_7100ab7234,unknown,unknown,m
-0x7100ab73c0,884,fn_7100ab73c0,unknown,unknown,U
+0x7100ab73c0,884,fn_7100ab73c0,unknown,unknown,O
 0x7100ab7734,64,fn_7100ab7734,unknown,unknown,O
 0x7100ab7774,2160,fn_7100ab7774,unknown,engine/reflection?,U
 0x7100ab7fe4,20,fn_7100ab7fe4,unknown,unknown,O

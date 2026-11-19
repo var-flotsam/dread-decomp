@@ -19,15 +19,17 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CXParasiteStayOnPlaceBehavior
-extern base::reflection::CType g_unk_717269bb48;
 namespace CXParasiteStayOnPlaceBehavior {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpStayPosLandmark", true), &g_unk_717269bb48, 0x20, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpStayPosLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x20, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
