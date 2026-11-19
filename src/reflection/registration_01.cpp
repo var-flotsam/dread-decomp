@@ -18,6 +18,9 @@ template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEd
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 enum class EShinesparkTravellingDirection : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EShinesparkTravellingDirection>::object asm("g_unk_71726b0410");
 enum class ECoolShinesparkSituation : u32;
@@ -32,6 +35,8 @@ namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
 namespace game::logic::collision { enum class EColMat : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
+class CEntity;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 enum class ELightType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ELightType>::object asm("g_unk_71727ba2e0");
 enum class ELightAttachment : u32;
@@ -113,7 +118,6 @@ extern base::reflection::CType g_unk_71727147a8;
 void fn_7100779fb0();
 void fn_710077a0a8();
 void fn_710077a0f8();
-extern base::reflection::CType g_unk_717269bb48;
 void fn_710079bed8();
 void fn_710079bf28();
 void fn_710079c138();
@@ -141,7 +145,6 @@ void fn_71008153d8();
 void fn_7100811b20(UnkReflFunction* fn, const char* name);
 void fn_71008154f0();
 void fn_7100811c9c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71727b6270;
 void fn_7100894700();
 extern base::reflection::CType g_unk_717272c488;
 void fn_7100894750();
@@ -652,9 +655,9 @@ void fn_710076c488(CClass* cls) {
 }
 
 void fn_710076cc60(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpStartPoint", true), &g_unk_717269bb48, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpStartPoint", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpEmmyLandmark", true), &g_unk_717269bb48, 0x40, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpEmmyLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x40, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
 }
 
@@ -752,7 +755,7 @@ void fn_7100810e40(CClass* cls) {
 }
 
 void fn_710088df40(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("pActivatable", true), &g_unk_71727b6270, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("pActivatable", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sIdActivation", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x40, -1, -1);
 }
@@ -776,7 +779,7 @@ void fn_710088e9a8(CClass* cls) {
 }
 
 void fn_71008a4858(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("oActivatableObj", true), &g_unk_71727b6270, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("oActivatableObj", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sState", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x40, -1, -1);
 }
@@ -831,7 +834,7 @@ void fn_71008ff554(CClass* cls) {
 }
 
 void fn_71009071ec(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpFloatingEntity", true), &g_unk_71727b6270, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpFloatingEntity", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x0, -1, -1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("fLevelStopFloating", true), &base::reflection::PrimitiveType<float>::Get(), 0x40, -1, -1);
     field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
 }
@@ -1009,7 +1012,7 @@ void fn_7100a32a88(CClass* cls) {
 }
 
 void fn_7100a37c2c(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("pDoor", true), &g_unk_71727b6270, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("pDoor", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("eDoorState", true), &base::reflection::TypeObject<eDoorStateLogicAction>::object, 0x40, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<eDoorStateLogicAction>::object, 2);
@@ -1126,7 +1129,7 @@ void fn_7100a71a28(CClass* cls) {
 }
 
 void fn_7100a8f90c(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpThermalDoor", true), &g_unk_71727b6270, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpThermalDoor", true), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x0, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sDoorState", true), &base::reflection::TypeObject<CDoorLifeComponent::SState>::object, 0x40, -1, -1);
 }
@@ -1198,8 +1201,8 @@ void fn_7100acf020(CClass* cls) {
 }
 
 void fn_7100ad3dc0(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("_m_ActorLnk_GetterFunction", &g_unk_717269bb48, 0x101, fn_7100ad4b2c);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("ActorLnk", true), &g_unk_717269bb48, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_m_ActorLnk_GetterFunction", &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x101, fn_7100ad4b2c);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("ActorLnk", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 1);
@@ -1791,8 +1794,8 @@ void fn_7100d76128(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100d87a24);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727b6270, 0x1, fn_7100d87a74);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727b6270, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x1, fn_7100d87a74);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1800,8 +1803,8 @@ void fn_7100d7670c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100d87f20);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727b6270, 0x101, fn_7100d87f70);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727b6270, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0x101, fn_7100d87f70);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CGameLink<CEntity>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
