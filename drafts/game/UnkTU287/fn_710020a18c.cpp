@@ -7,10 +7,10 @@
 #include "game/UnkTU167.h"
 #include "game/UnkTU308.h"
 #include "types.h"
+#include "game/UnkWidgetVtable.h"
 
 inline void* operator new(u64, void* p) { return p; }
 
-extern void* g_unk_7101a1f000[];
 extern void* g_unk_7101a1f8b0[];
 
 struct UnkWidgetArg;

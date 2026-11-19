@@ -84,8 +84,8 @@ void fn_7100697ce0(UnkScorpiusAI_l697ce0* self, UnkScorpiusState_l697ce0* state)
             self->field_0x14cb8 = 0;
         fn_71006920f8(self, 2, &self->mode, self->field_0x14c48, false);
         f32 blend = self->mode == 3 ? 1.0f : self->mode == 2 ? 0.5f : 0.0f;
-        self->attack_count++;
         self->blend = blend <= 0.0f ? 0.0f : blend;
+        self->attack_count++;
     } else if (state != &self->turn_state && self->phase == 2) {
         f32 distance = reinterpret_cast<UnkScorpiusMovement_l697ce0*>(self->owner->field_0x1b8)->distance;
         bool attack = false;

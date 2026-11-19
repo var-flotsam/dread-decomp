@@ -99,8 +99,8 @@ void fn_710012f880(const UnkQuadCorners* corners, UnkQuadArray<UnkQuadVertex>* v
     const u32 y0 = corners->y0;
     const u32 z0 = corners->z0;
     const u32 x1 = corners->x1;
-    const u32 y1 = corners->y1;
     const u32 z1 = corners->z1;
+    const u32 y1 = corners->y1;
 
     vertices->Clear();
     vertices->Reserve(4);

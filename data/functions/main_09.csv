@@ -1063,7 +1063,7 @@ address,size,name,name_source,subsystem,status
 0x7100922834,8,CMagnetSlidingBlockWithCollisionsComponent::refl_CopyAssign,reflection,game/components,O
 0x710092283c,8,CMagnetSlidingBlockWithCollisionsComponent::refl_MoveAssign,reflection,game/components,O
 0x7100922844,144,fn_7100922844,unknown,game/components?,O
-0x71009228d4,488,fn_71009228d4,unknown,game/components?,U
+0x71009228d4,488,fn_71009228d4,unknown,game/components?,O
 0x7100922ac0,200,fn_7100922ac0,unknown,game/components?,O
 0x7100922b88,4,CMagnetSlidingBlockRailComponent::refl_AddAttributes,reflection,game/components,O
 0x7100922b8c,244,CMagnetSlidingBlockRailComponent::refl_GetClass,reflection,game/components,O
@@ -3300,7 +3300,7 @@ address,size,name,name_source,subsystem,status
 0x71009b5e58,240,fn_71009b5e58,unknown,game?,O
 0x71009b5f48,208,fn_71009b5f48,unknown,game?,O
 0x71009b6018,4,fn_71009b6018,unknown,game?,O
-0x71009b601c,672,fn_71009b601c,unknown,game?,U
+0x71009b601c,672,fn_71009b601c,unknown,game?,O
 0x71009b62bc,496,fn_71009b62bc,unknown,game?,U
 0x71009b64ac,156,fn_71009b64ac,unknown,game?,O
 0x71009b6548,32,fn_71009b6548,unknown,game?,O

@@ -19,7 +19,6 @@ using base::global::CRntString;
 extern void* g_unk_7101cb2680[];  // The component's vtable.
 
 struct UnkManager_7100863a8c;
-void fn_7100d46804(UnkManager_7100863a8c* self);
 
 struct UnkSpawnGroupLinks_l119038;
 template <>

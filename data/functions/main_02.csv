@@ -2103,8 +2103,8 @@ address,size,name,name_source,subsystem,status
 0x7100243a6c,64,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::MoveConstruct,reflection,engine/reflection,O
 0x7100243aac,172,fn_7100243aac,unknown,engine/reflection?,O
 0x7100243b58,204,fn_7100243b58,unknown,engine/reflection?,O
-0x7100243c24,672,fn_7100243c24,unknown,engine/reflection?,U
-0x7100243ec4,612,fn_7100243ec4,unknown,engine/reflection?,U
+0x7100243c24,672,fn_7100243c24,unknown,engine/reflection?,O
+0x7100243ec4,612,fn_7100243ec4,unknown,engine/reflection?,O
 0x7100244128,12,base::reflection::CollectionTypeMapper<base::global::CRntVector<TActorUniquePtr>>::Begin,reflection,engine/reflection,O
 0x7100244134,20,fn_7100244134,unknown,engine/reflection?,O
 0x7100244148,328,fn_7100244148,unknown,engine/reflection?,O
@@ -5597,7 +5597,7 @@ address,size,name,name_source,subsystem,status
 0x71002ebe60,36,fn_71002ebe60,unknown,unknown,O
 0x71002ebe84,1152,fn_71002ebe84,unknown,unknown,U
 0x71002ec304,880,fn_71002ec304,unknown,unknown,U
-0x71002ec674,536,fn_71002ec674,unknown,unknown,U
+0x71002ec674,536,fn_71002ec674,unknown,unknown,O
 0x71002ec88c,8,fn_71002ec88c,unknown,unknown,O
 0x71002ec894,464,fn_71002ec894,unknown,engine/reflection?,O
 0x71002eca64,136,fn_71002eca64,unknown,unknown,O

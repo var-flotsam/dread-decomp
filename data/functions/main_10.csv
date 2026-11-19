@@ -3447,7 +3447,7 @@ address,size,name,name_source,subsystem,status
 0x710109d670,88,fn_710109d670,unknown,game?,O
 0x710109d6c8,328,CLuaLibraryManager::refl_InitClass,reflection,game,O
 0x710109d810,128,fn_710109d810,unknown,game?,O
-0x710109d890,464,fn_710109d890,unknown,game?,U
+0x710109d890,464,fn_710109d890,unknown,game?,O
 0x710109da60,312,fn_710109da60,unknown,game?,O
 0x710109db98,228,fn_710109db98,unknown,game?,O
 0x710109dc7c,20,fn_710109dc7c,unknown,game?,O

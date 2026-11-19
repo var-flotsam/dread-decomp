@@ -20,7 +20,6 @@
 using base::global::CRntSmallDictionary;
 using base::global::CStrId;
 
-extern base::reflection::CType g_unk_7172733a70;  // CRntSmallDictionary<CStrId, base::spatial::CAABox2D>
 
 struct UnkValue_0x10 {
     u64 words[2];

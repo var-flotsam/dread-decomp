@@ -1,7 +1,6 @@
 // Unit 259: sorts the entries [lo, hi] of the pointer array at +0xc0140 by their key (+0x28), ascending:
 // a quicksort that finishes ranges of up to five entries with a bubble sort.
 // Names and layouts are placeholders.
-// build-flags: no-strict-aliasing
 #include "types.h"
 
 struct UnkSortEntry_l1d2984 {

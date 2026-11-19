@@ -1,7 +1,6 @@
 // SLogicPathNode unit: erases the 0x20-byte polymorphic element at an index (destroyed through vtable
 // slot 1) and moves each later element down one, destroying the one moved from.
 // Names and layouts are placeholders.
-// build-flags: no-strict-aliasing
 #include <new>
 
 #include "game/SLogicPathNode.h"

@@ -1676,7 +1676,7 @@ address,size,name,name_source,subsystem,status
 0x7100e5ba88,532,fn_7100e5ba88,unknown,engine/reflection?,O
 0x7100e5bc9c,340,fn_7100e5bc9c,unknown,engine/reflection?,U
 0x7100e5bdf0,548,fn_7100e5bdf0,unknown,engine/reflection?,O
-0x7100e5c014,268,fn_7100e5c014,unknown,engine/reflection?,U
+0x7100e5c014,268,fn_7100e5c014,unknown,engine/reflection?,O
 0x7100e5c120,248,fn_7100e5c120,unknown,engine/reflection?,O
 0x7100e5c218,560,fn_7100e5c218,unknown,engine/reflection?,O
 0x7100e5c448,12,"base::reflection::CollectionTypeMapper<base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::SEntityData>>::Begin",reflection,engine/reflection,O

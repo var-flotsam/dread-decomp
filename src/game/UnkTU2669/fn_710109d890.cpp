@@ -7,7 +7,7 @@
 #include "game/UnkTU57.h"
 #include "types.h"
 
-#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../game_aca57c/UnkBufferString.h"
 
 using base::global::CRntString;
 

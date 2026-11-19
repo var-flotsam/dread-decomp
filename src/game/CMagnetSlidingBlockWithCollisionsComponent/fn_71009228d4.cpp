@@ -79,16 +79,16 @@ UnkVisitResult_b0040 fn_71009228d4(UnkNearest_l9228d4* self, UnkAimTarget* targe
         if (!take) {
             f32 px = self->point.x;
             f32 py = self->point.y;
-            f32 oldDy = py - self->best.Y();
             f32 oldDx = px - self->best.X();
+            f32 oldDy = py - self->best.Y();
             f32 oldDyy = oldDy * oldDy;
             f32 oldDxx = oldDx * oldDx;
             f32 oldXy = oldDyy + oldDxx;
             f32 pz = self->point.z;
             f32 oldDz = pz - self->best.Z();
             f32 oldDist = oldXy + oldDz * oldDz;
-            f32 newDy = py - target->Y();
             f32 newDx = px - target->X();
+            f32 newDy = py - target->Y();
             f32 newDyy = newDy * newDy;
             f32 newDxx = newDx * newDx;
             f32 newXy = newDyy + newDxx;

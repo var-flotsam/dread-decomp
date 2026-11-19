@@ -92,11 +92,11 @@ u32 fn_7100449e48(UnkHyperDashAttackAction_l449e48* self) {
             delta = 0.0f;
         if (UnkEffectSink* sink = actor->sink) {
             UnkSinkParams_l449e48 params;
-            params.kind = 0;
-            __builtin_memset(&params.field_0x28, 0, 13);
             params.vtable = g_unk_7101a24b80 + 2;
-            __builtin_memset(&params.field_0x18, 0, 13);
             params.field_0x8.has = false;
+            params.kind = 0;
+            __builtin_memset(&params.field_0x18, 0, 13);
+            __builtin_memset(&params.field_0x28, 0, 13);
             params.field_0x10.value = fabsf(delta);
             params.field_0x10.has = true;
             fn_71010c7e6c(sink, &params, 0);
