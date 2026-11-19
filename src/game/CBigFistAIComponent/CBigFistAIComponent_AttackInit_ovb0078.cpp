@@ -1,4 +1,5 @@
-// CBigFistAIComponent's unit (tools/tu_map.py): fn_71003e819c runs the base update (fn_71011088ec, its arguments passed on), then
+// CBigFistAIComponent's unit (tools/tu_map.py): fn_71003e819c runs the base update (fn_71011088ec, its
+// arguments passed on), then
 // marks the AI (+0x14a28) when the owner's current entry (+0x278, its +0x1a0) is not a CBigFistAttack;
 // otherwise clears the mark and, while the animation (+0x220) runs "attack_init" (a guarded static id)
 // and track 0xf4061ff25a2163d6 is under 30, flags the attack (+0x58) and sets that track to 30.
