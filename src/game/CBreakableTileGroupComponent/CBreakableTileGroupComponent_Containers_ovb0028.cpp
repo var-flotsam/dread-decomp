@@ -256,7 +256,7 @@ static inline void CopyAssignVector(UnkTileElemVector_ovb0028* dst, const UnkTil
 // A new reference to a key, stored bytewise (no alias info: the original reloads the count after it).
 static inline void CopyKey(CStrId* dst, const CStrId* src) {
     UnkStringData* d = src->data;
-    __builtin_memcpy(&dst->data, &d, sizeof(d));
+    dst->data = d;
     if (&g_unk_7101d47108->empty != d)
         ++d->ref_count;
 }
@@ -274,9 +274,9 @@ UnkTileElemVector_ovb0028* fn_71007616e8(UnkTileStatesMap_ovb0028* self, UnkTile
         // The key moves bytewise (no alias info): the original reloads the pool, the count and the keys.
         CStrId* keys = self->keys;
         u32 last_key = self->count - 1;
-        __builtin_memcpy(&keys[index].data, &keys[last_key].data, sizeof(UnkStringData*));
+        keys[index].data = keys[last_key].data;
         UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&keys[last_key].data, &empty, sizeof(empty));
+        keys[last_key].data = empty;
         self->keys[self->count - 1].Reset();
     }
     --self->count;
@@ -403,7 +403,7 @@ static inline void MoveKey(CStrId* dst, CStrId* src) {
         }
         dst->data = &pool->empty;
     }
-    __builtin_memcpy(&dst->data, &src->data, sizeof(src->data));
+    dst->data = src->data;
     src->data = &g_unk_7101d47108->empty;
 }
 

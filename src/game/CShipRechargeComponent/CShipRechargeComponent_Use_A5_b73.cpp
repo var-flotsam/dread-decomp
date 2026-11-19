@@ -47,8 +47,7 @@ struct UnkShipRecharge_A5_b73 {
 };
 static_assert(__builtin_offsetof(UnkShipRecharge_A5_b73, field_0x53c) == 0x53c, "layout");
 
-// The count is bumped through an aliasing type: the original reloads the name pointer after it.
-typedef s32 __attribute__((may_alias)) UnkAliasS32_A5_b73;
+typedef s32 UnkAliasS32_A5_b73;
 
 static inline const char* OrEmpty_A5_b73(const char* s) {
     return s ? s : "";

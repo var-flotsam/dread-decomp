@@ -386,7 +386,7 @@ struct UnkWordPair_b29 {
     }
     UnkWordPair_b29(const UnkWordPair_b29& other) {
         __builtin_memcpy(&words[0], &other.words[0], sizeof(u32));
-        __builtin_memcpy(&words[1], &other.words[1], sizeof(u32));
+        words[1] = other.words[1];
     }
 };
 

@@ -28,7 +28,7 @@ struct UnkMovieWordRing324 {
 
     void Push(u32 value) {
         // A store the compiler can't tell apart from the ring's own fields: the position is read again.
-        typedef u32 __attribute__((may_alias)) AnyWord;
+        typedef u32 AnyWord;
         *reinterpret_cast<AnyWord*>(write) = value;
         u32* next = write + 1;
         write = next == entries + 64 ? entries : next;

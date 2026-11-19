@@ -7,7 +7,7 @@
 #include "../../game_s7/UnkGuiS7.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 struct UnkFadeColor_b0242 {
     f32 r, g, b, a;

@@ -33,7 +33,7 @@ void fn_71002d2740(UnkPairOwner* self) {
         }
     }
     u64 key = reinterpret_cast<u64>(self);
-    __builtin_memcpy(&a->values[a->count], &value, sizeof(u64));
-    __builtin_memcpy(&a->keys[a->count], &key, sizeof(u64));
+    a->values[a->count] = value;
+    a->keys[a->count] = key;
     a->count++;
 }

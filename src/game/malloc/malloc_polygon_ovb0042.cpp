@@ -17,10 +17,10 @@ struct UnkPolygonVertex {
 
     UnkPolygonVertex() : field_0x0(0), angle(0.0f) {
         const CVector3D* zero = &g_unk_710164779c;
-        __builtin_memcpy(&pos, &zero, sizeof(pos));
+        pos = zero;
     }
     UnkPolygonVertex(const UnkPolygonVertex& o) : field_0x0(o.field_0x0) {
-        __builtin_memcpy(&angle, &o.angle, sizeof(angle));
+        angle = o.angle;
         pos = o.pos;
     }
 };

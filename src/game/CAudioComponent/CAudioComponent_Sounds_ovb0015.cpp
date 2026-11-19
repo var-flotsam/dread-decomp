@@ -99,7 +99,7 @@ struct UnkShared_ovb0015 {
     u8 unk_0x0[0x54];
     s32 ref_count;
 };
-typedef s32 __attribute__((may_alias)) UnkAliasS32_ovb0015;
+typedef s32 UnkAliasS32_ovb0015;
 
 struct UnkRef_ovb0015 {
     UnkShared_ovb0015* ptr;

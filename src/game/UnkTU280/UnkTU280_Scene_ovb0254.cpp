@@ -159,8 +159,8 @@ __attribute__((flatten)) void fn_71001fd1b4(UnkItemSet_ovb0254* self, void* arg1
 struct UnkSceneEntry;
 
 // An entry (0x28 bytes) copied field by field.
-typedef u64 __attribute__((may_alias)) UnkAliasU64_ovb0254;
-typedef u32 __attribute__((may_alias)) UnkAliasU32_ovb0254;
+typedef u64 UnkAliasU64_ovb0254;
+typedef u32 UnkAliasU32_ovb0254;
 struct UnkEntry_ovb0254 {
     u64 field_0x0;
     u32 field_0x8;

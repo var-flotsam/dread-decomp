@@ -99,7 +99,7 @@ void fn_7100673a18(UnkSabotoruAttack2_ovb0118* self) {
                 return;
             // Stored untyped: the original reloads the owner's animation after it.
             s32 turning = 1;
-            __builtin_memcpy(&ai->turn.state, &turning, sizeof(turning));
+            ai->turn.state = turning;
             self->owner->anim->vf_0x170(ai->turn.speed);
             UnkSabotoruAnim_ovb0118* anim = self->owner->anim;
             return anim->vf_0x168(1, anim->field_0x50);

@@ -155,7 +155,7 @@ struct UnkMissionLogList_ovb0079 {
             head = node;
             tail = node;
         } else {
-            __builtin_memcpy(&tail->next, &node, sizeof(node));
+            tail->next = node;
             node->next = nullptr;
             tail = node;
         }

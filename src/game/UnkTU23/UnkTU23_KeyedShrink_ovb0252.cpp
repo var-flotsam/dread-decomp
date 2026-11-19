@@ -4,8 +4,8 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32_b0252;
-typedef u64 __attribute__((may_alias)) UnkAliasU64_b0252;
+typedef u32 UnkAliasU32_b0252;
+typedef u64 UnkAliasU64_b0252;
 
 struct UnkKeyedValue_b0252 {
     UnkAliasU32_b0252 w[16];

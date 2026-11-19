@@ -100,8 +100,8 @@ struct UnkCallback_kr {
 
     UnkCallback_kr() : object(nullptr), fn(nullptr) {}
     UnkCallback_kr(UnkCallback_kr&& o) {
-        __builtin_memcpy(&object, &o.object, 8);
-        __builtin_memcpy(&fn, &o.fn, 8);
+        object = o.object;
+        fn = o.fn;
     }
     UnkCallback_kr& operator=(const UnkCallback_kr&) = default;
     ~UnkCallback_kr() {}

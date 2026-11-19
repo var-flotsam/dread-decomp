@@ -22,7 +22,7 @@ struct UnkIdTextData {
     s32 reads;
 };
 static inline const char* Text(const CStrId& id) {
-    typedef s32 __attribute__((may_alias)) AnyS32;
+    typedef s32 AnyS32;
     ++*reinterpret_cast<AnyS32*>(&reinterpret_cast<UnkIdTextData*>(id.data)->reads);
     const char* s = reinterpret_cast<UnkIdTextData*>(id.data)->str.data;
     return s ? s : g_unk_710162e2ed;

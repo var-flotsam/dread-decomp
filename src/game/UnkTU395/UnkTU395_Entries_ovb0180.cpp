@@ -94,7 +94,7 @@ struct UnkElement {
     }
     UnkElement(const UnkElement& other) : field_0x0(other.field_0x0), id(other.id) {
         RefId();
-        __builtin_memcpy(&field_0x30, &other.field_0x30, sizeof(field_0x30));
+        field_0x30 = other.field_0x30;
     }
     UnkElement(UnkElement&& other) : field_0x0(other.field_0x0), id(other.id) {
         RefId();

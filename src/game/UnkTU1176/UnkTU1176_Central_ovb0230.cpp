@@ -323,7 +323,7 @@ void fn_71007726e4(UnkCentralFsm_b0230* self) {
     if (!current || current->kind != 1)
         return;
     const u32 entering = 2;
-    __builtin_memcpy(&self->field_0xd4, &entering, sizeof(entering));
+    self->field_0xd4 = entering;
     if (self->field_0xd8)
         return;
     SwitchToKind2(self);

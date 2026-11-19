@@ -332,9 +332,8 @@ bool fn_71007f5880(UnkFrozenAsFrostbite_ovb0114* self, UnkFrostbiteDamage_ovb011
         s32 count = ++self->count;
         UnkFrostbiteDef_ovb0114* def = self->def;
         if (count < def->field_0xa0) {
-            // Copied untyped: the limit is read again afterwards.
-            __builtin_memcpy(&self->delay, &def->field_0xa8, sizeof(f32));
-            __builtin_memcpy(&self->timer, &def->field_0xa4, sizeof(f32));
+            self->delay = def->field_0xa8;
+            self->timer = def->field_0xa4;
             Tint(self, (f32)count / (f32)def->field_0xa0);
             self->field_0x3e0 = 0.0f;
             if (self->count == 1)

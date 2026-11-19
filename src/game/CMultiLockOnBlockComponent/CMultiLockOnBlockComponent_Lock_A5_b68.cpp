@@ -24,8 +24,7 @@ struct UnkLockOnTarget_A5_b68 {
 
 UnkLockOnTarget_A5_b68* fn_710031ca1c(u64 key);
 
-// The lock count: a store to it is taken to alias the point's key, which is read again afterwards.
-typedef s32 __attribute__((may_alias)) UnkAliasS32_A5_b68;
+typedef s32 UnkAliasS32_A5_b68;
 
 struct UnkMultiLockOnBlock_A5_b68 {
     u8 pad_0x0[0x30];

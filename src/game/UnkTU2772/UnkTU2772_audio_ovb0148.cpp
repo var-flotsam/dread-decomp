@@ -104,7 +104,7 @@ void fn_710123891c(UnkAtkRing_b0148* self, const void* src, u64 n, u64 size) {
     if (__atomic_load_n(&self->head, __ATOMIC_ACQUIRE) == __atomic_load_n(&self->tail, __ATOMIC_ACQUIRE))
         return;
     s32 i = __atomic_load_n(&self->head, __ATOMIC_ACQUIRE);
-    __builtin_memcpy(&self->elems[i].size, &size, 8);
+    self->elems[i].size = size;
     __builtin_memcpy(self->elems[i].dst, src, n);
     __atomic_store_n(&self->head, i + 1 >= self->capacity ? 0 : i + 1, __ATOMIC_RELEASE);
 }
@@ -493,7 +493,7 @@ void fn_710122c958(UnkListOwner* owner_, UnkListItem* item_) {
     if (&owner->items != node) {
         UnkAtkListLink_b0148* next = node->next;
         UnkAtkListLink_b0148* last = next->prev;
-        __builtin_memcpy(&node->prev->next, &next, 8);
+        node->prev->next = next;
         next->prev = node->prev;
         last->next = node;
         node->prev = last;
@@ -548,7 +548,7 @@ void fn_710122ef60(UnkAtkChannelSet_b0148* self) {
         UnkAtkListLink_b0148* next = it->next;
         UnkAtkChannel_b0148* channel = ChannelOf(it);
         UnkAtkListLink_b0148* last = next->prev;
-        __builtin_memcpy(&prev->next, &next, 8);
+        prev->next = next;
         next->prev = it->prev;
         last->next = it;
         it->prev = last;

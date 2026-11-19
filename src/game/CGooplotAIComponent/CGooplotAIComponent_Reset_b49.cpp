@@ -110,8 +110,7 @@ void fn_710059a0a8(UnkGooplotAI_b49* self) {
     u32 n = scene->model->parts->count;
     for (u32 i = 0; i < n; ++i) {
         UnkGooplotPart_b49* part = scene->model->parts->data[i];
-        // Stored as words that may alias anything: the original reloads the part after the copy.
-        typedef u32 __attribute__((may_alias)) word;
+        typedef u32 word;
         CVector4D color;
         const word* src = reinterpret_cast<const word*>(&part->color);
         word* dst = reinterpret_cast<word*>(&color);

@@ -204,9 +204,9 @@ void fn_710110cacc(UnkAIC_b0144* self) {
         rotation.z = cfg->b_z;
         // A raw increment: the original reloads the sub-object pointer after it.
         u32 uses;
-        __builtin_memcpy(&uses, &cfg->field_0x178->field_0x44, 4);
+        uses = cfg->field_0x178->field_0x44;
         uses++;
-        __builtin_memcpy(&cfg->field_0x178->field_0x44, &uses, 4);
+        cfg->field_0x178->field_0x44 = uses;
         const char* name = cfg->field_0x178->field_0x10;
         if (!name)
             name = g_unk_710162e2ed;

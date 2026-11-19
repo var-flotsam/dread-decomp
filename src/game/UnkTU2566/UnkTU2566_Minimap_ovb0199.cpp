@@ -40,7 +40,7 @@ using base::global::CStrId;
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 struct UnkMinimapOwner;
 

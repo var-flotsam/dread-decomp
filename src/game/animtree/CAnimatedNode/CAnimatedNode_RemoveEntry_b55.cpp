@@ -31,8 +31,8 @@ static inline u64* FindByValue(base::UnkPairArrays* a, u64 value) {
 static inline void EraseAt(base::UnkPairArrays* a, u32 index) {
     u32 last = a->count - 1;
     if (last != index) {
-        __builtin_memcpy(&a->keys[index], &a->keys[last], sizeof(u64));
-        __builtin_memcpy(&a->values[index], &a->values[a->count - 1], sizeof(u64));
+        a->keys[index] = a->keys[last];
+        a->values[index] = a->values[a->count - 1];
     }
     a->count = a->count - 1;
 }

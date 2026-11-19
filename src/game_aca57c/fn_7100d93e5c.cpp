@@ -28,7 +28,7 @@ struct UnkHashBuckets {
                 // Copied bitwise: the original reloads `count` after each element.
                 if (UnkHashNode** old = data) {
                     for (u32 i = 0; i < count; ++i)
-                        __builtin_memcpy(&p[i], &old[i], sizeof(*p));
+                        p[i] = old[i];
                     allocator->vf_0x48(data);
                 }
                 capacity = n;

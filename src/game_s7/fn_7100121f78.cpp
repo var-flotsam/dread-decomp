@@ -66,8 +66,8 @@ struct UnkValuePair {
     u32 values[2];
 
     UnkValuePair(const UnkValuePair& other) {
-        __builtin_memcpy(&values[0], &other.values[0], sizeof(u32));
-        __builtin_memcpy(&values[1], &other.values[1], sizeof(u32));
+        values[0] = other.values[0];
+        values[1] = other.values[1];
     }
 };
 
@@ -83,7 +83,7 @@ UnkCopiedVector<UnkValuePair>* fn_71010607b4(UnkCopiedVector<UnkValuePair>* self
 struct UnkWord {
     u64 value;
 
-    UnkWord(const UnkWord& other) { __builtin_memcpy(&value, &other.value, sizeof(u64)); }
+    UnkWord(const UnkWord& other) { value = other.value; }
 };
 
 struct UnkWordsValue {
@@ -92,9 +92,9 @@ struct UnkWordsValue {
     u32 field_0x10;
 
     UnkWordsValue(const UnkWordsValue& other) {
-        __builtin_memcpy(&field_0x0, &other.field_0x0, sizeof(u64));
-        __builtin_memcpy(&field_0x8, &other.field_0x8, sizeof(u64));
-        __builtin_memcpy(&field_0x10, &other.field_0x10, sizeof(u32));
+        field_0x0 = other.field_0x0;
+        field_0x8 = other.field_0x8;
+        field_0x10 = other.field_0x10;
     }
 };
 
@@ -112,9 +112,9 @@ struct UnkValues3 {
     u32 values[3];
 
     UnkValues3(const UnkValues3& other) {
-        __builtin_memcpy(&values[0], &other.values[0], sizeof(u32));
-        __builtin_memcpy(&values[1], &other.values[1], sizeof(u32));
-        __builtin_memcpy(&values[2], &other.values[2], sizeof(u32));
+        values[0] = other.values[0];
+        values[1] = other.values[1];
+        values[2] = other.values[2];
     }
 };
 

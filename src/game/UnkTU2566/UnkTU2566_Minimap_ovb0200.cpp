@@ -96,7 +96,7 @@ struct UnkIdWords_b0200 {
     UnkIdWords_b0200(UnkIdWords_b0200&& other) {
         data = other.data;
         UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&other.data, &empty, sizeof(empty));
+        other.data = empty;
         field_0x8 = other.field_0x8;
         field_0xc = other.field_0xc;
     }
@@ -370,7 +370,7 @@ struct UnkIdValues_b0200 {
     // reloads the array's count after them).
     UnkIdValues_b0200(const UnkIdValues_b0200& other) {
         base::global::UnkStringData* d = other.id;
-        __builtin_memcpy(&id, &d, sizeof(d));
+        id = d;
         if (&g_unk_7101d47108->empty != d)
             ++d->ref_count;
         u32* values = &field_0x8;
@@ -477,7 +477,7 @@ struct UnkIdWords_b0200c {
     UnkIdWords_b0200c(UnkIdWords_b0200c&& other) {
         data = other.data;
         UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&other.data, &empty, sizeof(empty));
+        other.data = empty;
         field_0x8 = other.field_0x8;
         field_0xc = other.field_0xc;
     }

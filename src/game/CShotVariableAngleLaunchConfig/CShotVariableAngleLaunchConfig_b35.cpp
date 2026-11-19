@@ -20,7 +20,7 @@ struct UnkVariableAngleLaunchConfig {
 static inline __attribute__((always_inline)) UnkVariableAngleLaunchConfig* CopyConfig(
     UnkVariableAngleLaunchConfig* self, const UnkVariableAngleLaunchConfig* other) {
     self->vtable = &g_unk_7101a8ad08[2];
-    __builtin_memcpy(&self->base_0x8, &other->base_0x8, sizeof(UnkPair16));
+    self->base_0x8 = other->base_0x8;
     self->vtable = &g_unk_7101a8ad38[2];
     __builtin_memcpy(&self->field_0x18, &other->field_0x18, 2 * sizeof(UnkPair16));
     return self;

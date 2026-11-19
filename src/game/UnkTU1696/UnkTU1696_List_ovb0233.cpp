@@ -33,8 +33,7 @@ struct UnkMenuTarget;
 
 void fn_7100b4f930(UnkListScreen_b0233* self, UnkListOwner_b0233* owner) {
     UnkGuiObj* source = self->root;
-    // An untyped store: the original reads the source again afterwards.
-    __builtin_memcpy(&owner->field_0x270, &source, sizeof(source));
+    owner->field_0x270 = source;
     UnkGuiObj* root = self->root;
     UnkGuiObj* list;
     {

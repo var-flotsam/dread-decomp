@@ -5,7 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) a_u32_9230;
+typedef u32 a_u32_9230;
 
 struct UnkRecord16_9230 {
     u32 words[4];

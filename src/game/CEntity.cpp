@@ -212,7 +212,7 @@ f32 fn_7100d7ce40(UnkFactorEntity* self) {
 // ---- fn_7100d7be08: the position of the entity's +0x1f0 object ----
 
 // A vector returned in memory, copied word by word (its copy constructor is user-written).
-typedef u32 __attribute__((may_alias)) UnkEntityWord;
+typedef u32 UnkEntityWord;
 struct UnkEntityVec3 {
     f32 x, y, z;
     UnkEntityVec3(f32 x_, f32 y_, f32 z_) : x(x_), y(y_), z(z_) {}

@@ -10,9 +10,9 @@ struct UnkVec3_7100702a84 {
     f32 x, y, z;
 
     UnkVec3_7100702a84(const UnkVec3_7100702a84& other) {
-        __builtin_memcpy(&x, &other.x, 4);
-        __builtin_memcpy(&y, &other.y, 4);
-        __builtin_memcpy(&z, &other.z, 4);
+        x = other.x;
+        y = other.y;
+        z = other.z;
     }
 };
 

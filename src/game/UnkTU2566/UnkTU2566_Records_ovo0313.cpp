@@ -77,7 +77,7 @@ UnkIdRecord_o0313* fn_7100e98348(UnkIdRecordTable_o0313* self, UnkIdRecord_o0313
         UnkIdRecord_o0313* src = &self->records[last];
         dst->id = src->id;
         UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&src->id, &empty, sizeof(empty));
+        src->id = empty;
         dst->field_0x8 = src->field_0x8;
         dst->field_0xc = src->field_0xc;
         dst->field_0x10 = src->field_0x10;

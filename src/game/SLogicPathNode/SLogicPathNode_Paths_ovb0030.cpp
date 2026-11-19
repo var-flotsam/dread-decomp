@@ -506,8 +506,8 @@ struct UnkPathLink {
         __builtin_memset(&field_0x4, 0, sizeof(u32));
     }
     UnkPathLink(UnkPathLink&& other) {
-        __builtin_memcpy(&field_0x0, &other.field_0x0, sizeof(u32));
-        __builtin_memcpy(&field_0x4, &other.field_0x4, sizeof(u32));
+        field_0x0 = other.field_0x0;
+        field_0x4 = other.field_0x4;
     }
 };
 

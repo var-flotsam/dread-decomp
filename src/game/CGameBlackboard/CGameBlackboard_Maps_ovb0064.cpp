@@ -43,7 +43,7 @@ struct UnkReleasedId_ovb0064 {
 
     UnkReleasedId_ovb0064(UnkReleasedId_ovb0064&& other) {
         UnkStringData* d = other.data;
-        __builtin_memcpy(&data, &d, sizeof(d));
+        data = d;
         other.data = &g_unk_7101d47108->empty;
     }
     ~UnkReleasedId_ovb0064() {
@@ -148,7 +148,7 @@ struct UnkOwnedSet_ovb0064 {
     UnkOwnedSet_ovb0064(UnkOwnedSet_ovb0064&& other) {
         void* p = other.ptr;
         other.ptr = nullptr;
-        __builtin_memcpy(&ptr, &p, sizeof(p));
+        ptr = p;
     }
 };
 

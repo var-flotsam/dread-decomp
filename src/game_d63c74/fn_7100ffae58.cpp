@@ -16,7 +16,7 @@ struct UnkMovedFilePathId {
     // reloads the pool.
     UnkMovedFilePathId(UnkMovedFilePathId&& other) {
         UnkStringData* d = other.data;
-        __builtin_memcpy(&data, &d, sizeof(d));
+        data = d;
         other.data = &g_unk_7101d47200->empty;
     }
     ~UnkMovedFilePathId() {

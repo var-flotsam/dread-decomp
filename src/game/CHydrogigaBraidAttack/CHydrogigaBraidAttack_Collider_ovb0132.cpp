@@ -85,7 +85,7 @@ using base::global::CStrId;
 using base::math::CVector2D;
 using base::math::CVector3D;
 
-typedef u32 __attribute__((may_alias)) a_u32_ovb0132;
+typedef u32 a_u32_ovb0132;
 
 // A 2D point copied word by word.
 struct UnkVec2Bits_ovb0132 {

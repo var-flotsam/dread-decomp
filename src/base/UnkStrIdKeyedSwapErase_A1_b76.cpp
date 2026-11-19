@@ -43,7 +43,7 @@ struct UnkSwapMapA1 {
         u32 index = it - values;
         keys[index].~UnkSwapKeyA1();
         if (index != count - 1) {
-            __builtin_memcpy(&values[index], &values[count - 1], sizeof(u64));
+            values[index] = values[count - 1];
             new (&keys[index]) UnkSwapKeyA1(static_cast<UnkSwapKeyA1&&>(keys[count - 1]));
             keys[count - 1].~UnkSwapKeyA1();
         }

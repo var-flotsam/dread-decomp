@@ -32,7 +32,7 @@ static inline void AppendBitwise(base::global::CRntVector<T>& a, const T& value)
     } else {
         p = a.data;
     }
-    __builtin_memcpy(&p[n], &value, sizeof(T));
+    p[n] = value;
     ++a.count;
 }
 

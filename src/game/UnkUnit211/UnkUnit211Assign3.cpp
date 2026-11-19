@@ -27,7 +27,7 @@ void fn_71001942b0(UnkUnit211TriplePass* self, const u32* indices, u32 count) {
         u32 index = *indices++;
         UnkUnit211Triple* e = &self->values->triples[index];
         __builtin_memcpy(&e->a, &self->a, sizeof(e->a));
-        __builtin_memcpy(&e->b, &self->b, sizeof(e->b));
-        __builtin_memcpy(&e->c, &self->c, sizeof(e->c));
+        e->b = self->b;
+        e->c = self->c;
     }
 }

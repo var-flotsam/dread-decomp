@@ -3,7 +3,7 @@
 #include "game/CComponent.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 struct UnkParent;
 

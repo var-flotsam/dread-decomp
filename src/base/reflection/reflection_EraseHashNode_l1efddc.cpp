@@ -61,15 +61,15 @@ static inline __attribute__((always_inline)) UnkHashNode* EraseNode(UnkHashTable
         self->tail = node->prev;
     if (self->head == node) {
         UnkHashNode* n = node->next;
-        __builtin_memcpy(&self->head, &n, sizeof n);
+        self->head = n;
     }
     if (node->next) {
         UnkHashNode* p = node->prev;
-        __builtin_memcpy(&node->next->prev, &p, sizeof p);
+        node->next->prev = p;
     }
     if (node->prev) {
         UnkHashNode* n = node->next;
-        __builtin_memcpy(&node->prev->next, &n, sizeof n);
+        node->prev->next = n;
     }
     UnkHashNode* result = node->prev;
     self->allocator->vf_0x48(node);

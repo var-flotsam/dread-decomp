@@ -49,7 +49,7 @@ void fn_7100016cfc(UnkIdRecordMapWithPath_b45a1* self, const UnkIdRecordMapWithP
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i) {
         UnkStringData* data = other->keys[i];
-        __builtin_memcpy(&self->keys[i], &data, sizeof(data));
+        self->keys[i] = data;
         if (&g_unk_7101d47108->empty != data)
             ++data->ref_count;
     }
@@ -93,18 +93,18 @@ void fn_710001810c(UnkPathIdPairMap_b45a1* self, const UnkPathIdPairMap_b45a1* o
         UnkIdPathValue_b45a1* dst = &self->values[i];
         const UnkIdPathValue_b45a1* src = &other->values[i];
         UnkStringData* id = src->id;
-        __builtin_memcpy(&dst->id, &id, sizeof(id));
+        dst->id = id;
         if (&g_unk_7101d47108->empty != id)
             ++id->ref_count;
         UnkStringData* path = src->path;
-        __builtin_memcpy(&dst->path, &path, sizeof(path));
+        dst->path = path;
         if (&g_unk_7101d47200->empty != path)
             ++path->ref_count;
     }
     self->count = other->count;
     for (u64 i = 0; i < self->count; ++i) {
         UnkStringData* data = other->keys[i];
-        __builtin_memcpy(&self->keys[i], &data, sizeof(data));
+        self->keys[i] = data;
         if (&g_unk_7101d47200->empty != data)
             ++data->ref_count;
     }

@@ -31,7 +31,7 @@ UnkPlayerInfoValue_ovb0071* fn_7100f0eaec(UnkPropertyArrays* self, UnkPlayerInfo
         u32 last = self->count - 1;
         ids[index].data = ids[last].data;
         base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&ids[last].data, &empty, sizeof(empty));
+        ids[last].data = empty;
         self->ids[self->count - 1].Reset();
     }
     --self->count;
@@ -64,7 +64,7 @@ UnkTimedEntry_ovb0071* fn_7100f0ca9c(UnkTimedMap_ovb0071* self, UnkTimedEntry_ov
         u32 last = self->count - 1;
         ids[index].data = ids[last].data;
         base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&ids[last].data, &empty, sizeof(empty));
+        ids[last].data = empty;
         self->keys[self->count - 1].Reset();
     }
     --self->count;

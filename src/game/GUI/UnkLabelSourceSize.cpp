@@ -9,7 +9,7 @@
 
 using base::math::CVector2D;
 
-typedef u32 __attribute__((may_alias)) UnkAliasWord_7100b82b18;
+typedef u32 UnkAliasWord_7100b82b18;
 
 // The image a source shows: its width and height in pixels at +0x10.
 struct UnkLabelImage {

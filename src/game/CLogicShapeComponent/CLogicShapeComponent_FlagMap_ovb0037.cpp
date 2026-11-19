@@ -48,12 +48,12 @@ bool* fn_7100916c9c(UnkLogicShapeFlagMap_ovb0037* self, bool* it) {
     self->keys[index].Reset();
     u32 last = self->count - 1;
     if (last != index) {
-        __builtin_memcpy(&self->values[index], &self->values[last], 1);
+        self->values[index] = self->values[last];
         CStrId* keys = self->keys;
         u32 back = self->count - 1;
-        __builtin_memcpy(&keys[index].data, &keys[back].data, 8);
+        keys[index].data = keys[back].data;
         UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&keys[back].data, &empty, 8);
+        keys[back].data = empty;
         self->keys[self->count - 1].Reset();
     }
     --self->count;

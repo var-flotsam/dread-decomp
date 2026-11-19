@@ -603,9 +603,9 @@ __attribute__((always_inline)) inline UnkAssignedSlot& UnkAssignedSlot::operator
 // The id pointers are moved bitwise (the original reloads the pair's state after them).
 __attribute__((always_inline)) static inline void MoveAssign(UnkPairReleasedStrId* self, UnkPairReleasedStrId* other) {
     self->~UnkPairReleasedStrId();
-    __builtin_memcpy(&self->data, &other->data, sizeof(self->data));
+    self->data = other->data;
     base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-    __builtin_memcpy(&other->data, &empty, sizeof(empty));
+    other->data = empty;
 }
 
 using UnkIdSlotPair = UnkValuePairRef<UnkPairReleasedStrId, UnkAssignedSlot>;

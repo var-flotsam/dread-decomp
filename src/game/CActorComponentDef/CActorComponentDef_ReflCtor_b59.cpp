@@ -39,7 +39,7 @@ void fn_7100254584(void* obj) {
     self->field_0x28 = nullptr;
     // The vtable is read back as any type could have changed it (after a count update).
     typedef void (*Slot)(void*);
-    typedef Slot* __attribute__((may_alias)) VtablePtr;
+    typedef Slot* VtablePtr;
     VtablePtr vtable = *reinterpret_cast<VtablePtr*>(self);
     vtable[3](self);
 }

@@ -37,8 +37,7 @@ void fn_710023b424(UnkErasedVector* self, const UnkErasedValue_0x10* value) {
     p[n].ops = nullptr;
     UnkErasedOps* ops = value->ops;
     if (ops->copy) {
-        // The original reloads the copy function after this store.
-        __builtin_memcpy(&p[n].ops, &ops, sizeof(ops));
+        p[n].ops = ops;
         ops->copy(&p[n], value);
     }
     ++self->count;

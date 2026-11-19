@@ -17,7 +17,7 @@ using base::global::UnkStringData;
 template <base::global::UnkStringPool*& Pool>
 struct UnkMovedId_b45a1 : base::UnkPooledString {
     UnkMovedId_b45a1(UnkMovedId_b45a1&& other) {
-        __builtin_memcpy(&data, &other.data, sizeof(data));
+        data = other.data;
         other.data = &Pool->empty;
     }
     ~UnkMovedId_b45a1() {

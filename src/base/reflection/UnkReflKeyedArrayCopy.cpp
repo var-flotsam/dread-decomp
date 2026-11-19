@@ -9,7 +9,7 @@
 #include "game/UnkTU85.h"
 #include "types.h"
 
-struct __attribute__((may_alias)) UnkAliasWord_71000dc190 {
+struct UnkAliasWord_71000dc190 {
     u64 value;
 };
 

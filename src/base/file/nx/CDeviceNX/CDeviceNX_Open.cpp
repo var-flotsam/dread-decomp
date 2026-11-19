@@ -5,7 +5,7 @@
 #include "base/global/CRntString.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32;
+typedef u32 UnkAliasU32;
 
 struct UnkDeviceFile_710002e0f8 {
     u8 unk_0x0[0x10];

@@ -29,7 +29,7 @@ void fn_71001c4720(UnkGfxSubmit* self) {
     UnkGlobal_710b372a98* gfx = g_unk_710b372a98;
     UnkGfxItemList* list = self->list;
     void* single = self->single;
-    typedef u64 __attribute__((may_alias)) AliasU64;
+    typedef u64 AliasU64;
     *reinterpret_cast<AliasU64*>(gfx->pad_0x0 + 0x317ab28) = self->field_0x30;
     if (single) {
         fn_71001d0638(gfx, self->single, nullptr, 0);

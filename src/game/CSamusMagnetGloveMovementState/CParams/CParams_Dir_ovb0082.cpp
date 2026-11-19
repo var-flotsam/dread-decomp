@@ -40,7 +40,7 @@ void fn_71009a9628(UnkMagnetDirState_ovb0082* self, const UnkVec3f* dir, UnkMagn
     __builtin_memset(&sample, 0, sizeof(sample));
     fn_71009ecf34(self->samus, &sample, 0);
     out_2d->x = -(sample.x * dir->x);
-    __builtin_memcpy(&out_2d->y, &sample.y, sizeof(u32));
+    out_2d->y = sample.y;
     *out_back = {-dir->x, -dir->y, -dir->z};
     *out_rot = fn_710007a7f0(UnkVec3f(-dir->x, -dir->y, -dir->z));
     if (self->samus->field_0x7e4)

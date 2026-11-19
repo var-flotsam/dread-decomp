@@ -166,7 +166,7 @@ struct UnkSaveStation2_ovb0118 {
     }
 };
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32_ovb0118;
+typedef u32 UnkAliasU32_ovb0118;
 
 inline const u32& AllMusicLayers_ovb0118() {
     static u32 s_value = ~base::reflection::refl_GetEnumZero<0x71726c4090>() & 0x1ff;

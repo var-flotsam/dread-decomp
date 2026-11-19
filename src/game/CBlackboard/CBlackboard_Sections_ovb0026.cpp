@@ -119,7 +119,7 @@ CBlackboard::CSection** fn_7101048588(UnkSectionArray_b0026* self, CBlackboard::
     self->keys[i].Reset();
     u32 last = self->count - 1;
     if (last != i) {
-        __builtin_memcpy(&self->values[i], &self->values[last], sizeof(*slot));
+        self->values[i] = self->values[last];
         CStrId* keys = self->keys;
         last = self->count - 1;
         __builtin_memcpy(&keys[i], &keys[last], sizeof(CStrId));
@@ -233,7 +233,7 @@ void fn_71010489c4(UnkBlackboardView_b0026* self, const CStrId& key, CBlackboard
         reinterpret_cast<base::UnkCloneKeyedArray<UnkClone_fn_710104afb4>*>(&self->sections)
             ->Reserve(self->sections.count + self->sections.step);
     CopyId(&self->sections.keys[self->sections.count], key);
-    __builtin_memcpy(&self->sections.values[self->sections.count], &section, sizeof(section));
+    self->sections.values[self->sections.count] = section;
     ++self->sections.count;
     for (UnkGroupNode_b0026* node = self->groups.first; node; node = node->next) {
         UnkSectionGroup_b0026* group = node->value;
@@ -495,8 +495,7 @@ struct UnkBlackboardWriting_b0026 {
 // Writes the group's blackboard to `file` with the group marked as the one being written; when it
 // is written, the group is unflagged.
 void fn_7101048b94(UnkSectionGroup_b0026* self, base::global::CRntFile* file) {
-    // Stored untyped: the original reloads the owner after it.
-    __builtin_memcpy(&reinterpret_cast<UnkBlackboardWriting_b0026*>(self->owner)->writing, &self, sizeof(self));
+    reinterpret_cast<UnkBlackboardWriting_b0026*>(self->owner)->writing = self;
     auto* object = reinterpret_cast<base::reflection::UnkReflObject*>(self->owner);
     UnkWriteContext_b0026 ctx;
     UnkWriteStack_b0026 stack;

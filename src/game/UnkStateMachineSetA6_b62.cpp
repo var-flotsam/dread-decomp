@@ -356,7 +356,7 @@ struct UnkSaveGamePair_b54 {
 };
 using UnkString40_A6_b62 = UnkBufferString<0x40, g_unk_7101a1b678>;
 
-typedef u32 __attribute__((may_alias)) UnkAliasU32_A6_b62;
+typedef u32 UnkAliasU32_A6_b62;
 
 // A string-id entry: the string at +0x10, a use count at +0x44 (the original reloads the id after the
 // increment).

@@ -46,7 +46,7 @@ __attribute__((always_inline)) void fn_7100c7f50c(UnkSampleParams* params) {
     __builtin_memcpy(&xy, &s->v0, 8);
     u32 z = *reinterpret_cast<u32*>(&s->v2);
     u32 w = *reinterpret_cast<u32*>(&s->v3);
-    __builtin_memcpy(&pair.xy, &xy, 8);
+    pair.xy = xy;
     pair.z = z;
     pair.w = w;
     fn_7100219294(g_unk_7101d47300, 0x95a2e304fd05cda8ull, reinterpret_cast<f32*>(&pair), 0);

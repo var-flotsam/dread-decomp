@@ -21,7 +21,7 @@ extern u32 g_unk_7101d58738;
 extern u64 g_unk_7101d58740;
 
 void fn_71000733e4(UnkRumbleManager* self) {
-    typedef u64 __attribute__((may_alias)) word;
+    typedef u64 word;
     char* base = reinterpret_cast<char*>(self);
     self->vtable = g_unk_7101a1a330 + 0x10;
     *reinterpret_cast<word*>(base + 0x1ec) = 0;

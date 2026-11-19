@@ -5,7 +5,7 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) a_u32_b0236;
+typedef u32 a_u32_b0236;
 
 // A 2D box and a word, copied word by word through an aliasing type (not trivially copyable).
 struct UnkBox_b0236 {

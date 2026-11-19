@@ -95,7 +95,7 @@ void fn_710109dc90(UnkScriptManager_ovb0085* self_, UnkLuaNameList_b0160* out_) 
                     count = 1;
                 } else {
                     UnkScriptNode_ovb0245* old_head = out->head;
-                    __builtin_memcpy(&node->next, &old_head, sizeof(old_head));
+                    node->next = old_head;
                     out->head = node;
                     count = out->count + 1;
                 }

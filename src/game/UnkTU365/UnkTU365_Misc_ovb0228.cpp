@@ -766,7 +766,7 @@ struct UnkInner_b0228 {
         count = o.count;
         for (u64 i = 0; i < count; i++) {
             base::global::UnkStringData* d = o.ids[i].data;
-            __builtin_memcpy(&ids[i].data, &d, sizeof(d));
+            ids[i].data = d;
             if (&g_unk_7101d47108->empty != d)
                 ++d->ref_count;
         }
@@ -802,7 +802,7 @@ void fn_71002aa0a4(UnkOuterTable_b0228* self, const UnkOuterTable_b0228* other) 
     self->count = other->count;
     for (u64 i = 0; i < self->count; i++) {
         base::global::UnkStringData* d = other->ids[i].data;
-        __builtin_memcpy(&self->ids[i].data, &d, sizeof(d));
+        self->ids[i].data = d;
         if (&g_unk_7101d47108->empty != d)
             ++d->ref_count;
     }

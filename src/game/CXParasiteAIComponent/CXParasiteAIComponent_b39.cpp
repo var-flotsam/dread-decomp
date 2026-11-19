@@ -51,8 +51,7 @@ void fn_71006ea160(UnkXParasiteAI* self) {
     UnkXParasiteGrabbed* object = Grabbed(link);
     if (object->partner_link && object->partner_link->partner) {
         UnkXParasitePartner* partner = object->partner_link->partner;
-        // Stored through a may_alias type: the original reloads the link afterwards.
-        typedef u32 __attribute__((may_alias)) AliasU32;
+        typedef u32 AliasU32;
         *reinterpret_cast<AliasU32*>(&partner->field_0x2bc) = partner->field_0x2c0;
         object = Grabbed(self->link);
     }

@@ -36,7 +36,7 @@ struct UnkSubAreaEntry_b49a6 {
     UnkSubAreaEntry_b49a6(UnkSubAreaEntry_b49a6&& other) {
         id = other.id;
         UnkStringData* empty = &g_unk_7101d47108->empty;
-        __builtin_memcpy(&other.id, &empty, sizeof(empty));
+        other.id = empty;
         __builtin_memcpy(&extra, &other.extra, 3);
     }
 };

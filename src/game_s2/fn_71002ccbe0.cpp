@@ -4,8 +4,8 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
-typedef u32 __attribute__((may_alias)) a_u32;
-typedef u64 __attribute__((may_alias)) a_u64;
+typedef u32 a_u32;
+typedef u64 a_u64;
 
 struct UnkBlock {
     u64 field_0x0;

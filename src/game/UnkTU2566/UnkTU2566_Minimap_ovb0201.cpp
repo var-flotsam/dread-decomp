@@ -513,7 +513,7 @@ struct UnkIdTextData_v {
     u8 pad_0x40[0x4];
     s32 reads;
 };
-typedef u32 __attribute__((may_alias)) UnkAliasU32_v;
+typedef u32 UnkAliasU32_v;
 
 static inline const char* PathText(const CFilePathStrId& id) {
     ++*reinterpret_cast<UnkAliasU32_v*>(&reinterpret_cast<UnkIdTextData_v*>(id.data)->reads);

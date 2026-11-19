@@ -9,9 +9,7 @@
 
 using base::global::UnkStringData;
 
-// Copied through word accesses that may alias anything: the original reloads both arrays and the
-// count after every element.
-typedef u32 __attribute__((may_alias)) UnkAliasU32_b52;
+typedef u32 UnkAliasU32_b52;
 
 struct UnkLiquidPoolValue_b52 {
     UnkAliasU32_b52 field_0x0;

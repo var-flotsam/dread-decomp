@@ -36,7 +36,7 @@ void fn_7100a79630(void* obj) {
     CopyId_A6_b63(&self->id_0x1e8, empty);
     // The vtable is read back as any type could have changed it (after a count update).
     typedef void (*Slot)(void*);
-    typedef Slot* __attribute__((may_alias)) VtablePtr;
+    typedef Slot* VtablePtr;
     VtablePtr vtable = *reinterpret_cast<VtablePtr*>(self);
     vtable[3](self);
 }

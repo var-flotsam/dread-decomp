@@ -37,7 +37,7 @@
 
 #define HIDDEN __attribute__((visibility("hidden")))
 
-typedef u32 __attribute__((may_alias)) a_u32;
+typedef u32 a_u32;
 
 // The vectors and the colour copy word by word; their user-provided copy constructors make
 // by-value arguments go through a temporary passed by address.

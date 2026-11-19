@@ -79,8 +79,7 @@ void fn_710006c000(const base::global::CRntString* src, wchar_t* dst, u32 capaci
                 continue;
             c = 0x3000 | (u8)(ByteAt(src, i) - 1);
         }
-        // Stored untyped: the original reads the string again after each character.
-        __builtin_memcpy(&dst[j++], &c, sizeof(c));
+        dst[j++] = c;
     }
     dst[j] = 0;
 }

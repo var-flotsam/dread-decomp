@@ -151,8 +151,7 @@ struct UnkTeamList {
             head = node;
             tail = node;
         } else {
-            // Stored untyped: the original reloads the count after it.
-            __builtin_memcpy(&tail->next, &node, sizeof(node));
+            tail->next = node;
             node->next = nullptr;
             tail = node;
         }
@@ -320,8 +319,7 @@ void fn_71011a6ec8(UnkTeamSortedList* self, const UnkTeamKey* key) {
                 node->prev = nullptr;
             }
             if (cur->prev) {
-                // Stored untyped: the original reloads cur->prev after it.
-                __builtin_memcpy(&cur->prev->next, &node, sizeof(node));
+                cur->prev->next = node;
                 node->prev = cur->prev;
             }
             node->next = cur;

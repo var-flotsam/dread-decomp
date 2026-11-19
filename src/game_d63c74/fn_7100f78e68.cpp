@@ -27,9 +27,9 @@ struct UnkValuePairRef {
 // The id pointers are moved bitwise (the original reloads the pair's state after them).
 __attribute__((always_inline)) static inline void MoveAssign(UnkStrIdTwoStep* self, UnkStrIdTwoStep* other) {
     self->~UnkStrIdTwoStep();
-    __builtin_memcpy(&self->data, &other->data, sizeof(self->data));
+    self->data = other->data;
     base::global::UnkStringData* empty = &g_unk_7101d47108->empty;
-    __builtin_memcpy(&other->data, &empty, sizeof(empty));
+    other->data = empty;
 }
 
 template <class Y>

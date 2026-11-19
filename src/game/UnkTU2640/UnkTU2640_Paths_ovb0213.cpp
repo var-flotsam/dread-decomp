@@ -512,7 +512,7 @@ UnkIdArrayNode_b0213* fn_7101005e44(UnkIdArrayMap_b0213* self, const CStrId* key
         self->head = n;
     } else if (self->tail) {
         UnkIdArrayNode_b0213* tail = self->tail;
-        __builtin_memcpy(&n->prev, &tail, sizeof(tail));
+        n->prev = tail;
         self->tail->next = n;
     }
     self->tail = n;

@@ -86,7 +86,7 @@ void fn_7100030fc0(void* list, const void* key_ptr, f32 value) {
                 self->count = 1;
             } else {
                 UnkKeyNode_b0250* last = self->tail;
-                __builtin_memcpy(&last->next, &node, sizeof(node));
+                last->next = node;
                 node->next = nullptr;
                 self->tail = node;
                 self->count = self->count + 1;
@@ -125,7 +125,7 @@ void fn_7100031140(void* list, const void* key_ptr, f32 value2, f32 value) {
                 self->count = 1;
             } else {
                 UnkKeyNode_b0250* last = self->tail;
-                __builtin_memcpy(&last->next, &node, sizeof(node));
+                last->next = node;
                 node->next = nullptr;
                 self->tail = node;
                 self->count = self->count + 1;
@@ -165,7 +165,7 @@ void fn_71000312c4(void* list, const void* key_ptr) {
         }
         if (removed) {
             if (prev) {
-                __builtin_memcpy(&prev->next, &walk, sizeof(walk));
+                prev->next = walk;
                 if (self->tail == node)
                     self->tail = prev;
             } else {

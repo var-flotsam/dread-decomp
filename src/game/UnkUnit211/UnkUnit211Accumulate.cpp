@@ -3,7 +3,7 @@
 // (at +0x20). Names and layouts are placeholders.
 #include "types.h"
 
-typedef f32 __attribute__((may_alias)) UnkUnit211Float;
+typedef f32 UnkUnit211Float;
 
 struct UnkUnit211Vec3 {
     UnkUnit211Float v[3];

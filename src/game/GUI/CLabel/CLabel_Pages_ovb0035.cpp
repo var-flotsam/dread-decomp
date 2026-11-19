@@ -599,7 +599,7 @@ void fn_71011ef574(UnkLabelScroller_b0035* self) {
     for (auto* line = self->lines; line; line = line->next) {
         for (auto* run = line->data->runs; run; run = run->next) {
             s32 pages = self->pages + run->data->object->node->lines;
-            __builtin_memcpy(&self->pages, &pages, sizeof(pages));  // the original reloads the list after it
+            self->pages = pages;
         }
     }
     Relayout(self);

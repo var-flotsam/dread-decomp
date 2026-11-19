@@ -254,8 +254,7 @@ void fn_7100da9e88(UnkNavOwner_b0025* self, void* item) {
             link->item = item;
             link->next = nullptr;
             if (self->count) {
-                // Linked through an untyped copy: the original reloads the count after it.
-                __builtin_memcpy(&self->tail->next, &link, sizeof(link));
+                self->tail->next = link;
                 link->next = nullptr;
                 u32 count = self->count + 1;
                 self->tail = link;

@@ -41,7 +41,7 @@ struct UnkRenderTargetSlots : base::global::CRntVector<UnkRenderTargetSlot> {
             }
         if (capacity < cap)
             Grow(cap);
-        __builtin_memcpy(&data[count], &slot, sizeof(slot));
+        data[count] = slot;
         ++count;
     }
 };

@@ -46,7 +46,7 @@ struct UnkIdPairArray_ovb0120 {
         Reserve(c);
         UnkIdPairRaw_ovb0120* slot = &data[count];
         UnkStringData* a = v.first;
-        __builtin_memcpy(&slot->first, &a, 8);
+        slot->first = a;
         UnkStringData* empty = &g_unk_7101d47108->empty;
         if (empty != a)
             ++a->ref_count;

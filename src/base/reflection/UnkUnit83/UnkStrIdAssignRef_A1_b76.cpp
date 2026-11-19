@@ -12,7 +12,7 @@ using base::global::CRntString;
 using base::global::UnkStringData;
 
 
-typedef u32 UnkAliasU32A1 __attribute__((may_alias));
+typedef u32 UnkAliasU32A1;
 
 struct UnkStringHolderA1 {
     u8 pad_0x0[0x10];

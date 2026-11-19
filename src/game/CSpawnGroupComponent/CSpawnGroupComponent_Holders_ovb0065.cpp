@@ -817,8 +817,7 @@ void fn_710111b31c(UnkSpawnGroupTrigger_ovb0065* self, UnkCollectList_ovb0065* l
             list->tail = node;
             list->count = 1;
         } else {
-            // Linked bitwise: the original reloads the count after these stores.
-            __builtin_memcpy(&list->tail->next, &node, sizeof(node));
+            list->tail->next = node;
             __builtin_memset(&node->next, 0, sizeof(node->next));
             list->tail = node;
             ++list->count;

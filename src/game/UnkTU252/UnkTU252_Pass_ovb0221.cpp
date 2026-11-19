@@ -127,7 +127,7 @@ void fn_71001bef34(UnkPassOwner252* self, u32 index, u32 width, u32 height) {
 // and of the models of its array (+0x1b8) when the dirty flag at +0x138 is set.
 struct UnkTarget252c {
     u8 pad_0x0[0x114];
-    typedef u32 __attribute__((may_alias)) AliasU32;
+    typedef u32 AliasU32;
     AliasU32 color[4];  // 0x114
 };
 

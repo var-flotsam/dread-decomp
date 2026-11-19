@@ -53,7 +53,7 @@ bool fn_71009feb78(UnkVariableAngleConfig_ovb0138* self, const UnkVec3f* target,
         return false;
     f32 f18 = self->field_0x18;
     out->field_0x2c = f18;
-    __builtin_memcpy(&out->speed, &self->speed, sizeof(f32));
+    out->speed = self->speed;
     if (self->by_distance) {
         f32 near = self->near_dist * self->near_dist;
         f32 dy = direction->y - target->y;

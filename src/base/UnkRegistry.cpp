@@ -9,7 +9,7 @@ template <char* Vtable, bool CountedTail>
 __attribute__((always_inline)) static inline void Construct(UnkRegistry_0x70* self) {
     self->vtable = Vtable + 0x10;
     base::UnkAllocator* alloc = fn_7100083990();
-    typedef u64 __attribute__((may_alias)) word;
+    typedef u64 word;
     char* base = reinterpret_cast<char*>(self);
     self->flags = 0xe;
     *reinterpret_cast<word*>(base + 0x24) = 0xa00000000;  // capacity 0, step 10
