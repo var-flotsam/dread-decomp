@@ -38,8 +38,7 @@ struct UnkUniformTables {
     UnkUniformTable* tables[3];
 };
 
-void fn_710015e2d0(void* state, u32 kind, u64 handle, u32 count, u32 stride, const void* data) {
-    UnkUniformTables* self = static_cast<UnkUniformTables*>(state);
+void fn_710015e2d0(UnkUniformTables* self, u32 kind, u64 handle, u32 count, u32 stride, const void* data) {
     u64 index = handle + 0xfffffff1u;
     if (!self || !handle)
         return;

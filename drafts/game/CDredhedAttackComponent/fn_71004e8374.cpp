@@ -55,7 +55,7 @@ struct UnkDredhedAttack_l4e8374 {
 };
 
 // The base attack component's hit handler.
-static inline bool Base(UnkDredhedAttack_l4e8374* self, UnkDredhedHit_l4e8374* hit) {
+static inline u8 Base(UnkDredhedAttack_l4e8374* self, UnkDredhedHit_l4e8374* hit) {
     return fn_7101137c8c(reinterpret_cast<UnkEmmyAttackComponent_A3_b64*>(self),
                          reinterpret_cast<UnkTileHit_A3_b64*>(hit));
 }
