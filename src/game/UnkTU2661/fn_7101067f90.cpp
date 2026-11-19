@@ -12,7 +12,7 @@
 #include "game/UnkTU2661.h"
 #include "game/UnkTU2739.h"
 #include "game/media/CMediaStream.h"
-#include "../../../src/game_aca57c/UnkBufferString.h"
+#include "../../game_aca57c/UnkBufferString.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;

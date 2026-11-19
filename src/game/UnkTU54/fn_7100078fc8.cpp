@@ -5,6 +5,7 @@
 #include "game/UnkTU54.h"
 #include "types.h"
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkMatrix44 fn_7100078fc8(const UnkVec3f& angles) {
     UnkMatrix44 r;
     f32 a = angles.x, b = angles.y, c = angles.z;

@@ -25,6 +25,7 @@ struct UnkAddResult_l81cc58 {
     explicit UnkAddResult_l81cc58(u32 s) : status(s) {}
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 UnkAddResult_l81cc58 fn_710081cc58(UnkGrappleRecordList_l81cc58* self) {
     UnkRecords_l81cc58& records = self->records;
     s32 room = records.Remaining();

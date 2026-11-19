@@ -54,6 +54,7 @@ inline void SetLevel(s32 index, f32 value) {
     fn_710021a0b4(g_unk_7101d47300, &g_unk_710164b5f8, &g_unk_7101a92ec0);
 }
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_7100a9270c(UnkThermalDevice_la9270c* self) {
     fn_71010c4230(reinterpret_cast<UnkHandleOwner_71010c4230*>(self));
     if (self->level == self->previous) {

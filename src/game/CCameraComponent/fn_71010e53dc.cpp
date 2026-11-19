@@ -25,6 +25,7 @@ struct UnkCamComponent_l0e53dc {
     f32 fov;
 };
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 bool fn_71010e53dc(void* camera, UnkCameraViewBox* box) {
     UnkCamComponent_l0e53dc* self = static_cast<UnkCamComponent_l0e53dc*>(camera);
     if (!self->nodes)

@@ -1,7 +1,7 @@
 // Unit 2702 (a CAIComponent): on enable, frees its pending nodes, links itself to the navigation
 // mesh's two lists, registers its actor with the team and AI managers and plays "onenabled" on the
 // actor's timeline. Names and layouts are placeholders.
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "base/UnkEmptyDtorElem.h"
 #include "base/global/CName.h"
 #include "base/global/CRntVector.h"

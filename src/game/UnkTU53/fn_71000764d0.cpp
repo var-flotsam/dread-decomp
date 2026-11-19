@@ -17,6 +17,7 @@ struct UnkPlane4f {
 
 f32 fn_7100110ca8(const UnkPoint3f* point, const UnkPlane4f* plane);
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 f32 fn_71000764d0(const UnkPoint3f* from, const UnkPoint3f* to, const UnkPoint3f* planePoint, UnkPoint3f* outHit,
                   const UnkPoint3f* givenDir, f32* outDist) {
     UnkPlane4f plane;

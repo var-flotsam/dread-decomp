@@ -37,6 +37,7 @@ struct UnkUniformTables {
     UnkUniformTable* tables[3];
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710015e2d0(UnkUniformTables* self, u32 kind, u64 handle, u32 count, u32 stride, const void* data) {
     u64 index = handle + 0xfffffff1u;
     if (!self || !handle)

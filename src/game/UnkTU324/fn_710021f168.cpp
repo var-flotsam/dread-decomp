@@ -5,6 +5,7 @@
 #include "game/media/UnkMedia324.h"
 #include "types.h"
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 bool fn_710021f168(UnkMedia324* self, s32 state) {
     fn_710006691c(&self->listener_lock);
     bool notified = false;

@@ -2,7 +2,7 @@
 // passes a tuning float to vtable slot 0x838 and, when +0x14999 is set, sends the sub-object a zero and picks
 // one of two attacks at random; then defers to fn_71011088ec. Names and layouts are placeholders.
 #include "base/reflection/UnkReflStatics.h"
-#include "../../../src/game_s2/UnkSpitSend.h"
+#include "../../game_s2/UnkSpitSend.h"
 #include "game/UnkTU2702.h"
 #include "types.h"
 

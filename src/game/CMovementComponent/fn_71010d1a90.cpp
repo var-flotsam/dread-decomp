@@ -31,6 +31,7 @@ struct UnkMovementComponent {
     f32 prev_vel_x, prev_vel_y, prev_vel_z;  // 0x11c
 };
 
+// NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_71010d1a90(UnkMovementComponent* self, f32 dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     self->prev_vel_x = self->vel_x;
