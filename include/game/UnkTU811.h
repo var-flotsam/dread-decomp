@@ -7,6 +7,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkHandleAI_b0193;
 struct UnkEmmyAI_b60;
 struct UnkRecord;
 struct UnkEmmyForestAI_A2_b70;
@@ -60,3 +61,6 @@ void fn_710054d16c(UnkEmmyForestAI_A2_b70* self, f32 dt);
 void fn_7100541fd4(UnkEmmyAI_b60* self);
 UnkRecord* fn_710054715c(UnkRecord* self, const UnkRecord* other);
 void fn_7100552324(UnkEmmyRelaxAI_b59* self);
+struct UnkEmmyAI_l541974;  // the E.M.M.I. AI component as its stop reads it
+void fn_7100541974(UnkEmmyAI_l541974* self);  // stops the AI; derived E.M.M.I.s call it first
+void fn_7100541e64(UnkHandleAI_b0193* self);

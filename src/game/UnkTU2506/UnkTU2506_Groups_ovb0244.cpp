@@ -13,46 +13,10 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"
+#include "game/UnkGroupArray_ovb0244.h"
 #include "game/UnkTU2506.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
-
-#pragma pack(push, 4)
-struct UnkSlotRecord_ovb0244 {
-    base::UnkRefPtrMember refs[5];
-    s32 id;
-    u64 words[6];
-    u32 pad_0x5c;
-    u64 field_0x60;
-    f32 value;
-    u32 pad_0x6c;
-    UnkSlotRecord_ovb0244() : refs{}, id(-1), words{}, field_0x60(0), value(-1.0f) {}
-};
-struct UnkSlotGroup_ovb0244 {
-    u32 count;
-    UnkSlotRecord_ovb0244 items[128];
-};
-#pragma pack(pop)
-
-// The handle's count is a union member: the original reloads the pointers around count updates here.
-struct UnkRefCountedU_ovb0244 {
-    virtual void vf0();
-    virtual void vf8();
-    virtual void Delete();
-    union {
-        s32 ref_count;
-    };
-};
-
-struct UnkGroupArray_ovb0244 {
-    UnkSlotGroup_ovb0244* groups;
-    UnkRefCountedU_ovb0244** handles;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
 
 // Releases the five handles of every record and empties the group.
 __attribute__((noinline)) void fn_7100d48e50(UnkSlotGroup_ovb0244* self) {

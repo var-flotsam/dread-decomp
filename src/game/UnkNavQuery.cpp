@@ -13,6 +13,7 @@
 #include "game/UnkNavMeshManager.h"
 #include "game/UnkTU2702.h"
 #include "game/UnkTU362.h"
+#include "game/navmesh/CNavMesh.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -63,9 +64,6 @@ bool fn_710027dab8(UnkNavMesh* mesh, const CVector2D* point, u16 cell, u32 flags
 bool fn_710027bbf0(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filter_arg, u32 filter_arg2,
                    u32 filter_arg3, UnkDirectionFilter* direction, UnkNavMeshHits* out, const void* arg_0x28,
                    const void* arg_0x30, const void* arg_0x38, f32 up, f32 down, f32 left, f32 right);
-bool fn_710027b780(UnkNavMesh* mesh, const CVector2D* point, u32 flags, u64 filter_arg, u32 filter_arg2,
-                   u32 filter_arg3, UnkDirectionFilter* direction, UnkNavMeshHits* out,
-                   const UnkNavSideFilter& filter, const UnkNavSideVerdict& verdict);
 
 // The navigation component of the actor (+0x240): its sides for a goal cell (vf_0x548), and the
 // result handed back (vf_0x550).

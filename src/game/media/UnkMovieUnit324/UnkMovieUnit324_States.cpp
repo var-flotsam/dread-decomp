@@ -9,67 +9,8 @@
 #include "base/global/timeline/CEvent.h"
 #include "game/UnkTU324.h"
 #include "game/media/CMediaStream.h"
+#include "game/media/UnkMedia324.h"
 #include "types.h"
-
-struct UnkMedia324;
-
-struct UnkMediaListener324 {
-    void* context;
-    void (*callback)(void* context, UnkMedia324* media, u32 arg);
-};
-
-// The fixed ring of 64 words of UnkMovieUnit324_Rings.cpp.
-struct UnkMovieWordRing324 {
-    void* vtable;
-    u32* read;
-    u32* write;
-    u64 count;
-    u32 entries[64];
-
-    void Push(u32 value) {
-        // A store the compiler can't tell apart from the ring's own fields: the position is read again.
-        typedef u32 AnyWord;
-        *reinterpret_cast<AnyWord*>(write) = value;
-        u32* next = write + 1;
-        write = next == entries + 64 ? entries : next;
-        ++count;
-    }
-
-    u32 PopFront() {
-        u32 value = *read;
-        u32* next = read + 1;
-        read = next == entries + 64 ? entries : next;
-        --count;
-        return value;
-    }
-};
-
-struct UnkMediaTrack330;  // as src/game/media/UnkUnit330/UnkUnit330.cpp names it
-
-struct UnkMedia324 {
-    u8 pad_0x0[0x2c];
-    s32 state;           // 0x2c
-    s32 previous_state;  // 0x30
-    s32 seek_state;      // 0x34
-    u8 pad_0x38[0x28];
-    UnkMediaTrack330** tracks;  // 0x60
-    u32 track_count;            // 0x68
-    u8 pad_0x6c[0x6b4];
-    UnkMediaListener324* listeners;  // 0x720
-    u32 listener_count;              // 0x728
-    u8 pad_0x72c[0x1c];
-    u8 worker[0x1f8];                 // 0x748, a thread (fn_7100066828 wakes it)
-    nn::os::MutexType listener_lock;  // 0x940
-    nn::os::MutexType lock;           // 0x960
-    nn::os::LightEventType ready;     // 0x980
-    u8 pad_0x98c[0x4];
-    nn::os::MutexType command_lock;   // 0x990
-    UnkMovieWordRing324 commands;     // 0x9b0
-    u32 loop_mode;       // 0xad0
-    bool start_pending;  // 0xad4
-};
-static_assert(__builtin_offsetof(UnkMedia324, lock) == 0x960, "UnkMedia324 layout");
-static_assert(__builtin_offsetof(UnkMedia324, loop_mode) == 0xad0, "UnkMedia324 layout");
 
 void fn_7100066698(nn::os::LightEventType* event);
 
@@ -81,10 +22,9 @@ struct UnkChildOwner60;
 void fn_7100224ef4(UnkChildOwner60* self);
 
 // As src/game/media/UnkUnit330/UnkUnit330.cpp defines them.
-struct UnkMedia330;
-void fn_7100224de4(UnkMedia330* self);
-bool fn_7100224fbc(UnkMedia330* self, void* arg);
-void fn_7100224f2c(UnkMedia330* self);
+void fn_7100224de4(UnkMedia324* self);
+bool fn_7100224fbc(UnkMedia324* self, void* arg);
+void fn_7100224f2c(UnkMedia324* self);
 // UnkMovieUnit324_Pause.cpp.
 void fn_710021fe0c(UnkMedia324* self);
 // As src/game_hi/fn_7100f00f4c.cpp declares it.
@@ -146,7 +86,7 @@ u32 fn_710021f858(UnkMedia324* self) {
     case 10:
     case 13:
         self->start_pending = false;
-        fn_7100224de4(reinterpret_cast<UnkMedia330*>(self));
+        fn_7100224de4(reinterpret_cast<UnkMedia324*>(self));
         SetState(self, 6);
         result = 1;
         break;
@@ -177,7 +117,7 @@ u32 fn_710021fd10(UnkMedia324* self, void* position) {
         self->seek_state = self->state;
         fn_710021f950(self);
         SetState(self, 8);
-        if (fn_7100224fbc(reinterpret_cast<UnkMedia330*>(self), position))
+        if (fn_7100224fbc(reinterpret_cast<UnkMedia324*>(self), position))
             fn_710021fe0c(self);
         result = 0;
         break;
@@ -198,7 +138,7 @@ void fn_710021fbb4(UnkMedia324* self) {
     u32 loop_mode = self->loop_mode;
     fn_710006691c(&self->lock);
     if (loop_mode == 0) {
-        fn_7100224f2c(reinterpret_cast<UnkMedia330*>(self));
+        fn_7100224f2c(reinterpret_cast<UnkMedia324*>(self));
         fn_7100066920(&self->lock);
         return;
     }
@@ -266,7 +206,7 @@ bool fn_71000666a0(nn::os::LightEventType* event, u32 milliseconds);
 
 // Waits on the ready event (fn_71000666a0 with a time-out); the signature is the one
 // src/game/media/UnkUnit330/UnkUnit330.cpp declares.
-void fn_71002202d8(UnkMedia330* self, u32 milliseconds) {
+void fn_71002202d8(UnkMedia324* self, u32 milliseconds) {
     fn_71000666a0(&reinterpret_cast<UnkMedia324*>(self)->ready, milliseconds);
 }
 

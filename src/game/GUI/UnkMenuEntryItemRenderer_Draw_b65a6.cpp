@@ -5,23 +5,20 @@
 #include "game/UnkTU2747.h"
 #include "types.h"
 
-void fn_7100affb94(void* a, void* b, void* c, bool d, bool e, bool f) {
+void* fn_7100affb94(UnkDisplayContainer_l1d9e90* self, u32 input, void* event, bool d, bool all, bool f) {
     if (f)
-        fn_71011d9e90(a, b, c, d, e, true);
-    else
-        fn_71011cff5c(a, b, c, d, e, false);
+        return fn_71011d9e90(self, input, event, d, all, true);
+    return fn_71011cff5c(self, input, event, d, all, false);
 }
 
-void fn_7100b33814(void* a, void* b, void* c, bool d, bool e, bool f) {
+void* fn_7100b33814(UnkDisplayContainer_l1d9e90* self, u32 input, void* event, bool d, bool all, bool f) {
     if (f)
-        fn_71011d9e90(a, b, c, d, e, true);
-    else
-        fn_71011cff5c(a, b, c, d, e, false);
+        return fn_71011d9e90(self, input, event, d, all, true);
+    return fn_71011cff5c(self, input, event, d, all, false);
 }
 
-void fn_7100b75ae8(void* a, void* b, void* c, bool d, bool e, bool f) {
+void* fn_7100b75ae8(UnkDisplayContainer_l1d9e90* self, u32 input, void* event, bool d, bool all, bool f) {
     if (f)
-        fn_71011d9e90(a, b, c, d, e, true);
-    else
-        fn_71011cff5c(a, b, c, d, e, false);
+        return fn_71011d9e90(self, input, event, d, all, true);
+    return fn_71011cff5c(self, input, event, d, all, false);
 }

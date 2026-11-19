@@ -28,6 +28,7 @@
 #include "game/CMinimapData.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU25.h"
+#include "game/UnkTU110.h"
 #include "game/UnkTU2563.h"
 #include "game/UnkTU365.h"
 #include "game/UnkTU56.h"
@@ -245,7 +246,6 @@ struct UnkFreezeList_ovb0106;
 UnkHandleList_b0223* fn_7100914230(UnkRoom_b0223* self);
 UnkHandleList_b0223* fn_7100a26740(UnkRoom_b0223* self);
 void fn_7100131020(void* shape, UnkBoundsRec_b0223* rec, void* v, bool flag);
-void fn_710012f880(UnkShapeResult_b0223* shape, UnkBoundsRec_b0223* rec, void* v, bool flag);
 
 struct UnkPoolComp_b0223 : UnkReflObject {
     u8 unk_0x8[0x10];
@@ -287,7 +287,9 @@ static inline __attribute__((always_inline)) void ForEachPlace(UnkRoom_b0223* se
             fn_7100131020(shape->field_0xa8, rec, rec->field_0x28, true);
         } else if constexpr (!ViaTracker) {
             UnkShapeResult_b0223 r = shape->vf_0x28(&shape->field_0x8);
-            fn_710012f880(&r, rec, rec->field_0x28, true);
+            // the shape's two corners; the record's points and its index array (+0x28) are the arrays
+            fn_710012f880(reinterpret_cast<const UnkQuadCorners*>(&r), reinterpret_cast<UnkQuadArray<UnkQuadVertex>*>(rec),
+                          reinterpret_cast<UnkQuadArray<u16>*>(rec->field_0x28), true);
         }
         {
             UnkPlaceOwner_b0223* o = comp->owner;

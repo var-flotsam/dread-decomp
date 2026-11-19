@@ -7,6 +7,12 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
+namespace base {
+template <class Tag, class K, class V>
+struct UnkKeyedArray;
+}
+struct UnkValue_0x10;
+struct UnkKeyedValues_71009046bc;
 struct UnkWaterPoolComponent_b0086;
 struct UnkLiquidPoolEnter_ovb0075;
 struct UnkLiquidPoolActor_ovb0075;
@@ -27,3 +33,4 @@ extern base::reflection::CType g_unk_7172733a70;
 void fn_7100900c44(UnkWaterPoolComponent_b0086* self);
 void fn_71009014a8(UnkLiquidPoolEnter_ovb0075* self, UnkVec3f pos);
 UnkLiquidPoolMover_ovb0075* fn_71009019bc(UnkLiquidPoolActor_ovb0075* actor);
+void* fn_7100901264(base::UnkKeyedArray<UnkKeyedValues_71009046bc, u64, UnkValue_0x10>* a, UnkValue_0x10* value);  // erases one entry

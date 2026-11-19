@@ -133,7 +133,7 @@ bool fn_71005540d8(UnkPathAI_b0193* self) {
         if (slot->field_0x0 && slot->field_0x0->field_0x10 && slot->field_0x0->field_0x10->field_0x10 == 1 &&
             slot->field_0x8) {
             if (fn_7100707df4(slot->field_0x8 + 0x140, reinterpret_cast<UnkPathPoint_b67a4*>(&point))) {
-                UnkMatrix44 m = fn_7100078fc8(*reinterpret_cast<const UnkMatrix44*>(&point));
+                UnkMatrix44 m = fn_7100078fc8(point);
                 dir = UnkVec3f(m.m[2], m.m[6], m.m[10]);
             }
         }
@@ -194,13 +194,13 @@ struct UnkEmmyStateAI_b0193 {
 void fn_7100559518(UnkEmmyStateAI_b0193* self);
 void fn_71005596c4(UnkEmmyStateAI_b0193* self);
 void fn_7100559c58(UnkEmmyStateAI_b0193* self);
-void fn_7100541e64(UnkEmmyStateAI_b0193* self);
+struct UnkHandleAI_b0193;  // the same AI, as fn_7100541e64 (below) reads it
 
 bool fn_71005593f0(UnkEmmyStateAI_b0193* self, bool force, u32 id) {
     fn_7100559518(self);
     if (!force) {
         if (self->field_0x14c54 != id) {
-            fn_7100541e64(self);
+            fn_7100541e64(reinterpret_cast<UnkHandleAI_b0193*>(self));
             return false;
         }
         if (self->field_0x14c58 && !GetSound_b0193(&self->field_0x294e8[0])) {

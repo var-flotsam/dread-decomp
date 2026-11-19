@@ -2,10 +2,10 @@
 // arguments passed through. Names are placeholders.
 #include <math.h>
 
+#include "game/UnkTU53.h"
 #include "types.h"
 
-f32 fn_71000764d0(const void* a, const void* b, void* c, void* d, const void* e, void* f);
-
-f32 fn_71000764a0(const void* a, const void* b, void* c, void* d, const void* e, void* f) {
-    return sqrtf(fn_71000764d0(a, b, c, d, e, f));
+f32 fn_71000764a0(const UnkPoint3f* from, const UnkPoint3f* to, const UnkPoint3f* planePoint, UnkPoint3f* outHit,
+                  const UnkPoint3f* givenDir, f32* outDist) {
+    return sqrtf(fn_71000764d0(from, to, planePoint, outHit, givenDir, outDist));
 }

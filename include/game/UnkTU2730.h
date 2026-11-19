@@ -3,6 +3,7 @@
 // UnkTU2730: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2730,
 // 0x7101196284-0x710119acb0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
+#include "base/UnkDestructors.h"
 #include "base/global/CStrId.h"
 #include "base/reflection/CClass.h"
 #include "base/global/CFilePathStrId.h"
@@ -26,3 +27,5 @@ void fn_71011991c4(void* gui, base::reflection::UnkReflObject* entity);
 u32 fn_710119882c(void* manager, const base::global::CFilePathStrId* path);
 void* fn_71011986a8(void* gui, const base::global::CStrId* id);
 void fn_710119780c(UnkObj_710119770c* self, const base::global::CStrId& id);
+// Tells the GUI root about a file-path id.
+void fn_710119a110(void* root, const base::UnkStrIdMemberOf<g_unk_7101d47200>* id);

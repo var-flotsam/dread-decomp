@@ -7,6 +7,7 @@
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
 #include "game/behaviortree/CBehavior.h"
+#include "game/behaviortree/CHyperDashAttackAction.h"
 #include "game_s2/UnkParams.h"
 #include "types.h"
 
@@ -57,10 +58,7 @@ struct UnkReflObject;
 }  // namespace reflection
 }  // namespace base
 using base::reflection::UnkReflObject;
-struct UnkHyperDashNode_ovb0095;
-UnkReflObject* fn_7100449868(UnkHyperDashNode_ovb0095* self);
 bool fn_7100449944(UnkHyperDashAttackAction_l4496a8* self, void* target);
-bool fn_7100449bdc(UnkHyperDashAttackAction_l4496a8* self, void* target, bool flag);
 
 void fn_71004496a8(UnkHyperDashAttackAction_l4496a8* self) {
     fn_7100394bd0(reinterpret_cast<UnkStruct_0x68*>(self));

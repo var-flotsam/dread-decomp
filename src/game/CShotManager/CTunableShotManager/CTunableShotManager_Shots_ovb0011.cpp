@@ -121,7 +121,6 @@ void fn_7100ed6af0(UnkShotManager_b0011* self, u32 type, u32 variant) {
 }
 
 UnkListedObj* fn_7100e0b770(char* self);
-void fn_710020c4b8(UnkToggle* self, bool value);
 
 // A light the light manager hands out; its switch at +0x28.
 struct UnkShotLight_b0011 {

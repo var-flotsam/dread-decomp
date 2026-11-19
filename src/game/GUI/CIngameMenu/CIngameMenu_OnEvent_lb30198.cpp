@@ -16,9 +16,6 @@
 
 using unk_prop_bag::UnkPropBag;
 
-struct UnkEnumType;
-extern UnkEnumType g_unk_71729f01b0;
-
 // The event as the handler reads it.
 struct UnkMenuEvent_lb30198 {
     u8 unk_0x0[0x8];

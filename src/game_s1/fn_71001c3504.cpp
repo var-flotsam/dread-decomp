@@ -4,6 +4,7 @@
 
 #include "base/UnkDestructors.h"
 #include "game/UnkTU204.h"
+#include "game/UnkTU254.h"
 #include "types.h"
 
 struct UnkPart_71001c3504 {

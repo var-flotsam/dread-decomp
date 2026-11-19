@@ -7,6 +7,7 @@
 
 #include "base/reflection/CClass.h"
 #include "game/CCharClassSteamJetComponent.h"
+#include "game/UnkCameraViewBox.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
@@ -19,14 +20,6 @@ struct UnkLiquidVec2 {
 };
 
 typedef f32 UnkLiquidHeight;
-
-// A 2D box: minimum then maximum corner.
-struct UnkLiquidViewBox {
-    f32 minX, minY, maxX, maxY;
-};
-
-// The view's bounds (false when there is none).
-bool fn_71010e53dc(void* camera, UnkLiquidViewBox* box);
 
 // The component's placement as the liquid uses it: its size and its position.
 struct UnkLiquidVolume : UnkReflObject {
@@ -101,7 +94,7 @@ void fn_7100906110(CLiquidSimulationComponent* self, f32 dt);
 // outcome (same conditions).
 bool fn_7100905e9c(CLiquidSimulationComponent* self, f32 dt) {
     void* camera = fn_7100defcec(g_unk_7101d47310);
-    UnkLiquidViewBox view;
+    UnkCameraViewBox view;
     view.minX = FLT_MAX;
     view.minY = FLT_MAX;
     view.maxX = -FLT_MAX;

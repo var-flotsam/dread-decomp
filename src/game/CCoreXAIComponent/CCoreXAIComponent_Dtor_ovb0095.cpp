@@ -48,7 +48,7 @@ void fn_71004d9728(UnkCoreXAI_ovb0095* self) {
     self->vtable = &g_unk_7101a3fc88[2];
     self->listener.~UnkCoreXListener_ovb0095();
     self->field_0x149d0.~UnkRefPtrMember();
-    fn_71003ac388(self);
+    fn_71003ac388(reinterpret_cast<UnkBossAI_l3ac388*>(self));
 }
 
 // The deleting form.
@@ -56,7 +56,7 @@ void fn_71004d9800(UnkCoreXAI_ovb0095* self) {
     self->vtable = &g_unk_7101a3fc88[2];
     self->listener.~UnkCoreXListener_ovb0095();
     self->field_0x149d0.~UnkRefPtrMember();
-    fn_71003ac388(self);
+    fn_71003ac388(reinterpret_cast<UnkBossAI_l3ac388*>(self));
     operator delete(self);
 }
 

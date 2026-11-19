@@ -5,13 +5,13 @@
 #include <new>
 
 #include "base/reflection/UnkReflCast.h"
+#include "game/CAIGotoPointNavigationState/STarget.h"
+#include "game_s2/UnkParams.h"
 #include "types.h"
 
 struct UnkGotoTargetBase;
 void fn_7100703878(UnkGotoTargetBase* self);
 void fn_71007068ec(void* self);
-extern void* g_unk_7101a6bb48[];
-extern void* g_unk_7101a25b38[];
 
 struct UnkGotoTarget {
     void** vtable;

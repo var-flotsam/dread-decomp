@@ -5,27 +5,8 @@
 // otherwise. Names and layouts are placeholders.
 #include "base/UnkDefaultAllocator.h"
 #include "game/UnkTU324.h"
+#include "game/media/UnkMedia324.h"
 #include "types.h"
-
-struct UnkMedia324;
-
-struct UnkMediaListener324 {
-    void* context;
-    void (*callback)(void* context, UnkMedia324* media, u32 arg);
-};
-
-struct UnkMedia324 {
-    u8 pad_0x0[0x2c];
-    s32 state;           // 0x2c
-    s32 previous_state;  // 0x30
-    u8 pad_0x34[0x6ec];
-    UnkMediaListener324* listeners;  // 0x720
-    u32 listener_count;              // 0x728
-    u8 pad_0x72c[0x214];
-    nn::os::MutexType listener_lock;  // 0x940
-    nn::os::MutexType lock;           // 0x960
-};
-static_assert(__builtin_offsetof(UnkMedia324, lock) == 0x960, "UnkMedia324 layout");
 
 // As src/engine/render/anim/CSkeletalAnimTree/fn_710014be78.cpp defines it (the tracks' owner).
 struct UnkChildOwner60;

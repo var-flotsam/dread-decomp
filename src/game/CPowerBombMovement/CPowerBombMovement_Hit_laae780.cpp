@@ -62,9 +62,9 @@ struct UnkPowerBombRing_laae780 {
     bool hit[12];
 };
 
-// The rotation of `v` by `angle` (the helper takes the angles where its declaration says a matrix).
+// The rotation of `v` by `angle`.
 inline UnkVec3f Rotate(const UnkVec3f& v, const UnkVec3f& angle) {
-    return fn_710007a400(v, reinterpret_cast<const UnkMatrix44&>(angle));
+    return fn_710007a400(v, angle);
 }
 
 struct UnkPowerBombMovement_laae780 {

@@ -29,3 +29,9 @@ void fn_71000ce604(base::global::CRntVector<base::global::CStrId>* self, base::g
 template <class T>
 struct UnkFrameVector;  // a vector whose element access grows it (game/UnkFrameSource.cpp)
 f32* fn_71000d4a50(UnkFrameVector<f32>* v, u32 i);
+template <class T>
+struct UnkCopiedVector;
+struct UnkThreeWords;
+// Copies another vector of three-word values into this one (src/game_s1/fn_71000cbcf0.cpp).
+UnkCopiedVector<UnkThreeWords>* fn_71000cbcf0(UnkCopiedVector<UnkThreeWords>* self,
+                                              const UnkCopiedVector<UnkThreeWords>* other);

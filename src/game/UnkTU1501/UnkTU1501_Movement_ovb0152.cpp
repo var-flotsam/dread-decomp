@@ -41,6 +41,7 @@
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "game/logic/collision/CCapsuleShape2D.h"
+#include "game/logic/collision/UnkBvhTreeSweep.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -368,7 +369,6 @@ struct UnkMatrix44_7100078c9c {
     f32 m[16];
 };
 
-bool fn_7100d5babc(UnkTree* self, u32 mask, UnkShape* shape, const UnkMtx44* xf, const Vec2* delta, void* arg, bool flag);
 extern base::global::CStrId g_unk_7172740fe0 __attribute__((visibility("hidden")));
 
 struct UnkVec4_b152 {

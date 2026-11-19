@@ -8,6 +8,7 @@
 // chosen id's hash with mode 0 (UnkSpitSend.h). Names and layouts are placeholders.
 #include "../../game_s2/UnkSpitSend.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkActor.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkTU1501.h"
@@ -17,7 +18,6 @@
 struct UnkHelper;
 
 struct UnkKraidUpdateAI_b62a4;
-void fn_71003ad414(UnkKraidUpdateAI_b62a4* self);
 void fn_71005fe518(UnkKraidUpdateAI_b62a4* self);
 
 struct UnkKraidUpdateId_b62a4 {

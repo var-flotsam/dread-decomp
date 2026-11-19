@@ -16,6 +16,7 @@
 #include "game/UnkGuiDisplayObject.h"
 #include "game/UnkGuiHandle.h"
 #include "game/UnkGuiRoot.h"
+#include "game/UnkTU2567.h"
 #include "game/UnkTU2747.h"
 #include "game/UnkTU2755.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -42,8 +43,6 @@ struct UnkGuiPos {
 // The position of an item's anchor (src/game/UnkGuiAnchor.cpp).
 // Sets the object's x (src/game/GUI/CDisplayObject.cpp).
 void fn_71011cc748(f32 x, UnkGuiDisplayObject* self);
-// Refreshes a text block (the flag arguments as the map menu passes them).
-void fn_7100eb7358(void* object, u32 a, u32 b);
 
 // The unit's two text styles (src/game_s7/fn_7100b48ca0.cpp).
 extern UnkBufferParam g_unk_7172763b78;

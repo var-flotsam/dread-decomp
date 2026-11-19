@@ -13,4 +13,6 @@ extern u32 g_unk_716e2a1438;  // Live records of the first table.
 extern u32 g_unk_716e2a3440;  // Live programs.
 extern UnkGfxProgram* g_unk_716e2a3448;  // The bound program.
 extern u8 g_unk_716e2a3450;  // Set when any uniform block changed.
-void fn_710015e2d0(void* state, u32 stage, u64 location, u32 a, u32 count, u64 data);
+struct UnkUniformTables;  // a program state's uniform tables, one per stage
+// Copies `count` vectors from `data` into the uniform block bound at `location` of one stage's table.
+void fn_710015e2d0(UnkUniformTables* state, u32 stage, u64 location, u32 a, u32 count, const void* data);

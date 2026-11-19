@@ -1,9 +1,8 @@
 // Unit 811 (CEmmyAIComponent hint): appends a copy of a 0x48-byte record to a fixed array of eight, reports
 // a status code (1 added, 2 full, 3 when this filled the last slot). Names and layouts are placeholders.
 #include "base/UnkNoArg.h"
+#include "game/CAbilityShinespark.h"
 #include "types.h"
-
-void fn_7100331c7c(void* self, UnkNoArg other);
 
 struct UnkItem_5668a8 {
     u8 bytes[0x48];
@@ -30,7 +29,8 @@ UnkAppendResult_5668a8 fn_71005668a8(UnkArray_5668a8* self) {
     u32 code;
     s32 room = 8 - self->count;
     if (room >= 1) {
-        fn_7100331c7c(&self->items[self->count], UnkNoArg());
+        const void* source;  // unset in the original: the copy's source register is never loaded
+        fn_7100331c7c(&self->items[self->count], source);
         ++self->count;
         code = room == 1 ? 3 : 1;
     } else {

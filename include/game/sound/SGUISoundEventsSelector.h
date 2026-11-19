@@ -21,4 +21,9 @@ namespace unk_static_init {
 struct UnkEnumType;  // game_5821e4/UnkStaticInit.h: a reflected enum type object
 }  // namespace unk_static_init
 extern unk_static_init::UnkEnumType g_unk_71729f02b0;  // The HUD ammo counters' fill sound event.
+// Sound events the menus play (the unit's statics, built by fn_7100fcbf50).
+extern unk_static_init::UnkEnumType g_unk_71729f01a0;
+extern unk_static_init::UnkEnumType g_unk_71729f01a8;
+extern unk_static_init::UnkEnumType g_unk_71729f01b0;
+extern unk_static_init::UnkEnumType g_unk_71729f01d0;
 extern UnkStateKey g_unk_71729f0178;

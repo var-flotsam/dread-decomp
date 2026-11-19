@@ -18,7 +18,7 @@ struct UnkQuetzoaDtor_A4_b70;
 template <>
 struct base::UnkDtorTraits<UnkQuetzoaDtor_A4_b70> {
     static char* vtable() { return reinterpret_cast<char*>(g_unk_7101a5a240); }
-    static void base(char* self) { fn_71003ac388(self); }
+    static void base(char* self) { fn_71003ac388(reinterpret_cast<UnkBossAI_l3ac388*>(self)); }
 };
 
 template <>

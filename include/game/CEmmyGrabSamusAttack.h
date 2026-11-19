@@ -15,6 +15,7 @@ struct UnkGrabAttack_b59a3;
 struct UnkGrabFx4_b61;
 struct UnkGrabInputArg_b61;
 struct UnkGrabId_b59a3;
+struct UnkInlineStr50;
 struct UnkSelf;
 struct UnkStrId_71005077f8;
 struct UnkStruct_71005077f8;
@@ -30,3 +31,5 @@ void fn_710050d150(UnkGrabAttack_A3_b68* self);
 extern UnkGrabArg_b61 g_unk_71726de5a0 __attribute__((visibility("hidden")));
 extern UnkGrabInputArg_b61 g_unk_71726de5d0 __attribute__((visibility("hidden")));
 extern void* g_unk_7101a479c8[];
+// Builds an array of four inline strings in `storage` and copies up to four of `strs` into it.
+void fn_7100505000(void* storage, const UnkInlineStr50* strs, u64 count);

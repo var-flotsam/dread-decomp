@@ -3,7 +3,7 @@
 #include "game/UnkTU58.h"
 #include "types.h"
 
-struct UnkMedia330;
+struct UnkMedia324;
 
 struct UnkMediaMode_b0217 {
     u8 pad_0x0[8];
@@ -27,7 +27,7 @@ struct UnkMediaLayout2_b0217 {
     u32 track_count;                // 0x68
 };
 
-void fn_7100220228(UnkMedia330* media, s64 limit) {
+void fn_7100220228(UnkMedia324* media, s64 limit) {
     UnkMediaLayout2_b0217* self = reinterpret_cast<UnkMediaLayout2_b0217*>(media);
     s64 rounds;
     if (self->mode && self->mode->kind == 4)

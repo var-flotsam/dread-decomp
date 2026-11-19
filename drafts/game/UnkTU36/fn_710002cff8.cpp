@@ -4,6 +4,7 @@
 #include <nn/os.h>
 
 #include "base/global/CFilePathStrId.h"
+#include "game/UnkUnit36Static.h"
 #include "types.h"
 
 namespace nn {
@@ -14,25 +15,12 @@ namespace diag::detail {
 }  // namespace diag::detail
 }  // namespace nn
 
-struct UnkUnit36Worker {
-    char* vtable;                 // +0x0
-    bool field_0x8;
-    bool field_0x9;
-    u32 field_0xc;
-    u8 pad_0x10[0x440];
-    u64 field_0x450;
-    u8 pad_0x458[8];
-    u64 field_0x460;
-    nn::os::ThreadType thread;    // +0x468
-    nn::os::EventType event;      // +0x628
-};
-
 extern char g_unk_7101a19f90[];
 extern u32 g_unk_7101d55000;
 extern u8 g_unk_7101d51000[];
 void fn_710002d0d8(void* self);
 
-void fn_710002cff8(UnkUnit36Worker* self) {
+void fn_710002cff8(UnkUnit36Static* self) {
     self->vtable = g_unk_7101a19f90 + 0x10;
     self->field_0x8 = true;
     self->field_0xc = 0;

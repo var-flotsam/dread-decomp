@@ -30,7 +30,7 @@ address,size,name,name_source,subsystem,status
 0x7100701ecc,244,CAIGotoPointNavigationState::SEntityTarget::refl_GetClass,reflection,game/ai,O
 0x7100701fc0,4,CAIGotoPointNavigationState::SEntityTarget::refl_AddFields,reflection,game/ai,O
 0x7100701fc4,380,CAIGotoPointNavigationState::SEntityTarget::refl_InitClass,reflection,game/ai,O
-0x7100702140,168,fn_7100702140,unknown,game/ai?,U
+0x7100702140,168,fn_7100702140,unknown,game/ai?,M
 0x71007021e8,80,fn_71007021e8,unknown,game/ai?,O
 0x7100702238,88,fn_7100702238,unknown,game/ai?,O
 0x7100702290,8,fn_7100702290,unknown,game/ai?,O
@@ -3229,7 +3229,7 @@ address,size,name,name_source,subsystem,status
 0x71007a9d8c,160,fn_71007a9d8c,unknown,engine/reflection?,O
 0x71007a9e2c,4,fn_71007a9e2c,unknown,unknown,O
 0x71007a9e30,48,fn_71007a9e30,unknown,unknown,O
-0x71007a9e60,880,fn_71007a9e60,unknown,engine/reflection?,U
+0x71007a9e60,880,fn_71007a9e60,unknown,engine/reflection?,O
 0x71007aa1d0,1016,fn_71007aa1d0,unknown,unknown,O
 0x71007aa5c8,56,fn_71007aa5c8,unknown,unknown,O
 0x71007aa600,4,fn_71007aa600,unknown,unknown,O
@@ -5297,7 +5297,7 @@ address,size,name,name_source,subsystem,status
 0x71007f865c,296,CFrozenComponent::CTunableFrozenComponent::refl_AddFields,reflection,game/components,O
 0x71007f8784,388,CFrozenComponent::CTunableFrozenComponent::refl_InitClass,reflection,game/components,O
 0x71007f8908,696,fn_71007f8908,unknown,game/components?,O
-0x71007f8bc0,448,fn_71007f8bc0,unknown,game/components?,U
+0x71007f8bc0,448,fn_71007f8bc0,unknown,game/components?,M
 0x71007f8d80,576,fn_71007f8d80,unknown,game/components?,O
 0x71007f8fc0,28,fn_71007f8fc0,unknown,game/components?,O
 0x71007f8fdc,44,fn_71007f8fdc,unknown,game/components?,O
@@ -5427,7 +5427,7 @@ address,size,name,name_source,subsystem,status
 0x71007fd8b0,212,fn_71007fd8b0,unknown,game/components?,O
 0x71007fd990,660,fn_71007fd990,unknown,game/components?,O
 0x71007fdc30,332,fn_71007fdc30,unknown,game/components?,U
-0x71007fdd80,352,fn_71007fdd80,unknown,game/components?,U
+0x71007fdd80,352,fn_71007fdd80,unknown,game/components?,O
 0x71007fdee0,264,fn_71007fdee0,unknown,game/components?,U
 0x71007fdff0,152,fn_71007fdff0,unknown,game/components?,O
 0x71007fe090,340,fn_71007fe090,unknown,game/components?,O

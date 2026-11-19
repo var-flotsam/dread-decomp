@@ -6,6 +6,7 @@
 
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkPolygonEdgeQuery.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -13,10 +14,6 @@ using base::math::CVector3D;
 
 // The nearest edge of a polygon to a point (src/base/spatial/UnkPolygon2D.cpp, which defines the types).
 struct UnkPolygon2D;
-using UnkPointFilter = std::function<bool(const CVector2D&)>;
-using UnkEdgeVisitor = std::function<void(u32, const UnkSegment2D&)>;
-void fn_7100117ba0(const UnkPolygon2D* polygon, const CVector2D* point, s32* edge, f32* t, CVector2D* closest,
-                   f32* distance, bool flag, UnkPointFilter filter, UnkEdgeVisitor visit);
 
 // The polygon's layout as src/base/spatial/UnkPolygon2D.cpp has it.
 struct UnkNavPath_ovb0128 {

@@ -4,6 +4,7 @@
 #include "game/CInputComponent.h"
 #include "game/CMovementComponent.h"
 #include "game/UnkTU108.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 struct UnkResetAI_l0fa940;

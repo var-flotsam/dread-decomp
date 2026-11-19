@@ -2,6 +2,7 @@
 // an edge's end, reports the neighbouring edge and which end it shares. Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "base/math/UnkSegment2D.h"
+#include "game/UnkPolygonEdgeQuery.h"
 #include "types.h"
 
 using base::math::CVector2D;
@@ -21,12 +22,12 @@ struct alignas(16) UnkEmptyCallback {
     UnkEmptyCallback() : callable(nullptr) {}
     UnkEmptyCallback(const UnkEmptyCallback&) {}
 };
-using UnkPointFilter = UnkEmptyCallback;
-using UnkEdgeVisitor = UnkEmptyCallback;
 
-struct UnkPolygon2D;
-void fn_7100117ba0(const UnkPolygon2D* polygon, const CVector2D* point, s32* edge, f32* t, CVector2D* closest,
-                   f32* distance, bool flag, UnkPointFilter filter, UnkEdgeVisitor visit);
+// fn_7100117ba0 (game/UnkPolygonEdgeQuery.h) as this caller calls it: the filter and the visitor are left
+// empty, passed in the empty-callback layout.
+using UnkEmptyEdgeQuery = void (*)(const UnkPolygon2D* polygon, const CVector2D* point, s32* edge, f32* t,
+                                   CVector2D* closest, f32* distance, bool flag, UnkEmptyCallback filter,
+                                   UnkEmptyCallback visit);
 
 static inline s32 EdgeCount(const UnkPolygon2D_l118124* p) {
     return p->count - (!p->closed & (p->count != 0));
@@ -35,8 +36,9 @@ static inline s32 EdgeCount(const UnkPolygon2D_l118124* p) {
 bool fn_7100118124(const UnkPolygon2D_l118124* polygon, const CVector2D* point, s32* edge, f32* t,
                    CVector2D* closest, f32* distance, s32* out_edge, f32* out_end) {
     CVector2D found = {};
-    fn_7100117ba0((const UnkPolygon2D*)polygon, point, edge, t, &found, distance, false, UnkPointFilter(),
-                  UnkEdgeVisitor());
+    reinterpret_cast<UnkEmptyEdgeQuery>(&fn_7100117ba0)(reinterpret_cast<const UnkPolygon2D*>(polygon), point, edge,
+                                                        t, &found, distance, false, UnkEmptyCallback(),
+                                                        UnkEmptyCallback());
     if (closest)
         closest->x = found.x, closest->y = found.y;
     if (!out_edge || !out_end)

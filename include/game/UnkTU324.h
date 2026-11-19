@@ -11,6 +11,8 @@ struct UnkRefObj;
 void fn_710021ea60(UnkRefObj* self);
 bool fn_710021eec0(UnkMediaInstance* instance, s32 state);  // Whether an instance is in `state`.
 u32 fn_710021f950(UnkMedia324* self);
+// Sets the state (when not negative) and tells the listeners unless it is 1; whether it told them.
+bool fn_710021f168(UnkMedia324* self, s32 state);
 void fn_710021fafc(UnkRefObj* self);
 void fn_71002204d8(void* table, u32 count);
 

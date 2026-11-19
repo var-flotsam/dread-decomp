@@ -20,7 +20,10 @@ struct UnkZiplineLinkTarget_b49;
 struct UnkZiplineLink_b49;
 UnkZiplineLinkTarget_b49** fn_71003b0c4c(UnkZiplineLink_b49*);
 void fn_71003ace0c(UnkNode*);
-void fn_71003ac388(void*);  // Derived classes call it as their base's destructor.
+struct UnkBossAI_l3ac388;
+void fn_71003ac388(UnkBossAI_l3ac388* self);  // The destructor; derived classes call it as their base's.
+void fn_71003ad414(void* self);  // An empty base step (a lone return) that derived classes call first.
+void fn_71003ad45c(UnkSelf* self, const void* event);  // The base event handler (it reads only the object).
 void fn_71003acb5c(UnkCoreXAI_A2_b73*);
 u32 fn_71003adaf8(UnkQuetzoaXAI_b58*, UnkQuetzoaXMessage_b58*);
 extern u8* g_unk_71726bc558;
