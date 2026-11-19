@@ -5,7 +5,19 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
-struct UnkAreaFXRecord_A5_b66;
+// The rectangle the area effect covers: its low corner, then its high corner. Copied field by field (a
+// user-written copy), so passed by value in memory.
+struct UnkAreaFXRecord_A5_b66 {
+    f32 field_0x0;
+    f32 field_0x4;
+    f32 field_0x8;
+    f32 field_0xc;
+
+    UnkAreaFXRecord_A5_b66(const UnkAreaFXRecord_A5_b66& other)
+        : field_0x0(other.field_0x0), field_0x4(other.field_0x4), field_0x8(other.field_0x8),
+          field_0xc(other.field_0xc) {}
+};
+
 struct UnkAreaFXResult_A5_b66;
 struct UnkSelf_af41;
 UnkAreaFXResult_A5_b66 fn_71007fdc30(UnkAreaFXRecord_A5_b66 record, void* a, void* b);

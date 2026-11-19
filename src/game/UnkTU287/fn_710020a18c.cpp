@@ -20,7 +20,7 @@ struct UnkWidgetMember {
     UnkWidgetMember(const UnkWidgetMember&) {}
 };
 
-struct UnkWidget {
+struct UnkWidget_l20a18c {
     void** vtable_0x0;
     void* field_0x8;
     u8 id_0x10[8];
@@ -41,9 +41,9 @@ struct UnkWidget {
     f32 offset_0x150[3];
 };
 
-typedef void (*UnkVf50)(UnkWidget*, int);
+typedef void (*UnkVf50)(UnkWidget_l20a18c*, int);
 
-void fn_710020a18c(UnkWidget* self, UnkWidgetArg* a) {
+void fn_710020a18c(UnkWidget_l20a18c* self, UnkWidgetArg* a) {
     self->field_0x8 = nullptr;
     self->vtable_0x0 = g_unk_7101a1f000 + 2;
     fn_71000003d4(self->id_0x10, "", true);

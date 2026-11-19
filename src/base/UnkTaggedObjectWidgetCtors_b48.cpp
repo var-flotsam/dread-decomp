@@ -11,7 +11,6 @@ struct UnkWidgetArg;
 void fn_71001f402c(UnkWidget* self, UnkWidgetArg* a);
 void fn_710020ae7c(UnkWidget* self, UnkWidgetArg* a);
 void fn_71001f2a08(UnkWidget* self, UnkWidgetArg* a);
-void fn_710020a18c(UnkWidget* self, UnkWidgetArg* a);
 void fn_71002094dc(UnkWidget* self, UnkWidgetArg* a);
 
 struct UnkTaggedWidgetObject {
@@ -53,8 +52,15 @@ void fn_71001431ec(UnkTaggedWidgetObject* self, UnkWidgetArg* arg) {
 // As src/base/spatial/UnkModelInstanceSet.cpp declares it (the argument is the object's name).
 struct UnkModelInstance;
 
+// The widget fn_710020a18c builds (src/game/UnkTU287/fn_710020a18c.cpp has its layout).
+struct UnkWidget_l20a18c;
+void fn_710020a18c(UnkWidget_l20a18c* self, UnkWidgetArg* a);
+static inline void ConstructWidget_l20a18c(UnkWidget* self, UnkWidgetArg* a) {
+    fn_710020a18c(reinterpret_cast<UnkWidget_l20a18c*>(self), a);
+}
+
 void fn_7100147c4c(UnkModelInstance* instance, const base::global::CStrId* name) {
-    ConstructTaggedWidget<fn_710020a18c, 0xfffe, 0x90cu << 16, &UnkTaggedWidgetObject::field_0x178>(
+    ConstructTaggedWidget<ConstructWidget_l20a18c, 0xfffe, 0x90cu << 16, &UnkTaggedWidgetObject::field_0x178>(
         reinterpret_cast<UnkTaggedWidgetObject*>(instance),
         reinterpret_cast<UnkWidgetArg*>(const_cast<base::global::CStrId*>(name)));
 }

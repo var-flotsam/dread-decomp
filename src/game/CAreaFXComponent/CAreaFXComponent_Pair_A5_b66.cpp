@@ -3,17 +3,6 @@
 #include "game/CAreaFXComponent.h"
 #include "types.h"
 
-struct UnkAreaFXRecord_A5_b66 {
-    u32 field_0x0;
-    u32 field_0x4;
-    u32 field_0x8;
-    u32 field_0xc;
-
-    UnkAreaFXRecord_A5_b66(const UnkAreaFXRecord_A5_b66& other)
-        : field_0x0(other.field_0x0), field_0x4(other.field_0x4), field_0x8(other.field_0x8),
-          field_0xc(other.field_0xc) {}
-};
-
 struct UnkAreaFXResult_A5_b66 {
     u64 field_0x0;
 

@@ -2,23 +2,12 @@
 // record: 0 for a surface along an axis or one facing away from the rectangle's centre, otherwise the target's
 // point moved along the surface by its angle, and 2 for a diagonal surface, 1 for any other. Names and
 // layouts are placeholders.
+#include "game/CAreaFXComponent.h"
 #include "types.h"
 
 extern "C" f32 fmodf(f32, f32);
 
 typedef u32 __attribute__((may_alias)) a_u32_ovb0081;
-
-// The rectangle: its low corner, then its high corner.
-struct UnkAreaFXRecord_A5_b66 {
-    f32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-
-    UnkAreaFXRecord_A5_b66(const UnkAreaFXRecord_A5_b66& other)
-        : field_0x0(other.field_0x0), field_0x4(other.field_0x4), field_0x8(other.field_0x8),
-          field_0xc(other.field_0xc) {}
-};
 
 struct UnkAreaFXResult_A5_b66;
 

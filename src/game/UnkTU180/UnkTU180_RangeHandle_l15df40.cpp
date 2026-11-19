@@ -2,36 +2,8 @@
 // handle (an index plus 15) to `out`; false when absent or its block is empty. Names and layouts
 // are placeholders.
 #include "base/UnkCloneCalls.h"
+#include "game/UnkUniformTables.h"
 #include "types.h"
-
-struct UnkUniformBlock {
-    u8 pad_0x00[0x38];
-    u64 field_0x38;  // size in bytes
-    u8 pad_0x40[0x98];
-};
-static_assert(sizeof(UnkUniformBlock) == 0xd8);
-
-
-struct UnkUniformRangeEntry {
-    u8 pad_0x00[0x38];
-    u32 block;
-    u32 index;
-};
-static_assert(sizeof(UnkUniformRangeEntry) == 0x40);
-
-struct UnkUniformRangeTag;
-
-struct UnkUniformTable {
-    u8 pad_0x00[0x78];
-    base::UnkKeyedArray<UnkUniformRangeTag, u64, UnkUniformRangeEntry> ranges;
-    u8 pad_0x94[0x1c];
-    UnkUniformBlock* blocks;
-};
-static_assert(__builtin_offsetof(UnkUniformTable, blocks) == 0xb0);
-
-struct UnkUniformTables {
-    UnkUniformTable* tables[3];
-};
 
 struct UnkUniformKey {
     u8 pad_0x00[0x30];
@@ -62,8 +34,8 @@ bool fn_710015df40(UnkUniformTables* self, u32 kind, u64* out, UnkUniformKey** k
     }
     if (!table)
         return false;
-    UnkUniformRangeEntry* entry = table->ranges.Find(id);
-    if (entry == table->ranges.End())
+    UnkUniformRangeEntry* entry = table->ranges_by_key.Find(id);
+    if (entry == table->ranges_by_key.End())
         return false;
     if (!table->blocks[entry->block].field_0x38)
         return false;

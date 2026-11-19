@@ -3,39 +3,10 @@
 // the global flag changed. Names and layouts are placeholders.
 #include "game/UnkTU172.h"
 #include "game/UnkTU180.h"
+#include "game/UnkUniformTables.h"
 #include "types.h"
 
 extern "C" void* memcpy(void* dst, const void* src, u64 n);
-
-struct UnkUniformBlock {
-    u8 pad_0x00[0x38];
-    u64 field_0x38;     // size in bytes
-    void* buffers[10];  // one per frame
-    u8 pad_0x90[0x40];
-    u8 field_0xd0;      // changed
-    u8 pad_0xd1[7];
-};
-static_assert(sizeof(UnkUniformBlock) == 0xd8);
-
-struct UnkUniformRange {
-    u8 pad_0x00[0x30];
-    u32 offset;
-    u32 size;
-    u32 block;
-    u8 pad_0x3c[4];
-};
-static_assert(sizeof(UnkUniformRange) == 0x40);
-
-struct UnkUniformTable {
-    u8 pad_0x00[0xa8];
-    UnkUniformRange* ranges;
-    UnkUniformBlock* blocks;
-    u8 field_0xb8;  // changed
-};
-
-struct UnkUniformTables {
-    UnkUniformTable* tables[3];
-};
 
 // NON_MATCHING(minor): the same instructions in another order or with other registers; passes tools/equiv_test.py.
 void fn_710015e2d0(UnkUniformTables* self, u32 kind, u64 handle, u32 count, u32 stride, const void* data) {
