@@ -8,21 +8,15 @@
 #include "game/CTeamManager/CTunableTeamManager.h"
 #include "game/UnkAnimationComponent.h"
 #include "game/UnkBufferStringPool.h"
+#include "game/behaviortree/CAttackAction.h"
+#include "game/behaviortree/CBehavior.h"
+#include "game/behaviortree/CHyperDashAttackAction.h"
 #include "game/behaviortree/CSwitchBetweenAIModesAction.h"
 #include "types.h"
 
 #include <math.h>
 
-// Signatures as other files declare them.
-struct UnkAttackActor_ovb0128;
-struct UnkCancelOwner_ovb0128;
-struct UnkSelf;
 struct UnkEffectSink;
-void* fn_71003729a8(UnkAttackActor_ovb0128* actor);
-void fn_7100395474(UnkSelf* behavior, void* record, bool value);
-
-// The blackboard record the run clears when the dash cannot start.
-extern u8 g_unk_71726c8f08[];
 
 template <class T>
 struct UnkOpt_l449e48 {
@@ -66,8 +60,6 @@ struct UnkHyperDashAttackAction_l449e48 {
     s32 direction;  // 0x80
 };
 
-void* fn_7100449868(UnkHyperDashAttackAction_l449e48* self);
-bool fn_7100449bdc(UnkHyperDashAttackAction_l449e48* self, void* target, bool flag);
 void fn_710044a010(UnkHyperDashAttackAction_l449e48* self);
 void fn_710044ae1c(UnkHyperDashAttackAction_l449e48* self);
 
@@ -106,8 +98,9 @@ u32 fn_7100449e48(UnkHyperDashAttackAction_l449e48* self) {
         return 2;
     }
     if (!self->started) {
-        void* target = fn_7100449868(self);
-        self->started = fn_7100449bdc(self, target, self->field_0x70);
+        void* target = fn_7100449868(reinterpret_cast<UnkHyperDashNode_ovb0095*>(self));
+        self->started = fn_7100449bdc(reinterpret_cast<UnkHyperDashAttackAction_l4496a8*>(self), target,
+                                      self->field_0x70);
         if (self->started)
             return 2;
         char* instance = g_unk_71726b2398;
