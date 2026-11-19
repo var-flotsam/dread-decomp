@@ -5,43 +5,18 @@
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "game/CEmmyGrabSamusAttack.h"
+#include "game/UnkInlineStr50.h"
 
 using namespace unk_static_init;
 
-// A string with 0x20 bytes of inline storage (0x50 bytes in all).
-void fn_7100504fdc(void* self);  // its destructor, as registered
+void fn_7100504fdc(void* self);  // the inline string's destructor, as registered
 
-struct UnkInlineStr50Raw {
-    u8 str[0x30];
-    void** vtable;
-    u8 pad_0x38[8];
-    u64 field_0x40;
-    u32 field_0x48;
-    u8 pad_0x4c[4];
-};
-
-__attribute__((always_inline)) inline void BuildInlineStr50(UnkInlineStr50Raw* s, const char* str) {
-    auto* string = reinterpret_cast<base::global::CRntString*>(s);
-    fn_710007e6e4(string, reinterpret_cast<base::UnkAllocator*>(&s->vtable));
-    s->vtable = g_unk_7101a479c8 + 2;
-    s->field_0x40 = 0;
-    s->field_0x48 = 0;
-    fn_710007e77c(string, str);
-}
-
-__attribute__((always_inline)) inline void InitInlineStr50(UnkInlineStr50Raw* s, const char* str) {
-    BuildInlineStr50(s, str);
+// Builds a static inline string and registers its destructor.
+__attribute__((always_inline)) inline void InitInlineStr50(UnkInlineStr50* s, const char* str) {
+    s->Init();
+    fn_710007e77c(s->Str(), str);
     __cxa_atexit(fn_7100504fdc, s, g_unk_7101a19000);
 }
-
-// A temporary of the same layout.
-struct UnkInlineStr50 : UnkInlineStr50Raw {
-    UnkInlineStr50(const char* str) { BuildInlineStr50(this, str); }
-    ~UnkInlineStr50() {
-        fn_710007ed40(reinterpret_cast<base::global::CRntString*>(this));
-        fn_710007ecd4(reinterpret_cast<base::global::CRntString*>(this));
-    }
-};
 
 __attribute__((always_inline)) inline void InitRntString(base::UnkNamedEntry* s, const char* str) {
     fn_710007e704(s, str);
@@ -74,10 +49,10 @@ struct UnkStatics_71005113b0 {
     base::UnkNamedEntry field_0x148;
     base::UnkNamedEntry field_0x178;
     base::UnkNamedEntry field_0x1a8;
-    UnkInlineStr50Raw field_0x1d8;
-    UnkInlineStr50Raw field_0x228;
-    UnkInlineStr50Raw field_0x278;
-    UnkInlineStr50Raw field_0x2c8;
+    UnkInlineStr50 field_0x1d8;
+    UnkInlineStr50 field_0x228;
+    UnkInlineStr50 field_0x278;
+    UnkInlineStr50 field_0x2c8;
     u8 pad_0x318[0xe0];
     u8 field_0x3f8[8];
     u8 pad_0x400[0x130];
@@ -85,7 +60,6 @@ struct UnkStatics_71005113b0 {
 };
 extern UnkStatics_71005113b0 g_unk_71726de558 __attribute__((visibility("hidden")));
 extern char g_unk_71726de550[];
-void fn_7100505000(void* self, const UnkInlineStr50* strs, u32 count);
 void fn_710050512c(void* self);  // its destructor, as registered
 
 void fn_71005113b0() {
