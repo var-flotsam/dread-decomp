@@ -6,8 +6,10 @@
 #include "types.h"
 
 struct UnkAIState_l6fe894;
+struct UnkTU1118Resettable;
 struct UnkReadyObject_l6fe894;
 struct UnkNavKind2_b66a4;
 struct UnkNavPath_b66a4;
 void fn_71006fc7c4(UnkAIState_l6fe894* self, UnkReadyObject_l6fe894* ready);
 UnkNavPath_b66a4* fn_71006fce10(UnkNavKind2_b66a4* obj);
+void fn_71006fdba4(UnkTU1118Resettable* self);  // Resets the path-following state.
