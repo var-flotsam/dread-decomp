@@ -6,26 +6,20 @@
 #include "base/UnkRefHandle.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CAIManager/CTunableAIManager.h"
 #include "game/CBossAIComponent.h"
+#include "game/CCharClassScorpiusAIComponent.h"
+#include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkManager_71726af468.h"
 #include "game/UnkTU437.h"
 #include "game/navmesh/SNavMeshPath.h"
 #include "game/sound/CMusicManager.h"
+#include "game/sound/CMusicManager/CTunableMusicManager.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStrIdBase;
-
-struct UnkMgr_0xf18;
-void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
-
-struct UnkTimedRef;
-struct UnkWeakTarget;
-bool fn_7100da9018(UnkTimedRef* self, UnkWeakTarget* target, f32 time);
-
-extern UnkStrIdBase g_unk_7172703ef8;
-extern UnkStrIdBase g_unk_7172703f00;
 
 struct UnkAmiiboComposition_laf0d38;
 
@@ -39,10 +33,6 @@ struct UnkAmiiboCallback_laf0d38 {
         : object(object), function(function) {}
     UnkAmiiboCallback_laf0d38(const UnkAmiiboCallback_laf0d38& other);
 };
-
-struct UnkAmiiboMessages_laf0d38;
-void fn_7100b5fd9c(UnkAmiiboMessages_laf0d38* self, const CStrId& text, UnkAmiiboCallback_laf0d38 callback,
-                   bool a, bool b);
 
 // What the cutscene message calls when it closes.
 void fn_71006986f8(UnkAmiiboComposition_laf0d38* self);
@@ -101,7 +91,6 @@ static_assert(__builtin_offsetof(UnkScorpiusAI_l693150, stage3_target) == 0x14dd
 static_assert(__builtin_offsetof(UnkScorpiusAI_l693150, stage2_listener) == 0x14e50, "");
 static_assert(__builtin_offsetof(UnkScorpiusAI_l693150, stage3_listener) == 0x14e68, "");
 
-void fn_71003ad45c(UnkScorpiusAI_l693150* self, const UnkScorpiusEvent_l693150* event);
 void fn_71006935a4(UnkScorpiusAI_l693150* self, s32 value, bool flag);
 void fn_7100692c8c(UnkScorpiusAI_l693150* self, s32 value, bool flag);
 
@@ -158,7 +147,7 @@ static inline UnkAmiiboComposition_laf0d38* AsCallbackObject(UnkScorpiusAI_l6931
 
 void fn_7100693150(UnkScorpiusAI_l693150* self, const UnkScorpiusEvent_l693150* event) {
     fn_7100fdbd84(MusicManager(), 1);
-    fn_71003ad45c(self, event);
+    fn_71003ad45c(reinterpret_cast<UnkSelf*>(self), event);
     if (event->id == g_unk_7172703ef8.data) {
         Listen(&self->stage2_listener);
         if (Hand(&self->stage2_target, 0.26f))

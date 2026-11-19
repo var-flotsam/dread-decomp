@@ -20,7 +20,8 @@ struct UnkSelf {
     UnkSubject* field_0x14908;
 };
 
-void fn_71003ad45c(UnkSelf* self) {
+// The base event handler: `event` is passed on by the derived handlers but not read here.
+void fn_71003ad45c(UnkSelf* self, const void* event) {
     if (self->field_0x14908->field_0x50c)
         return;
     s32 value = self->field_0x1140;
