@@ -195,7 +195,6 @@ void fn_7100559518(UnkEmmyStateAI_b0193* self);
 void fn_71005596c4(UnkEmmyStateAI_b0193* self);
 void fn_7100559c58(UnkEmmyStateAI_b0193* self);
 struct UnkHandleAI_b0193;  // the same AI, as fn_7100541e64 (below) reads it
-void fn_7100541e64(UnkHandleAI_b0193* self);
 
 bool fn_71005593f0(UnkEmmyStateAI_b0193* self, bool force, u32 id) {
     fn_7100559518(self);

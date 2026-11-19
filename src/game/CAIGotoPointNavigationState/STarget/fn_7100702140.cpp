@@ -1,12 +1,12 @@
 // CAIGotoPointNavigationState::STarget unit: constructor of the target object (vtable 0x7101a6bb48), on its base
 // (fn_7100703814), with the sub-object vtable at +0xb0, cleared state and the path query at +0x140. Names and
 // layouts are placeholders.
+#include "game/CAIGotoPointNavigationState/STarget.h"
 #include "game/UnkTU1124.h"
 #include "game/UnkTU1130.h"
 #include "types.h"
 
 struct UnkGotoTargetQuery;
-extern void* g_unk_7101a6bb48[];
 extern void* g_unk_7101a25b38[];
 
 struct __attribute__((packed)) UnkGotoTargetCounters {

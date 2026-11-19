@@ -26,7 +26,6 @@ struct UnkRecord;
 struct UnkEmmyAI_b60;
 struct UnkEmmyRelaxAI_b59;
 struct UnkHandleAI_b0193;
-void fn_7100541e64(UnkHandleAI_b0193* self);
 void fn_7100dacb50(UnkEmmyRegistry_b55* registry, void* ai);
 void fn_71002b1de0(void* group, void* entry);
 

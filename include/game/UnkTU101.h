@@ -24,3 +24,4 @@ extern const UnkSoundHandle g_unk_7108b6c460;  // The empty handle.
 void fn_7100105bac(UnkPlayingSound_ovb0074* sound, f32 value);
 void fn_7100105c9c(UnkPlayingSound_ovb0074* sound, f32 value);
 void fn_7100105cf0(UnkPlayingSound_ovb0074* sound, f32 value);
+extern s32 g_unk_7108b6c470 __attribute__((visibility("hidden")));

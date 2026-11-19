@@ -9,7 +9,6 @@
 #include "game/CFrozenComponent.h"
 #include "types.h"
 
-extern void* g_unk_7101a740d0[];
 extern void* g_unk_7101a74318[];
 void fn_71007fb5f8(void* owner);
 

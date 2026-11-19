@@ -4,6 +4,7 @@
 // 0x7100a8fbd8-0x7100a969f0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/reflection/CClass.h"
+#include "base/math/CVector4D.h"
 #include "types.h"
 #include "base/reflection/TypeObject.h"
 
@@ -18,3 +19,5 @@ void fn_7100a95868(UnkCallbackSetVector* v, const UnkCallbackSetElem* value);
 void fn_7100a959a0(UnkCallbackSetVector* v, u32 size);
 namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");
+extern base::math::CVector4D g_unk_7101a92ec0;
+extern base::math::CVector4D g_unk_7172751c18;

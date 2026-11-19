@@ -17,7 +17,6 @@ struct UnkToggle;
 struct UnkMatrixNode;
 UnkListedObj* fn_7100e0b9a0(char* self);
 void fn_7100e0bf48(char* self, UnkListedObj* obj);
-void fn_710020c4b8(UnkToggle* self, bool value);
 
 struct UnkAimLightData_l34e22c {
     u8 pad_0x0[0x30];
