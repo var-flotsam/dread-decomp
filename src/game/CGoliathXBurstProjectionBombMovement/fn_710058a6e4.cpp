@@ -41,8 +41,6 @@ struct UnkStatics_710058c890 {
     u8 field_0x60[0x10];
     u8 field_0x70[8];
 };
-extern UnkFilePathStrIdBase g_unk_71726e5cb0;  // the bomb effect's path
-extern UnkFilePathStrIdBase g_unk_71726e5cb8;  // the tracker effect's path
 
 // The effect object the model manager hands out, as its virtual calls see it (as in
 // src/game/CMeleeComponent/CMeleeComponent_Checks_ovb0041.cpp).
