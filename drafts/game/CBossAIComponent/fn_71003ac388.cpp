@@ -8,16 +8,14 @@
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CBossAIComponent.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU441.h"
 #include "types.h"
-
-extern void* g_unk_7101a29438[];  // CBossAIComponent's vtable
 
 struct UnkItemBase_71011a91c4;
 struct UnkRenderItemPair_b64a2 {
     UnkItemBase_71011a91c4* first;
     UnkItemBase_71011a91c4* second;
 };
-void fn_710035d4ec(UnkRenderItemPair_b64a2* self);
 
 struct UnkBossCallbacks_l3ac388;
 template <>
@@ -61,7 +59,9 @@ static_assert(__builtin_offsetof(UnkBossAI_l3ac388, fixed) == 0x147e8, "layout")
 static_assert(__builtin_offsetof(UnkBossAI_l3ac388, items) == 0x148f0, "layout");
 static_assert(__builtin_offsetof(UnkBossAI_l3ac388, list_b) == 0x14958, "layout");
 
-void fn_71003ac388(UnkBossAI_l3ac388* self) {
+// Derived classes call it as their base's destructor, with their own type.
+void fn_71003ac388(void* object) {
+    auto* self = static_cast<UnkBossAI_l3ac388*>(object);
     self->vtable = g_unk_7101a29438 + 2;
     self->list_b.~UnkBossCallbackList_l3ac388();
     self->id_c.~UnkStrIdMemberOf();
