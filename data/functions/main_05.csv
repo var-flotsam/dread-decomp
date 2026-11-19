@@ -148,7 +148,7 @@ address,size,name,name_source,subsystem,status
 0x7100504e54,4,CEmmyGrabSamusAttack::refl_AddFields,reflection,game/ai,O
 0x7100504e58,388,CEmmyGrabSamusAttack::refl_InitClass,reflection,game/ai,O
 0x7100504fdc,36,fn_7100504fdc,unknown,game/ai?,O
-0x7100505000,300,fn_7100505000,unknown,game/ai?,U
+0x7100505000,300,fn_7100505000,unknown,game/ai?,O
 0x710050512c,100,fn_710050512c,unknown,game/ai?,O
 0x7100505190,1460,fn_7100505190,unknown,game/ai?,U
 0x7100505744,844,fn_7100505744,unknown,game/ai?,O
@@ -827,7 +827,7 @@ address,size,name,name_source,subsystem,status
 0x71005416bc,244,fn_71005416bc,unknown,game/ai?,m
 0x71005417b0,176,fn_71005417b0,unknown,game/ai?,O
 0x7100541860,276,fn_7100541860,unknown,game/ai?,O
-0x7100541974,1108,fn_7100541974,unknown,unknown,U
+0x7100541974,1108,fn_7100541974,unknown,unknown,O
 0x7100541dc8,28,fn_7100541dc8,unknown,game/ai?,O
 0x7100541de4,80,fn_7100541de4,unknown,ai/behaviortree?,O
 0x7100541e34,48,fn_7100541e34,unknown,script/bindings?,O
@@ -2289,7 +2289,7 @@ address,size,name,name_source,subsystem,status
 0x710058a4c0,312,fn_710058a4c0,unknown,game?,U
 0x710058a5f8,112,fn_710058a5f8,unknown,game?,O
 0x710058a668,124,fn_710058a668,unknown,game?,O
-0x710058a6e4,792,fn_710058a6e4,unknown,game?,U
+0x710058a6e4,792,fn_710058a6e4,unknown,game?,O
 0x710058a9fc,2736,fn_710058a9fc,unknown,game?,U
 0x710058b4ac,320,fn_710058b4ac,unknown,game?,O
 0x710058b5ec,956,fn_710058b5ec,unknown,game?,O
