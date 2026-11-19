@@ -85,6 +85,14 @@ base::reflection::UnkReflField* AddReflectedField(base::reflection::CClass* cls,
                                               const base::reflection::CType* type, u64 offset, s64 unk_4,
                                               s64 unk_5);
 
+// The names of an associative collection's entry fields, "key" and "element", built once at start-up.
+extern base::global::CStrId g_unk_7101d5a450;
+extern base::global::CStrId g_unk_7101d5a458;
+namespace base::reflection {
+inline base::global::CStrId& KeyFieldName() { return g_unk_7101d5a450; }
+inline base::global::CStrId& ElementFieldName() { return g_unk_7101d5a458; }
+}  // namespace base::reflection
+
 // Add a function named `name` to a class; null if the class already has one by that name.
 base::reflection::UnkReflFunction* AddReflectedFunction(base::reflection::CClass* cls, const base::global::CStrId& name);
 

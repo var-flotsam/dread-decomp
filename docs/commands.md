@@ -346,6 +346,7 @@ python tools/progress.py --slice boot --handoff
 python tools/progress.py --slice-from CGameBlackboard::refl_GetClass
 python tools/progress.py --origin [--version 2.1.0]
 python tools/progress.py --quality [--version 2.1.0]
+python tools/progress.py --fuzzy [--version 2.1.0]
 python tools/progress.py --units
 ```
 
@@ -429,6 +430,7 @@ The machine test for tier 2: is a hand-written function that does not match equi
 python tools/equiv_test.py --version 2.1.0 FILE.cpp [...]   # the non-matching functions these files define
 python tools/equiv_test.py --version 2.1.0 --minor          # every file under src/ with NON_MATCHING(minor)
 python tools/equiv_test.py --version 2.1.0 --drafts         # the `registers or order` rows of drafts/INDEX.csv
+python tools/equiv_test.py --version 2.1.0 --all-drafts     # every row of drafts/INDEX.csv, any difference (--any-kind)
 ```
 
 ### `tools/ref_check.py`

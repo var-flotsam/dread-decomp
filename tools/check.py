@@ -4,7 +4,8 @@
 Function status codes follow zeldaret/botw (nx-decomp-tools); see docs/references.md:
   O  matching                 (byte-identical, relocated fields masked)
   m  non-matching (minor)     source annotated `// NON_MATCHING(minor): <reason>`
-  M  non-matching (major)     source annotated `// NON_MATCHING(major): <reason>`
+  M  non-matching (major)     source annotated `// NON_MATCHING(major): <reason>`, or
+                              `// NON_MATCHING(functional): <reason>` (tier 3, with a current `behaves` verdict)
   W  work in progress         compiled, does not match, not annotated
   U  not decompiled           (set by tools/gen_functions_csv.py)
   L  library                  (set by tools/gen_functions_csv.py; --update never changes it)
@@ -53,7 +54,9 @@ Verified equivalence (tier 2 of CLAUDE.md's completion): data/equivalence.csv ho
 tools/equiv_test.py, each with the digest of the code it judged. Every `pass` row must still describe
 the tree: its function is defined in src/ as NON_MATCHING(minor) and its code has that digest. A row
 that does not prints `EQUIV  <addr>  <why>` and the check fails: run tools/equiv_test.py --write on the
-file again, or take the row out (a function that now matches needs none).
+file again, or take the row out (a function that now matches needs none). The same holds for a `behaves` row
+(tools/equiv_test.py --any-kind) and a function marked NON_MATCHING(functional): the row must be current and
+the function M, and a function so marked must have such a row, since the mark claims it.
 
 Wrong addresses in functions that do not match (tools/ref_check.py): the relocation check above needs
 matching bytes, so a non-matching function is compared as a set: what it calls and refers to against what
@@ -96,7 +99,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CXXFILT = hostenv.cxxfilt()
 COMPILER = buildcfg.COMPILER  # project toolchain and flags: tools/buildcfg.py
 
-ANNOTATION = re.compile(r"//\s*NON_MATCHING\((minor|major)\)")
+ANNOTATION = re.compile(r"//\s*NON_MATCHING\((minor|major|functional)\)")
 DEFINITION = re.compile(r"^[A-Za-z_][\w:<>,\*& ]*?\b([A-Za-z_][\w:]*)\s*\(")
 # Top-level src/ directories whose relocation mismatches are reported but do not demote. Empty
 # since 2026-10-24: the generators verify relocation targets themselves and the Phase 3 samples
@@ -107,17 +110,19 @@ CACHE_VERSION = 1
 DIFF_CHUNK = 256  # objects diffed per llvm-cxxfilt call
 
 
-def annotations(src: Path) -> dict[str, str]:
-    """Map function name (last component of the qualified name) -> 'm' or 'M'."""
+def annotations(src: Path, functional: bool = False) -> dict[str, str]:
+    """Map function name (last component of the qualified name) -> 'm' or 'M' (functional counts as M; with
+    `functional`, only the NON_MATCHING(functional) ones, as 'F')."""
     out, pending = {}, None
     for line in src.read_text(encoding="utf-8").splitlines():
         a = ANNOTATION.search(line)
         if a:
-            pending = "m" if a.group(1) == "minor" else "M"
+            pending = {"minor": "m", "major": "M", "functional": "F" if functional else "M"}[a.group(1)]
             continue
         d = DEFINITION.match(line)
         if d and pending and not line.rstrip().endswith(";"):
-            out[d.group(1).split("::")[-1]] = pending
+            if not functional or pending == "F":
+                out[d.group(1).split("::")[-1]] = pending
             pending = None
     return out
 
@@ -480,10 +485,12 @@ def wrong_references(original: asmdiff.Original, by_name: dict[str, list[int]],
 
 
 def stale_verdicts(table: dict[int, dict], statuses: dict[str, str], where: dict[str, list[tuple[Path, str]]],
-                   digest_of=None) -> list[tuple[str, str]]:
-    """[(address, why)] for the `pass` rows of data/equivalence.csv that no longer describe the tree.
-    `statuses` maps an address to its status in src/, `where` to the (object, symbol) pairs defining it;
-    `digest_of(object, symbol)` returns equiv_test.digest of that function (the objects are read by default)."""
+                   digest_of=None, functional: set[str] | frozenset[str] = frozenset()) -> list[tuple[str, str]]:
+    """[(address, why)] for the `pass` and `behaves` rows of data/equivalence.csv that no longer describe the
+    tree, and for the functions marked NON_MATCHING(functional) (`functional`, addresses) without a current
+    `behaves` row. `statuses` maps an address to its status in src/, `where` to the (object, symbol) pairs
+    defining it; `digest_of(object, symbol)` returns equiv_test.digest of that function (the objects are read
+    by default)."""
     objects: dict[Path, dict[str, str]] = {}
 
     def read(obj: Path, symbol: str) -> str | None:
@@ -495,20 +502,30 @@ def stale_verdicts(table: dict[int, dict], statuses: dict[str, str], where: dict
     out = []
     for a in sorted(table):
         row = table[a]
-        if row["verdict"] != "pass":
+        verdict = row["verdict"]
+        if verdict not in ("pass", "behaves"):
             continue
         addr = f"{a:#x}"
         status = statuses.get(addr)
-        if status != "m":
+        want = "m" if verdict == "pass" else "M"
+        if status != want:
             out.append((addr, "no function of src/ is defined at it" if status is None else
-                        f"its status is {status}, not m: the verdict belongs to other code"))
+                        f"its status is {status}, not {want}: the verdict belongs to other code"))
+            continue
+        if verdict == "behaves" and addr not in functional:
+            out.append((addr, "a `behaves` verdict, but the function is not marked NON_MATCHING(functional)"))
             continue
         if row["rules"] != str(equiv_test.RULES):
             out.append((addr, f"judged under rules {row['rules']}, the test is at {equiv_test.RULES}"))
             continue
         digests = [digest_of(obj, symbol) for obj, symbol in where.get(addr, [])]
-        if not any(d is not None and equiv_test.current(row, d) for d in digests):
+        if not any(d is not None and equiv_test.current(row, d, verdict) for d in digests):
             out.append((addr, "its code, or what it refers to, changed since it was judged"))
+    for addr in sorted(functional):
+        row = table.get(int(addr, 16))
+        if statuses.get(addr) == "M" and (row is None or row["verdict"] != "behaves"):
+            out.append((addr, "marked NON_MATCHING(functional) without a `behaves` verdict "
+                              "(tools/equiv_test.py --any-kind --write <file>)"))
     return out
 
 
@@ -547,8 +564,10 @@ def main() -> int:
                                args.no_reloc, cache)
     where: dict[str, list[tuple[Path, str]]] = {}  # address -> (object, symbol) of every definition
     note_of: dict[str, str] = {}  # address of a NON_MATCHING(minor) function -> its note
+    functional: set[str] = set()  # addresses of NON_MATCHING(functional) functions
     for src, obj in pairs:
         notes = annotations(src)
+        marked = annotations(src, functional=True) if "functional)" in src.read_text(encoding="utf-8") else {}
         texts = minor_notes(src) if "m" in notes.values() else {}
         report_only = src.relative_to(ROOT / "src").parts[0] in REPORT_ONLY
         for e in entries[src]:
@@ -568,6 +587,8 @@ def main() -> int:
             results[addr] = (status, e["name"], e["score"])
             if status == "m" and short in texts:
                 note_of[addr] = texts[short]
+            if status == "M" and short in marked:
+                functional.add(addr)
             defined_in.setdefault(addr, set()).add(src)
             where.setdefault(addr, []).append((obj, e["symbol"]))
     print(f"cache: {len(pairs) - reused} of {len(pairs)} objects diffed, {reused} reused")
@@ -621,7 +642,8 @@ def main() -> int:
         print(f"{len(refs)} wrong addresses in non-matching functions (`python tools/ref_check.py --version "
               f"{args.version} <file>` shows each function's whole comparison)")
 
-    stale = stale_verdicts(equiv_test.read_table(), {a: v[0] for a, v in results.items()}, where)
+    stale = stale_verdicts(equiv_test.read_table(), {a: v[0] for a, v in results.items()}, where,
+                           functional=functional)
     for addr, why in stale:
         print(f"EQUIV  {addr}  {why}")
     if stale:

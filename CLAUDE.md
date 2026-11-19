@@ -35,6 +35,11 @@ read it whole). Forks: `CONTRIBUTING.md`. The maintainer: `docs/maintaining.md`.
   does not count. *Oracle-verified* (a text the port's P-code oracle accepts) is tier 3 with its own figure: a
   test on sampled inputs, not a proof. It decides what the port may run, so a readable draft that passes
   replaces its lift there, and it still owes a match.
+  *Functional* (owner, 2026-11-19) is tier 3 too, with its own figure: a draft of any difference that
+  `equiv_test.py --any-kind` says `behaves` (same results, full coverage, on every input tried) lands in `src/`
+  as `// NON_MATCHING(functional)` (status M) through `drafts.py promote --functional`; `check.py` fails the
+  mark without a current verdict. It does not count as done. `progress.py --fuzzy` adds closeness as partial
+  credit, never as completion.
 - **Order: behaviour, then readability, then bytes.** Among texts that behave as the original does, keep the
   readable one even when it does not match: a function that matches only with a union around a member, an
   empty barrier or an inlining attribute is committed readable, as tier 2. A text that reads better but behaves

@@ -144,10 +144,11 @@ class Stale(unittest.TestCase):
         return {"address": "0x7100000100", "digest": equiv_test.digest(self.code), "verdict": "pass",
                 "rules": str(equiv_test.RULES), "detail": "", **kw}
 
-    def stale(self, table, statuses, code=None):
+    def stale(self, table, statuses, code=None, functional=frozenset()):
         where = {"0x7100000100": [(self.obj, "fn_7100000100")]}
         return self.check.stale_verdicts(table, statuses, where,
-                                         lambda obj, symbol: equiv_test.digest(code or self.code))
+                                         lambda obj, symbol: equiv_test.digest(code or self.code),
+                                         functional=functional)
 
     def test_a_pass_of_the_code_in_the_tree_is_current(self):
         self.assertEqual(self.stale({0x7100000100: self.row()}, {"0x7100000100": "m"}), [])
@@ -160,6 +161,20 @@ class Stale(unittest.TestCase):
         self.assertIn("no function of src/", self.stale(table, {})[0][1])
         old = {0x7100000100: self.row(rules=str(equiv_test.RULES - 1))}
         self.assertIn("judged under rules", self.stale(old, {"0x7100000100": "m"})[0][1])
+
+    def test_a_behaves_row_needs_a_functional_mark_and_current_code(self):
+        table = {0x7100000100: self.row(verdict="behaves")}
+        marked = {"0x7100000100"}
+        self.assertEqual(self.stale(table, {"0x7100000100": "M"}, functional=marked), [])
+        self.assertIn("not marked NON_MATCHING(functional)", self.stale(table, {"0x7100000100": "M"})[0][1])
+        self.assertIn("its status is m, not M", self.stale(table, {"0x7100000100": "m"}, functional=marked)[0][1])
+        self.assertIn("changed since", self.stale(table, {"0x7100000100": "M"}, words(0xD65F03C0), marked)[0][1])
+
+    def test_a_functional_mark_without_a_behaves_row_fails(self):
+        self.assertIn("without a `behaves` verdict",
+                      self.stale({}, {"0x7100000100": "M"}, functional={"0x7100000100"})[0][1])
+        table = {0x7100000100: self.row(verdict="fail")}
+        self.assertEqual(len(self.stale(table, {"0x7100000100": "M"}, functional={"0x7100000100"})), 1)
 
     def test_rows_that_are_not_a_pass_are_not_checked(self):
         table = {0x7100000100: self.row(verdict="inconclusive", digest="other")}
@@ -309,3 +324,39 @@ class MoreInputsEqual(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Mutants(unittest.TestCase):
+    """The small breakages a `behaves` verdict must reject (equiv_test.mutants)."""
+    TEXT = ("int fn_7100000100(int a, int b);\n"
+            "int fn_7100000100(int a, int b) {\n"
+            "    // 5 in a comment\n"
+            "    if (a < 3) return b - a;\n"
+            "    return a == 2 ? Box<int>::get(\"s1\") : p->q;\n"
+            "}\n")
+
+    def changed(self):
+        span = equiv_test.body_span(self.TEXT, 0x7100000100)
+        return [next(m for m, o in zip(t.splitlines(), self.TEXT.splitlines()) if m != o).strip()
+                for t in equiv_test.mutants(self.TEXT, span)]
+
+    def test_the_body_of_the_definition_not_the_declaration(self):
+        lo, hi = equiv_test.body_span(self.TEXT, 0x7100000100)
+        self.assertTrue(self.TEXT[lo:hi].strip().startswith("// 5"))
+
+    def test_constants_comparisons_and_subtractions_change_one_at_a_time(self):
+        got = self.changed()
+        self.assertIn("if (a <= 3) return b - a;", got)
+        self.assertIn("if (a < 2) return b - a;", got)
+        self.assertIn("if (a < 3) return a - b;", got)
+        self.assertIn('return a != 2 ? Box<int>::get("s1") : p->q;', got)
+
+    def test_comments_strings_templates_and_arrows_are_left_alone(self):
+        for line in self.changed():
+            self.assertNotIn("6 in a comment", line)
+            self.assertNotIn('"s2"', line)
+            self.assertNotIn("Box<=int", line)
+            self.assertIn("->q", line if "->" in line else "->q")
+
+    def test_no_definition_no_span(self):
+        self.assertIsNone(equiv_test.body_span("int fn_7100000100(int a);\n", 0x7100000100))
