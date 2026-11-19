@@ -55,6 +55,7 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710006c598,468,drafts/game/nn/time/fn_710006c598.cpp,operations,9.4,105,lean-ob1,ours folds add into pre-index ldp for the last point (1-instr shift skews the positional score); rest of tail
 0x710006c76c,472,drafts/game/nn/time/fn_710006c76c.cpp,control flow,0.0,118,lean-ob1,count reload after unlink needs union around count (UnkSList form; not allowed); add folded into pre-index ldp
 0x710006e7a4,348,drafts/game/UnkTU46/fn_710006e7a4.cpp,registers or order,92.0,7,overnight,
+0x710006f914,376,drafts/game/UnkTU47/fn_710006f914.cpp,match,100.0,0,lean-r1,matches only with whole-element __builtin_memcpy copies of one-field structs (the count reload after each copy); held as; held: matches only with its element copies written as __builtin_memcpy (a steering form)
 0x710006fbb0,952,drafts/game/UnkTU47/fn_710006fbb0.cpp,control flow,8.7,217,lean-r2kg,found path returns via x21 (one merged return phi) where the original loads x0 and branches to a tail-merged e
 0x7100070204,160,drafts/game/UnkTU47/fn_7100070204.cpp,control flow,56.8,15,lean-b2,second index search: original hoists i=0 before the count test; ours splits an empty-table block
 0x7100070400,156,drafts/game/UnkTU47/fn_7100070400.cpp,control flow,38.1,23,lean-b2,second key lookup (index form; values hoisted) and end compare shape differ
