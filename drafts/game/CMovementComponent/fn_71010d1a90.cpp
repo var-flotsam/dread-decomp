@@ -4,6 +4,7 @@
 #include <math.h>
 
 #include "game/CComponent.h"
+#include "game/UnkMovementComponent.h"
 #include "types.h"
 
 struct UnkMoveActor_l0d1a90 {
@@ -15,7 +16,7 @@ struct UnkMoveActor_l0d1a90 {
     f32 z;  // 0x64
 };
 
-struct UnkMovement_l0d1a90 {
+struct UnkMovementComponent {
     u8 pad_0x0[0x30];
     UnkMoveActor_l0d1a90* owner;  // 0x30
     u8 pad_0x38[0x70];
@@ -30,7 +31,7 @@ struct UnkMovement_l0d1a90 {
     f32 prev_vel_x, prev_vel_y, prev_vel_z;  // 0x11c
 };
 
-void fn_71010d1a90(UnkMovement_l0d1a90* self, f32 dt) {
+void fn_71010d1a90(UnkMovementComponent* self, f32 dt) {
     fn_71010c424c(reinterpret_cast<UnkParent*>(self));
     self->prev_vel_x = self->vel_x;
     self->prev_vel_y = self->vel_y;

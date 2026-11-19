@@ -1,6 +1,7 @@
 // Unit 110 (malloc). Fills a vertex array with the four corners of a quad taken from a pair of
 // corner points, and an index array with its two triangles (winding chosen by a flag).
 // Names and layouts are placeholders.
+#include "game/UnkTU110.h"
 #include "types.h"
 
 struct UnkQuadAllocator {
