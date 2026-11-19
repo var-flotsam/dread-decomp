@@ -3,6 +3,7 @@
 // layouts are placeholders.
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
@@ -66,7 +67,6 @@ struct UnkGrappleCollider_ovb0047 {
 
 void fn_7100ac7db8(UnkGrappleBeamHit_ovb0047* self, UnkReflObject* tiles, void* a, void* b,
                    UnkGrappleHitData_ovb0047* hit);
-s32 fn_7100ac7f08(UnkGrappleBeamHit_ovb0047* self, void* object, UnkGrappleHitData_ovb0047* hit, void* extra);
 UnkReflObject* fn_710034dd54(void* object);
 void fn_710081c220(UnkGrappleBeamHit_ovb0047* self, UnkGrappleHitData_ovb0047* hit, UnkReflObject* point);
 

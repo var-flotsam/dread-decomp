@@ -345,7 +345,7 @@ address,size,name,name_source,subsystem,status
 0x7100a0f964,556,fn_7100a0f964,unknown,game/components?,U
 0x7100a0fb90,72,fn_7100a0fb90,unknown,game/components?,O
 0x7100a0fbd8,236,fn_7100a0fbd8,unknown,game/components?,U
-0x7100a0fcc4,128,fn_7100a0fcc4,unknown,game/components?,U
+0x7100a0fcc4,128,fn_7100a0fcc4,unknown,game/components?,M
 0x7100a0fd44,28,fn_7100a0fd44,unknown,game/components?,O
 0x7100a0fd60,132,fn_7100a0fd60,unknown,game/components?,O
 0x7100a0fde4,8,CDemolitionBlockSonarTargetComponent::refl_Equals,reflection,game/components,O
@@ -1901,7 +1901,7 @@ address,size,name,name_source,subsystem,status
 0x7100a47e00,264,fn_7100a47e00,unknown,unknown,O
 0x7100a47f08,2000,fn_7100a47f08,unknown,unknown,U
 0x7100a486d8,700,fn_7100a486d8,unknown,game?,U
-0x7100a48994,460,fn_7100a48994,unknown,unknown,U
+0x7100a48994,460,fn_7100a48994,unknown,unknown,M
 0x7100a48b60,220,fn_7100a48b60,unknown,game/components?,O
 0x7100a48c3c,428,fn_7100a48c3c,unknown,game?,O
 0x7100a48de8,504,fn_7100a48de8,unknown,game/components?,U
@@ -3993,7 +3993,7 @@ address,size,name,name_source,subsystem,status
 0x7100aa2570,396,fn_7100aa2570,unknown,game/components?,O
 0x7100aa26fc,340,fn_7100aa26fc,unknown,game/components?,O
 0x7100aa2850,248,fn_7100aa2850,unknown,game/components?,O
-0x7100aa2948,644,fn_7100aa2948,unknown,game/components?,U
+0x7100aa2948,644,fn_7100aa2948,unknown,game/components?,M
 0x7100aa2bcc,4,fn_7100aa2bcc,unknown,game/components?,O
 0x7100aa2bd0,292,fn_7100aa2bd0,unknown,game/components?,O
 0x7100aa2cf4,660,fn_7100aa2cf4,unknown,game/components?,U
@@ -4521,7 +4521,7 @@ address,size,name,name_source,subsystem,status
 0x7100abb290,88,fn_7100abb290,unknown,game?,O
 0x7100abb2e8,352,fn_7100abb2e8,unknown,game?,O
 0x7100abb448,1680,fn_7100abb448,unknown,game?,U
-0x7100abbad8,164,fn_7100abbad8,unknown,game?,U
+0x7100abbad8,164,fn_7100abbad8,unknown,game?,M
 0x7100abbb7c,28,fn_7100abbb7c,unknown,game?,O
 0x7100abbb98,132,fn_7100abbb98,unknown,game?,O
 0x7100abbc1c,8,CMissileMovement::refl_Equals,reflection,game,O
@@ -4772,7 +4772,7 @@ address,size,name,name_source,subsystem,status
 0x7100acae54,8,CWeightActivablePropComponent::refl_Equals,reflection,game/components,O
 0x7100acae5c,8,CWeightActivablePropComponent::refl_Hash,reflection,game/components,O
 0x7100acae64,28,CWeightActivablePropComponent::refl_TypeOf,reflection,game/components,O
-0x7100acae80,224,CWeightActivablePropComponent::refl_Construct,reflection,game/components,U
+0x7100acae80,224,CWeightActivablePropComponent::refl_Construct,reflection,game/components,M
 0x7100acaf60,4,CWeightActivablePropComponent::refl_CopyConstruct,reflection,game/components,O
 0x7100acaf64,4,CWeightActivablePropComponent::refl_MoveConstruct,reflection,game/components,O
 0x7100acaf68,12,CWeightActivablePropComponent::refl_Destroy,reflection,game/components,O

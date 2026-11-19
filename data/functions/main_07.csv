@@ -1026,7 +1026,7 @@ address,size,name,name_source,subsystem,status
 0x71007366f8,380,fn_71007366f8,unknown,game/characters?,O
 0x7100736874,380,fn_7100736874,unknown,game/characters?,O
 0x71007369f0,380,fn_71007369f0,unknown,game/characters?,O
-0x7100736b6c,736,fn_7100736b6c,unknown,game/characters?,U
+0x7100736b6c,736,fn_7100736b6c,unknown,game/characters?,M
 0x7100736e4c,604,fn_7100736e4c,unknown,game/characters?,O
 0x71007370a8,36,fn_71007370a8,unknown,game/characters?,O
 0x71007370cc,900,fn_71007370cc,unknown,game/characters?,U
@@ -1201,7 +1201,7 @@ address,size,name,name_source,subsystem,status
 0x7100746f1c,1184,CSwarmControllerComponent::CTunableSwarmDamage::refl_AddFields,reflection,game/components,O
 0x71007473bc,388,CSwarmControllerComponent::CTunableSwarmDamage::refl_InitClass,reflection,game/components,O
 0x7100747540,696,fn_7100747540,unknown,game/components?,O
-0x71007477f8,492,fn_71007477f8,unknown,game/components?,U
+0x71007477f8,492,fn_71007477f8,unknown,game/components?,M
 0x71007479e4,1176,fn_71007479e4,unknown,game/components?,O
 0x7100747e7c,36,fn_7100747e7c,unknown,game/components?,O
 0x7100747ea0,112,fn_7100747ea0,unknown,game/components?,O

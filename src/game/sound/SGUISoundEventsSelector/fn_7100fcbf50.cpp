@@ -19,7 +19,6 @@ struct UnkStatics_7100fcbf50 {
 extern UnkStatics_7100fcbf50 g_unk_71729f02e8 __attribute__((visibility("hidden")));
 extern char g_unk_71729f0174[];
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0178;
 void fn_7100fc9084(UnkEnumType* type, const CStrId& name);
 void fn_7100fc91a8(void* type);  // the type's destructor, as registered
 extern UnkStateKey g_unk_71729f0180;

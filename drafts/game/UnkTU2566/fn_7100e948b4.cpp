@@ -190,6 +190,7 @@ static const UnkMinimapVec2& SavedSize(const UnkMinimapOwner* self) {
     return *reinterpret_cast<const UnkMinimapVec2*>(&self->unk_0xd641c4[4]);
 }
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 UnkMinimapRect fn_7100e948b4(UnkMinimapOwner* self, bool flag) {
     if (fn_710002fb70(self->timer) != flag)
         return SavedView(self);

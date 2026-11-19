@@ -3,6 +3,7 @@
 #include <new>
 #include "base/UnkAtExit.h"
 #include "base/global/CStrId.h"
+#include "game/UnkTU170.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -41,7 +42,6 @@ struct UnkHandleSet {
 };
 static_assert(sizeof(UnkHandleSet) == 0x90, "");
 
-void fn_71001537c0(UnkPool* pool);
 // The unit's array destructors (pools, then the two handle-set arrays).
 __attribute__((visibility("hidden"))) void fn_71001580c0(void*);
 __attribute__((visibility("hidden"))) void fn_71001580f0(void*);
@@ -77,6 +77,7 @@ struct UnkUnit176Statics {
 static_assert(__builtin_offsetof(UnkUnit176Statics, slots) == 0x2c, "UnkUnit176Statics layout");
 extern UnkUnit176Statics g_unk_716e29c6d4 __attribute__((visibility("hidden")));
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_7100158130() {
     UnkUnit176Statics& s = g_unk_716e29c6d4;
     s.header = 6;

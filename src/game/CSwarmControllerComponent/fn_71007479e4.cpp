@@ -5,6 +5,7 @@
 #include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
+#include "game/CSwarmControllerComponent.h"
 #include "game/UnkCallbackSet_7101a20950.h"
 #include "game/UnkComponent.h"
 #include "game/UnkTU341.h"
@@ -16,8 +17,6 @@ using base::global::CRntVector;
 using base::global::CStrId;
 
 struct UnkSwarmCtrl_ovb0063;
-
-extern void* g_unk_7101a6dc58[];  // the controller's vtable
 
 // An array that owns its buffer: the elements are destroyed and the buffer freed with it.
 template <class T>

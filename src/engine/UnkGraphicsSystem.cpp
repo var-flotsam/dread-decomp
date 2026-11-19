@@ -27,6 +27,7 @@
 #include "game/UnkTU174.h"
 #include "game/UnkTU177.h"
 #include "game/UnkTU178.h"
+#include "game/UnkTU179.h"
 #include "game/UnkTU180.h"
 #include "game/UnkTU181.h"
 #include "game/UnkTU182.h"
@@ -1336,10 +1337,8 @@ void fn_71001c9718(UnkGraphicsSystem* self, UnkGfxSettings* settings, void* /*un
 
 // The draw modes (fn_71001cb604).
 void fn_710015a7d0(u32 value);
-s32 fn_710015c460();
 // The location of the uniform named `name` of a program's stage, 0 when it has none.
 // Sets `count` matrices of a uniform at `location` of a program state.
-f32 fn_7100132fb0();  // the display's aspect correction
 struct UnkGfx_l1ccdd8;  // the graphics system's layout in game/UnkTU259/fn_71001ccdd8.cpp
 void fn_71001ccdd8(UnkGfx_l1ccdd8* self);
 void fn_71001cd3a0(UnkGraphicsSystem* self);

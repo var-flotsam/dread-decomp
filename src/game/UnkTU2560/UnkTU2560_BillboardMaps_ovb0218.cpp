@@ -10,6 +10,7 @@
 #include "base/global/CStrId.h"
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU243.h"
+#include "game/UnkTU2560.h"
 #include "game/UnkTU83.h"
 #include "types.h"
 
@@ -19,7 +20,6 @@ extern "C" int rand();
 
 struct UnkPart48;
 struct UnkUnit2560Record;
-void fn_7100e1d538(UnkUnit2560Record* self);
 struct UnkCharClassBillboardLists_ovb0020;
 void fn_71007302e4(UnkCharClassBillboardLists_ovb0020* self, char* item);
 

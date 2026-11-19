@@ -4,10 +4,9 @@
 // placeholders.
 #include "base/reflection/UnkReflCast.h"
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CChozoCommanderKiGrabAttack.h"
 
-extern void* g_unk_7101a35b28[];  // the class's vtable
 extern void* g_unk_7101a35c98[];  // the entries' base vtable
-extern void* g_unk_7101a35cf0[];  // the property list's vtable
 
 struct UnkKiGrabBlock_b0266 {
     u64 v[8];

@@ -3,6 +3,7 @@
 // state button does (fn_7100af65b4). Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "game/CInventoryComponent.h"
+#include "game/GUI/CChangeMenuStateButton.h"
 #include "game/GUI/CPopUpComposition.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkGameManager.h"
@@ -13,7 +14,6 @@
 using base::global::CStrId;
 
 struct UnkObj_7100af65b4;
-void fn_7100af65b4(UnkObj_7100af65b4* self);
 bool fn_7100f0ec58(char* effects);
 bool fn_7100f0ed04(char* effects);
 

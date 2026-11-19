@@ -196,7 +196,7 @@ address,size,name,name_source,subsystem,status
 0x7100808574,36,fn_7100808574,unknown,game/components?,O
 0x7100808598,11976,fn_7100808598,unknown,game/components?,U
 0x710080b460,4468,fn_710080b460,unknown,game/components?,U
-0x710080c5d4,880,fn_710080c5d4,unknown,game/components?,U
+0x710080c5d4,880,fn_710080c5d4,unknown,game/components?,M
 0x710080c944,120,fn_710080c944,unknown,game/components?,O
 0x710080c9bc,112,fn_710080c9bc,unknown,game/components?,O
 0x710080ca2c,1444,fn_710080ca2c,unknown,game/components?,U
@@ -2367,7 +2367,7 @@ address,size,name,name_source,subsystem,status
 0x71008711ac,388,CInputComponent::CTunableInputComponent::refl_InitClass,reflection,game/components,O
 0x7100871330,696,fn_7100871330,unknown,game/components?,O
 0x71008715e8,492,fn_71008715e8,unknown,game/components?,U
-0x71008717d4,1448,fn_71008717d4,unknown,game/components?,U
+0x71008717d4,1448,fn_71008717d4,unknown,game/components?,M
 0x7100871d7c,88,fn_7100871d7c,unknown,game/components?,O
 0x7100871dd4,536,fn_7100871dd4,unknown,game/components?,O
 0x7100871fec,100,fn_7100871fec,unknown,game/components?,O

@@ -2648,7 +2648,7 @@ address,size,name,name_source,subsystem,status
 0x710098db04,36,fn_710098db04,unknown,game/player?,O
 0x710098db28,324,fn_710098db28,unknown,game/player?,O
 0x710098dc6c,192,fn_710098dc6c,unknown,game/player?,O
-0x710098dd2c,128,fn_710098dd2c,unknown,game/player?,U
+0x710098dd2c,128,fn_710098dd2c,unknown,game/player?,M
 0x710098ddac,192,fn_710098ddac,unknown,game/player?,O
 0x710098de6c,456,fn_710098de6c,unknown,game/player?,U
 0x710098e034,12,CSamusAirMovementState::CParams::refl_Equals,reflection,game/player,O
@@ -3891,7 +3891,7 @@ address,size,name,name_source,subsystem,status
 0x71009ca7e8,4,CPhotoModeCameraCtrl::refl_AddFields,reflection,game,O
 0x71009ca7ec,352,CPhotoModeCameraCtrl::refl_InitClass,reflection,game,O
 0x71009ca94c,176,fn_71009ca94c,unknown,game?,O
-0x71009ca9fc,1448,fn_71009ca9fc,unknown,game?,U
+0x71009ca9fc,1448,fn_71009ca9fc,unknown,game?,M
 0x71009cafa4,88,fn_71009cafa4,unknown,game?,O
 0x71009caffc,96,fn_71009caffc,unknown,game?,O
 0x71009cb05c,516,fn_71009cb05c,unknown,game?,O

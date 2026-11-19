@@ -19,7 +19,6 @@ using UnkGuiObj = UnkGuiDisplayObject;
 
 struct UnkStateSink;
 struct UnkStateKey;
-extern UnkStateKey g_unk_71729f0178;
 
 // A string id's pooled data as these reads see it.
 struct UnkTutoIdData_ovb0125 {

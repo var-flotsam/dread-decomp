@@ -91,17 +91,14 @@ extern char g_unk_71727c7fe0[];
 // The minimap's icon kinds, 0x71727c8030 to 0x71727c83d0 (game/UnkMinimapIconKinds.h declares the
 // ones other files read): fn_7100e68cac copies a kind's name into it and adds it to the list of all
 // of them.
-extern CStrId g_unk_71727c8030;
 void fn_7100e68cac(CStrId* kind, const CStrId& name);
 void fn_7100e68dd0(void* kind);  // the kind's destructor, as registered
 extern CStrId g_unk_71727c8038;
-extern CStrId g_unk_71727c8040;
 extern CStrId g_unk_71727c8048;
 extern CStrId g_unk_71727c8050;
 extern CStrId g_unk_71727c8060;
 extern CStrId g_unk_71727c8068;
 extern CStrId g_unk_71727c8070;
-extern CStrId g_unk_71727c8078;
 extern CStrId g_unk_71727c8080;
 extern CStrId g_unk_71727c8088;
 extern CStrId g_unk_71727c8090;

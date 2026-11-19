@@ -4,14 +4,13 @@
 #include "base/global/CRntString.h"
 #include "base/global/CStrId.h"
 #include "game/CCharClassComponent.h"
+#include "game/CCharClassSwarmControllerComponent.h"
 #include "game/CDamageSourceFactor.h"
 #include "game/UnkTU32.h"
 #include "types.h"
 
 using base::global::CRntString;
 using base::global::CStrId;
-
-extern void* g_unk_7101a6d688[];  // The class's vtable.
 
 // Up to ten ids stored in place after their count.
 struct UnkSwarmIdList_l736e4c {

@@ -22,3 +22,4 @@ extern UnkObject_0x130 g_unk_716e275530;
 extern UnkObject_0x130 g_unk_716e275660;
 void fn_7100153a88(UnkHeap_71001541a0* pool, void* ptr);  // Frees through the heap.
 void* fn_7100153a10(UnkGfxHeap* heap, void* old, u64 size, u64 align);
+void fn_71001537c0(UnkPool* pool);

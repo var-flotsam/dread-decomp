@@ -139,6 +139,7 @@ struct UnkTU1118Resettable {
     UnkTU1118State state;                            // 0x100
 };
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_71006fdba4(UnkTU1118Resettable* self) {
     self->callback.Run(self->field_0x30);
     self->state = UnkTU1118State();

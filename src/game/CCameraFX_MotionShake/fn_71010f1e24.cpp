@@ -4,6 +4,7 @@
 // then runs the base step. Names and layouts are placeholders.
 #include "base/global/CStrId.h"
 #include "base/math/CVectorOps.h"
+#include "game/CCameraFX_Shake.h"
 #include "game/UnkTU53.h"
 #include "types.h"
 
@@ -12,7 +13,6 @@ using base::math::CVector3D;
 
 struct UnkCameraShake_ovb0108;
 struct UnkShakePos_ovb0108;
-f32 fn_71010f3f20(UnkCameraShake_ovb0108* self, const UnkShakePos_ovb0108* pos, f32 scale);
 
 struct UnkMotionShake_l0f1e24 {
     u8 pad_0x0[0x18];
@@ -30,9 +30,6 @@ struct UnkMotionShake_l0f1e24 {
     CStrId curve;  // 0x60
 };
 static_assert(__builtin_offsetof(UnkMotionShake_l0f1e24, curve) == 0x60, "");
-
-void fn_71010f3eb0(UnkMotionShake_l0f1e24* self, void* camera, CVector3D* pos, CVector3D* target, void* arg4,
-                   void* arg5, f32 dt);
 
 static inline f32 Saturate(f32 t) {
     return !(t <= 0.0f) ? (!(t >= 1.0f) ? t : 1.0f) : 0.0f;

@@ -100,11 +100,11 @@ bool fn_71006dfa88(UnkVulkranBall_l6dfa88* self, UnkVulkranBallOther_l6dfa88* ot
         return fn_7100ac4ec0(reinterpret_cast<UnkObj*>(self), other, a2, a3, a4, a5);
 
     f32 vx = self->velocity_x;
-    f32 vy = self->velocity_y;
-    f32 vz = self->velocity_z;
     UnkActor* owner = self->owner;
     f32 px = owner->field_0x44;
     f32 py = owner->field_0x54;
+    f32 vy = self->velocity_y;
+    f32 vz = self->velocity_z;
     f32 pz = owner->field_0x64;
     f32 length = sqrtf(vx * vx + vy * vy + vz * vz);
     self->field_0x3b0 = -1;

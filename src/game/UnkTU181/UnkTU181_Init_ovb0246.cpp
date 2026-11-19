@@ -5,6 +5,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/UnkGraphicsState.h"
+#include "game/UnkTU170.h"
 #include "game/UnkTU172.h"
 #include "game/UnkTU180.h"
 #include "game/UnkTU182.h"
@@ -16,7 +17,6 @@ struct UnkObject_0x130;
 struct UnkGfxHeap;
 struct UnkPool;
 
-void fn_71001537c0(UnkPool* pool);
 void fn_71001537d4(UnkPool* pool);
 UnkObject_0x130* fn_7100153a90(s32 index);
 void fn_7100094798(void* vector);

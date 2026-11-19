@@ -18,6 +18,7 @@ struct UnkMapPoint {
     UnkApproxPos pos;
 };
 
+// NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 bool fn_7100eacd7c(UnkMapPoint* a, UnkMapPoint* b) {
     if (a->owner == b->owner) {
         return a->pos == b->pos;

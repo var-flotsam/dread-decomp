@@ -933,7 +933,7 @@ address,size,name,name_source,subsystem,status
 0x7100551ce0,4,fn_7100551ce0,unknown,unknown,O
 0x7100551ce4,180,fn_7100551ce4,unknown,unknown,O
 0x7100551d98,180,fn_7100551d98,unknown,unknown,O
-0x7100551e4c,192,fn_7100551e4c,unknown,engine/reflection?,U
+0x7100551e4c,192,fn_7100551e4c,unknown,engine/reflection?,M
 0x7100551f0c,188,fn_7100551f0c,unknown,engine/reflection?,U
 0x7100551fc8,472,fn_7100551fc8,unknown,unknown,U
 0x71005521a0,372,fn_71005521a0,unknown,game/characters?,O
@@ -2406,7 +2406,7 @@ address,size,name,name_source,subsystem,status
 0x710058fd58,640,CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent::refl_AddFields,reflection,game/characters,O
 0x710058ffd8,388,CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent::refl_InitClass,reflection,game/characters,O
 0x710059015c,696,fn_710059015c,unknown,game/characters?,O
-0x7100590414,136,fn_7100590414,unknown,game/characters?,U
+0x7100590414,136,fn_7100590414,unknown,game/characters?,M
 0x710059049c,168,fn_710059049c,unknown,game/characters?,O
 0x7100590544,28,fn_7100590544,unknown,game/characters?,O
 0x7100590560,128,fn_7100590560,unknown,game/characters?,O
@@ -2680,7 +2680,7 @@ address,size,name,name_source,subsystem,status
 0x710059b8d4,580,fn_710059b8d4,unknown,game/ai?,U
 0x710059bb18,448,fn_710059bb18,unknown,game/ai?,O
 0x710059bcd8,16,fn_710059bcd8,unknown,game/ai?,O
-0x710059bce8,260,fn_710059bce8,unknown,game/ai?,U
+0x710059bce8,260,fn_710059bce8,unknown,game/ai?,M
 0x710059bdec,184,fn_710059bdec,unknown,game/ai?,O
 0x710059bea4,424,fn_710059bea4,unknown,game/ai?,U
 0x710059c04c,376,fn_710059c04c,unknown,game/ai?,O

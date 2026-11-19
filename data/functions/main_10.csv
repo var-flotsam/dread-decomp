@@ -23,7 +23,7 @@ address,size,name,name_source,subsystem,status
 0x71010008ec,60,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Destroy,reflection,engine/reflection,O
 0x7101000928,356,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_CopyAssign,reflection,engine/reflection,O
 0x7101000a8c,180,base::reflection::KeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_MoveAssign,reflection,engine/reflection,O
-0x7101000b40,316,fn_7101000b40,unknown,engine/reflection?,U
+0x7101000b40,316,fn_7101000b40,unknown,engine/reflection?,M
 0x7101000c7c,80,fn_7101000c7c,unknown,engine/reflection?,O
 0x7101000ccc,56,fn_7101000ccc,unknown,engine/reflection?,O
 0x7101000d04,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TBossMusicTrack>>::refl_Equals,reflection,engine/reflection,O
@@ -1242,7 +1242,7 @@ address,size,name,name_source,subsystem,status
 0x710103c1f4,168,fn_710103c1f4,unknown,audio?,O
 0x710103c29c,20,fn_710103c29c,unknown,audio?,O
 0x710103c2b0,136,fn_710103c2b0,unknown,unknown,O
-0x710103c338,168,fn_710103c338,unknown,audio?,U
+0x710103c338,168,fn_710103c338,unknown,audio?,M
 0x710103c3e0,16,fn_710103c3e0,unknown,unknown,O
 0x710103c3f0,24,fn_710103c3f0,unknown,unknown,O
 0x710103c408,60,fn_710103c408,unknown,engine/reflection?,O
@@ -1504,7 +1504,7 @@ address,size,name,name_source,subsystem,status
 0x71010477f0,408,fn_71010477f0,unknown,engine/reflection?,O
 0x7101047988,420,fn_7101047988,unknown,engine/reflection?,O
 0x7101047b2c,380,fn_7101047b2c,unknown,unknown,O
-0x7101047ca8,512,fn_7101047ca8,unknown,script/bindings?,U
+0x7101047ca8,512,fn_7101047ca8,unknown,script/bindings?,M
 0x7101047ea8,396,fn_7101047ea8,unknown,unknown,O
 0x7101048034,588,fn_7101048034,unknown,script/bindings?,U
 0x7101048280,84,fn_7101048280,unknown,script/bindings?,O
@@ -2386,7 +2386,7 @@ address,size,name,name_source,subsystem,status
 0x7101068980,412,fn_7101068980,unknown,gui?,O
 0x7101068b1c,356,fn_7101068b1c,unknown,unknown,O
 0x7101068c80,132,fn_7101068c80,unknown,unknown,U
-0x7101068d04,108,fn_7101068d04,unknown,unknown,U
+0x7101068d04,108,fn_7101068d04,unknown,unknown,M
 0x7101068d70,524,fn_7101068d70,unknown,game/components?,U
 0x7101068f7c,444,fn_7101068f7c,unknown,game/components?,U
 0x7101069138,360,fn_7101069138,unknown,game/components?,U
@@ -2395,7 +2395,7 @@ address,size,name,name_source,subsystem,status
 0x71010694f4,1400,fn_71010694f4,unknown,unknown,U
 0x7101069a6c,2832,fn_7101069a6c,unknown,game/components?,U
 0x710106a57c,668,fn_710106a57c,unknown,unknown,O
-0x710106a818,120,fn_710106a818,unknown,unknown,U
+0x710106a818,120,fn_710106a818,unknown,unknown,M
 0x710106a890,316,fn_710106a890,unknown,unknown,O
 0x710106a9cc,2232,fn_710106a9cc,unknown,unknown,U
 0x710106b284,56,fn_710106b284,unknown,game/components?,O
@@ -3413,7 +3413,7 @@ address,size,name,name_source,subsystem,status
 0x710109b1a0,540,lua_bind::AddEmmyMissionLogEntry,string,script/bindings,O
 0x710109b3c0,968,lua_bind::AddDialogMissionLogEntry,string,script/bindings,U
 0x710109b790,212,lua_bind::SetSamusMenuCompositionLuaCallbackOnClosed,string,script/bindings,O
-0x710109b870,188,fn_710109b870,unknown,script/bindings?,U
+0x710109b870,188,fn_710109b870,unknown,script/bindings?,M
 0x710109b92c,100,fn_710109b92c,unknown,script/bindings?,O
 0x710109b990,84,fn_710109b990,unknown,script/bindings?,O
 0x710109b9f0,1184,fn_710109b9f0,unknown,script/bindings?,O
@@ -4357,7 +4357,7 @@ address,size,name,name_source,subsystem,status
 0x71010d8f70,92,fn_71010d8f70,unknown,game/player?,O
 0x71010d8fcc,140,fn_71010d8fcc,unknown,game/player?,U
 0x71010d9058,1180,fn_71010d9058,unknown,game/player?,U
-0x71010d94f4,120,fn_71010d94f4,unknown,game/player?,U
+0x71010d94f4,120,fn_71010d94f4,unknown,game/player?,M
 0x71010d956c,204,fn_71010d956c,unknown,game/player?,O
 0x71010d9638,316,fn_71010d9638,unknown,game/player?,O
 0x71010d9774,328,fn_71010d9774,unknown,game/player?,U
@@ -4397,7 +4397,7 @@ address,size,name,name_source,subsystem,status
 0x71010dc968,160,fn_71010dc968,unknown,game/player?,O
 0x71010dca08,120,fn_71010dca08,unknown,game/player?,O
 0x71010dca80,48,fn_71010dca80,unknown,game/player?,O
-0x71010dcab0,204,fn_71010dcab0,unknown,game/player?,U
+0x71010dcab0,204,fn_71010dcab0,unknown,game/player?,M
 0x71010dcb7c,220,fn_71010dcb7c,unknown,game/player?,O
 0x71010dcc58,20,fn_71010dcc58,unknown,game/player?,O
 0x71010dcc6c,12,fn_71010dcc6c,unknown,game/player?,O
@@ -4518,7 +4518,7 @@ address,size,name,name_source,subsystem,status
 0x71010e537c,48,fn_71010e537c,unknown,unknown,O
 0x71010e53ac,48,fn_71010e53ac,unknown,game?,O
 0x71010e53dc,280,fn_71010e53dc,unknown,unknown,U
-0x71010e54f4,280,fn_71010e54f4,unknown,game/ai?,U
+0x71010e54f4,280,fn_71010e54f4,unknown,game/ai?,M
 0x71010e560c,1776,fn_71010e560c,unknown,unknown,U
 0x71010e5cfc,168,fn_71010e5cfc,unknown,unknown,O
 0x71010e5da4,660,fn_71010e5da4,unknown,unknown,O
@@ -4777,7 +4777,7 @@ address,size,name,name_source,subsystem,status
 0x71010f26c0,124,fn_71010f26c0,unknown,game?,O
 0x71010f273c,132,fn_71010f273c,unknown,game?,O
 0x71010f27c0,344,fn_71010f27c0,unknown,game?,O
-0x71010f2918,512,fn_71010f2918,unknown,game?,U
+0x71010f2918,512,fn_71010f2918,unknown,game?,m
 0x71010f2b18,8,fn_71010f2b18,unknown,game?,O
 0x71010f2b20,28,fn_71010f2b20,unknown,game?,O
 0x71010f2b3c,8,CCameraFX_RandShake::refl_Equals,reflection,game,O

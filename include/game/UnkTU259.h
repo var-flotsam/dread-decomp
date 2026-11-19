@@ -47,3 +47,4 @@ void fn_71001ce514(UnkGfxO_b0154* self);
 void fn_71001cf9ec(UnkGfxJ_b0154* self);
 void fn_71001cfe44(UnkGfxJ_b0154* self);
 extern __attribute__((visibility("hidden"))) u8 g_unk_716e595bb8[];
+extern f32 g_unk_7101a1e720[] __attribute__((visibility("hidden")));

@@ -1303,7 +1303,7 @@ address,size,name,name_source,subsystem,status
 0x7101230a88,44,fn_7101230a88,unknown,unknown,O
 0x7101230ab4,48,fn_7101230ab4,unknown,unknown,O
 0x7101230ae4,116,fn_7101230ae4,unknown,unknown,O
-0x7101230b58,128,fn_7101230b58,unknown,unknown,U
+0x7101230b58,128,fn_7101230b58,unknown,unknown,M
 0x7101230bd8,84,nn::atk::detail::driver::WaveSoundPlayer::vf_0x0,rtti,middleware/nn-atk,L
 0x7101230c2c,92,fn_7101230c2c,unknown,middleware/nn-atk?,L
 0x7101230c88,92,fn_7101230c88,unknown,middleware/nn-atk?,L
