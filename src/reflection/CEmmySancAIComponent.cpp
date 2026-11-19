@@ -20,6 +20,9 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
@@ -28,7 +31,6 @@ void fn_71005003fc();
 void fn_7100500260(UnkReflFunction* fn);
 void fn_71005004a4();
 extern base::reflection::CType g_unk_717269bf08;
-extern base::reflection::CType g_unk_717269bb48;
 namespace CEmmySancAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -39,10 +41,10 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("StopSancShutterPerceptionModifier", &base::reflection::TypeObject<void>::object, 0, fn_71005004a4);
     UnkReflField* field0 = AddReflectedField(cls, CStrId("tFast4LegTransformationMagnet", true), &g_unk_717269bf08, 0x2a700, -1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpForceEmmyPerceptionVisionConeOffShape", true), &g_unk_717269bb48, 0x2a730, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("wpForceEmmyPerceptionVisionConeOffShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x2a730, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD(bool, "bZipLine004Behavior", 0x2a728, (DefaultValue, false), (EditorVisible, false), (Persistence, 0));
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpPhase2HeatEnabledLogicShape", true), &g_unk_717269bb48, 0x2a770, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpPhase2HeatEnabledLogicShape", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x2a770, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
 }
 bool refl_Equals(const void*, const void*) { return false; }

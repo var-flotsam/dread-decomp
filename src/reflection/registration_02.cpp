@@ -20,6 +20,9 @@ namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 namespace base::snd { enum class EReverbIntensity : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace IPath { enum class EType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
 enum class SMusicPlayFlag : u32;
@@ -428,7 +431,6 @@ extern base::reflection::CType g_unk_7172a05d40;
 void fn_7101113948();
 void fn_7101113ce4();
 void fn_7101113d34();
-extern base::reflection::CType g_unk_717269bb48;
 const base::reflection::CType* fn_710009d884();
 void fn_710112f650();
 extern base::reflection::CType g_unk_7172a06930;
@@ -1777,7 +1779,7 @@ void fn_71010f60e4(CClass* cls) {
 }
 
 void fn_71010f68bc(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPath", true), &g_unk_717269bb48, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("wpPath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x0, -1, -1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("ePathType", true), &base::reflection::TypeObject<IPath::EType>::object, 0x40, -1, -1);
 }
 

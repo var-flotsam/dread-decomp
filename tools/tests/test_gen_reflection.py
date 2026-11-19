@@ -431,6 +431,17 @@ class TypeObjectsByType(unittest.TestCase):
                                             'asm("g_unk_7101d5af48");',
                                             "void f() { use(&base::reflection::TypeObject<void>::object); }"])
 
+    def test_links_declared_once(self):
+        text = ("extern base::reflection::CType g_unk_717269bb48;\nextern base::reflection::CType g_unk_71727b6270;\n"
+                "void f() { use(&g_unk_717269bb48, &g_unk_71727b6270); }")
+        out = gr.type_objects_by_type(text, {"g_unk_717269bb48": ("link", "CGameLink<CActor>"),
+                                             "g_unk_71727b6270": ("link", "CGameLink<CEntity>")}).split("\n")
+        self.assertEqual(out.count("template <class T> struct CGameLink;"), 1)
+        self.assertIn("class CActor;", out)
+        self.assertIn("class CEntity;", out)
+        self.assertEqual(out[-1], "void f() { use(&base::reflection::TypeObject<CGameLink<CActor>>::object, "
+                                  "&base::reflection::TypeObject<CGameLink<CEntity>>::object); }")
+
     def test_layouts_off_leaves_them(self):
         text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
         self.assertEqual(gr.type_objects_by_type(text, {"g_unk_7101d4d5d0": ("enum", "E")}), text)

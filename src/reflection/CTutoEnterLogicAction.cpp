@@ -19,18 +19,20 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <class T> struct CGameLink;
+class CActor;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CTutoEnterLogicAction
-extern base::reflection::CType g_unk_717269bb48;
 namespace CTutoEnterLogicAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sLiteralID", 0x18, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bShowMessage", 0x10, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bWaitForInput", 0x11, (DefaultValue, false));
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpObserver", true), &g_unk_717269bb48, 0x20, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("wpObserver", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x20, -1, -1);
     field3->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
     DREAD_REFLECTED_FIELD(CStrId, "sLuaCallbackOnMessageClosed", 0x60, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(CStrId, "sMissionLogTutoId", 0x80, (DefaultValue, CStrId(CStrId::Empty())));
