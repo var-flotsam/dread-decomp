@@ -32,3 +32,5 @@ extern UnkConverter g_unk_71729cdfd8;
 extern UnkConverter g_unk_71729cdff8;
 void fn_7100eb6b48(UnkReflType* self, const base::global::CStrId& name, UnkReflType* base, void* a, void (*init)(), void* b);
 void fn_7100eb71d8(UnkReflType* self, const base::global::CStrId& name, void (*init)(), void* extra);
+// Refreshes a text block (the flag arguments as the map menu passes them).
+void fn_7100eb7358(void* object, u32 a, u32 b);

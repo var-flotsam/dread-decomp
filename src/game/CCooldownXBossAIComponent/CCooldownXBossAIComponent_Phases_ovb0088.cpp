@@ -26,6 +26,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkTU0.h"
 #include "game/UnkTU1370.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkTU2730.h"
 #include "game/UnkTU341.h"
 #include "game_s2/UnkWeakHandle.h"
@@ -119,12 +120,10 @@ struct UnkCooldownXXform_ovb0088 {
     f32 m[12];
 };
 
-void fn_71010fa940(UnkCooldownXPlaceAI_ovb0088* self, const UnkCooldownXXform_ovb0088* xform);
-
 static inline bool Near(f32 v, f32 c) { return v - 5.0f <= c && v + 5.0f >= c; }
 
 void fn_71004d4208(UnkCooldownXPlaceAI_ovb0088* self, const UnkCooldownXXform_ovb0088* xform) {
-    fn_71010fa940(self, xform);
+    fn_71010fa940(reinterpret_cast<UnkResetAI_l0fa940*>(self));
     CVector3D pos;
     pos.x = 2400.0f;
     pos.y = -7800.0f;

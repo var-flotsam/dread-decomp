@@ -95,7 +95,7 @@ address,size,name,name_source,subsystem,status
 0x7100104f08,300,fn_7100104f08,unknown,engine/base?,U
 0x7100105034,64,fn_7100105034,unknown,engine/base?,O
 0x7100105074,296,fn_7100105074,unknown,engine/base?,U
-0x710010519c,88,fn_710010519c,unknown,engine/base?,U
+0x710010519c,88,fn_710010519c,unknown,engine/base?,M
 0x71001051f4,2044,fn_71001051f4,unknown,engine/base?,U
 0x71001059f0,144,fn_71001059f0,unknown,engine/base?,O
 0x7100105a80,272,fn_7100105a80,unknown,engine/base?,O
@@ -1053,7 +1053,7 @@ address,size,name,name_source,subsystem,status
 0x710012f260,1084,fn_710012f260,unknown,game?,U
 0x710012f6a0,176,fn_710012f6a0,unknown,unknown,O
 0x710012f750,300,fn_710012f750,unknown,game?,O
-0x710012f880,3620,fn_710012f880,unknown,unknown,U
+0x710012f880,3620,fn_710012f880,unknown,unknown,O
 0x71001306b0,1024,fn_71001306b0,unknown,unknown,m
 0x7100130ab0,464,fn_7100130ab0,unknown,unknown,O
 0x7100130c80,928,fn_7100130c80,unknown,unknown,U
@@ -2462,7 +2462,7 @@ address,size,name,name_source,subsystem,status
 0x710015e020,228,fn_710015e020,unknown,unknown,U
 0x710015e110,212,fn_710015e110,unknown,msapi?,U
 0x710015e1f0,212,fn_710015e1f0,unknown,msapi?,m
-0x710015e2d0,232,fn_710015e2d0,unknown,unknown,U
+0x710015e2d0,232,fn_710015e2d0,unknown,unknown,m
 0x710015e3c0,4,fn_710015e3c0,unknown,unknown,O
 0x710015e3d0,220,fn_710015e3d0,unknown,unknown,O
 0x710015e4b0,232,fn_710015e4b0,unknown,unknown,U

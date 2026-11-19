@@ -11,6 +11,8 @@
 #include "engine/scene/UnkToggle.h"
 #include "game/UnkGlobal_710b372a98.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU254.h"
+#include "game/UnkTU322.h"
 
 struct UnkRefObj {
     virtual void vf_0x0();
@@ -123,13 +125,10 @@ UnkRef fn_710021cab8(UnkPlayer* player, const UnkPathKey& path, u32 a, u32 b) {
 using base::global::CStrId;
 
 struct UnkWidget;
-struct UnkRender;
 struct UnkStruct_710020a5a0;
 struct UnkMinimapVec3;
 struct UnkBlendLayer_710019c284;
 
-void* fn_710021d3d4(void* a, void* b, UnkWidget** out, const CStrId* id);
-void fn_71001c3504(UnkRender* render, void* p);
 void* fn_71001d086c(UnkGraphicsSystem* self, const CStrId* key);
 void fn_71001606c0(void* obj, u32* a, u32* b);
 void fn_710021d58c(base::UnkPairArrays* self, u32 n);
@@ -173,7 +172,8 @@ struct UnkCd80Zero_b0246 {
 
 static inline __attribute__((always_inline)) UnkCd80Widget_b0246* CreateWidget_b0246(UnkRenderManager* manager) {
     UnkWidget* created = nullptr;
-    fn_710021d3d4(manager->field_0x218, nullptr, &created, &base::global::CStrId::Empty());
+    fn_710021d3d4(manager->field_0x218, nullptr, reinterpret_cast<UnkModelInstance**>(&created),
+                  &base::global::CStrId::Empty());
     fn_7100219ae0(manager, reinterpret_cast<UnkSceneNode*>(created), 2);
     return reinterpret_cast<UnkCd80Widget_b0246*>(created);
 }
@@ -194,7 +194,8 @@ void fn_710021cd80(UnkCd80Player_b0246* self, UnkCd80Ref_b0246* ref) {
     UnkCd80Widget_b0246* widget = CreateWidget_b0246(g_unk_7101d47300);
     void* node = widget->field_0x18;
     fn_710020ac34(reinterpret_cast<UnkToggle*>(node), true);
-    fn_71001c3504(reinterpret_cast<UnkRender*>(widget->render), &ref->ptr->name);
+    fn_71001c3504(reinterpret_cast<UnkObject_71001c3504*>(widget->render),
+                  reinterpret_cast<const base::UnkStrIdMember*>(&ref->ptr->name));
     void* entry = fn_71001d086c(reinterpret_cast<UnkGraphicsSystem*>(g_unk_710b372a98), &ref->ptr->name);
     u32 height, width;
     fn_71001606c0(entry, &height, &width);

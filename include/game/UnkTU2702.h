@@ -106,7 +106,14 @@ UnkSluggerPos fn_71011008a8(void* ai, u32 index);
 void fn_7101105e14(UnkQuetzoaDodgeAI_A3_b76* self, f32 value);
 void fn_710110bc0c(void* self, void* arg, u32 id, u32 kind, s32 amount);
 void fn_71010fa790(void* ai);
+struct UnkResetAI_l0fa940;  // an AI component, as its reset reads it
+void fn_71010fa940(UnkResetAI_l0fa940* self);  // resets the AI's placement state
+struct UnkBoundsSelf_l1063a4;  // an AI component, as its bounds read it
+struct UnkBox_l1063a4;
+void fn_71011063a4(UnkBoundsSelf_l1063a4* self, UnkBox_l1063a4* out);  // the owner's bounds box
 void fn_71011065bc(UnkMeleeSelf_l1065bc* self, s32 mode, UnkMeleeRequest_l1065bc* request, bool* out);
 void fn_710110f744(void* self, void* object);
 extern UnkStatics_7101116680 g_unk_7172a062c0 __attribute__((visibility("hidden")));
 void fn_710110f97c(void* emmy, void* block);
+// The AI component's base update: two virtual steps (slots 0x398 and 0x3a0), each passed the same arguments.
+void fn_71011088ec(void* self, void* arg0, void* arg1);

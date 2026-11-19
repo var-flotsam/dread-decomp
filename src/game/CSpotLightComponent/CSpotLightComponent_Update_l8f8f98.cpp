@@ -74,7 +74,7 @@ void fn_71008f8f98(UnkSpotLightComponent_l8f8f98* self) {
         self->angle[1] = angle.y;
         self->angle[2] = angle.z;
         UnkVec3f direction =
-            Rotate(fn_7100078fc8(reinterpret_cast<const UnkMatrix44&>(angle)), UnkVec3f(1.0f, 0.0f, 0.0f));
+            Rotate(fn_7100078fc8(angle), UnkVec3f(1.0f, 0.0f, 0.0f));
         UnkSpotLightNode_l8f8f98* node = self->light->node;
         UnkSpotLightData_l8f8f98* data = node->data;
         data->direction = direction;

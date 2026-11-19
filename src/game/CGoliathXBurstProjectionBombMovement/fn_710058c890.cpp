@@ -16,8 +16,6 @@ struct UnkStatics_710058c890 {
     u8 field_0x70[8];
 };
 extern char g_unk_71726e5ca8[];
-extern UnkFilePathStrIdBase g_unk_71726e5cb0;
-extern UnkFilePathStrIdBase g_unk_71726e5cb8;
 
 void fn_710058c890() {
     InitHeaderIds(&g_unk_71726e5cc0.ids);

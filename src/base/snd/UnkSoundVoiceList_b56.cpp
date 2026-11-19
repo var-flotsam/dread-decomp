@@ -6,6 +6,7 @@
 
 #include "base/global/CRntVector.h"
 #include "base/snd/UnkSoundSystemATK.h"
+#include "base/snd/UnkSoundVoice2.h"
 #include "base/tunable/CTunable.h"
 #include "game/UnkTU101.h"
 #include "game/operator_new.h"
@@ -14,15 +15,6 @@ struct UnkKeyUseTable;  // src/game/UnkUnit100/UnkUnit100Release.cpp
 void fn_7100104ae4(UnkKeyUseTable* self, const u32* key);
 void fn_7100104ef4();
 struct UnkSoundVoice2_b56;
-
-struct UnkSoundVoice2_b56 {
-    u8 pad_0x0[0xb4];
-    u32 key;      // +0xb4
-    s32 group;    // +0xb8
-    s32 channel;  // +0xbc
-    u8 pad_0xc0[0x4];
-    u32 id;  // +0xc4
-};
 
 struct UnkVoicePool_b56;
 

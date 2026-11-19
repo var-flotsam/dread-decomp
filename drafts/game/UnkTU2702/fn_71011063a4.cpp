@@ -4,6 +4,7 @@
 #include "game/UnkGameManager.h"
 #include "game/UnkTU2523.h"
 #include "game/UnkTU2553.h"
+#include "game/UnkTU2702.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 

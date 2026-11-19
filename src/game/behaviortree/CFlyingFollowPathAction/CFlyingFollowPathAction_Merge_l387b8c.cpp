@@ -11,8 +11,6 @@ using base::global::CRntVector;
 template <class T>
 struct UnkCopiedVector;
 struct UnkThreeWords;
-UnkCopiedVector<UnkThreeWords>* fn_71000cbcf0(UnkCopiedVector<UnkThreeWords>* self,
-                                              const UnkCopiedVector<UnkThreeWords>* other);
 
 struct UnkThreeFloats_l387b8c {
     f32 x;

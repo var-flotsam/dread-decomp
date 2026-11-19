@@ -16,7 +16,7 @@ struct UnkMat4f;
 f32 fn_710007a1d0(f32 angle);  // Wraps an angle into (-pi, pi].
 void fn_7100077bbc(UnkMat4f* m);
 void fn_710007a170(UnkAim* aim, f32 current);
-UnkMatrix44 fn_7100078fc8(const UnkMatrix44& m);
+UnkMatrix44 fn_7100078fc8(const UnkVec3f& angles);  // The rotation by three angles (x, y, z).
 void fn_71000774fc(UnkXform* x);
 UnkMatrix44 fn_7100078834(const UnkKeyedEntry* entry, const UnkMatrix44* matrix, f32 weight);
 UnkMatrix44 fn_71000791a8(const UnkVec3f& translation, const UnkVec3f& angle, const UnkVec3f& scale);
@@ -31,5 +31,5 @@ UnkVec3f fn_7100078170(const UnkMat4f* m, const UnkVec3f* v);
 UnkMatrix44 fn_7100078314(const UnkMatrix44* m);
 UnkMatrix44 fn_710007966c(const void* value, f32 angle);
 UnkVec3f fn_710007a450(void* xform, const UnkVec3f* v);
-UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkMatrix44& m);
+UnkVec3f fn_710007a400(const UnkVec3f& v, const UnkVec3f& angles);  // `v` rotated by three angles.
 void fn_71000769f0(UnkMatrix44* out, const void* a, const void* b, const void* c, const void* d);

@@ -79,7 +79,7 @@ void fn_71008f404c(UnkSegmentLightComponent_l8f404c* self) {
         self->angle[1] = angle.y;
         self->angle[2] = angle.z;
         UnkVec3f rotated =
-            Rotate(fn_7100078fc8(reinterpret_cast<const UnkMatrix44&>(angle)), UnkVec3f(1.0f, 0.0f, 0.0f));
+            Rotate(fn_7100078fc8(angle), UnkVec3f(1.0f, 0.0f, 0.0f));
         UnkVec3f segment = rotated * length;
         UnkSegmentLightObj_l8f404c* light = self->light;
         segment = Normalized(segment);

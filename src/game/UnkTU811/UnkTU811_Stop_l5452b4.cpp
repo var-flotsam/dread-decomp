@@ -4,6 +4,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CStrId.h"
 #include "game/CFXComponent.h"
+#include "game/UnkMeshListener.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkTU1176.h"
 #include "game/UnkTU2523.h"
@@ -20,24 +21,8 @@ struct UnkCentralUnit_b49;
 struct UnkEmmyAI_b60;
 void fn_7100369710(void* self);
 
-struct UnkMeshListeners_l5452b4;
-struct UnkMeshListener_l5452b4;
-void fn_7100566080(UnkMeshListeners_l5452b4* list, UnkMeshListener_l5452b4* listener);
-
 struct UnkTimeline_l5452b4;
 void fn_7100705a64(UnkTimeline_l5452b4* self);
-
-struct UnkMeshListener_l5452b4 {
-    UnkMeshListeners_l5452b4* list;
-    u8 pad_0x8[0x10];
-
-    void Detach() {
-        if (list) {
-            fn_7100566080(list, this);
-            list = nullptr;
-        }
-    }
-};
 
 // A playing rumble and the handle to it: current while the target's serial is the handle's.
 struct UnkRumble_l5452b4 {
@@ -104,7 +89,7 @@ struct UnkEmmyAI_l5452b4 {
     u8 pad_0x14b50[0x14b60 - 0x14b50];
     u8 savedRecord[0x20];      // 0x14b60
     u8 pad_0x14b80[0x14c68 - 0x14b80];
-    UnkMeshListener_l5452b4 meshListeners[2];  // 0x14c68
+    UnkMeshListener meshListeners[2];  // 0x14c68
     u8 pad_0x14c98[0x29418 - 0x14c98];
     u8 field_0x29418[0x120];   // 0x29418
     UnkRumbleHandle_l5452b4 rumble;  // 0x29538

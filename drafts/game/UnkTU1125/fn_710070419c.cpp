@@ -12,6 +12,7 @@
 #include "game/UnkCollisionRecord.h"
 #include "game/UnkGameManager.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkTU2510.h"
 #include "game/UnkTU109.h"
 #include "game/UnkTU2509.h"
 #include "game/UnkTU365.h"
@@ -41,7 +42,6 @@ struct UnkUnit110Segment {
     UnkUnit110Vec2 end;
 };
 
-bool fn_7100d5bfbc(UnkTree* self, u32 mask, UnkBvhCollider* shape, void* arg, u32 arg2);
 UnkSegment2D fn_710012436c(const UnkPolygonCollection2D* polygons, u32 handle);
 UnkUnit110Vec2 fn_71001261e8(const UnkUnit110Segment* seg, const UnkUnit110Vec2* p);
 UnkColliderResult fn_7100d56604(UnkShapeTester_A5_b68* tester, void* a, void* owner, const UnkMatrix44& transform,

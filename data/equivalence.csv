@@ -6,6 +6,7 @@ address,digest,verdict,rules,detail
 0x710006981c,8d9dbacc33d1630fac3a014c8b53b7a7,pass,2,both runs were cut off
 0x710006cd9c,e0d3c6ac3d1574487fb23bd532041934,pass,2,
 0x71000708c8,81506c18b14baabb966729e413c9fdda,pass,2,
+0x71000764d0,fc812b4ce9bae6ae0b49baae6d0aa502,behaves,2,similarity 59.8%; operations;
 0x7100076920,7a0a4dae1eb6b5515a43eab8d8003dc3,pass,2,
 0x7100077c70,6934c6958abf061e9fc7872df6275096,pass,2,
 0x71000782c4,0a4cda7a75a2e73eef791c18dd6e5c20,behaves,2,similarity 3.0%; operations;
@@ -33,6 +34,7 @@ address,digest,verdict,rules,detail
 0x71000fef18,46e87f5e64ba9eba8d926888024b1384,pass,2,
 0x7100100088,33ef273ca2ceea46eeef3511b9c3517d,pass,2,
 0x7100100e74,e525ff05b83f7bb93df698eeb182d496,pass,2,
+0x710010519c,3074991443014820ade7aea5af7ad7d9,behaves,2,similarity 31.8%; operations;
 0x7100110db8,8715a50e554727dd011ec517a5f32daf,pass,2,
 0x710011e920,dab88cc97b95d5bf0a9a326f5a413db6,behaves,2,similarity 35.5%; control;
 0x710011ec5c,88fe1b9031af625ce292c29badada502,pass,2,
@@ -156,7 +158,9 @@ address,digest,verdict,rules,detail
 0x71006eb484,47135ee84631131e2dc775321549c3d7,inconclusive,2,only 89% of the original's instructions ran
 0x71006f0ab4,ca5b50fc174280a5086412ad76b18111,behaves,2,similarity 19.1%; operations; both runs faulted; on different accesses
 0x71006fc4fc,6aeaeae9f17f329ae66c7cb1aad41398,pass,2,
+0x71006fdba4,effcbc2ef3dafb134a49f567d44b5d0d,behaves,2,similarity 31.7%; operations;
 0x7100700594,21cf0846eb26c983648e2fde4f1454a4,pass,2,
+0x7100702140,4af683f1b1c5c3c506330de3df480e6a,behaves,2,similarity 21.4%; operations;
 0x7100702e38,e8a3b617d8371e10e90470dd2f75dbbd,pass,2,
 0x7100714808,0722c41dde09ac2c8cbd44951f777767,inconclusive,2,1 of 6 conditional branches went only one way
 0x7100736b6c,7fe4cd9681a1531c9a06a97ca2170a88,behaves,2,similarity 35.4%; control;
@@ -165,6 +169,7 @@ address,digest,verdict,rules,detail
 0x71007477f8,009115e625be53e0e424fb67e5690778,behaves,2,similarity 68.3%; operations;
 0x71007a6b58,2da895e7feb192806d52ac6370e56213,inconclusive,2,unresolved UnkElem_0x88::UnkElem_0x88(UnkElem_0x88&&)
 0x71007bb208,5bdccad89f7f3ab0640e33aa8db6a413,pass,2,
+0x71007f8bc0,e172c051ecd074d759b5b56b23af58c2,behaves,2,similarity 12.5%; operations;
 0x710080c5d4,7b547674625f2d683beed02802ab10f6,behaves,2,similarity 97.3%; operations;
 0x71008372ac,7fed56f260680cf56f811cca3f5d2f28,pass,2,
 0x71008407fc,e4ae04b5fbd4537fcd68507779fffc0e,pass,2,
@@ -286,6 +291,7 @@ address,digest,verdict,rules,detail
 0x71010d313c,806cc531aa8a60af9d193f16a8eae397,pass,2,
 0x71010d94f4,22862360e4e8e7e936d520e61088eeb5,behaves,2,similarity 64.5%; operations;
 0x71010dcab0,eb1a72af756fe4c2e5de837988f67c5b,behaves,2,similarity 87.3%; operations;
+0x71010e53dc,9533a3f343eb5ccf7d0eb5a13432c83c,behaves,2,similarity 65.3%; operations;
 0x71010e54f4,44d2657c17641f65e0c1d1d814df182b,behaves,2,similarity 65.3%; operations;
 0x71010f2918,2f5016d9c51afddfb84ec11793361f30,pass,2,
 0x7101100250,49b18f8dcdcdc848f5059ec68424342f,behaves,2,similarity 14.9%; operations; the original faulted where the lift did not

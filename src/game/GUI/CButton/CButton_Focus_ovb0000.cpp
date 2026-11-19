@@ -132,9 +132,8 @@ void fn_71011c1410(UnkGuiButtonInit_ovb0000* self) {
     self->vf_0x18();
 }
 
-void fn_71011c00c0(void* a, void* b, void* c, bool d, bool e, bool f) {
+void* fn_71011c00c0(UnkDisplayContainer_l1d9e90* self, u32 input, void* event, bool d, bool all, bool f) {
     if (f)
-        fn_71011d9e90(a, b, c, d, e, true);
-    else
-        fn_71011cff5c(a, b, c, d, e, false);
+        return fn_71011d9e90(self, input, event, d, all, true);
+    return fn_71011cff5c(self, input, event, d, all, false);
 }

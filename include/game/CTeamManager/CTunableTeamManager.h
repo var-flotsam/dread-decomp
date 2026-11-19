@@ -7,9 +7,12 @@
 
 struct UnkRemovedValue_b60;
 struct UnkCancelOwner_ovb0128;
+struct UnkTeamList;
+struct UnkWeakTarget;
 void fn_71011a664c(char* instance);  // Constructs the instance.
 void fn_71011a710c(char* instance);
 void fn_71011a75f0(char* instance, UnkCancelOwner_ovb0128* owner);
 extern void* g_unk_7101cb5608[];  // The base part's of the member list.
 extern void* g_unk_7101cb5668[];  // The base part's of the sorted list.
 void fn_71011a73bc(char* manager, UnkRemovedValue_b60* entity);
+void fn_71011a726c(UnkTeamList* self, UnkWeakTarget* target);  // Adds the target to the list.

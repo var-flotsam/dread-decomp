@@ -8,6 +8,8 @@
 #include "types.h"
 
 struct UnkGunComponent;
+struct UnkGunComponent_l838f20;  // the component as its destructor reads it
+void fn_7100838f20(UnkGunComponent_l838f20* self);  // the destructor; derived guns end in it
 struct UnkGunBeam_ovb0070;
 struct UnkSamusGun_ovb0070;
 struct UnkComponent;

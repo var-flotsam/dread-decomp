@@ -66,5 +66,5 @@ void fn_710049880c(UnkChozoWarriorAI_l49880c* self) {
     using base::UnkRefPtrMember;
     self->ref.~UnkRefPtrMember();
     self->callbacks.~UnkChozoWarriorCallbackList_l49880c();
-    fn_71003ac388(self);
+    fn_71003ac388(reinterpret_cast<UnkBossAI_l3ac388*>(self));
 }

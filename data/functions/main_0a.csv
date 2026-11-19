@@ -3619,7 +3619,7 @@ address,size,name,name_source,subsystem,status
 0x7100a920f0,820,fn_7100a920f0,unknown,unknown,U
 0x7100a92424,380,fn_7100a92424,unknown,unknown,O
 0x7100a925a0,364,fn_7100a925a0,unknown,unknown,O
-0x7100a9270c,296,fn_7100a9270c,unknown,unknown,U
+0x7100a9270c,296,fn_7100a9270c,unknown,unknown,m
 0x7100a92834,144,fn_7100a92834,unknown,game/components?,O
 0x7100a928c4,40,fn_7100a928c4,unknown,game/components?,O
 0x7100a928ec,576,fn_7100a928ec,unknown,unknown,O

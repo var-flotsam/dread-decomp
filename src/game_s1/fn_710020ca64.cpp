@@ -2,6 +2,7 @@
 // value by more than 0.001, stores all three, marks the node dirty, hands the new value to the
 // embedded sphere (fn_7100216978) and forwards it to the target object.
 #include "game/UnkSphere.h"
+#include "game/UnkTU290.h"
 
 struct UnkTarget;
 void fn_71001bdd50(UnkTarget* t, const UnkVec3f* v);

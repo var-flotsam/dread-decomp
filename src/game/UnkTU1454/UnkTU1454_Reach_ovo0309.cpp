@@ -103,7 +103,7 @@ bool fn_7100984d24(UnkNpc_b0248* self) {
         }
         if (!far) {
             UnkVec3f angle = xf->GetAngle();
-            UnkMatrix44 m = fn_7100078fc8(reinterpret_cast<const UnkMatrix44&>(angle));
+            UnkMatrix44 m = fn_7100078fc8(angle);
             UnkVec3f col(m.m[2], m.m[6], m.m[10]);
             far = col.x * plan->dir[0] + col.y * plan->dir[1] + col.z * plan->dir[2] >= 50.0f;
         }

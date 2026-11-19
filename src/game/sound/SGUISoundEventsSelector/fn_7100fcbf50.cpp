@@ -24,13 +24,9 @@ void fn_7100fc91a8(void* type);  // the type's destructor, as registered
 extern UnkStateKey g_unk_71729f0180;
 extern UnkEnumType g_unk_71729f0190;
 extern UnkEnumType g_unk_71729f0198;
-extern UnkEnumType g_unk_71729f01a0;
-extern UnkEnumType g_unk_71729f01a8;
-extern UnkEnumType g_unk_71729f01b0;
 extern UnkEnumType g_unk_71729f01b8;
 extern UnkEnumType g_unk_71729f01c0;
 extern UnkEnumType g_unk_71729f01c8;
-extern UnkEnumType g_unk_71729f01d0;
 extern UnkEnumType g_unk_71729f01d8;
 extern UnkEnumType g_unk_71729f01e0;
 extern UnkEnumType g_unk_71729f01e8;

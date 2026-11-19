@@ -6,6 +6,7 @@
 #include "base/math/CVector4D.h"
 #include "game/CUsableComponent.h"
 #include "game/UnkRenderManager.h"
+#include "game/UnkTU1601.h"
 #include "game/UnkTU315.h"
 #include "types.h"
 
@@ -15,8 +16,6 @@ struct UnkThermalDevice_b50a5 {
     u8 unk_0x0[0x598];
     f32 timer;  // 0x598
 };
-
-extern const u64 g_unk_710164b5f8 __attribute__((visibility("hidden")));
 
 void fn_7100a93208(UnkThermalDevice_b50a5* self, f32 dt) {
     fn_7100a9fad8(self, dt);

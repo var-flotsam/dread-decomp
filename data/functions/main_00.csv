@@ -1594,7 +1594,7 @@ address,size,name,name_source,subsystem,status
 0x710006f4d8,424,fn_710006f4d8,unknown,engine/base?,O
 0x710006f680,600,fn_710006f680,unknown,engine/base?,U
 0x710006f8d8,60,fn_710006f8d8,unknown,unknown,O
-0x710006f914,376,fn_710006f914,unknown,unknown,U
+0x710006f914,376,fn_710006f914,unknown,unknown,O
 0x710006fa8c,164,fn_710006fa8c,unknown,engine/base?,O
 0x710006fb30,68,fn_710006fb30,unknown,unknown,O
 0x710006fb74,60,fn_710006fb74,unknown,unknown,O
@@ -1774,7 +1774,7 @@ address,size,name,name_source,subsystem,status
 0x71000763c0,144,fn_71000763c0,unknown,unknown,m
 0x7100076450,76,fn_7100076450,unknown,engine/reflection?,O
 0x71000764a0,44,fn_71000764a0,unknown,game?,O
-0x71000764d0,368,fn_71000764d0,unknown,game/components?,U
+0x71000764d0,368,fn_71000764d0,unknown,game/components?,M
 0x7100076640,440,fn_7100076640,unknown,ai/navmesh?,U
 0x7100076800,56,fn_7100076800,unknown,game?,O
 0x7100076840,8,fn_7100076840,unknown,game?,O
@@ -1813,7 +1813,7 @@ address,size,name,name_source,subsystem,status
 0x7100078d8c,100,fn_7100078d8c,unknown,engine/reflection?,O
 0x7100078df0,100,fn_7100078df0,unknown,engine/reflection?,O
 0x7100078e54,372,fn_7100078e54,unknown,engine/reflection?,m
-0x7100078fc8,368,fn_7100078fc8,unknown,engine/reflection?,U
+0x7100078fc8,368,fn_7100078fc8,unknown,engine/reflection?,m
 0x7100079138,52,fn_7100079138,unknown,engine/reflection?,O
 0x710007916c,60,fn_710007916c,unknown,engine/reflection?,O
 0x71000791a8,536,fn_71000791a8,unknown,engine/reflection?,M

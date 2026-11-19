@@ -1491,7 +1491,7 @@ address,size,name,name_source,subsystem,status
 0x7100449868,220,fn_7100449868,unknown,ai/behaviortree?,O
 0x7100449944,664,fn_7100449944,unknown,ai/behaviortree?,U
 0x7100449bdc,620,fn_7100449bdc,unknown,ai/behaviortree?,U
-0x7100449e48,456,fn_7100449e48,unknown,ai/behaviortree?,U
+0x7100449e48,456,fn_7100449e48,unknown,ai/behaviortree?,O
 0x710044a010,1240,fn_710044a010,unknown,ai/behaviortree?,U
 0x710044a4e8,88,fn_710044a4e8,unknown,ai/behaviortree?,O
 0x710044a540,592,fn_710044a540,unknown,ai/behaviortree?,O
@@ -2397,7 +2397,7 @@ address,size,name,name_source,subsystem,status
 0x7100473a08,280,fn_7100473a08,unknown,game/ai?,O
 0x7100473b20,4,fn_7100473b20,unknown,game/ai?,O
 0x7100473b24,900,fn_7100473b24,unknown,game/ai?,U
-0x7100473ea8,308,fn_7100473ea8,unknown,game/ai?,U
+0x7100473ea8,308,fn_7100473ea8,unknown,game/ai?,O
 0x7100473fdc,108,fn_7100473fdc,unknown,game/ai?,O
 0x7100474048,932,fn_7100474048,unknown,game/ai?,U
 0x71004743ec,4,fn_71004743ec,unknown,game/ai?,O
@@ -3470,7 +3470,7 @@ address,size,name,name_source,subsystem,status
 0x7100499a88,932,fn_7100499a88,unknown,game/ai?,U
 0x7100499e2c,332,fn_7100499e2c,unknown,game/ai?,O
 0x7100499f78,512,fn_7100499f78,unknown,game/ai?,O
-0x710049a178,468,fn_710049a178,unknown,game/ai?,U
+0x710049a178,468,fn_710049a178,unknown,game/ai?,O
 0x710049a34c,792,fn_710049a34c,unknown,game/ai?,U
 0x710049a664,1104,fn_710049a664,unknown,game/ai?,U
 0x710049aab4,216,fn_710049aab4,unknown,game/ai?,O

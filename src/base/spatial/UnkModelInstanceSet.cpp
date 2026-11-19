@@ -14,6 +14,7 @@
 #include "game/UnkRenderManager.h"
 #include "game/UnkTU137.h"
 #include "game/UnkTU287.h"
+#include "game/UnkTU322.h"
 #include "game/UnkTU324.h"
 #include "types.h"
 

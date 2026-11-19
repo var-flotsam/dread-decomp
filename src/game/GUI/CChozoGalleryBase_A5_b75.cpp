@@ -198,8 +198,6 @@ struct UnkPooledStrId;
 struct UnkStateSink;
 struct UnkStateKey;
 struct UnkEnumType;
-extern UnkEnumType g_unk_71729f01a0;
-extern UnkEnumType g_unk_71729f01a8;
 extern UnkEnumType g_unk_71729f0220;
 
 struct UnkText_A5_b75 {
