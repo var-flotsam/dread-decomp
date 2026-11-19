@@ -1,12 +1,9 @@
 // CDisplayObjectContainer's unit (unit 2748): offers an input to the children of a visible container (when it
 // accepts input, or its vf_0x208 says so), first to last, until one takes it (or to all with `all` set); if
 // none takes it, the container's own handler (fn_71011cff5c) does. Names and layouts are placeholders.
+#include "game/GUI/CDisplayObjectContainer.h"
+#include "game/UnkTU2747.h"
 #include "types.h"
-
-struct UnkDisplayChild_l1d9e90;
-struct UnkDisplayContainer_l1d9e90;
-
-void* fn_71011cff5c(UnkDisplayContainer_l1d9e90* self, u32 input, void* event, bool d, bool all, bool f);
 
 struct UnkDisplayChild_l1d9e90 {
     void** vtable;

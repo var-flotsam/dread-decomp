@@ -9,6 +9,7 @@
 #include "types.h"
 
 struct UnkSprite_spr;
+struct UnkDisplayContainer_l1d9e90;
 struct UnkChangeMenuStateButton_b48a3;
 struct UnkGallery_A5_b75;
 struct UnkGuiButtonFocus_ovb0000;
@@ -20,7 +21,8 @@ void fn_71011cef74(void* composition, void* owner);
 void fn_71011cf39c(UnkChangeMenuStateButton_b48a3* self, UnkGuiEvent_b48a3* event);
 void fn_71011cf630(UnkGuiButtonFocus_ovb0000* self);
 void fn_71011cf70c(UnkGallery_A5_b75* self);
-void fn_71011cff5c(void* a, void* b, void* c, bool d, bool e, bool f);
+// The display object's own input handler (vtable slot 0x210): the object that takes the input, or null.
+void* fn_71011cff5c(UnkDisplayContainer_l1d9e90* self, u32 input, void* event, bool d, bool all, bool f);
 extern char g_unk_7101cb5b90[];  // GUI::CDisplayObject's vtable.
 bool fn_71011ceac0(UnkGuiDisplayObject* self);
 bool fn_71011ceb34(UnkGuiDisplayObject* self);
