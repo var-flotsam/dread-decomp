@@ -2640,7 +2640,7 @@ address,size,name,name_source,subsystem,status
 0x7100d4b8c4,4,operator.delete,symbol,unknown,O
 0x7100d4b8c8,44,fn_7100d4b8c8,unknown,unknown,O
 0x7100d4b8f4,352,fn_7100d4b8f4,unknown,unknown,U
-0x7100d4ba54,280,fn_7100d4ba54,unknown,unknown,O
+0x7100d4ba54,280,fn_7100d4ba54,unknown,unknown,U
 0x7100d4bb70,140,fn_7100d4bb70,unknown,unknown,O
 0x7100d4bc00,1264,fn_7100d4bc00,unknown,game/characters?,U
 0x7100d4c0f0,140,fn_7100d4c0f0,unknown,unknown,O

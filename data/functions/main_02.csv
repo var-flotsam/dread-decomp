@@ -316,7 +316,7 @@ address,size,name,name_source,subsystem,status
 0x710020a0ec,12,fn_710020a0ec,unknown,unknown,O
 0x710020a0f8,8,fn_710020a0f8,unknown,unknown,O
 0x710020a100,140,fn_710020a100,unknown,unknown,O
-0x710020a18c,320,fn_710020a18c,unknown,unknown,O
+0x710020a18c,320,fn_710020a18c,unknown,unknown,U
 0x710020a2cc,212,fn_710020a2cc,unknown,unknown,O
 0x710020a3a0,36,fn_710020a3a0,unknown,unknown,O
 0x710020a3c4,120,fn_710020a3c4,unknown,engine/reflection?,O

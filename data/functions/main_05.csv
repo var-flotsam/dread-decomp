@@ -2289,7 +2289,7 @@ address,size,name,name_source,subsystem,status
 0x710058a4c0,312,fn_710058a4c0,unknown,game?,U
 0x710058a5f8,112,fn_710058a5f8,unknown,game?,O
 0x710058a668,124,fn_710058a668,unknown,game?,O
-0x710058a6e4,792,fn_710058a6e4,unknown,game?,O
+0x710058a6e4,792,fn_710058a6e4,unknown,game?,U
 0x710058a9fc,2736,fn_710058a9fc,unknown,game?,U
 0x710058b4ac,320,fn_710058b4ac,unknown,game?,O
 0x710058b5ec,956,fn_710058b5ec,unknown,game?,O
