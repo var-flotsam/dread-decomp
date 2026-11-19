@@ -824,6 +824,7 @@ def main() -> int:
             row = {"file": rel, "address": f"{res.address:#x}", "size": res.orig_size,
                    "digest": digest(codes[res.symbol], relocs[res.symbol])}
             row["kind"] = kind
+            row["similarity"] = round(100 * res.score, 1)
             if kind != "registers" and not args.any_kind:
                 out.append({**row, "verdict": "not registers", "detail": f"the difference is {kind}: not judged"})
             else:
@@ -844,6 +845,8 @@ def main() -> int:
                                 row["_src"].read_text(encoding="utf-8", errors="replace"))
                 if weak:
                     v, d = "inconclusive", f"behaves, but {weak}: the inputs cannot tell such a change apart"
+                else:  # how close it is says which functional functions a later matching pass should take first
+                    d = f"similarity {row['similarity']}%; {kind}; {d}"
             row = {k: x for k, x in row.items() if not k.startswith("_")}
             out.append({**row, "verdict": v, "detail": d})
             if n % 25 == 0:

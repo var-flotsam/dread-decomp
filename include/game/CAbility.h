@@ -21,3 +21,4 @@ void fn_71002fa2bc(UnkOpticAbility_ovb0059* self);
 extern void* g_unk_7101a223f8[];  // CAbility's vtable.
 extern void* g_unk_7101a225f8[];
 extern void* g_unk_7101a22650[];
+extern void* g_unk_7101a225a0[];

@@ -364,7 +364,11 @@ def cmd_promote(args) -> int:
     need = [ROOT / f for f, found in state.items() if not isinstance(found, str)
             and (loose or all(x["difference"] in ("match", REGISTERS) for x in found))
             and any(x["difference"] != "match" for x in found)]
-    judged = verdicts(args.version, need, loose) if need else {}
+    if args.verdicts:  # a run of tools/equiv_test.py --json made beforehand (in parallel parts, say)
+        judged = {int(o["address"], 16): (o["verdict"], o.get("detail", ""))
+                  for f in args.verdicts for o in json.loads(f.read_text(encoding="utf-8")) if o.get("address")}
+    else:
+        judged = verdicts(args.version, need, loose) if need else {}
 
     def proven(x) -> bool:
         v = judged.get(x["address"], ("",))[0]
@@ -464,6 +468,9 @@ def main() -> int:
     p = sub.add_parser("promote", help="move drafts that match or are verified equivalent to src/")
     p.add_argument("files", nargs="+", type=Path)
     p.add_argument("--write", action="store_true", help="keep the moves and write the reasons of the held ones")
+    p.add_argument("--verdicts", type=Path, nargs="+", metavar="JSON",
+                   help="take the verdicts from these tools/equiv_test.py --json files instead of running it; they "
+                        "must be of the files as they are now")
     p.add_argument("--functional", action="store_true",
                    help="also move functions of any difference that tools/equiv_test.py --any-kind says behave")
     args = ap.parse_args()

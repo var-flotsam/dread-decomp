@@ -11,8 +11,6 @@
 using base::global::CRntString;
 using base::global::CRntVector;
 
-extern void* g_unk_7101cb3db0[];
-
 // A polymorphic 0x100-byte entry, destroyed through its vtable.
 struct UnkLifeEntry_l15f91c {
     virtual ~UnkLifeEntry_l15f91c();

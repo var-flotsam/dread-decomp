@@ -6,8 +6,6 @@
 
 struct UnkGhostAuraBase_b0040;
 
-extern void* g_unk_7101a225a0[];  // the value holders' vtable
-
 struct UnkAbilityMember_l2f8414 {
     void** vtable;
     u64 field_0x8;

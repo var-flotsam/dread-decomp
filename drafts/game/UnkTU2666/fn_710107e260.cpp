@@ -53,10 +53,12 @@ s32 fn_710107e260(lua_State* L) {
         if (!target)
             return 1;
         target->vtable->vf_0xd0(target, &v, true);
-        f32 turned = yaw * 1.57f;
-        UnkLuaVec3_b0164 rot;
-        rot.y = turned;
-        target->vtable->vf_0xd8(target, &rot, true);
+        {
+            f32 turned = yaw * 1.57f;
+            UnkLuaVec3_b0164 rot;
+            rot.y = turned;
+            target->vtable->vf_0xd8(target, &rot, true);
+        }
         if (speed > 0.0f)
             fn_7100d7babc(target, true);
         if (flag) {

@@ -27,3 +27,4 @@ const base::reflection::CType* fn_71011bcf1c();  // The type of std::unique_ptr<
 const base::reflection::CType* fn_71011b1924();
 const base::reflection::CType* fn_71011b1b28();
 const base::reflection::CType* fn_71011b1d2c();
+UnkGuiDisplayObject* fn_71011b5d3c(UnkGuiRoot* root, const char* const* path);

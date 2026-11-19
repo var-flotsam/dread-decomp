@@ -19,6 +19,7 @@
 #include "game/UnkGuiRoot.h"
 #include "game/UnkTU2668.h"
 #include "game/UnkTU2676.h"
+#include "game/UnkTU2744.h"
 #include "game/lua_lib.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -26,8 +27,6 @@
 using base::global::CRntString;
 using base::global::CStrId;
 using base::reflection::UnkReflValue;
-
-UnkGuiDisplayObject* fn_71011b5d3c(UnkGuiRoot* root, const char* const* path);
 
 // A display object as the scripts hold it: full userdata with the "__DisplayObjectType" metatable
 // holding a counted weak handle on the object.

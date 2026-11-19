@@ -11,3 +11,4 @@ struct UnkHandle;
 void fn_710015c1e0(UnkHandle** out, s32 width, s32 height, s32 count, const s32& format);
 void fn_710015c2d0(UnkEntry_71001cdba4* entry);
 void* fn_710015c450(UnkBoundTarget* target);
+s32 fn_710015c460();

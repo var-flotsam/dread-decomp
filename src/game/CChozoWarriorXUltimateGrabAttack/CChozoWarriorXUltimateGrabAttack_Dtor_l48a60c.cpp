@@ -4,10 +4,9 @@
 // layouts are placeholders.
 #include "base/reflection/UnkReflCast.h"
 #include "../../game_5821e4/CAttackDtor.h"
+#include "game/CChozoWarriorXUltimateGrabAttack.h"
 
-extern void* g_unk_7101a3b438[];  // the class's vtable
 extern void* g_unk_7101a3b5b8[];  // the entries' base vtable
-extern void* g_unk_7101a3b610[];  // the property list's vtable
 
 struct UnkUltimateGrabBlock_48a60c {
     u64 v[8];

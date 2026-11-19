@@ -123,7 +123,7 @@ address,size,name,name_source,subsystem,status
 0x7100f05a5c,444,fn_7100f05a5c,unknown,game?,O
 0x7100f05c18,176,fn_7100f05c18,unknown,game?,O
 0x7100f05cc8,24,fn_7100f05cc8,unknown,game?,O
-0x7100f05ce0,636,fn_7100f05ce0,unknown,game?,U
+0x7100f05ce0,636,fn_7100f05ce0,unknown,game?,O
 0x7100f05f5c,52,fn_7100f05f5c,unknown,game?,O
 0x7100f05f90,36,fn_7100f05f90,unknown,game?,O
 0x7100f05fb4,128,fn_7100f05fb4,unknown,game?,O
@@ -4340,7 +4340,7 @@ address,size,name,name_source,subsystem,status
 0x7100fa5c1c,36,fn_7100fa5c1c,unknown,engine/reflection?,O
 0x7100fa5c40,2172,fn_7100fa5c40,unknown,engine/reflection?,U
 0x7100fa64bc,1176,fn_7100fa64bc,unknown,engine/reflection?,U
-0x7100fa6954,380,fn_7100fa6954,unknown,engine/reflection?,U
+0x7100fa6954,380,fn_7100fa6954,unknown,engine/reflection?,M
 0x7100fa6ad0,620,fn_7100fa6ad0,unknown,engine/reflection?,O
 0x7100fa6d3c,364,base::reflection::refl_InitType<CSubareaInfo*>,reflection,engine/reflection,O
 0x7100fa6ea8,96,fn_7100fa6ea8,unknown,engine/reflection?,O
@@ -6454,7 +6454,7 @@ address,size,name,name_source,subsystem,status
 0x7100ffafc4,128,base::reflection::KeyElementValue<base::global::CRntVector<sound::TMusicFile>>::refl_Destroy,reflection,engine/reflection,O
 0x7100ffb044,304,base::reflection::KeyElementValue<base::global::CRntVector<sound::TMusicFile>>::refl_CopyAssign,reflection,engine/reflection,O
 0x7100ffb174,48,base::reflection::KeyElementValue<base::global::CRntVector<sound::TMusicFile>>::refl_MoveAssign,reflection,engine/reflection,O
-0x7100ffb1a4,404,fn_7100ffb1a4,unknown,engine/reflection?,U
+0x7100ffb1a4,404,fn_7100ffb1a4,unknown,engine/reflection?,M
 0x7100ffb338,80,fn_7100ffb338,unknown,engine/reflection?,O
 0x7100ffb388,56,fn_7100ffb388,unknown,engine/reflection?,O
 0x7100ffb3c0,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<sound::TMusicFile>>::refl_Equals,reflection,engine/reflection,O

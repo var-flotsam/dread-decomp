@@ -19,3 +19,4 @@ bool fn_710074ddd8(UnkSelf* self, UnkTarget* target, UnkMessage* message);
 void fn_710074e190(void* self, void* effect, f32 value);
 UnkShotWeakRef* fn_7100748064(base::global::CRntVector<UnkShotWeakRef>* self, u32 i);
 extern char g_unk_7101a6dee0[];
+extern void* g_unk_7101a6dc58[];

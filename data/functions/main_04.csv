@@ -1042,7 +1042,7 @@ address,size,name,name_source,subsystem,status
 0x710042fea8,244,CChozoCommanderKiGrabAttack::refl_GetClass,reflection,game/ai,O
 0x710042ff9c,4,CChozoCommanderKiGrabAttack::refl_AddFields,reflection,game/ai,O
 0x710042ffa0,388,CChozoCommanderKiGrabAttack::refl_InitClass,reflection,game/ai,O
-0x7100430124,676,fn_7100430124,unknown,game/ai?,U
+0x7100430124,676,fn_7100430124,unknown,game/ai?,M
 0x71004303c8,100,fn_71004303c8,unknown,game/ai?,O
 0x710043042c,992,fn_710043042c,unknown,game/ai?,O
 0x710043080c,4,fn_710043080c,unknown,game/ai?,O
@@ -2962,7 +2962,7 @@ address,size,name,name_source,subsystem,status
 0x71004864fc,124,CChozoWarriorXUltimateGrabAttack::CTunableChozoWarriorXUltimateGrabAttack::refl_AddFields,reflection,game/ai,O
 0x7100486578,388,CChozoWarriorXUltimateGrabAttack::CTunableChozoWarriorXUltimateGrabAttack::refl_InitClass,reflection,game/ai,O
 0x71004866fc,696,fn_71004866fc,unknown,game/ai?,O
-0x71004869b4,976,fn_71004869b4,unknown,game/ai?,U
+0x71004869b4,976,fn_71004869b4,unknown,game/ai?,M
 0x7100486d84,100,fn_7100486d84,unknown,unknown,O
 0x7100486de8,1568,fn_7100486de8,unknown,unknown,O
 0x7100487408,92,fn_7100487408,unknown,game/ai?,O
@@ -5617,7 +5617,7 @@ address,size,name,name_source,subsystem,status
 0x71004e7660,476,fn_71004e7660,unknown,game/ai?,O
 0x71004e783c,60,fn_71004e783c,unknown,game/ai?,O
 0x71004e7878,64,fn_71004e7878,unknown,game/ai?,O
-0x71004e78b8,348,fn_71004e78b8,unknown,game/ai?,U
+0x71004e78b8,348,fn_71004e78b8,unknown,game/ai?,M
 0x71004e7a14,56,fn_71004e7a14,unknown,game/ai?,O
 0x71004e7a4c,48,fn_71004e7a4c,unknown,game/ai?,O
 0x71004e7a7c,172,fn_71004e7a7c,unknown,game/ai?,O

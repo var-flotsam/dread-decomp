@@ -15,7 +15,8 @@ read it whole). Forks: `CONTRIBUTING.md`. The maintainer: `docs/maintaining.md`.
 - **Goal.** Anyone builds a native port from their own files (keys, ROM, filesystem); the project hosts none of
   them. A full source port with no translation layer in the product: the semantic lifts the port runs today are
   scaffolding, reported in `docs/HANDOFF.md` as "lifted code still in the port", and must shrink to zero.
-- **The port is on hold until 95% of the code matches** (owner, 2026-11-17). No port work (`port/`, the
+- **The port is on hold until 95% of the code matches** (owner, 2026-11-17; since 2026-11-19: matched, verified
+  equivalent and functional together at 95%, with matched and verified equivalent alone at 85% or more). No port work (`port/`, the
   lifter, boot runs, graphics, Windows) and no work chosen because the port needs it. What stays: the port
   sweep in the `compile` job, so every source keeps compiling for a second compiler and target, and the
   oracle as the test of drafts.

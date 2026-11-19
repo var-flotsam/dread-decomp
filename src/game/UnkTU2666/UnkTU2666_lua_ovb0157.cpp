@@ -292,8 +292,6 @@ s32 fn_7101079110(lua_State* L) {
     return fn_71010c0b40(L, "b", result);
 }
 
-s32 fn_7100df97b4(UnkGameManager* self, const CRntString& name, bool a, bool b);
-
 s32 fn_7101078e60(lua_State* L) {
     const char* name;
     s32 result = 5;

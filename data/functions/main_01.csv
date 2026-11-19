@@ -761,7 +761,7 @@ address,size,name,name_source,subsystem,status
 0x710011e718,200,base::reflection::KeyElementValue<base::global::CRntVector<base::spatial::CPolygon2D>>::refl_CopyAssign,reflection,engine/reflection,O
 0x710011e7e0,48,base::reflection::KeyElementValue<base::global::CRntVector<base::spatial::CPolygon2D>>::refl_MoveAssign,reflection,engine/reflection,O
 0x710011e810,272,fn_710011e810,unknown,engine/reflection?,O
-0x710011e920,248,fn_710011e920,unknown,engine/reflection?,U
+0x710011e920,248,fn_710011e920,unknown,engine/reflection?,M
 0x710011ea18,80,fn_710011ea18,unknown,engine/reflection?,O
 0x710011ea68,56,fn_710011ea68,unknown,engine/reflection?,O
 0x710011eaa0,12,base::reflection::ConstKeyElementValue<base::global::CRntVector<base::spatial::CPolygon2D>>::refl_Equals,reflection,engine/reflection,O
@@ -2522,7 +2522,7 @@ address,size,name,name_source,subsystem,status
 0x7100161e10,72,fn_7100161e10,unknown,unknown,O
 0x7100161e60,332,fn_7100161e60,unknown,msapi?,U
 0x7100161fb0,28,fn_7100161fb0,unknown,unknown,O
-0x7100161fd0,772,fn_7100161fd0,unknown,unknown,U
+0x7100161fd0,772,fn_7100161fd0,unknown,unknown,M
 0x71001622e0,12,fn_71001622e0,unknown,unknown,O
 0x71001622f0,8,fn_71001622f0,unknown,unknown,O
 0x7100162300,40,fn_7100162300,unknown,msapi?,O
@@ -3177,7 +3177,7 @@ address,size,name,name_source,subsystem,status
 0x7100195548,124,fn_7100195548,unknown,unknown,O
 0x71001955d0,140,fn_71001955d0,unknown,unknown,O
 0x710019565c,36,fn_710019565c,unknown,unknown,O
-0x7100195680,256,fn_7100195680,unknown,unknown,U
+0x7100195680,256,fn_7100195680,unknown,unknown,M
 0x7100195780,176,fn_7100195780,unknown,unknown,O
 0x7100195830,36,fn_7100195830,unknown,unknown,O
 0x7100195854,1544,fn_7100195854,unknown,gui?,U
@@ -3848,7 +3848,7 @@ address,size,name,name_source,subsystem,status
 0x71001c1020,16,fn_71001c1020,unknown,game/components?,O
 0x71001c1030,268,fn_71001c1030,unknown,unknown,O
 0x71001c113c,364,fn_71001c113c,unknown,unknown,m
-0x71001c12a8,344,fn_71001c12a8,unknown,unknown,U
+0x71001c12a8,344,fn_71001c12a8,unknown,unknown,M
 0x71001c1400,64,fn_71001c1400,unknown,unknown,O
 0x71001c1440,16,fn_71001c1440,unknown,game/components?,O
 0x71001c1450,44,fn_71001c1450,unknown,game/components?,O
@@ -3954,7 +3954,7 @@ address,size,name,name_source,subsystem,status
 0x71001cae0c,404,fn_71001cae0c,unknown,media?,U
 0x71001cafa0,1136,fn_71001cafa0,unknown,unknown,m
 0x71001cb410,268,fn_71001cb410,unknown,unknown,O
-0x71001cb51c,108,fn_71001cb51c,unknown,unknown,U
+0x71001cb51c,108,fn_71001cb51c,unknown,unknown,M
 0x71001cb588,124,fn_71001cb588,unknown,unknown,O
 0x71001cb604,3492,fn_71001cb604,unknown,engine/reflection?,m
 0x71001cc3a8,68,fn_71001cc3a8,unknown,unknown,O
@@ -4054,7 +4054,7 @@ address,size,name,name_source,subsystem,status
 0x71001d474c,16,fn_71001d474c,unknown,unknown,O
 0x71001d475c,16,fn_71001d475c,unknown,unknown,O
 0x71001d476c,352,fn_71001d476c,unknown,engine/reflection?,U
-0x71001d48cc,792,fn_71001d48cc,unknown,engine/reflection?,U
+0x71001d48cc,792,fn_71001d48cc,unknown,engine/reflection?,M
 0x71001d4be4,472,fn_71001d4be4,unknown,unknown,O
 0x71001d4dbc,456,fn_71001d4dbc,unknown,unknown,O
 0x71001d4f84,316,fn_71001d4f84,unknown,unknown,O

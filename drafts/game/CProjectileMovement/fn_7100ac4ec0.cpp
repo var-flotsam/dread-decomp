@@ -5,6 +5,7 @@
 #include "base/global/CStrId.h"
 #include "game/CProjectileMovement.h"
 #include "game/CTimelineComponent.h"
+#include "game/CWeaponMovement.h"
 #include "game/UnkTimelineComponent.h"
 #include "types.h"
 
@@ -12,7 +13,6 @@ using base::global::CStrId;
 
 struct UnkGrappleBeamHit_ovb0047;
 struct UnkGrappleHitData_ovb0047;
-s32 fn_7100ac7f08(UnkGrappleBeamHit_ovb0047* self, void* object, UnkGrappleHitData_ovb0047* hit, void* extra);
 
 // Static timeline keys, 0x18 bytes each: a pointer to the key's record (its id at +0x30), then two words.
 struct UnkTimelineKeyHead_b46a3 {
@@ -79,6 +79,7 @@ static inline bool IgnoresObject(const UnkHitMovement_lac4ec0* self, const UnkHi
     return candidate && object->field_0x240 && object->field_0x1b8 && object->field_0x1b8->kind == 2;
 }
 
+// NON_MATCHING(functional): Control flow differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 bool fn_7100ac4ec0(UnkObj* obj, void* a1, void* a2, void* a3, void* a4, void* a5) {
     UnkHitMovement_lac4ec0* self = reinterpret_cast<UnkHitMovement_lac4ec0*>(obj);
     UnkHitObject_lac4ec0* object = static_cast<UnkHitObject_lac4ec0*>(a1);

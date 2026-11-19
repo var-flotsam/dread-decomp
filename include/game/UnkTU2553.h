@@ -90,3 +90,4 @@ extern u8 g_unk_71727be8a8[];
 extern UnkGameManagerIdList g_unk_71727bebc0;
 bool fn_7100deac24(UnkGameManager* self);
 base::global::CRntString fn_7100df703c(u32 index);
+s32 fn_7100df97b4(UnkGameManager* self, const base::global::CRntString& name, bool a, bool b);

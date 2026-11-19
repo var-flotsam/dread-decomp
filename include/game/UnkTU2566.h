@@ -47,3 +47,4 @@ void fn_7100e94254(UnkMinimapInput_b0200* self);  // Reads the minimap's input q
 void fn_7100e9d7fc(UnkMapData* self);
 extern UnkMapNamedDef_b49 g_unk_71727c9e00;
 extern void* g_unk_7101ca9e38[];
+void* fn_7100e94428(void* world, base::global::CStrId* id);

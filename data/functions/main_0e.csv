@@ -361,7 +361,7 @@ address,size,name,name_source,subsystem,status
 0x7100e0f4d4,384,base::reflection::refl_InitType<ELoadingScreen>,reflection,engine/reflection,O
 0x7100e0f660,284,fn_7100e0f660,unknown,engine/reflection?,O
 0x7100e0f77c,288,fn_7100e0f77c,unknown,engine/reflection?,O
-0x7100e0f89c,232,fn_7100e0f89c,unknown,engine/reflection?,U
+0x7100e0f89c,232,fn_7100e0f89c,unknown,engine/reflection?,M
 0x7100e0f984,636,fn_7100e0f984,unknown,engine/reflection?,U
 0x7100e0fc00,1272,fn_7100e0fc00,unknown,engine/reflection?,M
 0x7100e100f8,88,fn_7100e100f8,unknown,engine/reflection?,O
@@ -491,7 +491,7 @@ address,size,name,name_source,subsystem,status
 0x7100e1c9d8,280,fn_7100e1c9d8,unknown,game/components?,O
 0x7100e1caf0,96,fn_7100e1caf0,unknown,game/components?,O
 0x7100e1cb50,140,fn_7100e1cb50,unknown,game/components?,O
-0x7100e1cbdc,148,fn_7100e1cbdc,unknown,game/components?,U
+0x7100e1cbdc,148,fn_7100e1cbdc,unknown,game/components?,M
 0x7100e1cc70,196,fn_7100e1cc70,unknown,game?,O
 0x7100e1cd34,380,fn_7100e1cd34,unknown,unknown,U
 0x7100e1ceb0,8,fn_7100e1ceb0,unknown,game/characters?,O
@@ -3182,7 +3182,7 @@ address,size,name,name_source,subsystem,status
 0x7100eb6b48,388,minimap::CAnimatedValue::SAnimConfig::refl_InitClass,reflection,engine/reflection?,O
 0x7100eb6ccc,1292,fn_7100eb6ccc,unknown,engine/reflection?,O
 0x7100eb71d8,384,base::reflection::refl_InitType<minimap::EIconAnimID>,reflection,engine/reflection,O
-0x7100eb7358,280,fn_7100eb7358,unknown,engine/reflection?,U
+0x7100eb7358,280,fn_7100eb7358,unknown,engine/reflection?,M
 0x7100eb7470,192,fn_7100eb7470,unknown,engine/reflection?,O
 0x7100eb7530,96,fn_7100eb7530,unknown,engine/reflection?,O
 0x7100eb7590,240,fn_7100eb7590,unknown,engine/reflection?,U

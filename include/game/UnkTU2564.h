@@ -45,3 +45,6 @@ extern base::global::CStrId g_unk_71727c8218;
 extern base::global::CStrId g_unk_71727c8220;
 extern base::global::CStrId g_unk_71727c8188;
 extern base::global::CStrId g_unk_71727c8190;
+extern base::global::CStrId g_unk_71727c8030;
+extern base::global::CStrId g_unk_71727c8040;
+extern base::global::CStrId g_unk_71727c8078;

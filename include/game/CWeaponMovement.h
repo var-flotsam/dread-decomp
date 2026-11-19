@@ -5,6 +5,8 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkGrappleBeamHit_ovb0047;
+struct UnkGrappleHitData_ovb0047;
 struct UnkSphereList;
 struct UnkComponent_0x5b8;
 struct UnkSplash_b59a4;
@@ -13,3 +15,4 @@ s32 fn_7100ac82c0(UnkSplash_b59a4* self, void* other);  // Returns 1 when the hi
 UnkSphereList* fn_7100ac73b0();
 bool fn_7100ac79d8(void* self, void* actor, void* info);
 char* fn_7100ac77c0();
+s32 fn_7100ac7f08(UnkGrappleBeamHit_ovb0047* self, void* object, UnkGrappleHitData_ovb0047* hit, void* extra);

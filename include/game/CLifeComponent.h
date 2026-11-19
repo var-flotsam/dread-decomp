@@ -1,6 +1,6 @@
 #pragma once
 
-// CLifeComponent: functions of this translation unit that other files call (tools/tu_map.py unit 2715,
+// CLifeComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 2715,
 // 0x710115ddb4-0x7101161bb0). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "types.h"
@@ -26,3 +26,4 @@ struct UnkLifeValues_b49;
 bool fn_7101160214(UnkLifeValues_b49* self, f32 fraction);
 bool fn_71011603a4(UnkLifeValues_b49* self, f32 fraction);
 void fn_710115fd10(UnkLifeComponentFull_ovb0000* self);
+extern void* g_unk_7101cb3db0[];

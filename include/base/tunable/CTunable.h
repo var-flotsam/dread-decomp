@@ -19,3 +19,4 @@ u32 fn_7100132f80();
 u32 fn_7100132f90();
 void fn_7100133be4(UnkIdsString* self);
 void* fn_7100136df0();
+f32 fn_7100132fb0();
