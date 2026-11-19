@@ -1,4 +1,4 @@
-// CBigFistAIComponent's unit (tools/tu_map.py): fn_71003e819c runs the base update (fn_71011088ec), then
+// CBigFistAIComponent's unit (tools/tu_map.py): fn_71003e819c runs the base update (fn_71011088ec, its arguments passed on), then
 // marks the AI (+0x14a28) when the owner's current entry (+0x278, its +0x1a0) is not a CBigFistAttack;
 // otherwise clears the mark and, while the animation (+0x220) runs "attack_init" (a guarded static id)
 // and track 0xf4061ff25a2163d6 is under 30, flags the attack (+0x58) and sets that track to 30.
@@ -12,6 +12,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
 #include "game/UnkAnimationComponent.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 using base::global::CStrId;
@@ -45,7 +46,6 @@ struct UnkBigFistAI2_ovb0078 {
     u8 pad_0x38[0x14a28 - 0x38];
     bool field_0x14a28;
 };
-void fn_71011088ec(UnkBigFistAI2_ovb0078* self);
 
 // The id "attack_init", built on first use.
 struct UnkGuardedId_ovb0078 {
@@ -54,8 +54,8 @@ struct UnkGuardedId_ovb0078 {
 };
 extern UnkGuardedId_ovb0078 g_unk_71726c1108 __attribute__((visibility("hidden")));
 
-void fn_71003e819c(UnkBigFistAI2_ovb0078* self) {
-    fn_71011088ec(self);
+void fn_71003e819c(UnkBigFistAI2_ovb0078* self, void* arg0, void* arg1) {
+    fn_71011088ec(self, arg0, arg1);
     UnkBigFistAttack2_ovb0078* attack = self->owner->field_0x278->field_0x1a0;
     if (!attack || !fn_710009d50c(attack->vf_0x0(), fn_71003e05e0())) {
         self->field_0x14a28 = true;

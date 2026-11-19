@@ -114,3 +114,5 @@ void fn_71011063a4(UnkBoundsSelf_l1063a4* self, UnkBox_l1063a4* out);  // the ow
 void fn_71011065bc(UnkMeleeSelf_l1065bc* self, s32 mode, UnkMeleeRequest_l1065bc* request, bool* out);
 void fn_710110f744(void* self, void* object);
 extern UnkStatics_7101116680 g_unk_7172a062c0 __attribute__((visibility("hidden")));
+// The AI component's base update: two virtual steps (slots 0x398 and 0x3a0), each passed the same arguments.
+void fn_71011088ec(void* self, void* arg0, void* arg1);

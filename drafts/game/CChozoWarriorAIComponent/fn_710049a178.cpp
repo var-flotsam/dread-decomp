@@ -3,6 +3,7 @@
 // one of two attacks at random; then defers to fn_71011088ec. Names and layouts are placeholders.
 #include "base/reflection/UnkReflStatics.h"
 #include "../../../src/game_s2/UnkSpitSend.h"
+#include "game/UnkTU2702.h"
 #include "types.h"
 
 extern "C" int rand();
@@ -36,9 +37,6 @@ struct UnkChozoWarriorAI_l49a178 {
     UnkChozoWarriorAttack_l49a178* current;  // 0x14b30
 };
 static_assert(__builtin_offsetof(UnkChozoWarriorAI_l49a178, current) == 0x14b30, "");
-
-// The original passes all three arguments through (the BigFist unit declares it with one).
-void fn_71011088ec(void* self, void* arg0, void* arg1);
 
 void fn_710049a178(UnkChozoWarriorAI_l49a178* self, void* arg0, void* arg1) {
     void* target = self->owner->field_0x220;
