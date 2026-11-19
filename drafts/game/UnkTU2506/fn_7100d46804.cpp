@@ -3,13 +3,13 @@
 // collision hit query and cleared words. Names and layouts are placeholders.
 #include <new>
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
+#include "game/UnkGroupArray_ovb0244.h"
+#include "game/UnkTU2506.h"
 #include "game/UnkTU365.h"
 #include "types.h"
 
-struct UnkManager_7100863a8c;
-struct UnkSlotGroup_ovb0244;
-struct UnkRefCountedU_ovb0244;
 
 extern void* g_unk_7101aa8740[];
 extern void* g_unk_7101aa8768[];
@@ -54,18 +54,11 @@ struct UnkTablePool_ld46804 {
     UnkTable_ld46804 table;  // +0x30
 };
 
-// The group array as src/game/UnkTU2506/UnkTU2506_Groups_ovb0244.cpp lays it out.
-struct UnkGroupArray_ovb0244 {
-    UnkSlotGroup_ovb0244* groups;
-    UnkRefCountedU_ovb0244** handles;
-    u32 count;
-    u32 capacity;
-    u32 step;
-    u32 flags;
-    base::UnkAllocator* allocator;
-};
-void fn_7100d4b0f4(UnkGroupArray_ovb0244* self, u32 capacity);
-void fn_7100d4ae50(UnkGroupArray_ovb0244* self, u32 capacity);
+// The array at +0xc8 as fn_7100d4ae50 reserves it (src/game/UnkTU2506/UnkTU2506_Reserve_ld4ae50.cpp): groups of
+// handles rather than records, under the same array header.
+struct UnkHandleGroup_ld4ae50;
+using UnkHandleGroupArray_ld4ae50 = base::global::CRntSmallDictionary<UnkRefCountedU_ovb0244*, UnkHandleGroup_ld4ae50>;
+void fn_7100d4ae50(UnkHandleGroupArray_ld4ae50* self, u32 capacity);
 
 static inline void InitGroupArray(UnkGroupArray_ovb0244* array) {
     array->groups = nullptr;
@@ -150,7 +143,7 @@ void fn_7100d46804(UnkManager_7100863a8c* manager) {
     InitPool(&self->field_0x70.pool, g_unk_7101aa87a8 + 2);
     fn_7100d469b0(&self->field_0x70.table, 0x10, 7);
     InitGroupArray(&self->field_0xc8);
-    fn_7100d4ae50(&self->field_0xc8, 0x20);
+    fn_7100d4ae50(reinterpret_cast<UnkHandleGroupArray_ld4ae50*>(&self->field_0xc8), 0x20);
     InitGroupArray(&self->field_0xf0);
     fn_7100d4b0f4(&self->field_0xf0, 0x40);
     fn_7100d46aa0(&self->field_0x118, 0x40, 7);
