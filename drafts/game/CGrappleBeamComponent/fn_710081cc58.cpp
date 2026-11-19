@@ -1,10 +1,8 @@
 // CGrappleBeamComponent unit (1277): appends a record to the fixed-capacity list (u32 count at +0x8, up to 16
 // records of 0x48 bytes from +0xc) and returns a status through a result struct: 2 when full, else 3 when the
 // list is now full and 1 when not. Names and layouts are placeholders.
-#include "base/UnkNoArg.h"
+#include "game/CAbilityShinespark.h"
 #include "types.h"
-
-void fn_7100331c7c(void* record, UnkNoArg);
 
 struct UnkGrappleRecord_l81cc58 {
     u8 pad_0x0[0x48];
@@ -32,7 +30,8 @@ UnkAddResult_l81cc58 fn_710081cc58(UnkGrappleRecordList_l81cc58* self) {
     s32 room = records.Remaining();
     if (room < 1)
         return UnkAddResult_l81cc58(2);
-    fn_7100331c7c(&records.items[records.count], UnkNoArg());
+    const void* source;  // unset in the original: the copy's source register is never loaded
+    fn_7100331c7c(&records.items[records.count], source);
     records.count++;
     return UnkAddResult_l81cc58(room == 1 ? 3 : 1);
 }
