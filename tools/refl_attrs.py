@@ -39,6 +39,9 @@ ADD_FUNCTION = 0x7100097550
 CSTRID_CTOR = 0x71000003D4
 CSTRID_RELEASE = 0x71000803A4  # inlined ~CStrId
 GLOBAL_CSTRID = 0x7101D470E0   # g_unk_7101d470e0
+# Field names declared with an accessor in base/reflection/UnkReflAttributes.h.
+NAMED_FIELD_NAMES = {0x7101D5A450: "base::reflection::KeyFieldName()",
+                     0x7101D5A458: "base::reflection::ElementFieldName()"}
 TUNABLE_REGISTRY = 0x7101D47350  # g_unk_7101d47350, the global tunable registry
 ALLOC = 0x71000839A0           # allocation (size, flags)
 TUNABLE_REGISTRY_CTOR = 0x710013AC14
@@ -740,7 +743,12 @@ def parse(orig: asmdiff.Original, addr: int, class_getters: set[int]) -> tuple[l
             if len(vals) != 1 or vals[0][0] != "global" or vals[0][2] != 8 or evs[j].target == CSTRID_CTOR:
                 return None
             global_name = vals[0][1]
-        if global_name is not None:
+        if global_name in NAMED_FIELD_NAMES:
+            r = field(j, NAMED_FIELD_NAMES[global_name])
+            if r is None:
+                return None
+            i = r
+        elif global_name is not None:
             decls.append(f"extern base::global::CStrId g_unk_{global_name:x};")
             r = field(j, f"g_unk_{global_name:x}")
             if r is None:

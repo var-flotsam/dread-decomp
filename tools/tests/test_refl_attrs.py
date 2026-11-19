@@ -154,6 +154,15 @@ class Parse(unittest.TestCase):
             f"    field0->attrs.Add<u32>(fn_{KEY:x}(), 0x7u);"])
         self.assertEqual(decls, [f"const base::reflection::UnkReflAttrKey& fn_{KEY:x}();"])
 
+    def test_field_named_by_collection_key(self):
+        for addr, name in ((0x7101D5A450, "KeyFieldName"), (0x7101D5A458, "ElementFieldName"), (0x7101000010, None)):
+            evs = [val("global", addr, 8), bl(U32_T),
+                   bl(ra.ADD_FIELD, **{"3": ("imm", 0x18), "4": ("imm", 2**64 - 1), "5": ("imm", 2**64 - 1)})]
+            decls, src = run_parse(evs)
+            expr = f"base::reflection::{name}()" if name else f"g_unk_{addr:x}"
+            self.assertIn(f"AddReflectedField(cls, {expr}, fn_7100005178(), 0x18, -1, -1);", src)
+            self.assertEqual(any("g_unk_" in d for d in decls), name is None)
+
     def test_field_typed_by_class_getter(self):
         getter = 0x7100CCCC00
         evs = [bl(ra.CSTRID_CTOR, **{"1": ("str", "obj"), "2": ("imm", 1)}), bl(getter),
