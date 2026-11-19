@@ -26,6 +26,7 @@
 #include "game/UnkTU2557.h"
 #include "game/UnkTU2559.h"
 #include "game/UnkTUInit.h"
+#include "base/reflection/TypeObject.h"
 
 void fn_7100da5e70() {
     InitHeader(g_unk_71727bc230);
@@ -73,7 +74,8 @@ void fn_7100c11580() {
 }
 
 extern UnkTUHeader g_unk_71727ae078 __attribute__((visibility("hidden")));
-extern UnkReflType g_unk_71727adf10;
+namespace CCharClassToStateTrack { enum class EMaintainFrameMode : u32; }
+template <> UnkReflType base::reflection::TypeObject<CCharClassToStateTrack::EMaintainFrameMode, UnkReflType>::object asm("g_unk_71727adf10");
 void fn_7100d29ec0();
 extern char g_unk_71727ae028;
 void fn_7100d2aa68() __attribute__((visibility("hidden")));
@@ -85,9 +87,9 @@ extern UnkReflType g_unk_71727ae098 __attribute__((visibility("hidden")));
 
 void fn_7100d2ac00() {
     InitHeader(g_unk_71727ae078);
-    InitEnum(&g_unk_71727adf10, "CCharClassToStateTrack::EMaintainFrameMode", fn_7100d2a00c, fn_7100d29ec0);
-    fn_710009ec00(&g_unk_71727ae028, &g_unk_71727adf10);
-    InitEnumConverters(&g_unk_71727adf10, g_unk_71727ae030, fn_7100d2aa68, g_unk_71727ae050, fn_7100d2aa74);
+    InitEnum(&base::reflection::TypeObject<CCharClassToStateTrack::EMaintainFrameMode, UnkReflType>::object, "CCharClassToStateTrack::EMaintainFrameMode", fn_7100d2a00c, fn_7100d29ec0);
+    fn_710009ec00(&g_unk_71727ae028, &base::reflection::TypeObject<CCharClassToStateTrack::EMaintainFrameMode, UnkReflType>::object);
+    InitEnumConverters(&base::reflection::TypeObject<CCharClassToStateTrack::EMaintainFrameMode, UnkReflType>::object, g_unk_71727ae030, fn_7100d2aa68, g_unk_71727ae050, fn_7100d2aa74);
     fn_7100d2a190();
     fn_710009ec00(&g_unk_71727ae070, &g_unk_71727ae098);
 }
