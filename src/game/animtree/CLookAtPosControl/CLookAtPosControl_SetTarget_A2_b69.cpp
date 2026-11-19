@@ -1,6 +1,7 @@
 // animtree::CLookAtPosControl: set the look-at target (position plus the control's offset) and the blend
 // time (the default at +0x90 when none is given); when fn_71002d603c refuses, the target becomes current.
 #include "base/math/CVectorOps.h"
+#include "game/animtree/CLookAtPosControl.h"
 #include "types.h"
 
 using base::math::CVector3D;
