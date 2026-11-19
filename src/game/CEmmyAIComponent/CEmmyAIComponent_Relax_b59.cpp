@@ -60,8 +60,6 @@ struct UnkEmmyRelaxAI_b59 {
     UnkEmmyRelaxRecord_b59 field_0x14b40;
 };
 
-void fn_7100552324(UnkEmmyRelaxAI_b59* self);
-
 // The typed value lives in the caller's frame for the whole function: the original gives it its own slot.
 static inline void SetSectionId(CBlackboard* blackboard, const CStrId& section, UnkPropertyName* name, CStrId* value,
                                 UnkTypedValue& v) {

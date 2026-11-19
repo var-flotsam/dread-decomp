@@ -6,6 +6,8 @@
 #include "game/UnkXformNode.h"
 #include "types.h"
 
+struct UnkHeatActor_ovb0083;
+struct UnkHeatRoom_ovb0083;
 struct UnkBaseDamageTrigger3;
 struct UnkLiquidPoolActor_ovb0075;
 struct UnkLiquidPoolEnter_ovb0075;
@@ -15,3 +17,4 @@ void fn_7100a45cac(UnkLiquidPool_b44a2* self);
 void fn_7100a45a84(UnkLiquidPoolDtor_ovb0075* self);
 void fn_7100a45f08(UnkLiquidPoolEnter_ovb0075* self, UnkLiquidPoolActor_ovb0075* actor, const UnkVec3f* pos);
 void fn_7100a45a30(UnkBaseDamageTrigger3* self);
+void fn_7100a45f04(UnkHeatRoom_ovb0083* self, UnkHeatActor_ovb0083* actor);

@@ -17,8 +17,6 @@ struct UnkCutSceneTable_lc886c0 {
     base::UnkAllocator* allocator;  // 0x20
 };
 
-void fn_7100c88920(UnkCutSceneTable_lc886c0* self);
-
 struct UnkCutSceneEntry_lc886c0 {
     base::UnkStrIdMember field_0x0;
     UnkPathIdMember_lc886c0 field_0x8;

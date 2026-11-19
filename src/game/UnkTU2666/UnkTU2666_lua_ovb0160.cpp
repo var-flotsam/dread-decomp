@@ -557,7 +557,6 @@ s32 fn_7101088170(lua_State* L) {
 }
 
 struct UnkMgr_0xf18;
-void fn_7100fdbd84(UnkMgr_0xf18* self, u32 flag);
 u32 fn_71010976c0(const char* name);
 
 // The music manager, created on first use.

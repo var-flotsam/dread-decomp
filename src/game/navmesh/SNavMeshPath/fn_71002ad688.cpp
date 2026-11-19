@@ -6,8 +6,6 @@
 #include "game/UnkNavMeshPath.h"
 #include "game/navmesh/SNavMeshPath.h"
 
-void fn_71002aeebc(UnkLinkList* list, UnkLinkList** slot);
-
 struct UnkLinkOwner : UnkWeakTarget {
     u8 pad_0x8[0x88];
     u8 field_0x90[0x80];

@@ -19,9 +19,6 @@ struct UnkCutsceneEntry_l7a5b3c;
 
 void fn_710024f694(void* self);
 
-extern void* g_unk_7101a6ff40[];
-extern char g_unk_7101a70078[];
-
 struct UnkCutsceneSub_l7a5b3c {
     void** vtable;
     u8 pad_0x8[0x80];

@@ -7,7 +7,10 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkRenderItemPair_b64a2;
 struct UnkQuadNode_ovb0259;
 
 extern u32 g_unk_71726b21d4 __attribute__((visibility("hidden")));  // Live pairs.
 UnkQuadNode_ovb0259* fn_710035d9e0(void* pool, const base::global::CFilePathStrId* path, UnkQuadNode_ovb0259** out, const base::global::CStrId* name);
+void fn_710035d4e0(void* member);
+void fn_710035d4ec(UnkRenderItemPair_b64a2* self);

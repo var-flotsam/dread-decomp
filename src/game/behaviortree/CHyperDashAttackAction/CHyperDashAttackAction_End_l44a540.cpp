@@ -9,6 +9,8 @@
 #include "game/UnkBehaviorTree.h"
 #include "game/UnkTimelineCalls.h"
 #include "game/UnkTimelineComponent.h"
+#include "game/behaviortree/CBehavior.h"
+#include "game/behaviortree/CHyperDashAttackAction.h"
 #include "game/behaviortree/CSetAnimDependsOnDirAction.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
@@ -18,10 +20,8 @@ using base::reflection::CClass;
 // Signatures as other files declare them.
 struct UnkSelf;
 struct UnkEffectSink;
-void fn_7100395474(UnkSelf* behavior, void* record, bool value);
 
 // The blackboard record the dash sets.
-extern u8 g_unk_71726c8f08[];
 extern const u64 g_unk_71016496a8;  // a timeline id, reached through the GOT
 
 // A small flag value whose constructors are not constexpr, so its statics are guarded.

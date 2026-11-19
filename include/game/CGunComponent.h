@@ -1,6 +1,6 @@
 #pragma once
 
-// CGunComponent: functions of this translation unit that other files call (tools/tu_map.py unit 1304,
+// CGunComponent: functions and globals of this translation unit that other files use (tools/tu_map.py unit 1304,
 // 0x710083751c-0x71008424e4). One declaration per function: include this instead of declaring one.
 // Names and layouts are placeholders.
 #include "base/global/CStrId.h"
@@ -28,3 +28,5 @@ void fn_7100840f50(void*, void**);
 const base::global::CStrId* fn_71008407fc(UnkGunComponent* self);
 UnkGunBeam_ovb0070* fn_7100840828(UnkSamusGun_ovb0070* self);
 base::reflection::UnkReflObject* fn_71008407d8(UnkGunComponent* self);
+extern void* g_unk_7101a77bc0[];
+extern void* g_unk_7101a77dc8[];

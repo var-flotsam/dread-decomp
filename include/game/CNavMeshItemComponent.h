@@ -5,6 +5,7 @@
 // Names and layouts are placeholders.
 #include "types.h"
 
+struct UnkMapNamedDef_ovb0203;
 struct UnkNavMeshNamedDef_b49;
 struct UnkSourceDesc;
 struct UnkOwner;
@@ -26,3 +27,4 @@ extern __attribute__((visibility("hidden"))) UnkSourceDesc* g_unk_717273ee10;
 extern void* g_unk_7101a887d0[];  // The component's vtable (the second one at +0x198).
 extern void* g_unk_7101a88970[];
 extern UnkNavMeshNamedDef_b49 g_unk_717273e3e0;
+extern UnkMapNamedDef_ovb0203 g_unk_717273e258;

@@ -18,8 +18,6 @@ using base::global::UnkStringData;
 struct UnkRecord;
 struct UnkCentralUnit_b49;
 struct UnkEmmyAI_b60;
-UnkRecord* fn_710054715c(UnkRecord* self, const UnkRecord* other);
-void fn_7100541fd4(UnkEmmyAI_b60* self);
 void fn_7100369710(void* self);
 
 struct UnkMeshListeners_l5452b4;

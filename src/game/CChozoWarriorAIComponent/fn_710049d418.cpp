@@ -13,7 +13,8 @@ struct UnkComponent {
     u8 unk_0x0;
 };
 
-void fn_71003ac064(UnkComponent* self);
+struct UnkBossAI_l3ac064;
+void fn_71003ac064(UnkBossAI_l3ac064* self);
 void* fn_7100083990_alloc();
 void fn_7100494c00(void* member);
 void fn_7100495430(void* member);
@@ -25,7 +26,7 @@ static inline T& At(void* base, u64 offset) {
 }
 
 void fn_710049d418(UnkComponent* self) {
-    fn_71003ac064(self);
+    fn_71003ac064(reinterpret_cast<UnkBossAI_l3ac064*>(self));
     At<void**>(self, 0) = g_unk_7101a3cbc8 + 2;
     At<f32>(self, 0x1499c) = 300.0f;
     At<u16>(self, 0x149a0) = 0x101;

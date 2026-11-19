@@ -17,9 +17,6 @@ using base::global::CStrId;
 struct UnkCutsceneComponent_ovb0077;
 void fn_71007a6214(UnkCutsceneComponent_ovb0077* self);
 
-extern void* g_unk_7101a6ff40[];
-extern char g_unk_7101a70078[];
-
 // An object deleted through its vtable.
 struct UnkCutsceneObject_l7a5e1c {
     virtual void vf_0x0();

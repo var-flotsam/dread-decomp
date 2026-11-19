@@ -55,15 +55,11 @@ extern UnkHandle* g_unk_716e595ee0;
 extern "C" float powf(float, float);
 
 void fn_71001ce86c(UnkGfxJ_b0154* self, s32 a);
-void fn_71001cfe44(UnkGfxJ_b0154* self);
-void fn_71001cf9ec(UnkGfxJ_b0154* self);
 void fn_71001cf790(UnkGfxO_b0154* self, s32 a);
-void fn_71001ce514(UnkGfxO_b0154* self);
 void fn_710014e6fc(void* p);
 void fn_710014dc5c(void* p);
 void fn_710014ddbc(void* p);
 void fn_710014f074(void* p);
-void fn_71001ce148(UnkGfxN_b0154* self);
 
 
 struct UnkVec4_b0154r {

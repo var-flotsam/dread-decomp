@@ -276,7 +276,6 @@ struct UnkGroundPlayer_b52;
 struct UnkSlideState;
 bool fn_7100996bc4(UnkSlideState* self);
 struct UnkAimComponent;
-bool fn_710034f8dc(UnkAimComponent* self);
 struct UnkPlayer;
 
 // The aim tunables block: the slide angle range.

@@ -10,14 +10,13 @@
 #include "base/global/CStrId.h"
 #include "base/global/UnkTwoStepStrId.h"
 #include "game/CBehaviorTreeAIComponent.h"
+#include "game/CBossAIComponent.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU441.h"
 #include "types.h"
 
 using base::global::CStrId;
 using base::global::UnkStringData;
-
-extern void* g_unk_7101a29438[];
-void fn_710035d4e0(void* member);
 
 struct UnkBossCallbackSetBase_l3ac064 {
     void** vtable;

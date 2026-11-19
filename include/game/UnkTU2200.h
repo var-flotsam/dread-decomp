@@ -8,6 +8,7 @@
 #include "base/global/CRntVector.h"
 #include "types.h"
 
+struct UnkCutSceneTable_lc886c0;
 struct UnkElem40_b42a3;
 struct UnkFXPathEntry_b0068;
 struct UnkReflType;
@@ -87,3 +88,4 @@ void fn_7100c87424(UnkReflType* self, const base::global::CStrId& name, UnkReflT
 void fn_7100c8c210(base::global::CRntVector<UnkFXPathEntry_b0068>* self, u32 capacity);
 extern const base::reflection::CType g_unk_7172794d40 __attribute__((visibility("hidden")));
 void fn_7100c8b894(UnkElem40Array_b42a3* self, const UnkElem40_b42a3* value);
+void fn_7100c88920(UnkCutSceneTable_lc886c0* self);

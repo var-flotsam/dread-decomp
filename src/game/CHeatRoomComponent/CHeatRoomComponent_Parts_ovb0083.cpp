@@ -182,7 +182,6 @@ bool fn_7100a279fc(UnkHeatRoom_ovb0083* self) {
 
 struct UnkEnvironmentManager;
 struct UnkHeatActor_ovb0083;
-void fn_7100a45f04(UnkHeatRoom_ovb0083* self, UnkHeatActor_ovb0083* actor);
 
 struct UnkHeatActorState_ovb0083 {
     u8 pad_0x0[0x70];

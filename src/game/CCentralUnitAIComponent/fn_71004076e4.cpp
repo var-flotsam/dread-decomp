@@ -7,6 +7,7 @@
 #include "game/CBehaviorTreeAIComponent.h"
 #include "game/CCentralUnitAIComponent.h"
 #include "game/UnkTU341.h"
+#include "game/UnkTU441.h"
 #include "types.h"
 
 // Only the vtable at +0x0 is named; the size 1 keeps offsets from folding into element strides.
@@ -15,7 +16,6 @@ struct UnkComponent {
 };
 
 void* fn_7100083990_alloc();
-void fn_710035d4e0(void* member);
 
 struct __attribute__((packed)) UnkRecord {
     u64 words[6];

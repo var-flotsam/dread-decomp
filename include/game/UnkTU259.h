@@ -6,6 +6,9 @@
 #include "base/global/CStrId.h"
 #include "types.h"
 
+struct UnkGfxN_b0154;
+struct UnkGfxO_b0154;
+struct UnkGfxJ_b0154;
 struct UnkGfxResolutionScale;
 struct UnkCountedResource;
 struct UnkGraphicsSystem;
@@ -39,3 +42,8 @@ extern __attribute__((visibility("hidden"))) UnkGfxResolutionScale g_unk_7101a1e
 extern u64 g_unk_716e554928;
 extern u64 g_unk_716e554930;
 extern bool g_unk_716e595b6c[] __attribute__((visibility("hidden")));
+void fn_71001ce148(UnkGfxN_b0154* self);
+void fn_71001ce514(UnkGfxO_b0154* self);
+void fn_71001cf9ec(UnkGfxJ_b0154* self);
+void fn_71001cfe44(UnkGfxJ_b0154* self);
+extern __attribute__((visibility("hidden"))) u8 g_unk_716e595bb8[];

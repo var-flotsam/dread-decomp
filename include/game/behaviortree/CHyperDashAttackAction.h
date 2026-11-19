@@ -5,3 +5,4 @@
 // Names and layouts are placeholders.
 #include "types.h"
 extern void* g_unk_7101a36838[];  // The action's vtable.
+extern u8 g_unk_71726c8f08[];

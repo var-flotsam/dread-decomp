@@ -19,3 +19,4 @@ extern char g_unk_7101a21168[];
 void fn_71002ae87c(void* set, void* item);
 void fn_71002af070(UnkLinkList* list, UnkLinkList** slot);
 void fn_71002aeb9c(UnkLinkList* list, UnkLinkList** slot);
+void fn_71002aeebc(UnkLinkList* list, UnkLinkList** slot);

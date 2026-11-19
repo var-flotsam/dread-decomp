@@ -8,7 +8,6 @@
 
 using base::global::CStrId;
 
-void fn_71002198cc(UnkRenderManager* self, void* a, void* b, void* c, u32 layer, u32 flag);
 void fn_7100219bdc(UnkRenderManager* self, u32* width, u32* height, u32 layer);
 struct UnkSceneObj_71010e2278;
 

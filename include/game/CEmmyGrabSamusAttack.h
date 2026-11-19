@@ -29,3 +29,4 @@ void fn_710050cd98(UnkSelf* self);
 void fn_710050d150(UnkGrabAttack_A3_b68* self);
 extern UnkGrabArg_b61 g_unk_71726de5a0 __attribute__((visibility("hidden")));
 extern UnkGrabInputArg_b61 g_unk_71726de5d0 __attribute__((visibility("hidden")));
+extern void* g_unk_7101a479c8[];

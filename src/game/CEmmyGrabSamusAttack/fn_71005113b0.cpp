@@ -4,11 +4,11 @@
 #include "base/UnkNamedRegistry.h"
 #include "base/global/CRntString.h"
 #include "base/reflection/UnkClassGetters.h"
+#include "game/CEmmyGrabSamusAttack.h"
 
 using namespace unk_static_init;
 
 // A string with 0x20 bytes of inline storage (0x50 bytes in all).
-extern void* g_unk_7101a479c8[];
 void fn_7100504fdc(void* self);  // its destructor, as registered
 
 struct UnkInlineStr50Raw {

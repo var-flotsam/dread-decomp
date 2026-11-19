@@ -13,6 +13,7 @@
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
 #include "game/CAbilityShinespark.h"
+#include "game/UnkTU2506.h"
 #include "game_s2/UnkWeakHandle.h"
 #include "types.h"
 
@@ -52,8 +53,6 @@ struct UnkGroupArray_ovb0244 {
     u32 flags;
     base::UnkAllocator* allocator;
 };
-
-char* fn_7100d4b2fc(char* p0, char* p1);
 
 // Releases the five handles of every record and empties the group.
 __attribute__((noinline)) void fn_7100d48e50(UnkSlotGroup_ovb0244* self) {

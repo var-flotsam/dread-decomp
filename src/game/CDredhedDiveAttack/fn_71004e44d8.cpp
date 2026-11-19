@@ -10,7 +10,7 @@
 struct UnkStruct_7101176ea8;
 
 // The motion fn_71007142e8 initialises.
-struct UnkStruct_71007142e8 {
+struct UnkMotion_l4e44d8 {
     u8 pad_0x0[0x6c];
     u32 field_0x6c;
 };
@@ -43,8 +43,8 @@ void fn_71004e44d8(UnkDredhedDiveAttack_l4e44d8* self) {
         static_cast<UnkTimeline*>(fn_7101176d34(actions, reinterpret_cast<void*>(0x884c8e254ba39908ull)));
     if (!timeline)
         return;
-    UnkStruct_71007142e8 motion;
-    fn_71007142e8(&motion);
+    UnkMotion_l4e44d8 motion;
+    fn_71007142e8(reinterpret_cast<UnkStruct_71007142e8*>(&motion));
     UnkMotionTracks* tracks = timeline->tracks;
     UnkFlags_71007142e8 flags = UnkFlagsAll_71007142e8();
     fn_7100b8b3bc(timeline, &motion, tracks, &flags.bits, 0.0f, timeline->frame_count);

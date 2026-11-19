@@ -14,7 +14,6 @@ using base::math::CVector2D;
 struct UnkVec2;
 struct UnkVec3;
 struct UnkPointSet_b61;
-void* fn_7100118950(UnkPointSet_b61* self, u32 index);
 void* fn_71003e6530(void* owner, const UnkVec2* origin, const UnkVec2* dir, void* sink, f32 radius, f32 limit);
 
 struct UnkTilePoint {

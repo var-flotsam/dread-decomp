@@ -8,6 +8,7 @@
 #include "base/math/UnkOneVector3.h"
 #include "game/CAbilityShinespark.h"
 #include "game/CBlackboard.h"
+#include "game/CNavMeshItemComponent.h"
 #include "game/GUI/CAmiiboComposition.h"
 #include "game/GUI/CIngameMenu.h"
 #include "game/GUI/CPopUpComposition.h"
@@ -710,7 +711,6 @@ struct UnkMapNamedDef_ovb0203 : UnkIdSource {
     u64 field_0x8;
     UnkQualifiedName name;
 };
-extern UnkMapNamedDef_ovb0203 g_unk_717273e258;
 extern CStrId g_unk_7172763d88 __attribute__((visibility("hidden")));
 
 static inline UnkSubId_7100fc4b34 SubId_ovb0203(UnkMapNamedDef_ovb0203& def, const CStrId& name) {

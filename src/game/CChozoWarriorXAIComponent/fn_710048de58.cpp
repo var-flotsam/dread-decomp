@@ -2,7 +2,7 @@
 // destroys the ultimate grab attack (+0x14dd0, fn_710048a60c) and the five other attacks (each with its
 // listener, last first), then runs the base AI component's destructor (fn_710049880c). Names and layouts are
 // placeholders.
-#include "../../../src/game_5821e4/CAttackDtor.h"
+#include "../../game_5821e4/CAttackDtor.h"
 #include "types.h"
 
 extern void* g_unk_7101a3b830[];  // the component's vtable
@@ -14,8 +14,8 @@ extern void* g_unk_7101a3b140[];  // the attack vtable at +0x14b78
 struct UnkUltimateGrab_48a60c;
 void fn_710048a60c(UnkUltimateGrab_48a60c* self);
 
-struct UnkChozoWarriorXAI_l48de58;
-void fn_710049880c(UnkChozoWarriorXAI_l48de58* self);
+struct UnkChozoWarriorAI_l49880c;
+void fn_710049880c(UnkChozoWarriorAI_l49880c* self);
 
 // An attack whose listener sits at `ListenerOffset`; its destructor resets the vtable, destroys the listener
 // and then CAttack's part (fn_71003606c0).
@@ -62,5 +62,5 @@ void fn_710048de58(UnkChozoWarriorXAI_l48de58* self) {
     self->attack_c.Destroy(g_unk_7101a3b240);
     fn_71003606c0(&self->attack_d);
     self->attack_e.Destroy(g_unk_7101a3b140);
-    fn_710049880c(self);
+    fn_710049880c(reinterpret_cast<UnkChozoWarriorAI_l49880c*>(self));
 }

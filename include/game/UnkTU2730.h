@@ -8,6 +8,7 @@
 #include "base/global/CFilePathStrId.h"
 #include "types.h"
 
+struct UnkObj_710119770c;
 struct UnkGameManagerNamedDef;
 struct UnkCallback_kr;
 bool fn_7101196fd8(void*);
@@ -24,3 +25,4 @@ u32 fn_71011986e0(void* manager, const base::global::CFilePathStrId* path);
 void fn_71011991c4(void* gui, base::reflection::UnkReflObject* entity);
 u32 fn_710119882c(void* manager, const base::global::CFilePathStrId* path);
 void* fn_71011986a8(void* gui, const base::global::CStrId* id);
+void fn_710119780c(UnkObj_710119770c* self, const base::global::CStrId& id);

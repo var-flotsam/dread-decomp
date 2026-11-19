@@ -3124,7 +3124,7 @@ address,size,name,name_source,subsystem,status
 0x710048dc38,4,CChozoWarriorXAIComponent::refl_AddFields,reflection,game/ai,O
 0x710048dc3c,356,CChozoWarriorXAIComponent::refl_InitClass,reflection,game/ai,O
 0x710048dda0,184,fn_710048dda0,unknown,game/ai?,O
-0x710048de58,616,fn_710048de58,unknown,game/ai?,U
+0x710048de58,616,fn_710048de58,unknown,game/ai?,O
 0x710048e0c0,36,fn_710048e0c0,unknown,game/ai?,O
 0x710048e0e4,368,fn_710048e0e4,unknown,game/ai?,O
 0x710048e254,312,fn_710048e254,unknown,game/ai?,O
@@ -5536,7 +5536,7 @@ address,size,name,name_source,subsystem,status
 0x71004e42bc,388,CDredhedDiveAttack::refl_InitClass,reflection,game/ai,O
 0x71004e4440,56,fn_71004e4440,unknown,game/ai?,O
 0x71004e4478,96,fn_71004e4478,unknown,game/ai?,O
-0x71004e44d8,308,fn_71004e44d8,unknown,game/ai?,U
+0x71004e44d8,308,fn_71004e44d8,unknown,game/ai?,O
 0x71004e460c,128,fn_71004e460c,unknown,game/ai?,O
 0x71004e468c,640,fn_71004e468c,unknown,game/ai?,U
 0x71004e490c,300,fn_71004e490c,unknown,game/ai?,U
