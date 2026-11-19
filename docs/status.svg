@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="256" viewBox="0 0 760 256" role="img"><style>.big{font:600 30px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#1f2328}.h{font:600 13px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#1f2328}.l,.n,.s{font:13px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#1f2328}.n{fill:#59636e}.t{fill:#e6e8eb}.u,.ku{fill:#c4c9cf}.o,.ko{fill:#9fd8b0}.f,.kf{fill:#2f9e5a}@media (prefers-color-scheme:dark){.big,.h,.l,.s{fill:#e6edf3}.n{fill:#9198a1}.t{fill:#2b3138}.u,.ku{fill:#4a525b}.o,.ko{fill:#2c6e45}.f,.kf{fill:#4cc27a}}</style>
 <rect class="ko" x="0" y="9" width="10" height="10" rx="2"/>
 <text class="n" x="16" y="18">matched</text>
-<text class="big" x="0" y="52">70.9%</text>
+<text class="big" x="0" y="52">71.8%</text>
 <rect class="kf" x="250" y="9" width="10" height="10" rx="2"/>
 <text class="n" x="266" y="18">finished (matched and readable)</text>
 <text class="big" x="250" y="52">21.1%</text>
 <rect class="ku" x="500" y="9" width="10" height="10" rx="2"/>
 <text class="n" x="516" y="18">untouched</text>
-<text class="big" x="500" y="52">4.94 MB</text>
+<text class="big" x="500" y="52">4.73 MB</text>
 <rect class="t" x="0" y="66" width="760" height="16" rx="4"/>
-<rect class="o" x="0" y="66" width="538.5" height="16" rx="4"/>
+<rect class="o" x="0" y="66" width="545.3" height="16" rx="4"/>
 <rect class="f" x="0" y="66" width="160.3" height="16" rx="4"/>
-<rect class="u" x="560.1" y="66" width="199.9" height="16" rx="4"/>
-<text class="n" x="0" y="100">Whole binary: 101,374 functions of game code, 5,035 untouched</text>
+<rect class="u" x="568.6" y="66" width="191.4" height="16" rx="4"/>
+<text class="n" x="0" y="100">Whole binary: 101,374 functions of game code, 4,632 untouched</text>
 <text class="l" x="0" y="125" dy="0.35em">Boot path</text>
 <rect class="t" x="150" y="120" width="420" height="10" rx="5"/>
 <rect class="o" x="150" y="120" width="205.0" height="10" rx="5"/>
