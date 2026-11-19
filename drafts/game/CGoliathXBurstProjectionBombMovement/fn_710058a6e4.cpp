@@ -2,7 +2,7 @@
 // start, takes four values from the target's CGoliathXAIComponent, hands back the old effect, shows the bomb or
 // tracker effect at the owner's position, records that position and, when tracking, picks the tracker damage id
 // before refreshing the request from it. Names and layouts are placeholders.
-#include "../../game_5821e4/UnkStaticInit.h"
+#include "../../../src/game_5821e4/UnkStaticInit.h"
 #include "base/global/CFilePathStrId.h"
 #include "base/global/CRntVector.h"
 #include "base/global/CStrId.h"
