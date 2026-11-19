@@ -10,22 +10,15 @@
 #include "game/UnkTU140.h"
 #include "game/UnkTU223.h"
 #include "game/UnkTU252.h"
+#include "game/UnkTU254.h"
+#include "game/UnkTU2557.h"
 #include "game/UnkTU315.h"
+#include "game/UnkTU322.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CStrId;
 
-struct UnkSceneObj_71010e2278;
-struct UnkModelInstance;
-struct UnkCountedResource;
-struct UnkObject_71001c3504;
-
-void fn_71002198cc(UnkRenderManager* self, void* a, void* b, void* c, u32 layer, u32 flag);
-void fn_7100e13928(void* set_, void* model_, UnkSceneObj_71010e2278** out, const CStrId* name);
-UnkModelInstance* fn_710021d3d4(UnkRenderPool* pool, UnkCountedResource* resource, UnkModelInstance** out,
-                                const base::global::CStrId* name);
-void fn_71001c3504(UnkObject_71001c3504* self, const base::UnkStrIdMember* id);
 void fn_710014543c(void* scene, bool enabled);
 void fn_71001bab1c(void* sub, f32 scale);
 void fn_7100148130(void* scene, u32 slot, u32 a, u32 b, u32 c);
