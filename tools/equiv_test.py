@@ -55,6 +55,7 @@ Usage:
   python tools/equiv_test.py --version 2.1.0 --minor          # every file under src/ with NON_MATCHING(minor)
   python tools/equiv_test.py --version 2.1.0 --drafts         # the `registers or order` rows of drafts/INDEX.csv
   python tools/equiv_test.py --version 2.1.0 --all-drafts     # every row of drafts/INDEX.csv, any difference (--any-kind)
+  ... --shard K/N      # with --drafts or --all-drafts, the K-th of N parts (run them in parallel)
   ... --any-kind       # judge every non-matching function: a pass of one that is not registers-only is `behaves`
   ... --write          # record the verdicts of functions under src/ in data/equivalence.csv
   ... --json OUT       # every verdict with its detail
@@ -653,6 +654,9 @@ def sources(args) -> list[Path]:
         with (ROOT / "drafts" / "INDEX.csv").open(newline="", encoding="utf-8") as fh:
             rows = [r for r in csv.DictReader(fh)
                     if r["difference"] == "registers or order" or args.all_drafts and r["difference"] != "match"]
+        if args.shard:
+            k, n = args.shard
+            rows = rows[k - 1::n]
         ONLY.update({(ROOT / r["file"]).resolve(): int(r["address"], 16) for r in rows})
         return [ROOT / r["file"] for r in rows]
     return [p.resolve() for p in args.files]
@@ -686,6 +690,8 @@ def main() -> int:
                     help="every row of drafts/INDEX.csv whatever its difference (implies --any-kind)")
     ap.add_argument("--any-kind", action="store_true",
                     help="judge functions of any difference; a pass of one that is not registers-only is `behaves`")
+    ap.add_argument("--shard", type=lambda t: tuple(int(x) for x in t.split("/")), metavar="K/N",
+                    help="with --drafts or --all-drafts: only every N-th row from the K-th (parallel runs)")
     ap.add_argument("--write", action="store_true", help="record verdicts of functions under src/ in data/equivalence.csv")
     ap.add_argument("--json", type=Path, help="write every verdict with its detail")
     ap.add_argument("--budget", type=float, default=60.0, help="seconds per function (default 60)")
