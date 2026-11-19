@@ -20,8 +20,6 @@ struct UnkTeamList;
 struct UnkWeakTarget;
 struct UnkNavOwner_b0025;
 
-void fn_71002aeebc(UnkLinkList* list, UnkLinkList** slot);
-void fn_71011a726c(UnkTeamList* self, UnkWeakTarget* target);
 void fn_7100da9e88(UnkNavOwner_b0025* self, void* item);
 
 struct UnkNode_l0f97ec {
