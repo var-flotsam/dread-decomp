@@ -14,6 +14,8 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<unsigned int>>::object asm("g_unk_7101d5d978");
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
@@ -226,7 +228,6 @@ void fn_7100e0db74();
 void fn_7100e0dbf4();
 void fn_7100e2f7e8();
 void fn_7100e2f8e0();
-extern base::reflection::CType g_unk_7101d5d978;
 void fn_7100e7c8cc();
 void fn_7100eaa060();
 void fn_7100eaa0f0();
@@ -1056,7 +1057,7 @@ void fn_7100e20d98(UnkReflFunction* fn, const char* name) {
 
 void fn_7100e77eec(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100e7c8cc);
-    fn->params.PushBack(&g_unk_7101d5d978);
+    fn->params.PushBack(&base::reflection::TypeObject<base::global::CRntVector<unsigned int>>::object);
 }
 
 void fn_7100e7e58c(UnkReflFunction* fn, const char* name) {

@@ -23,11 +23,14 @@ template <> base::reflection::CType base::reflection::TypeObject<void>::object a
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+class CEntity;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object asm("g_unk_71727b6630");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CBossAIComponent
-extern base::reflection::CType g_unk_71727b6630;
 void fn_71003b0e60();
 void fn_7100302d14(UnkReflFunction* fn);
 namespace CBossAIComponent {
@@ -36,7 +39,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sArenaLeftLandmark", 0x146f0, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(CStrId, "sArenaRightLandmark", 0x146f8, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(f32, "fArenaLimitDist", 0x14700, (DefaultValue, 0.0f));
-    UnkReflField* field3 = AddReflectedField(cls, CStrId("tDoors", true), &g_unk_71727b6630, 0x146c8, -1, -1);
+    UnkReflField* field3 = AddReflectedField(cls, CStrId("tDoors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x146c8, -1, -1);
     field3->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Door to lock on emmy spawn"));
     field3->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     UnkReflField* field4 = AddReflectedField(cls, CStrId("wpBossCamera", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14728, -1, -1);

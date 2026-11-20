@@ -55,7 +55,6 @@ DREAD_REFLECTED_CLASS(CLineBombGun, CSecondaryGun);
 extern bool g_unk_7172726bb0;
 void fn_710084b964();
 void fn_710084ac1c(UnkReflFunction* fn, const char* name);
-extern base::global::CRntString g_unk_7101d58d10;
 extern UnkTunable g_unk_7172726b48;
 void fn_710084ad98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLineBombGun::CTunableLineBomb {
@@ -70,7 +69,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_sDamageSource_GetterFunction", &base::reflection::PrimitiveType<base::global::CRntString>::Get(), 0x101, fn_710084b964);
     DREAD_REFLECTED_FUNCTION("_sDamageSource_SetterFunction")
         fn_710084ac1c(fn, "_sDamageSource_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource", (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Source of the damage to be dealt")));
+    DREAD_REFLECTED_PROPERTY(base::global::CRntString, "sDamageSource", (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Source of the damage to be dealt")));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x60, (DefaultValue, 0.7f), (Description, "Maximun damage to the shield"));
     fn_710084ad98(base::reflection::TunableRegistry(), &g_unk_7172726b48, "");
 }

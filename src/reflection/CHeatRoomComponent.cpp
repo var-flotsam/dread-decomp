@@ -20,11 +20,14 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+class CActor;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CHeatRoomComponent
-extern base::reflection::CType g_unk_717269bf08;
 namespace CHeatRoomComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -33,7 +36,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sEnterZoneSound", 0xc50, (DefaultValue, base::global::CFilePathStrId(base::global::UnkStrIdInline{}, "levels/lava_pain_01.wav", true)));
     DREAD_REFLECTED_FIELD(CStrId, "sVisualPresetOverride", 0xc58, (DefaultValue, CStrId("HeatZone", true)));
     DREAD_REFLECTED_FIELD_OF("CGameLink<CActor>", "pEnvironmentFXActor", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
-    UnkReflField* field5 = AddReflectedField(cls, CStrId("vEnvironmentFXActors", true), &g_unk_717269bf08, 0xc28, -1, -1);
+    UnkReflField* field5 = AddReflectedField(cls, CStrId("vEnvironmentFXActors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0xc28, -1, -1);
     field5->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field5->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 10);
 }

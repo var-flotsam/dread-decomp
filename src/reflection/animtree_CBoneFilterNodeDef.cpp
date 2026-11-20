@@ -18,17 +18,20 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::global { class CStrId; }
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object asm("g_unk_7101d5c998");
 
 // animtree::CBoneFilterNodeDef
-extern base::reflection::CType g_unk_7101d5c998;
 namespace animtree::CBoneFilterNodeDef {
 void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::Description(), "Bone Filter Node Definition");
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vBones", true), &g_unk_7101d5c998, 0x10, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("vBones", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x10, -1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone filters");
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &g_unk_7101d5c998, 0x38, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("vBoneHierarchies", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x38, -1, -1);
     field1->attrs.Add<const char*>(base::reflection::attr::Description(), "List of bone hierarchies filters");
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

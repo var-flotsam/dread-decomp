@@ -22,18 +22,20 @@ using base::reflection::DestroyDestructorFirst;
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CChozoRobotSoldierAIComponent
-extern base::reflection::CType g_unk_717269bf08;
 namespace CChozoRobotSoldierAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bAlternativeSkin", 0x27790, (DefaultValue, false));
     UnkReflField* field1 = AddReflectedField(cls, CStrId("wpPatrolPath", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x14ad8, -1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("tShootingPositions", true), &g_unk_717269bf08, 0x14b28, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("tShootingPositions", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x14b28, -1, -1);
     field2->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Shooting positions"));
     field2->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 6);
 }

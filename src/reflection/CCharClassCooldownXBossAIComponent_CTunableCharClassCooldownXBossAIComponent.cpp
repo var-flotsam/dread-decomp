@@ -7,7 +7,6 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -19,6 +18,12 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+class CTentacle;
+namespace base::global { template <class> class CRntVector; }
+#include <memory>
+#include "base/reflection/UnkTunableRegistry.h"
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object asm("g_unk_717270d668");
 
 // CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent
 extern bool g_unk_71726d82b8;
@@ -75,7 +80,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent, base::tunable::CTunable);
 
 // CCharClassCooldownXBossAIComponent
-extern base::reflection::CType g_unk_717270d668;
 namespace CCharClassCooldownXBossLaserBiteAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassCooldownXBossLavaCarpetAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassCooldownXBossLavaDropsAttack { const base::reflection::CClass* refl_GetClass(); }
@@ -92,7 +96,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossStrongWhipAttack, "oCooldownXBossStrongWhipAttackDef", 0x8e8);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossWindTunnelAttack, "oCooldownXBossWindTunnelAttackDef", 0x9f0);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassCooldownXBossLaserBiteAttack, "oCooldownXBossLaserBiteAttackDef", 0xb38);
-    UnkReflField* field6 = AddReflectedField(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0xc40, -1, -1);
+    UnkReflField* field6 = AddReflectedField(cls, CStrId("tTentacles", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object, 0xc40, -1, -1);
     field6->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_FIELD(f32, "fMinTimeToRelaxAction", 0xc68, (DefaultValue, 30.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxTimeToRelaxAction", 0xc6c, (DefaultValue, 50.0f));

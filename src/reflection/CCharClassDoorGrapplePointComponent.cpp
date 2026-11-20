@@ -18,13 +18,16 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::global { class CStrId; }
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object asm("g_unk_7101d5c998");
 
 // CCharClassDoorGrapplePointComponent
-extern base::reflection::CType g_unk_7101d5c998;
 namespace CCharClassDoorGrapplePointComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("sGrappleColliderNames", true), &g_unk_7101d5c998, 0x78, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("sGrappleColliderNames", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x78, -1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "List of valid grapple collider names");
 }
 bool refl_Equals(const void*, const void*) { return false; }

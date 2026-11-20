@@ -14,6 +14,9 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+namespace base::global { class CFilePathStrId; }
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::global::CFilePathStrId>>::object asm("g_unk_7101d5d188");
 namespace base::snd { enum class EAttenuationCurve : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::EAttenuationCurve>::object asm("g_unk_7108b6cb28");
 namespace base::snd { enum class EPositionalType : u32; }
@@ -59,7 +62,6 @@ void fn_710101e278();
 void fn_710101e35c();
 void fn_710101e440();
 void fn_710101e524();
-extern base::reflection::CType g_unk_7101d5d188;
 void fn_710103a5f8();
 void fn_710103a8f4();
 void fn_710103a984();
@@ -308,7 +310,7 @@ void fn_7101017ec8(UnkReflFunction* fn, const char* name) {
 
 void fn_710102d0d0(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_710103a5f8);
-    fn->params.PushBack(&g_unk_7101d5d188);
+    fn->params.PushBack(&base::reflection::TypeObject<base::global::CRntVector<base::global::CFilePathStrId>>::object);
 }
 
 void fn_710102da64(UnkReflFunction* fn, const char* name) {
