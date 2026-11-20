@@ -4,7 +4,9 @@
 // element type of the arrays of such lists. The list has CRntVector's layout. Neither name is
 // known; both keep placeholders.
 
+#include "base/global/CRntSmallDictionary.h"
 #include "base/global/CRntVector.h"
+#include "base/global/CStrId.h"
 
 struct UnkOwned {
     virtual void vf_0x0();
@@ -66,3 +68,10 @@ struct UnkOwnedList {
     }
 };
 static_assert(sizeof(UnkOwnedList) == 0x28, "UnkOwnedList layout");
+
+// A map from string ids to lists.
+using UnkOwnedListMap = base::global::CRntSmallDictionary<base::global::CStrId, UnkOwnedList>;
+
+// Grows the map's two arrays to `capacity`, moving the lists and the ids
+// (src/base/tunable/CTunable/fn_71001358e0.cpp).
+void fn_71001358e0(UnkOwnedListMap* self, u32 capacity);

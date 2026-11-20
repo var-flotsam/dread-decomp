@@ -1,6 +1,6 @@
 // base::tunable::CTunable's unit: the entry of a map from string ids to owned lists (two parallel
 // arrays, as in fn_71001358e0), added empty when the id is not in it; returns the entry.
-// Names and layouts are placeholders.
+// Names are placeholders.
 #include <new>
 
 #include "base/global/CRntSmallDictionary.h"
@@ -11,11 +11,7 @@
 
 using base::global::CStrId;
 
-using UnkListMap133a94 = base::global::CRntSmallDictionary<CStrId, UnkOwnedList>;
-
-void fn_71001358e0(UnkListMap133a94* self, u32 capacity);
-
-UnkOwnedList* fn_7100133a94(UnkListMap133a94* self, const CStrId* key) {
+UnkOwnedList* fn_7100133a94(UnkOwnedListMap* self, const CStrId* key) {
     UnkOwnedList* found = self->Find(*key);
     if (found != self->End())
         return found;
