@@ -332,9 +332,56 @@ def ir_function(ll: str, symbol: str) -> str | None:
     return "\n".join(line.rstrip() for line in body.splitlines() if line.strip())
 
 
+def ir_program(ll: str) -> str | None:
+    """A whole LLVM IR module the way ir_function() takes one function: every definition and global, so a
+    change in a callee left out of line (a comparator instantiated beside the function) still counts. The
+    module's name, source file name, target lines, metadata nodes and attribute groups are left out. None when
+    the module defines no function."""
+    if not re.search(r"^define ", ll, re.M):
+        return None
+    keep = [line for line in ll.splitlines() if not re.match(r"\s*(;|source_filename|target |!|attributes #)", line)]
+    body = re.sub(r", ![\w.]+ !\d+|![\w.]+ !\d+|#\d+|;[^\n]*", "", "\n".join(keep))
+    return "\n".join(line.rstrip() for line in body.splitlines() if line.strip())
+
+
+def object_program(path: Path) -> bytes:
+    """Everything an object file puts in the program: each allocated section's bytes (literal pools and tables
+    included) and each of their relocations by symbol name. Every function the source defines counts, not
+    only the one under test, since a callee left out of line holds part of its behaviour."""
+    from elftools.elf.constants import SH_FLAGS
+    from elftools.elf.elffile import ELFFile
+    from elftools.elf.relocation import RelocationSection
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        elf = ELFFile(fh)
+        secs = list(elf.iter_sections())
+        for s in secs:
+            if s["sh_flags"] & SH_FLAGS.SHF_ALLOC:
+                h.update(f"{s.name}|{s['sh_type']}|{s['sh_size']}\n".encode())
+                if s["sh_type"] != "SHT_NOBITS":
+                    h.update(s.data())
+        for s in secs:
+            if not isinstance(s, RelocationSection):
+                continue
+            target = elf.get_section(s["sh_info"])
+            if not target["sh_flags"] & SH_FLAGS.SHF_ALLOC:
+                continue
+            syms = elf.get_section(s["sh_link"])
+            for r in s.iter_relocations():
+                sym = syms.get_symbol(r["r_info_sym"])
+                name = sym.name
+                if not name and isinstance(sym["st_shndx"], int):   # a section symbol
+                    name = elf.get_section(sym["st_shndx"]).name
+                addend = r["r_addend"] if r.is_RELA() else 0
+                h.update(f"{target.name}|{r['r_offset']}|{r['r_info_type']}|{name}|{addend}\n".encode())
+    return h.digest()
+
+
 def same_program(src: Path, msrc: Path, symbol: str) -> str | None:
-    """How the compiler shows the mutant in `msrc` to be the function of `src` itself (the same code for
-    `symbol` under another optimisation level, or the same optimised IR), or None."""
+    """How the compiler shows the mutant in `msrc` to be the function of `src` itself (the same object, every
+    function and constant in it, under another optimisation level, or the same optimised IR module), or None.
+    The whole program and not `symbol` alone: below -O2 a callee such as an std::pop_heap comparator stays out
+    of line, and a mutant in it leaves `symbol`'s own code as it was."""
     import asmdiff
     import buildcfg
     work = WORK / "mutants"
@@ -344,8 +391,9 @@ def same_program(src: Path, msrc: Path, symbol: str) -> str | None:
         out = work / f"{path.stem}_tce{'_'.join(x.strip('-') for x in extra)}.o"
         if subprocess.run(buildcfg.cxx_command(path, out, inc + extra), capture_output=True).returncode != 0:
             return None
-        f = [f for f in asmdiff.read_object(out) if f.symbol == symbol]
-        return digest(f[0].code, f[0].relocs).encode() if f else None
+        if not any(f.symbol == symbol for f in asmdiff.read_object(out)):
+            return None
+        return object_program(out)
     for level in TCE_LEVELS:
         a, b = code(src, [level]), code(msrc, [level])
         if a is not None and a == b:
@@ -356,7 +404,8 @@ def same_program(src: Path, msrc: Path, symbol: str) -> str | None:
         cmd = [x for x in buildcfg.cxx_command(path, out, inc + ["-S", "-emit-llvm"]) if x != "-c"]
         if subprocess.run(cmd, capture_output=True).returncode != 0 or not out.is_file():
             return None
-        return ir_function(out.read_text(encoding="utf-8", errors="replace"), symbol)
+        ll = out.read_text(encoding="utf-8", errors="replace")
+        return ir_program(ll) if ir_function(ll, symbol) is not None else None
     a, b = ir(src), ir(msrc)
     if a is not None and a == b:
         return "the same optimised IR"

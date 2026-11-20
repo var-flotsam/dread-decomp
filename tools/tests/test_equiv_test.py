@@ -439,3 +439,15 @@ class IrFunction(unittest.TestCase):
     def test_only_the_named_function(self):
         self.assertNotIn("_Z3barv", equiv_test.ir_function(self.LL, "_Z3fooi"))
         self.assertIsNone(equiv_test.ir_function(self.LL, "_Z3bazv"))
+
+    def test_the_program_counts_every_function(self):
+        # a mutant in an out-of-line callee (a comparator) leaves the function itself unchanged
+        callee = self.LL.replace("ret void", "store i32 1, i32* @g\n  ret void")
+        self.assertEqual(equiv_test.ir_function(self.LL, "_Z3fooi"), equiv_test.ir_function(callee, "_Z3fooi"))
+        self.assertNotEqual(equiv_test.ir_program(self.LL), equiv_test.ir_program(callee))
+
+    def test_the_program_leaves_out_the_module_name_and_metadata(self):
+        other = ("; ModuleID = 'y_2.cpp'\nsource_filename = \"y_2.cpp\"\n" + self.LL.split("\n", 1)[1]
+                 + "!12 = !DILocation(line: 3)\nattributes #0 = { nounwind }\n")
+        self.assertEqual(equiv_test.ir_program(self.LL), equiv_test.ir_program(other))
+        self.assertIsNone(equiv_test.ir_program("; ModuleID = 'x'\n"))
