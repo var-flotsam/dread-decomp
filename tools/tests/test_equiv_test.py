@@ -415,3 +415,39 @@ class KillCandidates(unittest.TestCase):
         base = _Run({self.A}, set(), read_words=[w])
         base.compares = [(self.A + 4, 0x5000, 0x6123)]   # the run's word held 0x5000 (_Run.peek)
         self.assertIn({("m", w): 0x6123}, [o for _, o in self.candidates(base, [1])])
+
+
+class IrFunction(unittest.TestCase):
+    """The optimised IR of one function, without what does not bear on its meaning (equiv_test.ir_function)."""
+    LL = ("; ModuleID = 'x.cpp'\n"
+          "define i32 @_Z3fooi(i32 %0) local_unnamed_addr #0 {\n"
+          "  %2 = icmp slt i32 %0, 3, !dbg !12\n"
+          "  %3 = load i32, i32* @g, align 4, !tbaa !5\n"
+          "  ret i32 %3 ; the result\n"
+          "}\n"
+          "define void @_Z3barv() #1 {\n  ret void\n}\n")
+
+    def test_metadata_attributes_and_comments_do_not_count(self):
+        other = self.LL.replace("!dbg !12", "!dbg !40").replace("#0", "#7").replace("!tbaa !5", "!tbaa !9")
+        self.assertEqual(equiv_test.ir_function(self.LL, "_Z3fooi"), equiv_test.ir_function(other, "_Z3fooi"))
+
+    def test_a_changed_constant_or_predicate_counts(self):
+        f = equiv_test.ir_function(self.LL, "_Z3fooi")
+        self.assertNotEqual(f, equiv_test.ir_function(self.LL.replace("i32 %0, 3", "i32 %0, 4"), "_Z3fooi"))
+        self.assertNotEqual(f, equiv_test.ir_function(self.LL.replace("slt", "sle"), "_Z3fooi"))
+
+    def test_only_the_named_function(self):
+        self.assertNotIn("_Z3barv", equiv_test.ir_function(self.LL, "_Z3fooi"))
+        self.assertIsNone(equiv_test.ir_function(self.LL, "_Z3bazv"))
+
+    def test_the_program_counts_every_function(self):
+        # a mutant in an out-of-line callee (a comparator) leaves the function itself unchanged
+        callee = self.LL.replace("ret void", "store i32 1, i32* @g\n  ret void")
+        self.assertEqual(equiv_test.ir_function(self.LL, "_Z3fooi"), equiv_test.ir_function(callee, "_Z3fooi"))
+        self.assertNotEqual(equiv_test.ir_program(self.LL), equiv_test.ir_program(callee))
+
+    def test_the_program_leaves_out_the_module_name_and_metadata(self):
+        other = ("; ModuleID = 'y_2.cpp'\nsource_filename = \"y_2.cpp\"\n" + self.LL.split("\n", 1)[1]
+                 + "!12 = !DILocation(line: 3)\nattributes #0 = { nounwind }\n")
+        self.assertEqual(equiv_test.ir_program(self.LL), equiv_test.ir_program(other))
+        self.assertIsNone(equiv_test.ir_program("; ModuleID = 'x'\n"))
