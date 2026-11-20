@@ -1426,7 +1426,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x71009ebbd8,484,drafts/game/UnkTU1501/fn_71009ebbd8.cpp,control flow,11.6,107,lean-o2,move loop unrolled/rotated by two in ours; end pointer form; 0x38 copy merged
 0x71009ebe68,112,drafts/game/UnkTU1501/fn_71009ebe68.cpp,operations,7.1,25,lean-b2,mode-list search loop shape (byte-count loop; no post-index; cbz on 64-bit length) not reproduced
 0x71009ec09c,1792,drafts/game/UnkTU1501/fn_71009ec09c.cpp,build fails,,,lean-r2k,the four mode/mask sends: original gives each its own stack slots (frame 0xf0) so the two default-id sends sta
-0x71009ecf34,292,drafts/game/UnkTU1501/fn_71009ecf34.cpp,match,100.0,0,lean-retry-a,matches; held: 1 declaration problem: src/game/UnkTU1501/fn_71009ecf34.cpp:67 fn_71009ecf34: defined as void fn_71009ecf34(UnkMovement_l9ecf34*; UnkSample_l9ecf34*; bool) -> declared elsewhere with other types; u...
 0x71009ed53c,1152,drafts/game/UnkTU1501/fn_71009ed53c.cpp,control flow,51.2,140,lean-r2ki,scheduling of the query's origin copy and the sweep/dot loads; register choice; structure and calls line up
 0x71009eff9c,344,drafts/game/UnkTU1501/fn_71009eff9c.cpp,control flow,57.0,29,lean-b2,direction compare if-converted to selects where the original branches with duplicated tails; running/booster b
 0x71009f07e8,768,drafts/game/UnkTU1501/fn_71009f07e8.cpp,build fails,,,lean-r2k,CParams copy of the request: original copies field by field from sp offsets after the derived vtable load; our

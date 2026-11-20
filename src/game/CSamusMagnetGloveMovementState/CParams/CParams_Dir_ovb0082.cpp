@@ -3,31 +3,20 @@
 // use (from the game manager's id table while the flag at +0x7e4 is set). Names and layouts are placeholders.
 #include "base/math/CVector.h"
 #include "game/UnkGameManagerIdTable.h"
+#include "game/UnkSamusInputMovement.h"
 #include "game/UnkTU54.h"
 #include "game/UnkXformNode.h"
 #include "types.h"
 
 struct UnkMagnetDirOut_ovb0082 {
     f32 x;
-    u32 y;
-};
-
-struct UnkMagnetSamus_ovb0082 {
-    u8 pad_0x0[0x7e4];
-    bool field_0x7e4;
+    UnkWordFloat y;
 };
 
 struct UnkMagnetDirState_ovb0082 {
     u8 pad_0x0[0x38];
-    UnkMagnetSamus_ovb0082* samus;  // 0x38
+    UnkSamusInputMovement* samus;  // 0x38
 };
-
-struct UnkMagnetDirSample_ovb0082 {
-    f32 x;
-    u32 y;
-};
-
-void* fn_71009ecf34(UnkMagnetSamus_ovb0082* samus, UnkMagnetDirSample_ovb0082* out, u32 flags);
 
 struct UnkGameManagerIdTableEntry_ovb0082 {
     u8 pad_0x0[0x30];
@@ -36,9 +25,9 @@ struct UnkGameManagerIdTableEntry_ovb0082 {
 
 void fn_71009a9628(UnkMagnetDirState_ovb0082* self, const UnkVec3f* dir, UnkMagnetDirOut_ovb0082* out_2d,
                    base::math::CVector3D* out_back, UnkVec3f* out_rot, u64* out_id) {
-    UnkMagnetDirSample_ovb0082 sample;
+    UnkSamusInputSample sample;
     __builtin_memset(&sample, 0, sizeof(sample));
-    fn_71009ecf34(self->samus, &sample, 0);
+    fn_71009ecf34(self->samus, &sample, false);
     out_2d->x = -(sample.x * dir->x);
     out_2d->y = sample.y;
     *out_back = {-dir->x, -dir->y, -dir->z};
