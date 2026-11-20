@@ -19,11 +19,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
-#include "base/reflection/UnkTunableRegistry.h"
 #include "base/reflection/TypeObject.h"
 namespace CTriggerComponent { class SActivationCondition; }
 namespace base::global { template <class> class CRntVector; }
 #include <memory>
+#include "base/reflection/UnkTunableRegistry.h"
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::object asm("g_unk_717274dad8");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();

@@ -24,12 +24,11 @@ using base::reflection::DestroyDestructorFirst;
 namespace base::global { class CStrId; }
 namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object asm("g_unk_7101d5c998");
-class CActor;
-template <class> class CGameLink;
-template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+template <class> class CGameLink;
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 

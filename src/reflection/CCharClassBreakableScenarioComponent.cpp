@@ -20,11 +20,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+namespace gameeditor { enum class EEditorModeDataFlow : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 namespace base::global { class CStrId; }
 namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object asm("g_unk_7101d5c998");
-namespace gameeditor { enum class EEditorModeDataFlow : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 

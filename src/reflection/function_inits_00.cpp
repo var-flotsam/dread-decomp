@@ -13,6 +13,11 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+namespace base::snd { enum class EReverbIntensity : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
+namespace base::snd { enum class ELowPassFilter : u32; }
+template <> base::reflection::CType base::reflection::TypeObject<base::snd::ELowPassFilter>::object asm("g_unk_7108b6cde8");
 class CActor;
 template <class> class CGameLink;
 namespace base::global { template <class> class CRntVector; }
@@ -20,11 +25,6 @@ template <> base::reflection::CType base::reflection::TypeObject<base::global::C
 namespace base::global { class CStrId; }
 namespace base::global { template <class, class> class CRntDictionary; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::object asm("g_unk_717269c300");
-template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
-namespace base::snd { enum class EReverbIntensity : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
-namespace base::snd { enum class ELowPassFilter : u32; }
-template <> base::reflection::CType base::reflection::TypeObject<base::snd::ELowPassFilter>::object asm("g_unk_7108b6cde8");
 enum class EShellState : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EShellState>::object asm("g_unk_7172707020");
 namespace game::logic::collision { enum class EColMat : u32; }

@@ -20,20 +20,18 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
-class CActor;
-template <class> class CGameLink;
-namespace base::global { template <class> class CRntVector; }
-template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
-class CEntity;
-template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object asm("g_unk_71727b6630");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 class CEntity;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object asm("g_unk_71727b6630");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 

@@ -19,10 +19,10 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 class SWorldGraphNode;
 namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<SWorldGraphNode>>::object asm("g_unk_7172756230");
-template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CWorldGraph
 void fn_7100acceb8();

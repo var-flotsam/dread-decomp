@@ -13,10 +13,10 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { class CFilePathStrId; }
 namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::global::CFilePathStrId>>::object asm("g_unk_7101d5d188");
-template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::snd { enum class EAttenuationCurve : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::EAttenuationCurve>::object asm("g_unk_7108b6cb28");
 namespace base::snd { enum class EPositionalType : u32; }

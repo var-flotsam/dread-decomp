@@ -12,10 +12,10 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::math { class CVector3D; }
 namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<base::math::CVector3D>>::object asm("g_unk_7101d5c078");
-template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace engine::utils { enum class ELightPreset : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<engine::utils::ELightPreset>::object asm("g_unk_716e5992a0");
 template <class T> struct CGameLink;

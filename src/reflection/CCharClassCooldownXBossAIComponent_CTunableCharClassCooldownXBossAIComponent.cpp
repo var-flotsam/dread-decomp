@@ -7,7 +7,6 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -23,6 +22,7 @@ using base::reflection::DestroyDestructorFirst;
 class CTentacle;
 namespace base::global { template <class> class CRntVector; }
 #include <memory>
+#include "base/reflection/UnkTunableRegistry.h"
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object asm("g_unk_717270d668");
 
 // CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent

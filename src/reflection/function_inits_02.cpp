@@ -13,9 +13,9 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
+template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<unsigned int>>::object asm("g_unk_7101d5d978");
-template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");

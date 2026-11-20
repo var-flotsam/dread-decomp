@@ -18,15 +18,19 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace CGameBlackboard { class TPropDeltaValues; }
+namespace base::global { class CStrId; }
+namespace base::global { template <class, class> class CRntSmallDictionary; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::object asm("g_unk_717275b988");
 
 // CGameBlackboard
-extern base::reflection::CType g_unk_717275b988;
 void fn_7100aed380();
 namespace CGameBlackboard {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("_dctDeltaValues_GetterFunction", &g_unk_717275b988, 0x1, fn_7100aed380);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("dctDeltaValues", true), &g_unk_717275b988, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_dctDeltaValues_GetterFunction", (&base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::object), 0x1, fn_7100aed380);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("dctDeltaValues", true), &base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, CGameBlackboard::TPropDeltaValues>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }
