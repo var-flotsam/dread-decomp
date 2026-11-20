@@ -1746,7 +1746,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x7100e15cec,1236,drafts/game/CArenaManager/CTunableArenaManager/fn_7100e15cec.cpp,build fails,,,lean-r2kg,stack slot layout of the two section ids; fn_7100e161c0's first argument is never loaded in the first loop (Un
 0x7100e19f84,760,drafts/game/UnkTU2559/fn_7100e19f84.cpp,conditions,98.9,2,lean-r2kg,graded draft had the two csinc results swapped (fixed in draft after budget; ungraded: decayed>0 ? 1 : 2; fn_7
 0x7100e2afe8,3764,drafts/game/UnkTU2562/fn_7100e2afe8.cpp,operations,70.5,277,lean-r6kb,input->data load hoisted into the loop header (one ldr missing at the exit); prev floats in other registers; o
-0x7100e2d4ec,284,drafts/game/UnkTU2562/fn_7100e2d4ec.cpp,operations,33.8,46,lean-b5,box merge scheduling and loop shape differ; z loaded as integer word in original
 0x7100e2eef8,312,drafts/game/UnkTU2562/fn_7100e2eef8.cpp,registers or order,97.4,2,lean-b5,same instructions; register/order differences
 0x7100e2f030,220,drafts/game/UnkTU2562/fn_7100e2f030.cpp,operations,29.1,38,lean-b5,loop induction var: original keeps the active-byte pointer and post-index fuses slot address; ours uses flags/
 0x7100e2f398,292,drafts/game/UnkTU2562/fn_7100e2f398.cpp,operations,2.7,69,pilot50,operations: second loop strength-reduced; 2 insns off; first-loop counter register
