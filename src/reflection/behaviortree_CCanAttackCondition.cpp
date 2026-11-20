@@ -20,11 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CCanAttackCondition
-extern base::global::CRntString g_unk_7101d58d10;
 namespace behaviortree::CCanAttackCondition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x38, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Attack")));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x38, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Attack")));
     DREAD_REFLECTED_FIELD(bool, "bCheckRotation", 0x68, (DefaultValue, true), (Description, "Check rotation?"));
     DREAD_REFLECTED_FIELD(bool, "bIgnoreDistance", 0x69, (DefaultValue, false), (Description, "Ignore distance?"));
     DREAD_REFLECTED_FIELD(bool, "bUseSuitableAttack", 0x6a, (DefaultValue, false), (Description, "Use suitable attack if attack order is NULL?"));

@@ -26,14 +26,16 @@ template <> base::reflection::CType base::reflection::TypeObject<base::serializa
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 class CEntity;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object asm("g_unk_71727b6630");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CCentralUnitComponent
-extern base::reflection::CType g_unk_717269bf08;
-extern base::reflection::CType g_unk_71727b6630;
 void fn_710076e66c(UnkReflFunction* fn, const char* name);
 void fn_710077b704();
 void fn_710077b740();
@@ -70,11 +72,11 @@ void refl_AddFields(CClass* cls) {
     field10->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     UnkReflField* field11 = AddReflectedField(cls, CStrId("wpDestroySearchLandmark", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0x668, -1, -1);
     field11->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    UnkReflField* field12 = AddReflectedField(cls, CStrId("tEmmyForbiddenShapes", true), &g_unk_717269bf08, 0x5e8, -1, -1);
+    UnkReflField* field12 = AddReflectedField(cls, CStrId("tEmmyForbiddenShapes", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x5e8, -1, -1);
     field12->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<std::unique_ptr<CCentralUnitWeightedEdges>>", "tEmmyWeightedShapes", 0x610);
     DREAD_REFLECTED_FIELD(bool, "bUnlockDoorsOnEmmyDead", 0x638, (DefaultValue, true));
-    UnkReflField* field15 = AddReflectedField(cls, CStrId("tEmmyLockedDoors", true), &g_unk_71727b6630, 0x640, -1, -1);
+    UnkReflField* field15 = AddReflectedField(cls, CStrId("tEmmyLockedDoors", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CEntity>>>::object, 0x640, -1, -1);
     field15->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Door to lock on emmy spawn"));
     field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CGameLink<CActor>>", "tEmmyPhase2DeactivatedActors", 0x6a8);

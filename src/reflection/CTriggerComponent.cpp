@@ -19,7 +19,12 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
+#include "base/reflection/TypeObject.h"
+namespace CTriggerComponent { class SActivationCondition; }
+namespace base::global { template <class> class CRntVector; }
+#include <memory>
 #include "base/reflection/UnkTunableRegistry.h"
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::object asm("g_unk_717274dad8");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
@@ -32,7 +37,6 @@ void fn_7100a646ec();
 void fn_7100a5cdfc(UnkReflFunction* fn, const char* name);
 void fn_7100a64790();
 void fn_7100a5cf78(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_717274dad8;
 void fn_7100a5d0f4(UnkReflFunction* fn, const char* name);
 namespace CTriggerComponent {
 void refl_AddAttributes(CClass*) {}
@@ -62,7 +66,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_sSfxType_SetterFunction")
         fn_7100a5cf78(fn, "_sSfxType_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sSfxType", (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field11 = AddReflectedField(cls, CStrId("lstActivationConditions", true), &g_unk_717274dad8, 0x250, -1, -1);
+    UnkReflField* field11 = AddReflectedField(cls, CStrId("lstActivationConditions", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTriggerComponent::SActivationCondition>>>::object, 0x250, -1, -1);
     field11->attrs_0x70.Add<CStrId>(base::reflection::attr::AfterElementDeserialization(), CStrId("AfterActivationConditionDeserialization", true));
     DREAD_REFLECTED_FUNCTION("AfterActivationConditionDeserialization")
         fn_7100a5d0f4(fn, "AfterActivationConditionDeserialization");

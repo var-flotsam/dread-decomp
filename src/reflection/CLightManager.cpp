@@ -20,9 +20,13 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+class CLightsDef;
+namespace base::global { class CFilePathStrId; }
+namespace base::global { template <class, class> class CRntDictionary; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::object asm("g_unk_71727bfc38");
 
 // CLightManager
-extern base::reflection::CType g_unk_71727bfc38;
 void fn_7100e082bc(UnkReflFunction* fn, const char* name);
 void fn_7100e08438(UnkReflFunction* fn, const char* name);
 namespace CLightManager {
@@ -30,7 +34,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("dicLightDefs", true), &g_unk_71727bfc38, 0x148, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("dicLightDefs", true), &base::reflection::TypeObject<base::global::CRntDictionary<base::global::CFilePathStrId, CLightsDef>>::object, 0x148, -1, -1);
     field0->attrs.Add<CStrId>(base::reflection::attr::ElementKeyVariable(), CStrId("sPath", true));
     field0->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateElement", true));
     field0->attrs.Add<CStrId>(base::reflection::attr::DeleteElement(), CStrId("DeleteElement", true));

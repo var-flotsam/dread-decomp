@@ -31,7 +31,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 // CSpawnGroupComponent
 void fn_710111fc58();
 void fn_710111fcf8();
-extern base::global::CRntString g_unk_7101d58d10;
 void fn_710111fd34();
 extern base::reflection::CType g_unk_7172a07250;
 namespace CSpawnGroupComponent {
@@ -44,15 +43,15 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(s32, "iMaxToGenerate", 0x18c, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(s32, "iMaxSimultaneous", 0x190, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(f32, "fGenerateEvery", 0x180, (DefaultValue, 0.0f));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnBeforeGenerateEntity", 0x258, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEntityGenerated", 0x228, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEnable", 0x1c8, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnDisable", 0x1f8, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnMaxSimultaneous", 0x288, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnMaxGenerated", 0x2b8, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEntityDead", 0x2e8, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEntityDamaged", 0x318, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnAllEntitiesDead", 0x348, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnBeforeGenerateEntity", 0x258, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEntityGenerated", 0x228, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEnable", 0x1c8, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnDisable", 0x1f8, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnMaxSimultaneous", 0x288, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnMaxGenerated", 0x2b8, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEntityDead", 0x2e8, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnEntityDamaged", 0x318, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sOnAllEntitiesDead", 0x348, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bAutomanaged", 0x13c, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bDisableOnAllDead", 0x13d, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bAutoenabled", 0x13e, (DefaultValue, false));

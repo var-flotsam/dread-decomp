@@ -23,6 +23,10 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+class CActor;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 namespace base::global { class CStrId; }
@@ -166,7 +170,6 @@ void fn_7100565b44();
 void fn_71005659a8(UnkReflFunction* fn);
 void fn_7100565c1c();
 void fn_7100565c50();
-extern base::reflection::CType g_unk_717269bf08;
 namespace CEmmyAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -222,7 +225,7 @@ void refl_AddFields(CClass* cls) {
     }
     DREAD_REFLECTED_FUNCTION_OF("ForceStartChase", &base::reflection::TypeObject<void>::object, 0, fn_7100565c1c);
     DREAD_REFLECTED_FUNCTION_OF("ForceStopStagger", &base::reflection::TypeObject<void>::object, 0, fn_7100565c50);
-    UnkReflField* field15 = AddReflectedField(cls, CStrId("tLogicShapesToAvoidCornerReposition", true), &g_unk_717269bf08, 0x2a6c8, -1, -1);
+    UnkReflField* field15 = AddReflectedField(cls, CStrId("tLogicShapesToAvoidCornerReposition", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x2a6c8, -1, -1);
     field15->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field15->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 4);
 }

@@ -19,15 +19,18 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+class CActor;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CAutoolAIComponent
-extern base::reflection::CType g_unk_717269bf08;
 namespace CAutoolAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vAISmartObjects", true), &g_unk_717269bf08, 0x146d8, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("vAISmartObjects", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object, 0x146d8, -1, -1);
     field0->attrs.Add<bool>(base::reflection::attr::FixedCollection(), false);
     field0->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 7);
 }

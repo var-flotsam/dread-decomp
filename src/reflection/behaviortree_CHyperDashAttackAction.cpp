@@ -20,11 +20,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // behaviortree::CHyperDashAttackAction
-extern base::global::CRntString g_unk_7101d58d10;
 namespace behaviortree::CHyperDashAttackAction {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x30, (DefaultValue, base::global::CRntString(g_unk_7101d58d10)), (Description, base::global::CRntString("Selected attack")));
+    DREAD_REFLECTED_FIELD(base::global::CRntString, "sAttack", 0x30, (DefaultValue, base::global::CRntString(base::global::CRntString::Empty())), (Description, base::global::CRntString("Selected attack")));
     DREAD_REFLECTED_FIELD(CStrId, "sAttackBlc", 0x60, (DefaultValue, ""), (Description, "Selected attack (from blackboard)"));
     DREAD_REFLECTED_FIELD(bool, "bWaitOnAbort", 0x68, (DefaultValue, true), (Description, "Waits for the end of the attack before aborting the action"));
 }

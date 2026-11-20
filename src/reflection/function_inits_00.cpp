@@ -18,6 +18,13 @@ namespace base::snd { enum class EReverbIntensity : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
 namespace base::snd { enum class ELowPassFilter : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::ELowPassFilter>::object asm("g_unk_7108b6cde8");
+class CActor;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
+namespace base::global { class CStrId; }
+namespace base::global { template <class, class> class CRntDictionary; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::object asm("g_unk_717269c300");
 enum class EShellState : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EShellState>::object asm("g_unk_7172707020");
 namespace game::logic::collision { enum class EColMat : u32; }
@@ -69,9 +76,7 @@ void fn_710025468c();
 void fn_7100254714();
 void fn_7100254770();
 void fn_71002547cc();
-extern base::reflection::CType g_unk_717269c300;
 void fn_7100260978();
-extern base::reflection::CType g_unk_717269bf08;
 void fn_71002609ac();
 extern base::reflection::CType g_unk_71726a1cd8;
 void fn_71002609cc();
@@ -375,12 +380,12 @@ void fn_7100253534(UnkReflFunction* fn, const char* name) {
 
 void fn_710025915c(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100260978);
-    fn->params.PushBack(&g_unk_717269c300);
+    fn->params.PushBack(&base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::object);
 }
 
 void fn_71002592d0(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71002609ac);
-    fn->params.PushBack(&g_unk_717269bf08);
+    fn->params.PushBack(&base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object);
 }
 
 void fn_7100259444(UnkReflFunction* fn, const char* name) {

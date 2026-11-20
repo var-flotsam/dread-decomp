@@ -19,9 +19,13 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+namespace base::global { class CStrId; }
+namespace game::logic::collision { class EColMat; }
+namespace base::global { template <class, class> class CRntSmallDictionary; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::object asm("g_unk_7172718518");
 
 // CCharClassCollisionComponent
-extern base::reflection::CType g_unk_7172718518;
 namespace CCharClassCollisionComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -29,7 +33,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("game::logic::collision::EColMat", "eDefaultCollisionMaterial", 0x98, (DefaultValue, 0), (Description, "General Collision Material"));
     DREAD_REFLECTED_FIELD(bool, "bShouldIgnoreSlopeSupport", 0xc8, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bForceSlopeDirectionOnFloorHit", 0xc9, (DefaultValue, false));
-    UnkReflField* field4 = AddReflectedField(cls, CStrId("mExplicitCollisionMaterials", true), &g_unk_7172718518, 0xa0, -1, -1);
+    UnkReflField* field4 = AddReflectedField(cls, CStrId("mExplicitCollisionMaterials", true), &base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, game::logic::collision::EColMat>>::object, 0xa0, -1, -1);
     field4->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void*, const void*) { return false; }

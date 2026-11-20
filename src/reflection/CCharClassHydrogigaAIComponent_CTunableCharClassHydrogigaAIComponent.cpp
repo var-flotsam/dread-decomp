@@ -7,7 +7,6 @@
 #include "base/reflection/ReflectedClass.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/UnkReflAttributes.h"
-#include "base/reflection/UnkTunableRegistry.h"
 using base::global::CStrId;
 using base::reflection::CClass;
 using base::reflection::UnkReflField;
@@ -19,6 +18,12 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+class CTentacle;
+namespace base::global { template <class> class CRntVector; }
+#include <memory>
+#include "base/reflection/UnkTunableRegistry.h"
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object asm("g_unk_717270d668");
 
 // CCharClassHydrogigaAIComponent::CTunableCharClassHydrogigaAIComponent
 extern bool g_unk_71726eb130;
@@ -64,7 +69,6 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassHydrogigaAIComponent::CTunableCharClassHydrogigaAIComponent, base::tunable::CTunable);
 
 // CCharClassHydrogigaAIComponent
-extern base::reflection::CType g_unk_717270d668;
 namespace CCharClassHydrogigaBraidAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassHydrogigaMaelstormAttack { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassHydrogigaPolypsAttack { const base::reflection::CClass* refl_GetClass(); }
@@ -74,7 +78,7 @@ namespace CDamageSourceFactor { const base::reflection::CClass* refl_GetClass();
 namespace CCharClassHydrogigaAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("tTentacles", true), &g_unk_717270d668, 0x528, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("tTentacles", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object, 0x528, -1, -1);
     field0->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaBraidAttack, "oHydrogigaBraidAttackDef", 0x738);
     DREAD_REFLECTED_CLASS_FIELD(CCharClassHydrogigaMaelstormAttack, "oHydrogigaMaelstormAttackDef", 0x830);

@@ -18,13 +18,17 @@ using base::reflection::ClassOf;
 using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
+#include "base/reflection/TypeObject.h"
+class CXParasiteBehavior;
+namespace base::global { template <class> class CRntVector; }
+#include <memory>
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::object asm("g_unk_717271c1a0");
 
 // CXParasiteDropComponent
-extern base::reflection::CType g_unk_717271c1a0;
 namespace CXParasiteDropComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("vectBehaviors", true), &g_unk_717271c1a0, 0x48, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("vectBehaviors", true), &base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CXParasiteBehavior>>>::object, 0x48, -1, -1);
     field0->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void*, const void*) { return false; }

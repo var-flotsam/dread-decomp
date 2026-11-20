@@ -22,6 +22,9 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/UnkTunableRegistry.h"
+namespace base::global { class CStrId; }
+namespace base::global { template <class, class> class CRntSmallDictionary; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::object asm("g_unk_7101d5f2b0");
 enum class EDamageStrength : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EDamageStrength>::object asm("g_unk_7172730858");
 namespace base::global { class CStrId; }
@@ -350,7 +353,6 @@ void fn_710078dfbc();
 void fn_710078cba4(UnkReflFunction* fn, const char* name);
 void fn_710078e048();
 void fn_710078cd18(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d5f2b0;
 void fn_710078e0d8();
 void fn_710078ce94(UnkReflFunction* fn, const char* name);
 namespace CCharClassAttackComponent {
@@ -400,7 +402,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_bIgnoreInmune_SetterFunction")
         fn_710078cd18(fn, "_m_bIgnoreInmune_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bIgnoreInmune", (DefaultValue, false), (Description, "Ignore Player Inmune [false]"));
-    UnkReflField* field12 = AddReflectedField(cls, CStrId("dictDamageIDOverrides", true), &g_unk_7101d5f2b0, 0xa0, -1, -1);
+    UnkReflField* field12 = AddReflectedField(cls, CStrId("dictDamageIDOverrides", true), &base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, base::global::CStrId>>::object, 0xa0, -1, -1);
     field12->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
     DREAD_REFLECTED_FUNCTION_OF("_sIgnoreBumpColliders_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710078e0d8);
     DREAD_REFLECTED_FUNCTION("_sIgnoreBumpColliders_SetterFunction")
