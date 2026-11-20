@@ -10,6 +10,9 @@
 #include "types.h"
 
 struct UnkSpawnHolder;
+struct UnkAIGroup_g;
+// The AI group of an actor's AI source.
+UnkAIGroup_g* fn_71011277a4(void* src);
 struct UnkStruct_7172a0768c;
 struct UnkObj_7101129240;
 void fn_71011258e4(void* self);

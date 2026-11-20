@@ -120,6 +120,7 @@ address,digest,verdict,rules,detail
 0x71003aad48,e0b5b7f7dee2dfc99a6876a7dbd012d0,inconclusive,2,unresolved vtable for UnkNode_71003aad48
 0x71003c269c,415f772b721c90e19beef580da160300,pass,2,
 0x71003f2710,1d87e0b7ef5a1024eb8aec767fcd4d27,pass,2,
+0x71003fa71c,ca8c21e00af49927e4a0477a6453c6ec,behaves,2,similarity 15.3%; calls;
 0x7100430124,c3dbd50f49e0e04240a7209abfba7969,behaves,2,similarity 51.5%; operations;
 0x7100430830,b0ffc1a635f3cfd54b29a7a3a7490853,pass,2,
 0x710046971c,07542db2c7b72e8f625a0c24feec16f7,pass,2,

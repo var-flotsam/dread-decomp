@@ -11,6 +11,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CAnimationComponent.h"
 #include "game/CAttack.h"
+#include "game/UnkTU2704.h"
 #include "game/CAttackComponent.h"
 #include "game/CCharacterMovement.h"
 #include "game/CEnemyMovement.h"
@@ -191,7 +192,6 @@ struct UnkAIStruct_g {
     UnkAICfg_g* field_0x1610;
 };
 
-UnkAIGroup_g* fn_71011277a4(void* src);
 
 void fn_7101102da8(UnkAIStruct_g* self) {
     if (self->field_0x1610) {

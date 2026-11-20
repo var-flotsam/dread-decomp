@@ -1,10 +1,11 @@
 // Unit 604 of tools/tu_map.py (no name hint): finds the group whose key is the actor's AI group
 // (fn_71011277a4) and sets the flag at +0x1471c of every other member's data (fn_71003f92ac). The lists are
 // those of UnkTU604_Lists_ovb0256.cpp. Names and layouts are placeholders.
+#include "game/UnkTU604.h"
+#include "game/UnkTU2704.h"
 #include "types.h"
 
 struct UnkAIGroup_g;
-UnkAIGroup_g* fn_71011277a4(void* src);
 
 struct UnkListEntry_b256 {
     void* value;
@@ -25,8 +26,6 @@ struct UnkListGroups_b256 {
     u32 count;                // 0x10
     UnkListGroup_b256* head;  // 0x18
 };
-
-char* fn_71003f92ac(void* value);
 
 inline UnkListGroup_b256* GroupAt_l3fa71c(UnkListGroup_b256* n, u32 i) {
     for (u32 k = 0; k < i; ++k)
@@ -60,7 +59,8 @@ struct UnkActor_l3fa71c {
     UnkAIRef_l3fa71c* ai;  // 0x398
 };
 
-void fn_71003fa71c(UnkListGroups_b256* self, UnkActor_l3fa71c* actor) {
+// Sets the flag of every other member of the actor's AI group.
+static inline void SetOthersFlag(UnkListGroups_b256* self, UnkActor_l3fa71c* actor) {
     if (!actor->ai || !actor->ai->source)
         return;
     void* key = fn_71011277a4(actor->ai->source);
@@ -81,4 +81,10 @@ void fn_71003fa71c(UnkListGroups_b256* self, UnkActor_l3fa71c* actor) {
         }
         return;
     }
+}
+
+// The registry and the actor arrive untyped: the caller (fn_71003f8210) holds the registry as raw storage.
+// NON_MATCHING(functional): Calls differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
+void fn_71003fa71c(void* registry, void* actor) {
+    SetOthersFlag(static_cast<UnkListGroups_b256*>(registry), static_cast<UnkActor_l3fa71c*>(actor));
 }
