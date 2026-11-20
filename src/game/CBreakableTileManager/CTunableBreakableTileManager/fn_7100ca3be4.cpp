@@ -10,49 +10,12 @@
 #include "game/CBTObserverComponent.h"
 #include "game/CBreakableTileManager/CTunableBreakableTileManager.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/UnkIdProperty.h"
 #include "types.h"
-
-using base::global::CRntString;
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
 
 extern void* g_unk_7101ca9ea0[];
 
-// The property's value holder at 0x10: a name cleaned up out of line (fn_710007ed40) before it
-// is destroyed, and a member at 0xd0.
-struct UnkNameHolder {
-    CRntString name;
-    u64 unk_0x30[0x14];
-
-    ~UnkNameHolder() { fn_710007ed40(&name); }
-};
-
-struct UnkHolderMember {
-    u64 unk_0x0[0x12];
-
-    ~UnkHolderMember() { fn_71009c172c(this); }
-};
-
-struct UnkValueHolder : UnkNameHolder {
-    UnkHolderMember field_0xd0;
-};
-
-struct UnkPropertyBase {
-    void** vtable;
-    u64 field_0x8;
-    UnkValueHolder holder;
-
-    ~UnkPropertyBase() { *reinterpret_cast<void***>(this) = g_unk_7101a889c8 + 2; }
-};
-
-template <void** Vtable>
-struct UnkIdPropertyT : UnkPropertyBase {
-    UnkStrIdTwoStep id;
-
-    ~UnkIdPropertyT() { *reinterpret_cast<void***>(this) = Vtable + 2; }
-};
 using UnkIdProperty = UnkIdPropertyT<g_unk_7101aa52d0>;
-static_assert(sizeof(UnkIdProperty) == 0x178, "UnkIdProperty layout");
 
 void fn_7100ca3be4(UnkIdProperty* self) { self->~UnkIdPropertyT(); }
 void fn_7100ca7c00(UnkIdProperty* self) {

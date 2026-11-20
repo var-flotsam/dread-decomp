@@ -13,6 +13,7 @@
 #include "base/reflection/UnkReflTypeGlobals.h"
 #include "game/CEmmyProtoAIComponent.h"
 #include "game/CNavMeshItemComponent.h"
+#include "game/UnkIdProperty.h"
 #include "game/UnkGameBlackboard.h"
 #include "game/UnkTUInit.h"
 #include "game/UnkTUProperty.h"
@@ -46,7 +47,6 @@ struct UnkNavMeshNamedDef_b49 : UnkIdSource {
 };
 extern UnkNavMeshNamedDef_b49 g_unk_717273e3e0;  // "InitialStage"
 void fn_71009c26f4(void* item);  // base::reflection::refl_Register<..>, instantiated in src/reflection_statics
-void fn_71009bd8c0(void* p);
 extern char g_unk_717273e568;
 extern char g_unk_717273e569;
 extern char g_unk_717273e56a;
