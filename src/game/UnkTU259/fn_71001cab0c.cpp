@@ -11,67 +11,15 @@
 #include "base/reflection/CClass.h"
 #include "base/reflection/UnkClassGetters.h"
 #include "base/reflection/UnkReflCast.h"
+#include "game/UnkTU204.h"
+#include "game/UnkTU259.h"
 #include "game/UnkTU27.h"
+#include "game/msapi/res/CRenderRes.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntVector;
 using base::global::CStrId;
-using base::global::UnkStringData;
-using base::global::UnkStringPool;
-
-// A file-path id held raw, as fn_7100169c74 returns it (src/game/msapi/res/CRenderRes/fn_71001b1dd0.cpp).
-struct UnkPathId {
-    UnkStringData* data;
-
-    struct NoInit {};
-    UnkPathId(NoInit) {}
-    UnkPathId(UnkPathId&& other) {
-        data = other.data;
-        other.data = &g_unk_7101d47200->empty;
-    }
-    UnkPathId(const UnkPathId& other) : data(other.data) {
-        if (&g_unk_7101d47200->empty != data)
-            ++data->ref_count;
-    }
-    ~UnkPathId() {
-        if (UnkStringPool* pool = g_unk_7101d47200) {
-            if (data && data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0) {
-                    fn_71000803a4(pool, data);
-                    pool = g_unk_7101d47200;
-                }
-            }
-            data = &pool->empty;
-        }
-    }
-    UnkPathId& operator=(UnkPathId&& other) {
-        this->~UnkPathId();
-        new (this) UnkPathId(static_cast<UnkPathId&&>(other));
-        return *this;
-    }
-    UnkPathId& operator=(const UnkPathId& other) {
-        if (data != other.data) {
-            UnkStringData* d = other.data;
-            UnkStringPool* pool = g_unk_7101d47200;
-            if (d != &pool->empty)
-                ++d->ref_count;
-            if (data != &pool->empty) {
-                --data->ref_count;
-                if (data->ref_count == 0)
-                    fn_71000803a4(pool, data);
-            }
-            data = d;
-        }
-        return *this;
-    }
-};
-
-UnkPathId fn_7100169c74(const CStrId& name);
-
-// The resource type the shaders are loaded as.
-extern const UnkResType g_unk_716e453ef8;
 
 // The shader names (reached through the GOT).
 extern const CStrId* const g_unk_7101a1e620[24];
@@ -79,9 +27,6 @@ extern const CStrId* const g_unk_7101a1e620[24];
 // The program registry (reached through the GOT; src/game_lo/fn_710014c790.cpp).
 struct UnkRegistry_710014c790;
 extern UnkRegistry_710014c790* unk_710b372d68;
-void* fn_7100169be4(UnkRegistry_710014c790* registry, const void* key);
-void fn_7100169d28(UnkRegistry_710014c790* registry, const CStrId& name, UnkCountedResource* resource);
-extern __attribute__((visibility("hidden"))) u8 g_unk_716e595bb8[];
 void fn_71001545a0(void* program);
 void fn_71001545b0(void* program);
 void fn_71001545c0(void* program);
@@ -120,8 +65,8 @@ void fn_71001cab0c(UnkGraphicsSystem* system) {
     UnkGfx_lcab0c* self = reinterpret_cast<UnkGfx_lcab0c*>(system);
     for (u32 i = 0; i < 24; ++i) {
         const CStrId& name = *g_unk_7101a1e620[i];
-        UnkPathId path = fn_7100169c74(name);
-        UnkResKey key(g_unk_716e453ef8.name, reinterpret_cast<const CFilePathStrId&>(path));
+        CFilePathStrId path = fn_7100169c74(name);
+        UnkResKey key(g_unk_716e453ef8.name, path);
         UnkResRef resource = fn_71000ead80(g_unk_7101d472f8, &key, 1, nullptr);
         Append(self->shader_resources, resource);
         fn_7100169d28(unk_710b372d68, name, AsRenderRes(resource.ptr));
