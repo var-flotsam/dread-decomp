@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0xc, (DefaultValue, 1.0f));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
     DREAD_REFLECTED_FIELD(bool, "bLoop", 0x18, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fFadeInTime", 0x1c, (DefaultValue, 0.0f));
 }

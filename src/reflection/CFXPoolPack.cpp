@@ -63,7 +63,7 @@ DREAD_REFLECTED_ROOT_CLASS(CFXPoolPack);
 namespace CFXPool::CDefinition {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFile", 0x0, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sFile", 0x0, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("EFXType", "eType", 0x8, (DefaultValue, 0));
     DREAD_REFLECTED_FIELD(u32, "uSize", 0xc, (DefaultValue, 1));
 }

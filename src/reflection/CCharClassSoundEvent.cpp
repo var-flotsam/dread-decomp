@@ -27,14 +27,14 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSoundID", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID1", 0x18, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID2", 0x20, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID3", 0x28, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID4", 0x30, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID5", 0x38, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID6", 0x40, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID7", 0x48, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sSoundID", 0x10, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID1", 0x18, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID2", 0x20, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID3", 0x28, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID4", 0x30, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID5", 0x38, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID6", 0x40, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeSoundID7", 0x48, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0x58, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 2.0f));
     DREAD_REFLECTED_FIELD(f32, "fRadiusMinAttenuation", 0x5c, (DefaultValue, 500.0f), (MinValue, 100.0f), (MaxValue, 50000.0f));
     DREAD_REFLECTED_FIELD(f32, "fRadiusMaxAttenuation", 0x60, (DefaultValue, 3000.0f), (MinValue, 500.0f), (MaxValue, 50000.0f));

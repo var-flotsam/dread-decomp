@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimationPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Extension, CStrId(*g_unk_716e454178[6])));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAnimationPath", 0x10, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Extension, CStrId(*g_unk_716e454178[6])));
     DREAD_REFLECTED_FIELD(bool, "bRawChange", 0x18, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fInitInterpTime", 0x1c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fExitInterpTime", 0x20, (DefaultValue, 1.0f));

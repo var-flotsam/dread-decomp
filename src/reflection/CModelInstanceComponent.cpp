@@ -35,7 +35,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_m_sModelPath_GetterFunction", &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0x101, fn_71009374ac);
     DREAD_REFLECTED_FUNCTION("_m_sModelPath_SetterFunction")
         fn_71009368f8(fn, "_m_sModelPath_SetterFunction");
-    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sModelPath", (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
+    DREAD_REFLECTED_PROPERTY(base::global::CFilePathStrId, "sModelPath", (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
     DREAD_REFLECTED_FUNCTION_OF("_m_vScale_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_7100937554);
     DREAD_REFLECTED_FUNCTION("_m_vScale_SetterFunction")
         fn_7100936a74(fn, "_m_vScale_SetterFunction");

@@ -46,7 +46,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("OnDeserialize", &base::reflection::TypeObject<void>::object, 0, fn_7100c8d374);
     DREAD_REFLECTED_FIELD_OF("cutscene::EDevelopmentState", "eDevelopmentState", 0x0, (DefaultValue, 1), (Description, "Development State"));
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x8, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Id"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sActionSet", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Description, "ActionSet File"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sActionSet", 0x10, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Description, "ActionSet File"));
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vWorldOffset", 0x18, (Description, "CutScene world position"));
     DREAD_REFLECTED_FIELD(CStrId, "sOnLoaded", 0x28, (DefaultValue, CStrId(CStrId::Empty())), (Description, "On Cutscene Loaded LUA Function"));
     DREAD_REFLECTED_FIELD(CStrId, "sOnBeforeStart", 0x30, (DefaultValue, CStrId(CStrId::Empty())), (Description, "On Before Starting Cutscene LUA Function"));
@@ -95,7 +95,7 @@ namespace CCutSceneDef::CActorDef {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sId", 0x0, (DefaultValue, CStrId(CStrId::Empty())), (Description, "Actor Id"));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sCharClass", 0x8, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Description, "CharClass File"));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sCharClass", 0x8, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Description, "CharClass File"));
     DREAD_REFLECTED_FIELD(CStrId, "sInGameEntityId", 0x18, (DefaultValue, CStrId(CStrId::Empty())), (Description, "InGame Entity Id"));
     DREAD_REFLECTED_FIELD(bool, "bInGameEntityVisibleOnEnd", 0x20, (DefaultValue, true), (Description, "Set InGame Entity Visible On End"));
     DREAD_REFLECTED_FIELD(bool, "bExitClearTags", 0x21, (DefaultValue, false), (Description, "InGame Entity Exit Clear Animation Tags"));

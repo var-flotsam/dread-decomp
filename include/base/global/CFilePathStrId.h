@@ -38,6 +38,9 @@ struct UnkCopyByPointer {};
 
 class CFilePathStrId : public UnkFilePathStrIdBase {
 public:
+    // The global empty file-path id (g_unk_7101d470e8, below): default paths are copied from it.
+    static CFilePathStrId& Empty();
+
     CFilePathStrId(const char* str, bool flag) asm("fn_71000166c8");  // fn_71000166c8
     // The same constructor defined inline, on this pool (as UnkStrIdBase's; reflected default
     // values inline it for the empty path, so only the pool check and the empty id remain).
@@ -142,5 +145,6 @@ void fn_710001a270(base::global::UnkFilePathStrIdBase* self, const base::global:
 // The global empty file-path id that default values copy (built by unit 1's static initialiser,
 // fn_7100001480, src/base/global/UnkEmptyFilePathStrId.cpp).
 extern base::global::CFilePathStrId g_unk_7101d470e8;
+inline base::global::CFilePathStrId& base::global::CFilePathStrId::Empty() { return g_unk_7101d470e8; }
 // A file-path id's destructor, as the static initialisers register it with __cxa_atexit.
 void fn_7100000c7c(void* id);

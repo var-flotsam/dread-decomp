@@ -310,7 +310,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sSampler", 0x10, (DefaultValue, CStrId(CStrId::Empty())), (Persistence, 1));
     DREAD_REFLECTED_FIELD(CStrId, "sType", 0x18, (DefaultValue, CStrId(CStrId::Empty())), (Persistence, 1));
     DREAD_REFLECTED_FIELD(s32, "iSlot", 0x20, (DefaultValue, -1), (Persistence, 1));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAddress", 0x28, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Persistence, 1));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAddress", 0x28, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Persistence, 1));
     DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureFilter::ETextureFilter", "eMinFilter", 0x30, (DefaultValue, 0), (Persistence, 1));
     DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureFilter::ETextureFilter", "eMagFilter", 0x34, (DefaultValue, 0), (Persistence, 1));
     DREAD_REFLECTED_FIELD_OF("msapi::api::types::textureFilter::ETextureFilter", "eMipFilter", 0x38, (DefaultValue, 0), (Persistence, 1));
