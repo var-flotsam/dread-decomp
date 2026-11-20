@@ -24,6 +24,8 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+class TPatterns;
+template <> base::reflection::CType base::reflection::TypeObject<TPatterns>::object asm("g_unk_71726f5ac0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CShootDCBones
@@ -94,12 +96,11 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(COffset);
 
 // CPattern
-extern base::reflection::CType g_unk_71726f5ac0;
 namespace CPattern {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sPatternName", 0x8, (DefaultValue, CStrId(CStrId::Empty())));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("tOffsets", true), &g_unk_71726f5ac0, 0x10, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("tOffsets", true), &base::reflection::TypeObject<TPatterns>::object, 0x10, -1, -1);
     field1->attrs_0x70.Add<bool>(base::reflection::attr::TypeSelectionEnabled(), true);
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

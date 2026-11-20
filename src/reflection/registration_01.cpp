@@ -27,8 +27,14 @@ class uint64;
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<uint64>>::object asm("g_unk_7101d5dd70");
 namespace base::global { template <class, class> class CRntSmallDictionary; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, float>>::object asm("g_unk_7101d60688");
+class CompleteInfo;
+template <> base::reflection::CType base::reflection::TypeObject<CompleteInfo>::object asm("g_unk_7101d60ff0");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+namespace base::spatial { class CAABox2D; }
+template <> base::reflection::CType base::reflection::TypeObject<base::spatial::CAABox2D>::object asm("g_unk_7108b6d530");
+namespace base::spatial { class CPolygon2D; }
+template <> base::reflection::CType base::reflection::TypeObject<base::spatial::CPolygon2D>::object asm("g_unk_7108b6d8f0");
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
@@ -36,25 +42,53 @@ enum class EShinesparkTravellingDirection : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EShinesparkTravellingDirection>::object asm("g_unk_71726b0410");
 enum class ECoolShinesparkSituation : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ECoolShinesparkSituation>::object asm("g_unk_71726b06a8");
+namespace CCentralUnitComponent { class SStartPointInfo; }
+template <> base::reflection::CType base::reflection::TypeObject<CCentralUnitComponent::SStartPointInfo>::object asm("g_unk_71727147a8");
+class SFXInstanceData;
+template <> base::reflection::CType base::reflection::TypeObject<SFXInstanceData>::object asm("g_unk_7172722928");
+class SActivatabledOnEventInfo;
+template <> base::reflection::CType base::reflection::TypeObject<SActivatabledOnEventInfo>::object asm("g_unk_717272c488");
+class SBeamBoxActivatable;
+template <> base::reflection::CType base::reflection::TypeObject<SBeamBoxActivatable>::object asm("g_unk_717272e190");
 namespace CDoorLifeComponent { enum class SState : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CDoorLifeComponent::SState>::object asm("g_unk_7172731200");
+namespace CWaterPoolComponent { class FloatingEntitiesInfo; }
+template <> base::reflection::CType base::reflection::TypeObject<CWaterPoolComponent::FloatingEntitiesInfo>::object asm("g_unk_71727346a8");
 enum class eDoorStateLogicAction : u32;
 template <> base::reflection::CType base::reflection::TypeObject<eDoorStateLogicAction>::object asm("g_unk_7172748800");
+class DoorStateInfo;
+template <> base::reflection::CType base::reflection::TypeObject<DoorStateInfo>::object asm("g_unk_7172748960");
 class CTriggerLogicAction;
 #include <memory>
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTriggerLogicAction>>>::object asm("g_unk_717274caa0");
 namespace CTriggerComponent { enum class EEvent : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CTriggerComponent::EEvent>::object asm("g_unk_717274dc70");
+class SDoorInfo;
+template <> base::reflection::CType base::reflection::TypeObject<SDoorInfo>::object asm("g_unk_7172751c28");
+class SWorldGraphNode;
+template <> base::reflection::CType base::reflection::TypeObject<SWorldGraphNode>::object asm("g_unk_7172755e70");
 namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
 namespace GUI { class CDisplayObjectDef; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<GUI::CDisplayObjectDef*>>::object asm("g_unk_717275e480");
 namespace GUI { class IDisplayObjectTrack; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<GUI::IDisplayObjectTrack*>>::object asm("g_unk_717275fb68");
+namespace GUI::CDisplayObjectTrackFloat { class SKey; }
+template <> base::reflection::CType base::reflection::TypeObject<GUI::CDisplayObjectTrackFloat::SKey>::object asm("g_unk_717275fce0");
+namespace GUI::CDisplayObjectTrackBool { class SKey; }
+template <> base::reflection::CType base::reflection::TypeObject<GUI::CDisplayObjectTrackBool::SKey>::object asm("g_unk_7172760218");
+namespace GUI::CDisplayObjectTrackString { class SKey; }
+template <> base::reflection::CType base::reflection::TypeObject<GUI::CDisplayObjectTrackString::SKey>::object asm("g_unk_7172760750");
 namespace GUI { class CSpriteSheetItem; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<GUI::CSpriteSheetItem*>>::object asm("g_unk_71727680b0");
+class CEditorRailSegment;
+template <> base::reflection::CType base::reflection::TypeObject<CEditorRailSegment>::object asm("g_unk_717277b150");
 namespace game::logic::collision { enum class EColMat : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
+namespace CBreakableTileManager { class STileGroupGroup; }
+template <> base::reflection::CType base::reflection::TypeObject<CBreakableTileManager::STileGroupGroup>::object asm("g_unk_71727967e0");
+namespace base::global { template <class, class> class CRntPooledDictionary; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::object asm("g_unk_7172796bf8");
 namespace game::logic::collision { class CCollider; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<game::logic::collision::CCollider*>>::object asm("g_unk_71727b0ed8");
 class CEntity;
@@ -65,19 +99,50 @@ enum class ELightType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ELightType>::object asm("g_unk_71727ba2e0");
 enum class ELightAttachment : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ELightAttachment>::object asm("g_unk_71727ba480");
+class CLightInfo;
+template <> base::reflection::CType base::reflection::TypeObject<CLightInfo>::object asm("g_unk_71727ba620");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntSmallDictionary<int, float>>::object asm("g_unk_71727bcf00");
 enum class EEntryType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EEntryType>::object asm("g_unk_71727bf6f8");
+namespace CGlobalEventManager { class SMissionLogEntry; }
+template <> base::reflection::CType base::reflection::TypeObject<CGlobalEventManager::SMissionLogEntry>::object asm("g_unk_71727bf858");
 class SGeoData;
+template <> base::reflection::CType base::reflection::TypeObject<SGeoData>::object asm("g_unk_71727c15f0");
+namespace CMinimapData { class SEntityData; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapData::SEntityData>::object asm("g_unk_71727c1730");
+namespace CMinimapData { class SDoorData; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapData::SDoorData>::object asm("g_unk_71727c1870");
+namespace CMinimapData { class SMagnetSurfaceData; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapData::SMagnetSurfaceData>::object asm("g_unk_71727c1af0");
+namespace CMinimapData { class SMovingMagnetSurfaceData; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapData::SMovingMagnetSurfaceData>::object asm("g_unk_71727c1c30");
+namespace CMinimapData { class STransportSignData; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapData::STransportSignData>::object asm("g_unk_71727c1d70");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntSmallDictionary<uint64, SGeoData>>::object asm("g_unk_71727c2528");
+class S9PatchConfig;
+template <> base::reflection::CType base::reflection::TypeObject<S9PatchConfig>::object asm("g_unk_71727c7438");
+class SMapIconDef;
+template <> base::reflection::CType base::reflection::TypeObject<SMapIconDef>::object asm("g_unk_71727c7578");
+class SMapLabelDef;
+template <> base::reflection::CType base::reflection::TypeObject<SMapLabelDef>::object asm("g_unk_71727c76b8");
+namespace CMinimapManager { class SMarkerData; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapManager::SMarkerData>::object asm("g_unk_71727ca6d8");
+namespace CMinimapManager { class SAreaIconInfo; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapManager::SAreaIconInfo>::object asm("g_unk_71727ca818");
 enum class EMinimapFowType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EMinimapFowType>::object asm("g_unk_71727ca958");
 enum class EMarkerType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EMarkerType>::object asm("g_unk_71727caab8");
 enum class EMapTutoType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EMapTutoType>::object asm("g_unk_71727cac18");
+namespace CMinimapManager { class TAreaMapIcons; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapManager::TAreaMapIcons>::object asm("g_unk_71727cb3f8");
+class CShotAudioWeaponStates;
+template <> base::reflection::CType base::reflection::TypeObject<CShotAudioWeaponStates>::object asm("g_unk_71729ceac8");
+class CShotAudioWeaponPresets;
+template <> base::reflection::CType base::reflection::TypeObject<CShotAudioWeaponPresets>::object asm("g_unk_71729cf000");
 class CEntity;
 extern template const base::reflection::CType* base::reflection::PointerType<CEntity*>::Get();
 class CEnvironmentManager;
@@ -141,7 +206,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned long>::Get();
 
 void fn_7100779f60();
-extern base::reflection::CType g_unk_71727147a8;
 void fn_7100779fb0();
 void fn_710077a0a8();
 void fn_710077a0f8();
@@ -160,7 +224,6 @@ void fn_71007f2418();
 void fn_71007f257c();
 void fn_71007f25cc();
 void fn_7100814688();
-extern base::reflection::CType g_unk_7172722928;
 void fn_71008146d8();
 void fn_710081478c();
 void fn_71008147dc();
@@ -173,22 +236,18 @@ void fn_7100811b20(UnkReflFunction* fn, const char* name);
 void fn_71008154f0();
 void fn_7100811c9c(UnkReflFunction* fn, const char* name);
 void fn_7100894700();
-extern base::reflection::CType g_unk_717272c488;
 void fn_7100894750();
 void fn_71008949d8();
 void fn_7100894a28();
 void fn_71008aa564();
-extern base::reflection::CType g_unk_717272e190;
 void fn_71008aa5b4();
 void fn_71008aa83c();
 void fn_71008aa88c();
 void fn_7100904054();
-extern base::reflection::CType g_unk_7108b6d530;
 void fn_71009040a4();
 void fn_71009043a0();
 void fn_71009043f0();
 void fn_710090c618();
-extern base::reflection::CType g_unk_71727346a8;
 void fn_710090c668();
 void fn_710090c980();
 void fn_710090c9d0();
@@ -214,7 +273,6 @@ void fn_7100a35ebc();
 void fn_7100a36038();
 void fn_7100a36088();
 void fn_7100a3af00();
-extern base::reflection::CType g_unk_7172748960;
 void fn_7100a3af50();
 void fn_7100a3b268();
 void fn_7100a3b2b8();
@@ -233,20 +291,17 @@ void fn_7100a74d44();
 void fn_7100a75144();
 void fn_7100a75194();
 void fn_7100a94cd8();
-extern base::reflection::CType g_unk_7172751c28;
 void fn_7100a94d28();
 void fn_7100a95040();
 void fn_7100a95090();
 void fn_7100ad1578();
 void fn_7100ace410(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d60ff0;
 void fn_7100ad1634();
 void fn_7100ace58c(UnkReflFunction* fn, const char* name);
 void fn_7100ad1734();
 void fn_7100ace708(UnkReflFunction* fn, const char* name);
 void fn_7100ad17c4();
 void fn_7100ad1a6c();
-extern base::reflection::CType g_unk_7172755e70;
 void fn_7100ad1abc();
 void fn_7100ad1c38();
 void fn_7100ad1c88();
@@ -290,22 +345,18 @@ void fn_7100b162c0();
 void fn_7100b16458();
 void fn_7100b164a8();
 void fn_7100b17bbc();
-extern base::reflection::CType g_unk_717275fce0;
 void fn_7100b17c0c();
 void fn_7100b17cf0();
 void fn_7100b17d40();
 void fn_7100b19394();
-extern base::reflection::CType g_unk_7172760218;
 void fn_7100b193e4();
 void fn_7100b194c8();
 void fn_7100b19518();
 void fn_7100b1adbc();
-extern base::reflection::CType g_unk_7172760750;
 void fn_7100b1ae0c();
 void fn_7100b1af28();
 void fn_7100b1af78();
 void fn_7100b5b46c();
-extern base::reflection::CType g_unk_71727bf858;
 void fn_7100b5b4bc();
 void fn_7100b5b828();
 void fn_7100b5b878();
@@ -329,14 +380,11 @@ void fn_7100b87f94(UnkReflFunction* fn, const char* name);
 void fn_7100c07610();
 void fn_7100bfe68c(UnkReflFunction* fn, const char* name);
 void fn_7100c0b01c();
-extern base::reflection::CType g_unk_717277b150;
 void fn_7100c0b06c();
 void fn_7100c0b234();
 void fn_7100c0b284();
-extern base::reflection::CType g_unk_7172796bf8;
 void fn_7100ca9690();
 void fn_7100ca9fe0();
-extern base::reflection::CType g_unk_71727967e0;
 void fn_7100caa030();
 void fn_7100caa314();
 void fn_7100caa364();
@@ -425,7 +473,6 @@ void fn_7100d9ac78(UnkReflFunction* fn, const char* name);
 void fn_7100d9ca54();
 void fn_7100d9adf4(UnkReflFunction* fn, const char* name);
 void fn_7100da0e58();
-extern base::reflection::CType g_unk_71727ba620;
 void fn_7100da0ea8();
 void fn_7100da102c();
 void fn_7100da107c();
@@ -441,13 +488,11 @@ void fn_7100e0e408();
 void fn_7100e0e550();
 void fn_7100e0e5a0();
 void fn_7100e4f5f4();
-extern base::reflection::CType g_unk_7108b6d8f0;
 void fn_7100e50ad8();
 const base::reflection::CClass* fn_7101054c90();
 void fn_7100e51508();
 void fn_7100e51bbc();
 void fn_7100e52214();
-extern base::reflection::CType g_unk_71727c15f0;
 void fn_7100e52264();
 void fn_7100e5258c();
 void fn_7100e525dc();
@@ -464,12 +509,10 @@ void fn_7100e57ad8();
 void fn_7100e57c44();
 void fn_7100e57c94();
 void fn_7100e59404();
-extern base::reflection::CType g_unk_71727c1870;
 void fn_7100e59454();
 void fn_7100e595c0();
 void fn_7100e59610();
 void fn_7100e5b0e4();
-extern base::reflection::CType g_unk_71727c1730;
 void fn_7100e5b134();
 void fn_7100e5b398();
 void fn_7100e5b3e8();
@@ -478,28 +521,22 @@ void fn_7100e5ccf0();
 void fn_7100e5d0f0();
 void fn_7100e5d140();
 void fn_7100e5eac8();
-extern base::reflection::CType g_unk_71727c1af0;
 void fn_7100e5eb18();
 void fn_7100e5ec38();
 void fn_7100e5ec88();
 void fn_7100e6063c();
-extern base::reflection::CType g_unk_71727c1d70;
 void fn_7100e6068c();
 void fn_7100e607ac();
 void fn_7100e607fc();
 void fn_7100e61d3c();
-extern base::reflection::CType g_unk_71727c1c30;
 void fn_7100e61d8c();
 void fn_7100e61e84();
 void fn_7100e61ed4();
-extern base::reflection::CType g_unk_71727c7438;
 void fn_7100e6ee60();
-extern base::reflection::CType g_unk_71727c7578;
 void fn_7100e6eeb0();
 void fn_7100e6f1ac();
 void fn_7100e6f1fc();
 void fn_7100e70ec8();
-extern base::reflection::CType g_unk_71727c76b8;
 void fn_7100e70f18();
 void fn_7100e71148();
 void fn_7100e71198();
@@ -542,17 +579,14 @@ void fn_7100e86934(UnkReflFunction* fn, const char* name);
 void fn_7100eaccec();
 void fn_7100e86ab0(UnkReflFunction* fn, const char* name);
 void fn_7100ead638();
-extern base::reflection::CType g_unk_71727ca6d8;
 void fn_7100ead688();
 void fn_7100eada34();
 void fn_7100eada84();
 void fn_7100eaf150();
-extern base::reflection::CType g_unk_71727ca818;
 void fn_7100eaf1a0();
 void fn_7100eaf450();
 void fn_7100eaf4a0();
 void fn_7100eb0a4c();
-extern base::reflection::CType g_unk_71727cb3f8;
 void fn_7100eb0a9c();
 void fn_7100eb0ce4();
 void fn_7100eb0d34();
@@ -566,12 +600,10 @@ void fn_7100edb224();
 void fn_7100edb274();
 extern base::reflection::CType g_unk_71729ce950;
 void fn_7100edc884();
-extern base::reflection::CType g_unk_71729ceac8;
 void fn_7100edc8d4();
 void fn_7100edc9d4();
 void fn_7100edca24();
 extern base::reflection::CType g_unk_71729cee88;
-extern base::reflection::CType g_unk_71729cf000;
 void fn_7100ede65c();
 void fn_7100ed34e4(UnkReflFunction* fn, const char* name);
 void fn_7100ef06cc();
@@ -653,8 +685,8 @@ void fn_710076bea4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100779f60);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727147a8, 0x1, fn_7100779fb0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727147a8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CCentralUnitComponent::SStartPointInfo>::object, 0x1, fn_7100779fb0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CCentralUnitComponent::SStartPointInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -662,8 +694,8 @@ void fn_710076c488(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710077a0a8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727147a8, 0x101, fn_710077a0f8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727147a8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CCentralUnitComponent::SStartPointInfo>::object, 0x101, fn_710077a0f8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CCentralUnitComponent::SStartPointInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -732,8 +764,8 @@ void fn_7100810094(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100814688);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172722928, 0x1, fn_71008146d8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172722928, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SFXInstanceData>::object, 0x1, fn_71008146d8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SFXInstanceData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -741,8 +773,8 @@ void fn_7100810678(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710081478c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172722928, 0x101, fn_71008147dc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172722928, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SFXInstanceData>::object, 0x101, fn_71008147dc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SFXInstanceData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -777,8 +809,8 @@ void fn_710088e3c4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100894700);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717272c488, 0x1, fn_7100894750);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717272c488, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SActivatabledOnEventInfo>::object, 0x1, fn_7100894750);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SActivatabledOnEventInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -786,8 +818,8 @@ void fn_710088e9a8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71008949d8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717272c488, 0x101, fn_7100894a28);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717272c488, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SActivatabledOnEventInfo>::object, 0x101, fn_7100894a28);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SActivatabledOnEventInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -801,8 +833,8 @@ void fn_71008a4cdc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71008aa564);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717272e190, 0x1, fn_71008aa5b4);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717272e190, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SBeamBoxActivatable>::object, 0x1, fn_71008aa5b4);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SBeamBoxActivatable>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -810,8 +842,8 @@ void fn_71008a52c0(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71008aa83c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717272e190, 0x101, fn_71008aa88c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717272e190, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SBeamBoxActivatable>::object, 0x101, fn_71008aa88c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SBeamBoxActivatable>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -832,8 +864,8 @@ void fn_71008fef70(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100904054);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7108b6d530, 0x1, fn_71009040a4);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7108b6d530, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<base::spatial::CAABox2D>::object, 0x1, fn_71009040a4);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<base::spatial::CAABox2D>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -841,8 +873,8 @@ void fn_71008ff554(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71009043a0);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7108b6d530, 0x101, fn_71009043f0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7108b6d530, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<base::spatial::CAABox2D>::object, 0x101, fn_71009043f0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<base::spatial::CAABox2D>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -856,8 +888,8 @@ void fn_7100907668(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710090c618);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727346a8, 0x1, fn_710090c668);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727346a8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CWaterPoolComponent::FloatingEntitiesInfo>::object, 0x1, fn_710090c668);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CWaterPoolComponent::FloatingEntitiesInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -865,8 +897,8 @@ void fn_7100907c4c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710090c980);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727346a8, 0x101, fn_710090c9d0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727346a8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CWaterPoolComponent::FloatingEntitiesInfo>::object, 0x101, fn_710090c9d0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CWaterPoolComponent::FloatingEntitiesInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1036,8 +1068,8 @@ void fn_7100a38108(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100a3af00);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172748960, 0x1, fn_7100a3af50);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172748960, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<DoorStateInfo>::object, 0x1, fn_7100a3af50);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<DoorStateInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1045,8 +1077,8 @@ void fn_7100a386ec(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100a3b268);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172748960, 0x101, fn_7100a3b2b8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172748960, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<DoorStateInfo>::object, 0x101, fn_7100a3b2b8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<DoorStateInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1151,8 +1183,8 @@ void fn_7100a90c38(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100a94cd8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172751c28, 0x1, fn_7100a94d28);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172751c28, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SDoorInfo>::object, 0x1, fn_7100a94d28);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SDoorInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1160,8 +1192,8 @@ void fn_7100a9121c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100a95040);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172751c28, 0x101, fn_7100a95090);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172751c28, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SDoorInfo>::object, 0x101, fn_7100a95090);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SDoorInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1173,7 +1205,7 @@ void fn_7100acd79c(CClass* cls) {
     field0->attrs.Add<base::math::CVector3D>(base::reflection::attr::DefaultValue(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Position");
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 1);
-    field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"tLinks:*:vPos"}, 0xa, nullptr, 0xf)));
+    field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"tLinks:*:vPos"}, 0xa, nullptr, 0xf)));
     DREAD_REFLECTED_FUNCTION_OF("_sID_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100ad1634);
     DREAD_REFLECTED_FUNCTION("_sID_SetterFunction")
         fn_7100ace58c(fn, "_sID_SetterFunction");
@@ -1199,8 +1231,8 @@ void fn_7100acea3c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100ad1a6c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172755e70, 0x1, fn_7100ad1abc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172755e70, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SWorldGraphNode>::object, 0x1, fn_7100ad1abc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SWorldGraphNode>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1208,8 +1240,8 @@ void fn_7100acf020(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100ad1c38);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172755e70, 0x101, fn_7100ad1c88);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172755e70, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SWorldGraphNode>::object, 0x101, fn_7100ad1c88);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SWorldGraphNode>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1380,8 +1412,8 @@ void fn_7100b0f540(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100b17bbc);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717275fce0, 0x1, fn_7100b17c0c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717275fce0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<GUI::CDisplayObjectTrackFloat::SKey>::object, 0x1, fn_7100b17c0c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<GUI::CDisplayObjectTrackFloat::SKey>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1389,8 +1421,8 @@ void fn_7100b0fb24(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100b17cf0);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717275fce0, 0x101, fn_7100b17d40);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717275fce0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<GUI::CDisplayObjectTrackFloat::SKey>::object, 0x101, fn_7100b17d40);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<GUI::CDisplayObjectTrackFloat::SKey>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1403,8 +1435,8 @@ void fn_7100b10b3c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100b19394);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172760218, 0x1, fn_7100b193e4);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172760218, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<GUI::CDisplayObjectTrackBool::SKey>::object, 0x1, fn_7100b193e4);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<GUI::CDisplayObjectTrackBool::SKey>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1412,8 +1444,8 @@ void fn_7100b11120(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100b194c8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172760218, 0x101, fn_7100b19518);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172760218, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<GUI::CDisplayObjectTrackBool::SKey>::object, 0x101, fn_7100b19518);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<GUI::CDisplayObjectTrackBool::SKey>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1426,8 +1458,8 @@ void fn_7100b12138(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100b1adbc);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172760750, 0x1, fn_7100b1ae0c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172760750, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<GUI::CDisplayObjectTrackString::SKey>::object, 0x1, fn_7100b1ae0c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<GUI::CDisplayObjectTrackString::SKey>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1435,8 +1467,8 @@ void fn_7100b1271c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100b1af28);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172760750, 0x101, fn_7100b1af78);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172760750, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<GUI::CDisplayObjectTrackString::SKey>::object, 0x101, fn_7100b1af78);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<GUI::CDisplayObjectTrackString::SKey>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1444,8 +1476,8 @@ void fn_7100b54e20(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100b5b46c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727bf858, 0x1, fn_7100b5b4bc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727bf858, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CGlobalEventManager::SMissionLogEntry>::object, 0x1, fn_7100b5b4bc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CGlobalEventManager::SMissionLogEntry>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1453,8 +1485,8 @@ void fn_7100b55404(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100b5b828);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727bf858, 0x101, fn_7100b5b878);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727bf858, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CGlobalEventManager::SMissionLogEntry>::object, 0x101, fn_7100b5b878);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CGlobalEventManager::SMissionLogEntry>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1572,8 +1604,8 @@ void fn_7100c02aa4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c0b01c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717277b150, 0x1, fn_7100c0b06c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717277b150, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEditorRailSegment>::object, 0x1, fn_7100c0b06c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEditorRailSegment>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1581,8 +1613,8 @@ void fn_7100c03088(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100c0b234);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_717277b150, 0x101, fn_7100c0b284);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_717277b150, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEditorRailSegment>::object, 0x101, fn_7100c0b284);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEditorRailSegment>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1591,8 +1623,8 @@ void fn_7100ca3890(CClass* cls) {
 }
 
 void fn_7100ca3c84(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("_dctBreakableTileGroupGroups_GetterFunction", &g_unk_7172796bf8, 0x101, fn_7100ca9690);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("dctBreakableTileGroupGroups", true), &g_unk_7172796bf8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_dctBreakableTileGroupGroups_GetterFunction", (&base::reflection::TypeObject<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::object), 0x101, fn_7100ca9690);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("dctBreakableTileGroupGroups", true), &base::reflection::TypeObject<base::global::CRntPooledDictionary<base::global::CStrId, CBreakableTileManager::STileGroupGroup>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1600,8 +1632,8 @@ void fn_7100ca50bc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100ca9fe0);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727967e0, 0x1, fn_7100caa030);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727967e0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CBreakableTileManager::STileGroupGroup>::object, 0x1, fn_7100caa030);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CBreakableTileManager::STileGroupGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1609,8 +1641,8 @@ void fn_7100ca56a0(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100caa314);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727967e0, 0x101, fn_7100caa364);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727967e0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CBreakableTileManager::STileGroupGroup>::object, 0x101, fn_7100caa364);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CBreakableTileManager::STileGroupGroup>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1923,8 +1955,8 @@ void fn_7100d9dce8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100da0e58);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727ba620, 0x1, fn_7100da0ea8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727ba620, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CLightInfo>::object, 0x1, fn_7100da0ea8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CLightInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1932,8 +1964,8 @@ void fn_7100d9e2cc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100da102c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727ba620, 0x101, fn_7100da107c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727ba620, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CLightInfo>::object, 0x101, fn_7100da107c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CLightInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2009,7 +2041,7 @@ void fn_7100e2fd9c(CClass* cls) {
 
 void fn_7100e3015c(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0x0, -1, -1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("oBox", true), &g_unk_7108b6d530, 0x8, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("oBox", true), &base::reflection::TypeObject<base::spatial::CAABox2D>::object, 0x8, -1, -1);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("sIconId", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x18, -1, -1);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("bFlipX", true), &base::reflection::PrimitiveType<bool>::Get(), 0x20, -1, -1);
     UnkReflField* field4 = AddReflectedField(cls, CStrId("bFlipY", true), &base::reflection::PrimitiveType<bool>::Get(), 0x21, -1, -1);
@@ -2017,8 +2049,8 @@ void fn_7100e3015c(CClass* cls) {
 
 void fn_7100e3053c(CClass* cls) {
     UnkReflField* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector2D>::Get(), 0x0, -1, -1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("oBoxL", true), &g_unk_7108b6d530, 0x8, -1, -1);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("oBoxR", true), &g_unk_7108b6d530, 0x18, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("oBoxL", true), &base::reflection::TypeObject<base::spatial::CAABox2D>::object, 0x8, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("oBoxR", true), &base::reflection::TypeObject<base::spatial::CAABox2D>::object, 0x18, -1, -1);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("sLeftIconId", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x28, -1, -1);
     UnkReflField* field4 = AddReflectedField(cls, CStrId("sRightIconId", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x30, -1, -1);
     UnkReflField* field5 = AddReflectedField(cls, CStrId("aRoomIds", true), &base::reflection::TypeObject<base::global::CRntVector<base::global::CStrId>>::object, 0x38, -1, -1);
@@ -2036,7 +2068,7 @@ void fn_7100e30aa4(CClass* cls) {
 
 void fn_7100e30d34(CClass* cls) {
     TypeAttributes(cls)->Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "BuildGeoData");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("oPolyLine", true), &g_unk_7108b6d8f0, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("oPolyLine", true), &base::reflection::TypeObject<base::spatial::CPolygon2D>::object, 0x0, -1, -1);
     DREAD_REFLECTED_FUNCTION_OF("BuildGeoData", &base::reflection::TypeObject<void>::object, 0, fn_7100e50ad8);
 }
 
@@ -2071,8 +2103,8 @@ void fn_7100e32da4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100e52214);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c15f0, 0x1, fn_7100e52264);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c15f0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SGeoData>::object, 0x1, fn_7100e52264);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SGeoData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2080,8 +2112,8 @@ void fn_7100e33388(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100e5258c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c15f0, 0x101, fn_7100e525dc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c15f0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SGeoData>::object, 0x101, fn_7100e525dc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SGeoData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2089,8 +2121,8 @@ void fn_7100e33d18(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned long>::Get(), 0x101, fn_7100e53e8c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c15f0, 0x1, fn_7100e53edc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c15f0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SGeoData>::object, 0x1, fn_7100e53edc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SGeoData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2098,8 +2130,8 @@ void fn_7100e342fc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned long>::Get(), 0x101, fn_7100e54204);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c15f0, 0x101, fn_7100e54254);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c15f0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SGeoData>::object, 0x101, fn_7100e54254);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SGeoData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2107,8 +2139,8 @@ void fn_7100e34c90(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e55bd8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c15f0, 0x1, fn_7100e55c28);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c15f0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SGeoData>::object, 0x1, fn_7100e55c28);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SGeoData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2116,8 +2148,8 @@ void fn_7100e35274(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e55fc4);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c15f0, 0x101, fn_7100e56014);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c15f0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SGeoData>::object, 0x101, fn_7100e56014);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SGeoData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2143,8 +2175,8 @@ void fn_7100e36b80(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e59404);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1870, 0x1, fn_7100e59454);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1870, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::SDoorData>::object, 0x1, fn_7100e59454);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::SDoorData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2152,8 +2184,8 @@ void fn_7100e37164(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e595c0);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1870, 0x101, fn_7100e59610);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1870, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::SDoorData>::object, 0x101, fn_7100e59610);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::SDoorData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2161,8 +2193,8 @@ void fn_7100e37af8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e5b0e4);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1730, 0x1, fn_7100e5b134);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1730, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::SEntityData>::object, 0x1, fn_7100e5b134);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::SEntityData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2170,8 +2202,8 @@ void fn_7100e380dc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e5b398);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1730, 0x101, fn_7100e5b3e8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1730, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::SEntityData>::object, 0x101, fn_7100e5b3e8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::SEntityData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2197,8 +2229,8 @@ void fn_7100e399e8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e5eac8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1af0, 0x1, fn_7100e5eb18);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1af0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::SMagnetSurfaceData>::object, 0x1, fn_7100e5eb18);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::SMagnetSurfaceData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2206,8 +2238,8 @@ void fn_7100e39fcc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e5ec38);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1af0, 0x101, fn_7100e5ec88);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1af0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::SMagnetSurfaceData>::object, 0x101, fn_7100e5ec88);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::SMagnetSurfaceData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2215,8 +2247,8 @@ void fn_7100e3a960(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e6063c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1d70, 0x1, fn_7100e6068c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1d70, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::STransportSignData>::object, 0x1, fn_7100e6068c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::STransportSignData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2224,8 +2256,8 @@ void fn_7100e3af44(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e607ac);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1d70, 0x101, fn_7100e607fc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1d70, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::STransportSignData>::object, 0x101, fn_7100e607fc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::STransportSignData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2233,8 +2265,8 @@ void fn_7100e3b8d8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100e61d3c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1c30, 0x1, fn_7100e61d8c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1c30, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::SMovingMagnetSurfaceData>::object, 0x1, fn_7100e61d8c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::SMovingMagnetSurfaceData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2242,8 +2274,8 @@ void fn_7100e3bebc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100e61e84);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c1c30, 0x101, fn_7100e61ed4);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c1c30, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapData::SMovingMagnetSurfaceData>::object, 0x101, fn_7100e61ed4);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapData::SMovingMagnetSurfaceData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2283,7 +2315,7 @@ void fn_7100e656d8(CClass* cls) {
     UnkReflField* field8 = AddReflectedField(cls, CStrId("bFullZoomScale", true), &base::reflection::PrimitiveType<bool>::Get(), 0xb1, -1, -1);
     field8->attrs.Add<bool>(base::reflection::attr::XmlAttribute(), true);
     field8->attrs.Add<bool>(base::reflection::attr::DefaultValue(), false);
-    UnkReflField* field9 = AddReflectedField(cls, CStrId("o9PatchConfig", true), &g_unk_71727c7438, 0xb4, -1, -1);
+    UnkReflField* field9 = AddReflectedField(cls, CStrId("o9PatchConfig", true), &base::reflection::TypeObject<S9PatchConfig>::object, 0xb4, -1, -1);
 }
 
 void fn_7100e65ef4(CClass* cls) {
@@ -2297,8 +2329,8 @@ void fn_7100e66b0c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e6ee60);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c7578, 0x1, fn_7100e6eeb0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c7578, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SMapIconDef>::object, 0x1, fn_7100e6eeb0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SMapIconDef>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2306,8 +2338,8 @@ void fn_7100e670f0(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e6f1ac);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c7578, 0x101, fn_7100e6f1fc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c7578, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SMapIconDef>::object, 0x101, fn_7100e6f1fc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SMapIconDef>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2315,8 +2347,8 @@ void fn_7100e67a84(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e70ec8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c76b8, 0x1, fn_7100e70f18);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c76b8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SMapLabelDef>::object, 0x1, fn_7100e70f18);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SMapLabelDef>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2324,8 +2356,8 @@ void fn_7100e68068(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100e71148);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727c76b8, 0x101, fn_7100e71198);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727c76b8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SMapLabelDef>::object, 0x101, fn_7100e71198);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SMapLabelDef>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2446,8 +2478,8 @@ void fn_7100e87c38(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0x101, fn_7100ead638);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727ca6d8, 0x1, fn_7100ead688);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727ca6d8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapManager::SMarkerData>::object, 0x1, fn_7100ead688);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapManager::SMarkerData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2455,8 +2487,8 @@ void fn_7100e8821c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0x101, fn_7100eada34);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727ca6d8, 0x101, fn_7100eada84);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727ca6d8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapManager::SMarkerData>::object, 0x101, fn_7100eada84);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapManager::SMarkerData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2464,8 +2496,8 @@ void fn_7100e88bb0(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100eaf150);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727ca818, 0x1, fn_7100eaf1a0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727ca818, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapManager::SAreaIconInfo>::object, 0x1, fn_7100eaf1a0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapManager::SAreaIconInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2473,8 +2505,8 @@ void fn_7100e89194(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100eaf450);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727ca818, 0x101, fn_7100eaf4a0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727ca818, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapManager::SAreaIconInfo>::object, 0x101, fn_7100eaf4a0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapManager::SAreaIconInfo>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2482,8 +2514,8 @@ void fn_7100e89b24(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100eb0a4c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727cb3f8, 0x1, fn_7100eb0a9c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727cb3f8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapManager::TAreaMapIcons>::object, 0x1, fn_7100eb0a9c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapManager::TAreaMapIcons>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2491,8 +2523,8 @@ void fn_7100e8a108(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100eb0ce4);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71727cb3f8, 0x101, fn_7100eb0d34);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71727cb3f8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CMinimapManager::TAreaMapIcons>::object, 0x101, fn_7100eb0d34);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CMinimapManager::TAreaMapIcons>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2549,8 +2581,8 @@ void fn_7100ed1e60(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned long>::Get(), 0x101, fn_7100edc884);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729ceac8, 0x1, fn_7100edc8d4);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729ceac8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CShotAudioWeaponStates>::object, 0x1, fn_7100edc8d4);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CShotAudioWeaponStates>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2558,8 +2590,8 @@ void fn_7100ed2444(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned long>::Get(), 0x101, fn_7100edc9d4);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729ceac8, 0x101, fn_7100edca24);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729ceac8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CShotAudioWeaponStates>::object, 0x101, fn_7100edca24);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CShotAudioWeaponStates>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -2570,10 +2602,10 @@ void fn_7100ed2dd8(CClass* cls) {
 }
 
 void fn_7100ed3144(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("_oWeaponAudioPresets_GetterFunction", &g_unk_71729cf000, 0x101, fn_7100ede65c);
+    DREAD_REFLECTED_FUNCTION_OF("_oWeaponAudioPresets_GetterFunction", &base::reflection::TypeObject<CShotAudioWeaponPresets>::object, 0x101, fn_7100ede65c);
     DREAD_REFLECTED_FUNCTION("_oWeaponAudioPresets_SetterFunction")
         fn_7100ed34e4(fn, "_oWeaponAudioPresets_SetterFunction");
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("oWeaponAudioPresets", true), &g_unk_71729cf000, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("oWeaponAudioPresets", true), &base::reflection::TypeObject<CShotAudioWeaponPresets>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field0->attrs.Add<bool>(base::reflection::attr::FixedCollection(), true);
 }
 

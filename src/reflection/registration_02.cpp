@@ -13,6 +13,8 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/ReflectedFields.h"
 #include "base/reflection/TypeObject.h"
+namespace base::core { class CAssetLink; }
+template <> base::reflection::CType base::reflection::TypeObject<base::core::CAssetLink>::object asm("g_unk_7101d4ec50");
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
@@ -41,10 +43,13 @@ template <> base::reflection::CType base::reflection::TypeObject<base::global::C
 namespace IPath { enum class EType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<IPath::EType>::object asm("g_unk_71727bb8e8");
 class CEnvironmentData;
+template <> base::reflection::CType base::reflection::TypeObject<CEnvironmentData>::object asm("g_unk_71729e0568");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, CEnvironmentData>>::object asm("g_unk_71729e0928");
 namespace CEnvironmentMusicData { class SMusicTransition; }
+template <> base::reflection::CType base::reflection::TypeObject<CEnvironmentMusicData::SMusicTransition>::object asm("g_unk_71729e8888");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CEnvironmentMusicData::SMusicTransition>>::object asm("g_unk_71729e8c48");
 namespace CEnvironmentSoundData { class SSound; }
+template <> base::reflection::CType base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object asm("g_unk_71729ea500");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>>::object asm("g_unk_71729eaa00");
 class CSubareaInfo;
 #include <memory>
@@ -56,23 +61,42 @@ template <> base::reflection::CType base::reflection::TypeObject<EMusicFadeType>
 enum class EMusicManagerInGameState : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EMusicManagerInGameState>::object asm("g_unk_71729f1178");
 namespace sound { class TMusicFile; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TMusicFile>::object asm("g_unk_71729f1318");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<sound::TMusicFile>>::object asm("g_unk_71729f16d8");
 namespace sound { class TMusicTrack; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TMusicTrack>::object asm("g_unk_71729f1850");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<sound::TMusicTrack>>::object asm("g_unk_71729f1c10");
 namespace sound { class SStateFadeOut; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::SStateFadeOut>::object asm("g_unk_71729f1d88");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<sound::SStateFadeOut>>::object asm("g_unk_71729f2148");
+namespace sound { class TScenarioMusicPreset; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TScenarioMusicPreset>::object asm("g_unk_71729f22c0");
 namespace sound { class TBossMusicTrack; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TBossMusicTrack>::object asm("g_unk_71729f27f8");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<sound::TBossMusicTrack>>::object asm("g_unk_71729f2bb8");
 namespace sound { class TBossMusicSubStateConfig; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TBossMusicSubStateConfig>::object asm("g_unk_71729f2d30");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSubStateConfig>>::object asm("g_unk_71729f30f0");
 namespace sound { class TBossMusicSpawnGroupConfig; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TBossMusicSpawnGroupConfig>::object asm("g_unk_71729f3268");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicSpawnGroupConfig>>::object asm("g_unk_71729f3628");
 namespace sound { class TBossMusicPreset; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::TBossMusicPreset>::object asm("g_unk_71729f37a0");
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, sound::TBossMusicPreset>>::object asm("g_unk_71729f3b60");
-namespace base::core { class CAssetLink; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntSmallDictionary<base::global::CStrId, base::core::CAssetLink>>::object asm("g_unk_71729f8938");
+namespace sound { class CAudioMaterial; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::CAudioMaterial>::object asm("g_unk_71729f9fe8");
 namespace sound { class CAudioPreset; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, sound::CAudioPreset>>::object asm("g_unk_71729fb848");
+class CEditorPathSegment;
+template <> base::reflection::CType base::reflection::TypeObject<CEditorPathSegment>::object asm("g_unk_71729fe178");
+class SFallBackPath;
+template <> base::reflection::CType base::reflection::TypeObject<SFallBackPath>::object asm("g_unk_7172a05d40");
+class CSpawnerActorBlueprint;
+template <> base::reflection::CType base::reflection::TypeObject<CSpawnerActorBlueprint>::object asm("g_unk_7172a06930");
+class CSpawnPointComponent;
+template <class> class CGameLink;
+template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CSpawnPointComponent>>::object asm("g_unk_7172a06e68");
 namespace CBlackboard { class CSection; }
 extern template const base::reflection::CType* base::reflection::PointerType<CBlackboard::CSection*>::Get();
 class CCutscene;
@@ -220,18 +244,15 @@ void fn_7100f78b74();
 const base::reflection::CType* fn_7100f3ed0c();
 void fn_7100f78bc0();
 void fn_7100f78ffc();
-extern base::reflection::CType g_unk_71729e0568;
 void fn_7100f7904c();
 void fn_7100f791b8();
 void fn_7100f79208();
 void fn_7100f84098();
-extern base::reflection::CType g_unk_71729e8888;
 void fn_7100f840e8();
 void fn_7100f842d8();
 void fn_7100f84328();
 void fn_7100f86510();
 void fn_7100f7fd38(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71729f22c0;
 void fn_7100f86650();
 void fn_7100f86678();
 void fn_7100f866a0();
@@ -255,7 +276,6 @@ void fn_7100f91014();
 void fn_7100f8c274(UnkReflFunction* fn, const char* name);
 void fn_7100f91154();
 void fn_7100f8c3f0(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71729ea500;
 void fn_7100f91298();
 void fn_7100f912c0();
 void fn_7100f8c56c(UnkReflFunction* fn, const char* name);
@@ -336,17 +356,14 @@ void fn_7100fd2e90(UnkReflFunction* fn, const char* name);
 void fn_7100fd3010(UnkReflFunction* fn, const char* name);
 void fn_7100fddb30();
 void fn_7100ffb338();
-extern base::reflection::CType g_unk_71729f1318;
 void fn_7100ffb388();
 void fn_7100ffb538();
 void fn_7100ffb588();
 void fn_7100ffcd40();
-extern base::reflection::CType g_unk_71729f1850;
 void fn_7100ffcd90();
 void fn_7100ffcf9c();
 void fn_7100ffcfec();
 void fn_7100ffe1f0();
-extern base::reflection::CType g_unk_71729f1d88;
 void fn_7100ffe240();
 void fn_7100ffe324();
 void fn_7100ffe374();
@@ -357,12 +374,10 @@ void fn_7100fff7a8();
 void fn_7100fff928();
 void fn_7100fff978();
 void fn_7101000c7c();
-extern base::reflection::CType g_unk_71729f27f8;
 void fn_7101000ccc();
 void fn_7101000f78();
 void fn_7101000fc8();
 void fn_7101003204();
-extern base::reflection::CType g_unk_71729f2d30;
 void fn_7101003254();
 void fn_71010034a0();
 void fn_71010034f0();
@@ -372,7 +387,6 @@ void fn_7100fea398(UnkReflFunction* fn, const char* name);
 void fn_7101003e6c();
 void fn_7101003cd0(UnkReflFunction* fn);
 void fn_7101004388();
-extern base::reflection::CType g_unk_71729f3268;
 void fn_71010043d8();
 void fn_7101004544();
 void fn_7101004594();
@@ -382,13 +396,11 @@ void fn_7100fec20c(UnkReflFunction* fn, const char* name);
 void fn_7101005154();
 void fn_7101004fb8(UnkReflFunction* fn);
 void fn_7101005558();
-extern base::reflection::CType g_unk_71729f37a0;
 void fn_71010055a8();
 void fn_7101005714();
 void fn_7101005764();
 const base::reflection::CType* fn_71010205e0();
 void fn_710102949c();
-extern base::reflection::CType g_unk_7101d4ec50;
 void fn_71010294ec();
 void fn_710102976c();
 void fn_71010297bc();
@@ -406,7 +418,6 @@ void fn_710102da64(UnkReflFunction* fn, const char* name);
 void fn_710103a938();
 void fn_710102dbe0(UnkReflFunction* fn, const char* name);
 void fn_710103c01c();
-extern base::reflection::CType g_unk_71729f9fe8;
 void fn_710103c06c();
 void fn_710103c164();
 void fn_710103c1b4();
@@ -429,7 +440,6 @@ void fn_71010513b4(UnkReflFunction* fn, const char* name);
 void fn_710105cbb8();
 void fn_71010541b0(UnkReflFunction* fn, const char* name);
 void fn_710106002c();
-extern base::reflection::CType g_unk_71729fe178;
 void fn_710106007c();
 void fn_7101060244();
 void fn_7101060294();
@@ -453,19 +463,16 @@ void fn_71010c5e28();
 void fn_71010c6050();
 void fn_71010c60a0();
 void fn_71011138f8();
-extern base::reflection::CType g_unk_7172a05d40;
 void fn_7101113948();
 void fn_7101113ce4();
 void fn_7101113d34();
 const base::reflection::CType* fn_710009d884();
 void fn_710112f650();
-extern base::reflection::CType g_unk_7172a06930;
 void fn_710112f6a0();
 void fn_710112f7cc();
 void fn_710112f81c();
 void fn_71011221dc(UnkReflFunction* fn, const char* name);
 void fn_7101130f60();
-extern base::reflection::CType g_unk_7172a06e68;
 void fn_7101130fb0();
 void fn_710113145c();
 void fn_71011314ac();
@@ -817,8 +824,8 @@ void fn_7100f4192c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100f78ffc);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729e0568, 0x1, fn_7100f7904c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729e0568, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEnvironmentData>::object, 0x1, fn_7100f7904c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEnvironmentData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -826,8 +833,8 @@ void fn_7100f41f10(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100f791b8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729e0568, 0x101, fn_7100f79208);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729e0568, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEnvironmentData>::object, 0x101, fn_7100f79208);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEnvironmentData>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -843,8 +850,8 @@ void fn_7100f7e5fc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100f84098);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729e8888, 0x1, fn_7100f840e8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729e8888, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEnvironmentMusicData::SMusicTransition>::object, 0x1, fn_7100f840e8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEnvironmentMusicData::SMusicTransition>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -852,8 +859,8 @@ void fn_7100f7ebe0(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100f842d8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729e8888, 0x101, fn_7100f84328);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729e8888, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEnvironmentMusicData::SMusicTransition>::object, 0x101, fn_7100f84328);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEnvironmentMusicData::SMusicTransition>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -862,8 +869,8 @@ void fn_7100f7f570(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_m_sID_SetterFunction")
         fn_7100f7fd38(fn, "_m_sID_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("sID", true), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    DREAD_REFLECTED_FUNCTION_OF("_tPreset_GetterFunction", &g_unk_71729f22c0, 0x1, fn_7100f86650);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("tPreset", true), &g_unk_71729f22c0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_tPreset_GetterFunction", &base::reflection::TypeObject<sound::TScenarioMusicPreset>::object, 0x1, fn_7100f86650);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("tPreset", true), &base::reflection::TypeObject<sound::TScenarioMusicPreset>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION_OF("_ePlayFlag_GetterFunction", &base::reflection::TypeObject<SMusicPlayFlag>::object, 0x1, fn_7100f86678);
     UnkReflField* field2 = AddReflectedField(cls, CStrId("ePlayFlag", true), &base::reflection::TypeObject<SMusicPlayFlag>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION_OF("_m_tMusicTransitions_GetterFunction", &base::reflection::TypeObject<base::global::CRntVector<CEnvironmentMusicData::SMusicTransition>>::object, 0x1, fn_7100f866a0);
@@ -956,8 +963,8 @@ void fn_7100f8b514(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_sSoundID_SetterFunction")
         fn_7100f8c3f0(fn, "_sSoundID_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("sSoundID", true), &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    DREAD_REFLECTED_FUNCTION_OF("_tSound_GetterFunction", &g_unk_71729ea500, 0x1, fn_7100f91298);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("tSound", true), &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_tSound_GetterFunction", &base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object, 0x1, fn_7100f91298);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("tSound", true), &base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     DREAD_REFLECTED_FUNCTION_OF("_dctTransitions_GetterFunction", (&base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>>::object), 0x1, fn_7100f912c0);
     UnkReflField* field3 = AddReflectedField(cls, CStrId("dctTransitions", true), &base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, CEnvironmentSoundData::SSound>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field3->attrs.Add<CStrId>(base::reflection::attr::CreateElement(), CStrId("CreateTransition", true));
@@ -986,8 +993,8 @@ void fn_7100f8caf8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100f91bcc);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729ea500, 0x1, fn_7100f91c1c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object, 0x1, fn_7100f91c1c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -995,8 +1002,8 @@ void fn_7100f8d0dc(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100f91e2c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729ea500, 0x101, fn_7100f91e7c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729ea500, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object, 0x101, fn_7100f91e7c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEnvironmentSoundData::SSound>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1295,8 +1302,8 @@ void fn_7100fe187c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100ffb338);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f1318, 0x1, fn_7100ffb388);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f1318, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TMusicFile>::object, 0x1, fn_7100ffb388);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TMusicFile>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1304,8 +1311,8 @@ void fn_7100fe1e60(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100ffb538);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f1318, 0x101, fn_7100ffb588);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f1318, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TMusicFile>::object, 0x101, fn_7100ffb588);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TMusicFile>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1326,8 +1333,8 @@ void fn_7100fe3170(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100ffcd40);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f1850, 0x1, fn_7100ffcd90);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f1850, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TMusicTrack>::object, 0x1, fn_7100ffcd90);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TMusicTrack>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1335,8 +1342,8 @@ void fn_7100fe3754(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100ffcf9c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f1850, 0x101, fn_7100ffcfec);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f1850, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TMusicTrack>::object, 0x101, fn_7100ffcfec);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TMusicTrack>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1349,8 +1356,8 @@ void fn_7100fe46e4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100ffe1f0);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f1d88, 0x1, fn_7100ffe240);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f1d88, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::SStateFadeOut>::object, 0x1, fn_7100ffe240);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::SStateFadeOut>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1358,8 +1365,8 @@ void fn_7100fe4cc8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7100ffe324);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f1d88, 0x101, fn_7100ffe374);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f1d88, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::SStateFadeOut>::object, 0x101, fn_7100ffe374);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::SStateFadeOut>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1375,8 +1382,8 @@ void fn_7100fe5f44(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100fff758);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f22c0, 0x1, fn_7100fff7a8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f22c0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TScenarioMusicPreset>::object, 0x1, fn_7100fff7a8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TScenarioMusicPreset>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1384,13 +1391,13 @@ void fn_7100fe6528(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7100fff928);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f22c0, 0x101, fn_7100fff978);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f22c0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TScenarioMusicPreset>::object, 0x101, fn_7100fff978);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TScenarioMusicPreset>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
 void fn_7100fe6e98(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("oTrack", true), &g_unk_71729f1850, 0x0, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("oTrack", true), &base::reflection::TypeObject<sound::TMusicTrack>::object, 0x0, -1, -1);
     UnkReflField* field1 = AddReflectedField(cls, CStrId("vFadeOuts", true), &base::reflection::TypeObject<base::global::CRntVector<sound::SStateFadeOut>>::object, 0x50, -1, -1);
 }
 
@@ -1398,8 +1405,8 @@ void fn_7100fe7498(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7101000c7c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f27f8, 0x1, fn_7101000ccc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f27f8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TBossMusicTrack>::object, 0x1, fn_7101000ccc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TBossMusicTrack>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1407,8 +1414,8 @@ void fn_7100fe7a7c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7101000f78);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f27f8, 0x101, fn_7101000fc8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f27f8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TBossMusicTrack>::object, 0x101, fn_7101000fc8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TBossMusicTrack>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1421,8 +1428,8 @@ void fn_7100fe8a0c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7101003204);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f2d30, 0x1, fn_7101003254);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f2d30, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TBossMusicSubStateConfig>::object, 0x1, fn_7101003254);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TBossMusicSubStateConfig>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1430,8 +1437,8 @@ void fn_7100fe8ff0(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_71010034a0);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f2d30, 0x101, fn_71010034f0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f2d30, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TBossMusicSubStateConfig>::object, 0x101, fn_71010034f0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TBossMusicSubStateConfig>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1465,8 +1472,8 @@ void fn_7100fea880(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7101004388);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f3268, 0x1, fn_71010043d8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f3268, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TBossMusicSpawnGroupConfig>::object, 0x1, fn_71010043d8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TBossMusicSpawnGroupConfig>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1474,8 +1481,8 @@ void fn_7100feae64(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7101004544);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f3268, 0x101, fn_7101004594);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f3268, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TBossMusicSpawnGroupConfig>::object, 0x101, fn_7101004594);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TBossMusicSpawnGroupConfig>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1509,8 +1516,8 @@ void fn_7100fec6f4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7101005558);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f37a0, 0x1, fn_71010055a8);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f37a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TBossMusicPreset>::object, 0x1, fn_71010055a8);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TBossMusicPreset>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1518,8 +1525,8 @@ void fn_7100feccd8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_7101005714);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f37a0, 0x101, fn_7101005764);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f37a0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::TBossMusicPreset>::object, 0x101, fn_7101005764);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::TBossMusicPreset>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1532,8 +1539,8 @@ void fn_7101020d54(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710102949c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7101d4ec50, 0x1, fn_71010294ec);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7101d4ec50, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<base::core::CAssetLink>::object, 0x1, fn_71010294ec);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<base::core::CAssetLink>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1541,8 +1548,8 @@ void fn_7101021338(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710102976c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7101d4ec50, 0x101, fn_71010297bc);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7101d4ec50, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<base::core::CAssetLink>::object, 0x101, fn_71010297bc);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<base::core::CAssetLink>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1599,8 +1606,8 @@ void fn_710103572c(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned long>::Get(), 0x101, fn_710103c01c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f9fe8, 0x1, fn_710103c06c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f9fe8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::CAudioMaterial>::object, 0x1, fn_710103c06c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::CAudioMaterial>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1608,8 +1615,8 @@ void fn_7101035d10(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned long>::Get(), 0x101, fn_710103c164);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned long>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729f9fe8, 0x101, fn_710103c1b4);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729f9fe8, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<sound::CAudioMaterial>::object, 0x101, fn_710103c1b4);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<sound::CAudioMaterial>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1698,8 +1705,8 @@ void fn_71010582d4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710106002c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729fe178, 0x1, fn_710106007c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729fe178, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEditorPathSegment>::object, 0x1, fn_710106007c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEditorPathSegment>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1707,8 +1714,8 @@ void fn_71010588b8(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7101060244);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_71729fe178, 0x101, fn_7101060294);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_71729fe178, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CEditorPathSegment>::object, 0x101, fn_7101060294);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CEditorPathSegment>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1787,8 +1794,8 @@ void fn_71010f5b00(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_71011138f8);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172a05d40, 0x1, fn_7101113948);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172a05d40, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SFallBackPath>::object, 0x1, fn_7101113948);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SFallBackPath>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1796,8 +1803,8 @@ void fn_71010f60e4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7101113ce4);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172a05d40, 0x101, fn_7101113d34);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172a05d40, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<SFallBackPath>::object, 0x101, fn_7101113d34);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<SFallBackPath>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1815,8 +1822,8 @@ void fn_7101121054(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710112f650);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172a06930, 0x1, fn_710112f6a0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172a06930, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CSpawnerActorBlueprint>::object, 0x1, fn_710112f6a0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CSpawnerActorBlueprint>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1824,8 +1831,8 @@ void fn_7101121638(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710112f7cc);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172a06930, 0x101, fn_710112f81c);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172a06930, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CSpawnerActorBlueprint>::object, 0x101, fn_710112f81c);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CSpawnerActorBlueprint>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1838,8 +1845,8 @@ void fn_7101122510(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_7101130f60);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172a06e68, 0x1, fn_7101130fb0);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172a06e68, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CGameLink<CSpawnPointComponent>>::object, 0x1, fn_7101130fb0);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CGameLink<CSpawnPointComponent>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
@@ -1847,8 +1854,8 @@ void fn_7101122af4(CClass* cls) {
     DREAD_REFLECTED_FUNCTION_OF("_key_GetterFunction", &base::reflection::PrimitiveType<unsigned int>::Get(), 0x101, fn_710113145c);
     UnkReflField* field0 = AddReflectedField(cls, base::reflection::KeyFieldName(), &base::reflection::PrimitiveType<unsigned int>::Get(), 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
-    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &g_unk_7172a06e68, 0x101, fn_71011314ac);
-    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &g_unk_7172a06e68, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_element_GetterFunction", &base::reflection::TypeObject<CGameLink<CSpawnPointComponent>>::object, 0x101, fn_71011314ac);
+    UnkReflField* field1 = AddReflectedField(cls, base::reflection::ElementFieldName(), &base::reflection::TypeObject<CGameLink<CSpawnPointComponent>>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
 }
 
