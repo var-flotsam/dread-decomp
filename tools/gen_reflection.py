@@ -881,6 +881,20 @@ def collection_type_objects() -> dict[str, tuple[str, str]]:
     return out
 
 
+# A type object a generated file still declares by address.
+UNNAMED_TYPE_OBJECT_RE = re.compile(r"^extern (?:base::reflection::)?CType (g_unk_[0-9a-f]{10});$", re.M)
+
+
+def built_type_objects(version: str, texts: list[str], named: set[str]) -> dict[str, tuple[str, str]]:
+    """{g_unk_<addr>: ("built", T)} of the type objects the generated texts still declare by address, named by
+    the string their static initialiser builds them with (gen_fields.built_objects), where T parses as a type."""
+    import gen_fields
+    wanted = {int(g[len("g_unk_"):], 16) for text in texts for g in UNNAMED_TYPE_OBJECT_RE.findall(text)} - \
+        {int(g[len("g_unk_"):], 16) for g in named}
+    return {f"g_unk_{a:x}": ("built", t) for a, t in gen_fields.built_objects(version, wanted).items()
+            if gen_types.parse_type(t)}
+
+
 def link_type_objects() -> dict[str, tuple[str, str]]:
     """{g_unk_<addr>: ("link", "CGameLink<T>")} of the links whose type objects a vector of them names."""
     out = {}
@@ -915,7 +929,7 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
         declared = (gen_types.enum_declaration(t) if kind == "enum" else
                     gen_types.declare_in(scope, f"struct {leaf};") if kind == "flagset" else
                     f"template <class T> struct CGameLink;{chr(10)}class {t[len('CGameLink<'):-1]};" if kind == "link" else
-                    chr(10).join(gen_types.type_declarations(gen_types.parse_type(t))) if kind == "collection" else "")
+                    chr(10).join(gen_types.type_declarations(gen_types.parse_type(t))) if kind in ("collection", "built") else "")
         if others:
             layout = re.compile(rf"extern ((?:const )?[A-Za-z_][\w:]*(?:<[\w:, ]*>)?) {g};(?:\s*//.*)?")
             match = [layout.fullmatch(line) for line in others]
@@ -937,7 +951,7 @@ def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts
             in_place = True
             continue
         if declared:
-            first.extend(declared.split(chr(10)) if kind in ("link", "collection") else [declared])
+            first.extend(declared.split(chr(10)) if kind in ("link", "collection", "built") else [declared])
         first.append(f'template <> base::reflection::CType base::reflection::TypeObject<{t}>::object asm("{g}");')
         lines = [line if decl.fullmatch(line) else re.sub(rf"\b{g}\b", f"base::reflection::TypeObject<{t}>::object", line)
                  for line in lines if not decl.fullmatch(line)]
@@ -1627,7 +1641,10 @@ def main() -> int:
     # (a declaration of T that collides with one of the file's own).
     # Collections' objects are tried first with the rest; a file their declarations don't build with keeps the rest.
     named = enum_type_objects()
-    objects = {**collection_type_objects(), **named}
+    collections_named = {**collection_type_objects(), **named}
+    built = built_type_objects(args.version, [f.read_text(encoding="utf-8") for f in OUT.glob("*.cpp")], set(collections_named))
+    # Tried in turn: a file whose declarations of T collide with its own keeps the narrower set.
+    tiers = [{**built, **collections_named}, collections_named, named]
     work = ROOT / "build" / "reflection_type_objects"
     work.mkdir(parents=True, exist_ok=True)
 
@@ -1641,7 +1658,7 @@ def main() -> int:
 
     def by_object_type(f: Path) -> bool:
         old = f.read_text(encoding="utf-8")
-        for objs in (objects, named):
+        for objs in tiers:
             new = type_objects_by_type(old, objs)
             if new != old and builds(f, new):
                 f.write_text(new, encoding="utf-8", newline=chr(10))

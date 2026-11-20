@@ -3,6 +3,7 @@ words in a fake module (no game data)."""
 
 import struct
 import unittest
+from unittest import mock
 
 from tools.tests import _path  # noqa: F401
 import asmdiff
@@ -449,6 +450,20 @@ class TypeObjectsByType(unittest.TestCase):
         self.assertIn("namespace base::global { class CStrId; }", out)
         self.assertIn("namespace base::global { template <class> class CRntVector; }", out)
         self.assertEqual(out[-1], f"void f() {{ use(&base::reflection::TypeObject<{t}>::object); }}")
+
+    def test_built_declares_its_names(self):
+        text = "extern base::reflection::CType g_unk_71726a07a0;\nvoid f() { use(&g_unk_71726a07a0); }"
+        out = gr.type_objects_by_type(text, {"g_unk_71726a07a0": ("built", "CActorLayer")}).split("\n")
+        self.assertIn("class CActorLayer;", out)
+        self.assertEqual(out[-1], "void f() { use(&base::reflection::TypeObject<CActorLayer>::object); }")
+
+    def test_unnamed_type_objects_are_read_from_the_texts(self):
+        texts = ["extern base::reflection::CType g_unk_7100000010;\nextern CType g_unk_7100000020;",
+                 "extern base::reflection::CType g_unk_7100000030;"]
+        with mock.patch("gen_fields.built_objects", return_value={0x7100000010: "A::B", 0x7100000020: "not a type!"}) as built:
+            out = gr.built_type_objects("2.1.0", texts, {"g_unk_7100000030"})
+        self.assertEqual(built.call_args[0][1], {0x7100000010, 0x7100000020})
+        self.assertEqual(out, {"g_unk_7100000010": ("built", "A::B")})
 
     def test_layouts_off_leaves_them(self):
         text = "extern UnkEnumType g_unk_7101d4d5d0;\nvoid f() { use(&g_unk_7101d4d5d0); }"
