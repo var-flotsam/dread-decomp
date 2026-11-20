@@ -81,7 +81,9 @@ __attribute__((always_inline)) static inline void Reserve(UnkIdMap<V>* self, u32
 inline void DestroyList(UnkOwnedList* list) { list->~UnkOwnedList(); }
 
 
-void fn_71001358e0(UnkIdMap<UnkOwnedList>* self, u32 capacity) { Reserve<UnkOwnedList, DestroyList>(self, capacity); }
+void fn_71001358e0(UnkOwnedListMap* self, u32 capacity) {
+    Reserve<UnkOwnedList, DestroyList>(reinterpret_cast<UnkIdMap<UnkOwnedList>*>(self), capacity);
+}
 void fn_710027ee38(UnkIdMap<UnkOwnedList>* self, u32 capacity) { Reserve<UnkOwnedList, DestroyList>(self, capacity); }
 void fn_710027efe8(UnkIdMap<UnkOwnedList>* self, u32 capacity) { Reserve<UnkOwnedList, DestroyList>(self, capacity); }
 void fn_710027f198(UnkIdMap<UnkOwnedList>* self, u32 capacity) { Reserve<UnkOwnedList, DestroyList>(self, capacity); }

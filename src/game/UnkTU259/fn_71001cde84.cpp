@@ -1,80 +1,15 @@
 // Unit 259 (the graphics system's unit): runs one draw pass of the graphics system, either the full
 // per-object pass or the simple entry list. Names and layouts are placeholders.
+#include "game/UnkRenderTargetA1.h"
 #include "game/UnkTU259.h"
 #include "game/UnkTU58.h"
 #include "types.h"
 
-struct UnkGfxN_b0154;
-struct UnkGfxJ_b0154;
-struct UnkGfxO_b0154;
 
-extern u32 g_unk_716e554910;
+void fn_71001ce2f0(UnkRenderTargetA1* self, s32 a);
 
-void fn_71001ce148(UnkGfxN_b0154* self);
-void fn_71001cfe44(UnkGfxJ_b0154* self);
-void fn_71001cf9ec(UnkGfxJ_b0154* self);
-void fn_71001ce514(UnkGfxO_b0154* self);
-
-struct UnkGfxPass_l1cde84;
-void fn_71001ce2f0(UnkGfxPass_l1cde84* self, s32 a);
-
-struct UnkPassEntry_l1cde84 {
-    u8 pad_0x0[0x10];
-    u32 pass_mask;  // 0x10
-    u8 pad_0x14[0x40 - 0x14];
-    void (*callback)(UnkPassEntry_l1cde84* self);  // 0x40
-    u8 pad_0x48[0x8];
-};
-
-struct UnkPassSub_l1cde84 {
-    u8 pad_0x0[0x30];
-    u8 field_0x30;
-    u8 pad_0x31[0xa9 - 0x31];
-    u8 field_0xa9;
-    u8 pad_0xaa[0xb0 - 0xaa];
-    u8 field_0xb0;
-};
-
-struct UnkPassObject_l1cde84 {
-    u8 pad_0x0[0x20];
-    UnkPassSub_l1cde84* sub;  // 0x20
-    u8 pad_0x28[0x18];
-    void (*callback)(UnkPassObject_l1cde84* self);  // 0x40
-};
-
-struct UnkGfxPass_l1cde84 {
-    u8 pad_0x0[0x128];
-    UnkPassEntry_l1cde84 entries[0x2000];  // 0x128
-    u32 entry_count;                       // 0xa0128
-    u8 pad_0xa012c[0xb0130 - 0xa012c];
-    u32 field_0xb0130;
-    u8 pad_0xb0134[0xc0138 - 0xb0134];
-    u32 field_0xc0138;
-    u8 pad_0xc013c[0x4];
-    UnkPassObject_l1cde84* objects[0x2000];  // 0xc0140
-    u32 object_count;                        // 0xd0140
-    u8 pad_0xd0144[0x1948168 - 0xd0144];
-    u32 field_0x1948168;
-    u8 pad_0x194816c[0x3178170 - 0x194816c];
-    u32 field_0x3178170;
-    u8 pad_0x3178174[0x317a978 - 0x3178174];
-    u32 field_0x317a978;
-    u32 field_0x317a97c;
-    u32 pass_kind;  // 0x317a980
-    u8 pad_0x317a984[0x317a998 - 0x317a984];
-    u32 pass;  // 0x317a998
-    u32 mode;  // 0x317a99c
-    u8 pad_0x317a9a0[0x317acb8 - 0x317a9a0];
-    u64 field_0x317acb8;
-    u64 field_0x317acc0;
-    u8 pad_0x317acc8[0x3183672 - 0x317acc8];
-    u8 field_0x3183672;
-};
-
-static_assert(__builtin_offsetof(UnkGfxPass_l1cde84, entry_count) == 0xa0128, "");
-static_assert(__builtin_offsetof(UnkGfxPass_l1cde84, object_count) == 0xd0140, "");
-
-void fn_71001cde84(UnkGfxPass_l1cde84* self, u32 pass, bool full) {
+// `unused` is passed by every caller and never read.
+void fn_71001cde84(UnkRenderTargetA1* self, u32 pass, bool full, bool unused) {
     if (g_unk_716e554910 == g_unk_7101d58e48)
         return;
     if (self->entry_count == 0 && self->field_0x1948168 == 0 && self->field_0x3178170 == 0 &&
@@ -128,11 +63,11 @@ void fn_71001cde84(UnkGfxPass_l1cde84* self, u32 pass, bool full) {
         }
         self->field_0x317acb8 = 0;
         self->field_0x317acc0 = 0;
-        UnkPassObject_l1cde84** p = self->objects;
+        UnkPassObjectA1** p = self->objects;
         for (u32 n = self->object_count; n != 0; n--) {
-            UnkPassObject_l1cde84* object = *p++;
+            UnkPassObjectA1* object = *p++;
             if (self->mode == 2) {
-                UnkPassSub_l1cde84* sub = object->sub;
+                UnkPassSubA1* sub = object->sub;
                 if (!sub || !sub->field_0xa9 || sub->field_0x30 || !sub->field_0xb0)
                     continue;
             }
@@ -142,9 +77,9 @@ void fn_71001cde84(UnkGfxPass_l1cde84* self, u32 pass, bool full) {
             fn_71001ce514(reinterpret_cast<UnkGfxO_b0154*>(self));
     } else {
         fn_71001cafa0(reinterpret_cast<UnkStruct_71001cdd74*>(self), 1, 0, 0);
-        UnkPassEntry_l1cde84* entry = self->entries;
+        UnkPassEntryA1* entry = self->entries;
         for (u32 n = self->entry_count; n != 0; n--) {
-            UnkPassEntry_l1cde84* current = entry++;
+            UnkPassEntryA1* current = entry++;
             if (current->pass_mask & self->pass)
                 current->callback(current);
         }

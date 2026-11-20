@@ -28,9 +28,6 @@ static inline UnkHeaderIds_l01f460& HeaderIds() { return *reinterpret_cast<UnkHe
 
 // The resource type registry (destroyed by fn_7100004b94): a name, the type descriptions and two
 // arrays of ids.
-struct UnkResTypes_l01f460;
-void fn_7100005534(UnkResTypes_l01f460* self, u32 capacity);
-
 struct UnkResTypes_l01f460 : base::global::CRntVector<UnkResFormat> {
     UnkResTypes_l01f460() : CRntVector(0xf) { fn_7100005534(this, 0); }
 };

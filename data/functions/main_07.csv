@@ -1220,7 +1220,7 @@ address,size,name,name_source,subsystem,status
 0x710074a0d4,300,fn_710074a0d4,unknown,game/components?,O
 0x710074a200,352,fn_710074a200,unknown,game/components?,O
 0x710074a360,520,fn_710074a360,unknown,game/components?,U
-0x710074a568,336,fn_710074a568,unknown,game/components?,U
+0x710074a568,336,fn_710074a568,unknown,game/components?,O
 0x710074a6b8,1140,fn_710074a6b8,unknown,game/components?,U
 0x710074ab2c,1728,fn_710074ab2c,unknown,game/components?,U
 0x710074b1ec,560,fn_710074b1ec,unknown,game/components?,U

@@ -1141,7 +1141,7 @@ address,size,name,name_source,subsystem,status
 0x7100133714,108,fn_7100133714,unknown,unknown,O
 0x7100133780,664,fn_7100133780,unknown,unknown,O
 0x7100133a18,124,fn_7100133a18,unknown,unknown,O
-0x7100133a94,336,fn_7100133a94,unknown,game?,U
+0x7100133a94,336,fn_7100133a94,unknown,game?,O
 0x7100133be4,268,fn_7100133be4,unknown,script/bindings?,O
 0x7100133cf0,312,fn_7100133cf0,unknown,unknown,O
 0x7100133e28,500,fn_7100133e28,unknown,unknown,O
@@ -3973,7 +3973,7 @@ address,size,name,name_source,subsystem,status
 0x71001cdd74,156,fn_71001cdd74,unknown,unknown,O
 0x71001cde10,56,fn_71001cde10,unknown,unknown,O
 0x71001cde48,60,fn_71001cde48,unknown,unknown,O
-0x71001cde84,708,fn_71001cde84,unknown,unknown,U
+0x71001cde84,708,fn_71001cde84,unknown,unknown,O
 0x71001ce148,424,fn_71001ce148,unknown,unknown,O
 0x71001ce2f0,548,fn_71001ce2f0,unknown,engine/reflection?,U
 0x71001ce514,496,fn_71001ce514,unknown,engine/reflection?,U
