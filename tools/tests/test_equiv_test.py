@@ -451,3 +451,26 @@ class IrFunction(unittest.TestCase):
                  + "!12 = !DILocation(line: 3)\nattributes #0 = { nounwind }\n")
         self.assertEqual(equiv_test.ir_program(self.LL), equiv_test.ir_program(other))
         self.assertIsNone(equiv_test.ir_program("; ModuleID = 'x'\n"))
+
+
+class PartingWords(unittest.TestCase):
+    """Where a mutant's run and the original's read different words (equiv_test.parting_words)."""
+
+    def test_a_word_only_one_run_read_in_the_order_read(self):
+        self.assertEqual(equiv_test.parting_words([1, 2, 3], [1, 2, 3, 4, 5]), [4, 5])   # one element further
+        self.assertEqual(equiv_test.parting_words([1, 2, 3, 4], [1, 2, 3]), [4])          # one short
+        self.assertEqual(equiv_test.parting_words([1, 2], [2, 1]), [])
+
+
+@unittest.skipIf(port_lift is None, "pyelftools or capstone is not installed")
+class KillFocus(unittest.TestCase):
+    A = _Oracle.A
+
+    def test_the_parting_words_come_first_and_late_words_are_set_too(self):
+        import pcode_emu
+        late = [pcode_emu.BASE + 0x40000 + 8 * i for i in range(40)]
+        base = _Run({self.A}, set(), read_words=late)
+        oracle = _Oracle([(0, {}, base)])
+        got = list(equiv_test.kill_candidates(oracle, self.A, oracle.runs, [7], {id(base): [late[-1]]}))
+        self.assertEqual(got[0][1], {("m", late[-1]): 7})
+        self.assertIn({("m", late[35]): 7}, [o for _, o in got])   # past the first SYS_READ words
