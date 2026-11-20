@@ -75,22 +75,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CScenario, CGameObject);
 
 // CScenario::CTunableScenario
-extern bool g_unk_7172a0bee0;
-extern UnkTunable g_unk_7172a0bea8;
+namespace CScenario::CTunableScenario { extern bool refl_fields_added asm("g_unk_7172a0bee0"); }
+namespace CScenario::CTunableScenario { extern UnkTunable refl_tunable asm("g_unk_7172a0bea8"); }
 void fn_710119fb40(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CScenario::CTunableScenario {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172a0bee0)
+    if (refl_fields_added)
         return;
-    g_unk_7172a0bee0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fAreaTextLabelX", 0x24, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fAreaTextLabelY", 0x28, (DefaultValue, -0.28f));
     DREAD_REFLECTED_FIELD(f32, "fAreaTextSpriteX", 0x2c, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fAreaTextSpriteY", 0x30, (DefaultValue, -0.36f));
-    fn_710119fb40(base::reflection::TunableRegistry(), &g_unk_7172a0bea8, "");
+    fn_710119fb40(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

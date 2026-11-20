@@ -41,19 +41,19 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassSwifterAIComponent, CCharClassBehaviorTreeAIComponent);
 
 // CCharClassSwifterAIComponent::CTunableCharClassSwifterAIComponent
-extern bool g_unk_7172708d50;
-extern UnkTunable g_unk_7172708d28;
+namespace CCharClassSwifterAIComponent::CTunableCharClassSwifterAIComponent { extern bool refl_fields_added asm("g_unk_7172708d50"); }
+namespace CCharClassSwifterAIComponent::CTunableCharClassSwifterAIComponent { extern UnkTunable refl_tunable asm("g_unk_7172708d28"); }
 void fn_71006ccd84(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassSwifterAIComponent::CTunableCharClassSwifterAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172708d50)
+    if (refl_fields_added)
         return;
-    g_unk_7172708d50 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMotionSpeed", 0x24, (DefaultValue, 100.0f));
-    fn_71006ccd84(base::reflection::TunableRegistry(), &g_unk_7172708d28, "Swifter");
+    fn_71006ccd84(base::reflection::TunableRegistry(), &refl_tunable, "Swifter");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -21,21 +21,21 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CSubAreaManager::CTunableSubAreaManager
-extern bool g_unk_71729da8a8;
-extern UnkTunable g_unk_71729da878;
+namespace CSubAreaManager::CTunableSubAreaManager { extern bool refl_fields_added asm("g_unk_71729da8a8"); }
+namespace CSubAreaManager::CTunableSubAreaManager { extern UnkTunable refl_tunable asm("g_unk_71729da878"); }
 void fn_7100edff64(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSubAreaManager::CTunableSubAreaManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71729da8a8)
+    if (refl_fields_added)
         return;
-    g_unk_71729da8a8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMaxFadeOutTimeLights", 0x28, (DefaultValue, 1.2f), (Description, "Time that the lights that are dissapearing in the previous subarea take to fade"));
     DREAD_REFLECTED_FIELD(f32, "fMaxFadeInTimeLights", 0x24, (DefaultValue, 0.9f), (Description, "Time that the lights that are appearing in the next subarea take to fade"));
     DREAD_REFLECTED_FIELD(bool, "bKillPlayerOutsideScenario", 0x2c, (DefaultValue, false), (Description, "Tracks if the player cross the scenario boundaries and kills it"));
-    fn_7100edff64(base::reflection::TunableRegistry(), &g_unk_71729da878, "SubAreaManager");
+    fn_7100edff64(base::reflection::TunableRegistry(), &refl_tunable, "SubAreaManager");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

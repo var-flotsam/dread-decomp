@@ -21,20 +21,20 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassRinkaUnitComponent::CTunableCharClassRinkaUnitComponent
-extern bool g_unk_71726fca28;
-extern UnkTunable g_unk_71726fc9f8;
+namespace CCharClassRinkaUnitComponent::CTunableCharClassRinkaUnitComponent { extern bool refl_fields_added asm("g_unk_71726fca28"); }
+namespace CCharClassRinkaUnitComponent::CTunableCharClassRinkaUnitComponent { extern UnkTunable refl_tunable asm("g_unk_71726fc9f8"); }
 void fn_710065d284(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassRinkaUnitComponent::CTunableCharClassRinkaUnitComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726fca28)
+    if (refl_fields_added)
         return;
-    g_unk_71726fca28 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fPreparationTime", 0x24, (DefaultValue, 0.25f));
     DREAD_REFLECTED_FIELD(f32, "fSpawnTime", 0x28, (DefaultValue, 0.6f));
-    fn_710065d284(base::reflection::TunableRegistry(), &g_unk_71726fc9f8, "RinkaUnit");
+    fn_710065d284(base::reflection::TunableRegistry(), &refl_tunable, "RinkaUnit");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -44,20 +44,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassPoisonFlyDiveAttack, CCharClassAttack);
 
 // CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack
-extern bool g_unk_71726f95d8;
-extern UnkTunable g_unk_71726f95a8;
+namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack { extern bool refl_fields_added asm("g_unk_71726f95d8"); }
+namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack { extern UnkTunable refl_tunable asm("g_unk_71726f95a8"); }
 void fn_71006309d4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassPoisonFlyDiveAttack::CTunableCharClassPoisonFlyDiveAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726f95d8)
+    if (refl_fields_added)
         return;
-    g_unk_71726f95d8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 550.0f));
-    fn_71006309d4(base::reflection::TunableRegistry(), &g_unk_71726f95a8, "PoisonFly");
+    fn_71006309d4(base::reflection::TunableRegistry(), &refl_tunable, "PoisonFly");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

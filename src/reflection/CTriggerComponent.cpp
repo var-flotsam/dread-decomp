@@ -87,22 +87,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CTriggerComponent, CComponent);
 
 // CTriggerComponent::CTunableTriggerComponent
-extern bool g_unk_717274de10;
-extern UnkTunable g_unk_717274ddd8;
+namespace CTriggerComponent::CTunableTriggerComponent { extern bool refl_fields_added asm("g_unk_717274de10"); }
+namespace CTriggerComponent::CTunableTriggerComponent { extern UnkTunable refl_tunable asm("g_unk_717274ddd8"); }
 void fn_7100a5d808(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CTriggerComponent::CTunableTriggerComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717274de10)
+    if (refl_fields_added)
         return;
-    g_unk_717274de10 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(s32, "iWaterReverb", 0x24, (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(s32, "iWaterLowPassFilter", 0x28, (DefaultValue, 1550));
     DREAD_REFLECTED_FIELD(s32, "iLavaReverb", 0x2c, (DefaultValue, -1));
     DREAD_REFLECTED_FIELD(s32, "iLavaLowPassFilter", 0x30, (DefaultValue, 1900));
-    fn_7100a5d808(base::reflection::TunableRegistry(), &g_unk_717274ddd8, "");
+    fn_7100a5d808(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

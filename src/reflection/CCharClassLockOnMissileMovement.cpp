@@ -49,15 +49,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassLockOnMissileMovement, CCharClassMissileMovement);
 
 // CLockOnMissileMovement::CTunableLockOnMissileMovement
-extern bool g_unk_71727548d0;
-extern UnkTunable g_unk_7172754868;
+namespace CLockOnMissileMovement::CTunableLockOnMissileMovement { extern bool refl_fields_added asm("g_unk_71727548d0"); }
+namespace CLockOnMissileMovement::CTunableLockOnMissileMovement { extern UnkTunable refl_tunable asm("g_unk_7172754868"); }
 void fn_7100ab5ac4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLockOnMissileMovement::CTunableLockOnMissileMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727548d0)
+    if (refl_fields_added)
         return;
-    g_unk_71727548d0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vTrailColor", 0x24, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 1.0f}));
@@ -75,7 +75,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTrailLength", 0x60, (DefaultValue, 500.0f));
     DREAD_REFLECTED_FIELD(bool, "bSwarmMovement", 0x64, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bTextureCycling", 0x65, (DefaultValue, true));
-    fn_7100ab5ac4(base::reflection::TunableRegistry(), &g_unk_7172754868, "");
+    fn_7100ab5ac4(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

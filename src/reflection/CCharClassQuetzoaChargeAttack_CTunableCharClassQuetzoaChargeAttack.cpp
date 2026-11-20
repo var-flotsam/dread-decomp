@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack
-extern bool g_unk_71726faf90;
-extern UnkTunable g_unk_71726faf68;
+namespace CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack { extern bool refl_fields_added asm("g_unk_71726faf90"); }
+namespace CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack { extern UnkTunable refl_tunable asm("g_unk_71726faf68"); }
 void fn_71006427bc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassQuetzoaChargeAttack::CTunableCharClassQuetzoaChargeAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726faf90)
+    if (refl_fields_added)
         return;
-    g_unk_71726faf90 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMaxChargingDistance", 0x24, (DefaultValue, 1500.0f));
-    fn_71006427bc(base::reflection::TunableRegistry(), &g_unk_71726faf68, "QuetzoaChargeAttack");
+    fn_71006427bc(base::reflection::TunableRegistry(), &refl_tunable, "QuetzoaChargeAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

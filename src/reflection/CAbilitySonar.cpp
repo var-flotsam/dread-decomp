@@ -49,15 +49,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAbilitySonar, CAbility);
 
 // CAbilitySonar::CTunableAbilitySonar
-extern bool g_unk_71726b0cd0;
-extern UnkTunable g_unk_71726b0c48;
+namespace CAbilitySonar::CTunableAbilitySonar { extern bool refl_fields_added asm("g_unk_71726b0cd0"); }
+namespace CAbilitySonar::CTunableAbilitySonar { extern UnkTunable refl_tunable asm("g_unk_71726b0c48"); }
 void fn_710033492c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilitySonar::CTunableAbilitySonar {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726b0cd0)
+    if (refl_fields_added)
         return;
-    g_unk_71726b0cd0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fConsumptionOnActivation", 0x24, (DefaultValue, 200.0f), (Description, "Consumption on activation"));
@@ -75,7 +75,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sChargeCancelSound", 0x70, (DefaultValue, ""));
     DREAD_REFLECTED_FIELD(f32, "fRadiusPropagationTotalTime", 0x78, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sRadiusPropagationEasingFunction", 0x80, (DefaultValue, CStrId(CStrId::Empty())));
-    fn_710033492c(base::reflection::TunableRegistry(), &g_unk_71726b0c48, "");
+    fn_710033492c(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

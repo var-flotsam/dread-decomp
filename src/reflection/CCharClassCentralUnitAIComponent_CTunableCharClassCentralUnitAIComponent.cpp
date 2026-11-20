@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassCentralUnitAIComponent::CTunableCharClassCentralUnitAIComponent
-extern bool g_unk_71726c42c8;
-extern UnkTunable g_unk_71726c42a0;
+namespace CCharClassCentralUnitAIComponent::CTunableCharClassCentralUnitAIComponent { extern bool refl_fields_added asm("g_unk_71726c42c8"); }
+namespace CCharClassCentralUnitAIComponent::CTunableCharClassCentralUnitAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726c42a0"); }
 void fn_7100407f7c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassCentralUnitAIComponent::CTunableCharClassCentralUnitAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726c42c8)
+    if (refl_fields_added)
         return;
-    g_unk_71726c42c8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bAllowSimultaneousRinkas", 0x21, (DefaultValue, false), (ShowInDevConfig, true), (Description, "Allow simultaneous Rinkas"), (InternalDevTag, "MidBosses"));
-    fn_7100407f7c(base::reflection::TunableRegistry(), &g_unk_71726c42a0, "CentralUnit");
+    fn_7100407f7c(base::reflection::TunableRegistry(), &refl_tunable, "CentralUnit");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

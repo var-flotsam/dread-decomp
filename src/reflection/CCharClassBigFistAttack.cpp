@@ -41,22 +41,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassBigFistAttack, CCharClassAttack);
 
 // CCharClassBigFistAttack::CTunableCharClassBigFistAttack
-extern bool g_unk_71726c06e0;
-extern UnkTunable g_unk_71726c06a8;
+namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack { extern bool refl_fields_added asm("g_unk_71726c06e0"); }
+namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack { extern UnkTunable refl_tunable asm("g_unk_71726c06a8"); }
 void fn_71003e25c0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassBigFistAttack::CTunableCharClassBigFistAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726c06e0)
+    if (refl_fields_added)
         return;
-    g_unk_71726c06e0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f), (ShowInDevConfig, true), (Description, "Min attack distance"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 10.0f), (InternalDevTag, "RegularEnemies|BigFist"));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 300.0f), (ShowInDevConfig, true), (Description, "Max attack distance"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 10.0f), (InternalDevTag, "RegularEnemies|BigFist"));
     DREAD_REFLECTED_FIELD(f32, "fPostAttackLoopDuration", 0x2c, (DefaultValue, 0.8f), (ShowInDevConfig, true), (Description, "Post attack loop duration"), (MinValue, 0.0f), (MaxValue, 30.0f), (ControlFloatStep, 0.2f), (InternalDevTag, "RegularEnemies|BigFist"));
     DREAD_REFLECTED_FIELD(f32, "fFrontSpaceToForbidAttack", 0x30, (DefaultValue, 250.0f));
-    fn_71003e25c0(base::reflection::TunableRegistry(), &g_unk_71726c06a8, "BigFist");
+    fn_71003e25c0(base::reflection::TunableRegistry(), &refl_tunable, "BigFist");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

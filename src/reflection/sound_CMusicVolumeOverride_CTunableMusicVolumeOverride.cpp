@@ -23,7 +23,7 @@ using base::reflection::DestroyDestructorFirst;
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // sound::CMusicVolumeOverride::CTunableMusicVolumeOverride
-extern bool g_unk_71729f8298;
+namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride { extern bool refl_fields_added asm("g_unk_71729f8298"); }
 void fn_710101a4b8();
 void fn_71010113e8(UnkReflFunction* fn, const char* name);
 void fn_710101a59c();
@@ -170,14 +170,14 @@ void fn_710101e3f4();
 void fn_7101017d4c(UnkReflFunction* fn, const char* name);
 void fn_710101e4d8();
 void fn_7101017ec8(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_71729f8150;
+namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride { extern UnkTunable refl_tunable asm("g_unk_71729f8150"); }
 void fn_7101018044(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace sound::CMusicVolumeOverride::CTunableMusicVolumeOverride {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71729f8298)
+    if (refl_fields_added)
         return;
-    g_unk_71729f8298 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     [&] {
@@ -618,7 +618,7 @@ void refl_AddFields(CClass* cls) {
             fn_7101017ec8(fn, "_fJinglePowerUpGet_SetterFunction");
     }();
     DREAD_REFLECTED_PROPERTY(f32, "fJinglePowerUpGet", (DefaultValue, -1.0f));
-    fn_7101018044(base::reflection::TunableRegistry(), &g_unk_71729f8150, "MUSIC");
+    fn_7101018044(base::reflection::TunableRegistry(), &refl_tunable, "MUSIC");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

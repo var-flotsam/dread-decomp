@@ -44,22 +44,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CSamusGunComponent, CGunComponent);
 
 // CSamusGunComponent::CTunableSamusGunComponent
-extern bool g_unk_7172728188;
-extern UnkTunable g_unk_7172728150;
+namespace CSamusGunComponent::CTunableSamusGunComponent { extern bool refl_fields_added asm("g_unk_7172728188"); }
+namespace CSamusGunComponent::CTunableSamusGunComponent { extern UnkTunable refl_tunable asm("g_unk_7172728150"); }
 void fn_7100857fdc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusGunComponent::CTunableSamusGunComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172728188)
+    if (refl_fields_added)
         return;
-    g_unk_7172728188 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fScrewAttackDamage", 0x24, (DefaultValue, 75.0f), (Description, "Screw attack damage"));
     DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamActiveTime", 0x28, (DefaultValue, 5.0f), (Description, "Burst Charge Beam max active time"));
     DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamIdleActiveTimeFactor", 0x2c, (DefaultValue, 1.3f), (Description, "Burst Charge Beam idle active time factor"));
     DREAD_REFLECTED_FIELD(f32, "fBurstChargeBeamInitialBurstTime", 0x30, (DefaultValue, 0.0f), (Description, "Burst Charge Beam Initial burst time"));
-    fn_7100857fdc(base::reflection::TunableRegistry(), &g_unk_7172728150, "Player");
+    fn_7100857fdc(base::reflection::TunableRegistry(), &refl_tunable, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

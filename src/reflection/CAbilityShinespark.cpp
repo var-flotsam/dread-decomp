@@ -49,15 +49,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAbilityShinespark, CAbility);
 
 // CAbilityShinespark::CTunableAbilityShinespark
-extern bool g_unk_71726b0408;
-extern UnkTunable g_unk_71726b0378;
+namespace CAbilityShinespark::CTunableAbilityShinespark { extern bool refl_fields_added asm("g_unk_71726b0408"); }
+namespace CAbilityShinespark::CTunableAbilityShinespark { extern UnkTunable refl_tunable asm("g_unk_71726b0378"); }
 void fn_7100327044(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityShinespark::CTunableAbilityShinespark {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726b0408)
+    if (refl_fields_added)
         return;
-    g_unk_71726b0408 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fAllowedActivationTime", 0x24, (DefaultValue, 5.0f), (Description, "After Shinespark is set up, time during which its activation is allowed"));
@@ -86,7 +86,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bActiveCollisionChecksEnabled", 0x80, (DefaultValue, false), (Description, "Are active collision checks enabled at all?"));
     DREAD_REFLECTED_FIELD(f32, "fActiveCollisionChecksSamusOffset", 0x84, (DefaultValue, 30.0f), (Description, "Offset along the selected travelling direction while Samus"));
     DREAD_REFLECTED_FIELD(f32, "fActiveCollisionChecksMorphBallOffset", 0x88, (DefaultValue, 60.0f), (Description, "Offset along the selected travelling direction while Morph Ball"));
-    fn_7100327044(base::reflection::TunableRegistry(), &g_unk_71726b0378, "");
+    fn_7100327044(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

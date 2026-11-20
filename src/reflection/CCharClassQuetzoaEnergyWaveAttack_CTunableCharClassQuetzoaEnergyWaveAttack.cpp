@@ -21,21 +21,21 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassQuetzoaEnergyWaveAttack::CTunableCharClassQuetzoaEnergyWaveAttack
-extern bool g_unk_71726fb268;
-extern UnkTunable g_unk_71726fb238;
+namespace CCharClassQuetzoaEnergyWaveAttack::CTunableCharClassQuetzoaEnergyWaveAttack { extern bool refl_fields_added asm("g_unk_71726fb268"); }
+namespace CCharClassQuetzoaEnergyWaveAttack::CTunableCharClassQuetzoaEnergyWaveAttack { extern UnkTunable refl_tunable asm("g_unk_71726fb238"); }
 void fn_710064346c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassQuetzoaEnergyWaveAttack::CTunableCharClassQuetzoaEnergyWaveAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726fb268)
+    if (refl_fields_added)
         return;
-    g_unk_71726fb268 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMaxProjectileDistance", 0x24, (DefaultValue, 2500.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeBeforeElectrify", 0x28, (DefaultValue, 1.1f));
     DREAD_REFLECTED_FIELD(f32, "fElectrifyTime", 0x2c, (DefaultValue, 0.5f));
-    fn_710064346c(base::reflection::TunableRegistry(), &g_unk_71726fb238, "QuetzoaEnergyWaveAttack");
+    fn_710064346c(base::reflection::TunableRegistry(), &refl_tunable, "QuetzoaEnergyWaveAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

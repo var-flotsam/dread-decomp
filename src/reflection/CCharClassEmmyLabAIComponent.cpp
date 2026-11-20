@@ -41,16 +41,16 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassEmmyLabAIComponent, CCharClassEmmyAIComponent);
 
 // CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent
-extern bool g_unk_71726dc228;
-extern UnkTunable g_unk_71726dbfa0;
+namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent { extern bool refl_fields_added asm("g_unk_71726dc228"); }
+namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726dbfa0"); }
 void fn_71004f687c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEmmyConfiguration { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassEmmyLabAIComponent::CTunableEmmyLabAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726dc228)
+    if (refl_fields_added)
         return;
-    g_unk_71726dc228 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_CLASS_FIELD(CEmmyConfiguration, "rConfig", 0x28);
@@ -78,7 +78,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterPhase2ProtectorDestroyedOutOfCameraCloseSpeed", 0x27c, (DefaultValue, 3.0f), (ShowInConfig, true), (Description, "Speed booster phase 2 protector destroyed out of cmaera close speed"), (MinValue, 0.05f), (MaxValue, 4.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterPhase2ProtectionHeadImpactedSpeedFactor", 0x280, (DefaultValue, 0.5f), (ShowInConfig, true), (Description, "Speed booster phase 2 protection head impacted speed factor"), (MinValue, 0.05f), (MaxValue, 4.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
     DREAD_REFLECTED_FIELD(f32, "fSpeedBoosterAudioVolumeIncrease", 0x284, (DefaultValue, 1.5f), (ShowInConfig, true), (Description, "Speed booster VolumeIncrease"), (MinValue, 1.0f), (MaxValue, 2.0f), (ControlFloatStep, 0.05f), (InternalTag, "Emmy|EmmyLab|SpeedBoost"));
-    fn_71004f687c(base::reflection::TunableRegistry(), &g_unk_71726dbfa0, "Emmy");
+    fn_71004f687c(base::reflection::TunableRegistry(), &refl_tunable, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

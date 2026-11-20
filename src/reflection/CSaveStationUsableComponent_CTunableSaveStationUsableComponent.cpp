@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CSaveStationUsableComponent::CTunableSaveStationUsableComponent
-extern bool g_unk_7172751140;
-extern UnkTunable g_unk_7172751118;
+namespace CSaveStationUsableComponent::CTunableSaveStationUsableComponent { extern bool refl_fields_added asm("g_unk_7172751140"); }
+namespace CSaveStationUsableComponent::CTunableSaveStationUsableComponent { extern UnkTunable refl_tunable asm("g_unk_7172751118"); }
 void fn_7100a8940c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSaveStationUsableComponent::CTunableSaveStationUsableComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172751140)
+    if (refl_fields_added)
         return;
-    g_unk_7172751140 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fTimeMaxSaveInteract", 0x24, (DefaultValue, 0.5f), (Description, "Max time save station interact"));
-    fn_7100a8940c(base::reflection::TunableRegistry(), &g_unk_7172751118, "SaveStationUsableComponent");
+    fn_7100a8940c(base::reflection::TunableRegistry(), &refl_tunable, "SaveStationUsableComponent");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

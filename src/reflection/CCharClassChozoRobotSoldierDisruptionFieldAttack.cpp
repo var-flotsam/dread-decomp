@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassChozoRobotSoldierDisruptionFieldAttack, CCharClassAttack);
 
 // CCharClassChozoRobotSoldierDisruptionFieldAttack::CTunableCharClassChozoRobotSoldierDisruptionFieldAttack
-extern bool g_unk_71726cb438;
-extern UnkTunable g_unk_71726cb3f8;
+namespace CCharClassChozoRobotSoldierDisruptionFieldAttack::CTunableCharClassChozoRobotSoldierDisruptionFieldAttack { extern bool refl_fields_added asm("g_unk_71726cb438"); }
+namespace CCharClassChozoRobotSoldierDisruptionFieldAttack::CTunableCharClassChozoRobotSoldierDisruptionFieldAttack { extern UnkTunable refl_tunable asm("g_unk_71726cb3f8"); }
 void fn_7100462ff4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoRobotSoldierDisruptionFieldAttack::CTunableCharClassChozoRobotSoldierDisruptionFieldAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726cb438)
+    if (refl_fields_added)
         return;
-    g_unk_71726cb438 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
@@ -58,7 +58,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fExplosionTimeToReachRadius", 0x30, (DefaultValue, 0.7f));
     DREAD_REFLECTED_FIELD(f32, "fExplosionTimeAtMaxRadius", 0x34, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fSpecialEnergyConsume", 0x38, (DefaultValue, 1000.0f));
-    fn_7100462ff4(base::reflection::TunableRegistry(), &g_unk_71726cb3f8, "ChozoRobotSoldier");
+    fn_7100462ff4(base::reflection::TunableRegistry(), &refl_tunable, "ChozoRobotSoldier");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

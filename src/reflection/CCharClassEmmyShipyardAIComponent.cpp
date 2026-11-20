@@ -41,20 +41,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassEmmyShipyardAIComponent, CCharClassEmmyAIComponent);
 
 // CCharClassEmmyShipyardAIComponent::CTunableEmmyShipyardAIComponent
-extern bool g_unk_71726ddfe8;
-extern UnkTunable g_unk_71726dddc0;
+namespace CCharClassEmmyShipyardAIComponent::CTunableEmmyShipyardAIComponent { extern bool refl_fields_added asm("g_unk_71726ddfe8"); }
+namespace CCharClassEmmyShipyardAIComponent::CTunableEmmyShipyardAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726dddc0"); }
 void fn_7100503b98(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEmmyConfiguration { const base::reflection::CClass* refl_GetClass(); }
 namespace CCharClassEmmyShipyardAIComponent::CTunableEmmyShipyardAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726ddfe8)
+    if (refl_fields_added)
         return;
-    g_unk_71726ddfe8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_CLASS_FIELD(CEmmyConfiguration, "rConfig", 0x28);
-    fn_7100503b98(base::reflection::TunableRegistry(), &g_unk_71726dddc0, "Emmy");
+    fn_7100503b98(base::reflection::TunableRegistry(), &refl_tunable, "Emmy");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

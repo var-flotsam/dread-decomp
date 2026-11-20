@@ -63,20 +63,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CEnemyLifeComponent, CCharacterLifeComponent);
 
 // CEnemyLifeComponent::CTunableEnemyLifeComponent
-extern bool g_unk_7172a09b90;
-extern UnkTunable g_unk_7172a09b68;
+namespace CEnemyLifeComponent::CTunableEnemyLifeComponent { extern bool refl_fields_added asm("g_unk_7172a09b90"); }
+namespace CEnemyLifeComponent::CTunableEnemyLifeComponent { extern UnkTunable refl_tunable asm("g_unk_7172a09b68"); }
 void fn_710115a430(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CEnemyLifeComponent::CTunableEnemyLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172a09b90)
+    if (refl_fields_added)
         return;
-    g_unk_7172a09b90 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnemiesLifeLocked", 0x21, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(f32, "fOverrideDamage", 0x24, (DefaultValue, 0.0f));
-    fn_710115a430(base::reflection::TunableRegistry(), &g_unk_7172a09b68, "EnemyLife");
+    fn_710115a430(base::reflection::TunableRegistry(), &refl_tunable, "EnemyLife");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

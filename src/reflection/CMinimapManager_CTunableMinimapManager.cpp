@@ -26,7 +26,7 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CMinimapManager::CTunableMinimapManager
-extern bool g_unk_71727ca6d0;
+namespace CMinimapManager::CTunableMinimapManager { extern bool refl_fields_added asm("g_unk_71727ca6d0"); }
 void fn_7100eaa764();
 void fn_7100e83c40(UnkReflFunction* fn, const char* name);
 void fn_7100eaa8f8();
@@ -63,14 +63,14 @@ void fn_7100eac044();
 void fn_7100e85400(UnkReflFunction* fn, const char* name);
 void fn_7100eac1cc();
 void fn_7100e8557c(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_71727ca410;
+namespace CMinimapManager::CTunableMinimapManager { extern UnkTunable refl_tunable asm("g_unk_71727ca410"); }
 void fn_7100e856f8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMinimapManager::CTunableMinimapManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727ca6d0)
+    if (refl_fields_added)
         return;
-    g_unk_71727ca6d0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FUNCTION_OF("_vOccluderColor_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_7100eaa764);
@@ -189,7 +189,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_bAutoFadeEnabled_SetterFunction")
         fn_7100e8557c(fn, "_bAutoFadeEnabled_SetterFunction");
     DREAD_REFLECTED_PROPERTY(bool, "bAutoFadeEnabled", (DefaultValue, true));
-    fn_7100e856f8(base::reflection::TunableRegistry(), &g_unk_71727ca410, "MinimapManager");
+    fn_7100e856f8(base::reflection::TunableRegistry(), &refl_tunable, "MinimapManager");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

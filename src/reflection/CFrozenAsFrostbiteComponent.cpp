@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CFrozenAsFrostbiteComponent, CFrozenComponent);
 
 // CFrozenAsFrostbiteComponent::CTunableFrozenAsFrostbiteComponent
-extern bool g_unk_7172720df8;
-extern UnkTunable g_unk_7172720dc0;
+namespace CFrozenAsFrostbiteComponent::CTunableFrozenAsFrostbiteComponent { extern bool refl_fields_added asm("g_unk_7172720df8"); }
+namespace CFrozenAsFrostbiteComponent::CTunableFrozenAsFrostbiteComponent { extern UnkTunable refl_tunable asm("g_unk_7172720dc0"); }
 void fn_71007f3dd0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CFrozenAsFrostbiteComponent::CTunableFrozenAsFrostbiteComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172720df8)
+    if (refl_fields_added)
         return;
-    g_unk_7172720df8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorR", 0x24, (DefaultValue, 0.0f));
@@ -57,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorB", 0x2c, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorMinA", 0x30, (DefaultValue, 0.3f));
     DREAD_REFLECTED_FIELD(f32, "fFrostbiteColorMaxA", 0x34, (DefaultValue, 0.8f));
-    fn_71007f3dd0(base::reflection::TunableRegistry(), &g_unk_7172720dc0, "");
+    fn_71007f3dd0(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

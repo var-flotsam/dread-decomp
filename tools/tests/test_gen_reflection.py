@@ -502,5 +502,34 @@ class RegistryInclude(unittest.TestCase):
         self.assertEqual(gr.with_registry_include('#include "a.h"\nvoid f();'), '#include "a.h"\nvoid f();')
 
 
+
+class ClassStatics(unittest.TestCase):
+    TEXT = "\n".join([
+        "extern bool g_unk_7100000010;",
+        "extern UnkTunable g_unk_7100000020;",
+        "namespace A::CTunableA {",
+        "void refl_AddFields(CClass* cls) {",
+        "    if (g_unk_7100000010)",
+        "        return;",
+        "    g_unk_7100000010 = true;",
+        '    fn_7100000030(base::reflection::TunableRegistry(), &g_unk_7100000020, "A");',
+        "}",
+        "}  // namespace A::CTunableA"])
+
+    def test_named_in_the_class_namespace(self):
+        out = gr.class_statics_by_name(self.TEXT).split("\n")
+        self.assertEqual(out[0], 'namespace A::CTunableA { extern bool refl_fields_added asm("g_unk_7100000010"); }')
+        self.assertEqual(out[1], 'namespace A::CTunableA { extern UnkTunable refl_tunable asm("g_unk_7100000020"); }')
+        self.assertEqual(out[4:7], ["    if (refl_fields_added)", "        return;", "    refl_fields_added = true;"])
+        self.assertIn("&refl_tunable,", out[7])
+        self.assertEqual(gr.class_statics_by_name("\n".join(out)), "\n".join(out))
+
+    def test_use_outside_the_namespace_keeps_the_address(self):
+        text = self.TEXT + "\nvoid f() { use(&g_unk_7100000020); }"
+        out = gr.class_statics_by_name(text)
+        self.assertIn("extern UnkTunable g_unk_7100000020;", out)
+        self.assertIn("refl_fields_added", out)
+
+
 if __name__ == "__main__":
     unittest.main()

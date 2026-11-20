@@ -56,20 +56,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CBouncingCreaturesLaunchPattern);
 
 // CCharClassKraidBouncingCreaturesAttack::CTunableCharClassKraidBouncingCreaturesAttack
-extern bool g_unk_71726ef418;
-extern UnkTunable g_unk_71726ef3f0;
+namespace CCharClassKraidBouncingCreaturesAttack::CTunableCharClassKraidBouncingCreaturesAttack { extern bool refl_fields_added asm("g_unk_71726ef418"); }
+namespace CCharClassKraidBouncingCreaturesAttack::CTunableCharClassKraidBouncingCreaturesAttack { extern UnkTunable refl_tunable asm("g_unk_71726ef3f0"); }
 void fn_71005df5d8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassKraidBouncingCreaturesAttack::CTunableCharClassKraidBouncingCreaturesAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726ef418)
+    if (refl_fields_added)
         return;
-    g_unk_71726ef418 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iPattern", 0x24, (DefaultValue, -1));
-    fn_71005df5d8(base::reflection::TunableRegistry(), &g_unk_71726ef3f0, "Kraid");
+    fn_71005df5d8(base::reflection::TunableRegistry(), &refl_tunable, "Kraid");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -25,15 +25,15 @@ template <> base::reflection::CType base::reflection::TypeObject<void>::object a
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CAbilityComponent::CTunableAbilityComponent
-extern bool g_unk_71726aebe8;
-extern UnkTunable g_unk_71726aeb90;
+namespace CAbilityComponent::CTunableAbilityComponent { extern bool refl_fields_added asm("g_unk_71726aebe8"); }
+namespace CAbilityComponent::CTunableAbilityComponent { extern UnkTunable refl_tunable asm("g_unk_71726aeb90"); }
 void fn_71002fb83c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityComponent::CTunableAbilityComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726aebe8)
+    if (refl_fields_added)
         return;
-    g_unk_71726aebe8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fSynchronizedBlockTime", 0x28, (DefaultValue, 0.34f), (Description, "Time to start synch block"));
@@ -48,7 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDashMeleeVariaSuitDamage", 0x4c, (DefaultValue, 20.0f));
     DREAD_REFLECTED_FIELD(f32, "fDashMeleeGravitySuitDamage", 0x50, (DefaultValue, 20.0f));
     DREAD_REFLECTED_FIELD(bool, "bStunnedEnemiesLoseCollision", 0x54, (DefaultValue, true));
-    fn_71002fb83c(base::reflection::TunableRegistry(), &g_unk_71726aeb90, "Player");
+    fn_71002fb83c(base::reflection::TunableRegistry(), &refl_tunable, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

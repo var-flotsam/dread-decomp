@@ -23,19 +23,19 @@ using base::reflection::DestroyDestructorFirst;
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CLogicDroppedItemManager::CTunableDroppableBillboard
-extern bool g_unk_71727c1320;
+namespace CLogicDroppedItemManager::CTunableDroppableBillboard { extern bool refl_fields_added asm("g_unk_71727c1320"); }
 void fn_7100e2f79c();
 void fn_7100e20c1c(UnkReflFunction* fn, const char* name);
 void fn_7100e2f894();
 void fn_7100e20d98(UnkReflFunction* fn, const char* name);
-extern UnkTunable g_unk_71727c10c8;
+namespace CLogicDroppedItemManager::CTunableDroppableBillboard { extern UnkTunable refl_tunable asm("g_unk_71727c10c8"); }
 void fn_7100e20f14(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLogicDroppedItemManager::CTunableDroppableBillboard {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727c1320)
+    if (refl_fields_added)
         return;
-    g_unk_71727c1320 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fSpawnSpeedFactor", 0x24, (DefaultValue, 2.0f), (Description, "Speed factor related with the distance"));
@@ -87,7 +87,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sDropAbsorbMissilePresetName", 0x1b8, (DefaultValue, ""), (Description, "Audio Preset Launched when a Missile Drop is absorbed"));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sDropAbsorbPowerBombPresetName", 0x1e8, (DefaultValue, ""), (Description, "Audio Preset Launched when a Power Bomb Drop is absorbed"));
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sAbsorbingSoundPresetName", 0x218, (DefaultValue, ""), (Description, "Audio Preset Launched when a Drop is being atracted"));
-    fn_7100e20f14(base::reflection::TunableRegistry(), &g_unk_71727c10c8, "");
+    fn_7100e20f14(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -21,22 +21,22 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorXUltimateGrabAttack::CTunableCharClassChozoWarriorXUltimateGrabAttack
-extern bool g_unk_71726ce808;
-extern UnkTunable g_unk_71726ce7d0;
+namespace CCharClassChozoWarriorXUltimateGrabAttack::CTunableCharClassChozoWarriorXUltimateGrabAttack { extern bool refl_fields_added asm("g_unk_71726ce808"); }
+namespace CCharClassChozoWarriorXUltimateGrabAttack::CTunableCharClassChozoWarriorXUltimateGrabAttack { extern UnkTunable refl_tunable asm("g_unk_71726ce7d0"); }
 void fn_710047eef4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoWarriorXUltimateGrabAttack::CTunableCharClassChozoWarriorXUltimateGrabAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726ce808)
+    if (refl_fields_added)
         return;
-    g_unk_71726ce808 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 2000.0f));
     DREAD_REFLECTED_FIELD(f32, "fLifeRecoveredOnGrab", 0x2c, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fDistanceFromWallToGrab", 0x30, (DefaultValue, 700.0f));
-    fn_710047eef4(base::reflection::TunableRegistry(), &g_unk_71726ce7d0, "ChozoWarriorXUltimateGrabAttack");
+    fn_710047eef4(base::reflection::TunableRegistry(), &refl_tunable, "ChozoWarriorXUltimateGrabAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

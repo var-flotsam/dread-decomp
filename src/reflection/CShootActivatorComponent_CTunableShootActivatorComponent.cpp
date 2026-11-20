@@ -32,21 +32,21 @@ namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CShootActivatorComponent::CTunableShootActivatorComponent
-extern bool g_unk_717272c480;
-extern UnkTunable g_unk_717272c450;
+namespace CShootActivatorComponent::CTunableShootActivatorComponent { extern bool refl_fields_added asm("g_unk_717272c480"); }
+namespace CShootActivatorComponent::CTunableShootActivatorComponent { extern UnkTunable refl_tunable asm("g_unk_717272c450"); }
 void fn_710088d830(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CShootActivatorComponent::CTunableShootActivatorComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717272c480)
+    if (refl_fields_added)
         return;
-    g_unk_717272c480 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fVolumeMin", 0x24, (DefaultValue, 0.0f));
     DREAD_REFLECTED_FIELD(f32, "fDecreaseVolumeFactor", 0x28, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fPitchMin", 0x2c, (DefaultValue, 0.0f));
-    fn_710088d830(base::reflection::TunableRegistry(), &g_unk_717272c450, "ShootActivator");
+    fn_710088d830(base::reflection::TunableRegistry(), &refl_tunable, "ShootActivator");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

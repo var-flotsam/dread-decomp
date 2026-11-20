@@ -49,15 +49,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CPlasmaBeamGun, CBeamGun);
 
 // CPlasmaBeamGun::CTunablePlasmaBeam
-extern bool g_unk_7172727740;
-extern UnkTunable g_unk_7172727708;
+namespace CPlasmaBeamGun::CTunablePlasmaBeam { extern bool refl_fields_added asm("g_unk_7172727740"); }
+namespace CPlasmaBeamGun::CTunablePlasmaBeam { extern UnkTunable refl_tunable asm("g_unk_7172727708"); }
 void fn_7100851694(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CPlasmaBeamGun::CTunablePlasmaBeam {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172727740)
+    if (refl_fields_added)
         return;
-    g_unk_7172727740 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
@@ -65,7 +65,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaximumHeat", 0x2c, (DefaultValue, 0.75f), (Description, "Maximun damage to the shield"));
     DREAD_REFLECTED_FIELD(f32, "fFractionOfHeatAddedPerShot", 0x30, (DefaultValue, 0.0f), (Description, "fraction of heat incremented per shot"));
     DREAD_REFLECTED_FIELD(f32, "fDiffusionRadius", 0x34, (DefaultValue, 200.0f));
-    fn_7100851694(base::reflection::TunableRegistry(), &g_unk_7172727708, "");
+    fn_7100851694(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

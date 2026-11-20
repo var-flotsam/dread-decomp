@@ -51,15 +51,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CBombMovement, CWeaponMovement);
 
 // CBombMovement::CTunableBombMovement
-extern bool g_unk_7172753b08;
-extern UnkTunable g_unk_7172753ad0;
+namespace CBombMovement::CTunableBombMovement { extern bool refl_fields_added asm("g_unk_7172753b08"); }
+namespace CBombMovement::CTunableBombMovement { extern UnkTunable refl_tunable asm("g_unk_7172753ad0"); }
 void fn_7100aa9c14(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CBombMovement::CTunableBombMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172753b08)
+    if (refl_fields_added)
         return;
-    g_unk_7172753b08 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fTimeToExplode", 0x24, (DefaultValue, 0.81f), (Description, "Time it takes for the bomb to explode after it's been placed"));
@@ -67,7 +67,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fExplosionRadiusPlayer", 0x2c, (DefaultValue, 100.0f), (Description, "Final explosion radius to hit player"));
     DREAD_REFLECTED_FIELD(f32, "fExplosionExpansionTime", 0x30, (DefaultValue, 0.35f), (Description, "Time it takes for the explosion radius to get to the final one"));
     DREAD_REFLECTED_FIELD(f32, "fExplosionLifeTime", 0x34, (DefaultValue, 0.5f), (Description, "Time after bomb explodes until it can be deployed again (includes the time it takes for the bomb to expand)"));
-    fn_7100aa9c14(base::reflection::TunableRegistry(), &g_unk_7172753ad0, "");
+    fn_7100aa9c14(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

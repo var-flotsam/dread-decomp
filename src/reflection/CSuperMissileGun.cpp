@@ -41,20 +41,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CSuperMissileGun, CMissileGun);
 
 // CSuperMissileGun::CTunableSuperMissile
-extern bool g_unk_71727288f8;
-extern UnkTunable g_unk_71727288c8;
+namespace CSuperMissileGun::CTunableSuperMissile { extern bool refl_fields_added asm("g_unk_71727288f8"); }
+namespace CSuperMissileGun::CTunableSuperMissile { extern UnkTunable refl_tunable asm("g_unk_71727288c8"); }
 void fn_710085f650(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSuperMissileGun::CTunableSuperMissile {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727288f8)
+    if (refl_fields_added)
         return;
-    g_unk_71727288f8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
     DREAD_REFLECTED_FIELD(f32, "fHeat", 0x28, (DefaultValue, 0.75f), (Description, "Maximun damage to the shield"));
-    fn_710085f650(base::reflection::TunableRegistry(), &g_unk_71727288c8, "");
+    fn_710085f650(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

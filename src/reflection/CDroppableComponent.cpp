@@ -46,20 +46,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CDroppableComponent, CComponent);
 
 // CDroppableComponent::CTunableDroppable
-extern bool g_unk_717271ab40;
-extern UnkTunable g_unk_717271ab10;
+namespace CDroppableComponent::CTunableDroppable { extern bool refl_fields_added asm("g_unk_717271ab40"); }
+namespace CDroppableComponent::CTunableDroppable { extern UnkTunable refl_tunable asm("g_unk_717271ab10"); }
 void fn_71007b9e20(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CDroppableComponent::CTunableDroppable {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717271ab40)
+    if (refl_fields_added)
         return;
-    g_unk_717271ab40 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fSpawnSpeedFactor", 0x24, (DefaultValue, 2.0f), (Description, "Speed factor related with the distance"));
     DREAD_REFLECTED_FIELD(f32, "fMaxSpawnVelocity", 0x28, (DefaultValue, 300.0f), (Description, "Max velocity in the dispersion"));
-    fn_71007b9e20(base::reflection::TunableRegistry(), &g_unk_717271ab10, "");
+    fn_71007b9e20(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

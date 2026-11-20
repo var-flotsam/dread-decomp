@@ -44,21 +44,21 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassBigFistAIComponent, CCharClassBaseBigFistAIComponent);
 
 // CCharClassBigFistAIComponent::CTunableCharClassBigFistAIComponent
-extern bool g_unk_71726c13f8;
-extern UnkTunable g_unk_71726c13c8;
+namespace CCharClassBigFistAIComponent::CTunableCharClassBigFistAIComponent { extern bool refl_fields_added asm("g_unk_71726c13f8"); }
+namespace CCharClassBigFistAIComponent::CTunableCharClassBigFistAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726c13c8"); }
 void fn_71003e9950(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassBigFistAIComponent::CTunableCharClassBigFistAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726c13f8)
+    if (refl_fields_added)
         return;
-    g_unk_71726c13f8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fFleeTimeToReturnToPatrol", 0x24, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(f32, "fChaseMinDist", 0x28, (DefaultValue, 275.0f));
     DREAD_REFLECTED_FIELD(f32, "fChaseMaxDist", 0x2c, (DefaultValue, 375.0f));
-    fn_71003e9950(base::reflection::TunableRegistry(), &g_unk_71726c13c8, "BigFist");
+    fn_71003e9950(base::reflection::TunableRegistry(), &refl_tunable, "BigFist");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

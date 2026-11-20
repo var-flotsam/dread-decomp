@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassLifeComponent::CTunableCharClassLifeComponent
-extern bool g_unk_717272ff68;
-extern UnkTunable g_unk_717272fd38;
+namespace CCharClassLifeComponent::CTunableCharClassLifeComponent { extern bool refl_fields_added asm("g_unk_717272ff68"); }
+namespace CCharClassLifeComponent::CTunableCharClassLifeComponent { extern UnkTunable refl_tunable asm("g_unk_717272fd38"); }
 void fn_71008bb96c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassLifeComponent::CTunableCharClassLifeComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717272ff68)
+    if (refl_fields_added)
         return;
-    g_unk_717272ff68 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fLifeArachnus", 0x24, (DefaultValue, 3000.0f));
@@ -163,7 +163,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fLifeYampa", 0x224, (DefaultValue, 100.0f));
     DREAD_REFLECTED_FIELD(f32, "fLifeYamplotX", 0x228, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fLifeYojimbee", 0x22c, (DefaultValue, 100.0f));
-    fn_71008bb96c(base::reflection::TunableRegistry(), &g_unk_717272fd38, "Life");
+    fn_71008bb96c(base::reflection::TunableRegistry(), &refl_tunable, "Life");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

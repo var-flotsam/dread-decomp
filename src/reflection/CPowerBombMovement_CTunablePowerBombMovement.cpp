@@ -21,22 +21,22 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CPowerBombMovement::CTunablePowerBombMovement
-extern bool g_unk_7172754170;
-extern UnkTunable g_unk_7172754138;
+namespace CPowerBombMovement::CTunablePowerBombMovement { extern bool refl_fields_added asm("g_unk_7172754170"); }
+namespace CPowerBombMovement::CTunablePowerBombMovement { extern UnkTunable refl_tunable asm("g_unk_7172754138"); }
 void fn_7100ab005c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CPowerBombMovement::CTunablePowerBombMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172754170)
+    if (refl_fields_added)
         return;
-    g_unk_7172754170 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fColdDownPowerBombMinTime", 0x24, (DefaultValue, 0.0f), (Description, "Min time between Power Bombs"));
     DREAD_REFLECTED_FIELD(f32, "fPowerBombExplosionMaxRadius", 0x28, (DefaultValue, 3000.0f), (Description, "Radius at maximum extension"));
     DREAD_REFLECTED_FIELD(f32, "fPowerBombExplosionSpeed", 0x2c, (DefaultValue, 3800.0f), (Description, "Radius growth speed"));
     DREAD_REFLECTED_FIELD(f32, "fPowerBombImplosionSpeed", 0x30, (DefaultValue, 3800.0f), (Description, "Radius decreasing speed"));
-    fn_7100ab005c(base::reflection::TunableRegistry(), &g_unk_7172754138, "PowerBombMovement");
+    fn_7100ab005c(base::reflection::TunableRegistry(), &refl_tunable, "PowerBombMovement");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

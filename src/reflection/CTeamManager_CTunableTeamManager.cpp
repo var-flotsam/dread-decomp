@@ -21,20 +21,20 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CTeamManager::CTunableTeamManager
-extern bool g_unk_7172a0c2a0;
-extern UnkTunable g_unk_7172a0c270;
+namespace CTeamManager::CTunableTeamManager { extern bool refl_fields_added asm("g_unk_7172a0c2a0"); }
+namespace CTeamManager::CTunableTeamManager { extern UnkTunable refl_tunable asm("g_unk_7172a0c270"); }
 void fn_71011a6394(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CTeamManager::CTunableTeamManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172a0c2a0)
+    if (refl_fields_added)
         return;
-    g_unk_7172a0c2a0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fCoordinatedAttacksMinTime", 0x24, (DefaultValue, 0.0f), (ShowInConfig, false));
     DREAD_REFLECTED_FIELD(f32, "fCoordinatedAttacksMaxTime", 0x28, (DefaultValue, 0.0f), (ShowInConfig, false));
-    fn_71011a6394(base::reflection::TunableRegistry(), &g_unk_7172a0c270, "AI");
+    fn_71011a6394(base::reflection::TunableRegistry(), &refl_tunable, "AI");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

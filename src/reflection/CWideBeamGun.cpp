@@ -49,15 +49,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CWideBeamGun, CPowerBeamGun);
 
 // CWideBeamGun::CTunableWideBeam
-extern bool g_unk_7172729058;
-extern UnkTunable g_unk_7172729020;
+namespace CWideBeamGun::CTunableWideBeam { extern bool refl_fields_added asm("g_unk_7172729058"); }
+namespace CWideBeamGun::CTunableWideBeam { extern UnkTunable refl_tunable asm("g_unk_7172729020"); }
 void fn_7100868be8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CWideBeamGun::CTunableWideBeam {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172729058)
+    if (refl_fields_added)
         return;
-    g_unk_7172729058 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
@@ -65,7 +65,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fPerpendicularOffsetSize", 0x2c, (DefaultValue, 50.0f), (Description, "Perpendicular offset"));
     DREAD_REFLECTED_FIELD(f32, "fBackwardCheckLenght", 0x30, (DefaultValue, 100.0f), (Description, "Perpendicular offset"));
     DREAD_REFLECTED_FIELD(f32, "fForwardCheckLenght", 0x34, (DefaultValue, 120.0f), (Description, "Perpendicular offset"));
-    fn_7100868be8(base::reflection::TunableRegistry(), &g_unk_7172729020, "");
+    fn_7100868be8(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -21,22 +21,22 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CGrappleBeamComponent::CTunableGrappleBeamComponent
-extern bool g_unk_7172723310;
-extern UnkTunable g_unk_71727232d8;
+namespace CGrappleBeamComponent::CTunableGrappleBeamComponent { extern bool refl_fields_added asm("g_unk_7172723310"); }
+namespace CGrappleBeamComponent::CTunableGrappleBeamComponent { extern UnkTunable refl_tunable asm("g_unk_71727232d8"); }
 void fn_71008174c0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CGrappleBeamComponent::CTunableGrappleBeamComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172723310)
+    if (refl_fields_added)
         return;
-    g_unk_7172723310 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fAdvanceSpeed", 0x24, (DefaultValue, 3500.0f), (Description, "advance speed"));
     DREAD_REFLECTED_FIELD(f32, "fRetractSpeed", 0x28, (DefaultValue, 8000.0f), (Description, "retract speed"));
     DREAD_REFLECTED_FIELD(f32, "fMaxLength", 0x2c, (DefaultValue, 1100.0f), (Description, "max length"));
     DREAD_REFLECTED_FIELD(f32, "fMaxLengthToStartRetract", 0x30, (DefaultValue, 1100.0f), (Description, "max length before retracting"));
-    fn_71008174c0(base::reflection::TunableRegistry(), &g_unk_71727232d8, "Grapple");
+    fn_71008174c0(base::reflection::TunableRegistry(), &refl_tunable, "Grapple");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

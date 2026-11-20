@@ -22,19 +22,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent
-extern bool g_unk_717272b628;
-extern UnkTunable g_unk_717272b600;
+namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent { extern bool refl_fields_added asm("g_unk_717272b628"); }
+namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent { extern UnkTunable refl_tunable asm("g_unk_717272b600"); }
 void fn_7100881e44(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMultiLockOnBlockComponent::CTunableMultiLockOnBlockComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717272b628)
+    if (refl_fields_added)
         return;
-    g_unk_717272b628 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMaxTimeActivate", 0x24, (DefaultValue, 0.9f), (Description, "Max time to activated multi lock on points"));
-    fn_7100881e44(base::reflection::TunableRegistry(), &g_unk_717272b600, "Multi lock on block");
+    fn_7100881e44(base::reflection::TunableRegistry(), &refl_tunable, "Multi lock on block");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

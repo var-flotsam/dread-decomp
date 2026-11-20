@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CMetroidCameraCtrl, CCameraBoundaryCtrl);
 
 // CMetroidCameraCtrl::CTunableMetroidCameraCtrl
-extern bool g_unk_7172738cb8;
-extern UnkTunable g_unk_7172738c28;
+namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl { extern bool refl_fields_added asm("g_unk_7172738cb8"); }
+namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl { extern UnkTunable refl_tunable asm("g_unk_7172738c28"); }
 void fn_710093446c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMetroidCameraCtrl::CTunableMetroidCameraCtrl {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172738cb8)
+    if (refl_fields_added)
         return;
-    g_unk_7172738cb8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fZoomMinDistCamZ", 0x28, (DefaultValue, 1000.0f));
@@ -76,7 +76,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkOCStoppedCamMaxOffsetX", 0x7c, (DefaultValue, 100.0f), (Description, "Obsolete"));
     DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkDisableAutoFocusEmmyExtraDistance", 0x80, (DefaultValue, 300.0f));
     DREAD_REFLECTED_FIELD(f32, "fEmmyDistanceZoomWalkAutoFocusDistCamZ", 0x84, (DefaultValue, 1600.0f));
-    fn_710093446c(base::reflection::TunableRegistry(), &g_unk_7172738c28, "MetroidCameraCtrl");
+    fn_710093446c(base::reflection::TunableRegistry(), &refl_tunable, "MetroidCameraCtrl");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

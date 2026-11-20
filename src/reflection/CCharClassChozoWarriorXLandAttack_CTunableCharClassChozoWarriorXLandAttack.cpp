@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoWarriorXLandAttack::CTunableCharClassChozoWarriorXLandAttack
-extern bool g_unk_71726ce250;
-extern UnkTunable g_unk_71726ce200;
+namespace CCharClassChozoWarriorXLandAttack::CTunableCharClassChozoWarriorXLandAttack { extern bool refl_fields_added asm("g_unk_71726ce250"); }
+namespace CCharClassChozoWarriorXLandAttack::CTunableCharClassChozoWarriorXLandAttack { extern UnkTunable refl_tunable asm("g_unk_71726ce200"); }
 void fn_710047d31c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoWarriorXLandAttack::CTunableCharClassChozoWarriorXLandAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726ce250)
+    if (refl_fields_added)
         return;
-    g_unk_71726ce250 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
@@ -41,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fWaveOffset", 0x3c, (DefaultValue, 550.0f));
     DREAD_REFLECTED_FIELD(f32, "fWaveParticlesOffset", 0x40, (DefaultValue, 80.0f));
     DREAD_REFLECTED_FIELD(CStrId, "sWaveOffsetFactorizerFunction", 0x48, (DefaultValue, CStrId(CStrId::Empty())));
-    fn_710047d31c(base::reflection::TunableRegistry(), &g_unk_71726ce200, "ChozoWarriorXLandAttack");
+    fn_710047d31c(base::reflection::TunableRegistry(), &refl_tunable, "ChozoWarriorXLandAttack");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

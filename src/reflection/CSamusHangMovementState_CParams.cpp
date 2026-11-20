@@ -49,21 +49,21 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CSamusHangMovementState::CParams, CSamusMovementState::CParams);
 
 // CSamusHangMovementState::CTunableSamusHangMovementState
-extern bool g_unk_717273bf78;
-extern UnkTunable g_unk_717273bf50;
+namespace CSamusHangMovementState::CTunableSamusHangMovementState { extern bool refl_fields_added asm("g_unk_717273bf78"); }
+namespace CSamusHangMovementState::CTunableSamusHangMovementState { extern UnkTunable refl_tunable asm("g_unk_717273bf50"); }
 void fn_710099fd60(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusHangMovementState::CTunableSamusHangMovementState {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717273bf78)
+    if (refl_fields_added)
         return;
-    g_unk_717273bf78 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bAnalogAimLimitAngles", 0x21, (DefaultValue, false), (Description, "Whether to apply limits to analog aim while hanging"));
     DREAD_REFLECTED_FIELD(bool, "bAllowPreInputResetClimbToMorphBall", 0x22, (DefaultValue, false), (Description, "If player is pressing the stick to climb right after hanging and we would convert to MorphBall by climbing, should we allow this stick-based climb?"));
     DREAD_REFLECTED_FIELD(f32, "fTimeToIgnoreFastClimbAfterMorphBall", 0x24, (DefaultValue, 0.6f));
-    fn_710099fd60(base::reflection::TunableRegistry(), &g_unk_717273bf50, "Hang");
+    fn_710099fd60(base::reflection::TunableRegistry(), &refl_tunable, "Hang");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -51,15 +51,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAbilityMultiLockon, CAbility);
 
 // CAbilityMultiLockon::CTunableAbilityMultiLockon
-extern bool g_unk_71726af920;
-extern UnkTunable g_unk_71726af8b0;
+namespace CAbilityMultiLockon::CTunableAbilityMultiLockon { extern bool refl_fields_added asm("g_unk_71726af920"); }
+namespace CAbilityMultiLockon::CTunableAbilityMultiLockon { extern UnkTunable refl_tunable asm("g_unk_71726af8b0"); }
 void fn_7100317550(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityMultiLockon::CTunableAbilityMultiLockon {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726af920)
+    if (refl_fields_added)
         return;
-    g_unk_71726af920 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(base::math::CVector3D, "vColorLocked0", 0x24, (DefaultValue, base::math::CVector3D{1.0f, 0.0f, 1.0f}));
@@ -75,7 +75,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bActivationInput_R3", 0x6c, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bActivationInput_FireCharge", 0x6d, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bActivationInput_AimCharge", 0x6e, (DefaultValue, true));
-    fn_7100317550(base::reflection::TunableRegistry(), &g_unk_71726af8b0, "");
+    fn_7100317550(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

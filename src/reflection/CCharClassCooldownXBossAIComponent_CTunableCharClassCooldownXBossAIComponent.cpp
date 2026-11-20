@@ -26,15 +26,15 @@ namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<std::unique_ptr<CTentacle>>>::object asm("g_unk_717270d668");
 
 // CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent
-extern bool g_unk_71726d82b8;
-extern UnkTunable g_unk_71726d8260;
+namespace CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent { extern bool refl_fields_added asm("g_unk_71726d82b8"); }
+namespace CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726d8260"); }
 void fn_71004cdb44(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassCooldownXBossAIComponent::CTunableCharClassCooldownXBossAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726d82b8)
+    if (refl_fields_added)
         return;
-    g_unk_71726d82b8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(s32, "iInitialStage", 0x24, (DefaultValue, 0));
@@ -53,7 +53,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMinLifeRestored1Arms", 0x48, (DefaultValue, 4000.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxLifeRestored1Arms", 0x4c, (DefaultValue, 6000.0f));
     DREAD_REFLECTED_FIELD(f32, "fPhase2Timeout", 0x50, (DefaultValue, 20.0f));
-    fn_71004cdb44(base::reflection::TunableRegistry(), &g_unk_71726d8260, "CooldownXBoss");
+    fn_71004cdb44(base::reflection::TunableRegistry(), &refl_tunable, "CooldownXBoss");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

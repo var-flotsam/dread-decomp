@@ -49,15 +49,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CLineBombMovement, CBombMovement);
 
 // CLineBombMovement::CTunableLineBombMovement
-extern bool g_unk_7172753df8;
-extern UnkTunable g_unk_7172753dc0;
+namespace CLineBombMovement::CTunableLineBombMovement { extern bool refl_fields_added asm("g_unk_7172753df8"); }
+namespace CLineBombMovement::CTunableLineBombMovement { extern UnkTunable refl_tunable asm("g_unk_7172753dc0"); }
 void fn_7100aad3c4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CLineBombMovement::CTunableLineBombMovement {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172753df8)
+    if (refl_fields_added)
         return;
-    g_unk_7172753df8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x24, (DefaultValue, 100.0f), (Description, "Final explosion radius"));
@@ -68,7 +68,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bEachBombImpulsesPlayer", 0x35, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bStickyBomb", 0x36, (DefaultValue, false));
     DREAD_REFLECTED_FIELD(bool, "bOrientateToClosestSurfaceNormal", 0x37, (DefaultValue, true));
-    fn_7100aad3c4(base::reflection::TunableRegistry(), &g_unk_7172753dc0, "");
+    fn_7100aad3c4(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

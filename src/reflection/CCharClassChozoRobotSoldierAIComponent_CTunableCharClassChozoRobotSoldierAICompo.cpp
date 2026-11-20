@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent
-extern bool g_unk_71726cc730;
-extern UnkTunable g_unk_71726cc6d8;
+namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent { extern bool refl_fields_added asm("g_unk_71726cc730"); }
+namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726cc6d8"); }
 void fn_710046d724(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoRobotSoldierAIComponent::CTunableCharClassChozoRobotSoldierAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726cc730)
+    if (refl_fields_added)
         return;
-    g_unk_71726cc730 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinTimeToStartChargeBeam", 0x24, (DefaultValue, 10.0f));
@@ -45,7 +45,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMeleeAttackAfterRangedAttackProbability", 0x4c, (DefaultValue, 0.5f));
     DREAD_REFLECTED_FIELD(f32, "fChangeToRangedAttackOnSamePlatformProbability", 0x50, (DefaultValue, 0.2f));
     DREAD_REFLECTED_FIELD(bool, "bAllCanUseChargeBeam", 0x54, (DefaultValue, false));
-    fn_710046d724(base::reflection::TunableRegistry(), &g_unk_71726cc6d8, "ChozoRobotSoldier");
+    fn_710046d724(base::reflection::TunableRegistry(), &refl_tunable, "ChozoRobotSoldier");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

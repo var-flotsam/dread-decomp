@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CSamusAnimationComponent::CTunableSamusAnimationComponent
-extern bool g_unk_717270e908;
-extern UnkTunable g_unk_717270e8d0;
+namespace CSamusAnimationComponent::CTunableSamusAnimationComponent { extern bool refl_fields_added asm("g_unk_717270e908"); }
+namespace CSamusAnimationComponent::CTunableSamusAnimationComponent { extern UnkTunable refl_tunable asm("g_unk_717270e8d0"); }
 void fn_71007138f4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusAnimationComponent::CTunableSamusAnimationComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717270e908)
+    if (refl_fields_added)
         return;
-    g_unk_717270e908 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fToRecoilBlendTime", 0x24, (DefaultValue, 0.03f));
@@ -37,7 +37,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fToAimBlendTime", 0x2c, (DefaultValue, 0.12f));
     DREAD_REFLECTED_FIELD(f32, "fToDefaultBlendTime", 0x30, (DefaultValue, 0.12f));
     DREAD_REFLECTED_FIELD(f32, "fRecoilTime", 0x34, (DefaultValue, 0.12f));
-    fn_71007138f4(base::reflection::TunableRegistry(), &g_unk_717270e8d0, "SamusAnimationComponent");
+    fn_71007138f4(base::reflection::TunableRegistry(), &refl_tunable, "SamusAnimationComponent");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -21,16 +21,16 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CShotManager::CTunableShotManager
-extern bool g_unk_71729d1540;
-extern UnkTunable g_unk_71729cf280;
+namespace CShotManager::CTunableShotManager { extern bool refl_fields_added asm("g_unk_71729d1540"); }
+namespace CShotManager::CTunableShotManager { extern UnkTunable refl_tunable asm("g_unk_71729cf280"); }
 void fn_7100ed419c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CExplosionGfx { const base::reflection::CClass* refl_GetClass(); }
 namespace CShotManager::CTunableShotManager {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71729d1540)
+    if (refl_fields_added)
         return;
-    g_unk_71729d1540 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rPowerBeamNormalExplosion", 0x28);
@@ -48,7 +48,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rNoDamageExplosion", 0x1dc8);
     DREAD_REFLECTED_CLASS_FIELD(CExplosionGfx, "rHeatedExplosion", 0x2040);
     DREAD_REFLECTED_FIELD(f32, "fShotSpeed", 0x22b8, (DefaultValue, 2700.0f));
-    fn_7100ed419c(base::reflection::TunableRegistry(), &g_unk_71729cf280, "ShotManager");
+    fn_7100ed419c(base::reflection::TunableRegistry(), &refl_tunable, "ShotManager");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent
-extern bool g_unk_71726bd328;
-extern UnkTunable g_unk_71726bd2c8;
+namespace CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent { extern bool refl_fields_added asm("g_unk_71726bd328"); }
+namespace CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726bd2c8"); }
 void fn_71003b9d4c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassAutclastAIComponent::CTunableCharClassAutclastAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726bd328)
+    if (refl_fields_added)
         return;
-    g_unk_71726bd328 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(s32, "iMaxExplosions", 0x24, (DefaultValue, 10), (ShowInDevConfig, true), (Description, "Max explosions"), (MinValueI, 0), (MaxValueI, 100), (ControlIntStep, 1), (InternalDevTag, "RegularEnemies|Autclast"));
@@ -47,7 +47,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxPropagationHeight", 0x54, (DefaultValue, 210.0f));
     DREAD_REFLECTED_FIELD(f32, "fMinDistToSlope", 0x58, (DefaultValue, 150.0f));
     DREAD_REFLECTED_FIELD(f32, "fBaseRotationEffectFactor", 0x5c, (DefaultValue, 1.0f));
-    fn_71003b9d4c(base::reflection::TunableRegistry(), &g_unk_71726bd2c8, "Autclast");
+    fn_71003b9d4c(base::reflection::TunableRegistry(), &refl_tunable, "Autclast");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

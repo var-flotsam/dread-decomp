@@ -49,15 +49,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CSamusMagnetGloveMovementState::CParams, CSamusMovementState::CParams);
 
 // CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState
-extern bool g_unk_717273c6b0;
-extern UnkTunable g_unk_717273c650;
+namespace CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState { extern bool refl_fields_added asm("g_unk_717273c6b0"); }
+namespace CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState { extern UnkTunable refl_tunable asm("g_unk_717273c650"); }
 void fn_71009a5de4(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusMagnetGloveMovementState::CTunableSamusMagnetGloveMovementState {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717273c6b0)
+    if (refl_fields_added)
         return;
-    g_unk_717273c6b0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bAnalogAimLimitAngles", 0x21, (DefaultValue, false), (Description, "Whether to apply limits to analog aim while in magnet"));
@@ -77,7 +77,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bSpiderPoseRequiresRetap", 0x54, (DefaultValue, false), (Description, "Whether player must retap input to allow spider pose or use configured time instead"));
     DREAD_REFLECTED_FIELD(f32, "fMagnetWallJumpIgnoreMovementTime", 0x58, (DefaultValue, 0.2f), (Description, "After jumping from a magnet wall, time while movement input towards that wall is ignored"));
     DREAD_REFLECTED_FIELD(f32, "fOpticalCamouflageMagnetWallJumpIgnoreMovementTime", 0x5c, (DefaultValue, 0.4f), (Description, "After jumping from a magnet wall with Optical Camouflage enabled, time while movement input towards that wall is ignored"));
-    fn_71009a5de4(base::reflection::TunableRegistry(), &g_unk_717273c650, "MagnetGlove");
+    fn_71009a5de4(base::reflection::TunableRegistry(), &refl_tunable, "MagnetGlove");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

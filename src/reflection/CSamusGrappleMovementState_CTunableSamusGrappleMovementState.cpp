@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CSamusGrappleMovementState::CTunableSamusGrappleMovementState
-extern bool g_unk_717273bb38;
-extern UnkTunable g_unk_717273ba88;
+namespace CSamusGrappleMovementState::CTunableSamusGrappleMovementState { extern bool refl_fields_added asm("g_unk_717273bb38"); }
+namespace CSamusGrappleMovementState::CTunableSamusGrappleMovementState { extern UnkTunable refl_tunable asm("g_unk_717273ba88"); }
 void fn_7100999924(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSamusGrappleMovementState::CTunableSamusGrappleMovementState {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717273bb38)
+    if (refl_fields_added)
         return;
-    g_unk_717273bb38 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fGrappleInitHangDistance", 0x24, (DefaultValue, 250.0f), (Description, "grapple init hang distance"));
@@ -67,7 +67,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fGrappleDirMaxSpeedInterpSpeed", 0xa4, (DefaultValue, 5000.0f));
     DREAD_REFLECTED_FIELD(f32, "fGravityMultiplier", 0xa8, (DefaultValue, 1.25f));
     DREAD_REFLECTED_FIELD(f32, "fMaxHeightRatioToStartBreakImpulse", 0xac, (DefaultValue, 0.7f));
-    fn_7100999924(base::reflection::TunableRegistry(), &g_unk_717273ba88, "Grapple");
+    fn_7100999924(base::reflection::TunableRegistry(), &refl_tunable, "Grapple");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

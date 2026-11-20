@@ -45,21 +45,21 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassGoliathAIComponent, CCharClassBaseBigFistAIComponent);
 
 // CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent
-extern bool g_unk_71726e6468;
-extern UnkTunable g_unk_71726e6438;
+namespace CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent { extern bool refl_fields_added asm("g_unk_71726e6468"); }
+namespace CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e6438"); }
 void fn_710059015c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassGoliathAIComponent::CTunableCharClassGoliathAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726e6468)
+    if (refl_fields_added)
         return;
-    g_unk_71726e6468 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fFleeTimeToReturnToPatrol", 0x24, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(f32, "fChaseMinDistance", 0x28, (DefaultValue, 550.0f));
     DREAD_REFLECTED_FIELD(f32, "fChaseMaxDistance", 0x2c, (DefaultValue, 550.0f));
-    fn_710059015c(base::reflection::TunableRegistry(), &g_unk_71726e6438, "Goliath");
+    fn_710059015c(base::reflection::TunableRegistry(), &refl_tunable, "Goliath");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

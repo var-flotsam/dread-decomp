@@ -24,15 +24,15 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 extern template const base::reflection::CType& base::reflection::PrimitiveType<float>::Get();
 
 // CSpecialEnergyComponent::CTunableSpecialEnergyComponent
-extern bool g_unk_71727457b0;
-extern UnkTunable g_unk_7172745770;
+namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent { extern bool refl_fields_added asm("g_unk_71727457b0"); }
+namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent { extern UnkTunable refl_tunable asm("g_unk_7172745770"); }
 void fn_7100a1e21c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CSpecialEnergyComponent::CTunableSpecialEnergyComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71727457b0)
+    if (refl_fields_added)
         return;
-    g_unk_71727457b0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fTimeToStartEnergyRecover", 0x24, (DefaultValue, 0.25f));
@@ -41,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyOpticalCamuflage", 0x30, (DefaultValue, 6.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergyOpticalCamuflageNotMoving", 0x34, (DefaultValue, 12.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToRecoverAllEnergySonar", 0x38, (DefaultValue, 1.5f));
-    fn_7100a1e21c(base::reflection::TunableRegistry(), &g_unk_7172745770, "Player");
+    fn_7100a1e21c(base::reflection::TunableRegistry(), &refl_tunable, "Player");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

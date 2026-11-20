@@ -41,22 +41,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassScorpiusMovingPoisonousGasAttack, CCharClassScorpiusPoisonousGasAttack);
 
 // CCharClassScorpiusMovingPoisonousGasAttack::CTunableCharClassScorpiusMovingPoisonousGasAttack
-extern bool g_unk_7172701d88;
-extern UnkTunable g_unk_7172701d58;
+namespace CCharClassScorpiusMovingPoisonousGasAttack::CTunableCharClassScorpiusMovingPoisonousGasAttack { extern bool refl_fields_added asm("g_unk_7172701d88"); }
+namespace CCharClassScorpiusMovingPoisonousGasAttack::CTunableCharClassScorpiusMovingPoisonousGasAttack { extern UnkTunable refl_tunable asm("g_unk_7172701d58"); }
 void fn_7100680540(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassScorpiusMovingPoisonousGasAttack::CTunableCharClassScorpiusMovingPoisonousGasAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172701d88)
+    if (refl_fields_added)
         return;
-    g_unk_7172701d88 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(f32, "fTimeToMove", 0x24, (DefaultValue, 5.0f));
     DREAD_REFLECTED_FIELD(f32, "fDistanceToStopMoving", 0x28, (DefaultValue, 300.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToSmash", 0x2c, (DefaultValue, 1.0f));
-    fn_7100680540(base::reflection::TunableRegistry(), &g_unk_7172701d58, "Scorpius");
+    fn_7100680540(base::reflection::TunableRegistry(), &refl_tunable, "Scorpius");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

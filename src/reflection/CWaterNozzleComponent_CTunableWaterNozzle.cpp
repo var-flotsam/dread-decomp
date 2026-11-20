@@ -27,19 +27,19 @@ namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
 
 // CWaterNozzleComponent::CTunableWaterNozzle
-extern bool g_unk_717272dbd0;
-extern UnkTunable g_unk_717272dba8;
+namespace CWaterNozzleComponent::CTunableWaterNozzle { extern bool refl_fields_added asm("g_unk_717272dbd0"); }
+namespace CWaterNozzleComponent::CTunableWaterNozzle { extern UnkTunable refl_tunable asm("g_unk_717272dba8"); }
 void fn_71008a0b3c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CWaterNozzleComponent::CTunableWaterNozzle {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_717272dbd0)
+    if (refl_fields_added)
         return;
-    g_unk_717272dbd0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fStopWaterJetDelayTime", 0x24, (DefaultValue, 1.0f), (Description, "Delay time to stop water jet "));
-    fn_71008a0b3c(base::reflection::TunableRegistry(), &g_unk_717272dba8, "WaterNozzle");
+    fn_71008a0b3c(base::reflection::TunableRegistry(), &refl_tunable, "WaterNozzle");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

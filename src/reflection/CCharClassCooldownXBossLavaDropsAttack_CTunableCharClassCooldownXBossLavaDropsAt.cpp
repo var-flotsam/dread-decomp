@@ -29,20 +29,20 @@ template <> base::reflection::CType base::reflection::TypeObject<base::serializa
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 
 // CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack
-extern bool g_unk_71726d37e0;
-extern UnkTunable g_unk_71726d37b8;
+namespace CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack { extern bool refl_fields_added asm("g_unk_71726d37e0"); }
+namespace CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack { extern UnkTunable refl_tunable asm("g_unk_71726d37b8"); }
 void fn_71004aa7fc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassCooldownXBossLavaDropsAttack::CTunableCharClassCooldownXBossLavaDropsAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726d37e0)
+    if (refl_fields_added)
         return;
-    g_unk_71726d37e0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
     DREAD_REFLECTED_FIELD(s32, "iForcedPattern", 0x24, (DefaultValue, -1));
-    fn_71004aa7fc(base::reflection::TunableRegistry(), &g_unk_71726d37b8, "CooldownXBoss");
+    fn_71004aa7fc(base::reflection::TunableRegistry(), &refl_tunable, "CooldownXBoss");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

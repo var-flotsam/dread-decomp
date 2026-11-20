@@ -23,15 +23,15 @@ using base::reflection::DestroyDestructorFirst;
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CHeatableShieldComponent::CTunableHeatableShield
-extern bool g_unk_7172729370;
-extern UnkTunable g_unk_7172729300;
+namespace CHeatableShieldComponent::CTunableHeatableShield { extern bool refl_fields_added asm("g_unk_7172729370"); }
+namespace CHeatableShieldComponent::CTunableHeatableShield { extern UnkTunable refl_tunable asm("g_unk_7172729300"); }
 void fn_710086a398(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CHeatableShieldComponent::CTunableHeatableShield {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172729370)
+    if (refl_fields_added)
         return;
-    g_unk_7172729370 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(base::global::CRntString, "sFunction", 0x28, (DefaultValue, "S"), (Description, "Function for the heat"));
@@ -41,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fMaxRGBColor", 0x64, (DefaultValue, 1.0f), (Description, "Maximum value of red, green or blue [0..1]"));
     DREAD_REFLECTED_FIELD(f32, "fStartEmmitingParticlesOnHeat", 0x68, (DefaultValue, 0.0f), (Description, "Heat value that when reached causes the heat particles to be spawned."));
     DREAD_REFLECTED_FIELD(f32, "fStopEmmitingParticlesOnCooldown", 0x6c, (DefaultValue, 0.1f), (Description, "Heat value that when reduced to from a higher point causes the heat particles to be despawned."));
-    fn_710086a398(base::reflection::TunableRegistry(), &g_unk_7172729300, "");
+    fn_710086a398(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

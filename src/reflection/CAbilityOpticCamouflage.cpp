@@ -56,15 +56,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CAbilityOpticCamouflage, CAbility);
 
 // CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage
-extern bool g_unk_71726b0050;
-extern UnkTunable g_unk_71726affc0;
+namespace CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage { extern bool refl_fields_added asm("g_unk_71726b0050"); }
+namespace CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage { extern UnkTunable refl_tunable asm("g_unk_71726affc0"); }
 void fn_71003232d8(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CAbilityOpticCamouflage::CTunableAbilityOpticCamouflage {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726b0050)
+    if (refl_fields_added)
         return;
-    g_unk_71726b0050 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamagePerSecondStill", 0x30, (DefaultValue, 2.5f), (ShowInConfig, true), (Description, "Damage per second still"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 0.5f), (InternalTag, "OpticCamouflage"));
@@ -108,7 +108,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fDamageOnFireLineBomb", 0x78, (DefaultValue, 0.0f), (Description, "Consumed energy when placing a line bomb"), (ShowInConfig, true), (InternalTag, "OpticCamouflage"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageOnFirePowerBomb", 0x7c, (DefaultValue, 0.0f), (Description, "Consumed energy when placing a power bomb"), (ShowInConfig, true), (InternalTag, "OpticCamouflage"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 50.0f));
     DREAD_REFLECTED_FIELD(f32, "fDamageOnMelee", 0x80, (DefaultValue, 0.0f), (Description, "Consumed energy when performing a melee attack"), (ShowInConfig, true), (InternalTag, "OpticCamouflage"), (MinValue, 0.0f), (MaxValue, 1000.0f), (ControlFloatStep, 50.0f));
-    fn_71003232d8(base::reflection::TunableRegistry(), &g_unk_71726affc0, "");
+    fn_71003232d8(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

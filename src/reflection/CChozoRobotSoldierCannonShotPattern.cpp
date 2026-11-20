@@ -56,22 +56,22 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_ROOT_CLASS(CChozoRobotSoldierCannonShotPattern);
 
 // CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack
-extern bool g_unk_71726ca6c0;
-extern UnkTunable g_unk_71726ca688;
+namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack { extern bool refl_fields_added asm("g_unk_71726ca6c0"); }
+namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack { extern UnkTunable refl_tunable asm("g_unk_71726ca688"); }
 void fn_710045e870(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassChozoRobotSoldierCannonShotAttack::CTunableCharClassChozoRobotSoldierCannonShotAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726ca6c0)
+    if (refl_fields_added)
         return;
-    g_unk_71726ca6c0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, -1.0f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToFinishAttack", 0x2c, (DefaultValue, 0.25f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToWaitAfterBeamCharged", 0x30, (DefaultValue, 0.75f));
-    fn_710045e870(base::reflection::TunableRegistry(), &g_unk_71726ca688, "ChozoRobotSoldier");
+    fn_710045e870(base::reflection::TunableRegistry(), &refl_tunable, "ChozoRobotSoldier");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

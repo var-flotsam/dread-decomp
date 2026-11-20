@@ -22,15 +22,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent
-extern bool g_unk_71726e7310;
-extern UnkTunable g_unk_71726e72b8;
+namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent { extern bool refl_fields_added asm("g_unk_71726e7310"); }
+namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726e72b8"); }
 void fn_7100598718(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassGooplotAIComponent::CTunableCharClassGooplotAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726e7310)
+    if (refl_fields_added)
         return;
-    g_unk_71726e7310 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fAwareTime", 0x24, (DefaultValue, 1.5f), (ShowInDevConfig, true), (Description, "Detection time"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "RegularEnemies|Gooplot"));
@@ -46,7 +46,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset1", 0x4c, (DefaultValue, 70.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 1"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset2", 0x50, (DefaultValue, 0.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 2"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
     DREAD_REFLECTED_FIELD(f32, "fJumpTargetYOffset3", 0x54, (DefaultValue, -70.0f), (ShowInDevConfig, true), (Description, "Aiming Y offset 3"), (MinValue, -200.0f), (MaxValue, 200.0f), (ControlFloatStep, 5.0f), (InternalDevTag, "RegularEnemies|Gooplot"));
-    fn_7100598718(base::reflection::TunableRegistry(), &g_unk_71726e72b8, "Gooplot");
+    fn_7100598718(base::reflection::TunableRegistry(), &refl_tunable, "Gooplot");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

@@ -44,15 +44,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassObsydomithonAttack, CCharClassAttack);
 
 // CCharClassObsydomithonAttack::CTunableCharClassObsydomithonAttack
-extern bool g_unk_71726f89c0;
-extern UnkTunable g_unk_71726f8988;
+namespace CCharClassObsydomithonAttack::CTunableCharClassObsydomithonAttack { extern bool refl_fields_added asm("g_unk_71726f89c0"); }
+namespace CCharClassObsydomithonAttack::CTunableCharClassObsydomithonAttack { extern UnkTunable refl_tunable asm("g_unk_71726f8988"); }
 void fn_71006279b0(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassObsydomithonAttack::CTunableCharClassObsydomithonAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726f89c0)
+    if (refl_fields_added)
         return;
-    g_unk_71726f89c0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, -1.0f));
@@ -60,7 +60,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fChargeLoopDuration", 0x2c, (DefaultValue, 1.5f));
     DREAD_REFLECTED_FIELD(f32, "fAttackLoopDuration", 0x30, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fVerticalAttackAngleToleranceForOtherPlatform", 0x34, (DefaultValue, 30.0f));
-    fn_71006279b0(base::reflection::TunableRegistry(), &g_unk_71726f8988, "Obsydomithon");
+    fn_71006279b0(base::reflection::TunableRegistry(), &refl_tunable, "Obsydomithon");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

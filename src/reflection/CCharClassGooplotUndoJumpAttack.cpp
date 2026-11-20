@@ -41,20 +41,20 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CCharClassGooplotUndoJumpAttack, CCharClassAttack);
 
 // CCharClassGooplotUndoJumpAttack::CTunableCharClassGooplotUndoJumpAttack
-extern bool g_unk_71726e6d30;
-extern UnkTunable g_unk_71726e6d00;
+namespace CCharClassGooplotUndoJumpAttack::CTunableCharClassGooplotUndoJumpAttack { extern bool refl_fields_added asm("g_unk_71726e6d30"); }
+namespace CCharClassGooplotUndoJumpAttack::CTunableCharClassGooplotUndoJumpAttack { extern UnkTunable refl_tunable asm("g_unk_71726e6d00"); }
 void fn_7100593b30(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassGooplotUndoJumpAttack::CTunableCharClassGooplotUndoJumpAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726e6d30)
+    if (refl_fields_added)
         return;
-    g_unk_71726e6d30 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fMinAttackDistance", 0x24, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fMaxAttackDistance", 0x28, (DefaultValue, 5500.0f));
-    fn_7100593b30(base::reflection::TunableRegistry(), &g_unk_71726e6d00, "Gooplot");
+    fn_7100593b30(base::reflection::TunableRegistry(), &refl_tunable, "Gooplot");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

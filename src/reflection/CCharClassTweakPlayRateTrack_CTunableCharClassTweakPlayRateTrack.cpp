@@ -21,15 +21,15 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack
-extern bool g_unk_7172790ab8;
-extern UnkTunable g_unk_7172790a08;
+namespace CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack { extern bool refl_fields_added asm("g_unk_7172790ab8"); }
+namespace CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack { extern UnkTunable refl_tunable asm("g_unk_7172790a08"); }
 void fn_7100c611bc(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassTweakPlayRateTrack::CTunableCharClassTweakPlayRateTrack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172790ab8)
+    if (refl_fields_added)
         return;
-    g_unk_7172790ab8 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fCommanderUltimateGrabSpeed1", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));
@@ -71,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fCantFireBufferedInput", 0x98, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fScorpiusRegereratingMaskAction", 0xac, (DefaultValue, 1.0f));
     DREAD_REFLECTED_FIELD(f32, "fScorpiusHeadBlendSpeed", 0x9c, (DefaultValue, 1.0f));
-    fn_7100c611bc(base::reflection::TunableRegistry(), &g_unk_7172790a08, "");
+    fn_7100c611bc(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

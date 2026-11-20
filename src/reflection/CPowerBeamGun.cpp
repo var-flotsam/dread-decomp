@@ -49,15 +49,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CPowerBeamGun, CBeamGun);
 
 // CPowerBeamGun::CTunablePowerBeam
-extern bool g_unk_7172727a38;
-extern UnkTunable g_unk_71727279f8;
+namespace CPowerBeamGun::CTunablePowerBeam { extern bool refl_fields_added asm("g_unk_7172727a38"); }
+namespace CPowerBeamGun::CTunablePowerBeam { extern UnkTunable refl_tunable asm("g_unk_71727279f8"); }
 void fn_710085332c(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CPowerBeamGun::CTunablePowerBeam {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172727a38)
+    if (refl_fields_added)
         return;
-    g_unk_7172727a38 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
@@ -66,7 +66,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fFractionOfHeatAddedPerShot", 0x30, (DefaultValue, 0.0f), (Description, "fraction of heat incremented per shot"));
     DREAD_REFLECTED_FIELD(f32, "fDiffusionRadius", 0x34, (DefaultValue, 200.0f));
     DREAD_REFLECTED_FIELD(f32, "fWideTime", 0x38, (DefaultValue, 0.1f));
-    fn_710085332c(base::reflection::TunableRegistry(), &g_unk_71727279f8, "");
+    fn_710085332c(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

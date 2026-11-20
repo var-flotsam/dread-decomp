@@ -41,15 +41,15 @@ struct refl_Description : ClassDescription {
 DREAD_REFLECTED_CLASS(CMissileGun, CMissileBaseGun);
 
 // CMissileGun::CTunableMissile
-extern bool g_unk_7172727458;
-extern UnkTunable g_unk_7172727420;
+namespace CMissileGun::CTunableMissile { extern bool refl_fields_added asm("g_unk_7172727458"); }
+namespace CMissileGun::CTunableMissile { extern UnkTunable refl_tunable asm("g_unk_7172727420"); }
 void fn_7100850680(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CMissileGun::CTunableMissile {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_7172727458)
+    if (refl_fields_added)
         return;
-    g_unk_7172727458 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fDamageAmount", 0x24, (DefaultValue, 0.0f), (Description, "Single shot damage amount"));
@@ -57,7 +57,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(f32, "fTimeInInitialSpeedInGrab", 0x2c, (DefaultValue, 0.1f));
     DREAD_REFLECTED_FIELD(f32, "fTimeToReachSpeedInGrab", 0x30, (DefaultValue, 0.1f));
     DREAD_REFLECTED_FIELD(f32, "fRateOfFireInGrab", 0x34, (DefaultValue, 0.2f));
-    fn_7100850680(base::reflection::TunableRegistry(), &g_unk_7172727420, "");
+    fn_7100850680(base::reflection::TunableRegistry(), &refl_tunable, "");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

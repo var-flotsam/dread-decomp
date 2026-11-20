@@ -21,22 +21,22 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent
-extern bool g_unk_71726bdbd0;
-extern UnkTunable g_unk_71726bdb98;
+namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent { extern bool refl_fields_added asm("g_unk_71726bdbd0"); }
+namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent { extern UnkTunable refl_tunable asm("g_unk_71726bdb98"); }
 void fn_71003bcc38(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassAutectorAIComponent::CTunableCharClassAutectorAIComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726bdbd0)
+    if (refl_fields_added)
         return;
-    g_unk_71726bdbd0 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(f32, "fExplosionRadius", 0x24, (DefaultValue, 600.0f), (ShowInDevConfig, true), (Description, "Explosion radius"), (MinValue, 0.0f), (MaxValue, 10000.0f), (ControlFloatStep, 100.0f), (InternalDevTag, "RegularEnemies|Autector"));
     DREAD_REFLECTED_FIELD(f32, "fTimeToExplosion", 0x28, (DefaultValue, 0.1f), (ShowInDevConfig, true), (Description, "Explosion time"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "RegularEnemies|Autector"));
     DREAD_REFLECTED_FIELD(f32, "fTimeAtMaxRadiusExplosion", 0x2c, (DefaultValue, 0.1f), (ShowInDevConfig, true), (Description, "Explosion time at max radius"), (MinValue, 0.0f), (MaxValue, 10.0f), (ControlFloatStep, 0.1f), (InternalDevTag, "RegularEnemies|Autector"));
     DREAD_REFLECTED_FIELD(bool, "bCanBeSpawned", 0x30, (DefaultValue, true), (ShowInDevConfig, true), (Description, "Can be spawned"), (InternalDevTag, "RegularEnemies|Autector"));
-    fn_71003bcc38(base::reflection::TunableRegistry(), &g_unk_71726bdb98, "Autector");
+    fn_71003bcc38(base::reflection::TunableRegistry(), &refl_tunable, "Autector");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }

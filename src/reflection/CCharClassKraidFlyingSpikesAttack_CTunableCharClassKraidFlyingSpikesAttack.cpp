@@ -21,19 +21,19 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 
 // CCharClassKraidFlyingSpikesAttack::CTunableCharClassKraidFlyingSpikesAttack
-extern bool g_unk_71726f0598;
-extern UnkTunable g_unk_71726f0570;
+namespace CCharClassKraidFlyingSpikesAttack::CTunableCharClassKraidFlyingSpikesAttack { extern bool refl_fields_added asm("g_unk_71726f0598"); }
+namespace CCharClassKraidFlyingSpikesAttack::CTunableCharClassKraidFlyingSpikesAttack { extern UnkTunable refl_tunable asm("g_unk_71726f0570"); }
 void fn_71005e5d08(UnkTunableRegistry* registry, UnkTunable* obj, const char* name);
 namespace CCharClassKraidFlyingSpikesAttack::CTunableCharClassKraidFlyingSpikesAttack {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    if (g_unk_71726f0598)
+    if (refl_fields_added)
         return;
-    g_unk_71726f0598 = true;
+    refl_fields_added = true;
     if (!cls)
         return;
     DREAD_REFLECTED_FIELD(bool, "bEnabled", 0x21, (DefaultValue, true));
-    fn_71005e5d08(base::reflection::TunableRegistry(), &g_unk_71726f0570, "Kraid");
+    fn_71005e5d08(base::reflection::TunableRegistry(), &refl_tunable, "Kraid");
 }
 bool refl_Equals(const void*, const void*) { return false; }
 s32 refl_Hash() { return -1; }
