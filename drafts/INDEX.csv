@@ -366,7 +366,6 @@ address,size,file,difference,similarity,differing_instructions,from,note
 0x710021f2a8,1116,drafts/game/UnkTU324/fn_710021f2a8.cpp,control flow,4.6,266,fable1,
 0x710021f704,340,drafts/game/UnkTU324/fn_710021f704.cpp,operations,24.7,63,lean-b5,search loop shape (original keeps a position register and elides the second null path); epilogue order
 0x710021ff8c,436,drafts/game/UnkTU324/fn_710021ff8c.cpp,control flow,15.6,78,lean-ob1,search loop close (count loaded after data; 32-bit counter); PushBackCopy growth path 56 bytes shorter than th
-0x7100221698,672,drafts/game/media/CMovieAudioStreamNx/fn_7100221698.cpp,match,100.0,0,lean-r2ki,matches; held: 2 declaration problems: src/game/media/CMovieAudioStreamNx/fn_7100221698.cpp:66 fn_7100220d2c: s32 fn_7100220d2c(void*; s32; s32; UnkAudioOutFormat_l221698*) -> src/game/media/CMovieAudioStreamNx/C...
 0x71002222c0,1380,drafts/game/media/CMovieAudioStreamNx/fn_71002222c0.cpp,registers or order,63.5,126,lean-r2kf,block placement only: the zero-duration tail (delta 0; SetInt64Data; chunked check) is laid out after the epil
 0x7100223980,524,drafts/game/UnkTU329/fn_7100223980.cpp,operations,3.1,107,lean-r2kg,owner vcall: original recomputes the owner pointer from both contains-flags off a second base (allocator_a sym
 0x7100225314,428,drafts/game/UnkTU330/fn_7100225314.cpp,build fails,,,lean-r2kg,end-of-movie loop reloads end each pass (hoist end once); find loop register swap

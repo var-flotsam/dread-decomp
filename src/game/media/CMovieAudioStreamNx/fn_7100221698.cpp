@@ -7,32 +7,14 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CRntVector.h"
+#include "game/media/CMovieAudioStreamNx.h"
+#include "game/media/MovieBuffer.h"
 #include "types.h"
-
-namespace movie {
-class Buffer {
-public:
-    explicit Buffer(u64 size);
-    Buffer(void* data, u64 size);
-    Buffer(const Buffer& other);
-    ~Buffer();
-    void SetRange(s32 offset, s32 size);
-
-private:
-    u8 storage[0x40];
-};
-}  // namespace movie
-
-// What the decoder is opened with: a mono flag at +1.
-struct UnkAudioOutFormat_l221698 {
-    u8 field_0x0;
-    bool mono;  // 0x1
-};
 
 struct UnkAudioStream_l221698 {
     void** vtable;
     u8 pad_0x8[0xc20 - 0x8];
-    void* decoder;  // 0xc20
+    UnkMovieAudioOut* decoder;  // 0xc20
     u8 pad_0xc28[1];
     bool ready;  // 0xc29
     u8 pad_0xc2a[2];
@@ -55,15 +37,14 @@ struct UnkAudioStream_l221698 {
     u8 pad_0xcc8[0xcd8 - 0xcc8];
     nn::os::MutexType mutex;  // 0xcd8
     u8 pad_0xcf8[0xd10 - 0xcf8];
-    UnkAudioOutFormat_l221698 out_format;  // 0xd10
+    bool resampling;  // 0xd10: set by the decoder's open
+    bool mono;        // 0xd11
     u8 pad_0xd12[6];
     void* silence;     // 0xd18
     u64 silence_size;  // 0xd20
 };
 static_assert(__builtin_offsetof(UnkAudioStream_l221698, mutex) == 0xcd8, "UnkAudioStream_l221698 layout");
 static_assert(__builtin_offsetof(UnkAudioStream_l221698, silence_size) == 0xd20, "UnkAudioStream_l221698 layout");
-
-s32 fn_7100220d2c(void* decoder, s32 format, s32 channels, UnkAudioOutFormat_l221698* out_format);
 
 // Holds the mutex for its scope.
 struct UnkMutexLock_l221698 {
@@ -72,7 +53,7 @@ struct UnkMutexLock_l221698 {
     ~UnkMutexLock_l221698() { fn_7100066920(mutex); }
 };
 
-s32 fn_7100221698(UnkAudioStream_l221698* self, s32 format, s32 channels, bool flag) {
+static inline s32 Open(UnkAudioStream_l221698* self, s32 format, s32 channels, bool flag) {
     nn::os::MutexType* mutex = &self->mutex;
     UnkMutexLock_l221698 lock(mutex);
     self->format = format;
@@ -96,7 +77,7 @@ s32 fn_7100221698(UnkAudioStream_l221698* self, s32 format, s32 channels, bool f
     }
 
     if (self->channels == 1) {
-        self->out_format.mono = true;
+        self->mono = true;
         self->out_channels = 2;
         self->silence = fn_7100083990()->vf_0x40(self->silence_size, 0x1000, 1);
         if (!self->silence) {
@@ -109,8 +90,12 @@ s32 fn_7100221698(UnkAudioStream_l221698* self, s32 format, s32 channels, bool f
 
     self->sample_rate = 48000;
     self->bytes_per_frame = self->out_channels * 2;
-    s32 result = fn_7100220d2c(self->decoder, self->format, self->out_channels, &self->out_format);
+    s32 result = fn_7100220d2c(self->decoder, self->format, self->out_channels, &self->resampling);
     if (result == 0)
         self->ready = true;
     return result;
+}
+
+s32 fn_7100221698(UnkPlayer_7100221938* self, u32 format, u32 channels, bool flag) {
+    return Open(reinterpret_cast<UnkAudioStream_l221698*>(self), format, channels, flag);
 }
