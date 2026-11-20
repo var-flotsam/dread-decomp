@@ -910,6 +910,28 @@ def link_type_objects() -> dict[str, tuple[str, str]]:
 BUILTIN_TYPE_OBJECTS = {"g_unk_7101d5af48": ("builtin", "void")}
 
 
+def type_objects_in_tiers(text: str, tiers: list[dict[str, tuple[str, str]]], built: dict[str, tuple[str, str]],
+                          builds) -> str:
+    """Names a file's type objects with the widest tier that builds. When the widest doesn't (one declaration of T
+    collides with the file's own), the built objects are added one at a time over the narrower tier that does, so
+    one bad name keeps only its own address."""
+    base: dict[str, tuple[str, str]] = {}
+    best = text
+    for objs in tiers:
+        new = type_objects_by_type(text, objs)
+        if new != text and builds(new):
+            if objs is tiers[0]:
+                return new
+            base, best = dict(objs), new
+            break
+    for g in sorted(k for k in built if k in text and k not in base):
+        trial = type_objects_by_type(text, {**base, g: built[g]})
+        if trial != best and builds(trial):
+            base[g] = built[g]
+            best = trial
+    return best
+
+
 def type_objects_by_type(text: str, objects: dict[str, tuple[str, str]], layouts: bool = False) -> str:
     """`text` with each type object of `objects` written by its type, `base::reflection::TypeObject<T>::object`
     (base/reflection/TypeObject.h): T's declaration and the specialisation's go after the file's includes, in
@@ -1658,12 +1680,10 @@ def main() -> int:
 
     def by_object_type(f: Path) -> bool:
         old = f.read_text(encoding="utf-8")
-        for objs in tiers:
-            new = type_objects_by_type(old, objs)
-            if new != old and builds(f, new):
-                f.write_text(new, encoding="utf-8", newline=chr(10))
-                return True
-        return False
+        new = type_objects_in_tiers(old, tiers, built, lambda text: builds(f, text))
+        if new != old:
+            f.write_text(new, encoding="utf-8", newline=chr(10))
+        return new != old
     with ThreadPoolExecutor() as pool:
         objects_by_type = sum(pool.map(by_object_type, sorted(OUT.glob("*.cpp"))))
     # Reflected functions in one line, typed attribute keys by name: textual, so each file compiles as it did.
