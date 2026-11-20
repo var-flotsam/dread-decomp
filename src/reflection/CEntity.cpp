@@ -25,10 +25,11 @@ template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEd
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
+namespace base::spatial { class CAABox; }
+template <> base::reflection::CType base::reflection::TypeObject<base::spatial::CAABox>::object asm("g_unk_7108b6d3d0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
 
 // CEntity
-extern base::reflection::CType g_unk_7108b6d3d0;
 void fn_7100d823f4();
 void fn_7100d82448();
 void fn_71000e8118(UnkReflField* field, u64 index);
@@ -42,8 +43,8 @@ void fn_7100d71c98(UnkReflFunction* fn, const char* name);
 namespace CEntity {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("_oBBox_GetterFunction", &g_unk_7108b6d3d0, 0, fn_7100d823f4);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("oBBox", true), &g_unk_7108b6d3d0, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_oBBox_GetterFunction", &base::reflection::TypeObject<base::spatial::CAABox>::object, 0, fn_7100d823f4);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("oBBox", true), &base::reflection::TypeObject<base::spatial::CAABox>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 1);
     field0->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field0->attrs.Add<const char*>(base::reflection::attr::Description(), "Entity BBox");

@@ -32,6 +32,8 @@ namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CActor>>>::object asm("g_unk_717269bf08");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
+class CSpawnerActorBlueprint;
+template <> base::reflection::CType base::reflection::TypeObject<CSpawnerActorBlueprint>::object asm("g_unk_7172a06930");
 namespace base::global { class CStrId; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::CStrId>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -44,7 +46,6 @@ void fn_71011327d8();
 void fn_7101125760(UnkReflFunction* fn, const char* name);
 void fn_71011328d8();
 void fn_7101132928();
-extern base::reflection::CType g_unk_7172a06930;
 void fn_7101132978();
 void fn_71011329bc();
 void fn_7101132a0c();
@@ -98,7 +99,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<CSpawnerActorBlueprint>", "voActorBlueprint", 0x390, (CreateElement, "AddNewActorBlueprintAt"), (DeleteElement, "DeleteActorBlueprintAt"), (AfterElementDeserialization, "AfterActorBlueprintDeserialization"));
     DREAD_REFLECTED_FUNCTION_OF("Activate", &base::reflection::PrimitiveType<int>::Get(), 0, fn_71011328d8);
     DREAD_REFLECTED_FUNCTION_OF("Deactivate", &base::reflection::PrimitiveType<int>::Get(), 0, fn_7101132928);
-    DREAD_REFLECTED_FUNCTION_OF("AddNewActorBlueprintAt", &g_unk_7172a06930, 0x1, fn_7101132978);
+    DREAD_REFLECTED_FUNCTION_OF("AddNewActorBlueprintAt", &base::reflection::TypeObject<CSpawnerActorBlueprint>::object, 0x1, fn_7101132978);
     DREAD_REFLECTED_FUNCTION_OF("DeleteActorBlueprintAt", &base::reflection::PrimitiveType<bool>::Get(), 0, fn_71011329bc);
     DREAD_REFLECTED_FUNCTION_OF("AfterActorBlueprintDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7101132a0c);
 }

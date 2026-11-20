@@ -21,9 +21,10 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+namespace CMinimapGrid { class SGridDef; }
+template <> base::reflection::CType base::reflection::TypeObject<CMinimapGrid::SGridDef>::object asm("g_unk_71727c9380");
 
 // CMinimapData
-extern base::reflection::CType g_unk_71727c9380;
 void fn_7100e51c54();
 namespace CMinimapData {
 void refl_AddAttributes(CClass* cls) {
@@ -31,7 +32,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(u32, "uDataVersion", 0x58, (DefaultValue, 0));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("gridDef", true), &g_unk_71727c9380, 0x60, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("gridDef", true), &base::reflection::TypeObject<CMinimapGrid::SGridDef>::object, 0x60, -1, -1);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<SGeoData>", "aNavmeshGeos", 0x5fd8);
     DREAD_REFLECTED_FIELD_OF("base::global::CRntSmallDictionary<base::global::CStrId, CMinimapData::TColliderGeoDatasMap>", "mapOccluderGeos", 0x6000);
     DREAD_REFLECTED_FIELD_OF("SGeoData", "oEmmyRoomGeo", 0xffffffff, (DeprecatedVar, true), (Persistence, 0), (EditorModeDataFlow, 1), (EditorVisible, false));

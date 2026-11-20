@@ -21,6 +21,8 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+class CompleteInfo;
+template <> base::reflection::CType base::reflection::TypeObject<CompleteInfo>::object asm("g_unk_7101d60ff0");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<bool>::Get();
@@ -30,7 +32,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<f
 void fn_710115f078(UnkReflFunction* fn, const char* name);
 void fn_710116132c();
 void fn_710115f12c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d60ff0;
 void fn_71011613dc();
 void fn_71000e8118(UnkReflField* field, u64 index);
 void fn_710115f2a8(UnkReflFunction* fn, const char* name);
@@ -58,7 +59,7 @@ void refl_AddFields(CClass* cls) {
     field1->attrs.Add<s32>(base::reflection::attr::Persistence(), 0);
     field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     field1->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("max life"));
-    field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));
+    field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x0, base::reflection::UnkReflList<base::global::CRntString>({""}, 0xa, nullptr, 0xf)));
     field1->attrs.Add<f32>(base::reflection::attr::DefaultValue(), -1.0f);
     DREAD_REFLECTED_FIELD(f32, "fCurrentLife", 0x54, (Persistence, 0), (EditorVisible, false), (DefaultValue, -1.0f), (Description, "Current Life"));
     DREAD_REFLECTED_FUNCTION_OF("_m_fCurrentLife_GetterFunction", &base::reflection::PrimitiveType<float>::Get(), 0, fn_71011613dc);

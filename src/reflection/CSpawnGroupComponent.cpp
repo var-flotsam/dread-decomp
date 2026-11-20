@@ -26,13 +26,16 @@ class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
 namespace SLinkType { enum class ELinkType : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<SLinkType::ELinkType>::object asm("g_unk_71727bc110");
+class CSpawnPointComponent;
+template <class> class CGameLink;
+namespace base::global { template <class> class CRntVector; }
+template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<CGameLink<CSpawnPointComponent>>>::object asm("g_unk_7172a07250");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<int>::Get();
 
 // CSpawnGroupComponent
 void fn_710111fc58();
 void fn_710111fcf8();
 void fn_710111fd34();
-extern base::reflection::CType g_unk_7172a07250;
 namespace CSpawnGroupComponent {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -68,7 +71,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(bool, "bCheckActiveDrops", 0x1a0, (DefaultValue, false));
     DREAD_REFLECTED_FUNCTION_OF("_m_iNumDeaths_GetterFunction", &base::reflection::PrimitiveType<int>::Get(), 0, fn_710111fd34);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(s32, "iNumDeaths", (DefaultValue, 0), (Persistence, 0));
-    UnkReflField* field27 = AddReflectedField(cls, CStrId("vectSpawnPoints", true), &g_unk_7172a07250, 0x68, -1, -1);
+    UnkReflField* field27 = AddReflectedField(cls, CStrId("vectSpawnPoints", true), &base::reflection::TypeObject<base::global::CRntVector<CGameLink<CSpawnPointComponent>>>::object, 0x68, -1, -1);
     field27->attrs.Add<bool>(base::reflection::attr::DisableListAdd(), true);
     field27->attrs_0x70.Add<bool>(base::reflection::attr::bWeakLink(), true);
     field27->attrs_0x70.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 3);

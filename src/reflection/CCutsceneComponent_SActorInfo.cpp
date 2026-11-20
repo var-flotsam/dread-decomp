@@ -23,6 +23,8 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+class CompleteInfo;
+template <> base::reflection::CType base::reflection::TypeObject<CompleteInfo>::object asm("g_unk_7101d60ff0");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 template <class T> struct CGameLink;
@@ -35,7 +37,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 // CCutsceneComponent::SActorInfo
 void fn_71007ad0ec();
 void fn_71007a2ac8(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d60ff0;
 namespace CCutsceneComponent::SActorInfo {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -45,7 +46,7 @@ void refl_AddFields(CClass* cls) {
         fn_71007a2ac8(fn, "_m_lnkActor_SetterFunction");
     UnkReflField* field1 = AddReflectedField(cls, CStrId("lnkActor", true), &base::reflection::TypeObject<CGameLink<CActor>>::object, 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field1->attrs.Add<s32>(base::reflection::attr::eLinkTarget(), &base::reflection::TypeObject<SLinkType::ELinkType>::object, 0);
-    field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"sId"}, 0xa, nullptr, 0xf)));
+    field1->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"sId"}, 0xa, nullptr, 0xf)));
     DREAD_REFLECTED_FIELD(bool, "bStartingVisibleState", 0x81, (EditorVisible, false), (DefaultValue, true));
     DREAD_REFLECTED_FIELD(bool, "bReceiveLogicUpdate", 0x82, (DefaultValue, true));
     DREAD_REFLECTED_FIELD_OF("base::global::CRntVector<bool>", "vctVisibilityPerTake", 0x8);
