@@ -20,10 +20,6 @@ extern f32 g_unk_716e596650[3] __attribute__((visibility("hidden")));
 extern u32 g_unk_7101a1e9bc;
 extern u32 g_unk_7101a1e9c0;
 
-// Takes a mode number in the first slot (the declaration elsewhere calls it with true).
-struct UnkRenderCalls_b0253 {
-    static void fn_71001cde84(UnkRenderTargetA1* target, u32 a, bool b, bool c);
-};
 void fn_71001d1ec8(UnkRenderTargetA1* target, f32 value);
 void fn_71001d1ed0(UnkRenderTargetA1* target, u32 value);
 void fn_71001cf5e4(UnkRenderTargetA1* target, s32 mode);
@@ -75,9 +71,9 @@ void fn_71001e2518(UnkPassOwner_b0253* self) {
     SET_VIEWPORT();
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001ced08(self->target, 0);
-    UnkRenderCalls_b0253::fn_71001cde84(self->target, 1, true, true);
-    UnkRenderCalls_b0253::fn_71001cde84(self->target, 0x10, true, true);
-    UnkRenderCalls_b0253::fn_71001cde84(self->target, 0xe, true, true);
+    fn_71001cde84(self->target, 1, true, true);
+    fn_71001cde84(self->target, 0x10, true, true);
+    fn_71001cde84(self->target, 0xe, true, true);
     fn_71001cde48(self->target);
     fn_71001cdd18(self->target);
     fn_71001cdd70(self->target);
@@ -96,7 +92,7 @@ void fn_71001e2184(UnkPassOwner_b0253* self) {
     fn_71001cc570(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001ced08(self->target, 0);
-    UnkRenderCalls_b0253::fn_71001cde84(self->target, 0x1f, true, true);
+    fn_71001cde84(self->target, 0x1f, true, true);
     fn_71001cde48(self->target);
     fn_71001cdd18(self->target);
     fn_71001cdd70(self->target);
@@ -135,9 +131,9 @@ void fn_71001e2334(UnkPassOwner_b0253* self) {
     fn_71001cc570(self->target);
     fn_71001cb604(self->target, 0, nullptr, nullptr, nullptr, nullptr);
     fn_71001ced08(self->target, 0);
-    UnkRenderCalls_b0253::fn_71001cde84(self->target, 1, true, true);
-    UnkRenderCalls_b0253::fn_71001cde84(self->target, 0x10, true, true);
-    UnkRenderCalls_b0253::fn_71001cde84(self->target, 0xe, true, true);
+    fn_71001cde84(self->target, 1, true, true);
+    fn_71001cde84(self->target, 0x10, true, true);
+    fn_71001cde84(self->target, 0xe, true, true);
     fn_71001cde48(self->target);
     fn_71001cdd18(self->target);
     fn_71001cdd70(self->target);

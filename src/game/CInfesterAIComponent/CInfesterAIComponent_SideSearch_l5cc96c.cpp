@@ -9,6 +9,7 @@
 #include "base/reflection/UnkReflCast.h"
 #include "game/CEnemyMovement.h"
 #include "game/CInfesterAIComponent.h"
+#include "game/UnkAIPathSearch.h"
 #include "game/UnkActor.h"
 #include "types.h"
 
@@ -18,19 +19,6 @@ using base::reflection::CType;
 using base::reflection::UnkReflObject;
 
 struct UnkAIPathFollower;
-
-// What a side search fills (0x14 bytes).
-struct UnkAIPathSearchOut {
-    u64 a;
-    u64 b;
-    f32 distance;
-
-    UnkAIPathSearchOut() : a(0), b(0), distance(-1.0f) {}
-};
-
-bool fn_710035e8d8(UnkAIPathFollower* self, const CVector2D* from, const CVector2D* to, const CVector2D* dir_a,
-                   const CVector2D* dir_b, bool flag, CVector2D* point, u32* out_0x7, f32 limit, bool* blocked,
-                   f32* out_a, f32* out_b, u32* out_c, UnkAIPathSearchOut* out, std::function<void()> filter);
 
 struct UnkVec2f_A5 {
     f32 x, y;

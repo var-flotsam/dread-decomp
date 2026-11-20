@@ -10,6 +10,7 @@
 #include "base/global/CRntVector.h"
 #include "base/math/CVector.h"
 #include "game/CCharacterMovement.h"
+#include "game/UnkAIPathSearch.h"
 #include "game/UnkActor.h"
 #include "game/UnkNavMeshHit.h"
 #include "game/UnkNavMeshManager.h"
@@ -191,21 +192,6 @@ struct UnkAIPathFollower {
 
     bool IsReady() const { return count != (u32)((count != 0) & !flag); }
 };
-
-// What a side search fills (0x14 bytes).
-struct UnkAIPathSearchOut {
-    u64 a;
-    u64 b;
-    f32 distance;
-
-    UnkAIPathSearchOut() : a(0), b(0), distance(-1.0f) {}
-};
-
-// The side search from `from` toward `to` (fn_710035e8d8): `blocked` tells whether it stopped on
-// a side, `point` where.
-bool fn_710035e8d8(UnkAIPathFollower* self, const CVector2D* from, const CVector2D* to, const CVector2D* dir_a,
-                   const CVector2D* dir_b, bool flag, CVector2D* point, u32* out_0x7, f32 limit, bool* blocked,
-                   f32* out_a, f32* out_b, u32* out_c, UnkAIPathSearchOut* out, std::function<void()> filter);
 
 struct UnkAIPathFlags {
     u8 pad_0x0[0x22c];
