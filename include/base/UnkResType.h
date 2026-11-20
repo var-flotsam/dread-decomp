@@ -39,8 +39,10 @@ static_assert(sizeof(UnkResType) == 0x80, "UnkResType layout");
 
 // The format's constructor.
 void fn_7100004578(UnkResFormat* self, const char* class_name, const char* extension, const char* const* sources,
-                   u32 count);
+                   u64 count);
 // Builds the resource type at `self` (a UnkResType) named `name` from `count` formats.
-void fn_7100004698(void* self, const char* name, UnkResFormat* formats, u32 count);
+void fn_7100004698(void* self, const char* name, UnkResFormat* formats, u64 count);
+// Reserves room for `capacity` formats in a resource type's format vector.
+void fn_7100005534(base::global::CRntVector<UnkResFormat>* self, u32 capacity);
 void fn_7100004a44(UnkResFormat* self);  // the format's destructor
 void fn_7100004b94(void* self);          // the resource type's destructor (an exit handler)
