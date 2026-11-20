@@ -6,6 +6,7 @@
 #include "types.h"
 
 struct UnkRegistry_710014c790;
+struct UnkCountedResource;
 namespace base::global {
 class CFilePathStrId;
 class CStrId;
@@ -18,3 +19,5 @@ base::global::CFilePathStrId fn_7100169c74(const base::global::CStrId& name);
 // buckets indexed by the key's low 32 bits modulo the capacity, and a list of all nodes.
 extern void* g_unk_716e34c2e0;
 void* fn_7100169be4(UnkRegistry_710014c790* registry, const void* key);
+// Registers the resource under a name in the registry.
+void fn_7100169d28(UnkRegistry_710014c790* registry, const base::global::CStrId& name, UnkCountedResource* resource);

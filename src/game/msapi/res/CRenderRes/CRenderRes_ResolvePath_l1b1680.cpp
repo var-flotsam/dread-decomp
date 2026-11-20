@@ -13,13 +13,13 @@
 #include "base/global/CStrId.h"
 #include "game/UnkTU27.h"
 #include "game/UnkTU57.h"
+#include "game/msapi/res/CRenderRes.h"
 #include "types.h"
 
 using base::global::CFilePathStrId;
 using base::global::CRntString;
 using base::global::CStrId;
 
-extern const UnkResType g_unk_716e453ef8;
 // The type the paths this builds are paired with.
 __attribute__((visibility("hidden"))) extern const UnkResType g_unk_716e554390;
 
