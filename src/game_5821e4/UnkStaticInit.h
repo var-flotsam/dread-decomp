@@ -15,6 +15,7 @@
 #include "base/reflection/UnkReflAttributes.h"
 #include "base/reflection/UnkReflConverter.h"
 #include "game/UnkTUProperty.h"
+#include "game/UnkStaticInitIds.h"
 #include "game/UnkTUSymbols.h"
 #include "types.h"
 
@@ -22,13 +23,6 @@ namespace unk_static_init {
 
 using base::global::CStrId;
 using base::global::UnkStrIdBase;
-
-// The header statics every unit repeats.
-struct HeaderIds {
-    u32 field_0x0;
-    UnkStrIdBase field_0x8;
-    UnkStrIdBase field_0x10;
-};
 
 __attribute__((always_inline)) inline void InitHeaderIds(HeaderIds* ids) {
     ids->field_0x0 = 6;
@@ -46,11 +40,6 @@ __attribute__((always_inline)) inline void InitClassId(UnkStrIdBase* id, const c
     }
     fn_7100000250(fn_710000051c, id, g_unk_7101a19000);
 }
-
-// Storage of a file path id (its destructor is registered separately).
-struct UnkFilePathStrIdBase {
-    base::global::UnkStringData* data;
-};
 
 // A file path id built from a string.
 __attribute__((always_inline)) inline void InitPathId(UnkFilePathStrIdBase* id, const char* str) {
