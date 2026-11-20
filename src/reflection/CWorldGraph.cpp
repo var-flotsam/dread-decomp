@@ -21,12 +21,12 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 class SWorldGraphNode;
+template <> base::reflection::CType base::reflection::TypeObject<SWorldGraphNode>::object asm("g_unk_7172755e70");
 namespace base::global { template <class> class CRntVector; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntVector<SWorldGraphNode>>::object asm("g_unk_7172756230");
 
 // CWorldGraph
 void fn_7100acceb8();
-extern base::reflection::CType g_unk_7172755e70;
 void fn_7100accfc8();
 void fn_7100acceec(UnkReflFunction* fn);
 void fn_7100acbea0(UnkReflFunction* fn, const char* name);
@@ -41,7 +41,7 @@ void refl_AddFields(CClass* cls) {
     field0->attrs.Add<bool>(base::reflection::attr::EditorVisible(), false);
     DREAD_REFLECTED_FUNCTION_OF("AfterNodesCollectionDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7100acceb8);
     DREAD_REFLECTED_FUNCTION("CreateNode") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNode", &g_unk_7172755e70, 0x1, fn_7100accfc8);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNode", &base::reflection::TypeObject<SWorldGraphNode>::object, 0x1, fn_7100accfc8);
         fn_7100acceec(fn);
         fn->Attrs()->Add<const char*>(base::reflection::attr::Description(), "Create Node At Index");
         fn_710009ae5c(fn, fn->params.count);

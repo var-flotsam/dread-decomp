@@ -23,16 +23,22 @@ enum class ESwifterSpawnGroupDirection : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ESwifterSpawnGroupDirection>::object asm("g_unk_7172743e90");
 namespace CThermalDeviceComponent { enum class EPipeGroup : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<CThermalDeviceComponent::EPipeGroup>::object asm("g_unk_7172752160");
+class CGameBBPropID;
+template <> base::reflection::CType base::reflection::TypeObject<CGameBBPropID>::object asm("g_unk_717275b580");
 class CEntity;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CEntity>>::object asm("g_unk_71727b6270");
 enum class ELightType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ELightType>::object asm("g_unk_71727ba2e0");
 enum class ELightAttachment : u32;
 template <> base::reflection::CType base::reflection::TypeObject<ELightAttachment>::object asm("g_unk_71727ba480");
+class CLightInfo;
+template <> base::reflection::CType base::reflection::TypeObject<CLightInfo>::object asm("g_unk_71727ba620");
 enum class EMinimapFowType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EMinimapFowType>::object asm("g_unk_71727ca958");
 enum class EMarkerType : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EMarkerType>::object asm("g_unk_71727caab8");
+class CShotAudioWeaponPresets;
+template <> base::reflection::CType base::reflection::TypeObject<CShotAudioWeaponPresets>::object asm("g_unk_71729cf000");
 class CEntity;
 extern template const base::reflection::CType* base::reflection::PointerType<CEntity*>::Get();
 class CSubareaCharclassGroup;
@@ -74,7 +80,6 @@ void fn_71009c2c2c();
 void fn_71009c2d10();
 void fn_71009c2d74();
 void fn_71009c7224();
-extern base::reflection::CType g_unk_717275b580;
 void fn_71009c9c14();
 void fn_71009c9d00();
 void fn_71009c9dec();
@@ -219,7 +224,6 @@ void fn_7100d9c8d8();
 void fn_7100d9c970();
 void fn_7100d9ca08();
 void fn_7100d9caa0();
-extern base::reflection::CType g_unk_71727ba620;
 void fn_7100da0ae8();
 void fn_7100da0b9c();
 void fn_7100da5440();
@@ -263,7 +267,6 @@ void fn_7100eacae0();
 void fn_7100eacb68();
 void fn_7100eacc30();
 void fn_7100eacd38();
-extern base::reflection::CType g_unk_71729cf000;
 void fn_7100ede684();
 void fn_7100ef0c40();
 void fn_7100ef0840(UnkReflFunction* fn);
@@ -317,17 +320,17 @@ void fn_71009c6d90(UnkReflFunction* fn, const char* name) {
 
 void fn_71009c932c(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71009c9c14);
-    fn->params.PushBack(&g_unk_717275b580);
+    fn->params.PushBack(&base::reflection::TypeObject<CGameBBPropID>::object);
 }
 
 void fn_71009c94a0(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71009c9d00);
-    fn->params.PushBack(&g_unk_717275b580);
+    fn->params.PushBack(&base::reflection::TypeObject<CGameBBPropID>::object);
 }
 
 void fn_71009c9614(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_71009c9dec);
-    fn->params.PushBack(&g_unk_717275b580);
+    fn->params.PushBack(&base::reflection::TypeObject<CGameBBPropID>::object);
 }
 
 void fn_71009c9788(UnkReflFunction* fn, const char* name) {
@@ -1021,7 +1024,7 @@ void fn_7100d9adf4(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100d9d680(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71727ba620, 0x1, fn_7100da0ae8);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<CLightInfo>::object, 0x1, fn_7100da0ae8);
     fn->params.PushBack(&base::reflection::PrimitiveType<unsigned int>::Get());
 }
 
@@ -1232,7 +1235,7 @@ void fn_7100e86ab0(UnkReflFunction* fn, const char* name) {
 
 void fn_7100ed34e4(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100ede684);
-    fn->params.PushBack(&g_unk_71729cf000);
+    fn->params.PushBack(&base::reflection::TypeObject<CShotAudioWeaponPresets>::object);
 }
 
 void fn_7100ee10f0(UnkReflFunction* fn, const char* name) {

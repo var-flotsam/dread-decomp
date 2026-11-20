@@ -26,6 +26,8 @@ using base::reflection::DestroyDestructorFirst;
 namespace gameeditor { enum class EEditorModeDataFlow : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EEditorModeDataFlow>::object asm("g_unk_7101d55008");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+class CompleteInfo;
+template <> base::reflection::CType base::reflection::TypeObject<CompleteInfo>::object asm("g_unk_7101d60ff0");
 namespace base::serialization { enum class EPersistence : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::serialization::EPersistence>::object asm("g_unk_7101d679f0");
 namespace base::math { class CVector3D; }
@@ -35,7 +37,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<u
 // SCameraRailNode
 void fn_7100c079cc();
 void fn_7100bfef1c(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d60ff0;
 namespace SCameraRailNode {
 void refl_AddAttributes(CClass*) {}
 void refl_AddFields(CClass* cls) {
@@ -43,7 +44,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_vPos_SetterFunction")
         fn_7100bfef1c(fn, "_vPos_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
+    field0->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x3, base::reflection::UnkReflList<base::global::CRntString>({"vPos", "vSegments:*:vPos"}, 0xa, nullptr, 0xf)));
     field0->attrs.Add<base::global::CRntString>(base::reflection::attr::Description(), base::global::CRntString("Position"));
     field0->attrs.Add<s32>(base::reflection::attr::EditorModeDataFlow(), 3);
     field0->attrs.Add<bool>(base::reflection::attr::bEditorModeDataFlowInit(), true);

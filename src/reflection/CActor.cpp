@@ -22,7 +22,11 @@ using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
+namespace base::core { class CAssetLink; }
+template <> base::reflection::CType base::reflection::TypeObject<base::core::CAssetLink>::object asm("g_unk_7101d4ec50");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+class CompleteInfo;
+template <> base::reflection::CType base::reflection::TypeObject<CompleteInfo>::object asm("g_unk_7101d60ff0");
 class CActorComponent;
 namespace base::global { class CStrId; }
 namespace base::global { template <class, class> class CRntSmallDictionary; }
@@ -35,11 +39,9 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<b
 // CActor
 void fn_710023e0f8();
 void fn_71002289a8(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d4ec50;
 void fn_710023e1ac();
 void fn_710023e278();
 void fn_7100228b24(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_7101d60ff0;
 void fn_710023e348();
 void fn_7100228ee4(UnkReflFunction* fn, const char* name);
 void fn_710023e44c();
@@ -57,7 +59,7 @@ void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_sName_SetterFunction")
         fn_71002289a8(fn, "_sName_SetterFunction");
     DREAD_REFLECTED_PROPERTY(CStrId, "sName", (Description, base::global::CRntString("Actor Name")), (DisplayName, CStrId("Name", true)), (WidgetReadOnly, true));
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("oActorDefLink", true), &g_unk_7101d4ec50, 0x18, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("oActorDefLink", true), &base::reflection::TypeObject<base::core::CAssetLink>::object, 0x18, -1, -1);
     field1->attrs.Add<bool>(base::reflection::attr::EditorVisible(), true);
     DREAD_REFLECTED_FUNCTION_OF("_sActorDefName_GetterFunction", &base::reflection::PrimitiveType<base::global::CStrId>::Get(), 0x101, fn_710023e1ac);
     DREAD_REFLECTED_READ_ONLY_PROPERTY(CStrId, "sActorDefName", (Persistence, 0));
@@ -66,7 +68,7 @@ void refl_AddFields(CClass* cls) {
         fn_7100228b24(fn, "_vPos_SetterFunction");
     UnkReflField* field3 = AddReflectedField(cls, CStrId("vPos", true), &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
     field3->attrs.Add<base::math::CVector3D>(base::reflection::attr::DefaultValue(), base::math::CVector3D{0.0f, 0.0f, 0.0f});
-    field3->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &g_unk_7101d60ff0, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"oBBox"}, 0xa, nullptr, 0xf)));
+    field3->attrs.Add(base::reflection::attr::CompleteGameModelActionTreeFrom(), &base::reflection::TypeObject<CompleteInfo>::object, base::reflection::UnkReflStringList(0x1, base::reflection::UnkReflList<base::global::CRntString>({"oBBox"}, 0xa, nullptr, 0xf)));
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Position");
     DREAD_REFLECTED_FUNCTION_OF("_vAng_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0, fn_710023e348);
     DREAD_REFLECTED_FUNCTION("_vAng_SetterFunction")

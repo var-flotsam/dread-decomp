@@ -20,10 +20,11 @@ using base::reflection::ClassOfDestructorFirst;
 using base::reflection::Destroy;
 using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/TypeObject.h"
+namespace base::core { class CAssetLink; }
+template <> base::reflection::CType base::reflection::TypeObject<base::core::CAssetLink>::object asm("g_unk_7101d4ec50");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 
 // CMinimapDef
-extern base::reflection::CType g_unk_7101d4ec50;
 void fn_7100e6e81c();
 void fn_7100e6e850();
 namespace CMinimapDef {
@@ -31,9 +32,9 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("oMinimapIconsMatLink", true), &g_unk_7101d4ec50, 0x60, -1, -1);
-    UnkReflField* field1 = AddReflectedField(cls, CStrId("oIconsNoMipsMatLink", true), &g_unk_7101d4ec50, 0x78, -1, -1);
-    UnkReflField* field2 = AddReflectedField(cls, CStrId("oOverlayMatLink", true), &g_unk_7101d4ec50, 0x90, -1, -1);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("oMinimapIconsMatLink", true), &base::reflection::TypeObject<base::core::CAssetLink>::object, 0x60, -1, -1);
+    UnkReflField* field1 = AddReflectedField(cls, CStrId("oIconsNoMipsMatLink", true), &base::reflection::TypeObject<base::core::CAssetLink>::object, 0x78, -1, -1);
+    UnkReflField* field2 = AddReflectedField(cls, CStrId("oOverlayMatLink", true), &base::reflection::TypeObject<base::core::CAssetLink>::object, 0x90, -1, -1);
     DREAD_REFLECTED_FIELD_OF("CMinimapDef::TMapIconDefs", "mapIconDefs", 0xa8, (AfterElementDeserialization, "AfterIconDefDeserialize"));
     DREAD_REFLECTED_FIELD_OF("CMinimapDef::TMapLabelDefs", "mapLabelDefs", 0xd0, (AfterElementDeserialization, "AfterLabelDefDeserialize"));
     DREAD_REFLECTED_FUNCTION_OF("AfterIconDefDeserialize", &base::reflection::TypeObject<void>::object, 0, fn_7100e6e81c);

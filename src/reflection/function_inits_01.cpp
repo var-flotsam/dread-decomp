@@ -21,6 +21,8 @@ template <> base::reflection::CType base::reflection::TypeObject<engine::utils::
 template <class T> struct CGameLink;
 class CActor;
 template <> base::reflection::CType base::reflection::TypeObject<CGameLink<CActor>>::object asm("g_unk_717269bb48");
+class SFXInstanceData;
+template <> base::reflection::CType base::reflection::TypeObject<SFXInstanceData>::object asm("g_unk_7172722928");
 enum class EDamageStrength : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EDamageStrength>::object asm("g_unk_7172730858");
 namespace base::global { class CFilePathStrId; }
@@ -78,7 +80,6 @@ void fn_710081525c();
 void fn_7100815304();
 void fn_710081541c();
 void fn_7100815534();
-extern base::reflection::CType g_unk_7172722928;
 void fn_71008156ec();
 void fn_7100816d80();
 void fn_710083165c();
@@ -426,7 +427,7 @@ void fn_7100811c9c(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100812860(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_7172722928, 0x1, fn_71008156ec);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<SFXInstanceData>::object, 0x1, fn_71008156ec);
     fn->params.PushBack(&base::reflection::PrimitiveType<unsigned int>::Get());
 }
 

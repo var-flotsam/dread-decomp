@@ -25,13 +25,14 @@ using base::reflection::DestroyDestructorFirst;
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace gameeditor { enum class EPersistenceTarget : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<gameeditor::EPersistenceTarget>::object asm("g_unk_7172756f90");
+namespace sound::CSoundEventsDef { class TSoundEventRules; }
+template <> base::reflection::CType base::reflection::TypeObject<sound::CSoundEventsDef::TSoundEventRules>::object asm("g_unk_71729f8d30");
 namespace base::global { class TRntString128; }
 extern template const base::reflection::CType& base::reflection::PrimitiveType<base::global::TRntString128>::Get();
 namespace sound { class CAudioPresets; }
 extern template const base::reflection::CType* base::reflection::PointerType<sound::CAudioPresets*>::Get();
 
 // sound::CSoundEventsDef
-extern base::reflection::CType g_unk_71729f8d30;
 void fn_7101028a7c();
 void fn_7101028aa4();
 namespace sound::CSoundEventsDef {
@@ -39,8 +40,8 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<u32>(base::reflection::attr::Version(), 0x10200u);
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FUNCTION_OF("_aSoundEventRules_GetterFunction", &g_unk_71729f8d30, 0x1, fn_7101028a7c);
-    UnkReflField* field0 = AddReflectedField(cls, CStrId("aSoundEventRules", true), &g_unk_71729f8d30, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
+    DREAD_REFLECTED_FUNCTION_OF("_aSoundEventRules_GetterFunction", &base::reflection::TypeObject<sound::CSoundEventsDef::TSoundEventRules>::object, 0x1, fn_7101028a7c);
+    UnkReflField* field0 = AddReflectedField(cls, CStrId("aSoundEventRules", true), &base::reflection::TypeObject<sound::CSoundEventsDef::TSoundEventRules>::object, 0xffffffff, cls->m_array_0x110.size() - 1, -1);
     field0->attrs.Add<const char*>(base::reflection::attr::AfterElementDeserialization(), "AfterRulesDeserialization");
     DREAD_REFLECTED_FUNCTION_OF("AfterRulesDeserialization", &base::reflection::TypeObject<void>::object, 0, fn_7101028aa4);
 }

@@ -22,6 +22,8 @@ using base::reflection::DestroyDestructorFirst;
 #include "base/reflection/UnkReflPrimitiveType.h"
 #include "base/reflection/TypeObject.h"
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
+namespace CBreakableTileGroupComponent { class STileInfo; }
+template <> base::reflection::CType base::reflection::TypeObject<CBreakableTileGroupComponent::STileInfo>::object asm("g_unk_71727115d0");
 namespace game::logic::collision { enum class EColMat : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<game::logic::collision::EColMat>::object asm("g_unk_7172791c90");
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
@@ -31,7 +33,6 @@ void fn_710075d2e4();
 void fn_71007542cc(UnkReflFunction* fn, const char* name);
 void fn_710075d374();
 void fn_7100754448(UnkReflFunction* fn, const char* name);
-extern base::reflection::CType g_unk_71727115d0;
 void fn_710075d73c();
 void fn_710075d430(UnkReflFunction* fn);
 void fn_71007545bc(UnkReflFunction* fn, const char* name);
@@ -52,7 +53,7 @@ void refl_AddFields(CClass* cls) {
     field3->attrs.Add<s32>(base::reflection::attr::DefaultValue(), &base::reflection::TypeObject<game::logic::collision::EColMat>::object, 0);
     field3->attrs.Add<const char*>(base::reflection::attr::Description(), "Collision Material");
     DREAD_REFLECTED_FUNCTION("CreateNewTile") {
-        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNewTile", &g_unk_71727115d0, 0x101, fn_710075d73c);
+        DREAD_REFLECTED_FUNCTION_DESCRIPTION("CreateNewTile", &base::reflection::TypeObject<CBreakableTileGroupComponent::STileInfo>::object, 0x101, fn_710075d73c);
         fn_710075d430(fn);
         fn_710009ae5c(fn, fn->params.count);
         fn->ParamAttrs(0)->Add<CStrId>(base::reflection::attr::Name(), CStrId("uIdx", true));

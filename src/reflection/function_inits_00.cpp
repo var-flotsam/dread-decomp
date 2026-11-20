@@ -13,6 +13,8 @@ using base::reflection::UnkTunableRegistry;
 #include "base/reflection/CPointerType.h"
 #include "base/reflection/TypeObject.h"
 #include "base/reflection/ReflectedFields.h"
+namespace base::core { class AssetID; }
+template <> base::reflection::CType base::reflection::TypeObject<base::core::AssetID>::object asm("g_unk_7101d4dad8");
 template <> base::reflection::CType base::reflection::TypeObject<void>::object asm("g_unk_7101d5af48");
 namespace base::snd { enum class EReverbIntensity : u32; }
 template <> base::reflection::CType base::reflection::TypeObject<base::snd::EReverbIntensity>::object asm("g_unk_7108b6cc88");
@@ -25,6 +27,8 @@ template <> base::reflection::CType base::reflection::TypeObject<base::global::C
 namespace base::global { class CStrId; }
 namespace base::global { template <class, class> class CRntDictionary; }
 template <> base::reflection::CType base::reflection::TypeObject<base::global::CRntDictionary<base::global::CStrId, base::global::CRntVector<CGameLink<CActor>>>>::object asm("g_unk_717269c300");
+class CActorSublayer;
+template <> base::reflection::CType base::reflection::TypeObject<CActorSublayer>::object asm("g_unk_71726a1cd8");
 enum class EShellState : u32;
 template <> base::reflection::CType base::reflection::TypeObject<EShellState>::object asm("g_unk_7172707020");
 namespace game::logic::collision { enum class EColMat : u32; }
@@ -49,7 +53,6 @@ extern template const base::reflection::CType& base::reflection::PrimitiveType<i
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned int>::Get();
 extern template const base::reflection::CType& base::reflection::PrimitiveType<unsigned long>::Get();
 
-extern base::reflection::CType g_unk_7101d4dad8;
 void fn_7100027268();
 void fn_710007e4e8();
 void fn_710007e34c(UnkReflFunction* fn);
@@ -78,7 +81,6 @@ void fn_7100254770();
 void fn_71002547cc();
 void fn_7100260978();
 void fn_71002609ac();
-extern base::reflection::CType g_unk_71726a1cd8;
 void fn_71002609cc();
 void fn_7100260a40();
 void fn_7100260b8c();
@@ -260,7 +262,7 @@ void fn_710078dce0();
 
 void fn_7100026684(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100027268);
-    fn->params.PushBack(&g_unk_7101d4dad8);
+    fn->params.PushBack(&base::reflection::TypeObject<base::core::AssetID>::object);
 }
 
 void fn_710007bdd8(UnkReflFunction* fn, const char* name) {
@@ -389,7 +391,7 @@ void fn_71002592d0(UnkReflFunction* fn, const char* name) {
 }
 
 void fn_7100259444(UnkReflFunction* fn, const char* name) {
-    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &g_unk_71726a1cd8, 0x1, fn_71002609cc);
+    DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<CActorSublayer>::object, 0x1, fn_71002609cc);
     fn->params.PushBack(&base::reflection::PrimitiveType<base::global::CStrId>::Get());
 }
 
@@ -400,7 +402,7 @@ void fn_71002595c4(UnkReflFunction* fn, const char* name) {
 
 void fn_710025973c(UnkReflFunction* fn, const char* name) {
     DREAD_REFLECTED_FUNCTION_DESCRIPTION(name, &base::reflection::TypeObject<void>::object, 0x0, fn_7100260b8c);
-    fn->params.PushBack(&g_unk_71726a1cd8);
+    fn->params.PushBack(&base::reflection::TypeObject<CActorSublayer>::object);
 }
 
 void fn_710026264c(UnkReflFunction* fn, const char* name) {
