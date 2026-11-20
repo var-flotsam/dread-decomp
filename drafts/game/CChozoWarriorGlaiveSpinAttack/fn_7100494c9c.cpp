@@ -2,6 +2,10 @@
 // base check the owner must face a wall (its forward x near +-1) with the target ahead of it, and, for a Chozo
 // Warrior AI, fn_710049cbd8 must not hold. `arg` and `mode` reach the base untouched in the original. Names and
 // layouts are placeholders.
+// fn_710049cbd8 asks whether the target is high above the floor (fTargetMinDistanceToFloorToForceGlaiveSpinAttack,
+// CCharClassChozoWarriorAIComponent +0x7fc), so the attack may start only while the target is near the floor.
+// Held: this matches with a u32 result, but the Chozo Warrior X's check fn_7100481914 tests the result as a bool,
+// so the one shared declaration must say bool; as bool the result's 0/1 mask moves into the shared exit (73.9%).
 #include <math.h>
 
 #include "base/UnkMatrix44.h"
