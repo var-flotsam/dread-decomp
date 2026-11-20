@@ -3,17 +3,8 @@
 // buffers, frees the storage and finishes as a media::CMovieStreamNx (fn_710022594c). Names and
 // layouts are placeholders.
 #include "game/media/CMovieAudioStreamNx.h"
+#include "game/media/MovieBuffer.h"
 #include "types.h"
-
-namespace movie {
-class Buffer {
-public:
-    ~Buffer();
-
-private:
-    u8 storage[0x40];
-};
-}  // namespace movie
 
 // The allocator behind a buffer array (placeholder slot names).
 class UnkMovieAllocator_b50 {

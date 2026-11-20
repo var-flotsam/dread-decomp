@@ -5,19 +5,8 @@
 
 #include "base/global/CRntVector.h"
 #include "game/media/CMovieAudioStreamNx.h"
+#include "game/media/MovieBuffer.h"
 #include "types.h"
-
-namespace movie {
-class Buffer {
-public:
-    Buffer(void* data, u64 size);
-    Buffer(const Buffer& other);
-    ~Buffer();
-
-private:
-    u8 storage[0x40];
-};
-}  // namespace movie
 
 struct UnkMovieStreamNx;  // src/game/media/CMovieStreamNx.cpp
 struct UnkMovieSource;

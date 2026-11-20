@@ -8,6 +8,7 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/timeline/CEvent.h"
+#include "game/media/CMovieAudioStreamNx.h"
 #include "types.h"
 
 struct UnkMovieBuffer_7100221938 {
@@ -129,9 +130,8 @@ u64 fn_7100221938(UnkPlayer_7100221938* self) {
 
 void fn_7100225b84(UnkPlayer_7100221938* self);
 void fn_710022162c(void* arg);
-u64 fn_7100221698(UnkPlayer_7100221938* self, u32 a, u32 b, bool c);
 
-u64 fn_7100221534(UnkPlayer_7100221938* self) {
+s32 fn_7100221534(UnkPlayer_7100221938* self) {
     fn_7100225b84(self);
     fn_71000668f8(&self->field_0xcd8);
     fn_7100066744(self->field_0xa28, "MovieAudioStreamNx Thread", fn_710022162c, 0, 0x10, self);

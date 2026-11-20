@@ -5,19 +5,8 @@
 
 #include "base/UnkDefaultAllocator.h"
 #include "base/global/CRntVector.h"
+#include "game/media/MovieBuffer.h"
 #include "types.h"
-
-namespace movie {
-class Buffer {
-public:
-    Buffer(void* data, u64 size);
-    Buffer(const Buffer& other);
-    ~Buffer();
-
-private:
-    u8 storage[0x40];
-};
-}  // namespace movie
 
 struct UnkMovieStreamNx_ovb0265;
 void fn_7100225ef8(UnkMovieStreamNx_ovb0265* self);

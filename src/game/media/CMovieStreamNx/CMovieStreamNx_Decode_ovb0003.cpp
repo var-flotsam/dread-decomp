@@ -5,16 +5,10 @@
 // placeholders.
 #include "base/UnkDefaultAllocator.h"
 #include "game/media/CMediaStream.h"
+#include "game/media/MovieBuffer.h"
 #include "types.h"
 
 namespace movie {
-class Buffer {
-public:
-    ~Buffer();
-
-private:
-    u8 storage[0x40];
-};
 class MediaData {
 public:
     MediaData();
