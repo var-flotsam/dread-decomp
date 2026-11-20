@@ -32,6 +32,7 @@ struct UnkBox_le2d4ec {
     }
 };
 
+// NON_MATCHING(functional): Operations differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 bool fn_7100e2d4ec(UnkSlotManager_le2d4ec* self, UnkBox_le2d4ec* box) {
     bool any = false;
     for (u32 i = 0; i < 128; ++i) {
