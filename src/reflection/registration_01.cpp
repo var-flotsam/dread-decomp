@@ -738,7 +738,7 @@ void fn_7100810e40(CClass* cls) {
     DREAD_REFLECTED_FUNCTION("_sFXPath_SetterFunction")
         fn_7100811828(fn, "_sFXPath_SetterFunction");
     UnkReflField* field0 = AddReflectedField(cls, CStrId("sFXPath", true), &base::reflection::PrimitiveType<base::global::CFilePathStrId>::Get(), 0xffffffff, cls->m_array_0x110.size() - 2, cls->m_array_0x110.size() - 1);
-    field0->attrs.Add<base::global::CFilePathStrId>(base::reflection::attr::DefaultValue(), base::global::CFilePathStrId(g_unk_7101d470e8));
+    field0->attrs.Add<base::global::CFilePathStrId>(base::reflection::attr::DefaultValue(), base::global::CFilePathStrId(base::global::CFilePathStrId::Empty()));
     DREAD_REFLECTED_FUNCTION_OF("_v3Position_GetterFunction", &base::reflection::PrimitiveType<base::math::CVector3D>::Get(), 0x101, fn_71008152c0);
     DREAD_REFLECTED_FUNCTION("_v3Position_SetterFunction")
         fn_71008119a4(fn, "_v3Position_SetterFunction");

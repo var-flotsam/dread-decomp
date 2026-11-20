@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Vibration", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Extension, CStrId(*g_unk_7101d676d8[6])));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Extension, CStrId(*g_unk_7101d676d8[6])));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }
 s32 refl_Hash() { return -1; }

@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Camera", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeAnimationPath", 0x70, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)), (Extension, CStrId(*g_unk_716e454178[6])));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sAlternativeAnimationPath", 0x70, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())), (Extension, CStrId(*g_unk_716e454178[6])));
     DREAD_REFLECTED_FIELD(f32, "fAlternativeCameraDistanceThreshold", 0x78, (DefaultValue, 50.0f));
 }
 bool refl_Equals(const void* a, const void* b) { return a == b; }

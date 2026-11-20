@@ -28,7 +28,7 @@ void refl_AddAttributes(CClass* cls) {
 }
 void refl_AddFields(CClass* cls) {
     DREAD_REFLECTED_FIELD(CStrId, "sName", 0x10, (DefaultValue, CStrId(CStrId::Empty())));
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMaterial", 0x18, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sMaterial", 0x18, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("ELinkType", "eLinkType", 0x20, (DefaultValue, 4));
     DREAD_REFLECTED_FIELD(CStrId, "sBone", 0x28, (DefaultValue, CStrId(CStrId::Empty())));
     DREAD_REFLECTED_FIELD(f32, "fColorR", 0x30, (DefaultValue, 1.0f));

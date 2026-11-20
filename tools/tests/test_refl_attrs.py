@@ -84,7 +84,7 @@ class ValueExpr(unittest.TestCase):
         self.assertEqual(ra.value_expr("base::global::CName", [("imm", 0x1234, 8)]),
                          "base::global::CName(base::global::UnkNameHash{}, 0x1234u)")
         self.assertEqual(ra.value_expr("base::global::CFilePathStrId", [("global", ra.GLOBAL_CFP, 8)]),
-                         "base::global::CFilePathStrId(g_unk_7101d470e8)")
+                         "base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())")
         self.assertIsNone(ra.value_expr("base::global::CFilePathStrId", [("global", 0x7101000000, 8)]))
 
     def test_vectors(self):

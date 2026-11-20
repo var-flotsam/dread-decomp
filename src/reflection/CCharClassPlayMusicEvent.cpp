@@ -27,7 +27,7 @@ void refl_AddAttributes(CClass* cls) {
     TypeAttributes(cls)->Add<CStrId>(base::reflection::attr::EventGroup(), CStrId("Sound", true));
 }
 void refl_AddFields(CClass* cls) {
-    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(g_unk_7101d470e8)));
+    DREAD_REFLECTED_FIELD(base::global::CFilePathStrId, "sPath", 0x10, (DefaultValue, base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())));
     DREAD_REFLECTED_FIELD_OF("SMusicPriority", "ePriority", 0x18, (DefaultValue, 5));
     DREAD_REFLECTED_FIELD(f32, "fVolume", 0x1c, (DefaultValue, 1.0f), (MinValue, 0.0f), (MaxValue, 1.0f));
     DREAD_REFLECTED_FIELD(bool, "bLoop", 0x20, (DefaultValue, false));

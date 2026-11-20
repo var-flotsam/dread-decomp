@@ -51,7 +51,7 @@ CRNT_CTOR = 0x710007E704
 CRNT_COPY = 0x710007EA60
 CRNT_DTOR = 0x710007ECD4
 CFP_CTOR = 0x71000166C8
-GLOBAL_CFP = 0x7101D470E8      # g_unk_7101d470e8, a global CFilePathStrId
+GLOBAL_CFP = 0x7101D470E8      # g_unk_7101d470e8, base::global::CFilePathStrId::Empty()
 HASH = 0x7100001570
 RESIZE_PARAM_ATTRS = 0x710009AE5C  # fn_710009ae5c(fn, fn->params.count)
 ENSURE_POOL = 0x710007FDB4     # what an inlined string-id constructor calls when there's no pool yet
@@ -315,7 +315,7 @@ def value_expr(type_name: str, vals: list[tuple]) -> str | None:
         return f"{type_name}{{{', '.join(parts)}}}"
     if type_name == "base::global::CFilePathStrId":
         if vals == [("global", GLOBAL_CFP, 8)]:
-            return "base::global::CFilePathStrId(g_unk_7101d470e8)"
+            return "base::global::CFilePathStrId(base::global::CFilePathStrId::Empty())"
         return None
     if type_name in ("base::math::CVector2D", "base::math::CVector3D"):
         # Components stored as immediates: x and y as one 8-byte store, z as a 4-byte one.
