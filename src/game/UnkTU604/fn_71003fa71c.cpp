@@ -84,6 +84,7 @@ static inline void SetOthersFlag(UnkListGroups_b256* self, UnkActor_l3fa71c* act
 }
 
 // The registry and the actor arrive untyped: the caller (fn_71003f8210) holds the registry as raw storage.
+// NON_MATCHING(functional): Calls differ from the original; behaves the same on every input tools/equiv_test.py --any-kind tried, with full coverage. Owes a match.
 void fn_71003fa71c(void* registry, void* actor) {
     SetOthersFlag(static_cast<UnkListGroups_b256*>(registry), static_cast<UnkActor_l3fa71c*>(actor));
 }
