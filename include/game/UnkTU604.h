@@ -9,3 +9,5 @@ extern void* g_unk_7101a32680[];  // The node list's vtable.
 extern void* g_unk_7101a32660[];  // The node list's derived part's vtable.
 void fn_71003fa9fc(void* list, u32 block, u32 flags, u32 alloc_flags, base::UnkAllocator* allocator);
 char* fn_71003f92ac(void* value);
+// Sets the flag at +0x1471c of every other member of the actor's AI group in the registry's lists.
+void fn_71003fa71c(void* registry, void* actor);
